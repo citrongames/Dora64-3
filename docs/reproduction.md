@@ -60,16 +60,17 @@ python3 tools/run_startup.py --rom "$ROM" \
 ```
 
 Ожидается DMA VERIFIED для обоих банков, затем диагностическая граница.
-В v15: RSP TASK type=2 bytes=9A0, AUDIO RSP COMPLETED reason=1,
-PENDING 800331F8, exit77. Из-за порядка потоков первой может оказаться
-графическая граница (78) или непроверенный SP completion (77).
+В v20: RSP TASK type=2 bytes=9A0, AUDIO RSP COMPLETED reason=1,
+оригинальный SP completion и graphics/PCM boundary78. Первый PCM:
+samples=1024, frames=512, nonzero=0. Порядок потоков может оборвать журнал
+до PCM callback; отсутствие строки нельзя выдавать за его выполнение.
 Отсутствие RSP completion в конкретном журнале нельзя выдавать за выполнение.
 Runner сохраняет observations: задачи, штатные RSP completion, DMA и unknown
 calls. Журналы остаются в build-local.
 
 Runner возвращает 0 для предусмотренных границ 77/78: это не запуск игры.
-Коды 79/80/81/82/124 означают runtime timeout, runtime error, DMA mismatch,
-audio RSP identity/execution failure и runner timeout; runner вернёт 1.
+Коды 79/80/81/82/83/124 означают runtime timeout, runtime error, DMA mismatch,
+audio RSP failure, ошибку записи снимка и runner timeout; runner вернёт 1.
 При остановке даётся до 250 мс уже отправленной аудиозадаче, без успешного
 возврата непроверенной функции. Новая state-папка — на каждый запуск,
 сохранения отключены. Windows/Android для frontend ещё не проверены.
@@ -78,6 +79,12 @@ audio RSP identity/execution failure и runner timeout; runner вернёт 1.
 Аудиогенератор проверяет text hash и 16 целей переходов из ROM; чужой generated
 aspMain не используется. CMake проверяет оба комплекта и связывает audio RSP
 с frontend. Отдельная компиляция RSP object больше не требуется.
+
+## RT64 replay — Linux x86-64
+
+Команды и ограничения: [graphics-replay.md](graphics-replay.md).
+Используется приватный снимок собственной первой задачи. Не добавлять его
+в Git и не выдавать replay за работающую игру.
 
 ## Windows
 

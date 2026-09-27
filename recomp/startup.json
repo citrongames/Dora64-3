@@ -654,6 +654,86 @@
       "dora3_process_dispatch",
       220,
       "Visits8 slots matching phase; transitions sleep/ready states and invokes registered callback"
+    ],
+    "0x800331F8": [
+      "dora3_update_timestamp",
+      36,
+      "Reads CP0 COUNT and saves update start time at801AC698"
+    ],
+    "0x80026B28": [
+      "dora3_scheduler_sp_complete",
+      284,
+      "Clears active SP task; handles yield or completion; selects next resource users"
+    ],
+    "0x80026D40": [
+      "dora3_scheduler_task_complete",
+      140,
+      "Sends completion only after resource bits clear; swaps framebuffer for graphics flags60"
+    ],
+    "0x800305E0": [
+      "dora3_controller_latch",
+      536,
+      "Latches button/stick edges into game arrays; clears disconnected channels"
+    ],
+    "0x800304A8": [
+      "dora3_controller_reset_accumulator",
+      312,
+      "Copies current buttons/directions to previous and refreshes accumulators for connected ports"
+    ],
+    "0x800433D8": [
+      "dora3_initial_game_process",
+      1052,
+      "Initial setup then96-case scene dispatch via table8007DC20; installs next process callback through280DC"
+    ],
+    "0x80028948": [
+      "dora3_fade_tick",
+      144,
+      "Advances signed fade direction; clamps alpha0..255 and sets finished state"
+    ],
+    "0x8003CD48": [
+      "dora3_rumble_tick",
+      540,
+      "Four channel rumble countdown and pattern state; absent devices skipped"
+    ],
+    "0x8003D39C": [
+      "dora3_controller_pak_tick",
+      552,
+      "Pak retry counter and operation state machine; child SDK/game operations remain guarded"
+    ],
+    "0x8004281C": [
+      "dora3_sound_events_tick",
+      28,
+      "Calls sound handle cleanup446C0"
+    ],
+    "0x8003321C": [
+      "dora3_update_elapsed",
+      48,
+      "Subtracts saved COUNT from current and records duration"
+    ],
+    "0x800446C0": [
+      "dora3_sound_handles_collect",
+      212,
+      "Queries active handles in two tables; clears completed handles and IDs"
+    ],
+    "0x800440A0": [
+      "dora3_save_slots_startup",
+      128,
+      "Checks save device setup; initializes and validates three slots; original hard loop on setup error"
+    ],
+    "0x80031488": [
+      "dora3_scene_flags_init",
+      44,
+      "Initializes100 scene-state bytes to1 at80171C50"
+    ],
+    "0x800314B4": [
+      "dora3_scene_select",
+      24,
+      "Stores scene ID801A950C and per-scene state byte"
+    ],
+    "0x80042F20": [
+      "dora3_new_game_state_init",
+      408,
+      "Sets initial game-state counters and arrays at801B36xx; exact gameplay labels still unknown"
     ]
   },
   "sdk": {
@@ -808,6 +888,14 @@
     "0x80059630": [
       "osViGetNextFramebuffer",
       "Returns framebuffer field of next VI context80078A64 with interrupt guard"
+    ],
+    "0x80058A00": [
+      "osSpTaskYielded",
+      "Reads SP status bits7/8; applies OSTask yielded flag and clears yield-requested"
+    ],
+    "0x80059C20": [
+      "osViSwapBuffer",
+      "Writes next VI context framebuffer field and sets state bit10 under interrupt guard"
     ]
   },
   "indirect_targets": {

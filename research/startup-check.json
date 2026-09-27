@@ -1,20 +1,11 @@
 {
-  "scope": "Diagnostic native startup and first audio RSP execution; no rendered frame or audio device",
+  "scope": "diagnostic startup; RSP completion recorded separately; no rendered frame or audio device validation",
   "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
-  "executable_sha256": "7baec6683043e85afc0d3160182ecc54094094f6ee8996c83ee9a7e246c94521",
-  "exit_code": 77,
-  "meaning": "unreviewed function reached",
-  "date": "2026-09-27",
-  "platform": "Linux x86-64 / WSL2 Ubuntu",
-  "compiler": "c++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
-  "boundary": "0x800331F8",
-  "compiled_functions": 131,
-  "sdk_entries": 38,
-  "registered_indirect_targets": 15,
+  "executable_sha256": "1cd41647caa53d4dda8db26384e452962111c8e8bcba576bcc3edaba9f4089aa",
+  "exit_code": 78,
+  "meaning": "diagnostic task/output boundary; inspect observations",
   "observations": {
-    "pending_functions": [
-      "800331F8"
-    ],
+    "pending_functions": [],
     "dma_verified": [
       "rom=00FA1FA0 ram=800DD8F0 bytes=1C760",
       "rom=00FBE700 ram=800FADE0 bytes=2580"
@@ -23,10 +14,27 @@
       "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0"
     ],
     "audio_rsp_completions": 1,
-    "graphics_submissions": [],
-    "pcm_boundary_reached": false
+    "graphics_submissions": [
+      "ucode=80063510 size=1000 data=80120638 bytes=30; renderer not connected"
+    ],
+    "pcm_boundary_reached": true,
+    "pcm_buffers": [
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      }
+    ],
+    "graphics_capture_saved": true
   },
-  "runtime_log_sha256": "0e70cee9dee4298f97c30610f1d9b4bddb90b64558054dcc196998d76b01fc18",
+  "date": "2026-09-27",
+  "platform": "Linux x86-64 / WSL2 Ubuntu",
+  "boundary": "diagnostic graphics/PCM (78)",
+  "compiler": "c++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "compiled_functions": 147,
+  "sdk_entries": 40,
+  "registered_indirect_targets": 15,
+  "runtime_log_sha256": "331d8a5240aa553b58ca4a6ab266be92d920efc50e1d843fbc76952b9a2421dd",
   "entered_functions": [
     "80025C00",
     "80026670",
@@ -34,7 +42,9 @@
     "800268A0",
     "800268A8",
     "80026A28",
+    "80026B28",
     "80026CEC",
+    "80026D40",
     "80026DCC",
     "80026E24",
     "80026F64",
@@ -49,9 +59,11 @@
     "80028018",
     "80028060",
     "80028178",
+    "800281B8",
     "80028434",
     "80028474",
     "80028814",
+    "80028948",
     "800289D8",
     "8002F518",
     "8002F828",
@@ -62,6 +74,8 @@
     "800301B0",
     "80030324",
     "80030380",
+    "800304A8",
+    "800305E0",
     "800307F8",
     "80030D00",
     "8003155C",
@@ -69,6 +83,8 @@
     "80031658",
     "80031664",
     "800331A4",
+    "800331F8",
+    "8003321C",
     "8003324C",
     "80033A14",
     "80033A50",
@@ -77,13 +93,17 @@
     "8003C1B8",
     "8003CACC",
     "8003CC20",
+    "8003CD48",
     "8003CF64",
     "8003CFE4",
     "8003D04C",
     "8003D110",
+    "8003D39C",
     "80042800",
+    "8004281C",
     "80044120",
     "80044164",
+    "800446C0",
     "80044C14",
     "80047344",
     "800476F8",
@@ -159,28 +179,31 @@
     "80061F90"
   ],
   "input_sha256": {
-    "recomp/startup.json": "fa58ef9745c8f034825c855fe2d7903b200ec9a4d5c2e4de946c6ee8f61e9369",
-    "src/startup_runtime.cpp": "921d2f17f983b069b7a6fd204620463ce2be268e97bc874d61a5e55f8fe98b6a",
+    "recomp/startup.json": "2fd7fce75e5ea29fa807b9b27f0740a27b4f21a2b249103e27bae90216915e15",
+    "src/startup_runtime.cpp": "ee1dd32b946319160d0dd3c6fdbdf02df50c9367552211ba23eb0546d86c63fe",
     "tools/generate_startup.py": "ea7a3fefa3ca5775c5cac97300499f71912a996e359079b6c04eaef7b8184eda",
     "research/runtime/CMakeLists.txt": "410b9763508a1466dc5fdb2fca68a8e18b0181499e49dd17183cb39d39cf2adc",
     "recomp/audio-rsp.json": "8c35c699b6a7e78c527b14e76bbf18d01766422332eedadc6ae74f67db74cc3e"
   },
-  "cpu_generation_receipt_sha256": "c0b60e665d1c301f0795459eb075984729ad98f602c9f0c53d6b04b5c0e9328e",
+  "cpu_generation_receipt_sha256": "81d851b5e5acbaa4b950dddd4bf1a24da91091054906ded1cc2f8867832f1cd7",
   "audio_rsp": {
     "generation_receipt_sha256": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f",
     "executed": true,
     "exit_reason": "Broke (1)",
-    "original_command_bytes": 2464,
-    "loaded_text_compared_bytewise": true,
-    "scheduler_completion_delivery_verified": false,
-    "pcm_verified": false
+    "scheduler_completion_delivery_verified": true,
+    "pcm_callback_verified": true,
+    "first_buffer_frames": 512,
+    "first_buffer_nonzero_samples": 0,
+    "audible_output_verified": false
   },
   "limitations": [
-    "No rendered frame",
-    "No PCM verification or audible output",
-    "No physical controller",
-    "No game save/load",
+    "No live RT64 game frontend",
+    "No visible game frame",
+    "Only startup silence measured; no music/active voice validation",
+    "No physical controller or game save/load",
     "No Windows/Android runtime validation",
-    "Diagnostic first boundary depends on thread timing"
-  ]
+    "Diagnostic boundary ordering depends on host scheduling"
+  ],
+  "run_label": "v20",
+  "vi_capture": "Latest renderer-published VI copy under private mutex; never read graphics-owned storage from CPU thread"
 }

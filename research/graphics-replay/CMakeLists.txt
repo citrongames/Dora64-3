@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.20)
+project(Dora3GraphicsReplay LANGUAGES C CXX)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+get_filename_component(ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../.." ABSOLUTE)
+set(RT64_ROOT "${ROOT}/build-deps/lib/rt64")
+set(RT64_STATIC TRUE)
+set(RT64_SDL_WINDOW_VULKAN TRUE)
+add_compile_definitions(HLSL_CPU)
+find_package(SDL2 REQUIRED)
+add_subdirectory("${RT64_ROOT}" rt64)
+add_executable(dora3_graphics_replay "${ROOT}/src/graphics_replay.cpp")
+target_include_directories(dora3_graphics_replay PRIVATE
+    "${RT64_ROOT}/src" "${RT64_ROOT}/src/contrib"
+    "${RT64_ROOT}/src/contrib/hlslpp/include" "${RT64_ROOT}/src/rhi" "${RT64_ROOT}/src/render")
+target_link_libraries(dora3_graphics_replay PRIVATE rt64 SDL2::SDL2)

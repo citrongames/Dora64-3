@@ -9,6 +9,10 @@
 #include <fstream>
 #include <vector>
 #include <thread>
+#include <array>
+#include <cstring>
+#include <mutex>
+#include "ultramodern/ultramodern.hpp"
 #include "librecomp/game.hpp"
 #include "librecomp/overlays.hpp"
 #include "recomp_overlays.inl"
@@ -17,14 +21,21 @@
 
 RspExitReason dora3_aspMain(uint8_t*, uint32_t);
 namespace {
-std::atomic<unsigned> audio_submitted{0},audio_completed{0};
+std::atomic<unsigned> audio_submitted{0},audio_completed{0},pcm_buffers{0};
+std::mutex captured_vi_mutex;
+ultramodern::renderer::ViRegs captured_vi{};
+bool captured_vi_ready=false;
 // Freeze the caller at a diagnostic boundary, but let an already submitted
 // native RSP task finish. No original call receives a fake successful return.
 [[noreturn]] void stop_diagnostic(int code){
     static std::atomic<int> first_code{0};
     int unset=0;first_code.compare_exchange_strong(unset,code);
     const auto deadline=std::chrono::steady_clock::now()+std::chrono::milliseconds(250);
-    while(audio_completed.load()<audio_submitted.load() && std::chrono::steady_clock::now()<deadline)
+    // At the graphics boundary also allow the already completed audio task
+    // to reach AI on its next retrace. The renderer still never returns success.
+    while((audio_completed.load()<audio_submitted.load() ||
+           (code==78 && audio_submitted.load()>0 && pcm_buffers.load()==0)) &&
+          std::chrono::steady_clock::now()<deadline)
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
     std::fprintf(stderr,"DIAGNOSTIC STOP code=%d audio_submitted=%u audio_completed=%u\n",first_code.load(),audio_submitted.load(),audio_completed.load());
     std::fflush(nullptr);std::_Exit(first_code.load());
@@ -44,6 +55,31 @@ RspExitReason checked_audio_rsp(uint8_t* rdram, uint32_t ucode_addr) {
     audio_completed.fetch_add(1);
     return reason;
 }
+// Private Linux/x86-64 research capture: little-endian words, byteswapped RDRAM.
+// Captured before osSpTaskLoad/StartGo and before graphics SP completion.
+void capture_first_graphics(uint8_t* rdram,gpr sc_task){
+    static bool captured=false;
+    if(captured || !std::getenv("DORA3_CAPTURE_GRAPHICS"))return;
+    captured=true;
+    std::lock_guard lock(ultramodern::get_graphics_rdram_mutex());
+    std::array<uint32_t,35> header{};
+    header[0]=0x44335231;header[1]=1;header[2]=0x400000;header[3]=0x01020304;
+    for(unsigned i=0;i<16;i++)header[4+i]=MEM_W(0x10+i*4,sc_task);
+    static_assert(sizeof(ultramodern::renderer::ViRegs)==14*sizeof(uint32_t));
+    {
+        std::lock_guard vi_lock(captured_vi_mutex);
+        if(!captured_vi_ready){std::fprintf(stderr,"GRAPHICS CAPTURE has no published VI snapshot\n");std::_Exit(83);}
+        std::memcpy(header.data()+20,&captured_vi,14*sizeof(uint32_t));
+    }
+    header[34]=MEM_W(0xC,sc_task);
+    const auto path=recomp::get_config_path()/"first-graphics.snapshot";
+    std::ofstream out(path,std::ios::binary);
+    out.write(reinterpret_cast<const char*>(header.data()),sizeof(header));
+    out.write(reinterpret_cast<const char*>(rdram),0x400000);
+    out.close();
+    if(!out){std::fprintf(stderr,"GRAPHICS CAPTURE failed\n");std::_Exit(83);}
+    std::fprintf(stderr,"GRAPHICS CAPTURE saved immutable first-task snapshot, framebuffer=%08X\n",header[34]);
+}
 struct PendingDma { uint32_t rom, ram, size; bool active; };
 thread_local PendingDma pending_dma{};
 }
@@ -54,7 +90,10 @@ extern "C" void dora3_pending(uint32_t address) {
 }
 extern "C" void dora3_trace(uint8_t* rdram,recomp_context* ctx,uint32_t address) {
     std::fprintf(stderr,"ENTER %08X sp=%08X a0=%08X\n",address,(uint32_t)ctx->r29,(uint32_t)ctx->r4);
-    if(address==0x80026E24 && ctx->r5 && MEM_W(0x10,ctx->r5)==2)audio_submitted.fetch_add(1);
+    if(address==0x80026E24 && ctx->r5){
+        if(MEM_W(0x10,ctx->r5)==2)audio_submitted.fetch_add(1);
+        else if(MEM_W(0x10,ctx->r5)==1)capture_first_graphics(rdram,ctx->r5);
+    }
     if(address==0x8002730C){
         if(pending_dma.active){std::fprintf(stderr,"Unexpected nested DMA wrapper\n");std::_Exit(81);}
         pending_dma={(uint32_t)ctx->r4,(uint32_t)ctx->r5,(uint32_t)ctx->r6,true};
@@ -89,7 +128,13 @@ public:
         stop_diagnostic(78);
     }
     void send_dummy_workload(uint32_t) override{}
-    void update_screen(bool=false) override{}
+    void update_screen(bool=false) override{
+        // This callback runs on the owner of get_vi_regs(). Publish a copy;
+        // the scheduler must never read that graphics-thread storage directly.
+        std::lock_guard lock(captured_vi_mutex);
+        captured_vi=*ultramodern::renderer::get_vi_regs();
+        captured_vi_ready=true;
+    }
     void reset_game() override{}
     void shutdown() override{}
     uint32_t get_display_framerate() const override{return 60;}
@@ -141,7 +186,12 @@ int main(int argc,char** argv){
         }
     };
     cfg.audio_callbacks.get_frames_remaining=[]()->size_t{return 0;};
-    cfg.audio_callbacks.queue_samples=[](int16_t*,size_t){std::fprintf(stderr,"PCM OUTPUT reached; device not connected\n");std::_Exit(78);};
+    cfg.audio_callbacks.queue_samples=[](int16_t* samples,size_t count){
+        pcm_buffers.fetch_add(1);
+        size_t nonzero=0;for(size_t i=0;i<count;i++)nonzero+=samples[i]!=0;
+        std::fprintf(stderr,"PCM OUTPUT reached samples=%zu frames=%zu nonzero=%zu; device not connected\n",count,count/2,nonzero);
+        stop_diagnostic(78);
+    };
     cfg.audio_callbacks.set_frequency=[](uint32_t f){std::fprintf(stderr,"AUDIO FREQUENCY %u\n",f);};
     cfg.events_callbacks.vi_callback=[](){static std::atomic<bool> started=false;if(!started.exchange(true))recomp::start_game(u8"dora3.n64.jp","");};
     cfg.error_handling_callbacks.message_box=[](const char* m){std::fprintf(stderr,"RUNTIME ERROR %s\n",m);std::_Exit(80);};
