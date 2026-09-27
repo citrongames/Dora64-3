@@ -1,0 +1,10 @@
+{
+  "text_offset": 252656,
+  "text_size": 3616,
+  "text_address": 4224,
+  "data_offset": 343872,
+  "text_sha256": "14e3b245e8cd4e0bdf4cbb864af82d1ccba6d3d3ff33f73cb52c5821a76f30fc",
+  "dispatch_offset": 16,
+  "dispatch_count": 16,
+  "evidence": "Audio thread 8004E044 stores text800626F0/data80078B40; task builder8004DD4C; rspboot atROM3DA20 loads IMEM1080"
+}

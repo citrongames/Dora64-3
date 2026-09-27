@@ -1,0 +1,36 @@
+{
+  "text_rom": "0x3daf0",
+  "text_vram": "0x800626F0",
+  "text_size": "0xE20",
+  "data_rom": "0x53f40",
+  "data_vram": "0x80078B40",
+  "boot_rom": "0x3DA20",
+  "boot_size": "0xD0",
+  "imem_entry": "0x1080",
+  "text_sha256": "14e3b245e8cd4e0bdf4cbb864af82d1ccba6d3d3ff33f73cb52c5821a76f30fc",
+  "same_as_dora64_aspMain_text": true,
+  "dispatch_targets": [
+    "0x1118",
+    "0x1470",
+    "0x11dc",
+    "0x1b38",
+    "0x1214",
+    "0x187c",
+    "0x1254",
+    "0x12d0",
+    "0x12ec",
+    "0x1328",
+    "0x140c",
+    "0x1294",
+    "0x1e24",
+    "0x138c",
+    "0x170c",
+    "0x144c"
+  ],
+  "evidence": [
+    "8004E060..8004E074: audio thread assigns ucode text/data pointers",
+    "8004DDA4..8004DDC4: task builder assigns rspboot start and size",
+    "80062630: rspboot loads task ucode at IMEM1080"
+  ],
+  "status": "static verified locations; task submission not observed yet"
+}

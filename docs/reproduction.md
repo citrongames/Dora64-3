@@ -42,6 +42,44 @@ generated files. CMake отвергает изменённые inputs или gen
 Смена native harness не требует новой генерации игрового C.
 Git игнорирует build-* включая build-deps и локально сгенерированный код.
 
+## Диагностический настоящий runtime — Linux
+
+После bootstrap инструментов и зависимостей:
+
+```bash
+python3 tools/generate_startup.py --rom "$ROM" --output-dir build-local/startup-new
+cmake -S research/runtime -B build-local/runtime-new -G Ninja \
+  -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+  -DDORA3_GENERATED_DIR="$PWD/build-local/startup-new"
+cmake --build build-local/runtime-new -j6
+python3 tools/run_startup.py --rom "$ROM" \
+  --executable build-local/runtime-new/dora3_startup \
+  --run-dir build-local/run-startup-new
+```
+
+Ожидается `DMA VERIFIED` для обоих банков и остановка `PENDING ... 80051B88`,
+код executable 77. Runner возвращает 0 для предусмотренных диагностических
+границ 77/78; это **не** успешный запуск игры. Коды 79/80/81/124 означают
+timeout/runtime error/DMA verification failure/runner timeout; runner вернёт 1.
+Новая state-папка отдельная на каждый запуск, сохранения отключены. Нельзя
+выдавать это состояние за порт с вводом/графикой/звуком. Windows/Android для
+этого frontend ещё не проверены.
+
+Аудиомикрокод отдельно, пока без исполнения:
+
+```bash
+python3 tools/generate_audio_rsp.py --rom "$ROM" --output-dir build-local/audio-new
+c++ -std=c++20 -DHLSL_CPU -mssse3 -msse4.1 \
+  -Ibuild-deps/lib/N64ModernRuntime/librecomp/include \
+  -Ibuild-deps/lib/N64ModernRuntime/N64Recomp/include \
+  -Ibuild-deps/lib/N64ModernRuntime/ultramodern/include \
+  -c build-local/audio-new/dora3_aspMain.cpp -o build-local/audio-new/dora3_aspMain.o
+```
+
+Последняя команда проверена только на x86-64 Linux. Генератор самостоятельно
+проверяет text hash и 16 целей переходов из ROM. Результат не подменяется
+сгенерированным кодом первой игры.
+
 ## Windows
 
 На native checkout со своим Python/Git/VS2022 использовать `py -3` вместо

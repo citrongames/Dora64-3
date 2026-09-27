@@ -1,15 +1,15 @@
 status,kind,rom_start,vram_start,size,name_or_role,evidence,next_action
-verified,entry,0x1000,0x80025C00,0x3C,recomp_entrypoint,ROM decode and Linux/Windows native memory check,integrate runtime
+verified,entry,0x1000,0x80025C00,0x3C,recomp_entrypoint,ROM instructions/call sites: Entry handoff and memory clearing verified by boot probe,Expand dynamic branch coverage; see docs/startup-runtime.md
 verified,bss,,0x8007EA80,0x80230,boot zero region,entry instructions 0x80025C00..0x80025C24,retain original extent
 verified,stack,,0x80085A00,,initial SP,entry delay slot and native probe,review thread stacks separately
-verified,function,0x2814,0x80027414,0x29C,bootproc role,entry handoff and function ending 0x800276AC,map SDK calls
-verified,function,0x2AB0,0x800276B0,0xA4,idle thread role,bootproc osCreateThread argument,register callback
-verified,function,0x2E88,0x80027A88,0xE0,main thread role,idle osCreateThread argument and startup calls,register callback
-verified,function,0x270C,0x8002730C,0x108,synchronous ROM DMA wrapper,chunk loop OSIoMesg and completion wait,integrate overlay registration
-candidate,SDK,0x2A100,0x8004ED00,0x94,osEPiStartDma,OSIoMesg arguments and message dispatch,confirm SDK identity before substitution
-candidate,SDK,0x33670,0x80058270,0x24,osCreateMesgQueue,queue fields and callers,confirm SDK identity
-candidate,SDK,0x340E0,0x80058CE0,,osCreateThread,thread callback and priority arguments,confirm SDK identity
-candidate,SDK,0x342A0,0x80058EA0,,osStartThread,thread startup call sites,confirm SDK identity
+verified,function,0x2814,0x80027414,0x29C,dora3_bootproc,ROM instructions/call sites: TV guard; RAM clears; creates idle thread id 1 priority 90,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x2AB0,0x800276B0,0xA4,dora3_idle,ROM instructions/call sites: PI manager; cart handle; creates main id 6 priority 90; lowers own priority,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x2E88,0x80027A88,0xE0,dora3_main,ROM instructions/call sites: Ordered game initialization; eventually enters message loop,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x270C,0x8002730C,0x108,dora3_rom_dma,ROM instructions/call sites: Cache ops; <=256-byte osEPiStartDma chunks; waits completion on each,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,SDK,0x2A100,0x8004ED00,0x94,osEPiStartDma,ROM instructions/call sites: OSIoMesg type11/12 from direction; handle at+14; sends to PI command queue,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x33670,0x80058270,0x24,osCreateMesgQueue,ROM instructions/call sites: Initializes two thread queues and validCount/first/msgCount/msg,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x340E0,0x80058CE0,,osCreateThread,ROM instructions/call sites: Stores id at 14 priority at 4 PC at 11C a0 at 38 SP at F0 minus16,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x342A0,0x80058EA0,,osStartThread,ROM instructions/call sites: Transitions stopped/waiting states; queues and dispatches highest priority,SDK entry mapped; validate additional callers as reached
 verified,function,0xF400,0x80034000,0xD0,compressed stream byte reader,ROM control flow and differential execution,handle 1023/1024 DMA boundary
 verified,function,0xF4D0,0x800340D0,0x18,decoded byte writer,store and pointer increment,native reference helper
 verified,function,0xF4E8,0x800340E8,0x304,LZSS decode via ROM reader,11 real records match native original,integrate runtime carefully
@@ -22,3 +22,72 @@ unknown,hook,,,,CPU framebuffer import,no Dora3 writer identified,trace actual C
 unknown,hook,,,,modern camera ownership,no Dora3 hook identified,after stable baseline
 unknown,RSP,,,,audio microcode entry and indirect targets,not identified,inspect OSTask audio setup
 unknown,save,,,,EEPROM commit and checksum,external database says 16 Kbit,inspect actual save implementation
+verified,function,0xC988,0x80031588,0x68,dora3_video_buffers_init,ROM instructions/call sites: 320x240 framebuffer pointers; original constants retained,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0xB568,0x80030168,0x48,dora3_si_queue_init,ROM instructions/call sites: Creates single-message queue and binds OS_EVENT_SI=5,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x39670,0x8005E270,0x8,dora3_empty_init,ROM instructions/call sites: Actual ROM function is jr ra / nop,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x3D390,0x80061F90,0xA0,dora3_memset,ROM instructions/call sites: Original byte/halfword/word fill implementation,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x17550,0x8003C150,0x68,dora3_initial_vi_and_pak_check,ROM instructions/call sites: VI manager mode/black/event setup and controller-pak startup check,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x20014,0x80044C14,0x90C,dora3_controller_pak_startup,ROM instructions/call sites: Returns if no controller or no accessory; otherwise handles boot controller-pak UI; remaining calls are explicit frontier,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x2B54,0x80027754,0x128,dora3_scheduler_init,ROM instructions/call sites: Creates game queues; scheduler; client; saves command queue,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x1A70,0x80026670,0x148,dora3_create_scheduler,ROM instructions/call sites: Matches SDK scheduler fields/events 666..669; thread id4 priority120,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x1BB8,0x800267B8,0x58,dora3_scheduler_add_client,ROM instructions/call sites: Interrupt-protected linked-list insertion at scheduler offset260,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x1CA0,0x800268A0,0x8,dora3_scheduler_cmd_queue,ROM instructions/call sites: Returns scheduler+0x78,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x1CA8,0x800268A8,0x180,dora3_scheduler_thread,ROM instructions/call sites: Waits on scheduler+0x40; dispatches VI/SP/DP/PRENMI messages; child calls fail-stop until reviewed,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0xA918,0x8002F518,0x7C,dora3_graphics_tasks_init,ROM instructions/call sites: Initializes two task completion messages and framebuffer pointers; VI features0x6A,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0xB5B0,0x800301B0,0x174,dora3_controllers_init,"ROM instructions/call sites: Controller status request, four input-state arrays, selects controller0",Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x175B8,0x8003C1B8,0xD8,dora3_controller_status,ROM instructions/call sites: Queries statuses and rebuilds connected-device bitmask,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0xB4C4,0x800300C4,0xA4,dora3_select_controller,ROM instructions/call sites: Copies selected controller state and stick values to current globals,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x2550,0x80027150,0x60,dora3_vi_region_adjust,ROM instructions/call sites: PAL-only Y scale and timing adjustment; NTSC returns without changes,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x1DC00,0x80042800,0x1C,dora3_audio_init_wrapper,ROM instructions/call sites: Calls 80044164 then returns,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x1F564,0x80044164,0x14C,dora3_audio_init,"ROM instructions/call sites: Loads banks1/2; config includes scheduler, priority110,22050Hz; calls audio engine init",Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x1F520,0x80044120,0x44,dora3_audio_bank_load,ROM instructions/call sites: ROM base00B9B450 plus offsets table80076970; original synchronous DMA,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x1E28,0x80026A28,0x100,dora3_scheduler_retrace,ROM instructions/call sites: Drains command queue; schedules pending work; notifies clients,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x2364,0x80026F64,0x1EC,dora3_scheduler_select,ROM instructions/call sites: Original recursive SP/DP resource and task list selection,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x22744,0x80047344,0x3B4,dora3_audio_engine_init,"ROM instructions/call sites: Reads audio config; heap, scheduler pointer, voice/event allocations and banks; later children are pending",Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x296A0,0x8004E2A0,0x5C,dora3_audio_heap_init,ROM instructions/call sites: Clears supplied audio heap then initializes original ALHeap,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x297CC,0x8004E3CC,0x78,dora3_audio_byte_fill,ROM instructions/call sites: Original byte fill; no external calls,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x2FA00,0x80054600,0x34,dora3_al_heap_init,ROM instructions/call sites: Aligns base to16; sets base/current/length/count; original SDK software code retained,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x2FA40,0x80054640,0x48,dora3_al_heap_alloc,ROM instructions/call sites: Allocates count*size rounded to16; rejects overrun; original SDK software code retained,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x28FD0,0x8004DBD0,0x30,dora3_audio_set_scheduler,ROM instructions/call sites: Stores scheduler pointer at8007FF60,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x296FC,0x8004E2FC,0x60,dora3_audio_alloc,ROM instructions/call sites: Original wrapper around ALHeap allocation count1,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x24528,0x80049128,0xC0,dora3_audio_event_pool_init,ROM instructions/call sites: Clamps event slots64..1024; allocates slots*8; initializes ring state,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x23CB4,0x800488B4,0x5C,dora3_audio_bank_register,ROM instructions/call sites: Relocates instrument bank via8004B2E4 and stores default bank,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x24098,0x80048C98,0x11C,dora3_audio_sequence_bank_register,ROM instructions/call sites: Relocates sequence offsets in place; rejects already-relocated flag,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x266E4,0x8004B2E4,0x394,dora3_audio_bank_relocate,ROM instructions/call sites: Bank flag prevents double relocation; relocates tables and sample/loop/book pointers; converts pitch bytes to floats,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x2714C,0x8004BD4C,0xCC,dora3_audio_relocate_pointer_array,ROM instructions/call sites: Adds bank base to each nonzero u32 offset; original software loop,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x29270,0x8004DE70,0x1D4,dora3_audio_thread_init,ROM instructions/call sites: Builds synth config and sample buffers; creates id3 entry8004E044 priority from config,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x28760,0x8004D360,0x2BC,dora3_audio_dma_pool_init,ROM instructions/call sites: Allocates linked sample-DMA buffers and completion queue; returns callback8004D7B4,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x2979C,0x8004E39C,0x30,dora3_audio_heap_get,ROM instructions/call sites: Returns original ALHeap80080130,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x27860,0x8004C460,0x7C,dora3_audio_synth_open,ROM instructions/call sites: Singleton synth pointer800775E0; config patch then synth constructor,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x284F0,0x8004D0F0,0x40,dora3_audio_synth_config,ROM instructions/call sites: Sets effect type6 and parameter pointer800770F8 in synth config,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x278DC,0x8004C4DC,0x488,dora3_audio_synth_init,ROM instructions/call sites: Allocates and initializes original filter graph/voice/update pools; unreviewed callees remain fail-stop,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,function,0x29960,0x8004E560,0x114,dora3_audio_buffer_sizes,ROM instructions/call sites: Computes sample buffer counts from output rate/retrace rate; stores80080140..14C,Expand dynamic branch coverage; see docs/startup-runtime.md
+verified,SDK,0x39398,0x8005DF98,,__osInitialize_common,ROM instructions/call sites: Sets CU1/FPCSR/watchlo/PIF; exception vectors; VI clock; matches ultralib initialize.c,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x29D80,0x8004E980,,osCreatePiManager,ROM instructions/call sites: Priority plus queue/buffer/count; binds OS_EVENT_PI=8; creates PI thread,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x2A1A0,0x8004EDA0,,osCartRomInit,ROM instructions/call sites: Initializes OSPiHandle type 0 base B0000000 and PI bus timings,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x341D0,0x80058DD0,,osSetThreadPri,ROM instructions/call sites: Null means running thread; priority update/requeue/preemption,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x33A40,0x80058640,,osSetEventMesg,ROM instructions/call sites: event*8 slot queue/message; PRENMI special path,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x34A70,0x80059670,,osCreateViManager,ROM instructions/call sites: VI manager singleton; event7/3; priority argument; internal VI thread,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x34DB0,0x800599B0,,osViSetEvent,ROM instructions/call sites: Next VI context queue+10 message+14 retraceCount+2,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x34E10,0x80059A10,,osViSetMode,ROM instructions/call sites: Next VI context mode+8; state1; control from mode+4,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x35380,0x80059F80,,osViBlack,ROM instructions/call sites: Sets/clears next VI context state flag0x20 from boolean argument,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x30BF0,0x800557F0,,osContInit,"ROM instructions/call sites: Queue, bitpattern, statuses; one-time guard; SI request/reply; matches controller.c",SDK entry mapped; validate additional callers as reached
+verified,SDK,0x30F00,0x80055B00,,osContSetCh,"ROM instructions/call sites: Locks SI, clamps u8 count at4, marks last command FF",SDK entry mapped; validate additional callers as reached
+verified,SDK,0x337E0,0x800583E0,,osRecvMesg,"ROM instructions/call sites: Wait or return-1 on empty; reads first slot, decrements validCount; wakes sender",SDK entry mapped; validate additional callers as reached
+verified,SDK,0x33910,0x80058510,,osSendMesg,"ROM instructions/call sites: Wait or return-1 on full; appends modulo capacity, increments validCount; wakes receiver",SDK entry mapped; validate additional callers as reached
+verified,SDK,0x29CE0,0x8004E8E0,,osSetIntMask,ROM instructions/call sites: CP0 status/RCP interrupt mask exchange,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x34E60,0x80059A60,,osViSetSpecialFeatures,ROM instructions/call sites: Paired control flags gamma/divot/dither; mirrors VI context bits,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x30970,0x80055570,,osContStartQuery,ROM instructions/call sites: SI command0 status request; DMA read and last command0,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x309F0,0x800555F0,,osContGetQuery,ROM instructions/call sites: Wrapper to controller status decoder with local bitpattern,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x30A10,0x80055610,,osContStartReadData,ROM instructions/call sites: SI command1 button/stick request then DMA read,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x30A98,0x80055698,,osContGetReadData,"ROM instructions/call sites: Writes button16, stickX8, stickY8, error8 with stride6",SDK entry mapped; validate additional callers as reached
+verified,SDK,0x308C0,0x800554C0,,osWritebackDCache,ROM instructions/call sites: MIPS cache op0x19 and full-cache path; writeback D cache,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x30840,0x80055440,,osInvalICache,ROM instructions/call sites: MIPS cache op0x10 and full-cache path; invalidate I cache,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x30790,0x80055390,,osInvalDCache,ROM instructions/call sites: Boundary writeback-invalidate and aligned cache op0x11; invalidate D cache,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x30940,0x80055540,,osWritebackDCacheAll,ROM instructions/call sites: Full 8KiB indexed D-cache writeback-invalidate loop; cache op1 step16,SDK entry mapped; validate additional callers as reached
+verified,SDK,0x2C5E0,0x800511E0,,osAiSetFrequency,ROM instructions/call sites: Computes DAC/bitrate divisors from osViClock80078968; writes AI registersA4500010/A4500014,SDK entry mapped; validate additional callers as reached
+verified,hook,0x27EC,0x800273EC,,diagnostic DMA verification,After original completion waits; bytewise ROM comparison before bank relocation,Keep diagnostic scope; overlay registration still pending
+verified,microcode,0x3DA20,0x80062620,0xD0,RSP boot,Audio task builder pointers and RSP IMEM load,Observe live OSTask
+verified,microcode,0x3DAF0,0x800626F0,0xE20,audio RSP text,Audio thread8004E044 and SHA256; RSPRecomp and object compilation,Observe and execute live OSTask
+verified,microcode_data,0x53F40,0x80078B40,,audio RSP data,Audio thread pointer and 16 dispatch targets at+10,Confirm full data size from live OSTask
+candidate,function,0x2CF88,0x80051B88,,audio filter constructor,Reached through original synth init; execution stopped before function,Inspect body and dependencies before including
