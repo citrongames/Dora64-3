@@ -1,4 +1,4 @@
-# DoraRecomp3 — исследовательский этап
+# Dora64-3 — исследовательский этап
 
 Отдельный локальный проект нативной рекомпиляции **Doraemon 3: Nobita no Machi SOS!**
 для Windows, Linux и Android. Vita отложена. Игрового executable/APK пока нет.
@@ -26,12 +26,15 @@ Boot-probe намеренно останавливается до bootproc. Deco
 ## Локальная работа
 
 Основной каталог: `/home/vova/projects/DoraRecomp3` в WSL2 Ubuntu.
-Работающий Dora64 сохранён отдельно. У этого репозитория нет remote.
-Не публиковать проект или релизы без команды пользователя.
+Работающий Dora64 сохранён отдельно. Приватный GitHub-репозиторий:
+[citrongames/Dora64-3](https://github.com/citrongames/Dora64-3).
+Локальный каталог пока сохраняет имя DoraRecomp3, чтобы не нарушать пути сборки.
+Публичный доступ и релизы требуют отдельной команды пользователя.
 
 Документы:
 
 - [Результаты исследования](docs/initial-investigation.md)
+- [Изоляция библиотек и ветки](docs/dependency-policy.md)
 - [Границы переиспользования](docs/reuse-audit.md)
 - [План до рабочего порта](docs/roadmap.md)
 - [Карта адресов и будущих хуков](docs/address-map.csv)
