@@ -1,0 +1,184 @@
+{
+  "scope": "bounded live RT64 startup; original scene not yet validated; PCM measured/discarded",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "executable_sha256": "f1dbe3633f3c436879bc9071dd66619029baa0ff4defec1c18f5874e2fb008d8",
+  "exit_code": 77,
+  "meaning": "unreviewed function reached",
+  "mode": "live_rt64",
+  "observations": {
+    "pending_functions": [
+      "801B6A20"
+    ],
+    "dma_verified": [
+      "rom=00FA1FA0 ram=800DD8F0 bytes=1C760",
+      "rom=00FBE700 ram=800FADE0 bytes=2580",
+      "rom=0005E400 ram=801B3770 bytes=51C0",
+      "rom=000635C0 ram=801B8ED0 bytes=D490",
+      "rom=00493580 ram=80171C30 bytes=10",
+      "rom=00493580 ram=8007EF00 bytes=10",
+      "rom=00493590 ram=8007EF00 bytes=D2",
+      "rom=00493670 ram=80171C30 bytes=10",
+      "rom=00493670 ram=8007EF00 bytes=10",
+      "rom=00493680 ram=8007EF00 bytes=84",
+      "rom=00493710 ram=80171C30 bytes=10",
+      "rom=00493710 ram=8007EF00 bytes=10",
+      "rom=00493720 ram=8007EF00 bytes=7C",
+      "rom=004937A0 ram=80171C30 bytes=10",
+      "rom=004937A0 ram=8007EF00 bytes=10",
+      "rom=004937B0 ram=8007EF00 bytes=B2",
+      "rom=00491240 ram=80171C30 bytes=10",
+      "rom=00491240 ram=8007EF00 bytes=10",
+      "rom=00491250 ram=8007EF00 bytes=400",
+      "rom=00491650 ram=8007EF00 bytes=400",
+      "rom=00491A50 ram=8007EF00 bytes=400",
+      "rom=00491E50 ram=8007EF00 bytes=400",
+      "rom=00492250 ram=8007EF00 bytes=400",
+      "rom=00492650 ram=8007EF00 bytes=400",
+      "rom=00492A50 ram=8007EF00 bytes=400",
+      "rom=00492E50 ram=8007EF00 bytes=400",
+      "rom=00493250 ram=8007EF00 bytes=224",
+      "rom=00493480 ram=80171C30 bytes=10",
+      "rom=00493480 ram=8007EF00 bytes=10",
+      "rom=00493490 ram=8007EF00 bytes=24",
+      "rom=004934C0 ram=80171C30 bytes=10",
+      "rom=004934C0 ram=8007EF00 bytes=10",
+      "rom=004934D0 ram=8007EF00 bytes=24",
+      "rom=00493540 ram=80171C30 bytes=10",
+      "rom=00493540 ram=8007EF00 bytes=10",
+      "rom=00493550 ram=8007EF00 bytes=24",
+      "rom=00493500 ram=80171C30 bytes=10",
+      "rom=00493500 ram=8007EF00 bytes=10",
+      "rom=00493510 ram=8007EF00 bytes=24",
+      "rom=0028B050 ram=80171C30 bytes=10",
+      "rom=0028B050 ram=8007EF00 bytes=10",
+      "rom=0028B060 ram=8007EF00 bytes=12A"
+    ],
+    "rsp_tasks": [
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0"
+    ],
+    "audio_rsp_completions": 4,
+    "graphics_submissions": [],
+    "pcm_boundary_reached": true,
+    "pcm_buffers": [
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      }
+    ],
+    "live_rt64_setup": [
+      "0"
+    ],
+    "live_rt64_submissions": [
+      "task=1 dl=80120638 bytes=30",
+      "task=2 dl=80151D60 bytes=28"
+    ],
+    "live_rt64_drain": [
+      "submitted=2 parsed=2"
+    ],
+    "live_rt64_tasks": [
+      "task=1 dl=00120638 bytes=30 gbi=7",
+      "task=2 dl=00151D60 bytes=28 gbi=7"
+    ],
+    "graphics_capture_saved": false,
+    "resource_checks": [
+      {
+        "rom": "0028B050",
+        "bytes": 336,
+        "matches": true,
+        "sha256": "a356b21693f16f4cd65680ebcd4d538297da0f022dcb7748eb2350c80f57d2fb",
+        "error": null
+      },
+      {
+        "rom": "00491240",
+        "bytes": 18480,
+        "matches": true,
+        "sha256": "4cc4e8e096e90666de7edc221bf19636cfbcf38035fe30eb4e9e84c143534bc9",
+        "error": null
+      },
+      {
+        "rom": "00493480",
+        "bytes": 32,
+        "matches": true,
+        "sha256": "81011cbbe7785a6ed55c1e5f7db4f68bfcb6909d7d7e41fee90fb6110f101315",
+        "error": null
+      },
+      {
+        "rom": "004934C0",
+        "bytes": 32,
+        "matches": true,
+        "sha256": "5dfc261a9a11cd8f48d55c9c95c9246898c65d7f0c4ec1f61c44ffda915c6529",
+        "error": null
+      },
+      {
+        "rom": "00493500",
+        "bytes": 32,
+        "matches": true,
+        "sha256": "475d55a07a5d03152b8827fb05cfef47f8823488dd1d2ee5d5238615180ac85c",
+        "error": null
+      },
+      {
+        "rom": "00493540",
+        "bytes": 32,
+        "matches": true,
+        "sha256": "0c48e3ffcfbf1e28866bc7d7ace8daa81f66b9d78d4c0aca3d561f648ce2f927",
+        "error": null
+      },
+      {
+        "rom": "00493580",
+        "bytes": 336,
+        "matches": true,
+        "sha256": "cf536bc54c52e7c4f4ffd6fb48ddc157ea354d1b1d820c6edca7f07f4e203811",
+        "error": null
+      },
+      {
+        "rom": "00493670",
+        "bytes": 336,
+        "matches": true,
+        "sha256": "4a38cf0e26794351d1fa56624974244bf2f68056c49ff671908f37541badb442",
+        "error": null
+      },
+      {
+        "rom": "00493710",
+        "bytes": 336,
+        "matches": true,
+        "sha256": "9f685840fdc406284ac6f4640c962700e0726791b5a580c2cb1d9918a4debd61",
+        "error": null
+      },
+      {
+        "rom": "004937A0",
+        "bytes": 336,
+        "matches": true,
+        "sha256": "774f99e6b56d16e842e0eb06bfd9e8fab1aadf5a072152b30db2d29488ffcdd5",
+        "error": null
+      }
+    ],
+    "overlay_events": [
+      "BOOT aliases removed; resident only",
+      "REGISTERED rom=0005E400 ram=801B3770 bytes=51C0",
+      "REGISTERED rom=000635C0 ram=801B8ED0 bytes=D490"
+    ],
+    "stream_full_refills": 8
+  },
+  "runtime_log_sha256": "38b53340c0e05ddbb3c00c06d9f344c9ea44dd0a00fb71fa93d92bd188c0c82f",
+  "generation_receipt_sha256": "0fe5e9e55370d12ac7670fd4ef394ff4339e414c3553deef8ddd11e2acb252b0",
+  "historical_note": "Промежуточный бинарник; не приписывать ему хэши текущих исходников."
+}

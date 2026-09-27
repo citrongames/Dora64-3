@@ -1,0 +1,32 @@
+{
+  "date": "2026-09-27",
+  "scope": "section mapping/guards, bounded live screen, diagnostic regression, isolated dependency integrity",
+  "generation_receipt_sha256": "d27cd8bf25f735ea0a5ea9bb83b298957f4821c7d25e8ab2197e7d69bb37716e",
+  "negative_layout_checks": [
+    {
+      "case": "vram_overlap",
+      "rejected": true,
+      "reason": "Overlapping section vram ranges; review layout before generation"
+    },
+    {
+      "case": "rom_overlap",
+      "rejected": true,
+      "reason": "Overlapping section rom ranges; review layout before generation"
+    },
+    {
+      "case": "function_extent",
+      "rejected": true,
+      "reason": "Invalid/ambiguous function 0x801C0184"
+    },
+    {
+      "case": "rom_negative",
+      "rejected": true,
+      "reason": "Invalid or duplicate section"
+    }
+  ],
+  "live_tasks": 32,
+  "live_resource_matches": 11,
+  "diagnostic_exit_code": 78,
+  "dependency_pins_unchanged": 32,
+  "donor_unchanged": true
+}

@@ -1,47 +1,769 @@
 {
-  "scope": "bounded live RT64 startup; original scene not yet validated; PCM measured/discarded",
+  "scope": "Оригинальный экран отсутствующего контроллера; ограниченный цикл32 graphics tasks; PCM измеряется и отбрасывается",
   "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
-  "executable_sha256": "6283a75922bbf6b5e5740c27d873a8e951fed7b82c6c64a63cea0ad02c8af563",
-  "exit_code": 77,
-  "meaning": "unreviewed function reached",
+  "executable_sha256": "d1f0439d8071227f4bf0f9c6824200e704a0c074305bc9fe30307d12245c02cf",
+  "native_exit_code": 78,
+  "exit_code": 78,
+  "meaning": "diagnostic task/output boundary; inspect observations",
   "mode": "live_rt64",
   "observations": {
-    "pending_functions": [
-      "800280DC"
-    ],
+    "pending_functions": [],
     "dma_verified": [
       "rom=00FA1FA0 ram=800DD8F0 bytes=1C760",
       "rom=00FBE700 ram=800FADE0 bytes=2580",
       "rom=0005E400 ram=801B3770 bytes=51C0",
-      "rom=000635C0 ram=801B8ED0 bytes=D490"
+      "rom=000635C0 ram=801B8ED0 bytes=D490",
+      "rom=00493580 ram=80171C30 bytes=10",
+      "rom=00493580 ram=8007EF00 bytes=10",
+      "rom=00493590 ram=8007EF00 bytes=D2",
+      "rom=00493670 ram=80171C30 bytes=10",
+      "rom=00493670 ram=8007EF00 bytes=10",
+      "rom=00493680 ram=8007EF00 bytes=84",
+      "rom=00493710 ram=80171C30 bytes=10",
+      "rom=00493710 ram=8007EF00 bytes=10",
+      "rom=00493720 ram=8007EF00 bytes=7C",
+      "rom=004937A0 ram=80171C30 bytes=10",
+      "rom=004937A0 ram=8007EF00 bytes=10",
+      "rom=004937B0 ram=8007EF00 bytes=B2",
+      "rom=00491240 ram=80171C30 bytes=10",
+      "rom=00491240 ram=8007EF00 bytes=10",
+      "rom=00491250 ram=8007EF00 bytes=400",
+      "rom=00491650 ram=8007EF00 bytes=400",
+      "rom=00491A50 ram=8007EF00 bytes=400",
+      "rom=00491E50 ram=8007EF00 bytes=400",
+      "rom=00492250 ram=8007EF00 bytes=400",
+      "rom=00492650 ram=8007EF00 bytes=400",
+      "rom=00492A50 ram=8007EF00 bytes=400",
+      "rom=00492E50 ram=8007EF00 bytes=400",
+      "rom=00493250 ram=8007EF00 bytes=224",
+      "rom=00493480 ram=80171C30 bytes=10",
+      "rom=00493480 ram=8007EF00 bytes=10",
+      "rom=00493490 ram=8007EF00 bytes=24",
+      "rom=004934C0 ram=80171C30 bytes=10",
+      "rom=004934C0 ram=8007EF00 bytes=10",
+      "rom=004934D0 ram=8007EF00 bytes=24",
+      "rom=00493540 ram=80171C30 bytes=10",
+      "rom=00493540 ram=8007EF00 bytes=10",
+      "rom=00493550 ram=8007EF00 bytes=24",
+      "rom=00493500 ram=80171C30 bytes=10",
+      "rom=00493500 ram=8007EF00 bytes=10",
+      "rom=00493510 ram=8007EF00 bytes=24",
+      "rom=0028B050 ram=80171C30 bytes=10",
+      "rom=0028B050 ram=8007EF00 bytes=10",
+      "rom=0028B060 ram=8007EF00 bytes=12A",
+      "rom=004DB330 ram=80171C30 bytes=10",
+      "rom=004DB330 ram=8007EF00 bytes=10",
+      "rom=004DB340 ram=8007EF00 bytes=3B4"
     ],
     "rsp_tasks": [
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A70",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A48",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A30",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A70",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A30",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A30",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9E0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A08",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=A70",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8",
       "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0"
     ],
-    "audio_rsp_completions": 1,
+    "audio_rsp_completions": 89,
     "graphics_submissions": [],
-    "pcm_boundary_reached": false,
-    "pcm_buffers": [],
+    "pcm_boundary_reached": true,
+    "pcm_buffers": [
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      },
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      }
+    ],
     "live_rt64_setup": [
       "0"
     ],
     "live_rt64_submissions": [
-      "task=1 dl=80120638 bytes=30"
+      "task=1 dl=80120638 bytes=30",
+      "task=2 dl=80151D60 bytes=28",
+      "task=3 dl=80120638 bytes=1FB0",
+      "task=4 dl=80151D60 bytes=1FB0",
+      "task=5 dl=80120638 bytes=1FB0",
+      "task=6 dl=80151D60 bytes=1FB0",
+      "task=7 dl=80120638 bytes=1FB0",
+      "task=8 dl=80151D60 bytes=1FB0",
+      "task=9 dl=80120638 bytes=1FB0",
+      "task=10 dl=80151D60 bytes=1FB0",
+      "task=11 dl=80120638 bytes=1FB0",
+      "task=12 dl=80151D60 bytes=1FB0",
+      "task=13 dl=80120638 bytes=1FB0",
+      "task=14 dl=80151D60 bytes=1FB0",
+      "task=15 dl=80120638 bytes=1FB0",
+      "task=16 dl=80151D60 bytes=1FB0",
+      "task=17 dl=80120638 bytes=1F70",
+      "task=18 dl=80151D60 bytes=1F70",
+      "task=19 dl=80120638 bytes=1F70",
+      "task=20 dl=80151D60 bytes=1F70",
+      "task=21 dl=80120638 bytes=1F70",
+      "task=22 dl=80151D60 bytes=1F70",
+      "task=23 dl=80120638 bytes=1F70",
+      "task=24 dl=80151D60 bytes=1F70",
+      "task=25 dl=80120638 bytes=1F70",
+      "task=26 dl=80151D60 bytes=1F70",
+      "task=27 dl=80120638 bytes=1F70",
+      "task=28 dl=80151D60 bytes=1F70",
+      "task=29 dl=80120638 bytes=1F70",
+      "task=30 dl=80151D60 bytes=1F70",
+      "task=31 dl=80120638 bytes=1F70",
+      "task=32 dl=80151D60 bytes=1F70"
     ],
-    "live_rt64_drain": [
-      "submitted=1 parsed=1"
-    ],
+    "live_rt64_drain": [],
     "live_rt64_tasks": [
-      "task=1 dl=00120638 bytes=30 gbi=7"
+      "task=1 dl=00120638 bytes=30 gbi=7",
+      "task=2 dl=00151D60 bytes=28 gbi=7",
+      "task=3 dl=00120638 bytes=1FB0 gbi=7",
+      "task=4 dl=00151D60 bytes=1FB0 gbi=7",
+      "task=5 dl=00120638 bytes=1FB0 gbi=7",
+      "task=6 dl=00151D60 bytes=1FB0 gbi=7",
+      "task=7 dl=00120638 bytes=1FB0 gbi=7",
+      "task=8 dl=00151D60 bytes=1FB0 gbi=7",
+      "task=9 dl=00120638 bytes=1FB0 gbi=7",
+      "task=10 dl=00151D60 bytes=1FB0 gbi=7",
+      "task=11 dl=00120638 bytes=1FB0 gbi=7",
+      "task=12 dl=00151D60 bytes=1FB0 gbi=7",
+      "task=13 dl=00120638 bytes=1FB0 gbi=7",
+      "task=14 dl=00151D60 bytes=1FB0 gbi=7",
+      "task=15 dl=00120638 bytes=1FB0 gbi=7",
+      "task=16 dl=00151D60 bytes=1FB0 gbi=7",
+      "task=17 dl=00120638 bytes=1F70 gbi=7",
+      "task=18 dl=00151D60 bytes=1F70 gbi=7",
+      "task=19 dl=00120638 bytes=1F70 gbi=7",
+      "task=20 dl=00151D60 bytes=1F70 gbi=7",
+      "task=21 dl=00120638 bytes=1F70 gbi=7",
+      "task=22 dl=00151D60 bytes=1F70 gbi=7",
+      "task=23 dl=00120638 bytes=1F70 gbi=7",
+      "task=24 dl=00151D60 bytes=1F70 gbi=7",
+      "task=25 dl=00120638 bytes=1F70 gbi=7",
+      "task=26 dl=00151D60 bytes=1F70 gbi=7",
+      "task=27 dl=00120638 bytes=1F70 gbi=7",
+      "task=28 dl=00151D60 bytes=1F70 gbi=7",
+      "task=29 dl=00120638 bytes=1F70 gbi=7",
+      "task=30 dl=00151D60 bytes=1F70 gbi=7",
+      "task=31 dl=00120638 bytes=1F70 gbi=7",
+      "task=32 dl=00151D60 bytes=1F70 gbi=7"
     ],
-    "graphics_capture_saved": false
+    "graphics_capture_saved": false,
+    "resource_checks": [
+      {
+        "rom": "0028B050",
+        "bytes": 336,
+        "matches": true,
+        "sha256": "a356b21693f16f4cd65680ebcd4d538297da0f022dcb7748eb2350c80f57d2fb",
+        "error": null
+      },
+      {
+        "rom": "00491240",
+        "bytes": 18480,
+        "matches": true,
+        "sha256": "4cc4e8e096e90666de7edc221bf19636cfbcf38035fe30eb4e9e84c143534bc9",
+        "error": null
+      },
+      {
+        "rom": "00493480",
+        "bytes": 32,
+        "matches": true,
+        "sha256": "81011cbbe7785a6ed55c1e5f7db4f68bfcb6909d7d7e41fee90fb6110f101315",
+        "error": null
+      },
+      {
+        "rom": "004934C0",
+        "bytes": 32,
+        "matches": true,
+        "sha256": "5dfc261a9a11cd8f48d55c9c95c9246898c65d7f0c4ec1f61c44ffda915c6529",
+        "error": null
+      },
+      {
+        "rom": "00493500",
+        "bytes": 32,
+        "matches": true,
+        "sha256": "475d55a07a5d03152b8827fb05cfef47f8823488dd1d2ee5d5238615180ac85c",
+        "error": null
+      },
+      {
+        "rom": "00493540",
+        "bytes": 32,
+        "matches": true,
+        "sha256": "0c48e3ffcfbf1e28866bc7d7ace8daa81f66b9d78d4c0aca3d561f648ce2f927",
+        "error": null
+      },
+      {
+        "rom": "00493580",
+        "bytes": 336,
+        "matches": true,
+        "sha256": "cf536bc54c52e7c4f4ffd6fb48ddc157ea354d1b1d820c6edca7f07f4e203811",
+        "error": null
+      },
+      {
+        "rom": "00493670",
+        "bytes": 336,
+        "matches": true,
+        "sha256": "4a38cf0e26794351d1fa56624974244bf2f68056c49ff671908f37541badb442",
+        "error": null
+      },
+      {
+        "rom": "00493710",
+        "bytes": 336,
+        "matches": true,
+        "sha256": "9f685840fdc406284ac6f4640c962700e0726791b5a580c2cb1d9918a4debd61",
+        "error": null
+      },
+      {
+        "rom": "004937A0",
+        "bytes": 336,
+        "matches": true,
+        "sha256": "774f99e6b56d16e842e0eb06bfd9e8fab1aadf5a072152b30db2d29488ffcdd5",
+        "error": null
+      },
+      {
+        "rom": "004DB330",
+        "bytes": 8240,
+        "matches": true,
+        "sha256": "9ec4dd8efa58c43ce6a58bffa2a58966cb3c31392832d620af34f2e76d511e5c",
+        "error": null
+      }
+    ],
+    "overlay_events": [
+      "BOOT aliases removed; resident only",
+      "REGISTERED rom=0005E400 ram=801B3770 bytes=51C0",
+      "REGISTERED rom=000635C0 ram=801B8ED0 bytes=D490"
+    ],
+    "stream_full_refills": 8
   },
   "date": "2026-09-27",
-  "platform": "Linux x86-64 / WSL2 Ubuntu",
-  "compiled_functions": 163,
+  "platform": "Linux x86-64 / WSL2 Ubuntu / WSLg Vulkan dzn / RTX2060",
+  "compiled_functions": 245,
+  "resident_functions": 227,
+  "overlay_functions": 18,
   "sdk_entries": 43,
-  "registered_indirect_targets": 15,
-  "runtime_log_sha256": "438ad40a242ac56544467086426782e89fcb1852781b5ba2f1bcca144ba6d4b7",
+  "registered_indirect_targets": 18,
+  "pending_boundaries": 68,
+  "runtime_log_sha256": "25e7c44f4f82c500cd06c644ae441d1f3464fc58ecc1bf67ae7be5666adc9552",
   "entered_functions": [
     "80025C00",
     "80026670",
@@ -58,23 +780,55 @@
     "80026F2C",
     "80026F64",
     "80027150",
+    "800271B0",
     "8002730C",
     "80027414",
     "800276B0",
     "80027754",
     "8002787C",
     "80027A88",
+    "80027C94",
     "80027FEC",
     "80028018",
+    "80028040",
     "80028060",
+    "800280BC",
+    "800280DC",
     "80028178",
     "800281B8",
+    "800282EC",
+    "80028320",
     "80028434",
     "80028474",
+    "80028688",
     "80028814",
+    "80028878",
+    "8002889C",
+    "800288C0",
+    "80028914",
     "80028948",
     "800289D8",
+    "80028A6C",
+    "80028A80",
+    "80028F34",
+    "80028F4C",
+    "8002B5E0",
+    "8002B608",
+    "8002BE58",
+    "8002BE70",
+    "8002C370",
+    "8002C388",
+    "8002CD38",
+    "8002CD58",
+    "8002E1B0",
+    "8002E1C0",
+    "8002E1D0",
+    "8002E86C",
+    "8002E8D8",
+    "8002EFF4",
     "8002F518",
+    "8002F594",
+    "8002F6A4",
     "8002F828",
     "8002FE20",
     "8002FF64",
@@ -86,26 +840,45 @@
     "800304A8",
     "800305E0",
     "800307F8",
+    "800308DC",
+    "800309E0",
+    "800309EC",
+    "800309F8",
+    "80030AE8",
+    "80030CC0",
     "80030D00",
+    "80030DBC",
+    "80030DF4",
+    "80030FA8",
+    "80030FE0",
     "80031488",
     "800314B4",
+    "800314CC",
     "800314E4",
     "8003155C",
     "80031588",
     "80031658",
     "80031664",
+    "80031670",
     "800331A4",
     "800331F8",
     "8003321C",
     "8003324C",
+    "800339F0",
     "80033A14",
     "80033A50",
+    "80033A88",
+    "80033B68",
+    "800340E8",
+    "80038AE4",
     "80038B4C",
+    "8003B7D0",
     "8003C150",
     "8003C1B8",
     "8003C894",
     "8003C928",
     "8003CACC",
+    "8003CBE8",
     "8003CC20",
     "8003CD48",
     "8003CF64",
@@ -115,10 +888,14 @@
     "8003D39C",
     "80042800",
     "8004281C",
+    "80042C9C",
+    "80042CA4",
+    "80042E30",
     "80042F20",
     "800430EC",
     "80043154",
     "80043390",
+    "800433D0",
     "800433D8",
     "80043E54",
     "80043EA0",
@@ -201,28 +978,71 @@
     "80054D70",
     "80054E98",
     "8005E270",
-    "80061F90"
+    "80061F90",
+    "801B3770",
+    "801B3820",
+    "801B5ED0",
+    "801B5FF0",
+    "801B6694",
+    "801B6750",
+    "801B6830",
+    "801B69A4",
+    "801B6A20",
+    "801BFE80",
+    "801BFEF4",
+    "801C0014",
+    "801C006C",
+    "801C0088",
+    "801C012C",
+    "801C0184"
   ],
-  "generation_receipt_sha256": "1c37513fd6dd66abfb8e410c2fbd65b8ca7fad99a4f7072430d2ee519ae81984",
+  "generation_receipt_sha256": "d27cd8bf25f735ea0a5ea9bb83b298957f4821c7d25e8ab2197e7d69bb37716e",
   "audio_generation_receipt_sha256": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f",
-  "runtime_timing": "Research-only SP completion after RT64 parse; generated source, pinned dependencies unchanged",
-  "runtime_original_events_sha256": "cd47bb9b332e0c907131310bb3ec8b551b7fb7b2160538ba7fe5aa7554ba2e97",
-  "runtime_adapted_events_sha256": "a70434fc85cda6a7c53c818f5e26d68161d48211e3fdac47c6e832da7914a47a",
   "source_sha256": {
-    "src/startup_runtime.cpp": "d0e3a885019c783778c8bb0187a21a50701a83cadf4875116a55199e9ace07bf",
+    "src/startup_runtime.cpp": "a14afff7bab62283544d9ddb575c40756b24d487f2aff156d92ecfcfdb4ae1ff",
     "src/live_graphics.cpp": "fd09cc8d7374b3c0e9955f57d1153861d9c3715e7a1400195f7a2f1e837a3b46",
     "src/live_graphics.hpp": "e8e0a028de63be949ca494f29816b2a4118e56aabe141e74902ff89d92054e49",
     "tools/prepare_runtime_timing.py": "80b5ce71a8c1d7967030b0dc3fc61ebece831188dc00115f7cf7dbdef94b091a",
-    "tools/run_startup.py": "8c6ffe718ab3c877837638ca7989318ab5f78633c18ea7396b2da3392d4371bd",
+    "tools/run_startup.py": "26609dd9c1e3359ea93757474027a8993fcf8c3a5223c31e25448219f0001437",
     "research/runtime/CMakeLists.txt": "708833a25fce25337f1d73d409fd11dbf1510fb390151e84ac4f527a15f9c463",
     "research/graphics-replay/CMakeLists.txt": "b2bca5246c7b8211d264f08ff7b3f2edbc6e12ab57079673fdbde88670b7cc40",
-    "recomp/startup.json": "e67190ee7b2b08a9d399d0129a350914468e778048b28e7166e696aeededbeb1"
+    "recomp/startup.json": "20a5f14bd3225170510b8f4150e721c381fbff589f013419e6a03c08493c5d34",
+    "tools/generate_startup.py": "a32d792cb4682a4328a2663d3b5f7a3d207a7e5488f3dfa2be0d8655b168947a",
+    "tools/analyze_layout.py": "a033326985ee1469a65b667af7b9f59565361a564bb0324042672e08a6790163",
+    "tools/inspect_rom.py": "9f69cc90adc0dd82c553c475b98a90205f58070ae5444b965838d8d22e07b485",
+    "recomp/rom.lock.json": "d9b48fb655e85147434a5a1cfe2a383b2dd3bfa27e6c439ee6a22badfc83f1e3"
   },
+  "sections": [
+    {
+      "name": ".startup",
+      "rom": 4096,
+      "vram": 2147638272,
+      "size": 364160
+    },
+    {
+      "name": ".scene_common",
+      "rom": 386048,
+      "vram": 2149267312,
+      "size": 20928
+    },
+    {
+      "name": ".scene34",
+      "rom": 406976,
+      "vram": 2149289680,
+      "size": 54416
+    }
+  ],
+  "live_task_limit_reached": true,
+  "runtime_timing": "Research-only SP completion after RT64 parse; generated source, pinned dependencies unchanged",
+  "runtime_original_events_sha256": "cd47bb9b332e0c907131310bb3ec8b551b7fb7b2160538ba7fe5aa7554ba2e97",
+  "runtime_adapted_events_sha256": "a70434fc85cda6a7c53c818f5e26d68161d48211e3fdac47c6e832da7914a47a",
+  "user_observation": "Пользователь сообщил, что видел в окне просьбу подключить контроллер; автоматического сравнения пикселей нет.",
   "limitations": [
-    "First parsed task is graphics state initialization, not a visible game frame",
-    "No original overlay code executed yet; boundary800280DC before installing801C0184",
-    "No real input or audio device; final bounded run stops before PCM; earlier v24 measured initial silence",
-    "EEPROM blank-slot reads/reset only; no persistent write/reload test",
-    "Deferred SP is a bounded experiment, not a proven lifetime solution or original timing"
+    "Достигнут экран отсутствующего контроллера; подключённый контроллер и игровой эпизод не проверены.",
+    "32 обработанные graphics tasks не доказывают исходный темп, долгую устойчивость и полную корректность GPU.",
+    "89 audio RSP completions; 45568 стереокадров начальной тишины; нет реального аудиоустройства и активных голосов.",
+    "Установлены только два оверлея scene34; замена/повторная загрузка следующей сцены ещё не исполнена.",
+    "EEPROM: чтение пустых слотов/инициализация RAM; сохранение и повторная загрузка непустых слотов не проверены.",
+    "Windows/Android live frontend ещё не собран."
   ]
 }

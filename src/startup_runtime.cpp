@@ -17,6 +17,7 @@
 #include "librecomp/game.hpp"
 #include "librecomp/overlays.hpp"
 #include "recomp_overlays.inl"
+#include "overlay_regions.hpp"
 #ifdef DORA3_LIVE_RT64
 #include "live_graphics.hpp"
 #endif
@@ -25,6 +26,14 @@
 
 RspExitReason dora3_aspMain(uint8_t*, uint32_t);
 namespace {
+std::array<std::atomic<bool>,std::size(dora3_overlay_regions)> overlay_active{};
+void unload_scene_code(){
+    for(size_t i=0;i<overlay_active.size();i++)if(overlay_active[i]){
+        const auto& region=dora3_overlay_regions[i];
+        unload_overlays((int32_t)region.ram,region.size);overlay_active[i]=false;
+        std::fprintf(stderr,"OVERLAY UNLOADED rom=%08X ram=%08X\n",region.rom,region.ram);
+    }
+}
 std::atomic<unsigned> audio_submitted{0},audio_completed{0},pcm_buffers{0};
 std::mutex captured_vi_mutex;
 ultramodern::renderer::ViRegs captured_vi{};
@@ -89,20 +98,59 @@ void capture_first_graphics(uint8_t* rdram,gpr sc_task){
 }
 struct PendingDma { uint32_t rom, ram, size; bool active; };
 thread_local PendingDma pending_dma{};
+thread_local uint32_t resource_rom=0;
+thread_local bool stream_dma_call=false;
 }
+
+extern "C" void dora3_mark_stream_dma(){stream_dma_call=true;}
 
 extern "C" void dora3_pending(uint32_t address) {
     std::fprintf(stderr,"PENDING original function %08X; execution stopped, no success stub\n",address);
     stop_diagnostic(77);
 }
 extern "C" void dora3_trace(uint8_t* rdram,recomp_context* ctx,uint32_t address) {
+    if(address==0x80025C00){
+        // Runtime initially maps every section in the boot 1MiB at entrypoint+ROM offset.
+        // Only the resident section is executable there. Remove the rest before game code.
+        unload_overlays((int32_t)0x8007EA80,0xA7180);
+        for(auto& active:overlay_active)active=false;
+        std::fprintf(stderr,"OVERLAY BOOT aliases removed; resident only\n");
+    }
+    if(address==0x80043390)unload_scene_code();
+    for(size_t i=0;i<overlay_active.size();i++){
+        const auto& region=dora3_overlay_regions[i];
+        if(region.ram<=address && address<region.ram+region.size && !overlay_active[i]){
+            std::fprintf(stderr,"OVERLAY CALL BEFORE VERIFIED LOAD address=%08X\n",address);std::_Exit(85);
+        }
+    }
+    if(address==0x80030AE8)resource_rom=(uint32_t)ctx->r5;
+    // Byte-wise decoder helpers are covered by the resource comparison below.
+    if(address==0x80034000 || address==0x800340D0)return;
     std::fprintf(stderr,"ENTER %08X sp=%08X a0=%08X\n",address,(uint32_t)ctx->r29,(uint32_t)ctx->r4);
     if(address==0x80026E24 && ctx->r5){
         if(MEM_W(0x10,ctx->r5)==2)audio_submitted.fetch_add(1);
         else if(MEM_W(0x10,ctx->r5)==1)capture_first_graphics(rdram,ctx->r5);
     }
     if(address==0x8002730C){
+        // Only the verified full refill call from this game's reader. The original
+        // wrapper still performs real queued PI DMA in four256-byte chunks.
+        const bool from_stream=stream_dma_call;stream_dma_call=false;
+        if(from_stream && ((uint32_t)ctx->r5!=0x8007EF00 || (uint32_t)ctx->r6>0x3FF)){
+            std::fprintf(stderr,"Unreviewed stream refill shape\n");std::_Exit(86);
+        }
+        if(from_stream && (uint32_t)ctx->r6==0x3FF){
+            ctx->r6=0x400;
+            std::fprintf(stderr,"STREAM DMA full refill adapted3FF->400 rom=%08X\n",(uint32_t)ctx->r4);
+        }
         if(pending_dma.active){std::fprintf(stderr,"Unexpected nested DMA wrapper\n");std::_Exit(81);}
+        const uint32_t destination=(uint32_t)ctx->r5,size=(uint32_t)ctx->r6;
+        for(size_t i=0;i<overlay_active.size();i++)if(overlay_active[i]){
+            const auto& region=dora3_overlay_regions[i];
+            if(destination<region.ram+region.size && uint64_t(destination)+size>region.ram){
+                unload_overlays((int32_t)region.ram,region.size);overlay_active[i]=false;
+                std::fprintf(stderr,"OVERLAY INVALIDATED before DMA rom=%08X\n",region.rom);
+            }
+        }
         pending_dma={(uint32_t)ctx->r4,(uint32_t)ctx->r5,(uint32_t)ctx->r6,true};
     }
 }
@@ -121,7 +169,35 @@ extern "C" void dora3_verify_dma(uint8_t* rdram) {
         }
     }
     std::fprintf(stderr,"DMA VERIFIED rom=%08X ram=%08X bytes=%X\n",request.rom,request.ram,request.size);
+    for(size_t i=0;i<overlay_active.size();i++){
+        const auto& region=dora3_overlay_regions[i];
+        if(request.rom==region.rom && request.ram==region.ram && request.size==region.size){
+            load_overlays(region.rom,(int32_t)region.ram,region.size);overlay_active[i]=true;
+            std::fprintf(stderr,"OVERLAY REGISTERED rom=%08X ram=%08X bytes=%X\n",region.rom,region.ram,region.size);
+        }
+    }
     pending_dma.active=false;
+}
+
+// Capture each resource before callers relocate/mutate it. The validating runner
+// compares bytes against the independent Python decoder; never publish these files.
+extern "C" void dora3_capture_resource(uint8_t* rdram,recomp_context* ctx){
+    const uint32_t slot=(uint32_t)ctx->r2;
+    if(slot>=512){std::fprintf(stderr,"RESOURCE invalid slot\n");std::_Exit(86);}
+    const gpr entry=(gpr)(int32_t)(0x801AEC00+slot*0x14);
+    const uint32_t address=MEM_W(0,entry),size=MEM_W(8,entry);
+    if(address<0x80000000 || uint64_t(address)+size>0x80400000 || !size){
+        std::fprintf(stderr,"RESOURCE invalid buffer\n");std::_Exit(86);
+    }
+    const auto directory=recomp::get_config_path()/"resources";
+    std::filesystem::create_directories(directory);
+    char name[32];std::snprintf(name,sizeof(name),"%08X.bin",resource_rom);
+    std::vector<uint8_t> data(size);
+    for(uint32_t i=0;i<size;i++)data[i]=MEM_BU(i,(gpr)(int32_t)address);
+    std::ofstream out(directory/name,std::ios::binary);
+    out.write(reinterpret_cast<const char*>(data.data()),data.size());out.close();
+    if(!out){std::fprintf(stderr,"RESOURCE capture failed\n");std::_Exit(86);}
+    std::fprintf(stderr,"RESOURCE CAPTURE rom=%08X ram=%08X bytes=%X slot=%u\n",resource_rom,address,size,slot);
 }
 
 class DiagnosticContext final : public ultramodern::renderer::RendererContext {

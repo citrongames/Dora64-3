@@ -814,6 +814,326 @@
       "dora3_scheduler_dp_complete",
       168,
       "Clears current RDP task and DP-busy flag, calls task completion, records count delta, schedules next work"
+    ],
+    "0x800280DC": [
+      "dora3_process_pair_install",
+      156,
+      "Installs/clears two process slots, marks active via28040, sets801B1400; next scene34 callback801C0184"
+    ],
+    "0x80028040": [
+      "dora3_process_slot_defer",
+      32,
+      "Sets process-slot state3 pending activation at next framebuffer boundary"
+    ],
+    "0x800280BC": [
+      "dora3_process_slot_resume",
+      32,
+      "Sets process-slot state2"
+    ],
+    "0x800271B0": [
+      "dora3_scene_transition_framebuffer_copy",
+      348,
+      "Handles scene transition flag, resumes state3 slots and copies the opposite framebuffer with original dimensions"
+    ],
+    "0x80031738": [
+      "dora3_scene_lists_release",
+      36,
+      "Calls original render-list and object cleanup; children remain guarded"
+    ],
+    "0x80031670": [
+      "dora3_scene_subsystems_init",
+      200,
+      "Ordered reset/init of original scene systems and audio events, clears two state globals"
+    ],
+    "0x80030DBC": [
+      "dora3_scene_channels_clear",
+      56,
+      "Clears four halfword channels801A48E4 and four pointers801A9990"
+    ],
+    "0x80030FE0": [
+      "dora3_scene_list_heads_clear",
+      20,
+      "Clears80171C40 and801A48B0"
+    ],
+    "0x8002889C": [
+      "dora3_fade_bounds_set",
+      36,
+      "Stores four halfword rectangle bounds from a0..a3"
+    ],
+    "0x80028878": [
+      "dora3_fade_color_step_set",
+      36,
+      "Stores RGB and step bytes from a0..a3"
+    ],
+    "0x80028914": [
+      "dora3_fade_full_opacity",
+      28,
+      "Sets opacity255 and fade mode2"
+    ],
+    "0x800288C0": [
+      "dora3_fade_hold",
+      44,
+      "Sets fade modeFF unless existing signed modesFE/FF"
+    ],
+    "0x8002EFF4": [
+      "dora3_view_states_init",
+      112,
+      "Initializes four0x34-byte view records with1000.0 distance and1.0 scale"
+    ],
+    "0x800308DC": [
+      "dora3_resource_slots_init",
+      96,
+      "Initializes512 entries of0x14 bytes at801AEC00; pointer0,id-1,flags0"
+    ],
+    "0x80030CC0": [
+      "dora3_scene_empty_init",
+      8,
+      "Actual jr ra/nop"
+    ],
+    "0x8003B7D0": [
+      "dora3_object_subsystem_reset",
+      88,
+      "Resets lifetime slots and seven original state globals"
+    ],
+    "0x80027C94": [
+      "dora3_scene_display_bytes_set",
+      60,
+      "Stores six argument bytes including two stack arguments"
+    ],
+    "0x8002BE70": [
+      "dora3_pool48_init",
+      80,
+      "Initializes four0x48-byte entries at801A9550 via2BE58"
+    ],
+    "0x8002BE58": [
+      "dora3_pool48_entry_init",
+      24,
+      "Clears pointer/status and sets ID=-1 in0x48-byte entry"
+    ],
+    "0x8002C388": [
+      "dora3_pool68_init",
+      80,
+      "Initializes1000x68-byte entries at801A6C60 via2C370"
+    ],
+    "0x8002C370": [
+      "dora3_pool68_entry_init",
+      24,
+      "Clears pointer/status and sets ID=-1 in0x68-byte entry"
+    ],
+    "0x8002CD58": [
+      "dora3_pool0c_init",
+      80,
+      "Initializes1000xC-byte entries at801AC6E0 via2CD38"
+    ],
+    "0x8002CD38": [
+      "dora3_pool0c_entry_init",
+      32,
+      "Zeros halfwords and sets halfword ID=-1 at+8"
+    ],
+    "0x80028A80": [
+      "dora3_pool08_init",
+      80,
+      "Initializes3008-byte entries at801A9CB0 via28A6C"
+    ],
+    "0x80028A6C": [
+      "dora3_pool08_entry_init",
+      20,
+      "Clears pointer and three flag bytes"
+    ],
+    "0x8002B608": [
+      "dora3_pool1c_init",
+      80,
+      "Initializes1000x1C-byte entries at801A39F0 via2B5E0"
+    ],
+    "0x8002B5E0": [
+      "dora3_pool1c_entry_init",
+      40,
+      "Clears five pointers/two status halfwords and sets ID=-1"
+    ],
+    "0x80028F4C": [
+      "dora3_pool54_init",
+      80,
+      "Initializes1000x54-byte entries at801A4900 via28F34"
+    ],
+    "0x80028F34": [
+      "dora3_pool54_entry_init",
+      24,
+      "Clears four fields and flag byte in0x54-byte entry"
+    ],
+    "0x8002E8D8": [
+      "dora3_scene_objects_init",
+      184,
+      "Initializes1000 objects of0xCC bytes at80171CD0 with eight IDs and original state fields"
+    ],
+    "0x8002E86C": [
+      "dora3_scene_object_init",
+      108,
+      "Clears transform state, sets unit scale, calls transform initializer and empty event hook"
+    ],
+    "0x80038AE4": [
+      "dora3_lifetime_slots_init",
+      44,
+      "Clears1008-byte lifetime slots800DD420"
+    ],
+    "0x80042CA4": [
+      "dora3_scene_event_empty_init",
+      8,
+      "Actual jr ra/nop"
+    ],
+    "0x8003CBE8": [
+      "dora3_rumble_ports_reset",
+      56,
+      "Calls3CACC for each of four ports"
+    ],
+    "0x800309E0": [
+      "dora3_scene_cursor_set",
+      12,
+      "Stores allocation cursor80171588"
+    ],
+    "0x800309EC": [
+      "dora3_scene_cursor_get",
+      12,
+      "Returns allocation cursor80171588"
+    ],
+    "0x800309F8": [
+      "dora3_scene_cursor_align",
+      44,
+      "Aligns cursor upward to16 bytes if necessary"
+    ],
+    "0x800314CC": [
+      "dora3_scene_state_get",
+      24,
+      "Returns scene-state byte using scene ID801A950C"
+    ],
+    "0x8002E1D0": [
+      "dora3_object_axis_order_init",
+      68,
+      "Calls two original axis-byte setters with2,1,0"
+    ],
+    "0x8002E1B0": [
+      "dora3_object_axis_a_set",
+      16,
+      "Stores argument bytes at object64..66"
+    ],
+    "0x8002E1C0": [
+      "dora3_object_axis_b_set",
+      16,
+      "Stores argument bytes at object67..69"
+    ],
+    "0x80042C9C": [
+      "dora3_object_event_empty_init",
+      8,
+      "Actual jr ra/nop"
+    ],
+    "0x80042E30": [
+      "dora3_resource_by_id",
+      240,
+      "Resolves resource table offsets for groups0/50/51 then calls30AE8 with composite ID and ROM bounds"
+    ],
+    "0x80030AE8": [
+      "dora3_resource_load",
+      348,
+      "Finds cached/free slot, reads16-byte header, allocates decoded size, copies raw or calls340E8; sets ID/refcount"
+    ],
+    "0x80033B68": [
+      "dora3_game_heap_alloc",
+      60,
+      "Uses root80070F40; returns0 if root=-1, otherwise calls33A88"
+    ],
+    "0x80033A88": [
+      "dora3_heap_alloc_best_fit",
+      224,
+      "16-byte alignment, best-fit linked free block search, optional split with header, updates high-water through339F0"
+    ],
+    "0x80034000": [
+      "dora3_compressed_stream_read",
+      208,
+      "Original packed-byte reader;1023-byte full refill request consumes1024; game-specific adapter at DMA call"
+    ],
+    "0x800340D0": [
+      "dora3_decoded_byte_write",
+      24,
+      "Stores output byte and increments caller output pointer"
+    ],
+    "0x800340E8": [
+      "dora3_lzss_decode",
+      772,
+      "Original LZSS decoder;1024-byte dictionary at8007F300, packed buffer8007EF00; previously differential-tested11 records"
+    ],
+    "0x800339F0": [
+      "dora3_heap_high_water_update",
+      36,
+      "Updates80070F44 to allocation pointer+size when pointer exceeds previous high-water value"
+    ],
+    "0x800282EC": [
+      "dora3_texture_payload_ptr",
+      52,
+      "Returns resource+10 for format<5, otherwise skips8-byte-aligned halfword palette count at+6"
+    ],
+    "0x80028320": [
+      "dora3_texture_palette_ptr",
+      28,
+      "Returns0 for format<5, otherwise resource+10"
+    ],
+    "0x80030FA8": [
+      "dora3_input_repeat_update_all",
+      56,
+      "\u041e\u0431\u043d\u043e\u0432\u043b\u044f\u0435\u0442 \u0447\u0435\u0442\u044b\u0440\u0435 \u043a\u0430\u043d\u0430\u043b\u0430 \u0447\u0435\u0440\u0435\u043730DF4"
+    ],
+    "0x80030DF4": [
+      "dora3_input_repeat_update",
+      436,
+      "\u041e\u0431\u044a\u0435\u0434\u0438\u043d\u044f\u0435\u0442 \u043c\u0430\u0441\u043a\u0438 \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f/\u043d\u0430\u0436\u0430\u0442\u0438\u0439; \u0441\u0447\u0451\u0442\u0447\u0438\u043a \u043f\u043e\u0432\u0442\u043e\u0440\u0435\u043d\u0438\u044f9 \u0437\u0430\u0442\u0435\u043c1; \u0432\u043d\u0435\u0448\u043d\u0438\u0445 \u0432\u044b\u0437\u043e\u0432\u043e\u0432 \u043d\u0435\u0442"
+    ],
+    "0x8002F594": [
+      "dora3_depth_buffer_clear",
+      272,
+      "\u041e\u0440\u0438\u0433\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0435 SetDepthImage/SetColorImage/FillRect \u0441 \u0448\u0438\u0440\u0438\u043d\u043e\u0439801AA658 \u0438 \u0432\u044b\u0441\u043e\u0442\u043e\u0439801A48C4"
+    ],
+    "0x8002F6A4": [
+      "dora3_color_buffer_setup",
+      388,
+      "\u0422\u0435\u043a\u0443\u0449\u0438\u0439 framebuffer \u0447\u0435\u0440\u0435\u0437osVirtualToPhysical; \u043d\u0435\u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u0430\u044f RGB5551 \u0437\u0430\u043b\u0438\u0432\u043a\u0430; \u0438\u0441\u0445\u043e\u0434\u043d\u044b\u0439 \u0440\u0430\u0437\u043c\u0435\u0440"
+    ],
+    "0x8002A724": [
+      "dora3_texture_rect_state",
+      288,
+      "\u041e\u0440\u0438\u0433\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0435 geometry/othermode/combine \u043a\u043e\u043c\u0430\u043d\u0434\u044b \u043f\u0435\u0440\u0435\u0434 \u043f\u0440\u044f\u043c\u043e\u0443\u0433\u043e\u043b\u044c\u043d\u043e\u0439 \u0442\u0435\u043a\u0441\u0442\u0443\u0440\u043e\u0439; DL cursor801B1424"
+    ],
+    "0x80028370": [
+      "dora3_texture_info",
+      172,
+      "\u0428\u0435\u0441\u0442\u044c getters payload/palette/width/height/header4/bitdepth; \u0440\u0430\u0437\u043c\u0435\u0440\u044b \u043f\u043e \u043e\u0440\u0438\u0433\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u043c \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043a\u0430\u043c"
+    ],
+    "0x8002833C": [
+      "dora3_texture_width",
+      8,
+      "\u0412\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 word \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043a\u0430+8"
+    ],
+    "0x80028344": [
+      "dora3_texture_height",
+      8,
+      "\u0412\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 word \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043a\u0430+0C"
+    ],
+    "0x8002834C": [
+      "dora3_texture_header4",
+      8,
+      "\u0412\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 word \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043a\u0430+4; \u043f\u043e\u043b\u043d\u0430\u044f \u0441\u0435\u043c\u0430\u043d\u0442\u0438\u043a\u0430 \u0435\u0449\u0451 \u043d\u0435 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u0430"
+    ],
+    "0x80028354": [
+      "dora3_texture_index_bits",
+      28,
+      "\u0424\u043e\u0440\u043c\u0430\u0442 byte+3 \u0440\u0430\u0432\u0435\u043d5:4; \u0438\u043d\u0430\u0447\u04358"
+    ],
+    "0x8002A844": [
+      "dora3_scaled_texture_rect",
+      2436,
+      "\u041e\u0440\u0438\u0433\u0438\u043d\u0430\u043b\u044c\u043d\u0430\u044f leaf: clipping, TLUT, \u043f\u043e\u043b\u043e\u0441\u044b \u0434\u043e1500 texels, CI4/CI8/16-bit \u0432\u0435\u0442\u0432\u0438, TexRect; ROM ends2B1C8"
+    ],
+    "0x80028688": [
+      "dora3_rgba_rectangle",
+      384,
+      "Leaf: RGBA prim color, 1-cycle translucent fill-rectangle; \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b bounds \u0431\u0435\u0440\u0443\u0442\u0441\u044f \u0441\u043e stack; \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442\u0441\u044f fade draw289D8"
     ]
   },
   "sdk": {
@@ -1006,5 +1326,119 @@
     "0x8004DC00": "ROM table800772A0 slot0 referenced through800772AC",
     "0x8004DCBC": "ROM table800772A0 slot1",
     "0x8004DD4C": "ROM table800772A0 slot2"
-  }
+  },
+  "overlays": [
+    {
+      "name": ".scene_common",
+      "rom": 386048,
+      "vram": 2149267312,
+      "size": 20928,
+      "compiled": {
+        "0x801B3770": [
+          "dora3_common_assets_init",
+          100,
+          "Loads resource IDs09FC..09FF through42E30 and stores four halfword handles in common BSS801B8938"
+        ],
+        "0x801B6830": [
+          "dora3_common_ui_assets_init",
+          300,
+          "Loads IDs9F7..9FB and306; records handles, payload/palette pointers, calls6A20"
+        ],
+        "0x801B6A20": [
+          "dora3_common_widgets_init",
+          72,
+          "Initializes8 records through69A4 using signed16-bit index"
+        ],
+        "0x801B69A4": [
+          "dora3_common_widget_init",
+          124,
+          "Clears status/coordinates and two pairs of pointers in0x24-byte record at801B8D98"
+        ],
+        "0x801B3820": [
+          "dora3_common_panel_draw",
+          2796,
+          "\u041e\u0440\u0438\u0433\u0438\u043d\u0430\u043b\u044c\u043d\u0430\u044f \u0440\u0430\u043c\u043a\u0430 \u0438\u0437 \u0447\u0435\u0442\u044b\u0440\u0451\u0445 \u0440\u0435\u0441\u0443\u0440\u0441\u043e\u0432801B8938; TLUT/TexRect; \u0432\u044b\u0437\u043e\u0432\u044b \u0442\u043e\u043b\u044c\u043a\u043e282EC/28320; \u0442\u0435\u043b\u043e3820..430B"
+        ],
+        "0x801B5ED0": [
+          "dora3_common_text_state",
+          288,
+          "Leaf: geometry/othermode/combine \u043f\u0435\u0440\u0435\u0434 glyph; DL cursor801B1424"
+        ],
+        "0x801B5FF0": [
+          "dora3_common_glyph_draw",
+          968,
+          "Leaf: \u0438\u0441\u0445\u043e\u0434\u043d\u044b\u043912x12 glyph \u0438\u0437 CI4 atlas \u0448\u0438\u0440\u0438\u043d\u043e\u0439192 \u0441TLUT \u0438TexRect; jr63B0/delay63B4"
+        ],
+        "0x801B6694": [
+          "dora3_common_glyph_lookup",
+          188,
+          "\u041b\u0438\u043d\u0435\u0439\u043d\u044b\u0439 \u043f\u043e\u0438\u0441\u043a \u0434\u0432\u0443\u0445 \u0431\u0430\u0439\u0442 \u0441\u0438\u043c\u0432\u043e\u043b\u0430 \u0432 \u0442\u0430\u0431\u043b\u0438\u0446\u0435801B8490 \u0434\u043eFFFF; \u0432\u043e\u0437\u0432\u0440\u0430\u0442 \u0438\u043d\u0434\u0435\u043a\u0441\u0430 \u0438\u043b\u0438-1"
+        ],
+        "0x801B6750": [
+          "dora3_common_text_draw",
+          224,
+          "\u0421\u0442\u0440\u043e\u043a\u0430 \u0434\u0432\u0443\u0445\u0431\u0430\u0439\u0442\u043e\u0432\u044b\u0445 \u043a\u043e\u0434\u043e\u0432 \u0434\u043e0; glyph_lookup, \u0438\u043d\u0434\u0435\u043a\u044116 \u0441\u0442\u043e\u043b\u0431\u0446\u043e\u0432, \u0448\u0430\u043312 \u043f\u0438\u043a\u0441\u0435\u043b\u0435\u0439, glyph_draw"
+        ]
+      },
+      "indirect_targets": {}
+    },
+    {
+      "name": ".scene34",
+      "rom": 406976,
+      "vram": 2149289680,
+      "size": 54416,
+      "compiled": {
+        "0x801C0184": [
+          "dora3_scene34_init",
+          312,
+          "Scene34 init: cadence3, heap, original scene systems and fade; installs0088/012C, sets allocation cursor801C6A30, then selects setup path"
+        ],
+        "0x801C0014": [
+          "dora3_scene34_setup",
+          60,
+          "Calls common overlay3770/6830 and localFEF4; resets countdown and sets60-frame timer"
+        ],
+        "0x801C0050": [
+          "dora3_scene34_setup_first",
+          28,
+          "Calls original0014; identical code path to006C"
+        ],
+        "0x801C006C": [
+          "dora3_scene34_setup_repeat",
+          28,
+          "Calls original0014; identical code path to0050"
+        ],
+        "0x801C0088": [
+          "dora3_scene34_update",
+          164,
+          "Selects controller, advances scene tick and timers, conditionally requests transition or callsFDE0"
+        ],
+        "0x801C012C": [
+          "dora3_scene34_draw",
+          88,
+          "Initial render setup, clear; dispatches localFF24 orFE80 based on scene flag"
+        ],
+        "0x801BFEF4": [
+          "dora3_scene34_image_load",
+          40,
+          "Loads ID0B99 through42E30; stores handle801C68C8"
+        ],
+        "0x801BFF24": [
+          "dora3_scene34_centered_image",
+          240,
+          "\u041f\u043e\u043b\u0443\u0447\u0430\u0435\u0442 \u0440\u0435\u0441\u0443\u0440\u04410B99, \u0432\u044b\u0447\u0438\u0441\u043b\u044f\u0435\u0442 \u0446\u0435\u043d\u0442\u0440320x240, \u043e\u0440\u0438\u0433\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0439 \u0432\u044b\u0437\u043e\u04322A844 \u0441 \u043c\u0430\u0441\u0448\u0442\u0430\u0431\u043e\u043c1 \u0438 \u0444\u043e\u0440\u043c\u0430\u0442\u043e\u043c0"
+        ],
+        "0x801BFE80": [
+          "dora3_scene34_controller_message",
+          116,
+          "\u0412\u0435\u0442\u043a\u0430 \u043f\u0440\u0438 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0438 bit0 controller mask801A48B4; \u0440\u0430\u043c\u043a\u043040,88..280,140 \u0438 \u0442\u0440\u0438 \u0441\u0442\u0440\u043e\u043a\u0438 \u043f\u043e801C5740/5764/5788"
+        ]
+      },
+      "indirect_targets": {
+        "0x801C0184": "800433D8 scene34 dispatch; installed through280DC",
+        "0x801C0088": "scene34 update installed at801C0208",
+        "0x801C012C": "scene34 draw installed at801C0210"
+      }
+    }
+  ]
 }
