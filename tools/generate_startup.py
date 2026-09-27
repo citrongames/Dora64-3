@@ -16,6 +16,9 @@ def main():
     compiled={int(k,16):v for k,v in meta['compiled'].items()}
     sdk={int(k,16):v for k,v in meta['sdk'].items()}
     frontier=set()
+    for address in meta.get('indirect_targets', {}):
+        target=int(address,16)
+        if target not in compiled and target not in sdk:frontier.add(target)
     for address,(_,size,_) in compiled.items():
         for (word,) in struct.iter_unpack('>I',rom[address-0x80024c00:address-0x80024c00+size]):
             if word>>26==3:

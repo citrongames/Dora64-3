@@ -1,7 +1,17 @@
 """Run the bounded diagnostic runtime after exact ROM validation; save metadata/log only."""
-import argparse, hashlib, json, subprocess
+import argparse, hashlib, json, re, subprocess
 from pathlib import Path
 from inspect_rom import ROOT,read_rom
+
+def observations(log):
+    return {
+        'pending_functions':sorted(set(re.findall(r'PENDING original function ([0-9A-F]{8})',log))),
+        'dma_verified':re.findall(r'DMA VERIFIED (.*)',log),
+        'rsp_tasks':re.findall(r'RSP TASK (.*)',log),
+        'audio_rsp_completions':len(re.findall(r'^AUDIO RSP COMPLETED reason=1$',log,re.M)),
+        'graphics_submissions':re.findall(r'GRAPHICS TASK (.*)',log),
+        'pcm_boundary_reached':'PCM OUTPUT reached' in log,
+    }
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
@@ -19,9 +29,10 @@ def main():
             exit_code=result.returncode
         except subprocess.TimeoutExpired:
             exit_code=124
-    report={'scope':'diagnostic startup, no frame/audio/device validation','rom_sha256':hashlib.sha256(rom).hexdigest(),
+    report={'scope':'diagnostic startup; RSP completion recorded separately; no rendered frame or audio device validation','rom_sha256':hashlib.sha256(rom).hexdigest(),
             'executable_sha256':hashlib.sha256(exe.read_bytes()).hexdigest(),'exit_code':exit_code,
-            'meaning':{77:'unreviewed function reached',78:'RSP/graphics/audio boundary reached; processing not validated',79:'runtime timeout',80:'runtime error',81:'DMA verification failure',124:'runner timeout'}.get(exit_code,'unexpected termination')}
+            'meaning':{77:'unreviewed function reached',78:'diagnostic task/output boundary; inspect observations',79:'runtime timeout',80:'runtime error',81:'DMA verification failure',82:'audio RSP identity/execution failure',124:'runner timeout'}.get(exit_code,'unexpected termination')}
+    report['observations']=observations((directory/'runtime.log').read_text())
     (directory/'result.json').write_text(json.dumps(report,indent=2)+'\n')
     print((directory/'runtime.log').read_text());print(json.dumps(report,indent=2))
     if exit_code not in (77,78):raise SystemExit(1)

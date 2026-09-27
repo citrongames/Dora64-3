@@ -1,79 +1,830 @@
 {
   "compiled": {
-    "0x80025C00": ["recomp_entrypoint", 60, "Entry handoff and memory clearing verified by boot probe"],
-    "0x80027414": ["dora3_bootproc", 668, "TV guard; RAM clears; creates idle thread id 1 priority 90"],
-    "0x800276B0": ["dora3_idle", 164, "PI manager; cart handle; creates main id 6 priority 90; lowers own priority"],
-    "0x80027A88": ["dora3_main", 224, "Ordered game initialization; eventually enters message loop"],
-    "0x80031588": ["dora3_video_buffers_init", 104, "320x240 framebuffer pointers; original constants retained"],
-    "0x80030168": ["dora3_si_queue_init", 72, "Creates single-message queue and binds OS_EVENT_SI=5"],
-    "0x8005E270": ["dora3_empty_init", 8, "Actual ROM function is jr ra / nop"],
-    "0x80061F90": ["dora3_memset", 160, "Original byte/halfword/word fill implementation"],
-    "0x8003C150": ["dora3_initial_vi_and_pak_check", 104, "VI manager mode/black/event setup and controller-pak startup check"],
-    "0x80044C14": ["dora3_controller_pak_startup", 2316, "Returns if no controller or no accessory; otherwise handles boot controller-pak UI; remaining calls are explicit frontier"],
-    "0x80027754": ["dora3_scheduler_init", 296, "Creates game queues; scheduler; client; saves command queue"],
-    "0x80026670": ["dora3_create_scheduler", 328, "Matches SDK scheduler fields/events 666..669; thread id4 priority120"],
-    "0x800267B8": ["dora3_scheduler_add_client", 88, "Interrupt-protected linked-list insertion at scheduler offset260"],
-    "0x800268A0": ["dora3_scheduler_cmd_queue", 8, "Returns scheduler+0x78"],
-    "0x800268A8": ["dora3_scheduler_thread", 384, "Waits on scheduler+0x40; dispatches VI/SP/DP/PRENMI messages; child calls fail-stop until reviewed"],
-    "0x8002F518": ["dora3_graphics_tasks_init", 124, "Initializes two task completion messages and framebuffer pointers; VI features0x6A"],
-    "0x800301B0": ["dora3_controllers_init", 372, "Controller status request, four input-state arrays, selects controller0"],
-    "0x8003C1B8": ["dora3_controller_status", 216, "Queries statuses and rebuilds connected-device bitmask"],
-    "0x800300C4": ["dora3_select_controller", 164, "Copies selected controller state and stick values to current globals"],
-    "0x80027150": ["dora3_vi_region_adjust", 96, "PAL-only Y scale and timing adjustment; NTSC returns without changes"],
-    "0x80042800": ["dora3_audio_init_wrapper", 28, "Calls 80044164 then returns"],
-    "0x80044164": ["dora3_audio_init", 332, "Loads banks1/2; config includes scheduler, priority110,22050Hz; calls audio engine init"],
-    "0x80044120": ["dora3_audio_bank_load", 68, "ROM base00B9B450 plus offsets table80076970; original synchronous DMA"],
-    "0x8002730C": ["dora3_rom_dma", 264, "Cache ops; <=256-byte osEPiStartDma chunks; waits completion on each"],
-    "0x80026A28": ["dora3_scheduler_retrace", 256, "Drains command queue; schedules pending work; notifies clients"],
-    "0x80026F64": ["dora3_scheduler_select", 492, "Original recursive SP/DP resource and task list selection"],
-    "0x80047344": ["dora3_audio_engine_init", 948, "Reads audio config; heap, scheduler pointer, voice/event allocations and banks; later children are pending"],
-    "0x8004E2A0": ["dora3_audio_heap_init", 92, "Clears supplied audio heap then initializes original ALHeap"],
-    "0x8004E3CC": ["dora3_audio_byte_fill", 120, "Original byte fill; no external calls"],
-    "0x80054600": ["dora3_al_heap_init", 52, "Aligns base to16; sets base/current/length/count; original SDK software code retained"],
-    "0x80054640": ["dora3_al_heap_alloc", 72, "Allocates count*size rounded to16; rejects overrun; original SDK software code retained"],
-    "0x8004DBD0": ["dora3_audio_set_scheduler", 48, "Stores scheduler pointer at8007FF60"],
-    "0x8004E2FC": ["dora3_audio_alloc", 96, "Original wrapper around ALHeap allocation count1"],
-    "0x80049128": ["dora3_audio_event_pool_init", 192, "Clamps event slots64..1024; allocates slots*8; initializes ring state"],
-    "0x800488B4": ["dora3_audio_bank_register", 92, "Relocates instrument bank via8004B2E4 and stores default bank"],
-    "0x80048C98": ["dora3_audio_sequence_bank_register", 284, "Relocates sequence offsets in place; rejects already-relocated flag"],
-    "0x8004B2E4": ["dora3_audio_bank_relocate", 916, "Bank flag prevents double relocation; relocates tables and sample/loop/book pointers; converts pitch bytes to floats"],
-    "0x8004BD4C": ["dora3_audio_relocate_pointer_array", 204, "Adds bank base to each nonzero u32 offset; original software loop"],
-    "0x8004DE70": ["dora3_audio_thread_init", 468, "Builds synth config and sample buffers; creates id3 entry8004E044 priority from config"],
-    "0x8004D360": ["dora3_audio_dma_pool_init", 700, "Allocates linked sample-DMA buffers and completion queue; returns callback8004D7B4"],
-    "0x8004E39C": ["dora3_audio_heap_get", 48, "Returns original ALHeap80080130"],
-    "0x8004C460": ["dora3_audio_synth_open", 124, "Singleton synth pointer800775E0; config patch then synth constructor"],
-    "0x8004D0F0": ["dora3_audio_synth_config", 64, "Sets effect type6 and parameter pointer800770F8 in synth config"],
-    "0x8004C4DC": ["dora3_audio_synth_init", 1160, "Allocates and initializes original filter graph/voice/update pools; unreviewed callees remain fail-stop"],
-    "0x8004E560": ["dora3_audio_buffer_sizes", 276, "Computes sample buffer counts from output rate/retrace rate; stores80080140..14C"]
+    "0x80025C00": [
+      "recomp_entrypoint",
+      60,
+      "Entry handoff and memory clearing verified by boot probe"
+    ],
+    "0x80027414": [
+      "dora3_bootproc",
+      668,
+      "TV guard; RAM clears; creates idle thread id 1 priority 90"
+    ],
+    "0x800276B0": [
+      "dora3_idle",
+      164,
+      "PI manager; cart handle; creates main id 6 priority 90; lowers own priority"
+    ],
+    "0x80027A88": [
+      "dora3_main",
+      224,
+      "Ordered game initialization; eventually enters message loop"
+    ],
+    "0x80031588": [
+      "dora3_video_buffers_init",
+      104,
+      "320x240 framebuffer pointers; original constants retained"
+    ],
+    "0x80030168": [
+      "dora3_si_queue_init",
+      72,
+      "Creates single-message queue and binds OS_EVENT_SI=5"
+    ],
+    "0x8005E270": [
+      "dora3_empty_init",
+      8,
+      "Actual ROM function is jr ra / nop"
+    ],
+    "0x80061F90": [
+      "dora3_memset",
+      160,
+      "Original byte/halfword/word fill implementation"
+    ],
+    "0x8003C150": [
+      "dora3_initial_vi_and_pak_check",
+      104,
+      "VI manager mode/black/event setup and controller-pak startup check"
+    ],
+    "0x80044C14": [
+      "dora3_controller_pak_startup",
+      2316,
+      "Returns if no controller or no accessory; otherwise handles boot controller-pak UI; remaining calls are explicit frontier"
+    ],
+    "0x80027754": [
+      "dora3_scheduler_init",
+      296,
+      "Creates game queues; scheduler; client; saves command queue"
+    ],
+    "0x80026670": [
+      "dora3_create_scheduler",
+      328,
+      "Matches SDK scheduler fields/events 666..669; thread id4 priority120"
+    ],
+    "0x800267B8": [
+      "dora3_scheduler_add_client",
+      88,
+      "Interrupt-protected linked-list insertion at scheduler offset260"
+    ],
+    "0x800268A0": [
+      "dora3_scheduler_cmd_queue",
+      8,
+      "Returns scheduler+0x78"
+    ],
+    "0x800268A8": [
+      "dora3_scheduler_thread",
+      384,
+      "Waits on scheduler+0x40; dispatches VI/SP/DP/PRENMI messages; child calls fail-stop until reviewed"
+    ],
+    "0x8002F518": [
+      "dora3_graphics_tasks_init",
+      124,
+      "Initializes two task completion messages and framebuffer pointers; VI features0x6A"
+    ],
+    "0x800301B0": [
+      "dora3_controllers_init",
+      372,
+      "Controller status request, four input-state arrays, selects controller0"
+    ],
+    "0x8003C1B8": [
+      "dora3_controller_status",
+      216,
+      "Queries statuses and rebuilds connected-device bitmask"
+    ],
+    "0x800300C4": [
+      "dora3_select_controller",
+      164,
+      "Copies selected controller state and stick values to current globals"
+    ],
+    "0x80027150": [
+      "dora3_vi_region_adjust",
+      96,
+      "PAL-only Y scale and timing adjustment; NTSC returns without changes"
+    ],
+    "0x80042800": [
+      "dora3_audio_init_wrapper",
+      28,
+      "Calls 80044164 then returns"
+    ],
+    "0x80044164": [
+      "dora3_audio_init",
+      332,
+      "Loads banks1/2; config includes scheduler, priority110,22050Hz; calls audio engine init"
+    ],
+    "0x80044120": [
+      "dora3_audio_bank_load",
+      68,
+      "ROM base00B9B450 plus offsets table80076970; original synchronous DMA"
+    ],
+    "0x8002730C": [
+      "dora3_rom_dma",
+      264,
+      "Cache ops; <=256-byte osEPiStartDma chunks; waits completion on each"
+    ],
+    "0x80026A28": [
+      "dora3_scheduler_retrace",
+      256,
+      "Drains command queue; schedules pending work; notifies clients"
+    ],
+    "0x80026F64": [
+      "dora3_scheduler_select",
+      492,
+      "Original recursive SP/DP resource and task list selection"
+    ],
+    "0x80047344": [
+      "dora3_audio_engine_init",
+      948,
+      "Reads audio config; heap, scheduler pointer, voice/event allocations and banks; later children are pending"
+    ],
+    "0x8004E2A0": [
+      "dora3_audio_heap_init",
+      92,
+      "Clears supplied audio heap then initializes original ALHeap"
+    ],
+    "0x8004E3CC": [
+      "dora3_audio_byte_fill",
+      120,
+      "Original byte fill; no external calls"
+    ],
+    "0x80054600": [
+      "dora3_al_heap_init",
+      52,
+      "Aligns base to16; sets base/current/length/count; original SDK software code retained"
+    ],
+    "0x80054640": [
+      "dora3_al_heap_alloc",
+      72,
+      "Allocates count*size rounded to16; rejects overrun; original SDK software code retained"
+    ],
+    "0x8004DBD0": [
+      "dora3_audio_set_scheduler",
+      48,
+      "Stores scheduler pointer at8007FF60"
+    ],
+    "0x8004E2FC": [
+      "dora3_audio_alloc",
+      96,
+      "Original wrapper around ALHeap allocation count1"
+    ],
+    "0x80049128": [
+      "dora3_audio_event_pool_init",
+      192,
+      "Clamps event slots64..1024; allocates slots*8; initializes ring state"
+    ],
+    "0x800488B4": [
+      "dora3_audio_bank_register",
+      92,
+      "Relocates instrument bank via8004B2E4 and stores default bank"
+    ],
+    "0x80048C98": [
+      "dora3_audio_sequence_bank_register",
+      284,
+      "Relocates sequence offsets in place; rejects already-relocated flag"
+    ],
+    "0x8004B2E4": [
+      "dora3_audio_bank_relocate",
+      916,
+      "Bank flag prevents double relocation; relocates tables and sample/loop/book pointers; converts pitch bytes to floats"
+    ],
+    "0x8004BD4C": [
+      "dora3_audio_relocate_pointer_array",
+      204,
+      "Adds bank base to each nonzero u32 offset; original software loop"
+    ],
+    "0x8004DE70": [
+      "dora3_audio_thread_init",
+      468,
+      "Builds synth config and sample buffers; creates id3 entry8004E044 priority from config"
+    ],
+    "0x8004D360": [
+      "dora3_audio_dma_pool_init",
+      700,
+      "Allocates linked sample-DMA buffers and completion queue; returns callback8004D7B4"
+    ],
+    "0x8004E39C": [
+      "dora3_audio_heap_get",
+      48,
+      "Returns original ALHeap80080130"
+    ],
+    "0x8004C460": [
+      "dora3_audio_synth_open",
+      124,
+      "Singleton synth pointer800775E0; config patch then synth constructor"
+    ],
+    "0x8004D0F0": [
+      "dora3_audio_synth_config",
+      64,
+      "Sets effect type6 and parameter pointer800770F8 in synth config"
+    ],
+    "0x8004C4DC": [
+      "dora3_audio_synth_init",
+      1160,
+      "Allocates and initializes original filter graph/voice/update pools; unreviewed callees remain fail-stop"
+    ],
+    "0x8004E560": [
+      "dora3_audio_buffer_sizes",
+      276,
+      "Computes sample buffer counts from output rate/retrace rate; stores80080140..14C"
+    ],
+    "0x80051B88": [
+      "dora3_audio_save_filter_init",
+      72,
+      "Filter type3; pull54480/set54528; state init"
+    ],
+    "0x80051AD0": [
+      "dora3_audio_bus_filter_init",
+      92,
+      "Filter type6; pull526E0/set527BC; source array and capacity"
+    ],
+    "0x80051B2C": [
+      "dora3_audio_aux_filter_init",
+      92,
+      "Filter type7; pull534C0/set53600; source array and capacity"
+    ],
+    "0x800545AC": [
+      "dora3_audio_list_link",
+      32,
+      "Original doubly linked list insertion"
+    ],
+    "0x80051994": [
+      "dora3_audio_decoder_filter_init",
+      176,
+      "Filter type0; two32-byte states; invokes DMA factory passed in a1"
+    ],
+    "0x80051A44": [
+      "dora3_audio_resample_filter_init",
+      140,
+      "Filter type1; alloc32; unity pitch and reset state"
+    ],
+    "0x800518DC": [
+      "dora3_audio_envelope_filter_init",
+      184,
+      "Filter type4; alloc80; envelope state and gains initialization"
+    ],
+    "0x80054528": [
+      "dora3_audio_save_filter_param",
+      40,
+      "Parameter1 sets source; parameter6 sets destination"
+    ],
+    "0x8004C964": [
+      "dora3_audio_effect_attach",
+      360,
+      "Constructs effect in aux slot; sets source and connects aux output"
+    ],
+    "0x800534A0": [
+      "dora3_audio_filter_init",
+      32,
+      "Initializes source/pull/setParam/type fields"
+    ],
+    "0x80053600": [
+      "dora3_audio_aux_filter_param",
+      48,
+      "Parameter2 appends source into input array"
+    ],
+    "0x80053C54": [
+      "dora3_audio_effect_filter_param",
+      20,
+      "Parameter1 stores source filter"
+    ],
+    "0x800523B0": [
+      "dora3_audio_decoder_filter_param",
+      428,
+      "Handles wavetable/reset; pointers to ADPCM/raw pull callbacks; original software"
+    ],
+    "0x8005381C": [
+      "dora3_audio_resample_filter_param",
+      196,
+      "Nine-entry switch at8007E628; source/reset/pitch and parameter forwarding"
+    ],
+    "0x80052CF0": [
+      "dora3_audio_envelope_filter_param",
+      212,
+      "Source/reset/update queue; forwards to child filter"
+    ],
+    "0x800527BC": [
+      "dora3_audio_bus_filter_param",
+      52,
+      "Parameter2 appends source into input array"
+    ],
+    "0x8004CACC": [
+      "dora3_audio_effect_init",
+      392,
+      "Allocates effect delay/filter state; installs callbacks538E0/53C68; loads parameter preset"
+    ],
+    "0x8004D7B4": [
+      "dora3_audio_dma_factory",
+      52,
+      "Returns audio DMA callback8004D7E8"
+    ],
+    "0x8004D130": [
+      "dora3_audio_effect_max_sections",
+      188,
+      "Scans preset pointer list80077284 for maximum section count"
+    ],
+    "0x8004D1EC": [
+      "dora3_audio_effect_max_delay",
+      196,
+      "Scans preset pointer list80077284 for maximum sample buffer length"
+    ],
+    "0x8004CC54": [
+      "dora3_audio_effect_load_preset",
+      1180,
+      "Clears delay memory; configures taps/resampler/lowpass from preset; optional513A0"
+    ],
+    "0x800476F8": [
+      "dora3_audio_master_volume",
+      96,
+      "Bitmask selects sequence/effect master volumes8007FEDC/FEDE"
+    ],
+    "0x80054D20": [
+      "dora3_audio_add_player",
+      80,
+      "Interrupt-protected synth player list insertion"
+    ],
+    "0x8004B794": [
+      "dora3_audio_voice_reset",
+      608,
+      "Clears316-byte voice preserving channel flag; installs original defaults"
+    ],
+    "0x8004E35C": [
+      "dora3_audio_heap_used",
+      64,
+      "Returns ALHeap current-base"
+    ],
+    "0x80054D70": [
+      "dora3_audio_alloc_voice",
+      296,
+      "Allocates physical voice and optionally steals via update queue"
+    ],
+    "0x8004E044": [
+      "dora3_audio_thread",
+      604,
+      "Original audio loop with scheduler callbacks from800772AC and task code/data pointers"
+    ],
+    "0x800513A0": [
+      "dora3_audio_lowpass_init",
+      164,
+      "Original integer/double coefficient construction; no external calls"
+    ],
+    "0x80054E98": [
+      "dora3_audio_choose_voice",
+      184,
+      "Selects free voice or steal candidate and moves linked list node"
+    ],
+    "0x80054B4C": [
+      "dora3_audio_alloc_update",
+      44,
+      "Pops synth update freelist"
+    ],
+    "0x800545CC": [
+      "dora3_audio_list_unlink",
+      52,
+      "Removes original doubly linked list node"
+    ],
+    "0x8004DC00": [
+      "dora3_audio_scheduler_client_init",
+      188,
+      "Creates retrace/completion queues and registers audio scheduler client"
+    ],
+    "0x8004DCBC": [
+      "dora3_audio_wait_retrace",
+      144,
+      "Waits audio client queue for message type1"
+    ],
+    "0x8004DD4C": [
+      "dora3_audio_submit_task",
+      292,
+      "Builds stack OSTask type2 text626F0/data78B40 sizes1000/800; blocks for completion"
+    ],
+    "0x8004E674": [
+      "dora3_audio_frame_samples",
+      140,
+      "Computes aligned sample count from AI queued length and configured targets"
+    ],
+    "0x8004D61C": [
+      "dora3_audio_dma_tick",
+      408,
+      "Drains completion messages and expires sample cache entries"
+    ],
+    "0x8005499C": [
+      "dora3_audio_build_frame",
+      432,
+      "Runs audio players and pulls original filter graph into ABI command list"
+    ],
+    "0x80054CB8": [
+      "dora3_audio_next_player",
+      88,
+      "Selects earliest synth player sample timestamp"
+    ],
+    "0x80054C24": [
+      "dora3_audio_usec_to_samples",
+      72,
+      "Converts player microsecond interval using output rate with rounding"
+    ],
+    "0x80054B90": [
+      "dora3_audio_recycle_voices",
+      84,
+      "Moves retired physical voices to free list"
+    ],
+    "0x80049480": [
+      "dora3_audio_player_tick",
+      960,
+      "Drains events; advances active voices/sequences; returns configured16666us interval"
+    ],
+    "0x800491E8": [
+      "dora3_audio_drain_events",
+      208,
+      "Consumes pending ring events through492B8; empty queue exits"
+    ],
+    "0x8003D110": [
+      "dora3_pak_state_init",
+      140,
+      "Resets pak state; selects controller; invokes pak initialization when present"
+    ],
+    "0x8003CFE4": [
+      "dora3_pak_flags_clear",
+      44,
+      "Clears five global pak state fields"
+    ],
+    "0x8003CF64": [
+      "dora3_pak_find_controller",
+      128,
+      "Queries controllers and finds first valid standard controller; FF if absent"
+    ],
+    "0x8003D04C": [
+      "dora3_pak_device_init",
+      196,
+      "Sets pak metadata defaults; calls SDK only for selected connected controller"
+    ],
+    "0x8003CC20": [
+      "dora3_rumble_init_all",
+      132,
+      "Runs rumble init for four channels and stores availability"
+    ],
+    "0x8003CACC": [
+      "dora3_rumble_init_channel",
+      284,
+      "Calls osMotorInit; resets per-channel state and stops motor if available"
+    ],
+    "0x8003155C": [
+      "dora3_game_heap_init_wrapper",
+      44,
+      "Loads game heap base/length then calls33A50"
+    ],
+    "0x80033A50": [
+      "dora3_game_heap_init",
+      56,
+      "Initializes allocator and stores root/free state80070F40"
+    ],
+    "0x80033A14": [
+      "dora3_game_heap_region_init",
+      60,
+      "Aligns heap base16; creates first free block header; rejects short region"
+    ],
+    "0x800331A4": [
+      "dora3_scene_counters_clear",
+      84,
+      "Clears original render/scene counters"
+    ],
+    "0x80028814": [
+      "dora3_display_state_init",
+      100,
+      "Sets initial scene/display flags and320x240 dimensions"
+    ],
+    "0x80028434": [
+      "dora3_game_flag_clear",
+      12,
+      "Clears801A9C88"
+    ],
+    "0x80031658": [
+      "dora3_render_flag_a",
+      12,
+      "Stores flag at801A9500"
+    ],
+    "0x80031664": [
+      "dora3_render_flag_b",
+      12,
+      "Stores flag at801AA648"
+    ],
+    "0x80028178": [
+      "dora3_process_table_init",
+      64,
+      "Initializes8 process slots; current index80171590"
+    ],
+    "0x80028018": [
+      "dora3_process_slot_clear",
+      40,
+      "Clears state/timer/arg fields in20-byte slot at801A44F0"
+    ],
+    "0x80027FEC": [
+      "dora3_process_slot_set",
+      44,
+      "Stores callback/argument and state5 in process slot"
+    ],
+    "0x80028060": [
+      "dora3_process_slot_activate",
+      60,
+      "Selects state2/4 relative to current process index"
+    ],
+    "0x8002787C": [
+      "dora3_game_message_loop",
+      524,
+      "Waits scheduler client queue; processes retrace/completion; next frame calls remain guarded"
+    ],
+    "0x80054480": [
+      "dora3_audio_save_filter_pull",
+      168,
+      "Pulls source and emits interleave/setbuffer/save PCM ABI commands"
+    ],
+    "0x800534C0": [
+      "dora3_audio_aux_filter_pull",
+      320,
+      "Clears output DMEM; pulls effects and emits mix commands"
+    ],
+    "0x800526E0": [
+      "dora3_audio_bus_filter_pull",
+      220,
+      "Clears main buses; pulls each voice filter"
+    ],
+    "0x80026CEC": [
+      "dora3_scheduler_framebuffer_ready",
+      84,
+      "Null task returns0; otherwise compares current/next framebuffer via SDK"
+    ],
+    "0x800538E0": [
+      "dora3_audio_effect_filter_pull",
+      884,
+      "Pulls bus; emits delay tap/mix/filter/save commands; advances circular delay position"
+    ],
+    "0x800527F0": [
+      "dora3_audio_envelope_filter_pull",
+      1280,
+      "Applies queued voice updates by17-entry jump table; emits active envelope segments"
+    ],
+    "0x800541E0": [
+      "dora3_audio_effect_save_delay",
+      368,
+      "Emits DMA save commands with circular delay wrap handling"
+    ],
+    "0x80054070": [
+      "dora3_audio_effect_load_delay",
+      368,
+      "Emits DMA load commands with circular delay wrap handling"
+    ],
+    "0x80053E58": [
+      "dora3_audio_effect_resample_delay",
+      536,
+      "Emits delay tap load and optional resampling; original pitch math"
+    ],
+    "0x80054350": [
+      "dora3_audio_lowpass_commands",
+      156,
+      "Emits loadbook/filter commands from lowpass state"
+    ],
+    "0x80052DC4": [
+      "dora3_audio_envelope_segment",
+      724,
+      "Inactive voice returns command pointer unchanged; active path pulls source and emits envelope commands"
+    ],
+    "0x80030D00": [
+      "dora3_object_lifetime_tick",
+      188,
+      "Visits512 object records; expires only nonzero objects"
+    ],
+    "0x80038B4C": [
+      "dora3_deferred_free_tick",
+      124,
+      "Visits100 deferred-free records; decrements countdown and frees expired entries"
+    ],
+    "0x800307F8": [
+      "dora3_game_retrace_update",
+      228,
+      "Samples controllers; gated game update every2 retraces; child calls guarded"
+    ],
+    "0x80030324": [
+      "dora3_controller_read",
+      92,
+      "Connected-port bitmask gates SI read and blocking completion receive"
+    ],
+    "0x80030380": [
+      "dora3_controller_accumulate",
+      296,
+      "Accumulates buttons and stick directions for each connected port"
+    ],
+    "0x80026DCC": [
+      "dora3_scheduler_enqueue",
+      88,
+      "Separates audio and graphics linked lists; initializes resource flags"
+    ],
+    "0x80026E24": [
+      "dora3_scheduler_launch",
+      264,
+      "Flushes cache for audio; loads and starts selected SP task; optional DP path"
+    ],
+    "0x8002FF64": [
+      "dora3_graphics_frame_build",
+      344,
+      "Sets task-local display-list pointers; runs render processes; emits fullsync/end and submits task"
+    ],
+    "0x8003324C": [
+      "dora3_frame_timestamp",
+      36,
+      "Records CP0 count into801B142C"
+    ],
+    "0x8002F828": [
+      "dora3_graphics_initial_commands",
+      304,
+      "Emits segment0 and static display-list calls; optional640-width scissor/viewport"
+    ],
+    "0x800289D8": [
+      "dora3_fade_draw_dispatch",
+      148,
+      "Checks signed fade state then calls28688 with saved RGBA/rectangle state"
+    ],
+    "0x80028474": [
+      "dora3_framebuffer_copy_commands",
+      532,
+      "When enabled emits320x240 framebuffer copy as64x16 tiles"
+    ],
+    "0x8002FE20": [
+      "dora3_graphics_task_submit",
+      324,
+      "Builds original OSTask type1; microcode from8006FAA8; completion queue and framebuffer; submits scheduler"
+    ],
+    "0x800281B8": [
+      "dora3_process_dispatch",
+      220,
+      "Visits8 slots matching phase; transitions sleep/ready states and invokes registered callback"
+    ]
   },
   "sdk": {
-    "0x8005DF98": ["__osInitialize_common", "Sets CU1/FPCSR/watchlo/PIF; exception vectors; VI clock; matches ultralib initialize.c"],
-    "0x8004E980": ["osCreatePiManager", "Priority plus queue/buffer/count; binds OS_EVENT_PI=8; creates PI thread"],
-    "0x8004EDA0": ["osCartRomInit", "Initializes OSPiHandle type 0 base B0000000 and PI bus timings"],
-    "0x80058CE0": ["osCreateThread", "Stores id at 14 priority at 4 PC at 11C a0 at 38 SP at F0 minus16"],
-    "0x80058EA0": ["osStartThread", "Transitions stopped/waiting states; queues and dispatches highest priority"],
-    "0x80058DD0": ["osSetThreadPri", "Null means running thread; priority update/requeue/preemption"],
-    "0x80058270": ["osCreateMesgQueue", "Initializes two thread queues and validCount/first/msgCount/msg"],
-    "0x80058640": ["osSetEventMesg", "event*8 slot queue/message; PRENMI special path"],
-    "0x80059670": ["osCreateViManager", "VI manager singleton; event7/3; priority argument; internal VI thread"],
-    "0x800599B0": ["osViSetEvent", "Next VI context queue+10 message+14 retraceCount+2"],
-    "0x80059A10": ["osViSetMode", "Next VI context mode+8; state1; control from mode+4"],
-    "0x80059F80": ["osViBlack", "Sets/clears next VI context state flag0x20 from boolean argument"],
-    "0x800557F0": ["osContInit", "Queue, bitpattern, statuses; one-time guard; SI request/reply; matches controller.c"],
-    "0x80055B00": ["osContSetCh", "Locks SI, clamps u8 count at4, marks last command FF"],
-    "0x800583E0": ["osRecvMesg", "Wait or return-1 on empty; reads first slot, decrements validCount; wakes sender"],
-    "0x80058510": ["osSendMesg", "Wait or return-1 on full; appends modulo capacity, increments validCount; wakes receiver"],
-    "0x8004E8E0": ["osSetIntMask", "CP0 status/RCP interrupt mask exchange"],
-    "0x80059A60": ["osViSetSpecialFeatures", "Paired control flags gamma/divot/dither; mirrors VI context bits"],
-    "0x80055570": ["osContStartQuery", "SI command0 status request; DMA read and last command0"],
-    "0x800555F0": ["osContGetQuery", "Wrapper to controller status decoder with local bitpattern"],
-    "0x80055610": ["osContStartReadData", "SI command1 button/stick request then DMA read"],
-    "0x80055698": ["osContGetReadData", "Writes button16, stickX8, stickY8, error8 with stride6"],
-    "0x800554C0": ["osWritebackDCache", "MIPS cache op0x19 and full-cache path; writeback D cache"],
-    "0x80055440": ["osInvalICache", "MIPS cache op0x10 and full-cache path; invalidate I cache"],
-    "0x80055390": ["osInvalDCache", "Boundary writeback-invalidate and aligned cache op0x11; invalidate D cache"],
-    "0x8004ED00": ["osEPiStartDma", "OSIoMesg type11/12 from direction; handle at+14; sends to PI command queue"],
-    "0x80055540": ["osWritebackDCacheAll", "Full 8KiB indexed D-cache writeback-invalidate loop; cache op1 step16"],
-    "0x800511E0": ["osAiSetFrequency", "Computes DAC/bitrate divisors from osViClock80078968; writes AI registersA4500010/A4500014"]
+    "0x8005DF98": [
+      "__osInitialize_common",
+      "Sets CU1/FPCSR/watchlo/PIF; exception vectors; VI clock; matches ultralib initialize.c"
+    ],
+    "0x8004E980": [
+      "osCreatePiManager",
+      "Priority plus queue/buffer/count; binds OS_EVENT_PI=8; creates PI thread"
+    ],
+    "0x8004EDA0": [
+      "osCartRomInit",
+      "Initializes OSPiHandle type 0 base B0000000 and PI bus timings"
+    ],
+    "0x80058CE0": [
+      "osCreateThread",
+      "Stores id at 14 priority at 4 PC at 11C a0 at 38 SP at F0 minus16"
+    ],
+    "0x80058EA0": [
+      "osStartThread",
+      "Transitions stopped/waiting states; queues and dispatches highest priority"
+    ],
+    "0x80058DD0": [
+      "osSetThreadPri",
+      "Null means running thread; priority update/requeue/preemption"
+    ],
+    "0x80058270": [
+      "osCreateMesgQueue",
+      "Initializes two thread queues and validCount/first/msgCount/msg"
+    ],
+    "0x80058640": [
+      "osSetEventMesg",
+      "event*8 slot queue/message; PRENMI special path"
+    ],
+    "0x80059670": [
+      "osCreateViManager",
+      "VI manager singleton; event7/3; priority argument; internal VI thread"
+    ],
+    "0x800599B0": [
+      "osViSetEvent",
+      "Next VI context queue+10 message+14 retraceCount+2"
+    ],
+    "0x80059A10": [
+      "osViSetMode",
+      "Next VI context mode+8; state1; control from mode+4"
+    ],
+    "0x80059F80": [
+      "osViBlack",
+      "Sets/clears next VI context state flag0x20 from boolean argument"
+    ],
+    "0x800557F0": [
+      "osContInit",
+      "Queue, bitpattern, statuses; one-time guard; SI request/reply; matches controller.c"
+    ],
+    "0x80055B00": [
+      "osContSetCh",
+      "Locks SI, clamps u8 count at4, marks last command FF"
+    ],
+    "0x800583E0": [
+      "osRecvMesg",
+      "Wait or return-1 on empty; reads first slot, decrements validCount; wakes sender"
+    ],
+    "0x80058510": [
+      "osSendMesg",
+      "Wait or return-1 on full; appends modulo capacity, increments validCount; wakes receiver"
+    ],
+    "0x8004E8E0": [
+      "osSetIntMask",
+      "CP0 status/RCP interrupt mask exchange"
+    ],
+    "0x80059A60": [
+      "osViSetSpecialFeatures",
+      "Paired control flags gamma/divot/dither; mirrors VI context bits"
+    ],
+    "0x80055570": [
+      "osContStartQuery",
+      "SI command0 status request; DMA read and last command0"
+    ],
+    "0x800555F0": [
+      "osContGetQuery",
+      "Wrapper to controller status decoder with local bitpattern"
+    ],
+    "0x80055610": [
+      "osContStartReadData",
+      "SI command1 button/stick request then DMA read"
+    ],
+    "0x80055698": [
+      "osContGetReadData",
+      "Writes button16, stickX8, stickY8, error8 with stride6"
+    ],
+    "0x800554C0": [
+      "osWritebackDCache",
+      "MIPS cache op0x19 and full-cache path; writeback D cache"
+    ],
+    "0x80055440": [
+      "osInvalICache",
+      "MIPS cache op0x10 and full-cache path; invalidate I cache"
+    ],
+    "0x80055390": [
+      "osInvalDCache",
+      "Boundary writeback-invalidate and aligned cache op0x11; invalidate D cache"
+    ],
+    "0x8004ED00": [
+      "osEPiStartDma",
+      "OSIoMesg type11/12 from direction; handle at+14; sends to PI command queue"
+    ],
+    "0x80055540": [
+      "osWritebackDCacheAll",
+      "Writes back8192 bytes of D-cache in16-byte lines; reviewed original cache loop"
+    ],
+    "0x800511E0": [
+      "osAiSetFrequency",
+      "Computes DAC/bitrate divisors from osViClock80078968; writes AI registersA4500010/A4500014"
+    ],
+    "0x800511C0": [
+      "osAiGetLength",
+      "Reads AI length registerA4500004"
+    ],
+    "0x800511D0": [
+      "osAiGetStatus",
+      "Reads AI status registerA450000C"
+    ],
+    "0x80051300": [
+      "osAiSetNextBuffer",
+      "AI busy guard; virtual-to-physical; writes AI address/length registers"
+    ],
+    "0x80055B60": [
+      "osVirtualToPhysical",
+      "KSEG0/KSEG1 mask1FFFFFFF; TLB fallback"
+    ],
+    "0x8005B4F4": [
+      "osMotorInit",
+      "Rumble Pak FE/80 bank detection and C000 command construction; matches motor.c"
+    ],
+    "0x80058790": [
+      "osGetCount",
+      "Reads CP0 register9 COUNT"
+    ],
+    "0x800587A0": [
+      "osSpTaskLoad",
+      "Copies40-byte OSTask, translates pointers, loads task descriptor and boot code through SP DMA"
+    ],
+    "0x800589AC": [
+      "osSpTaskStartGo",
+      "Waits SP DMA busy clear; writes SP status0x125 to start task"
+    ],
+    "0x800595F0": [
+      "osViGetCurrentFramebuffer",
+      "Returns framebuffer field of current VI context80078A60 with interrupt guard"
+    ],
+    "0x80059630": [
+      "osViGetNextFramebuffer",
+      "Returns framebuffer field of next VI context80078A64 with interrupt guard"
+    ]
+  },
+  "indirect_targets": {
+    "0x800433D8": "Initial game process installed by main80027A88",
+    "0x80054480": "Save filter pull installed by51B88",
+    "0x800526E0": "Bus filter pull installed by51AD0",
+    "0x800534C0": "Aux filter pull installed by51B2C",
+    "0x80051BD0": "ADPCM pull installed by51994/523B0",
+    "0x80052014": "Raw sample pull installed by523B0",
+    "0x80053630": "Resample pull installed by51A44",
+    "0x800527F0": "Envelope pull installed by518DC",
+    "0x800538E0": "Effect pull installed by4CACC",
+    "0x80053C68": "Effect param callback installed by4CACC",
+    "0x8004D7E8": "Sample DMA callback returned by4D7B4",
+    "0x80049480": "Audio player callback installed by47344",
+    "0x8004DC00": "ROM table800772A0 slot0 referenced through800772AC",
+    "0x8004DCBC": "ROM table800772A0 slot1",
+    "0x8004DD4C": "ROM table800772A0 slot2"
   }
 }

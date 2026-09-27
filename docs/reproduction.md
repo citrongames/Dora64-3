@@ -48,37 +48,36 @@ Git игнорирует build-* включая build-deps и локально �
 
 ```bash
 python3 tools/generate_startup.py --rom "$ROM" --output-dir build-local/startup-new
+python3 tools/generate_audio_rsp.py --rom "$ROM" --output-dir build-local/audio-new
 cmake -S research/runtime -B build-local/runtime-new -G Ninja \
   -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-  -DDORA3_GENERATED_DIR="$PWD/build-local/startup-new"
+  -DDORA3_GENERATED_DIR="$PWD/build-local/startup-new" \
+  -DDORA3_AUDIO_GENERATED_DIR="$PWD/build-local/audio-new"
 cmake --build build-local/runtime-new -j6
 python3 tools/run_startup.py --rom "$ROM" \
   --executable build-local/runtime-new/dora3_startup \
   --run-dir build-local/run-startup-new
 ```
 
-Ожидается `DMA VERIFIED` для обоих банков и остановка `PENDING ... 80051B88`,
-код executable 77. Runner возвращает 0 для предусмотренных диагностических
-границ 77/78; это **не** успешный запуск игры. Коды 79/80/81/124 означают
-timeout/runtime error/DMA verification failure/runner timeout; runner вернёт 1.
-Новая state-папка отдельная на каждый запуск, сохранения отключены. Нельзя
-выдавать это состояние за порт с вводом/графикой/звуком. Windows/Android для
-этого frontend ещё не проверены.
+Ожидается DMA VERIFIED для обоих банков, затем диагностическая граница.
+В v15: RSP TASK type=2 bytes=9A0, AUDIO RSP COMPLETED reason=1,
+PENDING 800331F8, exit77. Из-за порядка потоков первой может оказаться
+графическая граница (78) или непроверенный SP completion (77).
+Отсутствие RSP completion в конкретном журнале нельзя выдавать за выполнение.
+Runner сохраняет observations: задачи, штатные RSP completion, DMA и unknown
+calls. Журналы остаются в build-local.
 
-Аудиомикрокод отдельно, пока без исполнения:
+Runner возвращает 0 для предусмотренных границ 77/78: это не запуск игры.
+Коды 79/80/81/82/124 означают runtime timeout, runtime error, DMA mismatch,
+audio RSP identity/execution failure и runner timeout; runner вернёт 1.
+При остановке даётся до 250 мс уже отправленной аудиозадаче, без успешного
+возврата непроверенной функции. Новая state-папка — на каждый запуск,
+сохранения отключены. Windows/Android для frontend ещё не проверены.
 
-```bash
-python3 tools/generate_audio_rsp.py --rom "$ROM" --output-dir build-local/audio-new
-c++ -std=c++20 -DHLSL_CPU -mssse3 -msse4.1 \
-  -Ibuild-deps/lib/N64ModernRuntime/librecomp/include \
-  -Ibuild-deps/lib/N64ModernRuntime/N64Recomp/include \
-  -Ibuild-deps/lib/N64ModernRuntime/ultramodern/include \
-  -c build-local/audio-new/dora3_aspMain.cpp -o build-local/audio-new/dora3_aspMain.o
-```
-
-Последняя команда проверена только на x86-64 Linux. Генератор самостоятельно
-проверяет text hash и 16 целей переходов из ROM. Результат не подменяется
-сгенерированным кодом первой игры.
+Оба генератора проверяют ROM, pin/binary receipts и пишут хэши входов/выходов.
+Аудиогенератор проверяет text hash и 16 целей переходов из ROM; чужой generated
+aspMain не используется. CMake проверяет оба комплекта и связывает audio RSP
+с frontend. Отдельная компиляция RSP object больше не требуется.
 
 ## Windows
 

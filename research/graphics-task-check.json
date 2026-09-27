@@ -1,0 +1,26 @@
+{
+  "scope": "Historical diagnostic run before audio RSP linked; first graphics dispatch only",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "executable_sha256": "748b1a908d0ffb48368c16f291b149ab9f77a4988ea22db4517b06404fbb3fd0",
+  "exit_code": 78,
+  "meaning": "RSP/graphics/audio boundary reached; processing not validated",
+  "date": "2026-09-27",
+  "runtime_log_sha256": "cc53778bc61695184ba531023fcb7016b5000ee363f30e98842c660da6687736",
+  "observations": {
+    "pending_functions": [
+      "80026B28"
+    ],
+    "dma_verified": [
+      "rom=00FA1FA0 ram=800DD8F0 bytes=1C760",
+      "rom=00FBE700 ram=800FADE0 bytes=2580"
+    ],
+    "rsp_tasks": [],
+    "audio_rsp_completions": 0,
+    "graphics_submissions": [
+      "ucode=80063510 size=1000 data=80120638 bytes=30; renderer not connected"
+    ],
+    "pcm_boundary_reached": false
+  },
+  "rendered": false,
+  "note": "This earlier executable stopped at renderer boundary; the latest linked audio run is startup-check.json"
+}
