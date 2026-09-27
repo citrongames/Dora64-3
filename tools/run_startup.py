@@ -13,6 +13,10 @@ def observations(log):
         'pcm_boundary_reached':'PCM OUTPUT reached' in log,
         'pcm_buffers':[dict(zip(('samples','frames','nonzero_samples'),map(int,m)))
                        for m in re.findall(r'PCM OUTPUT reached samples=(\d+) frames=(\d+) nonzero=(\d+)',log)],
+        'live_rt64_setup':re.findall(r'LIVE RT64 SETUP result=(\d+)',log),
+        'live_rt64_submissions':re.findall(r'LIVE RT64 SUBMITTED (.*)',log),
+        'live_rt64_drain':re.findall(r'LIVE RT64 DRAIN (.*)',log),
+        'live_rt64_tasks':re.findall(r'LIVE RT64 PARSED (.*)',log),
         'graphics_capture_saved':'GRAPHICS CAPTURE saved' in log,
     }
 
@@ -21,6 +25,7 @@ def main():
     p.add_argument('--rom',type=Path,required=True)
     p.add_argument('--executable',type=Path,required=True)
     p.add_argument('--run-dir',type=Path,required=True)
+    p.add_argument('--live',action='store_true',help='Allow RT64 setup time and record live research observations')
     a=p.parse_args();rom=read_rom(a.rom)
     directory=a.run_dir.resolve()
     if not directory.is_relative_to(ROOT/'build-local') or directory.exists():raise ValueError('Use a fresh build-local run directory')
@@ -28,13 +33,15 @@ def main():
     exe=a.executable.resolve(strict=True)
     with (directory/'runtime.log').open('w') as log:
         try:
-            result=subprocess.run([str(exe),str(a.rom.resolve()),str(directory/'state')],stdout=log,stderr=subprocess.STDOUT,timeout=25)
+            result=subprocess.run([str(exe),str(a.rom.resolve()),str(directory/'state')],stdout=log,stderr=subprocess.STDOUT,timeout=180 if a.live else 25)
             exit_code=result.returncode
         except subprocess.TimeoutExpired:
             exit_code=124
     report={'scope':'diagnostic startup; RSP completion recorded separately; no rendered frame or audio device validation','rom_sha256':hashlib.sha256(rom).hexdigest(),
             'executable_sha256':hashlib.sha256(exe.read_bytes()).hexdigest(),'exit_code':exit_code,
-            'meaning':{77:'unreviewed function reached',78:'diagnostic task/output boundary; inspect observations',79:'runtime timeout',80:'runtime error',81:'DMA verification failure',82:'audio RSP identity/execution failure',83:'private graphics capture write failure',124:'runner timeout'}.get(exit_code,'unexpected termination')}
+            'meaning':{77:'unreviewed function reached',78:'diagnostic task/output boundary; inspect observations',79:'runtime timeout',80:'runtime error',81:'DMA verification failure',82:'audio RSP identity/execution failure',83:'private graphics capture write failure',84:'live renderer setup/task failure',124:'runner timeout'}.get(exit_code,'unexpected termination')}
+    report['scope']='bounded live RT64 startup; original scene not yet validated; PCM measured/discarded' if a.live else report['scope']
+    report['mode']='live_rt64' if a.live else 'diagnostic'
     report['observations']=observations((directory/'runtime.log').read_text())
     (directory/'result.json').write_text(json.dumps(report,indent=2)+'\n')
     print((directory/'runtime.log').read_text());print(json.dumps(report,indent=2))

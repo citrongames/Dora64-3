@@ -14,3 +14,10 @@ target_include_directories(dora3_graphics_replay PRIVATE
     "${RT64_ROOT}/src" "${RT64_ROOT}/src/contrib"
     "${RT64_ROOT}/src/contrib/hlslpp/include" "${RT64_ROOT}/src/rhi" "${RT64_ROOT}/src/render")
 target_link_libraries(dora3_graphics_replay PRIVATE rt64 SDL2::SDL2)
+
+# Share the already built pinned RT64 target with the optional live frontend.
+option(DORA3_BUILD_LIVE_STARTUP "Build the bounded live startup alongside replay" OFF)
+if(DORA3_BUILD_LIVE_STARTUP)
+    set(DORA3_LIVE_RT64 ON CACHE BOOL "Live startup" FORCE)
+    add_subdirectory("${ROOT}/research/runtime" runtime-startup)
+endif()

@@ -1,6 +1,7 @@
 // Research frontend: runs reviewed original functions through the real runtime.
-// Unreviewed functions, graphics tasks and PCM output terminate explicitly.
-// The verified audio RSP can execute; this frontend has no audio device.
+// Unreviewed functions stop explicitly. The default mode stops at graphics/PCM;
+// the optional Linux RT64 mode continues with measured, discarded PCM.
+// Neither mode has an audio device or a validated gameplay loop.
 #include <atomic>
 #include <chrono>
 #include <cstdio>
@@ -16,6 +17,9 @@
 #include "librecomp/game.hpp"
 #include "librecomp/overlays.hpp"
 #include "recomp_overlays.inl"
+#ifdef DORA3_LIVE_RT64
+#include "live_graphics.hpp"
+#endif
 #define XXH_INLINE_ALL
 #include "xxHash/xxhash.h"
 
@@ -37,6 +41,9 @@ bool captured_vi_ready=false;
            (code==78 && audio_submitted.load()>0 && pcm_buffers.load()==0)) &&
           std::chrono::steady_clock::now()<deadline)
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    #ifdef DORA3_LIVE_RT64
+    dora3_drain_live_graphics();
+    #endif
     std::fprintf(stderr,"DIAGNOSTIC STOP code=%d audio_submitted=%u audio_completed=%u\n",first_code.load(),audio_submitted.load(),audio_completed.load());
     std::fflush(nullptr);std::_Exit(first_code.load());
 }
@@ -143,6 +150,9 @@ public:
 
 int main(int argc,char** argv){
     if(argc!=3){std::fprintf(stderr,"Usage: dora3_startup ROM PRIVATE_RUN_DIRECTORY\n");return 2;}
+    #ifdef DORA3_LIVE_RT64
+    if(std::getenv("DORA3_CAPTURE_GRAPHICS")){std::fprintf(stderr,"Use the diagnostic target for first-task capture\n");return 2;}
+    #endif
     std::setvbuf(stderr,nullptr,_IONBF,0);
     const auto run_dir=std::filesystem::absolute(argv[2]);
     if(std::filesystem::exists(run_dir)){std::fprintf(stderr,"Use a fresh run directory\n");return 2;}
@@ -158,7 +168,7 @@ int main(int argc,char** argv){
     game.internal_name=std::string(rom.data()+0x20,20);
     while(!game.internal_name.empty() && (game.internal_name.back()==' ' || game.internal_name.back()=='\0'))game.internal_name.pop_back();
     game.display_name="Dora64-3 startup research";game.game_id=u8"dora3.n64.jp";
-    game.save_type=recomp::SaveType::None;game.is_enabled=true;
+    game.save_type=recomp::SaveType::Eep16k;game.is_enabled=true;
     game.entrypoint_address=(int32_t)0x80025C00;game.entrypoint=recomp_entrypoint;
     game.rom_path=std::filesystem::absolute(argv[1]);
     game.thread_create_callback=[](uint8_t* rdram,recomp_context* ctx){
@@ -177,6 +187,7 @@ int main(int argc,char** argv){
         }
         std::fprintf(stderr,"UNREVIEWED RSP TASK; stopped\n");std::_Exit(78);
     };
+    #ifndef DORA3_LIVE_RT64
     cfg.renderer_callbacks.create_render_context=[](uint8_t*,ultramodern::renderer::WindowHandle,bool)->std::unique_ptr<ultramodern::renderer::RendererContext>{return std::make_unique<DiagnosticContext>();};
     cfg.gfx_callbacks.create_window=[](void*)->ultramodern::renderer::WindowHandle{return {};};
     cfg.gfx_callbacks.update_gfx=[](void*){
@@ -185,16 +196,25 @@ int main(int argc,char** argv){
             std::fprintf(stderr,"TIMEOUT: no pending boundary/task reached in 15 seconds\n");std::_Exit(79);
         }
     };
+    #else
+    dora3_configure_live_graphics(cfg);
+    #endif
     cfg.audio_callbacks.get_frames_remaining=[]()->size_t{return 0;};
     cfg.audio_callbacks.queue_samples=[](int16_t* samples,size_t count){
         pcm_buffers.fetch_add(1);
         size_t nonzero=0;for(size_t i=0;i<count;i++)nonzero+=samples[i]!=0;
         std::fprintf(stderr,"PCM OUTPUT reached samples=%zu frames=%zu nonzero=%zu; device not connected\n",count,count/2,nonzero);
+        #ifndef DORA3_LIVE_RT64
         stop_diagnostic(78);
+        #endif
     };
     cfg.audio_callbacks.set_frequency=[](uint32_t f){std::fprintf(stderr,"AUDIO FREQUENCY %u\n",f);};
     cfg.events_callbacks.vi_callback=[](){static std::atomic<bool> started=false;if(!started.exchange(true))recomp::start_game(u8"dora3.n64.jp","");};
     cfg.error_handling_callbacks.message_box=[](const char* m){std::fprintf(stderr,"RUNTIME ERROR %s\n",m);std::_Exit(80);};
+    #ifdef DORA3_LIVE_RT64
+    std::fprintf(stderr,"RESEARCH: live RT64, deferred graphics SP completion; PCM measured/discarded, EEPROM 16k; not a playable port\n");
+    #else
     std::fprintf(stderr,"DIAGNOSTIC: no renderer/audio output, stop codes 77 pending / 78 task / 79 timeout\n");
+    #endif
     recomp::start(cfg);return 0;
 }

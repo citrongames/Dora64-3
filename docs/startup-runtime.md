@@ -1,5 +1,9 @@
 # Нативный старт: завершение audio task, PCM и графическая задача
 
+Текущий следующий этап — [живой RT64 и startup EEPROM/scene34](live-startup.md):
+163 функции /43 SDK mappings. Ниже сохраняется описание диагностического
+v20 с отдельным receipt; это исторический результат, а не состояние live frontend.
+
 Диагностический frontend работает в Linux x86-64 / WSL2 с GCC 15.2,
 RelWithDebInfo и закреплённым N64ModernRuntime из отдельного build-deps.
 Окна, RT64 renderer и аудиоустройства пока нет. Библиотеки и pins не менялись.
@@ -10,7 +14,7 @@ RelWithDebInfo и закреплённым N64ModernRuntime из отдельн�
 - Пройдены начальные VI/SI/controller queues, task buffers, игровые пулы и
   таблица процессов. Main вошёл в цикл сообщений 8002787C.
 - Контроллеры отключены; реальный ввод и ветви подключённого Controller Pak
-  не проверены. Сохранения отключены.
+  не проверены. В историческом v20 сохранения отключены; текущий frontend использует Eep16k.
 - DMA wrapper 8002730C использует настоящий osEPiStartDma и очередь завершения.
   ROM FA1FA0 → RAM 800DD8F0, 1C760 байт; ROM FBE700 → RAM 800FADE0, 2580 байт.
   Оба диапазона совпали с ROM побайтно до оригинальной релокации банков.
@@ -31,11 +35,11 @@ RelWithDebInfo и закреплённым N64ModernRuntime из отдельн�
 Доказательства: research/startup-check.json (v20), research/history/startup-v15.json
 и research/graphics-task-check.json (v13). Это разные сборки; журналы/executable
 остаются в build-local. RT64 replay прошёл на GPU: см. graphics-replay.md
-и research/graphics-replay-check.json. Он не подключён к живому main.
+и research/graphics-replay-check.json. Replay остаётся отдельной проверкой; живое подключение описано в live-startup.md.
 
 ## Функции и границы
 
-recomp/startup.json: 147 отобранных оригинальных функций, 40 SDK entries и
+На момент v20 recomp/startup.json: 147 отобранных оригинальных функций, 40 SDK entries и
 15 явно установленных indirect targets. Генератор создал 80 fail-stop границ:
 прямые JAL обнаруживаются автоматически, найденные callback targets — явно.
 Пустых успешных заглушек нет. Названия dora3_* обозначают исследованные роли,
@@ -44,7 +48,7 @@ recomp/startup.json: 147 отобранных оригинальных функ�
 
 V20 прошёл прежние границы 800331F8/80026B28 и остановился на graphics/PCM 78.
 Порядок callback зависит от host scheduling. Это ещё не устойчивый игровой цикл.
-Процесс 800433D8 включён после просмотра; исполнение пока не подтверждено.
+В v20 процесс800433D8 ещё не достигнут; его последующий запуск отражён в live-startup.md.
 При fail-stop вызывающий поток больше не исполняет игру; уже отправленной
 аудиозадаче даётся до 250 мс на завершение; на graphics boundary также
 ожидается её первый AI callback в пределах того же срока. Это диагностическая задержка,

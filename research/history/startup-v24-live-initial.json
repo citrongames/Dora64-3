@@ -1,0 +1,43 @@
+{
+  "scope": "bounded live RT64 startup; original scene not yet validated; PCM measured/discarded",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "executable_sha256": "06d27ec816ab393c9eaf06c2ae6e5499476fedc275fd250074540954457833a4",
+  "exit_code": 77,
+  "meaning": "unreviewed function reached",
+  "mode": "live_rt64",
+  "observations": {
+    "pending_functions": [
+      "800280DC"
+    ],
+    "dma_verified": [
+      "rom=00FA1FA0 ram=800DD8F0 bytes=1C760",
+      "rom=00FBE700 ram=800FADE0 bytes=2580",
+      "rom=0005E400 ram=801B3770 bytes=51C0",
+      "rom=000635C0 ram=801B8ED0 bytes=D490"
+    ],
+    "rsp_tasks": [
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9A0",
+      "type=2 ucode=800626F0 size=1000 data=80078B40 commands=800C0CD0 bytes=9C8"
+    ],
+    "audio_rsp_completions": 2,
+    "graphics_submissions": [],
+    "pcm_boundary_reached": true,
+    "pcm_buffers": [
+      {
+        "samples": 1024,
+        "frames": 512,
+        "nonzero_samples": 0
+      }
+    ],
+    "live_rt64_setup": [
+      "0"
+    ],
+    "live_rt64_tasks": [
+      "task=1 dl=00120638 bytes=30 gbi=7"
+    ],
+    "graphics_capture_saved": false
+  },
+  "date": "2026-09-27",
+  "note": "Earlier v24 build before final source cleanup; retained separately because async observations differ",
+  "runtime_log_sha256": "bf710b1c6b7089ef1d3d629ce1e37fea777224a735abe739504c7114bca02337"
+}

@@ -734,6 +734,86 @@
       "dora3_new_game_state_init",
       408,
       "Sets initial game-state counters and arrays at801B36xx; exact gameplay labels still unknown"
+    ],
+    "0x80026F2C": [
+      "dora3_scheduler_request_yield",
+      56,
+      "Sets task yield-request flag0x10 for graphics, calls osSpTaskYield"
+    ],
+    "0x8003C894": [
+      "dora3_eeprom_type_check",
+      44,
+      "Compares osEepromProbe result against required type; startup passes2"
+    ],
+    "0x8003C928": [
+      "dora3_eeprom_read_checked",
+      104,
+      "Requires probe2 then reads a3 bytes from EEPROM block a2 into a1"
+    ],
+    "0x80043EDC": [
+      "dora3_save_slot_read",
+      64,
+      "Reads512 bytes for slot0/1/2 to80077A20+slot*200 from blocks00/40/80"
+    ],
+    "0x80043FD8": [
+      "dora3_save_slot_validate",
+      120,
+      "Checks six-byte signature, status byte7 and additive checksum"
+    ],
+    "0x80044050": [
+      "dora3_save_slot_reset",
+      80,
+      "Clears512-byte RAM slot, restores signature and clears byte8; no EEPROM write"
+    ],
+    "0x80043DF0": [
+      "dora3_save_slot_checksum",
+      60,
+      "Sums bytes8..511 modulo256"
+    ],
+    "0x80043E2C": [
+      "dora3_save_slot_stored_checksum",
+      20,
+      "Loads slot byte6"
+    ],
+    "0x80043E54": [
+      "dora3_save_slot_signature_check",
+      76,
+      "Compares six bytes against resident8007DDA0 signature"
+    ],
+    "0x80043EA0": [
+      "dora3_save_slot_signature_init",
+      60,
+      "Copies six signature bytes into RAM slot"
+    ],
+    "0x800314E4": [
+      "dora3_scene_video_and_heap_init",
+      120,
+      "Chooses VI mode by width, updates two task framebuffer pointers, initializes scene heap"
+    ],
+    "0x80043390": [
+      "dora3_scene_memory_clear",
+      64,
+      "Zeros801B3770 up to scene heap base801AC6A8 (80385000 at startup)"
+    ],
+    "0x800433D0": [
+      "dora3_scene_transition_empty",
+      8,
+      "Actual jr ra/nop function"
+    ],
+    "0x800430EC": [
+      "dora3_load_scene_common_overlay",
+      52,
+      "Scene34 first loader: ROM5E400..635C0 to801B3770 via verified DMA wrapper"
+    ],
+    "0x80043154": [
+      "dora3_load_scene_startup_overlay",
+      52,
+      "Scene34 second loader: ROM635C0..70A50 to801B8ED0 via verified DMA wrapper"
+    ],
+    "0x80026C44": [
+      "dora3_scheduler_dp_complete",
+      168,
+      "Clears current RDP task and DP-busy flag, calls task completion, records count delta, schedules next work"
     ]
   },
   "sdk": {
@@ -896,6 +976,18 @@
     "0x80059C20": [
       "osViSwapBuffer",
       "Writes next VI context framebuffer field and sets state bit10 under interrupt guard"
+    ],
+    "0x800589E0": [
+      "osSpTaskYield",
+      "Calls SP status helper with0400 SP_SET_YIELD; actual body1C pluspadding"
+    ],
+    "0x8004E700": [
+      "osEepromProbe",
+      "SI status masksC000; returns1 for8000,2 forC000; original function reviewed"
+    ],
+    "0x8004E870": [
+      "osEepromLongRead",
+      "Iterates osEepromRead8005E280 in8-byte blocks, advances address and buffer, returns firsterror"
     ]
   },
   "indirect_targets": {
