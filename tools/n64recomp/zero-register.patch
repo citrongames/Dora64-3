@@ -1,0 +1,44 @@
+diff --git a/src/cgenerator.cpp b/src/cgenerator.cpp
+index 94f85c50c7375b5906b9ecfc9648c225ed7c88bf..f20e73ff36ce0169d1dbf37bfef4f86111a43ffb 100644
+--- a/src/cgenerator.cpp
++++ b/src/cgenerator.cpp
+@@ -567,9 +567,19 @@ void N64Recomp::CGenerator::process_binary_op(const BinaryOp& op, const Instruct
+     // TODO these thread locals probably don't actually help right now, so figure out a better way to prevent allocations.
+     thread_local std::string output{};
+     thread_local std::string expression{};
++
+     get_operand_string(op.output, UnaryOpType::None, ctx, output);
+     get_binary_expr_string(op.type, op.operands, ctx, output, expression);
+-    fmt::print(output_file, "{} = {};\n", output, expression);
++
++    // MIPS register $zero discards all writes.
++    // Keep evaluating the expression so memory reads and any other
++    // potential side effects are preserved.
++    if (output == "0") {
++        fmt::print(output_file, "(void)({});\n", expression);
++    }
++    else {
++        fmt::print(output_file, "{} = {};\n", output, expression);
++    }
+ }
+ 
+ void N64Recomp::CGenerator::process_unary_op(const UnaryOp& op, const InstructionContext& ctx) const {
+@@ -577,9 +587,17 @@ void N64Recomp::CGenerator::process_unary_op(const UnaryOp& op, const Instructio
+     // TODO these thread locals probably don't actually help right now, so figure out a better way to prevent allocations.
+     thread_local std::string output{};
+     thread_local std::string input{};
++
+     get_operand_string(op.output, UnaryOpType::None, ctx, output);
+     get_operand_string(op.input, op.operation, ctx, input);
+-    fmt::print(output_file, "{} = {};\n", output, input);
++
++    // MIPS register $zero discards all writes.
++    if (output == "0") {
++        fmt::print(output_file, "(void)({});\n", input);
++    }
++    else {
++        fmt::print(output_file, "{} = {};\n", output, input);
++    }
+ }
+ 
+ void N64Recomp::CGenerator::process_store_op(const StoreOp& op, const InstructionContext& ctx) const {

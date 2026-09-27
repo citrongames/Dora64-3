@@ -1,0 +1,60 @@
+{
+  "matches": [
+    {
+      "offset": "0x1c5de0",
+      "size": 34728,
+      "sha256": "393a5dc80efd092def430b8812c526c2c5560635514f6b58c30c6a23b9de0569"
+    },
+    {
+      "offset": "0x21ef50",
+      "size": 2096,
+      "sha256": "27651f08b8083cb95669a6a410b83c797617ad1bdda50c68a3a71a4e2e5ac666"
+    },
+    {
+      "offset": "0x26dcd0",
+      "size": 3836,
+      "sha256": "f455354f34c38305a8a94e7f488497138f356e30e5230f300dc2e07b9e8de2d3"
+    },
+    {
+      "offset": "0x2d4d20",
+      "size": 33052,
+      "sha256": "c47447fdb4dd4f1f41db4f828f57f8131d710b425d95623f973badfac936efb7"
+    },
+    {
+      "offset": "0x35dda0",
+      "size": 144,
+      "sha256": "923d72cfc660df2ecf02b7561e81785fcca76b1daaa8ffc25fa3960c3d5afd57"
+    },
+    {
+      "offset": "0x3b1ff0",
+      "size": 288,
+      "sha256": "84dafac1f2906e13cc4b5feb0f51038d2cec7bcd098bb15b38c1b8b6a9249939"
+    },
+    {
+      "offset": "0x420340",
+      "size": 2064,
+      "sha256": "851eac84915a9703fe5d78e5d67b5a78e0e25152026144f1c9794cbbe46696ce"
+    },
+    {
+      "offset": "0x475900",
+      "size": 6496,
+      "sha256": "9cd28a7432d25d79cfb799cf3266a5cd66f4cdfa77673808ba246331556524fa"
+    },
+    {
+      "offset": "0x4b1480",
+      "size": 448,
+      "sha256": "f95215daeefae2ec713b22e7dad20fa4c90c102cb42d9bdb5fe00a3ee347d54f"
+    },
+    {
+      "offset": "0x4eb2c0",
+      "size": 307728,
+      "sha256": "0dba2e860373b7cb7a4ab20373f469d0d1de300d8155efb4b841e50ad5e1a990"
+    },
+    {
+      "offset": "0x56fb70",
+      "size": 176,
+      "sha256": "4a522f9e65c467d9b1bdf00b29fa94e4b887bd2934b7b6b3453dfcf5e9cb4924"
+    }
+  ],
+  "scope": "sampled records; original decoder with synchronous DMA adapter"
+}

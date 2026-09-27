@@ -1,0 +1,11 @@
+# Only the independently inspected entry sequence. No inferred game functions.
+[[section]]
+name = ".boot_probe"
+rom = 0x1000
+vram = 0x80025C00
+size = 0x1850
+functions = [
+    { name = "recomp_entrypoint", vram = 0x80025C00, size = 0x3C },
+    # Zero size: explicit probe handoff. The real bootproc is NOT executed yet.
+    { name = "boot_handoff", vram = 0x80027414, size = 0 },
+]

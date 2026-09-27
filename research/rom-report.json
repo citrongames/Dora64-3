@@ -1,0 +1,247 @@
+{
+  "schema": 1,
+  "size": 16777216,
+  "hashes": {
+    "sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+    "sha1": "dd9ba0f6cfc10c3b78401cc55d06ad534f39d5b1",
+    "md5": "a4a1d490ba67831775fc381b846e2168"
+  },
+  "file_crc32": "D3B68BE4",
+  "byte_order": "big-endian z64",
+  "title_shift_jis": "ﾄﾞﾗｴﾓﾝ3 ﾉﾋﾞﾀﾉﾏﾁSOS!",
+  "title_nfkc": "ドラエモン3 ノビタノマチSOS!",
+  "cartridge_id": "N3DJ",
+  "region_byte": "0x4A",
+  "revision_byte": 0,
+  "entrypoint": "0x80025C00",
+  "ipl3_crc32": "90BB6CB5",
+  "header_checksums": [
+    "A8275140",
+    "B9B056E8"
+  ],
+  "computed_6102_checksums": [
+    "A8275140",
+    "B9B056E8"
+  ],
+  "checksum_matches": true,
+  "microcode_strings": [
+    {
+      "rom_offset": "0x00054338",
+      "text": "RSP Gfx ucode F3DEX       fifo 2.08  Yoshitaka Yasumoto 1999 Nintendo."
+    },
+    {
+      "rom_offset": "0x00054758",
+      "text": "RSP Gfx ucode S2DEX       fifo 2.08  Yoshitaka Yasumoto 1999 Nintendo."
+    },
+    {
+      "rom_offset": "0x00054AE8",
+      "text": "RSP Gfx ucode L3DEX       fifo 2.08  Yoshitaka Yasumoto 1999 Nintendo."
+    },
+    {
+      "rom_offset": "0x00055050",
+      "text": "RSP Gfx ucode F3DEX         1.23 Yoshitaka Yasumoto Nintendo."
+    },
+    {
+      "rom_offset": "0x00055850",
+      "text": "RSP Gfx ucode F3DLX         1.23 Yoshitaka Yasumoto Nintendo."
+    },
+    {
+      "rom_offset": "0x00056050",
+      "text": "RSP Gfx ucode F3DLX.Rej     1.23 Yoshitaka Yasumoto Nintendo."
+    },
+    {
+      "rom_offset": "0x00056850",
+      "text": "RSP Gfx ucode F3DLP.Rej     1.23 Yoshitaka Yasumoto Nintendo."
+    },
+    {
+      "rom_offset": "0x00057050",
+      "text": "RSP Gfx ucode L3DEX         1.23 Yoshitaka Yasumoto Nintendo."
+    },
+    {
+      "rom_offset": "0x000576D9",
+      "text": "RSP Gfx ucode S2DEX  1.07 Yoshitaka Yasumoto Nintendo."
+    },
+    {
+      "rom_offset": "0x00057BD0",
+      "text": "RSP SW Version: 2.0H, 02-12-97"
+    }
+  ],
+  "compression_magic_hits": {
+    "4d494f30": [],
+    "59617930": [],
+    "59617a30": [],
+    "524e4301": [],
+    "524e4302": [],
+    "1f8b08": [],
+    "504b0304": []
+  },
+  "code_density_candidates": [
+    {
+      "rom_start": "0x00001000",
+      "rom_end": "0x00011000",
+      "stack_adjust_candidates": 198,
+      "jr_ra_words": 337
+    },
+    {
+      "rom_start": "0x00011000",
+      "rom_end": "0x00021000",
+      "stack_adjust_candidates": 212,
+      "jr_ra_words": 296
+    },
+    {
+      "rom_start": "0x00021000",
+      "rom_end": "0x00031000",
+      "stack_adjust_candidates": 209,
+      "jr_ra_words": 244
+    },
+    {
+      "rom_start": "0x00031000",
+      "rom_end": "0x00041000",
+      "stack_adjust_candidates": 113,
+      "jr_ra_words": 197
+    },
+    {
+      "rom_start": "0x00041000",
+      "rom_end": "0x00051000",
+      "stack_adjust_candidates": 0,
+      "jr_ra_words": 72
+    },
+    {
+      "rom_start": "0x00051000",
+      "rom_end": "0x00061000",
+      "stack_adjust_candidates": 61,
+      "jr_ra_words": 91
+    },
+    {
+      "rom_start": "0x00061000",
+      "rom_end": "0x00071000",
+      "stack_adjust_candidates": 138,
+      "jr_ra_words": 199
+    },
+    {
+      "rom_start": "0x00071000",
+      "rom_end": "0x00081000",
+      "stack_adjust_candidates": 272,
+      "jr_ra_words": 352
+    },
+    {
+      "rom_start": "0x00081000",
+      "rom_end": "0x00091000",
+      "stack_adjust_candidates": 200,
+      "jr_ra_words": 295
+    },
+    {
+      "rom_start": "0x00091000",
+      "rom_end": "0x000A1000",
+      "stack_adjust_candidates": 182,
+      "jr_ra_words": 276
+    },
+    {
+      "rom_start": "0x000A1000",
+      "rom_end": "0x000B1000",
+      "stack_adjust_candidates": 281,
+      "jr_ra_words": 354
+    },
+    {
+      "rom_start": "0x000B1000",
+      "rom_end": "0x000C1000",
+      "stack_adjust_candidates": 7,
+      "jr_ra_words": 11
+    },
+    {
+      "rom_start": "0x000C1000",
+      "rom_end": "0x000D1000",
+      "stack_adjust_candidates": 19,
+      "jr_ra_words": 25
+    },
+    {
+      "rom_start": "0x000D1000",
+      "rom_end": "0x000E1000",
+      "stack_adjust_candidates": 130,
+      "jr_ra_words": 159
+    },
+    {
+      "rom_start": "0x000E1000",
+      "rom_end": "0x000F1000",
+      "stack_adjust_candidates": 134,
+      "jr_ra_words": 172
+    },
+    {
+      "rom_start": "0x000F1000",
+      "rom_end": "0x00101000",
+      "stack_adjust_candidates": 143,
+      "jr_ra_words": 198
+    },
+    {
+      "rom_start": "0x00101000",
+      "rom_end": "0x00111000",
+      "stack_adjust_candidates": 98,
+      "jr_ra_words": 146
+    },
+    {
+      "rom_start": "0x00111000",
+      "rom_end": "0x00121000",
+      "stack_adjust_candidates": 109,
+      "jr_ra_words": 163
+    },
+    {
+      "rom_start": "0x00121000",
+      "rom_end": "0x00131000",
+      "stack_adjust_candidates": 187,
+      "jr_ra_words": 266
+    },
+    {
+      "rom_start": "0x00131000",
+      "rom_end": "0x00141000",
+      "stack_adjust_candidates": 158,
+      "jr_ra_words": 168
+    },
+    {
+      "rom_start": "0x00141000",
+      "rom_end": "0x00151000",
+      "stack_adjust_candidates": 160,
+      "jr_ra_words": 205
+    },
+    {
+      "rom_start": "0x00151000",
+      "rom_end": "0x00161000",
+      "stack_adjust_candidates": 226,
+      "jr_ra_words": 316
+    },
+    {
+      "rom_start": "0x00181000",
+      "rom_end": "0x00191000",
+      "stack_adjust_candidates": 56,
+      "jr_ra_words": 67
+    },
+    {
+      "rom_start": "0x00191000",
+      "rom_end": "0x001A1000",
+      "stack_adjust_candidates": 111,
+      "jr_ra_words": 140
+    },
+    {
+      "rom_start": "0x001A1000",
+      "rom_end": "0x001B1000",
+      "stack_adjust_candidates": 172,
+      "jr_ra_words": 214
+    },
+    {
+      "rom_start": "0x001B1000",
+      "rom_end": "0x001C1000",
+      "stack_adjust_candidates": 166,
+      "jr_ra_words": 211
+    },
+    {
+      "rom_start": "0x001C1000",
+      "rom_end": "0x001D1000",
+      "stack_adjust_candidates": 50,
+      "jr_ra_words": 63
+    }
+  ],
+  "limitations": [
+    "Strings do not establish active microcodes or exact code boundaries.",
+    "No magic hits does not prove that assets or overlays are uncompressed.",
+    "Code-density candidates are not executable sections or a function map."
+  ]
+}

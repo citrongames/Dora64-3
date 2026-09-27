@@ -1,0 +1,24 @@
+status,kind,rom_start,vram_start,size,name_or_role,evidence,next_action
+verified,entry,0x1000,0x80025C00,0x3C,recomp_entrypoint,ROM decode and Linux/Windows native memory check,integrate runtime
+verified,bss,,0x8007EA80,0x80230,boot zero region,entry instructions 0x80025C00..0x80025C24,retain original extent
+verified,stack,,0x80085A00,,initial SP,entry delay slot and native probe,review thread stacks separately
+verified,function,0x2814,0x80027414,0x29C,bootproc role,entry handoff and function ending 0x800276AC,map SDK calls
+verified,function,0x2AB0,0x800276B0,0xA4,idle thread role,bootproc osCreateThread argument,register callback
+verified,function,0x2E88,0x80027A88,0xE0,main thread role,idle osCreateThread argument and startup calls,register callback
+verified,function,0x270C,0x8002730C,0x108,synchronous ROM DMA wrapper,chunk loop OSIoMesg and completion wait,integrate overlay registration
+candidate,SDK,0x2A100,0x8004ED00,0x94,osEPiStartDma,OSIoMesg arguments and message dispatch,confirm SDK identity before substitution
+candidate,SDK,0x33670,0x80058270,0x24,osCreateMesgQueue,queue fields and callers,confirm SDK identity
+candidate,SDK,0x340E0,0x80058CE0,,osCreateThread,thread callback and priority arguments,confirm SDK identity
+candidate,SDK,0x342A0,0x80058EA0,,osStartThread,thread startup call sites,confirm SDK identity
+verified,function,0xF400,0x80034000,0xD0,compressed stream byte reader,ROM control flow and differential execution,handle 1023/1024 DMA boundary
+verified,function,0xF4D0,0x800340D0,0x18,decoded byte writer,store and pointer increment,native reference helper
+verified,function,0xF4E8,0x800340E8,0x304,LZSS decode via ROM reader,11 real records match native original,integrate runtime carefully
+candidate,function,0xF820,0x80034420,,LZSS decode from memory,similar dictionary and header path,inspect full body and compare
+verified,loader-family,0x1E4B8,0x800430B8,0x2D8,14 fixed load wrappers,analyze_layout instruction pattern checks,map functions inside each overlay
+verified,global,,0x80000300,4,TV type read,bootproc infinite branches for mismatched TV mode,set via runtime NTSC initialization
+candidate,global,,0x8007CD80,4,game TV selector,bootproc and VI init reads,inspect initial data value
+unknown,hook,,,,frame ownership and snapshots,no Dora3 hook identified,trace submit completion and reuse
+unknown,hook,,,,CPU framebuffer import,no Dora3 writer identified,trace actual CPU writes before adding notifications
+unknown,hook,,,,modern camera ownership,no Dora3 hook identified,after stable baseline
+unknown,RSP,,,,audio microcode entry and indirect targets,not identified,inspect OSTask audio setup
+unknown,save,,,,EEPROM commit and checksum,external database says 16 Kbit,inspect actual save implementation

@@ -1,0 +1,176 @@
+{
+  "donor": {
+    "repository": "https://github.com/citrongames/Dora64.git",
+    "commit": "680d81feb4c57309ba80536300d73725ea9dffaa"
+  },
+  "dependencies": [
+    {
+      "path": "lib/N64ModernRuntime",
+      "commit": "14bec16b314a24e19dab0c98232cff4587670ef3",
+      "repository": "https://github.com/citrongames/Dora64-N64ModernRuntime.git"
+    },
+    {
+      "path": "lib/N64ModernRuntime/N64Recomp",
+      "commit": "7c01d5c01307430bf7038e527bb16507e5f3448d",
+      "repository": "https://github.com/citrongames/Dora64-N64Recomp.git"
+    },
+    {
+      "path": "lib/N64ModernRuntime/N64Recomp/lib/ELFIO",
+      "commit": "ad8b641f9682b6091ba8b9f7c8152255c1a2c803",
+      "repository": "https://github.com/serge1/ELFIO"
+    },
+    {
+      "path": "lib/N64ModernRuntime/N64Recomp/lib/fmt",
+      "commit": "407c905e45ad75fc29bf0f9bb7c5c2fd3475976f",
+      "repository": "https://github.com/fmtlib/fmt"
+    },
+    {
+      "path": "lib/N64ModernRuntime/N64Recomp/lib/rabbitizer",
+      "commit": "e0d8003047938e2ec3697eaf8d61a84d11d17b43",
+      "repository": "https://github.com/Decompollaborate/rabbitizer"
+    },
+    {
+      "path": "lib/N64ModernRuntime/N64Recomp/lib/sljit",
+      "commit": "f6326087b3404efb07c6d3deed97b3c3b8098c0c",
+      "repository": "https://github.com/zherczeg/sljit"
+    },
+    {
+      "path": "lib/N64ModernRuntime/N64Recomp/lib/tomlplusplus",
+      "commit": "1f7884e59165e517462f922e7b6de131bd9844f3",
+      "repository": "https://github.com/marzer/tomlplusplus"
+    },
+    {
+      "path": "lib/N64ModernRuntime/thirdparty/miniz",
+      "commit": "8573fd7cd6f49b262a0ccc447f3c6acfc415e556",
+      "repository": "https://github.com/richgel999/miniz"
+    },
+    {
+      "path": "lib/N64ModernRuntime/thirdparty/o1heap",
+      "commit": "a124b850791db2a33f7354d2b0aa7da821cef6f5",
+      "repository": "https://github.com/N64Recomp/o1heap"
+    },
+    {
+      "path": "lib/N64ModernRuntime/thirdparty/xxHash",
+      "commit": "ac3a25da3d957d9ef3e4114d9f8332d34ce83a46",
+      "repository": "https://github.com/Cyan4973/xxHash.git"
+    },
+    {
+      "path": "lib/SDL2",
+      "commit": "5d249570393f7a37e037abf22cd6012a4cc56a71",
+      "repository": "https://github.com/libsdl-org/SDL.git"
+    },
+    {
+      "path": "lib/rt64",
+      "commit": "89cda7a5cc19c2ac7dcd0fb19cf70f34886a5c31",
+      "repository": "https://github.com/citrongames/Dora64-RT64.git"
+    },
+    {
+      "path": "lib/rt64/src/contrib/ddspp",
+      "commit": "21ca0c4319dfd5a161c5f2a0c406e8f60194ea6c",
+      "repository": "https://github.com/redorav/ddspp.git"
+    },
+    {
+      "path": "lib/rt64/src/contrib/dxc",
+      "commit": "cc15e715ee378a4f675b335bd1071ff105873fc8",
+      "repository": "https://github.com/rt64/dxc-bin"
+    },
+    {
+      "path": "lib/rt64/src/contrib/hlslpp",
+      "commit": "6f5274c66132e8f951c400103d897582b8f21491",
+      "repository": "https://github.com/redorav/hlslpp"
+    },
+    {
+      "path": "lib/rt64/src/contrib/im3d",
+      "commit": "d03941725fd0bd08c78c46e3e5b0265526e9d060",
+      "repository": "https://github.com/john-chapman/im3d"
+    },
+    {
+      "path": "lib/rt64/src/contrib/imgui",
+      "commit": "277ae93c41314ba5f4c7444f37c4319cdf07e8cf",
+      "repository": "https://github.com/ocornut/imgui"
+    },
+    {
+      "path": "lib/rt64/src/contrib/implot",
+      "commit": "f156599faefe316f7dd20fe6c783bf87c8bb6fd9",
+      "repository": "https://github.com/epezent/implot"
+    },
+    {
+      "path": "lib/rt64/src/contrib/mupen64plus-core",
+      "commit": "860fac3fbae94194a392c1d9857e185eda6d083e",
+      "repository": "https://github.com/mupen64plus/mupen64plus-core"
+    },
+    {
+      "path": "lib/rt64/src/contrib/mupen64plus-win32-deps",
+      "commit": "de8111fdcb89144abc16c85650ce4e21e028bfb5",
+      "repository": "https://github.com/mupen64plus/mupen64plus-win32-deps"
+    },
+    {
+      "path": "lib/rt64/src/contrib/nativefiledialog-extended",
+      "commit": "17b6e8ce219c0677f94b63636abb9296b28841ca",
+      "repository": "https://github.com/btzy/nativefiledialog-extended"
+    },
+    {
+      "path": "lib/rt64/src/contrib/plume",
+      "commit": "f73ce68bd5cc4ea2dd182eb1150c9514658705b3",
+      "repository": "https://github.com/renderbag/plume.git"
+    },
+    {
+      "path": "lib/rt64/src/contrib/plume/contrib/D3D12MemoryAllocator",
+      "commit": "9ef66bc14edd10dee0de3a545b98578363552f66",
+      "repository": "https://github.com/GPUOpen-LibrariesAndSDKs/D3D12MemoryAllocator"
+    },
+    {
+      "path": "lib/rt64/src/contrib/plume/contrib/Vulkan-Headers",
+      "commit": "2fa203425eb4af9dfc6b03f97ef72b0b5bcb8350",
+      "repository": "https://github.com/KhronosGroup/Vulkan-Headers"
+    },
+    {
+      "path": "lib/rt64/src/contrib/plume/contrib/VulkanMemoryAllocator",
+      "commit": "29b35ea4232688c0f42cdff0c10848290760a417",
+      "repository": "https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator"
+    },
+    {
+      "path": "lib/rt64/src/contrib/plume/contrib/volk",
+      "commit": "be3dbd49bf77052665e96b6c7484af855e7e5f67",
+      "repository": "https://github.com/zeux/volk"
+    },
+    {
+      "path": "lib/rt64/src/contrib/re-spirv",
+      "commit": "39c9168e28df69979943882da181fc7a89528bc9",
+      "repository": "https://github.com/rt64/re-spirv"
+    },
+    {
+      "path": "lib/rt64/src/contrib/re-spirv/external/SPIRV-Headers",
+      "commit": "f013f08e4455bcc1f0eed8e3dd5e2009682656d9",
+      "repository": "https://github.com/KhronosGroup/SPIRV-Headers"
+    },
+    {
+      "path": "lib/rt64/src/contrib/spirv-cross",
+      "commit": "6173e24b31f09a0c3217103a130e74c4ddec14a6",
+      "repository": "https://github.com/KhronosGroup/SPIRV-Cross.git"
+    },
+    {
+      "path": "lib/rt64/src/contrib/stb",
+      "commit": "ae721c50eaf761660b4f90cc590453cdb0c2acd0",
+      "repository": "https://github.com/nothings/stb"
+    },
+    {
+      "path": "lib/rt64/src/contrib/xxHash",
+      "commit": "1864a50c9b5cf8500d8e9e61ed92aa0dd3772750",
+      "repository": "https://github.com/Cyan4973/xxHash"
+    },
+    {
+      "path": "lib/rt64/src/contrib/zstd",
+      "commit": "0ff651dd876823b99fa5c5f53292be28381aee9b",
+      "repository": "https://github.com/facebook/zstd"
+    }
+  ],
+  "reviewed_documents": {
+    "docs/android-device-testing.md": "2a256bc6edc5fffdc0b9a82311d0bb8476fd75451791a473e2619845eec6ada7",
+    "docs/android-adreno660-startup.md": "ae323ce52999528561fec865dfd7adf6a92db5473c7b89710a5b1be318208f41",
+    "docs/android-maleoon-white-frame.md": "16a29aa033c0c8c1e5cdce2e74d607fdf35b3b224ab31fa46886142e802e2414",
+    "docs/android-adreno512-black-frame.md": "f502737725e8d324cbe769d47e938421f0a3600b3e45ff8fc36be1d34c4aaaf9",
+    "docs/android-mali-g76-cpu-text.md": "bb3cf4009d56659f38384e90475a94655389d53104a0b6a394f2436e19f6720c",
+    "docs/android-touch-controls.md": "2d993999fa83ab56e723ff97a99a488e4d2c4e6daf9c9fc5e216e63a5edb86a1"
+  }
+}

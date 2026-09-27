@@ -1,0 +1,12 @@
+{
+  "repository": "https://github.com/N64Recomp/N64Recomp.git",
+  "commit": "ffb39cdad1da5de07eaaa48bd1db4a89a7986771",
+  "patch": "zero-register.patch",
+  "patch_sha256": "f3f8eeb6add22831b0707fd2e243bf4b5e5db922ba36495cbb232778187ed217",
+  "files": {
+    "src/cgenerator.cpp": {
+      "original_sha256": "e64cfa0fb6f660c311a8e8f4bd2a5b67554abfd72cd83fa10f9e7ee62e484176",
+      "patched_sha256": "5a8f00b684ea53cfadd955c5d439d1d3ceb99ce36d6db4562fb7f2c9ad45e36e"
+    }
+  }
+}
