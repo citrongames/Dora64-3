@@ -260,3 +260,15 @@ python3 tools/check_minigame_overlays.py --rom '/mnt/d/Games/DoraRecomp3/testbui
 
 Windows helper использует startup-v56, audio-rsp-v1 прежний.3678 original,
 44 SDK,7 pending. Общий save root прежний; запуск только у пользователя.
+
+## Windows test-015: все известные raw-overlay диапазоны
+
+```sh
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v58
+python3 tools/check_overlay_inventory.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --generated build-local/startup-v58 --output research/overlay-coverage.json
+```
+
+Windows helper использует startup-v58, audio-rsp-v1 прежний.4777 original,
+44 SDK,6 pending. Проверка inventory сверяет49 диапазонов, все generated JAL,
+зависимости и исправленный эпилог. Затем обычная native сборка/упаковка test-015.
+Запуск только у пользователя; никаких автоматических лимитов сессии.

@@ -1,0 +1,499 @@
+{
+  "scope": "All ranges from14 fixed DMA loaders and3 known child tables; not proof of all game code or execution paths",
+  "fixed_ranges": 14,
+  "child_nonempty_ranges": 35,
+  "empty_entries": [
+    {
+      "slot": 0,
+      "selector": 1,
+      "rom": 846944
+    },
+    {
+      "slot": 0,
+      "selector": 9,
+      "rom": 1004032
+    },
+    {
+      "slot": 0,
+      "selector": 10,
+      "rom": 1004032
+    }
+  ],
+  "registered_ranges": 49,
+  "original_functions": 4777,
+  "sdk_mappings": 44,
+  "pending": [
+    "0x80045520",
+    "0x800586F0",
+    "0x80058A50",
+    "0x8005F1C0",
+    "0x8005F230",
+    "0x800604E0"
+  ],
+  "generated_direct_call_checks": 18547,
+  "regions": [
+    {
+      "kind": "fixed",
+      "loader": "0x800430B8",
+      "section": ".startup_scene",
+      "rom": 368256,
+      "ram": 2149267312,
+      "size": 17792
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x800430EC",
+      "section": ".scene_common",
+      "rom": 386048,
+      "ram": 2149267312,
+      "size": 20928
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x80043120",
+      "section": ".scene1",
+      "rom": 461392,
+      "ram": 2149289680,
+      "size": 385552
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x80043154",
+      "section": ".scene34",
+      "rom": 406976,
+      "ram": 2149289680,
+      "size": 54416
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x80043188",
+      "section": ".minigame_common",
+      "rom": 1621488,
+      "ram": 2149289680,
+      "size": 41920
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x800431BC",
+      "section": ".minigame_1",
+      "rom": 1663408,
+      "ram": 2149332608,
+      "size": 37728
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x800431F0",
+      "section": ".minigame_2",
+      "rom": 1701136,
+      "ram": 2149332608,
+      "size": 20720
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x80043224",
+      "section": ".minigame_3",
+      "rom": 1721856,
+      "ram": 2149332608,
+      "size": 22608
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x80043258",
+      "section": ".minigame_4",
+      "rom": 1744464,
+      "ram": 2149332608,
+      "size": 27968
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x8004328C",
+      "section": ".minigame_5",
+      "rom": 1772432,
+      "ram": 2149332608,
+      "size": 15056
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x800432C0",
+      "section": ".minigame_6",
+      "rom": 1787488,
+      "ram": 2149332608,
+      "size": 17536
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x800432F4",
+      "section": ".minigame_7",
+      "rom": 1805024,
+      "ram": 2149332608,
+      "size": 14720
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x80043328",
+      "section": ".minigame_8",
+      "rom": 1819744,
+      "ram": 2149332608,
+      "size": 21072
+    },
+    {
+      "kind": "fixed",
+      "loader": "0x8004335C",
+      "section": ".minigame_9",
+      "rom": 1840816,
+      "ram": 2149332608,
+      "size": 18224
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 2,
+      "pair": "0x801FC028",
+      "section": ".demo_slot0",
+      "rom": 846944,
+      "ram": 2149701328,
+      "size": 28848
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 3,
+      "pair": "0x801FC030",
+      "section": ".remaining_slot0_03",
+      "rom": 875792,
+      "ram": 2149701328,
+      "size": 15360
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 4,
+      "pair": "0x801FC038",
+      "section": ".remaining_slot0_04",
+      "rom": 891152,
+      "ram": 2149701328,
+      "size": 25392
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 5,
+      "pair": "0x801FC040",
+      "section": ".remaining_slot0_05",
+      "rom": 916544,
+      "ram": 2149701328,
+      "size": 22592
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 6,
+      "pair": "0x801FC048",
+      "section": ".lake_slot0",
+      "rom": 939136,
+      "ram": 2149701328,
+      "size": 26176
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 7,
+      "pair": "0x801FC050",
+      "section": ".cave_slot0",
+      "rom": 965312,
+      "ram": 2149701328,
+      "size": 8944
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 8,
+      "pair": "0x801FC058",
+      "section": ".level1_slot0",
+      "rom": 974256,
+      "ram": 2149701328,
+      "size": 29776
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 11,
+      "pair": "0x801FC070",
+      "section": ".remaining_slot0_11",
+      "rom": 1004032,
+      "ram": 2149701328,
+      "size": 14400
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 12,
+      "pair": "0x801FC078",
+      "section": ".remaining_slot0_12",
+      "rom": 1018432,
+      "ram": 2149701328,
+      "size": 49312
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 13,
+      "pair": "0x801FC080",
+      "section": ".remaining_slot0_13",
+      "rom": 1067744,
+      "ram": 2149701328,
+      "size": 15440
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 14,
+      "pair": "0x801FC088",
+      "section": ".remaining_slot0_14",
+      "rom": 1083184,
+      "ram": 2149701328,
+      "size": 21248
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 15,
+      "pair": "0x801FC090",
+      "section": ".remaining_slot0_15",
+      "rom": 1104432,
+      "ram": 2149701328,
+      "size": 17472
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 16,
+      "pair": "0x801FC098",
+      "section": ".remaining_slot0_16",
+      "rom": 1121904,
+      "ram": 2149701328,
+      "size": 46848
+    },
+    {
+      "kind": "child",
+      "slot": 0,
+      "selector": 17,
+      "pair": "0x801FC0A0",
+      "section": ".remaining_slot0_17",
+      "rom": 1168752,
+      "ram": 2149701328,
+      "size": 7248
+    },
+    {
+      "kind": "child",
+      "slot": 1,
+      "selector": 1,
+      "pair": "0x801FC0A8",
+      "section": ".remaining_slot1_01",
+      "rom": 1176000,
+      "ram": 2149766864,
+      "size": 8384
+    },
+    {
+      "kind": "child",
+      "slot": 1,
+      "selector": 2,
+      "pair": "0x801FC0B0",
+      "section": ".remaining_slot1_02",
+      "rom": 1184384,
+      "ram": 2149766864,
+      "size": 16128
+    },
+    {
+      "kind": "child",
+      "slot": 1,
+      "selector": 3,
+      "pair": "0x801FC0B8",
+      "section": ".mountain_slot1",
+      "rom": 1200512,
+      "ram": 2149766864,
+      "size": 6688
+    },
+    {
+      "kind": "child",
+      "slot": 1,
+      "selector": 4,
+      "pair": "0x801FC0C0",
+      "section": ".remaining_slot1_04",
+      "rom": 1207200,
+      "ram": 2149766864,
+      "size": 11920
+    },
+    {
+      "kind": "child",
+      "slot": 1,
+      "selector": 5,
+      "pair": "0x801FC0C8",
+      "section": ".lake_slot1",
+      "rom": 1219120,
+      "ram": 2149766864,
+      "size": 18432
+    },
+    {
+      "kind": "child",
+      "slot": 1,
+      "selector": 6,
+      "pair": "0x801FC0D0",
+      "section": ".remaining_slot1_06",
+      "rom": 1237552,
+      "ram": 2149766864,
+      "size": 7008
+    },
+    {
+      "kind": "child",
+      "slot": 1,
+      "selector": 7,
+      "pair": "0x801FC0D8",
+      "section": ".demo_slot1",
+      "rom": 1244560,
+      "ram": 2149766864,
+      "size": 12784
+    },
+    {
+      "kind": "child",
+      "slot": 1,
+      "selector": 8,
+      "pair": "0x801FC0E0",
+      "section": ".level1_slot1",
+      "rom": 1257344,
+      "ram": 2149766864,
+      "size": 26912
+    },
+    {
+      "kind": "child",
+      "slot": 1,
+      "selector": 9,
+      "pair": "0x801FC0E8",
+      "section": ".remaining_slot1_09",
+      "rom": 1284256,
+      "ram": 2149766864,
+      "size": 36304
+    },
+    {
+      "kind": "child",
+      "slot": 1,
+      "selector": 10,
+      "pair": "0x801FC0F0",
+      "section": ".cave_slot1",
+      "rom": 1320560,
+      "ram": 2149766864,
+      "size": 12368
+    },
+    {
+      "kind": "child",
+      "slot": 1,
+      "selector": 11,
+      "pair": "0x801FC0F8",
+      "section": ".penguin_slot1",
+      "rom": 1332928,
+      "ram": 2149766864,
+      "size": 32256
+    },
+    {
+      "kind": "child",
+      "slot": 2,
+      "selector": 1,
+      "pair": "0x801FC100",
+      "section": ".demo_slot2",
+      "rom": 1365184,
+      "ram": 2149832400,
+      "size": 10336
+    },
+    {
+      "kind": "child",
+      "slot": 2,
+      "selector": 2,
+      "pair": "0x801FC108",
+      "section": ".mountain_slot2",
+      "rom": 1375520,
+      "ram": 2149832400,
+      "size": 3904
+    },
+    {
+      "kind": "child",
+      "slot": 2,
+      "selector": 3,
+      "pair": "0x801FC110",
+      "section": ".cave_slot2",
+      "rom": 1379424,
+      "ram": 2149832400,
+      "size": 9504
+    },
+    {
+      "kind": "child",
+      "slot": 2,
+      "selector": 4,
+      "pair": "0x801FC118",
+      "section": ".remaining_slot2_04",
+      "rom": 1388928,
+      "ram": 2149832400,
+      "size": 6416
+    },
+    {
+      "kind": "child",
+      "slot": 2,
+      "selector": 5,
+      "pair": "0x801FC120",
+      "section": ".penguin_slot2",
+      "rom": 1395344,
+      "ram": 2149832400,
+      "size": 5968
+    },
+    {
+      "kind": "child",
+      "slot": 2,
+      "selector": 6,
+      "pair": "0x801FC128",
+      "section": ".lake_slot2",
+      "rom": 1401312,
+      "ram": 2149832400,
+      "size": 13728
+    },
+    {
+      "kind": "child",
+      "slot": 2,
+      "selector": 7,
+      "pair": "0x801FC130",
+      "section": ".remaining_slot2_07",
+      "rom": 1415040,
+      "ram": 2149832400,
+      "size": 4576
+    },
+    {
+      "kind": "child",
+      "slot": 2,
+      "selector": 8,
+      "pair": "0x801FC138",
+      "section": ".remaining_slot2_08",
+      "rom": 1419616,
+      "ram": 2149832400,
+      "size": 10960
+    },
+    {
+      "kind": "child",
+      "slot": 2,
+      "selector": 9,
+      "pair": "0x801FC140",
+      "section": ".remaining_slot2_09",
+      "rom": 1430576,
+      "ram": 2149832400,
+      "size": 4112
+    },
+    {
+      "kind": "child",
+      "slot": 2,
+      "selector": 10,
+      "pair": "0x801FC148",
+      "section": ".level1_slot2",
+      "rom": 1434688,
+      "ram": 2149832400,
+      "size": 3072
+    }
+  ],
+  "game_launched": false
+}

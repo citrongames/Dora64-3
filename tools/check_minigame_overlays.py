@@ -23,7 +23,7 @@ def main():
     for k, expected in enumerate(evidence['sections']):
         index = by_name[expected['name']]
         section = sections[index]
-        for key in ('rom', 'vram', 'size', 'requires', 'overlay_group'):
+        for key in ('rom', 'vram', 'size', 'overlay_group'):
             assert section[key] == expected[key], key
         loader = int(expected['evidence']['loader'], 16)
         words = struct.unpack_from('>13I', rom, 0x1000 + loader - 0x80025C00)
@@ -40,7 +40,7 @@ def main():
         assert called and (regs[4], regs[5], regs[6]) == (section['rom'], section['vram'], section['size'])
         assert compiled[0, loader][1] == 0x34
         if k:
-            assert section['requires'] == ['.minigame_common']
+            assert section['requires'] == ['.minigame_common', '.scene_common']
             callback = int(evidence['callbacks'][k-1], 16)
             assert (index, callback) in compiled
         else:
@@ -72,8 +72,8 @@ def main():
     for section in evidence['sections']:
         parent = 0 if section['name'] == '.minigame_common' else by_name['.minigame_common'] - 1
         assert f"{{0x{section['rom']:X}, {parent}}}" in header
-    assert len(frontier) == 7
-    print(f'PASS: 10 ROM DMA loaders, mini-game menu callbacks and nine variants; {len(evidence["added"])} bodies and generated calls; {len(evidence["context_resolved_calls"])} context references; parent guards; 7 remaining boundaries. No game launch.')
+    assert len(frontier) == 6
+    print(f'PASS: 10 ROM DMA loaders, mini-game menu callbacks and nine variants; {len(evidence["added"])} bodies and generated calls; {len(evidence["context_resolved_calls"])} context references; parent guards; 6 remaining boundaries. No game launch.')
 
 if __name__ == '__main__':
     main()

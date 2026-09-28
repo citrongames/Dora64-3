@@ -22,14 +22,14 @@ def main():
     bodies = dict(re.findall(r'RECOMP_FUNC void (\w+)\([^\n]+\n(.*?)(?=RECOMP_FUNC void |\Z)', generated, re.S))
     for slot, expected in enumerate(evidence['sections']):
         s = sections[by_name[expected['name']]]
-        for key in ('rom', 'vram', 'size', 'requires', 'overlay_group'):
+        for key in ('rom', 'vram', 'size', 'overlay_group'):
             assert s[key] == expected[key], key
         pair = int(expected['evidence']['pair_address'], 16)
         assert struct.unpack_from('>2I', rom, 0x70A50 + pair - 0x801B8ED0) == (s['rom'], s['rom'] + s['size'])
         demo = sections[by_name[f'.demo_slot{slot}']]
         assert demo['vram'] == s['vram'] and demo['rom'] != s['rom']
         assert demo['overlay_group'] == s['overlay_group'] == f'child_slot{slot}'
-        assert s['requires'] == ['.scene1']
+        assert s['requires'] == ['.scene1', '.scene_common']
         # Both variants must keep separate native entrypoints at the same RAM address.
         assert compiled[by_name[demo['name']], s['vram']][0] != compiled[by_name[s['name']], s['vram']][0]
     for item in evidence['added']:

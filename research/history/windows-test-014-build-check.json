@@ -1,0 +1,84 @@
+{
+  "scope": "Windows x64 native compile and static generation checks; game not launched by agent",
+  "build_id": "test-014",
+  "compiled": true,
+  "locally_launched": false,
+  "user_visual_test": "pending",
+  "original_functions": 3678,
+  "sdk_mappings": 44,
+  "pending_boundaries": [
+    {
+      "section": ".startup",
+      "address": "0x800430B8"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80045520"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800586F0"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80058A50"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8005F1C0"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8005F230"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800604E0"
+    }
+  ],
+  "candidate_analysis": "spimdisasm1.42.4 extents and call/reference closure; N64Recomp accepts instructions/control flow; not proof of all boundaries or semantics",
+  "menu_local_jump_check": "2 ROM-validated LW/JR/NOP local dispatch hooks;10 branch cases and register preservation pass; invalid targets and changed ROM evidence rejected; generated labels and hook locations verified",
+  "demo_dispatch_check": "3 child overlays and6 context-sensitive direct calls rechecked; generated parent guards target scene1",
+  "level1_overlay_check": "3 gameplay variants,177 new functions; all generated direct calls checked;46 scene1-context references; variant-specific symbols and parent guards verified;9 synthetic layout tests and old demo check passed",
+  "cave_overlay_check": "3 cave variants,117 new functions; all generated calls and old first-level batch checked;3 scene1-context calls; repaired epilogue boundary",
+  "save_storage_check": "Windows config root=EXE parent; saves/dora3.n64.jp.bin shared; captures remain per-run. Latest save and bak copied with original retained. Actual runtime component read/write/reopen/backup passed on disposable copy.",
+  "mountain_overlay_check": "2 mountain variants,58 functions; all generated calls checked;3 scene1-context references;slot0 reuses existing ROMCEC60; cave batch checked again",
+  "lake_overlay_check": "3 lake variants,185 functions; all generated calls checked;6 scene1-context references; mountain batch checked again",
+  "penguin_overlay_check": "2 village variants,104 functions; all generated calls checked;26 scene1-context references;lake batch checked again;false epilogue split corrected",
+  "minigame_overlay_check": "10 loader constants validated against ROM; common menu and nine variants;714 bodies and184 context references; generated direct calls, address-taken callbacks and parent guards verified; village regression and9 layout tests pass",
+  "overlay_checks": "Required overlay validation and runtime load/call guards; all generated bodies have ROM-qualified trace guards; no implicit extra function count",
+  "rom_lookup": "EXE parent only; external exact filename",
+  "api_policy": "RT64 Automatic, same policy as Dora64",
+  "limits": {
+    "graphics_tasks": null,
+    "seconds_after_setup": null,
+    "environment_override": false
+  },
+  "executable_sha256": "5b43bf4a4b4c6da129d0cd3965c48a07e655383a8e4f56f51f7506ba980546b8",
+  "source_sha256": {
+    "src/startup_runtime.cpp": "b76b60cdea8ecafb741430fac78fd3df21e372d17130973002390737bbefdfc0",
+    "src/live_graphics.cpp": "79917a65c529b9173d2ddf554568b5c4925fc20063531517e0f9c7f580e0afb5",
+    "src/live_io.cpp": "6447fa965e3e5fcecaf8eb67c44e31b6bacce5aff6e6c29b2cb3917f96a0114a",
+    "src/live_io.hpp": "1bc6f95b5f214e397f58d2cfd1b9a3d0115402ae162858a747ed5a5331fca6a9",
+    "recomp/startup.json": "bdbc3d64be37c1ad98aa8e3c745433947811ee67fdded5076f7b4ca7b5466ae5",
+    "research/runtime/CMakeLists.txt": "f7faf13da872a1adf7dc903e0cf833ccfb9ad2b9d05b5ff7fa19351a7364f281",
+    "tools/prepare_runtime_timing.py": "80b5ce71a8c1d7967030b0dc3fc61ebece831188dc00115f7cf7dbdef94b091a",
+    "tools/build_windows.ps1": "484ff776cb022d091e57dde360fdda70a39c73c7556c7ea60bfe44bf8d9dfb51",
+    "tools/generate_startup.py": "b3edacf907f200df0bd96e69c5d617cc92b5a3c16d60d02a668b9256aab2084c",
+    "tools/overlay_layout.py": "712675f8481d484a73359fadadfbfbe77e6bdcf474061803be304f9269f4c8b1",
+    "tools/local_jump_tables.py": "8f67b564786898b345906e7161580a66b3284fe5aa191c093216ba8bba429dde"
+  },
+  "generated_receipt_sha256": {
+    "startup-v56": "58fb4edd99c020164f6c73c136f3229862b9417aa9f4eacf8a49d9db938c4d07",
+    "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
+  },
+  "dependency_pins_verified": 32,
+  "donor_unchanged": "680d81feb4c57309ba80536300d73725ea9dffaa",
+  "previous_user_test": "test-013 village loads; mini-game scene35 stops at pending80043188;339 resources match independent decoder; see windows-test-013-result.json",
+  "remaining_risks": [
+    "Unobserved branches and indirect targets",
+    "Hardware calls still fail explicitly",
+    "GPU lifetime remains unproved",
+    "Full gameplay and saves not validated; intro audio/visual confirmed in test-003"
+  ]
+}

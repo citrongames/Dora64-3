@@ -1,16 +1,12 @@
 {
   "scope": "Windows x64 native compile and static generation checks; game not launched by agent",
-  "build_id": "test-014",
+  "build_id": "test-015",
   "compiled": true,
   "locally_launched": false,
   "user_visual_test": "pending",
-  "original_functions": 3678,
+  "original_functions": 4777,
   "sdk_mappings": 44,
   "pending_boundaries": [
-    {
-      "section": ".startup",
-      "address": "0x800430B8"
-    },
     {
       "section": ".startup",
       "address": "0x80045520"
@@ -46,6 +42,7 @@
   "lake_overlay_check": "3 lake variants,185 functions; all generated calls checked;6 scene1-context references; mountain batch checked again",
   "penguin_overlay_check": "2 village variants,104 functions; all generated calls checked;26 scene1-context references;lake batch checked again;false epilogue split corrected",
   "minigame_overlay_check": "10 loader constants validated against ROM; common menu and nine variants;714 bodies and184 context references; generated direct calls, address-taken callbacks and parent guards verified; village regression and9 layout tests pass",
+  "remaining_overlay_check": "19 child variants and one service overlay;1099 new bodies;all14 fixed and35 nonempty child ranges registered;18547 JAL targets across whole build verified;all function tails in new batch reviewed;false8023136C split merged;seven previous overlay groups and9 layout tests pass",
   "overlay_checks": "Required overlay validation and runtime load/call guards; all generated bodies have ROM-qualified trace guards; no implicit extra function count",
   "rom_lookup": "EXE parent only; external exact filename",
   "api_policy": "RT64 Automatic, same policy as Dora64",
@@ -54,27 +51,27 @@
     "seconds_after_setup": null,
     "environment_override": false
   },
-  "executable_sha256": "5b43bf4a4b4c6da129d0cd3965c48a07e655383a8e4f56f51f7506ba980546b8",
+  "executable_sha256": "21b822fd1f69c84ff8142740e557326c0329bbbe4dee5ab1d5d408266b283fdd",
   "source_sha256": {
     "src/startup_runtime.cpp": "b76b60cdea8ecafb741430fac78fd3df21e372d17130973002390737bbefdfc0",
     "src/live_graphics.cpp": "79917a65c529b9173d2ddf554568b5c4925fc20063531517e0f9c7f580e0afb5",
     "src/live_io.cpp": "6447fa965e3e5fcecaf8eb67c44e31b6bacce5aff6e6c29b2cb3917f96a0114a",
     "src/live_io.hpp": "1bc6f95b5f214e397f58d2cfd1b9a3d0115402ae162858a747ed5a5331fca6a9",
-    "recomp/startup.json": "bdbc3d64be37c1ad98aa8e3c745433947811ee67fdded5076f7b4ca7b5466ae5",
+    "recomp/startup.json": "1948c84f9eb22ac5ee1e2a1b3b9f222a71fa7208fa1194343d9e68bc4be5d843",
     "research/runtime/CMakeLists.txt": "f7faf13da872a1adf7dc903e0cf833ccfb9ad2b9d05b5ff7fa19351a7364f281",
     "tools/prepare_runtime_timing.py": "80b5ce71a8c1d7967030b0dc3fc61ebece831188dc00115f7cf7dbdef94b091a",
-    "tools/build_windows.ps1": "484ff776cb022d091e57dde360fdda70a39c73c7556c7ea60bfe44bf8d9dfb51",
+    "tools/build_windows.ps1": "f5c0558d11c0e61cdf7520a323e11619a6589493f39604d549460aa24bb0c3c7",
     "tools/generate_startup.py": "b3edacf907f200df0bd96e69c5d617cc92b5a3c16d60d02a668b9256aab2084c",
     "tools/overlay_layout.py": "712675f8481d484a73359fadadfbfbe77e6bdcf474061803be304f9269f4c8b1",
     "tools/local_jump_tables.py": "8f67b564786898b345906e7161580a66b3284fe5aa191c093216ba8bba429dde"
   },
   "generated_receipt_sha256": {
-    "startup-v56": "58fb4edd99c020164f6c73c136f3229862b9417aa9f4eacf8a49d9db938c4d07",
+    "startup-v58": "ef3f7bfc9b720a3920bee46c859bc8bd4b3dd432e8edb8e8b2acb6be978415fc",
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "dependency_pins_verified": 32,
   "donor_unchanged": "680d81feb4c57309ba80536300d73725ea9dffaa",
-  "previous_user_test": "test-013 village loads; mini-game scene35 stops at pending80043188;339 resources match independent decoder; see windows-test-013-result.json",
+  "previous_user_test": "test-014 available mini-games user-tested without observed crashes; locked variants untested; see windows-test-014-result.json",
   "remaining_risks": [
     "Unobserved branches and indirect targets",
     "Hardware calls still fail explicitly",

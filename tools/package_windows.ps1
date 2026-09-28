@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$CrtDirectory,
-    [string]$BuildId = 'test-014'
+    [string]$BuildId = 'test-015'
 )
 $ErrorActionPreference = 'Stop'
 if ($BuildId -notmatch '^[a-zA-Z0-9-]+$') { throw 'Invalid build ID.' }
@@ -48,8 +48,8 @@ $report = [ordered]@{
     locally_launched = $false
     visual_input_audible_validation = 'pending user test'
     compiler = 'MSVC 19.44; RelWithDebInfo /O2 /Zi /EHsc; dynamic CRT'
-    previous_user_test = 'test-013: penguin village loads; mini-game menu stops at pending loader80043188'
-    current_test_scope = 'mini-game common and nine variants,714 functions; shared EXE-root settings/saves; no automatic stop'
+    previous_user_test = 'test-014: available mini-games user-tested without observed crashes; progression-locked variants untested'
+    current_test_scope = '19 remaining child overlays and one service overlay,1099 functions; all49 known raw-overlay ranges registered; shared EXE-root settings/saves; no automatic stop'
     rom = 'external; exact filename beside EXE only; never copied by this script'
     files_sha256 = $hashes
     source = $stage

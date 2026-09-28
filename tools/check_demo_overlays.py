@@ -15,10 +15,10 @@ def main():
     def scene_word(address):return struct.unpack_from('>I',rom,0x70A50+address-0x801B8ED0)[0]
     for expected in evidence['sections']:
         section=sections[by_name[expected['name']]]
-        if any(section[k]!=expected[k] for k in ['rom','vram','size','requires']):raise ValueError('Overlay manifest differs')
+        if any(section[k]!=expected[k] for k in ['rom','vram','size']):raise ValueError('Overlay manifest differs')
         pair=int(expected['evidence']['pair_address'],16)
         if (scene_word(pair),scene_word(pair+4))!=(section['rom'],section['rom']+section['size']):raise ValueError('ROM pair differs')
-        if section['requires']!=['.scene1']:raise ValueError('Child needs game parent')
+        if section['requires']!=['.scene1','.scene_common']:raise ValueError('Child needs game parent')
     for address,expected in {0x801E47B0:0x3C058022,0x801E47B4:0x24A5D6D0,0x801E47B8:0x0C009CC3,
                              0x801E47E4:0x3C058023,0x801E47E8:0x24A5D6D0,0x801E47EC:0x0C009CC3,
                              0x801E4818:0x3C058024,0x801E481C:0x24A5D6D0,0x801E4820:0x0C009CC3}.items():
