@@ -1,0 +1,14 @@
+{
+  "build_id": "test-014",
+  "source_commit": "3dedf12",
+  "evidence_type": "user report; no fresh runtime log audit in this update",
+  "user_report": "Available mini-games tested; no crashes noticed, appear to work. Some mini-games remain locked by progression.",
+  "available_minigames": "user-tested; exact list not provided",
+  "locked_minigames": "not tested",
+  "full_playthrough": "not completed",
+  "agent_launched_game": false,
+  "limitations": [
+    "No claim that all nine mini-game variants executed",
+    "No claim of complete game-code coverage or complete port feature set"
+  ]
+}
