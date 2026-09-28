@@ -29,6 +29,7 @@
 RspExitReason dora3_aspMain(uint8_t*, uint32_t);
 namespace {
 std::array<std::atomic<bool>,std::size(dora3_overlay_regions)> overlay_active{};
+std::filesystem::path diagnostic_path;
 bool overlay_dependencies_active(uint32_t rom){
     for(const auto& dependency:dora3_overlay_dependencies)
         if(dependency.rom==rom && !overlay_active[dependency.required_index].load())return false;
@@ -95,7 +96,7 @@ void capture_first_graphics(uint8_t* rdram,gpr sc_task){
         std::memcpy(header.data()+20,&captured_vi,14*sizeof(uint32_t));
     }
     header[34]=MEM_W(0xC,sc_task);
-    const auto path=recomp::get_config_path()/"first-graphics.snapshot";
+    const auto path=diagnostic_path/"first-graphics.snapshot";
     std::ofstream out(path,std::ios::binary);
     out.write(reinterpret_cast<const char*>(header.data()),sizeof(header));
     out.write(reinterpret_cast<const char*>(rdram),0x400000);
@@ -206,7 +207,7 @@ extern "C" void dora3_capture_resource(uint8_t* rdram,recomp_context* ctx){
     if(address<0x80000000 || uint64_t(address)+size>0x80400000 || !size){
         std::fprintf(stderr,"RESOURCE invalid buffer\n");std::_Exit(86);
     }
-    const auto directory=recomp::get_config_path()/"resources";
+    const auto directory=diagnostic_path/"resources";
     std::filesystem::create_directories(directory);
     char name[32];std::snprintf(name,sizeof(name),"%08X.bin",resource_rom);
     std::vector<uint8_t> data(size);
@@ -280,7 +281,15 @@ int main(int argc,char** argv){
     constexpr uint64_t expected_rom_hash=0xF3BFFF0C58827510ULL;
     if(rom.size()!=0x1000000 || XXH3_64bits(rom.data(),rom.size())!=expected_rom_hash){std::fprintf(stderr,"Unsupported ROM; exact SHA-256 also checked by run_startup.py\n");return 2;}
     recomp::overlays::register_overlays({section_table,ARRLEN(section_table),num_sections},{overlay_sections_by_index,ARRLEN(overlay_sections_by_index)});
+    diagnostic_path=state_dir;
+    #ifdef _WIN32
+    // Test builds beside one another share settings and EEPROM; only diagnostics
+    // live under a timestamped run directory. Runtime appends saves/<game_id>.bin.
+    recomp::register_config_path(directory);
+    std::fprintf(stderr,"SHARED CONFIG root=%ls; saves=%ls\n",directory.c_str(),(directory/L"saves").c_str());
+    #else
     recomp::register_config_path(state_dir);
+    #endif
     recomp::GameEntry game{};
     game.rom_hash=expected_rom_hash;
     game.internal_name=std::string(rom.data()+0x20,20);

@@ -3119,6 +3119,11 @@
       "dora3_s0_core_80038BC8",
       144,
       "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+    ],
+    "0x80028E50": [
+      "dora3_s0_cave_80028E50",
+      60,
+      "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
     ]
   },
   "sdk": {
@@ -12908,6 +12913,648 @@
         ]
       },
       "indirect_targets": {}
+    },
+    {
+      "name": ".cave_slot0",
+      "rom": 965312,
+      "vram": 2149701328,
+      "size": 8944,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot0",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC050",
+        "selector": 7,
+        "text_size": 8592,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8021D6D0": [
+          "dora3_s10_cave_8021D6D0",
+          268,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021D7DC": [
+          "dora3_s10_cave_8021D7DC",
+          204,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021D8A8": [
+          "dora3_s10_cave_8021D8A8",
+          332,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021D9F4": [
+          "dora3_s10_cave_8021D9F4",
+          1648,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E064": [
+          "dora3_s10_cave_8021E064",
+          1284,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E568": [
+          "dora3_s10_cave_8021E568",
+          184,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E620": [
+          "dora3_s10_cave_8021E620",
+          152,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E6B8": [
+          "dora3_s10_cave_8021E6B8",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E6C0": [
+          "dora3_s10_cave_8021E6C0",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E6C8": [
+          "dora3_s10_cave_8021E6C8",
+          16,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E6D8": [
+          "dora3_s10_cave_8021E6D8",
+          204,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E7A4": [
+          "dora3_s10_cave_8021E7A4",
+          172,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E850": [
+          "dora3_s10_cave_8021E850",
+          128,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E8D0": [
+          "dora3_s10_cave_8021E8D0",
+          172,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E97C": [
+          "dora3_s10_cave_8021E97C",
+          100,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E9E0": [
+          "dora3_s10_cave_8021E9E0",
+          240,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021EAD0": [
+          "dora3_s10_cave_8021EAD0",
+          1076,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021EF04": [
+          "dora3_s10_cave_8021EF04",
+          992,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F2E4": [
+          "dora3_s10_cave_8021F2E4",
+          184,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F39C": [
+          "dora3_s10_cave_8021F39C",
+          236,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F488": [
+          "dora3_s10_cave_8021F488",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F490": [
+          "dora3_s10_cave_8021F490",
+          120,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F508": [
+          "dora3_s10_cave_8021F508",
+          708,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F7CC": [
+          "dora3_s10_cave_8021F7CC",
+          56,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F804": [
+          "dora3_s10_cave_8021F804",
+          92,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {}
+    },
+    {
+      "name": ".cave_slot1",
+      "rom": 1320560,
+      "vram": 2149766864,
+      "size": 12368,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot1",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC0F0",
+        "selector": 10,
+        "text_size": 11712,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8022D6D0": [
+          "dora3_s11_cave_8022D6D0",
+          152,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D768": [
+          "dora3_s11_cave_8022D768",
+          100,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D7CC": [
+          "dora3_s11_cave_8022D7CC",
+          992,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DBAC": [
+          "dora3_s11_cave_8022DBAC",
+          412,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DD48": [
+          "dora3_s11_cave_8022DD48",
+          296,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DE70": [
+          "dora3_s11_cave_8022DE70",
+          128,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DEF0": [
+          "dora3_s11_cave_8022DEF0",
+          152,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DF88": [
+          "dora3_s11_cave_8022DF88",
+          100,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DFEC": [
+          "dora3_s11_cave_8022DFEC",
+          1268,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E4E0": [
+          "dora3_s11_cave_8022E4E0",
+          1236,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E9B4": [
+          "dora3_s11_cave_8022E9B4",
+          208,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EA84": [
+          "dora3_s11_cave_8022EA84",
+          128,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EB04": [
+          "dora3_s11_cave_8022EB04",
+          296,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EC2C": [
+          "dora3_s11_cave_8022EC2C",
+          340,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022ED80": [
+          "dora3_s11_cave_8022ED80",
+          284,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EE9C": [
+          "dora3_s11_cave_8022EE9C",
+          1008,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F28C": [
+          "dora3_s11_cave_8022F28C",
+          460,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F458": [
+          "dora3_s11_cave_8022F458",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F460": [
+          "dora3_s11_cave_8022F460",
+          312,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F598": [
+          "dora3_s11_cave_8022F598",
+          324,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F6DC": [
+          "dora3_s11_cave_8022F6DC",
+          128,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F75C": [
+          "dora3_s11_cave_8022F75C",
+          340,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F8B0": [
+          "dora3_s11_cave_8022F8B0",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F8B8": [
+          "dora3_s11_cave_8022F8B8",
+          716,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FB84": [
+          "dora3_s11_cave_8022FB84",
+          384,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FD04": [
+          "dora3_s11_cave_8022FD04",
+          260,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FE08": [
+          "dora3_s11_cave_8022FE08",
+          100,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FE6C": [
+          "dora3_s11_cave_8022FE6C",
+          720,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023013C": [
+          "dora3_s11_cave_8023013C",
+          288,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023025C": [
+          "dora3_s11_cave_8023025C",
+          180,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230310": [
+          "dora3_s11_cave_80230310",
+          384,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {}
+    },
+    {
+      "name": ".cave_slot2",
+      "rom": 1379424,
+      "vram": 2149832400,
+      "size": 9504,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot2",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC110",
+        "selector": 3,
+        "text_size": 8992,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8023D6D0": [
+          "dora3_s12_cave_8023D6D0",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D6D8": [
+          "dora3_s12_cave_8023D6D8",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D6E0": [
+          "dora3_s12_cave_8023D6E0",
+          172,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D78C": [
+          "dora3_s12_cave_8023D78C",
+          56,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D7C4": [
+          "dora3_s12_cave_8023D7C4",
+          84,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D818": [
+          "dora3_s12_cave_8023D818",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D820": [
+          "dora3_s12_cave_8023D820",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D828": [
+          "dora3_s12_cave_8023D828",
+          168,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D8D0": [
+          "dora3_s12_cave_8023D8D0",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D8D8": [
+          "dora3_s12_cave_8023D8D8",
+          52,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D90C": [
+          "dora3_s12_cave_8023D90C",
+          400,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DA9C": [
+          "dora3_s12_cave_8023DA9C",
+          176,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DB4C": [
+          "dora3_s12_cave_8023DB4C",
+          148,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DBE0": [
+          "dora3_s12_cave_8023DBE0",
+          124,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DC5C": [
+          "dora3_s12_cave_8023DC5C",
+          84,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DCB0": [
+          "dora3_s12_cave_8023DCB0",
+          196,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DD74": [
+          "dora3_s12_cave_8023DD74",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DD7C": [
+          "dora3_s12_cave_8023DD7C",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DD84": [
+          "dora3_s12_cave_8023DD84",
+          188,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DE40": [
+          "dora3_s12_cave_8023DE40",
+          288,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DF60": [
+          "dora3_s12_cave_8023DF60",
+          224,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E040": [
+          "dora3_s12_cave_8023E040",
+          196,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E104": [
+          "dora3_s12_cave_8023E104",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E10C": [
+          "dora3_s12_cave_8023E10C",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E114": [
+          "dora3_s12_cave_8023E114",
+          188,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E1D0": [
+          "dora3_s12_cave_8023E1D0",
+          352,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E330": [
+          "dora3_s12_cave_8023E330",
+          224,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E410": [
+          "dora3_s12_cave_8023E410",
+          200,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E4D8": [
+          "dora3_s12_cave_8023E4D8",
+          148,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E56C": [
+          "dora3_s12_cave_8023E56C",
+          160,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E60C": [
+          "dora3_s12_cave_8023E60C",
+          248,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E704": [
+          "dora3_s12_cave_8023E704",
+          148,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E798": [
+          "dora3_s12_cave_8023E798",
+          140,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E824": [
+          "dora3_s12_cave_8023E824",
+          144,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E8B4": [
+          "dora3_s12_cave_8023E8B4",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E8BC": [
+          "dora3_s12_cave_8023E8BC",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E8C4": [
+          "dora3_s12_cave_8023E8C4",
+          228,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E9A8": [
+          "dora3_s12_cave_8023E9A8",
+          180,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EA5C": [
+          "dora3_s12_cave_8023EA5C",
+          180,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EB10": [
+          "dora3_s12_cave_8023EB10",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EB18": [
+          "dora3_s12_cave_8023EB18",
+          100,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EB7C": [
+          "dora3_s12_cave_8023EB7C",
+          220,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EC58": [
+          "dora3_s12_cave_8023EC58",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EC60": [
+          "dora3_s12_cave_8023EC60",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EC68": [
+          "dora3_s12_cave_8023EC68",
+          316,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EDA4": [
+          "dora3_s12_cave_8023EDA4",
+          180,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EE58": [
+          "dora3_s12_cave_8023EE58",
+          232,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EF40": [
+          "dora3_s12_cave_8023EF40",
+          232,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F028": [
+          "dora3_s12_cave_8023F028",
+          216,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F100": [
+          "dora3_s12_cave_8023F100",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F108": [
+          "dora3_s12_cave_8023F108",
+          192,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F1C8": [
+          "dora3_s12_cave_8023F1C8",
+          96,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F228": [
+          "dora3_s12_cave_8023F228",
+          532,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F43C": [
+          "dora3_s12_cave_8023F43C",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F444": [
+          "dora3_s12_cave_8023F444",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F44C": [
+          "dora3_s12_cave_8023F44C",
+          464,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F61C": [
+          "dora3_s12_cave_8023F61C",
+          128,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F69C": [
+          "dora3_s12_cave_8023F69C",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F6A4": [
+          "dora3_s12_cave_8023F6A4",
+          8,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F6AC": [
+          "dora3_s12_cave_8023F6AC",
+          836,
+          "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {
+        "0x8023E410": "Observed test-009 lookup after verified ROM150C60 ->8023D6D0 size2520; cave slot2 variant"
+      }
     }
   ],
   "local_jump_tables": [

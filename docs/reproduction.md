@@ -209,3 +209,14 @@ python3 tools/check_level1_overlays.py --rom '/mnt/d/Games/DoraRecomp3/testbuild
 
 Windows helper использует startup-v51; audio-rsp-v1 прежний. 2500 original,
 44 SDK, 17 pending. Группы child_slot0/1/2 разделяют варианты с общей RAM.
+
+## Windows test-010: пещера и общий save root
+
+```sh
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v52
+python3 tools/check_cave_overlays.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --generated build-local/startup-v52
+python3 tools/check_save_file.py --save /mnt/d/Games/DoraRecomp3/testbuild/saves/dora3.n64.jp.bin
+```
+
+Последняя проверка работает только с временной копией. Windows helper использует
+startup-v52; audio-rsp-v1 прежний. 2617 original /44 SDK /17 pending.

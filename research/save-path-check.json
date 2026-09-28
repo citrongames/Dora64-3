@@ -1,0 +1,16 @@
+{
+  "source_run": "1790581149122",
+  "destination": "EXE parent/saves",
+  "method": "copy only; existing targets never overwritten; old files retained",
+  "component_check": "Actual pinned pi.cpp and files.cpp read2048 bytes; word-swapped read, write/reopen and backup recovery on temporary copy; source unchanged",
+  "files": {
+    "dora3.n64.jp.bin": {
+      "bytes": 2048,
+      "sha256": "ac43fa49e39921b3c1ad819d15b24795d053c4c52e80a6d3e2e4959be06eadfc"
+    },
+    "dora3.n64.jp.bin.bak": {
+      "bytes": 2048,
+      "sha256": "8a64a19c14edaacb7294486d7b41d2a0b574304c5e63f8b12da4c8a3be61d2b0"
+    }
+  }
+}
