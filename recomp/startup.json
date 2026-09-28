@@ -13887,6 +13887,993 @@
       "indirect_targets": {
         "0x8023D8E8": "Observed test-010 lookup after verified ROM14FD20 ->8023D6D0 sizeF40; mountain slot2 variant"
       }
+    },
+    {
+      "name": ".lake_slot0",
+      "rom": 939136,
+      "vram": 2149701328,
+      "size": 26176,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot0",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC048",
+        "selector": 6,
+        "text_size": 25424,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8021D6D0": [
+          "dora3_s15_lake_8021D6D0",
+          216,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021D7A8": [
+          "dora3_s15_lake_8021D7A8",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021D80C": [
+          "dora3_s15_lake_8021D80C",
+          1048,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021DC24": [
+          "dora3_s15_lake_8021DC24",
+          1340,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E160": [
+          "dora3_s15_lake_8021E160",
+          224,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E240": [
+          "dora3_s15_lake_8021E240",
+          192,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E300": [
+          "dora3_s15_lake_8021E300",
+          200,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E3C8": [
+          "dora3_s15_lake_8021E3C8",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E42C": [
+          "dora3_s15_lake_8021E42C",
+          300,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E558": [
+          "dora3_s15_lake_8021E558",
+          860,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E8B4": [
+          "dora3_s15_lake_8021E8B4",
+          224,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E994": [
+          "dora3_s15_lake_8021E994",
+          128,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021EA14": [
+          "dora3_s15_lake_8021EA14",
+          128,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021EA94": [
+          "dora3_s15_lake_8021EA94",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021EAF8": [
+          "dora3_s15_lake_8021EAF8",
+          528,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021ED08": [
+          "dora3_s15_lake_8021ED08",
+          1072,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F138": [
+          "dora3_s15_lake_8021F138",
+          836,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F47C": [
+          "dora3_s15_lake_8021F47C",
+          340,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F5D0": [
+          "dora3_s15_lake_8021F5D0",
+          152,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F668": [
+          "dora3_s15_lake_8021F668",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F670": [
+          "dora3_s15_lake_8021F670",
+          120,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F6E8": [
+          "dora3_s15_lake_8021F6E8",
+          1096,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021FB30": [
+          "dora3_s15_lake_8021FB30",
+          56,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021FB68": [
+          "dora3_s15_lake_8021FB68",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021FBBC": [
+          "dora3_s15_lake_8021FBBC",
+          152,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021FC54": [
+          "dora3_s15_lake_8021FC54",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021FCB8": [
+          "dora3_s15_lake_8021FCB8",
+          560,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021FEE8": [
+          "dora3_s15_lake_8021FEE8",
+          2100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022071C": [
+          "dora3_s15_lake_8022071C",
+          680,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802209C4": [
+          "dora3_s15_lake_802209C4",
+          128,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220A44": [
+          "dora3_s15_lake_80220A44",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220A4C": [
+          "dora3_s15_lake_80220A4C",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220AB0": [
+          "dora3_s15_lake_80220AB0",
+          1132,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220F1C": [
+          "dora3_s15_lake_80220F1C",
+          56,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220F54": [
+          "dora3_s15_lake_80220F54",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220FA8": [
+          "dora3_s15_lake_80220FA8",
+          180,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022105C": [
+          "dora3_s15_lake_8022105C",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802210C0": [
+          "dora3_s15_lake_802210C0",
+          792,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802213D8": [
+          "dora3_s15_lake_802213D8",
+          1524,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802219CC": [
+          "dora3_s15_lake_802219CC",
+          392,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80221B54": [
+          "dora3_s15_lake_80221B54",
+          128,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80221BD4": [
+          "dora3_s15_lake_80221BD4",
+          152,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80221C6C": [
+          "dora3_s15_lake_80221C6C",
+          160,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80221D0C": [
+          "dora3_s15_lake_80221D0C",
+          680,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80221FB4": [
+          "dora3_s15_lake_80221FB4",
+          1388,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222520": [
+          "dora3_s15_lake_80222520",
+          976,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802228F0": [
+          "dora3_s15_lake_802228F0",
+          432,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222AA0": [
+          "dora3_s15_lake_80222AA0",
+          152,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222B38": [
+          "dora3_s15_lake_80222B38",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222B40": [
+          "dora3_s15_lake_80222B40",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222B48": [
+          "dora3_s15_lake_80222B48",
+          264,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222C50": [
+          "dora3_s15_lake_80222C50",
+          36,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222C74": [
+          "dora3_s15_lake_80222C74",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222CC8": [
+          "dora3_s15_lake_80222CC8",
+          200,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222D90": [
+          "dora3_s15_lake_80222D90",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222DF4": [
+          "dora3_s15_lake_80222DF4",
+          432,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222FA4": [
+          "dora3_s15_lake_80222FA4",
+          1104,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802233F4": [
+          "dora3_s15_lake_802233F4",
+          220,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802234D0": [
+          "dora3_s15_lake_802234D0",
+          128,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223550": [
+          "dora3_s15_lake_80223550",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223558": [
+          "dora3_s15_lake_80223558",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802235BC": [
+          "dora3_s15_lake_802235BC",
+          972,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223988": [
+          "dora3_s15_lake_80223988",
+          56,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802239C0": [
+          "dora3_s15_lake_802239C0",
+          96,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {}
+    },
+    {
+      "name": ".lake_slot1",
+      "rom": 1219120,
+      "vram": 2149766864,
+      "size": 18432,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot1",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC0C8",
+        "selector": 5,
+        "text_size": 16944,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8022D6D0": [
+          "dora3_s16_lake_8022D6D0",
+          128,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D750": [
+          "dora3_s16_lake_8022D750",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D758": [
+          "dora3_s16_lake_8022D758",
+          512,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D958": [
+          "dora3_s16_lake_8022D958",
+          52,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D98C": [
+          "dora3_s16_lake_8022D98C",
+          128,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DA0C": [
+          "dora3_s16_lake_8022DA0C",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DA14": [
+          "dora3_s16_lake_8022DA14",
+          1344,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DF54": [
+          "dora3_s16_lake_8022DF54",
+          52,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DF88": [
+          "dora3_s16_lake_8022DF88",
+          160,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E028": [
+          "dora3_s16_lake_8022E028",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E08C": [
+          "dora3_s16_lake_8022E08C",
+          728,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E364": [
+          "dora3_s16_lake_8022E364",
+          664,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E5FC": [
+          "dora3_s16_lake_8022E5FC",
+          908,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E988": [
+          "dora3_s16_lake_8022E988",
+          760,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EC80": [
+          "dora3_s16_lake_8022EC80",
+          260,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022ED84": [
+          "dora3_s16_lake_8022ED84",
+          236,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EE70": [
+          "dora3_s16_lake_8022EE70",
+          80,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EEC0": [
+          "dora3_s16_lake_8022EEC0",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EEC8": [
+          "dora3_s16_lake_8022EEC8",
+          160,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EF68": [
+          "dora3_s16_lake_8022EF68",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EFCC": [
+          "dora3_s16_lake_8022EFCC",
+          236,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F0B8": [
+          "dora3_s16_lake_8022F0B8",
+          744,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F3A0": [
+          "dora3_s16_lake_8022F3A0",
+          916,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F734": [
+          "dora3_s16_lake_8022F734",
+          908,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FAC0": [
+          "dora3_s16_lake_8022FAC0",
+          760,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FDB8": [
+          "dora3_s16_lake_8022FDB8",
+          140,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FE44": [
+          "dora3_s16_lake_8022FE44",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FE4C": [
+          "dora3_s16_lake_8022FE4C",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FEB0": [
+          "dora3_s16_lake_8022FEB0",
+          408,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230048": [
+          "dora3_s16_lake_80230048",
+          56,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230080": [
+          "dora3_s16_lake_80230080",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802300D4": [
+          "dora3_s16_lake_802300D4",
+          368,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230244": [
+          "dora3_s16_lake_80230244",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802302A8": [
+          "dora3_s16_lake_802302A8",
+          632,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230520": [
+          "dora3_s16_lake_80230520",
+          72,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230568": [
+          "dora3_s16_lake_80230568",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802305BC": [
+          "dora3_s16_lake_802305BC",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802305C4": [
+          "dora3_s16_lake_802305C4",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802305CC": [
+          "dora3_s16_lake_802305CC",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802305D4": [
+          "dora3_s16_lake_802305D4",
+          56,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023060C": [
+          "dora3_s16_lake_8023060C",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230614": [
+          "dora3_s16_lake_80230614",
+          120,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023068C": [
+          "dora3_s16_lake_8023068C",
+          428,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230838": [
+          "dora3_s16_lake_80230838",
+          64,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230878": [
+          "dora3_s16_lake_80230878",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802308CC": [
+          "dora3_s16_lake_802308CC",
+          168,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230974": [
+          "dora3_s16_lake_80230974",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023097C": [
+          "dora3_s16_lake_8023097C",
+          224,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230A5C": [
+          "dora3_s16_lake_80230A5C",
+          292,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230B80": [
+          "dora3_s16_lake_80230B80",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230BD4": [
+          "dora3_s16_lake_80230BD4",
+          148,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230C68": [
+          "dora3_s16_lake_80230C68",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230C70": [
+          "dora3_s16_lake_80230C70",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230C78": [
+          "dora3_s16_lake_80230C78",
+          592,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230EC8": [
+          "dora3_s16_lake_80230EC8",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230F1C": [
+          "dora3_s16_lake_80230F1C",
+          128,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230F9C": [
+          "dora3_s16_lake_80230F9C",
+          120,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231014": [
+          "dora3_s16_lake_80231014",
+          80,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231064": [
+          "dora3_s16_lake_80231064",
+          380,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802311E0": [
+          "dora3_s16_lake_802311E0",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802311E8": [
+          "dora3_s16_lake_802311E8",
+          220,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802312C4": [
+          "dora3_s16_lake_802312C4",
+          284,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802313E0": [
+          "dora3_s16_lake_802313E0",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802313E8": [
+          "dora3_s16_lake_802313E8",
+          128,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231468": [
+          "dora3_s16_lake_80231468",
+          208,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231538": [
+          "dora3_s16_lake_80231538",
+          104,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802315A0": [
+          "dora3_s16_lake_802315A0",
+          228,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231684": [
+          "dora3_s16_lake_80231684",
+          280,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023179C": [
+          "dora3_s16_lake_8023179C",
+          356,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {}
+    },
+    {
+      "name": ".lake_slot2",
+      "rom": 1401312,
+      "vram": 2149832400,
+      "size": 13728,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot2",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC128",
+        "selector": 6,
+        "text_size": 11936,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8023D6D0": [
+          "dora3_s17_lake_8023D6D0",
+          500,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D8C4": [
+          "dora3_s17_lake_8023D8C4",
+          300,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D9F0": [
+          "dora3_s17_lake_8023D9F0",
+          256,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DAF0": [
+          "dora3_s17_lake_8023DAF0",
+          1664,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E170": [
+          "dora3_s17_lake_8023E170",
+          176,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E220": [
+          "dora3_s17_lake_8023E220",
+          252,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E31C": [
+          "dora3_s17_lake_8023E31C",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E324": [
+          "dora3_s17_lake_8023E324",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E32C": [
+          "dora3_s17_lake_8023E32C",
+          252,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E428": [
+          "dora3_s17_lake_8023E428",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E430": [
+          "dora3_s17_lake_8023E430",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E438": [
+          "dora3_s17_lake_8023E438",
+          332,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E584": [
+          "dora3_s17_lake_8023E584",
+          480,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E764": [
+          "dora3_s17_lake_8023E764",
+          300,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E890": [
+          "dora3_s17_lake_8023E890",
+          888,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EC08": [
+          "dora3_s17_lake_8023EC08",
+          240,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023ECF8": [
+          "dora3_s17_lake_8023ECF8",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023ED4C": [
+          "dora3_s17_lake_8023ED4C",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023ED54": [
+          "dora3_s17_lake_8023ED54",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023ED5C": [
+          "dora3_s17_lake_8023ED5C",
+          216,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EE34": [
+          "dora3_s17_lake_8023EE34",
+          380,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EFB0": [
+          "dora3_s17_lake_8023EFB0",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F004": [
+          "dora3_s17_lake_8023F004",
+          216,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F0DC": [
+          "dora3_s17_lake_8023F0DC",
+          240,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F1CC": [
+          "dora3_s17_lake_8023F1CC",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F1D4": [
+          "dora3_s17_lake_8023F1D4",
+          364,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F340": [
+          "dora3_s17_lake_8023F340",
+          744,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F628": [
+          "dora3_s17_lake_8023F628",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F67C": [
+          "dora3_s17_lake_8023F67C",
+          216,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F754": [
+          "dora3_s17_lake_8023F754",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F75C": [
+          "dora3_s17_lake_8023F75C",
+          248,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F854": [
+          "dora3_s17_lake_8023F854",
+          120,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F8CC": [
+          "dora3_s17_lake_8023F8CC",
+          112,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F93C": [
+          "dora3_s17_lake_8023F93C",
+          128,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023F9BC": [
+          "dora3_s17_lake_8023F9BC",
+          144,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023FA4C": [
+          "dora3_s17_lake_8023FA4C",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023FA54": [
+          "dora3_s17_lake_8023FA54",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023FA5C": [
+          "dora3_s17_lake_8023FA5C",
+          212,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023FB30": [
+          "dora3_s17_lake_8023FB30",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023FB84": [
+          "dora3_s17_lake_8023FB84",
+          284,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023FCA0": [
+          "dora3_s17_lake_8023FCA0",
+          160,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023FD40": [
+          "dora3_s17_lake_8023FD40",
+          64,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023FD80": [
+          "dora3_s17_lake_8023FD80",
+          64,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023FDC0": [
+          "dora3_s17_lake_8023FDC0",
+          388,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023FF44": [
+          "dora3_s17_lake_8023FF44",
+          604,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802401A0": [
+          "dora3_s17_lake_802401A0",
+          328,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802402E8": [
+          "dora3_s17_lake_802402E8",
+          240,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802403D8": [
+          "dora3_s17_lake_802403D8",
+          100,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8024043C": [
+          "dora3_s17_lake_8024043C",
+          8,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80240444": [
+          "dora3_s17_lake_80240444",
+          40,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8024046C": [
+          "dora3_s17_lake_8024046C",
+          84,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802404C0": [
+          "dora3_s17_lake_802404C0",
+          176,
+          "Lake child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {
+        "0x8023F0DC": "Observed test-011 lookup on water entry after verified ROM1561E0 ->8023D6D0 size35A0; lake slot2 variant"
+      }
     }
   ],
   "local_jump_tables": [

@@ -230,3 +230,13 @@ python3 tools/check_mountain_overlays.py --rom '/mnt/d/Games/DoraRecomp3/testbui
 
 Windows helper использует startup-v53, audio-rsp-v1 прежний. 2675 original,
 44 SDK,17 pending. Сейвы/настройки общие с test-010; игра агентом не запускается.
+
+## Windows test-012: озеро и вход в воду
+
+```sh
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v54
+python3 tools/check_lake_overlays.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --generated build-local/startup-v54
+```
+
+Windows helper использует startup-v54, audio-rsp-v1 прежний.2860 original,
+44 SDK,17 pending. Общий save root прежний; запуск только у пользователя.
