@@ -2984,6 +2984,101 @@
       "dora3_audio_command_8004B678",
       284,
       "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80042A9C": [
+      "dora3_s0_menu_80042A9C",
+      188,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x800446A0": [
+      "dora3_s0_menu_800446A0",
+      32,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043800": [
+      "dora3_s0_menu_80043800",
+      600,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043F1C": [
+      "dora3_s0_menu_80043F1C",
+      188,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x8002841C": [
+      "dora3_s0_menu_8002841C",
+      12,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x8002A3B0": [
+      "dora3_s0_menu_8002A3B0",
+      36,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043D2C": [
+      "dora3_s0_menu_80043D2C",
+      20,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043D40": [
+      "dora3_s0_menu_80043D40",
+      32,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043D60": [
+      "dora3_s0_menu_80043D60",
+      20,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043D74": [
+      "dora3_s0_menu_80043D74",
+      64,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043DB4": [
+      "dora3_s0_menu_80043DB4",
+      20,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043DC8": [
+      "dora3_s0_menu_80043DC8",
+      20,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043D14": [
+      "dora3_s0_menu_80043D14",
+      24,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043A58": [
+      "dora3_s0_menu_80043A58",
+      600,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043CB0": [
+      "dora3_s0_menu_80043CB0",
+      80,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043D00": [
+      "dora3_s0_menu_80043D00",
+      20,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x8003C8C0": [
+      "dora3_s0_menu_8003C8C0",
+      104,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80043E40": [
+      "dora3_s0_menu_80043E40",
+      20,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80039544": [
+      "dora3_s0_menu_80039544",
+      12,
+      "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
     ]
   },
   "sdk": {
@@ -3158,6 +3253,10 @@
     "0x8004E870": [
       "osEepromLongRead",
       "Iterates osEepromRead8005E280 in8-byte blocks, advances address and buffer, returns firsterror"
+    ],
+    "0x8004E780": [
+      "osEepromLongWrite",
+      "ROM reviewed: mq,a1 block index,a2 buffer,a3 bytes; loops8-byte writes8005E4A0, increments block/buffer, returns first error and uses timer delay. Bound to pinned librecomp eep.cpp real save_write; complements Probe/LongRead; no raw SI or fake-success stub"
     ]
   },
   "indirect_targets": {
@@ -3523,6 +3622,26 @@
           "dora3_s1_closure_801B53FC",
           28,
           "Transitive pending-boundary closure; original code retained; candidate CSV extent validated by N64Recomp; no CP0 or unreviewed uncached address; runtime coverage pending"
+        ],
+        "0x801B521C": [
+          "dora3_s1_menu_801B521C",
+          148,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B713C": [
+          "dora3_s1_menu_801B713C",
+          384,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B56F4": [
+          "dora3_s1_menu_801B56F4",
+          76,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B51F4": [
+          "dora3_s1_menu_801B51F4",
+          20,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
         ]
       },
       "indirect_targets": {}
@@ -3582,12 +3701,727 @@
           "dora3_scene34_transition",
           160,
           "\u0411\u0435\u043b\u0430\u044f fade \u0441\u043e step16, timer16; state1 \u0432\u044b\u0431\u0438\u0440\u0430\u0435\u0442 scene90/state1, state2 \u0432\u044b\u0437\u044b\u0432\u0430\u0435\u0442 common54C8 \u0438 scene1/state2; \u0434\u0440\u0443\u0433\u043e\u0439 state \u0442\u043e\u043b\u044c\u043a\u043efade"
+        ],
+        "0x801C0CC0": [
+          "dora3_s2_menu_801C0CC0",
+          320,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BFCB8": [
+          "dora3_s2_menu_801BFCB8",
+          296,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BB704": [
+          "dora3_s2_menu_801BB704",
+          732,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD0D4": [
+          "dora3_s2_menu_801BD0D4",
+          300,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C27E0": [
+          "dora3_s2_menu_801C27E0",
+          352,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0B84": [
+          "dora3_s2_menu_801C0B84",
+          28,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0BA0": [
+          "dora3_s2_menu_801C0BA0",
+          28,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0BBC": [
+          "dora3_s2_menu_801C0BBC",
+          204,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0C88": [
+          "dora3_s2_menu_801C0C88",
+          56,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF9CC": [
+          "dora3_s2_menu_801BF9CC",
+          188,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BFA88": [
+          "dora3_s2_menu_801BFA88",
+          28,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BFAA4": [
+          "dora3_s2_menu_801BFAA4",
+          416,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BFC44": [
+          "dora3_s2_menu_801BFC44",
+          116,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B8ED0": [
+          "dora3_s2_menu_801B8ED0",
+          584,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B9118": [
+          "dora3_s2_menu_801B9118",
+          144,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B91A8": [
+          "dora3_s2_menu_801B91A8",
+          592,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B96EC": [
+          "dora3_s2_menu_801B96EC",
+          12,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B9808": [
+          "dora3_s2_menu_801B9808",
+          20,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B9CB4": [
+          "dora3_s2_menu_801B9CB4",
+          12,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B9F08": [
+          "dora3_s2_menu_801B9F08",
+          8,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BA64C": [
+          "dora3_s2_menu_801BA64C",
+          20,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BAF5C": [
+          "dora3_s2_menu_801BAF5C",
+          8,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BB390": [
+          "dora3_s2_menu_801BB390",
+          76,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BB52C": [
+          "dora3_s2_menu_801BB52C",
+          284,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BB648": [
+          "dora3_s2_menu_801BB648",
+          188,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BCEC0": [
+          "dora3_s2_menu_801BCEC0",
+          28,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BCEDC": [
+          "dora3_s2_menu_801BCEDC",
+          28,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BCEF8": [
+          "dora3_s2_menu_801BCEF8",
+          384,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD078": [
+          "dora3_s2_menu_801BD078",
+          92,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C1068": [
+          "dora3_s2_menu_801C1068",
+          28,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C1084": [
+          "dora3_s2_menu_801C1084",
+          28,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C10A0": [
+          "dora3_s2_menu_801C10A0",
+          80,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C12A0": [
+          "dora3_s2_menu_801C12A0",
+          224,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C1420": [
+          "dora3_s2_menu_801C1420",
+          152,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C16B8": [
+          "dora3_s2_menu_801C16B8",
+          444,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C24A4": [
+          "dora3_s2_menu_801C24A4",
+          472,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C267C": [
+          "dora3_s2_menu_801C267C",
+          356,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0B14": [
+          "dora3_s2_menu_801C0B14",
+          112,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C02C0": [
+          "dora3_s2_menu_801C02C0",
+          384,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0528": [
+          "dora3_s2_menu_801C0528",
+          212,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C05FC": [
+          "dora3_s2_menu_801C05FC",
+          828,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF914": [
+          "dora3_s2_menu_801BF914",
+          184,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF108": [
+          "dora3_s2_menu_801BF108",
+          320,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF248": [
+          "dora3_s2_menu_801BF248",
+          244,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF33C": [
+          "dora3_s2_menu_801BF33C",
+          192,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF3FC": [
+          "dora3_s2_menu_801BF3FC",
+          296,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF524": [
+          "dora3_s2_menu_801BF524",
+          208,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF5F4": [
+          "dora3_s2_menu_801BF5F4",
+          196,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF6B8": [
+          "dora3_s2_menu_801BF6B8",
+          208,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF788": [
+          "dora3_s2_menu_801BF788",
+          212,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF85C": [
+          "dora3_s2_menu_801BF85C",
+          184,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BDA88": [
+          "dora3_s2_menu_801BDA88",
+          1140,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BDEFC": [
+          "dora3_s2_menu_801BDEFC",
+          2908,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BEA58": [
+          "dora3_s2_menu_801BEA58",
+          848,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BEDA8": [
+          "dora3_s2_menu_801BEDA8",
+          516,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B9464": [
+          "dora3_s2_menu_801B9464",
+          76,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B981C": [
+          "dora3_s2_menu_801B981C",
+          116,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B9CCC": [
+          "dora3_s2_menu_801B9CCC",
+          56,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B9F10": [
+          "dora3_s2_menu_801B9F10",
+          444,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BA660": [
+          "dora3_s2_menu_801BA660",
+          504,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BAA38": [
+          "dora3_s2_menu_801BAA38",
+          188,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BAB90": [
+          "dora3_s2_menu_801BAB90",
+          300,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BAF64": [
+          "dora3_s2_menu_801BAF64",
+          1068,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B94B0": [
+          "dora3_s2_menu_801B94B0",
+          572,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B9890": [
+          "dora3_s2_menu_801B9890",
+          1060,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B9D04": [
+          "dora3_s2_menu_801B9D04",
+          516,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BA5D0": [
+          "dora3_s2_menu_801BA5D0",
+          124,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BA858": [
+          "dora3_s2_menu_801BA858",
+          464,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BAAF4": [
+          "dora3_s2_menu_801BAAF4",
+          144,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BACBC": [
+          "dora3_s2_menu_801BACBC",
+          320,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BCDB0": [
+          "dora3_s2_menu_801BCDB0",
+          272,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BBCEC": [
+          "dora3_s2_menu_801BBCEC",
+          308,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BBEB0": [
+          "dora3_s2_menu_801BBEB0",
+          284,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BC17C": [
+          "dora3_s2_menu_801BC17C",
+          680,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BC4C0": [
+          "dora3_s2_menu_801BC4C0",
+          292,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BCCA8": [
+          "dora3_s2_menu_801BCCA8",
+          264,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BC5E4": [
+          "dora3_s2_menu_801BC5E4",
+          380,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BC760": [
+          "dora3_s2_menu_801BC760",
+          1192,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BCC08": [
+          "dora3_s2_menu_801BCC08",
+          160,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0F94": [
+          "dora3_s2_menu_801C0F94",
+          212,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0E84": [
+          "dora3_s2_menu_801C0E84",
+          128,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C1380": [
+          "dora3_s2_menu_801C1380",
+          52,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C14B8": [
+          "dora3_s2_menu_801C14B8",
+          404,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C1874": [
+          "dora3_s2_menu_801C1874",
+          396,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C1A90": [
+          "dora3_s2_menu_801C1A90",
+          236,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C1CA0": [
+          "dora3_s2_menu_801C1CA0",
+          80,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C1DEC": [
+          "dora3_s2_menu_801C1DEC",
+          192,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C13B4": [
+          "dora3_s2_menu_801C13B4",
+          108,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C164C": [
+          "dora3_s2_menu_801C164C",
+          108,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C1A00": [
+          "dora3_s2_menu_801C1A00",
+          144,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C1B7C": [
+          "dora3_s2_menu_801C1B7C",
+          292,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C1CF0": [
+          "dora3_s2_menu_801C1CF0",
+          252,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C1EAC": [
+          "dora3_s2_menu_801C1EAC",
+          1048,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C22C4": [
+          "dora3_s2_menu_801C22C4",
+          480,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0440": [
+          "dora3_s2_menu_801C0440",
+          144,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C04D0": [
+          "dora3_s2_menu_801C04D0",
+          44,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C04FC": [
+          "dora3_s2_menu_801C04FC",
+          44,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD4E4": [
+          "dora3_s2_menu_801BD4E4",
+          96,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD544": [
+          "dora3_s2_menu_801BD544",
+          268,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD7F8": [
+          "dora3_s2_menu_801BD7F8",
+          144,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BDA7C": [
+          "dora3_s2_menu_801BDA7C",
+          12,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD344": [
+          "dora3_s2_menu_801BD344",
+          416,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD78C": [
+          "dora3_s2_menu_801BD78C",
+          88,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD7E4": [
+          "dora3_s2_menu_801BD7E4",
+          20,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BEFAC": [
+          "dora3_s2_menu_801BEFAC",
+          84,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF000": [
+          "dora3_s2_menu_801BF000",
+          80,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD73C": [
+          "dora3_s2_menu_801BD73C",
+          80,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF050": [
+          "dora3_s2_menu_801BF050",
+          96,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BF0B0": [
+          "dora3_s2_menu_801BF0B0",
+          88,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD6B8": [
+          "dora3_s2_menu_801BD6B8",
+          96,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD718": [
+          "dora3_s2_menu_801BD718",
+          36,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BDA6C": [
+          "dora3_s2_menu_801BDA6C",
+          16,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD650": [
+          "dora3_s2_menu_801BD650",
+          52,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD684": [
+          "dora3_s2_menu_801BD684",
+          52,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD888": [
+          "dora3_s2_menu_801BD888",
+          168,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD930": [
+          "dora3_s2_menu_801BD930",
+          64,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD970": [
+          "dora3_s2_menu_801BD970",
+          96,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BD9D0": [
+          "dora3_s2_menu_801BD9D0",
+          156,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BAA28": [
+          "dora3_s2_menu_801BAA28",
+          16,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B93F8": [
+          "dora3_s2_menu_801B93F8",
+          108,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B9CC0": [
+          "dora3_s2_menu_801B9CC0",
+          12,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BAB84": [
+          "dora3_s2_menu_801BAB84",
+          12,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BADFC": [
+          "dora3_s2_menu_801BADFC",
+          224,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BAEDC": [
+          "dora3_s2_menu_801BAEDC",
+          128,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BA0CC": [
+          "dora3_s2_menu_801BA0CC",
+          764,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BA3C8": [
+          "dora3_s2_menu_801BA3C8",
+          520,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B96F8": [
+          "dora3_s2_menu_801B96F8",
+          272,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BBAD0": [
+          "dora3_s2_menu_801BBAD0",
+          144,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BBB60": [
+          "dora3_s2_menu_801BBB60",
+          20,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BBB98": [
+          "dora3_s2_menu_801BBB98",
+          12,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BBC4C": [
+          "dora3_s2_menu_801BBC4C",
+          160,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BBE20": [
+          "dora3_s2_menu_801BBE20",
+          144,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BBFCC": [
+          "dora3_s2_menu_801BBFCC",
+          432,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BC424": [
+          "dora3_s2_menu_801BC424",
+          156,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BB9E0": [
+          "dora3_s2_menu_801BB9E0",
+          240,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BBB74": [
+          "dora3_s2_menu_801BBB74",
+          12,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BBB80": [
+          "dora3_s2_menu_801BBB80",
+          24,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801BBBA4": [
+          "dora3_s2_menu_801BBBA4",
+          168,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0F04": [
+          "dora3_s2_menu_801C0F04",
+          144,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0E2C": [
+          "dora3_s2_menu_801C0E2C",
+          44,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0E58": [
+          "dora3_s2_menu_801C0E58",
+          44,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801C0E00": [
+          "dora3_s2_menu_801C0E00",
+          44,
+          "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
         ]
       },
       "indirect_targets": {
-        "0x801C0184": "800433D8 scene34 dispatch; installed through280DC",
+        "0x801C0184": "Resident scene dispatch 0x80043534 after loader80043154; scene IDs[34]",
         "0x801C0088": "scene34 update installed at801C0208",
-        "0x801C012C": "scene34 draw installed at801C0210"
+        "0x801C012C": "scene34 draw installed at801C0210",
+        "0x801C0CC0": "Resident scene dispatch 0x80043554 after loader80043154; scene IDs[31]",
+        "0x801BFCB8": "Resident scene dispatch 0x80043574 after loader80043154; scene IDs[32]",
+        "0x801BB704": "Resident scene dispatch 0x80043594 after loader80043154; scene IDs[30]",
+        "0x801BD0D4": "Resident scene dispatch 0x800435B4 after loader80043154; scene IDs[33]",
+        "0x801C27E0": "Resident scene dispatch 0x80043634 after loader80043154; scene IDs[38]"
       },
       "overlay_group": "scene_code"
     },

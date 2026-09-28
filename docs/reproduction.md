@@ -156,3 +156,14 @@ python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Dora
 Windows helper теперь по умолчанию использует startup-v45; RSP прежний.
 1355 original functions,43 SDK,17 pending. Проверка таблицы сравнивает45
 указателей ROM с мета-картой и прямые зависимости добавленных функций.
+
+## Windows test-004: общий оверлей меню
+
+```sh
+python3 tools/check_menu_dispatch.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64'
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v46
+```
+
+Windows helper использует startup-v46, прежний audio-rsp-v1. Карта кандидатов
+research/menu-candidate-map.json фиксирует шесть корней из resident switch и
+замыкание165 новых функций; .scene34 и .scene1 различаются ROM-секцией.

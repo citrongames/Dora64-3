@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$CrtDirectory,
-    [string]$BuildId = 'test-003'
+    [string]$BuildId = 'test-004'
 )
 $ErrorActionPreference = 'Stop'
 if ($BuildId -notmatch '^[a-zA-Z0-9-]+$') { throw 'Invalid build ID.' }
@@ -48,8 +48,8 @@ $report = [ordered]@{
     locally_launched = $false
     visual_input_audible_validation = 'pending user test'
     compiler = 'MSVC 19.44; RelWithDebInfo /O2 /Zi /EHsc; dynamic CRT'
-    previous_user_test = 'test-002: white fade then audio command lookup abort80046530'
-    current_test_scope = 'all45 audio command targets, visual/runtime result pending; 1800 tasks or120 seconds'
+    previous_user_test = 'test-003: audible music and intro3D confirmed; menu init lookup abort801C0CC0'
+    current_test_scope = 'shared menu overlay callbacks and EEPROM write; menu validation pending; 1800 tasks or120 seconds'
     rom = 'external; exact filename beside EXE only; never copied by this script'
     files_sha256 = $hashes
     source = $stage
