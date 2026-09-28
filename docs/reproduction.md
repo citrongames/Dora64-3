@@ -143,3 +143,16 @@ python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Dora
 CSV-кандидаты не считаются доказанным покрытием исполнения. Static audit:
 1311 bodies,43 SDK,17 pending;5 synthetic overlay checks; Windows MSVC build.
 Результат визуальной проверки будет внесён отдельно после сообщения пользователя.
+
+## Windows test-003: таблица звуковых команд
+
+Перед генерацией проверить покрытие оригинальной таблицы (без запуска игры):
+
+```sh
+python3 tools/check_audio_dispatch.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64'
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v45
+```
+
+Windows helper теперь по умолчанию использует startup-v45; RSP прежний.
+1355 original functions,43 SDK,17 pending. Проверка таблицы сравнивает45
+указателей ROM с мета-картой и прямые зависимости добавленных функций.

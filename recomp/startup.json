@@ -2764,6 +2764,226 @@
       "dora3_s0_closure_80060E10",
       344,
       "Transitive pending-boundary closure; original code retained; candidate CSV extent validated by N64Recomp; no CP0 or unreviewed uncached address; runtime coverage pending"
+    ],
+    "0x80045924": [
+      "dora3_audio_command_80045924",
+      156,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x800459C0": [
+      "dora3_audio_command_800459C0",
+      108,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80045A2C": [
+      "dora3_audio_command_80045A2C",
+      60,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80045D04": [
+      "dora3_audio_command_80045D04",
+      404,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80045EEC": [
+      "dora3_audio_command_80045EEC",
+      124,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80045E98": [
+      "dora3_audio_command_80045E98",
+      84,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80045F68": [
+      "dora3_audio_command_80045F68",
+      204,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046034": [
+      "dora3_audio_command_80046034",
+      208,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046104": [
+      "dora3_audio_command_80046104",
+      68,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046148": [
+      "dora3_audio_command_80046148",
+      152,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x800461E0": [
+      "dora3_audio_command_800461E0",
+      64,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046220": [
+      "dora3_audio_command_80046220",
+      76,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x8004626C": [
+      "dora3_audio_command_8004626C",
+      64,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x800462AC": [
+      "dora3_audio_command_800462AC",
+      200,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046374": [
+      "dora3_audio_command_80046374",
+      196,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046438": [
+      "dora3_audio_command_80046438",
+      64,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046478": [
+      "dora3_audio_command_80046478",
+      60,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x800464B4": [
+      "dora3_audio_command_800464B4",
+      64,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x800464F4": [
+      "dora3_audio_command_800464F4",
+      60,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046530": [
+      "dora3_audio_command_80046530",
+      368,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x800466A0": [
+      "dora3_audio_command_800466A0",
+      480,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046880": [
+      "dora3_audio_command_80046880",
+      124,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x800468FC": [
+      "dora3_audio_command_800468FC",
+      60,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046938": [
+      "dora3_audio_command_80046938",
+      64,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046978": [
+      "dora3_audio_command_80046978",
+      60,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x800469B4": [
+      "dora3_audio_command_800469B4",
+      84,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046A08": [
+      "dora3_audio_command_80046A08",
+      80,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046A58": [
+      "dora3_audio_command_80046A58",
+      60,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046A94": [
+      "dora3_audio_command_80046A94",
+      184,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046B4C": [
+      "dora3_audio_command_80046B4C",
+      60,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046B88": [
+      "dora3_audio_command_80046B88",
+      104,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046BF0": [
+      "dora3_audio_command_80046BF0",
+      296,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046D18": [
+      "dora3_audio_command_80046D18",
+      76,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046D64": [
+      "dora3_audio_command_80046D64",
+      132,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046DE8": [
+      "dora3_audio_command_80046DE8",
+      132,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046E6C": [
+      "dora3_audio_command_80046E6C",
+      132,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046EF0": [
+      "dora3_audio_command_80046EF0",
+      76,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80046F3C": [
+      "dora3_audio_command_80046F3C",
+      396,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x800470C8": [
+      "dora3_audio_command_800470C8",
+      136,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80047150": [
+      "dora3_audio_command_80047150",
+      76,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x8004719C": [
+      "dora3_audio_command_8004719C",
+      112,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x8004720C": [
+      "dora3_audio_command_8004720C",
+      252,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x80047308": [
+      "dora3_audio_command_80047308",
+      60,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
+    ],
+    "0x8004B678": [
+      "dora3_audio_command_8004B678",
+      284,
+      "Audio command table80076FD0 closure; exact entry from ROM, terminal jr ra and delay slot checked; original instructions retained; runtime coverage pending"
     ]
   },
   "sdk": {
@@ -2955,7 +3175,52 @@
     "0x80049480": "Audio player callback installed by47344",
     "0x8004DC00": "ROM table800772A0 slot0 referenced through800772AC",
     "0x8004DCBC": "ROM table800772A0 slot1",
-    "0x8004DD4C": "ROM table800772A0 slot2"
+    "0x8004DD4C": "ROM table800772A0 slot2",
+    "0x800458C0": "Audio command0x80; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80045924": "Audio command0x81; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x800459C0": "Audio command0x82; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80045A2C": "Audio command0x83; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80045A68": "Audio command0x84; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80045D04": "Audio command0x85; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80045EEC": "Audio command0x86; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80045E98": "Audio command0x87; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80045F68": "Audio command0x88; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046034": "Audio command0x89; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046104": "Audio command0x8A; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046148": "Audio command0x8B; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x800461E0": "Audio command0x8C; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046220": "Audio command0x8D; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x8004626C": "Audio command0x8E; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x800462AC": "Audio command0x8F; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046374": "Audio command0x90; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046438": "Audio command0x91; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046478": "Audio command0x92; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x800464B4": "Audio command0x93; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x800464F4": "Audio command0x94; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046530": "Audio command0x95; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x800466A0": "Audio command0x96; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046880": "Audio command0x97; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x800468FC": "Audio command0x98; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046938": "Audio command0x99; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046978": "Audio command0x9A; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x800469B4": "Audio command0x9B; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046A08": "Audio command0x9C; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046A58": "Audio command0x9D; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046A94": "Audio command0x9E; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046B4C": "Audio command0x9F; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046B88": "Audio command0xA0; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046BF0": "Audio command0xA1; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046D18": "Audio command0xA2; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046D64": "Audio command0xA3; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046DE8": "Audio command0xA4; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046E6C": "Audio command0xA5; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046EF0": "Audio command0xA6; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80046F3C": "Audio command0xA7; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x800470C8": "Audio command0xA8; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80047150": "Audio command0xA9; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x8004719C": "Audio command0xAA; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x8004720C": "Audio command0xAB; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC",
+    "0x80047308": "Audio command0xAC; ROM table80076FD0; callers80047920/8004990C guard0x80..0xAC"
   },
   "overlays": [
     {

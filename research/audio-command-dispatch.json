@@ -1,0 +1,338 @@
+{
+  "table": "0x80076FD0",
+  "count": 45,
+  "opcode_first": "0x80",
+  "opcode_last": "0xAC",
+  "call_sites": [
+    "0x80047920",
+    "0x8004990C"
+  ],
+  "targets": [
+    "0x800458C0",
+    "0x80045924",
+    "0x800459C0",
+    "0x80045A2C",
+    "0x80045A68",
+    "0x80045D04",
+    "0x80045EEC",
+    "0x80045E98",
+    "0x80045F68",
+    "0x80046034",
+    "0x80046104",
+    "0x80046148",
+    "0x800461E0",
+    "0x80046220",
+    "0x8004626C",
+    "0x800462AC",
+    "0x80046374",
+    "0x80046438",
+    "0x80046478",
+    "0x800464B4",
+    "0x800464F4",
+    "0x80046530",
+    "0x800466A0",
+    "0x80046880",
+    "0x800468FC",
+    "0x80046938",
+    "0x80046978",
+    "0x800469B4",
+    "0x80046A08",
+    "0x80046A58",
+    "0x80046A94",
+    "0x80046B4C",
+    "0x80046B88",
+    "0x80046BF0",
+    "0x80046D18",
+    "0x80046D64",
+    "0x80046DE8",
+    "0x80046E6C",
+    "0x80046EF0",
+    "0x80046F3C",
+    "0x800470C8",
+    "0x80047150",
+    "0x8004719C",
+    "0x8004720C",
+    "0x80047308"
+  ],
+  "new_functions": [
+    {
+      "address": "0x80045924",
+      "size": 156,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x800459C0",
+      "size": 108,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80045A2C",
+      "size": 60,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80045D04",
+      "size": 404,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80045EEC",
+      "size": 124,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80045E98",
+      "size": 84,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80045F68",
+      "size": 204,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046034",
+      "size": 208,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046104",
+      "size": 68,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046148",
+      "size": 152,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x800461E0",
+      "size": 64,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046220",
+      "size": 76,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x8004626C",
+      "size": 64,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x800462AC",
+      "size": 200,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046374",
+      "size": 196,
+      "calls": [
+        "0x80045A68"
+      ],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046438",
+      "size": 64,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046478",
+      "size": 60,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x800464B4",
+      "size": 64,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x800464F4",
+      "size": 60,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046530",
+      "size": 368,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x800466A0",
+      "size": 480,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046880",
+      "size": 124,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x800468FC",
+      "size": 60,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046938",
+      "size": 64,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046978",
+      "size": 60,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x800469B4",
+      "size": 84,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046A08",
+      "size": 80,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046A58",
+      "size": 60,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046A94",
+      "size": 184,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046B4C",
+      "size": 60,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046B88",
+      "size": 104,
+      "calls": [
+        "0x80058248"
+      ],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046BF0",
+      "size": 296,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046D18",
+      "size": 76,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046D64",
+      "size": 132,
+      "calls": [
+        "0x8004B678"
+      ],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046DE8",
+      "size": 132,
+      "calls": [
+        "0x8004B678"
+      ],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046E6C",
+      "size": 132,
+      "calls": [
+        "0x8004B678"
+      ],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046EF0",
+      "size": 76,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80046F3C",
+      "size": 396,
+      "calls": [
+        "0x8004BF0C"
+      ],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x800470C8",
+      "size": 136,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80047150",
+      "size": 76,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x8004719C",
+      "size": 112,
+      "calls": [
+        "0x8004D2B0"
+      ],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x8004720C",
+      "size": 252,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x80047308",
+      "size": 60,
+      "calls": [],
+      "hardware_candidate": false
+    },
+    {
+      "address": "0x8004B678",
+      "size": 284,
+      "calls": [],
+      "hardware_candidate": false
+    }
+  ],
+  "optional_event_callback": "800472DC reads8007FF00; init80047534 clears it; no direct call to setter800490F8 found in current resident/scene1 code. Runtime-assigned callbacks remain separate research."
+}
