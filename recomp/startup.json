@@ -3079,6 +3079,11 @@
       "dora3_s0_menu_80039544",
       12,
       "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+    ],
+    "0x80028E8C": [
+      "dora3_s0_demo_80028E8C",
+      84,
+      "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
     ]
   },
   "sdk": {
@@ -7876,12 +7881,1091 @@
           "dora3_s3_801E7EB8",
           156,
           "Scene1 init/update/draw closure; candidate boundary from spimdisasm1.42.4, retained original code; requires generator/control-flow validation, runtime coverage unverified"
+        ],
+        "0x801E7B44": [
+          "dora3_s3_demo_801E7B44",
+          52,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E7B78": [
+          "dora3_s3_demo_801E7B78",
+          700,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E8210": [
+          "dora3_s3_demo_801E8210",
+          40,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E8238": [
+          "dora3_s3_demo_801E8238",
+          356,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E8404": [
+          "dora3_s3_demo_801E8404",
+          40,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E8454": [
+          "dora3_s3_demo_801E8454",
+          120,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E88C4": [
+          "dora3_s3_demo_801E88C4",
+          132,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E63B4": [
+          "dora3_s3_demo_801E63B4",
+          440,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E8590": [
+          "dora3_s3_demo_801E8590",
+          56,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E801C": [
+          "dora3_s3_demo_801E801C",
+          224,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E85C8": [
+          "dora3_s3_demo_801E85C8",
+          140,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E70E0": [
+          "dora3_s3_demo_801E70E0",
+          1096,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E7528": [
+          "dora3_s3_demo_801E7528",
+          68,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E8838": [
+          "dora3_s3_demo_801E8838",
+          140,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E8654": [
+          "dora3_s3_demo_801E8654",
+          160,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E84CC": [
+          "dora3_s3_demo_801E84CC",
+          92,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E8A4C": [
+          "dora3_s3_demo_801E8A4C",
+          12,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801B9200": [
+          "dora3_s3_demo_801B9200",
+          44,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801D1498": [
+          "dora3_s3_demo_801D1498",
+          12,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E7604": [
+          "dora3_s3_demo_801E7604",
+          1100,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E7A50": [
+          "dora3_s3_demo_801E7A50",
+          244,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E5D8C": [
+          "dora3_s3_demo_801E5D8C",
+          48,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801E5DF4": [
+          "dora3_s3_demo_801E5DF4",
+          88,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
         ]
       },
       "indirect_targets": {
         "0x801BB924": "scene1 dispatch table8007DC20 ->43654 ->callback",
         "0x801BB730": "scene1 update installed by initializer",
         "0x801BB848": "scene1 draw installed by initializer"
+      }
+    },
+    {
+      "name": ".demo_slot0",
+      "rom": 846944,
+      "vram": 2149701328,
+      "size": 28848,
+      "requires": [
+        ".scene1"
+      ],
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC028",
+        "selector": 2,
+        "text_size": 27992,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8021D6D0": [
+          "dora3_s4_demo_8021D6D0",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021D750": [
+          "dora3_s4_demo_8021D750",
+          104,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021D7B8": [
+          "dora3_s4_demo_8021D7B8",
+          816,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021DAE8": [
+          "dora3_s4_demo_8021DAE8",
+          824,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021DE20": [
+          "dora3_s4_demo_8021DE20",
+          924,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021E1BC": [
+          "dora3_s4_demo_8021E1BC",
+          224,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021E29C": [
+          "dora3_s4_demo_8021E29C",
+          152,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021E334": [
+          "dora3_s4_demo_8021E334",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021E3B4": [
+          "dora3_s4_demo_8021E3B4",
+          104,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021E41C": [
+          "dora3_s4_demo_8021E41C",
+          552,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021E644": [
+          "dora3_s4_demo_8021E644",
+          1368,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021EB9C": [
+          "dora3_s4_demo_8021EB9C",
+          224,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021EC7C": [
+          "dora3_s4_demo_8021EC7C",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021ECFC": [
+          "dora3_s4_demo_8021ECFC",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021ED04": [
+          "dora3_s4_demo_8021ED04",
+          120,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021ED7C": [
+          "dora3_s4_demo_8021ED7C",
+          676,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021F020": [
+          "dora3_s4_demo_8021F020",
+          36,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021F044": [
+          "dora3_s4_demo_8021F044",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021F098": [
+          "dora3_s4_demo_8021F098",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021F0A0": [
+          "dora3_s4_demo_8021F0A0",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021F0A8": [
+          "dora3_s4_demo_8021F0A8",
+          76,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021F0F4": [
+          "dora3_s4_demo_8021F0F4",
+          220,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021F1D0": [
+          "dora3_s4_demo_8021F1D0",
+          100,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021F234": [
+          "dora3_s4_demo_8021F234",
+          584,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021F47C": [
+          "dora3_s4_demo_8021F47C",
+          1144,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021F8F4": [
+          "dora3_s4_demo_8021F8F4",
+          496,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021FAE4": [
+          "dora3_s4_demo_8021FAE4",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021FB64": [
+          "dora3_s4_demo_8021FB64",
+          152,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021FBFC": [
+          "dora3_s4_demo_8021FBFC",
+          100,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021FC60": [
+          "dora3_s4_demo_8021FC60",
+          588,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8021FEAC": [
+          "dora3_s4_demo_8021FEAC",
+          1216,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022036C": [
+          "dora3_s4_demo_8022036C",
+          684,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80220618": [
+          "dora3_s4_demo_80220618",
+          536,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80220830": [
+          "dora3_s4_demo_80220830",
+          152,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802208C8": [
+          "dora3_s4_demo_802208C8",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802208D0": [
+          "dora3_s4_demo_802208D0",
+          120,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80220948": [
+          "dora3_s4_demo_80220948",
+          848,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80220C98": [
+          "dora3_s4_demo_80220C98",
+          56,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80220CD0": [
+          "dora3_s4_demo_80220CD0",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80220D24": [
+          "dora3_s4_demo_80220D24",
+          180,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80220DD8": [
+          "dora3_s4_demo_80220DD8",
+          176,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80220E88": [
+          "dora3_s4_demo_80220E88",
+          416,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80221028": [
+          "dora3_s4_demo_80221028",
+          500,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022121C": [
+          "dora3_s4_demo_8022121C",
+          940,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802215C8": [
+          "dora3_s4_demo_802215C8",
+          236,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802216B4": [
+          "dora3_s4_demo_802216B4",
+          484,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80221898": [
+          "dora3_s4_demo_80221898",
+          392,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80221A20": [
+          "dora3_s4_demo_80221A20",
+          180,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80221AD4": [
+          "dora3_s4_demo_80221AD4",
+          176,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80221B84": [
+          "dora3_s4_demo_80221B84",
+          252,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80221C80": [
+          "dora3_s4_demo_80221C80",
+          352,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80221DE0": [
+          "dora3_s4_demo_80221DE0",
+          820,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80222114": [
+          "dora3_s4_demo_80222114",
+          236,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80222200": [
+          "dora3_s4_demo_80222200",
+          484,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802223E4": [
+          "dora3_s4_demo_802223E4",
+          140,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80222470": [
+          "dora3_s4_demo_80222470",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80222478": [
+          "dora3_s4_demo_80222478",
+          120,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802224F0": [
+          "dora3_s4_demo_802224F0",
+          1356,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80222A3C": [
+          "dora3_s4_demo_80222A3C",
+          56,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80222A74": [
+          "dora3_s4_demo_80222A74",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80222AC8": [
+          "dora3_s4_demo_80222AC8",
+          152,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80222B60": [
+          "dora3_s4_demo_80222B60",
+          108,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80222BCC": [
+          "dora3_s4_demo_80222BCC",
+          904,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80222F54": [
+          "dora3_s4_demo_80222F54",
+          408,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802230EC": [
+          "dora3_s4_demo_802230EC",
+          896,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022346C": [
+          "dora3_s4_demo_8022346C",
+          508,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80223668": [
+          "dora3_s4_demo_80223668",
+          224,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80223748": [
+          "dora3_s4_demo_80223748",
+          140,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802237D4": [
+          "dora3_s4_demo_802237D4",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80223854": [
+          "dora3_s4_demo_80223854",
+          124,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802238D0": [
+          "dora3_s4_demo_802238D0",
+          576,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80223B10": [
+          "dora3_s4_demo_80223B10",
+          392,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80223C98": [
+          "dora3_s4_demo_80223C98",
+          420,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80223E3C": [
+          "dora3_s4_demo_80223E3C",
+          916,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802241D0": [
+          "dora3_s4_demo_802241D0",
+          220,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802242AC": [
+          "dora3_s4_demo_802242AC",
+          224,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022438C": [
+          "dora3_s4_demo_8022438C",
+          156,
+          "ROM reviewed complete switch8022438C..80224428; table80224750 has10 local branch targets including80224404; shared return8022441C. Analyzer false function split removed; original instructions unchanged"
+        ]
+      },
+      "indirect_targets": {}
+    },
+    {
+      "name": ".demo_slot1",
+      "rom": 1244560,
+      "vram": 2149766864,
+      "size": 12784,
+      "requires": [
+        ".scene1"
+      ],
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC0D8",
+        "selector": 7,
+        "text_size": 12320,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8022D6D0": [
+          "dora3_s5_demo_8022D6D0",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022D750": [
+          "dora3_s5_demo_8022D750",
+          100,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022D7B4": [
+          "dora3_s5_demo_8022D7B4",
+          524,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022D9C0": [
+          "dora3_s5_demo_8022D9C0",
+          564,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022DBF4": [
+          "dora3_s5_demo_8022DBF4",
+          156,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022DC90": [
+          "dora3_s5_demo_8022DC90",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022DD10": [
+          "dora3_s5_demo_8022DD10",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022DD90": [
+          "dora3_s5_demo_8022DD90",
+          100,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022DDF4": [
+          "dora3_s5_demo_8022DDF4",
+          752,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022E0E4": [
+          "dora3_s5_demo_8022E0E4",
+          940,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022E490": [
+          "dora3_s5_demo_8022E490",
+          156,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022E52C": [
+          "dora3_s5_demo_8022E52C",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022E5AC": [
+          "dora3_s5_demo_8022E5AC",
+          224,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022E68C": [
+          "dora3_s5_demo_8022E68C",
+          264,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022E794": [
+          "dora3_s5_demo_8022E794",
+          284,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022E8B0": [
+          "dora3_s5_demo_8022E8B0",
+          1792,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022EFB0": [
+          "dora3_s5_demo_8022EFB0",
+          316,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022F0EC": [
+          "dora3_s5_demo_8022F0EC",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022F16C": [
+          "dora3_s5_demo_8022F16C",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022F174": [
+          "dora3_s5_demo_8022F174",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022F17C": [
+          "dora3_s5_demo_8022F17C",
+          544,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022F39C": [
+          "dora3_s5_demo_8022F39C",
+          464,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022F56C": [
+          "dora3_s5_demo_8022F56C",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022F5C0": [
+          "dora3_s5_demo_8022F5C0",
+          152,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022F658": [
+          "dora3_s5_demo_8022F658",
+          124,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022F6D4": [
+          "dora3_s5_demo_8022F6D4",
+          64,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022F714": [
+          "dora3_s5_demo_8022F714",
+          568,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022F94C": [
+          "dora3_s5_demo_8022F94C",
+          972,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022FD18": [
+          "dora3_s5_demo_8022FD18",
+          488,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8022FF00": [
+          "dora3_s5_demo_8022FF00",
+          264,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80230008": [
+          "dora3_s5_demo_80230008",
+          152,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802300A0": [
+          "dora3_s5_demo_802300A0",
+          100,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80230104": [
+          "dora3_s5_demo_80230104",
+          400,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80230294": [
+          "dora3_s5_demo_80230294",
+          240,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80230384": [
+          "dora3_s5_demo_80230384",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802303D8": [
+          "dora3_s5_demo_802303D8",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80230458": [
+          "dora3_s5_demo_80230458",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802304D8": [
+          "dora3_s5_demo_802304D8",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x80230558": [
+          "dora3_s5_demo_80230558",
+          392,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x802306E0": [
+          "dora3_s5_demo_802306E0",
+          16,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ]
+      },
+      "indirect_targets": {}
+    },
+    {
+      "name": ".demo_slot2",
+      "rom": 1365184,
+      "vram": 2149832400,
+      "size": 10336,
+      "requires": [
+        ".scene1"
+      ],
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC100",
+        "selector": 1,
+        "text_size": 7968,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8023D6D0": [
+          "dora3_s6_demo_8023D6D0",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023D750": [
+          "dora3_s6_demo_8023D750",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023D758": [
+          "dora3_s6_demo_8023D758",
+          208,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023D828": [
+          "dora3_s6_demo_8023D828",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023D830": [
+          "dora3_s6_demo_8023D830",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023D884": [
+          "dora3_s6_demo_8023D884",
+          284,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023D9A0": [
+          "dora3_s6_demo_8023D9A0",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023D9A8": [
+          "dora3_s6_demo_8023D9A8",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023D9B0": [
+          "dora3_s6_demo_8023D9B0",
+          820,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023DCE4": [
+          "dora3_s6_demo_8023DCE4",
+          152,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023DD7C": [
+          "dora3_s6_demo_8023DD7C",
+          176,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023DE2C": [
+          "dora3_s6_demo_8023DE2C",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023DE34": [
+          "dora3_s6_demo_8023DE34",
+          124,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023DEB0": [
+          "dora3_s6_demo_8023DEB0",
+          168,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023DF58": [
+          "dora3_s6_demo_8023DF58",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023DF60": [
+          "dora3_s6_demo_8023DF60",
+          184,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E018": [
+          "dora3_s6_demo_8023E018",
+          192,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E0D8": [
+          "dora3_s6_demo_8023E0D8",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E12C": [
+          "dora3_s6_demo_8023E12C",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E134": [
+          "dora3_s6_demo_8023E134",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E13C": [
+          "dora3_s6_demo_8023E13C",
+          168,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E1E4": [
+          "dora3_s6_demo_8023E1E4",
+          356,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E348": [
+          "dora3_s6_demo_8023E348",
+          100,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E3AC": [
+          "dora3_s6_demo_8023E3AC",
+          148,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E440": [
+          "dora3_s6_demo_8023E440",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E4C0": [
+          "dora3_s6_demo_8023E4C0",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E514": [
+          "dora3_s6_demo_8023E514",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E594": [
+          "dora3_s6_demo_8023E594",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E59C": [
+          "dora3_s6_demo_8023E59C",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E5A4": [
+          "dora3_s6_demo_8023E5A4",
+          284,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E6C0": [
+          "dora3_s6_demo_8023E6C0",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E714": [
+          "dora3_s6_demo_8023E714",
+          180,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E7C8": [
+          "dora3_s6_demo_8023E7C8",
+          148,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E85C": [
+          "dora3_s6_demo_8023E85C",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E864": [
+          "dora3_s6_demo_8023E864",
+          232,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E94C": [
+          "dora3_s6_demo_8023E94C",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023E9A0": [
+          "dora3_s6_demo_8023E9A0",
+          164,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023EA44": [
+          "dora3_s6_demo_8023EA44",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023EA4C": [
+          "dora3_s6_demo_8023EA4C",
+          144,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023EADC": [
+          "dora3_s6_demo_8023EADC",
+          268,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023EBE8": [
+          "dora3_s6_demo_8023EBE8",
+          168,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023EC90": [
+          "dora3_s6_demo_8023EC90",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023EC98": [
+          "dora3_s6_demo_8023EC98",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023ECA0": [
+          "dora3_s6_demo_8023ECA0",
+          56,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023ECD8": [
+          "dora3_s6_demo_8023ECD8",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023ED2C": [
+          "dora3_s6_demo_8023ED2C",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023ED34": [
+          "dora3_s6_demo_8023ED34",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023ED3C": [
+          "dora3_s6_demo_8023ED3C",
+          412,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023EED8": [
+          "dora3_s6_demo_8023EED8",
+          208,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023EFA8": [
+          "dora3_s6_demo_8023EFA8",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023EFB0": [
+          "dora3_s6_demo_8023EFB0",
+          160,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F050": [
+          "dora3_s6_demo_8023F050",
+          232,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F138": [
+          "dora3_s6_demo_8023F138",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F18C": [
+          "dora3_s6_demo_8023F18C",
+          128,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F20C": [
+          "dora3_s6_demo_8023F20C",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F214": [
+          "dora3_s6_demo_8023F214",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F21C": [
+          "dora3_s6_demo_8023F21C",
+          264,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F324": [
+          "dora3_s6_demo_8023F324",
+          172,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F3D0": [
+          "dora3_s6_demo_8023F3D0",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F3D8": [
+          "dora3_s6_demo_8023F3D8",
+          168,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F480": [
+          "dora3_s6_demo_8023F480",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F488": [
+          "dora3_s6_demo_8023F488",
+          8,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F490": [
+          "dora3_s6_demo_8023F490",
+          268,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x8023F59C": [
+          "dora3_s6_demo_8023F59C",
+          84,
+          "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ]
+      },
+      "indirect_targets": {
+        "0x8023E9A0": "Observed test-005 runtime lookup after verified ROM14D4C0 ->8023D6D0 DMA; native body belongs only to this child overlay"
       }
     }
   ]

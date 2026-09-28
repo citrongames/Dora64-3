@@ -29,9 +29,26 @@ def prepare_layout(meta, rom):
                 group=left.get('overlay_group')
                 if not group or group!=right.get('overlay_group') or left is sections[0]:
                     raise ValueError('RAM overlap needs explicit mutually exclusive overlay_group')
+    by_name={s['name']:i for i,s in enumerate(sections)}
+    for source,section in enumerate(sections):
+        required=section.get('requires',[])
+        if (not isinstance(required,list) or len(set(required))!=len(required) or
+            any(name not in by_name or by_name[name] in (0,source) for name in required)):
+            raise ValueError('Invalid required overlay')
+        simultaneous=[section]+[sections[by_name[name]] for name in required]
+        for j,left in enumerate(simultaneous):
+            for right in simultaneous[j+1:]:
+                if left['vram']<right['vram']+right['size'] and right['vram']<left['vram']+left['size']:
+                    raise ValueError('Required overlays must coexist in RAM')
+    def visit(index,path):
+        if index in path:raise ValueError('Cyclic required overlays')
+        for name in sections[index].get('requires',[]):visit(by_name[name],path|{index})
+    for index in range(len(sections)):visit(index,set())
     def target_section(source,address):
         matches=[i for i,s in enumerate(sections) if s['vram']<=address<s['vram']+s['size']]
         if source in matches:return source
+        required=[i for i in matches if sections[i]['name'] in sections[source].get('requires',[])]
+        if len(required)==1:return required[0]
         if len(matches)!=1:raise ValueError(f'Ambiguous external call {sections[source]["name"]}:{address:08X}')
         return matches[0]
     for index,section in enumerate(sections):

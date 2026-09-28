@@ -27,12 +27,18 @@ def main():
                       f'vram = 0x{section["vram"]:X}',f'size = 0x{section["size"]:X}','functions = ['])
         lines.extend(grouped[section['name']]);lines.append(']')
     (out/'startup.syms.toml').write_text('\n'.join(lines)+'\n')
-    registry=['#pragma once','#include <cstdint>',
+    registry=['#pragma once','#include <cstdint>','#include <array>',
               'struct Dora3OverlayRegion { uint32_t rom, ram, size; };',
               'static constexpr Dora3OverlayRegion dora3_overlay_regions[] = {']
     for section in sections[1:]:
         registry.append(f'    {{0x{section["rom"]:X},0x{section["vram"]:X},0x{section["size"]:X}}},')
     registry.append('};')
+    dependencies=[(section['rom'],next(i for i,s in enumerate(sections[1:]) if s['name']==name))
+                  for section in sections[1:] for name in section.get('requires',[])]
+    registry.extend(['struct Dora3OverlayDependency { uint32_t rom, required_index; };',
+                     f'static constexpr std::array<Dora3OverlayDependency, {len(dependencies)}> dora3_overlay_dependencies = {{{{'])
+    registry.extend(f'    {{0x{rom:X}, {index}}},' for rom,index in dependencies)
+    registry.append('}};')
     (out/'overlay_regions.hpp').write_text('\n'.join(registry)+'\n')
     declarations=['#pragma once','#include "recomp.h"','#ifdef __cplusplus','extern "C" {','#endif','void dora3_trace(uint8_t*, recomp_context*, uint32_t, uint32_t);','void dora3_pending(uint32_t);','void dora3_verify_dma(uint8_t*);','void dora3_capture_resource(uint8_t*, recomp_context*);','void dora3_mark_stream_dma(void);']
     bodies=['#include "startup_hooks.h"']

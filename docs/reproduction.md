@@ -167,3 +167,15 @@ python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Dora
 Windows helper использует startup-v46, прежний audio-rsp-v1. Карта кандидатов
 research/menu-candidate-map.json фиксирует шесть корней из resident switch и
 замыкание165 новых функций; .scene34 и .scene1 различаются ROM-секцией.
+
+## Windows test-006: первое attract-demo уровня
+
+```sh
+python3 tools/check_overlay_layout.py
+python3 tools/check_demo_overlays.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64'
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v48
+```
+
+Windows helper использует startup-v48, audio-rsp-v1 прежний. requires задаёт
+обязательный одновременно загруженный оверлей; нельзя заимствовать функцию
+по совпавшему RAM-адресу из альтернативной сцены.9 synthetic layout checks.

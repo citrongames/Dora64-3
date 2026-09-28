@@ -29,6 +29,11 @@
 RspExitReason dora3_aspMain(uint8_t*, uint32_t);
 namespace {
 std::array<std::atomic<bool>,std::size(dora3_overlay_regions)> overlay_active{};
+bool overlay_dependencies_active(uint32_t rom){
+    for(const auto& dependency:dora3_overlay_dependencies)
+        if(dependency.rom==rom && !overlay_active[dependency.required_index].load())return false;
+    return true;
+}
 void unload_scene_code(){
     for(size_t i=0;i<overlay_active.size();i++)if(overlay_active[i]){
         const auto& region=dora3_overlay_regions[i];
@@ -121,8 +126,8 @@ extern "C" void dora3_trace(uint8_t* rdram,recomp_context* ctx,uint32_t address,
     if(address==0x80043390)unload_scene_code();
     for(size_t i=0;i<overlay_active.size();i++){
         const auto& region=dora3_overlay_regions[i];
-        if(region.rom==section_rom && !overlay_active[i]){
-            std::fprintf(stderr,"OVERLAY CALL BEFORE VERIFIED LOAD address=%08X rom=%08X\n",address,section_rom);std::_Exit(85);
+        if(region.rom==section_rom && (!overlay_active[i] || !overlay_dependencies_active(section_rom))){
+            std::fprintf(stderr,"OVERLAY CALL BEFORE VERIFIED LOAD OR REQUIRED OVERLAY address=%08X rom=%08X\n",address,section_rom);std::_Exit(85);
         }
     }
     if(address==0x80058248)std::fprintf(stderr,"ORIGINAL DEBUG format=%08X\n",(uint32_t)ctx->r4);
@@ -181,6 +186,9 @@ extern "C" void dora3_verify_dma(uint8_t* rdram) {
     for(size_t i=0;i<overlay_active.size();i++){
         const auto& region=dora3_overlay_regions[i];
         if(request.rom==region.rom && request.ram==region.ram && request.size==region.size){
+            if(!overlay_dependencies_active(region.rom)){
+                std::fprintf(stderr,"OVERLAY LOAD WITHOUT REQUIRED OVERLAY rom=%08X\n",region.rom);std::_Exit(85);
+            }
             load_overlays(region.rom,(int32_t)region.ram,region.size);overlay_active[i]=true;
             std::fprintf(stderr,"OVERLAY REGISTERED rom=%08X ram=%08X bytes=%X\n",region.rom,region.ram,region.size);
         }
