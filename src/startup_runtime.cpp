@@ -13,6 +13,7 @@
 #include <array>
 #include <cstring>
 #include <mutex>
+#include <unordered_set>
 #include "ultramodern/ultramodern.hpp"
 #include "librecomp/game.hpp"
 #include "librecomp/overlays.hpp"
@@ -109,7 +110,7 @@ extern "C" void dora3_pending(uint32_t address) {
     std::fprintf(stderr,"PENDING original function %08X; execution stopped, no success stub\n",address);
     stop_diagnostic(77);
 }
-extern "C" void dora3_trace(uint8_t* rdram,recomp_context* ctx,uint32_t address) {
+extern "C" void dora3_trace(uint8_t* rdram,recomp_context* ctx,uint32_t address,uint32_t section_rom) {
     if(address==0x80025C00){
         // Runtime initially maps every section in the boot 1MiB at entrypoint+ROM offset.
         // Only the resident section is executable there. Remove the rest before game code.
@@ -120,15 +121,21 @@ extern "C" void dora3_trace(uint8_t* rdram,recomp_context* ctx,uint32_t address)
     if(address==0x80043390)unload_scene_code();
     for(size_t i=0;i<overlay_active.size();i++){
         const auto& region=dora3_overlay_regions[i];
-        if(region.ram<=address && address<region.ram+region.size && !overlay_active[i]){
-            std::fprintf(stderr,"OVERLAY CALL BEFORE VERIFIED LOAD address=%08X\n",address);std::_Exit(85);
+        if(region.rom==section_rom && !overlay_active[i]){
+            std::fprintf(stderr,"OVERLAY CALL BEFORE VERIFIED LOAD address=%08X rom=%08X\n",address,section_rom);std::_Exit(85);
         }
     }
     if(address==0x80058248)std::fprintf(stderr,"ORIGINAL DEBUG format=%08X\n",(uint32_t)ctx->r4);
     if(address==0x80030AE8)resource_rom=(uint32_t)ctx->r5;
     // Byte-wise decoder helpers are covered by the resource comparison below.
     if(address==0x80034000 || address==0x800340D0)return;
-    std::fprintf(stderr,"ENTER %08X sp=%08X a0=%08X\n",address,(uint32_t)ctx->r29,(uint32_t)ctx->r4);
+    // Keep per-instruction hooks active, but log each function once per host thread.
+    // Section ROM is part of identity: overlaid functions may share a VRAM.
+    static thread_local std::unordered_set<uint64_t> traced;
+    if(traced.insert((uint64_t(section_rom)<<32)|address).second)
+        std::fprintf(stderr,"ENTER %08X section_rom=%08X sp=%08X a0=%08X\n",address,section_rom,(uint32_t)ctx->r29,(uint32_t)ctx->r4);
+    if(address==0x800314B4)
+        std::fprintf(stderr,"SCENE SELECT id=%u state=%u\n",(uint32_t)ctx->r4,(uint32_t)ctx->r5);
     if(address==0x80026E24 && ctx->r5){
         if(MEM_W(0x10,ctx->r5)==2)audio_submitted.fetch_add(1);
         else if(MEM_W(0x10,ctx->r5)==1)capture_first_graphics(rdram,ctx->r5);
@@ -243,6 +250,7 @@ int wmain(int argc,wchar_t**){
     FILE* stream=nullptr;
     if(_wfreopen_s(&stream,(run_dir/L"runtime.log").c_str(),L"w",stderr)!=0)return 2;
     if(_wfreopen_s(&stream,(run_dir/L"stdout.log").c_str(),L"w",stdout)!=0)return 2;
+    std::fprintf(stderr,"BUILD executable=%ls\n",std::filesystem::path(executable.data()).filename().c_str());
     const auto state_dir=run_dir/L"state";
     std::filesystem::create_directories(state_dir);
     std::setvbuf(stderr,nullptr,_IONBF,0);

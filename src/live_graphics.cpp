@@ -22,7 +22,7 @@
 namespace {
 std::atomic<bool> ready{false};
 SDL_Window* live_window=nullptr;
-unsigned task_limit=120;
+unsigned task_limit=1800;
 std::atomic<unsigned> submitted{0},completed{0};
 class LiveContext final : public ultramodern::renderer::RendererContext {
     std::array<uint8_t,0x1000> dmem{}, imem{};
@@ -115,7 +115,7 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
     dora3_configure_live_input(cfg);
     if(const char* value=std::getenv("DORA3_MAX_TASKS")){
         char* end=nullptr;const auto count=std::strtoul(value,&end,10);
-        if(!*value || *end || count<1 || count>300){std::fprintf(stderr,"DORA3_MAX_TASKS must be1..300\n");std::_Exit(2);}
+        if(!*value || *end || count<1 || count>7200){std::fprintf(stderr,"DORA3_MAX_TASKS must be1..7200\n");std::_Exit(2);}
         task_limit=unsigned(count);
     }
     cfg.events_callbacks.gfx_task_submitted_callback=[](uint8_t*,uint32_t dl,uint32_t bytes){
@@ -147,7 +147,7 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
         dora3_poll_live_input(live_window);
         if(ready.load()){
             static const auto start=std::chrono::steady_clock::now();
-            if(std::chrono::steady_clock::now()-start>std::chrono::seconds(15)){
+            if(std::chrono::steady_clock::now()-start>std::chrono::seconds(120)){
                 std::fprintf(stderr,"LIVE RESEARCH timeout after setup\n");std::_Exit(79);
             }
         }

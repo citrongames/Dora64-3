@@ -119,3 +119,27 @@ cmake --build build-local/android-new
 NDK путь локальный, на другой машине указать свой. Это executable для проверки
 toolchain, не игровой APK. Package/SDL activity/ROM picker/подпись появятся после
 минимального игрового цикла. Пользователь сам устанавливает и тестирует APK.
+
+## Windows test-002: пакет scene1 (2026-09-28)
+
+Текущая мета-карта — recomp/startup.json, поддержка перекрытий —
+tools/overlay_layout.py. Существующий output-dir генератора не перезаписывается.
+Последняя генерация выполнена так (ROM остаётся только пользовательским input):
+
+```sh
+python3 tools/check_overlay_layout.py
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v44
+```
+
+После переноса исходников, pinned build-deps и CPU/RSP outputs в Windows:
+
+```powershell
+./tools/build_windows.ps1 -Python 'C:/path/to/python.exe'
+```
+
+Скрипт использует startup-v44 и audio-rsp-v1, проверяет generation receipts;
+при повторной генерации выбрать свежий каталог и передать -CpuDirectory.
+Игра не запускается. Все функции нового пакета сохраняют исходные инструкции;
+CSV-кандидаты не считаются доказанным покрытием исполнения. Static audit:
+1311 bodies,43 SDK,17 pending;5 synthetic overlay checks; Windows MSVC build.
+Результат визуальной проверки будет внесён отдельно после сообщения пользователя.

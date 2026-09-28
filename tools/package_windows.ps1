@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$CrtDirectory,
-    [string]$BuildId = 'test-001'
+    [string]$BuildId = 'test-002'
 )
 $ErrorActionPreference = 'Stop'
 if ($BuildId -notmatch '^[a-zA-Z0-9-]+$') { throw 'Invalid build ID.' }
@@ -18,6 +18,11 @@ foreach ($name in @('msvcp140.dll', 'msvcp140_atomic_wait.dll', 'vcruntime140.dl
 $items["README-$BuildId.md"] = Join-Path $projectRoot 'docs/windows-test-build.md'
 foreach ($source in $items.Values) {
     if (-not (Test-Path -LiteralPath $source -PathType Leaf)) { throw "Missing input: $source" }
+}
+$receipt = Get-Content -LiteralPath (Join-Path $projectRoot 'research/windows-build-check.json') -Raw | ConvertFrom-Json
+if ((Get-FileHash -LiteralPath (Join-Path $buildDirectory 'Dora64-3.exe') -Algorithm SHA256).Hash.ToLowerInvariant() -ne $receipt.executable_sha256) { throw 'Executable differs from compile receipt.' }
+foreach ($entry in $receipt.source_sha256.PSObject.Properties) {
+    if ((Get-FileHash -LiteralPath (Join-Path $projectRoot $entry.Name) -Algorithm SHA256).Hash.ToLowerInvariant() -ne $entry.Value) { throw "Compiled input changed: $($entry.Name)" }
 }
 $stage = Get-Content -Raw -LiteralPath (Join-Path $projectRoot 'stage-manifest.json') | ConvertFrom-Json
 # Refuse packaging an executable with source metadata from another tree state.
@@ -43,7 +48,8 @@ $report = [ordered]@{
     locally_launched = $false
     visual_input_audible_validation = 'pending user test'
     compiler = 'MSVC 19.44; RelWithDebInfo /O2 /Zi /EHsc; dynamic CRT'
-    prior_linux_boundary = '801B54C8; not a Windows runtime result'
+    previous_user_test = 'test-001: Epoch then explicit stop77 at801B54C8'
+    current_test_scope = 'scene1 batch, visual/runtime result pending; 1800 tasks or120 seconds'
     rom = 'external; exact filename beside EXE only; never copied by this script'
     files_sha256 = $hashes
     source = $stage

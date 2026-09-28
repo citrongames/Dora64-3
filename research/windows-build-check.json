@@ -1,40 +1,113 @@
 {
-  "scope": "Windows x64 compilation and static dependency inspection only; no game/renderer execution",
-  "build_id": "test-001",
-  "rom_lookup": "GetModuleFileNameW parent only; exact filename; no fallback search",
-  "api_policy": "RT64 Automatic, as Dora64; logs actual chosen API after setup",
+  "scope": "Windows x64 native compile and static generation checks; game not launched by agent",
+  "build_id": "test-002",
   "compiled": true,
   "locally_launched": false,
   "user_visual_test": "pending",
-  "executable_sha256": "271af7abd52f86c70f46d10b9866502f811c8fb7565c10b58516d5f032b53c34",
+  "original_functions": 1311,
+  "sdk_mappings": 43,
+  "pending_boundaries": [
+    {
+      "section": ".startup",
+      "address": "0x800430B8"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80043188"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800431BC"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800431F0"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80043224"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80043258"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8004328C"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800432C0"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800432F4"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80043328"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8004335C"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80045520"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800586F0"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80058A50"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8005F1C0"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8005F230"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800604E0"
+    }
+  ],
+  "candidate_analysis": "spimdisasm1.42.4 extents and call/reference closure; N64Recomp accepts instructions/control flow; not proof of all boundaries or semantics",
+  "overlay_checks": "5 synthetic layout tests passed; all generated bodies have ROM-qualified trace guards; no implicit extra function count",
+  "rom_lookup": "EXE parent only; external exact filename",
+  "api_policy": "RT64 Automatic, same policy as Dora64",
+  "limits": {
+    "graphics_tasks": 1800,
+    "seconds_after_setup": 120
+  },
+  "executable_sha256": "2abc8515691f4c77f5ba0db54f174e3ff4502cd1e0d11ad0f0a3ef64aed959a2",
   "source_sha256": {
-    "src/startup_runtime.cpp": "02f1b30ba81d66c2e1dbd2cba0ed19e77502d1a13c4d8088b55091ebd8e5e149",
-    "src/live_graphics.cpp": "6c26877b52b16d92794291c88b7ece7662f3b252b89750f27e394e10c83ffcca",
+    "src/startup_runtime.cpp": "90a66e47c27a5b68f74f195b9b5ef7d555ad15c48ac856e013bdb1c890dd5e97",
+    "src/live_graphics.cpp": "32fc444bfb592e7be40977b65ac114abefa2df9de336c87743365c3d252da425",
     "src/live_io.cpp": "6447fa965e3e5fcecaf8eb67c44e31b6bacce5aff6e6c29b2cb3917f96a0114a",
     "src/live_io.hpp": "1bc6f95b5f214e397f58d2cfd1b9a3d0115402ae162858a747ed5a5331fca6a9",
-    "recomp/startup.json": "e2a0108a038a0ab8ea8c3bff867647dfb0859c136dcecea9880f8343983106e0",
+    "recomp/startup.json": "e364741b9d21f67e4268bb052eb51f7bca4591aaea32b6c1f6e0b449eff38821",
     "research/runtime/CMakeLists.txt": "f7faf13da872a1adf7dc903e0cf833ccfb9ad2b9d05b5ff7fa19351a7364f281",
     "tools/prepare_runtime_timing.py": "80b5ce71a8c1d7967030b0dc3fc61ebece831188dc00115f7cf7dbdef94b091a",
-    "tools/build_windows.ps1": "9047d9bd2ecb880173f7fe68bfbec7ff25767dbe3cc8d2fb0ac9245ff1059200"
+    "tools/build_windows.ps1": "3025af7d0d6ba38f85c94fa60e3a8b943d22a2c18498e212227e72eac16bccf5",
+    "tools/generate_startup.py": "472c7ab2ddfdf8552932d9ed469bfe73dab92041ffec3f591dad81d6f134075d",
+    "tools/overlay_layout.py": "6bcbcb44652853fbb846f1d735c416358770335a462c802dbad5d718aa150ade"
   },
   "generated_receipt_sha256": {
-    "startup-v39": "8b2ea6385d684708e4d4a6096b697594395cc22369a195a9750f7b83410df648",
+    "startup-v44": "161aa7378c670d6ab2fe87b25c4a019cf6e8f8078417cfab58cffe0a7fe370d3",
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
-  "donor_unchanged": "680d81feb4c57309ba80536300d73725ea9dffaa",
   "dependency_pins_verified": 32,
-  "prior_linux_run": {
-    "boundary": "801B54C8",
-    "graphics_parsed": 61,
-    "audio_rsp_completed": 179,
-    "resources_equal": 11,
-    "visual_result": "user reported distorted render and WSL failure; cause unresolved"
-  },
-  "io_component_check": "passed Linux SDL dummy/virtual pad prior to Windows port; no real device validation",
-  "known_limitations": [
-    "Incomplete functions and overlay coverage",
-    "GPU memory lifetime not proved by parse completion",
-    "No audible music confirmed",
-    "Not a playable port"
+  "donor_unchanged": "680d81feb4c57309ba80536300d73725ea9dffaa",
+  "previous_user_test": "test-001 Epoch, stop77 at801B54C8; independently verified11 resources; see windows-test-001-result.json",
+  "remaining_risks": [
+    "Unobserved branches and indirect targets",
+    "Hardware calls still fail explicitly",
+    "GPU lifetime remains unproved",
+    "No audible music or full gameplay validation"
   ]
 }

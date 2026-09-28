@@ -1,0 +1,93 @@
+{
+  "build_id": "test-001",
+  "user_report": "Epoch logo shown then application closes; expected white fade and initial 3D cutscene",
+  "cause_verified": "Explicit pending original function801B54C8; stop77, before subsequent fade frames; no successful return fabricated",
+  "api": [
+    "D3D12 (Automatic)"
+  ],
+  "pending": [
+    "801B54C8"
+  ],
+  "drain": [
+    "submitted=61 parsed=61"
+  ],
+  "stop": [
+    "code=77 audio_submitted=173 audio_completed=173"
+  ],
+  "audio_devices": [
+    "rate=48000 channels=2 format=S16 driver=wasapi",
+    "rate=22050 channels=2 format=S16 driver=wasapi"
+  ],
+  "runtime_log_sha256": "15a3b7f5ec042306db2d99588f7c44e0393514324970f75384f71876f0e03387",
+  "resource_checks": [
+    {
+      "rom": "0028B050",
+      "bytes": 336,
+      "matches": true,
+      "sha256": "a356b21693f16f4cd65680ebcd4d538297da0f022dcb7748eb2350c80f57d2fb"
+    },
+    {
+      "rom": "00491240",
+      "bytes": 18480,
+      "matches": true,
+      "sha256": "4cc4e8e096e90666de7edc221bf19636cfbcf38035fe30eb4e9e84c143534bc9"
+    },
+    {
+      "rom": "00493480",
+      "bytes": 32,
+      "matches": true,
+      "sha256": "81011cbbe7785a6ed55c1e5f7db4f68bfcb6909d7d7e41fee90fb6110f101315"
+    },
+    {
+      "rom": "004934C0",
+      "bytes": 32,
+      "matches": true,
+      "sha256": "5dfc261a9a11cd8f48d55c9c95c9246898c65d7f0c4ec1f61c44ffda915c6529"
+    },
+    {
+      "rom": "00493500",
+      "bytes": 32,
+      "matches": true,
+      "sha256": "475d55a07a5d03152b8827fb05cfef47f8823488dd1d2ee5d5238615180ac85c"
+    },
+    {
+      "rom": "00493540",
+      "bytes": 32,
+      "matches": true,
+      "sha256": "0c48e3ffcfbf1e28866bc7d7ace8daa81f66b9d78d4c0aca3d561f648ce2f927"
+    },
+    {
+      "rom": "00493580",
+      "bytes": 336,
+      "matches": true,
+      "sha256": "cf536bc54c52e7c4f4ffd6fb48ddc157ea354d1b1d820c6edca7f07f4e203811"
+    },
+    {
+      "rom": "00493670",
+      "bytes": 336,
+      "matches": true,
+      "sha256": "4a38cf0e26794351d1fa56624974244bf2f68056c49ff671908f37541badb442"
+    },
+    {
+      "rom": "00493710",
+      "bytes": 336,
+      "matches": true,
+      "sha256": "9f685840fdc406284ac6f4640c962700e0726791b5a580c2cb1d9918a4debd61"
+    },
+    {
+      "rom": "004937A0",
+      "bytes": 336,
+      "matches": true,
+      "sha256": "774f99e6b56d16e842e0eb06bfd9e8fab1aadf5a072152b30db2d29488ffcdd5"
+    },
+    {
+      "rom": "004DB330",
+      "bytes": 8240,
+      "matches": true,
+      "sha256": "9ec4dd8efa58c43ce6a58bffa2a58966cb3c31392832d620af34f2e76d511e5c"
+    }
+  ],
+  "source_commit": "3e8f12d38c2499c675fcab0c1ea969e04defa935",
+  "next_static_path": "common54C8(0) -> common4F98 -> select scene1/state2 -> 16 update ticks -> resident433D8 -> table8007DC20 -> loader43120 -> callback801BB924",
+  "next_limit": "Initial blocker43120 and overlapping-overlay restriction resolved in test-002 batch; current boundaries recorded in windows-build-check.json"
+}
