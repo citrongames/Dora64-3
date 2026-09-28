@@ -240,3 +240,13 @@ python3 tools/check_lake_overlays.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/D
 
 Windows helper использует startup-v54, audio-rsp-v1 прежний.2860 original,
 44 SDK,17 pending. Общий save root прежний; запуск только у пользователя.
+
+## Windows test-013: деревня пингвинов
+
+```sh
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v55
+python3 tools/check_penguin_overlays.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --generated build-local/startup-v55
+```
+
+Windows helper использует startup-v55, audio-rsp-v1 прежний.2964 original,
+44 SDK,17 pending. Общий save root прежний; запуск только у пользователя.

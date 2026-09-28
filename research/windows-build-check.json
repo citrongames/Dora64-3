@@ -1,10 +1,10 @@
 {
   "scope": "Windows x64 native compile and static generation checks; game not launched by agent",
-  "build_id": "test-012",
+  "build_id": "test-013",
   "compiled": true,
   "locally_launched": false,
   "user_visual_test": "pending",
-  "original_functions": 2860,
+  "original_functions": 2964,
   "sdk_mappings": 44,
   "pending_boundaries": [
     {
@@ -84,6 +84,7 @@
   "save_storage_check": "Windows config root=EXE parent; saves/dora3.n64.jp.bin shared; captures remain per-run. Latest save and bak copied with original retained. Actual runtime component read/write/reopen/backup passed on disposable copy.",
   "mountain_overlay_check": "2 mountain variants,58 functions; all generated calls checked;3 scene1-context references;slot0 reuses existing ROMCEC60; cave batch checked again",
   "lake_overlay_check": "3 lake variants,185 functions; all generated calls checked;6 scene1-context references; mountain batch checked again",
+  "penguin_overlay_check": "2 village variants,104 functions; all generated calls checked;26 scene1-context references;lake batch checked again;false epilogue split corrected",
   "overlay_checks": "Required overlay validation and runtime load/call guards; all generated bodies have ROM-qualified trace guards; no implicit extra function count",
   "rom_lookup": "EXE parent only; external exact filename",
   "api_policy": "RT64 Automatic, same policy as Dora64",
@@ -92,27 +93,27 @@
     "seconds_after_setup": null,
     "environment_override": false
   },
-  "executable_sha256": "4dd8f26dca823aeac691dafda6e7eddc8455a631b27b1e8153b190952b64c037",
+  "executable_sha256": "465ea19721bd66a42d5ad99ecd1c290f752aaed2b82ce837380e66d0560ab3ca",
   "source_sha256": {
     "src/startup_runtime.cpp": "b76b60cdea8ecafb741430fac78fd3df21e372d17130973002390737bbefdfc0",
     "src/live_graphics.cpp": "79917a65c529b9173d2ddf554568b5c4925fc20063531517e0f9c7f580e0afb5",
     "src/live_io.cpp": "6447fa965e3e5fcecaf8eb67c44e31b6bacce5aff6e6c29b2cb3917f96a0114a",
     "src/live_io.hpp": "1bc6f95b5f214e397f58d2cfd1b9a3d0115402ae162858a747ed5a5331fca6a9",
-    "recomp/startup.json": "34fbc74cdf6c18863b8570a7bf059db5a69eefe2bee1d146cc0ec23c5f81e759",
+    "recomp/startup.json": "23ad1d381889825ca3b1558d48d118f9d1bb53aae2aaaa0d8fccfbb3042fc82b",
     "research/runtime/CMakeLists.txt": "f7faf13da872a1adf7dc903e0cf833ccfb9ad2b9d05b5ff7fa19351a7364f281",
     "tools/prepare_runtime_timing.py": "80b5ce71a8c1d7967030b0dc3fc61ebece831188dc00115f7cf7dbdef94b091a",
-    "tools/build_windows.ps1": "e9b3dbae65cb08a355d88818e139e2fc8ca9d8b89838e634bfa37ea9e534463f",
+    "tools/build_windows.ps1": "7e976525207b7762968cbd4860274f71ea1c52cb9f8668dbafa6227cb96b9cbe",
     "tools/generate_startup.py": "b3edacf907f200df0bd96e69c5d617cc92b5a3c16d60d02a668b9256aab2084c",
     "tools/overlay_layout.py": "712675f8481d484a73359fadadfbfbe77e6bdcf474061803be304f9269f4c8b1",
     "tools/local_jump_tables.py": "8f67b564786898b345906e7161580a66b3284fe5aa191c093216ba8bba429dde"
   },
   "generated_receipt_sha256": {
-    "startup-v54": "d7d91d952f84314d2bee91e9394bac777ccf0356b8ac518701823390e488cfb1",
+    "startup-v55": "9dfb8152cf9968f61044f0913f6dde006f5e4afdbe4db44bcbf44721f027a206",
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "dependency_pins_verified": 32,
   "donor_unchanged": "680d81feb4c57309ba80536300d73725ea9dffaa",
-  "previous_user_test": "test-011 mountain loads; lake water-entry lookup abort8023F0DC;701 resources match independent decoder; see windows-test-011-result.json",
+  "previous_user_test": "test-012 water entry works; penguin village lookup abort8023E8B0 after advancing;588 resources match independent decoder; see windows-test-012-result.json",
   "remaining_risks": [
     "Unobserved branches and indirect targets",
     "Hardware calls still fail explicitly",

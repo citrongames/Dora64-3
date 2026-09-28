@@ -14874,6 +14874,568 @@
       "indirect_targets": {
         "0x8023F0DC": "Observed test-011 lookup on water entry after verified ROM1561E0 ->8023D6D0 size35A0; lake slot2 variant"
       }
+    },
+    {
+      "name": ".penguin_slot1",
+      "rom": 1332928,
+      "vram": 2149766864,
+      "size": 32256,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot1",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC0F8",
+        "selector": 11,
+        "text_size": 21952,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8022D6D0": [
+          "dora3_s18_penguin_8022D6D0",
+          388,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D854": [
+          "dora3_s18_penguin_8022D854",
+          388,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D9D8": [
+          "dora3_s18_penguin_8022D9D8",
+          308,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DB0C": [
+          "dora3_s18_penguin_8022DB0C",
+          64,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DB4C": [
+          "dora3_s18_penguin_8022DB4C",
+          732,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DE28": [
+          "dora3_s18_penguin_8022DE28",
+          84,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DE7C": [
+          "dora3_s18_penguin_8022DE7C",
+          416,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E01C": [
+          "dora3_s18_penguin_8022E01C",
+          220,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E0F8": [
+          "dora3_s18_penguin_8022E0F8",
+          316,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E234": [
+          "dora3_s18_penguin_8022E234",
+          296,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E35C": [
+          "dora3_s18_penguin_8022E35C",
+          280,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E474": [
+          "dora3_s18_penguin_8022E474",
+          832,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E7B4": [
+          "dora3_s18_penguin_8022E7B4",
+          204,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E880": [
+          "dora3_s18_penguin_8022E880",
+          144,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E910": [
+          "dora3_s18_penguin_8022E910",
+          144,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E9A0": [
+          "dora3_s18_penguin_8022E9A0",
+          8,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E9A8": [
+          "dora3_s18_penguin_8022E9A8",
+          192,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EA68": [
+          "dora3_s18_penguin_8022EA68",
+          340,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EBBC": [
+          "dora3_s18_penguin_8022EBBC",
+          340,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022ED10": [
+          "dora3_s18_penguin_8022ED10",
+          508,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EF0C": [
+          "dora3_s18_penguin_8022EF0C",
+          64,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EF4C": [
+          "dora3_s18_penguin_8022EF4C",
+          892,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F2C8": [
+          "dora3_s18_penguin_8022F2C8",
+          192,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F388": [
+          "dora3_s18_penguin_8022F388",
+          328,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F4D0": [
+          "dora3_s18_penguin_8022F4D0",
+          328,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F618": [
+          "dora3_s18_penguin_8022F618",
+          360,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F780": [
+          "dora3_s18_penguin_8022F780",
+          296,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F8A8": [
+          "dora3_s18_penguin_8022F8A8",
+          280,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F9C0": [
+          "dora3_s18_penguin_8022F9C0",
+          720,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FC90": [
+          "dora3_s18_penguin_8022FC90",
+          204,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FD5C": [
+          "dora3_s18_penguin_8022FD5C",
+          316,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FE98": [
+          "dora3_s18_penguin_8022FE98",
+          316,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FFD4": [
+          "dora3_s18_penguin_8022FFD4",
+          376,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023014C": [
+          "dora3_s18_penguin_8023014C",
+          64,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023018C": [
+          "dora3_s18_penguin_8023018C",
+          776,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230494": [
+          "dora3_s18_penguin_80230494",
+          84,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802304E8": [
+          "dora3_s18_penguin_802304E8",
+          212,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802305BC": [
+          "dora3_s18_penguin_802305BC",
+          200,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230684": [
+          "dora3_s18_penguin_80230684",
+          336,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802307D4": [
+          "dora3_s18_penguin_802307D4",
+          224,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802308B4": [
+          "dora3_s18_penguin_802308B4",
+          660,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230B48": [
+          "dora3_s18_penguin_80230B48",
+          204,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230C14": [
+          "dora3_s18_penguin_80230C14",
+          160,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230CB4": [
+          "dora3_s18_penguin_80230CB4",
+          160,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230D54": [
+          "dora3_s18_penguin_80230D54",
+          8,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230D5C": [
+          "dora3_s18_penguin_80230D5C",
+          164,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230E00": [
+          "dora3_s18_penguin_80230E00",
+          160,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230EA0": [
+          "dora3_s18_penguin_80230EA0",
+          160,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230F40": [
+          "dora3_s18_penguin_80230F40",
+          8,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230F48": [
+          "dora3_s18_penguin_80230F48",
+          572,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231184": [
+          "dora3_s18_penguin_80231184",
+          208,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231254": [
+          "dora3_s18_penguin_80231254",
+          332,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802313A0": [
+          "dora3_s18_penguin_802313A0",
+          64,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802313E0": [
+          "dora3_s18_penguin_802313E0",
+          988,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802317BC": [
+          "dora3_s18_penguin_802317BC",
+          724,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231A90": [
+          "dora3_s18_penguin_80231A90",
+          128,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231B10": [
+          "dora3_s18_penguin_80231B10",
+          544,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231D30": [
+          "dora3_s18_penguin_80231D30",
+          424,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231ED8": [
+          "dora3_s18_penguin_80231ED8",
+          64,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231F18": [
+          "dora3_s18_penguin_80231F18",
+          664,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802321B0": [
+          "dora3_s18_penguin_802321B0",
+          136,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232238": [
+          "dora3_s18_penguin_80232238",
+          128,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802322B8": [
+          "dora3_s18_penguin_802322B8",
+          220,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232394": [
+          "dora3_s18_penguin_80232394",
+          232,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023247C": [
+          "dora3_s18_penguin_8023247C",
+          64,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802324BC": [
+          "dora3_s18_penguin_802324BC",
+          156,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232558": [
+          "dora3_s18_penguin_80232558",
+          312,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232690": [
+          "dora3_s18_penguin_80232690",
+          128,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232710": [
+          "dora3_s18_penguin_80232710",
+          244,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232804": [
+          "dora3_s18_penguin_80232804",
+          256,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232904": [
+          "dora3_s18_penguin_80232904",
+          64,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232944": [
+          "dora3_s18_penguin_80232944",
+          248,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232A3C": [
+          "dora3_s18_penguin_80232A3C",
+          456,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232C04": [
+          "dora3_s18_penguin_80232C04",
+          140,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {}
+    },
+    {
+      "name": ".penguin_slot2",
+      "rom": 1395344,
+      "vram": 2149832400,
+      "size": 5968,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot2",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC120",
+        "selector": 5,
+        "text_size": 5616,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8023D6D0": [
+          "dora3_s19_penguin_8023D6D0",
+          224,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D7B0": [
+          "dora3_s19_penguin_8023D7B0",
+          144,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D840": [
+          "dora3_s19_penguin_8023D840",
+          8,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D848": [
+          "dora3_s19_penguin_8023D848",
+          148,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D8DC": [
+          "dora3_s19_penguin_8023D8DC",
+          8,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D8E4": [
+          "dora3_s19_penguin_8023D8E4",
+          104,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D94C": [
+          "dora3_s19_penguin_8023D94C",
+          128,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D9CC": [
+          "dora3_s19_penguin_8023D9CC",
+          8,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D9D4": [
+          "dora3_s19_penguin_8023D9D4",
+          80,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DA24": [
+          "dora3_s19_penguin_8023DA24",
+          692,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DCD8": [
+          "dora3_s19_penguin_8023DCD8",
+          84,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DD2C": [
+          "dora3_s19_penguin_8023DD2C",
+          192,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DDEC": [
+          "dora3_s19_penguin_8023DDEC",
+          8,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DDF4": [
+          "dora3_s19_penguin_8023DDF4",
+          72,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DE3C": [
+          "dora3_s19_penguin_8023DE3C",
+          128,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DEBC": [
+          "dora3_s19_penguin_8023DEBC",
+          8,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DEC4": [
+          "dora3_s19_penguin_8023DEC4",
+          200,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DF8C": [
+          "dora3_s19_penguin_8023DF8C",
+          252,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E088": [
+          "dora3_s19_penguin_8023E088",
+          104,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E0F0": [
+          "dora3_s19_penguin_8023E0F0",
+          244,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E1E4": [
+          "dora3_s19_penguin_8023E1E4",
+          432,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E394": [
+          "dora3_s19_penguin_8023E394",
+          308,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E4C8": [
+          "dora3_s19_penguin_8023E4C8",
+          452,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E68C": [
+          "dora3_s19_penguin_8023E68C",
+          324,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E7D0": [
+          "dora3_s19_penguin_8023E7D0",
+          224,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E8B0": [
+          "dora3_s19_penguin_8023E8B0",
+          224,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E990": [
+          "dora3_s19_penguin_8023E990",
+          104,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E9F8": [
+          "dora3_s19_penguin_8023E9F8",
+          228,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EADC": [
+          "dora3_s19_penguin_8023EADC",
+          312,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023EC14": [
+          "dora3_s19_penguin_8023EC14",
+          172,
+          "Penguin village child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {
+        "0x8023E8B0": "Observed test-012 lookup after verified ROM154A90 ->8023D6D0 size1750; penguin village slot2 variant"
+      }
     }
   ],
   "local_jump_tables": [
