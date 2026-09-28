@@ -27,6 +27,7 @@
 #include "xxHash/xxhash.h"
 
 RspExitReason dora3_aspMain(uint8_t*, uint32_t);
+void dora3_configure_hardware(const recomp::Configuration&);
 namespace {
 std::array<std::atomic<bool>,std::size(dora3_overlay_regions)> overlay_active{};
 std::filesystem::path diagnostic_path;
@@ -356,6 +357,7 @@ int main(int argc,char** argv){
     #else
     std::fprintf(stderr,"DIAGNOSTIC: no renderer/audio output, stop codes 77 pending / 78 task / 79 timeout\n");
     #endif
+    dora3_configure_hardware(cfg);
     recomp::start(cfg);
     #ifdef DORA3_LIVE_RT64
     dora3_shutdown_live_io();SDL_Quit();

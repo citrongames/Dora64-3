@@ -1,11 +1,17 @@
 """Section-qualified startup symbols; mutually exclusive overlays keep their identity."""
 import struct
+import hashlib
 
 def prepare_layout(meta, rom):
     sections=[dict(name='.startup',rom=0x1000,vram=0x80025C00,size=0x58E80,
                    compiled=meta['compiled'],indirect_targets=meta.get('indirect_targets',{}))]
     sections.extend(meta.get('overlays',[]))
     compiled={}; sdk={int(k,16):v for k,v in meta['sdk'].items()}; frontier=set(); names=set(); symbols=set()
+    for key,value in meta.get('native',{}).items():
+        address=int(key,16); offset=0x1000+address-0x80025C00
+        if address in sdk or value[1]<=0 or offset<0x1000 or hashlib.sha256(rom[offset:offset+value[1]]).hexdigest()!=value[2]:
+            raise ValueError('Native replacement ROM fingerprint mismatch')
+        sdk[address]=value
     for index,section in enumerate(sections):
         base,size=section['vram'],section['size']
         if (section['name'] in names or base%4 or size%4 or size<=0 or

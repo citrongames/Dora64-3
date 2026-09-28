@@ -72,8 +72,8 @@ def main():
     for section in evidence['sections']:
         parent = 0 if section['name'] == '.minigame_common' else by_name['.minigame_common'] - 1
         assert f"{{0x{section['rom']:X}, {parent}}}" in header
-    assert len(frontier) == 6
-    print(f'PASS: 10 ROM DMA loaders, mini-game menu callbacks and nine variants; {len(evidence["added"])} bodies and generated calls; {len(evidence["context_resolved_calls"])} context references; parent guards; 6 remaining boundaries. No game launch.')
+    assert not frontier
+    print(f'PASS: 10 ROM DMA loaders, mini-game menu callbacks and nine variants; {len(evidence["added"])} bodies and generated calls; {len(evidence["context_resolved_calls"])} context references; parent guards; 0 known remaining boundaries. No game launch.')
 
 if __name__ == '__main__':
     main()

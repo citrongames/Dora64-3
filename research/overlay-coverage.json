@@ -20,16 +20,10 @@
     }
   ],
   "registered_ranges": 49,
-  "original_functions": 4777,
+  "original_functions": 4778,
   "sdk_mappings": 44,
-  "pending": [
-    "0x80045520",
-    "0x800586F0",
-    "0x80058A50",
-    "0x8005F1C0",
-    "0x8005F230",
-    "0x800604E0"
-  ],
+  "native_mappings": 5,
+  "pending": [],
   "generated_direct_call_checks": 18547,
   "regions": [
     {

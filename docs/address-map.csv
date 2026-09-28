@@ -4902,3 +4902,12 @@ verified,overlay,0x159780,0x8023d6d0,0x11e0,.remaining_slot2_07,"ROM loader/tabl
 verified,overlay,0x15a960,0x8023d6d0,0x2ad0,.remaining_slot2_08,"ROM loader/table {'table': '0x801FC100', 'pair': '0x801FC138', 'selector': 8, 'loader': '0x801E4774', 'text_end': '0x8023FC9C'}",Static evidence; user execution pending
 verified,overlay,0x15d430,0x8023d6d0,0x1010,.remaining_slot2_09,"ROM loader/table {'table': '0x801FC100', 'pair': '0x801FC140', 'selector': 9, 'loader': '0x801E4774', 'text_end': '0x8023E51C'}",Static evidence; user execution pending
 verified,overlay,0x59e80,0x801b3770,0x4580,.startup_scene,"ROM loader/table {'loader': '0x800430B8', 'text_end': '0x801B734C'}",Static evidence; user execution pending
+verified,function,0x20920,0x80045520,0x210,dora3_pak_font_decode,Exact ROM body; docs/hardware-interface.md; research/hardware-check.json,User full-game validation; raw RDP rendering unobserved
+verified,hardware,0x33AF0,0x800586F0,0xA0,dora3_dp_set_buffer,Exact ROM body; docs/hardware-interface.md; research/hardware-check.json,User full-game validation; raw RDP rendering unobserved
+verified,hardware,0x33E50,0x80058A50,0xB0,dora3_si_raw_dma,Exact ROM body; docs/hardware-interface.md; research/hardware-check.json,User full-game validation; raw RDP rendering unobserved
+verified,hardware,0x3A5C0,0x8005F1C0,0x70,dora3_disable_int,Exact ROM body; docs/hardware-interface.md; research/hardware-check.json,User full-game validation; raw RDP rendering unobserved
+verified,hardware,0x3A630,0x8005F230,0x20,dora3_restore_int,Exact ROM body; docs/hardware-interface.md; research/hardware-check.json,User full-game validation; raw RDP rendering unobserved
+verified,hardware,0x3B8E0,0x800604E0,0x30,dora3_sp_set_pc,Exact ROM body; docs/hardware-interface.md; research/hardware-check.json,User full-game validation; raw RDP rendering unobserved
+verified,hook,0x2092C,0x8004552C,0x4,Font LW through ROM/RAM bus,Instruction checked during generation;4320 output bytes independently matched,Keep original algorithm and ROM lock
+verified,hook,0x20974,0x80045574,0x4,Font LW through ROM/RAM bus,Instruction checked during generation;4320 output bytes independently matched,Keep original algorithm and ROM lock
+verified,hook,0x209DC,0x800455DC,0x4,Font LW through ROM/RAM bus,Instruction checked during generation;4320 output bytes independently matched,Keep original algorithm and ROM lock

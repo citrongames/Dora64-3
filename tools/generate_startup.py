@@ -43,6 +43,9 @@ def main():
     registry.append('}};')
     (out/'overlay_regions.hpp').write_text('\n'.join(registry)+'\n')
     declarations=['#pragma once','#include "recomp.h"','#ifdef __cplusplus','extern "C" {','#endif','void dora3_trace(uint8_t*, recomp_context*, uint32_t, uint32_t);','void dora3_pending(uint32_t);','void dora3_verify_dma(uint8_t*);','void dora3_capture_resource(uint8_t*, recomp_context*);','void dora3_mark_stream_dma(void);']
+    native_names=[v[0] for v in meta.get('native',{}).values()]
+    declarations.append('uint32_t dora3_bus_read32(uint8_t*, uint32_t);')
+    declarations.extend(f'void {name}(uint8_t*, recomp_context*);' for name in native_names)
     bodies=['#include "startup_hooks.h"']
     for index,addr in sorted(frontier):
         name=pending_name(index,addr)
@@ -55,10 +58,16 @@ def main():
     for key,value in [('symbols_file_path',out/'startup.syms.toml'),('rom_file_path',a.rom.resolve()),('output_func_path',out/'RecompiledFuncs')]:
         config+=f'{key} = {json.dumps(value.as_posix())}\n'
     config+='recomp_include = '+json.dumps('#include "startup_hooks.h"')+'\n[patches]\n'
-    config+='ignored = '+json.dumps([pending_name(index,addr) for index,addr in sorted(frontier)])+'\n'
+    config+='ignored = '+json.dumps([pending_name(index,addr) for index,addr in sorted(frontier)]+native_names)+'\n'
     config+='hook = [\n'
     for (index,addr),(name,size,evidence) in compiled.items():
         config+=f'{{ func = "{name}", before_vram = 0x{addr:08X}, text = "dora3_trace(rdram, ctx, 0x{addr:08X}, 0x{sections[index]["rom"]:X});" }},\n'
+    if (0,0x80045520) in compiled:
+        for load,word,displacement in [(0x8004552C,0x8CC7FFFC,-4),(0x80045574,0x8CC7FFFC,-4),(0x800455DC,0x8CC70000,0)]:
+            assert struct.unpack_from('>I',rom,0x1000+load-0x80025C00)[0]==word
+            hook=f'ctx->r7 = (int32_t)dora3_bus_read32(rdram, (uint32_t)ctx->r6 + ({displacement})); goto dora3_after_{load:08X};'
+            config+=f'{{ func = "dora3_pak_font_decode", before_vram = 0x{load:08X}, text = {json.dumps(hook)} }},\n'
+            config+=f'{{ func = "dora3_pak_font_decode", before_vram = 0x{load+4:08X}, text = "dora3_after_{load:08X}:;" }},\n'
     for jump in local_jumps:
         config+=f'{{ func = "{jump["func"]}", before_vram = 0x{jump["load"]:08X}, text = {json.dumps(jump["text"])} }},\n'
     if (0,0x8002730C) in compiled:
@@ -81,6 +90,6 @@ def main():
             'rom_sha256':hashlib.sha256(rom).hexdigest(),'tool_sha256':sha(binary),'inputs':{x:sha(ROOT/x) for x in inputs},
             'generated':{x.relative_to(out).as_posix():sha(x) for x in tracked},'frontier':[{'section':sections[i]['name'],'address':f'0x{x:08X}'} for i,x in sorted(frontier)],'sections':[{k:v for k,v in section.items() if k not in ('compiled','indirect_targets')} for section in sections]}
     (out/'generation-receipt.json').write_text(json.dumps(report,indent=2)+'\n')
-    print(f'{len(compiled)} original functions; {len(sdk)} SDK replacements; {len(frontier)} explicit pending boundaries')
+    print(f'{len(compiled)} original functions; {len(sdk)-len(native_names)} SDK replacements; {len(native_names)} native hardware replacements; {len(frontier)} explicit pending boundaries')
 
 if __name__=='__main__':main()

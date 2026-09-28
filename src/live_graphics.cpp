@@ -1,6 +1,8 @@
 // Windows/Linux research frontend, original VI and F3DEX2, no game-one patches.
 #include "live_graphics.hpp"
 #include "live_io.hpp"
+#include "n64_hardware.hpp"
+void dora3_raw_dp_event();
 #include "ultramodern/ultramodern.hpp"
 #include <SDL.h>
 #ifdef _WIN32
@@ -29,6 +31,9 @@ class LiveContext final : public ultramodern::renderer::RendererContext {
     uint8_t* ram;
     std::unique_ptr<RT64::Application> app;
     unsigned tasks=0;
+    inline static LiveContext* current=nullptr;
+    bool parsing_raw=false;
+    unsigned raw_syncs=0;
 public:
     LiveContext(uint8_t* rdram, ultramodern::renderer::WindowHandle window):ram(rdram){
         RT64::Application::Core core{};
@@ -38,7 +43,12 @@ public:
         core.window=window;
         #endif
         core.HEADER=header.data();core.RDRAM=ram;
-        core.DMEM=dmem.data();core.IMEM=imem.data();core.checkInterrupts=[](){};
+        core.DMEM=dmem.data();core.IMEM=imem.data();
+        current=this;
+        core.checkInterrupts=[](){
+            if(current->parsing_raw && (current->registers[0]&0x20)) ++current->raw_syncs;
+            current->registers[0]=0;
+        };
         core.MI_INTR_REG=&registers[0];core.DPC_START_REG=&registers[1];core.DPC_END_REG=&registers[2];
         core.DPC_CURRENT_REG=&registers[3];core.DPC_STATUS_REG=&registers[4];core.DPC_CLOCK_REG=&registers[5];
         core.DPC_BUFBUSY_REG=&registers[6];core.DPC_PIPEBUSY_REG=&registers[7];core.DPC_TMEM_REG=&registers[8];
@@ -80,6 +90,19 @@ public:
     bool update_config(const ultramodern::renderer::GraphicsConfig&,const ultramodern::renderer::GraphicsConfig&) override{return true;}
     void enable_instant_present() override{}
     void send_dl(const OSTask* task) override{
+        if(task->t.type==dora3::hw::raw_rdp_task){
+            const uint32_t start=uint32_t(task->t.data_ptr),bytes=task->t.data_size;
+            if((start&7) || (bytes&7) || start>=dora3::hw::ram_size || bytes>dora3::hw::ram_size-start) std::abort();
+            registers[1]=registers[3]=start; registers[2]=start+bytes;
+            registers[4]=0x180;
+            parsing_raw=true; raw_syncs=0;
+            // Raw RDP commands retain DP state; there is no RSP microcode here.
+            app->processDisplayLists(ram,start,start+bytes,false);
+            parsing_raw=false; registers[3]=start+bytes; registers[4]=0x80;
+            dora3::hw::dp_consumed();
+            for(unsigned i=0;i<raw_syncs;++i) dora3_raw_dp_event();
+            return;
+        }
         const auto text=uint32_t(task->t.ucode)&0x1FFFFFFF;
         const auto data=uint32_t(task->t.ucode_data)&0x1FFFFFFF;
         const auto dl=uint32_t(task->t.data_ptr)&0x1FFFFFFF;

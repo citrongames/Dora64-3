@@ -66,7 +66,7 @@ def check(meta, rom, generated):
             required = [j for j in hits if sections[j]['name'] in section.get('requires', [])]
             dest = index if index in hits else required[0] if len(required)==1 else hits[0] if len(hits)==1 else None
             assert dest is not None, (name, hex(target))
-            expected = sdk[target][0]+'_recomp' if dest==0 and target in sdk else compiled[dest,target][0] if (dest,target) in compiled else pending_name(dest,target)
+            expected = sdk[target][0]+('' if f'0x{target:08X}' in meta.get('native',{}) else '_recomp') if dest==0 and target in sdk else compiled[dest,target][0] if (dest,target) in compiled else pending_name(dest,target)
             assert expected+'(rdram, ctx)' in body or f'LOOKUP_FUNC(0x{target:08X})' in body, (name, expected)
             direct_count += 1
     header = (generated/'overlay_regions.hpp').read_text()
@@ -83,8 +83,8 @@ def check(meta, rom, generated):
         words=struct.unpack_from('>'+str(n//4)+'I',rom,s['rom']+a-s['vram'])
         last=max(k for k,w in enumerate(words) if w)
         assert any(k>=last-1 and (w>>26==2 or w&0xFC1FFFFF==8) for k,w in enumerate(words)),('Unreviewed function tail',i,hex(a))
-    assert {a for i,a in frontier} == {0x80045520,0x800586F0,0x80058A50,0x8005F1C0,0x8005F230,0x800604E0}
-    return dict(scope='All ranges from14 fixed DMA loaders and3 known child tables; not proof of all game code or execution paths',fixed_ranges=14,child_nonempty_ranges=35,empty_entries=empty,registered_ranges=49,original_functions=len(compiled),sdk_mappings=len(sdk),pending=[f'0x{a:08X}' for _,a in sorted(frontier)],generated_direct_call_checks=direct_count,regions=rows,game_launched=False)
+    assert not frontier
+    return dict(scope='All ranges from14 fixed DMA loaders and3 known child tables; not proof of all game code or execution paths',fixed_ranges=14,child_nonempty_ranges=35,empty_entries=empty,registered_ranges=49,original_functions=len(compiled),sdk_mappings=len(meta['sdk']),native_mappings=len(meta.get('native',{})),pending=[f'0x{a:08X}' for _,a in sorted(frontier)],generated_direct_call_checks=direct_count,regions=rows,game_launched=False)
 
 
 def main():
@@ -95,6 +95,6 @@ def main():
     args=p.parse_args()
     report=check(json.loads((ROOT/'recomp/startup.json').read_text()),read_rom(args.rom),args.generated)
     if args.output:args.output.write_text(json.dumps(report,indent=2)+'\n')
-    print(f"PASS:14 fixed+35 child ranges,3 empty entries;{report['original_functions']} originals;{report['generated_direct_call_checks']} generated JAL checks;parent guards and repaired epilogue.6 hardware boundaries remain.")
+    print(f"PASS:14 fixed+35 child ranges,3 empty entries;{report['original_functions']} originals;{report['generated_direct_call_checks']} generated JAL checks;parent guards and repaired epilogue.0 known pending boundaries.")
 
 if __name__=='__main__':main()

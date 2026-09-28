@@ -1,37 +1,27 @@
 {
   "scope": "Windows x64 native compile and static generation checks; game not launched by agent",
-  "build_id": "test-015",
+  "build_id": "test-016",
   "compiled": true,
   "locally_launched": false,
   "user_visual_test": "pending",
-  "original_functions": 4777,
+  "original_functions": 4778,
   "sdk_mappings": 44,
-  "pending_boundaries": [
-    {
-      "section": ".startup",
-      "address": "0x80045520"
-    },
-    {
-      "section": ".startup",
-      "address": "0x800586F0"
-    },
-    {
-      "section": ".startup",
-      "address": "0x80058A50"
-    },
-    {
-      "section": ".startup",
-      "address": "0x8005F1C0"
-    },
-    {
-      "section": ".startup",
-      "address": "0x8005F230"
-    },
-    {
-      "section": ".startup",
-      "address": "0x800604E0"
+  "native_hardware_mappings": 5,
+  "hardware_check": {
+    "scope": "Hardware component checks; no game or renderer launch; graphics device validation remains manual",
+    "result": "PASS: nested IE and real queued-event deferral; SI write/read events, busy/error paths, controller repeat polls; all256 EEPROM blocks and shared runtime storage; DP ABI/busy/completion; SP halt/PC; original font matches independent bitstream decoder. No game or renderer launched.",
+    "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+    "font_bytes": 4320,
+    "font_sha256": "f5c7c12e98cda438f148109aeed86cb04b9378101c9ee43e36cb26e441f3dd2b",
+    "sources": {
+      "research/hardware-check.cpp": "65d95aa5a10eb6cf10f1ff6b67f775a371effc8e1489c19e19bfd6d0e07cf71e",
+      "src/n64_hardware.cpp": "5ba6ab5b89daba9af5dbc0f3abcf89cc6e6d25bfc1164427cf51de1e5a9a5ca3",
+      "src/n64_hardware_backend.cpp": "e0031e99be8ca477a29780824508462522d7782d4a9a343ddd89720ab5faad6f",
+      "tools/check_hardware.py": "f265252a87c74a8484db9ad478afa7ee79abe0ff8f87e1aa9ea6ee1b8c879412",
+      "tools/prepare_runtime_timing.py": "5cd2eace0f9455339aef89b92f8469a5f7c807a73749fb726045717d67b98897"
     }
-  ],
+  },
+  "pending_boundaries": [],
   "candidate_analysis": "spimdisasm1.42.4 extents and call/reference closure; N64Recomp accepts instructions/control flow; not proof of all boundaries or semantics",
   "menu_local_jump_check": "2 ROM-validated LW/JR/NOP local dispatch hooks;10 branch cases and register preservation pass; invalid targets and changed ROM evidence rejected; generated labels and hook locations verified",
   "demo_dispatch_check": "3 child overlays and6 context-sensitive direct calls rechecked; generated parent guards target scene1",
@@ -51,22 +41,25 @@
     "seconds_after_setup": null,
     "environment_override": false
   },
-  "executable_sha256": "21b822fd1f69c84ff8142740e557326c0329bbbe4dee5ab1d5d408266b283fdd",
+  "executable_sha256": "67dd5ff61f169bcb8d8af6f22de6564465f1e8f111241856c85181aa7ba72f53",
   "source_sha256": {
-    "src/startup_runtime.cpp": "b76b60cdea8ecafb741430fac78fd3df21e372d17130973002390737bbefdfc0",
-    "src/live_graphics.cpp": "79917a65c529b9173d2ddf554568b5c4925fc20063531517e0f9c7f580e0afb5",
+    "src/n64_hardware.cpp": "5ba6ab5b89daba9af5dbc0f3abcf89cc6e6d25bfc1164427cf51de1e5a9a5ca3",
+    "src/n64_hardware.hpp": "b18a04de14a457d8d40787316f992cca5a579def5ff5fe64e9e17bb1729dc5d2",
+    "src/n64_hardware_backend.cpp": "e0031e99be8ca477a29780824508462522d7782d4a9a343ddd89720ab5faad6f",
+    "src/startup_runtime.cpp": "3e3cbd13d866a96b94eca81f72ed9d918e953a493871acc332fce0e988778328",
+    "src/live_graphics.cpp": "c74abdf321af7a86dd5977e4d6ce26700bc276e2c30030703ee4f2618a9c45d8",
     "src/live_io.cpp": "6447fa965e3e5fcecaf8eb67c44e31b6bacce5aff6e6c29b2cb3917f96a0114a",
     "src/live_io.hpp": "1bc6f95b5f214e397f58d2cfd1b9a3d0115402ae162858a747ed5a5331fca6a9",
-    "recomp/startup.json": "1948c84f9eb22ac5ee1e2a1b3b9f222a71fa7208fa1194343d9e68bc4be5d843",
-    "research/runtime/CMakeLists.txt": "f7faf13da872a1adf7dc903e0cf833ccfb9ad2b9d05b5ff7fa19351a7364f281",
-    "tools/prepare_runtime_timing.py": "80b5ce71a8c1d7967030b0dc3fc61ebece831188dc00115f7cf7dbdef94b091a",
-    "tools/build_windows.ps1": "f5c0558d11c0e61cdf7520a323e11619a6589493f39604d549460aa24bb0c3c7",
-    "tools/generate_startup.py": "b3edacf907f200df0bd96e69c5d617cc92b5a3c16d60d02a668b9256aab2084c",
-    "tools/overlay_layout.py": "712675f8481d484a73359fadadfbfbe77e6bdcf474061803be304f9269f4c8b1",
+    "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
+    "research/runtime/CMakeLists.txt": "6db4054167239027c81dbe6d97b834d539ba8f4120df22dfea2a2ec0dcd74c91",
+    "tools/prepare_runtime_timing.py": "5cd2eace0f9455339aef89b92f8469a5f7c807a73749fb726045717d67b98897",
+    "tools/build_windows.ps1": "c1a534211d46e6f7d6618162751b225aded4a24936dad46b3b44b0edc939f057",
+    "tools/generate_startup.py": "488672abef9ba40dc2f808e4a2afc0360f27503d205b3d7acfe57dc3eb17d203",
+    "tools/overlay_layout.py": "cc7000d4a188115cb9ba2c04de60691b2431edf4a858a393c2877b6b5feaed3e",
     "tools/local_jump_tables.py": "8f67b564786898b345906e7161580a66b3284fe5aa191c093216ba8bba429dde"
   },
   "generated_receipt_sha256": {
-    "startup-v58": "ef3f7bfc9b720a3920bee46c859bc8bd4b3dd432e8edb8e8b2acb6be978415fc",
+    "startup-v59": "27f8fdbc9bdda3a1b311d31d987ebe1d11babb92699b2017ae573198ffee27a0",
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "dependency_pins_verified": 32,
@@ -74,7 +67,7 @@
   "previous_user_test": "test-014 available mini-games user-tested without observed crashes; locked variants untested; see windows-test-014-result.json",
   "remaining_risks": [
     "Unobserved branches and indirect targets",
-    "Hardware calls still fail explicitly",
+    "Raw RDP path compiled and reviewed; renderer execution not locally tested",
     "GPU lifetime remains unproved",
     "Full gameplay and saves not validated; intro audio/visual confirmed in test-003"
   ]

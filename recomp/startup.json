@@ -3479,6 +3479,11 @@
       "dora3_s0_remaining_80035EEC",
       108,
       "Remaining raw-overlay table batch; original instructions; candidate text extents and reference closure; section-qualified common dependencies"
+    ],
+    "0x80045520": [
+      "dora3_pak_font_decode",
+      528,
+      "Original decoder; three ROM/RAM LW reads adapted through checked N64 bus access; docs/hardware-interface.md"
     ]
   },
   "sdk": {
@@ -25186,5 +25191,32 @@
       ],
       "evidence": "Neighboring slot-detail loop: s0 advances four bytes per iteration; generated jr_addend freezes at zero; use actual loaded target"
     }
-  ]
+  ],
+  "native": {
+    "0x800586F0": [
+      "dora3_dp_set_buffer",
+      160,
+      "d63ecf6f0af75f4df185a73394c6ed10e013d91c662f661f0f7faaab19786663"
+    ],
+    "0x80058A50": [
+      "dora3_si_raw_dma",
+      176,
+      "cbe792f0e08d5b39dd10553e91812bb17cc59fab6fa2312010cb5be052ac03cf"
+    ],
+    "0x8005F1C0": [
+      "dora3_disable_int",
+      112,
+      "e8a33311f78b64777d11e1084c9d0bf985a2734fe9e52316c64f1c2853d47bd1"
+    ],
+    "0x8005F230": [
+      "dora3_restore_int",
+      32,
+      "760fabe684a57096a1f98fb972d27fc9ae0f5b227768fa227ed73c15b4ad1e09"
+    ],
+    "0x800604E0": [
+      "dora3_sp_set_pc",
+      48,
+      "dc91267c4819d9570fec5cce3603eaba622a69c8aee5936ff43ca094fe21f8d1"
+    ]
+  }
 }

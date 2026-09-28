@@ -1,0 +1,14 @@
+{
+  "scope": "Hardware component checks; no game or renderer launch; graphics device validation remains manual",
+  "result": "PASS: nested IE and real queued-event deferral; SI write/read events, busy/error paths, controller repeat polls; all256 EEPROM blocks and shared runtime storage; DP ABI/busy/completion; SP halt/PC; original font matches independent bitstream decoder. No game or renderer launched.",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "font_bytes": 4320,
+  "font_sha256": "f5c7c12e98cda438f148109aeed86cb04b9378101c9ee43e36cb26e441f3dd2b",
+  "sources": {
+    "research/hardware-check.cpp": "65d95aa5a10eb6cf10f1ff6b67f775a371effc8e1489c19e19bfd6d0e07cf71e",
+    "src/n64_hardware.cpp": "5ba6ab5b89daba9af5dbc0f3abcf89cc6e6d25bfc1164427cf51de1e5a9a5ca3",
+    "src/n64_hardware_backend.cpp": "e0031e99be8ca477a29780824508462522d7782d4a9a343ddd89720ab5faad6f",
+    "tools/check_hardware.py": "f265252a87c74a8484db9ad478afa7ee79abe0ff8f87e1aa9ea6ee1b8c879412",
+    "tools/prepare_runtime_timing.py": "5cd2eace0f9455339aef89b92f8469a5f7c807a73749fb726045717d67b98897"
+  }
+}
