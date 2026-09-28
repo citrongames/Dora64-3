@@ -2,7 +2,7 @@
 
 Отдельный локальный проект нативной рекомпиляции **Doraemon 3: Nobita no Machi SOS!**
 для Windows, Linux и Android. Vita отложена. Готового игрового порта/APK пока нет.
-Windows test-004: ограниченный старт, проверка картинки у пользователя;
+Windows test-005: без лимита времени и числа графических задач; проверка у пользователя;
 [инструкция и ограничения](docs/windows-test-build.md).
 
 Проверенный ROM: Japan, N3DJ, revision byte 0, big-endian z64, 16 МиБ.

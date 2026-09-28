@@ -1,6 +1,6 @@
 {
   "scope": "Windows x64 native compile and static generation checks; game not launched by agent",
-  "build_id": "test-004",
+  "build_id": "test-005",
   "compiled": true,
   "locally_launched": false,
   "user_visual_test": "pending",
@@ -82,13 +82,14 @@
   "rom_lookup": "EXE parent only; external exact filename",
   "api_policy": "RT64 Automatic, same policy as Dora64",
   "limits": {
-    "graphics_tasks": 1800,
-    "seconds_after_setup": 120
+    "graphics_tasks": null,
+    "seconds_after_setup": null,
+    "environment_override": false
   },
-  "executable_sha256": "ddae23f2fb95c8a6d936c57923c2e28da538d092adf88b45cc4dd4c65d08c8aa",
+  "executable_sha256": "17ffe7ad75e3725b9e21c605ad810ad935467f7c4b21a67cd4712233aab7ad82",
   "source_sha256": {
     "src/startup_runtime.cpp": "90a66e47c27a5b68f74f195b9b5ef7d555ad15c48ac856e013bdb1c890dd5e97",
-    "src/live_graphics.cpp": "32fc444bfb592e7be40977b65ac114abefa2df9de336c87743365c3d252da425",
+    "src/live_graphics.cpp": "79917a65c529b9173d2ddf554568b5c4925fc20063531517e0f9c7f580e0afb5",
     "src/live_io.cpp": "6447fa965e3e5fcecaf8eb67c44e31b6bacce5aff6e6c29b2cb3917f96a0114a",
     "src/live_io.hpp": "1bc6f95b5f214e397f58d2cfd1b9a3d0115402ae162858a747ed5a5331fca6a9",
     "recomp/startup.json": "edf18015d109d2ba9a496ba8ebb9d20c623594027f5bf6088fae68e3223b1d44",
@@ -104,11 +105,11 @@
   },
   "dependency_pins_verified": 32,
   "donor_unchanged": "680d81feb4c57309ba80536300d73725ea9dffaa",
-  "previous_user_test": "test-003 music and intro3D confirmed; scene31 lookup abort801C0CC0;297 resources match; see windows-test-003-result.json",
+  "previous_user_test": "User reports test-004 diagnostic limit interrupted testing; test-005 removes it; no new gameplay coverage claimed",
   "remaining_risks": [
     "Unobserved branches and indirect targets",
     "Hardware calls still fail explicitly",
     "GPU lifetime remains unproved",
-    "No audible music or full gameplay validation"
+    "Full gameplay and saves not validated; intro audio/visual confirmed in test-003"
   ]
 }

@@ -1,0 +1,114 @@
+{
+  "scope": "Windows x64 native compile and static generation checks; game not launched by agent",
+  "build_id": "test-004",
+  "compiled": true,
+  "locally_launched": false,
+  "user_visual_test": "pending",
+  "original_functions": 1520,
+  "sdk_mappings": 44,
+  "pending_boundaries": [
+    {
+      "section": ".startup",
+      "address": "0x800430B8"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80043188"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800431BC"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800431F0"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80043224"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80043258"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8004328C"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800432C0"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800432F4"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80043328"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8004335C"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80045520"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800586F0"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80058A50"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8005F1C0"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8005F230"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800604E0"
+    }
+  ],
+  "candidate_analysis": "spimdisasm1.42.4 extents and call/reference closure; N64Recomp accepts instructions/control flow; not proof of all boundaries or semantics",
+  "menu_dispatch_check": "6 shared-overlay roots;165 new functions and references resolved in correct ROM sections; EEPROM write binding reviewed",
+  "overlay_checks": "Unchanged overlay layout implementation; all generated bodies have ROM-qualified trace guards; no implicit extra function count",
+  "rom_lookup": "EXE parent only; external exact filename",
+  "api_policy": "RT64 Automatic, same policy as Dora64",
+  "limits": {
+    "graphics_tasks": 1800,
+    "seconds_after_setup": 120
+  },
+  "executable_sha256": "ddae23f2fb95c8a6d936c57923c2e28da538d092adf88b45cc4dd4c65d08c8aa",
+  "source_sha256": {
+    "src/startup_runtime.cpp": "90a66e47c27a5b68f74f195b9b5ef7d555ad15c48ac856e013bdb1c890dd5e97",
+    "src/live_graphics.cpp": "32fc444bfb592e7be40977b65ac114abefa2df9de336c87743365c3d252da425",
+    "src/live_io.cpp": "6447fa965e3e5fcecaf8eb67c44e31b6bacce5aff6e6c29b2cb3917f96a0114a",
+    "src/live_io.hpp": "1bc6f95b5f214e397f58d2cfd1b9a3d0115402ae162858a747ed5a5331fca6a9",
+    "recomp/startup.json": "edf18015d109d2ba9a496ba8ebb9d20c623594027f5bf6088fae68e3223b1d44",
+    "research/runtime/CMakeLists.txt": "f7faf13da872a1adf7dc903e0cf833ccfb9ad2b9d05b5ff7fa19351a7364f281",
+    "tools/prepare_runtime_timing.py": "80b5ce71a8c1d7967030b0dc3fc61ebece831188dc00115f7cf7dbdef94b091a",
+    "tools/build_windows.ps1": "0d08181fcb0133ba4965fce909ef8a714d0d800a25281a591340417755477a5a",
+    "tools/generate_startup.py": "472c7ab2ddfdf8552932d9ed469bfe73dab92041ffec3f591dad81d6f134075d",
+    "tools/overlay_layout.py": "6bcbcb44652853fbb846f1d735c416358770335a462c802dbad5d718aa150ade"
+  },
+  "generated_receipt_sha256": {
+    "startup-v46": "fe41384cf37681dd159d59d63ece4ad7ae03afb52480ca7388294ed617bc39a5",
+    "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
+  },
+  "dependency_pins_verified": 32,
+  "donor_unchanged": "680d81feb4c57309ba80536300d73725ea9dffaa",
+  "previous_user_test": "test-003 music and intro3D confirmed; scene31 lookup abort801C0CC0;297 resources match; see windows-test-003-result.json",
+  "remaining_risks": [
+    "Unobserved branches and indirect targets",
+    "Hardware calls still fail explicitly",
+    "GPU lifetime remains unproved",
+    "No audible music or full gameplay validation"
+  ]
+}

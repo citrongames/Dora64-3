@@ -1,4 +1,4 @@
-// Bounded Windows/Linux research frontend, original VI and F3DEX2, no game-one patches.
+// Windows/Linux research frontend, original VI and F3DEX2, no game-one patches.
 #include "live_graphics.hpp"
 #include "live_io.hpp"
 #include "ultramodern/ultramodern.hpp"
@@ -20,9 +20,7 @@
 #include "hle/rt64_rsp.h"
 
 namespace {
-std::atomic<bool> ready{false};
 SDL_Window* live_window=nullptr;
-unsigned task_limit=1800;
 std::atomic<unsigned> submitted{0},completed{0};
 class LiveContext final : public ultramodern::renderer::RendererContext {
     std::array<uint8_t,0x1000> dmem{}, imem{};
@@ -77,7 +75,6 @@ public:
         default:
             std::fprintf(stderr,"LIVE RT64 unexpected API\n");std::_Exit(84);
         }
-        ready=true;
     }
     bool valid() override{return true;}
     bool update_config(const ultramodern::renderer::GraphicsConfig&,const ultramodern::renderer::GraphicsConfig&) override{return true;}
@@ -100,7 +97,6 @@ public:
         app->processDisplayLists(ram,dl,0,true);
         std::fprintf(stderr,"LIVE RT64 PARSED task=%u dl=%08X bytes=%X gbi=7\n",++tasks,dl,task->t.data_size);
         completed.fetch_add(1);
-        if(tasks>=task_limit){std::fprintf(stderr,"LIVE RESEARCH task boundary limit=%u\n",task_limit);std::_Exit(78);}
     }
     void send_dummy_workload(uint32_t) override{}
     void update_screen(bool=false) override{app->updateScreen();}
@@ -113,11 +109,7 @@ public:
 
 void dora3_configure_live_graphics(recomp::Configuration& cfg){
     dora3_configure_live_input(cfg);
-    if(const char* value=std::getenv("DORA3_MAX_TASKS")){
-        char* end=nullptr;const auto count=std::strtoul(value,&end,10);
-        if(!*value || *end || count<1 || count>7200){std::fprintf(stderr,"DORA3_MAX_TASKS must be1..7200\n");std::_Exit(2);}
-        task_limit=unsigned(count);
-    }
+    std::fprintf(stderr,"LIVE SESSION: no time or graphics-task limit\n");
     cfg.events_callbacks.gfx_task_submitted_callback=[](uint8_t*,uint32_t dl,uint32_t bytes){
         std::fprintf(stderr,"LIVE RT64 SUBMITTED task=%u dl=%08X bytes=%X\n",submitted.fetch_add(1)+1,dl,bytes);
     };
@@ -145,12 +137,6 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
         SDL_Event event;
         while(SDL_PollEvent(&event))if(event.type==SDL_QUIT)ultramodern::quit();
         dora3_poll_live_input(live_window);
-        if(ready.load()){
-            static const auto start=std::chrono::steady_clock::now();
-            if(std::chrono::steady_clock::now()-start>std::chrono::seconds(120)){
-                std::fprintf(stderr,"LIVE RESEARCH timeout after setup\n");std::_Exit(79);
-            }
-        }
     };
 }
 
