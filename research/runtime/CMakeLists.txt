@@ -52,10 +52,10 @@ if(NOT MSVC)
     target_compile_options(dora3_startup PRIVATE -fno-strict-aliasing)
 endif()
 
-option(DORA3_LIVE_RT64 "Experimental Linux live RT64 startup" OFF)
+option(DORA3_LIVE_RT64 "Experimental desktop live RT64 startup" OFF)
 if(DORA3_LIVE_RT64)
-    if(NOT CMAKE_SYSTEM_NAME STREQUAL "Linux")
-        message(FATAL_ERROR "Live research frontend currently supports Linux only")
+    if(NOT (CMAKE_SYSTEM_NAME STREQUAL "Linux" OR WIN32))
+        message(FATAL_ERROR "Live research frontend currently supports Linux/Windows only")
     endif()
     find_package(Python3 REQUIRED COMPONENTS Interpreter)
     execute_process(COMMAND "${Python3_EXECUTABLE}" "${ROOT}/tools/prepare_runtime_timing.py"
@@ -71,13 +71,28 @@ if(DORA3_LIVE_RT64)
     set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
         "${ROOT}/tools/prepare_runtime_timing.py" "${RUNTIME}/ultramodern/src/events.cpp")
     set(RT64_ROOT "${ROOT}/build-deps/lib/rt64")
-    find_package(SDL2 REQUIRED)
+    if(WIN32)
+        set(SDL2_ROOT "${RT64_ROOT}/src/contrib/mupen64plus-win32-deps/SDL2-2.26.3")
+        add_library(SDL2::SDL2 SHARED IMPORTED)
+        set_target_properties(SDL2::SDL2 PROPERTIES
+            IMPORTED_IMPLIB "${SDL2_ROOT}/lib/x64/SDL2.lib"
+            IMPORTED_LOCATION "${SDL2_ROOT}/lib/x64/SDL2.dll"
+            INTERFACE_INCLUDE_DIRECTORIES "${SDL2_ROOT}/include")
+        target_compile_definitions(dora3_startup PRIVATE NOMINMAX SDL_MAIN_HANDLED)
+        set_target_properties(dora3_startup PROPERTIES OUTPUT_NAME "Dora64-3")
+        add_custom_command(TARGET dora3_startup POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:SDL2::SDL2>" "$<TARGET_FILE_DIR:dora3_startup>"
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different "${RT64_ROOT}/src/contrib/dxc/bin/x64/dxcompiler.dll" "$<TARGET_FILE_DIR:dora3_startup>"
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different "${RT64_ROOT}/src/contrib/dxc/bin/x64/dxil.dll" "$<TARGET_FILE_DIR:dora3_startup>")
+    else()
+        find_package(SDL2 REQUIRED)
+    endif()
     if(NOT TARGET rt64)
         set(RT64_STATIC TRUE)
         set(RT64_SDL_WINDOW_VULKAN TRUE)
         add_subdirectory("${RT64_ROOT}" rt64)
     endif()
-    target_sources(dora3_startup PRIVATE "${ROOT}/src/live_graphics.cpp")
+    target_sources(dora3_startup PRIVATE "${ROOT}/src/live_graphics.cpp" "${ROOT}/src/live_io.cpp")
     target_compile_definitions(dora3_startup PRIVATE DORA3_LIVE_RT64)
     target_include_directories(dora3_startup PRIVATE "${RT64_ROOT}/src" "${RT64_ROOT}/src/contrib"
         "${RT64_ROOT}/src/contrib/hlslpp/include" "${RT64_ROOT}/src/rhi" "${RT64_ROOT}/src/render")

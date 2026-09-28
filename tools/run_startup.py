@@ -18,6 +18,7 @@ def observations(log):
         'live_rt64_submissions':re.findall(r'LIVE RT64 SUBMITTED (.*)',log),
         'live_rt64_drain':re.findall(r'LIVE RT64 DRAIN (.*)',log),
         'live_rt64_tasks':re.findall(r'LIVE RT64 PARSED (.*)',log),
+        'sdl_io':re.findall(r'^(LIVE (?:INPUT|AUDIO).*|SDL:.*)$',log,re.M),
         'graphics_capture_saved':'GRAPHICS CAPTURE saved' in log,
     }
 
@@ -40,8 +41,8 @@ def main():
             exit_code=124
     report={'scope':'diagnostic startup; RSP completion recorded separately; no rendered frame or audio device validation','rom_sha256':hashlib.sha256(rom).hexdigest(),
             'executable_sha256':hashlib.sha256(exe.read_bytes()).hexdigest(),'native_exit_code':exit_code,'exit_code':exit_code,
-            'meaning':{77:'unreviewed function reached',78:'diagnostic task/output boundary; inspect observations',79:'runtime timeout',80:'runtime error',81:'DMA verification failure',82:'audio RSP identity/execution failure',83:'private graphics capture write failure',84:'live renderer setup/task failure',85:'overlay lifecycle failure',86:'resource capture or differential verification failure',124:'runner timeout'}.get(exit_code,'unexpected termination')}
-    report['scope']='bounded live RT64 startup; original scene not yet validated; PCM measured/discarded' if a.live else report['scope']
+            'meaning':{77:'unreviewed function reached',78:'diagnostic task/output boundary; inspect observations',79:'runtime timeout',80:'runtime error',81:'DMA verification failure',82:'audio RSP identity/execution failure',83:'private graphics capture write failure',84:'live renderer setup/task failure',85:'overlay lifecycle failure',86:'resource capture or differential verification failure',87:'SDL input/audio failure',124:'runner timeout'}.get(exit_code,'unexpected termination')}
+    report['scope']='bounded live RT64 startup; original scene not yet validated; SDL input/audio enabled unless disabled by environment; PCM measured; visual/audible output unverified' if a.live else report['scope']
     report['mode']='live_rt64' if a.live else 'diagnostic'
     report['observations']=observations((directory/'runtime.log').read_text())
     resource_checks=[]

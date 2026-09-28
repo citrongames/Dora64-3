@@ -1134,6 +1134,16 @@
       "dora3_rgba_rectangle",
       384,
       "Leaf: RGBA prim color, 1-cycle translucent fill-rectangle; \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b bounds \u0431\u0435\u0440\u0443\u0442\u0441\u044f \u0441\u043e stack; \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442\u0441\u044f fade draw289D8"
+    ],
+    "0x80058248": [
+      "dora3_original_debug_no_output",
+      20,
+      "ROM stores a0..a3 to caller stack then returns; original disabled variadic debug output, not an invented success stub"
+    ],
+    "0x800288EC": [
+      "dora3_fade_begin",
+      40,
+      "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u0442 \u0440\u0435\u0436\u0438\u043c1 \u0442\u043e\u043b\u044c\u043a\u043e \u0435\u0441\u043b\u0438 \u0442\u0435\u043a\u0443\u0449\u0438\u0439 \u0440\u0435\u0436\u0438\u043c \u043d\u04351/2; \u043e\u0440\u0438\u0433\u0438\u043d\u0430\u043b\u044c\u043d\u0430\u044f leaf"
     ]
   },
   "sdk": {
@@ -1432,6 +1442,11 @@
           "dora3_scene34_controller_message",
           116,
           "\u0412\u0435\u0442\u043a\u0430 \u043f\u0440\u0438 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0438 bit0 controller mask801A48B4; \u0440\u0430\u043c\u043a\u043040,88..280,140 \u0438 \u0442\u0440\u0438 \u0441\u0442\u0440\u043e\u043a\u0438 \u043f\u043e801C5740/5764/5788"
+        ],
+        "0x801BFDE0": [
+          "dora3_scene34_transition",
+          160,
+          "\u0411\u0435\u043b\u0430\u044f fade \u0441\u043e step16, timer16; state1 \u0432\u044b\u0431\u0438\u0440\u0430\u0435\u0442 scene90/state1, state2 \u0432\u044b\u0437\u044b\u0432\u0430\u0435\u0442 common54C8 \u0438 scene1/state2; \u0434\u0440\u0443\u0433\u043e\u0439 state \u0442\u043e\u043b\u044c\u043a\u043efade"
         ]
       },
       "indirect_targets": {

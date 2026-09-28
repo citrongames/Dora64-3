@@ -1,7 +1,7 @@
 // Research frontend: runs reviewed original functions through the real runtime.
 // Unreviewed functions stop explicitly. The default mode stops at graphics/PCM;
-// the optional Linux RT64 mode continues with measured, discarded PCM.
-// Neither mode has an audio device or a validated gameplay loop.
+// the optional live RT64 mode continues through SDL input/audio.
+// The live mode has SDL input/audio; no validated gameplay loop yet.
 #include <atomic>
 #include <chrono>
 #include <cstdio>
@@ -20,6 +20,7 @@
 #include "overlay_regions.hpp"
 #ifdef DORA3_LIVE_RT64
 #include "live_graphics.hpp"
+#include "live_io.hpp"
 #endif
 #define XXH_INLINE_ALL
 #include "xxHash/xxhash.h"
@@ -123,6 +124,7 @@ extern "C" void dora3_trace(uint8_t* rdram,recomp_context* ctx,uint32_t address)
             std::fprintf(stderr,"OVERLAY CALL BEFORE VERIFIED LOAD address=%08X\n",address);std::_Exit(85);
         }
     }
+    if(address==0x80058248)std::fprintf(stderr,"ORIGINAL DEBUG format=%08X\n",(uint32_t)ctx->r4);
     if(address==0x80030AE8)resource_rom=(uint32_t)ctx->r5;
     // Byte-wise decoder helpers are covered by the resource comparison below.
     if(address==0x80034000 || address==0x800340D0)return;
@@ -224,21 +226,45 @@ public:
     float get_resolution_scale() const override{return 1.0f;}
 };
 
+#ifdef _WIN32
+int wmain(int argc,wchar_t**){
+    if(argc!=1){std::fprintf(stderr,"Start the EXE without arguments; ROM must be beside it.\n");return 2;}
+    std::vector<wchar_t> executable(32768);
+    const auto length=GetModuleFileNameW(nullptr,executable.data(),DWORD(executable.size()));
+    if(length==0 || length>=executable.size())return 2;
+    const auto directory=std::filesystem::path(executable.data()).parent_path();
+    const auto rom_path=directory/L"Doraemon 3 - Nobita no Machi SOS! (J) [!].z64";
+    if(!std::filesystem::is_regular_file(rom_path)){
+        MessageBoxW(nullptr,L"Place Doraemon 3 - Nobita no Machi SOS! (J) [!].z64 next to this EXE.",L"Dora64-3: ROM not found",MB_OK|MB_ICONERROR);return 2;
+    }
+    const auto stamp=std::chrono::system_clock::now().time_since_epoch();
+    const auto run_dir=directory/L"logs"/std::to_wstring(std::chrono::duration_cast<std::chrono::milliseconds>(stamp).count());
+    if(!std::filesystem::create_directories(run_dir))return 2;
+    FILE* stream=nullptr;
+    if(_wfreopen_s(&stream,(run_dir/L"runtime.log").c_str(),L"w",stderr)!=0)return 2;
+    if(_wfreopen_s(&stream,(run_dir/L"stdout.log").c_str(),L"w",stdout)!=0)return 2;
+    const auto state_dir=run_dir/L"state";
+    std::filesystem::create_directories(state_dir);
+    std::setvbuf(stderr,nullptr,_IONBF,0);
+    std::fprintf(stderr,"Dora64-3 Windows test: RT64 Automatic (Dora64 policy); ROM beside EXE only; pending calls stop explicitly.\n");
+#else
 int main(int argc,char** argv){
     if(argc!=3){std::fprintf(stderr,"Usage: dora3_startup ROM PRIVATE_RUN_DIRECTORY\n");return 2;}
+    const auto rom_path=std::filesystem::absolute(argv[1]);
+    const auto state_dir=std::filesystem::absolute(argv[2]);
+    if(std::filesystem::exists(state_dir)){std::fprintf(stderr,"Use a fresh run directory\n");return 2;}
+    std::filesystem::create_directories(state_dir);
+    std::setvbuf(stderr,nullptr,_IONBF,0);
+#endif
     #ifdef DORA3_LIVE_RT64
     if(std::getenv("DORA3_CAPTURE_GRAPHICS")){std::fprintf(stderr,"Use the diagnostic target for first-task capture\n");return 2;}
     #endif
-    std::setvbuf(stderr,nullptr,_IONBF,0);
-    const auto run_dir=std::filesystem::absolute(argv[2]);
-    if(std::filesystem::exists(run_dir)){std::fprintf(stderr,"Use a fresh run directory\n");return 2;}
-    std::filesystem::create_directories(run_dir);
-    std::ifstream input(argv[1],std::ios::binary);
+    std::ifstream input(rom_path,std::ios::binary);
     std::vector<char> rom{std::istreambuf_iterator<char>(input),{}};
     constexpr uint64_t expected_rom_hash=0xF3BFFF0C58827510ULL;
     if(rom.size()!=0x1000000 || XXH3_64bits(rom.data(),rom.size())!=expected_rom_hash){std::fprintf(stderr,"Unsupported ROM; exact SHA-256 also checked by run_startup.py\n");return 2;}
     recomp::overlays::register_overlays({section_table,ARRLEN(section_table),num_sections},{overlay_sections_by_index,ARRLEN(overlay_sections_by_index)});
-    recomp::register_config_path(run_dir);
+    recomp::register_config_path(state_dir);
     recomp::GameEntry game{};
     game.rom_hash=expected_rom_hash;
     game.internal_name=std::string(rom.data()+0x20,20);
@@ -246,7 +272,7 @@ int main(int argc,char** argv){
     game.display_name="Dora64-3 startup research";game.game_id=u8"dora3.n64.jp";
     game.save_type=recomp::SaveType::Eep16k;game.is_enabled=true;
     game.entrypoint_address=(int32_t)0x80025C00;game.entrypoint=recomp_entrypoint;
-    game.rom_path=std::filesystem::absolute(argv[1]);
+    game.rom_path=rom_path;
     game.thread_create_callback=[](uint8_t* rdram,recomp_context* ctx){
         std::fprintf(stderr,"THREAD CONTEXT sp=%08X arg=%08X\n",(uint32_t)ctx->r29,(uint32_t)ctx->r4);
     };
@@ -275,22 +301,39 @@ int main(int argc,char** argv){
     #else
     dora3_configure_live_graphics(cfg);
     #endif
-    cfg.audio_callbacks.get_frames_remaining=[]()->size_t{return 0;};
+    cfg.audio_callbacks.get_frames_remaining=[]()->size_t{
+        #ifdef DORA3_LIVE_RT64
+        return dora3_audio_remaining();
+        #else
+        return 0;
+        #endif
+    };
     cfg.audio_callbacks.queue_samples=[](int16_t* samples,size_t count){
         pcm_buffers.fetch_add(1);
         size_t nonzero=0;for(size_t i=0;i<count;i++)nonzero+=samples[i]!=0;
-        std::fprintf(stderr,"PCM OUTPUT reached samples=%zu frames=%zu nonzero=%zu; device not connected\n",count,count/2,nonzero);
+        std::fprintf(stderr,"PCM OUTPUT reached samples=%zu frames=%zu nonzero=%zu\n",count,count/2,nonzero);
         #ifndef DORA3_LIVE_RT64
         stop_diagnostic(78);
+        #else
+        dora3_audio_queue(samples,count);
         #endif
     };
-    cfg.audio_callbacks.set_frequency=[](uint32_t f){std::fprintf(stderr,"AUDIO FREQUENCY %u\n",f);};
+    cfg.audio_callbacks.set_frequency=[](uint32_t f){
+        std::fprintf(stderr,"AUDIO FREQUENCY %u\n",f);
+        #ifdef DORA3_LIVE_RT64
+        dora3_audio_frequency(f);
+        #endif
+    };
     cfg.events_callbacks.vi_callback=[](){static std::atomic<bool> started=false;if(!started.exchange(true))recomp::start_game(u8"dora3.n64.jp","");};
     cfg.error_handling_callbacks.message_box=[](const char* m){std::fprintf(stderr,"RUNTIME ERROR %s\n",m);std::_Exit(80);};
     #ifdef DORA3_LIVE_RT64
-    std::fprintf(stderr,"RESEARCH: live RT64, deferred graphics SP completion; PCM measured/discarded, EEPROM 16k; not a playable port\n");
+    std::fprintf(stderr,"RESEARCH: live RT64, deferred graphics SP completion; SDL input/audio, EEPROM 16k; not a playable port\n");
     #else
     std::fprintf(stderr,"DIAGNOSTIC: no renderer/audio output, stop codes 77 pending / 78 task / 79 timeout\n");
     #endif
-    recomp::start(cfg);return 0;
+    recomp::start(cfg);
+    #ifdef DORA3_LIVE_RT64
+    dora3_shutdown_live_io();SDL_Quit();
+    #endif
+    return 0;
 }

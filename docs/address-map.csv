@@ -315,3 +315,7 @@ verified,hook,0xF47C,0x8003407C,4,full stream refill callsite,Маркер пе�
 verified,hook,0xBFF8,0x80030BF8,4,fresh resource capture,"После исходного raw/LZSS, до ID/refcount и caller relocation; slot изv0",Файлы только private run state; runner сравнивает после завершения
 verified,global,,0x801A48B4,1,controller presence mask,301B0/3C1B8; initializer801C0184 проверяет bit0 для экрана предупреждения,Подключить frontend controller callbacks
 verified,global,,0x801C6A30,,scene34 allocation cursor,"800309E0/800309EC и init801C0184; это начальный heap cursor, не asset list",Проверить границы heap при следующих сценах
+verified,function,0x33648,0x80058248,0x14,dora3_original_debug_no_output,ROM: saves a0..a3 on caller stack then returns; reached v37/v38,No invented stub; format pointer logged
+verified,function,0x3CEC,0x800288EC,0x28,dora3_fade_begin,ROM: set mode 1 unless mode already 1/2; scene34 transition,Branch coverage incomplete
+verified,function,0x6A4D0,0x801BFDE0,0xA0,dora3_scene34_transition,ROM: white fade step16/timer16; state2 calls common801B54C8; reached v39,Next boundary common801B54C8
+candidate,function,0x60158,0x801B54C8,,scene34 next common transition,Pending original function in v39; not compiled,Review boundaries and callees before adding

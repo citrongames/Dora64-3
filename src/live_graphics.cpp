@@ -1,7 +1,14 @@
-// Bounded Linux research frontend, original VI and F3DEX2, no game-one patches.
+// Bounded Windows/Linux research frontend, original VI and F3DEX2, no game-one patches.
 #include "live_graphics.hpp"
+#include "live_io.hpp"
 #include "ultramodern/ultramodern.hpp"
 #include <SDL.h>
+#ifdef _WIN32
+#include <SDL_syswm.h>
+// ultramodern uses WIN32_LEAN_AND_MEAN; DXC still needs COM types.
+#include <objbase.h>
+#include <oleauto.h>
+#endif
 #include <array>
 #include <atomic>
 #include <chrono>
@@ -14,6 +21,8 @@
 
 namespace {
 std::atomic<bool> ready{false};
+SDL_Window* live_window=nullptr;
+unsigned task_limit=120;
 std::atomic<unsigned> submitted{0},completed{0};
 class LiveContext final : public ultramodern::renderer::RendererContext {
     std::array<uint8_t,0x1000> dmem{}, imem{};
@@ -23,9 +32,14 @@ class LiveContext final : public ultramodern::renderer::RendererContext {
     std::unique_ptr<RT64::Application> app;
     unsigned tasks=0;
 public:
-    LiveContext(uint8_t* rdram, SDL_Window* window):ram(rdram){
+    LiveContext(uint8_t* rdram, ultramodern::renderer::WindowHandle window):ram(rdram){
         RT64::Application::Core core{};
-        core.window=window;core.HEADER=header.data();core.RDRAM=ram;
+        #ifdef _WIN32
+        core.window=window.window;
+        #else
+        core.window=window;
+        #endif
+        core.HEADER=header.data();core.RDRAM=ram;
         core.DMEM=dmem.data();core.IMEM=imem.data();core.checkInterrupts=[](){};
         core.MI_INTR_REG=&registers[0];core.DPC_START_REG=&registers[1];core.DPC_END_REG=&registers[2];
         core.DPC_CURRENT_REG=&registers[3];core.DPC_STATUS_REG=&registers[4];core.DPC_CLOCK_REG=&registers[5];
@@ -42,7 +56,8 @@ public:
         config.appId="dora64-3-research";config.detectDataPath=false;
         config.dataPath=recomp::get_config_path()/"rt64";config.useConfigurationFile=false;
         app=std::make_unique<RT64::Application>(core,config);
-        app->userConfig.graphicsAPI=RT64::UserConfiguration::GraphicsAPI::Vulkan;
+        // Same Automatic policy as Dora64, including RT64 driver fallbacks.
+        app->userConfig.graphicsAPI=RT64::UserConfiguration::GraphicsAPI::Automatic;
         app->userConfig.resolution=RT64::UserConfiguration::Resolution::Original;
         app->userConfig.aspectRatio=RT64::UserConfiguration::AspectRatio::Original;
         app->userConfig.refreshRate=RT64::UserConfiguration::RefreshRate::Original;
@@ -52,7 +67,16 @@ public:
         std::fprintf(stderr,"LIVE RT64 SETUP result=%u\n",unsigned(result));
         if(result!=RT64::Application::SetupResult::Success)std::_Exit(84);
         setup_result=ultramodern::renderer::SetupResult::Success;
-        chosen_api=ultramodern::renderer::GraphicsApi::Vulkan;
+        switch(app->chosenGraphicsAPI){
+        case RT64::UserConfiguration::GraphicsAPI::D3D12:
+            chosen_api=ultramodern::renderer::GraphicsApi::D3D12;
+            std::fprintf(stderr,"LIVE RT64 API D3D12 (Automatic)\n");break;
+        case RT64::UserConfiguration::GraphicsAPI::Vulkan:
+            chosen_api=ultramodern::renderer::GraphicsApi::Vulkan;
+            std::fprintf(stderr,"LIVE RT64 API Vulkan (Automatic)\n");break;
+        default:
+            std::fprintf(stderr,"LIVE RT64 unexpected API\n");std::_Exit(84);
+        }
         ready=true;
     }
     bool valid() override{return true;}
@@ -76,7 +100,7 @@ public:
         app->processDisplayLists(ram,dl,0,true);
         std::fprintf(stderr,"LIVE RT64 PARSED task=%u dl=%08X bytes=%X gbi=7\n",++tasks,dl,task->t.data_size);
         completed.fetch_add(1);
-        if(tasks>=32){std::fprintf(stderr,"LIVE RESEARCH 32-task boundary\n");std::_Exit(78);}
+        if(tasks>=task_limit){std::fprintf(stderr,"LIVE RESEARCH task boundary limit=%u\n",task_limit);std::_Exit(78);}
     }
     void send_dummy_workload(uint32_t) override{}
     void update_screen(bool=false) override{app->updateScreen();}
@@ -88,20 +112,39 @@ public:
 }
 
 void dora3_configure_live_graphics(recomp::Configuration& cfg){
+    dora3_configure_live_input(cfg);
+    if(const char* value=std::getenv("DORA3_MAX_TASKS")){
+        char* end=nullptr;const auto count=std::strtoul(value,&end,10);
+        if(!*value || *end || count<1 || count>300){std::fprintf(stderr,"DORA3_MAX_TASKS must be1..300\n");std::_Exit(2);}
+        task_limit=unsigned(count);
+    }
     cfg.events_callbacks.gfx_task_submitted_callback=[](uint8_t*,uint32_t dl,uint32_t bytes){
         std::fprintf(stderr,"LIVE RT64 SUBMITTED task=%u dl=%08X bytes=%X\n",submitted.fetch_add(1)+1,dl,bytes);
     };
     cfg.renderer_callbacks.create_render_context=[](uint8_t* ram,ultramodern::renderer::WindowHandle w,bool)
         ->std::unique_ptr<ultramodern::renderer::RendererContext>{return std::make_unique<LiveContext>(ram,w);};
     cfg.gfx_callbacks.create_window=[](void*)->ultramodern::renderer::WindowHandle{
-        if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS)!=0){std::fprintf(stderr,"SDL: %s\n",SDL_GetError());std::_Exit(84);}
-        auto* window=SDL_CreateWindow("Dora64-3 startup research",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,640,480,SDL_WINDOW_VULKAN);
+        SDL_SetMainReady();
+        if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS|SDL_INIT_GAMECONTROLLER|SDL_INIT_AUDIO)!=0){std::fprintf(stderr,"SDL: %s\n",SDL_GetError());std::_Exit(84);}
+        uint32_t flags=0;
+        #ifndef _WIN32
+        flags|=SDL_WINDOW_VULKAN;
+        #endif
+        auto* window=SDL_CreateWindow("Dora64-3 test build",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,640,480,flags);
         if(!window){std::fprintf(stderr,"SDL window: %s\n",SDL_GetError());std::_Exit(84);}
+        live_window=window;
+        #ifdef _WIN32
+        SDL_SysWMinfo info{};SDL_VERSION(&info.version);
+        if(!SDL_GetWindowWMInfo(window,&info)){std::fprintf(stderr,"SDL HWND: %s\n",SDL_GetError());std::_Exit(84);}
+        return {info.info.win.window,GetCurrentThreadId()};
+        #else
         return window;
+        #endif
     };
     cfg.gfx_callbacks.update_gfx=[](void*){
         SDL_Event event;
         while(SDL_PollEvent(&event))if(event.type==SDL_QUIT)ultramodern::quit();
+        dora3_poll_live_input(live_window);
         if(ready.load()){
             static const auto start=std::chrono::steady_clock::now();
             if(std::chrono::steady_clock::now()-start>std::chrono::seconds(15)){
