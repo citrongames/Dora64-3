@@ -3,6 +3,7 @@ import argparse, hashlib, json, struct, subprocess
 from pathlib import Path
 from inspect_rom import ROOT, read_rom
 from overlay_layout import prepare_layout, pending_name
+from local_jump_tables import reviewed_local_jumps, verify_generated_local_jumps
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 
@@ -15,6 +16,7 @@ def main():
     out.mkdir(parents=True,exist_ok=False)
     meta=json.loads((ROOT/'recomp/startup.json').read_text())
     sections,compiled,sdk,frontier=prepare_layout(meta,rom)
+    local_jumps=reviewed_local_jumps(meta,sections,compiled,rom)
     functions={key:(v[0],v[1]) for key,v in compiled.items()}
     functions.update({(0,addr):(v[0],4) for addr,v in sdk.items()})
     functions.update({(index,addr):(pending_name(index,addr),4) for index,addr in frontier})
@@ -57,6 +59,8 @@ def main():
     config+='hook = [\n'
     for (index,addr),(name,size,evidence) in compiled.items():
         config+=f'{{ func = "{name}", before_vram = 0x{addr:08X}, text = "dora3_trace(rdram, ctx, 0x{addr:08X}, 0x{sections[index]["rom"]:X});" }},\n'
+    for jump in local_jumps:
+        config+=f'{{ func = "{jump["func"]}", before_vram = 0x{jump["load"]:08X}, text = {json.dumps(jump["text"])} }},\n'
     if (0,0x8002730C) in compiled:
         config+='{ func = "dora3_rom_dma", before_vram = 0x800273EC, text = "dora3_verify_dma(rdram);" },\n'
     if (0,0x80034000) in compiled:
@@ -70,7 +74,8 @@ def main():
     binary=Path(receipt['executables']['N64Recomp']['path'])
     if sha(binary)!=receipt['executables']['N64Recomp']['sha256']:raise ValueError('Tool binary mismatch')
     with (out/'generation.log').open('w') as log:subprocess.run([str(binary),str(out/'startup.toml')],stdout=log,stderr=subprocess.STDOUT,check=True)
-    inputs=['recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
+    verify_generated_local_jumps(out/'RecompiledFuncs',local_jumps)
+    inputs=['tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
     tracked=[f for f in out.rglob('*') if f.is_file() and f.name!='generation.log']
     report={'scope':'reviewed resident/overlay functions; explicit stop on unreviewed calls',
             'rom_sha256':hashlib.sha256(rom).hexdigest(),'tool_sha256':sha(binary),'inputs':{x:sha(ROOT/x) for x in inputs},

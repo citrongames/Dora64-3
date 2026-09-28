@@ -11959,5 +11959,45 @@
         "0x8023E9A0": "Observed test-005 runtime lookup after verified ROM14D4C0 ->8023D6D0 DMA; native body belongs only to this child overlay"
       }
     }
+  ],
+  "local_jump_tables": [
+    {
+      "section": ".scene34",
+      "function": "0x801BDEFC",
+      "load": "0x801BE7B4",
+      "table": "0x801C5538",
+      "targets": [
+        "0x801BE7C0",
+        "0x801BE7D0",
+        "0x801BE7E0",
+        "0x801BE7F0",
+        "0x801BE800"
+      ],
+      "instructions": [
+        "0x8E420000",
+        "0x00400008",
+        "0x00000000"
+      ],
+      "evidence": "Slot detail draw: s2 walks five local labels; branch-likely loop; test-007 lookup abort801BE7C0 is an internal case, not a function"
+    },
+    {
+      "section": ".scene34",
+      "function": "0x801BDEFC",
+      "load": "0x801BE884",
+      "table": "0x801C5550",
+      "targets": [
+        "0x801BE890",
+        "0x801BE8B8",
+        "0x801BE918",
+        "0x801BE8F0",
+        "0x801BE8FC"
+      ],
+      "instructions": [
+        "0x8E020000",
+        "0x00400008",
+        "0x00000000"
+      ],
+      "evidence": "Neighboring slot-detail loop: s0 advances four bytes per iteration; generated jr_addend freezes at zero; use actual loaded target"
+    }
   ]
 }

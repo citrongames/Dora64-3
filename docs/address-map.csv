@@ -2401,3 +2401,7 @@ candidate,function,0x5980,0x8002A580,0x24,dora3_s0_core_8002A580,"Remaining scen
 candidate,function,0x149b0,0x800395B0,0xc,dora3_s0_core_800395B0,"Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified",.startup test-007
 candidate,function,0x13fc8,0x80038BC8,0x90,dora3_s0_core_80038BC8,"Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified",.startup test-007
 verified,data,0xb2448,0x801FA8C8,4,player state43 callback,ROM pointer801C85C8; dispatcher801C8F04/08 loads801FA6B0[state*8],test-006 failure advances beyond child-overlay loading
+verified,local_jump,0x68ea4,0x801be7b4,0xc,slot detail local dispatch,LW s2; JR v0; NOP; targets801C5538; test-007 emitted as function lookup,.scene34 test-008
+verified,local_jump,0x68f74,0x801be884,0xc,slot detail neighbor dispatch,LW s0; JR v0; NOP; targets801C5550; generated loop index frozen0,.scene34 test-008
+verified,data,0x6fc28,0x801c5538,0x14,slot detail labels,5 local branch targets within801BDEFC,.scene34 test-008
+verified,data,0x6fc40,0x801c5550,0x14,slot detail neighbor labels,5 local branch targets within801BDEFC,.scene34 test-008

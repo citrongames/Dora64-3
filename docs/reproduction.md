@@ -189,3 +189,13 @@ python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Dora
 
 Windows helper использует startup-v49, audio-rsp-v1 прежний.2323 original bodies,
 44 SDK,17 pending. Кандидатное покрытие основного блока не равно полной игре.
+
+## Windows test-008: локальные таблицы отрисовки слота
+
+```sh
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v50
+python3 tools/check_menu_local_jumps.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --generated build-local/startup-v50
+```
+
+Windows helper использует startup-v50; audio-rsp-v1 прежний. 2323 original,
+44 SDK, 17 pending. Новых функций или изменений библиотек нет.
