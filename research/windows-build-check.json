@@ -1,10 +1,10 @@
 {
   "scope": "Windows x64 native compile and static generation checks; game not launched by agent",
-  "build_id": "test-006",
+  "build_id": "test-007",
   "compiled": true,
   "locally_launched": false,
   "user_visual_test": "pending",
-  "original_functions": 1725,
+  "original_functions": 2323,
   "sdk_mappings": 44,
   "pending_boundaries": [
     {
@@ -77,7 +77,8 @@
     }
   ],
   "candidate_analysis": "spimdisasm1.42.4 extents and call/reference closure; N64Recomp accepts instructions/control flow; not proof of all boundaries or semantics",
-  "demo_dispatch_check": "3 child overlays,205 added bodies; ROM pairs and required scene1 identity; corrected switch;9 synthetic layout checks passed",
+  "gameplay_core_check": "State43 table callback801C85C8 verified against ROM; all1303 main-block candidates included;598 additions and references checked",
+  "demo_dispatch_check": "3 child overlays and6 context-sensitive direct calls rechecked; generated parent guards target scene1",
   "overlay_checks": "Required overlay validation and runtime load/call guards; all generated bodies have ROM-qualified trace guards; no implicit extra function count",
   "rom_lookup": "EXE parent only; external exact filename",
   "api_policy": "RT64 Automatic, same policy as Dora64",
@@ -86,26 +87,26 @@
     "seconds_after_setup": null,
     "environment_override": false
   },
-  "executable_sha256": "d91c7f1f776b1add472c2785500a247f5c430462f1a656a902b4dba48021f587",
+  "executable_sha256": "834c42cf08496ce61773e2fa46d51ba8bec89ade1c2fb78fc4dd9c37558cffd7",
   "source_sha256": {
     "src/startup_runtime.cpp": "3d971d18b63ba7726026465b4c57029eba5c1f5ba2f380854a8c25389b7f78be",
     "src/live_graphics.cpp": "79917a65c529b9173d2ddf554568b5c4925fc20063531517e0f9c7f580e0afb5",
     "src/live_io.cpp": "6447fa965e3e5fcecaf8eb67c44e31b6bacce5aff6e6c29b2cb3917f96a0114a",
     "src/live_io.hpp": "1bc6f95b5f214e397f58d2cfd1b9a3d0115402ae162858a747ed5a5331fca6a9",
-    "recomp/startup.json": "e3281dab18ca8982c46cfa8049050f6391b2c9599f5ac0cec66972f5b18fcf1f",
+    "recomp/startup.json": "d89b2328a35d146bec583b078fc7c173d790b27b3251b9257bcfe701ef2996c2",
     "research/runtime/CMakeLists.txt": "f7faf13da872a1adf7dc903e0cf833ccfb9ad2b9d05b5ff7fa19351a7364f281",
     "tools/prepare_runtime_timing.py": "80b5ce71a8c1d7967030b0dc3fc61ebece831188dc00115f7cf7dbdef94b091a",
-    "tools/build_windows.ps1": "cbdaa5424faa96fc1cb3f9628baa0e7876de18a46e669e32208c7ba985774e05",
+    "tools/build_windows.ps1": "765db4e01fdb05657547f0a217c7b0188ff8c33d116447845bd6afe814c0ba3e",
     "tools/generate_startup.py": "4ff270a44b014881322a858fc021bee68c78079743778667556465270ce21ecd",
     "tools/overlay_layout.py": "712675f8481d484a73359fadadfbfbe77e6bdcf474061803be304f9269f4c8b1"
   },
   "generated_receipt_sha256": {
-    "startup-v48": "8592e59b4c0af08f4b1ea6f85b7f203248bf7e4584e7601fa7902cc387c84f1b",
+    "startup-v49": "15c131b891166c386051357a201faa6fef7034a39393f5b39dacb679a4fa6678",
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "dependency_pins_verified": 32,
   "donor_unchanged": "680d81feb4c57309ba80536300d73725ea9dffaa",
-  "previous_user_test": "test-005 title menu/music confirmed; idle demo lookup abort8023E9A0;397 resources match independent decoder; see windows-test-005-result.json",
+  "previous_user_test": "test-006 child overlays and previous callback execute; idle demo abort801C85C8;413 resources match independent decoder; see windows-test-006-result.json",
   "remaining_risks": [
     "Unobserved branches and indirect targets",
     "Hardware calls still fail explicitly",

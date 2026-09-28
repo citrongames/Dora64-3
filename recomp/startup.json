@@ -3084,6 +3084,41 @@
       "dora3_s0_demo_80028E8C",
       84,
       "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+    ],
+    "0x8003CCA4": [
+      "dora3_s0_core_8003CCA4",
+      120,
+      "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+    ],
+    "0x80062430": [
+      "dora3_s0_core_80062430",
+      240,
+      "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+    ],
+    "0x80031C88": [
+      "dora3_s0_core_80031C88",
+      140,
+      "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+    ],
+    "0x8002A4CC": [
+      "dora3_s0_core_8002A4CC",
+      36,
+      "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+    ],
+    "0x8002A580": [
+      "dora3_s0_core_8002A580",
+      36,
+      "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+    ],
+    "0x800395B0": [
+      "dora3_s0_core_800395B0",
+      12,
+      "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+    ],
+    "0x80038BC8": [
+      "dora3_s0_core_80038BC8",
+      144,
+      "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
     ]
   },
   "sdk": {
@@ -7996,12 +8031,2968 @@
           "dora3_s3_demo_801E5DF4",
           88,
           "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
+        ],
+        "0x801B91D4": [
+          "dora3_s3_core_801B91D4",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801B9284": [
+          "dora3_s3_core_801B9284",
+          680,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801BBE58": [
+          "dora3_s3_core_801BBE58",
+          60,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801BDA74": [
+          "dora3_s3_core_801BDA74",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801BECA4": [
+          "dora3_s3_core_801BECA4",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801BECE4": [
+          "dora3_s3_core_801BECE4",
+          136,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801BEDB0": [
+          "dora3_s3_core_801BEDB0",
+          120,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C0200": [
+          "dora3_s3_core_801C0200",
+          168,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C02A8": [
+          "dora3_s3_core_801C02A8",
+          240,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C05FC": [
+          "dora3_s3_core_801C05FC",
+          16,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C0618": [
+          "dora3_s3_core_801C0618",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C0694": [
+          "dora3_s3_core_801C0694",
+          16,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C06A4": [
+          "dora3_s3_core_801C06A4",
+          16,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C071C": [
+          "dora3_s3_core_801C071C",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C07A0": [
+          "dora3_s3_core_801C07A0",
+          60,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C0884": [
+          "dora3_s3_core_801C0884",
+          100,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C0B7C": [
+          "dora3_s3_core_801C0B7C",
+          256,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C0FD8": [
+          "dora3_s3_core_801C0FD8",
+          468,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C11AC": [
+          "dora3_s3_core_801C11AC",
+          96,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C120C": [
+          "dora3_s3_core_801C120C",
+          228,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C12F0": [
+          "dora3_s3_core_801C12F0",
+          148,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C1594": [
+          "dora3_s3_core_801C1594",
+          208,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C1664": [
+          "dora3_s3_core_801C1664",
+          444,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C1820": [
+          "dora3_s3_core_801C1820",
+          540,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C1A3C": [
+          "dora3_s3_core_801C1A3C",
+          160,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C1ADC": [
+          "dora3_s3_core_801C1ADC",
+          780,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C1DE8": [
+          "dora3_s3_core_801C1DE8",
+          508,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C2040": [
+          "dora3_s3_core_801C2040",
+          160,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C20E0": [
+          "dora3_s3_core_801C20E0",
+          160,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C2180": [
+          "dora3_s3_core_801C2180",
+          116,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C21F4": [
+          "dora3_s3_core_801C21F4",
+          68,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C2238": [
+          "dora3_s3_core_801C2238",
+          20,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C224C": [
+          "dora3_s3_core_801C224C",
+          192,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C230C": [
+          "dora3_s3_core_801C230C",
+          628,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C2580": [
+          "dora3_s3_core_801C2580",
+          156,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C2798": [
+          "dora3_s3_core_801C2798",
+          480,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C2978": [
+          "dora3_s3_core_801C2978",
+          696,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C2C30": [
+          "dora3_s3_core_801C2C30",
+          612,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C2E94": [
+          "dora3_s3_core_801C2E94",
+          412,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3030": [
+          "dora3_s3_core_801C3030",
+          88,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3088": [
+          "dora3_s3_core_801C3088",
+          88,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C30E0": [
+          "dora3_s3_core_801C30E0",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C30E8": [
+          "dora3_s3_core_801C30E8",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C30F0": [
+          "dora3_s3_core_801C30F0",
+          52,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3300": [
+          "dora3_s3_core_801C3300",
+          356,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3464": [
+          "dora3_s3_core_801C3464",
+          372,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C35D8": [
+          "dora3_s3_core_801C35D8",
+          20,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C35EC": [
+          "dora3_s3_core_801C35EC",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C35F4": [
+          "dora3_s3_core_801C35F4",
+          20,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3608": [
+          "dora3_s3_core_801C3608",
+          20,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C361C": [
+          "dora3_s3_core_801C361C",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3624": [
+          "dora3_s3_core_801C3624",
+          20,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3638": [
+          "dora3_s3_core_801C3638",
+          108,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C36A4": [
+          "dora3_s3_core_801C36A4",
+          212,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3778": [
+          "dora3_s3_core_801C3778",
+          196,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C383C": [
+          "dora3_s3_core_801C383C",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3898": [
+          "dora3_s3_core_801C3898",
+          112,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3908": [
+          "dora3_s3_core_801C3908",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3934": [
+          "dora3_s3_core_801C3934",
+          140,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C39C0": [
+          "dora3_s3_core_801C39C0",
+          252,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3ABC": [
+          "dora3_s3_core_801C3ABC",
+          236,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3BA8": [
+          "dora3_s3_core_801C3BA8",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3C04": [
+          "dora3_s3_core_801C3C04",
+          228,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3CE8": [
+          "dora3_s3_core_801C3CE8",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3D14": [
+          "dora3_s3_core_801C3D14",
+          120,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3D8C": [
+          "dora3_s3_core_801C3D8C",
+          288,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3EAC": [
+          "dora3_s3_core_801C3EAC",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3ED8": [
+          "dora3_s3_core_801C3ED8",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C3F34": [
+          "dora3_s3_core_801C3F34",
+          228,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4018": [
+          "dora3_s3_core_801C4018",
+          32,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4038": [
+          "dora3_s3_core_801C4038",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4094": [
+          "dora3_s3_core_801C4094",
+          228,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4178": [
+          "dora3_s3_core_801C4178",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C41A4": [
+          "dora3_s3_core_801C41A4",
+          120,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C421C": [
+          "dora3_s3_core_801C421C",
+          292,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4340": [
+          "dora3_s3_core_801C4340",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C436C": [
+          "dora3_s3_core_801C436C",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C43C8": [
+          "dora3_s3_core_801C43C8",
+          228,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C44AC": [
+          "dora3_s3_core_801C44AC",
+          20,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C44C0": [
+          "dora3_s3_core_801C44C0",
+          160,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4560": [
+          "dora3_s3_core_801C4560",
+          240,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4650": [
+          "dora3_s3_core_801C4650",
+          96,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C46B0": [
+          "dora3_s3_core_801C46B0",
+          160,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4750": [
+          "dora3_s3_core_801C4750",
+          280,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4868": [
+          "dora3_s3_core_801C4868",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4884": [
+          "dora3_s3_core_801C4884",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C488C": [
+          "dora3_s3_core_801C488C",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4894": [
+          "dora3_s3_core_801C4894",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C489C": [
+          "dora3_s3_core_801C489C",
+          72,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C48E4": [
+          "dora3_s3_core_801C48E4",
+          100,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4948": [
+          "dora3_s3_core_801C4948",
+          88,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C49A0": [
+          "dora3_s3_core_801C49A0",
+          204,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4A6C": [
+          "dora3_s3_core_801C4A6C",
+          240,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4B5C": [
+          "dora3_s3_core_801C4B5C",
+          96,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4BBC": [
+          "dora3_s3_core_801C4BBC",
+          160,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4C5C": [
+          "dora3_s3_core_801C4C5C",
+          280,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4D74": [
+          "dora3_s3_core_801C4D74",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4D90": [
+          "dora3_s3_core_801C4D90",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4D98": [
+          "dora3_s3_core_801C4D98",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4DA0": [
+          "dora3_s3_core_801C4DA0",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4DA8": [
+          "dora3_s3_core_801C4DA8",
+          156,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4E44": [
+          "dora3_s3_core_801C4E44",
+          312,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C4F7C": [
+          "dora3_s3_core_801C4F7C",
+          168,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5024": [
+          "dora3_s3_core_801C5024",
+          156,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C50C0": [
+          "dora3_s3_core_801C50C0",
+          352,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5220": [
+          "dora3_s3_core_801C5220",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C523C": [
+          "dora3_s3_core_801C523C",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5244": [
+          "dora3_s3_core_801C5244",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C524C": [
+          "dora3_s3_core_801C524C",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5254": [
+          "dora3_s3_core_801C5254",
+          72,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C529C": [
+          "dora3_s3_core_801C529C",
+          160,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C533C": [
+          "dora3_s3_core_801C533C",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5390": [
+          "dora3_s3_core_801C5390",
+          204,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C545C": [
+          "dora3_s3_core_801C545C",
+          240,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C554C": [
+          "dora3_s3_core_801C554C",
+          308,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5680": [
+          "dora3_s3_core_801C5680",
+          204,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C574C": [
+          "dora3_s3_core_801C574C",
+          328,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5894": [
+          "dora3_s3_core_801C5894",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C58B0": [
+          "dora3_s3_core_801C58B0",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C58B8": [
+          "dora3_s3_core_801C58B8",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C58C0": [
+          "dora3_s3_core_801C58C0",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C58C8": [
+          "dora3_s3_core_801C58C8",
+          72,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5910": [
+          "dora3_s3_core_801C5910",
+          156,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C59AC": [
+          "dora3_s3_core_801C59AC",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C59D8": [
+          "dora3_s3_core_801C59D8",
+          96,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5A38": [
+          "dora3_s3_core_801C5A38",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5A78": [
+          "dora3_s3_core_801C5A78",
+          216,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5B50": [
+          "dora3_s3_core_801C5B50",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5BAC": [
+          "dora3_s3_core_801C5BAC",
+          68,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5BF0": [
+          "dora3_s3_core_801C5BF0",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5C1C": [
+          "dora3_s3_core_801C5C1C",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5C78": [
+          "dora3_s3_core_801C5C78",
+          152,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5D10": [
+          "dora3_s3_core_801C5D10",
+          32,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5D30": [
+          "dora3_s3_core_801C5D30",
+          96,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5D90": [
+          "dora3_s3_core_801C5D90",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5DD0": [
+          "dora3_s3_core_801C5DD0",
+          196,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5E94": [
+          "dora3_s3_core_801C5E94",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5EF0": [
+          "dora3_s3_core_801C5EF0",
+          152,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5F88": [
+          "dora3_s3_core_801C5F88",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C5FB4": [
+          "dora3_s3_core_801C5FB4",
+          108,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6020": [
+          "dora3_s3_core_801C6020",
+          100,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6084": [
+          "dora3_s3_core_801C6084",
+          164,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6128": [
+          "dora3_s3_core_801C6128",
+          140,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C61B4": [
+          "dora3_s3_core_801C61B4",
+          52,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C61E8": [
+          "dora3_s3_core_801C61E8",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6214": [
+          "dora3_s3_core_801C6214",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6270": [
+          "dora3_s3_core_801C6270",
+          100,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C62D4": [
+          "dora3_s3_core_801C62D4",
+          32,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C62F4": [
+          "dora3_s3_core_801C62F4",
+          136,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C637C": [
+          "dora3_s3_core_801C637C",
+          124,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C63F8": [
+          "dora3_s3_core_801C63F8",
+          280,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6510": [
+          "dora3_s3_core_801C6510",
+          140,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C659C": [
+          "dora3_s3_core_801C659C",
+          52,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C65D0": [
+          "dora3_s3_core_801C65D0",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C65FC": [
+          "dora3_s3_core_801C65FC",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6658": [
+          "dora3_s3_core_801C6658",
+          100,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C66BC": [
+          "dora3_s3_core_801C66BC",
+          32,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C66DC": [
+          "dora3_s3_core_801C66DC",
+          136,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6764": [
+          "dora3_s3_core_801C6764",
+          100,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C67C8": [
+          "dora3_s3_core_801C67C8",
+          164,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C686C": [
+          "dora3_s3_core_801C686C",
+          140,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C68F8": [
+          "dora3_s3_core_801C68F8",
+          52,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C692C": [
+          "dora3_s3_core_801C692C",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6958": [
+          "dora3_s3_core_801C6958",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C69B4": [
+          "dora3_s3_core_801C69B4",
+          100,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6A18": [
+          "dora3_s3_core_801C6A18",
+          32,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6A38": [
+          "dora3_s3_core_801C6A38",
+          112,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6AA8": [
+          "dora3_s3_core_801C6AA8",
+          96,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6B08": [
+          "dora3_s3_core_801C6B08",
+          212,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6BDC": [
+          "dora3_s3_core_801C6BDC",
+          140,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6C68": [
+          "dora3_s3_core_801C6C68",
+          152,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6D00": [
+          "dora3_s3_core_801C6D00",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6D2C": [
+          "dora3_s3_core_801C6D2C",
+          96,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6D8C": [
+          "dora3_s3_core_801C6D8C",
+          128,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6E0C": [
+          "dora3_s3_core_801C6E0C",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6E28": [
+          "dora3_s3_core_801C6E28",
+          124,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6EA4": [
+          "dora3_s3_core_801C6EA4",
+          140,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6F30": [
+          "dora3_s3_core_801C6F30",
+          40,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6F58": [
+          "dora3_s3_core_801C6F58",
+          116,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C6FCC": [
+          "dora3_s3_core_801C6FCC",
+          252,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C70C8": [
+          "dora3_s3_core_801C70C8",
+          60,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7104": [
+          "dora3_s3_core_801C7104",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7160": [
+          "dora3_s3_core_801C7160",
+          316,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C729C": [
+          "dora3_s3_core_801C729C",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C72DC": [
+          "dora3_s3_core_801C72DC",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7338": [
+          "dora3_s3_core_801C7338",
+          184,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C73F0": [
+          "dora3_s3_core_801C73F0",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7430": [
+          "dora3_s3_core_801C7430",
+          112,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C74A0": [
+          "dora3_s3_core_801C74A0",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C74BC": [
+          "dora3_s3_core_801C74BC",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C74D8": [
+          "dora3_s3_core_801C74D8",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7534": [
+          "dora3_s3_core_801C7534",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7550": [
+          "dora3_s3_core_801C7550",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C756C": [
+          "dora3_s3_core_801C756C",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C75C8": [
+          "dora3_s3_core_801C75C8",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C75E4": [
+          "dora3_s3_core_801C75E4",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7600": [
+          "dora3_s3_core_801C7600",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7654": [
+          "dora3_s3_core_801C7654",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7670": [
+          "dora3_s3_core_801C7670",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C77A0": [
+          "dora3_s3_core_801C77A0",
+          112,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7810": [
+          "dora3_s3_core_801C7810",
+          76,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C785C": [
+          "dora3_s3_core_801C785C",
+          276,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7970": [
+          "dora3_s3_core_801C7970",
+          112,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C79E0": [
+          "dora3_s3_core_801C79E0",
+          76,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7A2C": [
+          "dora3_s3_core_801C7A2C",
+          140,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7AB8": [
+          "dora3_s3_core_801C7AB8",
+          320,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7BF8": [
+          "dora3_s3_core_801C7BF8",
+          40,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7C20": [
+          "dora3_s3_core_801C7C20",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7C7C": [
+          "dora3_s3_core_801C7C7C",
+          104,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7CE4": [
+          "dora3_s3_core_801C7CE4",
+          96,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7D44": [
+          "dora3_s3_core_801C7D44",
+          104,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7DAC": [
+          "dora3_s3_core_801C7DAC",
+          196,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7E70": [
+          "dora3_s3_core_801C7E70",
+          112,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7EE0": [
+          "dora3_s3_core_801C7EE0",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7F3C": [
+          "dora3_s3_core_801C7F3C",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C7F98": [
+          "dora3_s3_core_801C7F98",
+          144,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C80A0": [
+          "dora3_s3_core_801C80A0",
+          120,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C8118": [
+          "dora3_s3_core_801C8118",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C8144": [
+          "dora3_s3_core_801C8144",
+          108,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C81B0": [
+          "dora3_s3_core_801C81B0",
+          168,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C8258": [
+          "dora3_s3_core_801C8258",
+          312,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C8390": [
+          "dora3_s3_core_801C8390",
+          72,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C83D8": [
+          "dora3_s3_core_801C83D8",
+          116,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C844C": [
+          "dora3_s3_core_801C844C",
+          44,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C84F0": [
+          "dora3_s3_core_801C84F0",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C84F8": [
+          "dora3_s3_core_801C84F8",
+          148,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C85C8": [
+          "dora3_s3_core_801C85C8",
+          404,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C875C": [
+          "dora3_s3_core_801C875C",
+          40,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C8784": [
+          "dora3_s3_core_801C8784",
+          644,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C8A08": [
+          "dora3_s3_core_801C8A08",
+          288,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C9CBC": [
+          "dora3_s3_core_801C9CBC",
+          124,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801C9D38": [
+          "dora3_s3_core_801C9D38",
+          48,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CA9F4": [
+          "dora3_s3_core_801CA9F4",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CAADC": [
+          "dora3_s3_core_801CAADC",
+          196,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CABA0": [
+          "dora3_s3_core_801CABA0",
+          272,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB1B8": [
+          "dora3_s3_core_801CB1B8",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB1F0": [
+          "dora3_s3_core_801CB1F0",
+          176,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB2A0": [
+          "dora3_s3_core_801CB2A0",
+          88,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB2F8": [
+          "dora3_s3_core_801CB2F8",
+          176,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB3A8": [
+          "dora3_s3_core_801CB3A8",
+          88,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB400": [
+          "dora3_s3_core_801CB400",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB490": [
+          "dora3_s3_core_801CB490",
+          104,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB4F8": [
+          "dora3_s3_core_801CB4F8",
+          20,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB50C": [
+          "dora3_s3_core_801CB50C",
+          260,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB610": [
+          "dora3_s3_core_801CB610",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB650": [
+          "dora3_s3_core_801CB650",
+          132,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB6D4": [
+          "dora3_s3_core_801CB6D4",
+          52,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB708": [
+          "dora3_s3_core_801CB708",
+          360,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CB870": [
+          "dora3_s3_core_801CB870",
+          476,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CBA4C": [
+          "dora3_s3_core_801CBA4C",
+          704,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CBD0C": [
+          "dora3_s3_core_801CBD0C",
+          308,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CBE40": [
+          "dora3_s3_core_801CBE40",
+          412,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CBFDC": [
+          "dora3_s3_core_801CBFDC",
+          420,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CC180": [
+          "dora3_s3_core_801CC180",
+          444,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CC33C": [
+          "dora3_s3_core_801CC33C",
+          228,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CC420": [
+          "dora3_s3_core_801CC420",
+          436,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CC5D4": [
+          "dora3_s3_core_801CC5D4",
+          232,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CC6BC": [
+          "dora3_s3_core_801CC6BC",
+          312,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CC7F4": [
+          "dora3_s3_core_801CC7F4",
+          256,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CC8F4": [
+          "dora3_s3_core_801CC8F4",
+          440,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CCAAC": [
+          "dora3_s3_core_801CCAAC",
+          928,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CCE4C": [
+          "dora3_s3_core_801CCE4C",
+          1148,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CD2C8": [
+          "dora3_s3_core_801CD2C8",
+          204,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CD394": [
+          "dora3_s3_core_801CD394",
+          528,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CD5A4": [
+          "dora3_s3_core_801CD5A4",
+          288,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CD6C4": [
+          "dora3_s3_core_801CD6C4",
+          424,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CD86C": [
+          "dora3_s3_core_801CD86C",
+          296,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CD994": [
+          "dora3_s3_core_801CD994",
+          336,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CDAE4": [
+          "dora3_s3_core_801CDAE4",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CDB1C": [
+          "dora3_s3_core_801CDB1C",
+          412,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CDCB8": [
+          "dora3_s3_core_801CDCB8",
+          240,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CDDA8": [
+          "dora3_s3_core_801CDDA8",
+          716,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CE074": [
+          "dora3_s3_core_801CE074",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CE0AC": [
+          "dora3_s3_core_801CE0AC",
+          652,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CE338": [
+          "dora3_s3_core_801CE338",
+          260,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CE43C": [
+          "dora3_s3_core_801CE43C",
+          484,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CE620": [
+          "dora3_s3_core_801CE620",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CE658": [
+          "dora3_s3_core_801CE658",
+          764,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CE954": [
+          "dora3_s3_core_801CE954",
+          260,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CEA58": [
+          "dora3_s3_core_801CEA58",
+          336,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CEBA8": [
+          "dora3_s3_core_801CEBA8",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CEBE0": [
+          "dora3_s3_core_801CEBE0",
+          424,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CED88": [
+          "dora3_s3_core_801CED88",
+          248,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CEE80": [
+          "dora3_s3_core_801CEE80",
+          880,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CF1F0": [
+          "dora3_s3_core_801CF1F0",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CF228": [
+          "dora3_s3_core_801CF228",
+          772,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CF52C": [
+          "dora3_s3_core_801CF52C",
+          268,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CF638": [
+          "dora3_s3_core_801CF638",
+          372,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CF7AC": [
+          "dora3_s3_core_801CF7AC",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CF7E4": [
+          "dora3_s3_core_801CF7E4",
+          688,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CFA94": [
+          "dora3_s3_core_801CFA94",
+          448,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CFC54": [
+          "dora3_s3_core_801CFC54",
+          352,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CFDB4": [
+          "dora3_s3_core_801CFDB4",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801CFDEC": [
+          "dora3_s3_core_801CFDEC",
+          668,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D0088": [
+          "dora3_s3_core_801D0088",
+          448,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D0248": [
+          "dora3_s3_core_801D0248",
+          336,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D0398": [
+          "dora3_s3_core_801D0398",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D03D0": [
+          "dora3_s3_core_801D03D0",
+          472,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D05A8": [
+          "dora3_s3_core_801D05A8",
+          956,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D0964": [
+          "dora3_s3_core_801D0964",
+          604,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D0BC0": [
+          "dora3_s3_core_801D0BC0",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D0BF8": [
+          "dora3_s3_core_801D0BF8",
+          848,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D0F48": [
+          "dora3_s3_core_801D0F48",
+          348,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D10A4": [
+          "dora3_s3_core_801D10A4",
+          52,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D1388": [
+          "dora3_s3_core_801D1388",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D5528": [
+          "dora3_s3_core_801D5528",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D5594": [
+          "dora3_s3_core_801D5594",
+          88,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D56B8": [
+          "dora3_s3_core_801D56B8",
+          60,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D56F4": [
+          "dora3_s3_core_801D56F4",
+          116,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801D6BA8": [
+          "dora3_s3_core_801D6BA8",
+          140,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801DBC48": [
+          "dora3_s3_core_801DBC48",
+          272,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801DBFB0": [
+          "dora3_s3_core_801DBFB0",
+          304,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801DC23C": [
+          "dora3_s3_core_801DC23C",
+          432,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E0958": [
+          "dora3_s3_core_801E0958",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E0964": [
+          "dora3_s3_core_801E0964",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E52D4": [
+          "dora3_s3_core_801E52D4",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5328": [
+          "dora3_s3_core_801E5328",
+          168,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E53D0": [
+          "dora3_s3_core_801E53D0",
+          152,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5468": [
+          "dora3_s3_core_801E5468",
+          108,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E54D4": [
+          "dora3_s3_core_801E54D4",
+          196,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5598": [
+          "dora3_s3_core_801E5598",
+          392,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5720": [
+          "dora3_s3_core_801E5720",
+          108,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E578C": [
+          "dora3_s3_core_801E578C",
+          52,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E57C0": [
+          "dora3_s3_core_801E57C0",
+          104,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5828": [
+          "dora3_s3_core_801E5828",
+          108,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5894": [
+          "dora3_s3_core_801E5894",
+          76,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E58E0": [
+          "dora3_s3_core_801E58E0",
+          220,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E59BC": [
+          "dora3_s3_core_801E59BC",
+          96,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5A24": [
+          "dora3_s3_core_801E5A24",
+          112,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5A94": [
+          "dora3_s3_core_801E5A94",
+          140,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5B20": [
+          "dora3_s3_core_801E5B20",
+          120,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5BF8": [
+          "dora3_s3_core_801E5BF8",
+          52,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5C2C": [
+          "dora3_s3_core_801E5C2C",
+          108,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5C98": [
+          "dora3_s3_core_801E5C98",
+          120,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5D74": [
+          "dora3_s3_core_801E5D74",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5D7C": [
+          "dora3_s3_core_801E5D7C",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5D84": [
+          "dora3_s3_core_801E5D84",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5DBC": [
+          "dora3_s3_core_801E5DBC",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5E4C": [
+          "dora3_s3_core_801E5E4C",
+          344,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E5FA4": [
+          "dora3_s3_core_801E5FA4",
+          1040,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E839C": [
+          "dora3_s3_core_801E839C",
+          104,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E842C": [
+          "dora3_s3_core_801E842C",
+          40,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8528": [
+          "dora3_s3_core_801E8528",
+          104,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E86F4": [
+          "dora3_s3_core_801E86F4",
+          156,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8790": [
+          "dora3_s3_core_801E8790",
+          168,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8948": [
+          "dora3_s3_core_801E8948",
+          132,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8A34": [
+          "dora3_s3_core_801E8A34",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8A40": [
+          "dora3_s3_core_801E8A40",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8A58": [
+          "dora3_s3_core_801E8A58",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8A64": [
+          "dora3_s3_core_801E8A64",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8A7C": [
+          "dora3_s3_core_801E8A7C",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8A88": [
+          "dora3_s3_core_801E8A88",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8A94": [
+          "dora3_s3_core_801E8A94",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8AA0": [
+          "dora3_s3_core_801E8AA0",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8AAC": [
+          "dora3_s3_core_801E8AAC",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8AB8": [
+          "dora3_s3_core_801E8AB8",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8AC4": [
+          "dora3_s3_core_801E8AC4",
+          156,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E8B60": [
+          "dora3_s3_core_801E8B60",
+          116,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E9220": [
+          "dora3_s3_core_801E9220",
+          128,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E92A0": [
+          "dora3_s3_core_801E92A0",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E92FC": [
+          "dora3_s3_core_801E92FC",
+          264,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E9404": [
+          "dora3_s3_core_801E9404",
+          36,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E9428": [
+          "dora3_s3_core_801E9428",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E947C": [
+          "dora3_s3_core_801E947C",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E9484": [
+          "dora3_s3_core_801E9484",
+          88,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E94DC": [
+          "dora3_s3_core_801E94DC",
+          220,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E95B8": [
+          "dora3_s3_core_801E95B8",
+          172,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E9664": [
+          "dora3_s3_core_801E9664",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E96B8": [
+          "dora3_s3_core_801E96B8",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E96C0": [
+          "dora3_s3_core_801E96C0",
+          88,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E9718": [
+          "dora3_s3_core_801E9718",
+          228,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E97FC": [
+          "dora3_s3_core_801E97FC",
+          228,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E98E0": [
+          "dora3_s3_core_801E98E0",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E9934": [
+          "dora3_s3_core_801E9934",
+          128,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E99B4": [
+          "dora3_s3_core_801E99B4",
+          284,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E9AD0": [
+          "dora3_s3_core_801E9AD0",
+          720,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E9DA0": [
+          "dora3_s3_core_801E9DA0",
+          300,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E9ECC": [
+          "dora3_s3_core_801E9ECC",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E9F20": [
+          "dora3_s3_core_801E9F20",
+          216,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801E9FF8": [
+          "dora3_s3_core_801E9FF8",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA000": [
+          "dora3_s3_core_801EA000",
+          400,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA190": [
+          "dora3_s3_core_801EA190",
+          232,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA278": [
+          "dora3_s3_core_801EA278",
+          80,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA2C8": [
+          "dora3_s3_core_801EA2C8",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA2D0": [
+          "dora3_s3_core_801EA2D0",
+          416,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA470": [
+          "dora3_s3_core_801EA470",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA4C4": [
+          "dora3_s3_core_801EA4C4",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA4CC": [
+          "dora3_s3_core_801EA4CC",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA4D4": [
+          "dora3_s3_core_801EA4D4",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA4DC": [
+          "dora3_s3_core_801EA4DC",
+          156,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA578": [
+          "dora3_s3_core_801EA578",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA5D4": [
+          "dora3_s3_core_801EA5D4",
+          664,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA86C": [
+          "dora3_s3_core_801EA86C",
+          52,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA8A0": [
+          "dora3_s3_core_801EA8A0",
+          248,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EA998": [
+          "dora3_s3_core_801EA998",
+          272,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAAA8": [
+          "dora3_s3_core_801EAAA8",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAB04": [
+          "dora3_s3_core_801EAB04",
+          408,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAC9C": [
+          "dora3_s3_core_801EAC9C",
+          80,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EACEC": [
+          "dora3_s3_core_801EACEC",
+          128,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAD6C": [
+          "dora3_s3_core_801EAD6C",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAD74": [
+          "dora3_s3_core_801EAD74",
+          208,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAE44": [
+          "dora3_s3_core_801EAE44",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAE4C": [
+          "dora3_s3_core_801EAE4C",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAE54": [
+          "dora3_s3_core_801EAE54",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAE5C": [
+          "dora3_s3_core_801EAE5C",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAE64": [
+          "dora3_s3_core_801EAE64",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAE6C": [
+          "dora3_s3_core_801EAE6C",
+          100,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAED0": [
+          "dora3_s3_core_801EAED0",
+          128,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAF50": [
+          "dora3_s3_core_801EAF50",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAF58": [
+          "dora3_s3_core_801EAF58",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAF60": [
+          "dora3_s3_core_801EAF60",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAF68": [
+          "dora3_s3_core_801EAF68",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EAFBC": [
+          "dora3_s3_core_801EAFBC",
+          152,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB054": [
+          "dora3_s3_core_801EB054",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB05C": [
+          "dora3_s3_core_801EB05C",
+          136,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB0E4": [
+          "dora3_s3_core_801EB0E4",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB0EC": [
+          "dora3_s3_core_801EB0EC",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB140": [
+          "dora3_s3_core_801EB140",
+          68,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB184": [
+          "dora3_s3_core_801EB184",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB1C4": [
+          "dora3_s3_core_801EB1C4",
+          276,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB2D8": [
+          "dora3_s3_core_801EB2D8",
+          352,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB438": [
+          "dora3_s3_core_801EB438",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB440": [
+          "dora3_s3_core_801EB440",
+          168,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB4E8": [
+          "dora3_s3_core_801EB4E8",
+          376,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB660": [
+          "dora3_s3_core_801EB660",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB668": [
+          "dora3_s3_core_801EB668",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB670": [
+          "dora3_s3_core_801EB670",
+          332,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB7BC": [
+          "dora3_s3_core_801EB7BC",
+          104,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB824": [
+          "dora3_s3_core_801EB824",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB864": [
+          "dora3_s3_core_801EB864",
+          60,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EB8F8": [
+          "dora3_s3_core_801EB8F8",
+          320,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EBA38": [
+          "dora3_s3_core_801EBA38",
+          100,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EBA9C": [
+          "dora3_s3_core_801EBA9C",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EBAD4": [
+          "dora3_s3_core_801EBAD4",
+          492,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EBCC0": [
+          "dora3_s3_core_801EBCC0",
+          540,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EBEDC": [
+          "dora3_s3_core_801EBEDC",
+          236,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EBFC8": [
+          "dora3_s3_core_801EBFC8",
+          264,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC0D0": [
+          "dora3_s3_core_801EC0D0",
+          196,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC194": [
+          "dora3_s3_core_801EC194",
+          276,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC2A8": [
+          "dora3_s3_core_801EC2A8",
+          752,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC598": [
+          "dora3_s3_core_801EC598",
+          568,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC7D0": [
+          "dora3_s3_core_801EC7D0",
+          204,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC89C": [
+          "dora3_s3_core_801EC89C",
+          36,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC8C0": [
+          "dora3_s3_core_801EC8C0",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC8DC": [
+          "dora3_s3_core_801EC8DC",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC8F8": [
+          "dora3_s3_core_801EC8F8",
+          36,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC91C": [
+          "dora3_s3_core_801EC91C",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC938": [
+          "dora3_s3_core_801EC938",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC954": [
+          "dora3_s3_core_801EC954",
+          36,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC978": [
+          "dora3_s3_core_801EC978",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC994": [
+          "dora3_s3_core_801EC994",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC9B0": [
+          "dora3_s3_core_801EC9B0",
+          36,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC9D4": [
+          "dora3_s3_core_801EC9D4",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EC9F0": [
+          "dora3_s3_core_801EC9F0",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECA0C": [
+          "dora3_s3_core_801ECA0C",
+          36,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECA30": [
+          "dora3_s3_core_801ECA30",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECA4C": [
+          "dora3_s3_core_801ECA4C",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECA68": [
+          "dora3_s3_core_801ECA68",
+          36,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECA8C": [
+          "dora3_s3_core_801ECA8C",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECAA8": [
+          "dora3_s3_core_801ECAA8",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECAC4": [
+          "dora3_s3_core_801ECAC4",
+          88,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECB1C": [
+          "dora3_s3_core_801ECB1C",
+          80,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECB6C": [
+          "dora3_s3_core_801ECB6C",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECB88": [
+          "dora3_s3_core_801ECB88",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECBE4": [
+          "dora3_s3_core_801ECBE4",
+          136,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECC6C": [
+          "dora3_s3_core_801ECC6C",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECC88": [
+          "dora3_s3_core_801ECC88",
+          100,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECCEC": [
+          "dora3_s3_core_801ECCEC",
+          80,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECD3C": [
+          "dora3_s3_core_801ECD3C",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECD58": [
+          "dora3_s3_core_801ECD58",
+          52,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECD8C": [
+          "dora3_s3_core_801ECD8C",
+          72,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECDD4": [
+          "dora3_s3_core_801ECDD4",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECDF0": [
+          "dora3_s3_core_801ECDF0",
+          52,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECE24": [
+          "dora3_s3_core_801ECE24",
+          72,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECE6C": [
+          "dora3_s3_core_801ECE6C",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECE88": [
+          "dora3_s3_core_801ECE88",
+          100,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECEEC": [
+          "dora3_s3_core_801ECEEC",
+          80,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECF3C": [
+          "dora3_s3_core_801ECF3C",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECF58": [
+          "dora3_s3_core_801ECF58",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ECFB4": [
+          "dora3_s3_core_801ECFB4",
+          108,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED020": [
+          "dora3_s3_core_801ED020",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED03C": [
+          "dora3_s3_core_801ED03C",
+          36,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED060": [
+          "dora3_s3_core_801ED060",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED07C": [
+          "dora3_s3_core_801ED07C",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED098": [
+          "dora3_s3_core_801ED098",
+          36,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED0BC": [
+          "dora3_s3_core_801ED0BC",
+          72,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED104": [
+          "dora3_s3_core_801ED104",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED120": [
+          "dora3_s3_core_801ED120",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED17C": [
+          "dora3_s3_core_801ED17C",
+          108,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED1E8": [
+          "dora3_s3_core_801ED1E8",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED204": [
+          "dora3_s3_core_801ED204",
+          36,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED228": [
+          "dora3_s3_core_801ED228",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED244": [
+          "dora3_s3_core_801ED244",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED260": [
+          "dora3_s3_core_801ED260",
+          36,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED284": [
+          "dora3_s3_core_801ED284",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED2A0": [
+          "dora3_s3_core_801ED2A0",
+          28,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED2BC": [
+          "dora3_s3_core_801ED2BC",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED2C4": [
+          "dora3_s3_core_801ED2C4",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED2CC": [
+          "dora3_s3_core_801ED2CC",
+          464,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED49C": [
+          "dora3_s3_core_801ED49C",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED4A4": [
+          "dora3_s3_core_801ED4A4",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED4AC": [
+          "dora3_s3_core_801ED4AC",
+          328,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED5F4": [
+          "dora3_s3_core_801ED5F4",
+          676,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED898": [
+          "dora3_s3_core_801ED898",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED8EC": [
+          "dora3_s3_core_801ED8EC",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED8F4": [
+          "dora3_s3_core_801ED8F4",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801ED8FC": [
+          "dora3_s3_core_801ED8FC",
+          276,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDA10": [
+          "dora3_s3_core_801EDA10",
+          104,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDA78": [
+          "dora3_s3_core_801EDA78",
+          8,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDA80": [
+          "dora3_s3_core_801EDA80",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDAC0": [
+          "dora3_s3_core_801EDAC0",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDB00": [
+          "dora3_s3_core_801EDB00",
+          80,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDB50": [
+          "dora3_s3_core_801EDB50",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDB90": [
+          "dora3_s3_core_801EDB90",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDBD0": [
+          "dora3_s3_core_801EDBD0",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDC10": [
+          "dora3_s3_core_801EDC10",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDC50": [
+          "dora3_s3_core_801EDC50",
+          68,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDC94": [
+          "dora3_s3_core_801EDC94",
+          32,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDCB4": [
+          "dora3_s3_core_801EDCB4",
+          80,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDD04": [
+          "dora3_s3_core_801EDD04",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDD44": [
+          "dora3_s3_core_801EDD44",
+          80,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDD94": [
+          "dora3_s3_core_801EDD94",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDDD4": [
+          "dora3_s3_core_801EDDD4",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDE14": [
+          "dora3_s3_core_801EDE14",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDE54": [
+          "dora3_s3_core_801EDE54",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDE94": [
+          "dora3_s3_core_801EDE94",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDED4": [
+          "dora3_s3_core_801EDED4",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDF14": [
+          "dora3_s3_core_801EDF14",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDF68": [
+          "dora3_s3_core_801EDF68",
+          108,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EDFD4": [
+          "dora3_s3_core_801EDFD4",
+          76,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EE020": [
+          "dora3_s3_core_801EE020",
+          92,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EE07C": [
+          "dora3_s3_core_801EE07C",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EE0BC": [
+          "dora3_s3_core_801EE0BC",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EE0FC": [
+          "dora3_s3_core_801EE0FC",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EE13C": [
+          "dora3_s3_core_801EE13C",
+          72,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EE184": [
+          "dora3_s3_core_801EE184",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EE1C4": [
+          "dora3_s3_core_801EE1C4",
+          72,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EE20C": [
+          "dora3_s3_core_801EE20C",
+          20,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EE220": [
+          "dora3_s3_core_801EE220",
+          700,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EE4DC": [
+          "dora3_s3_core_801EE4DC",
+          1624,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EEB34": [
+          "dora3_s3_core_801EEB34",
+          316,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EEC70": [
+          "dora3_s3_core_801EEC70",
+          132,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EECF4": [
+          "dora3_s3_core_801EECF4",
+          396,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EEE80": [
+          "dora3_s3_core_801EEE80",
+          328,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EEFC8": [
+          "dora3_s3_core_801EEFC8",
+          264,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EF0D0": [
+          "dora3_s3_core_801EF0D0",
+          176,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EF180": [
+          "dora3_s3_core_801EF180",
+          364,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801EF2EC": [
+          "dora3_s3_core_801EF2EC",
+          20,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F0134": [
+          "dora3_s3_core_801F0134",
+          40,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F015C": [
+          "dora3_s3_core_801F015C",
+          36,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F0180": [
+          "dora3_s3_core_801F0180",
+          300,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F03B8": [
+          "dora3_s3_core_801F03B8",
+          104,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F0420": [
+          "dora3_s3_core_801F0420",
+          76,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F046C": [
+          "dora3_s3_core_801F046C",
+          288,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F058C": [
+          "dora3_s3_core_801F058C",
+          384,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F070C": [
+          "dora3_s3_core_801F070C",
+          176,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F70B0": [
+          "dora3_s3_core_801F70B0",
+          296,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F71D8": [
+          "dora3_s3_core_801F71D8",
+          180,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F728C": [
+          "dora3_s3_core_801F728C",
+          300,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F73B8": [
+          "dora3_s3_core_801F73B8",
+          544,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F75D8": [
+          "dora3_s3_core_801F75D8",
+          56,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F7610": [
+          "dora3_s3_core_801F7610",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F7650": [
+          "dora3_s3_core_801F7650",
+          88,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F76A8": [
+          "dora3_s3_core_801F76A8",
+          440,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F7860": [
+          "dora3_s3_core_801F7860",
+          668,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F7AFC": [
+          "dora3_s3_core_801F7AFC",
+          224,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F7BDC": [
+          "dora3_s3_core_801F7BDC",
+          280,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F7CF4": [
+          "dora3_s3_core_801F7CF4",
+          100,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F7D58": [
+          "dora3_s3_core_801F7D58",
+          52,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F7D8C": [
+          "dora3_s3_core_801F7D8C",
+          2180,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F8610": [
+          "dora3_s3_core_801F8610",
+          852,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F8964": [
+          "dora3_s3_core_801F8964",
+          328,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F8AAC": [
+          "dora3_s3_core_801F8AAC",
+          76,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F8AF8": [
+          "dora3_s3_core_801F8AF8",
+          220,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F8BD4": [
+          "dora3_s3_core_801F8BD4",
+          1372,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F9130": [
+          "dora3_s3_core_801F9130",
+          224,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F9210": [
+          "dora3_s3_core_801F9210",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F921C": [
+          "dora3_s3_core_801F921C",
+          380,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F9398": [
+          "dora3_s3_core_801F9398",
+          152,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F9430": [
+          "dora3_s3_core_801F9430",
+          572,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F966C": [
+          "dora3_s3_core_801F966C",
+          116,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F96E0": [
+          "dora3_s3_core_801F96E0",
+          312,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F9818": [
+          "dora3_s3_core_801F9818",
+          84,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F986C": [
+          "dora3_s3_core_801F986C",
+          32,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F988C": [
+          "dora3_s3_core_801F988C",
+          12,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F9898": [
+          "dora3_s3_core_801F9898",
+          64,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F98D8": [
+          "dora3_s3_core_801F98D8",
+          640,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F9B58": [
+          "dora3_s3_core_801F9B58",
+          304,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F9C88": [
+          "dora3_s3_core_801F9C88",
+          316,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F9DC4": [
+          "dora3_s3_core_801F9DC4",
+          284,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
+        ],
+        "0x801F9EE0": [
+          "dora3_s3_core_801F9EE0",
+          320,
+          "Remaining scene1 code-prefix candidate plus dependencies; direct calls and references covered; original instructions; function extents require N64Recomp validation, execution coverage unverified"
         ]
       },
       "indirect_targets": {
         "0x801BB924": "scene1 dispatch table8007DC20 ->43654 ->callback",
         "0x801BB730": "scene1 update installed by initializer",
-        "0x801BB848": "scene1 draw installed by initializer"
+        "0x801BB848": "scene1 draw installed by initializer",
+        "0x801C85C8": "Player state0x43 handler; ROM table801FA6B0+43*8=801FA8C8; indirect call801C8F08; observed abort test-006"
       }
     },
     {

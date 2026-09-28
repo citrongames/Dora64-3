@@ -179,3 +179,13 @@ python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Dora
 Windows helper использует startup-v48, audio-rsp-v1 прежний. requires задаёт
 обязательный одновременно загруженный оверлей; нельзя заимствовать функцию
 по совпавшему RAM-адресу из альтернативной сцены.9 synthetic layout checks.
+
+## Windows test-007: весь найденный основной код scene1
+
+```sh
+python3 tools/check_gameplay_core.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64'
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v49
+```
+
+Windows helper использует startup-v49, audio-rsp-v1 прежний.2323 original bodies,
+44 SDK,17 pending. Кандидатное покрытие основного блока не равно полной игре.
