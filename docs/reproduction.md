@@ -220,3 +220,13 @@ python3 tools/check_save_file.py --save /mnt/d/Games/DoraRecomp3/testbuild/saves
 
 Последняя проверка работает только с временной копией. Windows helper использует
 startup-v52; audio-rsp-v1 прежний. 2617 original /44 SDK /17 pending.
+
+## Windows test-011: гора
+
+```sh
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v53
+python3 tools/check_mountain_overlays.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --generated build-local/startup-v53
+```
+
+Windows helper использует startup-v53, audio-rsp-v1 прежний. 2675 original,
+44 SDK,17 pending. Сейвы/настройки общие с test-010; игра агентом не запускается.

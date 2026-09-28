@@ -1,10 +1,10 @@
 {
   "scope": "Windows x64 native compile and static generation checks; game not launched by agent",
-  "build_id": "test-010",
+  "build_id": "test-011",
   "compiled": true,
   "locally_launched": false,
   "user_visual_test": "pending",
-  "original_functions": 2617,
+  "original_functions": 2675,
   "sdk_mappings": 44,
   "pending_boundaries": [
     {
@@ -82,6 +82,7 @@
   "level1_overlay_check": "3 gameplay variants,177 new functions; all generated direct calls checked;46 scene1-context references; variant-specific symbols and parent guards verified;9 synthetic layout tests and old demo check passed",
   "cave_overlay_check": "3 cave variants,117 new functions; all generated calls and old first-level batch checked;3 scene1-context calls; repaired epilogue boundary",
   "save_storage_check": "Windows config root=EXE parent; saves/dora3.n64.jp.bin shared; captures remain per-run. Latest save and bak copied with original retained. Actual runtime component read/write/reopen/backup passed on disposable copy.",
+  "mountain_overlay_check": "2 mountain variants,58 functions; all generated calls checked;3 scene1-context references;slot0 reuses existing ROMCEC60; cave batch checked again",
   "overlay_checks": "Required overlay validation and runtime load/call guards; all generated bodies have ROM-qualified trace guards; no implicit extra function count",
   "rom_lookup": "EXE parent only; external exact filename",
   "api_policy": "RT64 Automatic, same policy as Dora64",
@@ -90,27 +91,27 @@
     "seconds_after_setup": null,
     "environment_override": false
   },
-  "executable_sha256": "ed2af9b8e0574c41a72723d447ea767bb325e581debaf3284d9cf842c8d103ac",
+  "executable_sha256": "5028ddcb4974d570cc2747c645e108c3ffd768f4687e48581e5f1a74473be781",
   "source_sha256": {
     "src/startup_runtime.cpp": "b76b60cdea8ecafb741430fac78fd3df21e372d17130973002390737bbefdfc0",
     "src/live_graphics.cpp": "79917a65c529b9173d2ddf554568b5c4925fc20063531517e0f9c7f580e0afb5",
     "src/live_io.cpp": "6447fa965e3e5fcecaf8eb67c44e31b6bacce5aff6e6c29b2cb3917f96a0114a",
     "src/live_io.hpp": "1bc6f95b5f214e397f58d2cfd1b9a3d0115402ae162858a747ed5a5331fca6a9",
-    "recomp/startup.json": "01b0e10ff85e42d49cc75dec3b7fcd11d4e92c70286337374ea93e69cc06626a",
+    "recomp/startup.json": "8457eea1f52a5d6e3967106072ca1d52b4e96b7c7423ea01c17f3dce4892aaa1",
     "research/runtime/CMakeLists.txt": "f7faf13da872a1adf7dc903e0cf833ccfb9ad2b9d05b5ff7fa19351a7364f281",
     "tools/prepare_runtime_timing.py": "80b5ce71a8c1d7967030b0dc3fc61ebece831188dc00115f7cf7dbdef94b091a",
-    "tools/build_windows.ps1": "196de0772e7d296ebdbe9b06f0c4bc7f15687ae8d15238333d5e462526baaef9",
+    "tools/build_windows.ps1": "2fcfdd3760038dbb0e34d9cb9440a85ec377f3efff15dc716632b0f3e7e1ce0c",
     "tools/generate_startup.py": "b3edacf907f200df0bd96e69c5d617cc92b5a3c16d60d02a668b9256aab2084c",
     "tools/overlay_layout.py": "712675f8481d484a73359fadadfbfbe77e6bdcf474061803be304f9269f4c8b1",
     "tools/local_jump_tables.py": "8f67b564786898b345906e7161580a66b3284fe5aa191c093216ba8bba429dde"
   },
   "generated_receipt_sha256": {
-    "startup-v52": "c7d6a6ce24b1ac72c1d67eaf48582c58ccc79d93c936d3192f659687346d01bd",
+    "startup-v53": "cd10d82b5f42c80665fa22f62f831c582a9b8a7fd81323238c889305e8ca0dff",
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "dependency_pins_verified": 32,
   "donor_unchanged": "680d81feb4c57309ba80536300d73725ea9dffaa",
-  "previous_user_test": "test-009 first level/cutscene/map completed per user; cave lookup abort8023E410;869 resources match independent decoder; see windows-test-009-result.json",
+  "previous_user_test": "test-010 cave launch user-confirmed; mountain lookup abort8023D8E8;483 resources match independent decoder; see windows-test-010-result.json",
   "remaining_risks": [
     "Unobserved branches and indirect targets",
     "Hardware calls still fail explicitly",

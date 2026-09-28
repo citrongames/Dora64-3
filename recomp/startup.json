@@ -13555,6 +13555,338 @@
       "indirect_targets": {
         "0x8023E410": "Observed test-009 lookup after verified ROM150C60 ->8023D6D0 size2520; cave slot2 variant"
       }
+    },
+    {
+      "name": ".mountain_slot1",
+      "rom": 1200512,
+      "vram": 2149766864,
+      "size": 6688,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot1",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC0B8",
+        "selector": 3,
+        "text_size": 6432,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8022D6D0": [
+          "dora3_s13_mountain_8022D6D0",
+          128,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D750": [
+          "dora3_s13_mountain_8022D750",
+          104,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D7B8": [
+          "dora3_s13_mountain_8022D7B8",
+          176,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D868": [
+          "dora3_s13_mountain_8022D868",
+          276,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D97C": [
+          "dora3_s13_mountain_8022D97C",
+          172,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DA28": [
+          "dora3_s13_mountain_8022DA28",
+          128,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DAA8": [
+          "dora3_s13_mountain_8022DAA8",
+          324,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DBEC": [
+          "dora3_s13_mountain_8022DBEC",
+          224,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DCCC": [
+          "dora3_s13_mountain_8022DCCC",
+          308,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DE00": [
+          "dora3_s13_mountain_8022DE00",
+          1048,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E218": [
+          "dora3_s13_mountain_8022E218",
+          688,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E4C8": [
+          "dora3_s13_mountain_8022E4C8",
+          128,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E548": [
+          "dora3_s13_mountain_8022E548",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E550": [
+          "dora3_s13_mountain_8022E550",
+          100,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E5B4": [
+          "dora3_s13_mountain_8022E5B4",
+          560,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E7E4": [
+          "dora3_s13_mountain_8022E7E4",
+          56,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E81C": [
+          "dora3_s13_mountain_8022E81C",
+          84,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E870": [
+          "dora3_s13_mountain_8022E870",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E878": [
+          "dora3_s13_mountain_8022E878",
+          100,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E8DC": [
+          "dora3_s13_mountain_8022E8DC",
+          800,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EBFC": [
+          "dora3_s13_mountain_8022EBFC",
+          56,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EC34": [
+          "dora3_s13_mountain_8022EC34",
+          84,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EC88": [
+          "dora3_s13_mountain_8022EC88",
+          144,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022ED18": [
+          "dora3_s13_mountain_8022ED18",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022ED20": [
+          "dora3_s13_mountain_8022ED20",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022ED28": [
+          "dora3_s13_mountain_8022ED28",
+          192,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EDE8": [
+          "dora3_s13_mountain_8022EDE8",
+          84,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EE3C": [
+          "dora3_s13_mountain_8022EE3C",
+          144,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EECC": [
+          "dora3_s13_mountain_8022EECC",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EED4": [
+          "dora3_s13_mountain_8022EED4",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EEDC": [
+          "dora3_s13_mountain_8022EEDC",
+          192,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EF9C": [
+          "dora3_s13_mountain_8022EF9C",
+          84,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {}
+    },
+    {
+      "name": ".mountain_slot2",
+      "rom": 1375520,
+      "vram": 2149832400,
+      "size": 3904,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot2",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC108",
+        "selector": 2,
+        "text_size": 3632,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8023D6D0": [
+          "dora3_s14_mountain_8023D6D0",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D6D8": [
+          "dora3_s14_mountain_8023D6D8",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D6E0": [
+          "dora3_s14_mountain_8023D6E0",
+          224,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D7C0": [
+          "dora3_s14_mountain_8023D7C0",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D7C8": [
+          "dora3_s14_mountain_8023D7C8",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D7D0": [
+          "dora3_s14_mountain_8023D7D0",
+          280,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D8E8": [
+          "dora3_s14_mountain_8023D8E8",
+          128,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D968": [
+          "dora3_s14_mountain_8023D968",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D970": [
+          "dora3_s14_mountain_8023D970",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D978": [
+          "dora3_s14_mountain_8023D978",
+          460,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DB44": [
+          "dora3_s14_mountain_8023DB44",
+          104,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DBAC": [
+          "dora3_s14_mountain_8023DBAC",
+          240,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DC9C": [
+          "dora3_s14_mountain_8023DC9C",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DCA4": [
+          "dora3_s14_mountain_8023DCA4",
+          352,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DE04": [
+          "dora3_s14_mountain_8023DE04",
+          160,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DEA4": [
+          "dora3_s14_mountain_8023DEA4",
+          488,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E08C": [
+          "dora3_s14_mountain_8023E08C",
+          192,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E14C": [
+          "dora3_s14_mountain_8023E14C",
+          100,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E1B0": [
+          "dora3_s14_mountain_8023E1B0",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E1B8": [
+          "dora3_s14_mountain_8023E1B8",
+          48,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E1E8": [
+          "dora3_s14_mountain_8023E1E8",
+          84,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E23C": [
+          "dora3_s14_mountain_8023E23C",
+          144,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E2CC": [
+          "dora3_s14_mountain_8023E2CC",
+          8,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E2D4": [
+          "dora3_s14_mountain_8023E2D4",
+          216,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E3AC": [
+          "dora3_s14_mountain_8023E3AC",
+          212,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E480": [
+          "dora3_s14_mountain_8023E480",
+          128,
+          "Mountain child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {
+        "0x8023D8E8": "Observed test-010 lookup after verified ROM14FD20 ->8023D6D0 sizeF40; mountain slot2 variant"
+      }
     }
   ],
   "local_jump_tables": [
