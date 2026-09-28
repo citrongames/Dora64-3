@@ -199,3 +199,13 @@ python3 tools/check_menu_local_jumps.py --rom '/mnt/d/Games/DoraRecomp3/testbuil
 
 Windows helper использует startup-v50; audio-rsp-v1 прежний. 2323 original,
 44 SDK, 17 pending. Новых функций или изменений библиотек нет.
+
+## Windows test-009: три варианта первого игрового уровня
+
+```sh
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v51
+python3 tools/check_level1_overlays.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --generated build-local/startup-v51
+```
+
+Windows helper использует startup-v51; audio-rsp-v1 прежний. 2500 original,
+44 SDK, 17 pending. Группы child_slot0/1/2 разделяют варианты с общей RAM.

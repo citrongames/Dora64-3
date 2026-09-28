@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$CrtDirectory,
-    [string]$BuildId = 'test-008'
+    [string]$BuildId = 'test-009'
 )
 $ErrorActionPreference = 'Stop'
 if ($BuildId -notmatch '^[a-zA-Z0-9-]+$') { throw 'Invalid build ID.' }
@@ -48,8 +48,8 @@ $report = [ordered]@{
     locally_launched = $false
     visual_input_audible_validation = 'pending user test'
     compiler = 'MSVC 19.44; RelWithDebInfo /O2 /Zi /EHsc; dynamic CRT'
-    previous_user_test = 'test-007: attract demo completed; selecting save slot aborts at local branch801BE7C0'
-    current_test_scope = 'two slot-detail local dispatch corrections; no automatic time or graphics-task stop'
+    previous_user_test = 'test-008: save-slot menu and intro cutscene completed; first gameplay lookup abort8023103C'
+    current_test_scope = 'three first-gameplay overlay variants plus dependencies; no automatic time or graphics-task stop'
     rom = 'external; exact filename beside EXE only; never copied by this script'
     files_sha256 = $hashes
     source = $stage

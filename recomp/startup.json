@@ -3682,6 +3682,11 @@
           "dora3_s1_menu_801B51F4",
           20,
           "Shared menu overlay closure rooted at six original resident scene dispatch arms; original code retained; spimdisasm extent candidate, N64Recomp validation and user runtime coverage separate"
+        ],
+        "0x801B7100": [
+          "dora3_s1_level1_801B7100",
+          16,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
         ]
       },
       "indirect_targets": {}
@@ -11397,7 +11402,8 @@
           "ROM reviewed complete switch8022438C..80224428; table80224750 has10 local branch targets including80224404; shared return8022441C. Analyzer false function split removed; original instructions unchanged"
         ]
       },
-      "indirect_targets": {}
+      "indirect_targets": {},
+      "overlay_group": "child_slot0"
     },
     {
       "name": ".demo_slot1",
@@ -11616,7 +11622,8 @@
           "First attract-demo three suboverlays and call/reference closure; original instructions; CSV candidate extent; requires scene1 parent, never menu alias; runtime coverage pending"
         ]
       },
-      "indirect_targets": {}
+      "indirect_targets": {},
+      "overlay_group": "child_slot1"
     },
     {
       "name": ".demo_slot2",
@@ -11957,7 +11964,950 @@
       },
       "indirect_targets": {
         "0x8023E9A0": "Observed test-005 runtime lookup after verified ROM14D4C0 ->8023D6D0 DMA; native body belongs only to this child overlay"
+      },
+      "overlay_group": "child_slot2"
+    },
+    {
+      "name": ".level1_slot0",
+      "rom": 974256,
+      "vram": 2149701328,
+      "size": 29776,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot0",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC058",
+        "selector": 8,
+        "text_size": 27120,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8021D6D0": [
+          "dora3_s7_level1_8021D6D0",
+          592,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021D920": [
+          "dora3_s7_level1_8021D920",
+          172,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021D9CC": [
+          "dora3_s7_level1_8021D9CC",
+          396,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021DB58": [
+          "dora3_s7_level1_8021DB58",
+          1644,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E1C4": [
+          "dora3_s7_level1_8021E1C4",
+          1084,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E600": [
+          "dora3_s7_level1_8021E600",
+          276,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E714": [
+          "dora3_s7_level1_8021E714",
+          128,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E794": [
+          "dora3_s7_level1_8021E794",
+          100,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E7F8": [
+          "dora3_s7_level1_8021E7F8",
+          336,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021E948": [
+          "dora3_s7_level1_8021E948",
+          2008,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F120": [
+          "dora3_s7_level1_8021F120",
+          776,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F428": [
+          "dora3_s7_level1_8021F428",
+          128,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F4A8": [
+          "dora3_s7_level1_8021F4A8",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F4B0": [
+          "dora3_s7_level1_8021F4B0",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F4B8": [
+          "dora3_s7_level1_8021F4B8",
+          180,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F56C": [
+          "dora3_s7_level1_8021F56C",
+          172,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F618": [
+          "dora3_s7_level1_8021F618",
+          84,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F66C": [
+          "dora3_s7_level1_8021F66C",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F674": [
+          "dora3_s7_level1_8021F674",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F67C": [
+          "dora3_s7_level1_8021F67C",
+          352,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F7DC": [
+          "dora3_s7_level1_8021F7DC",
+          152,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F874": [
+          "dora3_s7_level1_8021F874",
+          100,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021F8D8": [
+          "dora3_s7_level1_8021F8D8",
+          1140,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8021FD4C": [
+          "dora3_s7_level1_8021FD4C",
+          832,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022008C": [
+          "dora3_s7_level1_8022008C",
+          1056,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802204AC": [
+          "dora3_s7_level1_802204AC",
+          140,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220538": [
+          "dora3_s7_level1_80220538",
+          152,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802205D0": [
+          "dora3_s7_level1_802205D0",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802205D8": [
+          "dora3_s7_level1_802205D8",
+          100,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022063C": [
+          "dora3_s7_level1_8022063C",
+          340,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220790": [
+          "dora3_s7_level1_80220790",
+          56,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802207C8": [
+          "dora3_s7_level1_802207C8",
+          84,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022081C": [
+          "dora3_s7_level1_8022081C",
+          228,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220900": [
+          "dora3_s7_level1_80220900",
+          144,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220990": [
+          "dora3_s7_level1_80220990",
+          332,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220ADC": [
+          "dora3_s7_level1_80220ADC",
+          356,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220C40": [
+          "dora3_s7_level1_80220C40",
+          464,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220E10": [
+          "dora3_s7_level1_80220E10",
+          128,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220E90": [
+          "dora3_s7_level1_80220E90",
+          264,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80220F98": [
+          "dora3_s7_level1_80220F98",
+          144,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80221028": [
+          "dora3_s7_level1_80221028",
+          88,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80221080": [
+          "dora3_s7_level1_80221080",
+          428,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022122C": [
+          "dora3_s7_level1_8022122C",
+          164,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802212D0": [
+          "dora3_s7_level1_802212D0",
+          484,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802214B4": [
+          "dora3_s7_level1_802214B4",
+          736,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80221794": [
+          "dora3_s7_level1_80221794",
+          276,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802218A8": [
+          "dora3_s7_level1_802218A8",
+          320,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802219E8": [
+          "dora3_s7_level1_802219E8",
+          400,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80221B78": [
+          "dora3_s7_level1_80221B78",
+          144,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80221C08": [
+          "dora3_s7_level1_80221C08",
+          468,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80221DDC": [
+          "dora3_s7_level1_80221DDC",
+          864,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022213C": [
+          "dora3_s7_level1_8022213C",
+          164,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802221E0": [
+          "dora3_s7_level1_802221E0",
+          388,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222364": [
+          "dora3_s7_level1_80222364",
+          676,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222608": [
+          "dora3_s7_level1_80222608",
+          276,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022271C": [
+          "dora3_s7_level1_8022271C",
+          252,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222818": [
+          "dora3_s7_level1_80222818",
+          232,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222900": [
+          "dora3_s7_level1_80222900",
+          1104,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222D50": [
+          "dora3_s7_level1_80222D50",
+          88,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80222DA8": [
+          "dora3_s7_level1_80222DA8",
+          800,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802230C8": [
+          "dora3_s7_level1_802230C8",
+          352,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223228": [
+          "dora3_s7_level1_80223228",
+          916,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802235BC": [
+          "dora3_s7_level1_802235BC",
+          392,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223744": [
+          "dora3_s7_level1_80223744",
+          300,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223870": [
+          "dora3_s7_level1_80223870",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223878": [
+          "dora3_s7_level1_80223878",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223880": [
+          "dora3_s7_level1_80223880",
+          860,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223BDC": [
+          "dora3_s7_level1_80223BDC",
+          248,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223CD4": [
+          "dora3_s7_level1_80223CD4",
+          208,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223DA4": [
+          "dora3_s7_level1_80223DA4",
+          64,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223DE4": [
+          "dora3_s7_level1_80223DE4",
+          472,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80223FBC": [
+          "dora3_s7_level1_80223FBC",
+          260,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {}
+    },
+    {
+      "name": ".level1_slot1",
+      "rom": 1257344,
+      "vram": 2149766864,
+      "size": 26912,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot1",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC0E0",
+        "selector": 8,
+        "text_size": 22000,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8022D6D0": [
+          "dora3_s8_level1_8022D6D0",
+          268,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D7DC": [
+          "dora3_s8_level1_8022D7DC",
+          128,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D85C": [
+          "dora3_s8_level1_8022D85C",
+          84,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D8B0": [
+          "dora3_s8_level1_8022D8B0",
+          136,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D938": [
+          "dora3_s8_level1_8022D938",
+          84,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022D98C": [
+          "dora3_s8_level1_8022D98C",
+          220,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DA68": [
+          "dora3_s8_level1_8022DA68",
+          144,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DAF8": [
+          "dora3_s8_level1_8022DAF8",
+          60,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DB34": [
+          "dora3_s8_level1_8022DB34",
+          124,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DBB0": [
+          "dora3_s8_level1_8022DBB0",
+          84,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DC04": [
+          "dora3_s8_level1_8022DC04",
+          400,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DD94": [
+          "dora3_s8_level1_8022DD94",
+          220,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DE70": [
+          "dora3_s8_level1_8022DE70",
+          224,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022DF50": [
+          "dora3_s8_level1_8022DF50",
+          344,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E0A8": [
+          "dora3_s8_level1_8022E0A8",
+          844,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E3F4": [
+          "dora3_s8_level1_8022E3F4",
+          140,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E480": [
+          "dora3_s8_level1_8022E480",
+          228,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E564": [
+          "dora3_s8_level1_8022E564",
+          400,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E6F4": [
+          "dora3_s8_level1_8022E6F4",
+          220,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E7D0": [
+          "dora3_s8_level1_8022E7D0",
+          224,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022E8B0": [
+          "dora3_s8_level1_8022E8B0",
+          344,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EA08": [
+          "dora3_s8_level1_8022EA08",
+          740,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022ECEC": [
+          "dora3_s8_level1_8022ECEC",
+          140,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022ED78": [
+          "dora3_s8_level1_8022ED78",
+          228,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EE5C": [
+          "dora3_s8_level1_8022EE5C",
+          360,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022EFC4": [
+          "dora3_s8_level1_8022EFC4",
+          220,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F0A0": [
+          "dora3_s8_level1_8022F0A0",
+          224,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F180": [
+          "dora3_s8_level1_8022F180",
+          344,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F2D8": [
+          "dora3_s8_level1_8022F2D8",
+          740,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F5BC": [
+          "dora3_s8_level1_8022F5BC",
+          140,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F648": [
+          "dora3_s8_level1_8022F648",
+          228,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F72C": [
+          "dora3_s8_level1_8022F72C",
+          384,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F8AC": [
+          "dora3_s8_level1_8022F8AC",
+          220,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022F988": [
+          "dora3_s8_level1_8022F988",
+          224,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FA68": [
+          "dora3_s8_level1_8022FA68",
+          344,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FBC0": [
+          "dora3_s8_level1_8022FBC0",
+          760,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FEB8": [
+          "dora3_s8_level1_8022FEB8",
+          140,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8022FF44": [
+          "dora3_s8_level1_8022FF44",
+          228,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230028": [
+          "dora3_s8_level1_80230028",
+          360,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230190": [
+          "dora3_s8_level1_80230190",
+          220,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023026C": [
+          "dora3_s8_level1_8023026C",
+          224,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023034C": [
+          "dora3_s8_level1_8023034C",
+          344,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802304A4": [
+          "dora3_s8_level1_802304A4",
+          740,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230788": [
+          "dora3_s8_level1_80230788",
+          168,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230830": [
+          "dora3_s8_level1_80230830",
+          228,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230914": [
+          "dora3_s8_level1_80230914",
+          120,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023098C": [
+          "dora3_s8_level1_8023098C",
+          52,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802309C0": [
+          "dora3_s8_level1_802309C0",
+          496,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230BB0": [
+          "dora3_s8_level1_80230BB0",
+          156,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230C4C": [
+          "dora3_s8_level1_80230C4C",
+          48,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230C7C": [
+          "dora3_s8_level1_80230C7C",
+          756,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80230F70": [
+          "dora3_s8_level1_80230F70",
+          204,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023103C": [
+          "dora3_s8_level1_8023103C",
+          344,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231194": [
+          "dora3_s8_level1_80231194",
+          220,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231270": [
+          "dora3_s8_level1_80231270",
+          224,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231350": [
+          "dora3_s8_level1_80231350",
+          300,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023147C": [
+          "dora3_s8_level1_8023147C",
+          708,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231740": [
+          "dora3_s8_level1_80231740",
+          140,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802317CC": [
+          "dora3_s8_level1_802317CC",
+          228,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802318B0": [
+          "dora3_s8_level1_802318B0",
+          360,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231A18": [
+          "dora3_s8_level1_80231A18",
+          260,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231B1C": [
+          "dora3_s8_level1_80231B1C",
+          224,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231BFC": [
+          "dora3_s8_level1_80231BFC",
+          344,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231D54": [
+          "dora3_s8_level1_80231D54",
+          656,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80231FE4": [
+          "dora3_s8_level1_80231FE4",
+          140,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232070": [
+          "dora3_s8_level1_80232070",
+          64,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802320B0": [
+          "dora3_s8_level1_802320B0",
+          572,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x802322EC": [
+          "dora3_s8_level1_802322EC",
+          296,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232414": [
+          "dora3_s8_level1_80232414",
+          356,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232578": [
+          "dora3_s8_level1_80232578",
+          220,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232654": [
+          "dora3_s8_level1_80232654",
+          224,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232734": [
+          "dora3_s8_level1_80232734",
+          300,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232860": [
+          "dora3_s8_level1_80232860",
+          740,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232B44": [
+          "dora3_s8_level1_80232B44",
+          140,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x80232BD0": [
+          "dora3_s8_level1_80232BD0",
+          240,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {
+        "0x8023103C": "Observed test-008 lookup after verified ROM132F80 ->8022D6D0 size6920; different code from attract-demo slot1"
       }
+    },
+    {
+      "name": ".level1_slot2",
+      "rom": 1434688,
+      "vram": 2149832400,
+      "size": 3072,
+      "requires": [
+        ".scene1"
+      ],
+      "overlay_group": "child_slot2",
+      "evidence": {
+        "loader": "0x801E4774",
+        "pair_address": "0x801FC148",
+        "selector": 10,
+        "text_size": 2832,
+        "observed_dma": true
+      },
+      "compiled": {
+        "0x8023D6D0": [
+          "dora3_s9_level1_8023D6D0",
+          128,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D750": [
+          "dora3_s9_level1_8023D750",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D758": [
+          "dora3_s9_level1_8023D758",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D760": [
+          "dora3_s9_level1_8023D760",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D768": [
+          "dora3_s9_level1_8023D768",
+          84,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D7BC": [
+          "dora3_s9_level1_8023D7BC",
+          128,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D83C": [
+          "dora3_s9_level1_8023D83C",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D844": [
+          "dora3_s9_level1_8023D844",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D84C": [
+          "dora3_s9_level1_8023D84C",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D854": [
+          "dora3_s9_level1_8023D854",
+          84,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D8A8": [
+          "dora3_s9_level1_8023D8A8",
+          148,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D93C": [
+          "dora3_s9_level1_8023D93C",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D944": [
+          "dora3_s9_level1_8023D944",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D94C": [
+          "dora3_s9_level1_8023D94C",
+          172,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023D9F8": [
+          "dora3_s9_level1_8023D9F8",
+          64,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DA38": [
+          "dora3_s9_level1_8023DA38",
+          212,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DB0C": [
+          "dora3_s9_level1_8023DB0C",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DB14": [
+          "dora3_s9_level1_8023DB14",
+          144,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DBA4": [
+          "dora3_s9_level1_8023DBA4",
+          204,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DC70": [
+          "dora3_s9_level1_8023DC70",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DC78": [
+          "dora3_s9_level1_8023DC78",
+          8,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DC80": [
+          "dora3_s9_level1_8023DC80",
+          128,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DD00": [
+          "dora3_s9_level1_8023DD00",
+          200,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DDC8": [
+          "dora3_s9_level1_8023DDC8",
+          64,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DE08": [
+          "dora3_s9_level1_8023DE08",
+          308,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DF3C": [
+          "dora3_s9_level1_8023DF3C",
+          84,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023DF90": [
+          "dora3_s9_level1_8023DF90",
+          128,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E010": [
+          "dora3_s9_level1_8023E010",
+          168,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x8023E0B8": [
+          "dora3_s9_level1_8023E0B8",
+          296,
+          "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ]
+      },
+      "indirect_targets": {}
     }
   ],
   "local_jump_tables": [
