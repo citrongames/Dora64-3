@@ -3124,6 +3124,76 @@
       "dora3_s0_cave_80028E50",
       60,
       "Cave child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+    ],
+    "0x80043188": [
+      "dora3_s0_mini_80043188",
+      52,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x800431BC": [
+      "dora3_s0_mini_800431BC",
+      52,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x800431F0": [
+      "dora3_s0_mini_800431F0",
+      52,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x80043224": [
+      "dora3_s0_mini_80043224",
+      52,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x80043258": [
+      "dora3_s0_mini_80043258",
+      52,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x8004328C": [
+      "dora3_s0_mini_8004328C",
+      52,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x800432C0": [
+      "dora3_s0_mini_800432C0",
+      52,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x800432F4": [
+      "dora3_s0_mini_800432F4",
+      52,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x80043328": [
+      "dora3_s0_mini_80043328",
+      52,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x8004335C": [
+      "dora3_s0_mini_8004335C",
+      52,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x800312EC": [
+      "dora3_s0_mini_800312EC",
+      412,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x8003D324": [
+      "dora3_s0_mini_8003D324",
+      48,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x8003D354": [
+      "dora3_s0_mini_8003D354",
+      72,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+    ],
+    "0x8003D5C4": [
+      "dora3_s0_mini_8003D5C4",
+      56,
+      "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
     ]
   },
   "sdk": {
@@ -3692,6 +3762,31 @@
           "dora3_s1_level1_801B7100",
           16,
           "First gameplay child-overlay batch; original instructions; candidate extents and call/reference closure; scene1 parent; mutually exclusive with same-slot demo code"
+        ],
+        "0x801B5198": [
+          "dora3_s1_mini_801B5198",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B51B4": [
+          "dora3_s1_mini_801B51B4",
+          32,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B51D4": [
+          "dora3_s1_mini_801B51D4",
+          16,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B51E4": [
+          "dora3_s1_mini_801B51E4",
+          16,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B5208": [
+          "dora3_s1_mini_801B5208",
+          20,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
         ]
       },
       "indirect_targets": {}
@@ -15435,6 +15530,3679 @@
       },
       "indirect_targets": {
         "0x8023E8B0": "Observed test-012 lookup after verified ROM154A90 ->8023D6D0 size1750; penguin village slot2 variant"
+      }
+    },
+    {
+      "name": ".minigame_common",
+      "rom": 1621488,
+      "vram": 2149289680,
+      "size": 41920,
+      "overlay_group": "scene_code",
+      "requires": [
+        ".scene_common"
+      ],
+      "evidence": {
+        "loader": "0x80043188",
+        "text_end": "0x801C1E8C",
+        "observed_dma": false
+      },
+      "compiled": {
+        "0x801B8ED0": [
+          "dora3_s20_mini_801B8ED0",
+          60,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B8F0C": [
+          "dora3_s20_mini_801B8F0C",
+          88,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B8F64": [
+          "dora3_s20_mini_801B8F64",
+          36,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B8F88": [
+          "dora3_s20_mini_801B8F88",
+          192,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B9048": [
+          "dora3_s20_mini_801B9048",
+          48,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B9078": [
+          "dora3_s20_mini_801B9078",
+          112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B90E8": [
+          "dora3_s20_mini_801B90E8",
+          632,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B9360": [
+          "dora3_s20_mini_801B9360",
+          660,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B95F4": [
+          "dora3_s20_mini_801B95F4",
+          1040,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B9A04": [
+          "dora3_s20_mini_801B9A04",
+          1112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B9E5C": [
+          "dora3_s20_mini_801B9E5C",
+          168,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B9F04": [
+          "dora3_s20_mini_801B9F04",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B9F7C": [
+          "dora3_s20_mini_801B9F7C",
+          112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801B9FEC": [
+          "dora3_s20_mini_801B9FEC",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA064": [
+          "dora3_s20_mini_801BA064",
+          112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA0D4": [
+          "dora3_s20_mini_801BA0D4",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA14C": [
+          "dora3_s20_mini_801BA14C",
+          104,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA1B4": [
+          "dora3_s20_mini_801BA1B4",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA22C": [
+          "dora3_s20_mini_801BA22C",
+          104,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA294": [
+          "dora3_s20_mini_801BA294",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA30C": [
+          "dora3_s20_mini_801BA30C",
+          112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA37C": [
+          "dora3_s20_mini_801BA37C",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA3F4": [
+          "dora3_s20_mini_801BA3F4",
+          112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA464": [
+          "dora3_s20_mini_801BA464",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA4DC": [
+          "dora3_s20_mini_801BA4DC",
+          76,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA528": [
+          "dora3_s20_mini_801BA528",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA5A0": [
+          "dora3_s20_mini_801BA5A0",
+          76,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA5EC": [
+          "dora3_s20_mini_801BA5EC",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA664": [
+          "dora3_s20_mini_801BA664",
+          76,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA6B0": [
+          "dora3_s20_mini_801BA6B0",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA728": [
+          "dora3_s20_mini_801BA728",
+          76,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA774": [
+          "dora3_s20_mini_801BA774",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA7EC": [
+          "dora3_s20_mini_801BA7EC",
+          76,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BA838": [
+          "dora3_s20_mini_801BA838",
+          960,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BABF8": [
+          "dora3_s20_mini_801BABF8",
+          1556,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BB20C": [
+          "dora3_s20_mini_801BB20C",
+          344,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BB364": [
+          "dora3_s20_mini_801BB364",
+          392,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BB4EC": [
+          "dora3_s20_mini_801BB4EC",
+          76,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BB538": [
+          "dora3_s20_mini_801BB538",
+          60,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BB574": [
+          "dora3_s20_mini_801BB574",
+          328,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BB6BC": [
+          "dora3_s20_mini_801BB6BC",
+          232,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BB7A4": [
+          "dora3_s20_mini_801BB7A4",
+          48,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BB7D4": [
+          "dora3_s20_mini_801BB7D4",
+          60,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BB810": [
+          "dora3_s20_mini_801BB810",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BB890": [
+          "dora3_s20_mini_801BB890",
+          556,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BBABC": [
+          "dora3_s20_mini_801BBABC",
+          56,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BBAF4": [
+          "dora3_s20_mini_801BBAF4",
+          100,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BBB58": [
+          "dora3_s20_mini_801BBB58",
+          76,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BBBA4": [
+          "dora3_s20_mini_801BBBA4",
+          2796,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BC690": [
+          "dora3_s20_mini_801BC690",
+          408,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BC828": [
+          "dora3_s20_mini_801BC828",
+          676,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BCACC": [
+          "dora3_s20_mini_801BCACC",
+          296,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BCBF4": [
+          "dora3_s20_mini_801BCBF4",
+          288,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BCD14": [
+          "dora3_s20_mini_801BCD14",
+          68,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BCD58": [
+          "dora3_s20_mini_801BCD58",
+          1008,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BD148": [
+          "dora3_s20_mini_801BD148",
+          12,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BD154": [
+          "dora3_s20_mini_801BD154",
+          252,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BD250": [
+          "dora3_s20_mini_801BD250",
+          260,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BD354": [
+          "dora3_s20_mini_801BD354",
+          140,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BD3E0": [
+          "dora3_s20_mini_801BD3E0",
+          144,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BD470": [
+          "dora3_s20_mini_801BD470",
+          272,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BD580": [
+          "dora3_s20_mini_801BD580",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BD59C": [
+          "dora3_s20_mini_801BD59C",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BD5B8": [
+          "dora3_s20_mini_801BD5B8",
+          496,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BD7A8": [
+          "dora3_s20_mini_801BD7A8",
+          1320,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BDCD0": [
+          "dora3_s20_mini_801BDCD0",
+          400,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BDE60": [
+          "dora3_s20_mini_801BDE60",
+          204,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BDF2C": [
+          "dora3_s20_mini_801BDF2C",
+          768,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BE22C": [
+          "dora3_s20_mini_801BE22C",
+          76,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BE278": [
+          "dora3_s20_mini_801BE278",
+          144,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BE308": [
+          "dora3_s20_mini_801BE308",
+          240,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BE3F8": [
+          "dora3_s20_mini_801BE3F8",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BE414": [
+          "dora3_s20_mini_801BE414",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BE430": [
+          "dora3_s20_mini_801BE430",
+          1376,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BE990": [
+          "dora3_s20_mini_801BE990",
+          1188,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BEE34": [
+          "dora3_s20_mini_801BEE34",
+          316,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BEF70": [
+          "dora3_s20_mini_801BEF70",
+          360,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BF0D8": [
+          "dora3_s20_mini_801BF0D8",
+          144,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BF168": [
+          "dora3_s20_mini_801BF168",
+          304,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BF298": [
+          "dora3_s20_mini_801BF298",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BF2B4": [
+          "dora3_s20_mini_801BF2B4",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BF2D0": [
+          "dora3_s20_mini_801BF2D0",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BF350": [
+          "dora3_s20_mini_801BF350",
+          848,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BF6A0": [
+          "dora3_s20_mini_801BF6A0",
+          284,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BF7BC": [
+          "dora3_s20_mini_801BF7BC",
+          188,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BF878": [
+          "dora3_s20_mini_801BF878",
+          84,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BF8CC": [
+          "dora3_s20_mini_801BF8CC",
+          532,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BFAE0": [
+          "dora3_s20_mini_801BFAE0",
+          1112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BFF38": [
+          "dora3_s20_mini_801BFF38",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BFF64": [
+          "dora3_s20_mini_801BFF64",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BFF90": [
+          "dora3_s20_mini_801BFF90",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801BFFBC": [
+          "dora3_s20_mini_801BFFBC",
+          208,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C008C": [
+          "dora3_s20_mini_801C008C",
+          2012,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C0868": [
+          "dora3_s20_mini_801C0868",
+          60,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C08A4": [
+          "dora3_s20_mini_801C08A4",
+          1928,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C102C": [
+          "dora3_s20_mini_801C102C",
+          2068,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C1840": [
+          "dora3_s20_mini_801C1840",
+          924,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C1BDC": [
+          "dora3_s20_mini_801C1BDC",
+          244,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C1CD0": [
+          "dora3_s20_mini_801C1CD0",
+          444,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ]
+      },
+      "indirect_targets": {}
+    },
+    {
+      "name": ".minigame_1",
+      "rom": 1663408,
+      "vram": 2149332608,
+      "size": 37728,
+      "overlay_group": "scene_code",
+      "requires": [
+        ".minigame_common"
+      ],
+      "evidence": {
+        "loader": "0x800431BC",
+        "text_end": "0x801CB810",
+        "observed_dma": false
+      },
+      "compiled": {
+        "0x801C3680": [
+          "dora3_s21_mini_801C3680",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3700": [
+          "dora3_s21_mini_801C3700",
+          504,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C38F8": [
+          "dora3_s21_mini_801C38F8",
+          220,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C39D4": [
+          "dora3_s21_mini_801C39D4",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C39DC": [
+          "dora3_s21_mini_801C39DC",
+          200,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3AA4": [
+          "dora3_s21_mini_801C3AA4",
+          536,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3CBC": [
+          "dora3_s21_mini_801C3CBC",
+          220,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3D98": [
+          "dora3_s21_mini_801C3D98",
+          584,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3FE0": [
+          "dora3_s21_mini_801C3FE0",
+          1252,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C44C4": [
+          "dora3_s21_mini_801C44C4",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C44F0": [
+          "dora3_s21_mini_801C44F0",
+          160,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4590": [
+          "dora3_s21_mini_801C4590",
+          412,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C472C": [
+          "dora3_s21_mini_801C472C",
+          244,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4820": [
+          "dora3_s21_mini_801C4820",
+          300,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C494C": [
+          "dora3_s21_mini_801C494C",
+          364,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4AB8": [
+          "dora3_s21_mini_801C4AB8",
+          292,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4BDC": [
+          "dora3_s21_mini_801C4BDC",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4BE4": [
+          "dora3_s21_mini_801C4BE4",
+          320,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4D24": [
+          "dora3_s21_mini_801C4D24",
+          180,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4DD8": [
+          "dora3_s21_mini_801C4DD8",
+          272,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4EE8": [
+          "dora3_s21_mini_801C4EE8",
+          272,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4FF8": [
+          "dora3_s21_mini_801C4FF8",
+          276,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C510C": [
+          "dora3_s21_mini_801C510C",
+          180,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C51C0": [
+          "dora3_s21_mini_801C51C0",
+          272,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C52D0": [
+          "dora3_s21_mini_801C52D0",
+          272,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C53E0": [
+          "dora3_s21_mini_801C53E0",
+          276,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C54F4": [
+          "dora3_s21_mini_801C54F4",
+          144,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5584": [
+          "dora3_s21_mini_801C5584",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C558C": [
+          "dora3_s21_mini_801C558C",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C55F8": [
+          "dora3_s21_mini_801C55F8",
+          312,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5730": [
+          "dora3_s21_mini_801C5730",
+          92,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C578C": [
+          "dora3_s21_mini_801C578C",
+          380,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5908": [
+          "dora3_s21_mini_801C5908",
+          408,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5AA0": [
+          "dora3_s21_mini_801C5AA0",
+          196,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5B64": [
+          "dora3_s21_mini_801C5B64",
+          208,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5C34": [
+          "dora3_s21_mini_801C5C34",
+          168,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5CDC": [
+          "dora3_s21_mini_801C5CDC",
+          576,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5F1C": [
+          "dora3_s21_mini_801C5F1C",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5F88": [
+          "dora3_s21_mini_801C5F88",
+          308,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C60BC": [
+          "dora3_s21_mini_801C60BC",
+          1600,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C66FC": [
+          "dora3_s21_mini_801C66FC",
+          204,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C67C8": [
+          "dora3_s21_mini_801C67C8",
+          188,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6884": [
+          "dora3_s21_mini_801C6884",
+          192,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6944": [
+          "dora3_s21_mini_801C6944",
+          2092,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7170": [
+          "dora3_s21_mini_801C7170",
+          1012,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7564": [
+          "dora3_s21_mini_801C7564",
+          404,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C76F8": [
+          "dora3_s21_mini_801C76F8",
+          148,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C778C": [
+          "dora3_s21_mini_801C778C",
+          104,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C77F4": [
+          "dora3_s21_mini_801C77F4",
+          264,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C78FC": [
+          "dora3_s21_mini_801C78FC",
+          768,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7BFC": [
+          "dora3_s21_mini_801C7BFC",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7C4C": [
+          "dora3_s21_mini_801C7C4C",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7C9C": [
+          "dora3_s21_mini_801C7C9C",
+          220,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7D78": [
+          "dora3_s21_mini_801C7D78",
+          220,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7E54": [
+          "dora3_s21_mini_801C7E54",
+          220,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7F30": [
+          "dora3_s21_mini_801C7F30",
+          220,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C800C": [
+          "dora3_s21_mini_801C800C",
+          2728,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8AB4": [
+          "dora3_s21_mini_801C8AB4",
+          448,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8C74": [
+          "dora3_s21_mini_801C8C74",
+          944,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9024": [
+          "dora3_s21_mini_801C9024",
+          248,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C911C": [
+          "dora3_s21_mini_801C911C",
+          156,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C91B8": [
+          "dora3_s21_mini_801C91B8",
+          160,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9258": [
+          "dora3_s21_mini_801C9258",
+          152,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C92F0": [
+          "dora3_s21_mini_801C92F0",
+          84,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9344": [
+          "dora3_s21_mini_801C9344",
+          104,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C93AC": [
+          "dora3_s21_mini_801C93AC",
+          36,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C93D0": [
+          "dora3_s21_mini_801C93D0",
+          36,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C93F4": [
+          "dora3_s21_mini_801C93F4",
+          820,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9728": [
+          "dora3_s21_mini_801C9728",
+          212,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C97FC": [
+          "dora3_s21_mini_801C97FC",
+          772,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9B00": [
+          "dora3_s21_mini_801C9B00",
+          416,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9CA0": [
+          "dora3_s21_mini_801C9CA0",
+          168,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9D48": [
+          "dora3_s21_mini_801C9D48",
+          68,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9D8C": [
+          "dora3_s21_mini_801C9D8C",
+          584,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9FD4": [
+          "dora3_s21_mini_801C9FD4",
+          996,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801CA3B8": [
+          "dora3_s21_mini_801CA3B8",
+          544,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801CA5D8": [
+          "dora3_s21_mini_801CA5D8",
+          916,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801CA96C": [
+          "dora3_s21_mini_801CA96C",
+          184,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801CAA24": [
+          "dora3_s21_mini_801CAA24",
+          648,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801CACAC": [
+          "dora3_s21_mini_801CACAC",
+          1204,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801CB160": [
+          "dora3_s21_mini_801CB160",
+          864,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801CB4C0": [
+          "dora3_s21_mini_801CB4C0",
+          848,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ]
+      },
+      "indirect_targets": {
+        "0x801CB4C0": "Resident scene dispatcher callback after this variant loader"
+      }
+    },
+    {
+      "name": ".minigame_2",
+      "rom": 1701136,
+      "vram": 2149332608,
+      "size": 20720,
+      "overlay_group": "scene_code",
+      "requires": [
+        ".minigame_common"
+      ],
+      "evidence": {
+        "loader": "0x800431F0",
+        "text_end": "0x801C83A8",
+        "observed_dma": false
+      },
+      "compiled": {
+        "0x801C3680": [
+          "dora3_s22_mini_801C3680",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3700": [
+          "dora3_s22_mini_801C3700",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C371C": [
+          "dora3_s22_mini_801C371C",
+          220,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C37F8": [
+          "dora3_s22_mini_801C37F8",
+          328,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3940": [
+          "dora3_s22_mini_801C3940",
+          436,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3AF4": [
+          "dora3_s22_mini_801C3AF4",
+          144,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3B84": [
+          "dora3_s22_mini_801C3B84",
+          140,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3C10": [
+          "dora3_s22_mini_801C3C10",
+          292,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3D34": [
+          "dora3_s22_mini_801C3D34",
+          340,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3E88": [
+          "dora3_s22_mini_801C3E88",
+          244,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3F7C": [
+          "dora3_s22_mini_801C3F7C",
+          296,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C40A4": [
+          "dora3_s22_mini_801C40A4",
+          364,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4210": [
+          "dora3_s22_mini_801C4210",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C423C": [
+          "dora3_s22_mini_801C423C",
+          160,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C42DC": [
+          "dora3_s22_mini_801C42DC",
+          412,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4478": [
+          "dora3_s22_mini_801C4478",
+          344,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C45D0": [
+          "dora3_s22_mini_801C45D0",
+          364,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C473C": [
+          "dora3_s22_mini_801C473C",
+          632,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C49B4": [
+          "dora3_s22_mini_801C49B4",
+          284,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4AD0": [
+          "dora3_s22_mini_801C4AD0",
+          356,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4C34": [
+          "dora3_s22_mini_801C4C34",
+          548,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4E58": [
+          "dora3_s22_mini_801C4E58",
+          144,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4EE8": [
+          "dora3_s22_mini_801C4EE8",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4EF0": [
+          "dora3_s22_mini_801C4EF0",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4F5C": [
+          "dora3_s22_mini_801C4F5C",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4FD4": [
+          "dora3_s22_mini_801C4FD4",
+          312,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C510C": [
+          "dora3_s22_mini_801C510C",
+          164,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C51B0": [
+          "dora3_s22_mini_801C51B0",
+          380,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C532C": [
+          "dora3_s22_mini_801C532C",
+          404,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C54C0": [
+          "dora3_s22_mini_801C54C0",
+          208,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5590": [
+          "dora3_s22_mini_801C5590",
+          312,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C56C8": [
+          "dora3_s22_mini_801C56C8",
+          444,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5884": [
+          "dora3_s22_mini_801C5884",
+          304,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C59B4": [
+          "dora3_s22_mini_801C59B4",
+          168,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5A5C": [
+          "dora3_s22_mini_801C5A5C",
+          752,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5D4C": [
+          "dora3_s22_mini_801C5D4C",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5DB8": [
+          "dora3_s22_mini_801C5DB8",
+          188,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5E74": [
+          "dora3_s22_mini_801C5E74",
+          200,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5F3C": [
+          "dora3_s22_mini_801C5F3C",
+          248,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6034": [
+          "dora3_s22_mini_801C6034",
+          156,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C60D0": [
+          "dora3_s22_mini_801C60D0",
+          168,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6178": [
+          "dora3_s22_mini_801C6178",
+          748,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6464": [
+          "dora3_s22_mini_801C6464",
+          232,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C654C": [
+          "dora3_s22_mini_801C654C",
+          864,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C68AC": [
+          "dora3_s22_mini_801C68AC",
+          288,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C69CC": [
+          "dora3_s22_mini_801C69CC",
+          320,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6B0C": [
+          "dora3_s22_mini_801C6B0C",
+          192,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6BCC": [
+          "dora3_s22_mini_801C6BCC",
+          372,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6D40": [
+          "dora3_s22_mini_801C6D40",
+          808,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7068": [
+          "dora3_s22_mini_801C7068",
+          248,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7160": [
+          "dora3_s22_mini_801C7160",
+          156,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C71FC": [
+          "dora3_s22_mini_801C71FC",
+          504,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C73F4": [
+          "dora3_s22_mini_801C73F4",
+          768,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C76F4": [
+          "dora3_s22_mini_801C76F4",
+          204,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C77C0": [
+          "dora3_s22_mini_801C77C0",
+          312,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C78F8": [
+          "dora3_s22_mini_801C78F8",
+          592,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7B48": [
+          "dora3_s22_mini_801C7B48",
+          372,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7CBC": [
+          "dora3_s22_mini_801C7CBC",
+          860,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8018": [
+          "dora3_s22_mini_801C8018",
+          12,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8024": [
+          "dora3_s22_mini_801C8024",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C802C": [
+          "dora3_s22_mini_801C802C",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8034": [
+          "dora3_s22_mini_801C8034",
+          188,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C80F0": [
+          "dora3_s22_mini_801C80F0",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C811C": [
+          "dora3_s22_mini_801C811C",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8148": [
+          "dora3_s22_mini_801C8148",
+          608,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ]
+      },
+      "indirect_targets": {
+        "0x801C8148": "Resident scene dispatcher callback after this variant loader"
+      }
+    },
+    {
+      "name": ".minigame_3",
+      "rom": 1721856,
+      "vram": 2149332608,
+      "size": 22608,
+      "overlay_group": "scene_code",
+      "requires": [
+        ".minigame_common"
+      ],
+      "evidence": {
+        "loader": "0x80043224",
+        "text_end": "0x801C82E4",
+        "observed_dma": false
+      },
+      "compiled": {
+        "0x801C3680": [
+          "dora3_s23_mini_801C3680",
+          528,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3890": [
+          "dora3_s23_mini_801C3890",
+          200,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3958": [
+          "dora3_s23_mini_801C3958",
+          760,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3C50": [
+          "dora3_s23_mini_801C3C50",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3C6C": [
+          "dora3_s23_mini_801C3C6C",
+          220,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3D48": [
+          "dora3_s23_mini_801C3D48",
+          104,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3DB0": [
+          "dora3_s23_mini_801C3DB0",
+          160,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3E50": [
+          "dora3_s23_mini_801C3E50",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3E6C": [
+          "dora3_s23_mini_801C3E6C",
+          72,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3EB4": [
+          "dora3_s23_mini_801C3EB4",
+          104,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3F1C": [
+          "dora3_s23_mini_801C3F1C",
+          164,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3FC0": [
+          "dora3_s23_mini_801C3FC0",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4040": [
+          "dora3_s23_mini_801C4040",
+          144,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C40D0": [
+          "dora3_s23_mini_801C40D0",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C40D8": [
+          "dora3_s23_mini_801C40D8",
+          228,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C41BC": [
+          "dora3_s23_mini_801C41BC",
+          332,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4308": [
+          "dora3_s23_mini_801C4308",
+          736,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C45E8": [
+          "dora3_s23_mini_801C45E8",
+          320,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4728": [
+          "dora3_s23_mini_801C4728",
+          132,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C47AC": [
+          "dora3_s23_mini_801C47AC",
+          636,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4A28": [
+          "dora3_s23_mini_801C4A28",
+          84,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4A7C": [
+          "dora3_s23_mini_801C4A7C",
+          312,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4BB4": [
+          "dora3_s23_mini_801C4BB4",
+          164,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4C58": [
+          "dora3_s23_mini_801C4C58",
+          504,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4E50": [
+          "dora3_s23_mini_801C4E50",
+          124,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4ECC": [
+          "dora3_s23_mini_801C4ECC",
+          268,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4FD8": [
+          "dora3_s23_mini_801C4FD8",
+          200,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C50A0": [
+          "dora3_s23_mini_801C50A0",
+          140,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C512C": [
+          "dora3_s23_mini_801C512C",
+          308,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5260": [
+          "dora3_s23_mini_801C5260",
+          408,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C53F8": [
+          "dora3_s23_mini_801C53F8",
+          364,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5564": [
+          "dora3_s23_mini_801C5564",
+          252,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5660": [
+          "dora3_s23_mini_801C5660",
+          336,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C57B0": [
+          "dora3_s23_mini_801C57B0",
+          112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5820": [
+          "dora3_s23_mini_801C5820",
+          256,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5920": [
+          "dora3_s23_mini_801C5920",
+          200,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C59E8": [
+          "dora3_s23_mini_801C59E8",
+          140,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5A74": [
+          "dora3_s23_mini_801C5A74",
+          304,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5BA4": [
+          "dora3_s23_mini_801C5BA4",
+          632,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5E1C": [
+          "dora3_s23_mini_801C5E1C",
+          280,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5F34": [
+          "dora3_s23_mini_801C5F34",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5F84": [
+          "dora3_s23_mini_801C5F84",
+          308,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C60B8": [
+          "dora3_s23_mini_801C60B8",
+          308,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C61EC": [
+          "dora3_s23_mini_801C61EC",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6258": [
+          "dora3_s23_mini_801C6258",
+          304,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6388": [
+          "dora3_s23_mini_801C6388",
+          96,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C63E8": [
+          "dora3_s23_mini_801C63E8",
+          668,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6684": [
+          "dora3_s23_mini_801C6684",
+          124,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6700": [
+          "dora3_s23_mini_801C6700",
+          16,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6710": [
+          "dora3_s23_mini_801C6710",
+          76,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C675C": [
+          "dora3_s23_mini_801C675C",
+          264,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6864": [
+          "dora3_s23_mini_801C6864",
+          292,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6988": [
+          "dora3_s23_mini_801C6988",
+          68,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C69CC": [
+          "dora3_s23_mini_801C69CC",
+          2100,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7200": [
+          "dora3_s23_mini_801C7200",
+          204,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C72CC": [
+          "dora3_s23_mini_801C72CC",
+          248,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C73C4": [
+          "dora3_s23_mini_801C73C4",
+          156,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7460": [
+          "dora3_s23_mini_801C7460",
+          492,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C764C": [
+          "dora3_s23_mini_801C764C",
+          480,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C782C": [
+          "dora3_s23_mini_801C782C",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C78AC": [
+          "dora3_s23_mini_801C78AC",
+          356,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7A10": [
+          "dora3_s23_mini_801C7A10",
+          124,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7A8C": [
+          "dora3_s23_mini_801C7A8C",
+          536,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7CA4": [
+          "dora3_s23_mini_801C7CA4",
+          680,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7F4C": [
+          "dora3_s23_mini_801C7F4C",
+          12,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7F58": [
+          "dora3_s23_mini_801C7F58",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7F60": [
+          "dora3_s23_mini_801C7F60",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7F68": [
+          "dora3_s23_mini_801C7F68",
+          292,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C808C": [
+          "dora3_s23_mini_801C808C",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C80B8": [
+          "dora3_s23_mini_801C80B8",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C80E4": [
+          "dora3_s23_mini_801C80E4",
+          512,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ]
+      },
+      "indirect_targets": {
+        "0x801C80E4": "Resident scene dispatcher callback after this variant loader"
+      }
+    },
+    {
+      "name": ".minigame_4",
+      "rom": 1744464,
+      "vram": 2149332608,
+      "size": 27968,
+      "overlay_group": "scene_code",
+      "requires": [
+        ".minigame_common"
+      ],
+      "evidence": {
+        "loader": "0x80043258",
+        "text_end": "0x801C9B34",
+        "observed_dma": false
+      },
+      "compiled": {
+        "0x801C3680": [
+          "dora3_s24_mini_801C3680",
+          144,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3710": [
+          "dora3_s24_mini_801C3710",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3788": [
+          "dora3_s24_mini_801C3788",
+          100,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C37EC": [
+          "dora3_s24_mini_801C37EC",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3864": [
+          "dora3_s24_mini_801C3864",
+          100,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C38C8": [
+          "dora3_s24_mini_801C38C8",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3948": [
+          "dora3_s24_mini_801C3948",
+          232,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3A30": [
+          "dora3_s24_mini_801C3A30",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3AB0": [
+          "dora3_s24_mini_801C3AB0",
+          288,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3BD0": [
+          "dora3_s24_mini_801C3BD0",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3BEC": [
+          "dora3_s24_mini_801C3BEC",
+          72,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3C34": [
+          "dora3_s24_mini_801C3C34",
+          104,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3C9C": [
+          "dora3_s24_mini_801C3C9C",
+          164,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3D40": [
+          "dora3_s24_mini_801C3D40",
+          144,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3DD0": [
+          "dora3_s24_mini_801C3DD0",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3DD8": [
+          "dora3_s24_mini_801C3DD8",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3E44": [
+          "dora3_s24_mini_801C3E44",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3E94": [
+          "dora3_s24_mini_801C3E94",
+          312,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3FCC": [
+          "dora3_s24_mini_801C3FCC",
+          232,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C40B4": [
+          "dora3_s24_mini_801C40B4",
+          524,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C42C0": [
+          "dora3_s24_mini_801C42C0",
+          124,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C433C": [
+          "dora3_s24_mini_801C433C",
+          268,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4448": [
+          "dora3_s24_mini_801C4448",
+          244,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C453C": [
+          "dora3_s24_mini_801C453C",
+          316,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4678": [
+          "dora3_s24_mini_801C4678",
+          184,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4730": [
+          "dora3_s24_mini_801C4730",
+          276,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4844": [
+          "dora3_s24_mini_801C4844",
+          272,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4954": [
+          "dora3_s24_mini_801C4954",
+          504,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4B4C": [
+          "dora3_s24_mini_801C4B4C",
+          156,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4BE8": [
+          "dora3_s24_mini_801C4BE8",
+          492,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4DD4": [
+          "dora3_s24_mini_801C4DD4",
+          716,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C50A0": [
+          "dora3_s24_mini_801C50A0",
+          96,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5100": [
+          "dora3_s24_mini_801C5100",
+          560,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5330": [
+          "dora3_s24_mini_801C5330",
+          264,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5438": [
+          "dora3_s24_mini_801C5438",
+          256,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5538": [
+          "dora3_s24_mini_801C5538",
+          244,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C562C": [
+          "dora3_s24_mini_801C562C",
+          316,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5768": [
+          "dora3_s24_mini_801C5768",
+          184,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5820": [
+          "dora3_s24_mini_801C5820",
+          276,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5934": [
+          "dora3_s24_mini_801C5934",
+          148,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C59C8": [
+          "dora3_s24_mini_801C59C8",
+          496,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5BB8": [
+          "dora3_s24_mini_801C5BB8",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5C24": [
+          "dora3_s24_mini_801C5C24",
+          616,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5E8C": [
+          "dora3_s24_mini_801C5E8C",
+          872,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C61F4": [
+          "dora3_s24_mini_801C61F4",
+          60,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6230": [
+          "dora3_s24_mini_801C6230",
+          400,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C63C0": [
+          "dora3_s24_mini_801C63C0",
+          192,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6480": [
+          "dora3_s24_mini_801C6480",
+          60,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C64BC": [
+          "dora3_s24_mini_801C64BC",
+          284,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C65D8": [
+          "dora3_s24_mini_801C65D8",
+          264,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C66E0": [
+          "dora3_s24_mini_801C66E0",
+          172,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C678C": [
+          "dora3_s24_mini_801C678C",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C680C": [
+          "dora3_s24_mini_801C680C",
+          576,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6A4C": [
+          "dora3_s24_mini_801C6A4C",
+          104,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6AB4": [
+          "dora3_s24_mini_801C6AB4",
+          248,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6BAC": [
+          "dora3_s24_mini_801C6BAC",
+          788,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6EC0": [
+          "dora3_s24_mini_801C6EC0",
+          184,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6F78": [
+          "dora3_s24_mini_801C6F78",
+          16,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6F88": [
+          "dora3_s24_mini_801C6F88",
+          416,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7128": [
+          "dora3_s24_mini_801C7128",
+          48,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7158": [
+          "dora3_s24_mini_801C7158",
+          68,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C719C": [
+          "dora3_s24_mini_801C719C",
+          56,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C71D4": [
+          "dora3_s24_mini_801C71D4",
+          48,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7204": [
+          "dora3_s24_mini_801C7204",
+          32,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7224": [
+          "dora3_s24_mini_801C7224",
+          36,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7248": [
+          "dora3_s24_mini_801C7248",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C72B4": [
+          "dora3_s24_mini_801C72B4",
+          244,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C73A8": [
+          "dora3_s24_mini_801C73A8",
+          232,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7490": [
+          "dora3_s24_mini_801C7490",
+          224,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7570": [
+          "dora3_s24_mini_801C7570",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C75DC": [
+          "dora3_s24_mini_801C75DC",
+          448,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C779C": [
+          "dora3_s24_mini_801C779C",
+          240,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C788C": [
+          "dora3_s24_mini_801C788C",
+          228,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7970": [
+          "dora3_s24_mini_801C7970",
+          452,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7B34": [
+          "dora3_s24_mini_801C7B34",
+          832,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7E74": [
+          "dora3_s24_mini_801C7E74",
+          392,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7FFC": [
+          "dora3_s24_mini_801C7FFC",
+          212,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C80D0": [
+          "dora3_s24_mini_801C80D0",
+          148,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8164": [
+          "dora3_s24_mini_801C8164",
+          1016,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C855C": [
+          "dora3_s24_mini_801C855C",
+          620,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C87C8": [
+          "dora3_s24_mini_801C87C8",
+          384,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8948": [
+          "dora3_s24_mini_801C8948",
+          56,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8980": [
+          "dora3_s24_mini_801C8980",
+          552,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8BA8": [
+          "dora3_s24_mini_801C8BA8",
+          292,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8CCC": [
+          "dora3_s24_mini_801C8CCC",
+          248,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8DC4": [
+          "dora3_s24_mini_801C8DC4",
+          156,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8E60": [
+          "dora3_s24_mini_801C8E60",
+          612,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C90C4": [
+          "dora3_s24_mini_801C90C4",
+          656,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9354": [
+          "dora3_s24_mini_801C9354",
+          212,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9428": [
+          "dora3_s24_mini_801C9428",
+          168,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C94D0": [
+          "dora3_s24_mini_801C94D0",
+          608,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9730": [
+          "dora3_s24_mini_801C9730",
+          12,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C973C": [
+          "dora3_s24_mini_801C973C",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9744": [
+          "dora3_s24_mini_801C9744",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C974C": [
+          "dora3_s24_mini_801C974C",
+          92,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C97A8": [
+          "dora3_s24_mini_801C97A8",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C97D4": [
+          "dora3_s24_mini_801C97D4",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9800": [
+          "dora3_s24_mini_801C9800",
+          720,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C9AD0": [
+          "dora3_s24_mini_801C9AD0",
+          100,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ]
+      },
+      "indirect_targets": {
+        "0x801C9800": "Resident scene dispatcher callback after this variant loader"
+      }
+    },
+    {
+      "name": ".minigame_5",
+      "rom": 1772432,
+      "vram": 2149332608,
+      "size": 15056,
+      "overlay_group": "scene_code",
+      "requires": [
+        ".minigame_common"
+      ],
+      "evidence": {
+        "loader": "0x8004328C",
+        "text_end": "0x801C6DB8",
+        "observed_dma": false
+      },
+      "compiled": {
+        "0x801C3680": [
+          "dora3_s25_mini_801C3680",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3700": [
+          "dora3_s25_mini_801C3700",
+          140,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C378C": [
+          "dora3_s25_mini_801C378C",
+          492,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3978": [
+          "dora3_s25_mini_801C3978",
+          208,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3A48": [
+          "dora3_s25_mini_801C3A48",
+          72,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3A90": [
+          "dora3_s25_mini_801C3A90",
+          148,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3B24": [
+          "dora3_s25_mini_801C3B24",
+          268,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3C30": [
+          "dora3_s25_mini_801C3C30",
+          304,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3D60": [
+          "dora3_s25_mini_801C3D60",
+          152,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3DF8": [
+          "dora3_s25_mini_801C3DF8",
+          664,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4090": [
+          "dora3_s25_mini_801C4090",
+          208,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4160": [
+          "dora3_s25_mini_801C4160",
+          96,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C41C0": [
+          "dora3_s25_mini_801C41C0",
+          188,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C427C": [
+          "dora3_s25_mini_801C427C",
+          324,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C43C0": [
+          "dora3_s25_mini_801C43C0",
+          292,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C44E4": [
+          "dora3_s25_mini_801C44E4",
+          368,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4654": [
+          "dora3_s25_mini_801C4654",
+          208,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4724": [
+          "dora3_s25_mini_801C4724",
+          1392,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4C94": [
+          "dora3_s25_mini_801C4C94",
+          248,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4D8C": [
+          "dora3_s25_mini_801C4D8C",
+          340,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4EE0": [
+          "dora3_s25_mini_801C4EE0",
+          480,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C50C0": [
+          "dora3_s25_mini_801C50C0",
+          976,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5490": [
+          "dora3_s25_mini_801C5490",
+          172,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C553C": [
+          "dora3_s25_mini_801C553C",
+          544,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C575C": [
+          "dora3_s25_mini_801C575C",
+          320,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C589C": [
+          "dora3_s25_mini_801C589C",
+          172,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5948": [
+          "dora3_s25_mini_801C5948",
+          160,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C59E8": [
+          "dora3_s25_mini_801C59E8",
+          1244,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5EC4": [
+          "dora3_s25_mini_801C5EC4",
+          96,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5F24": [
+          "dora3_s25_mini_801C5F24",
+          712,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C61EC": [
+          "dora3_s25_mini_801C61EC",
+          432,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C639C": [
+          "dora3_s25_mini_801C639C",
+          172,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6448": [
+          "dora3_s25_mini_801C6448",
+          204,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6514": [
+          "dora3_s25_mini_801C6514",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6564": [
+          "dora3_s25_mini_801C6564",
+          292,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6688": [
+          "dora3_s25_mini_801C6688",
+          228,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C676C": [
+          "dora3_s25_mini_801C676C",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6788": [
+          "dora3_s25_mini_801C6788",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C67A4": [
+          "dora3_s25_mini_801C67A4",
+          652,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6A30": [
+          "dora3_s25_mini_801C6A30",
+          580,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6C74": [
+          "dora3_s25_mini_801C6C74",
+          324,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ]
+      },
+      "indirect_targets": {
+        "0x801C6C74": "Resident scene dispatcher callback after this variant loader"
+      }
+    },
+    {
+      "name": ".minigame_6",
+      "rom": 1787488,
+      "vram": 2149332608,
+      "size": 17536,
+      "overlay_group": "scene_code",
+      "requires": [
+        ".minigame_common"
+      ],
+      "evidence": {
+        "loader": "0x800432C0",
+        "text_end": "0x801C73FC",
+        "observed_dma": false
+      },
+      "compiled": {
+        "0x801C3680": [
+          "dora3_s26_mini_801C3680",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3700": [
+          "dora3_s26_mini_801C3700",
+          140,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C378C": [
+          "dora3_s26_mini_801C378C",
+          92,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C37E8": [
+          "dora3_s26_mini_801C37E8",
+          344,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3940": [
+          "dora3_s26_mini_801C3940",
+          352,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3AA0": [
+          "dora3_s26_mini_801C3AA0",
+          52,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3AD4": [
+          "dora3_s26_mini_801C3AD4",
+          220,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3BB0": [
+          "dora3_s26_mini_801C3BB0",
+          116,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3C24": [
+          "dora3_s26_mini_801C3C24",
+          176,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3CD4": [
+          "dora3_s26_mini_801C3CD4",
+          508,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3ED0": [
+          "dora3_s26_mini_801C3ED0",
+          224,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3FB0": [
+          "dora3_s26_mini_801C3FB0",
+          576,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C41F0": [
+          "dora3_s26_mini_801C41F0",
+          324,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4334": [
+          "dora3_s26_mini_801C4334",
+          692,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C45E8": [
+          "dora3_s26_mini_801C45E8",
+          504,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C47E0": [
+          "dora3_s26_mini_801C47E0",
+          188,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C489C": [
+          "dora3_s26_mini_801C489C",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C48EC": [
+          "dora3_s26_mini_801C48EC",
+          56,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4924": [
+          "dora3_s26_mini_801C4924",
+          76,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4970": [
+          "dora3_s26_mini_801C4970",
+          136,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C49F8": [
+          "dora3_s26_mini_801C49F8",
+          428,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4BA4": [
+          "dora3_s26_mini_801C4BA4",
+          604,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4E00": [
+          "dora3_s26_mini_801C4E00",
+          104,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4E68": [
+          "dora3_s26_mini_801C4E68",
+          220,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4F44": [
+          "dora3_s26_mini_801C4F44",
+          328,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C508C": [
+          "dora3_s26_mini_801C508C",
+          160,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C512C": [
+          "dora3_s26_mini_801C512C",
+          400,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C52BC": [
+          "dora3_s26_mini_801C52BC",
+          140,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5348": [
+          "dora3_s26_mini_801C5348",
+          476,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5524": [
+          "dora3_s26_mini_801C5524",
+          196,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C55E8": [
+          "dora3_s26_mini_801C55E8",
+          252,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C56E4": [
+          "dora3_s26_mini_801C56E4",
+          132,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5768": [
+          "dora3_s26_mini_801C5768",
+          712,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5A30": [
+          "dora3_s26_mini_801C5A30",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5A38": [
+          "dora3_s26_mini_801C5A38",
+          532,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5C4C": [
+          "dora3_s26_mini_801C5C4C",
+          372,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5DC0": [
+          "dora3_s26_mini_801C5DC0",
+          440,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5F78": [
+          "dora3_s26_mini_801C5F78",
+          160,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6018": [
+          "dora3_s26_mini_801C6018",
+          36,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C603C": [
+          "dora3_s26_mini_801C603C",
+          340,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6190": [
+          "dora3_s26_mini_801C6190",
+          172,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C623C": [
+          "dora3_s26_mini_801C623C",
+          204,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6308": [
+          "dora3_s26_mini_801C6308",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6358": [
+          "dora3_s26_mini_801C6358",
+          292,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C647C": [
+          "dora3_s26_mini_801C647C",
+          252,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6578": [
+          "dora3_s26_mini_801C6578",
+          196,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C663C": [
+          "dora3_s26_mini_801C663C",
+          40,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6664": [
+          "dora3_s26_mini_801C6664",
+          308,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6798": [
+          "dora3_s26_mini_801C6798",
+          552,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C69C0": [
+          "dora3_s26_mini_801C69C0",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C69DC": [
+          "dora3_s26_mini_801C69DC",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C69F8": [
+          "dora3_s26_mini_801C69F8",
+          1616,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7048": [
+          "dora3_s26_mini_801C7048",
+          624,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C72B8": [
+          "dora3_s26_mini_801C72B8",
+          324,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ]
+      },
+      "indirect_targets": {
+        "0x801C72B8": "Resident scene dispatcher callback after this variant loader"
+      }
+    },
+    {
+      "name": ".minigame_7",
+      "rom": 1805024,
+      "vram": 2149332608,
+      "size": 14720,
+      "overlay_group": "scene_code",
+      "requires": [
+        ".minigame_common"
+      ],
+      "evidence": {
+        "loader": "0x800432F4",
+        "text_end": "0x801C6E08",
+        "observed_dma": false
+      },
+      "compiled": {
+        "0x801C3680": [
+          "dora3_s27_mini_801C3680",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3700": [
+          "dora3_s27_mini_801C3700",
+          140,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C378C": [
+          "dora3_s27_mini_801C378C",
+          364,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C38F8": [
+          "dora3_s27_mini_801C38F8",
+          244,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C39EC": [
+          "dora3_s27_mini_801C39EC",
+          252,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3AE8": [
+          "dora3_s27_mini_801C3AE8",
+          204,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3BB4": [
+          "dora3_s27_mini_801C3BB4",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3C20": [
+          "dora3_s27_mini_801C3C20",
+          184,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3CD8": [
+          "dora3_s27_mini_801C3CD8",
+          308,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3E0C": [
+          "dora3_s27_mini_801C3E0C",
+          612,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4070": [
+          "dora3_s27_mini_801C4070",
+          516,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4274": [
+          "dora3_s27_mini_801C4274",
+          196,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4338": [
+          "dora3_s27_mini_801C4338",
+          248,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4430": [
+          "dora3_s27_mini_801C4430",
+          176,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C44E0": [
+          "dora3_s27_mini_801C44E0",
+          48,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4510": [
+          "dora3_s27_mini_801C4510",
+          212,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C45E4": [
+          "dora3_s27_mini_801C45E4",
+          156,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4680": [
+          "dora3_s27_mini_801C4680",
+          796,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C499C": [
+          "dora3_s27_mini_801C499C",
+          788,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4CB0": [
+          "dora3_s27_mini_801C4CB0",
+          112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4D20": [
+          "dora3_s27_mini_801C4D20",
+          312,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4E58": [
+          "dora3_s27_mini_801C4E58",
+          284,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4F74": [
+          "dora3_s27_mini_801C4F74",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4FC4": [
+          "dora3_s27_mini_801C4FC4",
+          140,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5050": [
+          "dora3_s27_mini_801C5050",
+          92,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C50AC": [
+          "dora3_s27_mini_801C50AC",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C50FC": [
+          "dora3_s27_mini_801C50FC",
+          536,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5314": [
+          "dora3_s27_mini_801C5314",
+          692,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C55C8": [
+          "dora3_s27_mini_801C55C8",
+          172,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5674": [
+          "dora3_s27_mini_801C5674",
+          420,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5818": [
+          "dora3_s27_mini_801C5818",
+          636,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5A94": [
+          "dora3_s27_mini_801C5A94",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5B14": [
+          "dora3_s27_mini_801C5B14",
+          40,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5B3C": [
+          "dora3_s27_mini_801C5B3C",
+          216,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5C14": [
+          "dora3_s27_mini_801C5C14",
+          876,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5F80": [
+          "dora3_s27_mini_801C5F80",
+          540,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C619C": [
+          "dora3_s27_mini_801C619C",
+          408,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6334": [
+          "dora3_s27_mini_801C6334",
+          348,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6490": [
+          "dora3_s27_mini_801C6490",
+          96,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C64F0": [
+          "dora3_s27_mini_801C64F0",
+          512,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C66F0": [
+          "dora3_s27_mini_801C66F0",
+          96,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6750": [
+          "dora3_s27_mini_801C6750",
+          188,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C680C": [
+          "dora3_s27_mini_801C680C",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6828": [
+          "dora3_s27_mini_801C6828",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6844": [
+          "dora3_s27_mini_801C6844",
+          844,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6B90": [
+          "dora3_s27_mini_801C6B90",
+          308,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6CC4": [
+          "dora3_s27_mini_801C6CC4",
+          324,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ]
+      },
+      "indirect_targets": {
+        "0x801C6CC4": "Resident scene dispatcher callback after this variant loader"
+      }
+    },
+    {
+      "name": ".minigame_8",
+      "rom": 1819744,
+      "vram": 2149332608,
+      "size": 21072,
+      "overlay_group": "scene_code",
+      "requires": [
+        ".minigame_common"
+      ],
+      "evidence": {
+        "loader": "0x80043328",
+        "text_end": "0x801C84F0",
+        "observed_dma": false
+      },
+      "compiled": {
+        "0x801C3680": [
+          "dora3_s28_mini_801C3680",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3700": [
+          "dora3_s28_mini_801C3700",
+          140,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C378C": [
+          "dora3_s28_mini_801C378C",
+          64,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C37CC": [
+          "dora3_s28_mini_801C37CC",
+          64,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C380C": [
+          "dora3_s28_mini_801C380C",
+          616,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3A74": [
+          "dora3_s28_mini_801C3A74",
+          56,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3AAC": [
+          "dora3_s28_mini_801C3AAC",
+          384,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3C2C": [
+          "dora3_s28_mini_801C3C2C",
+          136,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3CB4": [
+          "dora3_s28_mini_801C3CB4",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3CBC": [
+          "dora3_s28_mini_801C3CBC",
+          48,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3CEC": [
+          "dora3_s28_mini_801C3CEC",
+          156,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3D88": [
+          "dora3_s28_mini_801C3D88",
+          232,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3E70": [
+          "dora3_s28_mini_801C3E70",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3E9C": [
+          "dora3_s28_mini_801C3E9C",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3EC8": [
+          "dora3_s28_mini_801C3EC8",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3EF4": [
+          "dora3_s28_mini_801C3EF4",
+          364,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4060": [
+          "dora3_s28_mini_801C4060",
+          36,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4084": [
+          "dora3_s28_mini_801C4084",
+          404,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4218": [
+          "dora3_s28_mini_801C4218",
+          176,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C42C8": [
+          "dora3_s28_mini_801C42C8",
+          56,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4300": [
+          "dora3_s28_mini_801C4300",
+          52,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4334": [
+          "dora3_s28_mini_801C4334",
+          360,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C449C": [
+          "dora3_s28_mini_801C449C",
+          132,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4520": [
+          "dora3_s28_mini_801C4520",
+          56,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4558": [
+          "dora3_s28_mini_801C4558",
+          84,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C45AC": [
+          "dora3_s28_mini_801C45AC",
+          264,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C46B4": [
+          "dora3_s28_mini_801C46B4",
+          224,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4794": [
+          "dora3_s28_mini_801C4794",
+          428,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4940": [
+          "dora3_s28_mini_801C4940",
+          440,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4AF8": [
+          "dora3_s28_mini_801C4AF8",
+          220,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4BD4": [
+          "dora3_s28_mini_801C4BD4",
+          416,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4D74": [
+          "dora3_s28_mini_801C4D74",
+          176,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4E24": [
+          "dora3_s28_mini_801C4E24",
+          164,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4EC8": [
+          "dora3_s28_mini_801C4EC8",
+          192,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4F88": [
+          "dora3_s28_mini_801C4F88",
+          520,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5190": [
+          "dora3_s28_mini_801C5190",
+          336,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C52E0": [
+          "dora3_s28_mini_801C52E0",
+          112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5350": [
+          "dora3_s28_mini_801C5350",
+          516,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5554": [
+          "dora3_s28_mini_801C5554",
+          460,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5720": [
+          "dora3_s28_mini_801C5720",
+          524,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C592C": [
+          "dora3_s28_mini_801C592C",
+          232,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5A14": [
+          "dora3_s28_mini_801C5A14",
+          48,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5A44": [
+          "dora3_s28_mini_801C5A44",
+          84,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5A98": [
+          "dora3_s28_mini_801C5A98",
+          96,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5AF8": [
+          "dora3_s28_mini_801C5AF8",
+          204,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5BC4": [
+          "dora3_s28_mini_801C5BC4",
+          432,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5D74": [
+          "dora3_s28_mini_801C5D74",
+          276,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5E88": [
+          "dora3_s28_mini_801C5E88",
+          524,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6094": [
+          "dora3_s28_mini_801C6094",
+          576,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C62D4": [
+          "dora3_s28_mini_801C62D4",
+          464,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C64A4": [
+          "dora3_s28_mini_801C64A4",
+          68,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C64E8": [
+          "dora3_s28_mini_801C64E8",
+          472,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C66C0": [
+          "dora3_s28_mini_801C66C0",
+          344,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6818": [
+          "dora3_s28_mini_801C6818",
+          1236,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6CEC": [
+          "dora3_s28_mini_801C6CEC",
+          896,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C706C": [
+          "dora3_s28_mini_801C706C",
+          112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C70DC": [
+          "dora3_s28_mini_801C70DC",
+          60,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7118": [
+          "dora3_s28_mini_801C7118",
+          36,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C713C": [
+          "dora3_s28_mini_801C713C",
+          456,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7304": [
+          "dora3_s28_mini_801C7304",
+          188,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C73C0": [
+          "dora3_s28_mini_801C73C0",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C73EC": [
+          "dora3_s28_mini_801C73EC",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7418": [
+          "dora3_s28_mini_801C7418",
+          44,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7444": [
+          "dora3_s28_mini_801C7444",
+          300,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7570": [
+          "dora3_s28_mini_801C7570",
+          124,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C75EC": [
+          "dora3_s28_mini_801C75EC",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C763C": [
+          "dora3_s28_mini_801C763C",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C76B4": [
+          "dora3_s28_mini_801C76B4",
+          736,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7994": [
+          "dora3_s28_mini_801C7994",
+          204,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7A60": [
+          "dora3_s28_mini_801C7A60",
+          764,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7D5C": [
+          "dora3_s28_mini_801C7D5C",
+          116,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7DD0": [
+          "dora3_s28_mini_801C7DD0",
+          236,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7EBC": [
+          "dora3_s28_mini_801C7EBC",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7ED8": [
+          "dora3_s28_mini_801C7ED8",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7EF4": [
+          "dora3_s28_mini_801C7EF4",
+          892,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C8270": [
+          "dora3_s28_mini_801C8270",
+          316,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C83AC": [
+          "dora3_s28_mini_801C83AC",
+          324,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ]
+      },
+      "indirect_targets": {
+        "0x801C83AC": "Resident scene dispatcher callback after this variant loader"
+      }
+    },
+    {
+      "name": ".minigame_9",
+      "rom": 1840816,
+      "vram": 2149332608,
+      "size": 18224,
+      "overlay_group": "scene_code",
+      "requires": [
+        ".minigame_common"
+      ],
+      "evidence": {
+        "loader": "0x8004335C",
+        "text_end": "0x801C7B18",
+        "observed_dma": false
+      },
+      "compiled": {
+        "0x801C3680": [
+          "dora3_s29_mini_801C3680",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3700": [
+          "dora3_s29_mini_801C3700",
+          140,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C378C": [
+          "dora3_s29_mini_801C378C",
+          376,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3904": [
+          "dora3_s29_mini_801C3904",
+          160,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C39A4": [
+          "dora3_s29_mini_801C39A4",
+          112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3A14": [
+          "dora3_s29_mini_801C3A14",
+          352,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3B74": [
+          "dora3_s29_mini_801C3B74",
+          212,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3C48": [
+          "dora3_s29_mini_801C3C48",
+          120,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3CC0": [
+          "dora3_s29_mini_801C3CC0",
+          528,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C3ED0": [
+          "dora3_s29_mini_801C3ED0",
+          452,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4094": [
+          "dora3_s29_mini_801C4094",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4100": [
+          "dora3_s29_mini_801C4100",
+          252,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C41FC": [
+          "dora3_s29_mini_801C41FC",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4268": [
+          "dora3_s29_mini_801C4268",
+          192,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4328": [
+          "dora3_s29_mini_801C4328",
+          316,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4464": [
+          "dora3_s29_mini_801C4464",
+          212,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4538": [
+          "dora3_s29_mini_801C4538",
+          40,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4560": [
+          "dora3_s29_mini_801C4560",
+          584,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C47A8": [
+          "dora3_s29_mini_801C47A8",
+          520,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C49B0": [
+          "dora3_s29_mini_801C49B0",
+          160,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4A50": [
+          "dora3_s29_mini_801C4A50",
+          180,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4B04": [
+          "dora3_s29_mini_801C4B04",
+          108,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4B70": [
+          "dora3_s29_mini_801C4B70",
+          48,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4BA0": [
+          "dora3_s29_mini_801C4BA0",
+          212,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4C74": [
+          "dora3_s29_mini_801C4C74",
+          156,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C4D10": [
+          "dora3_s29_mini_801C4D10",
+          856,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5068": [
+          "dora3_s29_mini_801C5068",
+          764,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5364": [
+          "dora3_s29_mini_801C5364",
+          112,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C53D4": [
+          "dora3_s29_mini_801C53D4",
+          320,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5514": [
+          "dora3_s29_mini_801C5514",
+          264,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C561C": [
+          "dora3_s29_mini_801C561C",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C566C": [
+          "dora3_s29_mini_801C566C",
+          140,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C56F8": [
+          "dora3_s29_mini_801C56F8",
+          92,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5754": [
+          "dora3_s29_mini_801C5754",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C57A4": [
+          "dora3_s29_mini_801C57A4",
+          576,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C59E4": [
+          "dora3_s29_mini_801C59E4",
+          372,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5B58": [
+          "dora3_s29_mini_801C5B58",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5BD8": [
+          "dora3_s29_mini_801C5BD8",
+          428,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5D84": [
+          "dora3_s29_mini_801C5D84",
+          604,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C5FE0": [
+          "dora3_s29_mini_801C5FE0",
+          128,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6060": [
+          "dora3_s29_mini_801C6060",
+          48,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6090": [
+          "dora3_s29_mini_801C6090",
+          204,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C615C": [
+          "dora3_s29_mini_801C615C",
+          516,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6360": [
+          "dora3_s29_mini_801C6360",
+          852,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C66B4": [
+          "dora3_s29_mini_801C66B4",
+          364,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6820": [
+          "dora3_s29_mini_801C6820",
+          96,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6880": [
+          "dora3_s29_mini_801C6880",
+          72,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C68C8": [
+          "dora3_s29_mini_801C68C8",
+          80,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6918": [
+          "dora3_s29_mini_801C6918",
+          1552,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C6F28": [
+          "dora3_s29_mini_801C6F28",
+          312,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7060": [
+          "dora3_s29_mini_801C7060",
+          8,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7068": [
+          "dora3_s29_mini_801C7068",
+          336,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C71B8": [
+          "dora3_s29_mini_801C71B8",
+          512,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C73B8": [
+          "dora3_s29_mini_801C73B8",
+          88,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7410": [
+          "dora3_s29_mini_801C7410",
+          192,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C74D0": [
+          "dora3_s29_mini_801C74D0",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C74EC": [
+          "dora3_s29_mini_801C74EC",
+          28,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7508": [
+          "dora3_s29_mini_801C7508",
+          860,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C7864": [
+          "dora3_s29_mini_801C7864",
+          368,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ],
+        "0x801C79D4": [
+          "dora3_s29_mini_801C79D4",
+          324,
+          "Mini-game batch: original ROM code, candidate text extents and call/reference closure; explicit section identity and required common overlay"
+        ]
+      },
+      "indirect_targets": {
+        "0x801C79D4": "Resident scene dispatcher callback after this variant loader"
       }
     }
   ],

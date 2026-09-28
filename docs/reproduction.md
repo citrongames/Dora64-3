@@ -250,3 +250,13 @@ python3 tools/check_penguin_overlays.py --rom '/mnt/d/Games/DoraRecomp3/testbuil
 
 Windows helper использует startup-v55, audio-rsp-v1 прежний.2964 original,
 44 SDK,17 pending. Общий save root прежний; запуск только у пользователя.
+
+## Windows test-014: меню мини-игр и девять вариантов
+
+```sh
+python3 tools/generate_startup.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --output-dir build-local/startup-v56
+python3 tools/check_minigame_overlays.py --rom '/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64' --generated build-local/startup-v56
+```
+
+Windows helper использует startup-v56, audio-rsp-v1 прежний.3678 original,
+44 SDK,7 pending. Общий save root прежний; запуск только у пользователя.
