@@ -288,3 +288,9 @@ Linux diagnostic и Windows live target скомпилированы без за
 Используется startup-v61 и audio-rsp-v1; helper обновлён. Команды ASan/LSan
 и границы проверки — synchronization-memory.md. Игру запускает пользователь.
 Сборки имеют общие saves/settings; старые EXE не перезаписываются.
+
+
+## VI / resource lifetime, test-018
+
+CPU startup-v61 остаётся прежним. Команды и границы компонентных проверок:
+[vi-resource-lifetime.md](vi-resource-lifetime.md). Windows packaging BuildId test-018.

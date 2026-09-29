@@ -109,3 +109,10 @@ research/frame-memory-check.json и research/windows-build-check.json.
 Первый запуск нового стенда обнаружил ошибку тестового promise: get_mutex
 вызывается и при unlock. Сигнал сделан одноразовым; production-код из-за этого
 не менялся. Windows live/RT64 и Linux diagnostic скомпилированы без запуска.
+
+
+## Продолжение test-018
+
+Подтверждённая гонка VI исправлена и проверена TSAN; карта ресурсов и
+100-slot deferred-free registry исследованы отдельно: [VI и ресурсы](vi-resource-lifetime.md).
+Открытые вопросы выше не объявляются закрытыми этой проверкой.

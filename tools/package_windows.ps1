@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$CrtDirectory,
-    [string]$BuildId = 'test-017'
+    [string]$BuildId = 'test-018'
 )
 $ErrorActionPreference = 'Stop'
 if ($BuildId -notmatch '^[a-zA-Z0-9-]+$') { throw 'Invalid build ID.' }
@@ -55,7 +55,7 @@ $report = [ordered]@{
     visual_input_audible_validation = 'pending user test'
     compiler = 'MSVC 19.44; RelWithDebInfo /O2 /Zi /EHsc; dynamic CRT'
     previous_user_test = 'test-014: available mini-games user-tested without observed crashes; progression-locked variants untested'
-    current_test_scope = 'Frame light snapshots; CPU framebuffer/RT64 exclusion; bounded periodic presentation; freed redundant ROM copy; minute memory telemetry. ASan/LSan components passed; GPU/full playthrough pending. Shared saves/settings; no session limit.'
+    current_test_scope = 'VI state race fixed and checked with TSAN negative/positive controls. Original resource retirement boundary audited with ASan/LSan; full-table diagnostic added, free policy unchanged. Includes test-017 fixes. Dynamic resource/GPU lifetime remains open. Shared saves/settings; no session limit.'
     rom = 'external; exact filename beside EXE only; never copied by this script'
     files_sha256 = $hashes
     source = $stage

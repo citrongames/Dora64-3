@@ -1,0 +1,414 @@
+{
+  "scope": "All configured original bodies/direct JAL sites; not proof of indirect call reachability or all memory writers",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "original_bodies": 4778,
+  "overlay_regions": 49,
+  "calls": {
+    "current_framebuffer": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80026D04",
+        "function": "dora3_scheduler_framebuffer_ready"
+      }
+    ],
+    "next_framebuffer": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80026D0C",
+        "function": "dora3_scheduler_framebuffer_ready"
+      }
+    ],
+    "resource_release": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80030D84",
+        "function": "dora3_object_lifetime_tick"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x8003FFB0",
+        "function": "dora3_s0_8003FF98"
+      },
+      {
+        "section": ".scene1",
+        "section_rom": 461392,
+        "site": "0x801BC3BC",
+        "function": "dora3_s3_801BC3A8"
+      },
+      {
+        "section": ".startup_scene",
+        "section_rom": 368256,
+        "site": "0x801B6D9C",
+        "function": "dora3_s49_remaining_801B6B70"
+      },
+      {
+        "section": ".startup_scene",
+        "section_rom": 368256,
+        "site": "0x801B6E68",
+        "function": "dora3_s49_remaining_801B6B70"
+      },
+      {
+        "section": ".startup_scene",
+        "section_rom": 368256,
+        "site": "0x801B6E80",
+        "function": "dora3_s49_remaining_801B6B70"
+      }
+    ],
+    "heap_free_wrapper": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80038B94",
+        "function": "dora3_deferred_free_tick"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x8002EABC",
+        "function": "dora3_s0_8002EA4C"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x8002E79C",
+        "function": "dora3_s0_8002E754"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x8002E7C8",
+        "function": "dora3_s0_8002E754"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x8002E7F4",
+        "function": "dora3_s0_8002E754"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x8002E820",
+        "function": "dora3_s0_8002E754"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x8002E84C",
+        "function": "dora3_s0_8002E754"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x8003B75C",
+        "function": "dora3_s0_8003B744"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x8003B7BC",
+        "function": "dora3_s0_8003B77C"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80030C90",
+        "function": "dora3_s0_80030C44"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x8003B2B0",
+        "function": "dora3_s0_8003B260"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x8003B2B8",
+        "function": "dora3_s0_8003B260"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80036A88",
+        "function": "dora3_s0_80036A40"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80036A90",
+        "function": "dora3_s0_80036A40"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80036AB8",
+        "function": "dora3_s0_80036A40"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80036AC0",
+        "function": "dora3_s0_80036A40"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80037844",
+        "function": "dora3_s0_80037828"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80037868",
+        "function": "dora3_s0_80037828"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x800378A4",
+        "function": "dora3_s0_80037828"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80035C94",
+        "function": "dora3_s0_80035C6C"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80036A1C",
+        "function": "dora3_s0_800369CC"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80036A24",
+        "function": "dora3_s0_800369CC"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80037800",
+        "function": "dora3_s0_800377B0"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x800376C8",
+        "function": "dora3_s0_80037678"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80035B24",
+        "function": "dora3_s0_80035ACC"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80035B2C",
+        "function": "dora3_s0_80035ACC"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80037748",
+        "function": "dora3_s0_800376F0"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80037764",
+        "function": "dora3_s0_800376F0"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80037770",
+        "function": "dora3_s0_800376F0"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80037784",
+        "function": "dora3_s0_800376F0"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80037640",
+        "function": "dora3_s0_80037604"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80037654",
+        "function": "dora3_s0_80037604"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80030974",
+        "function": "dora3_s0_closure_8003093C"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80036B1C",
+        "function": "dora3_s0_remaining_80036AF0"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80036C48",
+        "function": "dora3_s0_remaining_80036C1C"
+      },
+      {
+        "section": ".scene1",
+        "section_rom": 461392,
+        "site": "0x801E49B0",
+        "function": "dora3_s3_801E4894"
+      },
+      {
+        "section": ".scene1",
+        "section_rom": 461392,
+        "site": "0x801E3E7C",
+        "function": "dora3_s3_801E3E04"
+      },
+      {
+        "section": ".lake_slot2",
+        "section_rom": 1401312,
+        "site": "0x8023E200",
+        "function": "dora3_s17_lake_8023E170"
+      },
+      {
+        "section": ".lake_slot2",
+        "section_rom": 1401312,
+        "site": "0x8023ECD8",
+        "function": "dora3_s17_lake_8023EC08"
+      },
+      {
+        "section": ".minigame_common",
+        "section_rom": 1621488,
+        "site": "0x801B9058",
+        "function": "dora3_s20_mini_801B9048"
+      },
+      {
+        "section": ".minigame_common",
+        "section_rom": 1621488,
+        "site": "0x801B9064",
+        "function": "dora3_s20_mini_801B9048"
+      },
+      {
+        "section": ".startup_scene",
+        "section_rom": 368256,
+        "site": "0x801B5348",
+        "function": "dora3_s49_remaining_801B5320"
+      }
+    ],
+    "raw_dp_submit": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80026EF0",
+        "function": "dora3_scheduler_launch"
+      }
+    ],
+    "video_and_heap_init": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80043438",
+        "function": "dora3_initial_game_process"
+      }
+    ],
+    "scene_memory_clear": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80043448",
+        "function": "dora3_initial_game_process"
+      }
+    ],
+    "compressed_resource_load": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80030BEC",
+        "function": "dora3_resource_load"
+      }
+    ],
+    "heap_free": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "site": "0x80033C6C",
+        "function": "dora3_s0_80033C50"
+      }
+    ]
+  },
+  "reviewed_bodies": {
+    "0x80030AE8": {
+      "size": 348,
+      "sha256": "fe10d17808bc33295c78c4537eb59f29146f155b854d313abf4543b6e009fdc2"
+    },
+    "0x80030C44": {
+      "size": 124,
+      "sha256": "7c60e9f63de61c13ea0f003b3eaaec25ee0155df487c984146dfeb1c0b2db628"
+    },
+    "0x80030D00": {
+      "size": 188,
+      "sha256": "07f356ed60d36d02ed9ca56c4c0f2820b27d4f5b377ebc93a95e1c5965340193"
+    },
+    "0x80038B10": {
+      "size": 60,
+      "sha256": "3ffe5b489c8913d3a4df6c6ab10833edff03f7aa988901a8e5cd71da0ff86936"
+    },
+    "0x80038B4C": {
+      "size": 124,
+      "sha256": "893dec4ce340deb49d2abbdb59869e51be5145c8bae3a09a6fdf4853b1126339"
+    },
+    "0x80026CEC": {
+      "size": 84,
+      "sha256": "f509c9b02ba74111f9c3293bcebfb174df9d93e3cdd88e2801de10679a630b63"
+    },
+    "0x80026E24": {
+      "size": 264,
+      "sha256": "c43ac2e17489b43592f99c5820265424cc2f16e284fc09c04edac5889d13992a"
+    },
+    "0x8002FE20": {
+      "size": 324,
+      "sha256": "670a41913fc5d26543fd01a0e9613dee37256db0589b60fdb8359100c41486c7"
+    },
+    "0x80043390": {
+      "size": 64,
+      "sha256": "68ee329f1bab116eecce993d2cc3304327a4099faa707417f7af0eeed46d99ca"
+    }
+  },
+  "findings": {
+    "resource_registry": {
+      "address": "0x801AEC00",
+      "entries": 512,
+      "stride": 20,
+      "expiry_ticks": 16
+    },
+    "deferred_free_registry": {
+      "address": "0x800DD420",
+      "entries": 100,
+      "stride": 8,
+      "expiry_ticks": 16
+    },
+    "expiry_clock": "Both tick routines run from retrace branch before outstanding graphics task check",
+    "raw_rdp": "Only direct caller: scheduler 0x80026EF0; ordinary graphics producer uses flags 0x63; indirect reachability not excluded"
+  },
+  "open": [
+    "Timer expiry is not a host parse/GPU fence",
+    "Other CPU framebuffer producers and dynamic DL/texture reference graph not fully mapped"
+  ]
+}

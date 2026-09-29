@@ -125,6 +125,20 @@ extern "C" void dora3_trace(uint8_t* rdram,recomp_context* ctx,uint32_t address,
         for(auto& active:overlay_active)active=false;
         std::fprintf(stderr,"OVERLAY BOOT aliases removed; resident only\n");
     }
+    if(address==0x80038B10 && uint32_t(ctx->r4)!=0){
+        // The original leaf enqueue drops a request if all 100 entries are full.
+        // Observe that boundary without inventing a larger pool or freeing data early.
+        bool full=true;
+        for(int i=0;i<100;++i)if(MEM_W(i*8,(gpr)(int32_t)0x800DD420)==0){full=false;break;}
+        if(full){
+            static std::atomic<uint64_t> overflow_count{0};
+            const auto count=overflow_count.fetch_add(1)+1;
+            if((count&(count-1))==0)
+                std::fprintf(stderr,"RESOURCE RETIRE TABLE FULL count=%llu ptr=%08X outstanding=%u\n",
+                    static_cast<unsigned long long>(count),uint32_t(ctx->r4),
+                    uint32_t(MEM_W(0,(gpr)(int32_t)0x801AA618)));
+        }
+    }
     if(address==0x80043390)unload_scene_code();
     for(size_t i=0;i<overlay_active.size();i++){
         const auto& region=dora3_overlay_regions[i];

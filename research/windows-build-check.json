@@ -1,16 +1,16 @@
 {
-  "scope": "Windows x64 RT64 and Linux diagnostic compiled; ASan/LSan components only; game not launched",
-  "base_commit": "fc09480e9087a1c681367320e5ee897bc1fabfb1",
-  "build_id": "test-017",
+  "scope": "Windows x64 RT64 and Linux diagnostic compiled; TSAN and ASan/LSan components only; no game/renderer launch",
+  "base_commit": "283759e68ba89cee4825c308bad537221c5bf92b",
+  "build_id": "test-018",
   "cpu_generation": "startup-v61",
   "audio_generation": "audio-rsp-v1",
   "original_bodies": 4778,
   "total_symbols": 4827,
   "sdk_replacements": 44,
   "native_replacements": 5,
-  "generated_delta": "two lock hooks only versus v60; original CPU bodies unchanged",
-  "executable_sha256": "51d3c4470f2d6ab23df27d5e76dd5c9bf5cccc5fa1648cc67a897fd6bc4814cc",
-  "linux_diagnostic_sha256": "e32da8a8e5515c3be3154fd4ae3dca1dd0290719b3b3815ff6f5cfb078df5673",
+  "generated_delta": "CPU and audio generation receipts unchanged versus test-017",
+  "executable_sha256": "1fd1dbe8e3aa3b16f989cf55b02a63120549dda707dc1fd90bd9af6e874647ae",
+  "linux_diagnostic_sha256": "dbbc6b0b218e603472cacccb1be3605730f33107d346f95816be7d7976c8943d",
   "source_sha256": {
     "src/graphics_sync.cpp": "d8f5674176f89f101a511fa42eeb843b55bdecfc21f5fe59b25ec9a44d36a49c",
     "src/graphics_sync.hpp": "03fb24d4c08a7403d809cc8e1e9a594c1c029f51aa3e3f42a99a4a93aaacd655",
@@ -19,12 +19,12 @@
     "src/live_graphics.cpp": "2b069af97e12c81b70c732d3002e44854ba46715cbb65e8ece196d287dc74ce9",
     "src/live_io.cpp": "6447fa965e3e5fcecaf8eb67c44e31b6bacce5aff6e6c29b2cb3917f96a0114a",
     "src/live_io.hpp": "1bc6f95b5f214e397f58d2cfd1b9a3d0115402ae162858a747ed5a5331fca6a9",
-    "src/startup_runtime.cpp": "9662cd470f2218722a0b5830c0d28c8f5607101a83930a7cf14b614ec7e880b1",
+    "src/startup_runtime.cpp": "6d502fb7bb5628f310e7fac7b29a1bc4cf4410d32538e14fce59f5813668a31c",
     "src/n64_hardware.cpp": "5ba6ab5b89daba9af5dbc0f3abcf89cc6e6d25bfc1164427cf51de1e5a9a5ca3",
     "src/n64_hardware.hpp": "b18a04de14a457d8d40787316f992cca5a579def5ff5fe64e9e17bb1729dc5d2",
     "src/n64_hardware_backend.cpp": "e0031e99be8ca477a29780824508462522d7782d4a9a343ddd89720ab5faad6f",
     "tools/generate_startup.py": "049e5dfdf65e21b3a77780d30009a3ff20490215030367f02f97b4e210825484",
-    "tools/prepare_runtime_timing.py": "eb190541ca6f164bf4dfc7d0ab431f05016950faef743dda966833a2bc410d32",
+    "tools/prepare_runtime_timing.py": "46e033d54029e71f2eede2200bb55f45203eb25e861a28fb656e6fe4f57ddd40",
     "tools/build_windows.ps1": "299eafa5fcad3ce5d7bf79fcd132e59f77a87aa987b59812e75b942368dd28d5",
     "research/runtime/CMakeLists.txt": "9ca76cdbf9eab86a48a08406c2e52793154c455262d8d3f969f485cc1e630574",
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
@@ -36,6 +36,9 @@
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "component_receipts": {
+    "vi-sync-check.json": "f45522cdd4d80a5066a49a787e6e585e2e5d1243580ba78ccf4fee4d1462ff1f",
+    "resource-retirement-check.json": "280b85ebc76c652a217ab33b6d9d841a0e8b687db777f723a1fdf0c30fec41ed",
+    "resource-lifetime-audit.json": "9571caa362984efa92d4ad709bc5d3c651526bc428ae54dcdbb2d216de6808fb",
     "synchronization-check.json": "125d1959b89dd3a382c4d1250c30eb163d0eb8e024ecd52065ece1f3310f8875",
     "frame-memory-check.json": "fdf2cd062dacc7257054a7d963dd104f1e4f84e52900bd54ac0993e1b4735ea8"
   },
@@ -46,8 +49,9 @@
     "seconds_after_setup": null
   },
   "remaining_risks": [
-    "GPU/VRAM not measured",
-    "Dynamic resource lifetime and other CPU framebuffer producers not fully mapped",
-    "Real presentation smoothness and long playthrough pending user test"
+    "Dynamic resource timer expiry vs actual graphics reads needs ownership proof",
+    "Original 100-slot deferred free overflow diagnosed; gameplay reachability unknown; free policy unchanged",
+    "Other CPU framebuffer writers and raw RDP visual path not fully validated",
+    "GPU/VRAM and long playthrough not tested"
   ]
 }

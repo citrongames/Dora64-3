@@ -1,0 +1,10 @@
+{
+  "scope": "Original generated retirement code; free endpoint records requests; synthetic RDRAM; no game/GPU",
+  "result": "OBSERVED: both original 16-tick retire paths free with 2 outstanding tasks; original deferred registry stores 100 of 101 requests. Synthetic boundary cases, not gameplay reachability.",
+  "sanitizers": "ASan/LSan exit0; guest dropped request is a semantic observation, not a host allocator leak",
+  "source_sha256": {
+    "research/retirement-check.cpp": "d013398b5e9e0f577a260dcff8067a258b4bf28063480a4b438932a932427454",
+    "tools/check_resource_retirement.py": "dc93e22cf870a23feb701ef835f0b4734fbbbbf343f17e2d02f5d51c2d6785c1"
+  },
+  "generation_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6"
+}

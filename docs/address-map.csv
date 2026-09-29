@@ -4919,3 +4919,8 @@ verified,hook,,0x8002FF50,4,capture lights before OSScTask publication,ROM finge
 verified,synchronization,,0x800271B0,0x15C,CPU framebuffer copy versus asynchronous VI,Original loop BC..F4; shared mutex with RT64 updateScreen; full RAM/context differential and concurrent component check,Covered transition copy; other FB writers remain open
 verified,hook,,0x800272BC,4,begin CPU framebuffer copy exclusion,ROM word checked at generation; call-free loop; ASan/LSan component,No guest SDK or context switches inside lock
 verified,hook,,0x800272F8,4,end CPU framebuffer copy exclusion,ROM word checked at generation; call-free loop; ASan/LSan component,No guest SDK or context switches inside lock
+verified,resource-table,,0x801AEC00,0x2800,512 resource records stride20,Original load/release/tick; resource-lifetime-audit.json,Map referenced nested graphics data
+verified,resource-table,,0x800DD420,0x320,100 deferred-free records stride8,Original enqueue/tick; resource-retirement-check.json,Gameplay overflow reachability unknown
+verified,diagnostic-entry,,0x80038B10,,Deferred free full-table diagnostic,Existing entry trace; original leaf drops request if full,Observe RESOURCE RETIRE TABLE FULL; policy unchanged
+verified,function,,0x80030D00,,Resource timer tick,Original synthetic test expires with outstanding=2,Prove resource-specific ownership before modifying free
+verified,function,,0x80038B4C,,Deferred free timer tick,Original synthetic test expires after16 ticks,Real gameplay reachability and lifetime remain open

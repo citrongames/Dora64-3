@@ -47,6 +47,15 @@ text=replace_once(text,'            if (!events_context.scheduler_screen_update_
     '            if (queue_periodic) {\n                if (!events_context.action_queue.enqueue(ScreenUpdateAction{ events_context.vi.regs, false, true })) {\n                    dora3::sync::periodic_present.complete();\n                    throw std::bad_alloc{};\n                }\n            }')
 text=replace_once(text,'                renderer_context->update_screen(screen_update_action->cpu_changes_only);',
     '                renderer_context->update_screen(screen_update_action->cpu_changes_only);\n                if (screen_update_action->periodic) dora3::sync::periodic_present.complete();')
+# VI state is shared with SDK setters/getters under message_mutex. regs_mutex
+# alone only protects the register snapshot, not cur_state or states[].
+text=replace_once(text,'        if (!ultramodern::is_game_started()) {\n            static bool odd = false;',
+    '        if (!ultramodern::is_game_started()) {\n            std::lock_guard state_lock{ events_context.message_mutex };\n            static bool odd = false;')
+text=replace_once(text,'            std::lock_guard lock{ events_context.vi.regs_mutex };\n\n            // Before Doraemon',
+    '            std::scoped_lock lock{ events_context.message_mutex, events_context.vi.regs_mutex };\n\n            // Before Doraemon')
+for getter in ['osViGetNextFramebuffer','osViGetCurrentFramebuffer']:
+    signature='extern "C" PTR(void) '+getter+'() {'
+    text=replace_once(text,signature,signature+'\n    std::lock_guard lock{ events_context.message_mutex };')
 output=Path(sys.argv[1]).resolve()
 if not output.is_relative_to(ROOT/'build-local'): raise ValueError('Output must stay in ignored build-local')
 output.mkdir(parents=True,exist_ok=True)
