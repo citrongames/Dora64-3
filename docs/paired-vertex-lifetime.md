@@ -82,3 +82,7 @@ python3 tools/check_paired_vertices.py --generated build-local/startup-v61
 
 Отчёты graphics-ownership-audit.json и paired-vertex-check.json находятся в research.
 Пользователь продолжает тестирование test-018; проходить заново для этого аудита не нужно.
+
+
+Продолжение: [исправление test-019](retirement-guard.md). Защита по tickets
+и сохранение переполнения теперь реализованы; прежние наблюдения выше — baseline.

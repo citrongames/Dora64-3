@@ -1,3 +1,13 @@
+## Текущий этап — test-019, retirement guard
+
+Защищено отложенное освобождение парных вершин по tickets строящихся/публикуемых
+кадров. Переполнение100-slot очереди сохраняется в host storage; registry-only
+reset сохраняет запросы, heap reset инвалидирует старые адреса. ASan/LSan и TSAN
+прошли; Windows/Linux собраны без запуска. См. retirement-guard.md. Полный аудит
+ещё открыт:512-slot resources, другие free/CPU writers, raw RDP, GPU.
+
+Ниже исторические результаты.
+
 ## Продолжение после test-018 — динамические вершины
 
 Восстановлена цепочка двойных vertex buffers от allocation/morph/segment binding

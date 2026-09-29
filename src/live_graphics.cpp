@@ -1,3 +1,4 @@
+#include "resource_retirement.hpp"
 // Windows/Linux research frontend, original VI and F3DEX2, no game-one patches.
 #include "live_graphics.hpp"
 #include "live_io.hpp"
@@ -161,6 +162,7 @@ public:
         frame_lights_active=true;
         app->processDisplayLists(ram,dl,0,true);
         frame_lights_active=false;
+        dora3::retirement::parsed(dl);
         std::fprintf(stderr,"LIVE RT64 PARSED task=%u dl=%08X bytes=%X gbi=7\n",++tasks,dl,task->t.data_size);
         completed.fetch_add(1);
     }
@@ -170,7 +172,7 @@ public:
         std::scoped_lock lock(ultramodern::get_graphics_rdram_mutex());
         app->updateScreen();
     }
-    void reset_game() override{frame_lights_active=false;dora3::frame::reset();}
+    void reset_game() override{frame_lights_active=false;dora3::frame::reset();dora3::retirement::reset();}
     void shutdown() override{app->end();}
     uint32_t get_display_framerate() const override{return 60;}
     float get_resolution_scale() const override{return 1.0f;}
@@ -179,6 +181,7 @@ public:
 
 void dora3_configure_live_graphics(recomp::Configuration& cfg){
     dora3::frame::enable();
+    dora3::retirement::enable();
     dora3_configure_live_input(cfg);
     std::fprintf(stderr,"LIVE SESSION: no time or graphics-task limit\n");
     cfg.events_callbacks.gfx_task_submitted_callback=[](uint8_t*,uint32_t dl,uint32_t bytes){

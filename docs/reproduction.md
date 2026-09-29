@@ -294,3 +294,9 @@ Linux diagnostic и Windows live target скомпилированы без за
 
 CPU startup-v61 остаётся прежним. Команды и границы компонентных проверок:
 [vi-resource-lifetime.md](vi-resource-lifetime.md). Windows packaging BuildId test-018.
+
+
+## Test-019
+
+CPU startup-v61/audio-rsp-v1 прежние. Проверки guard: [retirement-guard.md](retirement-guard.md).
+Упаковка BuildId test-019; дополнительный src/resource_retirement.cpp подключён CMake.

@@ -1004,3 +1004,23 @@ RDRAM во время FullSync, поэтому граница — весь send_
 Depth clear8002F594 оказался генератором RDP-команд; video init меняет указатели,
 не пиксели. Патчей в этих точках не добавлено. Production не изменён; rebuild не нужен.
 Подробности/незакрытые условия: paired-vertex-lifetime.md. ASan/LSan стенда exit0.
+
+
+## 2026-09-29 — test-019: lifetime guard парных vertex buffers
+
+Первопричины:16 ticks не гарантировали конец отложенного send_dl;100-slot registry
+терял overflow после обнуления owner pointer. Добавлен ticket для строящегося кадра
+8002FF64, publication marker8002FE20 и завершение после processDisplayLists.
+Ресурс ждёт только задачи не новее своего retirement ticket. Исходный timer и
+allocator сохранены; overflow сохраняется и освобождается на guest CPU.
+
+Выявлено отличие registry reset80038AE4 от heap reset80033A14. Первый переносит
+живые записи с остатком timer в host storage, второй инвалидирует старые указатели
+до reuse адресов новым heap. Нельзя применять поздний free к новой сцене.
+Guard не держит mutex через SDK и не ждёт global outstanding==0.
+
+Оригинальные registry functions +production guard прошли ASan/LSan и TSAN,
+включая102 запроса/100 slots,100 циклов, concurrent completion, новые кадры,
+отдельный registry reset и heap reuse. CPU generation не менялась. Windows/Linux
+собраны без игрового запуска. Область исправления ограничена парными вершинами;
+512-slot registry и прочие пути остаются открыты. См. retirement-guard.md.

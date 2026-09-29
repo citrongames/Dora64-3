@@ -4929,3 +4929,9 @@ verified,function,,0x80038D58,,Morph selected bank vertices via801A9544,ROM-revi
 verified,function,,0x80038C58,,Retire paired vertices and clear both owner pointers,ROM-reviewed path; graphics-ownership-audit.json; paired-vertex-lifetime.md,Overflow reachability and safe retirement pending
 verified,function,,0x8003AC14,,Emit segment binding for selected dynamic vertex bank,ROM-reviewed path; graphics-ownership-audit.json; paired-vertex-lifetime.md,Follow concrete task publication and completion
 verified,function,,0x8002F594,,Depth fill display-list builder; not CPU pixel writer,ROM-reviewed path; graphics-ownership-audit.json; paired-vertex-lifetime.md,No new CPU framebuffer hook needed here
+verified,entry-hook,,0x8002FF64,,Reserve build ticket for task bank,Original v61 entry trace; retirement-guard-address/thread-check; docs/retirement-guard.md,Finish after RT64 processDisplayLists
+verified,entry-hook,,0x8002FE20,,Mark task publication before original SendMesg,Original v61 entry trace; retirement-guard-address/thread-check; docs/retirement-guard.md,No new CPU generation hook
+verified,entry-hook,,0x80038B10,,Record retirement ticket; retain overflow,Original v61 entry trace; retirement-guard-address/thread-check; docs/retirement-guard.md,Original guest enqueue continues
+verified,entry-hook,,0x80038B4C,,Gate expiry on parse completion; drain overflow,Original v61 entry trace; retirement-guard-address/thread-check; docs/retirement-guard.md,Original tick/free retained
+verified,entry-hook,,0x80038AE4,,Registry-only reset retains live retirements,Original v61 entry trace; retirement-guard-address/thread-check; docs/retirement-guard.md,Remaining countdown preserved
+verified,entry-hook,,0x80033A14,,Heap reinit invalidates old retirement addresses,Original v61 entry trace; retirement-guard-address/thread-check; docs/retirement-guard.md,Published prior tasks must be parsed
