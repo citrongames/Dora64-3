@@ -1,0 +1,44 @@
+{
+  "scope": "Static frame lifetime audit and non-render component check; not gameplay/GPU validation",
+  "result": "PASS: original submit/delay slot and light writer; two queued banks; delayed consumer reproduces stale-light hazard and preserves snapshots; 16-byte RT64 reads, reuse and reset",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "reviewed_resident_bodies": {
+    "0x8002787C": {
+      "size": 524,
+      "sha256": "d434cad7f9d78452d6b4d91ba6a68d0d6c8af303459f6e60d060ee84896d6f54"
+    },
+    "0x80026D40": {
+      "size": 140,
+      "sha256": "7060d43a6712fb4ba738aa953f16d326530248b7906a674c09805bc8f117c5a1"
+    },
+    "0x800271B0": {
+      "size": 348,
+      "sha256": "f4b5bd9f3116460b7f9707ac9674ee3be7b0fdfb7277cfe218883d3dad973f85"
+    },
+    "0x8002FE20": {
+      "size": 324,
+      "sha256": "670a41913fc5d26543fd01a0e9613dee37256db0589b60fdb8359100c41486c7"
+    },
+    "0x8002FF64": {
+      "size": 344,
+      "sha256": "7b9a8b39fa365de4f25d5f40460140282b91022ed3247c8f5a0ece4df1f5c119"
+    },
+    "0x80027B84": {
+      "size": 60,
+      "sha256": "66038cd2f566136a7df5015eac993100e75c1f771c3da2c43664cbe0c9e4e2e4"
+    },
+    "0x80031588": {
+      "size": 104,
+      "sha256": "cc77bcea0712aee374fb23c169a6e9ef259b01794282415fc9711b84777e8b78"
+    }
+  },
+  "sources": {
+    "research/frame-memory-check.cpp": "58c826265e8695ba4fe169c2b415ca5a3965c8d61cf8126bfc23cb03f3d23958",
+    "src/frame_lights.cpp": "f62604ab789b595bb804c2a55e251b32f49c267786bfdb7c4e07a51d2839c053",
+    "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
+    "src/live_graphics.cpp": "0b862b72cc0bda9214e679e217b55ca1a8ee9b9df057d4a80e923d26686ed5fc",
+    "tools/generate_startup.py": "6d5060ca8f3509b5d2c5dc1647d0fbc3435ee30bd94cd67b031a645235ef16d8",
+    "tools/check_frame_memory.py": "d1badf71d55a44430026b57994e9865c85ef746486c327c592236331898feaf2"
+  },
+  "generation_receipt_sha256": "9f67f09fed07a6db4df17b2bc63572c235bc49a12f0ff0d3897b3bb19d7853c5"
+}

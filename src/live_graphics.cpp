@@ -1,6 +1,7 @@
 // Windows/Linux research frontend, original VI and F3DEX2, no game-one patches.
 #include "live_graphics.hpp"
 #include "live_io.hpp"
+#include "frame_lights.hpp"
 #include "n64_hardware.hpp"
 void dora3_raw_dp_event();
 #include "ultramodern/ultramodern.hpp"
@@ -34,6 +35,8 @@ class LiveContext final : public ultramodern::renderer::RendererContext {
     inline static LiveContext* current=nullptr;
     bool parsing_raw=false;
     unsigned raw_syncs=0;
+    dora3::frame::Lights frame_lights{};
+    bool frame_lights_active=false;
 public:
     LiveContext(uint8_t* rdram, ultramodern::renderer::WindowHandle window):ram(rdram){
         RT64::Application::Core core{};
@@ -74,6 +77,10 @@ public:
         const auto result=app->setup(0);
         std::fprintf(stderr,"LIVE RT64 SETUP result=%u\n",unsigned(result));
         if(result!=RT64::Application::SetupResult::Success)std::_Exit(84);
+        static_assert(sizeof(RT64::RSP::Light)==16);
+        app->state->rsp->lightDataCallback=[](uint32_t address)->const void* {
+            return current->frame_lights_active ? current->frame_lights.lookup(address) : nullptr;
+        };
         setup_result=ultramodern::renderer::SetupResult::Success;
         switch(app->chosenGraphicsAPI){
         case RT64::UserConfiguration::GraphicsAPI::D3D12:
@@ -112,18 +119,24 @@ public:
            (task->t.data_size&7) || dl>=0x400000 || task->t.data_size>0x400000-dl){
             std::fprintf(stderr,"LIVE RT64 unsupported task\n");std::_Exit(84);
         }
+        if(!dora3::frame::take(dl,frame_lights)) {
+            std::fprintf(stderr,"LIVE RT64 missing frame light snapshot dl=%08X\n",dl);
+            std::abort();
+        }
         app->state->rsp->reset();
         app->interpreter->loadUCodeGBI(text,data,true);
         if(!app->interpreter->hleGBI || app->interpreter->hleGBI->ucode!=RT64::GBIUCode::F3DEX2){
             std::fprintf(stderr,"LIVE RT64 unreviewed microcode\n");std::_Exit(84);
         }
+        frame_lights_active=true;
         app->processDisplayLists(ram,dl,0,true);
+        frame_lights_active=false;
         std::fprintf(stderr,"LIVE RT64 PARSED task=%u dl=%08X bytes=%X gbi=7\n",++tasks,dl,task->t.data_size);
         completed.fetch_add(1);
     }
     void send_dummy_workload(uint32_t) override{}
     void update_screen(bool=false) override{app->updateScreen();}
-    void reset_game() override{}
+    void reset_game() override{frame_lights_active=false;dora3::frame::reset();}
     void shutdown() override{app->end();}
     uint32_t get_display_framerate() const override{return 60;}
     float get_resolution_scale() const override{return 1.0f;}
@@ -131,6 +144,7 @@ public:
 }
 
 void dora3_configure_live_graphics(recomp::Configuration& cfg){
+    dora3::frame::enable();
     dora3_configure_live_input(cfg);
     std::fprintf(stderr,"LIVE SESSION: no time or graphics-task limit\n");
     cfg.events_callbacks.gfx_task_submitted_callback=[](uint8_t*,uint32_t dl,uint32_t bytes){

@@ -17,7 +17,7 @@ candidate,function,0xF820,0x80034420,,LZSS decode from memory,similar dictionary
 verified,loader-family,0x1E4B8,0x800430B8,0x2D8,14 fixed load wrappers,analyze_layout instruction pattern checks,map functions inside each overlay
 verified,global,,0x80000300,4,TV type read,bootproc infinite branches for mismatched TV mode,set via runtime NTSC initialization
 candidate,global,,0x8007CD80,4,game TV selector,bootproc and VI init reads,inspect initial data value
-unknown,hook,,,,frame ownership and snapshots,no Dora3 hook identified,trace submit completion and reuse
+candidate,hook,,,,remaining shared graphics lifetimes,Frame banks and shared lights audited separately; docs/frame-memory-lifetime.md,CPU framebuffer/VI; nested dynamic DL/resources; raw RDP remain open
 candidate,hook,,0x800271B0,,CPU framebuffer import,Подтверждён оригинальный CPU copy framebuffer при переходе; точка уведомления RT64 ещё не установлена,Проверить импорт CPU writes при переходе между сценами
 unknown,hook,,,,modern camera ownership,no Dora3 hook identified,after stable baseline
 verified,RSP,0x3DAF0,0x800626F0,0xE20,audio microcode entry and indirect targets,"Отдельный RSP generator;16 targets; real task execution, docs/startup-runtime.md",Проверить активные голоса и реальный аудиовывод
@@ -4911,3 +4911,9 @@ verified,hardware,0x3B8E0,0x800604E0,0x30,dora3_sp_set_pc,Exact ROM body; docs/h
 verified,hook,0x2092C,0x8004552C,0x4,Font LW through ROM/RAM bus,Instruction checked during generation;4320 output bytes independently matched,Keep original algorithm and ROM lock
 verified,hook,0x20974,0x80045574,0x4,Font LW through ROM/RAM bus,Instruction checked during generation;4320 output bytes independently matched,Keep original algorithm and ROM lock
 verified,hook,0x209DC,0x800455DC,0x4,Font LW through ROM/RAM bus,Instruction checked during generation;4320 output bytes independently matched,Keep original algorithm and ROM lock
+verified,frame-bank,,0x8010E310,0x31728,frame bank 0,8002FF64/8002FE20; original task publication; frame-memory-check,retain bank ownership protocol
+verified,frame-bank,,0x8013FA38,0x31728,frame bank 1,8002787C alternating index and stride; end80171160,retain bank ownership protocol
+verified,global,,0x801AA618,4,outstanding graphics tasks,8002787C type2 decrements; normal render branch requires <2,not a lock for all RDRAM
+verified,global,,0x8006FB70,0x28,shared ambient and directional lights,80027B84 writes direction; DL references FB70/FB78/FB88; RT64 Light16,captured per task before publication
+verified,hook,,0x8002FF50,4,capture lights before OSScTask publication,ROM fingerprint and generated component check; t0 is bank; FF54 delay slot preserved,src/frame_lights.cpp; exact three RT64 light addresses only
+candidate,synchronization,,0x800271B0,0x15C,CPU framebuffer copy versus asynchronous VI,Task counter0 protects SP/DP reuse but not independent ScreenUpdateAction,audit all FB writers and VI target overlap before patch

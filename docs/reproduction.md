@@ -272,3 +272,12 @@ Windows helper использует startup-v58, audio-rsp-v1 прежний.477
 44 SDK,6 pending. Проверка inventory сверяет49 диапазонов, все generated JAL,
 зависимости и исправленный эпилог. Затем обычная native сборка/упаковка test-015.
 Запуск только у пользователя; никаких автоматических лимитов сессии.
+
+
+## Аудит памяти кадра после test-016 (ветка frame-memory-lifetime)
+
+CPU generation: build-local/startup-v60; audio: build-local/audio-rsp-v1.
+Hook публикации освещения и воспроизводимый component-check описаны в
+frame-memory-lifetime.md. Helper Windows по умолчанию использует v60.
+Linux diagnostic и Windows live target скомпилированы без запуска игры.
+Это отдельная проверка разработки; пользовательский test-016 не заменён.

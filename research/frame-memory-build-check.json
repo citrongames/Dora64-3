@@ -1,0 +1,27 @@
+{
+  "scope": "Windows live frontend and Linux diagnostic compile only; no game/renderer launch; not delivered over test-016",
+  "base_commit": "1354513c6a8f602cef6a5d7c7a1242f8053ea258",
+  "cpu_generation": "startup-v60",
+  "audio_generation": "audio-rsp-v1",
+  "only_generated_c_change": "single publication hook in funcs_3.c",
+  "original_bodies": 4778,
+  "sdk_replacements": 44,
+  "native_replacements": 5,
+  "source_sha256": {
+    "src/frame_lights.cpp": "f62604ab789b595bb804c2a55e251b32f49c267786bfdb7c4e07a51d2839c053",
+    "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
+    "src/live_graphics.cpp": "0b862b72cc0bda9214e679e217b55ca1a8ee9b9df057d4a80e923d26686ed5fc",
+    "tools/generate_startup.py": "6d5060ca8f3509b5d2c5dc1647d0fbc3435ee30bd94cd67b031a645235ef16d8",
+    "tools/build_windows.ps1": "7fb5ccb389480a2b85cdca4b398d5dd5b90c866a602b027980ef7de85689ea54",
+    "research/runtime/CMakeLists.txt": "e10af16a08160768db4e05ad5b420bda8991edfd6a9165fbdd76eee855886969"
+  },
+  "windows_executable_sha256": "6dbb5ea60fac8b1c3519553c4a8415c65cd7f75d5583ec1f47bd8c8a9551f0be",
+  "linux_diagnostic_sha256": "43752c69d7b3d14282ede6670535ac1dca7153c93da1fcd0d9d427b1357212b3",
+  "component_check_sha256": "0d00e354cd3a235ca929d521a8e2db345eee5a76f3c48147102e134ba589130a",
+  "dependency_pins_verified": 32,
+  "donor_unchanged": "680d81feb4c57309ba80536300d73725ea9dffaa",
+  "limitations": [
+    "GPU and real gameplay not run",
+    "Remaining CPU framebuffer/VI and dynamic-resource lifetime questions documented separately"
+  ]
+}

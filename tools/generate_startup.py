@@ -45,6 +45,7 @@ def main():
     declarations=['#pragma once','#include "recomp.h"','#ifdef __cplusplus','extern "C" {','#endif','void dora3_trace(uint8_t*, recomp_context*, uint32_t, uint32_t);','void dora3_pending(uint32_t);','void dora3_verify_dma(uint8_t*);','void dora3_capture_resource(uint8_t*, recomp_context*);','void dora3_mark_stream_dma(void);']
     native_names=[v[0] for v in meta.get('native',{}).values()]
     declarations.append('uint32_t dora3_bus_read32(uint8_t*, uint32_t);')
+    declarations.append('void dora3_capture_frame_lights(uint8_t*, uint32_t);')
     declarations.extend(f'void {name}(uint8_t*, recomp_context*);' for name in native_names)
     bodies=['#include "startup_hooks.h"']
     for index,addr in sorted(frontier):
@@ -68,6 +69,14 @@ def main():
             hook=f'ctx->r7 = (int32_t)dora3_bus_read32(rdram, (uint32_t)ctx->r6 + ({displacement})); goto dora3_after_{load:08X};'
             config+=f'{{ func = "dora3_pak_font_decode", before_vram = 0x{load:08X}, text = {json.dumps(hook)} }},\n'
             config+=f'{{ func = "dora3_pak_font_decode", before_vram = 0x{load+4:08X}, text = "dora3_after_{load:08X}:;" }},\n'
+    if (0,0x8002FE20) in compiled:
+        # Capture before publishing OSScTask, not at delayed RSP submission.
+        for address, word in [(0x8002FF48,0x01002821),(0x8002FF50,0x0C016144),(0x8002FF54,0xAD02000C)]:
+            if struct.unpack_from('>I',rom,0x1000+address-0x80025C00)[0]!=word:
+                raise ValueError('Unreviewed frame publication hook')
+        name=compiled[(0,0x8002FE20)][0]
+        hook='dora3_capture_frame_lights(rdram, (uint32_t)ctx->r8);'
+        config+=f'{{ func = "{name}", before_vram = 0x8002FF50, text = {json.dumps(hook)} }},\n'
     for jump in local_jumps:
         config+=f'{{ func = "{jump["func"]}", before_vram = 0x{jump["load"]:08X}, text = {json.dumps(jump["text"])} }},\n'
     if (0,0x8002730C) in compiled:
