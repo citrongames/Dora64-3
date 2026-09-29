@@ -1201,3 +1201,16 @@ https://wiki.libsdl.org/SDL2/SDL_DisplayEvent.
 VSync до needsResize, остальные режимы восстанавливают его. Меняет только
 present-поток; pinned RT64 не редактируется. Проверка извлекает реальную политику
 из генерируемого кода и проверяет включение/выключение, без GPU.
+
+## Анализ20→60FPS после test-024 — без реализации
+
+По запросу пользователя выполнен только статический анализ. ROM подтвердил
+scene-selected делитель801A39DC:20 прямых записей3 и4 записи2 в известных телах.
+Основной gameplay.scene1 задаёт3; game update и разрешение frame build находятся
+за общим порогом. Подтверждены frame-count sleep и fixed-step fade: замена3→1
+нарушает исходную длительность. Current60FPS — RT64 interpolation, не update60.
+Артефакт стыков предположительно связан с automatic matching; конкретная причина
+ещё не установлена. У RT64 vertex interpolation по умолчанию SKIP; CPU morph
+третьей игры требует отдельной интеграции. Недобор цели не локализован без
+frame-time/matching данных. Подробности: framerate-analysis.md; адреса и ROM hashes:
+research/framerate-static-analysis.json. Код/зависимости/EXE/настройки не менялись.

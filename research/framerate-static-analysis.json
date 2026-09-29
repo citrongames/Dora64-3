@@ -1,0 +1,210 @@
+{
+  "scope": "Static ROM/source analysis only; game not run, no implementation change",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "divider_address": "0x801A39DC",
+  "vi_counter_address": "0x801AC694",
+  "writers": [
+    {
+      "section": ".startup",
+      "function": "dora3_main",
+      "store_address": "0x80027b08",
+      "divider": 2
+    },
+    {
+      "section": ".startup",
+      "function": "dora3_initial_game_process",
+      "store_address": "0x8004341c",
+      "divider": 2
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_scene34_init",
+      "store_address": "0x801c0198",
+      "divider": 3
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C0CC0",
+      "store_address": "0x801c0cd4",
+      "divider": 3
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BFCB8",
+      "store_address": "0x801bfccc",
+      "divider": 3
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BB704",
+      "store_address": "0x801bb718",
+      "divider": 3
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BD0D4",
+      "store_address": "0x801bd0e8",
+      "divider": 3
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C27E0",
+      "store_address": "0x801c27f4",
+      "divider": 3
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_scene1_init",
+      "store_address": "0x801bb94c",
+      "divider": 3
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801F9DC4",
+      "store_address": "0x801f9dd8",
+      "divider": 3
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BDCD0",
+      "store_address": "0x801bdce4",
+      "divider": 3
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BEE34",
+      "store_address": "0x801bee48",
+      "divider": 3
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C1CD0",
+      "store_address": "0x801c1cf8",
+      "divider": 3
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801CB4C0",
+      "store_address": "0x801cb4d4",
+      "divider": 3
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C8148",
+      "store_address": "0x801c815c",
+      "divider": 3
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C80E4",
+      "store_address": "0x801c80f8",
+      "divider": 3
+    },
+    {
+      "section": ".minigame_4",
+      "function": "dora3_s24_mini_801C9800",
+      "store_address": "0x801c9814",
+      "divider": 3
+    },
+    {
+      "section": ".minigame_5",
+      "function": "dora3_s25_mini_801C6C74",
+      "store_address": "0x801c6c88",
+      "divider": 3
+    },
+    {
+      "section": ".minigame_6",
+      "function": "dora3_s26_mini_801C72B8",
+      "store_address": "0x801c72cc",
+      "divider": 3
+    },
+    {
+      "section": ".minigame_7",
+      "function": "dora3_s27_mini_801C6CC4",
+      "store_address": "0x801c6cd8",
+      "divider": 3
+    },
+    {
+      "section": ".minigame_8",
+      "function": "dora3_s28_mini_801C83AC",
+      "store_address": "0x801c83c0",
+      "divider": 3
+    },
+    {
+      "section": ".minigame_9",
+      "function": "dora3_s29_mini_801C79D4",
+      "store_address": "0x801c79e8",
+      "divider": 3
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B50F0",
+      "store_address": "0x801b5104",
+      "divider": 2
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B71C8",
+      "store_address": "0x801b71dc",
+      "divider": 2
+    }
+  ],
+  "bodies": [
+    {
+      "name": "dora3_scheduler_init",
+      "address": "0x80027754",
+      "rom_offset": "0x2b54",
+      "size": 296,
+      "sha256": "3b7d13d6faa7587d09973eecf0a55c4b008a8ba44a89b8f8f514c27e281e6c52"
+    },
+    {
+      "name": "dora3_create_scheduler",
+      "address": "0x80026670",
+      "rom_offset": "0x1a70",
+      "size": 328,
+      "sha256": "f25701b3ae1e127308baf923cc3b737ec5a26bd05137f44e5d6279f2f3820e25"
+    },
+    {
+      "name": "dora3_scheduler_thread",
+      "address": "0x800268a8",
+      "rom_offset": "0x1ca8",
+      "size": 384,
+      "sha256": "dbdd7d0958a3086db132d8fd3d6f09b3e68212c82b159f38b4d7a753d898409e"
+    },
+    {
+      "name": "dora3_game_message_loop",
+      "address": "0x8002787c",
+      "rom_offset": "0x2c7c",
+      "size": 524,
+      "sha256": "d434cad7f9d78452d6b4d91ba6a68d0d6c8af303459f6e60d060ee84896d6f54"
+    },
+    {
+      "name": "dora3_game_retrace_update",
+      "address": "0x800307f8",
+      "rom_offset": "0xbbf8",
+      "size": 228,
+      "sha256": "2e8ed931ce547b2cdfa5fcc871d1fb7cf9301cac3e25c44a4ddd1a933b3e7a7b"
+    },
+    {
+      "name": "dora3_graphics_frame_build",
+      "address": "0x8002ff64",
+      "rom_offset": "0xb364",
+      "size": 344,
+      "sha256": "7b9a8b39fa365de4f25d5f40460140282b91022ed3247c8f5a0ece4df1f5c119"
+    },
+    {
+      "name": "dora3_process_dispatch",
+      "address": "0x800281b8",
+      "rom_offset": "0x35b8",
+      "size": 220,
+      "sha256": "8a532295957d2d55a6512deefc3383eec69312ebfb1906ff7aecfe84d2b640db"
+    },
+    {
+      "name": "dora3_fade_tick",
+      "address": "0x80028948",
+      "rom_offset": "0x3d48",
+      "size": 144,
+      "sha256": "9b0792211bfb93f7270b5e8fab82dd0b771fcfc16833d6d0edcf307a535bf3a5"
+    }
+  ]
+}
