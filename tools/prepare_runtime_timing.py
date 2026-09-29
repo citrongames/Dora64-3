@@ -22,7 +22,7 @@ def replace_once(text, before, after):
     if text.count(before)!=1: raise RuntimeError('Unreviewed runtime source layout: '+before)
     return text.replace(before,after)
 
-text='#include "n64_hardware.hpp"\n'+text
+text='#include "n64_hardware.hpp"\n#include "graphics_sync.hpp"\n'+text
 text=replace_once(text,'struct SpTaskAction {','struct RawRdpAction { uint32_t address, size; };\n\nstruct SpTaskAction {')
 text=replace_once(text,'using Action = std::variant<SpTaskAction,','using Action = std::variant<RawRdpAction, SpTaskAction,')
 text=replace_once(text,'void sp_complete() {','void sp_complete() {\n    dora3_sp_completed();')
@@ -37,6 +37,16 @@ text=replace_once(text,'            if (const auto* task_action = std::get_if<Sp
             }
             else if (const auto* task_action = std::get_if<SpTaskAction>(&action)) {''')
 text+='\nvoid dora3_enqueue_raw_rdp(uint32_t address, uint32_t size) { events_context.action_queue.enqueue(RawRdpAction{address,size}); }\nvoid dora3_raw_dp_event() { dp_complete(); }\n'
+# Bound periodic VI presentation work without blocking VI/AI or dropping tasks.
+text=replace_once(text,'    bool cpu_changes_only = false;','    bool cpu_changes_only = false;\n    bool periodic = false;')
+text=replace_once(text,"        // If the game hasn't started yet, set a dummy VI mode and origin.",
+    "        const bool queue_periodic = !events_context.scheduler_screen_update_active.load(std::memory_order_acquire) && dora3::sync::periodic_present.acquire();\n\n        // If the game hasn't started yet, set a dummy VI mode and origin.")
+text=replace_once(text,'            events_context.action_queue.enqueue(DummyWorkloadAction{events_context.vi.get_next_state()->framebuffer});',
+    '            if (queue_periodic) events_context.action_queue.enqueue(DummyWorkloadAction{events_context.vi.get_next_state()->framebuffer});')
+text=replace_once(text,'            if (!events_context.scheduler_screen_update_active.load(std::memory_order_acquire)) {\n                events_context.action_queue.enqueue(ScreenUpdateAction{ events_context.vi.regs });\n            }',
+    '            if (queue_periodic) {\n                if (!events_context.action_queue.enqueue(ScreenUpdateAction{ events_context.vi.regs, false, true })) {\n                    dora3::sync::periodic_present.complete();\n                    throw std::bad_alloc{};\n                }\n            }')
+text=replace_once(text,'                renderer_context->update_screen(screen_update_action->cpu_changes_only);',
+    '                renderer_context->update_screen(screen_update_action->cpu_changes_only);\n                if (screen_update_action->periodic) dora3::sync::periodic_present.complete();')
 output=Path(sys.argv[1]).resolve()
 if not output.is_relative_to(ROOT/'build-local'): raise ValueError('Output must stay in ignored build-local')
 output.mkdir(parents=True,exist_ok=True)

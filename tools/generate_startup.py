@@ -46,6 +46,7 @@ def main():
     native_names=[v[0] for v in meta.get('native',{}).values()]
     declarations.append('uint32_t dora3_bus_read32(uint8_t*, uint32_t);')
     declarations.append('void dora3_capture_frame_lights(uint8_t*, uint32_t);')
+    declarations.extend(['void dora3_begin_cpu_fb_copy(void);','void dora3_end_cpu_fb_copy(void);'])
     declarations.extend(f'void {name}(uint8_t*, recomp_context*);' for name in native_names)
     bodies=['#include "startup_hooks.h"']
     for index,addr in sorted(frontier):
@@ -77,6 +78,14 @@ def main():
         name=compiled[(0,0x8002FE20)][0]
         hook='dora3_capture_frame_lights(rdram, (uint32_t)ctx->r8);'
         config+=f'{{ func = "{name}", before_vram = 0x8002FF50, text = {json.dumps(hook)} }},\n'
+    if (0,0x800271B0) in compiled:
+        # No guest calls or exits between these hooks except the common epilogue.
+        for address,word in [(0x800272BC,0x10C0000E),(0x800272F0,0x1460FFF4),(0x800272F8,0x8FBF0020)]:
+            if struct.unpack_from('>I',rom,0x1000+address-0x80025C00)[0]!=word:
+                raise ValueError('Unreviewed CPU framebuffer loop')
+        name=compiled[(0,0x800271B0)][0]
+        for address,hook in [(0x800272BC,'dora3_begin_cpu_fb_copy();'),(0x800272F8,'dora3_end_cpu_fb_copy();')]:
+            config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
     for jump in local_jumps:
         config+=f'{{ func = "{jump["func"]}", before_vram = 0x{jump["load"]:08X}, text = {json.dumps(jump["text"])} }},\n'
     if (0,0x8002730C) in compiled:

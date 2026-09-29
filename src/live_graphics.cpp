@@ -2,6 +2,7 @@
 #include "live_graphics.hpp"
 #include "live_io.hpp"
 #include "frame_lights.hpp"
+#include "graphics_sync.hpp"
 #include "n64_hardware.hpp"
 void dora3_raw_dp_event();
 #include "ultramodern/ultramodern.hpp"
@@ -11,6 +12,9 @@ void dora3_raw_dp_event();
 // ultramodern uses WIN32_LEAN_AND_MEAN; DXC still needs COM types.
 #include <objbase.h>
 #include <oleauto.h>
+#include <psapi.h>
+#else
+#include <unistd.h>
 #endif
 #include <array>
 #include <atomic>
@@ -24,6 +28,32 @@ void dora3_raw_dp_event();
 
 namespace {
 SDL_Window* live_window=nullptr;
+void log_memory_usage(){
+    static auto next=std::chrono::steady_clock::time_point{};
+    const auto now=std::chrono::steady_clock::now();
+    if(now<next)return;
+    next=now+std::chrono::seconds(60);
+    uint64_t resident=0,private_bytes=0;
+    bool available=false;
+    #ifdef _WIN32
+    PROCESS_MEMORY_COUNTERS_EX counters{};
+    counters.cb=sizeof(counters);
+    available=GetProcessMemoryInfo(GetCurrentProcess(),reinterpret_cast<PROCESS_MEMORY_COUNTERS*>(&counters),sizeof(counters))!=0;
+    if(available){resident=counters.WorkingSetSize;private_bytes=counters.PrivateUsage;}
+    #else
+    if(FILE* stats=std::fopen("/proc/self/statm","r")){
+        unsigned long pages=0,resident_pages=0;
+        const long page_size=sysconf(_SC_PAGESIZE);
+        available=std::fscanf(stats,"%lu %lu",&pages,&resident_pages)==2 && page_size>0;
+        if(available)resident=uint64_t(resident_pages)*uint64_t(page_size);
+        std::fclose(stats);
+    }
+    #endif
+    std::fprintf(stderr,"MEMORY available=%u resident_bytes=%llu private_bytes=%llu periodic_queued=%llu periodic_coalesced=%llu\n",
+        unsigned(available),static_cast<unsigned long long>(resident),static_cast<unsigned long long>(private_bytes),
+        static_cast<unsigned long long>(dora3::sync::periodic_present.submissions()),
+        static_cast<unsigned long long>(dora3::sync::periodic_present.coalesced()));
+}
 std::atomic<unsigned> submitted{0},completed{0};
 class LiveContext final : public ultramodern::renderer::RendererContext {
     std::array<uint8_t,0x1000> dmem{}, imem{};
@@ -135,7 +165,11 @@ public:
         completed.fetch_add(1);
     }
     void send_dummy_workload(uint32_t) override{}
-    void update_screen(bool=false) override{app->updateScreen();}
+    void update_screen(bool=false) override{
+        // Same exclusion as PI DMA and the reviewed guest CPU framebuffer copy.
+        std::scoped_lock lock(ultramodern::get_graphics_rdram_mutex());
+        app->updateScreen();
+    }
     void reset_game() override{frame_lights_active=false;dora3::frame::reset();}
     void shutdown() override{app->end();}
     uint32_t get_display_framerate() const override{return 60;}
@@ -174,6 +208,7 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
         SDL_Event event;
         while(SDL_PollEvent(&event))if(event.type==SDL_QUIT)ultramodern::quit();
         dora3_poll_live_input(live_window);
+        log_memory_usage();
     };
 }
 

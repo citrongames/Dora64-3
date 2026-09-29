@@ -303,6 +303,9 @@ int main(int argc,char** argv){
         std::fprintf(stderr,"THREAD CONTEXT sp=%08X arg=%08X\n",(uint32_t)ctx->r29,(uint32_t)ctx->r4);
     };
     recomp::register_game(game);
+    // Identification is complete; the runtime loads and owns the game ROM.
+    input.close();
+    std::vector<char>().swap(rom);
     recomp::Configuration cfg{};cfg.project_version={0,0,1};
     cfg.rsp_callbacks.get_rsp_microcode=[](const OSTask* task)->RspUcodeFunc*{
         std::fprintf(stderr,"RSP TASK type=%u ucode=%08X size=%X data=%08X commands=%08X bytes=%X\n",task->t.type,(uint32_t)task->t.ucode,task->t.ucode_size,(uint32_t)task->t.ucode_data,(uint32_t)task->t.data_ptr,task->t.data_size);

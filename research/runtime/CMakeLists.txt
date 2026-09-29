@@ -69,7 +69,7 @@ set_property(TARGET ultramodern PROPERTY SOURCES "${runtime_sources}")
 target_sources(ultramodern PRIVATE "${adapted_runtime}/events-after-parse.cpp" "${adapted_runtime}/scheduling.cpp" "${adapted_runtime}/mesgqueue.cpp")
 target_include_directories(ultramodern PRIVATE "${ROOT}/src")
 set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${ROOT}/tools/prepare_runtime_timing.py")
-target_sources(dora3_startup PRIVATE "${ROOT}/src/frame_lights.cpp" "${ROOT}/src/n64_hardware.cpp" "${ROOT}/src/n64_hardware_backend.cpp")
+target_sources(dora3_startup PRIVATE "${ROOT}/src/graphics_sync.cpp" "${ROOT}/src/frame_lights.cpp" "${ROOT}/src/n64_hardware.cpp" "${ROOT}/src/n64_hardware_backend.cpp")
 
 option(DORA3_LIVE_RT64 "Experimental desktop live RT64 startup" OFF)
 if(DORA3_LIVE_RT64)
@@ -85,6 +85,7 @@ if(DORA3_LIVE_RT64)
             IMPORTED_LOCATION "${SDL2_ROOT}/lib/x64/SDL2.dll"
             INTERFACE_INCLUDE_DIRECTORIES "${SDL2_ROOT}/include")
         target_compile_definitions(dora3_startup PRIVATE NOMINMAX SDL_MAIN_HANDLED)
+        target_link_libraries(dora3_startup PRIVATE psapi)
         set_target_properties(dora3_startup PROPERTIES OUTPUT_NAME "Dora64-3")
         add_custom_command(TARGET dora3_startup POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:SDL2::SDL2>" "$<TARGET_FILE_DIR:dora3_startup>"

@@ -36,9 +36,9 @@
     "research/frame-memory-check.cpp": "58c826265e8695ba4fe169c2b415ca5a3965c8d61cf8126bfc23cb03f3d23958",
     "src/frame_lights.cpp": "f62604ab789b595bb804c2a55e251b32f49c267786bfdb7c4e07a51d2839c053",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
-    "src/live_graphics.cpp": "0b862b72cc0bda9214e679e217b55ca1a8ee9b9df057d4a80e923d26686ed5fc",
-    "tools/generate_startup.py": "6d5060ca8f3509b5d2c5dc1647d0fbc3435ee30bd94cd67b031a645235ef16d8",
+    "src/live_graphics.cpp": "2b069af97e12c81b70c732d3002e44854ba46715cbb65e8ece196d287dc74ce9",
+    "tools/generate_startup.py": "049e5dfdf65e21b3a77780d30009a3ff20490215030367f02f97b4e210825484",
     "tools/check_frame_memory.py": "d1badf71d55a44430026b57994e9865c85ef746486c327c592236331898feaf2"
   },
-  "generation_receipt_sha256": "9f67f09fed07a6db4df17b2bc63572c235bc49a12f0ff0d3897b3bb19d7853c5"
+  "generation_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6"
 }

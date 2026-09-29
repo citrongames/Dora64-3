@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$CrtDirectory,
-    [string]$BuildId = 'test-016'
+    [string]$BuildId = 'test-017'
 )
 $ErrorActionPreference = 'Stop'
 if ($BuildId -notmatch '^[a-zA-Z0-9-]+$') { throw 'Invalid build ID.' }
@@ -37,7 +37,13 @@ if (Test-Path -LiteralPath (Join-Path $Destination "Dora64-3-$BuildId.exe")) {
 $hashes = [ordered]@{}
 foreach ($entry in $items.GetEnumerator()) {
     $target = Join-Path $Destination $entry.Key
-    Copy-Item -LiteralPath $entry.Value -Destination $target
+    if ((Test-Path -LiteralPath $target) -and ([IO.Path]::GetExtension($target) -eq '.dll')) {
+        if ((Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash -ne (Get-FileHash -LiteralPath $entry.Value -Algorithm SHA256).Hash) {
+            throw "Shared DLL differs; preserve existing test builds: $target"
+        }
+    } else {
+        Copy-Item -LiteralPath $entry.Value -Destination $target
+    }
     $hashes[$entry.Key] = (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLowerInvariant()
 }
 $report = [ordered]@{
@@ -49,7 +55,7 @@ $report = [ordered]@{
     visual_input_audible_validation = 'pending user test'
     compiler = 'MSVC 19.44; RelWithDebInfo /O2 /Zi /EHsc; dynamic CRT'
     previous_user_test = 'test-014: available mini-games user-tested without observed crashes; progression-locked variants untested'
-    current_test_scope = 'Six known hardware boundaries implemented: native DP/SI/interrupt/SP and original ROM-reading font decoder;4778 originals+44 SDK+5 native; all49 known overlay ranges; shared EXE-root settings/saves; no automatic stop'
+    current_test_scope = 'Frame light snapshots; CPU framebuffer/RT64 exclusion; bounded periodic presentation; freed redundant ROM copy; minute memory telemetry. ASan/LSan components passed; GPU/full playthrough pending. Shared saves/settings; no session limit.'
     rom = 'external; exact filename beside EXE only; never copied by this script'
     files_sha256 = $hashes
     source = $stage

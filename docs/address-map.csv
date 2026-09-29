@@ -4916,4 +4916,6 @@ verified,frame-bank,,0x8013FA38,0x31728,frame bank 1,8002787C alternating index 
 verified,global,,0x801AA618,4,outstanding graphics tasks,8002787C type2 decrements; normal render branch requires <2,not a lock for all RDRAM
 verified,global,,0x8006FB70,0x28,shared ambient and directional lights,80027B84 writes direction; DL references FB70/FB78/FB88; RT64 Light16,captured per task before publication
 verified,hook,,0x8002FF50,4,capture lights before OSScTask publication,ROM fingerprint and generated component check; t0 is bank; FF54 delay slot preserved,src/frame_lights.cpp; exact three RT64 light addresses only
-candidate,synchronization,,0x800271B0,0x15C,CPU framebuffer copy versus asynchronous VI,Task counter0 protects SP/DP reuse but not independent ScreenUpdateAction,audit all FB writers and VI target overlap before patch
+verified,synchronization,,0x800271B0,0x15C,CPU framebuffer copy versus asynchronous VI,Original loop BC..F4; shared mutex with RT64 updateScreen; full RAM/context differential and concurrent component check,Covered transition copy; other FB writers remain open
+verified,hook,,0x800272BC,4,begin CPU framebuffer copy exclusion,ROM word checked at generation; call-free loop; ASan/LSan component,No guest SDK or context switches inside lock
+verified,hook,,0x800272F8,4,end CPU framebuffer copy exclusion,ROM word checked at generation; call-free loop; ASan/LSan component,No guest SDK or context switches inside lock

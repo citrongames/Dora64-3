@@ -281,3 +281,10 @@ Hook публикации освещения и воспроизводимый c
 frame-memory-lifetime.md. Helper Windows по умолчанию использует v60.
 Linux diagnostic и Windows live target скомпилированы без запуска игры.
 Это отдельная проверка разработки; пользовательский test-016 не заменён.
+
+
+## Windows test-017: синхронизация и память
+
+Используется startup-v61 и audio-rsp-v1; helper обновлён. Команды ASan/LSan
+и границы проверки — synchronization-memory.md. Игру запускает пользователь.
+Сборки имеют общие saves/settings; старые EXE не перезаписываются.
