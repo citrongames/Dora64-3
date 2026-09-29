@@ -23,17 +23,26 @@ present_source=root/'build-deps/lib/rt64/src/hle/rt64_present_queue.cpp'
 present_expected='ee1dcde2815041174d5ac56e83a24f53f7ec7586bfa84cd4ebcc8093d136820c'
 data=present_source.read_bytes()
 if hashlib.sha256(data).hexdigest()!=present_expected:raise SystemExit('RT64 present queue changed; review Manual VSync adaptation')
-text=data.decode()
+text="""// Optional application target query; standalone replay keeps the null default.
+#include <atomic>
+static std::atomic<unsigned(*)()> dora3_native_target_query{nullptr};
+void dora3_set_native_present_target(unsigned(*query)()) {
+    dora3_native_target_query.store(query, std::memory_order_release);
+}
+"""+data.decode()
 needle='                const bool needsResize = ext.swapChain->needsResize() || !swapChainValid;'
 assert text.count(needle)==1
 policy="""                // Dora64-3 Manual VSync policy: present thread owns swap-chain changes.
+                const auto nativeQuery = dora3_native_target_query.load(std::memory_order_acquire);
+                const auto nativeTarget = nativeQuery ? nativeQuery() : 0;
                 bool manualAboveDisplay;
                 {
                     std::scoped_lock<std::mutex> configurationLock(ext.sharedResources->configurationMutex);
                     const auto& config = ext.sharedResources->userConfig;
-                    manualAboveDisplay = config.refreshRate == UserConfiguration::RefreshRate::Manual &&
-                        (ext.sharedResources->swapChainRate == 0 ||
-                         config.refreshRateTarget > ext.sharedResources->swapChainRate);
+                    manualAboveDisplay =
+                        (nativeTarget != 0 && (ext.sharedResources->swapChainRate == 0 || nativeTarget > ext.sharedResources->swapChainRate)) ||
+                        (config.refreshRate == UserConfiguration::RefreshRate::Manual &&
+                         (ext.sharedResources->swapChainRate == 0 || config.refreshRateTarget > ext.sharedResources->swapChainRate));
                 }
                 ext.swapChain->setVsyncEnabled(!manualAboveDisplay);
                 // End Dora64-3 Manual VSync policy.
@@ -42,6 +51,6 @@ text=text.replace(needle,policy+needle)
 present=out/'rt64_present_queue.cpp';present.write_text(text)
 receipt['present_source_sha256']=present_expected
 receipt['present_generated_sha256']=hashlib.sha256(present.read_bytes()).hexdigest()
-receipt['scope']='Manual target is not clamped; present-thread VSync disabled above display Hz and restored for Original/Display; guest VI unchanged'
+receipt['scope']='Native Manual target is independent of RT64 Original/no-interpolation; present-thread VSync disabled above display Hz while owned native frames exist; prior interpolated Manual policy retained; guest VI unchanged'
 (out/'generation-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
 print('Prepared isolated RT64 Manual FPS/VSync adaptation')

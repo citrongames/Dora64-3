@@ -39,7 +39,7 @@ def main():
     # This is the actual adapted runtime TU, not a rewritten mock queue. Its
     # thread scheduler endpoints alone are replaced by the single-thread harness.
     subprocess.run(['g++', '-std=c++20', *flags, '-c', str(out/'mesgqueue.cpp'), '-o', str(out/'queue.o')], check=True)
-    sources = [ROOT/'src/native_frame_time.cpp', ROOT/'src/native_frame_scheduler.cpp',
+    sources = [ROOT/'research/native-loop-stubs.cpp', ROOT/'src/native_frame_time.cpp', ROOT/'src/native_frame_scheduler.cpp',
                ROOT/'src/native_frame_bridge.cpp', ROOT/'src/native_present.cpp', ROOT/'src/native_present_hooks.cpp', ROOT/'research/native-frame-bridge-check.cpp']
     subprocess.run(['g++', '-std=c++20', '-Wall', '-Wextra', '-Werror', *flags,
                     *map(str, sources), str(out/'functions.o'), str(out/'queue.o'), '-o', str(out/'check')], check=True)

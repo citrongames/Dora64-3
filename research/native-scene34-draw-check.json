@@ -4,11 +4,12 @@
   "sanitizers": "ASan/LSan",
   "source_sha256": {
     "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
-    "research/native-scene34-draw-check.cpp": "641dc95b7c1d16a3487e591bb9b26db96eae904ead1f8de7d4effa93a98f4a74",
+    "research/native-scene34-draw-check.cpp": "3033239c807cb8ca5b2462bc92a128e4e2537d08d4c37bed3514342ef31300fa",
     "src/native_frame_time.hpp": "690b956211a59a3c217663de10b78d3c34188cd3835f6d6a903dc53443859f8c",
-    "tools/check_native_scene34_draw.py": "05c6eae4d6d371e40ceca9f86dfc794095803d9e552b48de4d7618a47a60e0b9"
+    "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
+    "tools/check_native_scene34_draw.py": "a3bad1884316b09ba92f10edcc38eb4f3f02f6238f4b780fc85725ec188b879f"
   },
-  "generation_receipt_sha256": "911fa05ded0687dbd256d73cea00e86f328cedb6c707d7027c37e4436e341267",
+  "generation_receipt_sha256": "330766bb445dd12d75241203e3860bf6ee5db40f67526996837ee3c0c9084ab3",
   "original_functions": [
     "dora3_fade_draw_dispatch",
     "dora3_texture_rect_state",

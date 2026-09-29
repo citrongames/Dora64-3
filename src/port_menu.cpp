@@ -126,7 +126,7 @@ void draw_overlay(){
                         if(s.frame_rate_mode!=0){
                             const unsigned rate=display_rate();
                             if(rate>0)ImGui::Text("Display: %u Hz | Target: %u FPS",rate,target_frame_rate(s,rate));
-                            ImGui::TextWrapped("Smoother motion with the original game speed. Display follows the display refresh rate; Manual can exceed it.");
+                            ImGui::TextWrapped(s.frame_rate_mode==2?"Experimental native frame rate in supported scenes; other scenes keep original timing. No RT64 interpolation. Manual can exceed the display refresh rate.":"Smoother motion with the original game speed. Display follows the display refresh rate.");
                         }
                         changed|=ImGui::Combo("Game render resolution",&s.resolution,"Original (1x)\0Original (2x)\0Original (4x)\0Fit to window\0");
                         changed|=ImGui::Combo("Texture filtering",&s.filtering,"Original N64 (three-point)\0Bilinear\0");

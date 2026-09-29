@@ -1,4 +1,5 @@
 #include "native_frame_time.hpp"
+#include "frame_lights.hpp"
 #include "recomp.h"
 #include "scene34-functions.h"
 #include <algorithm>
@@ -18,7 +19,7 @@ static constexpr uint32_t dl_cursor=0x801B1424,stack=0x803F0000;
 static size_t index(uint32_t address) { return (address&0x3fffff)/4; }
 static void frame(std::vector<uint32_t>& memory,unsigned bank) {
     auto* rdram=reinterpret_cast<uint8_t*>(memory.data());
-    const uint32_t task=0x8010E310+bank*31728,dl=task+12328;
+    const uint32_t task=dora3::frame::bank0+bank*dora3::frame::bank_stride,dl=task+dora3::frame::dl_offset;
     MEM_W(0,int32_t(dl_cursor))=int32_t(dl);
     MEM_W(0,int32_t(0x80171CC0))=int32_t(task);
     MEM_W(0x100,int32_t(task))=int32_t(bank?0x803DA800:0x803B5000);
@@ -28,7 +29,7 @@ static void frame(std::vector<uint32_t>& memory,unsigned bank) {
     dora3_fade_draw_dispatch(rdram,&c);
     assert(uint32_t(c.r29)==stack);
     const uint32_t end=uint32_t(MEM_W(0,int32_t(dl_cursor)));
-    assert(end>dl && end<=task+31728 && (end-dl)%8==0);
+    assert(end>dl && end<=task+dora3::frame::bank_stride && (end-dl)%8==0);
     // Only generated DL, its cursor and bounded call-stack scratch may change.
     // Includes image descriptors/resources, every game counter, both FBs and
     // the other frame bank in the invariant part of all 4 MiB guest memory.

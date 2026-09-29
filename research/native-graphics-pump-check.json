@@ -8,20 +8,21 @@
   },
   "sanitizers": "ASan/LSan",
   "source_sha256": {
+    "research/native-loop-stubs.cpp": "e2c796f3fcacb0c70ae1fd87cf6e32347a7d8bcae46a063aaaae24b075109417",
     "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
     "src/native_frame_scheduler.cpp": "724251ee68dcf24a92d53e127dcb2392eca222b7a750b17e242429e74adfbddd",
-    "src/native_frame_bridge.cpp": "f202fde82eae231c2d7546b8b97e66a9c8ae6933c57e69020d8c20c77b10bdc0",
+    "src/native_frame_bridge.cpp": "22453ffc8caeb51f33ae658146c7ab25c6338b65ca4a84c26345e891387d12e8",
     "src/native_graphics_pump.cpp": "557579e51c301cbe4e530015a0ecd874a6f9022bfb94955876ed431f2d212727",
     "src/native_present.cpp": "9ff1ff3be5d4c16b57f5668a394a3e3fa4bafc303c32f52be63833ab33df2f5d",
     "src/native_present_hooks.cpp": "e659ba490ecea74c75fd50de47f0ea95ad9c32c6c30c6352e2123d7150914701",
     "research/native-graphics-pump-check.cpp": "7eb191d431fd47790e208ddaacd924a35efc2d6d58c447006c8ed2ad90877118",
     "src/native_graphics_pump.hpp": "3fdcb53d2f68a9b6d344beb44ea58a190c637bd2320cf3e77fbb8af2649bdcd3",
     "src/native_frame_bridge.hpp": "814b52cc215ca7883ad9cd93cf55b64f54a798b13f8876f2049b8411ef125e40",
-    "tools/generate_startup.py": "43397efd0ebe35f16a3fcc2c793ef032d28808c2a89ad1d73fe1acd00902551f",
+    "tools/generate_startup.py": "e2e66cbe022cff5b36a7ea72ea995c82f2f9621f0fe4dc0f4c81637b6dd6c55c",
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556",
-    "tools/check_native_graphics_pump.py": "16e35559996b62397d26476164ab51fee0d6fa5ee6204e49ac4110f53be4b5cd"
+    "tools/check_native_graphics_pump.py": "53a6c15f7b62de67fc88c328e798f6827c4312646ca69eb1770ef9f2ff42912d"
   },
-  "generation_receipt_sha256": "911fa05ded0687dbd256d73cea00e86f328cedb6c707d7027c37e4436e341267",
+  "generation_receipt_sha256": "330766bb445dd12d75241203e3860bf6ee5db40f67526996837ee3c0c9084ab3",
   "original_functions": [
     "dora3_scheduler_thread",
     "dora3_scheduler_retrace",

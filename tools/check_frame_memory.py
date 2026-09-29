@@ -29,7 +29,7 @@ def main():
     includes=[runtime/'N64Recomp/include',ROOT/'src',generated,generated/'RecompiledFuncs']
     flags=['-O2','-g','-pthread',*['-I'+str(x) for x in includes]]
     subprocess.run(['gcc','-std=c17',*flags,'-c',str(source),'-o',str(out/'functions.o')],check=True)
-    sources=[ROOT/'research/frame-memory-check.cpp',ROOT/'src/frame_lights.cpp']
+    sources=[ROOT/'research/native-loop-stubs.cpp', ROOT/'research/frame-memory-check.cpp',ROOT/'src/frame_lights.cpp']
     subprocess.run(['g++','-std=c++20',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
     result=subprocess.check_output([str(out/'check')],text=True).strip()
     # Fingerprints identify the reviewed ROM bodies; no ROM bytes in the report.

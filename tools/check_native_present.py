@@ -22,7 +22,7 @@ def main():
  end=adapted.index('            else if (const auto* config_action =',start)
  body=adapted[start:end].replace('else if','if',1)
  (out/'native-present-worker.h').write_text('static void process_action(const std::variant<ScreenUpdateAction>& action) { for (int once=0;once<1;++once) {\n'+body+'} }\n')
- sources=[ROOT/'src'/n for n in ['native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_present.cpp']]+[ROOT/'research/native-present-check.cpp']
+ sources=[ROOT/'research/native-loop-stubs.cpp']+[ROOT/'src'/n for n in ['native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_present.cpp']]+[ROOT/'research/native-present-check.cpp']
  flags=['-O1','-g','-pthread','-fno-omit-frame-pointer','-fno-strict-aliasing','-fsanitize='+args.sanitizer,*['-I'+str(p) for p in [ROOT/'src',out,runtime/'ultramodern/include',runtime/'N64Recomp/include',runtime/'thirdparty']]]
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',TSAN_OPTIONS='halt_on_error=1')).strip()

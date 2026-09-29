@@ -1342,3 +1342,33 @@ GuestTask ack и drain зависал. Незарегистрированные 
 Native scene ещё не активирована: полный build, legacy retirement на входе и
 drain перед transition требуют связки с игровым loop. Подробности и ограничения:
 docs/native-presentation.md и docs/native-scene34.md. Первая игра не изменена.
+
+
+## 2026-09-29 — общий loop, полный инвентарь времени, v66
+
+По уточнению пользователя работа переведена с разрозненных hooks к общему контроллеру.
+Native consumer вызывает полный исходный build, Manual settings подключены, общие
+вход/пауза/выход и ожидание legacy хвостов работают. Правила допуска вынесены отдельно;
+пока разрешена image scene34, остальные состояния Manual идут Original без RT64
+interpolation. Полного HFR gameplay эта итерация не заявляет.
+
+Сквозной стенд с27 настоящими функциями подтвердил60 исходных updates при сотнях
+native frames, смене60/73/144/360 и безопасном выходе к transition. Первичный
+entry-wait fixture выявил необходимость различать initial built0 и свежий update:
+добавлена проверка VI count0, fixture моделирует реально построенный предыдущий кадр.
+Повторное чтение FPS при входе заменено одним snapshot. Генератор сначала отклонил
+дублирующий entry hook process_pair_install; hook объединён с существующим trace.
+
+Уточнено и исправлено: image-only fixture ошибочно задавал размеры банков десятичными
+числами, хотя реальные значения hex0x31728/0x12328. Production constants правильны;
+fixture переведён на них и перепроверен. Прежнее свидетельство конкретных банков
+не засчитывается без этой поправки.
+
+Native Manual отключает RT64 interpolation, но старый VSync policy смотрел на RT64
+enum Manual и поэтому ограничил бы новую схему. Добавлен независимый native target
+query в build-local present queue с null fallback для standalone replay.
+
+Весь известный код проинвентаризирован:4778 функций50 секций,47 pair installs,
+3 slot installs,61 indirect calls,167 fade commands,36 animation wrappers.
+Это статическая карта кандидатов, не завершённый semantic audit всех сцен.
+План крупных подсистем и точные границы: docs/native-game-loop.md.

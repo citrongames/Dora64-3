@@ -29,7 +29,7 @@ def main():
  sources=[ROOT/'src/native_frame_time.cpp',ROOT/'research/native-scene34-draw-check.cpp']
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check'),str(out/'seed.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1')).strip()
- tracked=sources+[ROOT/'src/native_frame_time.hpp',Path(__file__).resolve()]
+ tracked=sources+[ROOT/'src/native_frame_time.hpp',ROOT/'src/frame_lights.hpp',Path(__file__).resolve()]
  (ROOT/'research/native-scene34-draw-check.json').write_text(json.dumps({'scope':'Original scene34 image draw closure + native Fade; synthetic resource descriptors and memory; no original update/whole build/renderer or runtime scene adapter',
   'result':result,'sanitizers':'ASan/LSan','source_sha256':{str(f.relative_to(ROOT)):sha(f) for f in tracked},
   'generation_receipt_sha256':sha(g/'generation-receipt.json'),'original_functions':names},indent=2)+'\n')

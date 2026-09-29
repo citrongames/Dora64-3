@@ -1,6 +1,7 @@
 #include "native_frame_bridge.hpp"
 #include "native_present.hpp"
 #include "native_frame_session.hpp"
+#include "native_game_loop.hpp"
 #include <chrono>
 
 namespace {
@@ -92,6 +93,7 @@ void dora3_reset_native_frame_delivery() {
     native_present_ledger().reset_after_runtime_barrier();
     game_frame_bridge().reset_after_runtime_barrier(monotonic_time());
     game_frame_session().reset_after_runtime_barrier();
+    dora3_native_loop_reset();
 }
 
 extern "C" int dora3_native_game_message(uint8_t* rdram, recomp_context* ctx) {

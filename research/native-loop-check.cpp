@@ -1,0 +1,125 @@
+#include "native_game_loop.hpp"
+#include "native_frame_session.hpp"
+#include "native_present.hpp"
+#include "frame_lights.hpp"
+#include "loop-functions.h"
+#include <cassert>
+#include <chrono>
+#include <deque>
+#include <fstream>
+#include <iostream>
+#include <thread>
+#include <vector>
+using namespace dora3::native_time;
+static unsigned requested=60,updates=0,native_builds=0,original_builds=0,vi_count=0,pauses=0,stage=0,resume_vi=0;
+static bool initialized=false,legacy_tail_pending=true;
+static Nanoseconds next_vi=0,started=0;
+static std::deque<uint32_t> messages,submitted;
+struct Finished {};
+unsigned dora3_requested_native_fps() {return requested;}
+extern "C" void do_break(uint32_t) {std::abort();}
+extern "C" void dora3_trace(uint8_t*,recomp_context*,uint32_t pc,uint32_t) {
+    if(pc==0x801C0088)++updates;
+    if(pc==0x8002FF64) {if(dora3_native_frame_build_active())++native_builds;else ++original_builds;}
+}
+extern "C" recomp_func_t* get_function(int32_t pc) {
+    if(uint32_t(pc)==0x801C0088)return dora3_scene34_update;
+    if(uint32_t(pc)==0x801C012C)return dora3_scene34_draw;
+    std::abort();
+}
+extern "C" void dora3_capture_frame_lights(uint8_t* rdram,uint32_t bank) {
+    assert(bank==dora3::frame::bank0 || bank==dora3::frame::bank0+dora3::frame::bank_stride);
+    const auto end=uint32_t(MEM_W(0,int32_t(0x801B1424)));
+    assert(end>bank+dora3::frame::dl_offset && end<bank+dora3::frame::bank_stride);
+}
+bool dora3_enqueue_native_frame_wake() {messages.push_back(WakeMailbox::message_value);return true;}
+bool dora3_enqueue_native_graphics_wake() {return true;}
+bool dora3_enqueue_native_present(const PresentFrame& frame) {
+    assert(native_present_ledger().host_read_done(frame.ticket));return true;
+}
+extern "C" void dora3_scheduler_retrace(uint8_t*,recomp_context*) {std::abort();} // SP/DP separately checked by pump fixture.
+extern "C" void osVirtualToPhysical_recomp(uint8_t*,recomp_context* c) {c->r2=uint32_t(c->r4)&0x1fffffff;}
+extern "C" void osWritebackDCacheAll_recomp(uint8_t*,recomp_context*) {}
+extern "C" void osSendMesg_recomp(uint8_t*,recomp_context* c) {
+    assert(uint32_t(c->r4)==0x801A6A48);submitted.push_back(uint32_t(c->r5));c->r2=0;
+}
+#define EMPTY(name) extern "C" void name(uint8_t*,recomp_context*) {}
+EMPTY(dora3_controller_read) EMPTY(dora3_controller_accumulate) EMPTY(dora3_controller_latch)
+EMPTY(dora3_controller_reset_accumulator) EMPTY(dora3_rumble_tick) EMPTY(dora3_controller_pak_tick)
+EMPTY(dora3_sound_events_tick) EMPTY(dora3_object_lifetime_tick) EMPTY(dora3_deferred_free_tick)
+EMPTY(dora3_frame_timestamp) EMPTY(dora3_update_timestamp) EMPTY(dora3_update_elapsed)
+extern "C" void dora3_s0_80047EF4(uint8_t*,recomp_context*) {++pauses;}
+extern "C" void dora3_scene_transition_framebuffer_copy(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_scene34_controller_message(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_process_pair_install(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_scene34_transition(uint8_t* rdram,recomp_context*) {
+    assert(game_frame_session().phase()==FrameSession::Phase::Original && game_frame_bridge().drained());
+    assert(MEM_W(0,int32_t(0x801AA618))==0 && updates==60 && native_builds>100 && stage==5);
+    throw Finished{};
+}
+static void setup(uint8_t* rdram,recomp_context* c) {
+    for(unsigned i=0;i<2;++i) {
+        const auto bank=int32_t(dora3::frame::bank0+i*dora3::frame::bank_stride);
+        MEM_W(0x100,bank)=int32_t(i?0x803DA800:0x803B5000);MEM_W(0x104,bank)=int32_t(i?0x803B5000:0x803DA800);
+        MEM_H(0xC0,bank)=2;MEM_H(0xE0,bank)=4;
+        const auto slot=int32_t(0x801A44F0+i*20);MEM_W(0,slot)=2;MEM_W(12,slot)=i;MEM_W(16,slot)=int32_t(i?0x801C012C:0x801C0088);
+    }
+    MEM_W(0,int32_t(0x801A39DC))=3;MEM_W(0,int32_t(0x801AA648))=1;MEM_W(0,int32_t(0x801A9500))=1;
+    MEM_W(0,int32_t(0x801A48C0))=1; // Previous original frame built; its outer tail is still pending.
+    MEM_W(0,int32_t(0x801A48E0))=0;MEM_W(0,int32_t(0x8017157C))=0;
+    MEM_W(0,int32_t(0x801AA650))=int32_t(0x8038F800);MEM_W(0,int32_t(0x801AA658))=320;MEM_W(0,int32_t(0x801A48C4))=240;
+    MEM_W(0,int32_t(0x801C68D0))=60;MEM_W(0,int32_t(0x801AEC00))=int32_t(0x80280000);
+    MEM_B(3,int32_t(0x80280000))=5;MEM_H(6,int32_t(0x80280000))=16;
+    MEM_W(8,int32_t(0x80280000))=64;MEM_W(12,int32_t(0x80280000))=32;
+    MEM_H(0,int32_t(0x801AA660))=255;MEM_B(0,int32_t(0x801A99A0))=-1;MEM_B(0,int32_t(0x80171580))=16;
+    MEM_W(0,int32_t(0x80171584))=int32_t(0x801A6A48);MEM_H(0,int32_t(0x802F0000))=1;
+    recomp_context old{};old.r8=int32_t(dora3::frame::bank0+dora3::frame::bank_stride);
+    dora3_native_loop_submit(rdram,&old);
+    dora3_native_loop_scene_ready(rdram,c);
+    started=next_vi=monotonic_time();initialized=true;
+}
+extern "C" void osRecvMesg_recomp(uint8_t* rdram,recomp_context* c) {
+    assert(uint32_t(c->r4)==game_queue);
+    if(!initialized)setup(rdram,c);
+    for(;;) {
+        const auto now=monotonic_time();assert(now-started<8*second); // Test-only watchdog.
+        if(legacy_tail_pending && vi_count>=6) {
+            assert(native_builds==0 && original_builds==0 && updates==1);
+            recomp_context old{};old.r16=int32_t(dora3::frame::bank0+dora3::frame::bank_stride);MEM_W(4,old.r16)=0;
+            dora3_native_loop_retire(rdram,&old);legacy_tail_pending=false;
+        }
+        if(stage==0 && native_builds>=15) {requested=73;stage=1;}
+        if(stage==1 && native_builds>=35) {requested=144;stage=2;}
+        if(stage==2 && native_builds>=60) {MEM_W(0,int32_t(0x801AA680))=1;resume_vi=vi_count+3;stage=3;}
+        if(stage==3 && vi_count>=resume_vi) {MEM_W(0,int32_t(0x801AA680))=0;requested=0;resume_vi=vi_count+4;stage=4;}
+        if(stage==4 && vi_count>=resume_vi) {requested=360;stage=5;}
+        if(!submitted.empty()) {
+            const auto task=submitted.front();submitted.pop_front();
+            recomp_context completion{};completion.r16=int32_t(task);MEM_W(4,completion.r16)=0;
+            dora3_native_loop_retire(rdram,&completion);
+            // Real retirement and HostRead accounting; scheduler hardware endpoints are synthetic here.
+            if(auto frame=native_present_ledger().retire(task))assert(dora3_enqueue_native_present(*frame));
+            messages.push_back(task+0xC0);
+        }
+        if(!messages.empty()) {MEM_W(0,c->r5)=int32_t(messages.front());messages.pop_front();c->r2=0;return;}
+        if(now>=next_vi) {
+            next_vi+=second/60;++vi_count;++MEM_W(0,int32_t(0x801AC694));
+            MEM_W(0,c->r5)=int32_t(0x802F0000);c->r2=0;return;
+        }
+        game_frame_bridge().post_due(now,dora3_enqueue_native_frame_wake);
+        if(!messages.empty())continue;
+        auto wake=next_vi;if(auto deadline=game_frame_bridge().deadline())wake=std::min(wake,*deadline);
+        std::this_thread::sleep_until(std::chrono::steady_clock::time_point(std::chrono::nanoseconds(wake)));
+    }
+}
+int main(int argc,char** argv) {
+    assert(argc==2);std::vector<uint32_t> memory(0x400000/4);auto* rdram=reinterpret_cast<uint8_t*>(memory.data());
+    std::ifstream in(argv[1],std::ios::binary);in.read(reinterpret_cast<char*>(rdram+0x7CD80),128);assert(in.gcount()==128);
+    recomp_context c{};c.r29=int32_t(0x80300000);
+    try {dora3_game_message_loop(rdram,&c);assert(false);}catch(const Finished&) {}
+    assert(pauses>0 && original_builds>0 && !native_present_ledger().occupied());
+    // Reset must remove the scene authorization as well as all bank ownership.
+    dora3_reset_native_frame_delivery();assert(!dora3_native_loop_after_vi(rdram,&c));
+    std::cout<<"PASS: original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, drain before scene transition; "
+        <<updates<<" discrete updates, "<<native_builds<<" native builds, "<<original_builds<<" Original builds, "<<vi_count<<" VI events; no GPU\n";
+}

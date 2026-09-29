@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$CrtDirectory,
-    [string]$BuildId = 'test-024'
+    [string]$BuildId = 'test-025'
 )
 $ErrorActionPreference = 'Stop'
 if ($BuildId -notmatch '^[a-zA-Z0-9-]+$') { throw 'Invalid build ID.' }
@@ -54,8 +54,8 @@ $report = [ordered]@{
     locally_launched = $false
     visual_input_audible_validation = 'pending user test'
     compiler = 'MSVC 19.44; RelWithDebInfo /O2 /Zi /EHsc; dynamic CRT'
-    previous_user_test = 'test-023: user confirms working'
-    current_test_scope = 'Dora64 Monitor/SDL output modes/Refresh/Frame rate and desktop styling. Manual FPS may exceed monitor Hz via pinned build-local RT64 adaptation. Settings/saves preserved. Windows/Linux compiled; game/GPU not launched.'
+    previous_user_test = 'test-024: frame rate interpolation artifacts reported; native conversion requested'
+    current_test_scope = 'Shared native game loop and settings; Manual native image-policy only, unsupported scenes keep original cadence without interpolation; Original/Display preserved. Full ROM timing inventory. Windows/Linux compiled, synthetic loop checked, game/GPU not launched.'
     rom = 'external; exact filename beside EXE only; never copied by this script'
     files_sha256 = $hashes
     source = $stage

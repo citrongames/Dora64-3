@@ -38,7 +38,7 @@ def main():
              '-fsanitize=' + args.sanitizer, *['-I'+str(x) for x in
              [ROOT/'src', g, g/'RecompiledFuncs', out, runtime/'N64Recomp/include']]]
     subprocess.run(['gcc', '-std=c17', *flags, '-c', str(out/'functions.c'), '-o', str(out/'functions.o')], check=True)
-    sources = [ROOT/'src/native_frame_time.cpp', ROOT/'src/native_frame_scheduler.cpp', ROOT/'research/native-frame-scheduler-check.cpp']
+    sources = [ROOT/'research/native-loop-stubs.cpp', ROOT/'src/native_frame_time.cpp', ROOT/'src/native_frame_scheduler.cpp', ROOT/'research/native-frame-scheduler-check.cpp']
     subprocess.run(['g++', '-std=c++20', '-Wall', '-Wextra', '-Werror', *flags,
                     *map(str, sources), str(out/'functions.o'), '-o', str(out/'check')], check=True)
     env = dict(os.environ, ASAN_OPTIONS='detect_leaks=1:halt_on_error=1', TSAN_OPTIONS='halt_on_error=1')

@@ -1,5 +1,7 @@
 #include "resource_retirement.hpp"
 #include "native_present.hpp"
+#include "native_game_loop.hpp"
+void dora3_set_native_present_target(unsigned(*query)());
 // Windows/Linux research frontend, original VI and F3DEX2, no game-one patches.
 #include "live_graphics.hpp"
 #include "live_io.hpp"
@@ -84,8 +86,9 @@ class LiveContext final : public ultramodern::renderer::RendererContext {
         app->userConfig.resolutionMultiplier=s.resolution==1?2.0f:s.resolution==2?4.0f:1.0f;
         app->userConfig.downsampleMultiplier=1;
         app->userConfig.threePointFiltering=s.filtering==0;
-        // Same refresh policy as Dora64 RT64Context; guest VI/scheduler speed is unchanged.
-        app->userConfig.refreshRate=native?U::RefreshRate::Original:s.frame_rate_mode==1?U::RefreshRate::Display:s.frame_rate_mode==2?U::RefreshRate::Manual:U::RefreshRate::Original;
+        // Display keeps donor interpolation; Manual uses native scene policies only.
+        // Original cadence is the fallback until a scene policy has been reviewed.
+        app->userConfig.refreshRate=(native || s.frame_rate_mode==2)?U::RefreshRate::Original:s.frame_rate_mode==1?U::RefreshRate::Display:U::RefreshRate::Original;
         applied_native=native;
         app->userConfig.refreshRateTarget=s.frame_rate_limit;
         applied_rate=s.frame_rate_mode;applied_limit=s.frame_rate_limit;
@@ -228,6 +231,7 @@ public:
 }
 
 void dora3_configure_live_graphics(recomp::Configuration& cfg){
+    dora3_set_native_present_target(dora3_native_presentation_fps);
     dora3::frame::enable();
     dora3::retirement::enable();
     dora3::port::initialize(recomp::get_config_path());
