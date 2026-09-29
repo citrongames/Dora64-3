@@ -15,9 +15,12 @@ extern "C" void dora3_native_task_register(uint8_t* rdram,recomp_context* ctx) {
     dora3::native_time::native_present_ledger().bind(active->ticket,*active->owner,task,
         uint32_t(ctx->r2),uint32_t(MEM_W(0x54,int32_t(task))));
 }
-extern "C" void dora3_native_task_retired(uint8_t*,recomp_context* ctx) {
-    if (int32_t(ctx->r2)!=1) return; // Original task-complete returned false.
-    auto frame=dora3::native_time::native_present_ledger().retire(uint32_t(ctx->r16));
+extern "C" void dora3_native_task_retired(uint8_t* rdram,recomp_context* ctx) {
+    // SP/DP callers still touch task timing fields after task_complete returns.
+    // Called at 80026BEC/80026C94, after THEIR final task access, while s0 is task.
+    const auto task=uint32_t(ctx->r16);
+    if ((uint32_t(MEM_W(4,int32_t(task)))&3u)!=0) return;
+    auto frame=dora3::native_time::native_present_ledger().retire(task);
     if (frame && !dora3_enqueue_native_present(*frame)) throw std::bad_alloc{};
 }
 extern "C" void dora3_native_guest_completion(uint8_t* rdram,recomp_context* ctx) {
@@ -28,4 +31,12 @@ extern "C" void dora3_native_guest_completion(uint8_t* rdram,recomp_context* ctx
 extern "C" int dora3_native_framebuffer_ready(uint32_t task) {
     // Only registered native tasks use explicit present. Original keeps VI gate.
     return dora3::native_time::native_present_ledger().owns_task(task) ? 1 : 0;
+}
+
+extern "C" int dora3_native_completion_during_pause(uint8_t* rdram,recomp_context* ctx) {
+    // Original pause handling discards messages before type2 dispatch. A native
+    // completion still owns memory; consume just that registered message via
+    // the original type2 branch, with gameplay/update remaining paused.
+    return MEM_W(0,int32_t(0x801AA680))==1 &&
+        dora3::native_time::native_present_ledger().awaiting_message(uint32_t(MEM_W(0x10,ctx->r29)));
 }

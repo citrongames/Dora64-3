@@ -19,6 +19,11 @@ bool PresentLedger::owns_task(uint32_t task) const {
     for (const auto& r: records_) if (r.owner && r.frame.task==task) return true;
     return false;
 }
+bool PresentLedger::awaiting_message(uint32_t message) const {
+    std::lock_guard lock(mutex_);
+    for (const auto& r: records_) if (r.owner && !r.consumed && r.frame.message==message) return true;
+    return false;
+}
 bool PresentLedger::occupied() const {
     std::lock_guard lock(mutex_);
     for (const auto& r: records_) if (r.owner) return true;

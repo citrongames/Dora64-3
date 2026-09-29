@@ -34,9 +34,26 @@ def main():
  sources=[ROOT/'src'/n for n in ['native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_graphics_pump.cpp','native_present.cpp','native_present_hooks.cpp']]+[ROOT/'research/native-graphics-pump-check.cpp']
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),str(out/'functions.o'),str(out/'queue.o'),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check'),str(out/'seed.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1')).strip()
+ # Reintroduce the old inner-epilogue hook in an isolated fixture. The same
+ # fast completion must catch premature reuse before the caller's final stores.
+ bad=(out/'functions.c').read_text()
+ marker='    // 0x80026DBC:'
+ assert bad.count(marker)==1
+ bad=bad.replace(marker,'    dora3_native_task_retired(rdram, ctx);\n'+marker)
+ (out/'early-functions.c').write_text(bad)
+ subprocess.run(['gcc','-std=c17',*flags,'-c',str(out/'early-functions.c'),'-o',str(out/'early-functions.o')],check=True)
+ subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),str(out/'early-functions.o'),str(out/'queue.o'),'-o',str(out/'early-check')],check=True)
+ import resource
+ def no_core(): resource.setrlimit(resource.RLIMIT_CORE,(0,0))
+ rejected=subprocess.run([str(out/'early-check'),str(out/'seed.bin')],text=True,capture_output=True,
+  env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1'),preexec_fn=no_core)
+ assert rejected.returncode==-6 and '0x123BAD' in rejected.stderr,(rejected.returncode,rejected.stdout,rejected.stderr)
+ negative={'result':'Expected SIGABRT: old 80026DBC hook presents before final caller timing store',
+  'exit_code':rejected.returncode,'diagnostic':rejected.stderr.strip()}
+ print(negative['result'])
  tracked=sources+[ROOT/'src/native_graphics_pump.hpp',ROOT/'src/native_frame_bridge.hpp',ROOT/'tools/generate_startup.py',ROOT/'tools/prepare_runtime_timing.py',Path(__file__).resolve()]
  (ROOT/'research/native-graphics-pump-check.json').write_text(json.dumps({'scope':'Actual original scheduler/submit and adapted message queue on synthetic RAM; SDK hardware and thread scheduling stubbed; no active native scene or renderer',
-  'result':result,'sanitizers':'ASan/LSan','source_sha256':{str(f.relative_to(ROOT)):sha(f) for f in tracked},
+  'result':result,'negative_control':negative,'sanitizers':'ASan/LSan','source_sha256':{str(f.relative_to(ROOT)):sha(f) for f in tracked},
   'generation_receipt_sha256':sha(g/'generation-receipt.json'),'original_functions':names},indent=2)+'\n')
  print(result)
 if __name__=='__main__':main()

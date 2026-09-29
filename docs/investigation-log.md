@@ -1324,3 +1324,21 @@ Linux/Windows собраны без запуска. Initial compile failure reco
 Scene34: init задаёт divider3; counters60/16 и input repeat принадлежат update,
 а build меняет transition gate801A48E0. Эти пути нельзя все повторять чаще.
 Ни одна сцена ещё не активирована; подробности: docs/native-frame-session.md.
+
+
+## 2026-09-29 — исправление раннего retirement и аудит image draw
+
+При подготовке scene adapter обнаружена ошибка прежнего анализа80026DBC:
+task_complete вернулась, но SP/DP callers продолжают читать/писать timing-поля.
+Retirement перенесён в80026BEC/80026C94 после последних task stores. Изолированный
+negative control со старым hook воспроизводит слишком ранний present; исправление
+проходит SP-first/DP-first с немедленным game/host completion и reuse банка.
+Native completion также пропускается через Original pause gate, иначе терялся
+GuestTask ack и drain зависал. Незарегистрированные сообщения не меняют поведение.
+
+Проверена image draw closure scene34 (15 оригинальных функций) вместе с Fade:
+оба банка, синтетические заголовки/размеры и802 списка2D-команд на60–360FPS.
+В выбранных состояниях вне DL/cursor/стека гостевая память не меняется.
+Native scene ещё не активирована: полный build, legacy retirement на входе и
+drain перед transition требуют связки с игровым loop. Подробности и ограничения:
+docs/native-presentation.md и docs/native-scene34.md. Первая игра не изменена.

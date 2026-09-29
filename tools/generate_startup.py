@@ -47,7 +47,8 @@ def main():
     declarations.extend(['void dora3_native_task_register(uint8_t*, recomp_context*);',
                          'void dora3_native_task_retired(uint8_t*, recomp_context*);',
                          'void dora3_native_guest_completion(uint8_t*, recomp_context*);',
-                         'int dora3_native_framebuffer_ready(uint32_t);'])
+                         'int dora3_native_framebuffer_ready(uint32_t);',
+                         'int dora3_native_completion_during_pause(uint8_t*, recomp_context*);'])
     declarations.extend(['int dora3_native_scheduler_message(uint8_t*, recomp_context*);',
                          'int dora3_native_scheduler_pumping(void);',
                          'void dora3_native_task_submitted(uint8_t*, recomp_context*);'])
@@ -94,11 +95,12 @@ def main():
                ('dora3_scheduler_retrace',0x80026AEC,'if (dora3_native_scheduler_pumping()) goto L_80026B14;')]
         for name,address,hook in hooks:
             config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
-    for address,word in [(0x80026DBC,0x8FBF0014),(0x80027A6C,0x08009E38),
+    for address,word in [(0x80026BEC,0x8E220274),(0x80026C94,0x8E220274),(0x80027A6C,0x08009E38),
                          (0x80026CEC,0x27BDFFE0)]:
         if struct.unpack_from('>I',rom,0x1000+address-0x80025C00)[0]!=word:
             raise ValueError('Unreviewed native present hook')
-    present_hooks=[('dora3_scheduler_task_complete',0x80026DBC,'dora3_native_task_retired(rdram, ctx);'),
+    present_hooks=[('dora3_scheduler_sp_complete',0x80026BEC,'dora3_native_task_retired(rdram, ctx);'),
+                   ('dora3_scheduler_dp_complete',0x80026C94,'dora3_native_task_retired(rdram, ctx);'),
                    ('dora3_game_message_loop',0x80027A6C,'dora3_native_guest_completion(rdram, ctx);')]
     for name,address,hook in present_hooks:
         config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
@@ -109,7 +111,7 @@ def main():
             if struct.unpack_from('>I',rom,0x1000+address-0x80025C00)[0]!=word:
                 raise ValueError('Unreviewed native game-message hook')
         name=compiled[(0,0x8002787C)][0]
-        hook='if (dora3_native_game_message(rdram, ctx)) goto L_800278E0;'
+        hook='if (dora3_native_game_message(rdram, ctx)) goto L_800278E0; if (dora3_native_completion_during_pause(rdram, ctx)) goto L_80027914;'
         config+=f'{{ func = "{name}", before_vram = 0x800278F4, text = {json.dumps(hook)} }},\n'
     if (0,0x8002FE20) in compiled:
         # Capture before publishing OSScTask, not at delayed RSP submission.

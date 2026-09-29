@@ -16,6 +16,7 @@ class PresentLedger {
 public:
     void bind(const FrameTicket&, FrameScheduler&, uint32_t task, uint32_t framebuffer, uint32_t message);
     bool owns_task(uint32_t task) const;
+    bool awaiting_message(uint32_t message) const;
     bool occupied() const;
     std::optional<PresentFrame> retire(uint32_t task);
     bool consumed(uint32_t message);

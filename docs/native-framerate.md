@@ -155,3 +155,18 @@ Native Manual ещё не активирован; пользовательски
 приоритет audio, yield, SP/DP и full queue. См. [native-graphics-pump.md](native-graphics-pump.md).
 Показ framebuffer и первая native-сцена ещё не подключены; Original/test-024 прежние.
 Уточнено: донорский notify_cpu_framebuffer_write третьей игрой сейчас не вызывается.
+
+
+## Продолжение: исправлена поздняя граница SP/DP, проверено рисование scene34
+
+v65 переносит retirement за последние обращения SP/DP callers к задаче;
+зарегистрированные type2 больше не теряются на паузе. Прежняя точка v64 была
+слишком ранней; отрицательный стенд это воспроизводит. Подробности:
+[native-presentation.md](native-presentation.md).
+
+Реальная image-ветвь draw801C012C проверена вместе с её вызовами: новые2D-команды
+и elapsed fade на60/73/144/165/360FPS без изменения остальной гостевой памяти в
+проверенных состояниях. Это не scene adapter: игровая активация, Original/native
+handoff и граница выхода перед transition остаются следующим шагом.
+Контроллерный текст, общий build и update этим стендом не покрываются.
+См. [native-scene34.md](native-scene34.md). Test-024 остаётся последней выданной сборкой.

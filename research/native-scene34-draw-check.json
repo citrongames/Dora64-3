@@ -1,0 +1,29 @@
+{
+  "scope": "Original scene34 image draw closure + native Fade; synthetic resource descriptors and memory; no original update/whole build/renderer or runtime scene adapter",
+  "result": "PASS: scene34 image branch original draw closure; CI4/CI8 headers, 3 sizes, 2 banks, alpha 0/128/255; 802 actual 2D command lists at 60/73/144/165/360 with native fade; all guest RAM outside DL/cursor/stack unchanged; no renderer or live scene activation",
+  "sanitizers": "ASan/LSan",
+  "source_sha256": {
+    "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
+    "research/native-scene34-draw-check.cpp": "641dc95b7c1d16a3487e591bb9b26db96eae904ead1f8de7d4effa93a98f4a74",
+    "src/native_frame_time.hpp": "690b956211a59a3c217663de10b78d3c34188cd3835f6d6a903dc53443859f8c",
+    "tools/check_native_scene34_draw.py": "05c6eae4d6d371e40ceca9f86dfc794095803d9e552b48de4d7618a47a60e0b9"
+  },
+  "generation_receipt_sha256": "911fa05ded0687dbd256d73cea00e86f328cedb6c707d7027c37e4436e341267",
+  "original_functions": [
+    "dora3_fade_draw_dispatch",
+    "dora3_texture_rect_state",
+    "dora3_scaled_texture_rect",
+    "dora3_depth_buffer_clear",
+    "dora3_texture_payload_ptr",
+    "dora3_texture_palette_ptr",
+    "dora3_texture_width",
+    "dora3_texture_height",
+    "dora3_texture_header4",
+    "dora3_texture_index_bits",
+    "dora3_texture_info",
+    "dora3_rgba_rectangle",
+    "dora3_scene34_centered_image",
+    "dora3_scene34_draw",
+    "dora3_color_buffer_setup"
+  ]
+}

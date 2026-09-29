@@ -33,9 +33,21 @@ static unsigned yields, broadcasts, swaps, cache_flushes, captures;
 static uint32_t current_fb, next_fb;
 static bool fail_command_read;
 static std::vector<PresentFrame> presents;
+static uint8_t* checked_ram;
+static bool fast_completion=false;
+static int tail_offset=0;
+extern "C" void dora3_native_guest_completion(uint8_t*,recomp_context*);
 bool dora3_enqueue_native_present(const PresentFrame& frame) {
+    auto* rdram=checked_ram;
     assert(swaps && next_fb==frame.framebuffer); // Must follow original final read/swap.
+    if (fast_completion) assert(MEM_W(tail_offset,graphics)!=0x123BAD); // Caller must have finished timing write.
     presents.push_back(frame);
+    if (fast_completion) {
+        assert(native_present_ledger().host_read_done(frame.ticket));
+        assert(game_frame_bridge().drained());
+        // Model immediate bank reuse. Any later old scheduler write corrupts this.
+        MEM_W(tail_offset,graphics)=0x7654321;
+    }
     return true; // Delay host read acknowledgement until the test explicitly finishes it.
 }
 extern "C" void dora3_native_guest_completion(uint8_t*,recomp_context*);
@@ -60,7 +72,16 @@ extern "C" void osSendMesg_recomp(uint8_t* rdram, recomp_context* c) {
     c->r2 = osSendMesg(rdram, int32_t(c->r4), int32_t(c->r5), int32_t(c->r6));
     assert(c->r2==0);
 }
-extern "C" void osGetCount_recomp(uint8_t*, recomp_context* c) { c->r2=12345; }
+extern "C" void osGetCount_recomp(uint8_t* rdram, recomp_context* c) {
+    if (fast_completion && swaps && (MEM_W(4,graphics)&3)==0) {
+        assert(presents.empty()); // This SDK call is BEFORE the caller's final task accesses.
+        assert(osRecvMesg(rdram,int32_t(game_queue),result,0)==0);
+        recomp_context game{};game.r29=int32_t(0x803D0000);MEM_W(0x10,game.r29)=MEM_W(0,result);
+        dora3_native_guest_completion(rdram,&game);
+        assert(!game_frame_bridge().drained());
+    }
+    c->r2=12345;
+}
 extern "C" void osSpTaskLoad_recomp(uint8_t*, recomp_context*) {}
 extern "C" void osSpTaskStartGo_recomp(uint8_t*, recomp_context* c) { launches.push_back(uint32_t(c->r4)-0x10); }
 extern "C" void osWritebackDCacheAll_recomp(uint8_t*, recomp_context*) { ++cache_flushes; }
@@ -89,7 +110,7 @@ static void initialize(uint8_t* rdram) {
     // No actual renderer/guest threads in this harness: model its reset barrier.
     native_present_ledger().reset_after_runtime_barrier();
     game_frame_bridge().reset_after_runtime_barrier(0);
-    presents.clear();
+    presents.clear();checked_ram=rdram;fast_completion=false;tail_offset=0;
     assert(game_frame_bridge().enter(60,0,0,true,native_consumer));
     std::memset(rdram + (uint32_t(sc)&0x1FFFFFFF),0,0x284);
     osCreateMesgQueue(rdram,events,storage,16);
@@ -164,6 +185,17 @@ int main(int argc,char** argv) {
     send_event(rdram,666);run_scheduler(rdram);
     assert(broadcasts==2 && MEM_W(0x27C,sc)==78 && MEM_W(0,int32_t(0x801A48C8))==13 && MEM_W(0,int32_t(0x801AC694))==14);
 
+    for (bool dp_first:{false,true}) {
+        initialize(rdram);publish_native(rdram);run_scheduler(rdram);
+        send_event(rdram,dp_first?668:667);run_scheduler(rdram);assert(presents.empty());
+        tail_offset=dp_first?0x58:0x60;MEM_W(tail_offset,graphics)=0x123BAD;
+        MEM_W(0x5C,graphics)=100;MEM_W(0x64,graphics)=100;
+        fast_completion=true;
+        send_event(rdram,dp_first?667:668);run_scheduler(rdram);
+        assert(presents.size()==1 && game_frame_bridge().drained());
+        assert(MEM_W(tail_offset,graphics)==0x7654321);
+    }
+
     initialize(rdram);
     for (int i=0;i<16;++i) send_event(rdram,900); // Fill scheduler event queue.
     publish_native(rdram); // Must return with the wake retained externally.
@@ -200,5 +232,5 @@ int main(int argc,char** argv) {
     assert(!dora3_native_scheduler_pumping() && std::memcmp(&c,&saved,sizeof(c))==0);
     native_present_ledger().reset_after_runtime_barrier();
     game_frame_bridge().reset_after_runtime_barrier(second);
-    std::cout<<"PASS: registered native framebuffer bypass, present after swap, type2 consumption and delayed host acknowledgement; original submit -> native-only wake -> original scheduler including full event queue; no synthetic VI/client broadcast; audio priority/yield, SP/DP completion, framebuffer gate, pause, late Original wake and context/thread-local isolation preserved\n";
+    std::cout<<"PASS: immediate game+host completion and bank reuse after both SP/DP caller tails (SP-first and DP-first); registered native framebuffer bypass, present after swap, type2 consumption and delayed host acknowledgement; original submit -> native-only wake -> original scheduler including full event queue; no synthetic VI/client broadcast; audio priority/yield, SP/DP completion, framebuffer gate, pause, late Original wake and context/thread-local isolation preserved\n";
 }

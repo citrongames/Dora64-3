@@ -150,11 +150,13 @@ extern "C" void osRecvMesg_recomp(uint8_t* rdram, recomp_context* c) {
         native_present_ledger().bind(*ticket,completion_owner,0x8010E310,0x803B5000,uint32_t(task_message));
         assert(native_present_ledger().retire(0x8010E310));
         assert(native_present_ledger().host_read_done(*ticket) && !completion_owner.drained());
+        MEM_W(0,int32_t(0x801AA680))=1; // Completion must survive the Original pause gate.
         assert(osSendMesg(rdram, queue, task_message, OS_MESG_NOBLOCK) == 0);
         break;
     }
     case 3:
-        assert(completion_owner.drained() && !native_present_ledger().occupied());
+        assert(completion_owner.drained() && !native_present_ledger().occupied() && pauses==0);
+        MEM_W(0,int32_t(0x801AA680))=0;
         assert(MEM_W(0, int32_t(0x801AA618)) == 0);
         b.leave(monotonic_time());
         assert(dora3_enqueue_native_frame_wake()); // Stale/empty mailbox in Original.
@@ -172,6 +174,11 @@ extern "C" void osRecvMesg_recomp(uint8_t* rdram, recomp_context* c) {
         break;
     case 6:
         assert(pauses == 1 && updates == 1 && lifetimes == 1 && retires == 1);
+        MEM_H(0,vi_message+8)=2;
+        assert(osSendMesg(rdram,queue,vi_message+8,OS_MESG_NOBLOCK)==0);
+        break;
+    case 7:
+        assert(pauses==2 && MEM_W(0,int32_t(0x801AA618))==0); // Unregistered type2 keeps Original pause behavior.
         MEM_W(0, int32_t(0x801AA680)) = 0;
         throw StopLoop{};
     default: assert(false);
@@ -244,5 +251,5 @@ int main() {
     loop_test = false;
     reset_delivery(rdram, &ctx);
     concurrent(rdram, &ctx);
-    std::cout << "PASS: real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context preserved; stale scene/rate wakes; quiescent reset; 2000 concurrent deliveries\n";
+    std::cout << "PASS: registered type2 drains during pause while unregistered type2 remains Original; real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context preserved; stale scene/rate wakes; quiescent reset; 2000 concurrent deliveries\n";
 }

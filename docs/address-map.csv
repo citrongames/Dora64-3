@@ -4951,10 +4951,14 @@ verified,2d-builder,,0x80028688,,RGBA rectangle builds64-byte display list inclu
 verified,render-state-write,,0x801BFCA4,4,menu32 render writes previous state801C68AC from801C673C,ROM reviewed801BFC44 in.scene34; native-frame-scheduler-analysis.json,Audit readers before calling render more often
 verified,native-task-published-hook,0xB358,0x8002FF58,4,Native frame callback wakes scheduler after original command SendMesg,v63 verified instruction and original submit ordering check,No wake for Original; native scene activation pending
 verified,native-present-hook,0xB350,0x8002FF50,4,Register native task before publication,v64 original submit check; framebuffer still in v0 before delay-slot store,Enable only from reviewed scene consumer
-verified,native-present-hook,0x21BC,0x80026DBC,4,Retire native task after final framebuffer read/swap,v64 original scheduler test; v0==1; captures s0 task,Not a GPU fence
+verified,rejected-hook,0x21BC,0x80026DBC,4,Rejected early retirement inside task_complete,v65 negative control fails before final caller timing write,Removed; use SP80026BEC and DP80026C94
 verified,native-present-hook,0x2E6C,0x80027A6C,4,Consume native type2 completion in original game loop,v64 original loop with registered +C0 message; following delay slot decrements count,Hook must not yield
 verified,native-present-hook,0x20EC,0x80026CEC,4,Bypass VI equality only for registered native tasks,v64 original ready tested both native and unregistered paths,Mode transition handshake still required
 verified,frame-message,,0x8010E3D0,2,bank0+C0 type2; bank+E0 type4,Original graphics_tasks_init8002F518; frame_build a1=40; actual submit/loop synthetic checks,Second bank same offsets; separate frame ticket from raw guest pointer
 verified,scene-timing,,0x801A39DC,4,scene34 original divider3,init801C0190..0198; native-session-analysis.json,Preserve20Hz durations when connecting native scene
 verified,scene-timing,,0x801C68D0,4,scene34 hold counter60,setup801C0038..0040; update801C00FC..011C,Convert elapsed time; do not decrement every native frame
 verified,scene-timing,,0x801C68CC,4,scene34 transition counter16,transition801BFE04..10; update801C00A0..D8,Drain native before callback/scene replacement
+verified,native-present-hook,0x1FEC,0x80026BEC,4,Retire native task after SP caller final task store,v65 original SP-first and DP-first scheduler test; s0 task; task+4 bits0/1 zero,Not a GPU fence
+verified,native-present-hook,0x2094,0x80026C94,4,Retire native task after DP caller final task store,v65 original scheduler plus immediate reuse sentinel; s0 task,Not a GPU fence
+verified,native-pause-hook,0x2CF4,0x800278F4,4,Allow only owned unconsumed native completion through pause,v65 original message loop and runtime queue; unregistered type2 and VI keep Original path,Scene adapter still must poll draining session
+verified,draw-audit,,0x801C012C,,Scene34 image draw closure and fade RAM effects,v65 native-scene34-draw-check; original15 functions synthetic descriptors both banks five FPS,Controller text and full graphics build not covered

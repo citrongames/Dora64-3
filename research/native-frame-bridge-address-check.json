@@ -1,20 +1,20 @@
 {
   "scope": "Hooked original game loop and actual adapted external/guest queues; synthetic RAM; scene callbacks and thread scheduler stubbed; no GPU or active native scene",
-  "result": "PASS: real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context preserved; stale scene/rate wakes; quiescent reset; 2000 concurrent deliveries",
+  "result": "PASS: registered type2 drains during pause while unregistered type2 remains Original; real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context preserved; stale scene/rate wakes; quiescent reset; 2000 concurrent deliveries",
   "sanitizer": "address",
   "source_sha256": {
     "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
     "src/native_frame_scheduler.cpp": "724251ee68dcf24a92d53e127dcb2392eca222b7a750b17e242429e74adfbddd",
     "src/native_frame_bridge.cpp": "f202fde82eae231c2d7546b8b97e66a9c8ae6933c57e69020d8c20c77b10bdc0",
-    "src/native_present.cpp": "d297285dec94e72bf397c7ad921e8b549db49c7d374156867baaf0fabc5bb823",
-    "src/native_present_hooks.cpp": "58d0de314acd3b95301eae4852762afb8d51c15b56bb4e329e63e98c0ff5c7f9",
-    "research/native-frame-bridge-check.cpp": "4b64116fe2d9c8c2ad711c4f32af81a4c74698d0bd5903ee5df16e66a361a375",
+    "src/native_present.cpp": "9ff1ff3be5d4c16b57f5668a394a3e3fa4bafc303c32f52be63833ab33df2f5d",
+    "src/native_present_hooks.cpp": "e659ba490ecea74c75fd50de47f0ea95ad9c32c6c30c6352e2123d7150914701",
+    "research/native-frame-bridge-check.cpp": "bf72b6ff4e5e273166139c18a7c6cc19054b69860fc37cbcb23037f5f5394719",
     "src/native_frame_bridge.hpp": "814b52cc215ca7883ad9cd93cf55b64f54a798b13f8876f2049b8411ef125e40",
     "src/native_frame_scheduler.hpp": "2d4066c1b233b490b404dbaa68896c6ec9e89e91e724942173890f5b73984a67",
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556",
     "tools/check_native_frame_bridge.py": "2f536feecd3cdf1c033710393f5382a0e33c54e685dc05e660384a0c869bb4fc"
   },
-  "generation_receipt_sha256": "05514f788edea09f4ca2901805986f12678238356db1861d78f52ff509f1d247",
+  "generation_receipt_sha256": "911fa05ded0687dbd256d73cea00e86f328cedb6c707d7027c37e4436e341267",
   "adapted_queue_sha256": "9bad8075f25fac5787a24acaf863c26dacc112d3cb1bfb2fea8b8452cec14930",
   "limitations": [
     "Thread scheduler endpoints and scene callbacks are stubs; no renderer",

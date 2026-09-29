@@ -6,9 +6,9 @@
     "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
     "src/native_frame_scheduler.cpp": "724251ee68dcf24a92d53e127dcb2392eca222b7a750b17e242429e74adfbddd",
     "src/native_frame_bridge.cpp": "f202fde82eae231c2d7546b8b97e66a9c8ae6933c57e69020d8c20c77b10bdc0",
-    "src/native_present.cpp": "d297285dec94e72bf397c7ad921e8b549db49c7d374156867baaf0fabc5bb823",
+    "src/native_present.cpp": "9ff1ff3be5d4c16b57f5668a394a3e3fa4bafc303c32f52be63833ab33df2f5d",
     "research/native-present-check.cpp": "b95f71694eccfa79c4a449d91c8f45c4cab84b53a171773851b399334fa052c3",
-    "src/native_present.hpp": "f47bba7ef934bdcb62a97cf0579df879827952807485b8cc7d3627adcd03045e",
+    "src/native_present.hpp": "c17a60839de06f09c2c5245091a7389c7126a3146019b8477483bc86d03e9158",
     "src/native_vi_snapshot.hpp": "0fb280fcc557a64b1c6637653a57a231723a2cd642bd0f8a6163bc03413e2030",
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556",
     "tools/check_native_present.py": "1c3f4979762e732ebdcea4e29fb45018c69db5cab101f0ac760f4cfb34a24ba6"
