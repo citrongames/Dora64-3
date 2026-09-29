@@ -4955,3 +4955,6 @@ verified,native-present-hook,0x21BC,0x80026DBC,4,Retire native task after final 
 verified,native-present-hook,0x2E6C,0x80027A6C,4,Consume native type2 completion in original game loop,v64 original loop with registered +C0 message; following delay slot decrements count,Hook must not yield
 verified,native-present-hook,0x20EC,0x80026CEC,4,Bypass VI equality only for registered native tasks,v64 original ready tested both native and unregistered paths,Mode transition handshake still required
 verified,frame-message,,0x8010E3D0,2,bank0+C0 type2; bank+E0 type4,Original graphics_tasks_init8002F518; frame_build a1=40; actual submit/loop synthetic checks,Second bank same offsets; separate frame ticket from raw guest pointer
+verified,scene-timing,,0x801A39DC,4,scene34 original divider3,init801C0190..0198; native-session-analysis.json,Preserve20Hz durations when connecting native scene
+verified,scene-timing,,0x801C68D0,4,scene34 hold counter60,setup801C0038..0040; update801C00FC..011C,Convert elapsed time; do not decrement every native frame
+verified,scene-timing,,0x801C68CC,4,scene34 transition counter16,transition801BFE04..10; update801C00A0..D8,Drain native before callback/scene replacement

@@ -15,7 +15,7 @@ def main():
     if not a.baseline:
         assert 'std::scoped_lock lock{ events_context.message_mutex, events_context.vi.regs_mutex };' in tick
     harness=out/('baseline.cpp' if a.baseline else 'adapted.cpp')
-    harness.write_text('#include "'+str(source)+'"\nvoid checked_vi_tick(){ const bool queue_periodic=false;\n'+tick+'}\n'+(ROOT/'research/vi-sync-main.cpp').read_text())
+    harness.write_text('#include "'+str(source)+'"\nvoid checked_vi_tick(){ const bool queue_periodic=false; const uint64_t native_epoch=0;\n'+tick+'}\n'+(ROOT/'research/vi-sync-main.cpp').read_text())
     includes=[ROOT/'src',*[rt/x for x in ['N64Recomp/include','ultramodern/include','librecomp/include','thirdparty','thirdparty/concurrentqueue']]]
     flags=['-std=c++20','-O1','-g','-pthread','-ffunction-sections','-fdata-sections','-fno-omit-frame-pointer',*['-I'+str(x) for x in includes]]
     if a.sanitizer!='none':flags+=['-fsanitize='+a.sanitizer]

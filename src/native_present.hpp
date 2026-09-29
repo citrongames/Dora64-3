@@ -1,5 +1,6 @@
 #pragma once
 #include "native_frame_scheduler.hpp"
+#include "native_presentation_gate.hpp"
 #include <array>
 #include <mutex>
 #include <optional>

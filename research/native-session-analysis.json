@@ -1,0 +1,43 @@
+{
+  "scope": "Static original instruction review for next scene adapter; not scene execution or purity proof",
+  "cpu_generation": "startup-v64",
+  "generation_receipt_sha256": "05514f788edea09f4ca2901805986f12678238356db1861d78f52ff509f1d247",
+  "functions": [
+    {
+      "function": "dora3_scene34_init",
+      "address": "0x801C0184",
+      "generated_body_sha256": "516c26bdfe8ad3fffee8dcfec32f735dd6bb82c822278936732df5089039d55d",
+      "verified_instructions": "Writes divider3 to801A39DC; installs update/draw; setup and controller-presence selection"
+    },
+    {
+      "function": "dora3_scene34_setup",
+      "address": "0x801C0014",
+      "generated_body_sha256": "05e3655b5c5b67c3413305dec73f595c4c5bb9c38f55aacb75883c2da8feb21f",
+      "verified_instructions": "Sets hold801C68D0=60 and clears transition801C68CC; loads image once"
+    },
+    {
+      "function": "dora3_scene34_update",
+      "address": "0x801C0088",
+      "generated_body_sha256": "5bfe653f09e09cffd1cfbce201f29179eca75f0a7d2fb67804287d4e39e84bc7",
+      "verified_instructions": "Input/repeat calls; hold60 decreases only when image branch and transition counter0; counter1 installs transition callback"
+    },
+    {
+      "function": "dora3_scene34_transition",
+      "address": "0x801BFDE0",
+      "generated_body_sha256": "4f547d09d4d8d9a28bf0ead7a41c6731b931cdf4fdb0f63840e5194d939e600a",
+      "verified_instructions": "White fade step16 and transition801C68CC=16; chooses next scene state"
+    },
+    {
+      "function": "dora3_scene34_draw",
+      "address": "0x801C012C",
+      "generated_body_sha256": "26aa1e890db766ee643cc6406e81ee04811398ce503c303c570f8596527dd5e1",
+      "verified_instructions": "Depth/color buffer setup and image/controller draw choice"
+    },
+    {
+      "function": "dora3_graphics_frame_build",
+      "address": "0x8002FF64",
+      "generated_body_sha256": "a0f70e3f499ff5badcc07a4cb0675faaed163b55b6d724f47f07b60292bf1bcf",
+      "verified_instructions": "Phase1 plus801A48E0 transition counter; not side-effect-free drawing"
+    }
+  ]
+}

@@ -83,6 +83,15 @@ text=replace_once(text,'            std::lock_guard lock{ events_context.vi.regs
 for getter in ['osViGetNextFramebuffer','osViGetCurrentFramebuffer']:
     signature='extern "C" PTR(void) '+getter+'() {'
     text=replace_once(text,signature,signature+'\n    std::lock_guard lock{ events_context.message_mutex };')
+# A lease closes the check/start-read race during native handoff. A native
+# present owns its bank already and must not be blocked by the Original gate.
+text=replace_once(text,'                // A dialogue hook runs from the scheduler after it has switched',
+    "                dora3::native_time::OriginalReadLease original_read{dora3::native_time::presentation_gate(), !screen_update_action->native_ticket};\n                if (!original_read) {\n                    if (screen_update_action->periodic) dora3::sync::periodic_present.complete();\n                    continue;\n                }\n                // A dialogue hook runs from the scheduler after it has switched")
+text='#include "native_frame_producer.hpp"\n'+text
+text=replace_once(text,'    events_context.vi.thread = std::thread{ vi_thread_func };',
+    '    events_context.vi.thread = std::thread{ vi_thread_func };\n    dora3_start_native_frame_producer();')
+text=replace_once(text,'void ultramodern::join_event_threads() {',
+    'void ultramodern::join_event_threads() {\n    dora3_stop_native_frame_producer();')
 output=Path(sys.argv[1]).resolve()
 if not output.is_relative_to(ROOT/'build-local'): raise ValueError('Output must stay in ignored build-local')
 output.mkdir(parents=True,exist_ok=True)

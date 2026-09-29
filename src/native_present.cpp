@@ -69,5 +69,5 @@ void PresentLedger::reset_after_runtime_barrier() {
 }
 PresentLedger& native_present_ledger() { static PresentLedger ledger;return ledger; }
 uint64_t native_presentation_epoch() { return game_frame_bridge().generation(); }
-bool native_presentation_owned() { return game_frame_bridge().active() || native_present_ledger().occupied(); }
+bool native_presentation_owned() { return presentation_gate().reserved() || game_frame_bridge().active() || native_present_ledger().occupied(); }
 }

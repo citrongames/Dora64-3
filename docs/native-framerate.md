@@ -6,13 +6,14 @@
 сохранять исходный игровой цикл. Новых переключателей и отдельных файлов настроек
 не требуется. Это документ о незавершённой реализации, не о готовом HFR-режиме.
 
-## Актуальное состояние после v64
+## Актуальное состояние после подключения lifecycle
 
 Есть native message bridge, отдельный scheduler pump и explicit present с учётом
 завершения scheduler/game/renderer. Windows/Linux собраны; component checks пройдены.
 Подробности: [native-presentation.md](native-presentation.md).
-**Native Manual ещё не активен**: требуются безопасный вход/выход с gfx handshake,
-producer timer и перевод первой 2D-сцены. Последняя переданная сборка — test-024.
+**Native Manual ещё не активен**. Теперь подключены producer timer и протокол
+входа/выхода с gate настоящего gfx worker: [native-frame-session.md](native-frame-session.md).
+Остались игровой scene adapter, его legacy boundary и перевод первой 2D-сцены. Последняя переданная сборка — test-024.
 Ниже сохранены результаты последовательных этапов; поздние разделы уточняют ранние.
 
 ## Что реализовано и проверено

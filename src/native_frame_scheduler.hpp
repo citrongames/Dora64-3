@@ -1,5 +1,6 @@
 #pragma once
 #include "native_frame_time.hpp"
+#include "native_wake_signal.hpp"
 #include <array>
 #include <mutex>
 #include <optional>
@@ -62,6 +63,8 @@ public:
     bool active() const;
     bool drained() const;
     SchedulerStats stats() const;
+    uint64_t wake_revision() const { return signal_.revision(); }
+    void wait_for_change(uint64_t seen,std::optional<Nanoseconds> deadline,std::stop_token stop) { signal_.wait(seen,deadline,stop); }
 private:
     enum class Phase { Free, Building, Published };
     struct Bank {
@@ -71,6 +74,7 @@ private:
     };
     mutable std::mutex mutex_;
     ManualClock clock_;
+    WakeSignal signal_;
     std::array<Bank, 2> banks_{};
     std::optional<WakeToken> pending_;
     std::uint64_t epoch_ = 0, serial_ = 0;

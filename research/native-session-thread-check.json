@@ -1,0 +1,21 @@
+{
+  "scope": "Actual session and producer thread with synthetic consumer and sender; no game, GPU, VI or audio thread; timeouts are test watchdogs only",
+  "result": "PASS: in-progress Original read delays native entry; late reads denied; exit waits both completions; cancellation/stale reservation/pause/reset; actual sleeping producer wakes on deadline, mailbox receive, bank release and rate change; stops/joins with pending wake and restarts idle",
+  "sanitizer": "thread",
+  "source_sha256": {
+    "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
+    "src/native_frame_scheduler.cpp": "724251ee68dcf24a92d53e127dcb2392eca222b7a750b17e242429e74adfbddd",
+    "src/native_frame_bridge.cpp": "f202fde82eae231c2d7546b8b97e66a9c8ae6933c57e69020d8c20c77b10bdc0",
+    "src/native_present.cpp": "d297285dec94e72bf397c7ad921e8b549db49c7d374156867baaf0fabc5bb823",
+    "src/native_frame_producer.cpp": "362e5dd959e067a90ee4df1600d4893707b4a04361df957d7d922dd2635026e2",
+    "research/native-session-check.cpp": "f7139aa68d4036c4663ad861ef00031584a517b71da7197eeb516565c55f3fc0",
+    "src/native_frame_session.hpp": "332d7fb1b1e7a10f0ce992dd95766f56297e53fdaeae8f83a4add9cc7ad8a0e3",
+    "src/native_frame_producer.hpp": "4df446b4e0456927e3242838687391f68d374149a8aac7a805f4f07d91fbb2a6",
+    "src/native_presentation_gate.hpp": "f0fbc1799c6b1bb5a8196e6a6935254a8021cf9c098dafca6b7d9bbadcd3cb97",
+    "src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
+    "src/native_frame_scheduler.hpp": "2d4066c1b233b490b404dbaa68896c6ec9e89e91e724942173890f5b73984a67",
+    "src/native_frame_bridge.hpp": "814b52cc215ca7883ad9cd93cf55b64f54a798b13f8876f2049b8411ef125e40",
+    "src/native_present.hpp": "f47bba7ef934bdcb62a97cf0579df879827952807485b8cc7d3627adcd03045e",
+    "tools/check_native_session.py": "8bcffada1c57d94a0899495c07934e5d53483cfe26c13d4b2582762e22ed6791"
+  }
+}

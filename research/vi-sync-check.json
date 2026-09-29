@@ -3,15 +3,16 @@
   "sanitizer": "thread",
   "result": "PASS: real VI state/setters/getters; 3 concurrent threads x30000; swap/black/repeat/register semantics; no GPU",
   "sources": {
-    "tools/prepare_runtime_timing.py": "46e033d54029e71f2eede2200bb55f45203eb25e861a28fb656e6fe4f57ddd40",
+    "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556",
     "research/vi-sync-main.cpp": "9215e5d45cc46d342c9f1205738c128e9cefe7237e2ec0c9a168d56fea883576",
-    "tools/check_vi_sync.py": "9feb368e2fcd67a0245efa2110b272a620900d000e12dc3cf83e6b7064c4b207"
+    "tools/check_vi_sync.py": "3c0bdf71f209c5797fc2126ec42e6c63417ee4726932716603f2a514e26c43de"
   },
-  "adapted_events_sha256": "6a1038414ee6a7bc71500f63488e99c3bcb964baba14b5d1481ef75e07735088",
-  "negative_control": {
+  "adapted_events_sha256": "90fd5070f8b234327b49aaefc199069f221143d176d8a04facd906adcb4d888d",
+  "historical_negative_control": {
     "source": "pinned unadapted events.cpp",
     "observed": "ThreadSanitizer data race: update_vi vs get_cur_state/osViGetCurrentFramebuffer",
     "log_sha256": "ed7d25abde30f9cf64e1f8f9e4c2e4b60959b4b8928c9e6b28c65d3bfc3319bc",
-    "private_log": "build-local/vi-sync-check/baseline-result.txt"
+    "private_log": "build-local/vi-sync-check/baseline-result.txt",
+    "rerun_this_iteration": false
   }
 }

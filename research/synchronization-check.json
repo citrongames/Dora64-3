@@ -2,13 +2,13 @@
   "scope": "Component-only; ASan/LSan; no renderer/game; GPU leaks and full-scene lifecycle not validated",
   "result": "PASS: 2,000,000 periodic ticks bounded; framebuffer original equivalence/early exits; concurrent reader exclusion; 128,000 guest allocations freed and coalesced",
   "sanitizers": "AddressSanitizer, LeakSanitizer: exit 0; no reported violations",
-  "generation_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
+  "generation_receipt_sha256": "05514f788edea09f4ca2901805986f12678238356db1861d78f52ff509f1d247",
   "sources": {
     "research/synchronization-check.cpp": "5d1ffb5443fb13b6a82d4db8da3feb9b8192d0747c6ba73bbb7d78be2ced4c70",
     "src/graphics_sync.cpp": "d8f5674176f89f101a511fa42eeb843b55bdecfc21f5fe59b25ec9a44d36a49c",
     "src/graphics_sync.hpp": "03fb24d4c08a7403d809cc8e1e9a594c1c029f51aa3e3f42a99a4a93aaacd655",
-    "src/live_graphics.cpp": "2b069af97e12c81b70c732d3002e44854ba46715cbb65e8ece196d287dc74ce9",
-    "tools/prepare_runtime_timing.py": "eb190541ca6f164bf4dfc7d0ab431f05016950faef743dda966833a2bc410d32",
-    "tools/check_synchronization.py": "4ddfa7ce92d8e9084596048c011370b0eb30461a033ecaeae9ba36b8b7dc2334"
+    "src/live_graphics.cpp": "521411261fea80701685dc20666eea0df14fbcb8ff097de3d064a0b969e05851",
+    "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556",
+    "tools/check_synchronization.py": "aa083daaf8f86b0683413ddb26e40aed1e246606bed6120eb412d0c78ad53587"
   }
 }

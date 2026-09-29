@@ -4,15 +4,15 @@
   "sanitizer": "address",
   "source_sha256": {
     "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
-    "src/native_frame_scheduler.cpp": "d67945691ca4068d55f19ccde47536fec171223aeac8e619500c22785bc2e792",
-    "src/native_frame_bridge.cpp": "5c21f919c536832b851d33ad4d2c660ed425bd5abf798b327a59b44e9ffc0348",
-    "src/native_present.cpp": "615df335b6326f41eb45ad0b1bd468b938bea6d6c3e066dcab244227f9c2feb8",
-    "research/native-present-check.cpp": "a9d3c5ce9ae9a94fcf32fd9828a791dcd303ee4f882ba68eceb374fa7461c114",
-    "src/native_present.hpp": "888ddf5981ad9911170d85a62d7c629e528fc494f7c0d31150f3d8ab7a865ddb",
+    "src/native_frame_scheduler.cpp": "724251ee68dcf24a92d53e127dcb2392eca222b7a750b17e242429e74adfbddd",
+    "src/native_frame_bridge.cpp": "f202fde82eae231c2d7546b8b97e66a9c8ae6933c57e69020d8c20c77b10bdc0",
+    "src/native_present.cpp": "d297285dec94e72bf397c7ad921e8b549db49c7d374156867baaf0fabc5bb823",
+    "research/native-present-check.cpp": "b95f71694eccfa79c4a449d91c8f45c4cab84b53a171773851b399334fa052c3",
+    "src/native_present.hpp": "f47bba7ef934bdcb62a97cf0579df879827952807485b8cc7d3627adcd03045e",
     "src/native_vi_snapshot.hpp": "0fb280fcc557a64b1c6637653a57a231723a2cd642bd0f8a6163bc03413e2030",
-    "tools/prepare_runtime_timing.py": "1cdcb144821e017ce2875aa14d35b66b8bdd6dcc11cce407252ab27913dc1a8d",
+    "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556",
     "tools/check_native_present.py": "1c3f4979762e732ebdcea4e29fb45018c69db5cab101f0ac760f4cfb34a24ba6"
   },
   "original_events_sha256": "cd47bb9b332e0c907131310bb3ec8b551b7fb7b2160538ba7fe5aa7554ba2e97",
-  "adapted_events_sha256": "b81f62f35bdeefa1d0b27706578389acf039d7e1dbf0a65c4e7f84b60a30fdd2"
+  "adapted_events_sha256": "90fd5070f8b234327b49aaefc199069f221143d176d8a04facd906adcb4d888d"
 }

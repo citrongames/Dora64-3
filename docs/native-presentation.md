@@ -115,3 +115,10 @@ PresentLedger не выделяет память на каждый кадр, out
 
 Отдельно остаётся перевод движения, камеры, физики, скриптов и анимационных событий
 для игровых сцен. Новый пользовательский EXE до полного рабочего пути не выдаётся.
+
+
+## Продолжение: gate и producer подключены
+
+Требования к host-read handoff и lifecycle timer реализованы следующим этапом:
+[native-frame-session.md](native-frame-session.md). Игровой scene adapter ещё
+не включает этот протокол; ограничения legacy boundary и scene conversion остаются.

@@ -34,7 +34,10 @@ def main():
     result=subprocess.check_output([str(out/'check')],env=env,text=True).strip()
     subprocess.run(['python3',str(ROOT/'tools/prepare_runtime_timing.py'),str(out/'runtime')],check=True)
     events=(out/'runtime/events-after-parse.cpp').read_text()
-    assert events.count('periodic_present.acquire()')==1 and events.count('screen_update_action->periodic')==1
+    assert events.count('periodic_present.acquire()')==1
+    # Multiple release paths are intentional: completion and stale/native drops.
+    # Exact worker behavior is executed by check_native_present, not text-counted here.
+    assert events.count('OriginalReadLease original_read')==1
     assert 'ScreenUpdateAction{ current_vi_regs }' in events # Explicit CPU publication remains intact.
     report={'scope':'Component-only; ASan/LSan; no renderer/game; GPU leaks and full-scene lifecycle not validated','result':result,
       'sanitizers':'AddressSanitizer, LeakSanitizer: exit 0; no reported violations',

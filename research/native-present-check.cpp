@@ -1,5 +1,6 @@
 #include "native_present.hpp"
 #include "native_frame_bridge.hpp"
+#include "native_frame_session.hpp"
 #include "native_vi_snapshot.hpp"
 #include "frame_lights.hpp"
 #include "graphics_sync.hpp"
@@ -36,12 +37,14 @@ static struct {
 #include "native-present-backend.h"
 static unsigned screen_reads;
 static bool expect_owned;
+static void (*during_read)()=nullptr;
 static unsigned display_refresh_rate;
 static float resolution_scale;
 struct FakeRenderer {
     void update_screen(bool cpu_only) {
         assert(!cpu_only);
         if (expect_owned) assert(native_present_ledger().occupied() && !game_frame_bridge().drained());
+        if (during_read) during_read();
         ++screen_reads;
     }
     unsigned get_display_framerate() { return 144; }
@@ -149,6 +152,16 @@ static void worker() {
     assert(permit.acquire());process_action(old);assert(screen_reads==1); // Late old request after drain still drops.
     assert(permit.acquire());old.native_epoch=native_presentation_epoch();process_action(old);
     assert(screen_reads==2 && display_refresh_rate==144 && resolution_scale==1.0f);
+    // Exercise the actual runtime worker lease, not just the gate in isolation.
+    during_read=[] {
+        auto& session=game_frame_session();assert(session.begin(60,0,true,submit));
+        assert(session.poll(second)==FrameSession::Phase::Acquiring);
+        assert(!game_frame_bridge().active() && native_presentation_owned());
+    };
+    assert(permit.acquire());process_action(old);during_read=nullptr;
+    assert(screen_reads==3 && game_frame_session().phase()==FrameSession::Phase::Acquiring);
+    assert(game_frame_session().poll(2*second)==FrameSession::Phase::Native);
+    game_frame_session().leave(3*second);assert(!presentation_gate().reserved());
     assert(permit.acquire());permit.complete();
 }
 int main() {

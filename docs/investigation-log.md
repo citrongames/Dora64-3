@@ -1309,3 +1309,18 @@ ASan/LSan/TSan пройдены, Linux/Windows собраны без запус�
 Не закрыта граница входа: уже выполняемый periodic read требует gfx handshake,
 а Original game loop ещё надо отделить от native builds в scene adapter.
 Документация: docs/native-presentation.md. GPU-проверки не заявляются.
+
+
+## 2026-09-29 — неблокирующий native handoff и спящий producer
+
+Закрыта гонка между проверкой active и началом Original update_screen:
+реальный worker получает read lease через PresentationGate. FrameSession ждёт
+уже начатый read без блокировки guest thread, держит допуск закрытым до полного
+drain. Producer подключён к init/join runtime, ждёт deadline либо изменения
+mailbox/banks/rate; wake revision предотвращает lost wakeup перед засыпанием.
+ASan/LSan/TSan на реальном producer и извлечённом screen worker пройдены,
+Linux/Windows собраны без запуска. Initial compile failure recomp.h исправлен
+разделением runtime/guest интерфейса. Исходные VI/audio не ускорялись.
+Scene34: init задаёт divider3; counters60/16 и input repeat принадлежат update,
+а build меняет transition gate801A48E0. Эти пути нельзя все повторять чаще.
+Ни одна сцена ещё не активирована; подробности: docs/native-frame-session.md.

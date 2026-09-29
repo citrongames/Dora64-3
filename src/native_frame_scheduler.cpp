@@ -44,6 +44,7 @@ void FrameScheduler::invalidate_locked() {
 }
 
 bool FrameScheduler::enter(unsigned fps, Nanoseconds now, unsigned bank, bool safe) {
+    WakeSignal::Notice notice{signal_};
     if (bank >= banks_.size()) throw std::invalid_argument("Invalid native task bank");
     std::lock_guard lock(mutex_);
     if (!safe || clock_.active() || !drained_locked()) return false;
@@ -55,6 +56,7 @@ bool FrameScheduler::enter(unsigned fps, Nanoseconds now, unsigned bank, bool sa
 }
 
 void FrameScheduler::change_rate(unsigned fps, Nanoseconds now) {
+    WakeSignal::Notice notice{signal_};
     std::lock_guard lock(mutex_);
     if (!clock_.active()) throw std::logic_error("Cannot change inactive native rate");
     clock_.configure(Mode::Manual, fps, now);
@@ -62,12 +64,14 @@ void FrameScheduler::change_rate(unsigned fps, Nanoseconds now) {
 }
 
 void FrameScheduler::leave(Nanoseconds now) {
+    WakeSignal::Notice notice{signal_};
     std::lock_guard lock(mutex_);
     clock_.configure(Mode::Original, 0, now);
     invalidate_locked();
 }
 
 void FrameScheduler::reset_after_runtime_barrier(Nanoseconds now) {
+    WakeSignal::Notice notice{signal_};
     std::lock_guard lock(mutex_);
     clock_.configure(Mode::Original, 0, now);
     invalidate_locked();
@@ -77,6 +81,7 @@ void FrameScheduler::reset_after_runtime_barrier(Nanoseconds now) {
 }
 
 std::optional<WakeToken> FrameScheduler::request(Nanoseconds now) {
+    WakeSignal::Notice notice{signal_};
     std::lock_guard lock(mutex_);
     if (!clock_.active() || pending_ || banks_[next_bank_].phase != Phase::Free) return std::nullopt;
     if (now < *clock_.deadline()) return std::nullopt;
@@ -88,6 +93,7 @@ std::optional<WakeToken> FrameScheduler::request(Nanoseconds now) {
 }
 
 bool FrameScheduler::reject_enqueue(WakeToken token) {
+    WakeSignal::Notice notice{signal_};
     std::lock_guard lock(mutex_);
     if (!pending_ || *pending_ != token) return false;
     pending_.reset();
@@ -96,6 +102,7 @@ bool FrameScheduler::reject_enqueue(WakeToken token) {
 }
 
 std::optional<FrameTicket> FrameScheduler::receive(WakeToken token, Nanoseconds now) {
+    WakeSignal::Notice notice{signal_};
     std::lock_guard lock(mutex_);
     if (!pending_ || *pending_ != token) {
         ++stats_.stale_wakes;
@@ -114,6 +121,7 @@ std::optional<FrameTicket> FrameScheduler::receive(WakeToken token, Nanoseconds 
 }
 
 bool FrameScheduler::publish(const FrameTicket& ticket) {
+    WakeSignal::Notice notice{signal_};
     std::lock_guard lock(mutex_);
     if (ticket.bank >= banks_.size()) return false;
     auto& bank = banks_[ticket.bank];
@@ -128,6 +136,7 @@ bool FrameScheduler::published(const FrameTicket& ticket) const {
 }
 
 bool FrameScheduler::complete(const FrameTicket& ticket, Completion completion) {
+    WakeSignal::Notice notice{signal_};
     std::lock_guard lock(mutex_);
     if (ticket.bank >= banks_.size()) return false;
     auto& bank = banks_[ticket.bank];
