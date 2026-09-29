@@ -1,0 +1,126 @@
+{
+  "scope": "ROM-fingerprinted reviewed scheduler and selected 2D entrypoints; not whole-scene safety proof",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "bodies": [
+    {
+      "section": ".startup",
+      "address": "0x800268A8",
+      "function": "dora3_scheduler_thread",
+      "rom_offset": 7336,
+      "size": 384,
+      "sha256": "dbdd7d0958a3086db132d8fd3d6f09b3e68212c82b159f38b4d7a753d898409e"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80026A28",
+      "function": "dora3_scheduler_retrace",
+      "rom_offset": 7720,
+      "size": 256,
+      "sha256": "25294acf94e97fc893ef55d4bb6cce1607c5d904e4e6f158c5e3e5720d493c28"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8002787C",
+      "function": "dora3_game_message_loop",
+      "rom_offset": 11388,
+      "size": 524,
+      "sha256": "d434cad7f9d78452d6b4d91ba6a68d0d6c8af303459f6e60d060ee84896d6f54"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80026CEC",
+      "function": "dora3_scheduler_framebuffer_ready",
+      "rom_offset": 8428,
+      "size": 84,
+      "sha256": "f509c9b02ba74111f9c3293bcebfb174df9d93e3cdd88e2801de10679a630b63"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800289D8",
+      "function": "dora3_fade_draw_dispatch",
+      "rom_offset": 15832,
+      "size": 148,
+      "sha256": "fc7c72fcb6652dfc2a4fe179868aa40bb75109a30ddaa7ac61968156759480b8"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80026D40",
+      "function": "dora3_scheduler_task_complete",
+      "rom_offset": 8512,
+      "size": 140,
+      "sha256": "7060d43a6712fb4ba738aa953f16d326530248b7906a674c09805bc8f117c5a1"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80028688",
+      "function": "dora3_rgba_rectangle",
+      "rom_offset": 14984,
+      "size": 384,
+      "sha256": "3530389bf26523c03655eb86eb8fe7d398f0cc7bb9a8ef3ac655e3d3ce746899"
+    },
+    {
+      "section": ".scene34",
+      "address": "0x801C0088",
+      "function": "dora3_scene34_update",
+      "rom_offset": 436088,
+      "size": 164,
+      "sha256": "d2ba0d1d9307db72ed14d018c1b526d088034ecb8d31b3a968a4f2fd51d5d0b6"
+    },
+    {
+      "section": ".scene34",
+      "address": "0x801C012C",
+      "function": "dora3_scene34_draw",
+      "rom_offset": 436252,
+      "size": 88,
+      "sha256": "1bfa156ffe6ed642fb77aa922b6ca3c24f94cac17ac3c468f2bae53e241bc109"
+    },
+    {
+      "section": ".scene34",
+      "address": "0x801BFF24",
+      "function": "dora3_scene34_centered_image",
+      "rom_offset": 435732,
+      "size": 240,
+      "sha256": "675028b3410a0a6ea074cad5040140d403a114d8daced869918ebcfec8871c79"
+    },
+    {
+      "section": ".scene34",
+      "address": "0x801BFE80",
+      "function": "dora3_scene34_controller_message",
+      "rom_offset": 435568,
+      "size": 116,
+      "sha256": "c878bde3b1569586c64f5257f979b49003567a155c651b5e3928d3c2a9b43277"
+    },
+    {
+      "section": ".scene34",
+      "address": "0x801BFC44",
+      "function": "dora3_s2_menu_801BFC44",
+      "rom_offset": 434996,
+      "size": 116,
+      "sha256": "037148232c282361187b0120742154845dd86b4a562a0514ad1c3e1003d15747"
+    }
+  ],
+  "candidate_hooks": [
+    "game Receive return800278F4 before pointed message read80027918",
+    "scheduler dispatch80026904: distinct graphics event; do not route through retrace"
+  ],
+  "scene34": "initial image/controller screen; full common text path unaudited",
+  "scene32_render_side_effect": "801BFC44 writes801C68AC from801C673C at801BFCA4",
+  "synthetic_fade": {
+    "fps": [
+      60,
+      73,
+      144,
+      165,
+      360
+    ],
+    "built_lists": [
+      48,
+      59,
+      116,
+      132,
+      288
+    ],
+    "duration_seconds": 0.8,
+    "GPU_or_live_game": false
+  }
+}

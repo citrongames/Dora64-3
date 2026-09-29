@@ -1,0 +1,20 @@
+{
+  "scope": "Frame scheduling protocol only; original scheduler on synthetic RAM; SDK endpoints are stubs; no live event adapter",
+  "result": "PASS: one queued wake; immutable token behind 32-bit message; two banks; publication and independent guest/host completion; stale scene/rate tokens; enqueue rejection; elapsed-time conservation under backpressure; Original bypass; concurrent completion order; original ROM VI gate and completion-before-swap order; native 60/73/144/165/360 scheduling builds original 2D fade display lists with extra alpha phases and unchanged duration. No game/window/GPU.",
+  "sanitizer": "thread",
+  "source_sha256": {
+    "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
+    "src/native_frame_scheduler.cpp": "524b08e7a9888ce2749b5bc9457e07ffa916b034f39c475c668caa31e8b879c5",
+    "research/native-frame-scheduler-check.cpp": "2024213f4866f4bb58034b28993c2b0b1f7ed694898022085f37cbd87360689f",
+    "src/native_frame_scheduler.hpp": "2c99a53a45364bfa323d7b72cea2c8bb17f560670d739e18f53541abfe5a6b9b",
+    "src/native_frame_time.hpp": "690b956211a59a3c217663de10b78d3c34188cd3835f6d6a903dc53443859f8c",
+    "tools/check_native_frame_scheduler.py": "5e50d18b4493695cb974df1851c8e47aa40413bcc0f699d64c6b8238c673a749"
+  },
+  "generation_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
+  "original_functions": [
+    "dora3_scheduler_framebuffer_ready",
+    "dora3_scheduler_task_complete",
+    "dora3_fade_draw_dispatch",
+    "dora3_rgba_rectangle"
+  ]
+}

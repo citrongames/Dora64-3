@@ -1,0 +1,33 @@
+{
+  "date_utc": "2026-09-29T08:27:13.795786+00:00",
+  "scope": "Compile and synthetic scheduler/original 2D DL checks only; no live integration or game/GPU launch; no user package",
+  "base_commit": "3a9b686d4b57c0145e4d84bc6fe87bb3af14d6ec",
+  "source_sha256": {
+    "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
+    "src/native_frame_time.hpp": "690b956211a59a3c217663de10b78d3c34188cd3835f6d6a903dc53443859f8c",
+    "src/native_frame_scheduler.cpp": "524b08e7a9888ce2749b5bc9457e07ffa916b034f39c475c668caa31e8b879c5",
+    "src/native_frame_scheduler.hpp": "2c99a53a45364bfa323d7b72cea2c8bb17f560670d739e18f53541abfe5a6b9b",
+    "research/runtime/CMakeLists.txt": "a766459d61978f8d87c49644d5414400e949dc70c4e94999f1c36eb190013dba"
+  },
+  "component_receipts": {
+    "address": "784f8375f3f172b5c1f64a377f046d23762d8ec2eac292c0f5fca7d5d06f8691",
+    "thread": "5e7308faeac6ee6cbb1f7b5fc02edb32773a4bd7b25474ea422d72c26c513bf9"
+  },
+  "linux": {
+    "result": "build exit0",
+    "log_sha256": "84bbc53c6ba5ada2c449815eb1ae6a513aebdfdeb534f33ac9b8eda9e4c44e06",
+    "binary_sha256": "68d8d186d86fb98c5c3402d65baaec1d0bd308d8d72f6da99bec478292fdde2d"
+  },
+  "windows": {
+    "result": "build exit0",
+    "log_sha256": "1ecacc620e468c72d54ee1f64c50ae8c9b1ea50816d3070deb94922cda9413a6",
+    "binary_sha256": "f8df94e0566608e40e065cf3b65300b2b2d675e871b798c2019d59f353cec8e6"
+  },
+  "clean_pinned_dependencies": 32,
+  "donor_unchanged": true,
+  "live_hooks_and_generation_unchanged": true,
+  "cpu_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
+  "audio_receipt_sha256": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f",
+  "android": "not checked",
+  "latest_delivered_build": "test-024; Manual still uses original RT64 path"
+}
