@@ -5,7 +5,7 @@ namespace dora3::port {
 struct PhysicalInput {
     std::array<unsigned char,SDL_NUM_SCANCODES> keys{};
     std::array<float,SDL_CONTROLLER_BUTTON_MAX+SDL_CONTROLLER_AXIS_MAX*2> pad{};
-    bool focused=false,connected=false;
+    bool focused=false,connected=false,background_gamepad=false;
     std::string controller_name;
 };
 // SDL thread publishes state; render thread consumes a copy, never SDL handles.

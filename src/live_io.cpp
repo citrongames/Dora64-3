@@ -13,6 +13,8 @@ struct Input { uint16_t buttons=0; float x=0,y=0; };
 std::mutex input_mutex, audio_mutex;
 Input input;
 bool input_enabled=true;
+bool keyboard_release=false;
+int applied_background=-1;
 SDL_GameController* controller=nullptr; // SDL main thread only.
 SDL_AudioDeviceID audio_device=0;
 uint32_t audio_rate=0;
@@ -26,6 +28,7 @@ float axis(Sint16 value,float deadzone){
 }
 
 void dora3_prepare_sdl_input(){
+    SDL_SetHint(SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS,dora3::port::settings().background_gamepad_input?"1":"0");
     #if defined(__linux__)
     // Same pre-initialization WSL workaround as Dora64: js* passthrough may
     // exist without usable event* devices. Regular Linux keeps SDL's default.
@@ -61,19 +64,28 @@ void dora3_poll_live_input(SDL_Window* window){
     }
     using namespace dora3::port;
     const auto config=settings();
+    if(applied_background!=int(config.background_gamepad_input)){
+        SDL_SetHint(SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS,config.background_gamepad_input?"1":"0");
+        applied_background=int(config.background_gamepad_input);
+    }
     PhysicalInput physical;
+    physical.background_gamepad=config.background_gamepad_input;
     physical.focused=(SDL_GetWindowFlags(window)&SDL_WINDOW_INPUT_FOCUS)!=0;
     physical.connected=controller!=nullptr;
     const auto* keys=SDL_GetKeyboardState(nullptr);
-    std::copy_n(keys,SDL_NUM_SCANCODES,physical.keys.begin());
+    if(!physical.focused)keyboard_release=true;
+    if(physical.focused&&std::none_of(keys,keys+SDL_NUM_SCANCODES,[](Uint8 v){return v!=0;}))keyboard_release=false;
+    if(physical.focused&&!keyboard_release)std::copy_n(keys,SDL_NUM_SCANCODES,physical.keys.begin());
     if(controller){
         const char* name=SDL_GameControllerName(controller);physical.controller_name=name?name:"Gamepad";
+        if(physical.focused||config.background_gamepad_input){
         for(int i=0;i<SDL_CONTROLLER_BUTTON_MAX;i++)physical.pad[i]=SDL_GameControllerGetButton(controller,SDL_GameControllerButton(i))?1.0f:0.0f;
         for(int i=0;i<SDL_CONTROLLER_AXIS_MAX;i++){
             const float v=axis(SDL_GameControllerGetAxis(controller,SDL_GameControllerAxis(i)),config.deadzone);
             physical.pad[SDL_CONTROLLER_BUTTON_MAX+i*2]=std::max(0.0f,-v);
             physical.pad[SDL_CONTROLLER_BUTTON_MAX+i*2+1]=std::max(0.0f,v);
         }
+    }
     }
     Input next{};
     const bool blocked=process_port_input(physical);

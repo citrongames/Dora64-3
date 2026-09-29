@@ -1,3 +1,17 @@
+## Test-023 — исправление состава Controls и единая ветка
+
+По замечанию пользователя удалён не запрошенный Menu scale и восстановлен
+Background gamepad input как в Dora64. SDL background hint и обработка фокуса
+разделяют клавиатуру и геймпад. Опция сохраняется в port_input_settings.json,
+старое поле menu_scale удаляется из port_pc_settings.json без сброса остального.
+Проверки: SDL virtual gamepad on/off, keyboard focus/refocus, menu quarantine,
+JSON roundtrip и ImGui CPU draw data; Windows/Linux builds без игры/GPU.
+По просьбе пользователя все изменения объединяются в main приватного Dora64-3,
+две созданные агентом ветки удаляются после проверки включения в main.
+Дальше работать только в main. Подробности: port-menu-controls.md.
+
+Ниже исторические результаты.
+
 ## Test-022 — соответствие Dora64
 
 Test-021 пользователь проверил: «вроде работает», затем уточнил соответствие

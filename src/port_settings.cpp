@@ -60,14 +60,14 @@ void save_locked(bool controls=false){
     if(pc_path.empty())return;
     try {
         if(controls){
-            input_document["version"]=3;input_document["background_gamepad_input"]=false;
+            input_document["version"]=3;input_document["background_gamepad_input"]=current.background_gamepad_input;
             input_document["stick_dead_zone_percent"]=current.deadzone*100;
             if(!input_document["bindings"].is_object())input_document["bindings"]=Json::object();
             for(int i=0;i<ActionCount;i++)input_document["bindings"][action_keys[i]]={{"keyboard",current.keys[i]},{"gamepad",encode_pad(current.pad[i])}};
             write(input_path,input_document);
         }else{
             pc_document["version"]=14;pc_document["show_fps"]=current.show_fps;
-            pc_document["master_volume"]=current.volume/100.0f;pc_document["menu_scale"]=current.ui_scale;
+            pc_document["master_volume"]=current.volume/100.0f;pc_document.erase("menu_scale");
             if(!pc_document["graphics"].is_object())pc_document["graphics"]=Json::object();
             auto& g=pc_document["graphics"];g["window_mode"]=current.fullscreen?"Fullscreen":"Windowed";
             g["display_width"]=current.window_width;g["display_height"]=current.window_height;
@@ -106,7 +106,7 @@ void initialize(const std::filesystem::path& directory){
         Json j;if(read(legacy,j)){
             if(missing_pc){
                 integer(j,"volume",current.volume,0,100);integer(j,"resolution",current.resolution,0,3);integer(j,"filtering",current.filtering,0,1);
-                boolean(j,"fullscreen",current.fullscreen);boolean(j,"show_fps",current.show_fps);real(j,"ui_scale",current.ui_scale,0.75f,1.5f);
+                boolean(j,"fullscreen",current.fullscreen);boolean(j,"show_fps",current.show_fps);
                 integer(j,"window_width",current.window_width,480,7680);integer(j,"window_height",current.window_height,360,4320);
             }
             if(missing_input){
@@ -129,7 +129,6 @@ void initialize(const std::filesystem::path& directory){
     if(!missing_pc&&read(pc_path,pc_document)){
         boolean(pc_document,"show_fps",current.show_fps);float volume=current.volume/100.0f;
         real(pc_document,"master_volume",volume,0,1);current.volume=int(volume*100+0.5f);
-        real(pc_document,"menu_scale",current.ui_scale,0.75f,1.5f);
         const auto it=pc_document.find("graphics");if(it!=pc_document.end()&&it->is_object()){
             const auto& g=*it;integer(g,"display_width",current.window_width,480,7680);integer(g,"display_height",current.window_height,360,4320);
             if(g.contains("window_mode")&&g["window_mode"].is_string())current.fullscreen=g["window_mode"]=="Fullscreen";
@@ -139,6 +138,7 @@ void initialize(const std::filesystem::path& directory){
         }
     }
     if(!missing_input&&read(input_path,input_document)){
+        boolean(input_document,"background_gamepad_input",current.background_gamepad_input);
         float percent=current.deadzone*100;real(input_document,"stick_dead_zone_percent",percent,5,50);current.deadzone=percent/100;
         const auto it=input_document.find("bindings");if(it!=input_document.end()&&it->is_object())for(int i=0;i<ActionCount;i++){
             const auto entry=it->find(action_keys[i]);if(entry==it->end()||!entry->is_object())continue;
@@ -147,7 +147,7 @@ void initialize(const std::filesystem::path& directory){
         }
     }
     const auto load_error=error;
-    if(missing_pc)save_locked();if(missing_input)save_locked(true);
+    if(missing_pc||pc_document.contains("menu_scale"))save_locked();if(missing_input)save_locked(true);
     if(!load_error.empty())error=load_error;
 }
 
@@ -157,9 +157,9 @@ void set_general(const Settings& v) {
     current.volume=std::clamp(v.volume,0,100);current.resolution=std::clamp(v.resolution,0,3);current.filtering=std::clamp(v.filtering,0,1);
     current.window_width=std::clamp(v.window_width,480,7680);current.window_height=std::clamp(v.window_height,360,4320);
     current.fullscreen=v.fullscreen;current.show_fps=v.show_fps;
-    if(std::isfinite(v.ui_scale))current.ui_scale=std::clamp(v.ui_scale,0.75f,1.5f);
     save_locked();
 }
+void set_background_gamepad_input(bool value){std::lock_guard lock(mutex);current.background_gamepad_input=value;save_locked(true);}
 void set_fullscreen(bool value){std::lock_guard lock(mutex);current.fullscreen=value;save_locked();}
 void set_deadzone(float v){if(!std::isfinite(v))return;std::lock_guard lock(mutex);current.deadzone=std::clamp(v,0.05f,0.5f);save_locked(true);}
 void bind(Action a,bool gamepad,int code) {

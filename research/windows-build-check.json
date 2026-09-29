@@ -1,16 +1,16 @@
 {
   "scope": "Windows x64 RT64 and Linux RT64 frontends compiled; SDL virtual controller/audio and headless ImGui/settings checks; no game or GPU launched",
-  "base_commit": "c7dfb6374ce2dc26dce6a9ad02100aad9e2ca1ea",
-  "build_id": "test-022",
+  "base_commit": "53a867709ce6482d49be9bce49495e382e1df2a1",
+  "build_id": "test-023",
   "cpu_generation": "startup-v61",
   "audio_generation": "audio-rsp-v1",
   "original_bodies": 4778,
   "total_symbols": 4827,
   "sdk_replacements": 44,
   "native_replacements": 5,
-  "generated_delta": "CPU/audio/game hooks and audit fixes unchanged versus test-021; Dora64 menu parity, settings migration, window size, exit, WSL/default input; Linux live config beside ROM",
-  "executable_sha256": "24ceff7c5a850baa62f8c550b19c8db51ded0d63e4b8b40007edbe6964f0d7c0",
-  "linux_live_sha256": "79b8cd0d254a329fc687596ebff6b45ba7700f2e0e792d020bf0825f4eb4b2bc",
+  "generated_delta": "CPU/audio/game hooks and audit fixes unchanged versus test-022; remove manual scale and add background gamepad policy/settings",
+  "executable_sha256": "312cc10917837e180ed3d6dcc575fd05cea1b0868477d2c025fff554ad23ee5d",
+  "linux_live_sha256": "0b1e9d5058761f985902739ebf797de4d7da7f288e7817ba394d734580bd7ca5",
   "source_sha256": {
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
     "research/runtime/CMakeLists.txt": "d771b10789fc40a5b0a02bc5410154ede9695b0ea3a986252a7033df06612ab0",
@@ -19,16 +19,16 @@
     "src/graphics_sync.cpp": "d8f5674176f89f101a511fa42eeb843b55bdecfc21f5fe59b25ec9a44d36a49c",
     "src/graphics_sync.hpp": "03fb24d4c08a7403d809cc8e1e9a594c1c029f51aa3e3f42a99a4a93aaacd655",
     "src/live_graphics.cpp": "47de7eb34099f859890c25a3b168edefe58709330288d6ad0f22959350a113b5",
-    "src/live_io.cpp": "67a89f4e4d23d9ae5101f9834b00077eed13402f36b9a3f02e30fc6b2af6d5ce",
+    "src/live_io.cpp": "06cc075c817cd268e35d9437dc75bf1244cecb175d63e3d0907d42357167b802",
     "src/live_io.hpp": "1ac7f6ceb515bd4e85b90355ff676bf5a7f102547a21ed12d8ec0b1bed967b08",
     "src/n64_hardware.cpp": "5ba6ab5b89daba9af5dbc0f3abcf89cc6e6d25bfc1164427cf51de1e5a9a5ca3",
     "src/n64_hardware.hpp": "b18a04de14a457d8d40787316f992cca5a579def5ff5fe64e9e17bb1729dc5d2",
     "src/n64_hardware_backend.cpp": "e0031e99be8ca477a29780824508462522d7782d4a9a343ddd89720ab5faad6f",
-    "src/port_input.cpp": "9e726d938d26ddebcbb36409a948c930938b8fa7ddbdefdf3c8510add9609b39",
-    "src/port_menu.cpp": "adb17fbe071225dff37a153cb73c2a65f984e055b385899e103aec78a2f9c47b",
-    "src/port_menu.hpp": "bc86fafc0e24ec8c248c4fc3be42a6d26e16d8c43a58fee793dd8713c22c8e8b",
-    "src/port_settings.cpp": "10a9b931a8fbcfa80ca7dccb1d6dffb662149d7e0c50c9293b7e109231c0bdd1",
-    "src/port_settings.hpp": "7bc22e25c127ee6997aab28483b06247f1b5999a6511f7e9504014b9cf8824ba",
+    "src/port_input.cpp": "3c6ffd8924bda3d936f4d6e65f37588475822b524a67bdf4c718cb6b419d8b5b",
+    "src/port_menu.cpp": "08d3d4dc5f218d3eaf9ad9a44ddafbf9b488b58d7bf6533f6216e9a48095518c",
+    "src/port_menu.hpp": "5f3314b598c9824d4eaa4ee221d688e32bec6af922ac03fe9e32f2fedbb24ed5",
+    "src/port_settings.cpp": "5185de95286659d8ebcec990910935a9af66b51518828525e6fd62d2e86486d1",
+    "src/port_settings.hpp": "eb736defc1d3320910771f43b32c03a83cdead507687ec7eb7f019e483980838",
     "src/resource_retirement.cpp": "96ee13419b4bfac0fd6cb7dc5380b6aedc995cca6ad8760e08a217a38a043e9d",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f",
     "src/startup_runtime.cpp": "e89d0c0622b2430739f5c4f69684ce0c184583d080b520d06db31992a4c9b1ea",
@@ -43,8 +43,8 @@
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "component_receipts": {
-    "port-menu-address-check.json": "b9bef03bcb5b8e6bf2b5ee83c253eb62178c0d3c26b26252da23ec3414d13a2b",
-    "port-menu-thread-check.json": "108bfcc42d70be01c322ecff1e3ddfd7c0d1791fefe46297581a2372e0f0fa48"
+    "port-menu-address-check.json": "9feb62fd2ac43d78850b784870308d647634dbab16efa1349f759031fd5ccae9",
+    "port-menu-thread-check.json": "2996a70f338f12899dbbd23e78033b83b1a2393916385fad38325acb3db4585e"
   },
   "live_io_check": {
     "result": "pass",
@@ -52,10 +52,10 @@
     "scope": "SDL dummy: virtual pad/dead zone/detach/reconnect, rebind/menu/focus isolation, stereo/volume/mute, AI_LEN",
     "source_sha256": {
       "tools/check_live_io.py": "900b818ed00f6acf652c4f0ec0655b1d2d0e8deb1afc4d7217438f9500eb5a56",
-      "research/live-io-check.cpp": "0265d9123878bea0b9588a7b3f2028939e73553caeef5fc72387a65d0e65f2ea",
-      "src/live_io.cpp": "67a89f4e4d23d9ae5101f9834b00077eed13402f36b9a3f02e30fc6b2af6d5ce",
-      "src/port_input.cpp": "9e726d938d26ddebcbb36409a948c930938b8fa7ddbdefdf3c8510add9609b39",
-      "src/port_settings.cpp": "10a9b931a8fbcfa80ca7dccb1d6dffb662149d7e0c50c9293b7e109231c0bdd1"
+      "research/live-io-check.cpp": "e542a286624e297cd756c30e166365594ee31bd03a10caf921db987563b8afa1",
+      "src/live_io.cpp": "06cc075c817cd268e35d9437dc75bf1244cecb175d63e3d0907d42357167b802",
+      "src/port_input.cpp": "3c6ffd8924bda3d936f4d6e65f37588475822b524a67bdf4c718cb6b419d8b5b",
+      "src/port_settings.cpp": "5185de95286659d8ebcec990910935a9af66b51518828525e6fd62d2e86486d1"
     }
   },
   "dependency_pins_verified": 32,

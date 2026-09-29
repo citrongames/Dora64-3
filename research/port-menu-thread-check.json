@@ -2,11 +2,11 @@
   "result": "pass",
   "scope": "Real settings/input and ImGui CPU draw data only; no ROM/window/GPU",
   "sanitizer": "thread",
-  "checks": "PASS: Dora64 schema/prefix and legacy migration; 720p default/window size persistence; default controls/F1 inert/exit request; settings roundtrip/invalid recovery; conflict swap/reserved/clear; capture arm/cancel/axis/disconnect; menu edge/focus/release; headless ImGui scale/font restore/FPS/controls table/keyboard and gamepad navigation; concurrent snapshots",
+  "checks": "PASS: background input persistence; obsolete menu_scale removed; Dora64 schema/prefix and legacy migration; 720p default/window size persistence; default controls/F1 inert/exit request; settings roundtrip/invalid recovery; conflict swap/reserved/clear; capture arm/cancel/axis/disconnect; menu edge/focus/release; headless ImGui scale/font restore/FPS/controls table/keyboard and gamepad navigation; concurrent snapshots",
   "source_sha256": {
-    "research/port-menu-check.cpp": "6c5def2bdbbdaa0db9e2f875f732b9732945c345399c3100d6fde2c76f70f49a",
-    "src/port_settings.cpp": "10a9b931a8fbcfa80ca7dccb1d6dffb662149d7e0c50c9293b7e109231c0bdd1",
-    "src/port_input.cpp": "9e726d938d26ddebcbb36409a948c930938b8fa7ddbdefdf3c8510add9609b39",
-    "src/port_menu.cpp": "adb17fbe071225dff37a153cb73c2a65f984e055b385899e103aec78a2f9c47b"
+    "research/port-menu-check.cpp": "b6a149d173f670a191c47e47daeac81b5204646f1966ba85d108ce40d01a1ef8",
+    "src/port_settings.cpp": "5185de95286659d8ebcec990910935a9af66b51518828525e6fd62d2e86486d1",
+    "src/port_input.cpp": "3c6ffd8924bda3d936f4d6e65f37588475822b524a67bdf4c718cb6b419d8b5b",
+    "src/port_menu.cpp": "08d3d4dc5f218d3eaf9ad9a44ddafbf9b488b58d7bf6533f6216e9a48095518c"
   }
 }

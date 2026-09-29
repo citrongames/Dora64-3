@@ -33,15 +33,17 @@ std::string capture_label(){
 }
 bool process_port_input(const PhysicalInput& p) {
     std::lock_guard lock(mutex);latest=p;
-    const bool toggle=(p.keys[SDL_SCANCODE_ESCAPE]&&!previous.keys[SDL_SCANCODE_ESCAPE]) ||
-        (p.pad[SDL_CONTROLLER_BUTTON_BACK]>0.5f&&previous.pad[SDL_CONTROLLER_BUTTON_BACK]<=0.5f);
-    if(!p.focused){game_release=true;ui_release=true;capture=-1;}
+    const bool available=p.focused||p.background_gamepad;
+    const bool toggle=(p.focused&&p.keys[SDL_SCANCODE_ESCAPE]&&!previous.keys[SDL_SCANCODE_ESCAPE]) ||
+        (available&&p.pad[SDL_CONTROLLER_BUTTON_BACK]>0.5f&&previous.pad[SDL_CONTROLLER_BUTTON_BACK]<=0.5f);
+    if(!available){game_release=true;ui_release=true;capture=-1;}
     else if(toggle){if(capture>=0){capture=-1;ui_release=true;}else open_locked(!open.load());}
-    const bool keys_neutral=neutral(p,false),pad_neutral=neutral(p,true);
-    if(p.focused&&keys_neutral&&pad_neutral)game_release=false;
+    if(!p.focused&&capture>=0&&!capture_pad){capture=-1;ui_release=true;}
+    const bool keys_neutral=!p.focused||neutral(p,false),pad_neutral=neutral(p,true);
+    if(available&&keys_neutral&&pad_neutral)game_release=false;
     // Small drift must not lock the menu and prevent increasing the dead zone.
-    if(p.focused&&keys_neutral&&neutral(p,true,0.35f))ui_release=false;
-    if(p.focused&&capture>=0&&!toggle) {
+    if(available&&keys_neutral&&neutral(p,true,0.35f))ui_release=false;
+    if(available&&capture>=0&&!toggle) {
         if(!armed){if(capture_pad?neutral(p,true,0.35f):keys_neutral)armed=true;}
         else {
             int code=-1;
@@ -56,6 +58,6 @@ bool process_port_input(const PhysicalInput& p) {
         }
     }
     previous=p;
-    return open.load()||game_release||!p.focused;
+    return open.load()||game_release||!available;
 }
 }

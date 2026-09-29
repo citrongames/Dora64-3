@@ -17,7 +17,6 @@ extern "C" int __wrap_SDL_QueueAudio(SDL_AudioDeviceID,const void* data,Uint32 b
 extern "C" Uint32 __wrap_SDL_GetQueuedAudioSize(SDL_AudioDeviceID){return queued;}
 int main(){
     SDL_setenv("SDL_VIDEODRIVER","dummy",1);SDL_setenv("SDL_AUDIODRIVER","dummy",1);
-    SDL_setenv("SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS","1",1);
     dora3_prepare_sdl_input();
     #if defined(__linux__)
     if(std::getenv("WSL_INTEROP")||std::getenv("WSL_DISTRO_NAME"))assert(SDL_GetHintBoolean(SDL_HINT_LINUX_JOYSTICK_CLASSIC,SDL_FALSE));
@@ -45,6 +44,29 @@ int main(){
     assert(buttons==0x4000 && x>0.7f && y>0.7f);
     SDL_JoystickSetVirtualAxis(pad,SDL_CONTROLLER_AXIS_LEFTX,7999);SDL_JoystickSetVirtualAxis(pad,SDL_CONTROLLER_AXIS_LEFTY,0);
     SDL_JoystickUpdate();dora3_poll_live_input(window);cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(x==0 && y==0);
+    // Background opt-in affects only the gamepad, including menu ownership.
+    flags=0;keys[SDL_SCANCODE_SPACE]=keys[SDL_SCANCODE_W]=1;
+    dora3_poll_live_input(window);cfg.input_callbacks.get_input(0,&buttons,&x,&y);
+    assert(buttons==0x4000&&x==0&&y==0); // B passes; keyboard A/stick do not.
+    dora3::port::set_menu_open(true);dora3_poll_live_input(window);
+    cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0&&x==0&&y==0);
+    dora3::port::set_menu_open(false);dora3_poll_live_input(window);
+    cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0);
+    SDL_JoystickSetVirtualButton(pad,SDL_CONTROLLER_BUTTON_B,0);SDL_JoystickUpdate();dora3_poll_live_input(window);
+    SDL_JoystickSetVirtualButton(pad,SDL_CONTROLLER_BUTTON_B,1);SDL_JoystickUpdate();dora3_poll_live_input(window);
+    cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0x4000);
+    dora3::port::set_background_gamepad_input(false);dora3_poll_live_input(window);
+    cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0&&x==0&&y==0);
+    assert(!SDL_GetHintBoolean(SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS,SDL_TRUE));
+    dora3::port::set_background_gamepad_input(true);dora3_poll_live_input(window);
+    assert(SDL_GetHintBoolean(SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS,SDL_FALSE));
+    SDL_JoystickSetVirtualButton(pad,SDL_CONTROLLER_BUTTON_B,0);SDL_JoystickUpdate();dora3_poll_live_input(window);
+    flags=SDL_WINDOW_INPUT_FOCUS;dora3_poll_live_input(window);
+    cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0&&x==0&&y==0); // Still-held keyboard quarantined.
+    std::memset(keys,0,sizeof(keys));dora3_poll_live_input(window);
+    keys[SDL_SCANCODE_SPACE]=1;dora3_poll_live_input(window);
+    cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0x8000);
+    keys[SDL_SCANCODE_SPACE]=0;dora3_poll_live_input(window);
     SDL_JoystickClose(pad);assert(SDL_JoystickDetachVirtual(index)==0);
     dora3_poll_live_input(window);cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0 && x==0 && y==0);
     // Reconnect after removal, then apply a larger dead zone to actual SDL axes.
@@ -75,5 +97,5 @@ int main(){
     cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0x8000);
     keys[SDL_SCANCODE_C]=0;dora3_poll_live_input(window);
     dora3_shutdown_live_io();SDL_DestroyWindow(window);SDL_Quit();
-    std::puts("PASS: port contract; keyboard/diagonal; focus release; SDL virtual pad/deadzone/detach/reconnect; rebind/menu isolation; stereo/volume/mute; AI_LEN bound");
+    std::puts("PASS: background pad on/off, SDL hint, keyboard isolation/refocus and menu quarantine; port contract; keyboard/diagonal; focus release; SDL virtual pad/deadzone/detach/reconnect; rebind/menu isolation; stereo/volume/mute; AI_LEN bound");
 }

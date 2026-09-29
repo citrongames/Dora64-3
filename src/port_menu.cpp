@@ -22,7 +22,7 @@ void overlay_input(){
     auto& io=ImGui::GetIO();io.ConfigFlags|=ImGuiConfigFlags_NavEnableKeyboard|ImGuiConfigFlags_NavEnableGamepad;
     const auto p=physical();
     if(p.connected)io.BackendFlags|=ImGuiBackendFlags_HasGamepad;else io.BackendFlags&=~ImGuiBackendFlags_HasGamepad;
-    const bool enabled=p.focused&&menu_open()&&!ui_input_blocked();
+    const bool enabled=(p.focused||p.background_gamepad)&&menu_open()&&!ui_input_blocked();
     auto button=[&](ImGuiKey key,int b){io.AddKeyEvent(key,enabled&&p.pad[b]>0.5f);};
     button(ImGuiKey_GamepadFaceDown,SDL_CONTROLLER_BUTTON_A);button(ImGuiKey_GamepadFaceRight,SDL_CONTROLLER_BUTTON_B);
     button(ImGuiKey_GamepadFaceLeft,SDL_CONTROLLER_BUTTON_X);button(ImGuiKey_GamepadFaceUp,SDL_CONTROLLER_BUTTON_Y);
@@ -45,7 +45,7 @@ void draw_overlay(){
     if(size.x<=0||size.y<=0)return;
     // Same output-height scale as Dora64; never tied to game render resolution.
     const auto original_style=ImGui::GetStyle();const float original_font=ImGui::GetIO().FontGlobalScale;
-    const float scale=(size.y/720.0f)*s.ui_scale;
+    const float scale=size.y/720.0f;
     ImGui::GetStyle().ScaleAllSizes(scale);ImGui::GetIO().FontGlobalScale=original_font*scale;
     ImGui::PushFont(ImGui::GetFont());
     if(menu_open()) {
@@ -82,7 +82,6 @@ void draw_overlay(){
                         ImGui::TextWrapped("Original: original resolution and N64 filtering. Modern: fit to window and bilinear filtering.");
                         ImGui::TextWrapped("Both profiles preserve the original game speed and 4:3 picture.");
                         if(ImGui::Checkbox("Show FPS counter",&s.show_fps))set_general(s);
-                        if(ImGui::SliderFloat("Menu scale",&s.ui_scale,0.75f,1.5f,"%.2fx"))set_general(s);
                         ImGui::Spacing();ImGui::TextWrapped("The game keeps running while this menu is open.");
                     }
                     ImGui::EndChild();ImGui::EndTabItem();
@@ -119,6 +118,8 @@ void draw_overlay(){
                 if(ImGui::BeginTabItem("Controls")) {
                     if(ImGui::BeginChild("##ControlsContent",ImVec2(0,-66*scale))) {
                         const auto p=physical();ImGui::TextWrapped("Gamepad: %s",p.connected?p.controller_name.c_str():"not connected");
+                        if(ImGui::Checkbox("Background gamepad input",&s.background_gamepad_input))set_background_gamepad_input(s.background_gamepad_input);
+                        ImGui::TextWrapped("Gamepad only; keyboard input still requires focus.");
                         int deadzone=int(s.deadzone*100+0.5f);
                         if(ImGui::SliderInt("Stick dead zone",&deadzone,5,50,"%d%%"))set_deadzone(deadzone/100.0f);
                         ImGui::TextWrapped("Escape and Back / Select are reserved for the PC menu.");ImGui::Spacing();
