@@ -1,0 +1,12 @@
+{
+  "result": "pass",
+  "scope": "Real settings/input and ImGui CPU draw data only; no ROM/window/GPU",
+  "sanitizer": "address",
+  "checks": "PASS: settings roundtrip/invalid recovery; conflict swap/reserved/clear; capture arm/cancel/axis/disconnect; menu edge/focus/release; headless ImGui scale/font restore/FPS/controls table/keyboard and gamepad navigation; concurrent snapshots",
+  "source_sha256": {
+    "research/port-menu-check.cpp": "6f84770e5339d124fd0d7d37ab0799f72812b9815b1b530f6e432c312f378606",
+    "src/port_settings.cpp": "9d7eeba7be951fb5d44f8062b4312a6996ff205161e91495e7b1b074ca855959",
+    "src/port_input.cpp": "200f51ec376be07a389075d31852a7cd2143e10ad24fc3eed4d0e155e5539c7f",
+    "src/port_menu.cpp": "5b4721fd423376353391814d6a023795705bf2d0266eae0d7d2f93ce29d22da7"
+  }
+}

@@ -1,5 +1,6 @@
 // Focused Linux adapter check. No ROM; synthetic keyboard, SDL virtual pad and PCM.
 #include "live_io.hpp"
+#include "port_menu.hpp"
 #include <cassert>
 #include <cmath>
 #include <cstdio>
@@ -30,6 +31,7 @@ int main(){
     assert(buttons==0x9000 && x>0 && y>0 && std::abs(x*x+y*y-1)<0.00001f);
     flags=0;dora3_poll_live_input(window);cfg.input_callbacks.get_input(0,&buttons,&x,&y);
     assert(buttons==0 && x==0 && y==0);flags=SDL_WINDOW_INPUT_FOCUS;std::memset(keys,0,sizeof(keys));
+    dora3_poll_live_input(window); // Release quarantine after restoring focus.
     const int index=SDL_JoystickAttachVirtual(SDL_JOYSTICK_TYPE_GAMECONTROLLER,SDL_CONTROLLER_AXIS_MAX,SDL_CONTROLLER_BUTTON_MAX,0);assert(index>=0);
     auto* pad=SDL_JoystickOpen(index);assert(pad);
     SDL_JoystickSetVirtualAxis(pad,SDL_CONTROLLER_AXIS_LEFTX,32767);
@@ -41,10 +43,33 @@ int main(){
     SDL_JoystickUpdate();dora3_poll_live_input(window);cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(x==0 && y==0);
     SDL_JoystickClose(pad);assert(SDL_JoystickDetachVirtual(index)==0);
     dora3_poll_live_input(window);cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0 && x==0 && y==0);
+    // Reconnect after removal, then apply a larger dead zone to actual SDL axes.
+    const int reconnected=SDL_JoystickAttachVirtual(SDL_JOYSTICK_TYPE_GAMECONTROLLER,SDL_CONTROLLER_AXIS_MAX,SDL_CONTROLLER_BUTTON_MAX,0);assert(reconnected>=0);
+    auto* second=SDL_JoystickOpen(reconnected);assert(second);
+    dora3::port::set_deadzone(0.5f);
+    SDL_JoystickSetVirtualAxis(second,SDL_CONTROLLER_AXIS_LEFTX,12000);SDL_JoystickUpdate();
+    dora3_poll_live_input(window);cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(x==0);
+    SDL_JoystickSetVirtualAxis(second,SDL_CONTROLLER_AXIS_LEFTX,32767);SDL_JoystickUpdate();
+    dora3_poll_live_input(window);cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(x==1);
+    SDL_JoystickClose(second);assert(SDL_JoystickDetachVirtual(reconnected)==0);dora3_poll_live_input(window);
+    dora3::port::reset_bindings();
     dora3_audio_frequency(22050);
     const int16_t n64_pairs[]={-20,10,-40,30};dora3_audio_queue(n64_pairs,4);
     assert((last_pcm==std::vector<int16_t>{10,-20,30,-40}));assert(dora3_audio_remaining()==2);
     queued=4000;assert(dora3_audio_remaining()==2);queued=4;assert(dora3_audio_remaining()==1);
+    using namespace dora3::port;
+    auto settings_before=settings();auto changed=settings_before;changed.volume=25;set_general(changed);
+    queued=0;dora3_audio_queue(n64_pairs,4);assert((last_pcm==std::vector<int16_t>{2,-5,7,-10}));
+    changed.volume=0;set_general(changed);queued=0;dora3_audio_queue(n64_pairs,4);assert((last_pcm==std::vector<int16_t>{0,0,0,0}));
+    set_general(settings_before);
+    bind(A,false,SDL_SCANCODE_C);keys[SDL_SCANCODE_C]=1;
+    dora3_poll_live_input(window);cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0x8000);
+    set_menu_open(true);cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0&&x==0&&y==0);
+    dora3_poll_live_input(window);set_menu_open(false);dora3_poll_live_input(window);
+    cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0); // Held key cannot leak through close.
+    keys[SDL_SCANCODE_C]=0;dora3_poll_live_input(window);keys[SDL_SCANCODE_C]=1;dora3_poll_live_input(window);
+    cfg.input_callbacks.get_input(0,&buttons,&x,&y);assert(buttons==0x8000);
+    keys[SDL_SCANCODE_C]=0;dora3_poll_live_input(window);
     dora3_shutdown_live_io();SDL_DestroyWindow(window);SDL_Quit();
-    std::puts("PASS: port contract; keyboard/diagonal; focus release; SDL virtual pad/deadzone/detach; stereo order; AI_LEN bound");
+    std::puts("PASS: port contract; keyboard/diagonal; focus release; SDL virtual pad/deadzone/detach/reconnect; rebind/menu isolation; stereo/volume/mute; AI_LEN bound");
 }

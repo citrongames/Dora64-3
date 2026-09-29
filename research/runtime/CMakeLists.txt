@@ -99,7 +99,7 @@ if(DORA3_LIVE_RT64)
         set(RT64_SDL_WINDOW_VULKAN TRUE)
         add_subdirectory("${RT64_ROOT}" rt64)
     endif()
-    target_sources(dora3_startup PRIVATE "${ROOT}/src/live_graphics.cpp" "${ROOT}/src/live_io.cpp")
+    target_sources(dora3_startup PRIVATE "${ROOT}/src/live_graphics.cpp" "${ROOT}/src/live_io.cpp" "${ROOT}/src/port_settings.cpp" "${ROOT}/src/port_input.cpp" "${ROOT}/src/port_menu.cpp")
     target_compile_definitions(dora3_startup PRIVATE DORA3_LIVE_RT64)
     target_include_directories(dora3_startup PRIVATE "${RT64_ROOT}/src" "${RT64_ROOT}/src/contrib"
         "${RT64_ROOT}/src/contrib/hlslpp/include" "${RT64_ROOT}/src/rhi" "${RT64_ROOT}/src/render")

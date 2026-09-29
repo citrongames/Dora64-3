@@ -2,6 +2,8 @@
 // Windows/Linux research frontend, original VI and F3DEX2, no game-one patches.
 #include "live_graphics.hpp"
 #include "live_io.hpp"
+#include "port_menu.hpp"
+#include "rhi/rt64_render_hooks.h"
 #include "frame_lights.hpp"
 #include "graphics_sync.hpp"
 #include "n64_hardware.hpp"
@@ -29,6 +31,11 @@ void dora3_raw_dp_event();
 
 namespace {
 SDL_Window* live_window=nullptr;
+RT64::RenderHookDraw* previous_draw=nullptr;
+void count_output(plume::RenderCommandList* list,plume::RenderFramebuffer* framebuffer){
+    if(previous_draw)previous_draw(list,framebuffer);
+    dora3::port::record_output_frame();
+}
 void log_memory_usage(){
     static auto next=std::chrono::steady_clock::time_point{};
     const auto now=std::chrono::steady_clock::now();
@@ -63,6 +70,18 @@ class LiveContext final : public ultramodern::renderer::RendererContext {
     uint8_t* ram;
     std::unique_ptr<RT64::Application> app;
     unsigned tasks=0;
+    int applied_resolution=-1,applied_filtering=-1;
+    bool apply_graphics(){
+        const auto s=dora3::port::settings();
+        if(s.resolution==applied_resolution&&s.filtering==applied_filtering)return false;
+        using U=RT64::UserConfiguration;
+        app->userConfig.resolution=s.resolution==3?U::Resolution::WindowIntegerScale:U::Resolution::Manual;
+        app->userConfig.resolutionMultiplier=s.resolution==1?2.0f:s.resolution==2?4.0f:1.0f;
+        app->userConfig.downsampleMultiplier=1;
+        app->userConfig.threePointFiltering=s.filtering==0;
+        applied_resolution=s.resolution;applied_filtering=s.filtering;
+        return true;
+    }
     inline static LiveContext* current=nullptr;
     bool parsing_raw=false;
     unsigned raw_syncs=0;
@@ -97,6 +116,8 @@ public:
         RT64::ApplicationConfiguration config{};
         config.appId="dora64-3-research";config.detectDataPath=false;
         config.dataPath=recomp::get_config_path()/"rt64";config.useConfigurationFile=false;
+        config.updateOverlayInput=dora3::port::overlay_input;
+        config.drawOverlay=dora3::port::draw_overlay;
         app=std::make_unique<RT64::Application>(core,config);
         // Same Automatic policy as Dora64, including RT64 driver fallbacks.
         app->userConfig.graphicsAPI=RT64::UserConfiguration::GraphicsAPI::Automatic;
@@ -105,6 +126,9 @@ public:
         app->userConfig.refreshRate=RT64::UserConfiguration::RefreshRate::Original;
         app->userConfig.antialiasing=RT64::UserConfiguration::Antialiasing::None;
         app->userConfig.idleWorkActive=false;
+        apply_graphics();
+        previous_draw=RT64::GetRenderHookDraw();
+        RT64::SetRenderHooks(RT64::GetRenderHookInit(),count_output,RT64::GetRenderHookDeinit());
         const auto result=app->setup(0);
         std::fprintf(stderr,"LIVE RT64 SETUP result=%u\n",unsigned(result));
         if(result!=RT64::Application::SetupResult::Success)std::_Exit(84);
@@ -168,12 +192,17 @@ public:
     }
     void send_dummy_workload(uint32_t) override{}
     void update_screen(bool=false) override{
+        // RT64 configuration belongs to its producer thread; UI only edits snapshots.
+        if(apply_graphics())app->updateUserConfig(true);
         // Same exclusion as PI DMA and the reviewed guest CPU framebuffer copy.
         std::scoped_lock lock(ultramodern::get_graphics_rdram_mutex());
         app->updateScreen();
     }
     void reset_game() override{frame_lights_active=false;dora3::frame::reset();dora3::retirement::reset();}
-    void shutdown() override{app->end();}
+    void shutdown() override{
+        app->end();
+        RT64::SetRenderHooks(RT64::GetRenderHookInit(),previous_draw,RT64::GetRenderHookDeinit());
+    }
     uint32_t get_display_framerate() const override{return 60;}
     float get_resolution_scale() const override{return 1.0f;}
 };
@@ -182,6 +211,7 @@ public:
 void dora3_configure_live_graphics(recomp::Configuration& cfg){
     dora3::frame::enable();
     dora3::retirement::enable();
+    dora3::port::initialize(recomp::get_config_path());
     dora3_configure_live_input(cfg);
     std::fprintf(stderr,"LIVE SESSION: no time or graphics-task limit\n");
     cfg.events_callbacks.gfx_task_submitted_callback=[](uint8_t*,uint32_t dl,uint32_t bytes){
@@ -192,13 +222,18 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
     cfg.gfx_callbacks.create_window=[](void*)->ultramodern::renderer::WindowHandle{
         SDL_SetMainReady();
         if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS|SDL_INIT_GAMECONTROLLER|SDL_INIT_AUDIO)!=0){std::fprintf(stderr,"SDL: %s\n",SDL_GetError());std::_Exit(84);}
-        uint32_t flags=0;
+        uint32_t flags=SDL_WINDOW_RESIZABLE|SDL_WINDOW_ALLOW_HIGHDPI;
         #ifndef _WIN32
         flags|=SDL_WINDOW_VULKAN;
         #endif
         auto* window=SDL_CreateWindow("Dora64-3 test build",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,640,480,flags);
         if(!window){std::fprintf(stderr,"SDL window: %s\n",SDL_GetError());std::_Exit(84);}
         live_window=window;
+        SDL_SetWindowMinimumSize(window,480,360);
+        if(dora3::port::settings().fullscreen && SDL_SetWindowFullscreen(window,SDL_WINDOW_FULLSCREEN_DESKTOP)!=0){
+            std::fprintf(stderr,"PORT fullscreen failed: %s\n",SDL_GetError());
+            dora3::port::set_fullscreen(false);
+        }
         #ifdef _WIN32
         SDL_SysWMinfo info{};SDL_VERSION(&info.version);
         if(!SDL_GetWindowWMInfo(window,&info)){std::fprintf(stderr,"SDL HWND: %s\n",SDL_GetError());std::_Exit(84);}
@@ -210,6 +245,12 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
     cfg.gfx_callbacks.update_gfx=[](void*){
         SDL_Event event;
         while(SDL_PollEvent(&event))if(event.type==SDL_QUIT)ultramodern::quit();
+        const auto settings=dora3::port::settings();
+        const bool fullscreen=(SDL_GetWindowFlags(live_window)&SDL_WINDOW_FULLSCREEN)!=0;
+        if(fullscreen!=settings.fullscreen && SDL_SetWindowFullscreen(live_window,settings.fullscreen?SDL_WINDOW_FULLSCREEN_DESKTOP:0)!=0){
+            std::fprintf(stderr,"PORT fullscreen failed: %s\n",SDL_GetError());
+            dora3::port::set_fullscreen(fullscreen);
+        }
         dora3_poll_live_input(live_window);
         log_memory_usage();
     };

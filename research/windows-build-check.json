@@ -1,49 +1,62 @@
 {
-  "scope": "Windows x64 RT64 and Linux diagnostic compiled; TSAN and ASan/LSan components only; no game/renderer launch",
-  "base_commit": "0cb7d05ea1aa0b4986917317dc66eb69bbb1d52d",
-  "build_id": "test-020",
+  "scope": "Windows x64 RT64 and Linux RT64 frontends compiled; SDL virtual controller/audio and headless ImGui/settings checks; no game or GPU launched",
+  "base_commit": "78a7f990d047ac5804b2eb2078403f17b50936a4",
+  "build_id": "test-021",
   "cpu_generation": "startup-v61",
   "audio_generation": "audio-rsp-v1",
   "original_bodies": 4778,
   "total_symbols": 4827,
   "sdk_replacements": 44,
   "native_replacements": 5,
-  "generated_delta": "CPU and audio generation unchanged versus test-019; invalid startup heap assertion removed",
-  "executable_sha256": "43dcd97c5fc8d3428150600fcf70dca9a68cb3bcc2ee989943fafe4653237d1d",
-  "linux_diagnostic_sha256": "de1228526c296179ece80c597f837b0461d3d8de220f0f66e2b8ed490afdfde9",
+  "generated_delta": "CPU/audio/game hooks and audit fixes unchanged versus test-020; host menu/settings/input/FPS only",
+  "executable_sha256": "32470ccb87725e76720a0e218b9e79f1c0675ce44433be2eb32bce2de03f5b7b",
+  "linux_live_sha256": "4d5c389ee5fcf70d7ab4e9bae692d48e335336b1c7f8316c436e0365895c86bc",
   "source_sha256": {
-    "src/graphics_sync.cpp": "d8f5674176f89f101a511fa42eeb843b55bdecfc21f5fe59b25ec9a44d36a49c",
-    "src/graphics_sync.hpp": "03fb24d4c08a7403d809cc8e1e9a594c1c029f51aa3e3f42a99a4a93aaacd655",
+    "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
+    "research/runtime/CMakeLists.txt": "d771b10789fc40a5b0a02bc5410154ede9695b0ea3a986252a7033df06612ab0",
     "src/frame_lights.cpp": "f62604ab789b595bb804c2a55e251b32f49c267786bfdb7c4e07a51d2839c053",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
-    "src/live_graphics.cpp": "575dbd3e329ab8d1d3fdb6f0f542a7783ccfebb687d2ec74e59ba29b5a0a5b5f",
-    "src/live_io.cpp": "6447fa965e3e5fcecaf8eb67c44e31b6bacce5aff6e6c29b2cb3917f96a0114a",
+    "src/graphics_sync.cpp": "d8f5674176f89f101a511fa42eeb843b55bdecfc21f5fe59b25ec9a44d36a49c",
+    "src/graphics_sync.hpp": "03fb24d4c08a7403d809cc8e1e9a594c1c029f51aa3e3f42a99a4a93aaacd655",
+    "src/live_graphics.cpp": "ff9268bcb57df48d74fd48b3d7a1bfa96b191632016ae6c1e82134b0411b8620",
+    "src/live_io.cpp": "bda19cd40d42f10f88817b07bf9fde9153bf597c606b841d4360e421f49665bf",
     "src/live_io.hpp": "1bc6f95b5f214e397f58d2cfd1b9a3d0115402ae162858a747ed5a5331fca6a9",
-    "src/startup_runtime.cpp": "29320377f44858025d8a6b9fa71d591093ee16e477af4245331375533044b9b7",
     "src/n64_hardware.cpp": "5ba6ab5b89daba9af5dbc0f3abcf89cc6e6d25bfc1164427cf51de1e5a9a5ca3",
     "src/n64_hardware.hpp": "b18a04de14a457d8d40787316f992cca5a579def5ff5fe64e9e17bb1729dc5d2",
     "src/n64_hardware_backend.cpp": "e0031e99be8ca477a29780824508462522d7782d4a9a343ddd89720ab5faad6f",
-    "tools/generate_startup.py": "049e5dfdf65e21b3a77780d30009a3ff20490215030367f02f97b4e210825484",
-    "tools/prepare_runtime_timing.py": "46e033d54029e71f2eede2200bb55f45203eb25e861a28fb656e6fe4f57ddd40",
-    "tools/build_windows.ps1": "299eafa5fcad3ce5d7bf79fcd132e59f77a87aa987b59812e75b942368dd28d5",
-    "research/runtime/CMakeLists.txt": "77080e0963f2e16196993d6eef30babbb85e6c3dd97a840c9577732122b1866e",
-    "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
-    "tools/overlay_layout.py": "cc7000d4a188115cb9ba2c04de60691b2431edf4a858a393c2877b6b5feaed3e",
-    "tools/local_jump_tables.py": "8f67b564786898b345906e7161580a66b3284fe5aa191c093216ba8bba429dde",
+    "src/port_input.cpp": "200f51ec376be07a389075d31852a7cd2143e10ad24fc3eed4d0e155e5539c7f",
+    "src/port_menu.cpp": "5b4721fd423376353391814d6a023795705bf2d0266eae0d7d2f93ce29d22da7",
+    "src/port_menu.hpp": "5c56cf52ebee7e0ba262d39497cf60b5a26a726d5bfa6a12e13ff7d390e4e80f",
+    "src/port_settings.cpp": "9d7eeba7be951fb5d44f8062b4312a6996ff205161e91495e7b1b074ca855959",
+    "src/port_settings.hpp": "f9f7be7910f9551788e21edd097825a7bb52a84723bd8f348ffc5cc501709c74",
     "src/resource_retirement.cpp": "96ee13419b4bfac0fd6cb7dc5380b6aedc995cca6ad8760e08a217a38a043e9d",
-    "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f"
+    "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f",
+    "src/startup_runtime.cpp": "29320377f44858025d8a6b9fa71d591093ee16e477af4245331375533044b9b7",
+    "tools/build_windows.ps1": "299eafa5fcad3ce5d7bf79fcd132e59f77a87aa987b59812e75b942368dd28d5",
+    "tools/generate_startup.py": "049e5dfdf65e21b3a77780d30009a3ff20490215030367f02f97b4e210825484",
+    "tools/local_jump_tables.py": "8f67b564786898b345906e7161580a66b3284fe5aa191c093216ba8bba429dde",
+    "tools/overlay_layout.py": "cc7000d4a188115cb9ba2c04de60691b2431edf4a858a393c2877b6b5feaed3e",
+    "tools/prepare_runtime_timing.py": "46e033d54029e71f2eede2200bb55f45203eb25e861a28fb656e6fe4f57ddd40"
   },
   "generated_receipt_sha256": {
     "startup-v61": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "component_receipts": {
-    "retirement-guard-address-check.json": "9402669a67c05c8cf72eeeafa231c1bc28859034122e51e5ca31a0ff142dcad4",
-    "retirement-guard-thread-check.json": "5a6d29b7d2e8c78cbb3a1827ec739b70388922b0914b3a1651d251a38e6ca225",
-    "startup-retirement-regression.json": "acdfc7f9f8481593d0ab64e97ce9792709ba608bdb141e77130a9991ef5ad5e9",
-    "vi-sync-check.json": "f45522cdd4d80a5066a49a787e6e585e2e5d1243580ba78ccf4fee4d1462ff1f",
-    "synchronization-check.json": "125d1959b89dd3a382c4d1250c30eb163d0eb8e024ecd52065ece1f3310f8875",
-    "frame-memory-check.json": "fdf2cd062dacc7257054a7d963dd104f1e4f84e52900bd54ac0993e1b4735ea8"
+    "port-menu-address-check.json": "bd7953a15bb18d45fe04b4b5ac7e19312045cc91c16812964a30650b1562bdd0",
+    "port-menu-thread-check.json": "00ec0faeaabed41c798c8a270f7ca8b5cd4c5de58391f4b68a82e09795f9b15d"
+  },
+  "live_io_check": {
+    "result": "pass",
+    "command": "python3 tools/check_live_io.py",
+    "scope": "SDL dummy: virtual pad/dead zone/detach/reconnect, rebind/menu/focus isolation, stereo/volume/mute, AI_LEN",
+    "source_sha256": {
+      "tools/check_live_io.py": "900b818ed00f6acf652c4f0ec0655b1d2d0e8deb1afc4d7217438f9500eb5a56",
+      "research/live-io-check.cpp": "810914e544d4926fa7f426882b54c3556f9ef604a9596fa92bfba70a50bb5b22",
+      "src/live_io.cpp": "bda19cd40d42f10f88817b07bf9fde9153bf597c606b841d4360e421f49665bf",
+      "src/port_input.cpp": "200f51ec376be07a389075d31852a7cd2143e10ad24fc3eed4d0e155e5539c7f",
+      "src/port_settings.cpp": "9d7eeba7be951fb5d44f8062b4312a6996ff205161e91495e7b1b074ca855959"
+    }
   },
   "dependency_pins_verified": 32,
   "donor_unchanged": "680d81feb4c57309ba80536300d73725ea9dffaa",
@@ -52,9 +65,9 @@
     "seconds_after_setup": null
   },
   "remaining_risks": [
-    "Dynamic resource timer expiry vs actual graphics reads needs ownership proof",
-    "Paired vertex guard retained; all other heap/graphics intersections still require analysis",
-    "Other CPU framebuffer writers and raw RDP visual path not fully validated",
-    "GPU/VRAM and long playthrough not tested"
+    "Live GPU output, fullscreen and render-resolution changes require user test",
+    "Real controller/audio and long playthrough require user test",
+    "Menu does not pause game logic",
+    "Other audit item 1 resource/GPU risks remain documented; no additional audit claim"
   ]
 }

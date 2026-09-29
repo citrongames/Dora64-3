@@ -1,5 +1,6 @@
 // Platform adapter only: no game addresses, hooks or controller-state writes.
 #include "live_io.hpp"
+#include "port_menu.hpp"
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
@@ -18,9 +19,9 @@ uint32_t audio_rate=0;
 size_t maximum_buffer_frames=0;
 bool audio_enabled=true;
 [[noreturn]] void audio_error(){std::fprintf(stderr,"LIVE AUDIO ERROR %s\n",SDL_GetError());std::_Exit(87);}
-float axis(Sint16 value){
-    const float magnitude=std::abs(int(value));
-    return magnitude<=8000 ? 0.0f : std::copysign(std::min(1.0f,(magnitude-8000)/24767.0f),float(value));
+float axis(Sint16 value,float deadzone){
+    const float magnitude=std::abs(int(value))/32767.0f;
+    return magnitude<=deadzone ? 0.0f : std::copysign(std::min(1.0f,(magnitude-deadzone)/(1.0f-deadzone)),float(value));
 }
 }
 
@@ -33,7 +34,9 @@ void dora3_configure_live_input(recomp::Configuration& cfg){
     };
     cfg.input_callbacks.get_input=[](int port,uint16_t* buttons,float* x,float* y){
         if(!input_enabled || port!=0)return false;
-        std::lock_guard lock(input_mutex);*buttons=input.buttons;*x=input.x;*y=input.y;return true;
+        std::lock_guard lock(input_mutex);
+        if(dora3::port::menu_open()){*buttons=0;*x=*y=0;}else {*buttons=input.buttons;*x=input.x;*y=input.y;}
+        return true;
     };
     std::fprintf(stderr,"LIVE INPUT port0=%s pak=none; keyboard/gamepad; focus clears state\n",input_enabled?"connected":"disconnected");
 }
@@ -47,31 +50,35 @@ void dora3_poll_live_input(SDL_Window* window){
         controller=SDL_GameControllerOpen(i);
         if(controller){std::fprintf(stderr,"LIVE INPUT gamepad attached\n");break;}
     }
-    Input next{};
-    if(input_enabled && (SDL_GetWindowFlags(window)&SDL_WINDOW_INPUT_FOCUS)){
-        const auto* keys=SDL_GetKeyboardState(nullptr);
-        const auto key=[&](SDL_Scancode code,uint16_t mask){if(keys[code])next.buttons|=mask;};
-        key(SDL_SCANCODE_Z,0x8000);key(SDL_SCANCODE_X,0x4000);key(SDL_SCANCODE_SPACE,0x2000);
-        key(SDL_SCANCODE_RETURN,0x1000);key(SDL_SCANCODE_Q,0x20);key(SDL_SCANCODE_E,0x10);
-        key(SDL_SCANCODE_UP,0x800);key(SDL_SCANCODE_DOWN,0x400);key(SDL_SCANCODE_LEFT,0x200);key(SDL_SCANCODE_RIGHT,0x100);
-        key(SDL_SCANCODE_I,8);key(SDL_SCANCODE_K,4);key(SDL_SCANCODE_J,2);key(SDL_SCANCODE_L,1);
-        next.x=float(keys[SDL_SCANCODE_D])-keys[SDL_SCANCODE_A];
-        next.y=float(keys[SDL_SCANCODE_W])-keys[SDL_SCANCODE_S];
-        if(controller){
-            const auto button=[&](SDL_GameControllerButton b,uint16_t mask){if(SDL_GameControllerGetButton(controller,b))next.buttons|=mask;};
-            button(SDL_CONTROLLER_BUTTON_A,0x8000);button(SDL_CONTROLLER_BUTTON_B,0x4000);
-            button(SDL_CONTROLLER_BUTTON_START,0x1000);button(SDL_CONTROLLER_BUTTON_LEFTSHOULDER,0x20);button(SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,0x10);
-            button(SDL_CONTROLLER_BUTTON_DPAD_UP,0x800);button(SDL_CONTROLLER_BUTTON_DPAD_DOWN,0x400);
-            button(SDL_CONTROLLER_BUTTON_DPAD_LEFT,0x200);button(SDL_CONTROLLER_BUTTON_DPAD_RIGHT,0x100);
-            if(SDL_GameControllerGetAxis(controller,SDL_CONTROLLER_AXIS_TRIGGERLEFT)>8000)next.buttons|=0x2000;
-            const float x=axis(SDL_GameControllerGetAxis(controller,SDL_CONTROLLER_AXIS_LEFTX));
-            const float y=-axis(SDL_GameControllerGetAxis(controller,SDL_CONTROLLER_AXIS_LEFTY));
-            if(std::abs(x)>std::abs(next.x))next.x=x;
-            if(std::abs(y)>std::abs(next.y))next.y=y;
-            const int cx=SDL_GameControllerGetAxis(controller,SDL_CONTROLLER_AXIS_RIGHTX),cy=SDL_GameControllerGetAxis(controller,SDL_CONTROLLER_AXIS_RIGHTY);
-            if(cx>16000)next.buttons|=1;if(cx< -16000)next.buttons|=2;
-            if(cy>16000)next.buttons|=4;if(cy< -16000)next.buttons|=8;
+    using namespace dora3::port;
+    const auto config=settings();
+    PhysicalInput physical;
+    physical.focused=(SDL_GetWindowFlags(window)&SDL_WINDOW_INPUT_FOCUS)!=0;
+    physical.connected=controller!=nullptr;
+    const auto* keys=SDL_GetKeyboardState(nullptr);
+    std::copy_n(keys,SDL_NUM_SCANCODES,physical.keys.begin());
+    if(controller){
+        const char* name=SDL_GameControllerName(controller);physical.controller_name=name?name:"Gamepad";
+        for(int i=0;i<SDL_CONTROLLER_BUTTON_MAX;i++)physical.pad[i]=SDL_GameControllerGetButton(controller,SDL_GameControllerButton(i))?1.0f:0.0f;
+        for(int i=0;i<SDL_CONTROLLER_AXIS_MAX;i++){
+            const float v=axis(SDL_GameControllerGetAxis(controller,SDL_GameControllerAxis(i)),config.deadzone);
+            physical.pad[SDL_CONTROLLER_BUTTON_MAX+i*2]=std::max(0.0f,-v);
+            physical.pad[SDL_CONTROLLER_BUTTON_MAX+i*2+1]=std::max(0.0f,v);
         }
+    }
+    Input next{};
+    const bool blocked=process_port_input(physical);
+    if(input_enabled&&!blocked){
+        constexpr uint16_t masks[]={0x8000,0x4000,0x2000,0x1000,0x20,0x10,0x800,0x400,0x200,0x100,8,4,2,1};
+        const auto amount=[&](int action){
+            const int key=config.keys[action],binding=config.pad[action];
+            const float keyboard=key>0&&physical.keys[key]?1.0f:0.0f;
+            const int index=binding<100?binding:SDL_CONTROLLER_BUTTON_MAX+binding-100;
+            const float gamepad=index>=0&&index<int(physical.pad.size())?physical.pad[index]:0.0f;
+            return std::max(keyboard,gamepad);
+        };
+        for(int i=0;i<StickUp;i++)if(amount(i)>(i>=CUp?0.32f:0.01f))next.buttons|=masks[i];
+        next.x=amount(StickRight)-amount(StickLeft);next.y=amount(StickUp)-amount(StickDown);
         const float length=std::sqrt(next.x*next.x+next.y*next.y);
         if(length>1){next.x/=length;next.y/=length;}
     }
@@ -102,7 +109,8 @@ void dora3_audio_queue(const int16_t* samples,size_t count){
     maximum_buffer_frames=std::max(maximum_buffer_frames,count/2);
     // Word-swapped N64 RAM stores each stereo pair as R,L on this host.
     std::vector<int16_t> ordered(count);
-    for(size_t i=0;i<count;i+=2){ordered[i]=samples[i+1];ordered[i+1]=samples[i];}
+    const int volume=dora3::port::settings().volume;
+    for(size_t i=0;i<count;i+=2){ordered[i]=int16_t(int(samples[i+1])*volume/100);ordered[i+1]=int16_t(int(samples[i])*volume/100);}
     if(SDL_QueueAudio(audio_device,ordered.data(),Uint32(count*sizeof(int16_t))))audio_error();
     // Fail explicitly if the device stalls; never silently drop game audio.
     if(SDL_GetQueuedAudioSize(audio_device)>audio_rate*4*2){SDL_SetError("Audio queue exceeded two seconds");audio_error();}
