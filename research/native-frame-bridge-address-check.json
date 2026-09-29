@@ -4,16 +4,16 @@
   "sanitizer": "address",
   "source_sha256": {
     "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
-    "src/native_frame_scheduler.cpp": "49cd9fd43255dfbd47f84f652f574ff3527989657275ab18dcb56629cc1a8564",
-    "src/native_frame_bridge.cpp": "e188e1a2daa2c2c0fd37e52365739d2cd2a50d3b6f1b2a047c63bcd88fdf5ff6",
+    "src/native_frame_scheduler.cpp": "7139d1262951b3b6db164c19a8fdf0eb03c6508c0926bf9547cbd323231a0e52",
+    "src/native_frame_bridge.cpp": "37439d3cb6d1b54d1d3490cd4ba8b208f232d11b07977ed2244d8e8f12bc5d7f",
     "research/native-frame-bridge-check.cpp": "aaadb301f230a596c17519d0ae9f92bda35db77e68ba811a599547b9cf049ae9",
-    "src/native_frame_bridge.hpp": "b5b1908f7f185615e13426cf3cf0af413eceb1f7e061cdafff33c1499735ee3a",
-    "src/native_frame_scheduler.hpp": "8eab9448288af2e0e9a4d3a0cfcacaddd15f3a97a5465905bc8b6c7af806282f",
-    "tools/prepare_runtime_timing.py": "133acf6e4b11ae56877e8838558c43358a1b8e4c73265d24394ac2811827ef37",
+    "src/native_frame_bridge.hpp": "ec799acc219b15c003cb78dd850134421f3b36e2def692b26704dfdded1bbbf0",
+    "src/native_frame_scheduler.hpp": "f296c361a8ad523c3889a316164aeb00d7919bc1c008f5fba0c65d5f4b8baa29",
+    "tools/prepare_runtime_timing.py": "de0557362f790ecee320853565a8009114061965d110e7fc1f273edde3327dbb",
     "tools/check_native_frame_bridge.py": "30469f68059e0d00e81ad98e8ff179d3021c41189d53d15de3796bec59b3b4db"
   },
-  "generation_receipt_sha256": "1789881052cf2bed6962e5bd179dbfb5d64447534286f61d9a96bd5c290581ca",
-  "adapted_queue_sha256": "dc4a508be97e1d484fe42bc2da304c44e9dee229dd62d1480d2fee645f16f410",
+  "generation_receipt_sha256": "8bf6849c7a167afdfc29e58e12c92fff4f9fd3274d1c348fa64f60b00e9ebc0b",
+  "adapted_queue_sha256": "9bad8075f25fac5787a24acaf863c26dacc112d3cb1bfb2fea8b8452cec14930",
   "limitations": [
     "Thread scheduler endpoints and scene callbacks are stubs; no renderer",
     "TSan cannot instrument atomic_thread_fence in the pinned concurrentqueue library",

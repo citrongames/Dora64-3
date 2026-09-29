@@ -143,6 +143,11 @@ std::optional<Nanoseconds> FrameScheduler::deadline() const {
     return clock_.deadline();
 }
 
+bool FrameScheduler::active() const {
+    std::lock_guard lock(mutex_);
+    return clock_.active();
+}
+
 bool FrameScheduler::drained() const {
     std::lock_guard lock(mutex_);
     return drained_locked();

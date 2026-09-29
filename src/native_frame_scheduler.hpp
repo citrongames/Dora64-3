@@ -57,6 +57,7 @@ public:
     bool publish(const FrameTicket& ticket);
     bool complete(const FrameTicket& ticket, Completion completion);
     std::optional<Nanoseconds> deadline() const;
+    bool active() const;
     bool drained() const;
     SchedulerStats stats() const;
 private:

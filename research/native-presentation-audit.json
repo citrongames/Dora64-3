@@ -1,0 +1,19 @@
+{
+  "scope": "Read-only source audit; no renderer/visual proof",
+  "source_sha256": {
+    "build-deps/lib/N64ModernRuntime/ultramodern/src/events.cpp": "cd47bb9b332e0c907131310bb3ec8b551b7fb7b2160538ba7fe5aa7554ba2e97",
+    "build-deps/lib/N64ModernRuntime/ultramodern/src/threads.cpp": "66b528e1867dda84157ea2f693cb5b0d6036faffc89571fd2d1a71056a43316d",
+    "build-deps/lib/rt64/src/hle/rt64_state.cpp": "3a695dfdaa6defa114b15a748b384a3b1f7d41f7b28393c7dbcf61664339f7d1",
+    "build-deps/lib/rt64/src/common/rt64_enhancement_configuration.cpp": "86016ce174fe11e892e6239fc2aa2bca56cb99296ade83ccc7489d0ad8662e61",
+    "src/live_graphics.cpp": "6872ec8ad7fa36bf6581c1fed7e38c2f7d6c5cf2b336992893d5f1760c7eedef",
+    "src/graphics_sync.cpp": "d8f5674176f89f101a511fa42eeb843b55bdecfc21f5fe59b25ec9a44d36a49c"
+  },
+  "findings": [
+    "Dora64 CPU overlay notification has no found caller in Dora64-3 src/generator/generated code",
+    "Default RT64 presentation is SkipBuffering; no PresentEarly override in current live frontend",
+    "VI framebuffer origin includes field origin and repeatline/black state",
+    "updateScreen hashes/uploads RAM and copies present.storage before advancing the present queue",
+    "Original completion precedes framebuffer swap; new task bank must not be released before final scheduler reads"
+  ],
+  "pending": "Per-frame VI snapshot/presentation/HostRead acknowledgement; no framebuffer-ready bypass installed"
+}

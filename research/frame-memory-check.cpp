@@ -1,5 +1,7 @@
 // No game loop, window, renderer, ROM extraction, or user save access.
 #include "recomp.h"
+// Original-mode light harness; native scheduling has its own original-ROM check.
+extern "C" void dora3_native_task_submitted(uint8_t*, recomp_context*) {}
 #include "frame_lights.hpp"
 #include <cassert>
 #include <cstring>

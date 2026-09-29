@@ -44,6 +44,9 @@ def main():
     (out/'overlay_regions.hpp').write_text('\n'.join(registry)+'\n')
     declarations=['#pragma once','#include "recomp.h"','#ifdef __cplusplus','extern "C" {','#endif','void dora3_trace(uint8_t*, recomp_context*, uint32_t, uint32_t);','void dora3_pending(uint32_t);','void dora3_verify_dma(uint8_t*);','void dora3_capture_resource(uint8_t*, recomp_context*);','void dora3_mark_stream_dma(void);']
     native_names=[v[0] for v in meta.get('native',{}).values()]
+    declarations.extend(['int dora3_native_scheduler_message(uint8_t*, recomp_context*);',
+                         'int dora3_native_scheduler_pumping(void);',
+                         'void dora3_native_task_submitted(uint8_t*, recomp_context*);'])
     declarations.append('int dora3_native_game_message(uint8_t*, recomp_context*);')
     declarations.append('uint32_t dora3_bus_read32(uint8_t*, uint32_t);')
     declarations.append('void dora3_capture_frame_lights(uint8_t*, uint32_t);')
@@ -71,6 +74,19 @@ def main():
             hook=f'ctx->r7 = (int32_t)dora3_bus_read32(rdram, (uint32_t)ctx->r6 + ({displacement})); goto dora3_after_{load:08X};'
             config+=f'{{ func = "dora3_pak_font_decode", before_vram = 0x{load:08X}, text = {json.dumps(hook)} }},\n'
             config+=f'{{ func = "dora3_pak_font_decode", before_vram = 0x{load+4:08X}, text = "dora3_after_{load:08X}:;" }},\n'
+    if (0,0x800268A8) in compiled and (0,0x80026A28) in compiled:
+        for address,word in [(0x800268DC,0x26240040),(0x800268EC,0x3C02801B),
+                             (0x80026A50,0xAE22027C),(0x80026A54,0x26240078),
+                             (0x80026AEC,0x8E300260),(0x80026B14,0x8FBF0028)]:
+            if struct.unpack_from('>I',rom,0x1000+address-0x80025C00)[0]!=word:
+                raise ValueError('Unreviewed native scheduler pump hook')
+        hooks=[('dora3_scheduler_thread',0x800268DC,'dora3_scheduler_receive:;'),
+               ('dora3_scheduler_thread',0x800268EC,'if (dora3_native_scheduler_message(rdram, ctx)) goto dora3_scheduler_receive;'),
+               ('dora3_scheduler_retrace',0x80026A50,'if (dora3_native_scheduler_pumping()) goto dora3_scheduler_after_count;'),
+               ('dora3_scheduler_retrace',0x80026A54,'dora3_scheduler_after_count:;'),
+               ('dora3_scheduler_retrace',0x80026AEC,'if (dora3_native_scheduler_pumping()) goto L_80026B14;')]
+        for name,address,hook in hooks:
+            config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
     if (0,0x8002787C) in compiled:
         # Native OSMesg is a value, not a pointer. Intercept before the original LH.
         for address, word in [(0x800278E0,0x3C04801B),(0x800278EC,0x0C0160F8),
@@ -82,6 +98,9 @@ def main():
         config+=f'{{ func = "{name}", before_vram = 0x800278F4, text = {json.dumps(hook)} }},\n'
     if (0,0x8002FE20) in compiled:
         # Capture before publishing OSScTask, not at delayed RSP submission.
+        if struct.unpack_from('>I',rom,0x1000+0x8002FF58-0x80025C00)[0]!=0x8FBF0010:
+            raise ValueError('Unreviewed native task post-publication hook')
+        config+='{ func = "dora3_graphics_task_submit", before_vram = 0x8002FF58, text = "dora3_native_task_submitted(rdram, ctx);" },\n'
         for address, word in [(0x8002FF48,0x01002821),(0x8002FF50,0x0C016144),(0x8002FF54,0xAD02000C)]:
             if struct.unpack_from('>I',rom,0x1000+address-0x80025C00)[0]!=word:
                 raise ValueError('Unreviewed frame publication hook')

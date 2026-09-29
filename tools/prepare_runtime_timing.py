@@ -83,10 +83,16 @@ adapted=replace_once(adapted,'bool do_send(RDRAM_ARG PTR(OSMesgQueue) mq_, OSMes
     return external_messages.enqueue({int32_t(dora3::native_time::game_queue),
         int32_t(dora3::native_time::WakeMailbox::message_value), false, true});
 }
+bool dora3_enqueue_native_graphics_wake() {
+    // N3DJ scheduler801A69D0 + event queue40. Not a synthetic VI666.
+    return external_messages.enqueue({int32_t(0x801A6A10u), int32_t(0xFFFFFF04u), false, true});
+}
 static void requeue_external_message(const QueuedMessage& message) {
     const bool accepted = external_messages.enqueue(message);
-    if (!accepted && uint32_t(message.mq) == dora3::native_time::game_queue &&
-        uint32_t(message.mesg) == dora3::native_time::WakeMailbox::message_value) {
+    const bool native = (uint32_t(message.mq) == dora3::native_time::game_queue &&
+        uint32_t(message.mesg) == dora3::native_time::WakeMailbox::message_value) ||
+        (uint32_t(message.mq) == 0x801A6A10u && uint32_t(message.mesg) == 0xFFFFFF04u);
+    if (!accepted && native) {
         // Continuing after dropping the sole retained wake would hang native
         // delivery permanently. Do not silently report success on host OOM.
         throw std::bad_alloc{};

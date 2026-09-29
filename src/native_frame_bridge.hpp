@@ -23,6 +23,7 @@ public:
     bool post_due(Nanoseconds now, WakeSender sender);
     bool dispatch(uint32_t message, Nanoseconds now, uint8_t* ram, recomp_context* context);
     std::optional<Nanoseconds> deadline() const;
+    bool active() const { return scheduler_.active(); }
     bool drained() const { return scheduler_.drained(); }
     SchedulerStats stats() const { return scheduler_.stats(); }
 private:
@@ -41,3 +42,4 @@ Nanoseconds monotonic_time();
 bool dora3_enqueue_native_frame_wake();
 void dora3_reset_native_frame_delivery();
 extern "C" int dora3_native_game_message(uint8_t*, recomp_context*);
+extern "C" int dora3_native_frame_build_active();

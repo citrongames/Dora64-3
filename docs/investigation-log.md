@@ -1280,3 +1280,17 @@ requeue sender, hook800278F4, сохранение CPU-контекста и qui
 результаты и ограничение atomic_thread_fence записаны в research/native-frame-bridge-*.json.
 Полный Native Manual ещё не включён; никакая игровая/визуальная проверка не заявляется.
 См. docs/native-frame-bridge.md.
+
+
+## 2026-09-29 — отдельное пробуждение графического scheduler
+
+Подключены hooks v63: после публикации8002FF58 и после scheduler Receive800268EC.
+Новый wake сохраняется при заполненной очереди, не блокируя игровой поток на
+дополнительном guest SendMesg. Публикация до wake обязательна, иначе возможен
+пустой drain и ожидание следующего VI. Оригинальные задачи/приоритет/yield/SP/DP
+сохранены; pump пропускает только retrace count и client broadcast.
+Оригинальные11 функций и настоящая очередь проверены на synthetic RAM с ASan/LSan.
+Отдельно уточнена ошибочная предпосылка: наличие донорского CPU-overlay notify
+не означает его использования третьей игрой. Следующая граница — VI snapshot и
+owned framebuffer presentation. Native mode ещё выключен; подробности в
+docs/native-graphics-pump.md.

@@ -1,6 +1,16 @@
 #include "native_frame_bridge.hpp"
 #include <chrono>
 
+namespace {
+thread_local bool building_native_frame = false;
+struct NativeBuildScope {
+    bool previous = building_native_frame;
+    NativeBuildScope() { building_native_frame = true; }
+    ~NativeBuildScope() { building_native_frame = previous; }
+};
+}
+extern "C" int dora3_native_frame_build_active() { return building_native_frame; }
+
 namespace dora3::native_time {
 bool FrameBridge::enter(unsigned fps, Nanoseconds now, unsigned bank, bool safe, FrameConsumer consumer) {
     if (!consumer || !scheduler_.enter(fps, now, bank, safe)) return false;
@@ -54,6 +64,7 @@ bool FrameBridge::dispatch(uint32_t message, Nanoseconds now, uint8_t* ram, reco
         // This hook is not a MIPS call site. Keep all registers, notably s0/s1
         // used by the original message loop, intact across the extra frame.
         auto frame_context = *context;
+        NativeBuildScope scope;
         consumer_(ram, &frame_context, *ticket, scheduler_);
     }
     return true;

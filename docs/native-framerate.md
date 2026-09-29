@@ -135,3 +135,12 @@ docs/native-frame-scheduler.md. Original и test-024 не меняются.
 регистры и сброс проверены на оригинальном loop и реальной очереди с synthetic RAM.
 Подробности и ограничения: [native-frame-bridge.md](native-frame-bridge.md).
 Native Manual ещё не активирован; пользовательский test-024 не заменён.
+
+
+## Продолжение: запуск задач без дополнительных VI
+
+Генерация v63 устанавливает native-only wake после публикации задачи и отдельный
+вход в исходный scheduler без счётчиков/рассылки VI. Проверены реальная очередь,
+приоритет audio, yield, SP/DP и full queue. См. [native-graphics-pump.md](native-graphics-pump.md).
+Показ framebuffer и первая native-сцена ещё не подключены; Original/test-024 прежние.
+Уточнено: донорский notify_cpu_framebuffer_write третьей игрой сейчас не вызывается.

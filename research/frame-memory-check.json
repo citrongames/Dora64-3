@@ -33,12 +33,12 @@
     }
   },
   "sources": {
-    "research/frame-memory-check.cpp": "58c826265e8695ba4fe169c2b415ca5a3965c8d61cf8126bfc23cb03f3d23958",
+    "research/frame-memory-check.cpp": "519af2e929f234d31032ad1234fae4e425b1b869181bae652c1ced637a8a6620",
     "src/frame_lights.cpp": "f62604ab789b595bb804c2a55e251b32f49c267786bfdb7c4e07a51d2839c053",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
-    "src/live_graphics.cpp": "2b069af97e12c81b70c732d3002e44854ba46715cbb65e8ece196d287dc74ce9",
-    "tools/generate_startup.py": "049e5dfdf65e21b3a77780d30009a3ff20490215030367f02f97b4e210825484",
+    "src/live_graphics.cpp": "6872ec8ad7fa36bf6581c1fed7e38c2f7d6c5cf2b336992893d5f1760c7eedef",
+    "tools/generate_startup.py": "c3765318e75cde12a06c119b7225f41dac635ef2405c76ac7cffbd4e65ee326f",
     "tools/check_frame_memory.py": "d1badf71d55a44430026b57994e9865c85ef746486c327c592236331898feaf2"
   },
-  "generation_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6"
+  "generation_receipt_sha256": "8bf6849c7a167afdfc29e58e12c92fff4f9fd3274d1c348fa64f60b00e9ebc0b"
 }
