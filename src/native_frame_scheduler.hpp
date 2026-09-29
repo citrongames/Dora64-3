@@ -5,6 +5,7 @@
 #include <optional>
 
 namespace dora3::native_time {
+inline constexpr std::uint32_t game_queue = 0x801A99E0u;
 struct WakeToken {
     std::uint64_t epoch = 0, serial = 0;
     bool operator==(const WakeToken&) const = default;
@@ -47,6 +48,9 @@ public:
     bool enter(unsigned fps, Nanoseconds now, unsigned next_bank, bool original_boundary_drained);
     void change_rate(unsigned fps, Nanoseconds now);
     void leave(Nanoseconds now); // Cancel new wakes; keep outstanding task ownership.
+    // ONLY after guest threads stop and the runtime host-read reset barrier.
+    // Normal mode/scene changes must use leave, which retains owned banks.
+    void reset_after_runtime_barrier(Nanoseconds now);
     std::optional<WakeToken> request(Nanoseconds now);
     bool reject_enqueue(WakeToken token); // Only on an actual failed enqueue.
     std::optional<FrameTicket> receive(WakeToken token, Nanoseconds now);

@@ -1268,3 +1268,15 @@ ASan/LSan и TSan прошли,2000 кадров с параллельными c
 initial image/controller screen; render другого menu32 имеет запись801C68AC,
 поэтому общий phase1 нельзя объявлять чистым рисованием. Детали и следующие точки:
 docs/native-frame-scheduler.md; research/native-frame-scheduler-*.json.
+
+
+## 2026-09-29 — доставка native FPS в игровой loop
+
+Причина потенциального зависания: void host enqueue не подтверждает guest delivery;
+при full guest queue/requeue=false единственный wake терялся бы. Добавлены проверяемый
+requeue sender, hook800278F4, сохранение CPU-контекста и quiescent reset.
+Обычный VI/звук/retirement не переводились на новую частоту.
+Стенд использует настоящую adapted mesgqueue и оригинальный loop; ASan/LSan/TSan
+результаты и ограничение atomic_thread_fence записаны в research/native-frame-bridge-*.json.
+Полный Native Manual ещё не включён; никакая игровая/визуальная проверка не заявляется.
+См. docs/native-frame-bridge.md.

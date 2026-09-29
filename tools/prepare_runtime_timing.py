@@ -75,5 +75,36 @@ adapted=replace_once(adapted,'void dequeue_external_messages(RDRAM_ARG1) {','voi
 for wait_entry in ['void ultramodern::wait_for_external_message(RDRAM_ARG1) {',
                    'void ultramodern::wait_for_external_message_timed(RDRAM_ARG u32 millis) {']:
     adapted=replace_once(adapted,wait_entry,wait_entry+'\n    if (!dora3_interrupts_enabled()) return;')
+# Keep the native request pending if the GUEST queue is full. The public
+# enqueue_external_message API returns void and cannot report initial host OOM.
+adapted='#include "native_frame_scheduler.hpp"\n'+adapted
+adapted=replace_once(adapted,'bool do_send(RDRAM_ARG PTR(OSMesgQueue) mq_, OSMesg msg, bool jam, bool block);',
+    '''bool dora3_enqueue_native_frame_wake() {
+    return external_messages.enqueue({int32_t(dora3::native_time::game_queue),
+        int32_t(dora3::native_time::WakeMailbox::message_value), false, true});
+}
+static void requeue_external_message(const QueuedMessage& message) {
+    const bool accepted = external_messages.enqueue(message);
+    if (!accepted && uint32_t(message.mq) == dora3::native_time::game_queue &&
+        uint32_t(message.mesg) == dora3::native_time::WakeMailbox::message_value) {
+        // Continuing after dropping the sole retained wake would hang native
+        // delivery permanently. Do not silently report success on host OOM.
+        throw std::bad_alloc{};
+    }
+}
+bool do_send(RDRAM_ARG PTR(OSMesgQueue) mq_, OSMesg msg, bool jam, bool block);''')
+adapted=replace_once(adapted,'        external_messages.enqueue(cur_mesg);',
+    '        requeue_external_message(cur_mesg);')
+if adapted.count('external_messages.enqueue(to_send);')!=2:
+    raise RuntimeError('Unreviewed blocking receive requeue sites')
+adapted=adapted.replace('external_messages.enqueue(to_send);','requeue_external_message(to_send);')
+# Queue reset is called after wait_for_game_threads_stopped and the SP/gfx
+# reset barriers, before RAM is cleared. Pin the caller as well as events.cpp.
+reset_caller=ROOT/'build-deps/lib/N64ModernRuntime/librecomp/src/recomp.cpp'
+if hashlib.sha256(reset_caller.read_bytes()).hexdigest()!='1b7ffe7b2d8993d851ac2a47753251245c0df18dfe3f01724a881ac1678ecfaa':
+    raise RuntimeError('Unreviewed game reset ordering')
+adapted='void dora3_reset_native_frame_delivery();\n'+adapted
+adapted=replace_once(adapted,'void ultramodern::reset_message_queues_for_game_reset() {',
+    'void ultramodern::reset_message_queues_for_game_reset() {\n    dora3_reset_native_frame_delivery();')
 write('mesgqueue.cpp',adapted)
 print('Pinned runtime: SP lifecycle, raw RDP queue, interrupt gating; original dependencies unchanged')

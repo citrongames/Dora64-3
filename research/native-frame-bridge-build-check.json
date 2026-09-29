@@ -1,0 +1,44 @@
+{
+  "date_utc": "2026-09-29T08:42:59.736176+00:00",
+  "base_commit": "cf2eb7cf196fcd523bd73750a89c7e91867f4255",
+  "scope": "Game receive hook + retained native queue sender + quiescent reset integrated; synthetic original loop/real queue checks and desktop compile; native FPS scene not active; no game/GPU launch or package",
+  "source_sha256": {
+    "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
+    "src/native_frame_time.hpp": "690b956211a59a3c217663de10b78d3c34188cd3835f6d6a903dc53443859f8c",
+    "src/native_frame_scheduler.cpp": "49cd9fd43255dfbd47f84f652f574ff3527989657275ab18dcb56629cc1a8564",
+    "src/native_frame_scheduler.hpp": "8eab9448288af2e0e9a4d3a0cfcacaddd15f3a97a5465905bc8b6c7af806282f",
+    "src/native_frame_bridge.cpp": "e188e1a2daa2c2c0fd37e52365739d2cd2a50d3b6f1b2a047c63bcd88fdf5ff6",
+    "src/native_frame_bridge.hpp": "b5b1908f7f185615e13426cf3cf0af413eceb1f7e061cdafff33c1499735ee3a",
+    "research/runtime/CMakeLists.txt": "e793d98f379f3898b8acc7d20f32c6dfeb1e0a7dfa77652d76515907e6d5adb8",
+    "tools/generate_startup.py": "0459e09a63eb173d2d000be83916cb678c4cd668d3d8b05889728e455fbf5e4d",
+    "tools/prepare_runtime_timing.py": "133acf6e4b11ae56877e8838558c43358a1b8e4c73265d24394ac2811827ef37",
+    "tools/build_windows.ps1": "664b31ca7fdddffb7b82d271f141be91bf41f7c164461fc29de1d03813e2bcb4"
+  },
+  "component_receipts": {
+    "address": "38330d283ad5051918251c580a38aa770b372d902dec5f89f513350c58d8c996",
+    "thread": "d71cf7ffc81667e8545d2f6988c608d1b2adb9beea460eac0cd9d37821d6cf45"
+  },
+  "linux": {
+    "result": "build exit0",
+    "log_sha256": "a76b5b1e2569c5baf11daf780778bb225723d11c2c65d51bd9937b0ffa1160a7",
+    "binary_sha256": "db2ed666f7d987cea8c655b314b4a92c691108be0d34b05fd8facbf0481f670d"
+  },
+  "windows": {
+    "result": "build exit0",
+    "log_sha256": "84fc74f5a5561e71aea3dcdf5fe3e686ca74088180b972a387a51278356791a3",
+    "binary_sha256": "b55d1402f23fba3d8d602cc333aca5f80be2323026a7aa37e4ae9f4e98c9db6f"
+  },
+  "cpu_generation": "startup-v62",
+  "cpu_receipt_sha256": "1789881052cf2bed6962e5bd179dbfb5d64447534286f61d9a96bd5c290581ca",
+  "audio_receipt_sha256": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f",
+  "clean_pinned_dependencies": 32,
+  "donor_unchanged": true,
+  "android": "not checked",
+  "latest_delivered_build": "test-024; no new test EXE",
+  "remaining": [
+    "Graphics-only scheduler pump without VI/AI broadcast",
+    "Real GuestTask/HostRead completion and framebuffer publication after CPU overlays",
+    "Activate reviewed 2D scene, then convert gameplay/physics/camera/script timing",
+    "Native timer lifecycle and Manual setting routing; Original remains original"
+  ]
+}

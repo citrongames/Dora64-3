@@ -1,0 +1,22 @@
+{
+  "scope": "Hooked original game loop and actual adapted external/guest queues; synthetic RAM; scene callbacks and thread scheduler stubbed; no GPU or active native scene",
+  "result": "PASS: real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context preserved; stale scene/rate wakes; quiescent reset; 2000 concurrent deliveries",
+  "sanitizer": "address",
+  "source_sha256": {
+    "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
+    "src/native_frame_scheduler.cpp": "49cd9fd43255dfbd47f84f652f574ff3527989657275ab18dcb56629cc1a8564",
+    "src/native_frame_bridge.cpp": "e188e1a2daa2c2c0fd37e52365739d2cd2a50d3b6f1b2a047c63bcd88fdf5ff6",
+    "research/native-frame-bridge-check.cpp": "aaadb301f230a596c17519d0ae9f92bda35db77e68ba811a599547b9cf049ae9",
+    "src/native_frame_bridge.hpp": "b5b1908f7f185615e13426cf3cf0af413eceb1f7e061cdafff33c1499735ee3a",
+    "src/native_frame_scheduler.hpp": "8eab9448288af2e0e9a4d3a0cfcacaddd15f3a97a5465905bc8b6c7af806282f",
+    "tools/prepare_runtime_timing.py": "133acf6e4b11ae56877e8838558c43358a1b8e4c73265d24394ac2811827ef37",
+    "tools/check_native_frame_bridge.py": "30469f68059e0d00e81ad98e8ff179d3021c41189d53d15de3796bec59b3b4db"
+  },
+  "generation_receipt_sha256": "1789881052cf2bed6962e5bd179dbfb5d64447534286f61d9a96bd5c290581ca",
+  "adapted_queue_sha256": "dc4a508be97e1d484fe42bc2da304c44e9dee229dd62d1480d2fee645f16f410",
+  "limitations": [
+    "Thread scheduler endpoints and scene callbacks are stubs; no renderer",
+    "TSan cannot instrument atomic_thread_fence in the pinned concurrentqueue library",
+    "Requeue OOM is fail-fast; actual host allocation failure not injected"
+  ]
+}

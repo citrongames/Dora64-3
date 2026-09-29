@@ -67,6 +67,15 @@ void FrameScheduler::leave(Nanoseconds now) {
     invalidate_locked();
 }
 
+void FrameScheduler::reset_after_runtime_barrier(Nanoseconds now) {
+    std::lock_guard lock(mutex_);
+    clock_.configure(Mode::Original, 0, now);
+    invalidate_locked();
+    banks_ = {};
+    next_bank_ = 0;
+    // Keep serial/epoch monotonic: a late old completion must not match reuse.
+}
+
 std::optional<WakeToken> FrameScheduler::request(Nanoseconds now) {
     std::lock_guard lock(mutex_);
     if (!clock_.active() || pending_ || banks_[next_bank_].phase != Phase::Free) return std::nullopt;
