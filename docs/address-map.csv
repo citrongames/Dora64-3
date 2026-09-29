@@ -4967,3 +4967,10 @@ verified,native-loop-hook,0x2D60,0x80027960,4,Shared post-update Original/native
 verified,native-loop-hook,0xBC7C,0x8003087C,4,Skip discrete fade only during native fade ownership,v66 exact instruction pinned; original sound and input routines retained,General fade commands still need timeline integration
 verified,native-loop-hook,0x34DC,0x800280DC,4,Invalidate scene authorization at shared process pair replacement,v66 merged entry trace hook; reject replacement while native owns frames,Each admitted policy must leave before transition update
 verified,native-scene-hook,,0x801C02B0,4,Arm scene34 policy only after actual overlay init,v66 overlay-specific generated hook pinned to ROM word,Not an address-only guess for all overlays
+verified,function,0x3c78,0x80028878,,native fade command clock,V67 entry hooks on five common APIs; original commands retained; CPU timeline and loop checks,Visual test026
+verified,function,0x16960,0x8003b560,,model create lifecycle,ROM audit: allocate0x84; tree; initialise channel/morph pointers,Generation identity before model native timing
+verified,function,0x16abc,0x8003b6bc,,clip bind and reset,ROM audit: allocate channels; time0; flags &=F4,Reset clock on every bind including same pointer
+verified,function,0x16b44,0x8003b744,,clip channel release,ROM audit: free +60; write0,Invalidate before release
+verified,function,0x16b7c,0x8003b77c,,model teardown,ROM audit: morph retirement; channels; tree; model free,Invalidate generation and respect frame ownership
+verified,function,0x14944,0x80039544,,animation end getter,ROM audit: nondestructive flags bit1 read;362 object wrapper calls,Preserve guest event visibility across readers
+verified,function,0x14158,0x80038d58,,morph selected bank output,ROM audit: model+6C+bank*4 with bank801A9544,Bind pose evaluation to free FrameTicket bank

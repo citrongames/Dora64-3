@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$CrtDirectory,
-    [string]$BuildId = 'test-025'
+    [string]$BuildId = 'test-026'
 )
 $ErrorActionPreference = 'Stop'
 if ($BuildId -notmatch '^[a-zA-Z0-9-]+$') { throw 'Invalid build ID.' }

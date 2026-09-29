@@ -10,3 +10,5 @@ extern "C" void dora3_native_loop_transition(uint8_t*,recomp_context*) {}
 extern "C" void dora3_native_loop_submit(uint8_t*,recomp_context*) {}
 extern "C" void dora3_native_loop_retire(uint8_t*,recomp_context*) {}
 void dora3_native_loop_reset() {}
+
+extern "C" void dora3_native_loop_fade_command(uint8_t*,recomp_context*) {}

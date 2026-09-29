@@ -9,6 +9,7 @@
 #include <vector>
 
 using namespace dora3::native_time;
+extern "C" void dora3_native_loop_fade_command(uint8_t*,recomp_context*) {}
 extern "C" void dora3_trace(uint8_t*, recomp_context*, uint32_t, uint32_t) {}
 
 static Nanoseconds frame_time(std::uint64_t frame, unsigned fps) {
@@ -204,6 +205,40 @@ static void check_animation(uint8_t* rdram, recomp_context& c) {
     assert(clamped.consume_completions() == 0);
 }
 
+static void check_command_timeline(uint8_t* rdram,recomp_context& c) {
+    auto read=[&] {return FadeState{MEM_H(0,int32_t(0x801AA660)),MEM_B(0,int32_t(0x801A99A0)),MEM_BU(0,int32_t(0x80171580))};};
+    auto write=[&](FadeState s) {MEM_H(0,int32_t(0x801AA660))=s.alpha;MEM_B(0,int32_t(0x801A99A0))=s.direction;MEM_B(0,int32_t(0x80171580))=s.step;};
+    for(unsigned fps:{60u,73u,144u,165u,360u}) {
+        FadeState state{0,-2,16};write(state);FadeTimeline time(state,3,0);
+        // Issue a command between presentation deadlines. None of the earlier
+        // interval belongs to the new fade, even if a renderer was stalled.
+        write(time.before_command(read(),13'000'000));dora3_fade_begin(rdram,&c);
+        for(unsigned i=1;i<=fps;++i)write(time.sample(read(),13'000'000+frame_time(i,fps)));
+        assert(read().alpha==255 && read().direction==2);
+    }
+    write({0,1,1});FadeTimeline time(read(),3,0);
+    // Repeating an already-running command must retain sub-integer alpha progress.
+    write(time.before_command(read(),25'000'000));dora3_fade_begin(rdram,&c);
+    write(time.sample(read(),50'000'000));assert(read().alpha==1);
+    // Change the common speed without retroactively applying it before the command.
+    write(time.before_command(read(),75'000'000));c.r4=255;c.r5=255;c.r6=255;c.r7=16;
+    dora3_fade_color_step_set(rdram,&c);
+    write(time.sample(read(),100'000'000));assert(read().alpha==9);
+    write(time.before_command(read(),100'000'000));dora3_fade_hold(rdram,&c);
+    write(time.sample(read(),125'000'000));assert(read().alpha==5 && read().direction==-1);
+    write(time.before_command(read(),125'000'000));dora3_fade_full_opacity(rdram,&c);
+    write(time.sample(read(),150'000'000));assert(read().alpha==255 && read().direction==2);
+    write(time.before_command(read(),150'000'000));dora3_s0_80028930(rdram,&c);
+    write(time.sample(read(),175'000'000));assert(read().alpha==0 && read().direction==-2);
+    // A second command at the same timestamp must see the first command's result.
+    write(time.before_command(read(),175'000'000));dora3_fade_begin(rdram,&c);
+    write(time.before_command(read(),175'000'000));dora3_fade_hold(rdram,&c);
+    write(time.sample(read(),225'000'000));assert(read().alpha==0 && read().direction==-2);
+    bool rejected=false;auto corrupt=read();corrupt.alpha=100;
+    try {time.sample(corrupt,250'000'000);}catch(const std::logic_error&){rejected=true;}
+    assert(rejected);
+}
+
 int main() {
     check_clock();
     std::vector<uint32_t> memory(0x400000 / 4);
@@ -212,5 +247,6 @@ int main() {
     context.r29 = int32_t(0x803F0000);
     check_fades(rdram, context);
     check_animation(rdram, context);
-    std::cout << "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. No game/window/GPU.\n";
+    check_command_timeline(rdram, context);
+    std::cout << "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. All five original fade commands, inter-frame timestamp, no-op fractional retention, same-time commands and unknown-write rejection. No game/window/GPU.\n";
 }

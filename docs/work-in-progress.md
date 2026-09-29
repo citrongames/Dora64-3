@@ -1,4 +1,16 @@
-# Текущий результат: test-024
+# Текущий результат: test-026
+
+Общий native цикл подключён. Manual: image-заставка и её белый переход state1;
+другие сцены пока Original cadence без RT64 interpolation. Все пять общих команд
+fade синхронизируют время. Подробности: native-game-loop.md.
+Полная статическая карта shared model API/lifecycle/events: model-animation.md.
+Model gameplay clock ещё не подключён. Linux/Windows собраны без запуска игры.
+Пользователь test-025: первая заставка60FPS, вылетов в выполненной проверке не было.
+Сейвы/настройки общие, новая Windows-сборка предназначена в testbuild. Ветка main.
+
+## История
+
+# Test-024
 
 Monitor / supported output modes / Refresh / Frame rate и оформление Dora64.
 Manual выше Hz разрешён по прямому запросу пользователя; отдельная build-local

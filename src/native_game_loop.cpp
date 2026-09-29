@@ -24,7 +24,13 @@ std::optional<unsigned> task_bank(uint32_t address) {
 bool legacy_drained() { std::lock_guard lock(task_mutex);return !pending[0]&&!pending[1]; }
 const ScenePolicy* active_policy=nullptr;
 const ScenePolicy* entry_policy=nullptr;
-std::optional<Fade> fade;
+std::optional<FadeTimeline> fade;
+FadeState read_fade(uint8_t* rdram) {
+    return {MEM_H(0,int32_t(0x801AA660)),MEM_B(0,int32_t(0x801A99A0)),MEM_BU(0,int32_t(0x80171580))};
+}
+void write_fade(uint8_t* rdram,FadeState state) {
+    MEM_H(0,int32_t(0x801AA660))=state.alpha;MEM_B(0,int32_t(0x801A99A0))=state.direction;
+}
 unsigned applied_fps=0;
 uint64_t frames=0;
 bool common_eligible(uint8_t* rdram) {
@@ -42,7 +48,7 @@ void try_enter(uint8_t* rdram,Nanoseconds now,unsigned fps) {
     const auto bank=word(rdram,next_bank);if(bank<0 || bank>1)throw std::logic_error("Invalid original next bank");
     if(!game_frame_session().begin(fps,unsigned(bank),true,build_frame))return;
     active_policy=entry_policy;entry_policy=nullptr;applied_fps=fps;frames=0;
-    fade.emplace(FadeState{MEM_H(0,int32_t(0x801AA660)),MEM_B(0,int32_t(0x801A99A0)),MEM_BU(0,int32_t(0x80171580))},active_policy->divider);
+    fade.emplace(read_fade(rdram),active_policy->divider,now);
     game_frame_session().poll(now);
     std::fprintf(stderr,"NATIVE LOOP acquire policy=%s fps=%u original_hz=%u\n",active_policy->name,fps,60/active_policy->divider);
 }
@@ -51,10 +57,13 @@ void synchronize(uint8_t* rdram,Nanoseconds now) {
     const unsigned fps=dora3_requested_native_fps();
     if(before==Phase::Acquiring || before==Phase::Native) {
         if(!fps || !common_eligible(rdram) || !active_policy || !active_policy->eligible(rdram)) {
+            if(before==Phase::Native && fade)write_fade(rdram,fade->sample(read_fade(rdram),now));
             std::fprintf(stderr,"NATIVE LOOP leave (mode/pause/scene boundary)\n");session.leave(now);
         } else if(fps!=applied_fps) { session.change_rate(fps,now);applied_fps=fps; }
     }
-    finish_session(before,session.poll(now));
+    const auto after=session.poll(now);
+    if(before==Phase::Acquiring && after==Phase::Native)fade.emplace(read_fade(rdram),active_policy->divider,now);
+    finish_session(before,after);
     if(entry_policy) {
         if(!fps || !common_eligible(rdram) || !entry_policy->eligible(rdram))entry_policy=nullptr;
         else try_enter(rdram,now,fps);
@@ -67,8 +76,7 @@ void build_frame(uint8_t* rdram,recomp_context* ctx,const FrameTicket& ticket,Fr
        !common_eligible(rdram) || !active_policy->eligible(rdram) ||
        word(rdram,count)<0 || word(rdram,count)>=2 || word(rdram,next_bank)!=int(ticket.bank))
         throw std::logic_error("Native loop lost safe build boundary");
-    const auto state=fade->advance(ticket.step.elapsed);
-    MEM_H(0,int32_t(0x801AA660))=state.alpha;MEM_B(0,int32_t(0x801A99A0))=state.direction;
+    write_fade(rdram,fade->sample(read_fade(rdram),monotonic_time()));
     if(!owner.publish(ticket))throw std::logic_error("Native frame publication failed");
     ctx->r4=int32_t(dora3::frame::bank0+ticket.bank*dora3::frame::bank_stride);
     dora3_graphics_frame_build(rdram,ctx);
@@ -98,6 +106,10 @@ extern "C" int dora3_native_loop_after_vi(uint8_t* rdram,recomp_context*) {
     return 1;
 }
 
+extern "C" void dora3_native_loop_fade_command(uint8_t* rdram,recomp_context*) {
+    if(game_frame_session().phase()==Phase::Native && active_policy && fade)
+        write_fade(rdram,fade->before_command(read_fade(rdram),monotonic_time()));
+}
 extern "C" int dora3_native_loop_owns_fade() { return game_frame_session().phase()==Phase::Native && active_policy; }
 extern "C" void dora3_native_loop_scene_ready(uint8_t*,recomp_context*) { native_scene34_ready(); }
 extern "C" void dora3_native_loop_transition(uint8_t*,recomp_context*) {

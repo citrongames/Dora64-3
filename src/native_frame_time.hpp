@@ -56,7 +56,7 @@ struct FadeState {
 
 // Time-based version of the verified resident fade (80028948).
 // Original tick boundaries and completion time match the original routine.
-// Restart on every guest fade command, even if parameters repeat.
+// Commands must be reconciled at their own timestamp; a no-op preserves phase.
 class Fade {
 public:
     Fade(FadeState initial, unsigned retrace_divider);
@@ -64,6 +64,23 @@ public:
 private:
     FadeState initial_;
     SceneClock time_;
+};
+
+// One guest-owned timeline for all five resident fade commands. Before a command,
+// sample current alpha into RAM; on the next sample reconcile the original command's
+// result. Unchanged commands keep fractional progress, changed ones start at the
+// command timestamp, not at the previous or next rendered frame.
+class FadeTimeline {
+public:
+    FadeTimeline(FadeState initial, unsigned divider, Nanoseconds now);
+    FadeState sample(FadeState observed, Nanoseconds now);
+    FadeState before_command(FadeState observed, Nanoseconds now);
+private:
+    Fade fade_;
+    FadeState last_;
+    unsigned divider_;
+    Nanoseconds previous_;
+    bool pending_command_ = false;
 };
 
 struct AnimationState {

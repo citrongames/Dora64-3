@@ -56,6 +56,7 @@ def main():
                          'int dora3_native_loop_before_vi(uint8_t*, recomp_context*);',
                          'int dora3_native_loop_after_vi(uint8_t*, recomp_context*);',
                          'int dora3_native_loop_owns_fade(void);',
+                         'void dora3_native_loop_fade_command(uint8_t*, recomp_context*);',
                          'void dora3_native_loop_scene_ready(uint8_t*, recomp_context*);',
                          'void dora3_native_loop_transition(uint8_t*, recomp_context*);',
                          'void dora3_native_loop_submit(uint8_t*, recomp_context*);',
@@ -81,6 +82,10 @@ def main():
     config+='hook = [\n'
     for (index,addr),(name,size,evidence) in compiled.items():
         hook=f'dora3_trace(rdram, ctx, 0x{addr:08X}, 0x{sections[index]["rom"]:X});'
+        if index==0 and addr in {0x80028878,0x800288C0,0x800288EC,0x80028914,0x80028930}:
+            expected={0x80028878:0x3C01801B,0x800288C0:0x3C02801B,0x800288EC:0x3C02801B,0x80028914:0x240200FF,0x80028930:0x2402FFFE}
+            if struct.unpack_from('>I',rom,0x1000+addr-0x80025C00)[0]!=expected[addr]:raise ValueError('Unreviewed fade command')
+            hook+=' dora3_native_loop_fade_command(rdram, ctx);'
         if index==0 and addr==0x800280DC:
             if struct.unpack_from('>I',rom,0x1000+addr-0x80025C00)[0]!=0x27BDFFE0:raise ValueError('Unreviewed process install')
             hook+=' dora3_native_loop_transition(rdram, ctx);'

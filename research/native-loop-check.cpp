@@ -10,17 +10,26 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <set>
+#include "native_scene_policy.hpp"
 using namespace dora3::native_time;
 static unsigned requested=60,updates=0,native_builds=0,original_builds=0,vi_count=0,pauses=0,stage=0,resume_vi=0;
 static bool initialized=false,legacy_tail_pending=true;
+static unsigned white_builds=0;
+static std::set<int> white_alpha;
 static Nanoseconds next_vi=0,started=0;
 static std::deque<uint32_t> messages,submitted;
 struct Finished {};
 unsigned dora3_requested_native_fps() {return requested;}
 extern "C" void do_break(uint32_t) {std::abort();}
-extern "C" void dora3_trace(uint8_t*,recomp_context*,uint32_t pc,uint32_t) {
+extern "C" void dora3_trace(uint8_t* rdram,recomp_context*,uint32_t pc,uint32_t) {
     if(pc==0x801C0088)++updates;
-    if(pc==0x8002FF64) {if(dora3_native_frame_build_active())++native_builds;else ++original_builds;}
+    if(pc==0x8002FF64) {
+        if(dora3_native_frame_build_active()) {
+            ++native_builds;
+            if(MEM_W(0,int32_t(0x801C68CC))>1) {++white_builds;white_alpha.insert(MEM_H(0,int32_t(0x801AA660)));}
+        } else ++original_builds;
+    }
 }
 extern "C" recomp_func_t* get_function(int32_t pc) {
     if(uint32_t(pc)==0x801C0088)return dora3_scene34_update;
@@ -51,10 +60,15 @@ EMPTY(dora3_frame_timestamp) EMPTY(dora3_update_timestamp) EMPTY(dora3_update_el
 extern "C" void dora3_s0_80047EF4(uint8_t*,recomp_context*) {++pauses;}
 extern "C" void dora3_scene_transition_framebuffer_copy(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_scene34_controller_message(uint8_t*,recomp_context*) {std::abort();}
-extern "C" void dora3_process_pair_install(uint8_t*,recomp_context*) {std::abort();}
-extern "C" void dora3_scene34_transition(uint8_t* rdram,recomp_context*) {
+extern "C" void dora3_common_progress_reset(uint8_t*,recomp_context*) {std::abort();} // Not reached: scene state1 branch.
+extern "C" void dora3_process_pair_install(uint8_t* rdram,recomp_context* c) {
+    dora3_native_loop_transition(rdram,c);
     assert(game_frame_session().phase()==FrameSession::Phase::Original && game_frame_bridge().drained());
-    assert(MEM_W(0,int32_t(0x801AA618))==0 && updates==60 && native_builds>100 && stage==5);
+    assert(MEM_W(0,int32_t(0x801AA618))==0 && updates==76 && native_builds>100 && stage==5);
+    assert(MEM_W(0,int32_t(0x801A950C))==0x5A); // Original transition selected the next scene.
+    assert(MEM_BU(0,int32_t(0x801B1404))==255 && MEM_BU(0,int32_t(0x80171CB8))==255);
+    assert(white_builds>30 && white_alpha.size()>16);
+    assert(MEM_H(0,int32_t(0x801AA660))>=230); // Final legacy tick completes fade after drain.
     throw Finished{};
 }
 static void setup(uint8_t* rdram,recomp_context* c) {
@@ -68,6 +82,7 @@ static void setup(uint8_t* rdram,recomp_context* c) {
     MEM_W(0,int32_t(0x801A48C0))=1; // Previous original frame built; its outer tail is still pending.
     MEM_W(0,int32_t(0x801A48E0))=0;MEM_W(0,int32_t(0x8017157C))=0;
     MEM_W(0,int32_t(0x801AA650))=int32_t(0x8038F800);MEM_W(0,int32_t(0x801AA658))=320;MEM_W(0,int32_t(0x801A48C4))=240;
+    MEM_W(0,int32_t(0x801A950C))=34;MEM_B(34,int32_t(0x80171C50))=1;
     MEM_W(0,int32_t(0x801C68D0))=60;MEM_W(0,int32_t(0x801AEC00))=int32_t(0x80280000);
     MEM_B(3,int32_t(0x80280000))=5;MEM_H(6,int32_t(0x80280000))=16;
     MEM_W(8,int32_t(0x80280000))=64;MEM_W(12,int32_t(0x80280000))=32;
@@ -76,6 +91,12 @@ static void setup(uint8_t* rdram,recomp_context* c) {
     recomp_context old{};old.r8=int32_t(dora3::frame::bank0+dora3::frame::bank_stride);
     dora3_native_loop_submit(rdram,&old);
     dora3_native_loop_scene_ready(rdram,c);
+    // State2 may reset progress. It must leave before its transition update.
+    MEM_W(0,int32_t(0x801C68D0))=1;MEM_B(34,int32_t(0x80171C50))=2;
+    assert(select_native_scene_policy(rdram)==nullptr);
+    MEM_B(34,int32_t(0x80171C50))=1;assert(select_native_scene_policy(rdram)!=nullptr);
+    MEM_W(0,int32_t(0x801C68CC))=1;assert(select_native_scene_policy(rdram)==nullptr);
+    MEM_W(0,int32_t(0x801C68CC))=0;MEM_W(0,int32_t(0x801C68D0))=60;
     started=next_vi=monotonic_time();initialized=true;
 }
 extern "C" void osRecvMesg_recomp(uint8_t* rdram,recomp_context* c) {
@@ -120,6 +141,6 @@ int main(int argc,char** argv) {
     assert(pauses>0 && original_builds>0 && !native_present_ledger().occupied());
     // Reset must remove the scene authorization as well as all bank ownership.
     dora3_reset_native_frame_delivery();assert(!dora3_native_loop_after_vi(rdram,&c));
-    std::cout<<"PASS: original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, drain before scene transition; "
-        <<updates<<" discrete updates, "<<native_builds<<" native builds, "<<original_builds<<" Original builds, "<<vi_count<<" VI events; no GPU\n";
+    std::cout<<"PASS: original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; "
+        <<white_builds<<" native white-fade builds with "<<white_alpha.size()<<" distinct alpha values; "<<updates<<" discrete updates, "<<native_builds<<" native builds, "<<original_builds<<" Original builds, "<<vi_count<<" VI events; no GPU\n";
 }

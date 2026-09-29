@@ -4,7 +4,18 @@ namespace {
 int32_t word(uint8_t* rdram,uint32_t address) {return MEM_W(0,int32_t(address));}
 bool scene34_armed=false;
 bool image_eligible(uint8_t* rdram) {
-    if(!scene34_armed || word(rdram,0x801C68C4)!=0 || word(rdram,0x801C68CC)!=0 || word(rdram,0x801C68D0)<=1)return false;
+    if(!scene34_armed || word(rdram,0x801C68C4)!=0)return false;
+    const auto transition=word(rdram,0x801C68CC);
+    // White fade changes only the scene-selection request and its countdown.
+    // Actual callback/resource replacement occurs on the update with count==1.
+    const auto hold=word(rdram,0x801C68D0);
+    const auto selected=uint32_t(word(rdram,0x801A950C));
+    if(transition==0) {
+        if(hold<=0)return false;
+        // Only state1's simple next-scene request has been reviewed here.
+        // State2 also resets progress: retain the previous drain-before-command.
+        if(hold==1 && (selected>255 || MEM_BU(int32_t(selected),int32_t(0x80171C50))!=1))return false;
+    } else if(transition<=1 || transition>16 || selected!=0x5A || MEM_BU(0x5A,int32_t(0x80171C50))!=1)return false;
     if(word(rdram,0x801A39DC)!=3 || word(rdram,0x801AA648)==0 || word(rdram,0x801A9500)==0)return false;
     for(unsigned i=0;i<8;++i) {
         const uint32_t slot=0x801A44F0+i*20;

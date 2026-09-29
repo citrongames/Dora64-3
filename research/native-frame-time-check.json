@@ -1,21 +1,26 @@
 {
   "scope": "Isolated native timing/fade implementation; original ROM routine oracle on synthetic RAM; no live integration or GPU",
-  "result": "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. No game/window/GPU.",
+  "result": "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. All five original fade commands, inter-frame timestamp, no-op fractional retention, same-time commands and unknown-write rejection. No game/window/GPU.",
   "sanitizers": "ASan/LSan on component and original functions; UBSan on new C++ component/harness",
   "source_sha256": {
-    "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
-    "research/native-frame-time-check.cpp": "899fc92bf3aeafb18055415b1689145f5233061ae39c7464dcbac8b252e353b7",
-    "src/native_frame_time.hpp": "690b956211a59a3c217663de10b78d3c34188cd3835f6d6a903dc53443859f8c",
-    "tools/check_native_frame_time.py": "1be51662deb1a401349b2d557e1f72437246a3ff00ca0f2f594d247b09407058"
+    "src/native_frame_time.cpp": "4591be5bf70cb6c13b91df526d03fce1035c31fa2f0449d7a8bfb58860b344e6",
+    "research/native-frame-time-check.cpp": "830f3f2138b5eba175dce5bff7e9d60a79d1ef476671211a1ba8532f6a95633b",
+    "src/native_frame_time.hpp": "f35ef08a013dc538094b317faa49cb03aa8042777b20590b8d8cd4a600a46296",
+    "tools/check_native_frame_time.py": "70d04b76a3fcf2bf8b7e553992f752734e749502f97724d54396ff7c2988fd8c"
   },
-  "generation_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
+  "generation_receipt_sha256": "e047c716fabc35fa5733897ec547aae42da3e0f6e26798b1167cf97db721ecc5",
   "original_functions": [
     "dora3_fade_tick",
-    "dora3_s0_8003948C"
+    "dora3_s0_8003948C",
+    "dora3_fade_color_step_set",
+    "dora3_fade_begin",
+    "dora3_fade_hold",
+    "dora3_fade_full_opacity",
+    "dora3_s0_80028930"
   ],
   "remaining": [
-    "Guest event delivery and graphics bank scheduling not connected",
+    "Animation guest event delivery not connected; shared fade commands covered separately by live loop check",
     "Physics, camera, scripts and per-scene callbacks not converted",
-    "Existing Manual remains RT64 interpolation in test-024; no new test EXE"
+    "This report tests math and original command semantics, not visual correctness"
   ]
 }

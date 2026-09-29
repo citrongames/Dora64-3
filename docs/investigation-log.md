@@ -1372,3 +1372,28 @@ query в build-local present queue с null fallback для standalone replay.
 3 slot installs,61 indirect calls,167 fade commands,36 animation wrappers.
 Это статическая карта кандидатов, не завершённый semantic audit всех сцен.
 План крупных подсистем и точные границы: docs/native-game-loop.md.
+
+
+## 2026-09-29 — v67: command-aware fade и общая карта model animation
+
+Пользователь test-025: «ничего не вылетело», первая заставка60FPS. Объём проверки
+ограничен этим сообщением; прохождение/3D native этим не подтверждены.
+
+Причина остановки native перед белым fade: clock снимал состояние только при
+входе и не видел новые команды. Пять общих resident entry hooks теперь обновляют
+текущее значение до команды, затем учитывают её результат от её timestamp.
+Неизменившийся begin/hold не теряет дробный остаток. Полный белый state1 fade
+разрешён до counter1; state2/progress reset не расширен. Drain остаётся перед
+реальной заменой callbacks и освобождением сцены, а не перед командой цвета.
+
+Проверка команд сначала ожидала alpha1 после половины последнего шага9→0;
+реальная непрерывная модель сохраняет завершение на исходной tick-границе и даёт5.
+Исправлено ожидание стенда, не скорость игры. Link-ошибка стенда была неверным
+именем границы progress_reset, из-за чего подтянулась лишняя closure; имя исправлено.
+После этого original loop/white fade:76updates, режимы60/73/144/360, пауза/Original,
+полный drain; ASan/LSan пройдены. Число native builds — не измерение GPU FPS.
+
+Model audit всего известного кода:752 clip-select,362 end reads,129 time reads,
+65 duration reads,48 seek,90 pause,222 clamp,36 pose/time calls. End getter
+недеструктивный; morph пишет выбранный bank, clip reset/seek/reuse требуют явной
+generation. Карта и границы: docs/model-animation.md. Live model timing не изменён.

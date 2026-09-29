@@ -111,6 +111,27 @@ FadeState Fade::advance(Nanoseconds elapsed) {
     return state;
 }
 
+FadeTimeline::FadeTimeline(FadeState initial, unsigned divider, Nanoseconds now)
+    : fade_(initial, divider), last_(initial), divider_(divider), previous_(now) {
+    if (now < 0) throw std::invalid_argument("Negative fade origin");
+}
+FadeState FadeTimeline::sample(FadeState observed, Nanoseconds now) {
+    if (now < previous_) throw std::invalid_argument("Fade clock moved backwards");
+    if (observed != last_) {
+        if (!pending_command_) throw std::logic_error("Untracked write to native fade");
+        fade_ = Fade(observed, divider_);
+    }
+    pending_command_ = false;
+    last_ = fade_.advance(now - previous_);
+    previous_ = now;
+    return last_;
+}
+FadeState FadeTimeline::before_command(FadeState observed, Nanoseconds now) {
+    const auto value = sample(observed, now);
+    pending_command_ = true;
+    return value;
+}
+
 Animation::Animation(AnimationState initial, unsigned divider)
     : initial_(initial), current_(initial), time_(divider) {
     if (!std::isfinite(initial.time) || !std::isfinite(initial.duration) ||

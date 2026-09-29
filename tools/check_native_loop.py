@@ -12,7 +12,7 @@ def main():
  rom=a.rom.read_bytes();assert hashlib.sha256(rom).hexdigest()==json.loads((r/'recomp/rom.lock.json').read_text())['sha256']
  bodies={re.search(r'void (\w+)\(',b)[1]:b for p in (g/'RecompiledFuncs').glob('*.c') for b in re.findall(r'RECOMP_FUNC void \w+\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)',p.read_text(),re.S)}
  stop={'dora3_controller_read','dora3_controller_accumulate','dora3_controller_latch','dora3_controller_reset_accumulator',
-  'dora3_rumble_tick','dora3_controller_pak_tick','dora3_sound_events_tick','dora3_scene34_transition','dora3_scene34_controller_message',
+  'dora3_rumble_tick','dora3_controller_pak_tick','dora3_sound_events_tick','dora3_common_progress_reset','dora3_scene34_controller_message',
   'dora3_object_lifetime_tick','dora3_deferred_free_tick','dora3_process_pair_install','dora3_cpu_framebuffer_copy'}
  # Reviewed generated names of timestamp and pause helpers resolved by address.
  for n,b in bodies.items():

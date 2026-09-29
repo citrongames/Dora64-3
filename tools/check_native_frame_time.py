@@ -26,7 +26,7 @@ def main():
                 raise ValueError('Stale generation: ' + name)
     out = ROOT / 'build-local/native-frame-time-check'
     out.mkdir(exist_ok=True)
-    names = ['dora3_fade_tick', 'dora3_s0_8003948C']
+    names = ['dora3_fade_tick', 'dora3_s0_8003948C', 'dora3_fade_color_step_set', 'dora3_fade_begin', 'dora3_fade_hold', 'dora3_fade_full_opacity', 'dora3_s0_80028930']
     bodies = []
     for name in names:
         pattern = r'RECOMP_FUNC void ' + name + r'\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)'
@@ -59,9 +59,9 @@ def main():
         'source_sha256': {str(p.relative_to(ROOT)): sha(p) for p in tracked},
         'generation_receipt_sha256': sha(generated / 'generation-receipt.json'),
         'original_functions': names,
-        'remaining': ['Guest event delivery and graphics bank scheduling not connected',
+        'remaining': ['Animation guest event delivery not connected; shared fade commands covered separately by live loop check',
                       'Physics, camera, scripts and per-scene callbacks not converted',
-                      'Existing Manual remains RT64 interpolation in test-024; no new test EXE'],
+                      'This report tests math and original command semantics, not visual correctness'],
     }
     (ROOT / 'research/native-frame-time-check.json').write_text(json.dumps(report, indent=2) + '\n')
     print(result)
