@@ -989,3 +989,18 @@ Windows live и Linux diagnostic собраны без запуска. CPU v61 �
 32 зависимости и Dora64 неизменны. Карта/команды: vi-resource-lifetime.md.
 Динамические вложенные ресурсы, остальные CPU framebuffer writers, визуальный
 raw RDP и долгий GPU memory lifetime остаются предметом дальнейшего аудита.
+
+
+## 2026-09-29 — цепочка paired vertices после test-018
+
+Реестр800DD420 принимает пары +6C/+70 через80038C58. Найдены allocation80038BC8,
+morph80038D58 с bank index801A9544 и segment binding8003AC14. Новый компонент
+проверил оригинальные тела: copy, bank isolation, destruction и16-tick free.
+51 парное удаление безticks теряет2 регистрации, owner pointers уже очищены.
+Это синтетическое расписание, не доказанная частота на реальном уровне.
+
+RT64 копирует Vertex и texture upload bytes; LoadOperations могут повторно читать
+RDRAM во время FullSync, поэтому граница — весь send_dl, не первый load.
+Depth clear8002F594 оказался генератором RDP-команд; video init меняет указатели,
+не пиксели. Патчей в этих точках не добавлено. Production не изменён; rebuild не нужен.
+Подробности/незакрытые условия: paired-vertex-lifetime.md. ASan/LSan стенда exit0.

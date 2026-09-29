@@ -1,0 +1,10 @@
+{
+  "scope": "Original generated paired allocation/morph/destruction and timer; synthetic allocation/free endpoints; no game/GPU",
+  "result": "PASS: original paired vertex allocation/copy, bank-selected morph isolation and retirement. OBSERVED: 51 pair releases before ticks lose 2 registrations while clearing owner pointers. Synthetic schedule; gameplay frequency unknown.",
+  "sanitizers": "ASan/LSan exit0; guest dropped request is a semantic observation, not a host allocator leak",
+  "source_sha256": {
+    "research/paired-vertex-check.cpp": "daabeb476daf861d0d12b4c592346bd6a2fb8a8db4958802b70cb2fe2aebd7e7",
+    "tools/check_paired_vertices.py": "bcf81bfc9ce429c5260381b7d2277fea5e73b990e75f1d8dc91d029442632708"
+  },
+  "generation_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6"
+}

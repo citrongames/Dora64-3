@@ -1,0 +1,362 @@
+{
+  "scope": "Reviewed compiled original functions and pinned renderer source; direct JAL inventory, not exhaustive pointer analysis",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "reviewed_bodies": {
+    "0x80038BC8": {
+      "size": 144,
+      "sha256": "c81819744aff4ebb25e13241b9b13c9fff86f64ff5558eedfd554a40ff62d453"
+    },
+    "0x80038D58": {
+      "size": 480,
+      "sha256": "46bf01b61b53bf6e496d8f5e4b7ca01637d8846305c1209180abf975a0781f0b"
+    },
+    "0x80038C58": {
+      "size": 80,
+      "sha256": "d1b6de44308c099daafbf5c03b35555724831202e9e93b21e7ec24f8f5b3fde8"
+    },
+    "0x80038B10": {
+      "size": 60,
+      "sha256": "3ffe5b489c8913d3a4df6c6ab10833edff03f7aa988901a8e5cd71da0ff86936"
+    },
+    "0x80038B4C": {
+      "size": 124,
+      "sha256": "893dec4ce340deb49d2abbdb59869e51be5145c8bae3a09a6fdf4853b1126339"
+    },
+    "0x8003931C": {
+      "size": 168,
+      "sha256": "21b66bf41d9973ade957b22dfc320eb610855d90ba08b58f5ca75ee3b3dceffb"
+    },
+    "0x8003AC14": {
+      "size": 788,
+      "sha256": "b6deab4730ac78713a988c79407b36e709c9a9d987b4cf33180a729105461587"
+    },
+    "0x8002F594": {
+      "size": 272,
+      "sha256": "1ba03d63dbab33f481406726ac857e866423aaf4c7b7ffad6763bf396f280489"
+    },
+    "0x800314E4": {
+      "size": 120,
+      "sha256": "94a567dbd95a587187be153594ada014e6fe8aefe1c8551dded7b2c75f665468"
+    },
+    "0x80031588": {
+      "size": 104,
+      "sha256": "cc77bcea0712aee374fb23c169a6e9ef259b01794282415fc9711b84777e8b78"
+    },
+    "0x80033BA4": {
+      "size": 172,
+      "sha256": "3d30ade78fd3d0e10c1f37c2cd0689e414182ca121dcb46168a2c0ed0fa32bd4"
+    },
+    "0x8002787C": {
+      "size": 524,
+      "sha256": "d434cad7f9d78452d6b4d91ba6a68d0d6c8af303459f6e60d060ee84896d6f54"
+    }
+  },
+  "direct_callers": {
+    "0x800314E4": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_initial_game_process",
+        "site": "0x80043438"
+      }
+    ],
+    "0x80033BA4": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_s0_80033C50",
+        "site": "0x80033C6C"
+      }
+    ],
+    "0x80038BC8": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_s0_core_8002A580",
+        "site": "0x8002A590"
+      }
+    ],
+    "0x80031588": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_main",
+        "site": "0x80027A90"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_initial_game_process",
+        "site": "0x80043418"
+      }
+    ],
+    "0x80038B4C": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_game_message_loop",
+        "site": "0x80027940"
+      }
+    ],
+    "0x80038B10": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_s0_80038C58",
+        "site": "0x80038C74"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_s0_80038C58",
+        "site": "0x80038C8C"
+      }
+    ],
+    "0x8002787C": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_main",
+        "site": "0x80027B54"
+      }
+    ],
+    "0x8003AC14": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_s0_8003AFEC",
+        "site": "0x8003B098"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_s0_8003AF28",
+        "site": "0x8003AF94"
+      }
+    ],
+    "0x8002F594": [
+      {
+        "section": ".scene34",
+        "section_rom": 406976,
+        "caller": "dora3_scene34_draw",
+        "site": "0x801C0134"
+      },
+      {
+        "section": ".scene34",
+        "section_rom": 406976,
+        "caller": "dora3_s2_menu_801C0C88",
+        "site": "0x801C0C90"
+      },
+      {
+        "section": ".scene34",
+        "section_rom": 406976,
+        "caller": "dora3_s2_menu_801BFC44",
+        "site": "0x801BFC4C"
+      },
+      {
+        "section": ".scene34",
+        "section_rom": 406976,
+        "caller": "dora3_s2_menu_801BB648",
+        "site": "0x801BB650"
+      },
+      {
+        "section": ".scene34",
+        "section_rom": 406976,
+        "caller": "dora3_s2_menu_801BD078",
+        "site": "0x801BD080"
+      },
+      {
+        "section": ".scene34",
+        "section_rom": 406976,
+        "caller": "dora3_s2_menu_801C267C",
+        "site": "0x801C2684"
+      },
+      {
+        "section": ".scene1",
+        "section_rom": 461392,
+        "caller": "dora3_s3_801BB848",
+        "site": "0x801BB868"
+      },
+      {
+        "section": ".scene1",
+        "section_rom": 461392,
+        "caller": "dora3_s3_801BB6A4",
+        "site": "0x801BB6AC"
+      },
+      {
+        "section": ".scene1",
+        "section_rom": 461392,
+        "caller": "dora3_s3_801BB554",
+        "site": "0x801BB55C"
+      },
+      {
+        "section": ".scene1",
+        "section_rom": 461392,
+        "caller": "dora3_s3_801BB5FC",
+        "site": "0x801BB604"
+      },
+      {
+        "section": ".scene1",
+        "section_rom": 461392,
+        "caller": "dora3_s3_core_801F9C88",
+        "site": "0x801F9C90"
+      },
+      {
+        "section": ".minigame_common",
+        "section_rom": 1621488,
+        "caller": "dora3_s20_mini_801BD7A8",
+        "site": "0x801BD7C8"
+      },
+      {
+        "section": ".minigame_common",
+        "section_rom": 1621488,
+        "caller": "dora3_s20_mini_801BE990",
+        "site": "0x801BE9BC"
+      },
+      {
+        "section": ".minigame_common",
+        "section_rom": 1621488,
+        "caller": "dora3_s20_mini_801C1BDC",
+        "site": "0x801C1BE4"
+      },
+      {
+        "section": ".minigame_1",
+        "section_rom": 1663408,
+        "caller": "dora3_s21_mini_801CB160",
+        "site": "0x801CB174"
+      },
+      {
+        "section": ".minigame_2",
+        "section_rom": 1701136,
+        "caller": "dora3_s22_mini_801C73F4",
+        "site": "0x801C7408"
+      },
+      {
+        "section": ".minigame_3",
+        "section_rom": 1721856,
+        "caller": "dora3_s23_mini_801C764C",
+        "site": "0x801C7654"
+      },
+      {
+        "section": ".minigame_4",
+        "section_rom": 1744464,
+        "caller": "dora3_s24_mini_801C90C4",
+        "site": "0x801C90D4"
+      },
+      {
+        "section": ".minigame_5",
+        "section_rom": 1772432,
+        "caller": "dora3_s25_mini_801C6A30",
+        "site": "0x801C6A44"
+      },
+      {
+        "section": ".minigame_6",
+        "section_rom": 1787488,
+        "caller": "dora3_s26_mini_801C7048",
+        "site": "0x801C705C"
+      },
+      {
+        "section": ".minigame_7",
+        "section_rom": 1805024,
+        "caller": "dora3_s27_mini_801C6B90",
+        "site": "0x801C6BA0"
+      },
+      {
+        "section": ".minigame_8",
+        "section_rom": 1819744,
+        "caller": "dora3_s28_mini_801C8270",
+        "site": "0x801C8280"
+      },
+      {
+        "section": ".minigame_9",
+        "section_rom": 1840816,
+        "caller": "dora3_s29_mini_801C7864",
+        "site": "0x801C7874"
+      },
+      {
+        "section": ".startup_scene",
+        "section_rom": 368256,
+        "caller": "dora3_s49_remaining_801B5064",
+        "site": "0x801B506C"
+      },
+      {
+        "section": ".startup_scene",
+        "section_rom": 368256,
+        "caller": "dora3_s49_remaining_801B5A70",
+        "site": "0x801B5A78"
+      },
+      {
+        "section": ".startup_scene",
+        "section_rom": 368256,
+        "caller": "dora3_s49_remaining_801B5B2C",
+        "site": "0x801B5B38"
+      },
+      {
+        "section": ".startup_scene",
+        "section_rom": 368256,
+        "caller": "dora3_s49_remaining_801B70A8",
+        "site": "0x801B70B0"
+      }
+    ],
+    "0x80038D58": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_s0_8003931C",
+        "site": "0x800393AC"
+      }
+    ],
+    "0x80038C58": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_s0_8003B77C",
+        "site": "0x8003B788"
+      },
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_s0_remaining_8002A5A4",
+        "site": "0x8002A5B4"
+      }
+    ],
+    "0x8003931C": [
+      {
+        "section": ".startup",
+        "section_rom": 4096,
+        "caller": "dora3_s0_800393C4",
+        "site": "0x80039450"
+      }
+    ]
+  },
+  "renderer_sha256": {
+    "build-deps/lib/rt64/src/hle/rt64_rsp.cpp": "848b9b35f3e76ad94fe2dbacc3a8dc25c689f870c41fd2d190c62af1511d34bc",
+    "build-deps/lib/rt64/src/hle/rt64_rdp.cpp": "87abb3e0bd7f7323ec6fb40318ec01617fca43f01b019461efbebc41b4430a7b",
+    "build-deps/lib/rt64/src/hle/rt64_rdp_tmem.cpp": "bcf1d32e6f78894901c87a63ed28419d44e27675916756c565dc3baa9335bc4a",
+    "build-deps/lib/rt64/src/hle/rt64_state.cpp": "3a695dfdaa6defa114b15a748b384a3b1f7d41f7b28393c7dbcf61664339f7d1",
+    "build-deps/lib/rt64/src/hle/rt64_present_queue.cpp": "ee1dcde2815041174d5ac56e83a24f53f7ec7586bfa84cd4ebcc8093d136820c",
+    "build-deps/lib/rt64/src/render/rt64_texture_cache.cpp": "a58099fefa98d16d2f09b543a2c0acb37f58a3de23ca112013c74c1429b7a23e"
+  },
+  "paired_vertex_layout": {
+    "source": "object+0x20",
+    "count": "object+0x30",
+    "stride": 16,
+    "banks": [
+      "object+0x6C",
+      "object+0x70"
+    ],
+    "bank_index": "0x801A9544"
+  },
+  "renderer_boundary": "RSP vertex memcpy and TMEM upload-owned vector; texture LoadOperations may reread RDRAM at FullSync inside send_dl; keep source alive for entire send_dl",
+  "framebuffer_classification": {
+    "0x8002F594": "RDP depth fill command builder, not CPU pixel writer",
+    "0x800314E4": "VI setup/bank pointers/heap init, not pixel clear",
+    "0x80031588": "pointer/dimension defaults, not pixel clear"
+  },
+  "limits": [
+    "No GPU execution",
+    "No proof of all CPU framebuffer writers",
+    "51 paired releases is a synthetic schedule, not observed gameplay",
+    "Retirement during pending parse still unresolved; no free-policy patch applied"
+  ]
+}

@@ -77,3 +77,7 @@ resource-retirement-check.json, windows-build-check.json. Полные логи 
 Windows RT64 и Linux diagnostic собраны; EXE не запускался. CPU generation v61
 и audio-rsp-v1 неизменны. Проверены32 зависимости и неизменность Dora64.
 Расход GPU/VRAM и длительное прохождение требуют отдельных наблюдений.
+
+
+Продолжение: [динамические вершины и RT64](paired-vertex-lifetime.md).
+Восстановлено назначение deferred registry; оригинальная политика пока не изменена.

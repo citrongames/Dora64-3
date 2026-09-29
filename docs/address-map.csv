@@ -4924,3 +4924,8 @@ verified,resource-table,,0x800DD420,0x320,100 deferred-free records stride8,Orig
 verified,diagnostic-entry,,0x80038B10,,Deferred free full-table diagnostic,Existing entry trace; original leaf drops request if full,Observe RESOURCE RETIRE TABLE FULL; policy unchanged
 verified,function,,0x80030D00,,Resource timer tick,Original synthetic test expires with outstanding=2,Prove resource-specific ownership before modifying free
 verified,function,,0x80038B4C,,Deferred free timer tick,Original synthetic test expires after16 ticks,Real gameplay reachability and lifetime remain open
+verified,function,,0x80038BC8,,Allocate/copy paired vertex buffers object+6C/+70,ROM-reviewed path; graphics-ownership-audit.json; paired-vertex-lifetime.md,Track destruction vs queued parse
+verified,function,,0x80038D58,,Morph selected bank vertices via801A9544,ROM-reviewed path; graphics-ownership-audit.json; paired-vertex-lifetime.md,Paired isolation checked; lifetime on destruction open
+verified,function,,0x80038C58,,Retire paired vertices and clear both owner pointers,ROM-reviewed path; graphics-ownership-audit.json; paired-vertex-lifetime.md,Overflow reachability and safe retirement pending
+verified,function,,0x8003AC14,,Emit segment binding for selected dynamic vertex bank,ROM-reviewed path; graphics-ownership-audit.json; paired-vertex-lifetime.md,Follow concrete task publication and completion
+verified,function,,0x8002F594,,Depth fill display-list builder; not CPU pixel writer,ROM-reviewed path; graphics-ownership-audit.json; paired-vertex-lifetime.md,No new CPU framebuffer hook needed here
