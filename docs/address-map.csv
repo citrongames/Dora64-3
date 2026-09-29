@@ -4934,4 +4934,4 @@ verified,entry-hook,,0x8002FE20,,Mark task publication before original SendMesg,
 verified,entry-hook,,0x80038B10,,Record retirement ticket; retain overflow,Original v61 entry trace; retirement-guard-address/thread-check; docs/retirement-guard.md,Original guest enqueue continues
 verified,entry-hook,,0x80038B4C,,Gate expiry on parse completion; drain overflow,Original v61 entry trace; retirement-guard-address/thread-check; docs/retirement-guard.md,Original tick/free retained
 verified,entry-hook,,0x80038AE4,,Registry-only reset retains live retirements,Original v61 entry trace; retirement-guard-address/thread-check; docs/retirement-guard.md,Remaining countdown preserved
-verified,entry-hook,,0x80033A14,,Heap reinit invalidates old retirement addresses,Original v61 entry trace; retirement-guard-address/thread-check; docs/retirement-guard.md,Published prior tasks must be parsed
+verified,entry-hook,,0x80033A14,,Heap reinit invalidates old retirement addresses,Original v61 entry trace; retirement-guard-address/thread-check; docs/retirement-guard.md,Invalidate retirement addresses only; task tickets survive heap init; test-020 startup regression

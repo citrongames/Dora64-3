@@ -1,11 +1,11 @@
 {
   "scope": "Original registry and heap init with production retirement guard; recording free endpoint; no game/GPU",
-  "result": "PASS: original registry timing; build/publication/parse lifetime; out-of-order completions; newer tasks do not delay old retirement; 102-entry overflow recovery; 100 overflow cycles; registry-only reset; concurrent parse completion; heap-reset address reuse. No GPU.",
+  "result": "PASS: original registry timing; build/publication/parse lifetime; out-of-order completions; newer tasks do not delay old retirement; 102-entry overflow recovery; 100 overflow cycles; registry-only reset; concurrent parse completion; heap-reset address reuse; published startup task across heap init retains ticket. No GPU.",
   "sanitizers": "address exit0; overflow pointers accounted for; GPU/driver untested",
   "source_sha256": {
-    "src/resource_retirement.cpp": "384a4e5d4bab07b1880aa254ba0857267a9895df90fac016fbccf19377eba7e2",
+    "src/resource_retirement.cpp": "96ee13419b4bfac0fd6cb7dc5380b6aedc995cca6ad8760e08a217a38a043e9d",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f",
-    "research/retirement-guard-check.cpp": "7720b81b2dc3be689862387c2372a90b2d032b9d59b0e1d313f8e8a3d58048a9",
+    "research/retirement-guard-check.cpp": "ac989e1bf112d1a1358140282a7fbed3075dd66d2f190628dff49d7b49a688b1",
     "tools/check_retirement_guard.py": "918c2cdd8840558b23e18c8d011fbd5042291bbcf98c57b478a9eff05344bbd6"
   },
   "generation_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6"

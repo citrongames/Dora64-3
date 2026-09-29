@@ -47,6 +47,20 @@ int main(){
  assert(dora3::retirement::stats().spill_pending==0);
  ticks(20);assert(freed.empty());
  enqueue(0x80200000);publish(0);done(0);ticks(16);assert(freed.size()==1);
+ // User test-019: a published startup task is still outstanding at scene heap init.
+ // Heap bookkeeping reset must not assert that every outstanding task reads that heap.
+ clean();begin(0);publish(0);
+ ctx.r4=int32_t(0x80385000);ctx.r5=0x30000;dora3_game_heap_region_init(ram,&ctx);
+ assert(uint32_t(ctx.r2)==0x80385000 && freed.empty());
+ // Reset must keep the task ticket alive, even though it discards old retirement records.
+ enqueue(0x80385010);ticks(20);assert(freed.empty());done(0);ticks(1);
+ assert(freed.contains(0x80385010));
+ // Also discard old overflow records on heap replacement without freeing reused addresses.
+ clean();begin(0);publish(0);for(unsigned i=0;i<102;++i)enqueue(0x80200000+i*32);
+ ctx.r4=int32_t(0x80200000);ctx.r5=0x10000;dora3_game_heap_region_init(ram,&ctx);
+ assert(dora3::retirement::stats().spill_pending==0);ticks(20);assert(freed.empty());
+ enqueue(0x80200010);ticks(20);assert(freed.empty());done(0);ticks(1);
+ assert(freed.size()==1 && freed.contains(0x80200010));
  clean();assert(dora3::retirement::stats().held_ticks==0);
- std::cout<<"PASS: original registry timing; build/publication/parse lifetime; out-of-order completions; newer tasks do not delay old retirement; 102-entry overflow recovery; 100 overflow cycles; registry-only reset; concurrent parse completion; heap-reset address reuse. No GPU.\n";
+ std::cout<<"PASS: original registry timing; build/publication/parse lifetime; out-of-order completions; newer tasks do not delay old retirement; 102-entry overflow recovery; 100 overflow cycles; registry-only reset; concurrent parse completion; heap-reset address reuse; published startup task across heap init retains ticket. No GPU.\n";
 }

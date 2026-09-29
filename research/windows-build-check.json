@@ -1,16 +1,16 @@
 {
   "scope": "Windows x64 RT64 and Linux diagnostic compiled; TSAN and ASan/LSan components only; no game/renderer launch",
-  "base_commit": "05eea3257a9210629f19893d1678cb90f7690135",
-  "build_id": "test-019",
+  "base_commit": "0cb7d05ea1aa0b4986917317dc66eb69bbb1d52d",
+  "build_id": "test-020",
   "cpu_generation": "startup-v61",
   "audio_generation": "audio-rsp-v1",
   "original_bodies": 4778,
   "total_symbols": 4827,
   "sdk_replacements": 44,
   "native_replacements": 5,
-  "generated_delta": "CPU and audio generation receipts unchanged versus test-018; existing entry traces integrate guard",
-  "executable_sha256": "4a7146b1f5ca09ec4bfe38721fdd04334e099163be6299dccc82ba045476846f",
-  "linux_diagnostic_sha256": "9ba7b36e79591336ba0c10bcc7b6b24b5290e4dbd2222e9d65562360d63e2a69",
+  "generated_delta": "CPU and audio generation unchanged versus test-019; invalid startup heap assertion removed",
+  "executable_sha256": "43dcd97c5fc8d3428150600fcf70dca9a68cb3bcc2ee989943fafe4653237d1d",
+  "linux_diagnostic_sha256": "de1228526c296179ece80c597f837b0461d3d8de220f0f66e2b8ed490afdfde9",
   "source_sha256": {
     "src/graphics_sync.cpp": "d8f5674176f89f101a511fa42eeb843b55bdecfc21f5fe59b25ec9a44d36a49c",
     "src/graphics_sync.hpp": "03fb24d4c08a7403d809cc8e1e9a594c1c029f51aa3e3f42a99a4a93aaacd655",
@@ -30,7 +30,7 @@
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
     "tools/overlay_layout.py": "cc7000d4a188115cb9ba2c04de60691b2431edf4a858a393c2877b6b5feaed3e",
     "tools/local_jump_tables.py": "8f67b564786898b345906e7161580a66b3284fe5aa191c093216ba8bba429dde",
-    "src/resource_retirement.cpp": "384a4e5d4bab07b1880aa254ba0857267a9895df90fac016fbccf19377eba7e2",
+    "src/resource_retirement.cpp": "96ee13419b4bfac0fd6cb7dc5380b6aedc995cca6ad8760e08a217a38a043e9d",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f"
   },
   "generated_receipt_sha256": {
@@ -38,8 +38,9 @@
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "component_receipts": {
-    "retirement-guard-address-check.json": "0c11d9b0c7e9250b74f0695a4f8f4352e6346886b50a18bc98b65833526e885d",
-    "retirement-guard-thread-check.json": "d535f0fb45f16ad9a14c08dbff0d42321a1a2ebaadfb4924a9ca3445eb4100bd",
+    "retirement-guard-address-check.json": "9402669a67c05c8cf72eeeafa231c1bc28859034122e51e5ca31a0ff142dcad4",
+    "retirement-guard-thread-check.json": "5a6d29b7d2e8c78cbb3a1827ec739b70388922b0914b3a1651d251a38e6ca225",
+    "startup-retirement-regression.json": "acdfc7f9f8481593d0ab64e97ce9792709ba608bdb141e77130a9991ef5ad5e9",
     "vi-sync-check.json": "f45522cdd4d80a5066a49a787e6e585e2e5d1243580ba78ccf4fee4d1462ff1f",
     "synchronization-check.json": "125d1959b89dd3a382c4d1250c30eb163d0eb8e024ecd52065ece1f3310f8875",
     "frame-memory-check.json": "fdf2cd062dacc7257054a7d963dd104f1e4f84e52900bd54ac0993e1b4735ea8"
@@ -52,7 +53,7 @@
   },
   "remaining_risks": [
     "Dynamic resource timer expiry vs actual graphics reads needs ownership proof",
-    "Paired vertex queue now guarded; 512-slot resource registry and other direct frees remain open",
+    "Paired vertex guard retained; all other heap/graphics intersections still require analysis",
     "Other CPU framebuffer writers and raw RDP visual path not fully validated",
     "GPU/VRAM and long playthrough not tested"
   ]

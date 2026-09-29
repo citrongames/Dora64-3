@@ -1,0 +1,14 @@
+{
+  "cause": "Invalid global assertion: any published unparsed task forbids heap initialization",
+  "affected_build": "test-019",
+  "fixed_build": "test-020",
+  "user_log_sha256": "3906bc3c8b398f3d3327ed6b8998b21b4d2f04d59dd3dbab09c4b09d036e2cf5",
+  "negative_control_sha256": "45b64f386ba77f64c660f188d9f49b75bb1ccb81d5f1c9c77ca435809565be68",
+  "negative_result": "Original test-019 guard with new regression case: SIGABRT and same invariant",
+  "positive_results": [
+    "retirement-guard-address-check.json",
+    "retirement-guard-thread-check.json"
+  ],
+  "game_launched_by_agent": false,
+  "scope": "Heap reset clears stale retirement pointers while task ledger remains active; not proof of all heap/graphics dependencies"
+}

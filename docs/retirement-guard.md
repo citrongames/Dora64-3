@@ -1,4 +1,4 @@
-# Test-019 — безопасное отложенное освобождение парных вершин
+# Test-020 — отложенное освобождение парных вершин
 
 Исправление относится к реестру800DD420 и буферам object+6C/+70, исследованным
 в paired-vertex-lifetime.md. Оно не покрывает автоматически resource registry801AEC00,
@@ -52,9 +52,12 @@ RDRAM, делённая на выравнивание аллокатора. Эт
  новому heap: адреса могут принадлежать уже другим объектам. Сами старые allocations
  поглощаются переинициализацией всей области, индивидуальный free не нужен.
 - Guest-переход800271B0 ждёт outstanding=0 перед cleanup/возобновлением process.
- Guard дополнительно проверяет, что при heap init нет опубликованных неразобранных
- задач. Строящийся новый кадр может выполнять scene init до публикации; его ticket
- сохраняется. Нарушение протокола диагностируется, не маскируется ранним free.
+ В test-019 ошибочно добавлялся запрет любого heap init при опубликованной задаче.
+ Пользовательский startup log опроверг предположение: первый setup DL ещё ожидает
+ разбора при инициализации сцены. В test-020 запрет убран. Heap reset инвалидирует
+ старые retirement addresses, но НЕ отменяет task tickets. Сам факт активной задачи
+ не доказывает, что она читает переинициализируемую область. Безопасность всех
+ возможных heap/graphics пересечений этим ограниченным guard не доказана.
 - Полный runtime reset очищает ledger на существующем graphics/guest barrier.
 
 Мьютекс защищает только два task slots и счётчик tickets. Guest retirement records
@@ -73,7 +76,9 @@ heap init, enqueue и tick вместе с production guard. Free endpoint ре�
 - все102 освобождения при переполнении исходной очереди100;
 -100 повторных переполнений без оставшихся запросов;
 - registry-only reset с сохранением остатка таймера;
-- конкурентный consumer и reuse адреса после heap reset.
+- конкурентный consumer и reuse адреса после heap reset;
+- опубликованный startup task через heap init, сохранность его ticket и отсутствие
+  преждевременного free новых записей; heap reset с заполненным overflow.
 
 ASan/LSan и отдельно ThreadSanitizer: exit0. Это стенды без игры и GPU, не доказательство
 полной совместимости всех сцен. Windows RT64 и Linux diagnostic скомпилированы.
@@ -87,6 +92,19 @@ python3 tools/check_retirement_guard.py --generated build-local/startup-v61 --sa
 
 Отчёты research/retirement-guard-address-check.json,
 research/retirement-guard-thread-check.json, research/windows-build-check.json.
-Пользовательская сборка test-019; saves/settings прежние, ROM только рядом с EXE,
+Пользовательская сборка test-020 (test-019 имеет подтверждённую startup regression); saves/settings прежние, ROM только рядом с EXE,
 без лимита длительности. Остаток аудита: отдельный512-slot resource registry,
 прочие direct free/CPU framebuffer writers, raw RDP и реальный расход GPU-памяти.
+
+
+## Регрессия test-019 и исправление test-020
+
+Лог пользователя logs/1790653280923/runtime.log: SUBMITTED task=1, bytes=30(hex),
+затем initial process800433D8, SCENE SELECT id34/state2,800314E4 и
+RESOURCE RETIRE invariant: heap reset before published task parsed.
+Это std::abort от добавленной проверки, а не новая отсутствующая функция игры.
+Общий запрет был основан на необоснованном распространении переходного протокола
+на startup. Предыдущий стенд проверял heap reset при строящемся кадре, но пропустил
+опубликованный незавершённый кадр. Регрессия воспроизведена новым случаем на старой
+реализации (SIGABRT); исправленная реализация прошла ASan/LSan и TSAN.
+Игра/renderer агентом не запускались. Реальный startup test-020 выполняет пользователь.

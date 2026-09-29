@@ -69,12 +69,10 @@ void publish(uint32_t bank){
  t.published=true;
 }
 void clear_for_heap(uint8_t* rdram){
- // A newly building task may initialize its scene, but no published old task
- // may still read the heap being reinitialized. The guest transition waits for DP.
- {
-  std::scoped_lock lock(task_mutex);
-  for(auto& t:tasks)if(t.active && t.published)invalid("heap reset before published task parsed");
- }
+ // Heap initialization invalidates old retirement addresses, not task tickets.
+ // Startup legitimately initializes the scene heap with its first setup DL still
+ // pending. An active task alone does not prove a reference into the old heap.
+ // Leave the task ledger intact so later retirements still wait for its parse.
  clear_entries();
  for(int i=0;i<100;++i){MEM_W(i*8,table)=0;MEM_B(i*8+4,table)=0;}
 }

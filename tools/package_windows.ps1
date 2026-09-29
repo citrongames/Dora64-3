@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$CrtDirectory,
-    [string]$BuildId = 'test-019'
+    [string]$BuildId = 'test-020'
 )
 $ErrorActionPreference = 'Stop'
 if ($BuildId -notmatch '^[a-zA-Z0-9-]+$') { throw 'Invalid build ID.' }
@@ -55,7 +55,7 @@ $report = [ordered]@{
     visual_input_audible_validation = 'pending user test'
     compiler = 'MSVC 19.44; RelWithDebInfo /O2 /Zi /EHsc; dynamic CRT'
     previous_user_test = 'test-014: available mini-games user-tested without observed crashes; progression-locked variants untested'
-    current_test_scope = 'Paired vertex retirement waits for relevant build/parse tickets; retains original 16 ticks; overflow requests preserved; registry and heap reset handled separately. ASan/LSan and TSAN components passed. Includes test-018 fixes; broader resource/GPU audit remains open. Shared saves/settings; no session limit.'
+    current_test_scope = 'Fix test-019 startup abort: heap initialization does not require every published task to finish. Task tickets and paired vertex retirement/overflow protection retained. Regression reproduced as SIGABRT before fix; ASan/LSan and TSAN passed after. Game launch pending user. Shared saves/settings; no session limit.'
     rom = 'external; exact filename beside EXE only; never copied by this script'
     files_sha256 = $hashes
     source = $stage

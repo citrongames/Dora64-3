@@ -1024,3 +1024,19 @@ Guard не держит mutex через SDK и не ждёт global outstanding
 отдельный registry reset и heap reuse. CPU generation не менялась. Windows/Linux
 собраны без игрового запуска. Область исправления ограничена парными вершинами;
 512-slot registry и прочие пути остаются открыты. См. retirement-guard.md.
+
+
+## 2026-09-29 — test-020: наша startup regression
+
+Источник: logs/1790653280923/runtime.log. Первый SUBMITTED task=1/bytes=30 ещё
+не разобран, initial process вызывает scene heap init; наш общий assert делает
+abort с сообщением heap reset before published task parsed. Предположение о
+нулевой очереди при любом heap init оказалось неверным. Предыдущий тест покрывал
+строящийся кадр, но не опубликованный кадр через startup heap initialization.
+
+Сначала новый regression case воспроизвёл тот же SIGABRT на test-019 source.
+Затем удалён только необоснованный глобальный запрет. Tickets НЕ сбрасываются:
+новые retirements всё ещё ждут активный task, старые адреса не освобождаются в
+новом heap. ASan/LSan и TSAN прошли, включая heap reset с overflow. Защита обычного
+retirement и сохранение overflow не отключены. Windows/Linux собраны без запуска.
+Нельзя объявлять этим доказанной безопасность всех heap/graphics пересечений.
