@@ -1,4 +1,5 @@
 #include "native_game_loop.hpp"
+#include "native_model_animation.hpp"
 #include "native_frame_session.hpp"
 #include "frame_lights.hpp"
 #include "native_scene_policy.hpp"
@@ -79,7 +80,10 @@ void build_frame(uint8_t* rdram,recomp_context* ctx,const FrameTicket& ticket,Fr
     write_fade(rdram,fade->sample(read_fade(rdram),monotonic_time()));
     if(!owner.publish(ticket))throw std::logic_error("Native frame publication failed");
     ctx->r4=int32_t(dora3::frame::bank0+ticket.bank*dora3::frame::bank_stride);
-    dora3_graphics_frame_build(rdram,ctx);
+    {
+        ModelFrameScope models(rdram,ctx,monotonic_time(),ticket.bank);
+        dora3_graphics_frame_build(rdram,ctx);
+    }
     // Same ordering as the original loop: increment after blocking submit;
     // queued completions are consumed only after returning to receive.
     ++word(rdram,count);word(rdram,next_bank)=ticket.bank^1;
@@ -110,6 +114,7 @@ extern "C" void dora3_native_loop_fade_command(uint8_t* rdram,recomp_context*) {
     if(game_frame_session().phase()==Phase::Native && active_policy && fade)
         write_fade(rdram,fade->before_command(read_fade(rdram),monotonic_time()));
 }
+extern "C" int dora3_native_loop_owns_frame_banks() { return game_frame_session().phase()!=Phase::Original; }
 extern "C" int dora3_native_loop_owns_fade() { return game_frame_session().phase()==Phase::Native && active_policy; }
 extern "C" void dora3_native_loop_scene_ready(uint8_t*,recomp_context*) { native_scene34_ready(); }
 extern "C" void dora3_native_loop_transition(uint8_t*,recomp_context*) {
@@ -127,5 +132,5 @@ extern "C" void dora3_native_loop_retire(uint8_t* rdram,recomp_context* ctx) {
 }
 void dora3_native_loop_reset() {
     std::lock_guard lock(task_mutex);pending={};invalidate_native_scene_policy();active_policy=nullptr;entry_policy=nullptr;
-    fade.reset();applied_fps=0;frames=0;
+    fade.reset();applied_fps=0;frames=0;game_model_animation().reset();
 }

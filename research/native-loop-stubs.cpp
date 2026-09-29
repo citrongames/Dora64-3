@@ -12,3 +12,8 @@ extern "C" void dora3_native_loop_retire(uint8_t*,recomp_context*) {}
 void dora3_native_loop_reset() {}
 
 extern "C" void dora3_native_loop_fade_command(uint8_t*,recomp_context*) {}
+
+extern "C" void dora3_native_model_hook(uint8_t*,recomp_context*,uint32_t) {}
+
+extern "C" int dora3_native_model_morph_allowed(uint8_t*,recomp_context*) {return 1;}
+extern "C" int dora3_native_loop_owns_frame_banks() {return 0;}

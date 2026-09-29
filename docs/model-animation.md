@@ -1,3 +1,8 @@
+> Актуализация v69: общий adapter `src/native_model_animation.*` подключён к
+> lifecycle/pose/time хукам и native frame scope. Он проверен на исходных функциях
+> с искусственными ресурсами. Допуск игровых3D сцен пока НЕ расширен; полный FPS
+> всей игры остаётся незавершённым. Последний выданный EXE — test-026.
+
 # Общая модельная анимация: подтверждённый контракт и интеграция
 
 2026-09-29. Анализ закреплённого ROM, а не перенос структуры Dora64.
@@ -79,3 +84,50 @@ Destroy8003B77C снимает morph, channels, дерево и сам model; al
 В test-026 model hooks не активированы: этот документ фиксирует проверенную основу
 и конкретные точки общего подключения. Нельзя считать частоту3D повышенной на
 основании одного этого анализа. Живая реализация этой итерации — общие fade commands.
+
+## v69: реализованный общий adapter
+
+Create hook стоит после завершения8003B560, в8003B6B4 (model вv0).
+Реестр владеет только host-метаданными и не владеет гостевыми allocation.
+Повторный create по тому же адресу полностью заменяет старое состояние.
+Bind/release/seek/pause/clamp явно инвалидируют observation; destruction удаляет
+его до освобождения CPU bones. Runtime reset очищает реестр только после барьера.
+
+Уточнение причины:8003B7D0 сам не освобождает heap/models. Он сбрасывает параметры
+графической подсистемы и retirement table. Поэтому adapter сбрасывает там clocks,
+но сохраняет живых owners. Heap init отдельно инвалидирует записи затронутого
+региона, включая bone/resource pointers, а не только адрес model.
+
+80030850 фиксирует начало исходного логического шага и реальный divider801A39DC.
+800393C4 фиксирует последнее настоящее вычисление позы;8003948C — исходные время,
+rate и ожидаемый результат оригинального advance. Гостевые time/end flags не
+переписываются native clock: повторные читатели по-прежнему получают исходный bit.
+
+В новом кадре adapter рассчитывает исходные linear/Hermite channels от времени,
+сохраняя pose-before-advance. Используется свободный bank FrameTicket. Костные
+TRS временно доступны всему build, затем восстанавливаются перед возвратом к
+логике. Оригинальный matrix pass8003997C видит новую позу. Это реальное вычисление
+source curves, не смешивание готовых RT64 frames. Результаты матриц остаются
+выходом draw; их игровые consumers ещё входят в обязательный integration audit.
+
+Когда native владеет банками,80038D58 вне native build не пишет вершины: запись
+перенесена в свободный frame bank. Для paused/stale модели отдельно вычисляются
+только type10 morph channels последней настоящей позы, без изменения ручных
+bone overrides. Другой bank не копируется и не переписывается.
+
+Прямой closure minigame4 draw включает destroy_model. Это разрешено: временная
+поза восстанавливается до удаления CPU bones; morph vertices используют имеющийся
+resource-retirement protocol. Неизученные animation commands внутри draw дают
+явную ошибку, не молчаливый пропуск. Phase1-пути до общего включения ещё проверяются.
+
+Проверка `check_native_model_animation.py`: реальные constructor/bind/pose/curves/
+matrix/morph/destructor, искусственный ресурс, allocator endpoints.74 новых
+samples при60/73/120/144/165/360 и обоих divider; отдельные Hermite/matrix,
+bank isolation, guest context/time/flags, pause/seek/clamp/rebind, stale clocks,
+deferred morph, draw deletion, same-pointer reuse и unknown-write rollback.
+ASan/LSan; UBSan на новом C++. Это не прохождение и не измерение GPU FPS.
+
+Рисование миниигры3 читает время анимации для visibility18..30; debug draw сцены1
+выводит время текстом. Эти reads пока остаются исходными, как discrete state.
+Новое покрытие сцен, движение и камера не объявляются готовыми этим adapter.
+См. native-motion.md и общий критерий готовности в native-framerate.md.

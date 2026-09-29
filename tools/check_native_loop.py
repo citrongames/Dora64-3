@@ -18,7 +18,7 @@ def main():
  for n,b in bodies.items():
   pc=re.search(r'// 0x([0-9A-F]+):',b)
   if pc and int(pc[1],16) in {0x800331F8,0x8003321C,0x8003324C,0x80047EF4,0x800271B0,0x8003CD48,0x8003D39C,0x8004281C,0x80038B4C}:stop.add(n)
- todo=['dora3_game_message_loop','dora3_scene34_draw','dora3_scene34_update'];selected={};external=set()
+ todo=['dora3_s0_800393C4','dora3_game_message_loop','dora3_scene34_draw','dora3_scene34_update'];selected={};external=set()
  while todo:
   n=todo.pop()
   if n in selected:continue
@@ -33,7 +33,7 @@ def main():
  runtime=r/'build-deps/lib/N64ModernRuntime'
  flags=['-O1','-g','-pthread','-fsanitize=address','-fno-omit-frame-pointer','-fno-strict-aliasing',*['-I'+str(x) for x in [r/'src',g,g/'RecompiledFuncs',out,runtime/'N64Recomp/include']]]
  subprocess.run(['gcc','-std=c17',*flags,'-c',str(out/'functions.c'),'-o',str(out/'functions.o')],check=True)
- sources=[r/'src'/n for n in ['native_game_loop.cpp','native_scene_policy.cpp','native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_present.cpp','native_present_hooks.cpp','native_graphics_pump.cpp']]+[r/'research/native-loop-check.cpp']
+ sources=[r/'src'/n for n in ['native_model_animation.cpp','native_game_loop.cpp','native_scene_policy.cpp','native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_present.cpp','native_present_hooks.cpp','native_graphics_pump.cpp']]+[r/'research/native-loop-check.cpp']
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check'),str(out/'seed.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1')).strip()
  tracked=sources+[r/'src/native_game_loop.hpp',r/'src/native_scene_policy.hpp',r/'src/native_frame_session.hpp',r/'src/frame_lights.hpp',r/'tools/generate_startup.py',Path(__file__).resolve()]

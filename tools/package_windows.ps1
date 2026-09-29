@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$CrtDirectory,
-    [string]$BuildId = 'test-026'
+    [string]$BuildId = 'test-027'
 )
 $ErrorActionPreference = 'Stop'
 if ($BuildId -notmatch '^[a-zA-Z0-9-]+$') { throw 'Invalid build ID.' }
@@ -52,10 +52,10 @@ $report = [ordered]@{
     api = 'RT64 Automatic (Dora64 policy)'
     compiled = $true
     locally_launched = $false
-    visual_input_audible_validation = 'pending user test'
+    visual_input_audible_validation = 'not performed; no test requested'
     compiler = 'MSVC 19.44; RelWithDebInfo /O2 /Zi /EHsc; dynamic CRT'
-    previous_user_test = 'test-024: frame rate interpolation artifacts reported; native conversion requested'
-    current_test_scope = 'Shared native game loop and settings; Manual native image-policy only, unsupported scenes keep original cadence without interpolation; Original/Display preserved. Full ROM timing inventory. Windows/Linux compiled, synthetic loop checked, game/GPU not launched.'
+    previous_user_test = 'test-026: no crash reported in user check; not a full run'
+    current_test_scope = 'Shared model lifetime/pose adapter and morph bank ownership; synthetic original curve/matrix checks. Manual eligibility remains scene34 image/white fade; other scenes keep original cadence. Full native FPS incomplete. Windows/Linux compiled; game/GPU not launched; archived without requesting a test.'
     rom = 'external; exact filename beside EXE only; never copied by this script'
     files_sha256 = $hashes
     source = $stage

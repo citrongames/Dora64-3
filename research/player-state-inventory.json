@@ -1,0 +1,3370 @@
+{
+  "scope": "Verified pointer pairs and compiled handler bodies; timing and state semantics are NOT converted",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "script_sha256": "e4eaf315c51ca06df9179104f05e02abcefe9576d0538da4203c42d8b43a0621",
+  "source_layout_sha256": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
+  "section": ".scene1",
+  "table": "0x801FA6B0",
+  "dispatcher": "0x801C8B28",
+  "rows": [
+    {
+      "state": "0x00",
+      "table_address": "0x801FA6B0",
+      "first": "0x801C30E8",
+      "second": "0x801C30F0",
+      "handlers": [
+        "dora3_s3_core_801C30E8",
+        "dora3_s3_core_801C30F0"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x01",
+      "table_address": "0x801FA6B8",
+      "first": "0x801C3300",
+      "second": "0x801C3464",
+      "handlers": [
+        "dora3_s3_core_801C3300",
+        "dora3_s3_core_801C3464"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x02",
+      "table_address": "0x801FA6C0",
+      "first": "0x801C3300",
+      "second": "0x801C3464",
+      "handlers": [
+        "dora3_s3_core_801C3300",
+        "dora3_s3_core_801C3464"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x03",
+      "table_address": "0x801FA6C8",
+      "first": "0x801C3300",
+      "second": "0x801C3464",
+      "handlers": [
+        "dora3_s3_core_801C3300",
+        "dora3_s3_core_801C3464"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x04",
+      "table_address": "0x801FA6D0",
+      "first": "0x801C3300",
+      "second": "0x801C3464",
+      "handlers": [
+        "dora3_s3_core_801C3300",
+        "dora3_s3_core_801C3464"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x05",
+      "table_address": "0x801FA6D8",
+      "first": "0x801C3300",
+      "second": "0x801C3464",
+      "handlers": [
+        "dora3_s3_core_801C3300",
+        "dora3_s3_core_801C3464"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x06",
+      "table_address": "0x801FA6E0",
+      "first": "0x801C35EC",
+      "second": "0x801C35F4",
+      "handlers": [
+        "dora3_s3_core_801C35EC",
+        "dora3_s3_core_801C35F4"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x07",
+      "table_address": "0x801FA6E8",
+      "first": "0x801C361C",
+      "second": "0x801C3624",
+      "handlers": [
+        "dora3_s3_core_801C361C",
+        "dora3_s3_core_801C3624"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x08",
+      "table_address": "0x801FA6F0",
+      "first": "0x801C36A4",
+      "second": "0x801C3778",
+      "handlers": [
+        "dora3_s3_core_801C36A4",
+        "dora3_s3_core_801C3778"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x09",
+      "table_address": "0x801FA6F8",
+      "first": "0x801C3898",
+      "second": "0x801C3908",
+      "handlers": [
+        "dora3_s3_core_801C3898",
+        "dora3_s3_core_801C3908"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x0A",
+      "table_address": "0x801FA700",
+      "first": "0x801C39C0",
+      "second": "0x801C3ABC",
+      "handlers": [
+        "dora3_s3_core_801C39C0",
+        "dora3_s3_core_801C3ABC"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x0B",
+      "table_address": "0x801FA708",
+      "first": "0x801C3C04",
+      "second": "0x801C3CE8",
+      "handlers": [
+        "dora3_s3_core_801C3C04",
+        "dora3_s3_core_801C3CE8"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x0C",
+      "table_address": "0x801FA710",
+      "first": "0x801C3D8C",
+      "second": "0x801C3EAC",
+      "handlers": [
+        "dora3_s3_core_801C3D8C",
+        "dora3_s3_core_801C3EAC"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x0D",
+      "table_address": "0x801FA718",
+      "first": "0x801C3F34",
+      "second": "0x801C4018",
+      "handlers": [
+        "dora3_s3_core_801C3F34",
+        "dora3_s3_core_801C4018"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x0E",
+      "table_address": "0x801FA720",
+      "first": "0x801C4094",
+      "second": "0x801C4178",
+      "handlers": [
+        "dora3_s3_core_801C4094",
+        "dora3_s3_core_801C4178"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x0F",
+      "table_address": "0x801FA728",
+      "first": "0x801C421C",
+      "second": "0x801C4340",
+      "handlers": [
+        "dora3_s3_core_801C421C",
+        "dora3_s3_core_801C4340"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x10",
+      "table_address": "0x801FA730",
+      "first": "0x801C43C8",
+      "second": "0x801C44AC",
+      "handlers": [
+        "dora3_s3_core_801C43C8",
+        "dora3_s3_core_801C44AC"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x11",
+      "table_address": "0x801FA738",
+      "first": "0x801C4560",
+      "second": "0x801C4650",
+      "handlers": [
+        "dora3_s3_core_801C4560",
+        "dora3_s3_core_801C4650"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x12",
+      "table_address": "0x801FA740",
+      "first": "0x801C4750",
+      "second": "0x801C4868",
+      "handlers": [
+        "dora3_s3_core_801C4750",
+        "dora3_s3_core_801C4868"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x13",
+      "table_address": "0x801FA748",
+      "first": "0x801C488C",
+      "second": "0x801C4894",
+      "handlers": [
+        "dora3_s3_core_801C488C",
+        "dora3_s3_core_801C4894"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x14",
+      "table_address": "0x801FA750",
+      "first": "0x801C48E4",
+      "second": "0x801C4948",
+      "handlers": [
+        "dora3_s3_core_801C48E4",
+        "dora3_s3_core_801C4948"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x15",
+      "table_address": "0x801FA758",
+      "first": "0x801C4A6C",
+      "second": "0x801C4B5C",
+      "handlers": [
+        "dora3_s3_core_801C4A6C",
+        "dora3_s3_core_801C4B5C"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x16",
+      "table_address": "0x801FA760",
+      "first": "0x801C4C5C",
+      "second": "0x801C4D74",
+      "handlers": [
+        "dora3_s3_core_801C4C5C",
+        "dora3_s3_core_801C4D74"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x17",
+      "table_address": "0x801FA768",
+      "first": "0x801C4D98",
+      "second": "0x801C4DA0",
+      "handlers": [
+        "dora3_s3_core_801C4D98",
+        "dora3_s3_core_801C4DA0"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x18",
+      "table_address": "0x801FA770",
+      "first": "0x801C4E44",
+      "second": "0x801C4F7C",
+      "handlers": [
+        "dora3_s3_core_801C4E44",
+        "dora3_s3_core_801C4F7C"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x19",
+      "table_address": "0x801FA778",
+      "first": "0x801C50C0",
+      "second": "0x801C5220",
+      "handlers": [
+        "dora3_s3_core_801C50C0",
+        "dora3_s3_core_801C5220"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x1A",
+      "table_address": "0x801FA780",
+      "first": "0x801C5244",
+      "second": "0x801C524C",
+      "handlers": [
+        "dora3_s3_core_801C5244",
+        "dora3_s3_core_801C524C"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x1B",
+      "table_address": "0x801FA788",
+      "first": "0x801C529C",
+      "second": "0x801C533C",
+      "handlers": [
+        "dora3_s3_core_801C529C",
+        "dora3_s3_core_801C533C"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x1C",
+      "table_address": "0x801FA790",
+      "first": "0x801C545C",
+      "second": "0x801C554C",
+      "handlers": [
+        "dora3_s3_core_801C545C",
+        "dora3_s3_core_801C554C"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x1D",
+      "table_address": "0x801FA798",
+      "first": "0x801C574C",
+      "second": "0x801C5894",
+      "handlers": [
+        "dora3_s3_core_801C574C",
+        "dora3_s3_core_801C5894"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x1E",
+      "table_address": "0x801FA7A0",
+      "first": "0x801C58B8",
+      "second": "0x801C58C0",
+      "handlers": [
+        "dora3_s3_core_801C58B8",
+        "dora3_s3_core_801C58C0"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x1F",
+      "table_address": "0x801FA7A8",
+      "first": "0x801C5910",
+      "second": "0x801C59AC",
+      "handlers": [
+        "dora3_s3_core_801C5910",
+        "dora3_s3_core_801C59AC"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x20",
+      "table_address": "0x801FA7B0",
+      "first": "0x801C5A38",
+      "second": "0x801C5A78",
+      "handlers": [
+        "dora3_s3_core_801C5A38",
+        "dora3_s3_core_801C5A78"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x21",
+      "table_address": "0x801FA7B8",
+      "first": "0x801C5BAC",
+      "second": "0x801C5BF0",
+      "handlers": [
+        "dora3_s3_core_801C5BAC",
+        "dora3_s3_core_801C5BF0"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x22",
+      "table_address": "0x801FA7C0",
+      "first": "0x801C5C78",
+      "second": "0x801C5D10",
+      "handlers": [
+        "dora3_s3_core_801C5C78",
+        "dora3_s3_core_801C5D10"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x23",
+      "table_address": "0x801FA7C8",
+      "first": "0x801C5D90",
+      "second": "0x801C5DD0",
+      "handlers": [
+        "dora3_s3_core_801C5D90",
+        "dora3_s3_core_801C5DD0"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x24",
+      "table_address": "0x801FA7D0",
+      "first": "0x801C5EF0",
+      "second": "0x801C5F88",
+      "handlers": [
+        "dora3_s3_core_801C5EF0",
+        "dora3_s3_core_801C5F88"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x25",
+      "table_address": "0x801FA7D8",
+      "first": "0x801C6020",
+      "second": "0x801C6084",
+      "handlers": [
+        "dora3_s3_core_801C6020",
+        "dora3_s3_core_801C6084"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x26",
+      "table_address": "0x801FA7E0",
+      "first": "0x801C61B4",
+      "second": "0x801C61E8",
+      "handlers": [
+        "dora3_s3_core_801C61B4",
+        "dora3_s3_core_801C61E8"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x27",
+      "table_address": "0x801FA7E8",
+      "first": "0x801C6270",
+      "second": "0x801C62D4",
+      "handlers": [
+        "dora3_s3_core_801C6270",
+        "dora3_s3_core_801C62D4"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x28",
+      "table_address": "0x801FA7F0",
+      "first": "0x801C637C",
+      "second": "0x801C63F8",
+      "handlers": [
+        "dora3_s3_core_801C637C",
+        "dora3_s3_core_801C63F8"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x29",
+      "table_address": "0x801FA7F8",
+      "first": "0x801C659C",
+      "second": "0x801C65D0",
+      "handlers": [
+        "dora3_s3_core_801C659C",
+        "dora3_s3_core_801C65D0"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x2A",
+      "table_address": "0x801FA800",
+      "first": "0x801C6658",
+      "second": "0x801C66BC",
+      "handlers": [
+        "dora3_s3_core_801C6658",
+        "dora3_s3_core_801C66BC"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x2B",
+      "table_address": "0x801FA808",
+      "first": "0x801C6764",
+      "second": "0x801C67C8",
+      "handlers": [
+        "dora3_s3_core_801C6764",
+        "dora3_s3_core_801C67C8"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x2C",
+      "table_address": "0x801FA810",
+      "first": "0x801C68F8",
+      "second": "0x801C692C",
+      "handlers": [
+        "dora3_s3_core_801C68F8",
+        "dora3_s3_core_801C692C"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x2D",
+      "table_address": "0x801FA818",
+      "first": "0x801C69B4",
+      "second": "0x801C6A18",
+      "handlers": [
+        "dora3_s3_core_801C69B4",
+        "dora3_s3_core_801C6A18"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x2E",
+      "table_address": "0x801FA820",
+      "first": "0x801C6AA8",
+      "second": "0x801C6B08",
+      "handlers": [
+        "dora3_s3_core_801C6AA8",
+        "dora3_s3_core_801C6B08"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x2F",
+      "table_address": "0x801FA828",
+      "first": "0x801C6C68",
+      "second": "0x801C6D00",
+      "handlers": [
+        "dora3_s3_core_801C6C68",
+        "dora3_s3_core_801C6D00"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x30",
+      "table_address": "0x801FA830",
+      "first": "0x801C6D8C",
+      "second": "0x801C6E0C",
+      "handlers": [
+        "dora3_s3_core_801C6D8C",
+        "dora3_s3_core_801C6E0C"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x31",
+      "table_address": "0x801FA838",
+      "first": "0x801C6EA4",
+      "second": "0x801C6F30",
+      "handlers": [
+        "dora3_s3_core_801C6EA4",
+        "dora3_s3_core_801C6F30"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x32",
+      "table_address": "0x801FA840",
+      "first": "0x801C6FCC",
+      "second": "0x801C70C8",
+      "handlers": [
+        "dora3_s3_core_801C6FCC",
+        "dora3_s3_core_801C70C8"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x33",
+      "table_address": "0x801FA848",
+      "first": "0x801C7160",
+      "second": "0x801C729C",
+      "handlers": [
+        "dora3_s3_core_801C7160",
+        "dora3_s3_core_801C729C"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x34",
+      "table_address": "0x801FA850",
+      "first": "0x801C7338",
+      "second": "0x801C73F0",
+      "handlers": [
+        "dora3_s3_core_801C7338",
+        "dora3_s3_core_801C73F0"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x35",
+      "table_address": "0x801FA858",
+      "first": "0x801C74A0",
+      "second": "0x801C74BC",
+      "handlers": [
+        "dora3_s3_core_801C74A0",
+        "dora3_s3_core_801C74BC"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x36",
+      "table_address": "0x801FA860",
+      "first": "0x801C7534",
+      "second": "0x801C7550",
+      "handlers": [
+        "dora3_s3_core_801C7534",
+        "dora3_s3_core_801C7550"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x37",
+      "table_address": "0x801FA868",
+      "first": "0x801C75C8",
+      "second": "0x801C75E4",
+      "handlers": [
+        "dora3_s3_core_801C75C8",
+        "dora3_s3_core_801C75E4"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x38",
+      "table_address": "0x801FA870",
+      "first": "0x801C7654",
+      "second": "0x801C7670",
+      "handlers": [
+        "dora3_s3_core_801C7654",
+        "dora3_s3_core_801C7670"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x39",
+      "table_address": "0x801FA878",
+      "first": "0x801C77A0",
+      "second": "0x801C7810",
+      "handlers": [
+        "dora3_s3_core_801C77A0",
+        "dora3_s3_core_801C7810"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x3A",
+      "table_address": "0x801FA880",
+      "first": "0x801C7970",
+      "second": "0x801C79E0",
+      "handlers": [
+        "dora3_s3_core_801C7970",
+        "dora3_s3_core_801C79E0"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x3B",
+      "table_address": "0x801FA888",
+      "first": "0x801C7AB8",
+      "second": "0x801C7BF8",
+      "handlers": [
+        "dora3_s3_core_801C7AB8",
+        "dora3_s3_core_801C7BF8"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x3C",
+      "table_address": "0x801FA890",
+      "first": "0x801C7C7C",
+      "second": "0x801C7CE4",
+      "handlers": [
+        "dora3_s3_core_801C7C7C",
+        "dora3_s3_core_801C7CE4"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x3D",
+      "table_address": "0x801FA898",
+      "first": "0x801C7DAC",
+      "second": "0x801C7E70",
+      "handlers": [
+        "dora3_s3_core_801C7DAC",
+        "dora3_s3_core_801C7E70"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x3E",
+      "table_address": "0x801FA8A0",
+      "first": "0x801C7F3C",
+      "second": "0x801C7F98",
+      "handlers": [
+        "dora3_s3_core_801C7F3C",
+        "dora3_s3_core_801C7F98"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x3F",
+      "table_address": "0x801FA8A8",
+      "first": "0x801C80A0",
+      "second": "0x801C8118",
+      "handlers": [
+        "dora3_s3_core_801C80A0",
+        "dora3_s3_core_801C8118"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x40",
+      "table_address": "0x801FA8B0",
+      "first": "0x801C81B0",
+      "second": "0x801C8258",
+      "handlers": [
+        "dora3_s3_core_801C81B0",
+        "dora3_s3_core_801C8258"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x41",
+      "table_address": "0x801FA8B8",
+      "first": "0x801C83D8",
+      "second": "0x801C844C",
+      "handlers": [
+        "dora3_s3_core_801C83D8",
+        "dora3_s3_core_801C844C"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x42",
+      "table_address": "0x801FA8C0",
+      "first": "0x801C84F0",
+      "second": "0x801C84F8",
+      "handlers": [
+        "dora3_s3_core_801C84F0",
+        "dora3_s3_core_801C84F8"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    },
+    {
+      "state": "0x43",
+      "table_address": "0x801FA8C8",
+      "first": "0x801C85C8",
+      "second": "0x801C875C",
+      "handlers": [
+        "dora3_s3_core_801C85C8",
+        "dora3_s3_core_801C875C"
+      ],
+      "timing_conversion": "not_implemented",
+      "gameplay_role": "not_classified"
+    }
+  ],
+  "unique_handlers": {
+    "0x801C30E8": {
+      "name": "dora3_s3_core_801C30E8",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C30F0": {
+      "name": "dora3_s3_core_801C30F0",
+      "size": 52,
+      "sha256": "e96a02a273fc4c7b29bec1f39652e9c84f1d15dba34ce38c831cc1bb16acd27e",
+      "direct_calls": [
+        {
+          "site": "0x801C3100",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C3300": {
+      "name": "dora3_s3_core_801C3300",
+      "size": 356,
+      "sha256": "6398377ba8c58dc110499a7cc5ff4d50b65a73e1e660bc289818c1d6d1cca98d",
+      "direct_calls": [
+        {
+          "site": "0x801C3308",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C3318",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C3328",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C334C",
+          "target": "0x801C383C"
+        },
+        {
+          "site": "0x801C3368",
+          "target": "0x801C2580"
+        },
+        {
+          "site": "0x801C338C",
+          "target": "0x801C3638"
+        },
+        {
+          "site": "0x801C33D0",
+          "target": "0x801C2798"
+        },
+        {
+          "site": "0x801C3430",
+          "target": "0x801C8144"
+        },
+        {
+          "site": "0x801C3440",
+          "target": "0x801C8390"
+        },
+        {
+          "site": "0x801C3450",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C3464": {
+      "name": "dora3_s3_core_801C3464",
+      "size": 372,
+      "sha256": "3a3b3ab1ad650fb27e548d783d332ed6ed8465bc3e7b182593811238be2067b3",
+      "direct_calls": [
+        {
+          "site": "0x801C346C",
+          "target": "0x801C224C"
+        },
+        {
+          "site": "0x801C3474",
+          "target": "0x801C1594"
+        },
+        {
+          "site": "0x801C34C0",
+          "target": "0x801C0B7C"
+        },
+        {
+          "site": "0x801C3520",
+          "target": "0x80042838"
+        },
+        {
+          "site": "0x801C3538",
+          "target": "0x801C1664"
+        },
+        {
+          "site": "0x801C3578",
+          "target": "0x80042838"
+        },
+        {
+          "site": "0x801C358C",
+          "target": "0x800428C8"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C35EC": {
+      "name": "dora3_s3_core_801C35EC",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C35F4": {
+      "name": "dora3_s3_core_801C35F4",
+      "size": 20,
+      "sha256": "fb5e33b057b0ec6636ab04592da7ac382a800e66ab022b8b815c7583e5dc66b3",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C361C": {
+      "name": "dora3_s3_core_801C361C",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C3624": {
+      "name": "dora3_s3_core_801C3624",
+      "size": 20,
+      "sha256": "fb5e33b057b0ec6636ab04592da7ac382a800e66ab022b8b815c7583e5dc66b3",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C36A4": {
+      "name": "dora3_s3_core_801C36A4",
+      "size": 212,
+      "sha256": "9fb7f5794d2f580d0003c166731fda35ea33d0b1102d344df1921e2b090a1cc8",
+      "direct_calls": [
+        {
+          "site": "0x801C36AC",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C36BC",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C36CC",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C372C",
+          "target": "0x801C383C"
+        },
+        {
+          "site": "0x801C3764",
+          "target": "0x801C2798"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C3778": {
+      "name": "dora3_s3_core_801C3778",
+      "size": 196,
+      "sha256": "d30257c8bfe2d5295b1cc93dba16f4692a9527683075ae4a325cf7d3fc549740",
+      "direct_calls": [
+        {
+          "site": "0x801C3788",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C3818",
+          "target": "0x801C1820"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C3898": {
+      "name": "dora3_s3_core_801C3898",
+      "size": 112,
+      "sha256": "2c4cdb9e5972ded458fb3e9bd2b1b3a8f9819a83de053f995d121c8cbcd79b91",
+      "direct_calls": [
+        {
+          "site": "0x801C38A0",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C38B0",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C38C0",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C38E4",
+          "target": "0x801C3934"
+        },
+        {
+          "site": "0x801C38F4",
+          "target": "0x801C2798"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C3908": {
+      "name": "dora3_s3_core_801C3908",
+      "size": 44,
+      "sha256": "c43d472c99fc3a46328b85b0c01ac6e42ba5c39b9167e10ede33605ec1b97b97",
+      "direct_calls": [
+        {
+          "site": "0x801C3910",
+          "target": "0x801C1820"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C39C0": {
+      "name": "dora3_s3_core_801C39C0",
+      "size": 252,
+      "sha256": "025166334705baf8e6ca7cc258d1b3953ace861b538eeb2f9f652b6263604272",
+      "direct_calls": [
+        {
+          "site": "0x801C39C8",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C39D8",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C39E8",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C3A0C",
+          "target": "0x801C383C"
+        },
+        {
+          "site": "0x801C3A28",
+          "target": "0x801C2580"
+        },
+        {
+          "site": "0x801C3A4C",
+          "target": "0x801C3638"
+        },
+        {
+          "site": "0x801C3A98",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C3AA8",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C3ABC": {
+      "name": "dora3_s3_core_801C3ABC",
+      "size": 236,
+      "sha256": "51acba164c46450d2bcf749dfa3a75849592e805659cc3300e2b6fc6786c684d",
+      "direct_calls": [
+        {
+          "site": "0x801C3ACC",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C3B34",
+          "target": "0x801C0B7C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C3C04": {
+      "name": "dora3_s3_core_801C3C04",
+      "size": 228,
+      "sha256": "c51563957f40ed5a9ed59f8094f7f004b91e7d3d2b763892f0e02a700a781772",
+      "direct_calls": [
+        {
+          "site": "0x801C3C0C",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C3C1C",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C3C2C",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C3C50",
+          "target": "0x801C383C"
+        },
+        {
+          "site": "0x801C3C8C",
+          "target": "0x80031A0C"
+        },
+        {
+          "site": "0x801C3CC4",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C3CD4",
+          "target": "0x801C3D14"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C3CE8": {
+      "name": "dora3_s3_core_801C3CE8",
+      "size": 44,
+      "sha256": "062d98f18e6db1006a9ee8802897003799811256ec56b0c7d836a26a613511d6",
+      "direct_calls": [
+        {
+          "site": "0x801C3CF0",
+          "target": "0x801C224C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C3D8C": {
+      "name": "dora3_s3_core_801C3D8C",
+      "size": 288,
+      "sha256": "7feb9c6c814f00de73eb863bfd013f47fff0512f65b705e1bc2025ca7710cd47",
+      "direct_calls": [
+        {
+          "site": "0x801C3D94",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C3DA4",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C3DB4",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C3DD8",
+          "target": "0x801C383C"
+        },
+        {
+          "site": "0x801C3E10",
+          "target": "0x801C3638"
+        },
+        {
+          "site": "0x801C3E4C",
+          "target": "0x80031A0C"
+        },
+        {
+          "site": "0x801C3E7C",
+          "target": "0x801C21F4"
+        },
+        {
+          "site": "0x801C3E8C",
+          "target": "0x801C3ED8"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C3EAC": {
+      "name": "dora3_s3_core_801C3EAC",
+      "size": 44,
+      "sha256": "0c3eb5b7a273def4cabf76f9c515cd1f7e737d762a51df99352cd825d01c65a5",
+      "direct_calls": [
+        {
+          "site": "0x801C3EB4",
+          "target": "0x801C224C"
+        },
+        {
+          "site": "0x801C3EBC",
+          "target": "0x801C230C"
+        },
+        {
+          "site": "0x801C3EC4",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C3F34": {
+      "name": "dora3_s3_core_801C3F34",
+      "size": 228,
+      "sha256": "c78557068fbfbe48979fe971546287add17484809cab7790d42987b92b4afef3",
+      "direct_calls": [
+        {
+          "site": "0x801C3F3C",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C3F4C",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C3F5C",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C3F80",
+          "target": "0x801C383C"
+        },
+        {
+          "site": "0x801C3FBC",
+          "target": "0x80031A0C"
+        },
+        {
+          "site": "0x801C3FF4",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C4004",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4018": {
+      "name": "dora3_s3_core_801C4018",
+      "size": 32,
+      "sha256": "44ae28582c8ecdf31669364826b1d22e9ff7ae697c6c0dee0ca19a2a9531714d",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C4094": {
+      "name": "dora3_s3_core_801C4094",
+      "size": 228,
+      "sha256": "ec4aa79b04883da221d03367054ed9bb45916c00a1bef9792a1edacccdaa67d9",
+      "direct_calls": [
+        {
+          "site": "0x801C409C",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C40AC",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C40BC",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C40E0",
+          "target": "0x801C383C"
+        },
+        {
+          "site": "0x801C411C",
+          "target": "0x80031A0C"
+        },
+        {
+          "site": "0x801C4154",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C4164",
+          "target": "0x801C41A4"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4178": {
+      "name": "dora3_s3_core_801C4178",
+      "size": 44,
+      "sha256": "062d98f18e6db1006a9ee8802897003799811256ec56b0c7d836a26a613511d6",
+      "direct_calls": [
+        {
+          "site": "0x801C4180",
+          "target": "0x801C224C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C421C": {
+      "name": "dora3_s3_core_801C421C",
+      "size": 292,
+      "sha256": "3e4a18c21ef8f0131b2b3eed267440510b7c8d2c39e534aafd50cc9f1ebdf73e",
+      "direct_calls": [
+        {
+          "site": "0x801C4224",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C4234",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C4244",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C4268",
+          "target": "0x801C383C"
+        },
+        {
+          "site": "0x801C42A4",
+          "target": "0x80031A0C"
+        },
+        {
+          "site": "0x801C42D4",
+          "target": "0x801C2238"
+        },
+        {
+          "site": "0x801C42E4",
+          "target": "0x801C436C"
+        },
+        {
+          "site": "0x801C4320",
+          "target": "0x80031A0C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4340": {
+      "name": "dora3_s3_core_801C4340",
+      "size": 44,
+      "sha256": "0c3eb5b7a273def4cabf76f9c515cd1f7e737d762a51df99352cd825d01c65a5",
+      "direct_calls": [
+        {
+          "site": "0x801C4348",
+          "target": "0x801C224C"
+        },
+        {
+          "site": "0x801C4350",
+          "target": "0x801C230C"
+        },
+        {
+          "site": "0x801C4358",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C43C8": {
+      "name": "dora3_s3_core_801C43C8",
+      "size": 228,
+      "sha256": "bf998b7669383679682bca96fc6cb80a896dff755aaf44c967664551b7cb971d",
+      "direct_calls": [
+        {
+          "site": "0x801C43D0",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C43E0",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C43F0",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C4414",
+          "target": "0x801C383C"
+        },
+        {
+          "site": "0x801C4450",
+          "target": "0x80031A0C"
+        },
+        {
+          "site": "0x801C4488",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C4498",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C44AC": {
+      "name": "dora3_s3_core_801C44AC",
+      "size": 20,
+      "sha256": "fb5e33b057b0ec6636ab04592da7ac382a800e66ab022b8b815c7583e5dc66b3",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C4560": {
+      "name": "dora3_s3_core_801C4560",
+      "size": 240,
+      "sha256": "7a2271ab1378e9d5ee966d2c09421f0aee2294961cc08f272e0794c6ee676d9a",
+      "direct_calls": [
+        {
+          "site": "0x801C4568",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C4578",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C4588",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C45AC",
+          "target": "0x801C46B0"
+        },
+        {
+          "site": "0x801C45E4",
+          "target": "0x801C46B0"
+        },
+        {
+          "site": "0x801C462C",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C463C",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4650": {
+      "name": "dora3_s3_core_801C4650",
+      "size": 96,
+      "sha256": "02c243f975f18aaf3be9121dfadc505106465dcdbc2f864c602fc90aa44d2cd2",
+      "direct_calls": [
+        {
+          "site": "0x801C4660",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C4684",
+          "target": "0x801C120C"
+        },
+        {
+          "site": "0x801C468C",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4750": {
+      "name": "dora3_s3_core_801C4750",
+      "size": 280,
+      "sha256": "7ab76fcc66b4559b6cfd9dba1a6363b5009535a41bf3adddb2fe02aabf1b34ee",
+      "direct_calls": [
+        {
+          "site": "0x801C4758",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C4768",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C4778",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C47F4",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C4804",
+          "target": "0x801C3934"
+        },
+        {
+          "site": "0x801C4814",
+          "target": "0x801C44C0"
+        },
+        {
+          "site": "0x801C482C",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C483C",
+          "target": "0x801C383C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4868": {
+      "name": "dora3_s3_core_801C4868",
+      "size": 28,
+      "sha256": "b6388184a15ef7a8c88284247ea7d07b903f4b74bd0c2b1b223d1b33c1ed395e",
+      "direct_calls": [
+        {
+          "site": "0x801C4870",
+          "target": "0x801C4650"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C488C": {
+      "name": "dora3_s3_core_801C488C",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C4894": {
+      "name": "dora3_s3_core_801C4894",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C48E4": {
+      "name": "dora3_s3_core_801C48E4",
+      "size": 100,
+      "sha256": "d1f6784edc69c877ca0273d63652bab72bb844252043c02104bb0ac592ec0258",
+      "direct_calls": [
+        {
+          "site": "0x801C48EC",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C48FC",
+          "target": "0x801C3088"
+        },
+        {
+          "site": "0x801C490C",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C4924",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C4934",
+          "target": "0x801C768C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4948": {
+      "name": "dora3_s3_core_801C4948",
+      "size": 88,
+      "sha256": "1903df800a0257a0bda8326167b664d38c08d3d05178dbde264d1db01a81b63d",
+      "direct_calls": [
+        {
+          "site": "0x801C4958",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C497C",
+          "target": "0x801C120C"
+        },
+        {
+          "site": "0x801C4984",
+          "target": "0x801C1A3C"
+        },
+        {
+          "site": "0x801C498C",
+          "target": "0x801C1ADC"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4A6C": {
+      "name": "dora3_s3_core_801C4A6C",
+      "size": 240,
+      "sha256": "31df80e6af4728494d9bb55b12b6370944f6870146416c6d25c393d8d77a5957",
+      "direct_calls": [
+        {
+          "site": "0x801C4A74",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C4A84",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C4A94",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C4AB8",
+          "target": "0x801C4BBC"
+        },
+        {
+          "site": "0x801C4AF0",
+          "target": "0x801C4BBC"
+        },
+        {
+          "site": "0x801C4B38",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C4B48",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4B5C": {
+      "name": "dora3_s3_core_801C4B5C",
+      "size": 96,
+      "sha256": "5ec549fbce3f9cf5563c5ee7f65ef4251605b1847ff5a7d5e21e8aae19074acd",
+      "direct_calls": [
+        {
+          "site": "0x801C4B6C",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C4B90",
+          "target": "0x801C120C"
+        },
+        {
+          "site": "0x801C4B98",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4C5C": {
+      "name": "dora3_s3_core_801C4C5C",
+      "size": 280,
+      "sha256": "7a9bb3276e60c1a26a3ae8fae860014026a874e5844eb47b58c15a3a061628b5",
+      "direct_calls": [
+        {
+          "site": "0x801C4C64",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C4C74",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C4C84",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C4D00",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C4D10",
+          "target": "0x801C3934"
+        },
+        {
+          "site": "0x801C4D20",
+          "target": "0x801C49A0"
+        },
+        {
+          "site": "0x801C4D38",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C4D48",
+          "target": "0x801C383C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4D74": {
+      "name": "dora3_s3_core_801C4D74",
+      "size": 28,
+      "sha256": "70b02a708c8c3fe2c89537722acd1b6530c0b23df809f71020edbacfce4f34a5",
+      "direct_calls": [
+        {
+          "site": "0x801C4D7C",
+          "target": "0x801C4B5C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4D98": {
+      "name": "dora3_s3_core_801C4D98",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C4DA0": {
+      "name": "dora3_s3_core_801C4DA0",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C4E44": {
+      "name": "dora3_s3_core_801C4E44",
+      "size": 312,
+      "sha256": "49ea47e853be9f868f80b44a071eb49b0f3576cbebcc171dc461f75a49aeb760",
+      "direct_calls": [
+        {
+          "site": "0x801C4E58",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C4E64",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C4E74",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C4E84",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C4EA8",
+          "target": "0x801C5024"
+        },
+        {
+          "site": "0x801C4EE0",
+          "target": "0x801C5024"
+        },
+        {
+          "site": "0x801C4F3C",
+          "target": "0x801C2798"
+        },
+        {
+          "site": "0x801C4F54",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C4F64",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C4F7C": {
+      "name": "dora3_s3_core_801C4F7C",
+      "size": 168,
+      "sha256": "9aa139285d07eabc026bc866917ec362596051f5b928067a9c217c0fa0850dab",
+      "direct_calls": [
+        {
+          "site": "0x801C4F94",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C4FAC",
+          "target": "0x801C120C"
+        },
+        {
+          "site": "0x801C4FFC",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C50C0": {
+      "name": "dora3_s3_core_801C50C0",
+      "size": 352,
+      "sha256": "230dfc7d403d85b9be34105fe194d1d3a9d1d88328ab20c5f54e49b04c37d01b",
+      "direct_calls": [
+        {
+          "site": "0x801C50D4",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C50E0",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C50F0",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C5100",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C517C",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C518C",
+          "target": "0x801C3934"
+        },
+        {
+          "site": "0x801C519C",
+          "target": "0x801C4DA8"
+        },
+        {
+          "site": "0x801C51C8",
+          "target": "0x801C2798"
+        },
+        {
+          "site": "0x801C51E0",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C51F0",
+          "target": "0x801C383C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C5220": {
+      "name": "dora3_s3_core_801C5220",
+      "size": 28,
+      "sha256": "e4378598a023632309d38b4145e3d68bec6a8f04255cbb89a43a9584172ca956",
+      "direct_calls": [
+        {
+          "site": "0x801C5228",
+          "target": "0x801C4F7C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C5244": {
+      "name": "dora3_s3_core_801C5244",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C524C": {
+      "name": "dora3_s3_core_801C524C",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C529C": {
+      "name": "dora3_s3_core_801C529C",
+      "size": 160,
+      "sha256": "6a03fe4c7a534cbee32306b10bb85f1ee091d94b4228b2a514e6930ae880ac8f",
+      "direct_calls": [
+        {
+          "site": "0x801C52A4",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C52B4",
+          "target": "0x801C3088"
+        },
+        {
+          "site": "0x801C52C4",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C52DC",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C5300",
+          "target": "0x801C2798"
+        },
+        {
+          "site": "0x801C5318",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C5328",
+          "target": "0x801C768C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C533C": {
+      "name": "dora3_s3_core_801C533C",
+      "size": 84,
+      "sha256": "b5f3225367c5dcbfd56998e361f13e0c17252aa8c582fdab13566398e4ab222a",
+      "direct_calls": [
+        {
+          "site": "0x801C534C",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C536C",
+          "target": "0x801C120C"
+        },
+        {
+          "site": "0x801C5374",
+          "target": "0x801C1A3C"
+        },
+        {
+          "site": "0x801C537C",
+          "target": "0x801C1ADC"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C545C": {
+      "name": "dora3_s3_core_801C545C",
+      "size": 240,
+      "sha256": "8613b370122990dfd214a0eceab97000b9d06497d5abbe98da31c3526f5d1232",
+      "direct_calls": [
+        {
+          "site": "0x801C5464",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C5474",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C5484",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C54A8",
+          "target": "0x801C5680"
+        },
+        {
+          "site": "0x801C54E0",
+          "target": "0x801C5680"
+        },
+        {
+          "site": "0x801C5528",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C5538",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C554C": {
+      "name": "dora3_s3_core_801C554C",
+      "size": 308,
+      "sha256": "1bb9cc5a1fcd407bbffefcc8ae6cec11e53149ad3dde5558c07620d968ea9111",
+      "direct_calls": [
+        {
+          "site": "0x801C555C",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C559C",
+          "target": "0x8002A4CC"
+        },
+        {
+          "site": "0x801C55AC",
+          "target": "0x801C120C"
+        },
+        {
+          "site": "0x801C55C0",
+          "target": "0x8002A4A4"
+        },
+        {
+          "site": "0x801C55DC",
+          "target": "0x8002A628"
+        },
+        {
+          "site": "0x801C55EC",
+          "target": "0x801C060C"
+        },
+        {
+          "site": "0x801C5604",
+          "target": "0x8002A4A4"
+        },
+        {
+          "site": "0x801C5628",
+          "target": "0x8002A5F0"
+        },
+        {
+          "site": "0x801C5654",
+          "target": "0x801C120C"
+        },
+        {
+          "site": "0x801C565C",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C574C": {
+      "name": "dora3_s3_core_801C574C",
+      "size": 328,
+      "sha256": "01b1761b384436117ae0150bf00e39ecfb26727fc0c5c63be38357c92b50d4bd",
+      "direct_calls": [
+        {
+          "site": "0x801C5758",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C5768",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C5778",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C57F4",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C5804",
+          "target": "0x801C3934"
+        },
+        {
+          "site": "0x801C581C",
+          "target": "0x8002A4CC"
+        },
+        {
+          "site": "0x801C5824",
+          "target": "0x801C5390"
+        },
+        {
+          "site": "0x801C583C",
+          "target": "0x8002A4A4"
+        },
+        {
+          "site": "0x801C5854",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C5864",
+          "target": "0x801C383C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C5894": {
+      "name": "dora3_s3_core_801C5894",
+      "size": 28,
+      "sha256": "cf61bbcb7956b1a36fbfef2ecd6285c702265f4042eb42b9b59163badf662a12",
+      "direct_calls": [
+        {
+          "site": "0x801C589C",
+          "target": "0x801C554C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C58B8": {
+      "name": "dora3_s3_core_801C58B8",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C58C0": {
+      "name": "dora3_s3_core_801C58C0",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C5910": {
+      "name": "dora3_s3_core_801C5910",
+      "size": 156,
+      "sha256": "b38b1854ae824eb104531d0166bfa5b202d7df55eece7cfc1348fadcc9ae64e9",
+      "direct_calls": [
+        {
+          "site": "0x801C5918",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C5928",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C5938",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C595C",
+          "target": "0x801C383C"
+        },
+        {
+          "site": "0x801C5988",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C5998",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C59AC": {
+      "name": "dora3_s3_core_801C59AC",
+      "size": 44,
+      "sha256": "be0508cb1dfc2cd9eaba75c91dac07f6a1a050907056334d56f4ccc30563df43",
+      "direct_calls": [
+        {
+          "site": "0x801C59B4",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C5A38": {
+      "name": "dora3_s3_core_801C5A38",
+      "size": 64,
+      "sha256": "199d47b97b403d22ad440b23b2d6fcbf14abbf42fc7c15ddef9522e2582cded1",
+      "direct_calls": [
+        {
+          "site": "0x801C5A40",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C5A64",
+          "target": "0x801C5B50"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C5A78": {
+      "name": "dora3_s3_core_801C5A78",
+      "size": 216,
+      "sha256": "0b3274ae06e04459338d90dca7f1f51f6e3449231018f581e872fcc76f134ba3",
+      "direct_calls": [
+        {
+          "site": "0x801C5A88",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C5AF0",
+          "target": "0x80031A0C"
+        },
+        {
+          "site": "0x801C5B2C",
+          "target": "0x801C1820"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C5BAC": {
+      "name": "dora3_s3_core_801C5BAC",
+      "size": 68,
+      "sha256": "61a45f753767763207689ee8e00748bb0ed93403c99a53ff5f0156146f808c6c",
+      "direct_calls": [
+        {
+          "site": "0x801C5BB4",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C5BCC",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C5BDC",
+          "target": "0x801C5C1C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C5BF0": {
+      "name": "dora3_s3_core_801C5BF0",
+      "size": 44,
+      "sha256": "be0508cb1dfc2cd9eaba75c91dac07f6a1a050907056334d56f4ccc30563df43",
+      "direct_calls": [
+        {
+          "site": "0x801C5BF8",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C5C78": {
+      "name": "dora3_s3_core_801C5C78",
+      "size": 152,
+      "sha256": "ed0c554c83c485248541338e2da9970a3832bb8afb941b62013c23d24802fe89",
+      "direct_calls": [
+        {
+          "site": "0x801C5C80",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C5C98",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C5CBC",
+          "target": "0x801C6F58"
+        },
+        {
+          "site": "0x801C5CE4",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C5D10": {
+      "name": "dora3_s3_core_801C5D10",
+      "size": 32,
+      "sha256": "44ae28582c8ecdf31669364826b1d22e9ff7ae697c6c0dee0ca19a2a9531714d",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C5D90": {
+      "name": "dora3_s3_core_801C5D90",
+      "size": 64,
+      "sha256": "a67363bc2852252cf5dd83cbb755839265b97c75b9b90eea6483ff29d4b63f9c",
+      "direct_calls": [
+        {
+          "site": "0x801C5D98",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C5DBC",
+          "target": "0x801C5E94"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C5DD0": {
+      "name": "dora3_s3_core_801C5DD0",
+      "size": 196,
+      "sha256": "ad3af6839519b5b812f672f14c849746764d194780327f22ce550353c8960445",
+      "direct_calls": [
+        {
+          "site": "0x801C5DE0",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C5E48",
+          "target": "0x80031A0C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C5EF0": {
+      "name": "dora3_s3_core_801C5EF0",
+      "size": 152,
+      "sha256": "32e91def3788979a179d796a0f8ccf64e79b3487f41c2cbc3c16bde2ea56c397",
+      "direct_calls": [
+        {
+          "site": "0x801C5EF8",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C5F10",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C5F34",
+          "target": "0x801C6F58"
+        },
+        {
+          "site": "0x801C5F5C",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C5F88": {
+      "name": "dora3_s3_core_801C5F88",
+      "size": 44,
+      "sha256": "be0508cb1dfc2cd9eaba75c91dac07f6a1a050907056334d56f4ccc30563df43",
+      "direct_calls": [
+        {
+          "site": "0x801C5F90",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C6020": {
+      "name": "dora3_s3_core_801C6020",
+      "size": 100,
+      "sha256": "055ca9814987aee94caebe612d09b7e66a126e6b2f24ec2ee70cdf918219d0a8",
+      "direct_calls": [
+        {
+          "site": "0x801C603C",
+          "target": "0x801C72DC"
+        },
+        {
+          "site": "0x801C604C",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C6070",
+          "target": "0x801C6128"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C6084": {
+      "name": "dora3_s3_core_801C6084",
+      "size": 164,
+      "sha256": "9244d67ff95cb44a38fb7c618acc66ce765d54bc1ca0d651c6864e7faec14161",
+      "direct_calls": [
+        {
+          "site": "0x801C6104",
+          "target": "0x801C1820"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C61B4": {
+      "name": "dora3_s3_core_801C61B4",
+      "size": 52,
+      "sha256": "1cb4a2cfe9211f043a4926bcc9de562d6532f494e971d082f9e5cb85302abf1a",
+      "direct_calls": [
+        {
+          "site": "0x801C61C4",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C61D4",
+          "target": "0x801C6214"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C61E8": {
+      "name": "dora3_s3_core_801C61E8",
+      "size": 44,
+      "sha256": "be0508cb1dfc2cd9eaba75c91dac07f6a1a050907056334d56f4ccc30563df43",
+      "direct_calls": [
+        {
+          "site": "0x801C61F0",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C6270": {
+      "name": "dora3_s3_core_801C6270",
+      "size": 100,
+      "sha256": "2174ba245dec6f8f0aceb1983459439eda28af9526fd5885e974887f898384e3",
+      "direct_calls": [
+        {
+          "site": "0x801C6280",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C62A8",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C62D4": {
+      "name": "dora3_s3_core_801C62D4",
+      "size": 32,
+      "sha256": "44ae28582c8ecdf31669364826b1d22e9ff7ae697c6c0dee0ca19a2a9531714d",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C637C": {
+      "name": "dora3_s3_core_801C637C",
+      "size": 124,
+      "sha256": "065290f4f0e0cf20d6b49cba5223d75a3e445196473b641e4f941fcc195d3738",
+      "direct_calls": [
+        {
+          "site": "0x801C6398",
+          "target": "0x801C7430"
+        },
+        {
+          "site": "0x801C63C0",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C63E4",
+          "target": "0x801C6510"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C63F8": {
+      "name": "dora3_s3_core_801C63F8",
+      "size": 280,
+      "sha256": "abe4c6dfa08903fc16c96378ed5890b43bc973a919fbb39eb696cc8861e169b5",
+      "direct_calls": [
+        {
+          "site": "0x801C6408",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C6440",
+          "target": "0x8002A4A4"
+        },
+        {
+          "site": "0x801C6480",
+          "target": "0x8002A4A4"
+        },
+        {
+          "site": "0x801C64DC",
+          "target": "0x801C1820"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C659C": {
+      "name": "dora3_s3_core_801C659C",
+      "size": 52,
+      "sha256": "2fa7d3679c0847638874dbc1f65084041fc53da8b2daf91d824180ff1b300550",
+      "direct_calls": [
+        {
+          "site": "0x801C65AC",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C65BC",
+          "target": "0x801C65FC"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C65D0": {
+      "name": "dora3_s3_core_801C65D0",
+      "size": 44,
+      "sha256": "be0508cb1dfc2cd9eaba75c91dac07f6a1a050907056334d56f4ccc30563df43",
+      "direct_calls": [
+        {
+          "site": "0x801C65D8",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C6658": {
+      "name": "dora3_s3_core_801C6658",
+      "size": 100,
+      "sha256": "2174ba245dec6f8f0aceb1983459439eda28af9526fd5885e974887f898384e3",
+      "direct_calls": [
+        {
+          "site": "0x801C6668",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C6690",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C66BC": {
+      "name": "dora3_s3_core_801C66BC",
+      "size": 32,
+      "sha256": "44ae28582c8ecdf31669364826b1d22e9ff7ae697c6c0dee0ca19a2a9531714d",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C6764": {
+      "name": "dora3_s3_core_801C6764",
+      "size": 100,
+      "sha256": "220788df6e06dfddfef96f5936d7d73b06186cd2ed8d54e61630fc60ceffe88d",
+      "direct_calls": [
+        {
+          "site": "0x801C6780",
+          "target": "0x801C74D8"
+        },
+        {
+          "site": "0x801C6790",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C67B4",
+          "target": "0x801C686C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C67C8": {
+      "name": "dora3_s3_core_801C67C8",
+      "size": 164,
+      "sha256": "9244d67ff95cb44a38fb7c618acc66ce765d54bc1ca0d651c6864e7faec14161",
+      "direct_calls": [
+        {
+          "site": "0x801C6848",
+          "target": "0x801C1820"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C68F8": {
+      "name": "dora3_s3_core_801C68F8",
+      "size": 52,
+      "sha256": "889400b4f3ff467efa6a7d761f7c21ceb66bb26e9213e12c48ba16e52897aafd",
+      "direct_calls": [
+        {
+          "site": "0x801C6908",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C6918",
+          "target": "0x801C6958"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C692C": {
+      "name": "dora3_s3_core_801C692C",
+      "size": 44,
+      "sha256": "be0508cb1dfc2cd9eaba75c91dac07f6a1a050907056334d56f4ccc30563df43",
+      "direct_calls": [
+        {
+          "site": "0x801C6934",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C69B4": {
+      "name": "dora3_s3_core_801C69B4",
+      "size": 100,
+      "sha256": "2174ba245dec6f8f0aceb1983459439eda28af9526fd5885e974887f898384e3",
+      "direct_calls": [
+        {
+          "site": "0x801C69C4",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C69EC",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C6A18": {
+      "name": "dora3_s3_core_801C6A18",
+      "size": 32,
+      "sha256": "44ae28582c8ecdf31669364826b1d22e9ff7ae697c6c0dee0ca19a2a9531714d",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C6AA8": {
+      "name": "dora3_s3_core_801C6AA8",
+      "size": 96,
+      "sha256": "50e7c5014283ca3feff3d5d4f1b29405e3f73ee6b7d77e15a76627d662c42cde",
+      "direct_calls": [
+        {
+          "site": "0x801C6AB0",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C6AF4",
+          "target": "0x801C6BDC"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C6B08": {
+      "name": "dora3_s3_core_801C6B08",
+      "size": 212,
+      "sha256": "c2d0488b47011a7cb1304880ae0238187ec6920df4bcac7cad733d56ec9ba8be",
+      "direct_calls": [
+        {
+          "site": "0x801C6B68",
+          "target": "0x80031A0C"
+        },
+        {
+          "site": "0x801C6BA4",
+          "target": "0x8002A4A4"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C6C68": {
+      "name": "dora3_s3_core_801C6C68",
+      "size": 152,
+      "sha256": "f1d7647540dbc292931dc7b04919b12b8cedda4de179f9302113f8c1bdb55ba3",
+      "direct_calls": [
+        {
+          "site": "0x801C6C70",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C6C88",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C6CAC",
+          "target": "0x801C6F58"
+        },
+        {
+          "site": "0x801C6CD4",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C6D00": {
+      "name": "dora3_s3_core_801C6D00",
+      "size": 44,
+      "sha256": "be0508cb1dfc2cd9eaba75c91dac07f6a1a050907056334d56f4ccc30563df43",
+      "direct_calls": [
+        {
+          "site": "0x801C6D08",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C6D8C": {
+      "name": "dora3_s3_core_801C6D8C",
+      "size": 128,
+      "sha256": "c40ee3981c8beabef9d24792575f6968ee81a6dcf19c697be367c3b91d9aa4d5",
+      "direct_calls": [
+        {
+          "site": "0x801C6D94",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C6DAC",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C6DD0",
+          "target": "0x801C756C"
+        },
+        {
+          "site": "0x801C6DF8",
+          "target": "0x801C768C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C6E0C": {
+      "name": "dora3_s3_core_801C6E0C",
+      "size": 28,
+      "sha256": "3996fed0436b635061126a6a12fd9737bf7125093eaf4fd0c6fac1fdb2738dfa",
+      "direct_calls": [
+        {
+          "site": "0x801C6E14",
+          "target": "0x801C1A3C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C6EA4": {
+      "name": "dora3_s3_core_801C6EA4",
+      "size": 140,
+      "sha256": "de0432aed17e4ba8491f810398fad880e92a41de16e67fc55a45ef1333b12a94",
+      "direct_calls": [
+        {
+          "site": "0x801C6EC0",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C6EFC",
+          "target": "0x801C7600"
+        },
+        {
+          "site": "0x801C6F1C",
+          "target": "0x801C8028"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C6F30": {
+      "name": "dora3_s3_core_801C6F30",
+      "size": 40,
+      "sha256": "1fccbc251e344a1dae4f941353ed38bafdb6270921a75cdec376ce95479410cd",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C6FCC": {
+      "name": "dora3_s3_core_801C6FCC",
+      "size": 252,
+      "sha256": "61391ec611b080bbf97eb1cbe3642e9cc4e5bfc2bf491959c053b40d91d0e03d",
+      "direct_calls": [
+        {
+          "site": "0x801C703C",
+          "target": "0x801C07A0"
+        },
+        {
+          "site": "0x801C704C",
+          "target": "0x801B8ED0"
+        },
+        {
+          "site": "0x801C7074",
+          "target": "0x80028878"
+        },
+        {
+          "site": "0x801C707C",
+          "target": "0x800288EC"
+        },
+        {
+          "site": "0x801C70B4",
+          "target": "0x801EF5B0"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C70C8": {
+      "name": "dora3_s3_core_801C70C8",
+      "size": 60,
+      "sha256": "42ab0507cfd897baf064ec74fcc73cb47a4f03b7775eac4b8e5e858dab668d5e",
+      "direct_calls": [
+        {
+          "site": "0x801C70D0",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7160": {
+      "name": "dora3_s3_core_801C7160",
+      "size": 316,
+      "sha256": "5c97f3f21b817f769abd6e3f1196a2b39e6ce2b7558d79c67ac7bd46b338c82f",
+      "direct_calls": [
+        {
+          "site": "0x801C71D4",
+          "target": "0x801C07A0"
+        },
+        {
+          "site": "0x801C71E4",
+          "target": "0x801B8ED0"
+        },
+        {
+          "site": "0x801C7210",
+          "target": "0x80028878"
+        },
+        {
+          "site": "0x801C7218",
+          "target": "0x800288EC"
+        },
+        {
+          "site": "0x801C7250",
+          "target": "0x801EF5B0"
+        },
+        {
+          "site": "0x801C7280",
+          "target": "0x801C9BE0"
+        },
+        {
+          "site": "0x801C7288",
+          "target": "0x801BA084"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C729C": {
+      "name": "dora3_s3_core_801C729C",
+      "size": 64,
+      "sha256": "8ff24b1b57525c3557ee34b282f3cd991fda7a0c6694103dc7e2711ee0ec3e59",
+      "direct_calls": [
+        {
+          "site": "0x801C72B8",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7338": {
+      "name": "dora3_s3_core_801C7338",
+      "size": 184,
+      "sha256": "63785a8df6dbee615f7011c290435713ee6ecc8fbcde9ada1364fe89a1794e14",
+      "direct_calls": [
+        {
+          "site": "0x801C7364",
+          "target": "0x801C07A0"
+        },
+        {
+          "site": "0x801C7374",
+          "target": "0x801B8ED0"
+        },
+        {
+          "site": "0x801C739C",
+          "target": "0x80028878"
+        },
+        {
+          "site": "0x801C73A4",
+          "target": "0x800288EC"
+        },
+        {
+          "site": "0x801C73DC",
+          "target": "0x801EF5B0"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C73F0": {
+      "name": "dora3_s3_core_801C73F0",
+      "size": 64,
+      "sha256": "8ff24b1b57525c3557ee34b282f3cd991fda7a0c6694103dc7e2711ee0ec3e59",
+      "direct_calls": [
+        {
+          "site": "0x801C740C",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C74A0": {
+      "name": "dora3_s3_core_801C74A0",
+      "size": 28,
+      "sha256": "adddfe6be1bbb8e4b44bf57b8218c71b5523bc0d579e62bdc8b800a7ab3427dc",
+      "direct_calls": [
+        {
+          "site": "0x801C74A8",
+          "target": "0x801C7338"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C74BC": {
+      "name": "dora3_s3_core_801C74BC",
+      "size": 28,
+      "sha256": "6f541b6d504023e78ce6da4d4a3a058072cfbc8195323f7911f27c243975dc5f",
+      "direct_calls": [
+        {
+          "site": "0x801C74C4",
+          "target": "0x801C73F0"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7534": {
+      "name": "dora3_s3_core_801C7534",
+      "size": 28,
+      "sha256": "adddfe6be1bbb8e4b44bf57b8218c71b5523bc0d579e62bdc8b800a7ab3427dc",
+      "direct_calls": [
+        {
+          "site": "0x801C753C",
+          "target": "0x801C7338"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7550": {
+      "name": "dora3_s3_core_801C7550",
+      "size": 28,
+      "sha256": "6f541b6d504023e78ce6da4d4a3a058072cfbc8195323f7911f27c243975dc5f",
+      "direct_calls": [
+        {
+          "site": "0x801C7558",
+          "target": "0x801C73F0"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C75C8": {
+      "name": "dora3_s3_core_801C75C8",
+      "size": 28,
+      "sha256": "adddfe6be1bbb8e4b44bf57b8218c71b5523bc0d579e62bdc8b800a7ab3427dc",
+      "direct_calls": [
+        {
+          "site": "0x801C75D0",
+          "target": "0x801C7338"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C75E4": {
+      "name": "dora3_s3_core_801C75E4",
+      "size": 28,
+      "sha256": "6f541b6d504023e78ce6da4d4a3a058072cfbc8195323f7911f27c243975dc5f",
+      "direct_calls": [
+        {
+          "site": "0x801C75EC",
+          "target": "0x801C73F0"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7654": {
+      "name": "dora3_s3_core_801C7654",
+      "size": 28,
+      "sha256": "adddfe6be1bbb8e4b44bf57b8218c71b5523bc0d579e62bdc8b800a7ab3427dc",
+      "direct_calls": [
+        {
+          "site": "0x801C765C",
+          "target": "0x801C7338"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7670": {
+      "name": "dora3_s3_core_801C7670",
+      "size": 28,
+      "sha256": "6f541b6d504023e78ce6da4d4a3a058072cfbc8195323f7911f27c243975dc5f",
+      "direct_calls": [
+        {
+          "site": "0x801C7678",
+          "target": "0x801C73F0"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C77A0": {
+      "name": "dora3_s3_core_801C77A0",
+      "size": 112,
+      "sha256": "8697aef130f5f54b9aa1259d1380cce4f64956fb7200dfe963b55cf0719732d0",
+      "direct_calls": [
+        {
+          "site": "0x801C77A8",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C77B8",
+          "target": "0x801C3088"
+        },
+        {
+          "site": "0x801C77C8",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C77D8",
+          "target": "0x801C2798"
+        },
+        {
+          "site": "0x801C77FC",
+          "target": "0x801C785C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7810": {
+      "name": "dora3_s3_core_801C7810",
+      "size": 76,
+      "sha256": "95a83495c220a419c5e07d81d58ddd5347b908ca13751bcdb97730d8bb82ecc5",
+      "direct_calls": [
+        {
+          "site": "0x801C7818",
+          "target": "0x8003196C"
+        },
+        {
+          "site": "0x801C7838",
+          "target": "0x80042838"
+        },
+        {
+          "site": "0x801C7840",
+          "target": "0x801C1A3C"
+        },
+        {
+          "site": "0x801C7848",
+          "target": "0x801C1ADC"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7970": {
+      "name": "dora3_s3_core_801C7970",
+      "size": 112,
+      "sha256": "627f74ea8953079713b9666ce8510746042dbcf3f8014e062c5dd6922f940136",
+      "direct_calls": [
+        {
+          "site": "0x801C7978",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C7988",
+          "target": "0x801C3088"
+        },
+        {
+          "site": "0x801C7998",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C79A8",
+          "target": "0x801C2798"
+        },
+        {
+          "site": "0x801C79CC",
+          "target": "0x801C768C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C79E0": {
+      "name": "dora3_s3_core_801C79E0",
+      "size": 76,
+      "sha256": "95a83495c220a419c5e07d81d58ddd5347b908ca13751bcdb97730d8bb82ecc5",
+      "direct_calls": [
+        {
+          "site": "0x801C79E8",
+          "target": "0x8003196C"
+        },
+        {
+          "site": "0x801C7A08",
+          "target": "0x80042838"
+        },
+        {
+          "site": "0x801C7A10",
+          "target": "0x801C1A3C"
+        },
+        {
+          "site": "0x801C7A18",
+          "target": "0x801C1ADC"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7AB8": {
+      "name": "dora3_s3_core_801C7AB8",
+      "size": 320,
+      "sha256": "47f8d1205aeee5cb9d4b81c03337a7531cfbb9f05384c8a24b52b6c9e46f28ba",
+      "direct_calls": [
+        {
+          "site": "0x801C7AC0",
+          "target": "0x801C2C30"
+        },
+        {
+          "site": "0x801C7B14",
+          "target": "0x801B8ED0"
+        },
+        {
+          "site": "0x801C7B38",
+          "target": "0x801BE5C8"
+        },
+        {
+          "site": "0x801C7B44",
+          "target": "0x801BE568"
+        },
+        {
+          "site": "0x801C7B5C",
+          "target": "0x801BA05C"
+        },
+        {
+          "site": "0x801C7B8C",
+          "target": "0x80028878"
+        },
+        {
+          "site": "0x801C7B94",
+          "target": "0x800288EC"
+        },
+        {
+          "site": "0x801C7BAC",
+          "target": "0x801C2C30"
+        },
+        {
+          "site": "0x801C7BB8",
+          "target": "0x801BA0C4"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7BF8": {
+      "name": "dora3_s3_core_801C7BF8",
+      "size": 40,
+      "sha256": "34e9c38289ecbfbfb00fbc0d8c725beb3f5e6effaf72f3e402dd89c2e6dd0c5c",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C7C7C": {
+      "name": "dora3_s3_core_801C7C7C",
+      "size": 104,
+      "sha256": "a20111808d8b511563b69dcd168585aa00eb3baf9ccf5aef6abeede4983f38c6",
+      "direct_calls": [
+        {
+          "site": "0x801C7C84",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C7C94",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C7CA4",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C7CC4",
+          "target": "0x801C383C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7CE4": {
+      "name": "dora3_s3_core_801C7CE4",
+      "size": 96,
+      "sha256": "7d8a20235d43605644a60cc3d80b41eccc95f510e43ac45e153fbf591f520c03",
+      "direct_calls": [
+        {
+          "site": "0x801C7CEC",
+          "target": "0x801C1594"
+        },
+        {
+          "site": "0x801C7D04",
+          "target": "0x80031A0C"
+        },
+        {
+          "site": "0x801C7D20",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7DAC": {
+      "name": "dora3_s3_core_801C7DAC",
+      "size": 196,
+      "sha256": "e03306aee4a059ad8affe696a7841a2bdf1c878e949c1c84fb128483d9c5fda9",
+      "direct_calls": [
+        {
+          "site": "0x801C7DB4",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C7DC4",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C7DD4",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C7E34",
+          "target": "0x801C383C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7E70": {
+      "name": "dora3_s3_core_801C7E70",
+      "size": 112,
+      "sha256": "9109a6847f7b515b1662972df1b6b6a1bd562e20d519846a22870e5db3934f39",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C7F3C": {
+      "name": "dora3_s3_core_801C7F3C",
+      "size": 92,
+      "sha256": "94f58ecd53f80a774140300813a1e46535ddff365d5c418016f8e224243fc890",
+      "direct_calls": [
+        {
+          "site": "0x801C7F44",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C7F54",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C7F64",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C7F84",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C7F98": {
+      "name": "dora3_s3_core_801C7F98",
+      "size": 144,
+      "sha256": "43f636c6b890a63b437fc05d70829e83ee81ae71a7279935a357100878af2ce1",
+      "direct_calls": [
+        {
+          "site": "0x801C7FB0",
+          "target": "0x80031A0C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C80A0": {
+      "name": "dora3_s3_core_801C80A0",
+      "size": 120,
+      "sha256": "fff5f42af451485b301748fc68b906227d14c961188ef3695c36f777c53d615f",
+      "direct_calls": [
+        {
+          "site": "0x801C80A8",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C80B8",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C80C8",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C80F4",
+          "target": "0x801C383C"
+        },
+        {
+          "site": "0x801C8104",
+          "target": "0x80042894"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C8118": {
+      "name": "dora3_s3_core_801C8118",
+      "size": 44,
+      "sha256": "c190712d04f6a5596d75f4be16ba48b030f339032dc5a2b25e92e6e95f2ea449",
+      "direct_calls": [
+        {
+          "site": "0x801C8120",
+          "target": "0x801C1DE8"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C81B0": {
+      "name": "dora3_s3_core_801C81B0",
+      "size": 168,
+      "sha256": "bec02093e58de7ac4e09e8186878f902a04d550a4597b6c272f6b286cb78eb10",
+      "direct_calls": [
+        {
+          "site": "0x801C81B8",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C81C8",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C81D8",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C8218",
+          "target": "0x8002A3B0"
+        },
+        {
+          "site": "0x801C8228",
+          "target": "0x801C0398"
+        },
+        {
+          "site": "0x801C823C",
+          "target": "0x801C03FC"
+        },
+        {
+          "site": "0x801C8244",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C8258": {
+      "name": "dora3_s3_core_801C8258",
+      "size": 312,
+      "sha256": "e0a9fc3a4daa8ad43fe040b93881a27d16473e45fb03b8a36b1665b1e06a6f4c",
+      "direct_calls": [
+        {
+          "site": "0x801C8268",
+          "target": "0x8002A3F8"
+        },
+        {
+          "site": "0x801C833C",
+          "target": "0x801C02A8"
+        },
+        {
+          "site": "0x801C8344",
+          "target": "0x801C0884"
+        },
+        {
+          "site": "0x801C835C",
+          "target": "0x801C0398"
+        },
+        {
+          "site": "0x801C8364",
+          "target": "0x801C0848"
+        },
+        {
+          "site": "0x801C836C",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C83D8": {
+      "name": "dora3_s3_core_801C83D8",
+      "size": 116,
+      "sha256": "0f7f941aae832cd0b229b7c1a3ad40dfd55a792551e1a6712ed495fb11903b48",
+      "direct_calls": [
+        {
+          "site": "0x801C83E0",
+          "target": "0x801C2978"
+        },
+        {
+          "site": "0x801C83F0",
+          "target": "0x801C3030"
+        },
+        {
+          "site": "0x801C8400",
+          "target": "0x801C2E94"
+        },
+        {
+          "site": "0x801C8438",
+          "target": "0x801C3124"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C844C": {
+      "name": "dora3_s3_core_801C844C",
+      "size": 44,
+      "sha256": "be0508cb1dfc2cd9eaba75c91dac07f6a1a050907056334d56f4ccc30563df43",
+      "direct_calls": [
+        {
+          "site": "0x801C8454",
+          "target": "0x801C1664"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C84F0": {
+      "name": "dora3_s3_core_801C84F0",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "direct_calls": [],
+      "indirect_calls": []
+    },
+    "0x801C84F8": {
+      "name": "dora3_s3_core_801C84F8",
+      "size": 148,
+      "sha256": "00b1bcfe6252c3f2a3c4fd01401481a75819204f90f438e4d0b50d94635d14dc",
+      "direct_calls": [
+        {
+          "site": "0x801C8528",
+          "target": "0x80031C88"
+        },
+        {
+          "site": "0x801C8550",
+          "target": "0x80031A0C"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C85C8": {
+      "name": "dora3_s3_core_801C85C8",
+      "size": 404,
+      "sha256": "ecb65c3797000a33001eca2dbeaf73410404b83886e9dea848ba47f0a06534c3",
+      "direct_calls": [
+        {
+          "site": "0x801C85E4",
+          "target": "0x801C12F0"
+        },
+        {
+          "site": "0x801C8618",
+          "target": "0x801C3124"
+        },
+        {
+          "site": "0x801C8628",
+          "target": "0x801C768C"
+        },
+        {
+          "site": "0x801C8698",
+          "target": "0x801C07FC"
+        },
+        {
+          "site": "0x801C86A0",
+          "target": "0x801C0848"
+        },
+        {
+          "site": "0x801C8710",
+          "target": "0x801C3124"
+        },
+        {
+          "site": "0x801C8720",
+          "target": "0x801C768C"
+        },
+        {
+          "site": "0x801C8748",
+          "target": "0x801B9284"
+        }
+      ],
+      "indirect_calls": []
+    },
+    "0x801C875C": {
+      "name": "dora3_s3_core_801C875C",
+      "size": 40,
+      "sha256": "ad534ae21c8f16bc38f6619d973cb0e3e7dadbb9bfe484f0ea20ba87c5ed972b",
+      "direct_calls": [],
+      "indirect_calls": []
+    }
+  },
+  "summary": {
+    "states": 68,
+    "unique_handlers": 128
+  },
+  "limitations": [
+    "Table boundary is supported by contiguous valid pointers and following non-code data; all dynamic state writers still need review",
+    "State callbacks mix commands, counters and continuous motion; no blanket elapsed multiplier is implied",
+    "Other actors and minigames have separate dispatchers"
+  ]
+}

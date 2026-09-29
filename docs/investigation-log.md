@@ -1397,3 +1397,40 @@ Model audit всего известного кода:752 clip-select,362 end rea
 65 duration reads,48 seek,90 pause,222 clamp,36 pose/time calls. End getter
 недеструктивный; morph пишет выбранный bank, clip reset/seek/reuse требуют явной
 generation. Карта и границы: docs/model-animation.md. Live model timing не изменён.
+
+## 2026-09-29 — v69: общий model adapter; полный FPS ещё не готов
+
+Требование пользователя расширено/уточнено до полного объёма без промежуточных
+частичных EXE. Новая сборка для прохождения не передаётся. test-026: пользователь
+подтвердил отсутствие вылета в своей проверке; границы прохождения неизвестны.
+
+Реализованы shared lifecycle hooks, legacy observation и native pose scope.
+Найдена и закрыта конкретная гонка будущего общего режима: morph update пишет
+по next bank, который при независимых native tasks может быть занят. В native
+ownership такие записи отложены до frame ticket; stale модели тоже заполняют
+свободный банк последней исходной morph-позой, без перезаписи другого банка.
+
+8003997C — отдельный matrix pass; прямые вызовы после8002DEF8 найдены во многих
+draw путях. Проверка исходного matrix builder подтвердила дробную позу в выходной
+матрице. Первоначальная ошибка стенда: вход был заполнен float identity, хотя
+8005A0C0 принимает N64 packed16.16. Исправлен fixture, production не подстраивался.
+Другая ошибка fixture — имя getter80039544 имеет префикс s0_menu, а не s0.
+
+Прямой minigame4 draw closure освобождает модель. Adapter восстанавливает её
+временные CPU bone поля перед original destruction и удаляет owner; другие модели
+не затрагиваются. 8003B7D0 не равен heap reset: original не освобождает модели,
+поэтому он инвалидирует clock, но не удаляет registry owners.
+
+Масштаб physics подтверждён отдельно:68 player state pairs/128 handlers плюс
+другие actor/minigame dispatchers.801BC7DC оказался geometry collector, не общим
+интегратором движения.801BF828 смешивает velocity additions, spatial corrections
+и события;8002F064 — геометрия камеры, не её temporal update. Массовый множитель
+на эти функции не применялся. См. native-motion.md; это незавершённая интеграция.
+
+## 2026-09-29: сохранение скомпилированного test-027
+
+Последнее уточнение пользователя: все собранные Windows EXE складывать в
+testbuild без просьбы запуска. Подготовлены README и compile receipt для v69;
+проверены хэши скомпилированных исходников, генерации и трёх CPU-проверок.
+Linux/Windows сборки успешны; Dora64 и все32 закреплённые зависимости неизменны.
+Полный FPS не завершён, новый 3D-допуск не включён. Игра не запускалась.

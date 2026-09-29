@@ -250,3 +250,5 @@ int main() {
     check_command_timeline(rdram, context);
     std::cout << "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. All five original fade commands, inter-frame timestamp, no-op fractional retention, same-time commands and unknown-write rejection. No game/window/GPU.\n";
 }
+
+extern "C" void dora3_native_model_hook(uint8_t*,recomp_context*,uint32_t) {}

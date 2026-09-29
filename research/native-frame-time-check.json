@@ -4,11 +4,11 @@
   "sanitizers": "ASan/LSan on component and original functions; UBSan on new C++ component/harness",
   "source_sha256": {
     "src/native_frame_time.cpp": "4591be5bf70cb6c13b91df526d03fce1035c31fa2f0449d7a8bfb58860b344e6",
-    "research/native-frame-time-check.cpp": "830f3f2138b5eba175dce5bff7e9d60a79d1ef476671211a1ba8532f6a95633b",
+    "research/native-frame-time-check.cpp": "22be7a7947214508c9e4c5271ab88b98ec716b9dce52d175ef581012273acf3b",
     "src/native_frame_time.hpp": "f35ef08a013dc538094b317faa49cb03aa8042777b20590b8d8cd4a600a46296",
     "tools/check_native_frame_time.py": "70d04b76a3fcf2bf8b7e553992f752734e749502f97724d54396ff7c2988fd8c"
   },
-  "generation_receipt_sha256": "e047c716fabc35fa5733897ec547aae42da3e0f6e26798b1167cf97db721ecc5",
+  "generation_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
   "original_functions": [
     "dora3_fade_tick",
     "dora3_s0_8003948C",

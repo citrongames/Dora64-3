@@ -4974,3 +4974,13 @@ verified,function,0x16b44,0x8003b744,,clip channel release,ROM audit: free +60; 
 verified,function,0x16b7c,0x8003b77c,,model teardown,ROM audit: morph retirement; channels; tree; model free,Invalidate generation and respect frame ownership
 verified,function,0x14944,0x80039544,,animation end getter,ROM audit: nondestructive flags bit1 read;362 object wrapper calls,Preserve guest event visibility across readers
 verified,function,0x14158,0x80038d58,,morph selected bank output,ROM audit: model+6C+bank*4 with bank801A9544,Bind pose evaluation to free FrameTicket bank
+verified,native-model-hook,,0x8003B6B4,,constructor completed; model in v0,v69 generated original constructor and synthetic lifecycle check,Do not confuse registry with full scene activation
+verified,native-model-hook,,0x80030850,,original scene-step boundary,original retrace branch and common loop component check,Retain VI/audio cadence
+verified,native-model-hook,,0x800393C4,,last real pose and native source-curve evaluator,v69 model check linear/Hermite/morph and guest-state preservation,Audit full draw and matrix consumers
+verified,native-model-hook,,0x80038D58,,defer logic morph while native owns banks,v69 real morph check; wrong bank rejected; other bank unchanged,Full scene ownership remains gated
+verified,native-model-hook,,0x8003B77C,,restore temporary bones and remove owner before destruction,v69 original destructor on synthetic allocations including deletion during frame,Retain vertex retirement protocol
+verified,function-contract,,0x8003B7D0,,renderer reset does not free model allocations,original body plus synthetic lifecycle check,Invalidate clocks but retain owners
+verified,player-state-table,,0x801FA6B0,0x220,scene1 player paired callbacks,68 rows point to128 compiled handlers; tools/analyze_player_states.py,Classify all state semantics and timing before native gameplay
+verified,motion-contract,,0x801C0F1C,,scene1 player gravity and terminal velocity,original body; docs/native-motion.md,Implement elapsed integration and collision event ordering
+verified,motion-contract,,0x801BF828,,scene1 player movement and collision resolution,original body separates velocity additions from spatial correction loops,Do not scale all constants or repeat state events
+verified,camera-contract,,0x8002F064,,camera geometric eye calculation,original body; struct0x34; docs/native-motion.md,Find and convert target/angle writers

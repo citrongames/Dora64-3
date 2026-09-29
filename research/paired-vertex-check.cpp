@@ -57,3 +57,5 @@ int main(){
  assert(allocated.size()==102 && freed.size()==100);
  std::cout<<"PASS: original paired vertex allocation/copy, bank-selected morph isolation and retirement. OBSERVED: 51 pair releases before ticks lose 2 registrations while clearing owner pointers. Synthetic schedule; gameplay frequency unknown.\n";
 }
+
+extern "C" int dora3_native_model_morph_allowed(uint8_t*,recomp_context*) {return 1;}

@@ -61,6 +61,8 @@ def main():
                          'void dora3_native_loop_transition(uint8_t*, recomp_context*);',
                          'void dora3_native_loop_submit(uint8_t*, recomp_context*);',
                          'void dora3_native_loop_retire(uint8_t*, recomp_context*);'])
+    declarations.append('int dora3_native_model_morph_allowed(uint8_t*, recomp_context*);')
+    declarations.append('void dora3_native_model_hook(uint8_t*, recomp_context*, uint32_t);')
     declarations.append('int dora3_native_game_message(uint8_t*, recomp_context*);')
     declarations.append('uint32_t dora3_bus_read32(uint8_t*, uint32_t);')
     declarations.append('void dora3_capture_frame_lights(uint8_t*, uint32_t);')
@@ -89,6 +91,10 @@ def main():
         if index==0 and addr==0x800280DC:
             if struct.unpack_from('>I',rom,0x1000+addr-0x80025C00)[0]!=0x27BDFFE0:raise ValueError('Unreviewed process install')
             hook+=' dora3_native_loop_transition(rdram, ctx);'
+        if index==0 and addr in {0x80033A14,0x8003B7D0,0x8003B77C,0x8003B6BC,0x8003B744,0x80039564,0x80039578,0x800395BC,0x8003948C,0x800393C4}:
+            hook+=f' dora3_native_model_hook(rdram, ctx, 0x{addr:08X});'
+        if index==0 and addr==0x80038D58:
+            hook+=' if (!dora3_native_model_morph_allowed(rdram, ctx)) return;'
         if index==0 and addr==0x80026CEC:
             hook+=' if (dora3_native_framebuffer_ready((uint32_t)ctx->r4)) { ctx->r2 = ctx->r4; return; }'
         config+=f'{{ func = "{name}", before_vram = 0x{addr:08X}, text = {json.dumps(hook)} }},\n'
@@ -135,6 +141,11 @@ def main():
                 ('dora3_game_retrace_update',0x80030884,0x0C00F352,'dora3_after_legacy_fade:;')]
     for name,address,word,hook in loop_hooks:
         if struct.unpack_from('>I',rom,0x1000+address-0x80025C00)[0]!=word:raise ValueError('Unreviewed common loop hook')
+        config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
+    for function,address,expected in [(0x800307F8,0x80030850,0x3C02801B),(0x8003B560,0x8003B6B4,0x03E00008)]:
+        if struct.unpack_from('>I',rom,0x1000+address-0x80025C00)[0]!=expected:raise ValueError('Unreviewed model hook')
+        name=compiled[(0,function)][0]
+        hook=f'dora3_native_model_hook(rdram, ctx, 0x{address:08X});'
         config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
     scene34=next(s for s in sections if s['name']=='.scene34')
     if struct.unpack_from('>I',rom,scene34['rom']+0x801C02B0-scene34['vram'])[0]!=0x8FBF0010:raise ValueError('Unreviewed scene34 entry')
