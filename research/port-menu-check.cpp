@@ -1,5 +1,6 @@
 // No ROM, SDL window or GPU. Real settings/input/menu sources and pinned ImGui.
 #include "port_menu.hpp"
+#include "port_display.hpp"
 #include "json/json.hpp"
 #include "imgui/imgui.h"
 #include "imgui/imgui_internal.h"
@@ -23,13 +24,18 @@ int main(int argc,char** argv){
     auto s=settings();assert(s.keys[A]==SDL_SCANCODE_SPACE&&s.keys[B]==SDL_SCANCODE_C&&s.keys[Z]==SDL_SCANCODE_Z);
     assert(s.deadzone==0.25f&&valid_key(SDL_SCANCODE_F1));
     assert(s.window_width==1280&&s.window_height==720&&!s.fullscreen);
+    s.display_index=1;s.display_refresh_rate=165;s.frame_rate_mode=2;s.frame_rate_limit=240;
     s.window_width=1920;s.window_height=1080;s.volume=35;s.resolution=2;s.fullscreen=true;s.show_fps=true;set_general(s);set_deadzone(0.3f);
     bind(A,false,SDL_SCANCODE_C);assert(settings().keys[B]==SDL_SCANCODE_SPACE);
     bind(Z,true,SDL_CONTROLLER_BUTTON_B);assert(settings().pad[B]==pad_axis(SDL_CONTROLLER_AXIS_TRIGGERLEFT,true));
     initialize(dir);s=settings();assert(s.volume==35&&s.resolution==2&&s.fullscreen&&s.show_fps&&std::abs(s.deadzone-0.3f)<1e-6f);
     assert(s.keys[A]==SDL_SCANCODE_C&&s.pad[Z]==SDL_CONTROLLER_BUTTON_B);
     assert(s.window_width==1920&&s.window_height==1080);
+    assert(s.display_index==1&&s.display_refresh_rate==165&&s.frame_rate_mode==2&&s.frame_rate_limit==240);
+    assert(target_frame_rate(s,60)==240&&target_frame_rate(s,165)==240&&target_frame_rate(s,0)==240);
+    s.frame_rate_mode=1;assert(target_frame_rate(s,165)==165);s.frame_rate_mode=0;assert(target_frame_rate(s,165)==0);
     {nlohmann::json pc,controls;std::ifstream(dir/"port_pc_settings.json")>>pc;std::ifstream(dir/"port_input_settings.json")>>controls;
+     assert(pc["graphics"]["frame_rate_mode"]=="Manual"&&pc["graphics"]["frame_rate_limit"]==240&&pc["graphics"]["display_index"]==1);
      assert(pc["graphics"]["display_width"]==1920&&pc["graphics"]["window_mode"]=="Fullscreen");
      assert(std::abs(pc["master_volume"].get<float>()-0.35f)<1e-6f&&controls["bindings"]["n64_z"]["gamepad"]==2);}
 
@@ -37,8 +43,8 @@ int main(int argc,char** argv){
     bind(A,true,SDL_CONTROLLER_BUTTON_BACK);assert(settings().pad[A]==SDL_CONTROLLER_BUTTON_A);
     bind(A,false,0);bind(A,true,-1);assert(settings().keys[A]==0&&settings().pad[A]==-1);
     reset_bindings();assert(settings().keys==defaults().keys&&settings().pad==defaults().pad);
-    profile(true);assert(settings().resolution==3&&settings().filtering==1);
-    profile(false);assert(settings().resolution==0&&settings().filtering==0);
+    profile(true);assert(settings().resolution==3&&settings().filtering==1&&settings().frame_rate_mode==1);
+    profile(false);assert(settings().resolution==0&&settings().filtering==0&&settings().frame_rate_mode==0);
     {std::ofstream f(dir/"port_pc_settings.json");f<<R"({"version":14,"master_volume":-3,"menu_scale":"bad","graphics":{"render_resolution":99,"display_width":-40}})";}
     initialize(dir);assert(settings().volume==100&&settings().resolution==0&&settings().keys==defaults().keys);
     {nlohmann::json pc;std::ifstream(dir/"port_pc_settings.json")>>pc;assert(!pc.contains("menu_scale"));}
@@ -91,9 +97,18 @@ int main(int argc,char** argv){
     io.DisplaySize=ImVec2(1280,720);auto normal=settings();set_general(normal);frame();
     auto* menu=ImGui::FindWindowByName("##Dora3PcMenu");assert(menu);
     auto* tabs=ImGui::GetCurrentContext()->TabBars.GetByKey(menu->GetID("##Dora3PcMenuTabs"));assert(tabs&&tabs->Tabs.Size==4);
+    // Exercise all frame-rate states through actual Graphics tab drawing, including unknown display.
+    tabs->NextSelectedTabId=tabs->Tabs[1].ID;frame();frame();
+    for(int mode=0;mode<3;mode++){auto cfg=settings();cfg.frame_rate_mode=mode;cfg.frame_rate_limit=240;set_general(cfg);publish_display_rate(60);frame();frame();assert(ImGui::GetDrawData()->TotalVtxCount>0);}
     const ImGuiID controls_id=tabs->Tabs[3].ID;
     tabs->NextSelectedTabId=controls_id;frame();frame();
     assert(tabs->SelectedTabId==controls_id);
+    // Dora64 desktop baseline: 760x500, padding22x18; inherited item width65%, grey help text.
+    assert(menu->Size.x==760&&menu->Size.y==500&&menu->WindowPadding.x==22&&menu->WindowPadding.y==18);
+    // ImGui truncates 760 * 0.65f: float rounding can yield493 rather than494.
+    assert(menu->ItemWidthDefault>=493.0f&&menu->ItemWidthDefault<=494.0f);
+    const auto grey=ImGui::ColorConvertFloat4ToU32(style.Colors[ImGuiCol_TextDisabled]);
+    bool has_grey=false;for(const auto& vertex:menu->DrawList->VtxBuffer)has_grey|=vertex.col==grey;assert(has_grey);
     // Controls table is present and scrollable, all 18 actions have bindings.
     bool found_table=false;
     for(auto* child:menu->DC.ChildWindows)if(child->Active){found_table=true;assert(child->Size.x>0&&child->Size.y>0);}
@@ -118,5 +133,5 @@ int main(int argc,char** argv){
     // Shared settings snapshots must remain safe while input/render/audio use them.
     std::thread reader([]{for(int i=0;i<1000;i++){const auto s=settings();assert(s.volume>=0&&s.volume<=100);physical();menu_open();}});
     for(int i=0;i<50;i++){set_deadzone(0.1f+i%4*0.1f);publish_physical(p);}reader.join();
-    std::puts("PASS: background input persistence; obsolete menu_scale removed; Dora64 schema/prefix and legacy migration; 720p default/window size persistence; default controls/F1 inert/exit request; settings roundtrip/invalid recovery; conflict swap/reserved/clear; capture arm/cancel/axis/disconnect; menu edge/focus/release; headless ImGui scale/font restore/FPS/controls table/keyboard and gamepad navigation; concurrent snapshots");
+    std::puts("PASS: donor menu geometry/grey help; graphics tabs/uncapped Manual FPS persistence/profiles; background input persistence; obsolete menu_scale removed; Dora64 schema/prefix and legacy migration; 720p default/window size persistence; default controls/F1 inert/exit request; settings roundtrip/invalid recovery; conflict swap/reserved/clear; capture arm/cancel/axis/disconnect; menu edge/focus/release; headless ImGui scale/font restore/FPS/controls table/keyboard and gamepad navigation; concurrent snapshots");
 }

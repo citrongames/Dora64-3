@@ -1130,3 +1130,74 @@ JSON roundtrip и ImGui CPU draw data; Windows/Linux builds без игры/GPU.
 По просьбе пользователя все изменения объединяются в main приватного Dora64-3,
 две созданные агентом ветки удаляются после проверки включения в main.
 Дальше работать только в main. Подробности: port-menu-controls.md.
+
+## Test-024 — Graphics и оформление из Dora64
+
+Test-023 пользователь подтвердил рабочим. По его следующему запросу перенесены
+общие элементы Graphics из Dora64680d81f, с отдельным уточнением: Manual FPS
+должен применяться даже выше частоты монитора.
+
+- Monitor: имена и режимы SDL, выбор монитора переносит окно; выбранному монитору
+  назначается desktop-размер, как в Dora64. Отключённый индекс ограничивается
+  доступными дисплеями. Refresh обновляет список через запрос на основной SDL-поток;
+  SDL_DISPLAYEVENT также запрашивает обновление.
+- Output resolution: стандартные оконные размеры плюс поддерживаемые размеры
+  выбранного монитора, сортировка и удаление повторов разных Hz. Borderless
+  показывает desktop/native размер и Hz, не меняет видеорежим ОС.
+- Frame rate: Original / Display / Manual; ручной предел60–360FPS, исходное
+  значение144. Показаны Display Hz и Target FPS. Modern включает Display,
+  Original возвращает Original. Старые настройки без этих полей остаются Original.
+- Manual намеренно отличается от Dora64: RT64 больше не ограничивает targetRate
+  частотой дисплея. При60Hz и Manual240 целевое значение остаётся240. Подпись:
+  Smoother motion with the original game speed. Display follows the display refresh
+  rate; Manual can exceed it. Это целевое, а не гарантированное число кадров.
+- Общие цвета/размеры взяты из исходника меню: title background, приглушённые
+  пояснения Controls, default item width, popup buttons120/100, table252, окно760×500,
+  padding22×18, поля48 с масштабированием от720p, footer54. Убрана собственная
+  раскладка desktop-вкладок через child-окна. Footer содержит только существующие
+  Continue/Exit; Reset game пока не реализован. FPS получает то же сглаживание
+  показаний25%/75%, что в Dora64. Текстура шрифта и базовая тема те же из pinned RT64.
+
+Настройки сохраняются в прежнем port_pc_settings.json: graphics.display_index,
+display_width/height/refresh_rate, frame_rate_mode (Original/Display/Manual),
+frame_rate_limit. Общие сохранения и bindings не меняются.
+
+### Источники и границы переноса
+
+| Источник | Переиспользование |
+|---|---|
+| Dora64/src/system_overlay.cpp @680d81f | refreshDisplays, displayCombo, outputModeCombo; drawGraphicsTab, drawMenu, drawControlsTab, drawFps, ScopedOverlayScale |
+| Dora64/src/rt64_render_context.cpp @680d81f | соответствие режимов RefreshRate и refreshRateTarget |
+| pinned RT64/src/hle/rt64_application_window.cpp | setDisplayConfig, включая восстановление Win32 chrome и доступность заголовка большого окна |
+| pinned RT64/src/hle/rt64_workload_queue.cpp | реальный выбор targetRate; снят только clamp Manual до swapChainRate |
+
+Часть SDL адаптирована к поточной схеме Dora64-3: меню читает копию каталога,
+окно меняет только SDL-поток. RT64 userConfig меняет его producer-поток;
+swapChainRate читается под configurationMutex и публикуется атомарно.
+Перетаскивание/изменение размеров окна не отменяется каждый кадр.
+
+Снятие ограничения RT64 выполняет tools/prepare_rt64_framerate.py: проверяется
+SHA256 pinned исходника, создаётся только build-local копия. CMake заменяет ровно
+эти два translation units; библиотеки, pins и Dora64 остаются неизменными.
+
+Игровые адреса/хуки, CPU/RSP генерация, VI/scheduler и звук не менялись.
+Высокая частота использует штатное frame matching/interpolation RT64. Качество
+движения/стыков сцен третьей части не подтверждается проверками без GPU:
+это отдельная визуальная проверка пользователя, Original остаётся доступным.
+
+Проверки: JSON roundtrip/profiles, CPU ImGui geometry/grey help/Graphics modes,
+SDL display wrappers (два монитора, dedup, Refresh, fullscreen/failure, disconnect,
+отсутствие повторного resize), ASan/TSan, компиляция и запуск извлечённого
+реального switch RT64 (Manual240@60Hz, Manual360@165Hz, Display, Original),
+SDL virtual-controller/audio regression, сборки Windows/Linux. Никаких игровых
+окон, рендера или реального переключения мониторов агент не запускает.
+
+Справка SDL: https://wiki.libsdl.org/SDL2/SDL_GetDisplayMode,
+https://wiki.libsdl.org/SDL2/SDL_SetWindowPosition,
+https://wiki.libsdl.org/SDL2/SDL_DisplayEvent.
+
+Дополнение к test-024: после снятия targetRate clamp найдена ещё одна причина
+ограничения вывода — VSync. В build-local present queue Manual выше Hz отключает
+VSync до needsResize, остальные режимы восстанавливают его. Меняет только
+present-поток; pinned RT64 не редактируется. Проверка извлекает реальную политику
+из генерируемого кода и проверяет включение/выключение, без GPU.

@@ -71,6 +71,9 @@ void save_locked(bool controls=false){
             if(!pc_document["graphics"].is_object())pc_document["graphics"]=Json::object();
             auto& g=pc_document["graphics"];g["window_mode"]=current.fullscreen?"Fullscreen":"Windowed";
             g["display_width"]=current.window_width;g["display_height"]=current.window_height;
+            g["display_index"]=current.display_index;g["display_refresh_rate"]=current.display_refresh_rate;
+            constexpr const char* frame_rates[]={"Original","Display","Manual"};
+            g["frame_rate_mode"]=frame_rates[current.frame_rate_mode];g["frame_rate_limit"]=current.frame_rate_limit;
             constexpr const char* resolutions[]={"Original","Original2x","Original4x","Auto"};
             g["render_resolution"]=resolutions[current.resolution];g["texture_filtering"]=current.filtering?"Bilinear":"ThreePoint";
             write(pc_path,pc_document);
@@ -130,7 +133,11 @@ void initialize(const std::filesystem::path& directory){
         boolean(pc_document,"show_fps",current.show_fps);float volume=current.volume/100.0f;
         real(pc_document,"master_volume",volume,0,1);current.volume=int(volume*100+0.5f);
         const auto it=pc_document.find("graphics");if(it!=pc_document.end()&&it->is_object()){
-            const auto& g=*it;integer(g,"display_width",current.window_width,480,7680);integer(g,"display_height",current.window_height,360,4320);
+            const auto& g=*it;integer(g,"display_width",current.window_width,320,16384);integer(g,"display_height",current.window_height,240,16384);
+            integer(g,"display_index",current.display_index,0,1024);integer(g,"display_refresh_rate",current.display_refresh_rate,0,1000);
+            integer(g,"frame_rate_limit",current.frame_rate_limit,60,360);
+            constexpr const char* frame_rates[]={"Original","Display","Manual"};
+            for(int i=0;i<3;i++)if(g.contains("frame_rate_mode")&&g["frame_rate_mode"]==frame_rates[i])current.frame_rate_mode=i;
             if(g.contains("window_mode")&&g["window_mode"].is_string())current.fullscreen=g["window_mode"]=="Fullscreen";
             constexpr const char* resolutions[]={"Original","Original2x","Original4x","Auto"};
             for(int i=0;i<4;i++)if(g.contains("render_resolution")&&g["render_resolution"]==resolutions[i])current.resolution=i;
@@ -155,11 +162,14 @@ Settings settings(){std::lock_guard lock(mutex);return current;}
 void set_general(const Settings& v) {
     std::lock_guard lock(mutex);
     current.volume=std::clamp(v.volume,0,100);current.resolution=std::clamp(v.resolution,0,3);current.filtering=std::clamp(v.filtering,0,1);
-    current.window_width=std::clamp(v.window_width,480,7680);current.window_height=std::clamp(v.window_height,360,4320);
+    current.window_width=std::clamp(v.window_width,320,16384);current.window_height=std::clamp(v.window_height,240,16384);
+    current.display_index=std::clamp(v.display_index,0,1024);current.display_refresh_rate=std::clamp(v.display_refresh_rate,0,1000);
+    current.frame_rate_mode=std::clamp(v.frame_rate_mode,0,2);current.frame_rate_limit=std::clamp(v.frame_rate_limit,60,360);
     current.fullscreen=v.fullscreen;current.show_fps=v.show_fps;
     save_locked();
 }
 void set_background_gamepad_input(bool value){std::lock_guard lock(mutex);current.background_gamepad_input=value;save_locked(true);}
+void correct_display_index(int expected,int value){std::lock_guard lock(mutex);if(current.display_index==expected&&expected!=value){current.display_index=value;save_locked();}}
 void set_fullscreen(bool value){std::lock_guard lock(mutex);current.fullscreen=value;save_locked();}
 void set_deadzone(float v){if(!std::isfinite(v))return;std::lock_guard lock(mutex);current.deadzone=std::clamp(v,0.05f,0.5f);save_locked(true);}
 void bind(Action a,bool gamepad,int code) {
@@ -171,7 +181,7 @@ void bind(Action a,bool gamepad,int code) {
     bindings[a]=code;save_locked(true);
 }
 void reset_bindings(){std::lock_guard lock(mutex);const auto d=defaults();current.keys=d.keys;current.pad=d.pad;current.deadzone=d.deadzone;save_locked(true);}
-void profile(bool modern){std::lock_guard lock(mutex);current.resolution=modern?3:0;current.filtering=modern?1:0;save_locked();}
+void profile(bool modern){std::lock_guard lock(mutex);current.resolution=modern?3:0;current.filtering=modern?1:0;current.frame_rate_mode=modern?1:0;save_locked();}
 std::string save_error(){std::lock_guard lock(mutex);return error;}
 std::string pad_name(int code){
     constexpr const char* names[]={"Unbound","A","B","X","Y","Start","LB","RB","LT","RT","Left stick click","Right stick click",

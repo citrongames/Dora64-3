@@ -77,3 +77,13 @@ mesgqueue.cpp, проверяя SHA256 каждого исходника. Доб
 Сами пять аппаратных обработчиков находятся в src/n64_hardware*. Библиотеки
 и pins не редактировались; первый Dora64 этих адаптеров не получает.
 Подробности и ограничения модели — hardware-interface.md.
+
+## RT64 Manual FPS в test-024
+
+По прямому запросу пользователя Manual не ограничивается частотой монитора.
+tools/prepare_rt64_framerate.py создаёт build-local копию workload queue из pinned
+RT64, проверяя SHA2567fe61533ff8d1ffa475eb90a49310028e10dd59552c0f2a47a3a662cbfd7757a.
+CMake заменяет workload/present sources RT64 при сборке Dora64-3. Checkouts/pins не изменяются;
+изменение воспроизводимо без локальных недоступных коммитов. Original/Display,
+порядок очередей, pacing и все Android GPU-фиксы сохраняются. Это настройка
+третьего порта, не исправление первой игры.

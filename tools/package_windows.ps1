@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$CrtDirectory,
-    [string]$BuildId = 'test-023'
+    [string]$BuildId = 'test-024'
 )
 $ErrorActionPreference = 'Stop'
 if ($BuildId -notmatch '^[a-zA-Z0-9-]+$') { throw 'Invalid build ID.' }
@@ -54,8 +54,8 @@ $report = [ordered]@{
     locally_launched = $false
     visual_input_audible_validation = 'pending user test'
     compiler = 'MSVC 19.44; RelWithDebInfo /O2 /Zi /EHsc; dynamic CRT'
-    previous_user_test = 'test-021: user reports menu working; requested parity with Dora64 layout/settings/default controls'
-    current_test_scope = 'Remove unsolicited Menu scale; restore persistent Background gamepad input, SDL hint and per-device focus handling as in Dora64. Settings/saves preserved. All work consolidated in private repository main. Windows/Linux compiled, no game/GPU launched.'
+    previous_user_test = 'test-023: user confirms working'
+    current_test_scope = 'Dora64 Monitor/SDL output modes/Refresh/Frame rate and desktop styling. Manual FPS may exceed monitor Hz via pinned build-local RT64 adaptation. Settings/saves preserved. Windows/Linux compiled; game/GPU not launched.'
     rom = 'external; exact filename beside EXE only; never copied by this script'
     files_sha256 = $hashes
     source = $stage

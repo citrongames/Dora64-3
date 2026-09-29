@@ -1,0 +1,13 @@
+{
+  "result": "pass",
+  "scope": "Wrapped SDL (no real window/GPU); actual adapted RT64 refresh-rate switch",
+  "sanitizer": "thread",
+  "source_sha256": {
+    "research/display-check.cpp": "7f17d0e1bac2050ca57276453b9a6db07bac1389deba76ab3671234af2a9b2b5",
+    "src/port_display.cpp": "ea880764b8299963aa74a4f1a2949cee1efb45580464763d43f0fcc0dd765efa",
+    "src/port_settings.cpp": "38207b26de4a3196ca784e465f7411f5c4aa64643c3d07fb32aea567cdaf233b",
+    "tools/prepare_rt64_framerate.py": "e0f11dd5972bfcf142bfd7504ccaa91ac3bdad4d408a58d67ca65656be08d216",
+    "tools/check_displays.py": "6a4d16a1a8c5a5244b23f616bfd41d048405bdde6c1cff9d355c78e98fe004b2",
+    "src/port_display.hpp": "60617c7b1edec4037e218ef06e5ba18964c6d347098df558e456714085d8bec7"
+  }
+}

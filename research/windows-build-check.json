@@ -1,34 +1,36 @@
 {
   "scope": "Windows x64 RT64 and Linux RT64 frontends compiled; SDL virtual controller/audio and headless ImGui/settings checks; no game or GPU launched",
-  "base_commit": "53a867709ce6482d49be9bce49495e382e1df2a1",
-  "build_id": "test-023",
+  "base_commit": "2a426acb3c6624ead9bdb92ac75e927fc8d924a1",
+  "build_id": "test-024",
   "cpu_generation": "startup-v61",
   "audio_generation": "audio-rsp-v1",
   "original_bodies": 4778,
   "total_symbols": 4827,
   "sdk_replacements": 44,
   "native_replacements": 5,
-  "generated_delta": "CPU/audio/game hooks and audit fixes unchanged versus test-022; remove manual scale and add background gamepad policy/settings",
-  "executable_sha256": "312cc10917837e180ed3d6dcc575fd05cea1b0868477d2c025fff554ad23ee5d",
-  "linux_live_sha256": "0b1e9d5058761f985902739ebf797de4d7da7f288e7817ba394d734580bd7ca5",
+  "generated_delta": "CPU/audio/game hooks unchanged versus test-023; donor display/menu styling; isolated RT64 Manual FPS clamp removal and present-thread VSync policy",
+  "executable_sha256": "5c694792de2020bfcf30b5c55c284b00641a48b9fd60a7e1185920b73cda6edc",
+  "linux_live_sha256": "d281b7c34d15096ac596bfd50860ae231473c45375468319de60ade227d7088a",
   "source_sha256": {
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
-    "research/runtime/CMakeLists.txt": "d771b10789fc40a5b0a02bc5410154ede9695b0ea3a986252a7033df06612ab0",
+    "research/runtime/CMakeLists.txt": "25cc7c114ec8e97e2df3d0f090defa71762cc4ce25ed1d9accc48f31b0735f07",
     "src/frame_lights.cpp": "f62604ab789b595bb804c2a55e251b32f49c267786bfdb7c4e07a51d2839c053",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
     "src/graphics_sync.cpp": "d8f5674176f89f101a511fa42eeb843b55bdecfc21f5fe59b25ec9a44d36a49c",
     "src/graphics_sync.hpp": "03fb24d4c08a7403d809cc8e1e9a594c1c029f51aa3e3f42a99a4a93aaacd655",
-    "src/live_graphics.cpp": "47de7eb34099f859890c25a3b168edefe58709330288d6ad0f22959350a113b5",
+    "src/live_graphics.cpp": "6872ec8ad7fa36bf6581c1fed7e38c2f7d6c5cf2b336992893d5f1760c7eedef",
     "src/live_io.cpp": "06cc075c817cd268e35d9437dc75bf1244cecb175d63e3d0907d42357167b802",
     "src/live_io.hpp": "1ac7f6ceb515bd4e85b90355ff676bf5a7f102547a21ed12d8ec0b1bed967b08",
     "src/n64_hardware.cpp": "5ba6ab5b89daba9af5dbc0f3abcf89cc6e6d25bfc1164427cf51de1e5a9a5ca3",
     "src/n64_hardware.hpp": "b18a04de14a457d8d40787316f992cca5a579def5ff5fe64e9e17bb1729dc5d2",
     "src/n64_hardware_backend.cpp": "e0031e99be8ca477a29780824508462522d7782d4a9a343ddd89720ab5faad6f",
+    "src/port_display.cpp": "ea880764b8299963aa74a4f1a2949cee1efb45580464763d43f0fcc0dd765efa",
+    "src/port_display.hpp": "60617c7b1edec4037e218ef06e5ba18964c6d347098df558e456714085d8bec7",
     "src/port_input.cpp": "3c6ffd8924bda3d936f4d6e65f37588475822b524a67bdf4c718cb6b419d8b5b",
-    "src/port_menu.cpp": "08d3d4dc5f218d3eaf9ad9a44ddafbf9b488b58d7bf6533f6216e9a48095518c",
+    "src/port_menu.cpp": "2a6225d3f2b4bca6b94c0cdd1658f8aa6d3e55e9530fafd2f4b5ec66783e70e1",
     "src/port_menu.hpp": "5f3314b598c9824d4eaa4ee221d688e32bec6af922ac03fe9e32f2fedbb24ed5",
-    "src/port_settings.cpp": "5185de95286659d8ebcec990910935a9af66b51518828525e6fd62d2e86486d1",
-    "src/port_settings.hpp": "eb736defc1d3320910771f43b32c03a83cdead507687ec7eb7f019e483980838",
+    "src/port_settings.cpp": "38207b26de4a3196ca784e465f7411f5c4aa64643c3d07fb32aea567cdaf233b",
+    "src/port_settings.hpp": "44e0c1a5a17b3c29f7ffb0fa8ceccc481173dad2b5b07853baf441a007c4f106",
     "src/resource_retirement.cpp": "96ee13419b4bfac0fd6cb7dc5380b6aedc995cca6ad8760e08a217a38a043e9d",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f",
     "src/startup_runtime.cpp": "e89d0c0622b2430739f5c4f69684ce0c184583d080b520d06db31992a4c9b1ea",
@@ -36,6 +38,7 @@
     "tools/generate_startup.py": "049e5dfdf65e21b3a77780d30009a3ff20490215030367f02f97b4e210825484",
     "tools/local_jump_tables.py": "8f67b564786898b345906e7161580a66b3284fe5aa191c093216ba8bba429dde",
     "tools/overlay_layout.py": "cc7000d4a188115cb9ba2c04de60691b2431edf4a858a393c2877b6b5feaed3e",
+    "tools/prepare_rt64_framerate.py": "e0f11dd5972bfcf142bfd7504ccaa91ac3bdad4d408a58d67ca65656be08d216",
     "tools/prepare_runtime_timing.py": "46e033d54029e71f2eede2200bb55f45203eb25e861a28fb656e6fe4f57ddd40"
   },
   "generated_receipt_sha256": {
@@ -43,8 +46,10 @@
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "component_receipts": {
-    "port-menu-address-check.json": "9feb62fd2ac43d78850b784870308d647634dbab16efa1349f759031fd5ccae9",
-    "port-menu-thread-check.json": "2996a70f338f12899dbbd23e78033b83b1a2393916385fad38325acb3db4585e"
+    "port-menu-address-check.json": "1b227b54e628b8342db85f11162dc0f40e1802454ab331750f89af726f461fdd",
+    "port-menu-thread-check.json": "6b808ca46f884fb640d71c500ec0c2fc3ff652afd8b8a7d225e7c65f2449d1fa",
+    "display-address-check.json": "c2b68aea5730e05e33759e672a3076a60eefb1224680ab891fd5d7ae30051ab8",
+    "display-thread-check.json": "78e450472be5d7a011931a869cae62db92ec8576b8610fdc253249438dd9b8d4"
   },
   "live_io_check": {
     "result": "pass",
@@ -55,7 +60,7 @@
       "research/live-io-check.cpp": "e542a286624e297cd756c30e166365594ee31bd03a10caf921db987563b8afa1",
       "src/live_io.cpp": "06cc075c817cd268e35d9437dc75bf1244cecb175d63e3d0907d42357167b802",
       "src/port_input.cpp": "3c6ffd8924bda3d936f4d6e65f37588475822b524a67bdf4c718cb6b419d8b5b",
-      "src/port_settings.cpp": "5185de95286659d8ebcec990910935a9af66b51518828525e6fd62d2e86486d1"
+      "src/port_settings.cpp": "38207b26de4a3196ca784e465f7411f5c4aa64643c3d07fb32aea567cdaf233b"
     }
   },
   "dependency_pins_verified": 32,
@@ -68,6 +73,24 @@
     "Live GPU output, fullscreen and render-resolution changes require user test",
     "Real controller/audio and long playthrough require user test",
     "Menu does not pause game logic",
-    "Other audit item 1 resource/GPU risks remain documented; no additional audit claim"
-  ]
+    "Other audit item 1 resource/GPU risks remain documented; no additional audit claim",
+    "Dora3 RT64 frame matching/interpolation quality requires visual user test",
+    "Requested Manual FPS may exceed monitor Hz; achieved output remains hardware/driver/compositor dependent"
+  ],
+  "rt64_adaptations": {
+    "windows": {
+      "source_sha256": "7fe61533ff8d1ffa475eb90a49310028e10dd59552c0f2a47a3a662cbfd7757a",
+      "generated_sha256": "5b363d028622bef5bf7b8e6b7ed4119d7239828c0f37233af365c1b0fe14d9b4",
+      "scope": "Manual target is not clamped; present-thread VSync disabled above display Hz and restored for Original/Display; guest VI unchanged",
+      "present_source_sha256": "ee1dcde2815041174d5ac56e83a24f53f7ec7586bfa84cd4ebcc8093d136820c",
+      "present_generated_sha256": "689bffdd02ec10f753663e6a7732de51d836ceb84edf7c1bc4712903d8abdb27"
+    },
+    "linux": {
+      "source_sha256": "7fe61533ff8d1ffa475eb90a49310028e10dd59552c0f2a47a3a662cbfd7757a",
+      "generated_sha256": "5f8eae858766ab80910e4a0be2962365b64845232d447265127373a8f640f375",
+      "scope": "Manual target is not clamped; present-thread VSync disabled above display Hz and restored for Original/Display; guest VI unchanged",
+      "present_source_sha256": "ee1dcde2815041174d5ac56e83a24f53f7ec7586bfa84cd4ebcc8093d136820c",
+      "present_generated_sha256": "d07258a63fe2d7c33446117ad953b6d876b2a1eef80966179e363e917c7ad376"
+    }
+  }
 }

@@ -3,6 +3,7 @@
 #include "live_graphics.hpp"
 #include "live_io.hpp"
 #include "port_menu.hpp"
+#include "port_display.hpp"
 #include "rhi/rt64_render_hooks.h"
 #include "frame_lights.hpp"
 #include "graphics_sync.hpp"
@@ -31,7 +32,7 @@ void dora3_raw_dp_event();
 
 namespace {
 SDL_Window* live_window=nullptr;
-int applied_window_width=0,applied_window_height=0;
+
 RT64::RenderHookDraw* previous_draw=nullptr;
 void count_output(plume::RenderCommandList* list,plume::RenderFramebuffer* framebuffer){
     if(previous_draw)previous_draw(list,framebuffer);
@@ -71,15 +72,19 @@ class LiveContext final : public ultramodern::renderer::RendererContext {
     uint8_t* ram;
     std::unique_ptr<RT64::Application> app;
     unsigned tasks=0;
-    int applied_resolution=-1,applied_filtering=-1;
+    int applied_resolution=-1,applied_filtering=-1,applied_rate=-1,applied_limit=-1;
     bool apply_graphics(){
         const auto s=dora3::port::settings();
-        if(s.resolution==applied_resolution&&s.filtering==applied_filtering)return false;
+        if(s.resolution==applied_resolution&&s.filtering==applied_filtering&&s.frame_rate_mode==applied_rate&&s.frame_rate_limit==applied_limit)return false;
         using U=RT64::UserConfiguration;
         app->userConfig.resolution=s.resolution==3?U::Resolution::WindowIntegerScale:U::Resolution::Manual;
         app->userConfig.resolutionMultiplier=s.resolution==1?2.0f:s.resolution==2?4.0f:1.0f;
         app->userConfig.downsampleMultiplier=1;
         app->userConfig.threePointFiltering=s.filtering==0;
+        // Same refresh policy as Dora64 RT64Context; guest VI/scheduler speed is unchanged.
+        app->userConfig.refreshRate=s.frame_rate_mode==1?U::RefreshRate::Display:s.frame_rate_mode==2?U::RefreshRate::Manual:U::RefreshRate::Original;
+        app->userConfig.refreshRateTarget=s.frame_rate_limit;
+        applied_rate=s.frame_rate_mode;applied_limit=s.frame_rate_limit;
         applied_resolution=s.resolution;applied_filtering=s.filtering;
         return true;
     }
@@ -204,7 +209,12 @@ public:
         app->end();
         RT64::SetRenderHooks(RT64::GetRenderHookInit(),previous_draw,RT64::GetRenderHookDeinit());
     }
-    uint32_t get_display_framerate() const override{return 60;}
+    uint32_t get_display_framerate() const override{
+        if(!app||!app->sharedQueueResources)return 0;
+        std::scoped_lock lock(app->sharedQueueResources->configurationMutex);
+        const auto rate=app->sharedQueueResources->swapChainRate;
+        dora3::port::publish_display_rate(rate);return rate;
+    }
     float get_resolution_scale() const override{return 1.0f;}
 };
 }
@@ -228,16 +238,14 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
         #ifndef _WIN32
         flags|=SDL_WINDOW_VULKAN;
         #endif
+        dora3::port::refresh_displays();
         const auto settings=dora3::port::settings();
-        auto* window=SDL_CreateWindow("Dora64-3 test build",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,settings.window_width,settings.window_height,flags);
-        applied_window_width=settings.window_width;applied_window_height=settings.window_height;
+        const int centered=SDL_WINDOWPOS_CENTERED_DISPLAY(settings.display_index);
+        auto* window=SDL_CreateWindow("Dora64-3 test build",centered,centered,settings.window_width,settings.window_height,flags);
         if(!window){std::fprintf(stderr,"SDL window: %s\n",SDL_GetError());std::_Exit(84);}
         live_window=window;
-        SDL_SetWindowMinimumSize(window,480,360);
-        if(dora3::port::settings().fullscreen && SDL_SetWindowFullscreen(window,SDL_WINDOW_FULLSCREEN_DESKTOP)!=0){
-            std::fprintf(stderr,"PORT fullscreen failed: %s\n",SDL_GetError());
-            dora3::port::set_fullscreen(false);
-        }
+        SDL_SetWindowMinimumSize(window,320,240);
+        dora3::port::update_display_window(window);
         #ifdef _WIN32
         SDL_SysWMinfo info{};SDL_VERSION(&info.version);
         if(!SDL_GetWindowWMInfo(window,&info)){std::fprintf(stderr,"SDL HWND: %s\n",SDL_GetError());std::_Exit(84);}
@@ -248,21 +256,12 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
     };
     cfg.gfx_callbacks.update_gfx=[](void*){
         SDL_Event event;
-        while(SDL_PollEvent(&event))if(event.type==SDL_QUIT)ultramodern::quit();
+        while(SDL_PollEvent(&event)){
+            if(event.type==SDL_QUIT)ultramodern::quit();
+            if(event.type==SDL_DISPLAYEVENT)dora3::port::request_display_refresh();
+        }
         if(dora3::port::take_exit_request())ultramodern::quit();
-        const auto settings=dora3::port::settings();
-        const bool fullscreen=(SDL_GetWindowFlags(live_window)&SDL_WINDOW_FULLSCREEN)!=0;
-        if(fullscreen!=settings.fullscreen && SDL_SetWindowFullscreen(live_window,settings.fullscreen?SDL_WINDOW_FULLSCREEN_DESKTOP:0)!=0){
-            std::fprintf(stderr,"PORT fullscreen failed: %s\n",SDL_GetError());
-            dora3::port::set_fullscreen(fullscreen);
-        }
-        // Only apply a requested size change (or leaving fullscreen), not every
-        // frame: manual window resizing must remain possible.
-        if(!settings.fullscreen && (fullscreen || applied_window_width!=settings.window_width || applied_window_height!=settings.window_height)){
-            SDL_RestoreWindow(live_window);
-            SDL_SetWindowSize(live_window,settings.window_width,settings.window_height);
-            applied_window_width=settings.window_width;applied_window_height=settings.window_height;
-        }
+        dora3::port::update_display_window(live_window);
         dora3_poll_live_input(live_window);
         log_memory_usage();
     };
