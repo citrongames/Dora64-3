@@ -1,0 +1,28 @@
+{
+  "date_utc": "2026-09-29T08:10:41.266721+00:00",
+  "scope": "Compile validation only; isolated native time/fade/animation component; no native live mode yet; no game/GPU launch or user package",
+  "base_commit": "34fd51f702ff5b3e53a98941365c0b026508dae6",
+  "component_check_sha256": "64ce04bf359b0369ebeb488542e4b7f0fe5eeb8249dcf239807cb58d17c5ec63",
+  "source_sha256": {
+    "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
+    "src/native_frame_time.hpp": "690b956211a59a3c217663de10b78d3c34188cd3835f6d6a903dc53443859f8c",
+    "research/runtime/CMakeLists.txt": "c4a197b4a375146ea434b46872a67b48a5c42e525a0a591c14038f50bb5f6561"
+  },
+  "linux": {
+    "result": "build exit 0",
+    "log_sha256": "f4106b19f8864b7169a1c2870a5ead58a9cc8187d1221242d78b90c08fdfa59f",
+    "binary_sha256": "9762001f5ad1714000762d8d1a4c4dfa33548e82ac90129ff6e28883164facbf"
+  },
+  "windows": {
+    "result": "build exit 0",
+    "log_sha256": "b415c5680739e555ea4f97a8c8b982cf3d2614b943c95d85d925b7f6bb51a71c",
+    "binary_sha256": "4f7c19348fb8c98910b7034ede4d214094eb11bb91cb6635a216403a4ce0678c"
+  },
+  "cpu_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
+  "audio_receipt_sha256": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f",
+  "donor_unchanged": true,
+  "clean_pinned_dependencies": 32,
+  "unchanged_live_hooks_settings_and_generators": true,
+  "android": "not built this iteration",
+  "latest_delivered_user_build": "test-024; existing RT64 Manual behavior unchanged"
+}

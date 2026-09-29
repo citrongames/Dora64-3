@@ -1,0 +1,174 @@
+{
+  "scope": "Static direct-call inventory of known compiled bodies; indirect/data-driven calls not covered",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "functions": [
+    {
+      "section": ".startup",
+      "address": "0x80026A28",
+      "function": "dora3_scheduler_retrace",
+      "purpose": "scheduler retrace and client broadcast",
+      "rom_offset": 7720,
+      "size": 256,
+      "sha256": "25294acf94e97fc893ef55d4bb6cce1607c5d904e4e6f158c5e3e5720d493c28"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80026CEC",
+      "function": "dora3_scheduler_framebuffer_ready",
+      "purpose": "framebuffer current/next equality gate",
+      "rom_offset": 8428,
+      "size": 84,
+      "sha256": "f509c9b02ba74111f9c3293bcebfb174df9d93e3cdd88e2801de10679a630b63"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800281B8",
+      "function": "dora3_process_dispatch",
+      "purpose": "process phase dispatch and integer waits",
+      "rom_offset": 13752,
+      "size": 220,
+      "sha256": "8a532295957d2d55a6512deefc3383eec69312ebfb1906ff7aecfe84d2b640db"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80026D40",
+      "function": "dora3_scheduler_task_complete",
+      "purpose": "scheduler task completion and framebuffer swap",
+      "rom_offset": 8512,
+      "size": 140,
+      "sha256": "7060d43a6712fb4ba738aa953f16d326530248b7906a674c09805bc8f117c5a1"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80028948",
+      "function": "dora3_fade_tick",
+      "purpose": "fade update",
+      "rom_offset": 15688,
+      "size": 144,
+      "sha256": "9b0792211bfb93f7270b5e8fab82dd0b771fcfc16833d6d0edcf307a535bf3a5"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8002A1B8",
+      "function": "dora3_s0_8002A1B8",
+      "purpose": "model pose evaluation then time advance wrapper",
+      "rom_offset": 21944,
+      "size": 76,
+      "sha256": "7f80aa26a42d7be7a6397e1656ef12b1aa5cb50b6ed8e7b279133c42e404895c"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8002A41C",
+      "function": "dora3_s0_8002A41C",
+      "purpose": "float to integer model seek wrapper",
+      "rom_offset": 22556,
+      "size": 56,
+      "sha256": "14e0fd13d60b52db0a2bc89fafaa2ae2e927c54e6f0088b9a26624a8f1864c4c"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8003948C",
+      "function": "dora3_s0_8003948C",
+      "purpose": "model time advance",
+      "rom_offset": 84108,
+      "size": 184,
+      "sha256": "047c93665e941d8719f917627b10890c28d8ae29bbb9e0418185627ecc9bf339"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800393C4",
+      "function": "dora3_s0_800393C4",
+      "purpose": "model channel and morph evaluation at current clip time",
+      "rom_offset": 83908,
+      "size": 200,
+      "sha256": "0332a6fa3f7cbc2399562cd86653b705b8485d6960f6e668525f38fe0fabcf20"
+    },
+    {
+      "section": ".startup",
+      "address": "0x8003955C",
+      "function": "dora3_s0_8003955C",
+      "purpose": "model time getter",
+      "rom_offset": 84316,
+      "size": 8,
+      "sha256": "bdd31d47ecb86060f969faf40d8a79234d795e8bf8955b57f06ae45efabeba95"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80039564",
+      "function": "dora3_s0_80039564",
+      "purpose": "model time integer seek",
+      "rom_offset": 84324,
+      "size": 20,
+      "sha256": "ae9412fd3977579604cb6afd14348da8555b918b132212c05be4f260f1c3346c"
+    },
+    {
+      "section": ".startup",
+      "address": "0x80039578",
+      "function": "dora3_s0_80039578",
+      "purpose": "model pause bit command",
+      "rom_offset": 84344,
+      "size": 56,
+      "sha256": "7b28de9d959939c9c9120f5053736ecafa0610e5753d7bf853a62a711318f079"
+    },
+    {
+      "section": ".startup",
+      "address": "0x800395BC",
+      "function": "dora3_s0_800395BC",
+      "purpose": "model forward clamp bit command",
+      "rom_offset": 84412,
+      "size": 56,
+      "sha256": "c3e68a5425a7a9906b59b0604f89d3c8367d022dd583054a4570e9128579a4cc"
+    },
+    {
+      "section": ".scene1",
+      "address": "0x801BB730",
+      "function": "dora3_s3_801BB730",
+      "purpose": "scene1 phase0 callback",
+      "rom_offset": 471728,
+      "size": 280,
+      "sha256": "aa11a4bfdce1e2abcc37c7136b6d2e8b9bb1e31a1ad1b51f7f93f9191dd9cf70"
+    },
+    {
+      "section": ".scene1",
+      "address": "0x801BB848",
+      "function": "dora3_s3_801BB848",
+      "purpose": "scene1 phase1 callback",
+      "rom_offset": 472008,
+      "size": 220,
+      "sha256": "1504f8b9ed8179e5aa2073df63deb69624c8188dffeb20d27847b9a9ede52fab"
+    }
+  ],
+  "animation_direct_calls": [
+    {
+      "section": ".startup",
+      "caller": "dora3_s0_8002A1B8",
+      "site": "0x8002A1E8",
+      "target": "0x8003948C"
+    },
+    {
+      "section": ".startup",
+      "caller": "dora3_s0_8002A41C",
+      "site": "0x8002A440",
+      "target": "0x80039564"
+    },
+    {
+      "section": ".startup",
+      "caller": "dora3_s0_8002A4A4",
+      "site": "0x8002A4B8",
+      "target": "0x80039578"
+    },
+    {
+      "section": ".startup",
+      "caller": "dora3_s0_8002A454",
+      "site": "0x8002A468",
+      "target": "0x800395BC"
+    }
+  ],
+  "coverage": {
+    "time_fade_animation": "component checked; not connected to guest state",
+    "main_gameplay": "not converted",
+    "menu_2d": "not converted",
+    "minigames": "not converted",
+    "native_scheduler": "not connected"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "scope": "Isolated native timing/fade implementation; original ROM routine oracle on synthetic RAM; no live integration or GPU",
+  "result": "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. No game/window/GPU.",
+  "sanitizers": "ASan/LSan on component and original functions; UBSan on new C++ component/harness",
+  "source_sha256": {
+    "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
+    "research/native-frame-time-check.cpp": "899fc92bf3aeafb18055415b1689145f5233061ae39c7464dcbac8b252e353b7",
+    "src/native_frame_time.hpp": "690b956211a59a3c217663de10b78d3c34188cd3835f6d6a903dc53443859f8c",
+    "tools/check_native_frame_time.py": "1be51662deb1a401349b2d557e1f72437246a3ff00ca0f2f594d247b09407058"
+  },
+  "generation_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
+  "original_functions": [
+    "dora3_fade_tick",
+    "dora3_s0_8003948C"
+  ],
+  "remaining": [
+    "Guest event delivery and graphics bank scheduling not connected",
+    "Physics, camera, scripts and per-scene callbacks not converted",
+    "Existing Manual remains RT64 interpolation in test-024; no new test EXE"
+  ]
+}

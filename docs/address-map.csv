@@ -4938,3 +4938,9 @@ verified,entry-hook,,0x80033A14,,Heap reinit invalidates old retirement addresse
 verified,global,,0x801A39DC,4,scene-selected game-update retrace divider,"Original ROM: 24 direct stores in compiled bodies,20 set3 and4 set2; compare8003081C/20",Analysis only; do not replace globally without timing audit
 verified,global,,0x801AC694,4,retrace counter for game update,Scheduler increment80026954..6C; compare/reset80030814..30; ROM hash evidence in framerate-static-analysis.json,Separate VI game updates from RT64 generated frames
 verified,global,,0x801A48C0,4,frame-build gate,Reset8003083C on accepted update; checked80027988; set800279F4 after frame build,Phase0/phase1 decoupling requires callback side-effect audit
+verified,model-field,,object+0x64,4,Model clip time float,ROM8003948C and original-body synthetic check,Native component only; bind object generation and pose evaluation order
+verified,model-field,,object+0x7C,1,Model animation flags pause clamp end pulse,ROM8003948C; synthetic pulse loss and clamp/reverse checks,Connect completion consumption to audited game scripts
+verified,function,,0x8002A1B8,,Evaluate model pose then advance clip time,ROM hash native-frame-time-analysis.json; callsites8002A1D8/8002A1E8,Audit wrapper callers and clip ownership before native hook
+verified,function,,0x8003948C,,Fractional model time and single-wrap completion pulse,Original routine oracle native-frame-time-check.json,Native time component checked; guest integration pending
+verified,function,,0x80026CEC,,Framebuffer readiness requires current equals next,ROM calls ViGetCurrentFramebuffer/ViGetNextFramebuffer; equality mask,Separate native graphics readiness from VI without false task completion
+candidate,native-timing-hook,,0x80028948,,Time-based fade replacement,Native component matches original tick boundaries and finish timing,Not installed; hook fade commands and explicit restart
