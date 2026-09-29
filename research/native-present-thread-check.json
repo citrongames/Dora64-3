@@ -1,0 +1,18 @@
+{
+  "scope": "Ownership protocol and extracted actual native enqueue backend versus pinned update_vi; extracted actual screen worker with fake renderer, no game/GPU",
+  "result": "PASS: all six completion orderings, early/duplicate/stale callbacks, two-bank backpressure, concurrent host/game completion; exact runtime VI oracle (16 combinations), copied framebuffer/mode, no VI state advance, enqueue rejection, real worker acknowledges after reads and drops late periodic actions",
+  "sanitizer": "thread",
+  "source_sha256": {
+    "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
+    "src/native_frame_scheduler.cpp": "d67945691ca4068d55f19ccde47536fec171223aeac8e619500c22785bc2e792",
+    "src/native_frame_bridge.cpp": "5c21f919c536832b851d33ad4d2c660ed425bd5abf798b327a59b44e9ffc0348",
+    "src/native_present.cpp": "615df335b6326f41eb45ad0b1bd468b938bea6d6c3e066dcab244227f9c2feb8",
+    "research/native-present-check.cpp": "a9d3c5ce9ae9a94fcf32fd9828a791dcd303ee4f882ba68eceb374fa7461c114",
+    "src/native_present.hpp": "888ddf5981ad9911170d85a62d7c629e528fc494f7c0d31150f3d8ab7a865ddb",
+    "src/native_vi_snapshot.hpp": "0fb280fcc557a64b1c6637653a57a231723a2cd642bd0f8a6163bc03413e2030",
+    "tools/prepare_runtime_timing.py": "1cdcb144821e017ce2875aa14d35b66b8bdd6dcc11cce407252ab27913dc1a8d",
+    "tools/check_native_present.py": "1c3f4979762e732ebdcea4e29fb45018c69db5cab101f0ac760f4cfb34a24ba6"
+  },
+  "original_events_sha256": "cd47bb9b332e0c907131310bb3ec8b551b7fb7b2160538ba7fe5aa7554ba2e97",
+  "adapted_events_sha256": "b81f62f35bdeefa1d0b27706578389acf039d7e1dbf0a65c4e7f84b60a30fdd2"
+}

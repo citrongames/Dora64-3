@@ -1294,3 +1294,18 @@ requeue sender, hook800278F4, сохранение CPU-контекста и qui
 не означает его использования третьей игрой. Следующая граница — VI snapshot и
 owned framebuffer presentation. Native mode ещё выключен; подробности в
 docs/native-graphics-pump.md.
+
+
+## 2026-09-29 — native present и три условия возврата банка
+
+Причина риска reuse: completion game queue приходит до последнего чтения task+0C
+в scheduler. Добавлены регистрация8002FF50, retirement80026DBC и consumption80027A6C;
+HostRead приходит после реального update_screen. Present содержит собственный VI
+snapshot с framebuffer задачи; periodic VI старого поколения отбрасывается.
+Type2 расположен в bank+C0; bank+E0 — type4, поэтому прежний pump harness уточнён.
+Испытаны оригинальные11 scheduler functions и game loop, реальные runtime queue,
+извлечённые update_vi/native enqueue/screen worker на synthetic endpoints.
+ASan/LSan/TSan пройдены, Linux/Windows собраны без запуска. Native Manual выключен.
+Не закрыта граница входа: уже выполняемый periodic read требует gfx handshake,
+а Original game loop ещё надо отделить от native builds в scene adapter.
+Документация: docs/native-presentation.md. GPU-проверки не заявляются.

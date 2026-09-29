@@ -22,7 +22,7 @@ def replace_once(text, before, after):
     if text.count(before)!=1: raise RuntimeError('Unreviewed runtime source layout: '+before)
     return text.replace(before,after)
 
-text='#include "n64_hardware.hpp"\n#include "graphics_sync.hpp"\n'+text
+text='#include "native_present.hpp"\n#include "native_vi_snapshot.hpp"\n#include "n64_hardware.hpp"\n#include "graphics_sync.hpp"\n'+text
 text=replace_once(text,'struct SpTaskAction {','struct RawRdpAction { uint32_t address, size; };\n\nstruct SpTaskAction {')
 text=replace_once(text,'using Action = std::variant<SpTaskAction,','using Action = std::variant<RawRdpAction, SpTaskAction,')
 text=replace_once(text,'void sp_complete() {','void sp_complete() {\n    dora3_sp_completed();')
@@ -38,15 +38,42 @@ text=replace_once(text,'            if (const auto* task_action = std::get_if<Sp
             else if (const auto* task_action = std::get_if<SpTaskAction>(&action)) {''')
 text+='\nvoid dora3_enqueue_raw_rdp(uint32_t address, uint32_t size) { events_context.action_queue.enqueue(RawRdpAction{address,size}); }\nvoid dora3_raw_dp_event() { dp_complete(); }\n'
 # Bound periodic VI presentation work without blocking VI/AI or dropping tasks.
-text=replace_once(text,'    bool cpu_changes_only = false;','    bool cpu_changes_only = false;\n    bool periodic = false;')
+text=replace_once(text,'    bool cpu_changes_only = false;','    bool cpu_changes_only = false;\n    bool periodic = false;\n    std::optional<dora3::native_time::FrameTicket> native_ticket;\n    uint64_t native_epoch = 0;')
 text=replace_once(text,"        // If the game hasn't started yet, set a dummy VI mode and origin.",
-    "        const bool queue_periodic = !events_context.scheduler_screen_update_active.load(std::memory_order_acquire) && dora3::sync::periodic_present.acquire();\n\n        // If the game hasn't started yet, set a dummy VI mode and origin.")
+    "        const auto native_epoch = dora3::native_time::native_presentation_epoch();\n        const bool queue_periodic = !dora3::native_time::native_presentation_owned() && !events_context.scheduler_screen_update_active.load(std::memory_order_acquire) && dora3::sync::periodic_present.acquire();\n\n        // If the game hasn't started yet, set a dummy VI mode and origin.")
 text=replace_once(text,'            events_context.action_queue.enqueue(DummyWorkloadAction{events_context.vi.get_next_state()->framebuffer});',
     '            if (queue_periodic) events_context.action_queue.enqueue(DummyWorkloadAction{events_context.vi.get_next_state()->framebuffer});')
 text=replace_once(text,'            if (!events_context.scheduler_screen_update_active.load(std::memory_order_acquire)) {\n                events_context.action_queue.enqueue(ScreenUpdateAction{ events_context.vi.regs });\n            }',
-    '            if (queue_periodic) {\n                if (!events_context.action_queue.enqueue(ScreenUpdateAction{ events_context.vi.regs, false, true })) {\n                    dora3::sync::periodic_present.complete();\n                    throw std::bad_alloc{};\n                }\n            }')
+    '            if (queue_periodic) {\n                if (!events_context.action_queue.enqueue(ScreenUpdateAction{ events_context.vi.regs, false, true, {}, native_epoch })) {\n                    dora3::sync::periodic_present.complete();\n                    throw std::bad_alloc{};\n                }\n            }')
 text=replace_once(text,'                renderer_context->update_screen(screen_update_action->cpu_changes_only);',
     '                renderer_context->update_screen(screen_update_action->cpu_changes_only);\n                if (screen_update_action->periodic) dora3::sync::periodic_present.complete();')
+# Drop an older periodic request when native took ownership after it was queued.
+text=replace_once(text,'            else if (const auto* screen_update_action = std::get_if<ScreenUpdateAction>(&action)) {',
+    '''            else if (const auto* screen_update_action = std::get_if<ScreenUpdateAction>(&action)) {
+                if (screen_update_action->periodic && (dora3::native_time::native_presentation_owned() ||
+                    screen_update_action->native_epoch != dora3::native_time::native_presentation_epoch())) {
+                    dora3::sync::periodic_present.complete();
+                    continue;
+                }''')
+text=replace_once(text,'                if (screen_update_action->periodic) dora3::sync::periodic_present.complete();',
+    '''                if (screen_update_action->periodic) dora3::sync::periodic_present.complete();
+                if (screen_update_action->native_ticket) {
+                    dora3::native_time::native_present_ledger().host_read_done(*screen_update_action->native_ticket);
+                }''')
+text+='''
+bool dora3_enqueue_native_present(const dora3::native_time::PresentFrame& frame) {
+    ultramodern::renderer::ViRegs snapshot{};
+    {
+        std::scoped_lock lock{events_context.message_mutex, events_context.vi.regs_mutex};
+        const auto* next = events_context.vi.get_next_state();
+        if (next->mode == nullptr) throw std::logic_error("Native present before VI mode setup");
+        snapshot = dora3::native_time::present_vi_snapshot(events_context.vi.regs,
+            *next->mode, next->state, next->control, frame.framebuffer, events_context.vi.field);
+    }
+    // Copied registers and ticket, not a pointer into guest task/bank storage.
+    return events_context.action_queue.enqueue(ScreenUpdateAction{snapshot, false, false, frame.ticket});
+}
+'''
 # VI state is shared with SDK setters/getters under message_mutex. regs_mutex
 # alone only protects the register snapshot, not cur_state or states[].
 text=replace_once(text,'        if (!ultramodern::is_game_started()) {\n            static bool odd = false;',

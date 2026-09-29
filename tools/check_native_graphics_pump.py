@@ -31,7 +31,7 @@ def main():
   [ROOT/'src',g,g/'RecompiledFuncs',runtime/'N64Recomp/include',runtime/'ultramodern/include',runtime/'thirdparty',runtime/'thirdparty/concurrentqueue']]]
  subprocess.run(['gcc','-std=c17',*flags,'-c',str(out/'functions.c'),'-o',str(out/'functions.o')],check=True)
  subprocess.run(['g++','-std=c++20',*flags,'-c',str(out/'mesgqueue.cpp'),'-o',str(out/'queue.o')],check=True)
- sources=[ROOT/'src'/n for n in ['native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_graphics_pump.cpp']]+[ROOT/'research/native-graphics-pump-check.cpp']
+ sources=[ROOT/'src'/n for n in ['native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_graphics_pump.cpp','native_present.cpp','native_present_hooks.cpp']]+[ROOT/'research/native-graphics-pump-check.cpp']
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),str(out/'functions.o'),str(out/'queue.o'),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check'),str(out/'seed.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1')).strip()
  tracked=sources+[ROOT/'src/native_graphics_pump.hpp',ROOT/'src/native_frame_bridge.hpp',ROOT/'tools/generate_startup.py',ROOT/'tools/prepare_runtime_timing.py',Path(__file__).resolve()]

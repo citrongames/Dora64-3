@@ -1,17 +1,19 @@
 #include "native_frame_bridge.hpp"
+#include "native_present.hpp"
 #include <chrono>
 
 namespace {
-thread_local bool building_native_frame = false;
+thread_local const dora3::native_time::FrameBinding* building_native_frame = nullptr;
 struct NativeBuildScope {
-    bool previous = building_native_frame;
-    NativeBuildScope() { building_native_frame = true; }
+    const dora3::native_time::FrameBinding* previous = building_native_frame;
+    explicit NativeBuildScope(const dora3::native_time::FrameBinding& binding) { building_native_frame = &binding; }
     ~NativeBuildScope() { building_native_frame = previous; }
 };
 }
-extern "C" int dora3_native_frame_build_active() { return building_native_frame; }
+extern "C" int dora3_native_frame_build_active() { return building_native_frame != nullptr; }
 
 namespace dora3::native_time {
+const FrameBinding* active_frame_binding() { return building_native_frame; }
 bool FrameBridge::enter(unsigned fps, Nanoseconds now, unsigned bank, bool safe, FrameConsumer consumer) {
     if (!consumer || !scheduler_.enter(fps, now, bank, safe)) return false;
     consumer_ = consumer;
@@ -64,7 +66,8 @@ bool FrameBridge::dispatch(uint32_t message, Nanoseconds now, uint8_t* ram, reco
         // This hook is not a MIPS call site. Keep all registers, notably s0/s1
         // used by the original message loop, intact across the extra frame.
         auto frame_context = *context;
-        NativeBuildScope scope;
+        const FrameBinding binding{*ticket,&scheduler_};
+        NativeBuildScope scope(binding);
         consumer_(ram, &frame_context, *ticket, scheduler_);
     }
     return true;
@@ -85,6 +88,7 @@ Nanoseconds monotonic_time() {
 
 void dora3_reset_native_frame_delivery() {
     using namespace dora3::native_time;
+    native_present_ledger().reset_after_runtime_barrier();
     game_frame_bridge().reset_after_runtime_barrier(monotonic_time());
 }
 

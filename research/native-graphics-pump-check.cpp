@@ -1,5 +1,6 @@
 #include "native_graphics_pump.hpp"
 #include "native_frame_bridge.hpp"
+#include "native_present.hpp"
 #include "ultramodern/ultramodern.hpp"
 #include <cassert>
 #include <cstring>
@@ -31,6 +32,13 @@ static std::vector<uint32_t> launches, sends;
 static unsigned yields, broadcasts, swaps, cache_flushes, captures;
 static uint32_t current_fb, next_fb;
 static bool fail_command_read;
+static std::vector<PresentFrame> presents;
+bool dora3_enqueue_native_present(const PresentFrame& frame) {
+    assert(swaps && next_fb==frame.framebuffer); // Must follow original final read/swap.
+    presents.push_back(frame);
+    return true; // Delay host read acknowledgement until the test explicitly finishes it.
+}
+extern "C" void dora3_native_guest_completion(uint8_t*,recomp_context*);
 struct StopLoop {};
 struct InjectedFailure {};
 extern "C" void dora3_trace(uint8_t*, recomp_context*, uint32_t address, uint32_t) {
@@ -79,7 +87,9 @@ static void run_scheduler(uint8_t* rdram) {
 static void native_consumer(uint8_t*,recomp_context*,const FrameTicket&,FrameScheduler&);
 static void initialize(uint8_t* rdram) {
     // No actual renderer/guest threads in this harness: model its reset barrier.
+    native_present_ledger().reset_after_runtime_barrier();
     game_frame_bridge().reset_after_runtime_barrier(0);
+    presents.clear();
     assert(game_frame_bridge().enter(60,0,0,true,native_consumer));
     std::memset(rdram + (uint32_t(sc)&0x1FFFFFFF),0,0x284);
     osCreateMesgQueue(rdram,events,storage,16);
@@ -95,6 +105,7 @@ static void initialize(uint8_t* rdram) {
     MEM_W(0,int32_t(0x801B1608))=graphics+0x108;
     MEM_W(0,int32_t(0x801B1424))=graphics+0x12328+16;
     MEM_W(0x100,graphics)=int32_t(0x803B5000);
+    MEM_H(0xC0,graphics)=2;MEM_H(0xE0,graphics)=4;
     current_fb=next_fb=0x803B5000;
     sends.clear();launches.clear();yields=broadcasts=swaps=cache_flushes=captures=0;
 }
@@ -104,7 +115,7 @@ static void counters_unchanged(uint8_t* rdram) {
 }
 static void native_consumer(uint8_t* rdram,recomp_context* c,const FrameTicket& t,FrameScheduler& s) {
     assert(dora3_native_frame_build_active() && s.publish(t));
-    c->r4=0;c->r5=0;
+    c->r4=0;c->r5=0x40; // Real graphics_frame_build requests the type2 (+C0) completion.
     dora3_graphics_task_submit(rdram,c);
     // Bank completions are deliberately NOT synthesized here.
 }
@@ -134,14 +145,21 @@ int main(int argc,char** argv) {
     assert((sends==std::vector<uint32_t>{uint32_t(command)}));
     assert(osRecvMesg(rdram,events,result,0)==-1);
 
-    initialize(rdram);publish_native(rdram);run_scheduler(rdram);
+    initialize(rdram);publish_native(rdram);next_fb+=0x25800;run_scheduler(rdram); // Native ignores the old VI gate.
     assert((launches==std::vector<uint32_t>{uint32_t(graphics)}));counters_unchanged(rdram);
     assert(MEM_W(0x274,sc)==graphics && MEM_W(0x278,sc)==graphics);
     send_event(rdram,graphics_pump_message);run_scheduler(rdram);assert(launches.size()==1);counters_unchanged(rdram);
-    send_event(rdram,667);run_scheduler(rdram);assert(swaps==0);
+    send_event(rdram,667);run_scheduler(rdram);assert(swaps==0 && presents.empty());
     assert(osRecvMesg(rdram,int32_t(game_queue),result,0)==-1);
     send_event(rdram,668);run_scheduler(rdram);assert(swaps==1);
-    assert(osRecvMesg(rdram,int32_t(game_queue),result,0)==0 && MEM_W(0,result)==graphics+0xE0);
+    assert(osRecvMesg(rdram,int32_t(game_queue),result,0)==0 && MEM_W(0,result)==graphics+0xC0);
+    assert(presents.size()==1 && !game_frame_bridge().drained());
+    MEM_W(0x10,c.r29)=MEM_W(0,result);
+    dora3_native_guest_completion(rdram,&c);
+    assert(!game_frame_bridge().drained()); // Scheduler+game done; host still reads it.
+    assert(native_present_ledger().host_read_done(presents[0].ticket));
+    assert(game_frame_bridge().drained() && !native_present_ledger().occupied());
+    assert(!native_present_ledger().host_read_done(presents[0].ticket));
     counters_unchanged(rdram);
     send_event(rdram,666);run_scheduler(rdram);
     assert(broadcasts==2 && MEM_W(0x27C,sc)==78 && MEM_W(0,int32_t(0x801A48C8))==13 && MEM_W(0,int32_t(0x801AC694))==14);
@@ -180,5 +198,7 @@ int main(int argc,char** argv) {
     fail_command_read=true;
     try {dora3_native_scheduler_message(rdram,&c);assert(false);}catch(const InjectedFailure&) {}
     assert(!dora3_native_scheduler_pumping() && std::memcmp(&c,&saved,sizeof(c))==0);
-    std::cout<<"PASS: original submit -> native-only wake -> original scheduler including full event queue; no synthetic VI/client broadcast; audio priority/yield, SP/DP completion, framebuffer gate, pause, late Original wake and context/thread-local isolation preserved\n";
+    native_present_ledger().reset_after_runtime_barrier();
+    game_frame_bridge().reset_after_runtime_barrier(second);
+    std::cout<<"PASS: registered native framebuffer bypass, present after swap, type2 consumption and delayed host acknowledgement; original submit -> native-only wake -> original scheduler including full event queue; no synthetic VI/client broadcast; audio priority/yield, SP/DP completion, framebuffer gate, pause, late Original wake and context/thread-local isolation preserved\n";
 }

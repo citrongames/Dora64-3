@@ -1,4 +1,5 @@
 #include "resource_retirement.hpp"
+#include "native_present.hpp"
 // Windows/Linux research frontend, original VI and F3DEX2, no game-one patches.
 #include "live_graphics.hpp"
 #include "live_io.hpp"
@@ -73,16 +74,19 @@ class LiveContext final : public ultramodern::renderer::RendererContext {
     std::unique_ptr<RT64::Application> app;
     unsigned tasks=0;
     int applied_resolution=-1,applied_filtering=-1,applied_rate=-1,applied_limit=-1;
+    bool applied_native=false;
     bool apply_graphics(){
+        const bool native=dora3::native_time::native_presentation_owned();
         const auto s=dora3::port::settings();
-        if(s.resolution==applied_resolution&&s.filtering==applied_filtering&&s.frame_rate_mode==applied_rate&&s.frame_rate_limit==applied_limit)return false;
+        if(native==applied_native&&s.resolution==applied_resolution&&s.filtering==applied_filtering&&s.frame_rate_mode==applied_rate&&s.frame_rate_limit==applied_limit)return false;
         using U=RT64::UserConfiguration;
         app->userConfig.resolution=s.resolution==3?U::Resolution::WindowIntegerScale:U::Resolution::Manual;
         app->userConfig.resolutionMultiplier=s.resolution==1?2.0f:s.resolution==2?4.0f:1.0f;
         app->userConfig.downsampleMultiplier=1;
         app->userConfig.threePointFiltering=s.filtering==0;
         // Same refresh policy as Dora64 RT64Context; guest VI/scheduler speed is unchanged.
-        app->userConfig.refreshRate=s.frame_rate_mode==1?U::RefreshRate::Display:s.frame_rate_mode==2?U::RefreshRate::Manual:U::RefreshRate::Original;
+        app->userConfig.refreshRate=native?U::RefreshRate::Original:s.frame_rate_mode==1?U::RefreshRate::Display:s.frame_rate_mode==2?U::RefreshRate::Manual:U::RefreshRate::Original;
+        applied_native=native;
         app->userConfig.refreshRateTarget=s.frame_rate_limit;
         applied_rate=s.frame_rate_mode;applied_limit=s.frame_rate_limit;
         applied_resolution=s.resolution;applied_filtering=s.filtering;
@@ -158,6 +162,10 @@ public:
     bool update_config(const ultramodern::renderer::GraphicsConfig&,const ultramodern::renderer::GraphicsConfig&) override{return true;}
     void enable_instant_present() override{}
     void send_dl(const OSTask* task) override{
+        // Disable RT64 interpolation BEFORE parsing the first native workload;
+        // restore the selected legacy policy when native ownership has drained.
+        if ((applied_native || dora3::native_time::native_presentation_owned()) && apply_graphics())
+            app->updateUserConfig(true);
         if(task->t.type==dora3::hw::raw_rdp_task){
             const uint32_t start=uint32_t(task->t.data_ptr),bytes=task->t.data_size;
             if((start&7) || (bytes&7) || start>=dora3::hw::ram_size || bytes>dora3::hw::ram_size-start) std::abort();

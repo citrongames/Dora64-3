@@ -55,8 +55,10 @@ public:
     bool reject_enqueue(WakeToken token); // Only on an actual failed enqueue.
     std::optional<FrameTicket> receive(WakeToken token, Nanoseconds now);
     bool publish(const FrameTicket& ticket);
+    bool published(const FrameTicket& ticket) const;
     bool complete(const FrameTicket& ticket, Completion completion);
     std::optional<Nanoseconds> deadline() const;
+    uint64_t generation() const;
     bool active() const;
     bool drained() const;
     SchedulerStats stats() const;

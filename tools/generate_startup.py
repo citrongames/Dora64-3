@@ -44,6 +44,10 @@ def main():
     (out/'overlay_regions.hpp').write_text('\n'.join(registry)+'\n')
     declarations=['#pragma once','#include "recomp.h"','#ifdef __cplusplus','extern "C" {','#endif','void dora3_trace(uint8_t*, recomp_context*, uint32_t, uint32_t);','void dora3_pending(uint32_t);','void dora3_verify_dma(uint8_t*);','void dora3_capture_resource(uint8_t*, recomp_context*);','void dora3_mark_stream_dma(void);']
     native_names=[v[0] for v in meta.get('native',{}).values()]
+    declarations.extend(['void dora3_native_task_register(uint8_t*, recomp_context*);',
+                         'void dora3_native_task_retired(uint8_t*, recomp_context*);',
+                         'void dora3_native_guest_completion(uint8_t*, recomp_context*);',
+                         'int dora3_native_framebuffer_ready(uint32_t);'])
     declarations.extend(['int dora3_native_scheduler_message(uint8_t*, recomp_context*);',
                          'int dora3_native_scheduler_pumping(void);',
                          'void dora3_native_task_submitted(uint8_t*, recomp_context*);'])
@@ -67,7 +71,10 @@ def main():
     config+='ignored = '+json.dumps([pending_name(index,addr) for index,addr in sorted(frontier)]+native_names)+'\n'
     config+='hook = [\n'
     for (index,addr),(name,size,evidence) in compiled.items():
-        config+=f'{{ func = "{name}", before_vram = 0x{addr:08X}, text = "dora3_trace(rdram, ctx, 0x{addr:08X}, 0x{sections[index]["rom"]:X});" }},\n'
+        hook=f'dora3_trace(rdram, ctx, 0x{addr:08X}, 0x{sections[index]["rom"]:X});'
+        if index==0 and addr==0x80026CEC:
+            hook+=' if (dora3_native_framebuffer_ready((uint32_t)ctx->r4)) { ctx->r2 = ctx->r4; return; }'
+        config+=f'{{ func = "{name}", before_vram = 0x{addr:08X}, text = {json.dumps(hook)} }},\n'
     if (0,0x80045520) in compiled:
         for load,word,displacement in [(0x8004552C,0x8CC7FFFC,-4),(0x80045574,0x8CC7FFFC,-4),(0x800455DC,0x8CC70000,0)]:
             assert struct.unpack_from('>I',rom,0x1000+load-0x80025C00)[0]==word
@@ -87,6 +94,14 @@ def main():
                ('dora3_scheduler_retrace',0x80026AEC,'if (dora3_native_scheduler_pumping()) goto L_80026B14;')]
         for name,address,hook in hooks:
             config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
+    for address,word in [(0x80026DBC,0x8FBF0014),(0x80027A6C,0x08009E38),
+                         (0x80026CEC,0x27BDFFE0)]:
+        if struct.unpack_from('>I',rom,0x1000+address-0x80025C00)[0]!=word:
+            raise ValueError('Unreviewed native present hook')
+    present_hooks=[('dora3_scheduler_task_complete',0x80026DBC,'dora3_native_task_retired(rdram, ctx);'),
+                   ('dora3_game_message_loop',0x80027A6C,'dora3_native_guest_completion(rdram, ctx);')]
+    for name,address,hook in present_hooks:
+        config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
     if (0,0x8002787C) in compiled:
         # Native OSMesg is a value, not a pointer. Intercept before the original LH.
         for address, word in [(0x800278E0,0x3C04801B),(0x800278EC,0x0C0160F8),
@@ -105,7 +120,7 @@ def main():
             if struct.unpack_from('>I',rom,0x1000+address-0x80025C00)[0]!=word:
                 raise ValueError('Unreviewed frame publication hook')
         name=compiled[(0,0x8002FE20)][0]
-        hook='dora3_capture_frame_lights(rdram, (uint32_t)ctx->r8);'
+        hook='dora3_capture_frame_lights(rdram, (uint32_t)ctx->r8); dora3_native_task_register(rdram, ctx);'
         config+=f'{{ func = "{name}", before_vram = 0x8002FF50, text = {json.dumps(hook)} }},\n'
     if (0,0x800271B0) in compiled:
         # No guest calls or exits between these hooks except the common epilogue.

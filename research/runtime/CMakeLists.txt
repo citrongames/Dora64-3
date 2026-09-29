@@ -69,7 +69,7 @@ set_property(TARGET ultramodern PROPERTY SOURCES "${runtime_sources}")
 target_sources(ultramodern PRIVATE "${adapted_runtime}/events-after-parse.cpp" "${adapted_runtime}/scheduling.cpp" "${adapted_runtime}/mesgqueue.cpp")
 target_include_directories(ultramodern PRIVATE "${ROOT}/src")
 set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${ROOT}/tools/prepare_runtime_timing.py" "${RUNTIME}/librecomp/src/recomp.cpp")
-target_sources(dora3_startup PRIVATE "${ROOT}/src/native_graphics_pump.cpp" "${ROOT}/src/native_frame_bridge.cpp" "${ROOT}/src/native_frame_scheduler.cpp" "${ROOT}/src/native_frame_time.cpp" "${ROOT}/src/resource_retirement.cpp" "${ROOT}/src/graphics_sync.cpp" "${ROOT}/src/frame_lights.cpp" "${ROOT}/src/n64_hardware.cpp" "${ROOT}/src/n64_hardware_backend.cpp")
+target_sources(dora3_startup PRIVATE "${ROOT}/src/native_present.cpp" "${ROOT}/src/native_present_hooks.cpp" "${ROOT}/src/native_graphics_pump.cpp" "${ROOT}/src/native_frame_bridge.cpp" "${ROOT}/src/native_frame_scheduler.cpp" "${ROOT}/src/native_frame_time.cpp" "${ROOT}/src/resource_retirement.cpp" "${ROOT}/src/graphics_sync.cpp" "${ROOT}/src/frame_lights.cpp" "${ROOT}/src/n64_hardware.cpp" "${ROOT}/src/n64_hardware_backend.cpp")
 
 option(DORA3_LIVE_RT64 "Experimental desktop live RT64 startup" OFF)
 if(DORA3_LIVE_RT64)

@@ -40,7 +40,7 @@ def main():
     # thread scheduler endpoints alone are replaced by the single-thread harness.
     subprocess.run(['g++', '-std=c++20', *flags, '-c', str(out/'mesgqueue.cpp'), '-o', str(out/'queue.o')], check=True)
     sources = [ROOT/'src/native_frame_time.cpp', ROOT/'src/native_frame_scheduler.cpp',
-               ROOT/'src/native_frame_bridge.cpp', ROOT/'research/native-frame-bridge-check.cpp']
+               ROOT/'src/native_frame_bridge.cpp', ROOT/'src/native_present.cpp', ROOT/'src/native_present_hooks.cpp', ROOT/'research/native-frame-bridge-check.cpp']
     subprocess.run(['g++', '-std=c++20', '-Wall', '-Wextra', '-Werror', *flags,
                     *map(str, sources), str(out/'functions.o'), str(out/'queue.o'), '-o', str(out/'check')], check=True)
     env = dict(os.environ, ASAN_OPTIONS='detect_leaks=1:halt_on_error=1', TSAN_OPTIONS='halt_on_error=1')

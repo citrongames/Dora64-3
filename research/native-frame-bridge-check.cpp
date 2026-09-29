@@ -1,4 +1,7 @@
 #include "native_frame_bridge.hpp"
+#include "native_present.hpp"
+#include <stdexcept>
+bool dora3_enqueue_native_present(const dora3::native_time::PresentFrame&) { throw std::logic_error("Unexpected graphics task in bridge-only check"); }
 #include "ultramodern/ultramodern.hpp"
 #include <atomic>
 #include <cassert>
@@ -23,7 +26,8 @@ void run_next_thread_and_wait(uint8_t*) { assert(false); }
 void check_running_queue(uint8_t*) {}
 }
 static constexpr int32_t queue = int32_t(game_queue), buffer = int32_t(0x80220000), result = buffer + 0x100;
-static constexpr int32_t vi_message = int32_t(0x80220120), task_message = vi_message + 8;
+static constexpr int32_t vi_message = int32_t(0x80220120), task_message = int32_t(0x8010E3D0);
+static FrameScheduler completion_owner;
 static int updates, builds, retires, lifetimes, pauses, native_frames, receive_index;
 static bool loop_test;
 struct StopLoop {};
@@ -137,12 +141,20 @@ extern "C" void osRecvMesg_recomp(uint8_t* rdram, recomp_context* c) {
         assert(MEM_W(0, int32_t(0x801AA618)) == 0);
         assert(osSendMesg(rdram, queue, vi_message, OS_MESG_NOBLOCK) == 0);
         break;
-    case 2:
+    case 2: {
         assert(lifetimes == 1 && retires == 1 && builds == 1 && updates == 1);
         assert(MEM_W(0, int32_t(0x801AA618)) == 1);
+        assert(completion_owner.enter(60,0,0,true));
+        const auto wake=completion_owner.request(second);assert(wake);
+        const auto ticket=completion_owner.receive(*wake,second);assert(ticket && completion_owner.publish(*ticket));
+        native_present_ledger().bind(*ticket,completion_owner,0x8010E310,0x803B5000,uint32_t(task_message));
+        assert(native_present_ledger().retire(0x8010E310));
+        assert(native_present_ledger().host_read_done(*ticket) && !completion_owner.drained());
         assert(osSendMesg(rdram, queue, task_message, OS_MESG_NOBLOCK) == 0);
         break;
+    }
     case 3:
+        assert(completion_owner.drained() && !native_present_ledger().occupied());
         assert(MEM_W(0, int32_t(0x801AA618)) == 0);
         b.leave(monotonic_time());
         assert(dora3_enqueue_native_frame_wake()); // Stale/empty mailbox in Original.

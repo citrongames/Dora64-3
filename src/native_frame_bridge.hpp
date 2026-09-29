@@ -23,6 +23,7 @@ public:
     bool post_due(Nanoseconds now, WakeSender sender);
     bool dispatch(uint32_t message, Nanoseconds now, uint8_t* ram, recomp_context* context);
     std::optional<Nanoseconds> deadline() const;
+    uint64_t generation() const { return scheduler_.generation(); }
     bool active() const { return scheduler_.active(); }
     bool drained() const { return scheduler_.drained(); }
     SchedulerStats stats() const { return scheduler_.stats(); }
@@ -33,6 +34,8 @@ private:
     FrameConsumer consumer_ = nullptr;
 };
 
+struct FrameBinding { FrameTicket ticket; FrameScheduler* owner; };
+const FrameBinding* active_frame_binding(); // Scheduled game thread only.
 FrameBridge& game_frame_bridge();
 Nanoseconds monotonic_time();
 } // namespace dora3::native_time

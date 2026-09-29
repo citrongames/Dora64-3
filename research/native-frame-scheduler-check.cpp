@@ -9,6 +9,9 @@
 #include <vector>
 
 using namespace dora3::native_time;
+// Original-only oracle; native ownership hooks are exercised by the pump check.
+extern "C" int dora3_native_framebuffer_ready(uint32_t) { return 0; }
+extern "C" void dora3_native_task_retired(uint8_t*, recomp_context*) {}
 extern "C" void dora3_trace(uint8_t*, recomp_context*, uint32_t, uint32_t) {}
 static uint32_t current_fb = 0x80380000, next_fb = current_fb;
 static std::vector<int> sdk_events;

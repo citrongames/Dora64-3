@@ -122,6 +122,11 @@ bool FrameScheduler::publish(const FrameTicket& ticket) {
     return true;
 }
 
+bool FrameScheduler::published(const FrameTicket& ticket) const {
+    std::lock_guard lock(mutex_);
+    return ticket.bank<banks_.size() && banks_[ticket.bank].token==ticket.token && banks_[ticket.bank].phase==Phase::Published;
+}
+
 bool FrameScheduler::complete(const FrameTicket& ticket, Completion completion) {
     std::lock_guard lock(mutex_);
     if (ticket.bank >= banks_.size()) return false;
@@ -141,6 +146,11 @@ std::optional<Nanoseconds> FrameScheduler::deadline() const {
     std::lock_guard lock(mutex_);
     if (pending_ || banks_[next_bank_].phase != Phase::Free) return std::nullopt;
     return clock_.deadline();
+}
+
+uint64_t FrameScheduler::generation() const {
+    std::lock_guard lock(mutex_);
+    return epoch_;
 }
 
 bool FrameScheduler::active() const {
