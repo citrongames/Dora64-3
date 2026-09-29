@@ -290,6 +290,9 @@ int main(int argc,char** argv){
     // live under a timestamped run directory. Runtime appends saves/<game_id>.bin.
     recomp::register_config_path(directory);
     std::fprintf(stderr,"SHARED CONFIG root=%ls; saves=%ls\n",directory.c_str(),(directory/L"saves").c_str());
+    #elif defined(DORA3_LIVE_RT64)
+    // Same desktop policy as Dora64: settings and saves beside the selected ROM.
+    recomp::register_config_path(rom_path.parent_path());
     #else
     recomp::register_config_path(state_dir);
     #endif

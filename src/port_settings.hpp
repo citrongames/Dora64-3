@@ -14,8 +14,9 @@ inline constexpr std::array<const char*, ActionCount> action_names{
 constexpr int pad_axis(int axis, bool positive) { return 100 + axis * 2 + int(positive); }
 struct Settings {
     int volume=100, resolution=0, filtering=0; // 0 original, 1 2x, 2 4x, 3 window scale; 0 N64, 1 bilinear
+    int window_width=1280, window_height=720;
     bool fullscreen=false, show_fps=false;
-    float ui_scale=1.0f, deadzone=8000.0f/32767.0f;
+    float ui_scale=1.0f, deadzone=0.25f;
     std::array<int, ActionCount> keys{}, pad{};
 };
 Settings defaults();

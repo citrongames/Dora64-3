@@ -25,6 +25,15 @@ float axis(Sint16 value,float deadzone){
 }
 }
 
+void dora3_prepare_sdl_input(){
+    #if defined(__linux__)
+    // Same pre-initialization WSL workaround as Dora64: js* passthrough may
+    // exist without usable event* devices. Regular Linux keeps SDL's default.
+    if(std::getenv("WSL_INTEROP") || std::getenv("WSL_DISTRO_NAME"))
+        SDL_SetHint(SDL_HINT_LINUX_JOYSTICK_CLASSIC,"1");
+    #endif
+}
+
 void dora3_configure_live_input(recomp::Configuration& cfg){
     input_enabled=std::getenv("DORA3_NO_INPUT")==nullptr;
     audio_enabled=std::getenv("DORA3_NO_AUDIO")==nullptr;

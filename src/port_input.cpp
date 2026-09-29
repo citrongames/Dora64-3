@@ -7,7 +7,7 @@ namespace dora3::port {
 namespace {
 std::mutex mutex;
 PhysicalInput latest,previous;
-std::atomic_bool open=false;
+std::atomic_bool open=false,exit_requested=false;
 int capture=-1;
 bool capture_pad=false,armed=false,game_release=false,ui_release=false;
 bool neutral(const PhysicalInput& p,bool pad,float threshold=0.01f) {
@@ -16,6 +16,8 @@ bool neutral(const PhysicalInput& p,bool pad,float threshold=0.01f) {
 }
 void open_locked(bool value){open.store(value);capture=-1;armed=false;game_release=true;ui_release=true;}
 }
+void request_exit(){exit_requested.store(true);}
+bool take_exit_request(){return exit_requested.exchange(false);}
 void publish_physical(const PhysicalInput& p){std::lock_guard lock(mutex);latest=p;}
 PhysicalInput physical(){std::lock_guard lock(mutex);return latest;}
 bool menu_open(){return open.load();}
@@ -32,7 +34,6 @@ std::string capture_label(){
 bool process_port_input(const PhysicalInput& p) {
     std::lock_guard lock(mutex);latest=p;
     const bool toggle=(p.keys[SDL_SCANCODE_ESCAPE]&&!previous.keys[SDL_SCANCODE_ESCAPE]) ||
-        (p.keys[SDL_SCANCODE_F1]&&!previous.keys[SDL_SCANCODE_F1]) ||
         (p.pad[SDL_CONTROLLER_BUTTON_BACK]>0.5f&&previous.pad[SDL_CONTROLLER_BUTTON_BACK]<=0.5f);
     if(!p.focused){game_release=true;ui_release=true;capture=-1;}
     else if(toggle){if(capture>=0){capture=-1;ui_release=true;}else open_locked(!open.load());}

@@ -1062,3 +1062,59 @@ live_io/live_graphics; версия CPU/audio и game hooks не менялис�
 прохождение не объявляются проверенными. Первая часть и 32 pinned dependency
 commits сохранены. Дальнейшее продолжение полного аудита памяти отложено по
 решению пользователя, остаточные риски из retirement-guard.md остаются открыты.
+
+## 2026-09-29 — согласование меню и settings с Dora64
+
+## Test-022 — соответствие Dora64
+
+Test-021 пользователь проверил: «вроде работает», затем уточнил соответствие
+первой части. Меню теперь повторяет оформление и порядок готовых разделов:
+Game / Graphics / Audio / Controls. Названия: Settings profiles, Show FPS counter,
+Display mode, Output resolution, Game render resolution, Texture filtering,
+Master volume, Stick dead zone, Restore default controls.
+Переназначение — три колонки Action/Keyboard/Gamepad и окно Bind control с
+Clear binding/Cancel. Подвал: Continue, Exit game → Exit game? → Exit/Cancel.
+Нереализованные Cheats, камера и Reset game не добавлены как пустые элементы.
+
+F1 меню не вызывает. Открытие: Escape / Back–Select.
+FPS использует параметры Dora64: текст (0.72, 1, 0.76, 1), фон (0.025, 0.03, 0.04),
+alpha 0.72, отступ12, padding8×5, rounding5, масштаб относительно высоты720p.
+Цвет проверяется по CPU vertices ImGui без графического вывода.
+
+Оконный режим по умолчанию 1280×720. Output resolution содержит стандартные
+размеры Dora64: 640×480, 800×600, 960×540, 1024×768, 1280×720, 1600×900,
+1920×1080, 2560×1440, 3840×2160. Сохранённый пользовательский режим имеет
+приоритет при запуске. Обычное перетаскивание края окна не сбрасывается каждый кадр.
+Полноэкранный режим использует разрешение desktop/native.
+Exit game передаёт запрос на основной поток и вызывает обычный ultramodern::quit,
+как закрытие окна; принудительного _Exit для этого нет.
+
+Файлы с префиксом port, как уточнил пользователь:
+- port_pc_settings.json: show_fps, master_volume0–1, graphics и menu_scale.
+- port_input_settings.json: bindings/action/keyboard/gamepad, stick_dead_zone_percent.
+
+Общие поля и GamepadInput serialization соответствуют Dora64, версии14/3.
+Идентификаторы действий третьей игры независимы от игровых названий первой.
+Дополнительные кнопки SDL используют диапазон1000+, стандартные — номера Dora64.
+Неизвестные JSON-поля сохраняются, неподдержанные функции не активируются.
+Windows: рядом с EXE/ROM. Linux live: рядом с выбранным ROM, как в Dora64.
+Диагностика остаётся отдельно; saves упаковка не заменяет.
+
+Миграция читает port-settings.json только для отсутствующих новых файлов;
+старый файл остаётся на месте. Новые файлы при повторном запуске имеют приоритет.
+Нетронутая стандартная раскладка test-021 заменяется на Dora64, пользовательские
+переназначения сохраняются. Упаковка настройки не создаёт и не перезаписывает.
+
+Стандартная клавиатура: WASD — stick, Space/C/Z — N64 A/B/Z, Enter — Start,
+Q/E — L/R, arrows — D-pad, IJKL — C-buttons. Геймпад: left stick, A/B, LT, Start,
+LB/RB, D-pad, right stick. Dead zone25%. Restore default controls возвращает
+эту раскладку. Названия Actions оставлены N64 по просьбе пользователя.
+
+WSL: до SDL_Init включается SDL_HINT_LINUX_JOYSTICK_CLASSIC при наличии WSL_INTEROP
+или WSL_DISTRO_NAME, точно как в Dora64/main.cpp. Обычный Linux/Windows сохраняют
+обычный backend. Реальное устройство под WSL агентом не запускалось.
+
+Проверки без игры/GPU: JSON schema/roundtrip/migration, default720p, F1 inert,
+quit request, четырёхвкладочное меню/навигация/зелёные FPS vertices ImGui,
+SDL virtual pad и стандартные bindings. Windows/Linux RT64 компилируются.
+Живое изображение/полноэкранный переход и прохождение проверяет пользователь.

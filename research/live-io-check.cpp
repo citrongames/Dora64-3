@@ -18,6 +18,10 @@ extern "C" Uint32 __wrap_SDL_GetQueuedAudioSize(SDL_AudioDeviceID){return queued
 int main(){
     SDL_setenv("SDL_VIDEODRIVER","dummy",1);SDL_setenv("SDL_AUDIODRIVER","dummy",1);
     SDL_setenv("SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS","1",1);
+    dora3_prepare_sdl_input();
+    #if defined(__linux__)
+    if(std::getenv("WSL_INTEROP")||std::getenv("WSL_DISTRO_NAME"))assert(SDL_GetHintBoolean(SDL_HINT_LINUX_JOYSTICK_CLASSIC,SDL_FALSE));
+    #endif
     assert(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_GAMECONTROLLER|SDL_INIT_AUDIO)==0);
     auto* window=SDL_CreateWindow("adapter test",0,0,32,32,SDL_WINDOW_HIDDEN);assert(window);
     recomp::Configuration cfg{};dora3_configure_live_input(cfg);
@@ -26,7 +30,7 @@ int main(){
     assert(cfg.input_callbacks.get_connected_device_info(1).connected_device==Device::None);
     uint16_t buttons=123;float x=4,y=5;
     assert(!cfg.input_callbacks.get_input(1,&buttons,&x,&y) && buttons==123 && x==4 && y==5);
-    keys[SDL_SCANCODE_Z]=keys[SDL_SCANCODE_RETURN]=keys[SDL_SCANCODE_W]=keys[SDL_SCANCODE_D]=1;
+    keys[SDL_SCANCODE_SPACE]=keys[SDL_SCANCODE_RETURN]=keys[SDL_SCANCODE_W]=keys[SDL_SCANCODE_D]=1;
     dora3_poll_live_input(window);assert(cfg.input_callbacks.get_input(0,&buttons,&x,&y));
     assert(buttons==0x9000 && x>0 && y>0 && std::abs(x*x+y*y-1)<0.00001f);
     flags=0;dora3_poll_live_input(window);cfg.input_callbacks.get_input(0,&buttons,&x,&y);

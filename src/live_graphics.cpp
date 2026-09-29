@@ -31,6 +31,7 @@ void dora3_raw_dp_event();
 
 namespace {
 SDL_Window* live_window=nullptr;
+int applied_window_width=0,applied_window_height=0;
 RT64::RenderHookDraw* previous_draw=nullptr;
 void count_output(plume::RenderCommandList* list,plume::RenderFramebuffer* framebuffer){
     if(previous_draw)previous_draw(list,framebuffer);
@@ -221,12 +222,15 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
         ->std::unique_ptr<ultramodern::renderer::RendererContext>{return std::make_unique<LiveContext>(ram,w);};
     cfg.gfx_callbacks.create_window=[](void*)->ultramodern::renderer::WindowHandle{
         SDL_SetMainReady();
+        dora3_prepare_sdl_input();
         if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS|SDL_INIT_GAMECONTROLLER|SDL_INIT_AUDIO)!=0){std::fprintf(stderr,"SDL: %s\n",SDL_GetError());std::_Exit(84);}
         uint32_t flags=SDL_WINDOW_RESIZABLE|SDL_WINDOW_ALLOW_HIGHDPI;
         #ifndef _WIN32
         flags|=SDL_WINDOW_VULKAN;
         #endif
-        auto* window=SDL_CreateWindow("Dora64-3 test build",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,640,480,flags);
+        const auto settings=dora3::port::settings();
+        auto* window=SDL_CreateWindow("Dora64-3 test build",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,settings.window_width,settings.window_height,flags);
+        applied_window_width=settings.window_width;applied_window_height=settings.window_height;
         if(!window){std::fprintf(stderr,"SDL window: %s\n",SDL_GetError());std::_Exit(84);}
         live_window=window;
         SDL_SetWindowMinimumSize(window,480,360);
@@ -245,11 +249,19 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
     cfg.gfx_callbacks.update_gfx=[](void*){
         SDL_Event event;
         while(SDL_PollEvent(&event))if(event.type==SDL_QUIT)ultramodern::quit();
+        if(dora3::port::take_exit_request())ultramodern::quit();
         const auto settings=dora3::port::settings();
         const bool fullscreen=(SDL_GetWindowFlags(live_window)&SDL_WINDOW_FULLSCREEN)!=0;
         if(fullscreen!=settings.fullscreen && SDL_SetWindowFullscreen(live_window,settings.fullscreen?SDL_WINDOW_FULLSCREEN_DESKTOP:0)!=0){
             std::fprintf(stderr,"PORT fullscreen failed: %s\n",SDL_GetError());
             dora3::port::set_fullscreen(fullscreen);
+        }
+        // Only apply a requested size change (or leaving fullscreen), not every
+        // frame: manual window resizing must remain possible.
+        if(!settings.fullscreen && (fullscreen || applied_window_width!=settings.window_width || applied_window_height!=settings.window_height)){
+            SDL_RestoreWindow(live_window);
+            SDL_SetWindowSize(live_window,settings.window_width,settings.window_height);
+            applied_window_width=settings.window_width;applied_window_height=settings.window_height;
         }
         dora3_poll_live_input(live_window);
         log_memory_usage();

@@ -23,4 +23,6 @@ bool process_port_input(const PhysicalInput& input);
 void overlay_input();
 void draw_overlay();
 void record_output_frame();
+void request_exit();
+bool take_exit_request();
 }

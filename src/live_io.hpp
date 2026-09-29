@@ -1,6 +1,7 @@
 #pragma once
 #include "librecomp/game.hpp"
 #include <SDL.h>
+void dora3_prepare_sdl_input();
 void dora3_configure_live_input(recomp::Configuration& cfg);
 void dora3_poll_live_input(SDL_Window* window);
 void dora3_audio_frequency(uint32_t frequency);

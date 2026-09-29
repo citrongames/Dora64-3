@@ -43,87 +43,145 @@ void draw_overlay(){
     fps_sample();auto s=settings();
     const auto* viewport=ImGui::GetMainViewport();const ImVec2 size=viewport->WorkSize;
     if(size.x<=0||size.y<=0)return;
-    // Scale up from 720p; keep default text readable in small windows. Fit the window separately.
+    // Same output-height scale as Dora64; never tied to game render resolution.
     const auto original_style=ImGui::GetStyle();const float original_font=ImGui::GetIO().FontGlobalScale;
-    const float base=std::min(size.x/960.0f,size.y/720.0f);
-    const float scale=std::max(1.0f,base)*s.ui_scale;
+    const float scale=(size.y/720.0f)*s.ui_scale;
     ImGui::GetStyle().ScaleAllSizes(scale);ImGui::GetIO().FontGlobalScale=original_font*scale;
     ImGui::PushFont(ImGui::GetFont());
     if(menu_open()) {
-        const ImVec2 pos{viewport->WorkPos.x+size.x*0.5f,viewport->WorkPos.y+size.y*0.5f};
-        ImGui::SetNextWindowPos(pos,ImGuiCond_Always,ImVec2(0.5f,0.5f));
-        ImGui::SetNextWindowSize(ImVec2(std::min(880*scale,size.x*0.96f),size.y*0.9f),ImGuiCond_Always);
-        if(ImGui::Begin("Dora64-3 | Port menu",nullptr,ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoCollapse|ImGuiWindowFlags_NoSavedSettings)) {
-            ImGui::TextWrapped("Esc / F1 / controller Back: open or close. Arrows / D-pad: navigate. Enter / A: select.");
-            ImGui::TextDisabled("The game keeps running while this menu is open.");
-            const auto capture_text=capture_label();if(!capture_text.empty())ImGui::TextWrapped("%s",capture_text.c_str());
+        ImGui::SetNextFrameWantCaptureKeyboard(true);
+        ImGui::SetNextFrameWantCaptureMouse(true);
+        ImGui::GetBackgroundDrawList()->AddRectFilled(viewport->Pos,
+            ImVec2(viewport->Pos.x+viewport->Size.x,viewport->Pos.y+viewport->Size.y),IM_COL32(0,0,0,145));
+        ImGui::SetNextWindowPos(viewport->GetCenter(),ImGuiCond_Always,ImVec2(0.5f,0.5f));
+        ImGui::SetNextWindowSize(ImVec2(std::min(760*scale,size.x-24),std::min(500*scale,size.y-24)),ImGuiCond_Always);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding,10*scale);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding,ImVec2(22*scale,18*scale));
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding,5*scale);
+        ImGui::PushStyleVar(ImGuiStyleVar_TabRounding,5*scale);
+        ImGui::PushStyleColor(ImGuiCol_WindowBg,ImVec4(0.025f,0.035f,0.055f,0.98f));
+        ImGui::PushStyleColor(ImGuiCol_Button,ImVec4(0.08f,0.38f,0.56f,1));
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered,ImVec4(0.11f,0.52f,0.72f,1));
+        ImGui::PushStyleColor(ImGuiCol_CheckMark,ImVec4(0.45f,0.95f,0.75f,1));
+        if(ImGui::Begin("##Dora3PcMenu",nullptr,ImGuiWindowFlags_NoDecoration|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoSavedSettings)) {
+            ImGui::SetWindowFontScale(1.18f);ImGui::TextUnformatted("Dora64-3");ImGui::SetWindowFontScale(1);
+            ImGui::SameLine();ImGui::TextDisabled("PC menu");ImGui::Separator();ImGui::Spacing();
             const auto error=save_error();if(!error.empty())ImGui::TextWrapped("Settings error: %s",error.c_str());
-            ImGui::Separator();
+            static Action capture_action=A;
+            static bool capture_pad=false;
+            bool open_capture=false;
             ImGui::BeginDisabled(ui_input_blocked());
-            if(ImGui::BeginTabBar("PortTabs")) {
-                if(ImGui::BeginTabItem("Settings")) {
-                    bool changed=false;
-                    ImGui::PushItemWidth(-200*scale);
-                    changed|=ImGui::SliderInt("Volume",&s.volume,0,100,"%d%%");
-                    changed|=ImGui::Checkbox("Fullscreen",&s.fullscreen);
-                    changed|=ImGui::Combo("Render resolution",&s.resolution,"Original (1x)\0Original 2x\0Original 4x\0Fit window (integer scale)\0");
-                    changed|=ImGui::Combo("Texture filtering",&s.filtering,"N64 three-point\0Bilinear\0");
-                    changed|=ImGui::SliderFloat("Menu scale",&s.ui_scale,0.75f,1.5f,"%.2fx");
-                    changed|=ImGui::Checkbox("Show output FPS",&s.show_fps);
-                    ImGui::PopItemWidth();
-                    if(changed)set_general(s);
-                    ImGui::Separator();ImGui::TextUnformatted("Graphics profiles");
-                    if(ImGui::Button("Original"))profile(false);ImGui::SameLine();if(ImGui::Button("Modern"))profile(true);
-                    ImGui::TextWrapped("Original: 1x, N64 filtering. Modern: fit window, bilinear. Both preserve 4:3 and original game timing. Controls are configured separately.");
-                    ImGui::EndTabItem();
+            if(ImGui::BeginTabBar("##Dora3PcMenuTabs")) {
+                if(ImGui::BeginTabItem("Game")) {
+                    if(ImGui::BeginChild("##GameContent",ImVec2(0,-66*scale))) {
+                        ImGui::TextUnformatted("Settings profiles");
+                        const ImVec2 profile_size((ImGui::GetContentRegionAvail().x-ImGui::GetStyle().ItemSpacing.x)*0.5f,ImGui::GetFrameHeight()*1.8f);
+                        if(ImGui::Button("Modern",profile_size))profile(true);ImGui::SameLine();
+                        if(ImGui::Button("Original",profile_size))profile(false);
+                        ImGui::Spacing();ImGui::Separator();ImGui::Spacing();
+                        ImGui::TextWrapped("Original: original resolution and N64 filtering. Modern: fit to window and bilinear filtering.");
+                        ImGui::TextWrapped("Both profiles preserve the original game speed and 4:3 picture.");
+                        if(ImGui::Checkbox("Show FPS counter",&s.show_fps))set_general(s);
+                        if(ImGui::SliderFloat("Menu scale",&s.ui_scale,0.75f,1.5f,"%.2fx"))set_general(s);
+                        ImGui::Spacing();ImGui::TextWrapped("The game keeps running while this menu is open.");
+                    }
+                    ImGui::EndChild();ImGui::EndTabItem();
+                }
+                if(ImGui::BeginTabItem("Graphics")) {
+                    if(ImGui::BeginChild("##GraphicsContent",ImVec2(0,-66*scale))) {
+                        bool changed=false;int mode=s.fullscreen?1:0;
+                        ImGui::PushItemWidth(-195*scale);
+                        if(ImGui::Combo("Display mode",&mode,"Windowed\0Borderless fullscreen\0")){s.fullscreen=mode!=0;changed=true;}
+                        if(!s.fullscreen) {
+                            const auto preview=std::to_string(s.window_width)+" x "+std::to_string(s.window_height);
+                            if(ImGui::BeginCombo("Output resolution",preview.c_str())) {
+                                constexpr int sizes[][2]={{640,480},{800,600},{960,540},{1024,768},{1280,720},{1600,900},{1920,1080},{2560,1440},{3840,2160}};
+                                for(const auto& dimensions:sizes) {
+                                    const bool selected=s.window_width==dimensions[0]&&s.window_height==dimensions[1];
+                                    const auto label=std::to_string(dimensions[0])+" x "+std::to_string(dimensions[1]);
+                                    if(ImGui::Selectable(label.c_str(),selected)){s.window_width=dimensions[0];s.window_height=dimensions[1];changed=true;}
+                                    if(selected)ImGui::SetItemDefaultFocus();
+                                }
+                                ImGui::EndCombo();
+                            }
+                        } else ImGui::TextUnformatted("Output resolution: desktop/native");
+                        changed|=ImGui::Combo("Game render resolution",&s.resolution,"Original (1x)\0Original (2x)\0Original (4x)\0Fit to window\0");
+                        changed|=ImGui::Combo("Texture filtering",&s.filtering,"Original N64 (three-point)\0Bilinear\0");
+                        ImGui::PopItemWidth();if(changed)set_general(s);
+                    }
+                    ImGui::EndChild();ImGui::EndTabItem();
+                }
+                if(ImGui::BeginTabItem("Audio")) {
+                    if(ImGui::BeginChild("##AudioContent",ImVec2(0,-66*scale)))
+                        if(ImGui::SliderInt("Master volume",&s.volume,0,100,"%d%%"))set_general(s);
+                    ImGui::EndChild();ImGui::EndTabItem();
                 }
                 if(ImGui::BeginTabItem("Controls")) {
-                    const auto p=physical();
-                    ImGui::TextWrapped("Gamepad: %s",p.connected?p.controller_name.c_str():"not connected (keyboard available)");
-                    float deadzone=s.deadzone*100;
-                    if(ImGui::SliderFloat("Stick dead zone",&deadzone,5,50,"%.0f%%"))set_deadzone(deadzone/100);
-                    ImGui::TextWrapped("Select a binding, release controls, then press a new key/button or move a stick. Conflicting bindings swap. Esc / F1 and controller Back are reserved for this menu.");
-                    if(ImGui::Button("Reset all controls"))ImGui::OpenPopup("Reset controls?");
-                    if(ImGui::BeginPopupModal("Reset controls?",nullptr,ImGuiWindowFlags_AlwaysAutoResize)) {
-                        ImGui::TextUnformatted("Restore default keyboard, gamepad and dead zone?");
-                        if(ImGui::Button("Restore")){reset_bindings();ImGui::CloseCurrentPopup();}ImGui::SameLine();
-                        if(ImGui::Button("Cancel"))ImGui::CloseCurrentPopup();ImGui::EndPopup();
-                    }
-                    if(ImGui::BeginTable("Bindings",5,ImGuiTableFlags_BordersInnerH|ImGuiTableFlags_RowBg|ImGuiTableFlags_ScrollY,
-                        ImVec2(0,std::max(100*scale,ImGui::GetContentRegionAvail().y-45*scale)))) {
-                        ImGui::TableSetupColumn("Action",ImGuiTableColumnFlags_WidthStretch,1);
-                        ImGui::TableSetupColumn("Keyboard",ImGuiTableColumnFlags_WidthStretch,1.3f);
-                        ImGui::TableSetupColumn("##ClearKey",ImGuiTableColumnFlags_WidthFixed,45*scale);
-                        ImGui::TableSetupColumn("Gamepad",ImGuiTableColumnFlags_WidthStretch,1.6f);
-                        ImGui::TableSetupColumn("##ClearPad",ImGuiTableColumnFlags_WidthFixed,45*scale);
-                        ImGui::TableSetupScrollFreeze(0,1);ImGui::TableHeadersRow();
-                        for(int i=0;i<ActionCount;i++) {
-                            ImGui::PushID(i);ImGui::TableNextRow();ImGui::TableNextColumn();ImGui::TextUnformatted(action_names[i]);
-                            ImGui::TableNextColumn();if(ImGui::Button((std::string(key_name(s.keys[i]))+"###keyboard").c_str(),ImVec2(-1,0)))begin_capture(Action(i),false);
-                            ImGui::TableNextColumn();if(ImGui::Button("X##key"))bind(Action(i),false,0);
-                            ImGui::TableNextColumn();ImGui::BeginDisabled(!p.connected);
-                            if(ImGui::Button((pad_name(s.pad[i])+"###gamepad").c_str(),ImVec2(-1,0)))begin_capture(Action(i),true);
-                            ImGui::EndDisabled();ImGui::TableNextColumn();if(ImGui::Button("X##pad"))bind(Action(i),true,-1);
-                            ImGui::PopID();
+                    if(ImGui::BeginChild("##ControlsContent",ImVec2(0,-66*scale))) {
+                        const auto p=physical();ImGui::TextWrapped("Gamepad: %s",p.connected?p.controller_name.c_str():"not connected");
+                        int deadzone=int(s.deadzone*100+0.5f);
+                        if(ImGui::SliderInt("Stick dead zone",&deadzone,5,50,"%d%%"))set_deadzone(deadzone/100.0f);
+                        ImGui::TextWrapped("Escape and Back / Select are reserved for the PC menu.");ImGui::Spacing();
+                        if(ImGui::BeginTable("##InputBindings",3,ImGuiTableFlags_Borders|ImGuiTableFlags_RowBg|ImGuiTableFlags_ScrollY|ImGuiTableFlags_SizingStretchProp,ImVec2(0,252*scale))) {
+                            ImGui::TableSetupScrollFreeze(0,1);
+                            ImGui::TableSetupColumn("Action",ImGuiTableColumnFlags_WidthStretch,2);
+                            ImGui::TableSetupColumn("Keyboard",ImGuiTableColumnFlags_WidthStretch,1);
+                            ImGui::TableSetupColumn("Gamepad",ImGuiTableColumnFlags_WidthStretch,1);ImGui::TableHeadersRow();
+                            for(int i=0;i<ActionCount;i++) {
+                                ImGui::PushID(i);ImGui::TableNextRow();ImGui::TableNextColumn();ImGui::AlignTextToFramePadding();ImGui::TextUnformatted(action_names[i]);
+                                ImGui::TableNextColumn();if(ImGui::Button((std::string(key_name(s.keys[i]))+"###keyboard").c_str(),ImVec2(-1,0))){capture_action=Action(i);capture_pad=false;begin_capture(capture_action,false);open_capture=true;}
+                                ImGui::TableNextColumn();ImGui::BeginDisabled(!p.connected);
+                                if(ImGui::Button((pad_name(s.pad[i])+"###gamepad").c_str(),ImVec2(-1,0))){capture_action=Action(i);capture_pad=true;begin_capture(capture_action,true);open_capture=true;}
+                                ImGui::EndDisabled();ImGui::PopID();
+                            }
+                            ImGui::EndTable();
                         }
-                        ImGui::EndTable();
+                        if(ImGui::Button("Restore default controls"))reset_bindings();
                     }
-                    ImGui::EndTabItem();
+                    ImGui::EndChild();ImGui::EndTabItem();
                 }
                 ImGui::EndTabBar();
             }
-            ImGui::Separator();if(ImGui::Button("Return to game"))set_menu_open(false);
+            ImGui::Separator();ImGui::TextDisabled("Escape / Back: close menu");
+            if(ImGui::GetContentRegionAvail().x>470*scale)ImGui::SameLine(ImGui::GetWindowContentRegionMax().x-208*scale);
+            if(ImGui::Button("Continue",ImVec2(100*scale,0)))set_menu_open(false);
+            ImGui::SameLine();if(ImGui::Button("Exit game",ImVec2(100*scale,0)))ImGui::OpenPopup("Exit game?");
             ImGui::EndDisabled();
+            if(open_capture)ImGui::OpenPopup("Bind control");
+            ImGui::SetNextWindowPos(viewport->GetCenter(),ImGuiCond_Always,ImVec2(0.5f,0.5f));
+            ImGui::SetNextWindowSize(ImVec2(std::min(420*scale,size.x-24),0),ImGuiCond_Always);
+            if(ImGui::BeginPopupModal("Bind control",nullptr,ImGuiWindowFlags_AlwaysAutoResize)) {
+                if(!capture_active())ImGui::CloseCurrentPopup();
+                else {
+                    ImGui::TextUnformatted(action_names[capture_action]);ImGui::Spacing();
+                    ImGui::TextWrapped("%s",capture_pad?"Release the current control, then press a button, trigger, or stick direction.":"Release the current key, then press the new key.");
+                    if(ImGui::Button("Clear binding")){bind(capture_action,capture_pad,capture_pad?-1:0);cancel_capture();ImGui::CloseCurrentPopup();}
+                    ImGui::SameLine();if(ImGui::Button("Cancel")){cancel_capture();ImGui::CloseCurrentPopup();}
+                }
+                ImGui::EndPopup();
+            }
+            ImGui::SetNextWindowPos(viewport->GetCenter(),ImGuiCond_Always,ImVec2(0.5f,0.5f));
+            if(ImGui::BeginPopupModal("Exit game?",nullptr,ImGuiWindowFlags_AlwaysAutoResize)) {
+                ImGui::TextUnformatted("Exit Dora64-3?");ImGui::Spacing();
+                if(ImGui::Button("Exit",ImVec2(100*scale,0))){request_exit();ImGui::CloseCurrentPopup();}
+                ImGui::SameLine();if(ImGui::Button("Cancel",ImVec2(100*scale,0)))ImGui::CloseCurrentPopup();
+                ImGui::EndPopup();
+            }
         }
-        ImGui::End();
+        ImGui::End();ImGui::PopStyleColor(4);ImGui::PopStyleVar(4);
     }
     if(s.show_fps) {
-        ImGui::SetNextWindowPos(ImVec2(viewport->WorkPos.x+size.x-10*scale,viewport->WorkPos.y+10*scale),ImGuiCond_Always,ImVec2(1,0));
-        ImGui::SetNextWindowBgAlpha(0.7f);
+        ImGui::SetNextWindowPos(ImVec2(viewport->WorkPos.x+size.x-12*scale,viewport->WorkPos.y+12*scale),ImGuiCond_Always,ImVec2(1,0));
+        ImGui::SetNextWindowBgAlpha(0.72f);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding,5*scale);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding,ImVec2(8*scale,5*scale));
+        ImGui::PushStyleColor(ImGuiCol_WindowBg,ImVec4(0.025f,0.03f,0.04f,1));
         if(ImGui::Begin("##OutputFPS",nullptr,ImGuiWindowFlags_NoDecoration|ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoSavedSettings|ImGuiWindowFlags_NoInputs|ImGuiWindowFlags_NoNav|ImGuiWindowFlags_NoFocusOnAppearing)) {
+            ImGui::PushStyleColor(ImGuiCol_Text,ImVec4(0.72f,1.0f,0.76f,1.0f));
             if(have_fps)ImGui::Text("FPS %.1f",fps);else ImGui::TextUnformatted("FPS --");
+            ImGui::PopStyleColor();
         }
-        ImGui::End();
+        ImGui::End();ImGui::PopStyleColor();ImGui::PopStyleVar(2);
     }
     ImGui::GetIO().FontGlobalScale=original_font;ImGui::PopFont();ImGui::GetStyle()=original_style;
 }
