@@ -1,0 +1,27 @@
+{
+  "scope": "Gravity and matching displacement; Original equivalence, terminal-speed partition invariance; not scene activation",
+  "result": "PASS: 786 original/gravity trajectory cases; 60/73/120/144/165/360FPS, 20/30Hz, both terminal caps, player special branches, contacts and scoped actor isolation; no game/GPU.",
+  "original_functions": [
+    "dora3_s28_mini_801C42C8",
+    "dora3_s28_mini_801C4300",
+    "dora3_s3_801C0F1C",
+    "dora3_s3_core_801CB400",
+    "dora3_s3_core_801CB6D4"
+  ],
+  "source_sha256": {
+    "src/native_simulation_time.cpp": "eb854c2e7c89dfa5911bd288b8f572047e2c11aa23631fe2081df047690fcedc",
+    "research/native-gravity-check.cpp": "95ce36b649cb0fa5205d17e05ba90aa333d43c26323b43ffce2244e736b0eb19",
+    "src/native_simulation_time.hpp": "8fcc8c67b3f1a3e97ab903aac97149cd7b91cbd95e7fea06151257f5fda60744",
+    "recomp/native-timing-rules.json": "1f1c7ac3dcdfa02fe1fa504ed50717427b878aa8a5bccc963f85fdf54a9fadf0",
+    "tools/native_timing_patches.py": "aafa693bd6219787e0d1094738602ebbc65e461e4d65b1b46bbd2cd6f9c68ec8",
+    "tools/generate_startup.py": "616e680dc1755fbaa70686faaef9dba19eccee007885ee085b0bcaa334381306",
+    "tools/check_native_gravity.py": "6a33305f33acd4452efe7f375c80031b8613e01e6c38aa545ee5d2a0bd6989a9"
+  },
+  "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db",
+  "reference_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
+  "limitations": [
+    "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",
+    "Whole-tick equivalence compares owned state, excluding scratch stack/registers of replaced leaf functions",
+    "Full player collision solver and scene integration are not covered; terminal drift is a continuous extension and may differ slightly from original discrete cap-crossing displacement"
+  ]
+}

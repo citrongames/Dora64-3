@@ -18,7 +18,7 @@ def main():
         return {n:bodies[n] for n in sorted(names)}
     patched=extract(g);original=extract(ref)
     assert all('dora3_native_rate_' not in b for b in original.values())
-    assert all('dora3_native_rate_' in b for b in patched.values())
+    assert all('dora3_native_' in b for b in patched.values())
     out=ROOT/'build-local/native-simulation-check';out.mkdir(exist_ok=True)
     text='\n'.join(patched.values())+'\n'+'\n'.join(b.replace('void '+n+'(', 'void reference_'+n+'(') for n,b in original.items())
     (out/'functions.c').write_text('#include "startup_hooks.h"\n#include "funcs.h"\n'+text)
@@ -32,7 +32,7 @@ def main():
     report=dict(scope='Shared simulation timeline and explicit operand patches, not scene activation or full physics/collision integration',result=result,
         source_sha256={str(p.relative_to(ROOT)):sha(p) for p in tracked},generation_receipt_sha256=sha(g/'generation-receipt.json'),reference_receipt_sha256=sha(ref/'generation-receipt.json'),
         original_functions=sorted(names),limitations=['Synthetic memory; no game/GPU; seven selected original helpers, not all gameplay closures',
-        'Constant-acceleration trajectory kernel checked separately; pairing it with collision and capped acceleration still needs integration',
+        'Gravity/displacement pairing additionally checked in native-gravity-check; full collision integration remains separate',
         'No scene is enabled by these operand hooks alone'])
     (ROOT/'research/native-simulation-check.json').write_text(json.dumps(report,indent=2)+'\n');print(result)
 if __name__=='__main__':main()

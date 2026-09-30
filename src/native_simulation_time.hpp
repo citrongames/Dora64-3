@@ -2,6 +2,7 @@
 #include "native_frame_time.hpp"
 #include <cstdint>
 #include <functional>
+#include <vector>
 
 namespace dora3::native_time {
 struct SimulationSlice {
@@ -34,12 +35,14 @@ private:
 // Explicitly entered by a reviewed continuous update closure. Outside it every
 // patched instruction retains its original operand. Rendering does not create
 // a simulation scope implicitly; activating a scene requires its whole contract.
+struct GravitySample { std::uint32_t address; float velocity, displacement; };
 class SimulationScope {
 public:
     explicit SimulationScope(const SimulationSlice&);
     ~SimulationScope();
     SimulationScope(const SimulationScope&) = delete;
 private:
+    std::vector<GravitySample> gravity_;
     SimulationSlice slice_;
     const SimulationSlice* previous_;
 };
@@ -62,3 +65,6 @@ extern "C" double dora3_native_rate_f64(double);
 extern "C" int dora3_native_simulation_active();
 extern "C" int dora3_native_simulation_tick_start();
 extern "C" float dora3_native_displacement_f32(float, std::uint32_t);
+
+extern "C" float dora3_native_gravity_f32(float, float, float, std::uint32_t);
+extern "C" float dora3_native_gravity_displacement_f32(float, std::uint32_t);

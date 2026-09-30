@@ -1,0 +1,24 @@
+{
+  "scope": "Original process lifecycle with repeated native dispatches; active callbacks remain frame-driven",
+  "result": "PASS: 2053 process dispatcher checks; all eight slots, states0..5, waits0/1/3, Original memory equivalence, repeated draw/simulation dispatch, delayed first activation; no game/GPU.",
+  "original_functions": [
+    "dora3_process_dispatch"
+  ],
+  "source_sha256": {
+    "src/native_simulation_time.cpp": "eb854c2e7c89dfa5911bd288b8f572047e2c11aa23631fe2081df047690fcedc",
+    "src/native_process_time.cpp": "b7025893d91cf6851de180e5c90c34c72a0f6f3977a2a51236f6369615562c59",
+    "research/native-process-time-check.cpp": "751cceb4380ecf1c024cd2369b473363c9d390c8e6e6897c98168291a844f57c",
+    "src/native_simulation_time.hpp": "8fcc8c67b3f1a3e97ab903aac97149cd7b91cbd95e7fea06151257f5fda60744",
+    "recomp/native-timing-rules.json": "1f1c7ac3dcdfa02fe1fa504ed50717427b878aa8a5bccc963f85fdf54a9fadf0",
+    "tools/native_timing_patches.py": "aafa693bd6219787e0d1094738602ebbc65e461e4d65b1b46bbd2cd6f9c68ec8",
+    "tools/generate_startup.py": "616e680dc1755fbaa70686faaef9dba19eccee007885ee085b0bcaa334381306",
+    "tools/check_native_process_time.py": "a9fea72e5394f17418dacaf45514e1539375fb146517eb4f1637ddd449d93652"
+  },
+  "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db",
+  "reference_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
+  "limitations": [
+    "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",
+    "Whole-tick equivalence compares owned state, excluding scratch stack/registers of replaced leaf functions",
+    "Synthetic callbacks; timing inside each game callback is outside this dispatcher check"
+  ]
+}

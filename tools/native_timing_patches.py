@@ -28,6 +28,21 @@ def timing_hooks(sections,compiled,rom):
         op=rule['operation']
         if op=='scale_f32_source':
             reg=fpr(rule,'register');text=f'{reg} = dora3_native_rate_f32({reg});'
+        elif op=='gravity_subtract':
+            allowed={('.scene1',0x801C0FA8):(2,-55),('.scene1',0x801CB408):(4,-50),('.minigame_8',0x801C42D0):(4,-50)}
+            pair=allowed.get((rule['section'],site))
+            if pair!=(rule['base_register'],rule['terminal']) or word!=0x46020001:raise ValueError('Unreviewed gravity subtraction')
+            label=f'dora3_after_timing_{site:08X}'
+            text=f'if (dora3_native_simulation_active()) {{ ctx->f0.fl = dora3_native_gravity_f32(ctx->f0.fl, ctx->f2.fl, {pair[1]}.0f, (uint32_t)ctx->r{pair[0]} + 0x14u); goto {label}; }}'
+            hooks[name,site+4].append(label+':;')
+        elif op=='gravity_displacement_source':
+            allowed={('.scene1',0x801BF8A8):(0,3),('.scene1',0x801BFDA4):(0,3),('.scene1',0x801E8E10):(2,2),('.scene1',0x801CB6EC):(2,5),('.minigame_8',0x801C4318):(2,5)}
+            pair=allowed.get((rule['section'],site))
+            if pair!=(rule['register'],rule['base_register']):raise ValueError('Unreviewed gravity displacement')
+            reg=fpr(rule,'register');text=f'{reg} = dora3_native_gravity_displacement_f32({reg}, (uint32_t)ctx->r{pair[1]} + 0x14u);'
+        elif op=='process_slot_lifecycle':
+            if address!=0x800281B8 or site!=0x80028208 or word!=0x8E220000:raise ValueError('Unreviewed process slot boundary')
+            text='if (!dora3_native_process_lifecycle_allowed(rdram, ctx)) { MEM_W(0, (int32_t)0x80171590) = (int32_t)ctx->r18; goto L_80028258; }'
         elif op=='native_effect_entry':
             allowed={('.scene1',0x801BE5F0):'dora3_native_rectangle_update',('.scene1',0x801D56F4):'dora3_native_zoom_update'}
             target=allowed.get((rule['section'],address))

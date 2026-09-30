@@ -1,15 +1,15 @@
 {
-  "date_utc": "2026-09-30T01:03:09.558961+00:00",
-  "base_commit": "c07ef0fd880ae8551daaf2297344270922df0402",
+  "date_utc": "2026-09-30T01:29:51.394694+00:00",
+  "base_commit": "71a428cfe8c3bbf5b6f99ed070f37caa785fb7be",
   "dirty": true,
-  "scope": "Native context isolation and process replacement resource barrier; shared simulation clock, reviewed camera and 2D components. Live Manual remains scene34 image/white fade only; full variable-FPS gameplay is incomplete. Windows/Linux compiled, no game/GPU launched; work continues after archiving.",
-  "build_id": "test-028",
-  "cpu_generation": "startup-v73",
+  "scope": "Paired gravity/displacement and terminal-speed integration; shared process wait and delayed-activation timing. Live Manual remains scene34 image/white fade only; full variable-FPS gameplay is incomplete. Windows/Linux compiled, no game/GPU launched; work continues after archiving.",
+  "build_id": "test-029",
+  "cpu_generation": "startup-v76",
   "audio_generation": "audio-rsp-v1",
   "source_sha256": {
-    "recomp/native-timing-rules.json": "45f18c02a61e29803b768b5e0fb659897ec51796c6b8befce05ddd6ddb8226b9",
+    "recomp/native-timing-rules.json": "1f1c7ac3dcdfa02fe1fa504ed50717427b878aa8a5bccc963f85fdf54a9fadf0",
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
-    "research/runtime/CMakeLists.txt": "e81a6747cf25ad9b596b15724d235047c59672c5712bb378fc83a79044ca0dc0",
+    "research/runtime/CMakeLists.txt": "5d45c1b9974d8ef4ead7d209367f20b28a198c49ccb2fb6752c4371402d583af",
     "src/frame_lights.cpp": "f62604ab789b595bb804c2a55e251b32f49c267786bfdb7c4e07a51d2839c053",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
     "src/graphics_replay.cpp": "1038a243554d6a63ba000e544ff36d3f9854d3040a51c0bf4c4594420e9b65ed",
@@ -34,7 +34,7 @@
     "src/native_frame_settings.cpp": "968a5c5765bde96da8ce49846dee46c3cb1652bcc1208f310e7372a10bf38a3f",
     "src/native_frame_time.cpp": "4591be5bf70cb6c13b91df526d03fce1035c31fa2f0449d7a8bfb58860b344e6",
     "src/native_frame_time.hpp": "f35ef08a013dc538094b317faa49cb03aa8042777b20590b8d8cd4a600a46296",
-    "src/native_game_loop.cpp": "a591aa337b6dcf2177c307eefd2384698f0f2d0c2bc46c6a8566e8b40634b1c9",
+    "src/native_game_loop.cpp": "bd8742350a04520eda1c6c3c05cac5497b89876a6488c47863ecd00f14bd87a9",
     "src/native_game_loop.hpp": "101e4580f02e6d5e1dd03c9260ac47d315d6d4fcbbf75a9be8fef8a6a4725102",
     "src/native_graphics_pump.cpp": "4170bf4b463147cfe1e50dff3653a0b3749685ec4563137f39be190a4150c5d0",
     "src/native_graphics_pump.hpp": "3fdcb53d2f68a9b6d344beb44ea58a190c637bd2320cf3e77fbb8af2649bdcd3",
@@ -44,12 +44,14 @@
     "src/native_present.hpp": "c17a60839de06f09c2c5245091a7389c7126a3146019b8477483bc86d03e9158",
     "src/native_present_hooks.cpp": "e659ba490ecea74c75fd50de47f0ea95ad9c32c6c30c6352e2123d7150914701",
     "src/native_presentation_gate.hpp": "f0fbc1799c6b1bb5a8196e6a6935254a8021cf9c098dafca6b7d9bbadcd3cb97",
+    "src/native_process_time.cpp": "b7025893d91cf6851de180e5c90c34c72a0f6f3977a2a51236f6369615562c59",
+    "src/native_process_time.hpp": "610e46d91cf59a3581ef2f001e64975e2002e60f01dd165e7acb2b283abf01f7",
     "src/native_scene_policy.cpp": "1ca78a779724462e21a351d4014cb017eb3cace2d13584c961d7a49df591f00a",
     "src/native_scene_policy.hpp": "4e7f20081c24e2c40eb47775183d499430171f651e28c1bf9d1b2b4dec6b0ce9",
     "src/native_script_camera.cpp": "6e78545af75c7a50b2d6994bd54b634c1cf9fbe03a6a0ca42eb5cf0d15d95b69",
     "src/native_script_camera.hpp": "e7bb2e1ba4d036ca2ead349d884daf9a0f857b935d0f3d9359c8cfa12a4d2d94",
-    "src/native_simulation_time.cpp": "30952ba7765cd8ee45bf9e8f971fc6adf0ae48243a0327b9c9cb5cf27c8a9a05",
-    "src/native_simulation_time.hpp": "04117caab02264efc44e8b5e4520b5d18855e9b4050b346364f0ba8d9b8cb3a9",
+    "src/native_simulation_time.cpp": "eb854c2e7c89dfa5911bd288b8f572047e2c11aa23631fe2081df047690fcedc",
+    "src/native_simulation_time.hpp": "8fcc8c67b3f1a3e97ab903aac97149cd7b91cbd95e7fea06151257f5fda60744",
     "src/native_vi_snapshot.hpp": "0fb280fcc557a64b1c6637653a57a231723a2cd642bd0f8a6163bc03413e2030",
     "src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
     "src/port_display.cpp": "ea880764b8299963aa74a4f1a2949cee1efb45580464763d43f0fcc0dd765efa",
@@ -63,48 +65,56 @@
     "src/resource_retirement.cpp": "96ee13419b4bfac0fd6cb7dc5380b6aedc995cca6ad8760e08a217a38a043e9d",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f",
     "src/startup_runtime.cpp": "e89d0c0622b2430739f5c4f69684ce0c184583d080b520d06db31992a4c9b1ea",
-    "tools/build_windows.ps1": "c905ed9c2c6e4da45e85aed66060bf034541283d4666f31bf09479e74b521997",
-    "tools/generate_startup.py": "d859239124ea876752871d4f3069d75e4796138e6f6f9e4ac7d71318016f1dc5",
-    "tools/native_timing_patches.py": "456b52ec3cd4b44ec9e09edd42428f6d72c4f9137d3fd406057c5ecfd4c82cd0",
+    "tools/build_windows.ps1": "73c18af38c20ad3381d2e2d9784252d72dd6b52d53ec20700690e1b69b53ad63",
+    "tools/generate_startup.py": "616e680dc1755fbaa70686faaef9dba19eccee007885ee085b0bcaa334381306",
+    "tools/native_timing_patches.py": "aafa693bd6219787e0d1094738602ebbc65e461e4d65b1b46bbd2cd6f9c68ec8",
     "tools/prepare_rt64_framerate.py": "a262868d00eb7185845293f804c278625d60748a8f84a95f7f818b045466813d",
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556"
   },
   "component_receipts": {
+    "native-gravity-check.json": {
+      "sha256": "91d5982c818fc6fc650d3d701a116cbd72e8b1ec8bce241de4cbee6c6d2dbed2",
+      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
+    },
+    "native-process-time-check.json": {
+      "sha256": "5772120fcb8f9c062db857c9ccfccb1d23ee3ffc769f590b6388eadfed8f9563",
+      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
+    },
     "native-loop-check.json": {
-      "sha256": "4beae64a8152241299ea21f3f5ab542c219f905108cb986d90c19d5a9dcb3aa5",
-      "generation_receipt_sha256": "a74062b95c77d99de4ab5d4297e2a2bfc9c2196cb017ba6c111ecd00def2ee5d"
+      "sha256": "de0540c68bcf925ef1633369db0fad570b132beeb1deff71fafd72c1039a5630",
+      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
     },
     "native-simulation-check.json": {
-      "sha256": "ceedee971e677702406286f8fd9ad88176dd459f4390f7221b5d6e608de17c04",
-      "generation_receipt_sha256": "a74062b95c77d99de4ab5d4297e2a2bfc9c2196cb017ba6c111ecd00def2ee5d"
+      "sha256": "45cb25b70a671e7fa3b4cd5830631f75c67c127c056a0d76a250f414051f3f23",
+      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
     },
     "native-script-camera-check.json": {
-      "sha256": "93538a6a9c9ab06c87066fad1827dccb0c1591a5032fc5497f05ccf92c528fe2",
-      "generation_receipt_sha256": "a74062b95c77d99de4ab5d4297e2a2bfc9c2196cb017ba6c111ecd00def2ee5d"
+      "sha256": "db88eecfd0202c307e66243fc308a052a5fa6ef9be6c4f6eec33b06914dedea5",
+      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
     },
     "native-effects-check.json": {
-      "sha256": "e77226288eef6f0092fd20cf4c18e5fa29b7960f05c5d8d48ec3e28480998e4f",
-      "generation_receipt_sha256": "a74062b95c77d99de4ab5d4297e2a2bfc9c2196cb017ba6c111ecd00def2ee5d"
+      "sha256": "3af30a1f6016ba6de33b24d091f6ceebabaab578fc19c2d30c549d1c0c3383d5",
+      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
     },
     "native-model-animation-check.json": {
-      "sha256": "c78efd0a33ac1f972cceda3d6ae0152e33a603f8129c44935d0cdb17dfdf601b",
-      "generation_receipt_sha256": "6887248e309e333d5446aa52c3567723207da2121bda573d9535bd1daaf628df"
+      "sha256": "034566d7cbe95dd2539062d41b3e8a99d0514346080e1a6a5053edd028e80ff2",
+      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
     },
     "native-frame-bridge-address-check.json": {
-      "sha256": "fdb490b18cdf0a44d97eaebc475cf769096ee8fb2febfb8f00fab914f7a5df9c",
-      "generation_receipt_sha256": "a74062b95c77d99de4ab5d4297e2a2bfc9c2196cb017ba6c111ecd00def2ee5d"
+      "sha256": "1aa64dc1d52edeedc70286abc2b722c23b43522afe5565e0b7d126511a413672",
+      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
     },
     "native-graphics-pump-check.json": {
-      "sha256": "64001cd0f7f0bbba94b680bb704e7701910e37067663babd245fb2d1662a04f2",
-      "generation_receipt_sha256": "a74062b95c77d99de4ab5d4297e2a2bfc9c2196cb017ba6c111ecd00def2ee5d"
+      "sha256": "ab066da552f37b56a2bdc6cfaf00fc7740e640cb197c47647ab90b89c1d27158",
+      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
     }
   },
-  "executable_sha256": "e90bd907f554e12da3a1e60d40637c6669c32cc72c684b862d39604762027c05",
-  "linux_live_sha256": "84a165cef48e8f6c202352c8a8c0c4b3230be0dc10f21a9f7a1c62088c925fc1",
-  "linux_log_sha256": "b4c4c2a8b787bafe44bbd4294e11a244bee87a3eb0c167de43e7fb5382f7cb2f",
-  "windows_log_sha256": "2bbf9015615fbc6d12ec8ad8a47290ad77671ffc86a0c407988499e93d3bed07",
+  "executable_sha256": "05cf8edff1de8f289c7844d682c38e78ae1957c773546b4ba91897520ca0027c",
+  "linux_live_sha256": "b3b5ce1a13eab4d6236791b1c8d846d3d7b73056f1a3fefa365bceb757cfb342",
+  "linux_log_sha256": "4ae9fe8a05fc85ee34c71548c3e24f2020769d13fd4ca04b8e66984f0cec088d",
+  "windows_log_sha256": "a34af7a223f043cf3a08d88e968e029618ce4e3542c09c37f555410cb78286ed",
   "generated_receipt_sha256": {
-    "startup-v73": "a74062b95c77d99de4ab5d4297e2a2bfc9c2196cb017ba6c111ecd00def2ee5d",
+    "startup-v76": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db",
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "clean_pinned_dependencies": 32,
@@ -114,7 +124,7 @@
     "CPU component checks use synthetic states, not complete game progression",
     "Continuous rules require live scene integration; no new 3D scene activated",
     "Resource barrier at process replacement does not itself fence all earlier DMA or heap reuse",
-    "Original model check used v71; unchanged model adapter and original model bodies; later generator changes are game receive and effect entries",
+    "All listed component receipts use v76; capped native displacement is a continuous extension, not exact discrete cap-crossing equivalence",
     "No performance, audiovisual or device verification; existing dependency compiler warnings remain"
   ]
 }

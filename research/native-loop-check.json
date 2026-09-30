@@ -1,10 +1,12 @@
 {
   "scope": "Original game loop/update/dispatcher/full graphics build/draw/submit with real common coordinator; synthetic scheduler/VI/input/sound/present endpoints; no renderer",
-  "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 270 native white-fade builds with 240 distinct alpha values; 76 discrete updates, 1085 native builds, 3 Original builds, 232 VI events; no GPU",
+  "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 269 native white-fade builds with 239 distinct alpha values; 76 discrete updates, 1084 native builds, 3 Original builds, 232 VI events; no GPU",
   "sanitizers": "ASan/LSan",
   "source_sha256": {
+    "src/native_process_time.cpp": "b7025893d91cf6851de180e5c90c34c72a0f6f3977a2a51236f6369615562c59",
+    "src/native_simulation_time.cpp": "eb854c2e7c89dfa5911bd288b8f572047e2c11aa23631fe2081df047690fcedc",
     "src/native_model_animation.cpp": "8902f29c622cee2eb1cb6317630dc332a37c4103a32049b4d5536b32811665f2",
-    "src/native_game_loop.cpp": "a591aa337b6dcf2177c307eefd2384698f0f2d0c2bc46c6a8566e8b40634b1c9",
+    "src/native_game_loop.cpp": "bd8742350a04520eda1c6c3c05cac5497b89876a6488c47863ecd00f14bd87a9",
     "src/native_scene_policy.cpp": "1ca78a779724462e21a351d4014cb017eb3cace2d13584c961d7a49df591f00a",
     "src/native_frame_time.cpp": "4591be5bf70cb6c13b91df526d03fce1035c31fa2f0449d7a8bfb58860b344e6",
     "src/native_frame_scheduler.cpp": "724251ee68dcf24a92d53e127dcb2392eca222b7a750b17e242429e74adfbddd",
@@ -18,10 +20,10 @@
     "src/native_scene_policy.hpp": "4e7f20081c24e2c40eb47775183d499430171f651e28c1bf9d1b2b4dec6b0ce9",
     "src/native_frame_session.hpp": "332d7fb1b1e7a10f0ce992dd95766f56297e53fdaeae8f83a4add9cc7ad8a0e3",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
-    "tools/generate_startup.py": "d859239124ea876752871d4f3069d75e4796138e6f6f9e4ac7d71318016f1dc5",
-    "tools/check_native_loop.py": "bd03887e0d1da6466cc4c3c7fbeecc6a2a0cb6b49a62d3826597cef40042b0a5"
+    "tools/generate_startup.py": "616e680dc1755fbaa70686faaef9dba19eccee007885ee085b0bcaa334381306",
+    "tools/check_native_loop.py": "c8d23c5e7b417bfd67baa3f7cae93eb8d7a683f2982974624cb519413008cb3a"
   },
-  "generation_receipt_sha256": "a74062b95c77d99de4ab5d4297e2a2bfc9c2196cb017ba6c111ecd00def2ee5d",
+  "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db",
   "original_functions": [
     "dora3_color_buffer_setup",
     "dora3_depth_buffer_clear",
@@ -83,6 +85,7 @@
     "dora3_native_loop_receive_deferred",
     "dora3_native_loop_submit",
     "dora3_native_model_morph_allowed",
+    "dora3_native_process_lifecycle_allowed",
     "dora3_native_task_register",
     "dora3_native_task_submitted",
     "dora3_object_lifetime_tick",

@@ -1,4 +1,4 @@
-> Актуализация v73: добавлены общая continuous/discrete шкала времени, 75 проверяемых правил, adapter сценарной камеры и общие эффекты. Живой Manual всё ещё ограничен scene34 image/fade; полный native gameplay НЕ готов. Последний сохранённый EXE — test-027. Добавлены изоляция CPU-регистров и барьер process replacement. См. native-simulation.md; ниже история этапов.
+> Актуализация v76/test-029: связанные gravity/displacement и общий process wait/activation timing проверены и собраны. Живой Manual всё ещё scene34 image/white fade; полный native gameplay НЕ готов. См. native-simulation.md. Работа продолжается после сохранения EXE.
 
 # Нативная переменная частота: начало реализации
 

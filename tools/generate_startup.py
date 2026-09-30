@@ -63,7 +63,9 @@ def main():
                          'void dora3_native_loop_submit(uint8_t*, recomp_context*);',
                          'void dora3_native_loop_retire(uint8_t*, recomp_context*);'])
     declarations.extend(['float dora3_native_rate_f32(float);','double dora3_native_rate_f64(double);', 'int dora3_native_simulation_active(void);', 'int dora3_native_simulation_tick_start(void);', 'float dora3_native_displacement_f32(float, uint32_t);'])
+    declarations.extend(['float dora3_native_gravity_f32(float,float,float,uint32_t);','float dora3_native_gravity_displacement_f32(float,uint32_t);'])
     declarations.extend(['int dora3_native_rectangle_update(uint8_t*, recomp_context*);','int dora3_native_zoom_update(uint8_t*, recomp_context*);','int dora3_native_simulation_tick_end(void);'])
+    declarations.append('int dora3_native_process_lifecycle_allowed(uint8_t*, recomp_context*);')
     declarations.append('int dora3_native_model_morph_allowed(uint8_t*, recomp_context*);')
     declarations.append('void dora3_native_model_hook(uint8_t*, recomp_context*, uint32_t);')
     declarations.append('int dora3_native_loop_receive_deferred(uint8_t*, recomp_context*);')

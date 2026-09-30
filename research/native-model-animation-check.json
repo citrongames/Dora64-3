@@ -57,7 +57,7 @@
     "src/native_frame_time.hpp": "f35ef08a013dc538094b317faa49cb03aa8042777b20590b8d8cd4a600a46296",
     "tools/check_native_model_animation.py": "1fb4ee13f59f3363b8381ea275ea561f922005218dd9ed51630b0051c1e29684"
   },
-  "generation_receipt_sha256": "6887248e309e333d5446aa52c3567723207da2121bda573d9535bd1daaf628df",
+  "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db",
   "remaining": [
     "Unreviewed phase1 commands, matrix consumers and full scene coverage still need integration audit",
     "This component does not convert movement, camera, collision, AI, scripts or all 2D systems"

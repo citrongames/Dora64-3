@@ -27,17 +27,17 @@
     "dora3_s3_801E0760"
   ],
   "source_sha256": {
-    "src/native_simulation_time.cpp": "30952ba7765cd8ee45bf9e8f971fc6adf0ae48243a0327b9c9cb5cf27c8a9a05",
+    "src/native_simulation_time.cpp": "eb854c2e7c89dfa5911bd288b8f572047e2c11aa23631fe2081df047690fcedc",
     "src/native_script_camera.cpp": "6e78545af75c7a50b2d6994bd54b634c1cf9fbe03a6a0ca42eb5cf0d15d95b69",
     "research/native-script-camera-check.cpp": "4869e12f42db3f2ee5ab6066f89d65003925adc5ffed4945c9cce46adcf8c54c",
-    "src/native_simulation_time.hpp": "04117caab02264efc44e8b5e4520b5d18855e9b4050b346364f0ba8d9b8cb3a9",
+    "src/native_simulation_time.hpp": "8fcc8c67b3f1a3e97ab903aac97149cd7b91cbd95e7fea06151257f5fda60744",
     "src/native_script_camera.hpp": "e7bb2e1ba4d036ca2ead349d884daf9a0f857b935d0f3d9359c8cfa12a4d2d94",
-    "recomp/native-timing-rules.json": "45f18c02a61e29803b768b5e0fb659897ec51796c6b8befce05ddd6ddb8226b9",
-    "tools/native_timing_patches.py": "456b52ec3cd4b44ec9e09edd42428f6d72c4f9137d3fd406057c5ecfd4c82cd0",
-    "tools/generate_startup.py": "d859239124ea876752871d4f3069d75e4796138e6f6f9e4ac7d71318016f1dc5",
+    "recomp/native-timing-rules.json": "1f1c7ac3dcdfa02fe1fa504ed50717427b878aa8a5bccc963f85fdf54a9fadf0",
+    "tools/native_timing_patches.py": "aafa693bd6219787e0d1094738602ebbc65e461e4d65b1b46bbd2cd6f9c68ec8",
+    "tools/generate_startup.py": "616e680dc1755fbaa70686faaef9dba19eccee007885ee085b0bcaa334381306",
     "tools/check_native_script_camera.py": "53bbf72c144374ca9aeb86fdec9ff0f47d3ff357c7edf84034dc5867ec1a5850"
   },
-  "generation_receipt_sha256": "a74062b95c77d99de4ab5d4297e2a2bfc9c2196cb017ba6c111ecd00def2ee5d",
+  "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db",
   "reference_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
   "limitations": [
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",

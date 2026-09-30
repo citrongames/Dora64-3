@@ -1474,3 +1474,18 @@ v73: process replacement800280DC вызывает общий resource barrier. �
 Это ещё не blanket-защита всех loaders/DMA/heap resets: места до process install
 и принадлежность вызывающему потоку требуют отдельной проверки перед расширением.
 Live scene coverage не расширен; задача полного FPS продолжается.
+
+
+## 2026-09-30: v76, gravity/displacement и процессные задержки
+
+Связаны gravity и displacement в пределах SimulationScope; независимость от
+разбиения шага проверена, ограничения capped model указаны в native-simulation.md.
+Существующие rate-only правила были недостаточны для высоты прыжка.
+
+Найдена общая причина ускорения process waits при дополнительных отрисовках:
+phase1 dispatcher изменяет статусы/счётчики наряду с вызовом draw callbacks.
+Простой запрет повторного уменьшения wait недостаточен: status4->2 должен
+пропустить все оставшиеся native кадры текущего тика до первого callback.
+Добавлен этот activation guard; Original и deferred activation проверены на
+реальной функции800281B8. Первый запуск checker требовал исключить нативный
+hook из ROM closure extraction; это ошибка тестового извлечения, не игры.

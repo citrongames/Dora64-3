@@ -1,4 +1,5 @@
 #include "native_game_loop.hpp"
+#include "native_process_time.hpp"
 #include "native_present.hpp"
 #include "recomp_context_copy.hpp"
 #include <deque>
@@ -173,6 +174,7 @@ extern "C" void dora3_native_loop_retire(uint8_t* rdram,recomp_context* ctx) {
     if(auto bank=task_bank(uint32_t(ctx->r16))) { std::lock_guard lock(task_mutex);pending[*bank]=false; }
 }
 void dora3_native_loop_reset() {
+    dora3_native_process_time_reset();
     std::lock_guard lock(task_mutex);pending={};invalidate_native_scene_policy();active_policy=nullptr;entry_policy=nullptr;
     fade.reset();applied_fps=0;frames=0;deferred_messages.clear();game_model_animation().reset();
 }

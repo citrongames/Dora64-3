@@ -4990,3 +4990,8 @@ verified,native_timing_hook,,0x801D56F4,,camera distance exponential approach,na
 verified,native_timing_hook,,0x80028C74,,sprite sequence discrete update,native-effects-check.json,preserve texture event cadence in native scene update
 verified,native_timing_hook,,0x800278EC,,deferred game receive replay,v73 native-loop-check.json,reuse resource barrier across reviewed scene boundaries
 verified,native_timing_hook,,0x800280DC,,process replacement drain barrier,native-loop-check.json; two bank late retire and HostRead,audit pre-install loaders/heap reuse separately
+verified,native_timing_hook,,0x80028208,,shared process wait and activation boundary,native-process-time-check.json; actual original dispatcher states0..5,continue complete scene simulation integration
+verified,native_timing_hook,,0x801C0FA8,,player paired gravity -55,native-gravity-check.json; actual original gravity branch and independent trajectory partitions,continue complete scene simulation integration
+verified,native_timing_hook,,0x801CB408,,actor paired gravity -50,native-gravity-check.json; actual original actor gravity,continue complete scene simulation integration
+verified,native_timing_hook,,0x801C42D0,,minigame8 paired gravity -50,native-gravity-check.json; .minigame_8 only,continue complete scene simulation integration
+verified,native_timing_hook,,0x801E8E10,,world actor Y displacement pairing,"original world loop v0 physics pointer +14; operand reviewed, full world callback not tested",continue complete scene simulation integration

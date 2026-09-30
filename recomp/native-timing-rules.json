@@ -10,11 +10,12 @@
       "function_sha256": "0b500ba05ee5d259f3a64cb75d95230627e8e6827da2ac5c3b96d2916fff3614",
       "site": "0x801C0FA8",
       "expected_word": "0x46020001",
-      "operation": "scale_f32_source",
-      "register": 2,
+      "operation": "gravity_subtract",
       "role": "player_gravity",
-      "evidence": "Subtract acceleration from vertical velocity; constant and -55 clamp are separate",
-      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation"
+      "evidence": "Verified subtraction and terminal clamp, paired velocity/displacement in one SimulationScope; Original unchanged",
+      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation",
+      "base_register": 2,
+      "terminal": -55
     },
     {
       "section": ".scene1",
@@ -88,11 +89,12 @@
       "function_sha256": "e7f22c928f7645963064dfe746b7bf8eb62936bf6089e5f02bee957097a9a4f6",
       "site": "0x801BF8A8",
       "expected_word": "0x16600059",
-      "operation": "scale_f32_source",
+      "operation": "gravity_displacement_source",
       "register": 0,
       "role": "player_translation_y",
-      "evidence": "Scale vy before branch delay-slot addition only; all contact offsets and search iterations remain geometric",
-      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation"
+      "evidence": "Y displacement of matching gravity velocity; geometric contact corrections remain original",
+      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation",
+      "base_register": 3
     },
     {
       "section": ".scene1",
@@ -127,11 +129,12 @@
       "function_sha256": "e7f22c928f7645963064dfe746b7bf8eb62936bf6089e5f02bee957097a9a4f6",
       "site": "0x801BFDA4",
       "expected_word": "0x0806FF81",
-      "operation": "scale_f32_source",
+      "operation": "gravity_displacement_source",
       "register": 0,
       "role": "player_contact_velocity",
-      "evidence": "Velocity offset from detected contact surface; surface position itself is not scaled",
-      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation"
+      "evidence": "Y displacement of matching gravity velocity; geometric contact corrections remain original",
+      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation",
+      "base_register": 3
     },
     {
       "section": ".scene1",
@@ -140,11 +143,12 @@
       "function_sha256": "3dcfbc1143bfacc0f9f153ecd8f574c12654f0b5d40f9d2790d91ab16b122e90",
       "site": "0x801CB408",
       "expected_word": "0x46020001",
-      "operation": "scale_f32_source",
-      "register": 2,
+      "operation": "gravity_subtract",
       "role": "actor_gravity",
-      "evidence": "Subtract actor+1C acceleration from actor+14 velocity; preserve -50 clamp",
-      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation"
+      "evidence": "Verified subtraction and terminal clamp, paired velocity/displacement in one SimulationScope; Original unchanged",
+      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation",
+      "base_register": 4,
+      "terminal": -50
     },
     {
       "section": ".scene1",
@@ -166,11 +170,12 @@
       "function_sha256": "cb8251605bd57193a7fe0b5f4573cead95a0dab60539fa2e506f62ba9e095155",
       "site": "0x801CB6EC",
       "expected_word": "0x46020000",
-      "operation": "scale_f32_source",
+      "operation": "gravity_displacement_source",
       "register": 2,
       "role": "actor_translation",
-      "evidence": "Shared object+9C/A0/A4 plus physics+10/14/18 integrator",
-      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation"
+      "evidence": "Y displacement of matching gravity velocity; geometric contact corrections remain original",
+      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation",
+      "base_register": 5
     },
     {
       "section": ".scene1",
@@ -205,11 +210,12 @@
       "function_sha256": "2879bb417c70bc311b9f21b162530b9232eaee84dc501722c82f9006d8bfae7f",
       "site": "0x801E8E10",
       "expected_word": "0x46020000",
-      "operation": "scale_f32_source",
+      "operation": "gravity_displacement_source",
       "register": 2,
       "role": "world_actor_translation",
-      "evidence": "Common slots30..229 movement after type callback; no changes to invulnerability/sprite timers",
-      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation"
+      "evidence": "World actor physics pointer v0 +14; same displacement pairing as shared actor gravity; contact geometry unchanged",
+      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation",
+      "base_register": 2
     },
     {
       "section": ".scene1",
@@ -296,11 +302,12 @@
       "function_sha256": "3dcfbc1143bfacc0f9f153ecd8f574c12654f0b5d40f9d2790d91ab16b122e90",
       "site": "0x801C42D0",
       "expected_word": "0x46020001",
-      "operation": "scale_f32_source",
-      "register": 2,
+      "operation": "gravity_subtract",
       "role": "actor_gravity",
-      "evidence": "Independent overlay copy of shared gravity; validated in its own section",
-      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation"
+      "evidence": "Verified subtraction and terminal clamp, paired velocity/displacement in one SimulationScope; Original unchanged",
+      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation",
+      "base_register": 4,
+      "terminal": -50
     },
     {
       "section": ".minigame_8",
@@ -322,11 +329,12 @@
       "function_sha256": "cb8251605bd57193a7fe0b5f4573cead95a0dab60539fa2e506f62ba9e095155",
       "site": "0x801C4318",
       "expected_word": "0x46020000",
-      "operation": "scale_f32_source",
+      "operation": "gravity_displacement_source",
       "register": 2,
       "role": "actor_translation",
-      "evidence": "Independent overlay copy of object velocity integration",
-      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation"
+      "evidence": "Y displacement of matching gravity velocity; geometric contact corrections remain original",
+      "status": "operand semantics reviewed; only active inside explicit continuous simulation scope; not scene activation",
+      "base_register": 5
     },
     {
       "section": ".minigame_8",
@@ -1010,6 +1018,18 @@
       "expected_word": "0x27BDFFE8",
       "operation": "tick_end_entry",
       "evidence": "Resident sprite sequence byte countdown and end pulses are discrete texture changes, not continuous displacement."
+    },
+    {
+      "section": ".startup",
+      "function": "0x800281B8",
+      "function_name": "dora3_process_dispatch",
+      "function_sha256": "8a532295957d2d55a6512deefc3383eec69312ebfb1906ff7aecfe84d2b640db",
+      "site": "0x80028208",
+      "expected_word": "0x8E220000",
+      "operation": "process_slot_lifecycle",
+      "role": "shared_process_wait_and_activation",
+      "evidence": "Eight process slots; status1 wait to status4 to status2, active callbacks still run per draw; all original MIPS branches retained",
+      "status": "Native draw lifecycle only; continuous callbacks require their own time conversion"
     }
   ]
 }
