@@ -1,3 +1,4 @@
+#include "recomp_context_copy.hpp"
 #include "native_model_animation.hpp"
 #include "native_frame_bridge.hpp"
 #include <array>
@@ -174,7 +175,7 @@ void ModelAnimation::begin_frame(uint8_t* rdram,recomp_context* ctx,Nanoseconds 
             }
             temporary_model=model;saved_time=word(rdram,model+0x64);
             real(rdram,model+0x64,time);
-            auto pose_context=*ctx;pose_context.r4=int32_t(model);
+            recomp_context pose_context;dora3::copy_recomp_context(pose_context,*ctx);pose_context.r4=int32_t(model);
             if(advancing)dora3_s0_800393C4(rdram,&pose_context);
             else {
                 // A model not advanced this tick must keep its bone overrides,
@@ -189,7 +190,7 @@ void ModelAnimation::begin_frame(uint8_t* rdram,recomp_context* ctx,Nanoseconds 
                     const auto index=word(rdram,indices+unsigned(j)*4);
                     if(index<0 || index>=count)throw std::logic_error("Model channel index out of range");
                     if(word(rdram,descriptors+unsigned(index)*28)!=10)continue;
-                    pose_context=*ctx;pose_context.r4=int32_t(indices+unsigned(j)*4);
+                    dora3::copy_recomp_context(pose_context,*ctx);pose_context.r4=int32_t(indices+unsigned(j)*4);
                     dora3_s0_8003931C(rdram,&pose_context);
                 }
             }

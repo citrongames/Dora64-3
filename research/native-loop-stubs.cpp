@@ -17,3 +17,5 @@ extern "C" void dora3_native_model_hook(uint8_t*,recomp_context*,uint32_t) {}
 
 extern "C" int dora3_native_model_morph_allowed(uint8_t*,recomp_context*) {return 1;}
 extern "C" int dora3_native_loop_owns_frame_banks() {return 0;}
+
+extern "C" int dora3_native_loop_receive_deferred(uint8_t*,recomp_context*) {return 0;}

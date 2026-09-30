@@ -4,6 +4,8 @@
 #include "frame_lights.hpp"
 #include "loop-functions.h"
 #include <cassert>
+#include <cstring>
+#include <array>
 #include <chrono>
 #include <deque>
 #include <fstream>
@@ -20,6 +22,63 @@ static std::set<int> white_alpha;
 static Nanoseconds next_vi=0,started=0;
 static std::deque<uint32_t> messages,submitted;
 struct Finished {};
+static bool barrier_check=false;
+static unsigned barrier_receive=0;
+static std::array<FrameTicket,2> barrier_tickets;
+static unsigned barrier_published=0;
+static void barrier_consumer(uint8_t* rdram,recomp_context*,const FrameTicket& ticket,FrameScheduler& owner) {
+    assert(owner.publish(ticket));barrier_tickets[barrier_published++]=ticket;
+    const auto task=dora3::frame::bank0+ticket.bank*dora3::frame::bank_stride;
+    native_present_ledger().bind(ticket,owner,task,ticket.bank?0x803DA800:0x803B5000,task+0xC0);
+    recomp_context submit{};submit.r8=int32_t(task);dora3_native_loop_submit(rdram,&submit);
+    ++MEM_W(0,int32_t(0x801AA618));
+}
+static void barrier_retire(uint8_t* rdram,unsigned bank) {
+    const auto task=dora3::frame::bank0+bank*dora3::frame::bank_stride;
+    recomp_context completion{};completion.r16=int32_t(task);MEM_W(4,completion.r16)=0;
+    dora3_native_loop_retire(rdram,&completion);
+    assert(native_present_ledger().retire(task));
+}
+static void barrier_receive_message(uint8_t* rdram,recomp_context* c) {
+    assert(c->f_odd==&c->f0.u32h);c->f_odd[0]=0x12345678;
+    uint32_t message=0;
+    switch(barrier_receive++) {
+    case 0:message=0x802F0010;break;
+    case 1:message=WakeMailbox::message_value;break;
+    case 2:message=dora3::frame::bank0+0xC0;break; // Message BEFORE outer retirement.
+    case 3:
+        assert(MEM_W(0,int32_t(0x801AA618))==1 && !game_frame_bridge().drained());
+        barrier_retire(rdram,0);assert(native_present_ledger().host_read_done(barrier_tickets[0]));
+        message=0x802F0020;break;
+    case 4:
+        barrier_retire(rdram,1);message=dora3::frame::bank0+dora3::frame::bank_stride+0xC0;break;
+    case 5:
+        assert(MEM_W(0,int32_t(0x801AA618))==0 && !game_frame_bridge().drained());
+        assert(native_present_ledger().host_read_done(barrier_tickets[1]));message=0x802F0030;break;
+    default:assert(false);
+    }
+    MEM_W(0,c->r5)=int32_t(message);c->r2=0;
+}
+static void resource_barrier_check(uint8_t* rdram,recomp_context* c) {
+    auto& session=game_frame_session();auto& bridge=game_frame_bridge();
+    assert(session.begin(144,0,true,barrier_consumer));
+    assert(session.poll(0)==FrameSession::Phase::Native);
+    for(unsigned i=0;i<2;++i) {
+        assert(bridge.post_due((i+1)*second,[] {return true;}));
+        assert(bridge.dispatch(WakeMailbox::message_value,(i+1)*second,rdram,c));
+    }
+    assert(barrier_published==2);barrier_check=true;
+    const auto before=*c;const auto scratch=MEM_W(-0x10,c->r29);
+    dora3_native_loop_transition(rdram,c);barrier_check=false;
+    assert(barrier_receive==6 && std::memcmp(&before,c,sizeof(*c))==0 && MEM_W(-0x10,c->r29)==scratch);
+    assert(session.phase()==FrameSession::Phase::Original && bridge.drained() && !native_present_ledger().occupied());
+    c->r4=int32_t(game_queue);c->r5=int32_t(0x802F0040);
+    for(auto value:{0x802F0010u,0x802F0020u,0x802F0030u}) {
+        assert(dora3_native_loop_receive_deferred(rdram,c));assert(uint32_t(MEM_W(0,c->r5))==value);
+    }
+    assert(!dora3_native_loop_receive_deferred(rdram,c));
+    dora3_reset_native_frame_delivery();
+}
 unsigned dora3_requested_native_fps() {return requested;}
 extern "C" void do_break(uint32_t) {std::abort();}
 extern "C" void dora3_trace(uint8_t* rdram,recomp_context*,uint32_t pc,uint32_t) {
@@ -101,6 +160,7 @@ static void setup(uint8_t* rdram,recomp_context* c) {
 }
 extern "C" void osRecvMesg_recomp(uint8_t* rdram,recomp_context* c) {
     assert(uint32_t(c->r4)==game_queue);
+    if(barrier_check) {barrier_receive_message(rdram,c);return;}
     if(!initialized)setup(rdram,c);
     for(;;) {
         const auto now=monotonic_time();assert(now-started<8*second); // Test-only watchdog.
@@ -141,6 +201,7 @@ int main(int argc,char** argv) {
     assert(pauses>0 && original_builds>0 && !native_present_ledger().occupied());
     // Reset must remove the scene authorization as well as all bank ownership.
     dora3_reset_native_frame_delivery();assert(!dora3_native_loop_after_vi(rdram,&c));
-    std::cout<<"PASS: original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; "
+    resource_barrier_check(rdram,&c);
+    std::cout<<"PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; "
         <<white_builds<<" native white-fade builds with "<<white_alpha.size()<<" distinct alpha values; "<<updates<<" discrete updates, "<<native_builds<<" native builds, "<<original_builds<<" Original builds, "<<vi_count<<" VI events; no GPU\n";
 }

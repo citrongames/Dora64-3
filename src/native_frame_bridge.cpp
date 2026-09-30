@@ -1,3 +1,4 @@
+#include "recomp_context_copy.hpp"
 #include "native_frame_bridge.hpp"
 #include "native_present.hpp"
 #include "native_frame_session.hpp"
@@ -67,7 +68,7 @@ bool FrameBridge::dispatch(uint32_t message, Nanoseconds now, uint8_t* ram, reco
     if (ticket && consumer_) {
         // This hook is not a MIPS call site. Keep all registers, notably s0/s1
         // used by the original message loop, intact across the extra frame.
-        auto frame_context = *context;
+        recomp_context frame_context;dora3::copy_recomp_context(frame_context,*context);
         const FrameBinding binding{*ticket,&scheduler_};
         NativeBuildScope scope(binding);
         consumer_(ram, &frame_context, *ticket, scheduler_);

@@ -36,7 +36,7 @@ def main():
  sources=[r/'src'/n for n in ['native_model_animation.cpp','native_game_loop.cpp','native_scene_policy.cpp','native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_present.cpp','native_present_hooks.cpp','native_graphics_pump.cpp']]+[r/'research/native-loop-check.cpp']
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check'),str(out/'seed.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1')).strip()
- tracked=sources+[r/'src/native_game_loop.hpp',r/'src/native_scene_policy.hpp',r/'src/native_frame_session.hpp',r/'src/frame_lights.hpp',r/'tools/generate_startup.py',Path(__file__).resolve()]
+ tracked=sources+[ROOT/'src/recomp_context_copy.hpp',r/'src/native_game_loop.hpp',r/'src/native_scene_policy.hpp',r/'src/native_frame_session.hpp',r/'src/frame_lights.hpp',r/'tools/generate_startup.py',Path(__file__).resolve()]
  (r/'research/native-loop-check.json').write_text(json.dumps({'scope':'Original game loop/update/dispatcher/full graphics build/draw/submit with real common coordinator; synthetic scheduler/VI/input/sound/present endpoints; no renderer',
   'result':result,'sanitizers':'ASan/LSan','source_sha256':{str(p.relative_to(r)):sha(p) for p in tracked},'generation_receipt_sha256':sha(g/'generation-receipt.json'),
   'original_functions':sorted(selected),'stub_boundaries':sorted(external)},indent=2)+'\n')

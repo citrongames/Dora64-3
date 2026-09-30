@@ -26,7 +26,7 @@ def main():
  flags=['-O1','-g','-pthread','-fno-omit-frame-pointer','-fno-strict-aliasing','-fsanitize='+args.sanitizer,*['-I'+str(p) for p in [ROOT/'src',out,runtime/'ultramodern/include',runtime/'N64Recomp/include',runtime/'thirdparty']]]
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',TSAN_OPTIONS='halt_on_error=1')).strip()
- tracked=sources+[ROOT/'src/native_present.hpp',ROOT/'src/native_vi_snapshot.hpp',ROOT/'tools/prepare_runtime_timing.py',Path(__file__).resolve()]
+ tracked=sources+[ROOT/'src/recomp_context_copy.hpp',ROOT/'src/native_present.hpp',ROOT/'src/native_vi_snapshot.hpp',ROOT/'tools/prepare_runtime_timing.py',Path(__file__).resolve()]
  (ROOT/'research'/('native-present-'+args.sanitizer+'-check.json')).write_text(json.dumps({'scope':'Ownership protocol and extracted actual native enqueue backend versus pinned update_vi; extracted actual screen worker with fake renderer, no game/GPU',
   'result':result,'sanitizer':args.sanitizer,'source_sha256':{str(p.relative_to(ROOT)):sha(p) for p in tracked},
   'original_events_sha256':sha(original),'adapted_events_sha256':sha(out/'events-after-parse.cpp')},indent=2)+'\n')

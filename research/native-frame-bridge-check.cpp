@@ -47,6 +47,8 @@ static void consumer(uint8_t*, recomp_context* c, const FrameTicket& t, FrameSch
     assert(s.complete(t, Completion::GuestTask));
     // A real generated callback clobbers registers too. They must not leak back
     // into the original loop's saved selector or stack pointer.
+    assert(c->f_odd==(c->mips3_float_mode?&c->f1.u32l:&c->f0.u32h));
+    for(unsigned odd=1;odd<32;odd+=2)c->f_odd[(odd-1)*2]=0x3F800000u+odd;
     *c = {};
 }
 static bool reject_sender() { return false; }
@@ -241,7 +243,11 @@ int main() {
     recomp_context ctx{};
     ctx.r29 = int32_t(0x803F0000);
     transport(rdram);
+    ctx.f_odd=&ctx.f0.u32h;
     lifecycle(rdram, &ctx);
+    native_frames=0;ctx.mips3_float_mode=1;ctx.status_reg=0x04000000;ctx.f_odd=&ctx.f1.u32l;
+    lifecycle(rdram, &ctx);
+    ctx.mips3_float_mode=0;ctx.status_reg=0;ctx.f_odd=&ctx.f0.u32h;
     native_frames = 0;
     MEM_H(0, vi_message) = 1;
     MEM_H(0, task_message) = 2;
@@ -251,5 +257,5 @@ int main() {
     loop_test = false;
     reset_delivery(rdram, &ctx);
     concurrent(rdram, &ctx);
-    std::cout << "PASS: registered type2 drains during pause while unregistered type2 remains Original; real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context preserved; stale scene/rate wakes; quiescent reset; 2000 concurrent deliveries\n";
+    std::cout << "PASS: registered type2 drains during pause while unregistered type2 remains Original; real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context and all odd FPRs preserved in FR=0/FR=1; stale scene/rate wakes; quiescent reset; 2000 concurrent deliveries\n";
 }

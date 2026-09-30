@@ -45,7 +45,7 @@ def main():
                     *map(str, sources), str(out/'functions.o'), str(out/'queue.o'), '-o', str(out/'check')], check=True)
     env = dict(os.environ, ASAN_OPTIONS='detect_leaks=1:halt_on_error=1', TSAN_OPTIONS='halt_on_error=1')
     result = subprocess.check_output([str(out/'check')], text=True, env=env).strip()
-    tracked = sources + [ROOT/'src/native_frame_bridge.hpp', ROOT/'src/native_frame_scheduler.hpp',
+    tracked = sources + [ROOT/'src/recomp_context_copy.hpp', ROOT/'src/native_frame_bridge.hpp', ROOT/'src/native_frame_scheduler.hpp',
                          ROOT/'tools/prepare_runtime_timing.py', Path(__file__).resolve()]
     report = {'scope': 'Hooked original game loop and actual adapted external/guest queues; synthetic RAM; scene callbacks and thread scheduler stubbed; no GPU or active native scene',
               'result': result, 'sanitizer': args.sanitizer,

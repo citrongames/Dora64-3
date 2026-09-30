@@ -1,4 +1,7 @@
 #include "native_game_loop.hpp"
+#include "native_present.hpp"
+#include "recomp_context_copy.hpp"
+#include <deque>
 #include "native_model_animation.hpp"
 #include "native_frame_session.hpp"
 #include "frame_lights.hpp"
@@ -8,6 +11,7 @@
 #include <mutex>
 #include <optional>
 #include <stdexcept>
+extern "C" void osRecvMesg_recomp(uint8_t*,recomp_context*);
 extern "C" void dora3_graphics_frame_build(uint8_t*,recomp_context*);
 using namespace dora3::native_time;
 namespace {
@@ -18,6 +22,9 @@ int32_t& word(uint8_t* rdram,uint32_t address) { return MEM_W(0,int32_t(address)
 // reach zero before the outer SP/DP caller finishes; track that boundary too.
 std::mutex task_mutex;
 std::array<bool,2> pending{};
+// Scheduled game-thread FIFO: resource waits may consume completions ahead of VI,
+// but must replay every other message in its original order.
+std::deque<uint32_t> deferred_messages;
 std::optional<unsigned> task_bank(uint32_t address) {
     for(unsigned i=0;i<2;++i) if(address==dora3::frame::bank0+i*dora3::frame::bank_stride)return i;
     return std::nullopt;
@@ -117,10 +124,45 @@ extern "C" void dora3_native_loop_fade_command(uint8_t* rdram,recomp_context*) {
 extern "C" int dora3_native_loop_owns_frame_banks() { return game_frame_session().phase()!=Phase::Original; }
 extern "C" int dora3_native_loop_owns_fade() { return game_frame_session().phase()==Phase::Native && active_policy; }
 extern "C" void dora3_native_loop_scene_ready(uint8_t*,recomp_context*) { native_scene34_ready(); }
-extern "C" void dora3_native_loop_transition(uint8_t*,recomp_context*) {
-    // Common process-pair replacement invalidates overlay-specific eligibility.
-    // The policy must leave BEFORE executing such an update, not after freeing RAM.
-    if(entry_policy || game_frame_session().phase()!=Phase::Original)throw std::logic_error("Unreviewed transition while native frames own memory");
+extern "C" int dora3_native_loop_receive_deferred(uint8_t* rdram,recomp_context* ctx) {
+    if(deferred_messages.empty())return 0;
+    if(uint32_t(ctx->r4)!=game_queue)throw std::logic_error("Deferred receive on wrong queue");
+    MEM_W(0,ctx->r5)=int32_t(deferred_messages.front());deferred_messages.pop_front();
+    ctx->r6=1;ctx->r2=0;return 1; // Original JAL delay slot sets blocking receive.
+}
+extern "C" void dora3_native_loop_resource_barrier(uint8_t* rdram,recomp_context* ctx) {
+    auto& session=game_frame_session();
+    if(!entry_policy && session.phase()==Phase::Original)return;
+    if(active_frame_binding())throw std::logic_error("Resource replacement inside an unpublished native frame");
+    const auto now=monotonic_time();const auto before=session.phase();
+    if(before==Phase::Native && fade)write_fade(rdram,fade->sample(read_fade(rdram),now));
+    entry_policy=nullptr;session.leave(now);
+    // This is a scheduled guest receive, never a host wait holding the running
+    // guest thread. Other guest threads may finish SP/DP while we are blocked.
+    recomp_context receive;dora3::copy_recomp_context(receive,*ctx);
+    const auto scratch=ctx->r29-0x10;
+    const auto saved_scratch=MEM_W(0,scratch);
+    try {
+        while(session.poll(monotonic_time())!=Phase::Original) {
+            receive.r4=int32_t(game_queue);receive.r5=scratch;receive.r6=1;
+            osRecvMesg_recomp(rdram,&receive);
+            if(receive.r2!=0)throw std::logic_error("Blocking resource receive failed");
+            const auto message=uint32_t(MEM_W(0,scratch));
+            if(message==WakeMailbox::message_value) {
+                // leave() invalidated the token; consume its mailbox ownership.
+                game_frame_bridge().dispatch(message,monotonic_time(),rdram,&receive);
+            } else if(native_present_ledger().awaiting_message(message)) {
+                if(word(rdram,count)<=0)throw std::logic_error("Native completion without outstanding task");
+                native_present_ledger().consumed(message);--word(rdram,count);
+            } else deferred_messages.push_back(message);
+        }
+    } catch(...) {MEM_W(0,scratch)=saved_scratch;throw;}
+    MEM_W(0,scratch)=saved_scratch;
+    if(word(rdram,count)!=0 || !legacy_drained())throw std::logic_error("Resource barrier missed task retirement");
+    finish_session(before,session.phase());
+}
+extern "C" void dora3_native_loop_transition(uint8_t* rdram,recomp_context* ctx) {
+    dora3_native_loop_resource_barrier(rdram,ctx);
     invalidate_native_scene_policy();
 }
 extern "C" void dora3_native_loop_submit(uint8_t*,recomp_context* ctx) {
@@ -132,5 +174,5 @@ extern "C" void dora3_native_loop_retire(uint8_t* rdram,recomp_context* ctx) {
 }
 void dora3_native_loop_reset() {
     std::lock_guard lock(task_mutex);pending={};invalidate_native_scene_policy();active_policy=nullptr;entry_policy=nullptr;
-    fade.reset();applied_fps=0;frames=0;game_model_animation().reset();
+    fade.reset();applied_fps=0;frames=0;deferred_messages.clear();game_model_animation().reset();
 }

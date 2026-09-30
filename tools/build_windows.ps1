@@ -1,6 +1,6 @@
 param(
     [Parameter(Mandatory=$true)][string]$Python,
-    [string]$CpuDirectory = 'build-local/startup-v69',
+    [string]$CpuDirectory = 'build-local/startup-v73',
     [string]$AudioDirectory = 'build-local/audio-rsp-v1',
     [int]$Jobs = 6,
     [switch]$Fresh

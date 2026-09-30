@@ -1,3 +1,4 @@
+#include "recomp_context_copy.hpp"
 #include "native_graphics_pump.hpp"
 #include "native_frame_bridge.hpp"
 #include <stdexcept>
@@ -22,7 +23,7 @@ extern "C" int dora3_native_scheduler_message(uint8_t* rdram, recomp_context* ct
     // Original tasks ahead of the next real VI; normal completions still run.
     if (!dora3::native_time::game_frame_bridge().active() ||
         MEM_W(0, int32_t(0x801AA680)) == 1) return 1;
-    auto pump_context = *ctx;
+    recomp_context pump_context;dora3::copy_recomp_context(pump_context,*ctx);
     pump_context.r4 = ctx->r17; // Original scheduler thread holds OSSc* in s1.
     PumpScope scope;
     // Reuse original drain/select/yield/launch, with only the retrace counter

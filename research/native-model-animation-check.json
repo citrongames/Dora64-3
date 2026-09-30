@@ -49,14 +49,15 @@
     "dora3_s0_80038B10"
   ],
   "source_sha256": {
-    "src/native_model_animation.cpp": "ecd843212fb3366e91b729bf59c6b517c8bd7a09601694e8f26e0a0cb6b5ac24",
+    "src/native_model_animation.cpp": "8902f29c622cee2eb1cb6317630dc332a37c4103a32049b4d5536b32811665f2",
     "src/native_frame_time.cpp": "4591be5bf70cb6c13b91df526d03fce1035c31fa2f0449d7a8bfb58860b344e6",
     "research/native-model-animation-check.cpp": "1dd7be85e9de8bbccdb079b458368431ea61386b09b743f28ea98a43a8231c3d",
+    "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/native_model_animation.hpp": "fe5010174932505b3f6342de7ddcc4a387e9807fde52a6d5a5a5498097fb066c",
     "src/native_frame_time.hpp": "f35ef08a013dc538094b317faa49cb03aa8042777b20590b8d8cd4a600a46296",
-    "tools/check_native_model_animation.py": "396007f5bc58482488ff80a8c4da28f657500e01d27b7ddc59c4272ad34ce523"
+    "tools/check_native_model_animation.py": "1fb4ee13f59f3363b8381ea275ea561f922005218dd9ed51630b0051c1e29684"
   },
-  "generation_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
+  "generation_receipt_sha256": "6887248e309e333d5446aa52c3567723207da2121bda573d9535bd1daaf628df",
   "remaining": [
     "Unreviewed phase1 commands, matrix consumers and full scene coverage still need integration audit",
     "This component does not convert movement, camera, collision, AI, scripts or all 2D systems"

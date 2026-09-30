@@ -11,7 +11,7 @@ def main():
  flags=['-O1','-g','-pthread','-fno-omit-frame-pointer','-fno-strict-aliasing','-fsanitize='+a.sanitizer,'-I'+str(ROOT/'src'),'-I'+str(runtime/'N64Recomp/include')]
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',TSAN_OPTIONS='halt_on_error=1'),timeout=30).strip()
- tracked=sources+[ROOT/'src'/n for n in ['native_frame_session.hpp','native_frame_producer.hpp','native_presentation_gate.hpp','native_wake_signal.hpp','native_frame_scheduler.hpp','native_frame_bridge.hpp','native_present.hpp']]+[Path(__file__).resolve()]
+ tracked=sources+[ROOT/'src/recomp_context_copy.hpp',ROOT/'src'/n for n in ['native_frame_session.hpp','native_frame_producer.hpp','native_presentation_gate.hpp','native_wake_signal.hpp','native_frame_scheduler.hpp','native_frame_bridge.hpp','native_present.hpp']]+[Path(__file__).resolve()]
  (ROOT/'research'/('native-session-'+a.sanitizer+'-check.json')).write_text(json.dumps({'scope':'Actual session and producer thread with synthetic consumer and sender; no game, GPU, VI or audio thread; timeouts are test watchdogs only',
  'result':result,'sanitizer':a.sanitizer,'source_sha256':{str(p.relative_to(ROOT)):sha(p) for p in tracked}},indent=2)+'\n')
  print(result)

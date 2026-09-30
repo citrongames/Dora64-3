@@ -4984,3 +4984,9 @@ verified,player-state-table,,0x801FA6B0,0x220,scene1 player paired callbacks,68 
 verified,motion-contract,,0x801C0F1C,,scene1 player gravity and terminal velocity,original body; docs/native-motion.md,Implement elapsed integration and collision event ordering
 verified,motion-contract,,0x801BF828,,scene1 player movement and collision resolution,original body separates velocity additions from spatial correction loops,Do not scale all constants or repeat state events
 verified,camera-contract,,0x8002F064,,camera geometric eye calculation,original body; struct0x34; docs/native-motion.md,Find and convert target/angle writers
+verified,native_timing_hook,,0x801E0760,,script camera four-mode closure,original code plus native-script-camera-check.json,integrate at explicit scene simulation boundary
+verified,native_timing_hook,,0x801BE5F0,,rectangle elapsed geometry,native-effects-check.json; .scene1 only,integrate continuous scene step
+verified,native_timing_hook,,0x801D56F4,,camera distance exponential approach,native-effects-check.json; .scene1 only,integrate ordinary camera closure
+verified,native_timing_hook,,0x80028C74,,sprite sequence discrete update,native-effects-check.json,preserve texture event cadence in native scene update
+verified,native_timing_hook,,0x800278EC,,deferred game receive replay,v73 native-loop-check.json,reuse resource barrier across reviewed scene boundaries
+verified,native_timing_hook,,0x800280DC,,process replacement drain barrier,native-loop-check.json; two bank late retire and HostRead,audit pre-install loaders/heap reuse separately

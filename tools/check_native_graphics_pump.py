@@ -51,7 +51,7 @@ def main():
  negative={'result':'Expected SIGABRT: old 80026DBC hook presents before final caller timing store',
   'exit_code':rejected.returncode,'diagnostic':rejected.stderr.strip()}
  print(negative['result'])
- tracked=sources+[ROOT/'src/native_graphics_pump.hpp',ROOT/'src/native_frame_bridge.hpp',ROOT/'tools/generate_startup.py',ROOT/'tools/prepare_runtime_timing.py',Path(__file__).resolve()]
+ tracked=sources+[ROOT/'src/recomp_context_copy.hpp',ROOT/'src/native_graphics_pump.hpp',ROOT/'src/native_frame_bridge.hpp',ROOT/'tools/generate_startup.py',ROOT/'tools/prepare_runtime_timing.py',Path(__file__).resolve()]
  (ROOT/'research/native-graphics-pump-check.json').write_text(json.dumps({'scope':'Actual original scheduler/submit and adapted message queue on synthetic RAM; SDK hardware and thread scheduling stubbed; no active native scene or renderer',
   'result':result,'negative_control':negative,'sanitizers':'ASan/LSan','source_sha256':{str(f.relative_to(ROOT)):sha(f) for f in tracked},
   'generation_receipt_sha256':sha(g/'generation-receipt.json'),'original_functions':names},indent=2)+'\n')

@@ -4,6 +4,7 @@ from pathlib import Path
 from inspect_rom import ROOT, read_rom
 from overlay_layout import prepare_layout, pending_name
 from local_jump_tables import reviewed_local_jumps, verify_generated_local_jumps
+from native_timing_patches import timing_hooks
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 
@@ -61,8 +62,11 @@ def main():
                          'void dora3_native_loop_transition(uint8_t*, recomp_context*);',
                          'void dora3_native_loop_submit(uint8_t*, recomp_context*);',
                          'void dora3_native_loop_retire(uint8_t*, recomp_context*);'])
+    declarations.extend(['float dora3_native_rate_f32(float);','double dora3_native_rate_f64(double);', 'int dora3_native_simulation_active(void);', 'int dora3_native_simulation_tick_start(void);', 'float dora3_native_displacement_f32(float, uint32_t);'])
+    declarations.extend(['int dora3_native_rectangle_update(uint8_t*, recomp_context*);','int dora3_native_zoom_update(uint8_t*, recomp_context*);','int dora3_native_simulation_tick_end(void);'])
     declarations.append('int dora3_native_model_morph_allowed(uint8_t*, recomp_context*);')
     declarations.append('void dora3_native_model_hook(uint8_t*, recomp_context*, uint32_t);')
+    declarations.append('int dora3_native_loop_receive_deferred(uint8_t*, recomp_context*);')
     declarations.append('int dora3_native_game_message(uint8_t*, recomp_context*);')
     declarations.append('uint32_t dora3_bus_read32(uint8_t*, uint32_t);')
     declarations.append('void dora3_capture_frame_lights(uint8_t*, uint32_t);')
@@ -81,9 +85,12 @@ def main():
         config+=f'{key} = {json.dumps(value.as_posix())}\n'
     config+='recomp_include = '+json.dumps('#include "startup_hooks.h"')+'\n[patches]\n'
     config+='ignored = '+json.dumps([pending_name(index,addr) for index,addr in sorted(frontier)]+native_names)+'\n'
+    time_hooks={(name,site):text for name,site,text in timing_hooks(sections,compiled,rom)}
     config+='hook = [\n'
     for (index,addr),(name,size,evidence) in compiled.items():
         hook=f'dora3_trace(rdram, ctx, 0x{addr:08X}, 0x{sections[index]["rom"]:X});'
+        extra=time_hooks.pop((name,addr),None)
+        if extra:hook+=' '+extra
         if index==0 and addr in {0x80028878,0x800288C0,0x800288EC,0x80028914,0x80028930}:
             expected={0x80028878:0x3C01801B,0x800288C0:0x3C02801B,0x800288EC:0x3C02801B,0x80028914:0x240200FF,0x80028930:0x2402FFFE}
             if struct.unpack_from('>I',rom,0x1000+addr-0x80025C00)[0]!=expected[addr]:raise ValueError('Unreviewed fade command')
@@ -134,7 +141,8 @@ def main():
                 raise ValueError('Unreviewed native game-message hook')
         name=compiled[(0,0x8002787C)][0]
         hook='dora3_native_loop_message(rdram, ctx); if (dora3_native_game_message(rdram, ctx)) goto L_800278E0; if (dora3_native_completion_during_pause(rdram, ctx)) goto L_80027914;'
-        config+=f'{{ func = "{name}", before_vram = 0x800278F4, text = {json.dumps(hook)} }},\n'
+        config+=f'{{ func = "{name}", before_vram = 0x800278EC, text = "if (dora3_native_loop_receive_deferred(rdram, ctx)) goto dora3_after_deferred_receive;" }},\n'
+        config+=f'{{ func = "{name}", before_vram = 0x800278F4, text = {json.dumps("dora3_after_deferred_receive:; " + hook)} }},\n'
     loop_hooks=[('dora3_game_message_loop',0x80027948,0x3C02801B,'if (dora3_native_loop_before_vi(rdram, ctx)) goto L_800278E0;'),
                 ('dora3_game_message_loop',0x80027960,0x3C02801B,'if (dora3_native_loop_after_vi(rdram, ctx)) goto L_800278E0;'),
                 ('dora3_game_retrace_update',0x8003087C,0x0C00A252,'if (dora3_native_loop_owns_fade()) goto dora3_after_legacy_fade;'),
@@ -169,6 +177,8 @@ def main():
         name=compiled[(0,0x800271B0)][0]
         for address,hook in [(0x800272BC,'dora3_begin_cpu_fb_copy();'),(0x800272F8,'dora3_end_cpu_fb_copy();')]:
             config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
+    for (name,address),hook in time_hooks.items():
+        config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
     for jump in local_jumps:
         config+=f'{{ func = "{jump["func"]}", before_vram = 0x{jump["load"]:08X}, text = {json.dumps(jump["text"])} }},\n'
     if (0,0x8002730C) in compiled:
@@ -185,7 +195,7 @@ def main():
     if sha(binary)!=receipt['executables']['N64Recomp']['sha256']:raise ValueError('Tool binary mismatch')
     with (out/'generation.log').open('w') as log:subprocess.run([str(binary),str(out/'startup.toml')],stdout=log,stderr=subprocess.STDOUT,check=True)
     verify_generated_local_jumps(out/'RecompiledFuncs',local_jumps)
-    inputs=['tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
+    inputs=['tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
     tracked=[f for f in out.rglob('*') if f.is_file() and f.name!='generation.log']
     report={'scope':'reviewed resident/overlay functions; explicit stop on unreviewed calls',
             'rom_sha256':hashlib.sha256(rom).hexdigest(),'tool_sha256':sha(binary),'inputs':{x:sha(ROOT/x) for x in inputs},
