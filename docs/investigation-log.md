@@ -1489,3 +1489,2268 @@ phase1 dispatcher изменяет статусы/счётчики наряду 
 Добавлен этот activation guard; Original и deferred activation проверены на
 реальной функции800281B8. Первый запуск checker требовал исключить нативный
 hook из ROM closure extraction; это ошибка тестового извлечения, не игры.
+
+## 2026-09-30: v82, обычная камера — незавершённый общий перевод
+
+Разобрана таблица всех16 режимов dispatcher801DBD58 (15 уникальных handlers).
+Modes0/1:DB7C8;2:D6EAC;3:D8FF0;4:D7294;5:D5864;6:D8578;7:DB720;
+8:D9B00;9:D8A24;10:D9C94;11:DA06C;12:DAB58;13:DA588;14:DAF50;15:DB3D0.
+Названия механик/уровней этим номерам ещё не присвоены. DB720 и D9B00 —
+прямые геометрические камеры, временной фильтр к ним не добавлялся.
+
+Общие формулы: approach1-(1-alpha)^h, retention^h. Для ограничения поворота
+использован дробный iterate именно исходного e -> e-clamp(alpha*e,-L,L).
+Порог T=L/alpha; k=-log(1-alpha). При |e|>T берётся n=ceil((|e|-T)/L),
+phase=n+log((|e|-nL)/T)/k. Из phase-h обратно восстанавливается остаток ошибки.
+При |e|<=T используется экспоненциальное приближение. На целых шагах получается
+исходная последовательность даже при переходе через cap, а разбиение шага
+композируется для неподвижной цели. Original проходит исходные инструкции.
+Это вычисление уравнения, не RT64 interpolation готовых поз.
+
+Фиксы первопричин:
+- Continuation labels генератора должны стоять ДО остальных hooks того же PC.
+  Иначе tick gate обходил соседнее scale движение (mode2 Y2 вместо1). v78+.
+- В mode6 (D8578) Z проходила через signed16 временную переменную каждый кадр.
+  Native дробные шаги теряли субединичное движение. Float сохраняется для
+  fractional steps; целый шаг и Original сохраняют исходное округление.
+- Коэффициент mode6 зависит от control+2 и ограничен speed(control+2+3);
+  масштабировать только коэффициент недостаточно. Gain и cap обработаны вместе.
+- Шесть recenter/obstruction timers идут по исходным тикам, отдельно от движения.
+- Shake55EC: signed amplitude добавляется как displacement*h; decay и remaining
+  меняются в конце исходного тика. Нет повторного полного импульса каждый draw.
+- Две временные аннотации5EAC/78DC удалены: перед ними distance заново вычислен
+  из геометрии глаза, это не обычный фильтр предыдущей distance. Пространственные
+  шаги collision probes не масштабируются. Наличие умножения на0.1 не доказывает dt.
+
+Проверки v82 без игры/GPU:970 control/transition/coefficient/shake cases с
+реальными исходными функциями; Original/full-step RAM differential; 440 вариантов
+capped approach по20 тиков;20/30Hz и60/73/120/144/165/360FPS. ASan/LSan,
+UBSan нового C++. Отдельно все13 остальных roots:78 Original/full-tick RAM
+сравнений. Synthetic actors, no-map path исходной collision query, не стены уровня.
+Широкая проверка rate spread ДИАГНОСТИЧЕСКАЯ: остатки mode4/5 distance~1.28,
+mode9 pitch~0.155deg, mode10 distance~1.60. Они не объявляются пройденными.
+Mode6 spread~0.000023; остальные~0..0.000733 в этих сценариях.
+Причины ещё исследуются: derived output против temporal state, задержка публикации
+distance на один вызов, инициализация/смена collision pitch target, coupled filters.
+
+Полная камера с препятствиями, внешний ввод/mode switch, feedback тряски через
+фильтр, вся физика/player callbacks, 2D/миниигры и общий native update остаются
+незавершёнными. Live policy всё ещё scene34 image/fade; v82 не означает нового
+допуска сцены. Последний EXE test-029(v76). Эта запись — checkpoint, не завершение.
+
+## v83: общий расчёт связанных уравнений ordinary camera
+
+Оставшиеся v82 расхождения камер4/5/9/10 устранены в компонентной проверке
+OrdinaryCameraTimeline. Исходный алгоритм последовательно вычисляет геометрию,
+target filters и предыдущие distance/pitch targets. Повторять эту композицию
+при каждом коротком шаге означало менять алгоритм. Теперь проверенные уравнения
+вычисляются на накопленном времени текущего исходного тика с его начальным
+состоянием. Цели/geometry берутся из текущего игрового состояния, готовые
+previous/next poses не смешиваются. На границе1.0 получаем исходный результат.
+
+Состояние ограничено конкретными полями каждого handler, включая halfword
+границы; не копируется весь диапазон globals. По соседству есть чужие1823E,
+18328/1832C и zoom halfword18278. Camera eye+0C/10/14 и up-vector+28 пишет
+геометрический8002F064; они исключены из anchor. Внешняя запись в собственное
+состояние камеры или смена handler/camera отключает anchor до следующей границы;
+чужая запись не откатывается. reset очищает host bookkeeping без гостевых pointers.
+Смена режима посреди тика пока использует incremental equations до новой границы.
+
+Mode6 signed16 Z correction распределена по времени текущего тика, чтобы не
+обрывать субединичное движение на каждом кадре и не получить скачок в его конце.
+На полном шаге исходное округление сохраняется.
+
+native-camera-modes-check v83:9571 сравнение/проверка,13 roots,6 synthetic states,
+60/144/360FPS, исходные функции с реальной тригонометрией. На каждой20Hz границе
+target/angles/distance совпадают с Original, на общих промежуточных timestamps
+60/360 совпадает весь camera output. Есть проверка более30 изменений за секунду,
+чтобы20Hz-only путь не мог пройти как native. Отдельно external writes/reset.
+
+Для препятствий восстановлен grid format80040104: signed XZ bounds; relative
+offsets polygons/lists/grid; cell50;44-byte triangles with projected XZ vertices,
+normal(A,B,C), D for Ax+By+Cz=D, flags. Synthetic room uses actual original
+query: floor0/ceiling250, inside flag0/outside flag1. Это не ROM level resources
+и не прохождение реальных стен/уровней. Игровое окно/GPU не запускались.
+
+Компонент добавлен в сборку, но LIVE scene policy НЕ расширена: общий scene
+simulation update ещё требует соединения с ним и с physics/events. Полный FPS
+остаётся незавершённым. CPU-проверка камеры не является проверкой всего game loop.
+
+## 2026-09-30 — v84–v88: общие движение, события и игровой preview
+
+Добавлена pre-render граница: обновление выполняется до резервирования render
+bank. Смена сцены/частоты инвалидирует старый wake до публикации кадра.
+
+Совместная проверка scalar drive/vector/contact выявила разный пройденный путь:
+при разгоне0→12 за секунду старый60FPS X135/Z209.186 против360FPS X134.167/Z207.742.
+Общий интегратор acceleration+drift теперь передаёт согласованное смещение
+через проекцию скорости к collision solver. Проверены168 разбиений drive и24
+совместные траектории движения/контактов/камеры на v85. Возле ограничения
+скорости continuous траектория может слегка отличаться от дискретного
+пересечения cap; Original формулы сохранены.
+
+Все15 вызовов обычных камер в DBD58 используют общий OrdinaryCameraTimeline
+через явную приостановку внешнего SimulationScope; кеш перемещения сохраняется.
+Режим12 проверен совместно с движением. Это не прохождение.
+
+Общее продвижение model time подключено к8003948C внутри SimulationScope.
+На360FPS обратная анимация давала лишний wrap из-за сложения дробных шагов;
+исправлено целочисленным накоплением elapsed при постоянной скорости.
+Пройдены24 native-clock сценария,20 проверок crossing/реального frame18 branch,
+74 проверки исходных pose/morph samples, ASan/UBSan/LSan. Проверены pause,
+seek, clip lifetime, смена направления после clamp и свободный vertex bank.
+
+Анализ129 object-time callsites с переходами и jump tables:132 сравнения,
+84 equality.79 проверенных кадровых событий в64 функциях подключены к общему
+crossing helper; четыре -1 sentinel для clip-ratio не являются событиями;
+оставшаяся производная ratio==1 требует отдельной обработки. Карта не является
+полным анализом всех прямых чтений model memory. Host event state очищается
+при seek/rebind/destruction/region reset; Original comparison не изменён.
+
+По новой просьбе пользователя дать EXE с неполным результатом подключается
+scene1-ground-preview (v88). Continuous drive/motion/camera отделены от VI
+без повторного выполнения state handlers, звука и таймеров. Только ground
+states1..5; другие состояния/сцены возвращаются в Original. Во время preview
+игровые часы моделей и NPC ещё исходные; render pose adapter вычисляет кривые
+чаще. Не выдавать это за завершённый variable FPS. Новые проверки и сборка идут.
+
+Windows v88 скомпилирована; совместная проверка actual preview motion block/camera
+на60/73/144/360 и общий loop с drain/сменой режима пройдены. Игра не запускалась.
+Дополнительные проверки прекращены по прямому уточнению пользователя.
+
+## Продолжение 2026-09-30 — v89 / test-032
+
+Подключён полный обработчик наземного персонажа в состояниях1..5: свежий ввод,
+решения состояний, скорость, столкновения, post-contact, часы моделей и копирование
+трансформации спутника. Старый VI больше не выполняет этого игрока второй раз.
+Общий VI продолжает обслуживать контроллеры, звук и ещё не переведённый мир.
+
+Новый ввод хранит время VI-образцов и делит native-интервал на их границах.
+Короткие нажатия расходуются один раз; при возврате в Original потреблённые
+нажатия не повторяются, непотреблённые сохраняются. Именно CPU-проверка полного
+обработчика выявила ошибку применения нового стика задним числом: при73FPS
+траектория отличалась от60FPS на6.08 единицы. Очередь устранила расхождение.
+
+Счётчики неуязвимости/максимальной скорости/бездействия/паузы действия и звуки
+шагов привязаны к исходному игровому времени. Повторная установка неизменного
+флага паузы/конца клипа не начинает часы заново. Native-поза вычисляется по
+актуальному времени клипа в свободном банке с восстановлением игровых костей.
+
+Смена сцены отменяет остаток накопленного интервала, включая вложенный вызов
+камеры. Барьер ресурсов сохраняет очередь посторонних сообщений и ждёт обе
+кадровые банки, позднее завершение SP и HostRead.
+
+CPU-проверки: полный наземный обработчик с реальным поиском пола/объектов,
+ввод, анимации, совместная физика/камера и общий loop прошли. Для наземного
+обработчика и ввода проверены20/30Hz и60/73/120/144/165/360FPS. Исходные
+анимационные кривые проверены отдельно; звук/model/sprite endpoints в полном
+сценарии инструментированы. Синтетическая комната не заменяет прохождение.
+
+Полный variable FPS всей игры НЕ завершён: остальные действия, NPC/объекты,
+катсцены, миниигры и меню/2D ещё требуют подключения и проверки. При выходе
+из допуска возвращается Original. Процесс разработки продолжается после EXE.
+Игра, окно, renderer и GPU локально не запускались. Новых настроек и RT64
+interpolation нет; ROM, port_*.json и saves при упаковке сохраняются.
+
+
+## Диагностика дрожания и player integration 2026-09-30 — test-033 (генерация v89)
+
+Исправлена пропущенная публикация точки отсчёта отображения мира после native
+движения игрока. В test-032 она оставалась в исходном world update20/30Hz,
+а персонаж и относительная камера уже обновлялись чаще. Пользователь сообщил
+о дрожании персонажа и3D-домов в городе, сильнее вдали от камеры. Его runtime.log
+1790765643377 подтвердил test-032, Manual60 и городской обработчик801D7294.
+CPU-проверка до исправления воспроизвела разность2.25 единицы между позицией
+игрока и render origin на13-м кадре60FPS. Теперь после движения вызывается
+оригинальный801BBDDC до камеры; координаты общего кадра согласованы каждый шаг.
+Пользователь подтвердил: в test-033 дрожание ушло. Это подтверждение его
+проверки города; игру/renderer/GPU при разработке не запускали.
+
+Допуск player preview расширен на состояния1..10: ходьба/бег, прыжок, падение,
+приземление. Модельные команды теперь проверяются в той же CPU-цепочке, что
+ввод, полный player dispatcher, поиск пола, drive, контакт и камера, вместо
+подмены model endpoints.182 оригинальные функции,24 расписания: оба исходных
+делителя,60/73/120/144/165/360FPS, камеры12 и городская2. Удержание A даёт один
+прыжок и одно приземление; позы свободного банка восстанавливают игровые кости.
+Синтетические модели/комната и наблюдательные sound/sprite endpoints остаются
+границами проверки. Это не прохождение уровня. Общий loop/barrier тоже проверен
+после изменения; остальные актуальные CPU-отчёты сохранены без лишнего повторения.
+
+Остальные действия, NPC/объекты, катсцены, миниигры и меню/2D ещё требуют общего
+перевода. Полная цель variable FPS НЕ завершена. Original20/30FPS и существующий
+Manual60–360 сохранены; RT64 interpolation нет. Название policy в старом логе
+scene1-ground-preview оставлено историческим; реальный допуск определяется кодом.
+
+---
+
+## 2026-09-30 — рабочая v91/v92, разворот и общий цикл объектов
+
+Допуск игрока1..16, пять адресных правил для230C/3D8C/421C; новые правила
+защищены ROM/function SHA и точными instruction words. До исправлений native
+разворот возвращался из клипа в разные моменты:0.700000 при60FPS против0.684932
+при73FPS. Истинная граница клипа0.683333333333 лежала между целыми наносекундами;
+ограничитель теперь делит SimulationSlice в рациональных единицах исходного тика.
+Дальше выявился более ранний переход15→16: остаточная скорость−3.78082 вместо0
+переворачивалась до полного времени торможения. Его commit и12→13 проверяются
+на старте исходного тика; continuous drive продолжает работать между решениями.
+24 основных и48 reverse/braking CPU-сценариев теперь проходят при обоих делителях
+и60/73/120/144/165/360FPS, обычной и городской камере. Реальный склон отдельно
+не воспроизводился: в fixture плоская поверхность без скольжения.
+
+801E8BDC: владение разделено по живым актёрам30..229. Проверенные38 строк таблицы
+80202064 (stride84) ведут к пустой функции801E5D84; их common translation/opacity,
+model clocks, D8 blink и sprites2..7 подключены совместно. Активный stage AI не
+переведён. Native-проход пропускает801E483C, сохраняя контактные списки, и исполняет
+его JAL delay-slot присваиваниеs2=30. После callback отмена сцены выходит через
+общую очистку до новых обращений к старой physics. Original-путь сравнён сv61:
+38 типов×24 расписания, полное совпадение4MiB RAM после common update.
+
+Команда исходного мира меняетvx с8 на−4 вt=0.5с. Контрольная scratch-копия без
+вычисления интервала перед world entry далаx434 вместо440 при30Hz/60FPS;
+исправленная цепочка совпадает при всех шести частотах. Появлениеt=0.7с и
+исчезновениеt=1.3с тоже ограничивают именно реальное время движения/анимации.
+Model clip limiter использует план реально advancing owners/current rates:
+неактивная модель не дробит чужую шкалу времени; newly bound clip и смена rate
+учитываются до первого шага. Положительный rate25 теперь проверяется и по точному
+числу end pulses, а не только итоговому времени.
+
+Неошибки production: первая версия нового fixture неверно рассчитала ожидаемую
+траекторию (500−2*ticks вместо500−ticks) и перепривязала clip без release; обе
+ошибки исправлены в проверке. Float RAM позиции при165FPS дали439.996 вместо440:
+ввели допустимую погрешность0.03 единицы для накопления float, сохранив точные
+проверки дискретных событий. Финальные player/model/time/loop проверки прошли.
+
+Снаряды/эффекты10..29 dispatchят27 callbacks типов82..108 через801FAB48/stride8;
+второе слово каждой строки — флаг данных0/1, не второй callback. Их native
+жизненный цикл ещё не включён. Generic pool использует отдельную таблицуstride84;
+stage functions должны различаться по overlay identity, не только по VRAM PC.
+Полный FPS остаётся в работе. Нового EXE нет по требованию пользователя о крупных
+блоках. Игра/GPU не запускались, ROM/settings/saves не менялись.
+
+---
+
+## 2026-09-30 — v93, конечные эффекты и передача модельного времени
+
+801D10D8 фильтрует native/source владельцев после active/C9 и перед BC7DC,
+callback и анимацией. Продолжение обязано проходить через D1188, включая s3++;
+после отмены сцены — очистка сохранённых регистров D119C. Девять обработчиков
+проверены по ROM таблице801FAB48/stride8 и точным function SHA/instruction words.
+
+Совместная проверка нашла реальную ошибку acquisition: существующий эффект с
+длительностью клипа3 удалялся при native t=0 вместо0.033333333333 (divider2).
+Original A1B8 оставил позу0, но clock3/end-bit после первого вызова. Новый
+ModelAnimation::acquire_simulation использует свежую before-позу, проверяет
+source step/divider, каналы/дескрипторы, rate и гостевые записи и снимает
+несоответствующий lookahead/end-bit. Наблюдение потребляется один раз; GPU
+и frame bones не меняются. Игрок исключён до анализа provenance кадровых событий.
+
+Независимая базаv61 D10D8 даёт ровно одно удаление в том же исходном времени
+для всех9 типов×24 расписания=216. Проверены реальные A100/B6BC/A3B0/EA4C/
+E990/A0AC/B77C/scene-object-init и освобождение physics. ASan/UBSan/LSan прошли.
+Ошибка fixture (флаг модели4 вместо3) исправлена вызовом реального A100.
+234 функций в joint closure (232 actual +2 frozen Original reference).
+Общие объекты, развороты, model и resource/loop проверки тоже прошли.
+Нового EXE нет; работа продолжается над полётом и эффектами попаданий.
+
+---
+
+## 2026-09-30 — v93, шесть цепочек прямого полёта и попадания
+
+Native owns91/93/95/97/99/107 с уже проверенными92/94/96/98/100/102/104/106/108.
+97/99 используют чистую проекцию скорости CB1F0/CB2A0; остальные CB2F8;
+общая трансляция CB6D4 уже dt-парная. Probe radius34 и геометрические±15 не
+масштабировались.107 при скорости25 на окончании клипа привязывает клип1 и
+меняет скорость30 ровно один раз.168 full-chain CPU сценариев,216 terminal
+lifetimes и912 common-world RAM comparisons прошли. В flight acquisition ещё
+168 полных RAM сравнения Source-pass с нетронутымv61 D10D8.
+
+Новорождённый в более позднем слоте эффект раньше получал dt того же прохода,
+хотя этот интервал предшествует его созданию. Теперь native dispatcher сохраняет
+живые physics pointers перед проходом и не обновляет возникшие позже актёры.
+Scratch-копия с удалённой защитой подтверждает ошибку: type91 при60FPS, hit1/
+delete1, но child_time1.5 вместо0. Код production не удалялся; доказательство
+build-local/native-player-update-check/newborn-negative-control.json.
+Контракт пока не распространяется на непроверенные callbacks, которые могут
+удалять и заново создавать чужой активный слот внутри одного прохода.
+
+Fixture был расширен до real resource-list allocation/release и шести real
+impact constructors. Resource lookup/release считается через строгие границы
+со ссылками; реальные assets не извлекаются. Найдены и исправлены ограничения
+fixture: trace kind для.scene1 —0x70A50, не0x1000; таблица ресурса99 включает
+sprite IDs4F7..506; renderer-free clip table тоже должна быть heap-allocated
+для настоящего деструктора; изолированные случаи сбрасывают счётчик idle,
+чтобы искусственно склеенные десятки секунд не запускали неописанную idle
+ветку после300 тиков. ASan/UBSan/LSan проходят. Production/game не запускались.
+Полёт проверен с controlled contact flagD4, а геометрический probe выполняется
+в синтетической комнате. Реальный gameplay/contact NPC требует проверки дальше.
+
+---
+
+## 2026-09-30 — v94..v96, рост и затухание projectile85/87/90
+
+Правила ROM-word/function-SHA validated. Ошибкаv94 в LD emitter (три аргумента
+вместо двух) была найдена CPU-компиляцией; EXE не создавался. После исправления
+v95 выявилась реальная временная ошибка90: при60FPS/divider2 на тике29 Native
+уже удалял эффект, Original оставлял его живым с отрицательной alpha. Простое
+масштабирование alpha и gate деструктора недостаточны: Original проверяет alpha
+в начале шага, а частые обновления проверяли уже частично уменьшенное значение.
+
+Вv96 alpha сохраняет Source-тик baseline, predicate использует этот baseline
+в течение шага, значения вычисляются от него с единым float округлением.
+Кэш связан с зарегистрированной жизнью модели и сбрасывается при повторном
+создании, renderer/reset bookkeeping, новой acquisition; изменения RAM и
+пропущенные интервалы дают новый baseline. Удаление90 коммитится в конце
+следующего Source-тика. Endpoint float значения и сроки жизни совпадают.
+
+85/87: fractional approach при росте и decay, Source endpoint проекция
+масштаба для решения о начале fade;87 сохраняет исходный f20 coefficient,
+потому что он также порог удаления. Rotation25 масштабируется как temporal
+delta, геометрические величины не масштабируются.90 age36 увеличивается
+только на Source endpoint, решение о fade использует post-increment age.
+
+Fixture timestamp различает consume-end-flag перед следующим интервалом
+(прежние конечные эффекты) и Source-end commit внутри callback85/87/90;
+для последних assert проверяет ends_tick(), а время включает numerator.
+Это исправление наблюдателя, а не ослабление active/lifetime проверок.
+72 сценария сравнивают state/lifetime сv61. Общая closure261 функции;
+полёт168, конечные эффекты216, common world912 и игрок/камера проходят.
+12 scalar schedules проверяют exact-float, pause/external write/acquisition/
+reset/same-pointer recreation. Полные loop/simulation CPU проверки проходят.
+Ограничения остаются: synthetic assets/room, instrumented sound/resource
+lookup/release/sprite creation и AI endpoints; full gameplay ещё не проверен.
+
+---
+
+## 2026-09-30 — v97, gravity/chain84/88/89
+
+84/88 используют уже проверенные CB400/CB6D4 без изменения геометрических
+радиусов и смещений.89 Source-time countdown/spawn region CD2F0..CD340
+сохраняет post-tick возраст и однократный переход36=10. Проверены72 расписания,
+Original-pass по всей RAM, восемь следующих source-end состояний, real84→85
+impact ctor и пять real88→89 links; все модели,physics и resource lists освобождены.
+Scene BBE58/resident3CCA4 добавлены в реальную CPU closure: команда отдачи
+8/2/2 выполняется один раз. Не stub. Общая closure269 функций (267+2 references).
+
+Первый fixture ошибочно поместил projectile на y10000 вне синтетической комнаты
+с потолком250: настоящий probe/дистанция инициировали impact уже в Source
+reference. Исправлена только fixture: y100,vy4,gravity.25; geometry не отключалась.
+Расширен строгий synthetic lookup/release:85 ctor также использует resource
+kind4 с ID216, который освобождается настоящим guest resource-list кодом.
+Отдельные реальные data assets и renderer по-прежнему не запускаются.
+
+При новом NativeTimeline scalar cache теперь инвалидируется и у paused/
+невыбранных моделей: старые tick/phase и те же alpha bits могут совпасть после
+resume, но прежний baseline принадлежит предыдущей timeline. Проверка совпавшей
+phase с отрицательной alpha и plan=nullopt проходит вместе с12 exact-float cases.
+Fixture для этой проверки сначала вставлен внутрь прежнего live-baseline case;
+последовательности разделены, production predicate не ослаблялся.
+Full player/flight/growth/terminal/common-world, loop, model и timing checks
+проходят с ASan/UBSan/LSan. Bounce/phase83, homing, charge, interaction ещё впереди.
+
+---
+
+## 2026-09-30 — v98..v99, четыре стадии83
+
+После первоначального включения83 и fractional phase3 alpha checkv98 показал
+divider2/fps60/tick30: Native phase2, Original phase3. Clip command обрабатывался
+лишь следующим variable callback, что задерживало bind и начало fade. Реальная
+ошибка; исходный dt и состояние не подгонялись под test.
+
+v99: Native83 сохраняет физику и opacity в callback, а clip-end region CBDA4..
+CBE2C переносится в post-model boundary D117C. Original branch неизменна вне
+SimulationScope. После A1B8 выполняются настоящие A3B0/EA4C/A2E8/A328/C05F0
+на локальной копии guest context. Каждая смена уничтожает прежний model lifetime,
+создаёт новый, выставляет phase/mask; фаза4 удаляет actor/physics/resources.
+Новая модель не получает dt законченного интервала. Путь удаления сохраняет
+pool increment, отмена сцены — общий register cleanup. CPU closure271 функций.
+24 real ctor/four-phase/rebind/fade/retirement cases проходят с60/73/120/144/
+165/360FPS, обоими делителями и двумя камерами; field equality фаз/mask/live
+строгая, Source-pass full RAM и прежние168+72+72+216+912 проверки проходят.
+
+Image-loop CPU fixture не запускает gameplay. Новые прямые phase dependencies
+добавлены там как явные fail-fast endpoints (не no-op); реальные тела выполняет
+joint gameplay fixture. В production они входят в полный generated module.
+Полные loop/model/simulation checks проходят; игра/GPU не запускались.
+Остальные пять projectile families, все старшие действия игрока и общий полный
+FPS ещё не завершены. Windows source stage и EXE033/v89 остаются замороженными.
+
+---
+
+## 2026-09-30 — v100, отскок82→83
+
+Первый CPU fixture ошибочно задавал floor-plane D=+1000 при желаемом полу−1000;
+реальный Original probe запускал bounce/retirement уже в reference fork. Это
+удаляло parent allocations из общего инструментированного счётчика и затем
+Native replay обнаруживал повторное освобождение. Исправлен только знак
+floor-plane; live state проверяется после каждого reference шага.
+Второе отрицательное наблюдение было вызвано передачей полного возраста
+полёта>1 в helper одного SimulationSlice; независимая траектория теперь задана
+суммой Original post-gravity скоростей: v=50−4t, y=50t−2t(t+1).
+Игровые callbacks/instantaneous bounce не менялись, временные границы не
+подгонялись: Native collision commits на конце реального интервала, child
+не получает время до рождения.275 generated функций с двумя frozen reference
+dispatcher.24 расписания проходят вместе со всеми прежними joint сценариями.
+Отдельные loop/model/simulation checks остаютсяv99; Windows не собиралась.
+
+---
+
+## 2026-09-30 — v101→v102, Native clocks86
+
+v101 stationary tracking showed divider2/fps60/character1/tick5 baseline pitch
+Native2 vs Original0. Original yaw/pitch are bang-bang turns: even inside a
+whole turn of the target they choose ±1/1.5 or±2; reevaluating the sign after
+every fraction flips direction repeatedly and changes the whole-tick endpoint.
+v102 caches the first signed angular command for that source tick, while angle
+updates remain continuous. Commands rebase after external writes, pause gaps,
+timeline acquisition, region/subsystem reset or model lifetime recreation.
+48 stationary real target/constructor/hit87/retirement schedules pass; real
+curved flight is explicitly outstanding. No Source-only movement fallback
+has been added. Float/short caches now also discard fields in a partially reset
+physics region even when their model allocation survives.12 short-angle and12
+latched-turn component schedules plus the previous model checks pass. No EXE.
+
+---
+
+## 2026-10-01 — v103..v105, charge и live birth
+
+Charge CB6D4 adds a spatial attachment offset after resetting xyz to the player
+point. Suspending dt for this geometry call fixes shrinking offsets at high FPS;
+only radius/opacity are temporal scalars. Phase3 increments and phase42 conversion
+commit at Source endpoints. Model alpha command precedes its logical decrement;
+the adapter keeps that provenance on Original acquisition. A native-born model
+has no such lookahead. v104 first attempted using observation.has_value(), but
+acquisition consumes/reset that observation: the preceding-sample check failed.
+Allocation birth provenance is now stored separately, cleared by an actual
+Original animation advance, and retained across observation consumption.
+
+First charge replay compared an attached actor against a frozen player at y100:
+Native player fell to98.5, causing actor153.5 vs Source155. Reference now executes
+the actual Original player update before the projectile pool, and Native replay
+starts from the same player position/velocity.48 complete charge schedules pass.
+
+Live birth exposed another boundary: taking the pool snapshot after the player
+would advance its newborn over the elapsed birth interval. Snapshot now precedes
+all producers. Approved charge ctors initialize Source birth-pass phase21/radius10/
+opacity/pose once through the actual guest command closure; only that model's
+lookahead is acquired without erasing other live scalar maps. An initial added
+sprite command omitted its slot argument, causing an ASan read failure in28C74;
+corrected to slot1, matching dispatcher D1184.48 live-birth schedules now pass,
+including exact relative conversion lifetime and all resource retirement.
+Model check tests selective acquisition preserving a negative partial opacity's
+positive Source baseline. Loop fixture exposes the new direct dependencies as
+fail-fast boundaries; the joint fixture uses their real bodies. Four fresh checks
+passv105. No game/GPU/Windows build. Full weapon states remain unenabled.
+
+---
+
+## 2026-10-01 — v106→v107, траектория86
+
+Расширение сравнения обнаружило уже при нулевой скорости ошибку порядка
+чтения physical pitch: divider2/fps60/tick4 Native351.739 против Original349.739.
+Новый базовый58 применялся внутри такта перед вычислением волны, хотя Original
+читает58 до следующей steering command. Sample хранит входные yaw/pitch,
+velocity и xyz за один Source интервал; pure target query использует Source
+endpoint и затем возвращает только временно заимствованные xyz/yaw.
+
+Вv106 сохранение входного58 ещё оставляло скачок2 градусов после границы:
+ceil(timestamp) содержит крошечный интервал следующего такта, где58 уже новый.
+v107 плавно уменьшает разницу входного physical pitch и нового baseline58
+на протяжении Source интервала. Проверка ограничивает изменение наклона25
+градусами на Source tick плюс float tolerance на каждом Native update.
+Движение задаётся накопленной кривой x(t)=x0+v0*t+(v1-v0)*t*(t-T)/2,
+гдеT — остаток Source интервала. Она сохраняет Original displacement в конце,
+а spatial queries получают действительное Native положение на каждом шаге.
+
+384 расписания сравнивают endpoint поля и четверти интервалов с реальными
+Original callback/projection bodies.192 stationary проходят102 Source ticks,
+192 moving —6, четыре target patterns и оба персонажа на обоих делителях
+при60/73/120/144/165/360FPS. Строгие counters и circular angle comparison
+различают ошибки времени и эквивалентные0/360 градусов. Реальные hit87 и
+полное освобождение ресурсов проходят; Original first pass совпадает по всей
+RAM. Model component проверяет reuse sample и отмену после gap/write/acquire/
+partial heap/system reset. Loop exposes pure geometry dependencies as abort
+boundaries; joint fixture выполняет их настоящие тела. Свежие четыре PASSv107.
+EXE/игра/GPU не запускались; interaction105 и full weapon states не включены.
+
+---
+
+## 2026-10-01 — v108→v109, interaction105
+
+Joint comparison обнаружил потерянный outside-clip seek: Original command
+переводит frame в57 при duration54; counter после шага —6 и end flag. Старый
+acquisition отбрасывал observation времени за пределами duration, поэтому
+Native начинал с6 и к следующему Source endpoint имел9 без retirement.
+Теперь конечный Original observation хранится и для finite outside-clip seek;
+acquisition восстанавливает его pose, Native normalization pulse сохраняется
+до конца соответствующего Source интервала. Legacy extrapolation не получает
+такой out-of-range baseline. Model CPU: seek12/duration10/rate3, строгий Original
+counter/flag endpoint, четыре quarter slices, следующий интервал без pulse.
+
+Quarter comparison намеренно провалился fps60/divider2/tick1/part1: таблица
+80210898 содержит ключи только в0,3,6,..48, а промежуточные строки — default0.
+Интерполяция соседних целых строк давала ложные провалы выдвижения. Теперь
+используются пары Source keys с шагом3; independent guest callbacks задают
+геометрию54 quarter samples на каждый из24 held schedules. Состояние idle player
+стабилизировано его реальной Source command до геометрических probes; иначе
+входная yaw90 могла законно перейти в0 на первом Native player callback.
+
+Source comparison включает реальные player updates. RAM forks должны копировать
+external mock heap bookkeeping тоже: клипы player и newborn106 освобождали/
+выделяли память, иначе равные Original вызовы получали разные IDs либо ошибку
+двойного mock free. Это исправление fixture, не production allocator.
+Live-birth observation снимается непосредственно после ctor: ceil nanosecond
+timestamp может уже содержать маленький шаг следующего Source интервала,
+поэтому commanded57 сравнивается там, а subsequent clock — modulo duration.
+Source AI reassert geometry не потребляет end flags; invalid captured lifetime
+очищает48 до записи NPC positions. Все четыре свежих PASSv109; EXE не делался.
+
+---
+
+## 2026-10-01 — v110, реальный player action17/18 и charge11/12
+
+Ранний player callback читает предыдущий model counter. Обычный Native
+crossing, оставленный в этом месте, сдвигал бы команду на один переменный шаг.
+В owned player dispatcher подавляется только это чтение; crossing потребляется
+после реального движения/model advance. Отдельный boundary limit делит шаг
+на frame18 по точному рациональному clock, а не округлённому guest float.
+Standalone/Source обработчик сохранил прежнюю семантику. Joint constructor
+timestamps совпали с Original для обеих source rates и60/73/120/144/165/360FPS.
+
+Первый CPU weapon path выявил недостающую boundary801B922C. Это чистый
+Original query одного mode byte; в closure добавлена реальная функция.
+При расширении на B entry reference ошибочно вызывал только accumulate/latch,
+оставляя pressed edge навсегда: четыре выстрела за40 Source ticks. В игровом
+цикле после обновления работает800304A8 reset_accumulator. Fixture теперь
+исполняет эту реальную команду тоже; Original и Native дают один выстрел.
+Это correction CPU harness, не изменение управления в production.
+
+192 связанных weapon schedules проверяют action, charge, child effect и полный
+resource lifetime; отдельные проверки повторялись только при новой coverage
+или обнаруженном отказе. Все четыре отчёта проверены по текущим source hashes
+и generation receiptv110. EXE/игра/GPU не запускались.
+
+---
+
+## 2026-10-01 — v111→v116, оружие2/4/5 и Native B timing
+
+Source player21/22 читает cue15 до движения. Native событие потребляется после
+model advance; точная frame boundary исключает опоздание на переменный шаг.
+Air weapon2/tick5 выявил Y268.5 вместо267.5: post-movement крепление давало другую
+исходную точку. Во время ctor заимствуется Source pre-movement xyz, затем только
+эти поля возвращаются. Source RAM первого прохода и endpoints снарядов совпали.
+
+v111:84→85 surface conversion имела x925 против940 на tick18. v112 сначала
+откладывал любой hit, но искусственный actor contactD4 законно требует немедленной
+команды. v113 отложил только surface command84/88 до Source end, сохранил spatial
+probes каждый Native update и первый Source проход successor в том же pool pass.
+
+НажатиеB@73ms давало верный birth273ms, но expiry533.333ms вместо539.667ms:
+charge age зависел от global phase. Отдельный allocation-scoped clock начинается
+в момент рождения, делит общий шаг у своих границ и приостанавливается при C9pause.
+Первый v114 origin выбирал start для ctor внутри player, хотя newborn не получал
+этот интервал: interaction105 не завершался на ожидаемой границе. Origin теперь
+совпадает с committed end исключённого birth slice. Outer global time остаётся
+отдельно доступным для наблюдения timestamps; scope cleanup стоит и на D118C,
+куда переходят pause/delete ветви, и на exit D119C. Lifetime token различает
+новую модель даже при одинаковых actor/physical/model адресах.
+
+v114:air weapon4 child89 оставался жив на Source tick6. Native initial pose
+acquisition убрал Original counter lookahead; end command переносится после
+advance. Для duration7 пересечение приходится между Source endpoints: отдельное
+end observation сохраняется до конца того же Source интервала, raw flag остаётся
+недеструктивным импульсом одного advance. Component проверяет очистку raw flag,
+сохранение observation, следующий интервал и same-address lifetime recreation.
+
+v115:360FPS weapon4 поле physical58 отличалось на0.003 при x760. Это originX
+child89, не opacity. Fixture теперь сравнивает его с теми же spatial units и
+tolerance0.15, что xyz; phase/alive/type и сроки остаются строгими. Возврат игрока
+в idle законно перепривязывает channels: сравнивается количество живых allocations
+с Original, а полное уничтожение owners обязано оставить пустой guest heap.
+
+v116 прошёл связанные charge/moving/B schedules и свежие model/loop/simulation
+checks. Все четыре отчёта проверены по receipt/source hashes до сохранения.
+317 Original функций исполняются в joint closure; ROM/resource lookup/sound/AI
+границы явно инструментированы. EXE и игровой renderer/GPU не запускались.
+
+---
+
+
+## 2026-10-01 — кандидаты117–120, Source successor и Native zero/repeat
+
+Ни один из этих кандидатов пока не сохранён как проверенный checkpoint.
+Последний verified checkpoint116, Windows EXE033.
+117: moving weapon3 Source tick61 получил child87 scale0.1 вместо0.345.
+118: Source-boundary first commands расширены на successors всех reviewed
+семейств, terminal/phase owners потребляют end после model advance. Старые
+terminal fixtures перенесены со start observation на actual committed end,
+с прежней строгой birth-relative длительностью.
+119: мгновенный Native cue0 теперь регистрирует новую allocation lifetime
+на slice start и допускает только её к последующему elapsed pass. Первое
+assertion на model time было неверным для статического86 без channels.
+Исправленный fixture отдельно проверяет animated age и elapsed trajectory
+по независимым Original projection commands на scratch RAM. Диагностический
+119 прошёл672 moving Source и336 Native press/release schedules вместе со
+всеми старыми сценариями. Это не новый формальный report/receipt checkpoint.
+Контрольный diagnostic с отключённым admission start birth дал x570 вместо
+577.513 при60FPS/divider2/weapon3, подтверждая пропуск elapsed движения.
+Held B на119: второй shot на273ms отсутствовал, count1 вместо2.
+120: post-pose repeat18 создал второй shot вовремя, но отдельный private
+zero-event key позволил ordinary callback создать его ещё раз в следующем
+интервале: на третьем shot count4 вместо3. Ключ исправлен на общий generated
+.scene1 cursor0x03801C4F9C; повторная проверка ещё идёт. Model/loop/simulation
+120 прошли до этой CPP правки; loop report после неё устарел. No game/GPU.
+
+---
+## 2026-10-01 — v121, связанная проверка zero-cue/repeat завершена
+
+После общего cursor0x03801C4F9C полный fixture прошёл, включая48 held-B
+четырёхвыстрельных расписаний. Fresh model/loop/simulation и player reports
+сверены с generation receipt121 и хэшами текущего дерева. Проверены672 Source
+moving actions и336 Native press/release actions. Negative zero-birth admission
+остаётся доказательством пропущенного elapsed движения в предыдущем варианте.
+Сохранён recoverable source checkpoint; Windows EXE не собран, game/GPU не запущены.
+Работа продолжается над связанными паузой/отпусканием и flight weapon actions;
+checkpoint не означает завершения полного variable FPS.
+
+---
+
+## 2026-10-01 — кандидатv122, paused weapon command contract
+
+Original C554C различает weapon1 и13. Для13 frame18 при непаузированном model
+создаёт105, sets pause bit8 черезA4A4 и clears channel morph черезA628.
+При pause frame18 остаётся level condition: busyC060C==0 clears pause и
+восстанавливает source model reference черезA5F0. Crossing-only event не может
+заменить этот уровень ожидания. Native post-command pass использует исходный
+callback и exact equality в reviewed command scope, exits before scalar drive
+and zero-angle stores. Source путь сохраняет всю исходную функцию. Реальные
+38F38/38F7C morph writes включены в expanded fixture closure; validation идёт.
+Игра и GPU не запускались, новый Windows EXE не создавался.
+
+---
+
+## 2026-10-01 — кандидаты122–126, связанное pause/morph/attachment evidence
+
+122: weapon1 ground duration3 tick21 имел child83 Y228.312 против245.5.
+123: пять surface phase writes82 ограничены local Source end, probes остаются
+непрерывными; actual actor contactD4 остаётся немедленным. Затем weapon13 duration7
+не освобождал105 наtick9: raw end pulse уже исчез. 124: reviewed retirement owner
+потребляет сохранённое end observation после real A3B0 getter на Source end.
+125: fixture выполняет настоящие A628/A5F0 writes и задаёт actor model slot1,
+проверяет pause/busy/morph на каждом Source endpoint. Native input expanded432;
+Original ctor/pool at preceding action position обнаружил airborne weapon1
+Y228.5 вместо231.45 при B73ms. Global tick begin не совпадает с action interval.
+126: snapshot в cue-3, action-clock boundary; epoch/actor/physical/model allocation
+и animation run защищают чтение, restoration отдельно защищена от смены owner.
+Первое60Hz/divider2 расписание прошло все Source/pause/Native input branches.
+В добавленном model rebind fixture первоначально повторный bind не освобождал
+старые channels. Исправлен fixture: real release followed by bind, как в игре.
+Model/loop/simulation126 прошли. Loop closure дополнен explicit abort boundary
+C554C: weapon path проверяется настоящим callback в player closure, loop его
+не вызывает. Полный player126 остановился на прежнем forced-bounce duration;
+новая Source phase gate выявила зависимость его clock от глобальной фазы.
+Player отчёт126 отсутствует; checkpoint121 сохраняет прежний verified результат.
+No Windows EXE, game или GPU.
+
+---
+
+## 2026-10-01 — v127–128, независимые bounce clocks и точная скорость
+
+126/73FPS/divider2: bounced0.0684932, conversion0.433333, duration0.364840
+против0.333333. 127 привязал Source origin к actual bounce commit; duration
+стал ровно11 Source ticks (0.366667): повторное округление дробных gravity
+subtractions держало скорость чуть выше exact10 на границе десятого такта.
+128 использует model allocation-scoped scalar baseline для reviewed CB400
+при Native projectile ownership. Existing gravity integral даёт paired displacement,
+затем paired cache публикуется с точной baseline velocity. Original/nonowner пути
+сохраняют прежние operands. Contact/impulse/reallocation invalidates scalar sample.
+Full player matrix и fresh model/loop/simulation прошли; сохранён исходный checkpoint.
+Длительность/траектория/Source pool assertions не ослаблялись.
+Windows EXE не собран. Работа продолжается; game/GPU не запущены.
+
+---
+
+## 2026-10-01 — v129–130, полёт и строгие Source/Input сравнения
+
+129 остановилась на approved-site gate нового zero-cue27; после проверки пары
+C533C/C535C generation130 завершилась. Снимок полёта вычисляет чистые Original
+C1A3C/C1ADC/C0D88 commands под приостановленными native часами, затем интегрирует
+пару velocity/displacement и передаёт её действующему collision solver.
+Sample invalidates при записи контактов/ввода, смене владельца/clip и clock gap.
+
+Строгий Source case выявил раннюю нормализацию360→0: команда с равными направлениями
+сохраняет raw representation до своего конца. Другой Source release case ошибочно
+сохранял A из старого OR poll window; fixture теперь принимает те же входные команды,
+что и Native. В off-grid partition fixture secondary model наследовала фазу прошлого
+сценария: initial60=24 и73=16.8904. Реальная rebind и одинаковое начальное состояние
+устранили различие; spatial/model/discrete допуски не ослаблялись.
+
+Flight damage использует реальные C2978/C6D2C/C0738, отдельное наблюдение rumble8/3/1,
+настоящий status pointer/health limits и сравнение с Original command. Native stops
+при state48 до второго callback и не меняет RAM при последующих обновлениях.
+Полная матрица и четыре fresh отчёта130 прошли; checkpoint сохранён. Windows/game/GPU
+во время этих проверок не запускались. Работа над полной целью продолжается.
+
+---
+
+## 2026-10-01 — общий test-034 после verified130
+
+Windows x64 MSVC compile/configure прошли. EXE/source/receipts и четыре актуальных
+CPU-отчёта130 сверены;32 dependency pins и donor проверены без изменений.
+EXE сохранён как D:/Games/DoraRecomp3/testbuild/Dora64-3-test-034.exe; предыдущие
+EXE и общие DLL сохранены. Упаковка не трогала ROM, port_*.json и saves.
+SHA256: ed0337e4fcf2c441eccf757bf9043d501257f8157c455a53cf9ca2e69161f23a.
+Game/window/renderer/GPU не запускались. Это connected milestone, не завершение
+полной цели. Продолжается перевод остальных действий и реакций персонажа.
+
+---
+
+## 2026-10-01 — проверка test-034 пользователем и следующий candidate136
+
+Пользователь сообщил: «запустил посмотрел вылетов нет, вроде работает».
+FPS/место/длительность не зафиксированы; не выдавать за полный gameplay validation.
+Windows034 остаётся замороженной verified130, сама игра/renderer/GPU не запускались.
+
+Candidate136 добавляет healthy flight48 с Original speed-only command вместо
+ошибочного общего orientation forecast. Source comparison на ceil nanosecond
+после clip-end увидел57 вместо48: точный Source endpoint лежал на1/3ns раньше.
+Независимый reference теперь вызывает реальный следующий первый C6D8C на отдельном
+снимке для этого фактического времени, без будущего movement/model/timer update.
+Дискретные/пространственные/model assertions не ослаблены; диагностика продолжается.
+
+---
+
+
+### 2026-10-01 — damage136–140, диагностика, без нового EXE
+
+Test034 пользователь запустил без вылетов; конкретный FPS/сцена/длительность
+не сообщены. Source checkpoint130/EXE034 сохраняются. Healthy48 использует
+C1A3C без C1ADC и сохраняет направление удара.137 rearm30 не уменьшается хвостом
+того же Source периода; следующий период следует Original blink/decrement.
+
+138 впервые исполнил реальную35→landing36→ground цепочку. CPU при60FPS выявил
+лишнее0.15 displacement при18→0 и недобор0.75 при12→18: bounded drift с clamp
+не воспроизводил конечное Source kick/drift.139 guarded drive baseline сохраняет
+float Source endpoint и его displacement; unclipped motion остаётся непрерывным,
+clipped drift использует Source endpoint. Нет snap/позиционной коррекции.
+Диагностика13960/73/divider2/camera12 PASS со всем прежним набором.
+
+Source сравнения используют ceil nanoseconds: дробная наносекунда после clip-end
+уже включает следующий первый callback и мгновенное ground heading. В эталоне
+исполняется реальная команда и second body только для рационального остатка;
+будущая Source анимация/таймер не продвигаются. Ground duration7 требует40ticks,
+а не30: landing24 + recovery7.140 вводит здоровые37/38/39, counter44/импульс70,
+landing baseline и rearm; широкие проверки ещё pending. Отчёты130 stale для140.
+
+### 2026-10-01 — уточнение damage140/141 reference и Native fixture
+
+Heavy140 Source episodes60/73/360, divider2/camera12 PASS. У tick95
+ceil после landing эталон сначала оставлял старые flags: Original C0C7C
+обязан снова выполнить probes перед следующим first callback; после
+включения реального probe и C0F1C в рациональный остаток расхождение
+исчезло без дополнительной правки production. Полный набор ещё pending.
+
+Native damage fixture сначала передала0 вместо clip указателя в B6BC;
+ASan обнаружил чтение вне RAM. Это ошибка нового тестового rebind; исправлена
+на реальный B744/B6BC с clip. Затем uncovered E59BC потребовал расширить
+CPU closure настоящими E59BC/E5894/contact reset. Непортированный E6968
+visual allocation явно инструментирован как отказ выделения с проверкой
+asset/позиции/однократного вызова; не объявляется проверенной визуальной
+системой или полным Source object lifetime.141 подключает32/33/34 и их
+landing/rearm, диагностика продолжается. EXE034/source130 не изменены.
+
+###2026-10-01: Native damage141→142 — реальные пути и stale landing
+
+Отрицательные CPU результаты: raw D4B8=FA теста перезаписывался C08E8;
+исправлена комната, floor triangles получают byte+40=FA, настоящий probe
+получает kind. Исходный2A==1 выбирает35 даже в прыжке: Native airborne fixture
+исполняет настоящую C0738(-2), затем D8=10000 реакцию без special timer expiry.
+
+Native обычный удар73ms на73FPS переходил35→36 при y=3.87246, хотя60FPS
+ещё оставался35. Причина production: SourceContact, снятый до удара, сохранял
+старый floor2 в новой реакции. Новый guard state/model/lifetime/run при первом
+реальном hurt callback принимает свежий C0C7C; затем сохраняет Source observation
+только для той же реакции. Это исправление142; проверка в процессе.
+
+Fixture добавляет192 Native schedules и72 lethal ground handoffs; Source48
+сценариев каждой реакции32/35/37/48. E59BC/E5894 исполняются Original;
+E6968 checked failed-allocation boundary не проверяет настоящую жизньFX.
+Свежие отчёты не заявлены до завершения проверок. EXE не собирался.
+
+###2026-10-01:142→143 — свежий contact probe на Source границе
+
+Полный player142 остановился на Native heavy hit,144FPS/divider2/camera12,
+duration3 sample95 field0:1712.71 против1725.45. Это не общий PASS142; три
+независимых model/loop/simulation142 прошли. Причина дополнительного расхождения:
+pre-C8 snapshot получал flags от probe до завершённого collision предыдущего
+интервала.143 снимает Source observation непосредственно в reviewed landing
+hook после настоящего C0C7C. Epoch/reset плюс actor/physical/model lifetime/run,
+state и рациональный период защищают сохранение; новая реакция получает fresh
+probe. Continuous collision всё время Native; Source landing command не зависит
+от числа кадров. Диагностика14360/144FPS camera12 divider2 прошла полный subset.
+Не ослаблены допуски, не скорректирована позиция, игра/GPU/EXE не запускались.
+
+###2026-10-01:143→144 — длинный healthy удар на20/360FPS
+
+Полная матрица143 выявила heavy duration3,360FPS/divider3, tick82: y681.037
+vs681, vy-54.4995 vs-54.5; состояние37/counter83/здоровье10/клип2 совпали.
+Диагностический repeat подтвердил именно накопление float subtractions.
+Толеранс0.035 не изменён. Три независимых отчёта143 прошли; player143 не PASS.
+
+144 переносит Source-baseline подход из scalar drive на reviewed player gravity
+C0FA8. Один исходный float velocity−gravity и terminal−55 задают endpoint;
+paired displacement вычисляется по той же rational phase. Owner/model lifetime/
+run, Source period, force, phase gap и внешняя запись velocity инвалидируют
+снимок. Clipped Source kick drifts at its endpoint без backward correction.
+Standalone/native components сохраняют прежний fallback, Original вне scope
+исполняет исходное вычитание. Свежая генерация144 и CPU диагностика запущены.
+Source checkpoint143 НЕ сохранён; последний verified130/Windows034 неизменны.
+Следующий hazard145 script подготовлен, но ещё не исполнялся.
+
+###2026-10-01:144→145 — precise horizontal accumulation до collision
+
+Диагностика14460/360FPS divider3 camera12 прошла прежний vertical failure,
+но на Source heavy tick117 x1900.12 vs1900.08 выявила rounding coordinate adds.
+Velocity18/yaw45.0003/state4/cooldown15/counter96/health10 совпали.
+145 аккумулирует native deltas в double только внутри одного Source периода,
+от actor position baseline, до original MIPS Add X/Z и collision probes.
+Expected float position проверяется на следующем шаге: collision/внешняя запись
+ребазирует накопитель. Actor/physical/model lifetime/run, rational period и
+phase gap защищены. Не меняется position после collision и не ослаблен tolerance.
+Standalone motion checks получают прежний fallback при motion_call=false.
+Verified checkpoint130/Windows034 сохранены;145 generated и диагностика запущена.
+Подготовленный hazard146 script ещё не исполнялся.
+
+###2026-10-01:145 verified CPU checkpoint, продолжение без EXE
+
+Полная матрица145 прошла384 Original функций и четыре fresh отчёта; source hashes
+и generation receipt сверены. Healthy damage32..39/48 проверены через полное
+восстановление:192 Source episodes,192 Native hit partitions и144 lethal handoffs.
+Отрицательные142144FPS/stale-contact и14320/360FPS/vertical float drift,144 horizontal add drift сохранены
+в журнале, допуски не ослаблены.
+Новый EXE не собирался. Следующим подключается hazard40..45 с original задержкой
+15→16, импульсом70, collapse/rise и rearm; полный объём остаётся активным.
+
+###2026-10-01:145→146 — Original hazardous40..45
+
+Четыре fresh145 отчёта и source hashes проверены; checkpoint145 SHA256
+d0cceee8ff52981f703ee13af570677bd60aef9a5fd74ec5a956f4031804d757.
+146 добавляет reviewed-ROM hooks C6418 delayed counter/kick/drive иC67D8
+one-shot impulse/count, landing C63D8/C67A8 и recovery C66B0/C6A0C.
+Source counter40 держит freeze до15,16 один раз70 kick, затем100 drive.
+Native floor F3/F8 episodes используют настоящие probes и C2978 health−1;
+FX E5B20/E5A24 исполняются с проверенным отказом E6968, без fake successful FX.
+404 Original функции в CPU closure146; свежие полные отчёты пока pending.
+FX/color visual и реальные уровни не заявлены проверенными. EXE не собирался.
+
+###2026-10-01:146→147 — Source delayed counter и own pause run
+
+Диагностика146 на60FPS/divider2 reaction40 duration3 Source tick15: Native
+count100/speed6/clip1/x504.243 против Original count16/speed0/clip3/x500;
+y168.5/vy68.5/health10 совпали. C63F8 count16 unpause меняет model run token,
+и Native guard ошибочно разрешал ещё один counter increment в том же периоде.
+147 ROM-reviewed hook C6500 фиксирует ожидаемый run после собственных pause
+commands; actor/physical/model lifetime/period guards сохраняются. External
+run replacement по-прежнему инвалидирует guard. Полная проверка ещё pending.
+
+###2026-10-01:147 full negative — constant velocity integer room-edge pushout
+
+Полная147 обнаружила165FPS/divider2/mode4/duration3/sample151 Z1951.5 vs1952.5;
+sample152 снова совпал, health/state/count/timer/velocity совпадают. BF828
+Original probes body offsets and integer corrections8→4→2→1 near room edge.
+Standalone Native diagnostic имеет другую camera/input prehistory и другое
+раннее расхождение, не воспроизводит этот exact case. Связанная165 диагностика
+запущена с исходными группами.148 prototype наблюдает итог solver для expected
+guard, сохраняет candidate только при unchanged velocity и сбрасывает его при
+реальном новом velocity command/contact external write. Итоговую позицию после
+collision не корректирует. Генерация/доказательство гипотезы pending;147 archive
+не создавался. Следующие46/47 подготовлены только scratch helper, не применены.
+
+###2026-10-01:148 verified hazardous40..45 вместе с остальным healthy damage
+
+Полная связанная матрица148 прошла404 Original функций, ASan/UBSan/LSan и все
+24 FPS/divider/camera combinations. Четыре свежих отчёта и source hashes
+сверены.96 новых Source hazard schedules,288 Native real damage schedules
+через полное восстановление,144 lethal handoffs; старые группы сохранены.
+146 own-pause и147165FPS/camera2 integer pushout failures исправлены148, без ослабления сравнения.
+Verified148 source архивирован; EXE не собирался. Далее46/47 ожидание20,
+one-shot15/yaw reversal и clip30 recovery, затем остальные полные системы.
+
+###2026-10-01:148→149 — recovery31 и one-shot waiting46/47
+
+Reviewed Original31 grounded clip10/scalar stop/clip-end return; contact loss
+переходит к уже подключённому falling14. Пустые slots19/23/26/30 имеют обе
+jr-ra/nop handlers и не являются неперенесёнными активными mechanics.
+46 first counter20 decrements once per Source period; second count1 kick15,
+speed param6/yaw+180/unpause once. Separate phase guards adopt own run atC6BCC.
+47 end restores ground/rearm30. Source constructor schedules31/46 и настоящий
+C2978 Native ctrl50 hit/health/rumble/E5C98 command подготовлены. Generation,
+focused/full validation149 пока pending; verified148/EXE034 сохранены.
+
+###2026-10-01:149→150 — waiting46 animation CC delay-slot store
+
+Focused149 failed60FPS/divider2/duration3/Source tick1: model counter3 vs2,
+physical/count17/health10/state46 совпали. C6B28 delay slot C6B2C stores CC=1
+на каждом Original second body. Native repeated impulse suppression atC6B20
+skipped that shared store; C8B28 clears CC before body, so default rate3 leaked
+into subsequent parts.150 repeated branch executes the reviewed common CC=1
+store before jumping to no-impulse tail. First command and Original unchanged.
+414 Original closure, fresh generation/focused checks pending, no EXE.
+
+###2026-10-01:150→151 — independent camera order and waiting constructor clock
+
+Strict trace150: at Source tick46, Native camera yaw0 vs stale reference150;
+the first ground direction45.0003 vs195 follows the same camera difference.
+Adding actual Original player→BBDDC→DBD58 in independent reference corrects
+the direction, preserving all18-field tolerances. New46/31 fixtures now also
+acquire after a complete Original world update. Diagnostic then failed Native
+mode6 at83ms/73FPS: count19 vs60FPS20, because extra render part invoked the
+new46 first callback in its constructor period. C6A9C marks that first phase
+consumed; second46 still executes immediately. The next Source period does
+the first decrement. Primary46 clip limiter uses actualrate1, mirror3.
+Generation151/focused/full validation pending; no EXE/game/GPU.
+
+###2026-10-01:151→152 — exact Source vertical coordinate before floor query
+
+151 focused negative:Native mode6/divider2/duration3/73FPS sample38, baseline
+Y4.93372e-08/vY-13.5/state46 vs actualY0/vY0/state47. Both previous three
+Source samples and count/health/clip agree. Rounded substep height accumulation
+determines which side of the exact floor endpoint the player reaches.152 adds
+a private height clock only when the real player gravity command still owns
+the paired velocity. Computes cumulative Original kick/drift from guarded
+initial height; rounds displacement and coordinate add once, before Original
+BF828 geometry. No epsilon snap or postcollision coordinate correction.
+External/collision height changes, gravity commands, identity/run/period/phase
+changes rebase immediately; flight/nonmatching motion retains existing path.
+Focused/full checks pending, verified148 and EXE034 preserved.
+
+###2026-10-01:152 verified — recovery31, waiting46/47 and exact height endpoint
+
+Четыре fresh full reports152 сверены с receipt/source SHA.414 Original функций,
+24 FPS/divider/camera settings, ASan/UBSan/LSan,48 recovery31 Source schedules,
+48 waiting46/47 Source и336 Native actual-hit full-recovery schedules; все
+старые группы прошли. Negative149 CC delay-slot,150 stale reference camera/
+constructor-period decrement и151 floor-rounding documented and fixed152.
+Verified source checkpoint152 preserved; no EXE. Next connected special actions
+continue, alongside remaining full variable FPS scope.
+
+###2026-10-01:153 candidate — stop65 and scripted turning66
+
+Reviewed C83D8/C844C stop/cancel and C84F8 shortest-direction/dead-zone30,
+signed30 actor yaw command, zero scalar speed. Native66 latches angular
+command per Source period, invalidates for real target/D4/angle writes,
+identity/run/time gaps. Speed reset is a discrete command before genuine
+Native flight C0D88 integration, never repeated at every render part.264
+Source schedules prepared (including ground/flight, target replacement and
+A/B cancellation). Generation153 complete, focused pending. Verified152
+archive67afc7fdda05ebfcfe37f0be8161359e798403a2aeb892fd9d9c5aa85811cb76 preserved.
+No EXE/game/GPU; broader64/67/deaths and remaining systems continue.
+
+###2026-10-01:153→154 Source-aligned cancellation fixture timestamp
+
+Focused153 negative60FPS/divider2/scenario1/tick21: model counter30 vs0,
+all motion/state/timer/health fields match. Native input press was applied
+after ceil(Source period11),366666667ns, reference used the rational boundary
+366666666.666ns. Clip origin differs by a fraction of nanosecond, enough for
+different raw wrap representation despite same rounded guest float30.154
+places the Source comparison edge at period12 start400/600ms, exactly
+representable for both dividers. No production code or tolerances changed.
+Off-grid input remains a separate Native partition requirement, not silently
+compared with a backdated Source command. Focused154 pending.
+
+###2026-10-01:154→155 — scripted66 has fixed flight projection
+
+Focused154 abort:Flight projection without motion command. Ground65/66 cases
+passed before flight66. Original66 second body C84F8 sets speed0 and omits
+C1A3C/C1ADC; C0D88 in the main dispatcher projects the already set speed.
+Forecast adapter previously covered only flight actions which call those
+command helpers; admitting66 incorrectly demanded an open forecast atC0E24.
+155 explicitly uses fixed-velocity projection for66. Existing reviewed
+paired projection/translation remains continuous and Original unchanged.
+The per-period speed command guard remains safe for external writes but66
+has no flight acceleration to reset. Strict focused/full checks pending.
+
+###2026-10-01:156 prepared off-grid special command integration matrix
+
+Adds144 Native schedules for65 A/B cancellation and66 target/turn-disable,
+angle/speed writes, actual model rebind. Events73/173/273ms are compared with
+60FPS at common83/183/283ms and31 later Source endpoints, both dividers and
+cameras. All18 gameplay fields retain strict discrete and bounded numeric
+comparison. Source264 comparisons remain. No game/GPU/EXE; full scope continues.
+
+###2026-10-01:156 focused PASS;157 special animation/surface recovery prepared
+
+Focused156 strict264 Source +144 Native off-grid65/66 scenarios passed all24
+settings,420 Original functions and ASan/UBSan/LSan. No formal156 report.
+157 reviews64 character0 frames48/318, character5 frames111/336, other frame0;
+splits advance at those boundaries without post-consuming preceding-frame commands.
+67 initializer and ten-step recovery count retain Source cadence/constructor period;
+speed5 is a guarded period command, flight67 uses actual fixed projection.
+168 Source schedules compare all22 fields, including phase and actual command counts,
+complete animation/cancellation and surface exit, independent Original world/camera.
+Synthetic assets/resource lookup/sprite boundaries remain explicit; real visual
+resource allocation/lifetime is not established. No EXE/game/GPU; scope continues.
+
+###2026-10-01:157 compile-only failure;158 fixture repair
+
+157 generation passed; focused C++ -Werror rejected a new read-loop indentation
+and a mistaken C7840 helper name (actual second57 is C7810).158 fixes both and
+explicitly restores independent reference resource counts before Native pass.
+No behaviour verdict/EXE/game/GPU. Fresh generation/focused/full pending.
+
+###2026-10-01:158 ASan fixture failure;159 real auxiliary model3 lifecycle
+
+158 compiled426 Original functions; ASan trapped C2A2E8 called by actual64
+C02A8. New synthetic actor lacked B0 mesh-resource table, unlike its existing
+B4 clip table.159 supplies separate B0 index3->real synthetic mesh asset and
+executes actual C2A100/B560 bone creation, C38F38 attachment, C0398/A0AC/B77C
+retirement. Character1 acquired auxiliary lifetime recreated before Native
+acquisition after independent Original reference release. No production change,
+no tolerance change; sprite5 remains instrumented. Fresh checks pending.
+
+###2026-10-01:159 strict recovery mismatch;160 missing next Ground command
+
+159 focused426-function check completed new64 cases at60FPS/divider2, then
+67 scenario5 tick16 failed only primary clip50 vs51. At ceil533333334ns the
+independent Original next Ground first callback C3300/C3124 already belongs
+to the time: speed now0 changes clip2 to0 and truncates seek to an even frame.
+160 remainder now executes that actual callback for recovered67 Ground states.
+No production or tolerance change. Fresh connected focused/full pending.
+
+###2026-10-01:160 focused PASS;161 real idle entry/Native constructor matrix
+
+160 strict168 new Source64/67,264 Source65/66,144 Native65/66 passed24 settings
+with426 Original functions/ASan/UBSan/LSan.161 extends Source64 with real C3300
+idle timer298->299 acquisition, then threshold300 at health1/maximum10 for
+characters0/1. Adds192 Native schedules: actual constructors73ms, all3 event
+branches through complete model3 creation/attachment/destruction, A173/release273,
+ground/flight67 F1 exit173ms and argument1 immediate return.23 fields, all command
+counts/discrete states exact; compare60FPS at common83/183/283ms and121 later
+Source endpoints. No EXE/game/GPU. Formal152 remains last complete checkpoint.
+
+###2026-10-01:161 proved idle command timing;162 Source-start idle prelude
+
+161 focused426 functions:60FPS/divider2 scenario7 tick1 state65 had Native
+clip9e-8 vs Original3 and count0 vs300. Prior tick-end counter deferred action
+entry and repeated reset once the new state was visible. Fixture health1 selects
+65, not64 (C3300 actual branch);162 uses health10 for reviewed64 idle entry.
+C8E58..C8EAC increment/clamp/reset now executes once per Source period before
+first callback, guarded actor/physical/control/model/lifetime/time, ignoring its
+own clip-run changes. Standalone Original untouched. Source ceil reference uses
+actual verified Source61 prelude, all21 instruction addresses checked, no copied
+timer arithmetic. No tolerance change/EXE/game/GPU; fresh checks pending.
+
+###2026-10-01:162 reached Native immediate-return fixture;163 floor correction
+
+162 Source idle fix reached expanded Native matrix; ASan caught actual Ground
+C2E94 after mode7 immediate67 argument1 return on F1. Fixture had combined
+normal immediate return and a door surface without scene door data.163 restricts
+F1 to waiting modes5/6; argument1 uses ordinary floor. Production162 unchanged.
+Formal report limitations now explicitly include64..67/actual model3 lifecycle
+on synthetic assets and instrumented sprite5, plus verified Original idle region.
+No tolerance change/EXE/game/GPU; fresh focused/full pending.
+
+###2026-10-01:163 verified connected special actions, real idle and full recovery
+
+Four fresh163 reports match receipt/source SHA.427 Original routines/regions,
+24 settings/ASan/UBSan/LSan,216 Source64/67 +192 Native constructor/idle/full
+recovery +264 Source65/66 +144 Native off-grid commands. Prior connected groups
+all passed.157 compile-only/158 missing B0 mesh fixture,159 next Ground seek
+reference,161 idle tick-end entry failure and162 invalid immediate-return door
+fixture documented and corrected without weaker tolerances. Idle162 production
+region moves to Source start before action choice and suppresses own repeated
+reset/rearm. Native auxiliary model3 lifecycle checked on synthetic resources;
+sprite5/real visuals remain unverified. Source163 archived, no EXE/game/GPU.
+main/HEAD/donor32deps/packaged034 remain unchanged. Full scope continues49/63,
+death/other actions, active AI/platforms/scenes/scripts/minigames/2D.
+
+###2026-10-01:166 verified healthy hover49/63 and complete cancellation recovery
+
+164 negative: Source21 X555 vs557.75; repeated first49 observed its own
+second counter increment.165 threshold guard fixes it; negative165 landing
+at tick90 phase denominator-20 exposed repeated fall9 contact probe entering
+landing0.333ns before Source first. Later state1 vs10 at Source111 clip60.
+166 preserves actual first C0C7C observation per guarded action Source period.
+Source63 fixture starts D8=0;10000 is a real hit command, not an idle timer.
+144 Source +144 Native connected schedules passed;435 Original routines;
+four matched fresh reports, ASan/UBSan/LSan,24settings. Actual health loss and
+ctor49 invoked at off-grid timestamps; external selecting producer unreviewed.
+Native counter/state/command counts exact; tolerances unchanged. Loop linking
+needed three explicit abort boundaries for new geometry symbols; gameplay
+executes them in player435 closure, loop test forbids unexpected invocation.
+No new EXE/game/GPU, donor/32pins/main/034 unchanged. Full scope continues.
+
+###2026-10-01:169 connected death/fractional fade, partial checks only
+
+167 candidate enables50..56 bodies and first Source commands;168 adds pre-EF5B0
+resource barrier and gameplay command stamp. Fixture corrections: actual fade
+alias=dora3_fade_tick; BBF34 list at80217120, not80207120; Original destructor
+clears actor/kind markers, does not promise pointer74 becomes zero.
+168 strict negative:30Hz common Source boundary alpha31 vs32 after rounded
+command origin.169 preserves exact sixtieth-ns start and fractional elapsed;
+no widened tolerance. Terminal game-over sample belongs to new fade owner:
+compare exact commands/counters, not new scene alpha after elapsed part.
+All336 Source/Native death/game-over/actual model cleanup schedules passed,
+466 Original routines,24settings and sanitizers. Fresh frame-time and loop
+reports match169 receipt/source hashes. No full169 checkpoint/report/archive;
+last complete166. Resource stream lookup/free and sound instrumented; real
+level/FX/GPU unverified. Healthy51 respawn and lethal entry paths pending.
+No Windows/EXE/game/renderer. Continue entire authorized variable-FPS scope.
+
+###2026-10-01:174 connected respawn/lethal pending, actual byte status correction
+
+169 strict cancellation negative:old C70C8 second callback resumed after
+EF5B0 reset cleared motion_call.170 invocation-owned epoch survives reset;
+C8F10/F34/9048 stop old second/motion/model continuation,336 strict PASS.
+170 respawn negatives:synthetic one-bone model lacked weapon nodes5..12;
+fixture repaired actual13-node tree. Source C9BE0/BA084 commands at
+566666666+40/60ns vs Native BA0840 after reset.171 preserves first-callback
+command timestamp through epoch cancellation,528 focused PASS/473routines.
+172 adds pending-room/hold guards + pre-B9FDC barrier, actual post-ready
+C9C58/Original complete update/new-model Native reacquisition:528+144 PASS,
+489 routines. Synthetic room boundary explicitly excludes real DMA/assets.
+173 lethal matrix failed before Native acquisition at32 actual0health:
+801B361B+2*char is a byte record, not word-aligned.174 uses byte_pointer
+range2 for statuses, keeps structural pointer alignment. Second fixture
+negative was an unrelated default rumble assertion; actual reaction-specific
+rumble arguments now checked through existing exact watch (10,2,2 or8,3,1).
+Full174 validation pending; last complete166, no new EXE/game/GPU.
+
+### 2026-10-01: verified175 connected death/respawn/lethal paths
+
+Full player489 Original routines/regions,1392 death schedules and144 post-ready
+reacquisition, ASan/UBSan/LSan passed. Five fresh matched reports and stability175.
+Negative169 old second continuation after retirement -> invocation epoch guard.
+Negative170 respawn BA084 command at zero after C9BE0 -> retained SourceTimestamp.
+Negative173 real byte health pointers rejected by word alignment ->174 byte range.
+No relaxed assertions/tolerances. Actual room loading and external49 producer
+remain explicit boundaries. No new EXE/game/GPU; main/donor32pins/034 unchanged.
+User requested persistent semantic names and variable roles for reviewed decomp
+source and updates to documentation; prepare generator-backed compatible aliases.
+
+### 2026-10-01: semantic decomp names177, ABI and exact C preserved
+
+Catalog525 descriptions/190 new names/305 register scopes; no guessed global
+register meaning. C8 s0 is controller index. C0738 a0 health delta ends before
+the same register becomes status pointer. ROM hashes, section and scope words
+are checked. C source names are compatible macros, no wrappers/copies/ABI drift.
+Negative176 compiler comparison detected diagnostic __FILE__/__LINE__ drift
+caused by temporary canonical path and inserted comments.177 adds original
+#line positions and maps only the temporary canonical file path back to the
+same translation unit. No tokens excluded/tolerances relaxed:96 units equal
+after preprocessing and compile as C17. Exact canonical C and runtime sources
+match full175 checkpoint. Frame-time177/metadata/doc check/stability177 PASS.
+Future work instructions and function/variable docs added; old full function
+names in address-map replaced, compatibility mapping retained. No EXE/game/GPU.
+
+### 2026-10-01: остановка по просьбе пользователя
+
+Пользователь попросил на сегодня стоп и сводку. Primary177 verified naming,
+runtime/code equivalent to full175 checkpoint. Surface/door phases prepared
+only in external stage, not deployed/tested; no178 generation, no active jobs,
+no new EXE/game/GPU. Detailed continuation state saved in work-in-progress.md.
+Resume only on new user instruction; no schedule/goal automation was created.
+
+### 2026-10-02: verified181 door59/surface60..62 connected block
+
+216 Source surfaces +144 off-grid Native +96 door schedules, all24 settings.
+Fresh503-function player including previous lethal/respawn groups PASS; all six
+integration/naming reports and stability181 matched. Negative178 unconditional
+F4 producer clip resets -> Source period constructor/run latch; no relaxed
+geometry/state tolerances. Negative179 inserted jump target had no C label ->
+generator creates guarded synthetic label at checked successor. Door testF2
+corrected toF1 after actual surface-mode prelude; fade fixture constructor order
+and scene-selection address/condition corrected from Original. Full181 fixture
+retained previous death barrier count -> death-watch-only barrier predicate.
+Actual gameplay dispatch/runtime logic wasn't relaxed. Script camera command
+writes execute; camera advancement and actual room loading still pending.
+Persistent531 descriptions/196 names/307 variable scopes, exact96-unit proof.
+No game/GPU, no new EXE yet; main/donor/dependencies and034 preserved.
+
+## Windows test-035 — verified181, 2026-10-02
+
+Общий EXE после крупного связанного блока действий/урона/восстановления/
+смерти/возрождения/дверей/поверхностей скомпилирован MSVC и сохранён:
+D:/Games/DoraRecomp3/testbuild/Dora64-3-test-035.exe.
+SHA256: d703851e214859d70a4bd074d7989a891cf2e1bb1fe2455ede0825ea4e88ec6b.
+Шесть текущих CPU reports, generation181, donor и32pins сверены.
+ROM/port settings/saves/shared DLLs/034 сохранили прежние SHA.
+Game/window/renderer/GPU не запускались; проверки прохождения не выполнялись.
+Windows source frozen181. Разработка продолжается с active objects/AI;
+общий variable FPS ещё не завершён. Новый EXE на каждую малую правку не делать.
+
+---
+
+
+Guard при переносе Windows receipt отказал из-за исторически устаревшего before.json. Перед обновлением guard проверены фактический034 EXE/receipt и все compiled035 source hashes; затем перенесён только проверенный035 receipt. Это не изменение игрового кода.
+
+## Продолжение v182 — простые active objects6/80
+
+Подключены два дополнительных callback: kind6 однократно включает clip0 вstate1,
+kind80 имеет отдельный Original no-op. Движение/model/opacity/timers выполняются
+на Native dt через общий dispatcher, live callback identity проверяется.
+Focused world CPU PASS:96 Source сравнения с frozen unpatched dispatcher61,
+96 off-grid pause73/resume173/rearm273 и912 full-RAM Original сравнения;
+все24 settings, ASan/UBSan/LSan. Старый mock Source AI теперь synthetic kind7,
+чтобы actual6 проверялся без имитации. Первый diagnostic неверно фильтровал
+trace clip entry как70A50; Original core trace8002A328 имеетkind1000. Fixture
+исправлен по generated Original, runtime и допуски не ослаблялись.
+537 описаний,202 смысловых имён,308 областей переменных; names182/docs PASS.
+Полный связанный player checkpoint остаётся181; новое покрытие пока focused world.
+Windows035/source181 frozen и сохранён, новогоEXE для этого малого шага нет.
+Разобраны функции orbital71..74: circle3°, vertical10°, yaw30°/возврат; перевод
+и connected tests продолжаются. Остальная общая цель variable FPS не завершена.
+
+---
+
+
+## Продолжение v185 — движение объектов по окружности и собственное время появления
+
+Подключены dora3_orbit_object_kind71_74_update_801EEFC8 и его состояния:
+dora3_orbit_object_state1_update_801EECF4 сохраняет круг3°/Source период,
+dora3_orbit_object_state2_update_801EEE80 — поворот30° и возврат.
+Вертикальная волна10° использует исходный sin/cos и предыдущее значение угла.
+dora3_orbit_object_contact_command_801EEC70 проверяет настоящий режим4;
+в тесте комната1 исключает неподтверждённую сюжетную ветвь dialogue producer.
+Общие перемещения сохраняют полный velocity offset после абсолютного XYZ,
+а инкрементальные оси и остальные объекты получают Native dt.
+
+Focused CPU PASS:96 Source/96 Native сценариев простых objects6/80,
+960 Source и480 Native сценариев orbital71..74,912 full-RAM Original
+сравнений; все24 настройки, ASan/UBSan/LSan. Есть движущаяся цель,
+contact/return, AI disabled/resume, pause73/resume173, внешние углы,
+rebind и настоящий destructor/constructor с повторным адресом модели.
+Новое создание в73/173ms сопоставлено с исходной логикой от момента рождения.
+
+Отрицательные результаты: moving-target diagnostic подавал новую команду после
+ceil, который уже начинал следующий период на долю наносекунды. Исправлена
+граница подачи команды, допуски не увеличивались. Реальное off-grid создание
+показало потерю дробного short-angle на общем Source такте: x=-490.413
+против -490.041. Исправлено собственным периодом newborn actor; planner
+делит обновления на его точных границах, pause сохраняет его возраст.
+Состояние привязано к actor/physics/model/lifetime; следующему pool slot
+и player возвращается общий clock. Команды сохраняют абсолютный world timestamp.
+Первый birth diagnostic отдельно выявил ошибку восстановления heap в fixture:
+не следует перевязывать старую модель перед созданием новой; исправлено без
+ослабления проверки освобождений. Source Original ветвь не менялась.
+
+Имена:542 описания,207 смысловых функций,312 областей переменных;
+включены проверенные FPR union aliases. Все96 C units имеют точный canonical
+round trip, одинаковые preprocessed tokens и проходят C17 syntax проверку.
+Model/simulation/frame/loop проверки185 прошли; full connected player185 идёт.
+Основной connected player checkpoint пока181; test035/source181 сохранён.
+Новый Windows EXE на этот отдельный шаг не собирался. Полный variable FPS
+для всей игры ещё не завершён; следующие группы — active city NPCs/platforms,
+реальное построение уровней, scripted camera/cutscenes, minigames и2D.
+
+---
+
+
+## Продолжение v185 — общий связанный CPU PASS
+
+Все шесть свежих отчётов player/model/loop/simulation/frame-time/names совпали
+с generation185 и текущими SHA исходников. Полный player check исполнил
+515 Original functions/regions и прежние группы движения, камеры, оружия,
+1392 lethal/death/respawn,144 post-ready и двери/поверхности вместе с новыми
+96 Source/96 Native простых объектов и960 Source/480 Native orbital schedules.
+ASan/UBSan/LSan прошли. Проверка стабильности сохранила main/HEAD, donor,
+32 dependency pins и034; frozen Windows035/source181 уже сохранён ранее.
+542 описания/207 смысловых функций/312 областей переменных; все96 C units
+сохраняют canonical/preprocessed C tokens и ABI. Документация синхронизирована.
+Игра, окно и GPU не запускались; новая сборкаEXE для этого шага не делалась.
+
+Разбирается следующая городская группа7/9: проекция скоростей, ожидание со
+сменой спрайта и событие после16 обновлений с удалением объекта. Новые имена
+и код подготовлены отдельно; в данном checkpoint185 их Native ownership нет.
+Сюжетная ветвь orbital dialogue, другие active NPCs/platforms, actual room
+construction/levels, scripted camera/cutscenes, minigames и2D ещё в работе.
+Общий variable FPS не завершён. Архив сохраняет проверенный связанный185.
+
+---
+
+
+## Продолжение v186 — городская группа7/9, CPU-проверка выполняется
+
+В текущую main рабочую копию подключены dora3_city_kind7_state_dispatch_8022D938
+и dora3_city_kind9_state_dispatch_8022DBB0. Первый сохраняет проекцию скоростей
+и переход со сменой спрайта на Source границе; второй —16 Source обновлений,
+абсолютный timestamp события15F, остановку пулов/игрока и реальное удаление.
+Native ownership требует live callback и verified loaded ROM .level1_slot1:
+другой overlay с тем же VRAM не получает эти правила. Новые Native-born модели
+получают собственный период, команды после счётчика сохраняют мировое время.
+Готовится Source/Native доказательство, feature ещё не объявлен проверенным.
+
+Fixture исполняет реальный sprite constructor, frame delays и actor/model
+retirement на синтетических assets; actual metadata kinds7/9 имеет sound0
+и drop3, поэтому эта ветвь не создаёт дополнительных drop objects. Добавлены
+12 смысловых функций,9 register scopes; теперь554 описания/219 aliases/321 scopes.
+Документация имён синхронизирована, names186/connected city check идут.
+Последний полный совпавший checkpoint —185 (архив v185-connected-world-objects);
+его успешные отчёты нельзя приписывать новым изменениям186. Frozen EXE035/source181
+сохранён, новой сборки не делалось. Игра/renderer/GPU не запускались.
+Полный variable FPS для остальных NPCs/platforms, уровней, скриптовых камер,
+катсцен, миниигр и2D остаётся незавершённым; работа продолжается.
+
+---
+
+
+## Продолжение v187 — город7/9 focused PASS, общий connected check выполняется
+
+Городские dora3_city_kind7_state_dispatch_8022D938 и
+dora3_city_kind9_state_dispatch_8022DBB0 прошли288 Source schedules и96 Native
+off-grid schedules на24 настройках (20/30 Source,60/73/120/144/165/360 render).
+48 ownership rejection scenarios подтвердили, что без verified .level1_slot1
+объект/модель не обновляются Native, а настоящий Source dispatcher сохраняет
+владение. Отдельная проверка исполнила реальные runtime DMA/load/unload guards
+для всех49 ROM overlay ranges, подмены того же VRAM, частичной перезаписи,
+родительских зависимостей, unload/boot reset и5 ожидаемых отказов81/85.
+
+Исполняются настоящие city contact mode4 producers (и skipped modes0/1/2/3/5),
+повторные контакты, подготовка dialogue descriptor/state, pool permission,
+player scripted state66, белый fade command, sprite pool bind/delay/release,
+16-update retirement и Native constructors на73/173ms. Первая CE0 sprite bind
+принадлежит началу Original sprite периода; выход CD4 и события counter — концу.
+Проверка heap учитывает ровно реально заменённые Original player model buffers
+60/6C/70; все city allocations освобождаются, geometry/остальные allocations
+совпадают. Ошибки fixture со статическим B4 contact list, resource id0 и смешением
+player/city sprite counters исправлены без снятия resource/destructor assertions.
+
+Теперь562 описания/227 смысловых aliases/330 register scopes; names187 подтвердил
+точный canonical round trip, одинаковые preprocessed tokens и C17 syntax для96
+C units. Документация имён обновлена. Source/render timing и ABI не переименованы.
+Общий player187 и model/loop/simulation/frame-time checks идут; последние полные
+совпавшие отчёты/архив185 остаются историческим проверенным checkpoint.
+Frozen Windows035/source181 и общие settings/saves сохранены; нового EXE нет.
+
+Контактная collision selection, продвижение/верстка/input диалога и sound queue
+ещё не проверены (initializer использует наблюдаемый sound queue failure).
+Реальная room construction/DMA, другие NPCs/platforms, уровни, scripted camera,
+катсцены, миниигры и2D остаются в работе. Полный variable FPS не завершён.
+Игра, renderer и GPU не запускались. Продолжается следующая группа.
+
+---
+
+
+## Продолжение v187 — городские7/9 прошли общую CPU-проверку
+
+Все семь отчётов player/model/loop/simulation/frame-time/names/overlay совпали
+с generation187 и текущими SHA исходников. Полный player check исполнил534
+Original functions/regions вместе с прежними группами движения, оружия, урона,
+смерти, восстановления, дверей и поверхностей. Новая городская группа прошла
+288 Source/96 Native schedules и48 отказов владения overlay. ASan/UBSan/LSan
+прошли; runtime overlay guards проверены для49 диапазонов и5 ожидаемых отказов.
+Сохранены562 описания/227 смысловых aliases/330 register scopes; canonical C,
+ABI и preprocessed tokens для96 C units совпадают. Документация синхронизирована.
+main/HEAD, donor,32 dependency pins, frozen Windows035/source181 сохранены.
+Новый EXE не собирался; игра/renderer/GPU не запускались.
+
+Отдельный новый сценарий ненулевого возвратного поворота выявил пропуск записи
+угла в delay slot на промежуточных Native кадрах orbital71..74. Старые сценарии
+этого не покрывали. Исправление и проверки обоих направлений через360 градусов
+подготовлены для188; данный архив187 сохраняет предыдущий проверенный объём.
+Разбор helper NPC75/76 и cat77 продолжается. Реальные комнаты/уровни, другие
+NPCs/platforms, script camera/cutscenes, миниигры и2D ещё не завершены.
+Общий variable FPS остаётся в работе.
+
+---
+
+
+## Продолжение v188 — возвратный поворот исправлен и прошёл общую CPU-проверку
+
+Новый отрицательный сценарий подтвердил пропуск delay-slot записи yaw между
+Native кадрами:350 вместо358.219 на73FPS. Теперь запись сохраняется, а state1
+переход остаётся на конце исходного периода.1152 orbital Source schedules,
+480 Native schedules и1376 промежуточных наблюдений угла прошли оба
+направления и переход через360 градусов. Городские288 Source/96 Native/48
+ownership rejection и все прежние player/weapon/damage/death/recovery/door/
+surface группы прошли вместе с исправлением. Все семь generation188 отчётов
+совпали по receipt и текущим SHA; ASan/UBSan/LSan и stability188 прошли.
+562 описания/227 смысловых aliases/330 register scopes сохраняют canonical C,
+preprocessed tokens и ABI для96 C units. Документация синхронизирована.
+
+В изолированной build-local подготовке189 настоящие helper75/76 и cat77 прошли
+864 Source/144 Native/72 ownership rejection schedules и1032 промежуточных
+yaw observations на24 настройках. Исполняются actual contact/descriptor/clip/
+answer/counter/destruction цепочки; outcome progression/input и sound execution
+остаются наблюдаемыми границами. Каталог189 подготовил573 описания/238 aliases/
+335 scopes. Перенос189 в main и его connected check выполняются следующим шагом.
+Игра/renderer/GPU не запускались, новыйEXE не собирался; frozen035/source181
+сохранён. Другие NPCs/platforms, комнаты/уровни, scripted camera, катсцены,
+миниигры и2D ещё в работе. Полный variable FPS не завершён.
+
+---
+
+
+## Продолжение v189 — helper75/76 и cat77 в main, focused PASS
+
+Настоящие callbacks/contacts летающих помощников75/76 и кота77 подключены
+к Native времени.864 Source/144 Native schedules,72 отказа владения overlay
+и1032 промежуточных наблюдения yaw прошли на24 настройках. Проверены реальные
+descriptor initializer, достаток/нехватка предметов, принятый/отклонённый ответ,
+повторные контакты, byte counters, model clips, покачивание, поворот/возврат,
+pause/rebind/external writes, constructors73/173ms, AI suppression/resume
+и настоящий destructor. Полный remaining heap/resource references совпадает.
+
+Actual initializer устанавливает pending answer1; итог ответа поступает через
+наблюдаемую границу ещё не переведённых dialogue progression/input. Внешний
+busy release после rational Source boundary нельзя записывать за долю ns до
+неё: только этот after-boundary event flush использует ceil. Обычная геометрия
+сохраняет floor. Cat descriptor зависит от выбранного персонажа801B374A;
+имена game-counter сохраняют исходное signed-byte переполнение/ограничения.
+
+573 описания/238 смысловых aliases/335 register scopes; names189 подтвердил
+точный canonical/preprocessed C и ABI для96 C units. Документация иaddress-map
+обновлены. Model/loop/simulation/frame-time/overlay189 прошли; stability189
+сохранила main/HEAD, donor,32pins и034. Full connected player189 выполняется;
+последний совпавший полный архив188 сохраняется. Windows035/source181 прежний,
+новогоEXE нет; игра/renderer/GPU не запускались. Исследуется следующая группа
+городских NPC13..22, включая связанную модель18/19. Остальные комнаты/уровни,
+NPCs/platforms, script camera/cutscenes, миниигры и2D ещё в работе.
+Полный variable FPS не завершён.
+
+---
+
+
+## Продолжение v189 — диалоговые helpers75/76 и cat77 прошли общую проверку
+
+Полный connected check исполнил545 Original functions вместе с прежними
+player/weapon/damage/death/recovery/door/surface/world группами.864 Source,
+144 Native schedules,72 отказа overlay и1032 промежуточных наблюдения yaw
+новой диалоговой группы прошли на24 настройках. Все семь formal reports
+совпали по generation189 receipt и текущим SHA. ASan/UBSan/LSan прошли;
+main/HEAD, donor,32 pins и frozen035/source181 сохранены.597 имён/262 aliases
+ещё не в main: это отдельно подготовленная кандидатная190 группа городских
+patrol callbacks13..17/20..22; её CPU-проверка продолжается. В main остаются
+573 описания/238 aliases/335 scopes с точным canonical C и ABI.
+Нового EXE нет; игра/renderer/GPU не запускались. Остальные состояния NPC,
+связанная модель18/19, комнаты/уровни, script camera/cutscenes, миниигры и2D
+ещё не завершены. Полный variable FPS остаётся в работе.
+
+---
+
+
+## Продолжение v190 — ожидание и ходьба восьми городских NPC в main
+
+Подключены Native state1/state2 для kinds13/14/15/16/17/20/21/22. Реальный
+FSM сохраняет private wait40, одноразовые clip0/1/2 и исходные команды
+разворота один раз за Original период; общие перемещение и model time
+обновляются на каждом Native интервале. X/Z используют один float baseline
+на период с повторным захватом после явной записи позиции/скорости, чтобы
+накопленная погрешность не сдвигала точную границу маршрута. Model rebind
+не дублирует private counter; новая model lifetime получает новый clock.
+
+Изолированная190d проверка прошла1536 Source/1152 Native/192 overlay rejection,
+1232 intermediate position и11904 exact frozen189 Original RAM/context/heap/
+resource/command comparisons на24 настройках. Разобраны все восемь разных
+осей, границ и direction flags. Negative guard-off даёт count9 вместо4;
+внутренние clip-boundary splits тоже не должны ускорять ожидание. Source
+snapshot каждые3 периода имеет точное ns-время; floor1/3ns ещё до discrete
+end counters, а ceil уже исполняет начало следующего периода. Все clip
+commands дополнительно сравниваются по исходным rational timestamps.
+Oracle обязан восстанавливать и сравнивать actual clip-channel heap/refs
+вместе с RAM, иначе двойной проход некорректно повторно освобождает buffers.
+
+В main597 описаний/262 semantic aliases/343 register scopes; документация
+синхронизирована. Полный connected190 check выполняется; последний совпавший
+полный архив189 сохранён. Нового EXE нет, frozen035/source181 прежний;
+игра/renderer/GPU не запускались. Dialogue/attached/story состояния этих NPC
+и связанная18/19 ещё Source-owned. Разбор real descriptor constructors/
+attachment ведётся дальше; остальные комнаты/уровни, NPCs/platforms,
+script camera/cutscenes, миниигры и2D тоже остаются. Полный variable FPS
+не завершён.
+
+---
+
+
+## Продолжение v190 — восемь городских patrol NPC прошли общую проверку
+
+Полный connected check исполнил611 Original functions/regions вместе с
+прежними player/weapon/damage/death/recovery/door/surface/world группами.
+1536 Source/1152 Native schedules,192 overlay rejections,1232 intermediate
+position samples и11904 exact frozen189 RAM/context/heap/resource/command
+comparisons прошли на24 настройках. Все семь formal reports совпали с
+generation190 и текущими SHA; ASan/UBSan/LSan и stability190 прошли.
+597 описаний/262 semantic aliases/343 register scopes сохраняют exact
+canonical C, preprocessed tokens и ABI. Документация синхронизирована;
+main/HEAD, donor,32 pins и frozen035/source181 сохранены. Новый EXE не
+собирался, игра/renderer/GPU не запускались.
+
+В отдельной кандидатной191 копии реальный descriptor parser, generic
+constructor, linked allocator и раздельное освобождение18/19 прошли48
+Source schedules на24 настройках. E5DF4 начинает поиск с parent index:
+ранний свободный слот не делает leg раньше parent. E656C лишь снимает
+взаимные ссылки, а EA4C освобождает одну модель; рекурсивного удаления нет.
+Synthetic inactive slots имеют explicit resource owner=-1, потому что
+scene_object_init не очищает это поле. Native command-period/visible-yaw
+реализация191 подготовлена; её differential proof продолжается и в main
+она ещё не перенесена. Dialogue/attached/story состояния остальных NPC,
+реальные комнаты/уровни, script camera/cutscenes, миниигры и2D остаются.
+Полный variable FPS не завершён.
+
+---
+
+
+## Продолжение v191 — связанные городские актёры прошли общую проверку
+
+Реальное создание по дескрипторам, распределение связанной пары, контактный
+обработчик и раздельное освобождение моделей проверены вместе с прежними
+player/weapon/damage/death/recovery/door/surface/world группами:629 Original
+functions/regions,48 constructor schedules,1008 Source и720 Native schedules,
+288 ownership rejections,308 промежуточных углов,6768 exact frozen189
+RAM/context/heap/resource/command comparisons и384 actual contact comparisons.
+Все семь formal reports соответствуют generation191 и текущим source SHA;
+ASan/UBSan/LSan и stability191 прошли на24 настройках20/30Hz и60..360FPS.
+
+Поворот к игроку и обратный поворот обновляются между исходными тактами,
+а команды и переходы сохраняют Original cadence. Детали контакта и диалога
+разобраны для linked18/19; story-вариант18/6 использует общий возраст семьи.
+Получатель19 читает только окончательную публикацию родителя после base
+callback. Внутренние привязки клипов родителя не являются командами ребёнку.
+Отрицательная проверка выявила потерю повторной публикации одного и того же
+клипа одновременно на Native60 и более высокомFPS: сравнение только между
+частотами скрывало ошибку. Счётчик публикаций и сравнение с Original исправили
+и проверили этот случай. E656C снимает взаимные ссылки, EA4C освобождает одну
+модель; автоматического рекурсивного удаления пары нет.
+
+609 описаний/274 semantic aliases/352 register scopes сохраняют exact
+canonical C, preprocessed tokens и ABI. Каталог generation191 содержит
+доказательство кандидатной проверки; настоящая общая проверка теперь связана
+в research/native-city-linked-check.json. Исправлены отставшие описательные
+поля player report с сохранением SHA исходного отчёта, stdout и проверенного
+checker source. main/HEAD, donor,32 pins и frozen035/source181 сохранены.
+Новый EXE не собирался, игра/renderer/GPU не запускались.
+
+В отдельной candidate192 подготовлены диалоговые состояния восьми других
+городских NPC. Их ещё не проверенная реализация не перенесена в main.
+Диалоги этих NPC, secondary/story/200 состояния, остальные уровни и платформы,
+script camera/cutscenes, миниигры и2D остаются в работе. Полный variable FPS
+не завершён; отдельный connected блок не является завершением всей задачи.
+
+---
+
+
+## Продолжение v192 — диалоги восьми городских NPC прошли общую проверку
+
+Диалоговые состояния13/14/15/16/17/20/21/22 подключены к Native вместе с
+прежними player/weapon/damage/death/recovery/door/surface/world группами.
+Все семь formal reports соответствуют generation192 и текущим source SHA:
+653 Original functions/regions,3072 Source и2304 Native edge schedules,
+384 overlay rejections,4608 actual contact-producer comparisons и20736
+exact frozen189 full-RAM/context/heap/resource/command comparisons.
+Проверены19712 промежуточных значений обоих углов на24 настройках20/30Hz
+и60/73/120/144/165/360FPS. ASan/UBSan/LSan и stability192 прошли.
+
+Поворот к игроку и возврат используют отдельные исходные предложения для
+угла актёра и физического угла: Source может изменить оба в одном callback,
+а затем вернуть только угол актёра. Сохраняются Original переходы, команды,
+клипы, busy-флаг и особенность нулевой скорости возврата. Проверены пауза,
+возврат из Source-состояния, настоящее пересоздание модели, внешняя запись
+углов, перепривязка клипа, рождение на73/173мс и границы signed wrap.
+Контролируемый отрицательный тест с одним общим углом обнаружен даже на60FPS.
+
+633 описания/298 semantic aliases/392 register scopes сохраняют canonical C,
+preprocessed tokens и ABI. Документация и ссылки на разобранные функции
+обновлены. main/HEAD,donor,32 pins и frozen035/source181 сохранены.
+Новый EXE не собирался; игра/renderer/GPU не запускались.
+
+Сюжетные состояния100, дополнительные модели и состояния200/201 ещё проходят
+отдельную проверку в candidate193. Полный variable FPS остаётся в работе:
+остальные уровни, платформы, script camera/cutscenes, миниигры и2D не завершены.
+
+---
+
+
+## Продолжение v193 — сюжетные городские NPC прошли общую проверку
+
+Story100 семей13/14/15/16/17/20/21/22, вторичные модели и связанные kind6,
+а также специальные состояния200/201 kind21 подключены к Native.
+Все семь formal reports соответствуют generation193 и текущим source SHA:
+679 Original functions/regions;1152 actual constructor/profile comparisons,
+2304 story Source/1152 Native/768 rejection/15360 exact frozen189
+RAM/context/heap/resource/command/model-count comparisons;768 special Source/
+192 Native/96 rejection/5280 exact comparisons и288 dense Original counter
+samples. Прежние player/weapon/damage/death/recovery/door/surface/world и
+городские patrol/dialogue/linked группы проверены в той же общей сборке.
+ASan/UBSan/LSan и stability193 прошли на24 настройках20/30Hz и60..360FPS.
+
+Исполняются настоящие конструкторы и descriptor parser. У13/14/16 generic
+constructor уже создаёт две model groups;13/14 profile1 прикрепляет group1
+к кости19 group0 черезA5F0. A2E8 задаёт флаг группы, а не создаёт модель.
+Проверены20-бонная synthetic hierarchy, все профили0/1/2, два размещения в
+пуле и настоящее раздельное освобождение моделей/ресурсов. У16/profile0
+actual sprite42=1; основная диалоговая проверка теперь покрывает именно его.
+
+Kind6 создаётся первым story100 callback, а не конструктором родителя.
+Native принимает лишь настоящие взаимные связи, порядок индексов, живые
+model lifetimes, правильный overlay/table callback и согласованные C9.
+Связанная семья использует возраст родителя при появлении на73/173мс,
+паузе, возврате из Source-состояния и полном пересоздании.
+
+Special201 вычисляет rate5C, но Original не применяет здесь постепенный
+возврат. Сохранены его мгновенные yaw snaps и возврат в200 на шестом такте.
+Изменение busy/yaw внутри одного периода может пересчитать решение,
+но не расходует второй дискретный такт. Контролируемое отключение защиты
+поймано dense Original oracle даже на Native60; версия с ошибкой отдельная.
+
+643 описания/308 semantic aliases/402 register scopes сохраняют exact
+canonical C, preprocessed tokens и ABI; документация обновлена вместе с
+именами. main/HEAD,donor,32 pins и frozen035/source181 сохранены.
+Игра/renderer/GPU не запускались; эта проверка использует synthetic assets,
+явные sprite2/audio/UI boundaries и настоящий guest lifecycle.
+
+В отдельной candidate194 разбирается slot09 ROM1398A0: актёры24..28,
+их scene/story guards, контакты и создаваемые объекты. Прочие уровни,
+платформы, script camera/cutscenes, миниигры и2D остаются в работе.
+Полный variable FPS не завершён; завершение городского блока не завершает
+общую задачу. EXE выпускается только после законченного крупного элемента.
+
+---
+
+
+### Test-036 — передан завершённый городской блок
+
+Windows EXE собран из matched generation193 и сохранён в
+`D:/Games/DoraRecomp3/testbuild/Dora64-3-test-036.exe`.
+SHA256 `9e9f6b1e5ab2787dac12a8c2e35118a7b1d4b5e199977998c96871693cafa99d`.
+Семь текущих CPU отчётов, компилируемые inputs,32 dependency pins и donor
+проверены. Все прежние файлы общей папки, ROM, настройки, saves и DLL
+сохранены; архив source181/test035 создан перед обновлением Windows stage.
+Игра/окно/GPU не запускались. Появление EXE не завершает полный variable FPS;
+продолжается изолированный разбор slot09 NPC24..28 и остальных систем.
+
+### NPC B regression — исправление порядка контакта перед оружием (195)
+
+Пользователь: начиная с test032, test036 Manual60 использует оружие у всех
+NPC города/других уровней; Original20 запускает диалог. На прежнем193 CPU
+oracle воспроизвёл Original contact→NPC2/player66/busy1 против Native→NPC1/
+weapon28/busy0. Native читала pressed B раньше общего collision dispatcher;
+DD510 использует selected-controller801AC69C, которого нет в обычной
+публикации NativeInputScope. После weapon28/29 C0624 уже запрещает talk.
+
+На свежем B перед Native player callback добавлены Original eligibility,
+точная collider geometry, порядок actor slots30..229, attachment parent,
+реальный contact dispatcher и временная публикация selected B. DD17C
+продолжает поиск только при table flag1; NPC flag0 выбирает первый контакт.
+Двух-NPC отрицательный тест обнаружил неверное направление раннего кандидата;
+это исправлено до main. Non-talk contact damage/pickups сохраняют Source
+ownership; функция не запускает повторно общий AI/collision tick.
+
+Изолированный ASan/UBSan/LSan PASS:3192 сценария,12 talk kinds, linked19,
+Original20/30,Native60/73/120/144/165/360, близко/далеко, stale/fresh contact,
+inactive/hidden/state/cooldown, последний world slot, два NPC/препятствие,
+удержание B с одним initializer. Реальные Original callbacks работают
+на synthetic geometry/assets; actual model creation/bind/free выполняются.
+SoundF6 проверен отдельно от instrumented non-talk damage sound; dialogue
+audio queue остаётся checked failure boundary. Eleven new semantic aliases,
+twelve register scopes:654 descriptions/319 aliases/414 scopes; exact canonical
+round trip/C tokens/C17/ABI PASS. Постоянный тест добавлен в player checker.
+Общая проверка main195 ещё должна подтвердить остальные системы вместе.
+Игра/renderer/GPU не запускались. Полный variable FPS остаётся незавершённым.
+
+### Test-037 — исправлен порядок разговора и оружия
+
+Windows EXE из согласованной generation195 сохранён в
+`D:/Games/DoraRecomp3/testbuild/Dora64-3-test-037.exe`.
+SHA256 `9be2f8a2d59d086fd5065aaa3e8456697222e213a3011f432b7d1c421e11f255`.
+Регрессия test032–036: Native player callback получал свежий B раньше
+Original contact selector/DD8FC, а selected-controller latch801AC69C
+не получал этот B. Оружие переводило игрока в state28/29, после чего
+Original C0624 отклонял разговор. Теперь свежий B сначала проходит
+настоящую геометрию/порядок pool/parent и Original dialogue dispatcher,
+а scoped selected-controller latch восстанавливается после команды.
+
+Семь согласованных CPU отчётов generation195 PASS, включая прежние
+движение, оружие, урон, модели и городские NPC, вместе с3192 новыми
+сценариями NPC B. Дополнительный независимый прогон этих3192 сценариев
+с настоящим player pool slot1 также PASS; он проверяет reciprocal
+contact reset/categories и не меняет основной стенд. Его точные исходники,
+Original object, исполняемый CPU стенд и hashes сохранены в
+`build-local/npc-action-actual-pool-check/receipt.json`.
+654 описания/319 смысловых имён/414 register scopes сохраняют ABI и
+ctx register storage; документы с соответствиями обновлены.
+
+32 dependency pins и donor неизменны. Прежние EXE, ROM, настройки,
+saves и общие DLL сохранены; Windows source193/test036 архивирован.
+Игра/окно/GPU не запускались. Реальные collider assets, UI/input/audio
+и прохождение требуют проверки в игре пользователем.
+Полный variable FPS остаётся в работе; slot09 NPC24..28 пока отдельный
+кандидат, прочие NPC/уровни/платформы/сценарные камеры/миниигры/2D не завершены.
+
+### Test-037 — пользователь подтвердил исправление диалогов
+
+После передачи test037 пользователь сообщил: «диалоги норм теперь, срабатывают».
+Результат и SHA EXE записаны отдельно в research/windows-user-test-037.json;
+неизменный compile/package receipt сохраняет исходную проверку сборки.
+Это подтверждение срабатывания разговора в игре; пользователь не уточнял
+повторно набор NPC, уровни и FPS. Полный variable FPS остаётся незавершённым.
+
+### Slot09 — проверены новые контакт/возврат/yaw кандидата198b, общий прогон в работе
+
+После подтверждения test037 продолжен крупный блок NPC24..28 ROM1398A0.
+Кандидат196a совместно проверяет idle/patrol/wait с рабочим NPC B fix195;
+его полный общий player/world прогон ещё выполняется, main пока195.
+Отдельный198b добавляет Native dialogue state2 для27/28: реальное Original
+предложение один раз за исходный период, фактический промежуточный yaw
+actor/physics и Original clips/counters/commands/return. Первые8 settings
+PASS:336 настоящих constructors,1072 Source,240 Native edges,208 rejects,
+7344 frozen189 полных RAM/context/heap/resource/command/model сравнений и
+1440 промежуточных yaw samples. Закрытие, immediate return, оба signed
+направления и wrap0/360 проверены. Настоящие mode4 contact producers27/28
+проверяют все9 descriptor/quest ветвей с последующим закрытием/возвратом.
+Старые3192 common NPC B сценария также PASS. Шесть компонентов198b PASS;
+полный общий прогон198b запущен, завершение Native блока пока не объявляется.
+
+Дополнительно1320 common collision/B сценариев для всех пяти новых kinds
+24/25/26/27/28, Original20/30 и Native60/73/120/144/165/360, PASS. Проверены
+first-contact/two NPC, non-talk obstacle, far/stale/inactive/hidden/state/
+cooldown, последний pool slot, held B, context и selected-controller
+restoration. Используются настоящие данные ROM1398A0 и Original callbacks;
+для25 выбран sceneA1, для26 sceneAC. Geometry/model assets synthetic;
+это отдельная проверка приоритета B, Native producer/body continuity27/28
+имеет отдельную постоянную mode4 проверку. Две ранние компиляции этого
+дополнительного стенда отклонились из-за отсутствия/повторного подключения
+data header; порядок исправлен, прежние отрицательные стенды сохранены.
+Игровой runtime и входы выполняющихся общих проверок не изменялись.
+
+Каталог отдельного194m содержит690 описаний/355 aliases/442 scopes;
+96 C units сохранили preprocessed tokens, ABI/register storage и C17 syntax.
+Добавлены имена private dialogues24/25/26 и связанных Source pickup
+обработчиков. D1498 описан буквально как публикация команды1 в802181DC.
+Source-only анализ spawn descriptors:801FC818→kind118 (resources692/693),
+801FC894→kind123 (712/713),801FC904→kind127 (710/711); точные данные scene1
+совпадают с ROM. Их общая84-byte kind table и callbacks проверены; ранняя
+экстраполяция частной NPC table801FAB48 за доказанный диапазон отброшена.
+Это предметы, Native владение их движением/подбором пока не добавлено.
+
+Далее: перенести196a после полного PASS, проверить все компоненты main;
+после общего PASS198b подключить27/28 dialogue. Оставшиеся24/25 dialogue,
+26 scene/quest/actual spawn+retirement и24/28 scripted states требуют своих
+связанных проверок. Новая Windows-сборка на каждую правку не создаётся;
+test037 сохранён. Полный variable FPS для остальных NPC/уровней/platforms/
+script cameras/minigames/2D продолжается. Игра/renderer/GPU не запускались.
+
+### Slot09 idle/patrol/wait — подключён проверенный общий блок (197)
+
+Изолированный196a прошёл весь прежний player/world/NPC B прогон совместно
+с NPC24..28 ROM1398A0, плюс шесть компонентов. Проверены1008 настоящих
+constructors/288 skipped spawns,2400 Source/720 Native/720 rejection
+сценариев и16320 frozen189 полных сравнений RAM/context/heap/resources/
+commands/model count на24 settings. Реальные данные slot09 загружаются
+только на время соответствующего блока; перекрываемые городские данные
+восстанавливаются до городских проверок.3192 NPC B сценария сохранены.
+Дополнительно64 перехода kind27 wait→dialogue проверили once-only,
+overlay/table/physics/model/state/kind/reset rejection с сохранением
+context и resources.
+
+Исходники, generation и отчёты196a архивированы перед переносом. В main197
+runtime/fixture/checker идентичны проверенному кандидату;96 canonical C
+units, frontier/hooks/overlay table совпадают. Полный player report
+сохраняет явное происхождение196a и доказательство переноса. Повторный
+проверочный запуск всех моделей/циклов/времени/overlay/имён в main197
+будет выполнен после переноса. Дополнительные25 имён и21 register scopes
+из194m имеют отдельный token/ABI/syntax PASS; всего690/355/442. Source-only
+pickup callbacks названы по точным внутренним ROM table именам; Native
+владение предметами не добавлено.
+
+Native владение:24 states1/2/4,25/26 states1/100/101,27 states1/100,
+28 state1. Диалоги/event bodies пока сохраняют Source; отдельно198
+проверяет расширение27/28 dialogue2, в main это расширение не включено.
+Сохранённый test037 и подтверждённое исправление NPC B принадлежат
+generation195. Новая Windows-сборка для этого промежуточного переноса
+не создаётся. Полный variable FPS ещё не завершён; реальный запуск
+игры/рендерера/GPU не выполнялся.
+
+### Main197 — проверенный slot09 idle/patrol/wait и документация сохранены
+
+Все семь текущих отчётов согласованы с generation197 и исходниками main.
+Полный player/world report явно сохраняет происхождение выполненного196a:
+runtime/fixture/checker byte-identical,96 canonical C units и frontier/hooks/
+overlay table совпали после переноса. Имена/модели/simulation/frame-time/
+loop/overlay заново проверены непосредственно в main197.690 descriptions/
+355 aliases/442 scopes, C tokens/C17/ABI/register storage PASS; docs maps
+обновлены. Main/HEAD,32 dependency pins, donor и прежний packaged034 EXE
+прошли отдельную проверку сохранности. Main197 архивирован как следующий
+проверенный CPU checkpoint; test037/Windows stage195 остаются прежними.
+Кандидат198b выполняет общий прогон нового dialogue27/28; остальные NPC
+states, предметы и полный variable FPS продолжаются. Игра/GPU не запускались.
+
+### Slot09 dialogue27/28 — проверенный общий блок подключён (200)
+
+Полный изолированный198b прошёл весь player/world/NPC B прогон совместно
+с новыми dialogue2 у kinds27/28: фактические contact producers, девять
+quest-dependent dialogue descriptors, close/return и shortest signed yaw
+из оригинальной функции. Проверены24 settings,1008 actual constructors,
+3216 Source schedules,720 Native edge schedules,624 rejections,22032
+frozen189 full-RAM/context/heap/resources/commands/model-count comparisons.
+Промежуточный yaw сравнивается с endpoints настоящего Original, включая
+положительное/отрицательное направление и wrap. Старые3192 common NPC B
+сохранены. Отдельный real-contact стенд пяти новых kinds24..28 прошёл1320
+Original20/30 /Native60..360 action-priority/obstacle/stale/held-B случаев.
+
+Перед переносом архивированы198b исходники/generation/reports и receipt
+дополнительных1320 действий. В main200 runtime/fixture/checker идентичны
+прогону198b;96 canonical C units и raw frontier/hooks/overlay table совпали.
+Полный player report явно указывает origin198b. Дополнительные semantic
+names main197 сохранены:690 descriptions/355 aliases/442 scopes. Шесть
+компонентов main200 будут заново проверены непосредственно после переноса.
+
+Native ownership теперь включает27/28 dialogue2. Остальные Source-only
+сюжетные ветви24/25/26, spawned pickups и весь variable FPS продолжаются.
+Source-only199 отдельно исследует sceneFD request/quest5B clear/set;
+его новые сценарии пока не включены в основной fixture. Test037 и
+Windows stage195 не менялись; пользователь подтвердил срабатывание
+диалогов. Игра/рендерер/GPU не запускались, новый Windows build не создан.
+
+### Main200 — dialogue27/28 проверен после переноса и сохранён
+
+Все семь текущих отчётов согласованы с generation200 и исходниками main.
+Полный player/world run имеет явное происхождение198b с проверкой всех
+input hashes/96 canonical C units/raw frontier/hooks/overlay table.Фактический общий run дал11360 slot09 intermediate yaw samples.
+Шесть компонентов заново выполнены в main200: models/simulation/frame-time/
+loop/overlays/names PASS.690 descriptions/355 aliases/442 scopes сохраняют
+preprocessed tokens, C17 syntax, ABI и register storage. Docs mapping PASS.
+Отдельный stability200 проверил main/HEAD,32 dependency pins, donor, старый
+packaged034 EXE и current generation inputs. Архив main200 сохраняет
+код/docs/reports/generation без ROM/seeds/saves. Windows stage195/test037
+не менялись, игра/GPU не запускались.
+
+Границы: отдельный199 Source-only sceneFD test показал pending room request
+BA0C4→BA05C/802170EC. Первый negative относился к ошибочному expected
+Native timestamp при приостановленном мире; поправлен Source oracle и
+добавлены once-only flag/request/descriptor/eligibility assertions. Второй
+сценарий с уже установленным5B и без room request обнаружил model-time
+расхождение после Source102→Native1: ожидается0, фактически30 на tick33.
+Этот новый сценарий ещё не принят в основной fixture; negative logs/
+traces сохранены, причина и исправление продолжаются отдельно. Никакая
+проверка не ослаблена и runtime по этому расхождению пока не изменён.
+Полный variable FPS и другие Source-only NPC/предметы/системы не завершены.
+
+### Продолжение199c/201 — сюжетная передача NPC и новые понятные имена
+
+Trace3 подтвердил причину Source26 state102→Native1: Original submission
+на ceil(Source boundary) оставляет phase20 rational units после точного
+766666666+40/60. Clip0 начинался766666667, а Source-loop wrap на1100ms
+показывал model float30/flags0 вместо0; завершение сдвигалось в следующий
+tick. В199c Source entry/post hooks26 сохраняют точную identity/lifetime/
+overlay/table/tick/phase и один Native object scope включает только
+submission ceiling<60 units (<1ns), возвращая команде исходную rational
+boundary. Native-born reentry этим исправлением не заявлен.
+
+199b quick PASS:8 settings,336 real constructors,1104 Source/240 Native
+edge/208 reject schedules,7568 frozen189 complete comparisons,1440
+intermediate yaw,3192 common NPC B. Строгие model time/command timestamps
+сохранены.199c имеет те же runtime/rules/fixture плюс точные full counters;
+шесть компонентных отчётов совпали с generation199c и исходниками. Отдельно
+guards8 PASS192 actual Source closures: exact origin/once-only; stale
+overlay/table/valid hidden replacement physics/model/state/kind reject
+после пропущенного1ns; reset отменяет owner/command с сохранениемcontext,
+heap/resources/models. Старые negative fixtures сохранены: active null
+physics недопустим уже в Original до hook; другие player clip commands
+были ошибочно отнесены к NPC; synthetic reset+reacquire менял реальные
+heap identities при прежних размерах/models/refs, поэтому reentry-only
+reset проверяет отмену, а не новый acquisition. Общий full199c ещё идёт.
+
+Отдельный каталог194o PASS695 descriptions/360 aliases/448 scopes:
+pickup idle yaw4, state10 detach/six actual effect constructors/fade/retire,
+model-group opacity wrapper и opacity render flag имеют точный canonical
+review/ROM/function/register hashes;96 preprocessed C units/C17/ABI/storage
+совпадают. Failed194n (.fl вместо полного FPR storage) сохранён,194o
+сохраняет весь исходный f2 storage. Эти5 новых имён пока не переносились
+в main200; Native предметы/effect lifetimes не заявлены.
+
+Изолированный201 продолжает Source-reviewed dialogue24 state3 и25 states2/
+102: actual Original look proposal, signed return и original six-count,
+20 новых close/immediate/wrap profiles на setting и actualD1498 command
+timestamp. Его validation ещё идёт; main200 и замороженный199c не меняются.
+Проверенная точка восстановления main200 сохраняется. Test037/Windows
+stage195 остаются прежними. Игра/GPU не запускались, Windows build не создан.
+Полный variable FPS, remaining NPC/event/pickup/platform/script-camera/
+cutscene/minigame/2D blocks продолжаются.
+
+### Source102→Native1 — точное возвращение NPC26 подключено (203)
+
+Полный199c прошёл вместе со всеми прежними player/world/NPC B сценариями:
+1008 actual constructors/288 skipped,3312 Source schedules,720 Native
+edges/624 rejections,22704 frozen189 RAM/context/heap/resources/commands/
+model-count comparisons и3192 common NPC B schedules. SceneFD проверен
+с quest5B clear/set: настоящая BA0C4→BA05C сохраняет descriptor175/1,
+once-only flag и pending room request; world eligibility остаётся Original.
+При уже установленном5B нет room request, и Source dialogue102 возвращает
+actor в Native idle1 с точным rational command origin, включая <1ns
+Source submission ceiling. Строгая проверка model-time/loop flags сохранена.
+
+192 дополнительных guard schedules отклоняют устаревший handoff при
+смене overlay/table/physics/model/state/kind/lifetime, а reset отменяет его.
+Архив199c хранит проверенные input hashes, generation, отчёты и guard proof.
+Перенос в main203 подтверждён идентичностью всех96 canonical C units и
+raw ABI files. Полный player report имеет явное origin199c; шесть main
+компонентов проверяются отдельно после переноса. Каталог697 сохраняет
+новые имена Source pickup helpers и actual mode4 contacts kinds24/25.
+Все prior negatives/oracle corrections/source timing traces сохранены.
+
+Native ownership26 dialogue102 пока не расширен: сюжетные item118/123
+spawn branches остаются Original. Candidate201 ordinary24/25 dialogue
+находится на полном CPU-прогоне; candidate202 проверяет actual Source
+item/effect lifetimes отдельно. Windows stage195/test037 не менялись.
+Игра/renderer/GPU не запускались; полный variable FPS продолжается.
+
+### Main203 — Source/Natively owned NPC handoff проверен и сохранён
+
+Все семь отчётов согласованы с текущими исходниками/generation203. Полный
+player report явно сохраняет origin199c; шесть компонентов main203 выполнены
+заново и прошли. Каталог697 descriptions/362 aliases/450 register scopes
+сохраняет preprocessed C tokens, C17 syntax, ABI и ctx storage; docs mapping
+совпадает. Stability203 подтвердил main/HEAD, все32 dependency pins и
+чистое дерево donor. Код/docs/reports/generation203 архивированы без
+ROM/seeds/saves. Windows stage195/test037 сохранены, нового EXE нет.
+Candidate201 и Source item/effect research202 остаются отдельными; общий
+перевод variable FPS продолжается и не объявлен завершённым.
+
+### Source story pickups и имена — постоянная проверка в main205
+
+Разобраны реальные descriptors/public kind table:118 Keycrystal,
+123 StarPiece,127 Disk и130 GetFlash. Source branches NPC26(sceneAC/C1)
+и NPC25(sceneC0) создают реальные actors в common pool; actual generic
+constructor, resource lists/model binding/common updater и destructors
+исполняются на synthetic assets. Frozen189 replay сравнивает полный
+RAM/context/heap/resources/commands/model-count результата producer.
+Семь success/already-set quest profiles ×24 settings прошли168 schedules:
+96 полных item lifetimes и576 actual flash130 lifetimes. После96 Source
+ticks весь созданный pool пуст, исходная heap/resource/model baseline
+возвращается. Проверены обе ветви byte801B374A без угадывания его роли.
+
+Проверка сохранена в tools/check_native_story_pickups.py и отдельном
+research/native-story-pickup-source-check.cpp; main205 run прошёл с
+ASan/UBSan/LSan.38 новых Source functions должны точно совпадать с
+frozen189, любое неразобранное dependency останавливает checker.
+Первое compile negative относилось к fixture-local descriptor/indentation;
+следующее lifecycle assertion — к неверной six-model baseline из full
+world fixture. Новый standalone fixture имеет ровно два player models;
+heap/resources/lifetime требования не ослаблены. Negative artifacts сохранены.
+Permanent-check preparation вызов исправлен, runtime не изменялся.
+
+Каталог707 descriptions/372 aliases/455 register scopes: добавлены flash
+delay/spiral/fade/retire, gravity/probe helpers и detach, понятные локальные
+actor/physics имена только в доказанных инструкциях. Token/C17/ABI/storage
+проверка выполнена непосредственно в main205. Docs/address mapping
+обновлены. Все runtime/fixture/checker inputs прежних шести behavior reports
+и96 canonical C units/raw ABI files идентичны main203; отчёты явно сохраняют
+annotation-only relocation203 и полный player origin199c. Не повторялся
+неизменённый часовой прогон только ради комментариев.
+
+Границы: настройка FPS входит в24 settings; этот новый Source-only test не
+заявляет Native trajectories/items130. Full-pool allocation failure, real
+level assets/dialogue progression, Native NPC26 event-producing branches,
+остальные NPC/camera/cutscenes/minigames/2D и весь variable FPS продолжаются.
+Candidate201 ordinary24/25 dialogue всё ещё проходит полный общий run.
+Main205 code/docs/reports/generation архивированы без ROM/seeds/saves.
+Windows stage195/test037 не менялись, игра/renderer/GPU не запускались.
+
+### Ordinary dialogue24/25 — полный201 перенесён в main207
+
+Полный общий201 прошёл: kind24 state3 иkind25 states2/102 используют
+настоящие Original proposals/geometry/clip commands, signed yaw return,
+actual mode4 contact descriptors иonce-only completion marker. Проверены
+3792 slot09 Source schedules/720 Native edge schedules/528 rejections,
+26064 frozen189 full-RAM/context/heap/resources/commands/model comparisons,
+1008 actual constructors/288 skipped и прежние3192 common NPC B schedules.
+Runtime/fixture/checker inputs и96 canonical C units/raw ABI files после
+переноса совпадают; main player report явно сохраняет origin201.
+
+Каталог711 descriptions/376 aliases/462 scopes сохраняет новые имена
+Source special24/28 иstory marker/counter bank3678. Bank3678 иbank3700
+имеют разное исходное поведение sentinel-1; оно описано без угадывания
+назначения конкретных игровых счётчиков. Постоянная Source pickup168
+проверкаmain205 сохранена; её и шесть компонентов заново проверяем на207.
+
+Границы: Native26 ordinary102 ещё проходит отдельный full206 с точными
+AC/C1/FD quest guards. Special24/forced24/28 пока только в isolated208;
+special28 state200, NPC26 event/item-producing closures, pickups/effects,
+platform/script-camera/cutscene/minigame/2D и общий variable FPS продолжаются.
+Windows stage195/test037 не менялись; новый EXE не создан, игра/GPU не запускались.
+
+### Main207 — обычные dialogue24/25 проверены после переноса и сохранены
+
+Все восемь текущих отчётов совпадают с исходниками иgeneration207. Полный
+player/world report имеет проверенное byte-identical origin201; шесть
+компонентов заново выполнены в main207 и прошли, постоянный Source quest
+pickup/effect168 test тоже заново прошёл. Полный201 дал18176 промежуточных
+slot09 yaw samples с signed return/wrap. Каталог711/376/462 сохраняет
+preprocessed tokens/C17/ABI/ctx storage; docs mapping совпадает. Stability207
+проверил main/HEAD, donor,32 dependency pins/clean tracked trees и старыйEXE.
+Код/docs/reports/generation207 архивированы без ROM/seeds/saves.
+
+Isolated206 обычный26 dialogue102 с guard поsceneAC10/C17B2F/FD5B ещё идёт
+в полном прогоне. Isolated208 исследует forced24/28 иspecial24 с Source-end
+quest/counter/sound: первый negative обнаружил поздний clip6 init у
+Native-born73ms actor (Source3/Native0.57 к первому endpoint). Trace сохранил
+точные команды106333333+20/60 и обе Original replays. В208b clip/dialogue
+init снова interval-start, а initialized closure Source-end; настоящий
+B91D4 сначала публикует busy1 (ROM91E4), поэтому event tail не выполняется
+в init pass. Строгие model-time/commands проверки не ослаблялись,208b ещё
+не подключён в main. Special28 state200/Native26 item/scene closure и
+остальные variable FPS системы продолжаются. Windows stage195/test037
+сохранены; нового EXE нет, игра/renderer/GPU не запускались.
+
+### Ordinary dialogue26 — полный206 перенесён в main209
+
+Полный общий206 прошёл: Native kind26 dialogue102 разрешён только при
+точных Source scene/quest predicates:FD с5B,AC с10,C1 при!7B или2F.
+Ветки175/1 иitem118/123 остаются Original; ownership проверяется каждый
+pass. Actual mode4 EDF4 имеет пять новых descriptors/quest combinations,
+включая5C; Source comparisons сохраняют Original flags/requests/commands.
+Проверены4416 Source/720 Native edge/624 rejection schedules,30432 полных
+frozen189 RAM/context/heap/resources/commands/model comparisons,24992
+intermediate yaw samples,1008 actual constructors и3192 common NPC B.
+
+Все runtime/fixture/checker inputs и96 canonical C units/raw ABI files
+после переноса идентичны; main player report имеет явное origin206. Все
+пять обычных NPC dialogue families24..28 этого overlay подключены.
+Каталог711/376/462 сохранён;11 комментариев теперь описывают функцию без
+устаревших Source-only/partial-ownership пометок. Original F920 очищает
+selector44 вFB9C delay slot перед D1498; это закреплено в описании.
+
+Шесть компонентов и постоянный Source story pickup168 test заново
+проверяются на209. Special24/forced24/28 находятся в isolated210a:
+strict quick passed1616 Source/11008 frozen comparisons/3192 common B;
+288 pending-dialogue reset/Source fallback/hidden/reveal/state/lifetime/
+latch rewrite guards прошли с реальными callbacks/resources. Полный210a
+идёт; эти состояния ещё не включены в main209.208/208b model/init/publication
+negatives и208c Source-born event→Native idle loop negative сохранены.
+Source-only special28 state200/Native26 item/scene closure, предметы/эффекты,
+platform/script-camera/cutscene/minigame/2D и весь variable FPS продолжаются.
+Windows stage195/test037 сохранены, новый EXE не создан, игра/GPU не запускались.
+
+### Main209 — пять обычных семейств Slot09 проверены и сохранены
+
+Все восемь отчётов совпадают с текущими исходниками и generation209.
+Player/world report имеет byte-identical validation origin206: 1008 actual
+constructors, 4416 Source comparisons, 720 nonaligned command boundaries,
+624 rejection cases, 30432 frozen side-effect assertions, 24992 intermediate
+yaw samples, 3192 actual Native B/input cases; весь прежний player/world
+suite также прошёл. Шесть компонентов заново прошли в main209. Постоянный
+Source-only quest pickup/effect test заново прошёл 168 сценариев.
+
+Обычный26 state102 принадлежит Native только в ветвях без публикации
+события: sceneAC с quest10, sceneC1 без7B или с2F, sceneFD с5B; ветви,
+создающие предмет или сценовую команду, остаются Source. Проверка повторяется
+при каждом решении владения. Source102→Native1/101 reentry199c сохранён.
+Каталог711 descriptions /376 semantic names /462 register scopes обновил
+комментарии о текущем владении; preprocessed C tokens, C17, ABI и ctx storage
+не изменились. Mapping docs актуальны. Stability209 проверил main/HEAD,
+donor и32 pins/clean tracked dependencies, generation inputs и старыйEXE.
+
+Isolated210a special24/forced24/28 ещё проходит полный прогон. Отдельные
+288 cancellation/reset/hide/recreate/Source-fallback guards уже прошли;
+negative208 traces сохранены, строгие model/command checks не ослаблялись.
+Special28 state200, Native26 event/item closures и остальные variable FPS
+системы остаются в работе. Windows stage195/test037 сохранены, новогоEXE
+нет; игра, окно, renderer иGPU не запускались.
+
+### Продолжение212 — special28 geometry/Source-end split, proof pending
+
+Проверенный main209 сохранён в v209-slot09-ordinary-all-five-main-checkpoint.tar.gz,
+SHA2568eec81e619b27b2682e295ba0b8acea9d5baa7c510e811c0626edbc1cc7b6f48.
+Full210a special24/forced24/28 продолжает общий прогон; immutable snapshot8
+и отдельный cancellation288 guard сохранены. Код main209 не изменялся.
+
+Isolated212 добавил kind28 special200: геометрия вычисляется настоящими
+E88C4/E8590/31A0C один раз на Source-период, yaw дробно продвигается в
+actor10/physical4; полное Original FBAC решение выполняется только на
+Source-end. FC3C JAL delay-slot write выполняется до подстановки target.
+Source-body init сохраняет исходный yaw58, реальные sprite/count/quest4E/
+completion/counter15 команды и их порядок; прогноз не публикует init или
+сюжет раньше времени. Cache проверяет pointers/model lifetime/ROM/callback,
+discrete fields/expected yaw/tick/denominator. Cancellation восстанавливает
+только собственные неизменённые pose words; reset/Source fallback/ownership
+loss очищают запись. Пять новых профилей включают Native-born73/173ms,
+положительный/отрицательный wrap возврат и sentinel counter-1.
+
+Первый Source-only negative212a показал неверное ожидание test oracle для
+B50F4: bank3700 sentinel-1 нормализуется в0 до+1, поэтому результат1, а не255.
+Это уже описано в каталоге; runtime не менялся, fixture исправлен в212b,
+предыдущий fixture/log сохранены. ROM rule hash также должен соответствовать
+ROM bytes, не C text; failed generation212 сохранена. Strict checks не
+ослаблялись. Loop-only scene34 не имеет NPC; новые angle dependencies
+объявлены fatal unvisited boundaries, реальные функции выполняются в
+player/world fixture. Пять остальных компонентов212b прошли, loop повторяется;
+quick endpoint proof и planned cancellation guard ещё не завершены.
+
+Границы остаются явными: special28 не перенесён в main, Native26 event/item
+closure, предметы/эффекты, остальные NPC/объекты/platforms, script cameras,
+cutscenes, minigames и2D продолжаются. Windows stage195/test037 без изменений;
+сборки на каждую правку не создаются, game/window/renderer/GPU не запускались.
+
+### Special24/forced24/28 — полный210a перенесён в main211
+
+Полный210a прошёл вместе с прежним player/world suite. Source-end event
+decisions специальных24 иforced24/28 сохраняют реальные callbacks, Original
+порядок иcommand timestamps. Special24 actual clip6 начинается непрерывно
+в Native interval-start; настоящая B91D4 publication выполняется Source-end,
+затем Original initialized body проверяет busy иonce-only quest51/counter14/
+soundD0/completion. Pending clip/init record проверяет lifetime/tick/denominator/
+ROM/private callback; reset/Source fallback/ownership loss очищают запись
+и отменяют только собственный незавершённый latch. Negative208 traces сохранены.
+
+Проверены4848 Source schedules,720 Native edge schedules,624 rejections,
+33024 frozen189 full RAM/context/heap/resources/commands/model comparisons,
+1008 actual constructors и3192 common NPC B. Отдельно288 cancellation guard
+сценариев проверили reset, Source fallback, hide/reveal, state replacement,
+actual retire/recreate lifetime иexplicit latch rewrite; completion/dialogue
+once-only, ресурсы/model counts вернулись в baseline. Модель Native-born73/
+173ms не теряет первый fractional clip interval. Full source snapshot8 неизменен.
+
+Все runtime/fixture/checker inputs и96 canonical C units после переноса
+идентичны; player report сохраняет явный origin210a. Свежие шесть компонентов
+иSource-only pickup168 выполняются наmain211. Каталог711/376/462 и актуальные
+role comments main209 сохранены. Candidate archive включает guard proof,
+не включает ROM/seeds/saves. Новый Windows EXE не создан.
+
+Isolated212b special28: quick1696 Source/11488 frozen comparisons/3936 yaw
+samples иcancellation288 прошли; общий full идёт иещё не включён в main.
+Native26 event/item branches иостальные variable FPS системы продолжаются.
+Windows stage195/test037 сохранены, игра/окно/renderer/GPU не запускались.
+
+### Special28 guard212b passed; sceneFD negative214 measured
+
+212b full remains immutable and running. Quick passed1696 Source schedules,
+11488 frozen189 full comparisons,3936 intermediate yaw samples and3192 B.
+All six components matched212b and passed; loop-only fixture added fatal
+unvisited E8590/31A0C dependencies, actual Original helpers are executed in
+world fixture. Focused special28 guard passed288 Native schedules/48 Source/
+288 frozen full comparisons/600 yaw samples at24 settings: reset, Source
+fallback, hide/reveal, state replacement, actual recreation with new model
+lifetime and external actor yaw write. Dialogue/completion occur once, final
+resource/heap/model counts baseline. Receipt includes exact source hashes.
+
+Full210a passed entire previous player/world suite:4848 Source schedules,
+720 Native edges,624 rejects,33024 frozen comparisons,27456 yaw samples,
+1008 constructors and3192 B, plus Source special24 cancellation288. Main211
+integration preserved96 canonical C units/ABI/raw hooks and all runtime inputs;
+fresh main211 verification is running. No Windows EXE/game/GPU was produced.
+
+Isolated214 intentionally removed only sceneFD quest5B ownership rejection
+to expose the event timing before any proposed fix. Strict Native60/Original30
+kind26 scenario20 rejected at Source tick15: actor yaw328.872 vs325.106.
+Detailed Original/Native command sequences have seven identical commands;
+BA0C4(175,1) expected433333333+20/60ns, actual400000000+0/60ns: exactly one
+Source30Hz period early. Clip5/clamp and following idle commands also shifted
+one Source period. Both logs/fixture/receipt are preserved; no assertions or
+canonical Source bodies were weakened,214 is not promotable.
+
+ROM F254 callsB922C atF350, then sceneFD/quest5B selects the real flag/request
+tailF360..F398. Actual request invalidates native gameplay eligibility. Current
+live gates then skip common motion/model tailE8D88 and current() stops after
+world before player/camera. A correct Source-end gate therefore also needs
+completed-frame/handoff proof to prevent a second Source actor pass and lost
+final motion/model age; these are investigation hypotheses until a controlled
+fix and strict combined scene/actor/resource traces pass. Main keeps Source
+ownership of this event branch. Native26 item118/123 closure and rest of full
+variable FPS remain outstanding; existing test037 remains user's confirmed
+dialogue-priority build, frequent microbuilds are not being made.
+
+### Main211 — специальные24/forced24/28 проверены после переноса и сохранены
+
+Все восемь текущих отчётов совпадают с исходниками иgeneration211. Full
+player/world report имеет проверенное byte-identical origin210a; шесть
+компонентов заново прошли наmain211, постоянный Source-only quest pickup/
+effect168 test тоже заново прошёл. Каталог711/376/462 сохраняет Original
+preprocessed C tokens, C17, ABI иctx register storage. Docs mapping актуальны.
+Stability211 проверил main/HEAD, donor,32 dependency pins/clean tracked trees,
+current generation inputs истарыйEXE. Код/docs/reports/generation211
+архивированы безROM/seeds/saves; special24 cancellation288 proof сохранён.
+
+Связанный NPC block продолжается. Isolated212b special28 full ещё в работе;
+its Source/native quick and cancellation288 passed, но это не main code.
+SceneFD Native event investigation214 deliberately exposes ungated event
+timing: strict Source comparison remains required before promotion. Native26
+item/event closure иостальные системы настоящего variable FPS не завершены.
+Windows stage195/test037 сохранены; новогоEXE нет, game/window/renderer/GPU
+не запускались. Никакие ветки/коммиты/pins илиdonor не менялись.
+
+### Special28 — полный212b перенесён в main213
+
+Последний особый Slot09 dialogue28 state200 сохраняет actual Original FBAC
+в Source-end: вся инициализация, quest4E, bank3700 counter15, marker D1498,
+completion и sprite lifecycle исполняются в исходном порядке. Непрерывный
+look/return yaw использует реальные pure Original geometric proposals,
+а callback получает восстановленный Source-start yaw. Проверены signed
+return/wrap, Native births73/173ms и sentinel-1 counter normalization.
+ROM/private callback/tick/denominator/actor/model/lifetime и raw yaw/fields
+проверяются перед использованием; reset/Source fallback/ownership loss
+отменяют только собственный незавершённый yaw.
+
+Полный212b: 1008 actual constructors,5088 Source schedules,720 Native edge
+schedules,624 rejections,34464 frozen189 comparisons,30488 intermediate yaw
+samples,3192 actual common NPC B schedules и весь прежний player/world suite
+прошли. Дополнительные288 cancellation/reset/hide/state/actual recreation/
+explicit yaw rewrite schedules также прошли; Native contact publication и
+completion происходят once-only, model/resource counts возвращаются в baseline.
+Source snapshot8 неизменен. Parent210a full проверен до переноса.
+
+96 canonical C units, frontier/hooks/overlay ABI и runtime/fixture/checker
+inputs совпадают с212b; явный full validation origin сохранён. Каталог711
+описаний/376 имён/462 scopes и актуальные комментарии main211 сохраняются.
+Свежие шесть компонентов и Source-only story pickup168 проверяются на213.
+Архив candidate включает288 guard proof безROM/seeds/saves.
+
+SceneFD event/item Native closure остаётся isolated216: прототип ещё требует
+доказать полный порядок оставшегося world/player/projectile/camera обновления,
+возврат к Original и cancellation guards. Основной variable FPS продолжается:
+остальные objects/effects/platforms/script cameras/cutscenes/minigames/2D.
+Windows stage195/test037 не менялся, нового EXE нет; игра/GPU не запускались.
+
+### Main213 — полный Slot09 special28 проверен после переноса и сохранён
+
+Все восемь отчётов совпадают с текущими inputs и generation213. Полный
+player/world report содержит byte-identical origin212b: 5088 Source/720
+Native edge/624 rejection schedules,34464 frozen189 full RAM/context/
+heap/resources/commands/model comparisons,30488 yaw samples,1008 constructors
+и3192 common NPC B, вместе с прежним player/weapons/world suite. Шесть
+компонентов заново прошли наmain213; Source-only pickup/effect168 тоже
+заново прошёл. Каталог711 descriptions/376 names/462 scopes сохраняет
+exact preprocessed C tokens/ABI/context storage; docs mapping актуальны.
+Stability213 подтвердил main/HEAD/donor/32 pins/clean dependency tracked
+trees/current generation inputs, packaged034 и037 неизменны. Код/docs/
+reports/generation213 архивированы безROM/seeds/saves;288 special28 guards
+сохранены в candidate archive.
+
+NPC event/item Native closure остаётся в isolated216, полного proof ещё
+нет. Остальные systems variable FPS продолжаются. Нового Windows EXE нет;
+игра, окно, renderer/GPU не запускались; main/HEAD/pins/donor не менялись.
+
+### Main217 — разобранные room-request функции названы, документация согласована
+
+Каталог712 descriptions/377 names/467 register scopes. Новое имя
+dora3_scene1_request_room_by_id_801BA0C4 объясняет ID→builtin descriptor→
+BA05C request. BA05C описывает pending1/mode/descriptor globals, отсутствие
+actor/model replacement и продолжение BB080. Пять конкретных register
+access scopes названы; implicit forwarded a1 не имеет отдельного access
+в wrapper и объяснён комментарием. Negative194t scope rejection сохранён.
+Свежий names check подтвердил96 C units, identical preprocessed tokens,
+C17, ABI/context storage. Все семь поведенческих отчётов сохраняют явный
+annotation-only origin213 и совпадают с217/current inputs; full player/world
+origin212b сохранён. Stability217: main/HEAD/donor/32 pins/EXE034/037 неизменны.
+Docs mapping обновлён. Native scene event218/220 остаётся изолированным:
+mixed218 выявил repeat соседнего NPC, completed-world-pass исправление220
+проверяется. Main runtime не менялся, нового Windows EXE нет.
+
+### Main217 — names-only checkpoint сохранён
+
+Каталог712/377/467 и свежийnames proof сохранены с текущими восьмью matched
+reports иgeneration217. Все behavior inputs/96 canonical C units/frontier/
+hooks/overlay ABI идентичны213; семь поведенческих отчётов имеют явное
+annotation-only relocation213, полный player/world origin212b сохранён.
+Stability217 проверил donor/32pins/main/HEAD/unchanged EXE034/037.
+SceneFD mixed218 negative иisolated220 исправление не включены в main.
+Документация и имена переменных обновлены, Windows EXE не создавался.
+
+### Git checkpoint217 — явный запрос пользователя2026-10-03
+
+Пользователь уточнил, что локальные архивы не заменяют сохранение в существующий
+Git repository. Подготовлен commit проверенного main217: variable FPS progress,
+confirmed NPC B fix037, Slot09 ordinary/special/forced dialogues, читаемые имена,
+Source-only pickup proof иактуальные/исторические reports сявными generation origins.
+Краткий отчёт: docs/progress-2026-10-02.md. Isolated218/220 scene-transition
+prototypes иnegative diagnostics остаются в ignored build-local, не входят вmain.
+ROM/generated game C/assets/saves/keys исключены. Commit/push результат проверяется
+по remote main после операции; публикация релизов/тегов и смена приватности не запрошены.

@@ -1,4 +1,5 @@
 """Compare time-based rectangle, zoom and sprite sequence with original MIPS closures."""
+from decomp_annotations import read_decompiled_source
 import argparse,hashlib,json,os,re,struct,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -15,7 +16,7 @@ def main():
     assert old['rom_sha256']==receipt['rom_sha256']
     for n,v in old['generated'].items():assert sha(ref/n)==v,n
     def extract(folder):
-        bodies={re.search(r'void (\w+)\(',b)[1]:b for p in (folder/'RecompiledFuncs').glob('*.c') for b in re.findall(r'RECOMP_FUNC void \w+\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)',p.read_text(),re.S)}
+        bodies={re.search(r'void (\w+)\(',b)[1]:b for p in (folder/'RecompiledFuncs').glob('*.c') for b in re.findall(r'RECOMP_FUNC void \w+\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)',read_decompiled_source(p),re.S)}
         todo=['dora3_s3_801BE5F0','dora3_s3_core_801D56F4','dora3_s0_80028C74'];out={}
         while todo:
             name=todo.pop()

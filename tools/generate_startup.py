@@ -5,6 +5,7 @@ from inspect_rom import ROOT, read_rom
 from overlay_layout import prepare_layout, pending_name
 from local_jump_tables import reviewed_local_jumps, verify_generated_local_jumps
 from native_timing_patches import timing_hooks
+from decomp_annotations import annotate_generated_sources
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 
@@ -60,14 +61,46 @@ def main():
                          'void dora3_native_loop_fade_command(uint8_t*, recomp_context*);',
                          'void dora3_native_loop_scene_ready(uint8_t*, recomp_context*);',
                          'void dora3_native_loop_transition(uint8_t*, recomp_context*);',
+                         'void dora3_native_loop_resource_barrier(uint8_t*, recomp_context*);',
                          'void dora3_native_loop_submit(uint8_t*, recomp_context*);',
                          'void dora3_native_loop_retire(uint8_t*, recomp_context*);'])
     declarations.extend(['float dora3_native_rate_f32(float);','double dora3_native_rate_f64(double);', 'int dora3_native_simulation_active(void);', 'int dora3_native_simulation_tick_start(void);', 'float dora3_native_displacement_f32(float, uint32_t);'])
     declarations.extend(['float dora3_native_gravity_f32(float,float,float,uint32_t);','float dora3_native_gravity_displacement_f32(float,uint32_t);'])
     declarations.extend(['int dora3_native_rectangle_update(uint8_t*, recomp_context*);','int dora3_native_zoom_update(uint8_t*, recomp_context*);','int dora3_native_simulation_tick_end(void);'])
+    declarations.append('double dora3_native_capped_approach_f64(double,double,double);')
+    declarations.extend(['double dora3_native_approach_coefficient_f64(double);','double dora3_native_retention_f64(double);'])
+    declarations.append('double dora3_native_tick_end_approach_f64(double,double,double);')
     declarations.append('int dora3_native_process_lifecycle_allowed(uint8_t*, recomp_context*);')
     declarations.append('int dora3_native_model_morph_allowed(uint8_t*, recomp_context*);')
     declarations.append('void dora3_native_model_hook(uint8_t*, recomp_context*, uint32_t);')
+    declarations.append('int dora3_native_model_advance(uint8_t*, recomp_context*);')
+    declarations.append('int dora3_native_preview_hook(uint8_t*,recomp_context*,uint32_t);')
+    declarations.append('void dora3_native_input_sample(uint8_t*,recomp_context*);')
+    declarations.append('int dora3_native_model_event(uint8_t*,uint32_t,float,float,uint64_t);')
+    declarations.append('int dora3_native_model_start_event(uint8_t*,uint32_t,float,float,uint64_t);')
+    declarations.append('int dora3_native_defer_player_shot();')
+    declarations.append('int dora3_native_player_weapon_command_only();')
+    declarations.append('int dora3_native_player_flight_hook(uint8_t*,recomp_context*,uint32_t);')
+    declarations.append('void dora3_native_projectile_scope_end();')
+    declarations.append('void dora3_native_object_scope_end();')
+    declarations.append('float dora3_native_projectile_gravity_f32(uint8_t*,recomp_context*);')
+    declarations.append('int dora3_native_model_scalar_positive(uint8_t*,uint32_t,uint32_t,float);')
+    declarations.append('float dora3_native_model_scalar_linear(uint8_t*,uint32_t,uint32_t,float,double);')
+    declarations.append('float dora3_native_model_scalar_previous(uint8_t*,uint32_t,uint32_t,float,double);')
+    declarations.append('void dora3_native_attached_projectile_offset(uint8_t*,recomp_context*,void (*)(uint8_t*,recomp_context*));')
+    declarations.extend(['void dora3_native_homing_motion(uint8_t*,recomp_context*);',
+                         'float dora3_native_homing_sample(uint8_t*,recomp_context*,unsigned);',
+                         'void dora3_native_homing_target(uint8_t*,recomp_context*);',
+                         'void dora3_native_homing_end(uint8_t*,recomp_context*);'])
+    declarations.extend(['int dora3_native_interaction_skip();','int dora3_native_interaction_enabled();',
+                         'int dora3_native_interaction_geometry_only();',
+                         'float dora3_native_interaction_reach(uint8_t*,recomp_context*);',
+                         'void dora3_native_interaction_bind(uint8_t*,recomp_context*);',
+                         'int dora3_native_interaction_target_valid(uint8_t*,recomp_context*);'])
+    declarations.append('float dora3_native_model_angle_short(uint8_t*,uint32_t,uint32_t,float);')
+    declarations.append('float dora3_native_model_latched_turn(uint8_t*,uint32_t,uint32_t,float,float);')
+    declarations.extend(['float dora3_native_drive_f32(float,float,float,float,float,uint32_t);', 'void dora3_native_project_drive_f32(float,float,uint32_t,uint32_t,uint32_t);'])
+    declarations.append('void dora3_native_camera_dispatch(uint8_t*,recomp_context*,uint32_t,void (*)(uint8_t*,recomp_context*));')
     declarations.append('int dora3_native_loop_receive_deferred(uint8_t*, recomp_context*);')
     declarations.append('int dora3_native_game_message(uint8_t*, recomp_context*);')
     declarations.append('uint32_t dora3_bus_read32(uint8_t*, uint32_t);')
@@ -102,6 +135,7 @@ def main():
             hook+=' dora3_native_loop_transition(rdram, ctx);'
         if index==0 and addr in {0x80033A14,0x8003B7D0,0x8003B77C,0x8003B6BC,0x8003B744,0x80039564,0x80039578,0x800395BC,0x8003948C,0x800393C4}:
             hook+=f' dora3_native_model_hook(rdram, ctx, 0x{addr:08X});'
+            if addr==0x8003948C:hook+=' if (dora3_native_model_advance(rdram, ctx)) return;'
         if index==0 and addr==0x80038D58:
             hook+=' if (!dora3_native_model_morph_allowed(rdram, ctx)) return;'
         if index==0 and addr==0x80026CEC:
@@ -145,7 +179,8 @@ def main():
         hook='dora3_native_loop_message(rdram, ctx); if (dora3_native_game_message(rdram, ctx)) goto L_800278E0; if (dora3_native_completion_during_pause(rdram, ctx)) goto L_80027914;'
         config+=f'{{ func = "{name}", before_vram = 0x800278EC, text = "if (dora3_native_loop_receive_deferred(rdram, ctx)) goto dora3_after_deferred_receive;" }},\n'
         config+=f'{{ func = "{name}", before_vram = 0x800278F4, text = {json.dumps("dora3_after_deferred_receive:; " + hook)} }},\n'
-    loop_hooks=[('dora3_game_message_loop',0x80027948,0x3C02801B,'if (dora3_native_loop_before_vi(rdram, ctx)) goto L_800278E0;'),
+    loop_hooks=[('dora3_controller_accumulate',0x800304A0,0x03E00008,'dora3_native_input_sample(rdram, ctx);'),
+                ('dora3_game_message_loop',0x80027948,0x3C02801B,'if (dora3_native_loop_before_vi(rdram, ctx)) goto L_800278E0;'),
                 ('dora3_game_message_loop',0x80027960,0x3C02801B,'if (dora3_native_loop_after_vi(rdram, ctx)) goto L_800278E0;'),
                 ('dora3_game_retrace_update',0x8003087C,0x0C00A252,'if (dora3_native_loop_owns_fade()) goto dora3_after_legacy_fade;'),
                 ('dora3_game_retrace_update',0x80030884,0x0C00F352,'dora3_after_legacy_fade:;')]
@@ -197,7 +232,9 @@ def main():
     if sha(binary)!=receipt['executables']['N64Recomp']['sha256']:raise ValueError('Tool binary mismatch')
     with (out/'generation.log').open('w') as log:subprocess.run([str(binary),str(out/'startup.toml')],stdout=log,stderr=subprocess.STDOUT,check=True)
     verify_generated_local_jumps(out/'RecompiledFuncs',local_jumps)
-    inputs=['tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
+    annotate_generated_sources(out/'RecompiledFuncs',sections,compiled,rom,ROOT/'recomp/decomp-symbols.json')
+    verify_generated_local_jumps(out/'RecompiledFuncs',local_jumps)
+    inputs=['tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
     tracked=[f for f in out.rglob('*') if f.is_file() and f.name!='generation.log']
     report={'scope':'reviewed resident/overlay functions; explicit stop on unreviewed calls',
             'rom_sha256':hashlib.sha256(rom).hexdigest(),'tool_sha256':sha(binary),'inputs':{x:sha(ROOT/x) for x in inputs},

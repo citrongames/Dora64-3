@@ -120,6 +120,13 @@ std::optional<FrameTicket> FrameScheduler::receive(WakeToken token, Nanoseconds 
     return FrameTicket{token, bank, *step};
 }
 
+bool FrameScheduler::ready(WakeToken token, Nanoseconds now) const {
+    std::lock_guard lock(mutex_);
+    const auto due=clock_.deadline();
+    return pending_ && *pending_==token && clock_.active() && due && now>=*due &&
+           banks_[next_bank_].phase==Phase::Free;
+}
+
 bool FrameScheduler::publish(const FrameTicket& ticket) {
     WakeSignal::Notice notice{signal_};
     std::lock_guard lock(mutex_);

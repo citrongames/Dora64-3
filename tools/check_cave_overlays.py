@@ -1,4 +1,5 @@
 """Check cave overlay identities and generated call destinations."""
+from decomp_annotations import read_decompiled_source
 import argparse
 import json
 import re
@@ -18,7 +19,7 @@ def main():
     evidence = json.loads((ROOT / 'research/cave-candidate-map.json').read_text())
     sections, compiled, sdk, frontier = prepare_layout(meta, rom)
     by_name = {s['name']: i for i, s in enumerate(sections)}
-    generated = '\n'.join(f.read_text() for f in (args.generated / 'RecompiledFuncs').glob('*.c'))
+    generated = '\n'.join(read_decompiled_source(f) for f in (args.generated / 'RecompiledFuncs').glob('*.c'))
     bodies = dict(re.findall(r'RECOMP_FUNC void (\w+)\([^\n]+\n(.*?)(?=RECOMP_FUNC void |\Z)', generated, re.S))
     for slot, expected in enumerate(evidence['sections']):
         s = sections[by_name[expected['name']]]

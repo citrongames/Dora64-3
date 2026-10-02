@@ -17,9 +17,10 @@ extern "C" int dora3_native_frame_build_active() { return building_native_frame 
 
 namespace dora3::native_time {
 const FrameBinding* active_frame_binding() { return building_native_frame; }
-bool FrameBridge::enter(unsigned fps, Nanoseconds now, unsigned bank, bool safe, FrameConsumer consumer) {
+bool FrameBridge::enter(unsigned fps, Nanoseconds now, unsigned bank, bool safe, FrameConsumer consumer, FrameUpdate update) {
     if (!consumer || !scheduler_.enter(fps, now, bank, safe)) return false;
     consumer_ = consumer;
+    update_ = update;
     return true;
 }
 void FrameBridge::change_rate(unsigned fps, Nanoseconds now) {
@@ -28,6 +29,7 @@ void FrameBridge::change_rate(unsigned fps, Nanoseconds now) {
 void FrameBridge::leave(Nanoseconds now) {
     scheduler_.leave(now);
     consumer_ = nullptr;
+    update_ = nullptr;
     // Keep the mailbox: an old enqueued message still owns its payload.
 }
 void FrameBridge::reset_after_runtime_barrier(Nanoseconds now) {
@@ -35,6 +37,7 @@ void FrameBridge::reset_after_runtime_barrier(Nanoseconds now) {
     scheduler_.reset_after_runtime_barrier(now);
     mailbox_.receive(WakeMailbox::message_value);
     consumer_ = nullptr;
+    update_ = nullptr;
 }
 bool FrameBridge::post_due(Nanoseconds now, WakeSender sender) {
     if (!sender) return false;
@@ -64,6 +67,14 @@ bool FrameBridge::dispatch(uint32_t message, Nanoseconds now, uint8_t* ram, reco
     if (message != WakeMailbox::message_value) return false;
     const auto wake = mailbox_.receive(message);
     if (!wake) return true; // Reserved value is NEVER a guest pointer, even in Original.
+    // Keep the queued request pending during update: no new wake can overtake
+    // it. Unlike a Building bank, this token can be invalidated by a resource
+    // barrier without waiting for a frame that has not yet been submitted.
+    if (update_ && scheduler_.ready(*wake,now)) {
+        recomp_context update_context;dora3::copy_recomp_context(update_context,*context);
+        update_(ram,&update_context,now);
+    }
+    // Update may have changed scene/rate/session. Never publish its old wake.
     const auto ticket = scheduler_.receive(*wake, now);
     if (ticket && consumer_) {
         // This hook is not a MIPS call site. Keep all registers, notably s0/s1

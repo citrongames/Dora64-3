@@ -1,0 +1,34 @@
+{
+  "result": "PASS: 96 actual kind6/80 Source schedules, 96 off-grid pause/resume/rearm Native schedules, 960 orbital71..74 Source/contact/birth schedules, 480 orbital Native off-grid schedules, 912 full-RAM Original world comparisons; settings=24; ASan/UBSan/LSan, focused only; no game/GPU.",
+  "generation_receipt_sha256": "5cc8cb5233f5f94d254e2fedd0dea4f19a1ebdd363ff4c4ff41a728c4aae431e",
+  "source_sha256": {
+    "src/native_gameplay_preview.cpp": "f9e3ef9cf5dc07866b4f11d02ac724a7d07ec9000d0255819bb180128ef64fe9",
+    "src/native_gameplay_preview.hpp": "c217908d86f9b319a3acffcf4f3edb0e7cfa92b8de4742c21988f4d052638b11",
+    "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
+    "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
+    "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
+    "src/native_camera_timeline.cpp": "35f21fafbaae833ae6561a0c710f0b9f791e7f9a929e633cc72b3e0b056db120",
+    "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
+    "research/native-player-update-check.cpp": "52df355c7c7b23879e57a1420d61f0acba3f960a8c8ad14786ab3c219a58f6a8",
+    "tools/check_native_player_update.py": "34833701dac164bb48ccad2b1cb3c31f083e2dbc1518b7e3ee22e132f14bbfb0",
+    "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
+    "tools/native_timing_patches.py": "77ef9bd48e7113f6ce853a9af5df31c0e2c5270ca873803dd20ae48666d69b99",
+    "recomp/native-timing-rules.json": "597cf1ab21cff807f8f79f8214ba9cba42020f954b81d50e1451fb7cbc7395c2",
+    "recomp/decomp-symbols.json": "8cc63ebe44c408bedd5b3a78992dcfe60d90e812a7685f12c05bd5841374a744"
+  },
+  "focused_log_sha256": "4150adf432288e406d1db043debacc8e82d9c3c1911f2d0ff076bc090835481c",
+  "negative_log_sha256": "357f4d916d0eefa4028f792349502e12d0c4ab4f969c7b4eb916257437e76188",
+  "settings": 24,
+  "source_schedules": 96,
+  "native_off_grid_schedules": 96,
+  "orbital_source_schedules": 960,
+  "orbital_native_off_grid_schedules": 480,
+  "original_full_ram_comparisons": 912,
+  "limitations": [
+    "Focused world proof confirmed by full connected player185; all six integration/naming reports have matched generation185 receipt and current source hashes",
+    "Actual Original callbacks, contact entry and model constructors/destructors on synthetic room/model assets; story-room dialogue resource producer remains unverified",
+    "The birth_only diagnostic argument was overwritten by preparation argv in this run: the positive log actually covers all ten orbital Source scenarios and all five Native off-grid schedules per kind/setting, as its counters show",
+    "Other active city NPCs/platforms, actual level construction/gameplay, scripted camera progression, cutscenes, minigames and2D remain outstanding"
+  ],
+  "full_connected_player_report_sha256": "616506627157ebec77cbb1c998378efe068da37476468c89a747c1571b4f6fca"
+}

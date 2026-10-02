@@ -218,6 +218,43 @@ static void reset_delivery(uint8_t* rdram, recomp_context* c) {
     b.leave(4 * second);
 }
 
+static FrameBridge* updating_bridge;
+static int update_calls,update_action;
+static void update_before_bank(uint8_t* rdram,recomp_context* c,Nanoseconds now) {
+    ++update_calls;
+    assert(!active_frame_binding() && updating_bridge->drained());
+    assert(!updating_bridge->post_due(now,retain_sender)); // Request owns order.
+    MEM_W(0,int32_t(0x80221000))=update_calls;
+    c->r16=0xBAD; c->f_odd[0]=0xBAD;
+    if(update_action==1)updating_bridge->leave(now);
+    if(update_action==2) {
+        updating_bridge->leave(now);
+        assert(updating_bridge->enter(144,now,1,true,consumer,update_before_bank));
+    }
+    if(update_action==3)updating_bridge->change_rate(120,now);
+}
+static void update_boundary(uint8_t* rdram,recomp_context* c) {
+    FrameBridge bridge;updating_bridge=&bridge;
+    for(int action=0;action<4;++action) {
+        native_frames=update_calls=0;update_action=action;
+        assert(bridge.enter(60,0,0,true,consumer,update_before_bank));
+        assert(bridge.post_due(second,retain_sender));
+        const auto original=*c;
+        assert(bridge.dispatch(WakeMailbox::message_value,second,rdram,c));
+        assert(std::memcmp(&original,c,sizeof(*c))==0);
+        assert(update_calls==1 && MEM_W(0,int32_t(0x80221000))==1);
+        assert(native_frames==(action==0?1:0) && bridge.drained());
+        bridge.leave(2*second);
+    }
+    update_calls=0;
+    assert(bridge.enter(60,0,0,true,consumer,update_before_bank));
+    assert(bridge.post_due(second,retain_sender));
+    bridge.change_rate(144,second);
+    assert(bridge.dispatch(WakeMailbox::message_value,2*second,rdram,c));
+    assert(update_calls==0 && bridge.drained()); // A stale wake cannot update RAM.
+    bridge.leave(3*second);
+}
+
 static void concurrent(uint8_t* rdram, recomp_context* c) {
     FrameBridge b;
     native_frames = 0;
@@ -256,6 +293,7 @@ int main() {
     catch (const StopLoop&) {}
     loop_test = false;
     reset_delivery(rdram, &ctx);
+    update_boundary(rdram, &ctx);
     concurrent(rdram, &ctx);
-    std::cout << "PASS: registered type2 drains during pause while unregistered type2 remains Original; real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context and all odd FPRs preserved in FR=0/FR=1; stale scene/rate wakes; quiescent reset; 2000 concurrent deliveries\n";
+    std::cout << "PASS: registered type2 drains during pause while unregistered type2 remains Original; real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context and all odd FPRs preserved in FR=0/FR=1; stale scene/rate wakes; quiescent reset; update before bank reservation, scene/rate cancellation; 2000 concurrent deliveries\n";
 }

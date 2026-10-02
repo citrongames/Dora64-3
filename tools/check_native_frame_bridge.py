@@ -1,4 +1,5 @@
 """Run the hooked original game loop and pinned runtime queue on synthetic RAM."""
+from decomp_annotations import read_decompiled_source
 import argparse
 import hashlib
 import json
@@ -25,7 +26,7 @@ def main():
     subprocess.run(['python3', str(ROOT/'tools/prepare_runtime_timing.py'), str(out)], check=True)
     name = 'dora3_game_message_loop'
     pattern = r'RECOMP_FUNC void ' + name + r'\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)'
-    bodies = [match for f in (g/'RecompiledFuncs').glob('*.c') for match in re.findall(pattern, f.read_text(), re.S)]
+    bodies = [match for f in (g/'RecompiledFuncs').glob('*.c') for match in re.findall(pattern, read_decompiled_source(f), re.S)]
     if len(bodies) != 1: raise ValueError('Missing/duplicate original loop')
     if bodies[0].count('if (dora3_native_game_message(rdram, ctx)) goto L_800278E0;') != 1:
         raise ValueError('Native receive hook missing/duplicated')

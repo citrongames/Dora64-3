@@ -1,0 +1,324 @@
+{
+  "version": 1,
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "section": ".scene1",
+  "section_rom": "0x70A50",
+  "pool_slots": [
+    10,
+    29
+  ],
+  "pool_base": "0x80171CD0",
+  "actor_stride": "0xCC",
+  "callback_table": "0x801FAB48",
+  "table_stride": 8,
+  "ownership_contract": "All27 reviewed projectile callbacks pool10..29; player1..18/21/22/24/25/28/29; real moving weapons1..8 and13 Source actions and Native press/release; held6 repeat; charge11/12; identity/run guarded Source attachment; interaction pause/resume/morph; allocation-scoped birth and bounce phase clocks; player flight20/27/57/58: Source-matched motion, aerial9/10/11/12 shots, held9 repeat, off-grid A/stick and real damage48 handoff",
+  "cpu_limitations": [
+    "Synthetic model assets/room; resource lookup/release, sound and sprite boundaries instrumented",
+    "Moving homing verified for six Source ticks; stationary through tracking-window closure",
+    "Interaction contacts instrumented and captured NPC paused",
+    "Other player actions/modes and damage48 remain Source-owned; active AI/platforms, real levels, cutscenes, minigames and2D remain outstanding"
+  ],
+  "rows": [
+    {
+      "kind": 82,
+      "callback": "0x801CBFDC",
+      "function_name": "dora3_s3_core_801CBFDC",
+      "function_sha256": "7d06eb28eb933e1eddff410d0b373aa36c468bc2187f65178b9889b520e5876f",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Shared gravity and displacement; state34 commits bounce/impact and writes instantaneous vy50/gravity4"
+      ]
+    },
+    {
+      "kind": 83,
+      "callback": "0x801CBD0C",
+      "function_name": "dora3_s3_core_801CBD0C",
+      "function_sha256": "0a0ded8d4ec8912763ecb4a89a9061f07e9dea692da04e28d0edc2b9bf253a7e",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Shared gravity and displacement; four clip-bound phases/rebinds; final opacity approaches zero; player-release command once at phase2"
+      ]
+    },
+    {
+      "kind": 84,
+      "callback": "0x801CC5D4",
+      "function_name": "dora3_s3_core_801CC5D4",
+      "function_sha256": "5f54a4de03c586cbeb25eedcbd7d451504dc90c31c0e25600740121e2406b8ef",
+      "data_flag": 1,
+      "native_owner": true,
+      "semantic_notes": [
+        "Shared gravity and displacement; fixed spatial probes; hit spawns85 and releases player action once"
+      ]
+    },
+    {
+      "kind": 85,
+      "callback": "0x801CC33C",
+      "function_name": "dora3_s3_core_801CC33C",
+      "function_sha256": "e1007fd10a7a8257e45b064b993df9a3930e19dd7f3349b9e5a612593cfac115",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Scale approaches1; alpha decay enabled after scale threshold; delete at alpha threshold; both gains are temporal"
+      ]
+    },
+    {
+      "kind": 86,
+      "callback": "0x801CCAAC",
+      "function_name": "dora3_s3_core_801CCAAC",
+      "function_sha256": "224c188b410192d15d51e52e317b403f4517439bc824016f7db8dff409a5bdc5",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Yaw homing1/1.5 and pitch2 degrees per source tick; integer oscillator36 adds40; count34 ages tracking; geometry deltas remain spatial"
+      ],
+      "validation_scope": "384 schedules: two characters, speed0 or25/7, four static-target patterns including wrap/no target; six moving or102 stationary Source ticks; Original endpoint fields, independent quarter-interval curves, bounded per-update pitch and real impact87/full retirement"
+    },
+    {
+      "kind": 87,
+      "callback": "0x801CC7F4",
+      "function_name": "dora3_s3_core_801CC7F4",
+      "function_sha256": "434c25c5786bff8efdb753050caaf2e2e187c90fd0400031c80cd5a93e260923",
+      "data_flag": 1,
+      "native_owner": true,
+      "semantic_notes": [
+        "Scale approaches5, rotation25 degrees per tick, opacity decay and deletion threshold"
+      ]
+    },
+    {
+      "kind": 88,
+      "callback": "0x801CD5A4",
+      "function_name": "dora3_s3_core_801CD5A4",
+      "function_sha256": "cf908b67429bb2b2949bc49de6e234388c9a5b186f69d7310a25a8b62012eefd",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Shared gravity/displacement; 34 is probe radius and +10 on hit is an instantaneous spatial expansion, not a timer"
+      ]
+    },
+    {
+      "kind": 89,
+      "callback": "0x801CD2C8",
+      "function_name": "dora3_s3_core_801CD2C8",
+      "function_sha256": "744ae024764a7bf54dc546fb53feab846b2285fdfd83b8126dd61cc5689e2868",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Source delay34 decrements while36==1; spawns next chain once, changes36 to10; clip-ended release depends on chain index38"
+      ]
+    },
+    {
+      "kind": 90,
+      "callback": "0x801CD86C",
+      "function_name": "dora3_s3_core_801CD86C",
+      "function_sha256": "a45abade26fa5d2af6dfc400e927a3bacb16298ce20f78679654c70974ac4462",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Linear shared displacement; age36 counts source ticks; alpha linear loss after20; scale approach1; rotation25 degrees per tick"
+      ]
+    },
+    {
+      "kind": 91,
+      "callback": "0x801CDCB8",
+      "function_name": "dora3_s3_core_801CDCB8",
+      "function_sha256": "e9995643b69bddbc84b9a4d9397ea816db503ebe73559c83d98347505bf4e24c",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Pure velocity projection/shared displacement; fixed or physics34 spatial probes; hit spawns the next terminal type once"
+      ]
+    },
+    {
+      "kind": 92,
+      "callback": "0x801CDAE4",
+      "function_name": "dora3_s3_core_801CDAE4",
+      "function_sha256": "070057d7afff92f30827e89ee5c7b567ae1452ab0bd7d785088cb6305ad9a008",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Clip completion retires the whole actor once"
+      ]
+    },
+    {
+      "kind": 93,
+      "callback": "0x801CE338",
+      "function_name": "dora3_s3_core_801CE338",
+      "function_sha256": "6602d55507c996eba88e907848f439a1896fea4795abb0b2ae38cadfec2a2cbe",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Pure velocity projection/shared displacement; fixed or physics34 spatial probes; hit spawns the next terminal type once"
+      ]
+    },
+    {
+      "kind": 94,
+      "callback": "0x801CE074",
+      "function_name": "dora3_s3_core_801CE074",
+      "function_sha256": "070057d7afff92f30827e89ee5c7b567ae1452ab0bd7d785088cb6305ad9a008",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Clip completion retires the whole actor once"
+      ]
+    },
+    {
+      "kind": 95,
+      "callback": "0x801CE954",
+      "function_name": "dora3_s3_core_801CE954",
+      "function_sha256": "8e51ce054a75a745f4d3adf1e56bb028e956b04395b70320c5e2eb74fda5872e",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Pure velocity projection/shared displacement; fixed or physics34 spatial probes; hit spawns the next terminal type once"
+      ]
+    },
+    {
+      "kind": 96,
+      "callback": "0x801CE620",
+      "function_name": "dora3_s3_core_801CE620",
+      "function_sha256": "070057d7afff92f30827e89ee5c7b567ae1452ab0bd7d785088cb6305ad9a008",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Clip completion retires the whole actor once"
+      ]
+    },
+    {
+      "kind": 97,
+      "callback": "0x801CED88",
+      "function_name": "dora3_s3_core_801CED88",
+      "function_sha256": "40333fc7fa2d2e3fa716f9fcd0625a735b15b84b8f7edc16ad573b65ff798004",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Pure velocity projection/shared displacement; fixed or physics34 spatial probes; hit spawns the next terminal type once"
+      ]
+    },
+    {
+      "kind": 98,
+      "callback": "0x801CEBA8",
+      "function_name": "dora3_s3_core_801CEBA8",
+      "function_sha256": "070057d7afff92f30827e89ee5c7b567ae1452ab0bd7d785088cb6305ad9a008",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Clip completion retires the whole actor once"
+      ]
+    },
+    {
+      "kind": 99,
+      "callback": "0x801CF52C",
+      "function_name": "dora3_s3_core_801CF52C",
+      "function_sha256": "9570e3d7c2ef515c898c9050d46dd79731917759a8a32ca9c2431300e85f073e",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Pure velocity projection/shared displacement; fixed or physics34 spatial probes; hit spawns the next terminal type once"
+      ]
+    },
+    {
+      "kind": 100,
+      "callback": "0x801CF1F0",
+      "function_name": "dora3_s3_core_801CF1F0",
+      "function_sha256": "070057d7afff92f30827e89ee5c7b567ae1452ab0bd7d785088cb6305ad9a008",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Clip completion retires the whole actor once"
+      ]
+    },
+    {
+      "kind": 101,
+      "callback": "0x801CFA94",
+      "function_name": "dora3_s3_core_801CFA94",
+      "function_sha256": "bd332efce240e9723d823b908f68056aefc2310c7003c3743eb39d68390052b8",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Follows player bone; alpha linear loss; speed0 grows by integer36 per tick; phase34 adds3 until42; converts to102 once"
+      ],
+      "validation_scope": "48 acquired charge schedules plus48 live producer-birth schedules jointly; Original field endpoints, attachment to moving player, conversion and complete retirement"
+    },
+    {
+      "kind": 102,
+      "callback": "0x801CF7AC",
+      "function_name": "dora3_s3_core_801CF7AC",
+      "function_sha256": "070057d7afff92f30827e89ee5c7b567ae1452ab0bd7d785088cb6305ad9a008",
+      "data_flag": 1,
+      "native_owner": true,
+      "semantic_notes": [
+        "Clip completion retires the whole actor once"
+      ]
+    },
+    {
+      "kind": 103,
+      "callback": "0x801D0088",
+      "function_name": "dora3_s3_core_801D0088",
+      "function_sha256": "3d7eb6624277fcc5fd8a62b677c76e926c5b198d71f7a30c77f5c55f7e712b9e",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Same temporal structure as101 with distinct alpha constant and impact constructor104"
+      ],
+      "validation_scope": "48 acquired charge schedules plus48 live producer-birth schedules jointly; Original field endpoints, attachment to moving player, conversion and complete retirement"
+    },
+    {
+      "kind": 104,
+      "callback": "0x801CFDB4",
+      "function_name": "dora3_s3_core_801CFDB4",
+      "function_sha256": "070057d7afff92f30827e89ee5c7b567ae1452ab0bd7d785088cb6305ad9a008",
+      "data_flag": 1,
+      "native_owner": true,
+      "semantic_notes": [
+        "Clip completion retires the whole actor once"
+      ]
+    },
+    {
+      "kind": 105,
+      "callback": "0x801D05A8",
+      "function_name": "dora3_s3_core_801D05A8",
+      "function_sha256": "9042e702bad7ffdc88c729c825f267075539808983fcdc5e0ebad1165b6bf394",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Bone attachment and frame-indexed spatial reach table; state1/2/10 one-shot contacts/spawn; target actor movement and clip seek are commands"
+      ],
+      "validation_scope": "120 Original endpoint/first-pass full-RAM free/held/seek/spawn/capture schedules; 24 held schedules with54 Original geometry quarter samples; 48 live births incl same-address captured NPC model recreation and full resources retirement; synthetic contact flags, paused NPC"
+    },
+    {
+      "kind": 106,
+      "callback": "0x801D0398",
+      "function_name": "dora3_s3_core_801D0398",
+      "function_sha256": "070057d7afff92f30827e89ee5c7b567ae1452ab0bd7d785088cb6305ad9a008",
+      "data_flag": 1,
+      "native_owner": true,
+      "semantic_notes": [
+        "Clip completion retires the whole actor once"
+      ]
+    },
+    {
+      "kind": 107,
+      "callback": "0x801D0F48",
+      "function_name": "dora3_s3_core_801D0F48",
+      "function_sha256": "37b71fff5bab4bc3d1ea5c18ea35941ae13d81e14e884d176804eb7aa5d06705",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Shared straight displacement; actual first clip ending changes scalar speed25 to30 and binds clip1 once; hit spawns108"
+      ]
+    },
+    {
+      "kind": 108,
+      "callback": "0x801D0BC0",
+      "function_name": "dora3_s3_core_801D0BC0",
+      "function_sha256": "070057d7afff92f30827e89ee5c7b567ae1452ab0bd7d785088cb6305ad9a008",
+      "data_flag": 0,
+      "native_owner": true,
+      "semantic_notes": [
+        "Clip completion retires the whole actor once"
+      ]
+    }
+  ]
+}

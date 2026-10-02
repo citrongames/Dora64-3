@@ -1,5 +1,6 @@
 #include "native_scene_policy.hpp"
 #include "recomp.h"
+#include "native_gameplay_preview.hpp"
 namespace {
 int32_t word(uint8_t* rdram,uint32_t address) {return MEM_W(0,int32_t(address));}
 bool scene34_armed=false;
@@ -27,12 +28,18 @@ bool image_eligible(uint8_t* rdram) {
     // dependency model and is not authorized by this initial scene policy.
     return word(rdram,0x801A9C88)==0;
 }
+bool gameplay20_eligible(uint8_t* ram) {return word(ram,0x801A39DC)==3&&native_gameplay_preview_eligible(ram);}
+bool gameplay30_eligible(uint8_t* ram) {return word(ram,0x801A39DC)==2&&native_gameplay_preview_eligible(ram);}
+const ScenePolicy gameplay20_policy{"scene1-ground-preview",gameplay20_eligible,3,native_gameplay_preview_update};
+const ScenePolicy gameplay30_policy{"scene1-ground-preview-30",gameplay30_eligible,2,native_gameplay_preview_update};
 const ScenePolicy image_policy{"scene34-image",image_eligible,3};
 }
 const ScenePolicy* select_native_scene_policy(uint8_t* rdram) {
     // Additional reviewed scene families join this registry, without changing
     // the event loop, ownership protocol or settings implementation.
     if(image_policy.eligible(rdram))return &image_policy;
+    if(gameplay20_policy.eligible(rdram))return &gameplay20_policy;
+    if(gameplay30_policy.eligible(rdram))return &gameplay30_policy;
     return nullptr;
 }
 void native_scene34_ready() {scene34_armed=true;}

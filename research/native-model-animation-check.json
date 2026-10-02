@@ -1,6 +1,6 @@
 {
   "scope": "Actual original constructors, bind/seek/pause/clamp, linear/Hermite pose, morph and destruction; synthetic assets and allocator; no renderer or scene activation",
-  "result": "PASS: 74 original linear/morph native pose samples at 60/73/120/144/165/360 Hz and both dividers; Hermite curve through original matrix builder, bank isolation, guest context/time/event preservation, pause/seek/clamp/rebind/stale updates, unknown-write rollback, deferred logic morph, draw-time deletion and same-address recreation; no game/GPU.",
+  "result": "PASS: 20 crossing timelines / actual player frame-18 event; 24 native simulation model timelines with nondestructive events and no render double-advance; 12 fractional short-angle wrap schedules; 12 latched angular-command schedules; 12 preceding opacity-command schedules; 12 exact-float scalar/retirement timelines with pause/write/acquisition/lifetime invalidation; 74 original linear/morph native pose samples at 60/73/120/144/165/360 Hz and both dividers; Hermite curve through original matrix builder, bank isolation, guest context/time/event preservation, pause/seek/clamp/rebind/stale updates, unknown-write rollback, deferred logic morph, draw-time deletion and same-address recreation; no game/GPU.",
   "sanitizers": "ASan/LSan original and new code; UBSan new C++ only",
   "original_functions": [
     "dora3_lib_80055BD0",
@@ -10,6 +10,7 @@
     "dora3_lib_8005A140",
     "dora3_lifetime_slots_init",
     "dora3_object_subsystem_reset",
+    "dora3_s0_8002A3F8",
     "dora3_s0_800378C0",
     "dora3_s0_80037914",
     "dora3_s0_80037FA0",
@@ -25,6 +26,7 @@
     "dora3_s0_8003931C",
     "dora3_s0_800393C4",
     "dora3_s0_8003948C",
+    "dora3_s0_8003955C",
     "dora3_s0_80039564",
     "dora3_s0_80039578",
     "dora3_s0_800395BC",
@@ -40,26 +42,38 @@
     "dora3_s0_8003B744",
     "dora3_s0_8003B77C",
     "dora3_s0_core_80038BC8",
-    "dora3_s0_menu_80039544"
+    "dora3_s0_menu_80039544",
+    "dora3_s3_core_801C4650"
   ],
   "stub_boundaries": [
     "dora3_game_heap_alloc",
+    "dora3_native_model_advance",
     "dora3_native_model_morph_allowed",
     "dora3_s0_80033C50",
-    "dora3_s0_80038B10"
+    "dora3_s0_80038B10",
+    "dora3_s3_core_801C120C",
+    "dora3_s3_core_801C1664"
   ],
   "source_sha256": {
-    "src/native_model_animation.cpp": "8902f29c622cee2eb1cb6317630dc332a37c4103a32049b4d5536b32811665f2",
-    "src/native_frame_time.cpp": "4591be5bf70cb6c13b91df526d03fce1035c31fa2f0449d7a8bfb58860b344e6",
-    "research/native-model-animation-check.cpp": "1dd7be85e9de8bbccdb079b458368431ea61386b09b743f28ea98a43a8231c3d",
+    "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
+    "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
+    "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
+    "research/native-model-animation-check.cpp": "80937651a56a133aca4c459566085e8f809cacf31b4d952d7251fa198a80d96e",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
-    "src/native_model_animation.hpp": "fe5010174932505b3f6342de7ddcc4a387e9807fde52a6d5a5a5498097fb066c",
-    "src/native_frame_time.hpp": "f35ef08a013dc538094b317faa49cb03aa8042777b20590b8d8cd4a600a46296",
-    "tools/check_native_model_animation.py": "1fb4ee13f59f3363b8381ea275ea561f922005218dd9ed51630b0051c1e29684"
+    "src/native_model_animation.hpp": "2132dc8530bf55e774ed8ed4f4ebf12cda94ce4e8615a0d386c77917de2650b7",
+    "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
+    "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
+    "tools/check_native_model_animation.py": "213240f0c67dbfee952ec46bdf7e377c5f785a35a09ad2157823890121de9b5d"
   },
-  "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db",
+  "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
   "remaining": [
     "Unreviewed phase1 commands, matrix consumers and full scene coverage still need integration audit",
     "This component does not convert movement, camera, collision, AI, scripts or all 2D systems"
-  ]
+  ],
+  "annotation_only_relocation": {
+    "from_generation": "startup-v213",
+    "report_sha256": "02c541c92efc5889a3aab9bf6c8fd8c0548d7a84907828379b44df0bc58e3019",
+    "generation_receipt_sha256": "56fd7e92cd079182ec5bb5767254402caf6497c51f77cdb1cca0d958427f4a96",
+    "evidence": "Every runtime/fixture/checker input unchanged; all96 canonical generated C units and raw frontier/hooks/overlay table identical; one new room-ID wrapper alias/description and5 actual register scopes; unchanged Source behavior and ABI"
+  }
 }

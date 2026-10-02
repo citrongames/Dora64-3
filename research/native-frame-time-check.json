@@ -1,14 +1,14 @@
 {
   "scope": "Isolated native timing/fade implementation; original ROM routine oracle on synthetic RAM; no live integration or GPU",
-  "result": "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. All five original fade commands, inter-frame timestamp, no-op fractional retention, same-time commands and unknown-write rejection. No game/window/GPU.",
+  "result": "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. All five original fade commands, inter-frame timestamp, no-op fractional retention, same-time commands and unknown-write rejection; rational Source command origins/reversal at12 FPS/divider settings with nonzero origin. No game/window/GPU.",
   "sanitizers": "ASan/LSan on component and original functions; UBSan on new C++ component/harness",
   "source_sha256": {
-    "src/native_frame_time.cpp": "4591be5bf70cb6c13b91df526d03fce1035c31fa2f0449d7a8bfb58860b344e6",
-    "research/native-frame-time-check.cpp": "22be7a7947214508c9e4c5271ab88b98ec716b9dce52d175ef581012273acf3b",
-    "src/native_frame_time.hpp": "f35ef08a013dc538094b317faa49cb03aa8042777b20590b8d8cd4a600a46296",
-    "tools/check_native_frame_time.py": "70d04b76a3fcf2bf8b7e553992f752734e749502f97724d54396ff7c2988fd8c"
+    "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
+    "research/native-frame-time-check.cpp": "e56c1b90a4346117cb88b3a022b6a806a307b1955c4d5934e7669d4b9210a76b",
+    "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
+    "tools/check_native_frame_time.py": "8c930fabbd13f3a5b552386b4caf62fb6f4caf1c19d58651d81d21ad070173fc"
   },
-  "generation_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
+  "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
   "original_functions": [
     "dora3_fade_tick",
     "dora3_s0_8003948C",
@@ -22,5 +22,11 @@
     "Animation guest event delivery not connected; shared fade commands covered separately by live loop check",
     "Physics, camera, scripts and per-scene callbacks not converted",
     "This report tests math and original command semantics, not visual correctness"
-  ]
+  ],
+  "annotation_only_relocation": {
+    "from_generation": "startup-v213",
+    "report_sha256": "c7dcb66cbb51ead2800c9ed695a072cec6fafd4be700df405528130b051476a2",
+    "generation_receipt_sha256": "56fd7e92cd079182ec5bb5767254402caf6497c51f77cdb1cca0d958427f4a96",
+    "evidence": "Every runtime/fixture/checker input unchanged; all96 canonical generated C units and raw frontier/hooks/overlay table identical; one new room-ID wrapper alias/description and5 actual register scopes; unchanged Source behavior and ABI"
+  }
 }

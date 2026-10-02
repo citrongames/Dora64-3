@@ -1,15 +1,15 @@
 {
-  "date_utc": "2026-09-30T01:29:51.394694+00:00",
-  "base_commit": "71a428cfe8c3bbf5b6f99ed070f37caa785fb7be",
+  "date_utc": "2026-09-30T02:22:40.602686+00:00",
+  "base_commit": "47f7029904b19f727a6bb1b576b4f43421aabc89",
   "dirty": true,
-  "scope": "Paired gravity/displacement and terminal-speed integration; shared process wait and delayed-activation timing. Live Manual remains scene34 image/white fade only; full variable-FPS gameplay is incomplete. Windows/Linux compiled, no game/GPU launched; work continues after archiving.",
-  "build_id": "test-029",
-  "cpu_generation": "startup-v76",
+  "scope": "Ordinary camera timing and coupled equation timeline; capped approach, transition/obstruction counters, shake, field ownership, actual synthetic room collision queries. Existing gravity/process timing retained. Live Manual remains scene34 image/white fade only; full variable-FPS gameplay is incomplete. Windows/Linux compiled, no game/GPU launched; work continues after archiving.",
+  "build_id": "test-030",
+  "cpu_generation": "startup-v83",
   "audio_generation": "audio-rsp-v1",
   "source_sha256": {
-    "recomp/native-timing-rules.json": "1f1c7ac3dcdfa02fe1fa504ed50717427b878aa8a5bccc963f85fdf54a9fadf0",
+    "recomp/native-timing-rules.json": "5f3174e2ccca13c2714282855515e4d0ad43bb49e75d1abc6d3f8cf0ff349ff4",
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
-    "research/runtime/CMakeLists.txt": "5d45c1b9974d8ef4ead7d209367f20b28a198c49ccb2fb6752c4371402d583af",
+    "research/runtime/CMakeLists.txt": "f16c217dce7ab14a200bd031b240b411674451b5b8d7fbf1e998209a4379986b",
     "src/frame_lights.cpp": "f62604ab789b595bb804c2a55e251b32f49c267786bfdb7c4e07a51d2839c053",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
     "src/graphics_replay.cpp": "1038a243554d6a63ba000e544ff36d3f9854d3040a51c0bf4c4594420e9b65ed",
@@ -22,7 +22,9 @@
     "src/n64_hardware.cpp": "5ba6ab5b89daba9af5dbc0f3abcf89cc6e6d25bfc1164427cf51de1e5a9a5ca3",
     "src/n64_hardware.hpp": "b18a04de14a457d8d40787316f992cca5a579def5ff5fe64e9e17bb1729dc5d2",
     "src/n64_hardware_backend.cpp": "e0031e99be8ca477a29780824508462522d7782d4a9a343ddd89720ab5faad6f",
-    "src/native_effects.cpp": "6cf5f9b6867e8f7ef3e7852840263819e413b2ad3c025d2f8c2ca0879ae9823d",
+    "src/native_camera_timeline.cpp": "6a8e78fcdeed8d0444888f8b8347127b237378bab8e1ee37c061a0b59955d8cf",
+    "src/native_camera_timeline.hpp": "fcdef37b2752a79a8e9cafd48645e54880b4b355db8419ae19ca7d156d8ecd58",
+    "src/native_effects.cpp": "5a2dd315a623e5cf80ccd6b51af56c4f0f1e5bc750c871b4e0231d675f9f3b19",
     "src/native_effects.hpp": "ddd57439bc9435e2c91791a3a1f3dc28a1cce7057bbf6d84a58e0f4a39e34805",
     "src/native_frame_bridge.cpp": "de0efa3abb3bb5b6f58f7532d07ffd836d001beb40aa480f8474f7e81414a00f",
     "src/native_frame_bridge.hpp": "814b52cc215ca7883ad9cd93cf55b64f54a798b13f8876f2049b8411ef125e40",
@@ -50,8 +52,8 @@
     "src/native_scene_policy.hpp": "4e7f20081c24e2c40eb47775183d499430171f651e28c1bf9d1b2b4dec6b0ce9",
     "src/native_script_camera.cpp": "6e78545af75c7a50b2d6994bd54b634c1cf9fbe03a6a0ca42eb5cf0d15d95b69",
     "src/native_script_camera.hpp": "e7bb2e1ba4d036ca2ead349d884daf9a0f857b935d0f3d9359c8cfa12a4d2d94",
-    "src/native_simulation_time.cpp": "eb854c2e7c89dfa5911bd288b8f572047e2c11aa23631fe2081df047690fcedc",
-    "src/native_simulation_time.hpp": "8fcc8c67b3f1a3e97ab903aac97149cd7b91cbd95e7fea06151257f5fda60744",
+    "src/native_simulation_time.cpp": "676c19c638c2a810abfdbc409982562418ab0732884c471fda1a62293fda17fa",
+    "src/native_simulation_time.hpp": "5241b075b7b689630626a4476eaefb52bc5f0b3e9756f80efa52c91948dcdd99",
     "src/native_vi_snapshot.hpp": "0fb280fcc557a64b1c6637653a57a231723a2cd642bd0f8a6163bc03413e2030",
     "src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
     "src/port_display.cpp": "ea880764b8299963aa74a4f1a2949cee1efb45580464763d43f0fcc0dd765efa",
@@ -65,56 +67,64 @@
     "src/resource_retirement.cpp": "96ee13419b4bfac0fd6cb7dc5380b6aedc995cca6ad8760e08a217a38a043e9d",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f",
     "src/startup_runtime.cpp": "e89d0c0622b2430739f5c4f69684ce0c184583d080b520d06db31992a4c9b1ea",
-    "tools/build_windows.ps1": "73c18af38c20ad3381d2e2d9784252d72dd6b52d53ec20700690e1b69b53ad63",
-    "tools/generate_startup.py": "616e680dc1755fbaa70686faaef9dba19eccee007885ee085b0bcaa334381306",
-    "tools/native_timing_patches.py": "aafa693bd6219787e0d1094738602ebbc65e461e4d65b1b46bbd2cd6f9c68ec8",
+    "tools/build_windows.ps1": "4c44803ffeed4788e46755e518c87b869f5ea96a906a077deb7f3ca7d1b8f604",
+    "tools/generate_startup.py": "e82e8a1c00c44b9b0d1face04fd8b54b04e62659ab229cab0938097ae2d09fc7",
+    "tools/native_timing_patches.py": "ecbc4f48c51c8a5fa270e04f0c17e539e80820ac449a794449236be0613e8941",
     "tools/prepare_rt64_framerate.py": "a262868d00eb7185845293f804c278625d60748a8f84a95f7f818b045466813d",
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556"
   },
   "component_receipts": {
+    "native-camera-control-check.json": {
+      "sha256": "17f6ada618be054b6ca2336585a4849041365921b5794466b126268ae8295eee",
+      "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8"
+    },
+    "native-camera-modes-check.json": {
+      "sha256": "a2487a3356fea69041d227e1417da2b9e9a744b4d969ddd7e2c1a7a445284c99",
+      "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8"
+    },
     "native-gravity-check.json": {
-      "sha256": "91d5982c818fc6fc650d3d701a116cbd72e8b1ec8bce241de4cbee6c6d2dbed2",
-      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
+      "sha256": "cf27637ffa75764251443c38f56ed689ff6c446b4133f4188a4522e6003f4f84",
+      "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8"
     },
     "native-process-time-check.json": {
-      "sha256": "5772120fcb8f9c062db857c9ccfccb1d23ee3ffc769f590b6388eadfed8f9563",
-      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
+      "sha256": "b70acd9fd60b6b00e9f8f7f808d73d90d51c691e6839ff3259b273c4fae797b1",
+      "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8"
     },
     "native-loop-check.json": {
-      "sha256": "de0540c68bcf925ef1633369db0fad570b132beeb1deff71fafd72c1039a5630",
-      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
+      "sha256": "35a525267a949f50517b3e3d02c24d5966e0711cdf4e0b98e7a712de5fa467ad",
+      "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8"
     },
     "native-simulation-check.json": {
-      "sha256": "45cb25b70a671e7fa3b4cd5830631f75c67c127c056a0d76a250f414051f3f23",
-      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
+      "sha256": "5768799ddbe716c51e42a83a0d086896bea3969bc9549a36f636f05eb7f95cbb",
+      "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8"
     },
     "native-script-camera-check.json": {
-      "sha256": "db88eecfd0202c307e66243fc308a052a5fa6ef9be6c4f6eec33b06914dedea5",
-      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
+      "sha256": "2f2d9d362abf0920fceb0d5804ffe22a816d15f40a6ac52427d214d4783b8cd7",
+      "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8"
     },
     "native-effects-check.json": {
-      "sha256": "3af30a1f6016ba6de33b24d091f6ceebabaab578fc19c2d30c549d1c0c3383d5",
-      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
+      "sha256": "ebf04824bda44450208001e5df6084fcc67f22c0c3db553118cbe8e33ac1a08b",
+      "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8"
     },
     "native-model-animation-check.json": {
-      "sha256": "034566d7cbe95dd2539062d41b3e8a99d0514346080e1a6a5053edd028e80ff2",
-      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
+      "sha256": "9e4324aaf7a4c9857ffc550606f7a1114c6d14cc7a66c2a627b20e00c25d65e7",
+      "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8"
     },
     "native-frame-bridge-address-check.json": {
-      "sha256": "1aa64dc1d52edeedc70286abc2b722c23b43522afe5565e0b7d126511a413672",
-      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
+      "sha256": "f1445d48325397f4b323370d2d8b70974cdcedaa52bc3e5529c82e6021ffb665",
+      "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8"
     },
     "native-graphics-pump-check.json": {
-      "sha256": "ab066da552f37b56a2bdc6cfaf00fc7740e640cb197c47647ab90b89c1d27158",
-      "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db"
+      "sha256": "44ab31962fa104a15298873b0bf066e27fda369f4cdcef878a3c0d646c9b8ba0",
+      "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8"
     }
   },
-  "executable_sha256": "05cf8edff1de8f289c7844d682c38e78ae1957c773546b4ba91897520ca0027c",
-  "linux_live_sha256": "b3b5ce1a13eab4d6236791b1c8d846d3d7b73056f1a3fefa365bceb757cfb342",
-  "linux_log_sha256": "4ae9fe8a05fc85ee34c71548c3e24f2020769d13fd4ca04b8e66984f0cec088d",
-  "windows_log_sha256": "a34af7a223f043cf3a08d88e968e029618ce4e3542c09c37f555410cb78286ed",
+  "executable_sha256": "5d2e61e9603878290329b45514d072d45e39762b2affecb36c08390396a870c0",
+  "linux_live_sha256": "baa5a167dc1252dab395dcbcc7b05f5620536528e67cb959b55b86c473adfa5c",
+  "linux_log_sha256": "c8f90931dc8341212eff38a0ccb9d37ccd75eeea21dab26bd7a354d70b0c9178",
+  "windows_log_sha256": "55ebed0df4ad430250c1a671ff633d27ba8fa07fb8e315f0ad63dd29e2239d0d",
   "generated_receipt_sha256": {
-    "startup-v76": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db",
+    "startup-v83": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8",
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "clean_pinned_dependencies": 32,
@@ -124,7 +134,7 @@
     "CPU component checks use synthetic states, not complete game progression",
     "Continuous rules require live scene integration; no new 3D scene activated",
     "Resource barrier at process replacement does not itself fence all earlier DMA or heap reuse",
-    "All listed component receipts use v76; capped native displacement is a continuous extension, not exact discrete cap-crossing equivalence",
+    "All listed component receipts use v83; capped native displacement is a continuous extension, not exact discrete cap-crossing equivalence",
     "No performance, audiovisual or device verification; existing dependency compiler warnings remain"
   ]
 }

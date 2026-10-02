@@ -6,6 +6,7 @@
 #include <cmath>
 #include <cstring>
 #include <iostream>
+#include <memory>
 #include <stdexcept>
 #include <vector>
 using namespace dora3::native_time;
@@ -25,6 +26,13 @@ void reference_dora3_s28_mini_801C4300(uint8_t*,recomp_context*);
 void reference_dora3_s28_mini_801C42C8(uint8_t*,recomp_context*);
 void reference_dora3_s28_mini_801C7994(uint8_t*,recomp_context*);
 void dora3_trace(uint8_t*,recomp_context*,uint32_t,uint32_t) {}
+// This operand/clock check does not acquire a live gameplay preview session.
+int dora3_native_preview_hook(uint8_t*,recomp_context*,uint32_t) {return 0;}
+// Standalone operand closure has no registered projectile/model owner. The
+// complete player closure exercises the allocation-scoped gravity branch.
+float dora3_native_projectile_gravity_f32(uint8_t*,recomp_context* ctx) {
+    return dora3_native_gravity_f32(ctx->f0.fl,ctx->f2.fl,-50.f,uint32_t(ctx->r4)+0x14);
+}
 void do_break(uint32_t) {std::abort();}
 }
 static float readf(uint8_t* rdram,uint32_t address) {return std::bit_cast<float>(uint32_t(MEM_W(0,int32_t(address))));}
@@ -99,7 +107,49 @@ int main() {
     bool rejected=false;try {changed.advance(-1,[](const SimulationSlice&){},[](uint64_t){});}catch(const std::invalid_argument&){rejected=true;}assert(rejected);
     try {SimulationScope scope({1,3*std::uint64_t(second),0,0});throw 1;}catch(int) {}assert(!active_simulation_slice());
     near(dora3_native_rate_f32(3.25f),3.25);
+    // A world callback can reset its own live clock while processing a long
+    // catch-up interval. Keep the executing object alive, cancel old callbacks,
+    // and prevent new scene code from receiving the old fractional dt.
+    for(bool at_boundary:{false,true}) {
+        auto live=std::make_shared<SimulationTimeline>(3);
+        const auto executing=live;unsigned calls=0,boundaries=0;
+        const auto complete=executing->advance_while(at_boundary?second:second/100,
+            [&](const SimulationSlice& slice) {
+                SimulationScope scope(slice);++calls;
+                assert(active_simulation_slice());live.reset();cancel_active_simulation();
+                assert(!active_simulation_slice());near(dora3_native_rate_f32(12),12);
+            },[&](uint64_t){++boundaries;},[&]{return bool(live);});
+        assert(!complete && calls==1 && boundaries==0 && !active_simulation_slice());
+    }
+    SimulationTimeline never_started(3);unsigned forbidden=0;
+    assert(!never_started.advance_while(second,[&](const SimulationSlice&){++forbidden;},
+        [&](uint64_t){++forbidden;},[]{return false;}));
+    assert(forbidden==0 && never_started.ticks()==0 && never_started.phase()==0);
+    // Event boundaries can fall between whole nanoseconds. Preserve every
+    // rational unit and discrete source tick while splitting an interval.
+    SimulationTimeline split(3);uint64_t total=0;unsigned split_calls=0,split_ticks=0;
+    split.advance_while(50'000'000,[&](const SimulationSlice& slice) {
+        total+=slice.numerator;++split_calls;
+    },[&](uint64_t){++split_ticks;},[]{return true;},[](const SimulationSlice& slice) {
+        return std::min<uint64_t>(slice.numerator,700'000'001ull);
+    });
+    assert(total==3'000'000'000ull && split_calls==5 && split_ticks==1 && split.phase()==0);
+    for(bool too_large:{false,true}) {
+        bool bad_limit=false;
+        try {split.advance_while(1,[](const SimulationSlice&){std::abort();},[](uint64_t){std::abort();},
+            []{return true;},[&](const SimulationSlice& slice){return too_large?slice.numerator+1:0;});}
+        catch(const std::logic_error&) {bad_limit=true;}
+        assert(bad_limit && !active_simulation_slice() && split.phase()==0);
+    }
+    {
+        SimulationScope outer({1,3*uint64_t(second),0,0});
+        {
+            SimulationSuspension suspended;
+            {SimulationScope camera({2,3*uint64_t(second),0,0});cancel_active_simulation();}
+        }
+        assert(!active_simulation_slice()); // Camera revocation also revokes its caller.
+    }
     std::cout<<"PASS: "<<differential<<" differential executions of seven original MIPS motion/camera helpers; Original and whole ticks unchanged; "
       <<schedules<<" 20/30 Hz schedules at 60/73/120/144/165/360 FPS, "<<slices
-      <<" real motion slices, exact discrete boundaries, constant-force kick/drift trajectory, approach/decay, long gaps and scope cleanup; no game/GPU.\n";
+      <<" real motion slices, exact discrete boundaries, constant-force kick/drift trajectory, approach/decay, long gaps, scene-reset cancellation and scope cleanup; no game/GPU.\n";
 }

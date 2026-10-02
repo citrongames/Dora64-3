@@ -9,17 +9,17 @@
     "dora3_s3_core_801D56F4"
   ],
   "source_sha256": {
-    "src/native_simulation_time.cpp": "eb854c2e7c89dfa5911bd288b8f572047e2c11aa23631fe2081df047690fcedc",
-    "src/native_effects.cpp": "6cf5f9b6867e8f7ef3e7852840263819e413b2ad3c025d2f8c2ca0879ae9823d",
+    "src/native_simulation_time.cpp": "676c19c638c2a810abfdbc409982562418ab0732884c471fda1a62293fda17fa",
+    "src/native_effects.cpp": "5a2dd315a623e5cf80ccd6b51af56c4f0f1e5bc750c871b4e0231d675f9f3b19",
     "research/native-effects-check.cpp": "06f1ea314a4a480fd62b8399a1157e91690517dc17db4b56c7f8678adb43f292",
-    "src/native_simulation_time.hpp": "8fcc8c67b3f1a3e97ab903aac97149cd7b91cbd95e7fea06151257f5fda60744",
+    "src/native_simulation_time.hpp": "5241b075b7b689630626a4476eaefb52bc5f0b3e9756f80efa52c91948dcdd99",
     "src/native_effects.hpp": "ddd57439bc9435e2c91791a3a1f3dc28a1cce7057bbf6d84a58e0f4a39e34805",
-    "recomp/native-timing-rules.json": "1f1c7ac3dcdfa02fe1fa504ed50717427b878aa8a5bccc963f85fdf54a9fadf0",
-    "tools/native_timing_patches.py": "aafa693bd6219787e0d1094738602ebbc65e461e4d65b1b46bbd2cd6f9c68ec8",
-    "tools/generate_startup.py": "616e680dc1755fbaa70686faaef9dba19eccee007885ee085b0bcaa334381306",
+    "recomp/native-timing-rules.json": "5f3174e2ccca13c2714282855515e4d0ad43bb49e75d1abc6d3f8cf0ff349ff4",
+    "tools/native_timing_patches.py": "ecbc4f48c51c8a5fa270e04f0c17e539e80820ac449a794449236be0613e8941",
+    "tools/generate_startup.py": "e82e8a1c00c44b9b0d1face04fd8b54b04e62659ab229cab0938097ae2d09fc7",
     "tools/check_native_effects.py": "717887bbbb0911e9e575748751426178ab4e64c7ad6e412bbfa8a1cb654aa0bc"
   },
-  "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db",
+  "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8",
   "reference_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
   "limitations": [
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",

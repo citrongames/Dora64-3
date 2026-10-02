@@ -1,0 +1,27 @@
+{
+  "scope": "Original held-input camera and ten-tick transition; time coefficient checks, not all ordinary modes",
+  "result": "PASS: 970 camera control/transition/coefficient cases; actual original angle helper, Original and full-step RAM equivalence; 60/73/120/144/165/360FPS, 20/30Hz; minimum distance20 unchanged; pitch dead-zone tolerance0.11 degrees; no game/GPU.",
+  "original_functions": [
+    "dora3_s0_80031A0C",
+    "dora3_s3_801D5568",
+    "dora3_s3_801D55EC",
+    "dora3_s3_801D6EAC",
+    "dora3_s3_801DB7C8"
+  ],
+  "source_sha256": {
+    "src/native_simulation_time.cpp": "676c19c638c2a810abfdbc409982562418ab0732884c471fda1a62293fda17fa",
+    "research/native-camera-control-check.cpp": "f642c70989e7043537c03509f52ed97d4ad17eb2a0bb6d79993f01d1e525aa57",
+    "src/native_simulation_time.hpp": "5241b075b7b689630626a4476eaefb52bc5f0b3e9756f80efa52c91948dcdd99",
+    "recomp/native-timing-rules.json": "5f3174e2ccca13c2714282855515e4d0ad43bb49e75d1abc6d3f8cf0ff349ff4",
+    "tools/native_timing_patches.py": "ecbc4f48c51c8a5fa270e04f0c17e539e80820ac449a794449236be0613e8941",
+    "tools/generate_startup.py": "e82e8a1c00c44b9b0d1face04fd8b54b04e62659ab229cab0938097ae2d09fc7",
+    "tools/check_native_camera_control.py": "bb8648251aaefa72bf4df96d9999d461f66413dba80e33d3c0fcc2639b42a818"
+  },
+  "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8",
+  "reference_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
+  "limitations": [
+    "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",
+    "Whole-tick equivalence compares owned state, excluding scratch stack/registers of replaced leaf functions",
+    "Complex follow modes, collision camera and shake are not covered by this check; their integration remains incomplete"
+  ]
+}

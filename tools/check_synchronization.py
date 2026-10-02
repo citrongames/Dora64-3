@@ -1,4 +1,5 @@
 """Original guest/component stress under AddressSanitizer + LeakSanitizer; no GPU."""
+from decomp_annotations import read_decompiled_source
 import argparse,hashlib,json,os,re,subprocess
 from pathlib import Path
 from inspect_rom import ROOT
@@ -15,7 +16,7 @@ def main():
     for address in addresses:
         name=re.search(r'name = "([^"]+)", vram = 0x'+f'{address:08X}',symbols)[1];names.append(name)
         pattern=r'RECOMP_FUNC void '+name+r'\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)'
-        found=[x for f in (g/'RecompiledFuncs').glob('*.c') for x in re.findall(pattern,f.read_text(),re.S)]
+        found=[x for f in (g/'RecompiledFuncs').glob('*.c') for x in re.findall(pattern,read_decompiled_source(f),re.S)]
         assert len(found)==1;bodies.extend(found)
     baseline=bodies[0].replace(names[0],'original_copy').replace('    dora3_begin_cpu_fb_copy();\n','').replace('    dora3_end_cpu_fb_copy();\n','')
     # Both added hooks lie outside the backward loop; no guest function call is locked.

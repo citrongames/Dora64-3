@@ -1,0 +1,57 @@
+{
+  "result": "PASS: 288 city Source schedules, 96 city Native schedules; 0 actual kind6/80 Source schedules, 0 off-grid pause/resume/rearm Native schedules, 0 orbital71..74 Source/contact/birth schedules, 0 orbital Native off-grid schedules, 912 full-RAM Original world comparisons; settings=24; ASan/UBSan/LSan, focused only; no game/GPU.",
+  "generation_receipt_sha256": "f3e2fcc25ced99fe822edfc84b9ebcf2167fd64b42b6e6334e49a3beeea273fe",
+  "focused_log_sha256": "b0116d4e531a3c79e8a7647bef31d1c7c163b046d757a8866c84d7e918624bd8",
+  "source_sha256": {
+    "src/native_gameplay_preview.cpp": "fa3d91d88d845ee73ef4be6bb125e04bb8800236ff70d23247ce983526435f3a",
+    "src/native_gameplay_preview.hpp": "c217908d86f9b319a3acffcf4f3edb0e7cfa92b8de4742c21988f4d052638b11",
+    "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
+    "src/native_model_animation.hpp": "2132dc8530bf55e774ed8ed4f4ebf12cda94ce4e8615a0d386c77917de2650b7",
+    "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
+    "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
+    "src/native_camera_timeline.cpp": "35f21fafbaae833ae6561a0c710f0b9f791e7f9a929e633cc72b3e0b056db120",
+    "src/startup_runtime.cpp": "d7865de6f338a7c90cb31833f6c0efb424bf4705b8006563979e86a2d5cd3241",
+    "recomp/native-timing-rules.json": "a73248ed2f4d1ee063fd34464b9462e279dd474ddd41332d1a1a9bd482886cc6",
+    "recomp/decomp-symbols.json": "2784ade7c281eddbdd35929794f3a9d0aaf06732c3ca15a605a53e2d026583e9",
+    "tools/check_native_player_update.py": "b1d343bb756dfc7e36bcfc1e606346cc2e659c6af63fc890906a8a1d2d029fe3",
+    "research/native-player-update-check.cpp": "64db03a642b589a5fc6b7a499da50632b9b6391eb5b0ee3e57693b2d3d150ffe",
+    "/mnt/c/Users/black/Documents/Codex/2026-09-30/new-chat/work/run_world_player_check.py": "ea0cdc2fff91deddceefb4b627876b452fbb066a3311bc6ca9acce26e465d692"
+  },
+  "city_source_schedules": 288,
+  "city_native_off_grid_schedules": 96,
+  "city_overlay_identity_rejection_schedules": 48,
+  "loaded_overlay_state_report_sha256": "fe3fd3c0d4bf0131f119edcea6022a27ab0db87ab9deaa64b5d5590fc1265d75",
+  "semantic_names_report_sha256": "826a13043ae236d56186de45df95dd794a13c6affc3b9520f34202efcb262b73",
+  "source_rates": [
+    20,
+    30
+  ],
+  "render_fps": [
+    60,
+    73,
+    120,
+    144,
+    165,
+    360
+  ],
+  "settings": 24,
+  "verified": [
+    "kind7 real velocity projection, actual sprite pool bind/frame delay/release and busy-to-state1 transition",
+    "kind9 one-shot stop, 16 original updates, event15F, actual world/player update permission and actor/model/physics retirement",
+    "actual city contact mode4 producers, skipped modes0/1/2/3/5, Source and Native repeated contact",
+    "actual dialogue descriptor initializer and player/script state66/fade commands; checked sound queue failure boundary",
+    "actual Native model constructors at73/173ms, object-relative periods, shared rational command timestamps",
+    "all city allocations removed; remaining heap exact except proved original player-model-owned channel/morph buffers at60/6C/70",
+    "48 Native ownership rejections preserve city actor/model between Source passes, then actual Source dispatcher updates it"
+  ],
+  "initial_sprite_reference_phase": "CE0 bind precedes Original sprite advance of its first modeled period; Source command stamp uses that period start. CD4 release/counter events use the completed period end.",
+  "sanitizers": "ASan/UBSan/LSan",
+  "game_launched": false,
+  "full_connected_player_report_sha256": "b3d499206a5f734369ef474f044489a9c32b3f1f2008a795a7780ac89a770d4d",
+  "limitations": [
+    "Focused city proof confirmed by full connected player187; seven integration/naming/overlay reports match generation187 receipt and source hashes. Later signed return-yaw regression is outside this checkpoint and is being fixed in188.",
+    "Synthetic room/model/clip assets; dialogue text progression/layout/input, contact collision selection, actual room DMA/level construction and sound queue integration are unverified.",
+    "City kind9 metadata sound0/drop3 skips optional effect/drop creation; other drop branches remain outside this proof.",
+    "Other active NPCs/platforms, other levels, script camera/cutscenes, minigames and2D remain unfinished."
+  ]
+}

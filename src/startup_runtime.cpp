@@ -114,6 +114,15 @@ thread_local bool stream_dma_call=false;
 
 extern "C" void dora3_mark_stream_dma(){stream_dma_call=true;}
 
+// Read the same verified-load state used by Original overlay calls. VRAM
+// alone cannot identify city code: other levels reuse these addresses.
+extern "C" int dora3_overlay_loaded(uint32_t section_rom) {
+    for(size_t i=0;i<overlay_active.size();++i)
+        if(dora3_overlay_regions[i].rom==section_rom)
+            return overlay_active[i].load()&&overlay_dependencies_active(section_rom);
+    return 0;
+}
+
 extern "C" void dora3_pending(uint32_t address) {
     std::fprintf(stderr,"PENDING original function %08X; execution stopped, no success stub\n",address);
     stop_diagnostic(77);

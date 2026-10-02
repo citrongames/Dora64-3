@@ -1,0 +1,42 @@
+{
+  "result": "PASS: isolated191t and connected main191",
+  "candidate_generation_receipt_sha256": "a253c20f72844c0d4558bc24adea8385c3590344c1178d30a2f14ab3fa00f8a3",
+  "candidate_log_sha256": "a2a5364ac003f078c89bca4eda7e11ca06353fc5a7e3a7bdbf628a61eca638f1",
+  "source_sha256": {
+    "tools/native_timing_patches.py": "f13f88436c878ee38b4a6f7ee0da19053c83bda9416436b932f2ee9cd6e33141",
+    "tools/check_native_player_update.py": "dfef171360f263eb7e42c19bddae66ef0cbdd357f6f2d3ddff2dea1c96d091cb",
+    "recomp/decomp-symbols.json": "03012445871c2d787647ac19d67f54b912b347496e1568de4bf01198a286b0ac",
+    "recomp/native-timing-rules.json": "00039553d7971e9ff9b6b43204513f99037c16a1eac7b577c6f614d0bd680aa6",
+    "src/native_gameplay_preview.cpp": "b7ced0e0d44891f19fff2db469d5a7c249e5983de8eebdf02216302879e6b7c9",
+    "research/native-player-update-check.cpp": "0f535890f265eba30617155619ffafc306c1763157728dd09a0c436d3931cb27"
+  },
+  "published_to_stage_sha256": {
+    "tools/native_timing_patches.py": "f13f88436c878ee38b4a6f7ee0da19053c83bda9416436b932f2ee9cd6e33141",
+    "tools/check_native_player_update.py": "dfef171360f263eb7e42c19bddae66ef0cbdd357f6f2d3ddff2dea1c96d091cb",
+    "recomp/decomp-symbols.json": "99f0ffb7b3e478067b403191167dc450fedabc49c5a3d1f797348d8958c20f84",
+    "recomp/native-timing-rules.json": "787a62e5c5ea054807ed055943e825e28eae9ce34dad77b802c3fcc465328b62",
+    "src/native_gameplay_preview.cpp": "b7ced0e0d44891f19fff2db469d5a7c249e5983de8eebdf02216302879e6b7c9",
+    "research/native-player-update-check.cpp": "0f535890f265eba30617155619ffafc306c1763157728dd09a0c436d3931cb27"
+  },
+  "constructor_schedules": 48,
+  "source_schedules": 1008,
+  "native_schedules": 720,
+  "ownership_rejections": 288,
+  "intermediate_yaw_samples": 308,
+  "original_ram_context_heap_resource_command_comparisons": 6768,
+  "original_contact_producer_comparisons": 384,
+  "settings": 24,
+  "negative": {
+    "result": "CONFIRMED NEGATIVE: both Native60 and higher FPS can suppress repeated parent command; actual30914 contract requires child consumption once per publication",
+    "binary_sha256": "5fcc701f40bf59e6cc4dd5d3078c05be7be52486e47c1b740c5eae237bb589f5",
+    "log_sha256": "717416f25f9a66b88e56eecd2253242fca1f8572e39d541780512a903ee56600",
+    "source_sha256": {
+      "src/native_gameplay_preview.cpp": "2e7a547d1bfe2deea82034f8e11119f4ddce220eb782c8c0249288eec4693133",
+      "research/native-player-update-check.cpp": "e72bdef72773fee7ead1c858423d155b8674b259978b9a0a53bfb0bd2afba4db"
+    },
+    "seed_sha256": "1843f2ab3173db9781bb5fa812baf65afb19626b8a58b09510121d4bc1fd2e02"
+  },
+  "full_connected_player_report_sha256": "7f0a6615c6823165bef1cb80e85db42614b40a97684bf2197cb9f3c9b7a90e39",
+  "generation_receipt_sha256": "10cd8715f62f92742f5b8cd06519a863fe27bba7428513526fe80a7ee143030f",
+  "full_integration": "PASS: 629 Original functions/regions and all connected player/weapon/damage/death/recovery/door/surface/world groups; all seven formal reports matched191"
+}

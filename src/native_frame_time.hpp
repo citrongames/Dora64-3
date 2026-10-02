@@ -5,6 +5,13 @@
 namespace dora3::native_time {
 using Nanoseconds = std::int64_t;
 inline constexpr Nanoseconds second = 1'000'000'000;
+// Gameplay Source boundaries have precision of one sixtieth of a nanosecond.
+// Preserve it when a command starts a timeline between integer timestamps.
+struct SourceTimestamp {
+    Nanoseconds nanoseconds;
+    unsigned sixtieths = 0;
+    bool operator==(const SourceTimestamp&) const = default;
+};
 enum class Mode { Original, Display, Manual };
 
 struct FrameStep {
@@ -42,6 +49,7 @@ class SceneClock {
 public:
     explicit SceneClock(unsigned retrace_divider);
     TickProgress advance(Nanoseconds elapsed);
+    TickProgress advance_fractional(Nanoseconds elapsed, int sixtieths);
     TickProgress progress() const;
 private:
     std::uint64_t whole_ = 0, remainder_ = 0, denominator_;
@@ -61,6 +69,7 @@ class Fade {
 public:
     Fade(FadeState initial, unsigned retrace_divider);
     FadeState advance(Nanoseconds elapsed);
+    FadeState advance_fractional(Nanoseconds elapsed, int sixtieths);
 private:
     FadeState initial_;
     SceneClock time_;
@@ -74,12 +83,16 @@ class FadeTimeline {
 public:
     FadeTimeline(FadeState initial, unsigned divider, Nanoseconds now);
     FadeState sample(FadeState observed, Nanoseconds now);
+    FadeState sample(FadeState observed, SourceTimestamp now);
     FadeState before_command(FadeState observed, Nanoseconds now);
+    FadeState before_command(FadeState observed, SourceTimestamp now);
 private:
+    FadeState sample_at(FadeState observed, SourceTimestamp now);
     Fade fade_;
     FadeState last_;
     unsigned divider_;
     Nanoseconds previous_;
+    unsigned previous_sixtieths_ = 0;
     bool pending_command_ = false;
 };
 

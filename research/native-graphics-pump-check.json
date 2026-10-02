@@ -19,11 +19,11 @@
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/native_graphics_pump.hpp": "3fdcb53d2f68a9b6d344beb44ea58a190c637bd2320cf3e77fbb8af2649bdcd3",
     "src/native_frame_bridge.hpp": "814b52cc215ca7883ad9cd93cf55b64f54a798b13f8876f2049b8411ef125e40",
-    "tools/generate_startup.py": "616e680dc1755fbaa70686faaef9dba19eccee007885ee085b0bcaa334381306",
+    "tools/generate_startup.py": "e82e8a1c00c44b9b0d1face04fd8b54b04e62659ab229cab0938097ae2d09fc7",
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556",
     "tools/check_native_graphics_pump.py": "f9bee9028123fa2ffdf89e3442e4e8d8ac071682ab2db293883aaa114e281d11"
   },
-  "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db",
+  "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8",
   "original_functions": [
     "dora3_scheduler_thread",
     "dora3_scheduler_retrace",

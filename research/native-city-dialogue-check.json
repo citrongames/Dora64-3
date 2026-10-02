@@ -1,0 +1,49 @@
+{
+  "result": "PASS: isolated192d/192e and connected main192",
+  "candidate_generation_receipt_sha256": "347e4a5890b53d0e5efe8fbc8650e5f8708dd300664c1cca9de88032a458507d",
+  "full_candidate_generation_receipt_sha256": "2184349ef239f40028302ba175318f7bf36a3cd143ac4175388fb2b6ccf06a9f",
+  "candidate_log_sha256": "ee9855f1d0a8af2ddcf219a032fd6c6168d9e4e4b9003e82693ad2a5d1ea5c02",
+  "full_candidate_log_sha256": "a1710cea6d8049e73044fc7a8b2245328206a7cb716d2bafabecc21e83dc6168",
+  "candidate_names_log_sha256": "58fdd8dd77dc122486d0cb93fb0647b0b987b6d84492ca2c0139e13d3b03d584",
+  "source_sha256": {
+    "tools/native_timing_patches.py": "f6df014dd9a643c10830e8a5806f04ea4bf44d1a9966e46a0ff55fa045c71873",
+    "tools/check_native_player_update.py": "e6d84d6917e728d2d8c806151fdfe822c73a044277788b091859a6c91be502a3",
+    "recomp/decomp-symbols.json": "494e53f56b07fda77330041a69ac0b6b676b5272b6e84837108f502960326f36",
+    "recomp/native-timing-rules.json": "3af43fe7b78999b52c4962c8f3860adf691ba2bcb2c741f04febbd39721b66a7",
+    "src/native_gameplay_preview.cpp": "3d8783f9a3378f7f80cc03bb0a341229ba86fe9f6e80e9ccde2874bc978ac8ce",
+    "research/native-player-update-check.cpp": "1e221d948874dc26820fda80dd3c98916b7af8dc9965bd43fe4d29a88b532ecb"
+  },
+  "published_to_stage_sha256": {
+    "tools/native_timing_patches.py": "f6df014dd9a643c10830e8a5806f04ea4bf44d1a9966e46a0ff55fa045c71873",
+    "tools/check_native_player_update.py": "ee626b2b9fedd3db289ec58532db7203ee04982655c03d40fde2e2a3230d07e8",
+    "recomp/decomp-symbols.json": "36cfc7faf72af8069ce40c0e01ba4f06489ad40401a743836c711aef08b1522c",
+    "recomp/native-timing-rules.json": "f4cbbe338c2c97d1b7c604750e2d30c1986e2e896f2b9d755d6d1d4390b8d842",
+    "src/native_gameplay_preview.cpp": "3d8783f9a3378f7f80cc03bb0a341229ba86fe9f6e80e9ccde2874bc978ac8ce",
+    "research/native-player-update-check.cpp": "1e221d948874dc26820fda80dd3c98916b7af8dc9965bd43fe4d29a88b532ecb"
+  },
+  "source_schedules": 3072,
+  "native_schedules": 2304,
+  "ownership_rejections": 384,
+  "original_contact_producer_comparisons": 4608,
+  "original_ram_context_heap_resource_command_comparisons": 20736,
+  "initial_intermediate_yaw_samples": 4928,
+  "strengthened_yaw_samples": 2816,
+  "strengthened_settings": 8,
+  "settings": 24,
+  "negative": {
+    "result": "CONFIRMED controlled negative: using actor turn delta for both actor and physics yaw fails actual Original comparison",
+    "generation_receipt_sha256": "2184349ef239f40028302ba175318f7bf36a3cd143ac4175388fb2b6ccf06a9f",
+    "positive_log_sha256": "a1710cea6d8049e73044fc7a8b2245328206a7cb716d2bafabecc21e83dc6168",
+    "binary_sha256": "d3c5a984d633a490bf028a183206defa9e4fe2c727bb2209b04c5c3a67b24944",
+    "variant_sha256": "9ccfbc16b03b45c00977fc9eb6a70e975896259da675670534899212135dd7d5",
+    "fixture_sha256": "0d219b102f0f5ac7dbf1a0431fff145b13e4517745b29fe09d1ad8df4adcbb92",
+    "original_runtime_sha256": "3d8783f9a3378f7f80cc03bb0a341229ba86fe9f6e80e9ccde2874bc978ac8ce",
+    "functions_sha256": "d987926149737e70604b64969e804108085d17a9058bae9ddd2b9a96c1311e14",
+    "seed_sha256": "1843f2ab3173db9781bb5fa812baf65afb19626b8a58b09510121d4bc1fd2e02",
+    "failure": "City dialogue mismatch kind=13 profile=0 scenario=0 mode=0 fps=60 divider=2 tick=15 field=2 actual=328.872 expected=321.34\n"
+  },
+  "full_connected_player_report_sha256": "a621886a9b6e32c42867332d6ea1ca67ea02efe6692bba489b0a2a4bde65561b",
+  "generation_receipt_sha256": "55c435e202311903956064de661ac75caa2d54f89b153caca2a9526805ec759a",
+  "full_integration": "PASS: 653 Original functions/regions; all seven formal reports matched192",
+  "full_connected_intermediate_yaw_samples": 19712
+}

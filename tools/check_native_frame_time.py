@@ -1,4 +1,5 @@
 """Native time component + two original resident routines on synthetic RAM. No game/GPU."""
+from decomp_annotations import read_decompiled_source
 import argparse
 import hashlib
 import json
@@ -31,7 +32,7 @@ def main():
     for name in names:
         pattern = r'RECOMP_FUNC void ' + name + r'\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)'
         matches = [match for file in (generated / 'RecompiledFuncs').glob('*.c')
-                   for match in re.findall(pattern, file.read_text(), re.S)]
+                   for match in re.findall(pattern, read_decompiled_source(file), re.S)]
         if len(matches) != 1:
             raise ValueError('Expected exactly one original body: ' + name)
         bodies.extend(matches)

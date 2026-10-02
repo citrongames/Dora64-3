@@ -4,6 +4,7 @@ Only LW / JR / NOP sequences are supported. The hook performs the original
 load and jumps within the same generated function, preserving its C locals.
 This avoids treating a local case label as a function or freezing a loop index.
 """
+from decomp_annotations import read_decompiled_source
 import re
 import struct
 
@@ -44,7 +45,7 @@ def reviewed_local_jumps(meta, sections, compiled, rom):
 
 
 def verify_generated_local_jumps(directory, hooks):
-    generated = '\n'.join(p.read_text() for p in directory.glob('*.c'))
+    generated = '\n'.join(read_decompiled_source(p) for p in directory.glob('*.c'))
     for hook in hooks:
         pattern = r'RECOMP_FUNC void ' + re.escape(hook['func']) + r'\([^\n]+\n(.*?)(?=RECOMP_FUNC void |\Z)'
         matches = re.findall(pattern, generated, re.S)

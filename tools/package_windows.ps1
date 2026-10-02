@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Destination,
     [Parameter(Mandatory=$true)][string]$CrtDirectory,
-    [string]$BuildId = 'test-029'
+    [string]$BuildId = 'test-033'
 )
 $ErrorActionPreference = 'Stop'
 if ($BuildId -notmatch '^[a-zA-Z0-9-]+$') { throw 'Invalid build ID.' }
@@ -54,7 +54,7 @@ $report = [ordered]@{
     locally_launched = $false
     visual_input_audible_validation = 'not performed; no test requested'
     compiler = 'MSVC 19.44; RelWithDebInfo /O2 /Zi /EHsc; dynamic CRT'
-    previous_user_test = 'test-026: no crash reported in user check; not a full run'
+    previous_user_test = $receipt.previous_user_test
     current_test_scope = $receipt.scope
     rom = 'external; exact filename beside EXE only; never copied by this script'
     files_sha256 = $hashes

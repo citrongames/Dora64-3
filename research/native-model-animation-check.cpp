@@ -1,4 +1,5 @@
 #include "native_model_animation.hpp"
+#include "native_simulation_time.hpp"
 #include "native_frame_bridge.hpp"
 #include "model-functions.h"
 #include <cassert>
@@ -14,6 +15,7 @@ static Nanoseconds now=0;
 static bool owns_banks=false;
 static const FrameBinding* binding=nullptr;
 extern "C" int dora3_native_loop_owns_frame_banks(){return owns_banks;}
+extern "C" int dora3_native_defer_player_shot(){return 0;}
 static uint32_t next_address=0x80200000;
 static std::set<uint32_t> allocations;
 namespace dora3::native_time {
@@ -29,6 +31,9 @@ extern "C" void dora3_game_heap_alloc(uint8_t*,recomp_context* c) {
 extern "C" void dora3_s0_80033C50(uint8_t*,recomp_context* c) {assert(allocations.erase(uint32_t(c->r4))==1);}
 extern "C" void dora3_s0_80038B10(uint8_t* ram,recomp_context* c) {dora3_s0_80033C50(ram,c);}
 extern "C" void switch_error(const char*,uint32_t,uint32_t) {throw std::logic_error("Unexpected source jump table index");}
+static unsigned player_impulses=0;
+extern "C" void dora3_s3_core_801C120C(uint8_t*,recomp_context*) {++player_impulses;}
+extern "C" void dora3_s3_core_801C1664(uint8_t*,recomp_context*) {}
 int main() {
     std::vector<uint32_t> memory(0x400000/4);auto* rdram=reinterpret_cast<uint8_t*>(memory.data());
     auto W=[&](uint32_t a)->int32_t& {return MEM_W(0,int32_t(a));};
@@ -66,6 +71,32 @@ int main() {
         ctx.r4=int32_t(model);ctx.r5=std::bit_cast<uint32_t>(rate);dora3_s0_8003948C(rdram,&ctx);
     };
     auto seek=[&](int time) {ctx.r4=int32_t(model);ctx.r5=time;dora3_s0_80039564(rdram,&ctx);};
+    const auto bound_run=adapter.run_token(model);assert(bound_run);
+    seek(0);const auto sought_run=adapter.run_token(model);assert(sought_run!=bound_run);
+    seek(0);assert(adapter.run_token(model)!=sought_run); // Same frame is still a real seek.
+    const auto before_rebind=adapter.run_token(model);
+    ctx.r4=int32_t(model);dora3_s0_8003B744(rdram,&ctx);bind();assert(adapter.run_token(model)!=before_rebind);
+    ctx.r4=int32_t(model);ctx.r5=1;dora3_s0_80039578(rdram,&ctx);
+    const auto paused_run=adapter.run_token(model);
+    ctx.r4=int32_t(model);ctx.r5=1;dora3_s0_80039578(rdram,&ctx);assert(adapter.run_token(model)==paused_run);
+    ctx.r4=int32_t(model);ctx.r5=0;dora3_s0_80039578(rdram,&ctx);assert(adapter.run_token(model)!=paused_run);
+
+    // Original's counter is one source step ahead of its last evaluated pose.
+    // A reviewed owner must acquire that pose before starting native elapsed
+    // time; foreign owners and stale observations remain untouched.
+    seek(0);B(model+0x7C)=0;step(3,3);assert(R(model+0x64)==3);
+    adapter.acquire_simulation(rdram,[](uint32_t)->std::optional<float> {return std::nullopt;});
+    assert(R(model+0x64)==3);
+    adapter.acquire_simulation(rdram,[&](uint32_t owner)->std::optional<float> {return owner==model?std::optional<float>{3}:std::nullopt;});
+    assert(R(model+0x64)==0);
+    {SimulationScope simulation({1000000000ull,3000000000ull,0,0});
+     assert(!adapter.frame_event(rdram,model,0,0,1234,true));
+     assert(!adapter.frame_event(rdram,model,0,0,1234,true));step(3,3);}
+    assert(R(model+0x64)==1);
+    seek(0);
+    {SimulationScope simulation({1000000000ull,3000000000ull,0,0});
+     assert(adapter.frame_event(rdram,model,0,0,1234,true));
+     assert(adapter.frame_event(rdram,model,0,0,1234,true));}
     unsigned frames=0;
     for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,120u,144u,165u,360u}) {
         now+=second;seek(0);step(3,divider);
@@ -84,6 +115,299 @@ int main() {
             adapter.end_frame(rdram);assert(R(bone+0x14)==original_pose);++frames;
         }
     }
+    unsigned simulation_cases=0;
+    for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,144u,360u})for(float rate:{3.f,-2.f,25.f}) {
+        seek(0);B(model+0x7C)=0;SimulationTimeline timeline(divider);Nanoseconds previous=0;
+        owns_banks=true;binding=nullptr;unsigned events=0;
+        for(unsigned frame_index=1;frame_index<=fps;++frame_index) {
+            const auto timestamp=second*frame_index/fps;
+            timeline.advance_while(timestamp-previous,[&](const SimulationSlice& slice) {
+                SimulationScope simulation(slice);step(rate,divider);
+                ctx.r4=int32_t(model);dora3_s0_menu_80039544(rdram,&ctx);const auto ended=ctx.r2;
+                ctx.r4=int32_t(model);dora3_s0_menu_80039544(rdram,&ctx);assert(ctx.r2==ended);
+                if(ended)++events;
+            },[](uint64_t){},[]{return true;},[&](const SimulationSlice& slice) {
+                return adapter.clip_boundary_limit(rdram,slice,[&](uint32_t owner)->std::optional<float> {
+                    return owner==model?std::optional<float>{rate}:std::nullopt;
+                });
+            });
+            const auto saved_time=W(model+0x64);const auto saved_flags=B(model+0x7C);const auto pose=R(bone+0x14);
+            const unsigned bank=frame_index&1;W(0x801A9544)=int(bank);
+            FrameBinding native_frame{{{},bank,{timestamp-previous,fps}},nullptr};binding=&native_frame;
+            const auto other=H(banks[bank^1]);
+            adapter.begin_frame(rdram,&ctx,now+second,bank);
+            assert(std::abs(R(bone+0x14)-10*R(model+0x64))<0.0002f && W(model+0x64)==saved_time && B(model+0x7C)==saved_flags);
+            assert(H(banks[bank^1])==other);adapter.end_frame(rdram);assert(R(bone+0x14)==pose);binding=nullptr;
+            previous=timestamp;
+        }
+        float expected=std::fmod(rate*float(60/divider),10.f);if(expected<0)expected+=10;
+        if(std::abs(R(model+0x64)-expected)>=0.0001f){std::cerr<<"Native model mismatch divider="<<divider<<" fps="<<fps<<" rate="<<rate<<" actual="<<R(model+0x64)<<" expected="<<expected<<" events="<<events<<"\n";std::abort();}
+        assert(events==unsigned(std::ceil(std::abs(rate)*float(60/divider)/10)));
+        owns_banks=false;++simulation_cases;
+    }
+    unsigned crossing_cases=0;
+    for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,144u,360u})for(float rate:{3.f,-2.f}) {
+        seek(0);B(model+0x7C)=0;SimulationTimeline timeline(divider);Nanoseconds previous=0;
+        unsigned hits[4]={};
+        for(unsigned frame_index=1;frame_index<=fps;++frame_index) {
+            const auto timestamp=second*frame_index/fps;
+            timeline.advance(timestamp-previous,[&](const SimulationSlice& slice) {
+                SimulationScope simulation(slice);
+                ctx.r4=int32_t(model);ctx.r5=std::bit_cast<uint32_t>(rate);dora3_s0_8003948C(rdram,&ctx);
+                for(unsigned k=0;k<4;++k) {
+                    const float target=float(k*3);
+                    const auto hit=adapter.frame_event(rdram,model,R(model+0x64),target,100+k);
+                    assert(adapter.frame_event(rdram,model,R(model+0x64),target,100+k)==hit);
+                    if(hit)++hits[k];
+                }
+            },[](uint64_t){});previous=timestamp;
+        }
+        for(auto count:hits)assert(count==unsigned(std::abs(rate)*float(60/divider)/10));
+        ++crossing_cases;
+    }
+    // Execute the real player's frame-18 branch. Only its impulse consumer and
+    // separately-verified movement closure are observation boundaries here.
+    const uint32_t object=0x80370000;W(object+0x74)=int32_t(model);W(0x8021D49C)=int32_t(object);
+    seek(12);B(model+0x7C)=0;
+    step(3,3);assert(R(model+0x64)==5 && (B(model+0x7C)&2));
+    adapter.acquire_simulation(rdram,[](uint32_t)->std::optional<float>{return std::nullopt;});
+    assert(R(model+0x64)==5);
+    adapter.acquire_simulation(rdram,[&](uint32_t owner)->std::optional<float>{return owner==model?std::optional<float>{3}:std::nullopt;});
+    assert(R(model+0x64)==12 && !(B(model+0x7C)&2));
+    auto seek_reference=memory;auto* seek_ram=reinterpret_cast<uint8_t*>(seek_reference.data());
+    ctx.r4=int32_t(model);ctx.r5=std::bit_cast<int32_t>(3.f);dora3_s0_8003948C(seek_ram,&ctx);
+    assert(MEM_BU(0x7C,int32_t(model))==0);
+    for(unsigned part=0;part<4;++part) {
+        SimulationScope simulation({750000000ull,3000000000ull,0,750000000ull*part});
+        ctx.r4=int32_t(model);ctx.r5=std::bit_cast<int32_t>(3.f);adapter.advance_simulation(rdram,&ctx);
+        assert(MEM_BU(0x7C,int32_t(model))&2);
+    }
+    {auto* rdram=seek_ram;assert(MEM_W(0x64,int32_t(model))==W(model+0x64));assert(MEM_BU(0x7C,int32_t(model))==uint8_t(B(model+0x7C)));}
+    {SimulationScope simulation({750000000ull,3000000000ull,1,0});ctx.r4=int32_t(model);ctx.r5=std::bit_cast<int32_t>(3.f);adapter.advance_simulation(rdram,&ctx);assert(!(B(model+0x7C)&2));}
+    // A seven-frame clip ends between quarter updates in source interval2.
+    // Its raw pulse clears on the next advance, while the reviewed discrete
+    // owner can still consume that crossing at the end of the same interval.
+    seek(0);B(model+0x7C)=0;F(uint32_t(W(model+0x18))+4,7);
+    for(unsigned part=0;part<12;++part) {
+        SimulationScope simulation({750000000ull,3000000000ull,part/4,750000000ull*(part%4)});
+        ctx.r4=int32_t(model);ctx.r5=std::bit_cast<int32_t>(3.f);adapter.advance_simulation(rdram,&ctx);
+        assert(adapter.ended_this_tick(model)==(part>=9));
+        assert(bool(B(model+0x7C)&2)==(part==9));
+    }
+    {SimulationScope simulation({750000000ull,3000000000ull,3,0});
+     assert(!adapter.ended_this_tick(model));}
+    seek(0);F(uint32_t(W(model+0x18))+4,10);
+    // A float opacity crosses zero within a partial source tick. Its original
+    // start-of-tick test must still permit the rest of that tick, then retire
+    // on the following endpoint. Check exact guest float endpoints, not merely
+    // a tolerance that could hide a changed deletion tick.
+    unsigned scalar_cases=0;
+    const uint32_t alpha=object+0x30;
+    auto scalar_plan=[&](uint32_t owner)->std::optional<float> {return owner==model?std::optional<float>{0}:std::nullopt;};
+    for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,120u,144u,165u,360u}) {
+        adapter.acquire_simulation(rdram,scalar_plan);F(alpha,1);float original=1;
+        SimulationTimeline timeline(divider);Nanoseconds previous=0;bool retired=false,original_retired=false;
+        for(unsigned f=1;f<=fps;++f) {
+            const auto stamp=second*f/fps;
+            timeline.advance(stamp-previous,[&](const SimulationSlice& slice) {
+                SimulationScope simulation(slice);
+                if(retired)return;
+                if(adapter.scalar_positive(rdram,model,alpha,R(alpha)))
+                    F(alpha,adapter.scalar_linear(rdram,model,alpha,R(alpha),-0.1));
+                else if(slice.ends_tick())retired=true;
+            },[&](uint64_t) {
+                if(!original_retired) {
+                    if(original>0)original=float(double(original)-0.1);
+                    else original_retired=true;
+                }
+                assert(retired==original_retired && W(alpha)==std::bit_cast<int32_t>(original));
+            });previous=stamp;
+        }
+        assert(retired);++scalar_cases;
+    }
+    unsigned angle_cases=0;const uint32_t oscillator=object+0x36;
+    for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,120u,144u,165u,360u}) {
+        adapter.acquire_simulation(rdram,scalar_plan);MEM_H(0,int32_t(oscillator))=350;int original=350;
+        SimulationTimeline timeline(divider);Nanoseconds previous=0;
+        for(unsigned frame_index=1;frame_index<=fps;++frame_index) {
+            const auto stamp=second*frame_index/fps;
+            timeline.advance(stamp-previous,[&](const SimulationSlice& slice) {
+                SimulationScope simulation(slice);
+                double expected=std::fmod(original+40.*double(slice.phase+slice.numerator)/double(slice.denominator),360.);
+                const auto angle=adapter.angle_short(rdram,model,oscillator,40);
+                assert(std::abs(angle-expected)<0.0001 && MEM_H(0,int32_t(oscillator))==int16_t(expected));
+            },[&](uint64_t){original=(original+40)%360;assert(MEM_H(0,int32_t(oscillator))==original);});
+            previous=stamp;
+        }
+        ++angle_cases;
+    }
+    unsigned preceding_cases=0;
+    for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,120u,144u,165u,360u}) {
+        adapter.acquire_simulation(rdram,scalar_plan);F(alpha,0.9f);float original=0.9f;
+        SimulationTimeline timeline(divider);Nanoseconds previous=0;float displayed=1;
+        for(unsigned frame_index=1;frame_index<=fps/2;++frame_index) {
+            const auto stamp=second*frame_index/fps;
+            timeline.advance(stamp-previous,[&](const SimulationSlice& slice) {
+                SimulationScope simulation(slice);
+                displayed=adapter.scalar_previous(rdram,model,alpha,R(alpha),-0.1);
+                F(alpha,adapter.scalar_linear(rdram,model,alpha,R(alpha),-0.1));
+            },[&](uint64_t){assert(displayed==original);original=float(double(original)-0.1);assert(R(alpha)==original);});
+            previous=stamp;
+        }
+        ++preceding_cases;
+    }
+    // A model constructed inside a live interval has no Original lookahead;
+    // its first opacity command starts at1 and must never overshoot above it.
+    adapter.acquire_simulation(rdram,scalar_plan);F(alpha,0.1f);
+    const uint32_t birth_alpha=object+0x44;F(birth_alpha,1);
+    uint32_t native_born=0;
+    {SimulationScope simulation({750000000ull,3000000000ull,0,0});
+     F(alpha,adapter.scalar_linear(rdram,model,alpha,R(alpha),-0.8));assert(R(alpha)<0);
+     native_born=create();assert(native_born!=model);
+     assert(adapter.scalar_previous(rdram,native_born,birth_alpha,R(birth_alpha),-0.1)==0.975f);}
+    adapter.acquire_simulation(rdram,[&](uint32_t owner)->std::optional<float> {return owner==native_born?std::optional<float>{3}:std::nullopt;},false);
+    {SimulationScope simulation({750000000ull,3000000000ull,0,750000000ull});
+     assert(adapter.scalar_positive(rdram,model,alpha,R(alpha)));
+     ctx.r4=int32_t(native_born);dora3_s0_8003B77C(rdram,&ctx);assert(adapter.model_count()==1);}
+    const uint32_t steering=object+0x40;unsigned steering_cases=0;
+    for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,120u,144u,165u,360u}) {
+        adapter.acquire_simulation(rdram,scalar_plan);F(steering,359);float original=359;
+        SimulationTimeline timeline(divider);Nanoseconds previous=0;
+        for(unsigned frame_index=1;frame_index<=fps;++frame_index) {
+            const auto stamp=second*frame_index/fps;
+            timeline.advance(stamp-previous,[&](const SimulationSlice& slice) {
+                SimulationScope simulation(slice);
+                const float chosen=(slice.tick&1)?-2:2;
+                // A repeated branch reverses direction after the first part;
+                // that does not replace this tick's already chosen command.
+                const auto proposed=slice.phase==0?chosen:-chosen;
+                F(steering,adapter.scalar_latched_turn(rdram,model,steering,R(steering),proposed));
+            },[&](uint64_t tick){original=std::fmod(original+((tick&1)?2:-2)+360.f,360.f);assert(R(steering)==original);});
+            previous=stamp;
+        }
+        ++steering_cases;
+    }
+    // Partial heap reset invalidates fields even when the model remains alive.
+    const uint32_t motion_physical=object+0x200;unsigned motion_initializations=0;
+    auto motion_seed=[&] {SourceMotionSample s;s.position[0]=float(++motion_initializations);return s;};
+    auto sample_motion=[&](uint64_t tick,uint64_t phase) {
+        SimulationScope simulation({750000000ull,3000000000ull,tick,phase});
+        const auto& s=adapter.motion_begin(rdram,model,object,motion_physical,motion_seed);
+        assert(adapter.motion_current(model,object)==&s);
+        const auto value=s.position[0];adapter.motion_end(rdram,model,object);
+        assert(!adapter.motion_current(model,object));return value;
+    };
+    adapter.acquire_simulation(rdram,scalar_plan);
+    assert(sample_motion(0,0)==1 && sample_motion(0,750000000ull)==1);
+    assert(sample_motion(0,2250000000ull)==2); // Missing update: pause gap.
+    assert(sample_motion(1,0)==3);F(object+0x9C,123);
+    assert(sample_motion(1,750000000ull)==4); // External position command.
+    ctx.r4=int32_t(motion_physical+0x30);ctx.r5=0x20;adapter.hook(rdram,&ctx,0x80033A14,now);
+    assert(adapter.model_count()==1 && sample_motion(1,1500000000ull)==5);
+    adapter.acquire_simulation(rdram,[](uint32_t)->std::optional<float> {return std::nullopt;});
+    assert(sample_motion(1,2250000000ull)==6);
+    assert(sample_motion(2,0)==7);
+    adapter.hook(rdram,&ctx,0x8003B7D0,now);assert(sample_motion(2,750000000ull)==8);
+    const uint32_t captured_actor=object+0x400,captured_physical=object+0x600,capture_slot=object+0x800;
+    const auto captured_model=create();const auto captured_lifetime=adapter.lifetime_token(captured_model);assert(captured_lifetime);
+    W(captured_actor+0x94)=1;W(captured_actor+0x98)=int32_t(captured_physical);W(captured_actor+0x74)=int32_t(captured_model);
+    adapter.bind_actor(rdram,model,capture_slot,captured_actor);
+    assert(adapter.bound_actor_valid(rdram,model,capture_slot,captured_actor));
+    ctx.r4=int32_t(captured_model);dora3_s0_8003B77C(rdram,&ctx);
+    assert(!adapter.bound_actor_valid(rdram,model,capture_slot,captured_actor));
+    next_address=captured_model;assert(create()==captured_model);
+    assert(adapter.lifetime_token(captured_model)!=captured_lifetime);
+    assert(!adapter.bound_actor_valid(rdram,model,capture_slot,captured_actor)); // Same addresses, new allocation.
+    adapter.bind_actor(rdram,model,capture_slot,captured_actor);
+    assert(adapter.bound_actor_valid(rdram,model,capture_slot,captured_actor));
+    ctx.r4=int32_t(captured_physical+0x30);ctx.r5=0x20;adapter.hook(rdram,&ctx,0x80033A14,now);
+    assert(!adapter.bound_actor_valid(rdram,model,capture_slot,captured_actor));
+    adapter.bind_actor(rdram,model,capture_slot,captured_actor);
+    adapter.acquire_simulation(rdram,[&](uint32_t owner)->std::optional<float>{return owner==captured_model?std::optional<float>{3}:std::nullopt;},false);
+    assert(adapter.bound_actor_valid(rdram,model,capture_slot,captured_actor)); // Foreign birth cannot revoke capture.
+    adapter.acquire_simulation(rdram,scalar_plan);
+    assert(!adapter.bound_actor_valid(rdram,model,capture_slot,captured_actor));
+    ctx.r4=int32_t(captured_model);dora3_s0_8003B77C(rdram,&ctx);assert(adapter.model_count()==1);
+    adapter.acquire_simulation(rdram,scalar_plan);MEM_H(0,int32_t(oscillator))=0;
+    {SimulationScope simulation({750000000ull,3000000000ull,0,0});assert(adapter.angle_short(rdram,model,oscillator,41)==10.25f);}
+    ctx.r4=int32_t(object+0x30);ctx.r5=0x20;adapter.hook(rdram,&ctx,0x80033A14,now);
+    assert(adapter.model_count()==1);
+    {SimulationScope simulation({750000000ull,3000000000ull,0,750000000ull});assert(adapter.angle_short(rdram,model,oscillator,41)==20.25f);}
+    adapter.acquire_simulation(rdram,scalar_plan);F(alpha,0.1f);
+    {SimulationScope simulation({750000000ull,3000000000ull,0,0});assert(adapter.scalar_positive(rdram,model,alpha,R(alpha)));
+     F(alpha,adapter.scalar_linear(rdram,model,alpha,R(alpha),-0.8));}
+    assert(R(alpha)<0);
+    {SimulationScope simulation({750000000ull,3000000000ull,0,750000000ull});assert(adapter.scalar_positive(rdram,model,alpha,R(alpha)));
+     F(alpha,adapter.scalar_linear(rdram,model,alpha,R(alpha),-0.8));}
+    // Missing updates break the interval (pause); external writes and owner
+    // acquisition establish a new baseline even when tick/phase are reused.
+    {SimulationScope simulation({750000000ull,3000000000ull,0,2250000000ull});assert(!adapter.scalar_positive(rdram,model,alpha,R(alpha)));}
+    F(alpha,0.5f);
+    {SimulationScope simulation({750000000ull,3000000000ull,0,2250000000ull});assert(adapter.scalar_positive(rdram,model,alpha,R(alpha)));
+     F(alpha,adapter.scalar_linear(rdram,model,alpha,R(alpha),-0.8));}
+    adapter.acquire_simulation(rdram,scalar_plan);
+    {SimulationScope simulation({750000000ull,3000000000ull,0,0});assert(adapter.scalar_positive(rdram,model,alpha,R(alpha)));
+     F(alpha,adapter.scalar_linear(rdram,model,alpha,R(alpha),-0.8));}
+    // A paused/excluded model also belongs to the replaced timeline. Reusing
+    // its exact old phase and float bits after resume must not reuse baseline.
+    F(alpha,0.1f);adapter.acquire_simulation(rdram,scalar_plan);
+    {SimulationScope simulation({750000000ull,3000000000ull,0,0});
+     F(alpha,adapter.scalar_linear(rdram,model,alpha,R(alpha),-0.8));}
+    adapter.acquire_simulation(rdram,[](uint32_t)->std::optional<float> {return std::nullopt;});
+    {SimulationScope simulation({750000000ull,3000000000ull,0,750000000ull});assert(!adapter.scalar_positive(rdram,model,alpha,R(alpha)));}
+    for(unsigned fps:{60u,73u,144u,360u}) {
+        seek(0);B(model+0x7C)=0;F(uint32_t(W(model+0x18))+4,100);SimulationTimeline timeline(3);Nanoseconds previous=0;player_impulses=0;
+        for(unsigned frame_index=1;frame_index<=fps;++frame_index) {
+            const auto timestamp=second*frame_index/fps;
+            timeline.advance(timestamp-previous,[&](const SimulationSlice& slice) {
+                SimulationScope simulation(slice);
+                dora3_s3_core_801C4650(rdram,&ctx);
+                ctx.r4=int32_t(model);ctx.r5=std::bit_cast<uint32_t>(3.f);dora3_s0_8003948C(rdram,&ctx);
+            },[](uint64_t){});previous=timestamp;
+        }
+        assert(player_impulses==1);++crossing_cases;
+    }
+    F(uint32_t(W(model+0x18))+4,10);
+    // Only advancing owners may cap a shared timeline. A newly bound clip or
+    // a changed rate must use the pending command before its first advance.
+    seek(9);B(model+0x7C)=0;
+    const SimulationSlice offered{3000000000ull,3000000000ull,0,0};
+    auto plan=[&](float rate) {return [&,rate](uint32_t owner)->std::optional<float> {
+        return owner==model?std::optional<float>{rate}:std::nullopt;
+    };};
+    assert(adapter.clip_boundary_limit(rdram,offered,plan(25))==120000000ull);
+    {SimulationScope simulation({1000000000ull,3000000000ull,0,0});step(1,3);}
+    assert(adapter.clip_boundary_limit(rdram,offered,plan(25))<120000000ull);
+    assert(adapter.clip_boundary_limit(rdram,offered,[](uint32_t)->std::optional<float> {return std::nullopt;})==offered.numerator);
+    B(model+0x7C)=8;
+    assert(adapter.clip_boundary_limit(rdram,offered,plan(25))==offered.numerator);
+    // Stationary/paused clips must not fire the same one-shot on every native
+    // frame. Reads inside the same simulation slice remain nondestructive.
+    seek(3);B(model+0x7C)=8;
+    {SimulationScope simulation({1000000000ull,3000000000ull,0,0});
+     assert(adapter.frame_event(rdram,model,3,3,10));assert(adapter.frame_event(rdram,model,3,3,10));}
+    {SimulationScope simulation({1000000000ull,3000000000ull,0,1000000000ull});
+     ctx.r4=int32_t(model);ctx.r5=1;dora3_s0_80039578(rdram,&ctx);
+     ctx.r5=0;dora3_s0_800395BC(rdram,&ctx);
+     assert(!adapter.frame_event(rdram,model,3,3,10));}
+    seek(3);
+    {SimulationScope simulation({1000000000ull,3000000000ull,0,2000000000ull});assert(adapter.frame_event(rdram,model,3,3,10));}
+    // A same-value seek and pause/resume must break the high precision clock too.
+    seek(2);B(model+0x7C)=8|2;
+    {SimulationScope simulation({1000000000ull,3000000000ull,0,0});step(3,3);}
+    assert(R(model+0x64)==2 && (B(model+0x7C)&2));
+    ctx.r4=int32_t(model);ctx.r5=0;dora3_s0_80039578(rdram,&ctx);
+    {SimulationScope simulation({1000000000ull,3000000000ull,0,1000000000ull});step(3,3);}
+    assert(R(model+0x64)==3 && !(B(model+0x7C)&2));
+    seek(3);
+    {SimulationScope simulation({1000000000ull,3000000000ull,0,2000000000ull});step(-3,3);}
+    assert(R(model+0x64)==2);
+    seek(9);ctx.r4=int32_t(model);ctx.r5=1;dora3_s0_800395BC(rdram,&ctx);
+    {SimulationScope simulation({1000000000ull,3000000000ull,0,0});step(25,3);}
+    assert(R(model+0x64)==10 && (B(model+0x7C)&2));
+    {SimulationScope simulation({1000000000ull,3000000000ull,0,1000000000ull});step(-3,3);}
+    assert(R(model+0x64)==9 && !(B(model+0x7C)&2));
+    ctx.r4=int32_t(model);ctx.r5=0;dora3_s0_800395BC(rdram,&ctx);seek(0);
     // Non-linear original Hermite channels must be evaluated, not blended poses.
     W(key)=1;W(key+12)=0x480;
     F(clip+0x480,0);F(clip+0x484,0);F(clip+0x488,0);F(clip+0x48C,0);
@@ -142,12 +466,18 @@ int main() {
     seek(0);step(3,3);adapter.begin_frame(rdram,&ctx,now+25'000'000,0);
     // System reset itself does not destroy the model; the allocator still owns it.
     adapter.end_frame(rdram);dora3_object_subsystem_reset(rdram,&ctx);assert(adapter.model_count()==1);
+    F(alpha,-0.5f);
+    {SimulationScope simulation({750000000ull,3000000000ull,0,750000000ull});assert(!adapter.scalar_positive(rdram,model,alpha,R(alpha)));}
     adapter.begin_frame(rdram,&ctx,now,0);adapter.end_frame(rdram);
     step(3,3);adapter.begin_frame(rdram,&ctx,now+25'000'000,0);
     // Same-pointer recreation must not retain the old clip or observations.
     ctx.r4=int32_t(model);dora3_s0_8003B77C(rdram,&ctx);assert(adapter.model_count()==0 && allocations.empty());adapter.end_frame(rdram);
     next_address=model;const auto recreated=create();assert(recreated==model && adapter.model_count()==1);
+    F(alpha,-0.5f);
+    {SimulationScope simulation({750000000ull,3000000000ull,0,750000000ull});assert(!adapter.scalar_positive(rdram,model,alpha,R(alpha)));}
     assert(W(model+0x64)==0 && W(model+0x60)==0);adapter.begin_frame(rdram,&ctx,now,0);adapter.end_frame(rdram);
     ctx.r4=int32_t(model);dora3_s0_8003B77C(rdram,&ctx);assert(allocations.empty());adapter.reset();
-    std::cout<<"PASS: "<<frames<<" original linear/morph native pose samples at 60/73/120/144/165/360 Hz and both dividers; Hermite curve through original matrix builder, bank isolation, guest context/time/event preservation, pause/seek/clamp/rebind/stale updates, unknown-write rollback, deferred logic morph, draw-time deletion and same-address recreation; no game/GPU.\n";
+    std::cout<<"PASS: "<<crossing_cases<<" crossing timelines / actual player frame-18 event; "<<simulation_cases<<" native simulation model timelines with nondestructive events and no render double-advance; "<<angle_cases<<" fractional short-angle wrap schedules; "<<steering_cases<<" latched angular-command schedules; "<<preceding_cases<<" preceding opacity-command schedules; "<<scalar_cases<<" exact-float scalar/retirement timelines with pause/write/acquisition/lifetime invalidation; "<<frames<<" original linear/morph native pose samples at 60/73/120/144/165/360 Hz and both dividers; Hermite curve through original matrix builder, bank isolation, guest context/time/event preservation, pause/seek/clamp/rebind/stale updates, unknown-write rollback, deferred logic morph, draw-time deletion and same-address recreation; no game/GPU.\n";
 }
+
+extern "C" int dora3_native_preview_hook(uint8_t*,recomp_context*,uint32_t) {return 0;}

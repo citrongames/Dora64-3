@@ -1,0 +1,90 @@
+{
+  "result": "PASS: 168 Source quest item producer and complete six-effect lifetime schedules; synthetic assets; no new Native ownership; no game/GPU.",
+  "extra_original_functions": [
+    "dora3_lib_8005A140",
+    "dora3_lib_8005A300",
+    "dora3_s3_801E756C",
+    "dora3_s3_801E75D0",
+    "dora3_s3_801E7EB8",
+    "dora3_s3_801E80FC",
+    "dora3_s3_801E810C",
+    "dora3_s3_801E89CC",
+    "dora3_s3_core_801E8A94",
+    "dora3_s3_core_801EBA38",
+    "dora3_s3_core_801EBA9C",
+    "dora3_s3_core_801EBAD4",
+    "dora3_s3_core_801EBCC0",
+    "dora3_s3_core_801EBEDC",
+    "dora3_s3_core_801EBFC8",
+    "dora3_s3_core_801EC0D0",
+    "dora3_s3_core_801EC194",
+    "dora3_s3_core_801EC2A8",
+    "dora3_s3_core_801EC598",
+    "dora3_s3_core_801EC7D0",
+    "dora3_s3_core_801ECBE4",
+    "dora3_s3_core_801ECC6C",
+    "dora3_s3_core_801ECFB4",
+    "dora3_s3_core_801ED020",
+    "dora3_s3_core_801ED228",
+    "dora3_s3_core_801ED244",
+    "dora3_s3_core_801ED4A4",
+    "dora3_s3_core_801ED4AC",
+    "dora3_s3_core_801ED5F4",
+    "dora3_s3_core_801ED898",
+    "dora3_s3_demo_801E7528",
+    "dora3_s3_demo_801E7604",
+    "dora3_s3_demo_801E7A50",
+    "dora3_s3_demo_801E7B44",
+    "dora3_s3_demo_801E7B78",
+    "dora3_s3_demo_801E8210",
+    "dora3_s3_demo_801E8238",
+    "dora3_s3_demo_801E8404"
+  ],
+  "source_sha256": {
+    "src/native_gameplay_preview.cpp": "c60f3ef8c6f9783eb5376b74183810f168d93e22274fd7220b7e06745377e998",
+    "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
+    "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
+    "src/native_camera_timeline.cpp": "35f21fafbaae833ae6561a0c710f0b9f791e7f9a929e633cc72b3e0b056db120",
+    "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
+    "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
+    "research/native-story-pickup-source-check.cpp": "671d2c1abb8393838ce73aaa7ecddbf2c00e3f29bf39643bc6694950025de1e0",
+    "tools/check_native_player_update.py": "e3b8849b610854b8cfc8b1870534a388ab1b2aa9be27818a480b388b1cdc04ab",
+    "tools/check_native_story_pickups.py": "4e7a41c76799d9639696abd25e18ddea11ad408fabd423e681f3cbe8faf90450",
+    "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
+    "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090"
+  },
+  "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
+  "reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
+  "validated_schedules": {
+    "settings": 24,
+    "producer_profiles": 7,
+    "source_schedules": 168,
+    "successful_item_lifetimes": 96,
+    "flash_effect_lifetimes": 576,
+    "already_set_quest_schedules": 72,
+    "original_rates": [
+      20,
+      30
+    ],
+    "configured_native_rates": [
+      60,
+      73,
+      120,
+      144,
+      165,
+      360
+    ],
+    "new_native_ownership": false
+  },
+  "limitations": [
+    "Source producer replay compares full guest RAM/context/heap/resources/commands/model count with frozen189; items and all six effects execute actual Original lifetimes and destructors on synthetic assets",
+    "Only successful and already-set quest branches; full-pool failure and real-level dialogue progression remain unverified",
+    "Render FPS is a setting matrix only; this check does not claim Native item trajectories"
+  ],
+  "annotation_only_relocation": {
+    "from_generation": "startup-v213",
+    "report_sha256": "16543002249efb2cbb02d6239180c9b06635cce4c6b509400cfe5f0158f064a0",
+    "generation_receipt_sha256": "56fd7e92cd079182ec5bb5767254402caf6497c51f77cdb1cca0d958427f4a96",
+    "evidence": "Every runtime/fixture/checker input unchanged; all96 canonical generated C units and raw frontier/hooks/overlay table identical; one new room-ID wrapper alias/description and5 actual register scopes; unchanged Source behavior and ABI"
+  }
+}

@@ -1,17 +1,17 @@
 {
   "scope": "Shared simulation timeline and explicit operand patches, not scene activation or full physics/collision integration",
-  "result": "PASS: 280 differential executions of seven original MIPS motion/camera helpers; Original and whole ticks unchanged; 12 20/30 Hz schedules at 60/73/120/144/165/360 FPS, 2036 real motion slices, exact discrete boundaries, constant-force kick/drift trajectory, approach/decay, long gaps and scope cleanup; no game/GPU.",
+  "result": "PASS: 280 differential executions of seven original MIPS motion/camera helpers; Original and whole ticks unchanged; 12 20/30 Hz schedules at 60/73/120/144/165/360 FPS, 2036 real motion slices, exact discrete boundaries, constant-force kick/drift trajectory, approach/decay, long gaps, scene-reset cancellation and scope cleanup; no game/GPU.",
   "source_sha256": {
-    "src/native_simulation_time.cpp": "eb854c2e7c89dfa5911bd288b8f572047e2c11aa23631fe2081df047690fcedc",
-    "research/native-simulation-check.cpp": "de00d9351edf08abb187466452000fc49857a8a93d12f7d9d46792ee0aebf510",
-    "src/native_simulation_time.hpp": "8fcc8c67b3f1a3e97ab903aac97149cd7b91cbd95e7fea06151257f5fda60744",
-    "recomp/native-timing-rules.json": "1f1c7ac3dcdfa02fe1fa504ed50717427b878aa8a5bccc963f85fdf54a9fadf0",
-    "tools/native_timing_patches.py": "aafa693bd6219787e0d1094738602ebbc65e461e4d65b1b46bbd2cd6f9c68ec8",
-    "tools/generate_startup.py": "616e680dc1755fbaa70686faaef9dba19eccee007885ee085b0bcaa334381306",
-    "tools/check_native_simulation.py": "52a48f40643126e96a9aef4f08b3fe5997be3556ffc615d464ee93554f1b8d8d"
+    "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
+    "research/native-simulation-check.cpp": "bdd6a55e7ed77a6fbeadceefe6a6f7bf264ac11dcbe5e2b5384535d7822c2ac3",
+    "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
+    "recomp/native-timing-rules.json": "e4f26772f1e78d0dfeb90bd0f4e6e5c9c05b28771e3d13aabb25512223def8c0",
+    "tools/native_timing_patches.py": "c0b1a571bd477ddf69a07a4681d166ab27ca9db0e8c7ef270df3bc1621a42e6b",
+    "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
+    "tools/check_native_simulation.py": "5b2f76a96a58d4747c7b77bd5cdd484692443ae03ffb1d4065aea36f2e8d389b"
   },
-  "generation_receipt_sha256": "9ea5b47f458d72338e9d7a095242c5aefb39770611117e49243abb27743bd7db",
-  "reference_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
+  "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
+  "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "original_functions": [
     "dora3_s28_mini_801C42C8",
     "dora3_s28_mini_801C4300",
@@ -25,5 +25,11 @@
     "Synthetic memory; no game/GPU; seven selected original helpers, not all gameplay closures",
     "Gravity/displacement pairing additionally checked in native-gravity-check; full collision integration remains separate",
     "No scene is enabled by these operand hooks alone"
-  ]
+  ],
+  "annotation_only_relocation": {
+    "from_generation": "startup-v213",
+    "report_sha256": "63e0020734369b2b76ab551739860ee7a5588d489bb15275c29a880d48830644",
+    "generation_receipt_sha256": "56fd7e92cd079182ec5bb5767254402caf6497c51f77cdb1cca0d958427f4a96",
+    "evidence": "Every runtime/fixture/checker input unchanged; all96 canonical generated C units and raw frontier/hooks/overlay table identical; one new room-ID wrapper alias/description and5 actual register scopes; unchanged Source behavior and ABI"
+  }
 }

@@ -1,4 +1,5 @@
 """Check frame light ownership with original generated functions; no renderer."""
+from decomp_annotations import read_decompiled_source
 import argparse, hashlib, json, re, subprocess
 from pathlib import Path
 from inspect_rom import ROOT, read_rom
@@ -17,7 +18,7 @@ def main():
     bodies=[]
     for name in ['dora3_graphics_task_submit','dora3_s0_80027B84']:
         pattern=r'RECOMP_FUNC void '+name+r'\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)'
-        matches=[m for path in (generated/'RecompiledFuncs').glob('*.c') for m in re.findall(pattern,path.read_text(),re.S)]
+        matches=[m for path in (generated/'RecompiledFuncs').glob('*.c') for m in re.findall(pattern,read_decompiled_source(path),re.S)]
         if len(matches)!=1:raise ValueError('Missing original function: '+name)
         bodies.append(matches[0])
     submit=bodies[0]

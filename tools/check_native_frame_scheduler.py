@@ -1,4 +1,5 @@
 """Verify native frame protocol plus original scheduler functions on synthetic RAM."""
+from decomp_annotations import read_decompiled_source
 import argparse
 import hashlib
 import json
@@ -27,7 +28,7 @@ def main():
     bodies = []
     for name in names:
         pattern = r'RECOMP_FUNC void ' + name + r'\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)'
-        matches = [match for f in (g / 'RecompiledFuncs').glob('*.c') for match in re.findall(pattern, f.read_text(), re.S)]
+        matches = [match for f in (g / 'RecompiledFuncs').glob('*.c') for match in re.findall(pattern, read_decompiled_source(f), re.S)]
         if len(matches) != 1: raise ValueError('Missing/duplicate original ' + name)
         bodies.extend(matches)
     (out / 'functions.c').write_text('#include "startup_hooks.h"\n#include "funcs.h"\n' + '\n'.join(bodies))

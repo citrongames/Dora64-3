@@ -1,0 +1,26 @@
+{
+  "result": "PASS: signed Original return directions,360-degree wrap and continuous intermediate yaw, confirmed by full connected188 integration",
+  "generation_receipt_sha256": "95235f0162d444184a1bb86745ffbf236a9c043011f5ef3502dd940320aa56ae",
+  "full_connected_player_report_sha256": "7a4f3d126186121ab1e557522c3a5734eae546e420093ae2d31d0921423d92b6",
+  "negative_log_sha256": "fddd154e04ab2a0010e5973e257aa7f2edb619c85b06e683d958e957ef36118c",
+  "focused_log_sha256": "f85e6703a324ea800267ab4e931731afe6af411bdf733a193c295f9011b82566",
+  "source_schedules": 1152,
+  "signed_return_source_schedules": 192,
+  "native_off_grid_schedules": 480,
+  "intermediate_yaw_observations": 1376,
+  "source_sha256": {
+    "src/native_gameplay_preview.cpp": "595e0850973ede95a90edcc6f617570cea4ab1a36d1c759cf848fc2bc0ed3acb",
+    "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
+    "research/native-player-update-check.cpp": "5db1aad3d729c9d372823e20d4cee765d3d8d485735bfd72dd7d1c8ce76700a5",
+    "tools/check_native_player_update.py": "025f13b4fa5d70ba8bbac6d9c5fcc5a3e9f5b9faee87ae512458f53f777be90a",
+    "recomp/native-timing-rules.json": "1a4483ccb500650e041677091d626d4cfdf529154230d81ce628af6a0c877709",
+    "recomp/decomp-symbols.json": "bbc98c6485295e6703140c315ae18f42e009e2917a3df927c3bc5c873e1ca242"
+  },
+  "verified": "The skipped BC1F keeps its actual SWC1 f0,0x10(a0) delay-slot store; only the state1 commit waits for Source period end",
+  "sanitizers": "ASan/UBSan/LSan",
+  "game_launched": false,
+  "limitations": [
+    "Synthetic assets/room; actual dialogue progression/contact collision selection and real level construction remain unverified",
+    "Other NPCs/platforms, levels, script camera/cutscenes, minigames and2D remain unfinished"
+  ]
+}

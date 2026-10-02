@@ -6,6 +6,9 @@ namespace dora3::native_time {
 // True means accepted by the host queue, not delivered to the guest queue.
 // False or an exception means nothing was enqueued. Sender must not reenter post_due.
 using WakeSender = bool (*)();
+// Runs before reserving a render bank. It may drain outstanding frames, load
+// resources, or leave the scene; dispatch revalidates the wake afterwards.
+using FrameUpdate = void (*)(uint8_t*, recomp_context*, Nanoseconds);
 using FrameConsumer = void (*)(uint8_t*, recomp_context*, const FrameTicket&, FrameScheduler&);
 
 // enter/change_rate/leave/dispatch belong to the scheduled game thread.
@@ -14,7 +17,7 @@ using FrameConsumer = void (*)(uint8_t*, recomp_context*, const FrameTicket&, Fr
 // actual guest completion and the reviewed host-memory boundary are established.
 class FrameBridge {
 public:
-    bool enter(unsigned fps, Nanoseconds now, unsigned bank, bool safe, FrameConsumer consumer);
+    bool enter(unsigned fps, Nanoseconds now, unsigned bank, bool safe, FrameConsumer consumer, FrameUpdate update = nullptr);
     void change_rate(unsigned fps, Nanoseconds now);
     void leave(Nanoseconds now);
     // Reset coordinator only, after the verified runtime quiescence barrier.
@@ -34,6 +37,7 @@ private:
     WakeMailbox mailbox_;
     std::mutex producer_mutex_;
     FrameConsumer consumer_ = nullptr;
+    FrameUpdate update_ = nullptr;
 };
 
 struct FrameBinding { FrameTicket ticket; FrameScheduler* owner; };

@@ -208,6 +208,28 @@ static void check_animation(uint8_t* rdram, recomp_context& c) {
 static void check_command_timeline(uint8_t* rdram,recomp_context& c) {
     auto read=[&] {return FadeState{MEM_H(0,int32_t(0x801AA660)),MEM_B(0,int32_t(0x801A99A0)),MEM_BU(0,int32_t(0x80171580))};};
     auto write=[&](FadeState s) {MEM_H(0,int32_t(0x801AA660))=s.alpha;MEM_B(0,int32_t(0x801A99A0))=s.direction;MEM_B(0,int32_t(0x80171580))=s.step;};
+    for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,120u,144u,165u,360u}) {
+        constexpr Nanoseconds origin=11*second+73'000'000;
+        const uint64_t units=uint64_t(second)*divider*20;
+        const SourceTimestamp command{origin+Nanoseconds(units/60),unsigned(units%60)};
+        const auto end=origin+second*divider*24/60; // Exact integer Source boundary.
+        write({0,-2,16});FadeTimeline rational(read(),divider,origin);
+        write(rational.before_command(read(),command));dora3_fade_begin(rdram,&c);
+        const auto initial=read();auto expected=initial;
+        for(unsigned i=0;i<4;++i)expected=original_fade(rdram,c,expected);
+        write(initial);
+        for(unsigned frame=1;origin+frame_time(frame,fps)<end;++frame) {
+            const auto at=origin+frame_time(frame,fps);
+            if(at<=command.nanoseconds)continue;
+            write(rational.sample(read(),at));
+        }
+        write(rational.sample(read(),end));assert(read()==expected);
+        // A command at this exact point must see the complete Source result.
+        write(rational.before_command(read(),SourceTimestamp{end,0}));dora3_fade_hold(rdram,&c);
+        const auto held=read();expected=original_fade(rdram,c,held);write(held);
+        write(rational.sample(read(),SourceTimestamp{end+Nanoseconds(uint64_t(second)*divider/60),unsigned(uint64_t(second)*divider%60)}));
+        assert(read()==expected);
+    }
     for(unsigned fps:{60u,73u,144u,165u,360u}) {
         FadeState state{0,-2,16};write(state);FadeTimeline time(state,3,0);
         // Issue a command between presentation deadlines. None of the earlier
@@ -248,7 +270,8 @@ int main() {
     check_fades(rdram, context);
     check_animation(rdram, context);
     check_command_timeline(rdram, context);
-    std::cout << "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. All five original fade commands, inter-frame timestamp, no-op fractional retention, same-time commands and unknown-write rejection. No game/window/GPU.\n";
+    std::cout << "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. All five original fade commands, inter-frame timestamp, no-op fractional retention, same-time commands and unknown-write rejection; rational Source command origins/reversal at12 FPS/divider settings with nonzero origin. No game/window/GPU.\n";
 }
 
 extern "C" void dora3_native_model_hook(uint8_t*,recomp_context*,uint32_t) {}
+extern "C" int dora3_native_model_advance(uint8_t*,recomp_context*) {return 0;}

@@ -6,10 +6,6 @@ namespace {
 int32_t& word(uint8_t* rdram,uint32_t address) {return MEM_W(0,int32_t(address));}
 void real(uint8_t* rdram,uint32_t address,float value) {word(rdram,address)=std::bit_cast<int32_t>(value);}
 }
-extern "C" int dora3_native_simulation_tick_end() {
-    const auto* step=dora3::native_time::active_simulation_slice();
-    return !step || step->ends_tick();
-}
 extern "C" int dora3_native_rectangle_update(uint8_t* rdram,recomp_context*) {
     const auto* step=dora3::native_time::active_simulation_slice();
     if(!step)return 0;

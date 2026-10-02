@@ -1,0 +1,64 @@
+{
+  "result": "PASS: isolated190d eight city wait/walk callbacks;1536 Source/1152 Native/192 ownership rejection/1232 intermediate positions/11904 exact Original RAM+context+heap+resource+command comparisons; primary190 full integration pending",
+  "generation_receipt_sha256": "7af729884d9bfe7a9ca75eee82a5c7642baa1159a49ae33b0707285699be072f",
+  "candidate_generation_receipt_sha256": "3f7c74dbac38090f9501bb3929ab053b65b8932e79d46b566425da28d22c4699",
+  "full_connected_player_report_sha256": "c7ab70f64f09d09cf0be123d48d6a134fde9401f156694d1d77ec80cd28ab762",
+  "positive_log_sha256": "f631071b2ccc688ee373c6cd5dce580c3847c114d430e027cefedfbc8dd77e90",
+  "negative_log_sha256": "9a607c2ce2cb6ae9b450941909935e0616031a4101a82518ce745cb307d878b4",
+  "source_sha256": {
+    "src/native_gameplay_preview.cpp": "24377f92fef61dc6dc6435c7175a03875382e2f63da06a61e3a1321b625fd4d4",
+    "research/native-player-update-check.cpp": "b1fcdb58ee2617d2639fae9efd41ef307a9bc9c8472b513bacd49e9f04936b2d",
+    "tools/check_native_player_update.py": "6a873d68a230d7657327d11bee2e1c9c1dc276ce6ba01f0625799028832a446c",
+    "tools/native_timing_patches.py": "4ea9c1b84e15512b65620451e4501d7b26a6f63ec4025eaa07cabcc674479bcd",
+    "recomp/native-timing-rules.json": "e65c58d6eff461857ea7e21f6ac54ba4f68a2df25e4895ac2698d2a20fa09ff9",
+    "recomp/decomp-symbols.json": "ae3f25a4e7430a1be88e53e7b05e0cf021ad35558660ff2ca625333fd09a271c"
+  },
+  "owned_kinds": [
+    13,
+    14,
+    15,
+    16,
+    17,
+    20,
+    21,
+    22
+  ],
+  "owned_states": [
+    1,
+    2
+  ],
+  "settings": {
+    "source": [
+      20,
+      30
+    ],
+    "native": [
+      60,
+      73,
+      120,
+      144,
+      165,
+      360
+    ],
+    "camera": [
+      12,
+      16
+    ]
+  },
+  "verified": [
+    "Actual one-shot clip0/1/2 commands, wait40, clip completion and exact rational command timestamps",
+    "All eight actual patrol axes/bounds/direction flags and continuous common X/Z movement with a period float baseline",
+    "Native births73/173ms, C9 pause, AI29 suppression/resume, state99 Source handoff/reacquisition, actual model recreation/rebind and explicit velocity/yaw/position writes",
+    "Actual heap-owned physics/clip list, models, channels and destructor; all remaining heap/resource references equal baseline",
+    "Negative control disabling only the decision guard produces count9 rather than4 on the first exact checkpoint",
+    "Frozen189 Original city bodies supply an independent full-RAM/context/command/heap/resource oracle"
+  ],
+  "game_launched": false,
+  "new_exe_created": false,
+  "limitations": [
+    "Synthetic room/model assets; actual room DMA/asset decode/rendered level unverified",
+    "Only state1/state2 of these eight callbacks are Native; their dialogue/attached/story states and linked18/19 remain Source-owned",
+    "Other NPCs/platforms, levels, script camera/cutscenes, minigames and2D remain unfinished"
+  ],
+  "full_integration": "PASS: all connected player/weapon/damage/death/recovery/door/surface/world groups;611 Original functions/regions; all seven formal reports matched190"
+}

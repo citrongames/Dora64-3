@@ -205,3 +205,54 @@ int main(int argc,char** argv) {
     std::cout<<"PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; "
         <<white_builds<<" native white-fade builds with "<<white_alpha.size()<<" distinct alpha values; "<<updates<<" discrete updates, "<<native_builds<<" native builds, "<<original_builds<<" Original builds, "<<vi_count<<" VI events; no GPU\n";
 }
+
+// Gameplay remains deliberately disabled in the image-loop fixture.
+// The player fixture executes all of these Original contact bodies.
+extern "C" void dora3_s3_801C0624(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801B922C(uint8_t*,recomp_context*) {std::abort();}
+// This scene34 loop fixture has no gameplay NPCs. Actual B91D4 is
+// executed by the player/world and pending-story fixtures; reaching it
+// here is a strict unexpected-boundary failure, never a no-op.
+extern "C" void dora3_s3_core_801B91D4(uint8_t*,recomp_context*) {std::abort();}
+// This loop-only scene has no NPCs. Both real angle helpers execute in
+// player/world proof; an unexpected visit here must fail immediately.
+extern "C" void dora3_s3_demo_801E8590(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s0_80031A0C(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801DCC1C(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801DCC50(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801DC880(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801DCDF0(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801DD8FC(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801C8B28(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801E8BDC(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_demo_801E88C4(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_demo_801E8838(uint8_t*,recomp_context*) {std::abort();}
+extern "C" int dora3_overlay_loaded(uint32_t) {return 0;}
+extern "C" void dora3_s3_801D10D8(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s0_menu_8002A3B0(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s0_8002EA4C(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s0_8002A2E8(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s0_8002A328(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801C05F0(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801CFA94(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801D0088(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s0_8002A1B8(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s0_80028C74(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801CB2F8(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801CB3A8(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801CB870(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_lib_80057A80(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801D05A8(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801C120C(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801C2798(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801C554C(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801C1A3C(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801C1ADC(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801C0D88(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801C0E3C(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801C0EC0(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801C8118(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801BBDDC(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801C1664(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801DBD58(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s0_8002F064(uint8_t*,recomp_context*) {std::abort();}

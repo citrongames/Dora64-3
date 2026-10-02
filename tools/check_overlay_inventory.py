@@ -1,4 +1,5 @@
 """Audit all known overlay loader ranges and every generated direct JAL destination."""
+from decomp_annotations import read_decompiled_source
 import argparse
 import json
 import re
@@ -52,7 +53,7 @@ def check(meta, rom, generated):
     assert struct.unpack_from('>2I', rom, 0x70A50 + 0x801FC150 - 0x801B8ED0) == (0x00010203,0x04050607)
     assert len(fixed)==14 and len(rows)==49 and len(empty)==3 and len(regions)==49
     assert {x['section'] for x in rows} == {s['name'] for s in sections[1:]}
-    source = '\n'.join(f.read_text() for f in (generated/'RecompiledFuncs').glob('*.c'))
+    source = '\n'.join(read_decompiled_source(f) for f in (generated/'RecompiledFuncs').glob('*.c'))
     bodies = dict(re.findall(r'RECOMP_FUNC void (\w+)\([^\n]+\n(.*?)(?=RECOMP_FUNC void |\Z)', source, re.S))
     direct_count = 0
     for (index, address), (name, size, _) in compiled.items():

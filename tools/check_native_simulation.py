@@ -1,4 +1,5 @@
 """Check original motion bodies, timing patches and shared simulation timeline without GPU."""
+from decomp_annotations import read_decompiled_source
 import argparse,hashlib,json,os,re,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -14,7 +15,7 @@ def main():
     names={'dora3_s3_core_801CB6D4','dora3_s3_core_801CB400','dora3_s3_core_801C1664','dora3_s3_801C0F1C',
            'dora3_s28_mini_801C4300','dora3_s28_mini_801C42C8','dora3_s28_mini_801C7994'}
     def extract(directory):
-        bodies={re.search(r'void (\w+)\(',b)[1]:b for p in (directory/'RecompiledFuncs').glob('*.c') for b in re.findall(r'RECOMP_FUNC void \w+\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)',p.read_text(),re.S)}
+        bodies={re.search(r'void (\w+)\(',b)[1]:b for p in (directory/'RecompiledFuncs').glob('*.c') for b in re.findall(r'RECOMP_FUNC void \w+\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)',read_decompiled_source(p),re.S)}
         return {n:bodies[n] for n in sorted(names)}
     patched=extract(g);original=extract(ref)
     assert all('dora3_native_rate_' not in b for b in original.values())

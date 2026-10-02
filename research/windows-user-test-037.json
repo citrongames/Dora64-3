@@ -1,0 +1,9 @@
+{
+  "date_utc": "2026-10-02T10:21:59.065210+00:00",
+  "build_id": "test-037",
+  "executable_sha256": "9be2f8a2d59d086fd5065aaa3e8456697222e213a3011f432b7d1c421e11f255",
+  "user_feedback": "диалоги норм теперь, срабатывают",
+  "result": "User confirms NPC dialogues activate after the action-priority fix",
+  "scope": "Dialogue activation reported by user after delivery of037; FPS/NPC/level coverage was not restated; full game/FPS validation not implied",
+  "locally_launched": false
+}

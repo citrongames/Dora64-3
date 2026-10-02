@@ -1,4 +1,5 @@
 """Observe original retirement semantics on synthetic RDRAM; no graphics/game loop."""
+from decomp_annotations import read_decompiled_source
 import argparse,hashlib,json,os,re,subprocess
 from pathlib import Path
 from inspect_rom import ROOT
@@ -14,7 +15,7 @@ def main():
  for addr in [0x80030C44,0x80030D00,0x80038B10,0x80038B4C]:
   name=re.search(r'name = "([^"]+)", vram = 0x'+f'{addr:08X}',syms)[1];names.append(name)
   pattern=r'RECOMP_FUNC void '+name+r'\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)'
-  matches=[m for f in (g/'RecompiledFuncs').glob('*.c') for m in re.findall(pattern,f.read_text(),re.S)]
+  matches=[m for f in (g/'RecompiledFuncs').glob('*.c') for m in re.findall(pattern,read_decompiled_source(f),re.S)]
   assert len(matches)==1;bodies.extend(matches)
  (out/'functions.c').write_text('#include "startup_hooks.h"\n#include "funcs.h"\n'+'\n'.join(bodies))
  (out/'retirement-functions.h').write_text('extern "C" {\n'+'\n'.join(f'void {name}(uint8_t*,recomp_context*);' for name in names)+'\n}\n')

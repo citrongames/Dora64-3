@@ -1,4 +1,5 @@
 """Audit first image scene's actual drawing on synthetic RAM; never launches GPU."""
+from decomp_annotations import read_decompiled_source
 import argparse,hashlib,json,os,re,struct,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -16,7 +17,7 @@ def main():
   0x80028370,0x800282EC,0x80028320,0x8002833C,0x80028344,0x8002834C,0x80028354,0x800289D8,0x80028688}
  bodies=[];names=[];found=set()
  for f in (g/'RecompiledFuncs').glob('*.c'):
-  for body in re.findall(r'RECOMP_FUNC void \w+\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)',f.read_text(),re.S):
+  for body in re.findall(r'RECOMP_FUNC void \w+\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)',read_decompiled_source(f),re.S):
    pc=re.search(r'// 0x([0-9A-F]+):',body)
    if pc and int(pc[1],16) in addresses:
     found.add(int(pc[1],16));bodies.append(body);names.append(re.search(r'void (\w+)\(',body)[1])

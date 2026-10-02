@@ -10,15 +10,15 @@ class FrameSession {
 public:
     enum class Phase { Original, Acquiring, Native, Draining };
     FrameSession(FrameBridge& bridge,PresentationGate& gate):bridge_(bridge),gate_(gate) {}
-    bool begin(unsigned fps,unsigned bank,bool legacy_drained,FrameConsumer consumer) {
+    bool begin(unsigned fps,unsigned bank,bool legacy_drained,FrameConsumer consumer,FrameUpdate update=nullptr) {
         if (phase_!=Phase::Original || !legacy_drained || !consumer || bridge_.active() || !bridge_.drained()) return false;
         if (fps<60 || fps>360 || bank>=2) throw std::invalid_argument("Invalid native session");
         token_=gate_.reserve();if (!token_) return false;
-        fps_=fps;bank_=bank;consumer_=consumer;phase_=Phase::Acquiring;return true;
+        fps_=fps;bank_=bank;consumer_=consumer;update_=update;phase_=Phase::Acquiring;return true;
     }
     Phase poll(Nanoseconds now) {
         if (phase_==Phase::Acquiring && gate_.ready(*token_)) {
-            if (!bridge_.enter(fps_,now,bank_,true,consumer_)) throw std::logic_error("Native session lost entry boundary");
+            if (!bridge_.enter(fps_,now,bank_,true,consumer_,update_)) throw std::logic_error("Native session lost entry boundary");
             phase_=Phase::Native;
         }
         if (phase_==Phase::Native && !bridge_.active()) phase_=Phase::Draining;
@@ -39,18 +39,19 @@ public:
     Phase phase() const { return phase_; }
     void reset_after_runtime_barrier() {
         if (bridge_.active() || !bridge_.drained()) throw std::logic_error("Session reset before frame barrier");
-        gate_.reset_after_runtime_barrier();token_.reset();consumer_=nullptr;phase_=Phase::Original;
+        gate_.reset_after_runtime_barrier();token_.reset();consumer_=nullptr;update_=nullptr;phase_=Phase::Original;
     }
 private:
     void release() {
         if (!token_ || !gate_.release(*token_)) throw std::logic_error("Native session lost reservation");
-        token_.reset();consumer_=nullptr;phase_=Phase::Original;
+        token_.reset();consumer_=nullptr;update_=nullptr;phase_=Phase::Original;
     }
     FrameBridge& bridge_;
     PresentationGate& gate_;
     std::optional<uint64_t> token_;
     unsigned fps_=60,bank_=0;
     FrameConsumer consumer_=nullptr;
+    FrameUpdate update_=nullptr;
     Phase phase_=Phase::Original;
 };
 inline FrameSession& game_frame_session() {

@@ -1,4 +1,5 @@
 """Compile/run hardware components only; no game frontend or graphics device."""
+from decomp_annotations import read_decompiled_source
 import argparse, hashlib, json, re, struct, subprocess
 from pathlib import Path
 from inspect_rom import ROOT, read_rom
@@ -39,7 +40,7 @@ subprocess.run(['python3',str(ROOT/'tools/prepare_runtime_timing.py'),str(out/'r
 sources=[ROOT/'research/hardware-check.cpp',ROOT/'src/n64_hardware.cpp',ROOT/'src/n64_hardware_backend.cpp',
          runtime/'ultramodern/src/input.cpp',out/'runtime/mesgqueue.cpp',out/'runtime/scheduling.cpp']
 pattern=r'RECOMP_FUNC void dora3_pak_font_decode\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)'
-matches=[m for path in (generated/'RecompiledFuncs').glob('*.c') for m in re.findall(pattern,path.read_text(),re.S)]
+matches=[m for path in (generated/'RecompiledFuncs').glob('*.c') for m in re.findall(pattern,read_decompiled_source(path),re.S)]
 assert len(matches)==1
 # Extract this generated function verbatim to avoid unrelated game code in harness.
 font=out/'font.c';font.write_text('#include "startup_hooks.h"\n'+matches[0])

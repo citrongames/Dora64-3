@@ -1,0 +1,57 @@
+{
+  "result": "PASS: 864 dialogue Source schedules, 144 dialogue Native schedules, 72 overlay rejections, 1032 intermediate yaw samples; settings=24; ASan/UBSan/LSan, focused only; no game/GPU.",
+  "generation_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
+  "focused_log_sha256": "a16a32a887b05d52d7968a529e71af07c5574894accaaab54d540b03c6474c9a",
+  "source_sha256": {
+    "src/native_gameplay_preview.cpp": "3976e43dd5719c1d25b9834b4ceec9afef9f952e3050019a0b819d0f99578daa",
+    "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
+    "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
+    "src/startup_runtime.cpp": "d7865de6f338a7c90cb31833f6c0efb424bf4705b8006563979e86a2d5cd3241",
+    "recomp/decomp-symbols.json": "08ac91f99249d2da164ce1268ccc1405108e2e1e30c1a35adc2e4449a229bc98",
+    "recomp/native-timing-rules.json": "e8748ef77ed08b52bbca449a9ba6f2e1359aeee99f8a3c6a9955703a46511b9b",
+    "tools/native_timing_patches.py": "7683b77a9bc9994567f7931e7246d4f7068ee7a634479a8d9a32cc4cabf44506",
+    "tools/check_native_player_update.py": "6b802abcfd2593624e95ab96f1055c09ef1acfcc6e10355829739b7bcc119a31",
+    "research/native-player-update-check.cpp": "9955665be7668c4527b8b75dd964a5be457986cb5196daf5af2c42ad3de079d0"
+  },
+  "runner_sha256": {
+    "/mnt/c/Users/black/Documents/Codex/2026-09-30/new-chat/work/run_dialogue_check.py": "9f7eada3d00008f133128d0ce301ecce19ca6b9704c319c93aa2e25daf5cea17",
+    "/mnt/c/Users/black/Documents/Codex/2026-09-30/new-chat/work/run_dialogue_candidate189.py": "41ff4e2272c2044d4687e4a6ed3ed574e3206045ebaddd409938c90229cac2c8"
+  },
+  "source_schedules": 864,
+  "native_schedules": 144,
+  "overlay_identity_rejections": 72,
+  "intermediate_yaw_observations": 1032,
+  "source_rates": [
+    20,
+    30
+  ],
+  "render_fps": [
+    60,
+    73,
+    120,
+    144,
+    165,
+    360
+  ],
+  "settings": 24,
+  "full_connected_player_report_sha256": "9ac04fb6e79bc4903af1e0469ecb4fca271b05d1625a2a897015c23ed2b29455",
+  "verified": [
+    "Actual Original callbacks/contacts for floating exchange75/76 and character-reply cat77",
+    "Original descriptors and initializer, price/quantity check, accepted/declined outcome and actual signed-byte game counters",
+    "One-shot actual model clip commands and real clip-list/model/physics cleanup, exact remaining heap and resource references",
+    "Continuous floating angle10/bob20, look/return30, signed turns and360-degree wrap with delay-slot yaw stores",
+    "Source repeated contact, Native pause/reentry/clip rebind/external yaw writes, Native constructors at73/173ms and AI callback suppression/resume",
+    "Live callback table plus verified overlay ownership;72 rejected schedules preserve actor/model until actual Source updates"
+  ],
+  "sanitizers": "ASan/UBSan/LSan",
+  "game_launched": false,
+  "limitations": [
+    "Main focused result; full connected189 player check is running. Last matched full archive188 remains historical.",
+    "Synthetic room/model/clip assets; contact collision selection, actual room construction/DMA/resource decode remain unverified.",
+    "Actual dialogue initializer sets pending answer1; accepted/declined outcome is written at an observed progression/input boundary before busy release. Sound CF/F6 commands are observed with checked arguments, actual sound queue/execution is unverified.",
+    "External release after Source tick13 occurs after its exact rational boundary; Native flush uses ceil only for that external after-boundary event, normal geometric endpoints retain floor to avoid lookahead.",
+    "Selected player character byte801B374A selects cat descriptor; it is not a separate story flag. Game-counter names preserve Original signed-byte overflow/limits.",
+    "Other NPCs/platforms, levels, scripted camera/cutscenes, minigames and2D remain unfinished."
+  ],
+  "full_integration": "PASS: all connected player/weapon/damage/death/recovery/door/surface/world groups;545 Original functions; all seven formal reports matched189"
+}

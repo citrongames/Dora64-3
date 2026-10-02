@@ -1,0 +1,68 @@
+{
+  "result": "PASS: isolated193i/193j and connected main193",
+  "constructor_baseline": {
+    "result": "PASS: all eight actual constructors, profiles0/1/2 and two pool layouts;192 frozen189 full-RAM/context/heap/resource/model-count/retirement comparisons,4 settings; ASan/UBSan/LSan",
+    "generation_receipt_sha256": "84735cb48e802c400a974e2d01c14cf8de3b19174230db25edc6e05cbca78a00",
+    "log_sha256": "708787ce74b0974d4c8dac1d9ac00493ebf8e8bf652043ffb40b973bc68b20d5",
+    "binary_sha256": "bd270e2b0e8a3cde9bd43b8dda5b34e3e3a4bca8335370a9d9fc4b89c28eb1d4",
+    "fixture_sha256": "74e22807cc6f21ba90fc3d6c5b82e89946f572bdbe2e7adfa19082be215eda27",
+    "runtime_sha256": "3d8783f9a3378f7f80cc03bb0a341229ba86fe9f6e80e9ccde2874bc978ac8ce",
+    "model_contract": "Generic descriptor creates both groups for13/14/16;13/14 profile1 attaches group1 to bone19 of group0; kind16/profile0 sprite42=1; actual20-bone synthetic hierarchy tested"
+  },
+  "story_full": {
+    "result": "1152 actual city constructors; 2304 story100 Source schedules; 1152 story100 Native edge schedules; 768 story100 ownership rejections; 15360 story100 Original full-RAM/context/heap/resource/command/model-count comparisons; settings=24; ASan/UBSan/LSan, isolated candidate only; no game/GPU.",
+    "log_sha256": "c61e318ba27066ed53531239a524b45ed249e8070f9f8132ab9e7cac246c4df9",
+    "generation_receipt_sha256": "0eb967f34ce31b6e3fa38d63ed231bc60cdd963a879a2b15d00042525a5e729d",
+    "binary_sha256": "f386f72de1caf88a9b979b1924c3feeb93df899bcff364f3795a00f5f5a758e1",
+    "fixture_sha256": "f903e1be2e357a760380fd3191b947faa75446eff49757a9bc11fbd9608c9691",
+    "runtime_sha256": "0617760c6d467959f9c4b7a092a8c88cf2c56391090d1da2442c5efaba8ecea5",
+    "functions_sha256": "d53cbcebff04e85c2bf9bc31b0fa773132f68e033d87b7afd3b6a2dd29f70d9c",
+    "seed_sha256": "1843f2ab3173db9781bb5fa812baf65afb19626b8a58b09510121d4bc1fd2e02",
+    "helper_sha256": "d179bb263bfa3c226376b3c725628c2df785bce4b61110a1586deaf829d7dfaa"
+  },
+  "special_full_log_sha256": "df53d4dac2ccc14a9f0430c3d52bcb4192b07b647d491d9a9cd7466b81a7a4d4",
+  "special_generation_receipt_sha256": "03a3de03be45eef9fe3fed694b86f084ffecfc22d959cffc046072988a41d758",
+  "names_log_sha256": "cf127ca32de068fc988944516ff7481c5f684bf0983a8b0e2c403b7030345867",
+  "negative": {
+    "result": "CONFIRMED controlled negative: removing the same-period counter guard consumes an extra Original release tick after an external yaw write, even at Native60",
+    "generation_receipt_sha256": "03a3de03be45eef9fe3fed694b86f084ffecfc22d959cffc046072988a41d758",
+    "positive_log_sha256": "6d7ef6697d18fef3ce0b581385b6b19cad938be2d821cae5521de66e263de055",
+    "binary_sha256": "8c8341f43c8b51db248cc89ba64c067911bc4a7732d8fd6cd7e2c2547403e56a",
+    "variant_sha256": "1924401a3a1d6471eb6fa74b77d565650492580f187cfdd3b62b4c396222260c",
+    "fixture_sha256": "afa9dac308dd2d23e0a11087f704d921658be0965eec5fa95c9d0f92eb79438e",
+    "original_runtime_sha256": "0617760c6d467959f9c4b7a092a8c88cf2c56391090d1da2442c5efaba8ecea5",
+    "functions_sha256": "d53cbcebff04e85c2bf9bc31b0fa773132f68e033d87b7afd3b6a2dd29f70d9c",
+    "seed_sha256": "1843f2ab3173db9781bb5fa812baf65afb19626b8a58b09510121d4bc1fd2e02",
+    "failure": "check-counter-negative193: /home/vova/projects/DoraRecomp3/build-local/candidate193/build-local/native-player-update-check/counter-negative193-fixture.cpp:765: main(int, char**)::<lambda(bool, unsigned int, unsigned int, bool)>::<lambda(dora3::native_time::Nanoseconds)>: Assertion `MEM_H(0x36,int32_t(pp))==expected' failed.\n"
+  },
+  "source_sha256": {
+    "tools/native_timing_patches.py": "d41ea840234b53bad33dfafd98d1bd68bbc58a8da2797f3dd05c6ea1e802ffda",
+    "tools/check_native_player_update.py": "bb697ac91b013332f7f974fa80054332798e6fc79d41708a7bf3699d1e88c4fd",
+    "recomp/decomp-symbols.json": "08af3bb1b0b7d8e03f2d7ef0a7bbf246b35471207962e6d8e4105f8aeba5f161",
+    "recomp/native-timing-rules.json": "9138fc6724bfb6e9e297b26aee03f948317c55e610cb6a1c2d776d89065ad55b",
+    "src/native_gameplay_preview.cpp": "0617760c6d467959f9c4b7a092a8c88cf2c56391090d1da2442c5efaba8ecea5",
+    "research/native-player-update-check.cpp": "66f6698c820a61377539c5a87f20214be1f93fbafa83aad2ef6337a7fddfa1fa"
+  },
+  "published_to_stage_sha256": {
+    "tools/native_timing_patches.py": "d41ea840234b53bad33dfafd98d1bd68bbc58a8da2797f3dd05c6ea1e802ffda",
+    "tools/check_native_player_update.py": "cc9b7ef221aa46a076634120730c9414145c09999b84d46b7e106e55c9617a4f",
+    "recomp/decomp-symbols.json": "7ddd5f80840505c1ed32eb531d25d370b295f19b4f5e7259acd078f8f2e4dc18",
+    "recomp/native-timing-rules.json": "700858b919ce0080939c40586988c18a82b1604f5cd9c89bca760537ba5a126a",
+    "src/native_gameplay_preview.cpp": "0617760c6d467959f9c4b7a092a8c88cf2c56391090d1da2442c5efaba8ecea5",
+    "research/native-player-update-check.cpp": "3d68eba6a7544c22b7fd7070e0985993dab3021e10528d0453ce67d50656f438"
+  },
+  "settings": 24,
+  "actual_constructor_cases": 1152,
+  "story_source": 2304,
+  "story_native": 1152,
+  "story_rejections": 768,
+  "story_original_comparisons": 15360,
+  "special_source": 768,
+  "special_native": 192,
+  "special_rejections": 96,
+  "special_original_comparisons": 5280,
+  "special_dense_original_counter_samples": 288,
+  "full_connected_player_report_sha256": "41966ce1b307c24fbf79358d63f5f8e57748f46e902c624296ffb7f7a27443e5",
+  "generation_receipt_sha256": "1468ad428b41a3dc5507d70baad516a68ef2ee69078592e8da56121e2634f7eb",
+  "full_integration": "PASS: 679 Original functions/regions; all seven formal reports matched193"
+}

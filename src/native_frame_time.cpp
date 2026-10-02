@@ -86,6 +86,21 @@ TickProgress SceneClock::advance(Nanoseconds elapsed) {
 
 TickProgress SceneClock::progress() const { return {whole_, remainder_, denominator_}; }
 
+TickProgress SceneClock::advance_fractional(Nanoseconds elapsed, int sixtieths) {
+    if(sixtieths < -59 || sixtieths > 59 || (elapsed==0 && sixtieths<0))
+        throw std::invalid_argument("Invalid fractional simulation interval");
+    advance(elapsed);
+    if(sixtieths<0) {
+        const auto units=uint64_t(-sixtieths);
+        if(remainder_<units) {--whole_;remainder_+=denominator_;}
+        remainder_-=units;
+    } else {
+        remainder_+=uint64_t(sixtieths);
+        whole_+=remainder_/denominator_;remainder_%=denominator_;
+    }
+    return progress();
+}
+
 Fade::Fade(FadeState initial, unsigned divider) : initial_(initial), time_(divider) {
     if (initial.alpha < 0 || initial.alpha > 255 || initial.step > 255 ||
         initial.direction < -2 || initial.direction > 2)
@@ -93,7 +108,10 @@ Fade::Fade(FadeState initial, unsigned divider) : initial_(initial), time_(divid
 }
 
 FadeState Fade::advance(Nanoseconds elapsed) {
-    const auto time = time_.advance(elapsed);
+    return advance_fractional(elapsed,0);
+}
+FadeState Fade::advance_fractional(Nanoseconds elapsed, int sixtieths) {
+    const auto time = time_.advance_fractional(elapsed,sixtieths);
     auto state = initial_;
     if (state.direction != -1 && state.direction != 1) return state;
     const unsigned distance = state.direction > 0 ? 255 - state.alpha : state.alpha;
@@ -116,18 +134,29 @@ FadeTimeline::FadeTimeline(FadeState initial, unsigned divider, Nanoseconds now)
     if (now < 0) throw std::invalid_argument("Negative fade origin");
 }
 FadeState FadeTimeline::sample(FadeState observed, Nanoseconds now) {
-    if (now < previous_) throw std::invalid_argument("Fade clock moved backwards");
+    return sample_at(observed,{now,0});
+}
+FadeState FadeTimeline::sample(FadeState observed, SourceTimestamp now) {
+    return sample_at(observed,now);
+}
+FadeState FadeTimeline::sample_at(FadeState observed, SourceTimestamp now) {
+    if(now.sixtieths>=60 || now.nanoseconds<previous_ ||
+       (now.nanoseconds==previous_ && now.sixtieths<previous_sixtieths_))
+        throw std::invalid_argument("Fade clock moved backwards or invalid fraction");
     if (observed != last_) {
         if (!pending_command_) throw std::logic_error("Untracked write to native fade");
         fade_ = Fade(observed, divider_);
     }
     pending_command_ = false;
-    last_ = fade_.advance(now - previous_);
-    previous_ = now;
+    last_ = fade_.advance_fractional(now.nanoseconds-previous_,int(now.sixtieths)-int(previous_sixtieths_));
+    previous_ = now.nanoseconds;previous_sixtieths_=now.sixtieths;
     return last_;
 }
 FadeState FadeTimeline::before_command(FadeState observed, Nanoseconds now) {
-    const auto value = sample(observed, now);
+    return before_command(observed,SourceTimestamp{now,0});
+}
+FadeState FadeTimeline::before_command(FadeState observed, SourceTimestamp now) {
+    const auto value = sample_at(observed, now);
     pending_command_ = true;
     return value;
 }

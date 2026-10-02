@@ -1,4 +1,5 @@
 """Check original scheduler native wake path on synthetic RAM, without GPU/game."""
+from decomp_annotations import read_decompiled_source
 import argparse,hashlib,json,os,re,struct,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -21,7 +22,7 @@ def main():
   'dora3_graphics_task_submit','dora3_scheduler_sp_complete','dora3_scheduler_dp_complete','dora3_scheduler_task_complete']
  bodies=[]
  for name in names:
-  matches=[m for f in (g/'RecompiledFuncs').glob('*.c') for m in re.findall(r'RECOMP_FUNC void '+name+r'\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)',f.read_text(),re.S)]
+  matches=[m for f in (g/'RecompiledFuncs').glob('*.c') for m in re.findall(r'RECOMP_FUNC void '+name+r'\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)',read_decompiled_source(f),re.S)]
   if len(matches)!=1:raise ValueError('Missing/duplicate '+name)
   bodies+=matches
  (out/'functions.c').write_text('#include "startup_hooks.h"\n#include "funcs.h"\n'+'\n'.join(bodies))
