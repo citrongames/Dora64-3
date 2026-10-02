@@ -1005,7 +1005,7 @@ default:std::abort();}if(gap)MEM_W(0x94,int32_t(prop))=0;links();assert(MEM_W(0x
                     auto dialogue26_non_event=[&] {
                         const auto scene=MEM_H(0,int32_t(0x801B36B8));
                         const auto flag=[&](unsigned n) {return (uint32_t(MEM_W(0,int32_t(0x801B3628+4*(n/32))))&(1u<<(n%32)))!=0;};
-                        return scene==0xFD?flag(0x5B):scene==0xAC?flag(0x10):scene==0xC1?(!flag(0x7B)||flag(0x2F)):true;
+                        return scene==0xFD?true:scene==0xAC?flag(0x10):scene==0xC1?(!flag(0x7B)||flag(0x2F)):true;
                     };
                     auto owned=[&] {const auto state=MEM_W(0x94,int32_t(parent));return city_identity_verified&&
                         (kind==24?(state==1||state==2||state==3||state==4||state==100||state==200):kind==25?(state==1||state==2||state==100||state==101||state==102):kind==26?(state==1||state==100||state==101||(state==102&&dialogue26_non_event())):kind==27?(state==1||state==2||state==100):(state==1||state==2||state==100||state==200));};
@@ -1114,7 +1114,7 @@ default:std::abort();}if(gap)MEM_W(0x94,int32_t(prop))=0;links();assert(MEM_W(0x
                 if(!compare(original,expected,0))return 1;
                 const auto actual=run_story(true,fps,0,true,&expected);if(!compare(actual,expected,0))return 1;
                 if(scenario==2)for(unsigned mode:{1u,2u,3u}) {const auto baseline=run_story(true,60,mode),varied=run_story(true,fps,mode);if(!compare(varied,baseline,mode))return 1;++slot09_native_cases;}
-                if(scenario==3||scenario==4||(scenario>=42&&scenario<45))++slot09_rejections;
+                if(scenario==3||scenario==4||(scenario>=42&&scenario<44))++slot09_rejections;
                 ++slot09_source_cases;
             }
 
@@ -5930,7 +5930,7 @@ default:std::abort();}if(gap)MEM_W(0x94,int32_t(prop))=0;links();assert(MEM_W(0x
     }
     assert(check_npc_action_contacts(image)==3192);
     assert(slot09_constructor_cases==cases*42&&slot09_constructor_skips==cases*12);
-    assert(slot09_source_cases==cases*212&&slot09_native_cases==cases*30&&slot09_rejections==cases*26&&slot09_original_cases==cases*1436);
+    assert(slot09_source_cases==cases*212&&slot09_native_cases==cases*30&&slot09_rejections==cases*24&&slot09_original_cases==cases*1436);
     assert(slot09_yaw_samples>=cases*8);
     assert(linked_constructor_cases==cases*2&&linked_source_cases==cases*42&&linked_native_cases==cases*30&&linked_rejections==cases*12&&linked_original_ram_cases==cases*282&&linked_contact_cases==cases*16);
     assert(city_dialogue_source_cases==cases*128&&city_dialogue_native_cases==cases*96&&city_dialogue_rejections==cases*16&&city_dialogue_original_ram_cases==cases*864&&city_dialogue_contact_cases==cases*192);

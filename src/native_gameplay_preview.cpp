@@ -52,12 +52,15 @@ extern "C" void dora3_s3_801C0624(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_801B922C(uint8_t*,recomp_context*);
 extern "C" void dora3_s0_8002A328(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_core_801B91D4(uint8_t*,recomp_context*);
+extern "C" void dora3_s1_801B4FBC(uint8_t*,recomp_context*);
+extern "C" void dora3_s3_801BA0C4(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_801DCC1C(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_801DCC50(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_801DC880(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_801DCDF0(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_801DD8FC(uint8_t*,recomp_context*);
 using namespace dora3::native_time;
+static bool native_gameplay_preview_conditions(uint8_t*,bool);
 namespace {
 int32_t word(uint8_t* ram,uint32_t p) {uint8_t* rdram=ram;return MEM_W(0,int32_t(p));}
 bool byte_pointer(uint32_t p,unsigned size) {return p>=0x80000000u&&uint64_t(p)+size<=0x80400000ull;}
@@ -83,6 +86,25 @@ std::array<uint32_t,20> projectile_before{};
 std::array<uint32_t,20> projectile_birth_done{};
 std::array<uint64_t,20> projectile_before_lifetimes{},projectile_birth_lifetimes{};
 std::optional<SimulationSlice> gameplay_slice;
+// BA05C changes pending-room globals in the middle of Original BB080.
+// Finish only that already entered gameplay slice; never acquire a new one
+// while the request is pending. Reset, a different request, or another
+// eligibility condition revokes this permission immediately.
+struct SceneCompletionSlice {SimulationSlice slice;uint64_t run;};
+std::optional<SceneCompletionSlice> scene_completion_slice;
+bool scene_fd_request(uint8_t* ram) {
+    uint8_t* rdram=ram;
+    return ram&&MEM_H(0,int32_t(0x801B36B8))==0xFD&&word(ram,0x802170EC)==1&&
+        word(ram,0x80217104)==0x175&&word(ram,0x802170FC)==1&&
+        uint32_t(word(ram,0x80217100))==0x80217104u&&uint32_t(word(ram,0x8021D474))==0x80217104u;
+}
+bool same_gameplay_slice(const SimulationSlice& a,const SimulationSlice& b) {
+    return a.tick==b.tick&&a.phase==b.phase&&a.numerator==b.numerator&&a.denominator==b.denominator;
+}
+bool scene_completion_active(uint8_t* ram) {
+    return scene_completion_slice&&gameplay_slice&&active_simulation_slice()&&
+        scene_completion_slice->run==epoch&&same_gameplay_slice(scene_completion_slice->slice,*gameplay_slice)&&scene_fd_request(ram);
+}
 std::optional<SimulationSuspension> projectile_suspension;
 std::optional<SimulationScope> projectile_scope;
 std::optional<SimulationSuspension> object_suspension;
@@ -238,6 +260,85 @@ struct Slot09SourceHandoff {
 };
 std::array<std::optional<Slot09SourceHandoff>,200> slot09_source_handoffs;
 std::optional<Slot09SourceHandoff> slot09_wait_decision;
+// SceneFD needs its real flag/request at the Source end, after the common
+// actor tail has finished. The next Original common pass must not update
+// that completed actor twice merely because the request revoked eligibility.
+struct Slot09ScenePublication {
+    uint32_t actor,physical,model;uint64_t lifetime,tick,denominator;
+};
+struct Slot09SceneHandoff {
+    uint32_t actor,physical,model;uint64_t lifetime,run,source_pass;
+    std::array<int32_t,11> expected;
+};
+std::array<std::optional<Slot09ScenePublication>,200> slot09_scene_publications;
+std::array<std::optional<Slot09SceneHandoff>,200> slot09_scene_handoffs;
+uint64_t slot09_source_pass=0;
+std::array<int32_t,11> slot09_scene_fields(uint8_t* ram,uint32_t actor,uint32_t physical,uint32_t model) {
+    uint8_t* rdram=ram;
+    return {word(ram,actor+0x94),MEM_B(0x28,int32_t(physical)),MEM_H(0x34,int32_t(physical)),MEM_H(0x36,int32_t(physical)),
+        MEM_H(0x42,int32_t(physical)),MEM_H(0x44,int32_t(physical)),word(ram,physical+0x58),word(ram,physical+0x5C),
+        word(ram,actor+0x10),word(ram,physical+4),word(ram,model+0x64)};
+}
+bool slot09_scene_identity(uint8_t* ram,uint32_t actor,uint32_t physical,uint32_t model,uint64_t lifetime) {
+    uint8_t* rdram=ram;
+    return pointer(actor,0xCC)&&pointer(physical,0xF4)&&pointer(model,0x84)&&lifetime&&
+        uint32_t(word(ram,actor+0x98))==physical&&uint32_t(word(ram,actor+0x74))==model&&
+        game_model_animation().lifetime_token(model)==lifetime&&word(ram,actor+0x94)==102&&
+        MEM_H(0x20,int32_t(physical))==26&&MEM_BU(0xC9,int32_t(physical))!=1&&MEM_B(0x29,int32_t(physical))==0&&MEM_H(0,int32_t(0x801B36B8))==0xFD&&
+        dora3_overlay_loaded(0x001398A0u)&&uint32_t(word(ram,0x80202064u+26u*84))==0x8022F674u;
+}
+bool slot09_scene_handoff_valid(uint8_t* ram,const Slot09SceneHandoff& v) {
+    return ram&&slot09_scene_identity(ram,v.actor,v.physical,v.model,v.lifetime)&&
+        game_model_animation().run_token(v.model)==v.run&&
+        word(ram,0x802170EC)==1&&word(ram,0x80217104)==0x175&&word(ram,0x802170FC)==1&&
+        uint32_t(word(ram,0x80217100))==0x80217104u&&
+        slot09_scene_fields(ram,v.actor,v.physical,v.model)==v.expected;
+}
+
+// An Original world pass immediately following the Native room request
+// must not repeat actors that already finished that exact Native frame.
+// These records cover only actual model-backed reviewed owners. They
+// expire at the next Source pass and never transfer to a changed actor,
+// callback, clip run, model lifetime, pending request, or pose/command.
+bool owns_common_object(uint8_t*,uint32_t);
+struct SceneCompletedObject {
+    uint32_t actor,physical,model,callback;uint64_t lifetime,run,source_pass;
+    std::array<int32_t,23> expected;
+};
+std::array<std::optional<SceneCompletedObject>,200> scene_frame_completed,scene_source_handoffs;
+std::array<bool,200> scene_frame_entered{};
+std::array<int32_t,23> scene_object_fields(uint8_t* ram,uint32_t actor,uint32_t physical,uint32_t model) {
+    uint8_t* rdram=ram;
+    return {word(ram,actor+0x94),word(ram,actor+0x10),word(ram,physical+4),word(ram,model+0x64),
+        word(ram,actor+0x9C),word(ram,actor+0xA0),word(ram,actor+0xA4),word(ram,actor+8),word(ram,actor+0xC),
+        word(ram,physical),word(ram,physical+0x14),word(ram,physical+0x58),word(ram,physical+0x5C),
+        MEM_B(0x28,int32_t(physical)),MEM_H(0x34,int32_t(physical)),MEM_H(0x36,int32_t(physical)),
+        MEM_H(0x42,int32_t(physical)),MEM_H(0x44,int32_t(physical)),MEM_B(0x29,int32_t(physical)),
+        MEM_BU(0xC9,int32_t(physical)),MEM_B(0xC8,int32_t(physical)),MEM_H(0x20,int32_t(physical)),word(ram,physical+0x18)};
+}
+bool scene_completed_identity(uint8_t* ram,const SceneCompletedObject& v) {
+    if(!ram||!pointer(v.actor,0xCC)||!pointer(v.physical,0xDC)||!pointer(v.model,0x84)||!v.lifetime||
+        uint32_t(word(ram,v.actor+0x98))!=v.physical||uint32_t(word(ram,v.actor+0x74))!=v.model||
+        game_model_animation().lifetime_token(v.model)!=v.lifetime||game_model_animation().run_token(v.model)!=v.run||
+        !owns_common_object(ram,v.actor))return false;
+    uint8_t* rdram=ram;const auto kind=MEM_H(0x20,int32_t(v.physical));
+    return kind>=0&&kind<230&&uint32_t(word(ram,0x80202064u+unsigned(kind)*84))==v.callback&&
+        scene_object_fields(ram,v.actor,v.physical,v.model)==v.expected;
+}
+bool scene_completed_handoff_valid(uint8_t* ram,const SceneCompletedObject& v) {
+    return scene_fd_request(ram)&&scene_completed_identity(ram,v);
+}
+std::optional<SceneCompletedObject> scene_capture_completed(uint8_t* ram,uint32_t actor) {
+    if(!owns_common_object(ram,actor))return std::nullopt;
+    const auto physical=uint32_t(word(ram,actor+0x98)),model=uint32_t(word(ram,actor+0x74));
+    if(!pointer(physical,0xDC)||!pointer(model,0x84))return std::nullopt;
+    const auto lifetime=game_model_animation().lifetime_token(model);if(!lifetime)return std::nullopt;
+    uint8_t* rdram=ram;const auto kind=MEM_H(0x20,int32_t(physical));
+    if(kind<0||kind>=230)return std::nullopt;
+    return SceneCompletedObject{actor,physical,model,uint32_t(word(ram,0x80202064u+unsigned(kind)*84)),lifetime,
+        game_model_animation().run_token(model),slot09_source_pass+1,scene_object_fields(ram,actor,physical,model)};
+}
+
 // The special24 clip starts continuously at Native interval start, but the
 // actual dialog publication retains Source end. Cancellation never writes
 // into a replaced actor/model/overlay or leaves a stale initialized latch.
@@ -308,7 +409,7 @@ bool slot09_dialogue26_can_own(uint8_t* ram) {
     const auto quest=[&](unsigned flag) {
         return (uint32_t(word(ram,0x801B3628u+4u*(flag/32u)))&(1u<<(flag%32u)))!=0;
     };
-    if(scene==0xFD)return quest(0x5B);
+    if(scene==0xFD)return true; // The quest-clear tail has its own Source-end publication gate.
     if(scene==0xAC)return quest(0x10);
     if(scene==0xC1)return !quest(0x7B)||quest(0x2F);
     return true;
@@ -696,7 +797,8 @@ std::optional<float> planned_model_rate(uint8_t* ram,uint32_t model) {
     return std::nullopt;
 }
 bool live(uint8_t* ram) {
-    return timeline && dora3_native_loop_gameplay_active() && native_gameplay_preview_eligible(ram);
+    return timeline && dora3_native_loop_gameplay_active() &&
+        (native_gameplay_preview_eligible(ram)||(scene_completion_active(ram)&&native_gameplay_preview_conditions(ram,true)));
 }
 bool capture_actor(uint8_t* ram,uint32_t actor) {
     return actor>=0x801734B8u && actor<0x80171CD0u+230*0xCC && (actor-0x80171CD0u)%0xCC==0 &&
@@ -737,7 +839,7 @@ void initialize_player_projectiles(uint8_t* ram,recomp_context* ctx) {
     },false);
 }
 }
-bool native_gameplay_preview_eligible(uint8_t* rdram) {
+static bool native_gameplay_preview_conditions(uint8_t* rdram,bool allow_room_request) {
     for(unsigned i=0;i<8;++i) {
         const uint32_t slot=0x801A44F0+i*20;
         if(i<2) {
@@ -747,7 +849,7 @@ bool native_gameplay_preview_eligible(uint8_t* rdram) {
     // BA0F4/BA310 consume a room request in two Original updates; B8FB4
     // holds the world while the asynchronous transition is pending. Acquire
     // only after that whole Original callback has completed.
-    if(word(rdram,0x802170EC)!=0 || MEM_BU(0,int32_t(0x80217118))!=0 || word(rdram,0x802170F0)!=0)return false;
+    if((!allow_room_request&&word(rdram,0x802170EC)!=0) || MEM_BU(0,int32_t(0x80217118))!=0 || word(rdram,0x802170F0)!=0)return false;
     if(word(rdram,0x8021D484)!=0||word(rdram,0x8021D494)!=0||word(rdram,0x80218AD8)!=0||MEM_BU(0,int32_t(0x801B36EC))!=0||
        word(rdram,0x801A9C88)!=0||word(rdram,0x801AA648)==0||word(rdram,0x801A9500)==0)return false;
     const auto player=uint32_t(word(rdram,0x8021D49C)),control=uint32_t(word(rdram,0x8021D6C0));
@@ -766,6 +868,7 @@ bool native_gameplay_preview_eligible(uint8_t* rdram) {
         ((((state>=1&&state<=18)||state==21||state==22||state==24||state==25||state==28||state==29||state==31||state==59||state==60||state==61||state==62||state==64||state==65||state==66||state==67||live_ground_damage) && MEM_BU(0x28,int32_t(control))==0)
          || player_flight_state(rdram))));
 }
+bool native_gameplay_preview_eligible(uint8_t* ram) {return native_gameplay_preview_conditions(ram,false);}
 void native_gameplay_preview_begin(uint8_t* ram,Nanoseconds now,unsigned divider) {
     native_gameplay_preview_reset();timeline=std::make_shared<SimulationTimeline>(divider);previous=source_origin=now;
     native_input_begin(ram,now);
@@ -1004,6 +1107,10 @@ void native_gameplay_preview_reset(uint8_t* ram) {
     if(ram)native_input_end(ram);
     for(unsigned slot=0;slot<slot09_story_starts.size();++slot)cancel_slot09_story_start(ram,slot);
     for(unsigned slot=0;slot<slot09_special_turns.size();++slot)cancel_slot09_special_turn(ram,slot);
+    scene_completion_slice.reset();scene_frame_completed={};scene_frame_entered={};
+    for(auto& handoff:scene_source_handoffs)if(handoff&&!scene_completed_handoff_valid(ram,*handoff))handoff.reset();
+    slot09_scene_publications={};
+    for(auto& handoff:slot09_scene_handoffs)if(handoff&&!slot09_scene_handoff_valid(ram,*handoff))handoff.reset();
     ++epoch;timeline.reset();previous=source_origin=0;motion_call=camera_call=object_call=projectile_call=motion_allowed=camera_allowed=object_allowed=projectile_allowed=false;
     native_input_reset();
     object_clocks={};slot09_source_dialogues={};slot09_native_reentries={};object_command_at_source_start=false;
@@ -1047,6 +1154,61 @@ extern "C" void dora3_native_object_scope_end() {
     object_scope.reset();object_suspension.reset();
 }
 extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32_t site) {
+    if(site==0x801E8BDC&&!object_call) {
+        ++slot09_source_pass;
+        for(auto& handoff:scene_source_handoffs)if(handoff&&(handoff->source_pass<slot09_source_pass||!scene_completed_handoff_valid(ram,*handoff)))handoff.reset();
+        for(auto& handoff:slot09_scene_handoffs)if(handoff&&(handoff->source_pass<slot09_source_pass||!slot09_scene_handoff_valid(ram,*handoff)))handoff.reset();
+    }
+    if(site==0x801E8C9C&&!object_call) {
+        const auto actor=uint32_t(word(ram,0x8021BDEC)),slot=(actor-0x801734B8u)/0xCC;
+        if(slot<scene_source_handoffs.size())if(auto& handoff=scene_source_handoffs[slot];handoff) {
+            const bool completed=handoff->source_pass==slot09_source_pass&&scene_completed_handoff_valid(ram,*handoff);
+            handoff.reset();if(completed) {slot09_scene_handoffs[slot].reset();return 1;}
+        }
+        if(slot<slot09_scene_handoffs.size())if(auto& handoff=slot09_scene_handoffs[slot];handoff) {
+            const bool completed=handoff->source_pass==slot09_source_pass&&slot09_scene_handoff_valid(ram,*handoff);
+            handoff.reset();if(completed)return 1;
+        }
+    }
+    if(site==0x8022F684&&!object_call&&!active_simulation_slice()) {
+        const auto actor=uint32_t(word(ram,0x8021BDEC)),slot=(actor-0x801734B8u)/0xCC;
+        if(slot<slot09_scene_publications.size())slot09_scene_publications[slot].reset();
+    }
+    if(site==0x8022F380&&object_call&&live(ram)&&active_simulation_slice()&&dora3_overlay_loaded(0x001398A0u)) {
+        const auto& slice=*active_simulation_slice();const auto actor=uint32_t(word(ram,0x8021BDEC)),physical=uint32_t(word(ram,actor+0x98)),model=uint32_t(word(ram,actor+0x74)),slot=(actor-0x801734B8u)/0xCC;
+        const auto lifetime=game_model_animation().lifetime_token(model);
+        if(slot>=slot09_scene_publications.size()||!slot09_scene_identity(ram,actor,physical,model,lifetime))throw std::logic_error("Invalid sceneFD publication owner");
+        slot09_scene_publications[slot]=Slot09ScenePublication{actor,physical,model,lifetime,slice.tick,slice.denominator};
+        return 1; // Common actor tail must finish before eligibility changes.
+    }
+    if(site==0x801E8E7C&&object_call&&active_simulation_slice()) {
+        uint8_t* rdram=ram;
+        const auto& slice=*active_simulation_slice();const auto actor=uint32_t(word(ram,0x8021BDEC)),slot=(actor-0x801734B8u)/0xCC;
+        if(gameplay_slice&&slot<scene_frame_entered.size()&&scene_frame_entered[slot]) {
+            scene_frame_entered[slot]=false;scene_frame_completed[slot]=scene_capture_completed(ram,actor);
+            if(scene_completion_active(ram))scene_source_handoffs[slot]=scene_frame_completed[slot];
+        }
+        if(slot<slot09_scene_publications.size())if(auto& pending=slot09_scene_publications[slot];pending) {
+            const auto v=*pending;
+            if(!live(ram)||!owns_common_object(ram,v.actor)||!slot09_scene_identity(ram,v.actor,v.physical,v.model,v.lifetime)||
+               MEM_BU(0,int32_t(0x8021710D))!=0||(uint32_t(word(ram,0x801B3630))&(1u<<(0x5B%32)))!=0||
+               v.tick!=slice.tick||v.denominator!=slice.denominator)pending.reset();
+            else if(slice.ends_tick()) {
+                pending.reset();object_command_at_end=true;
+                recomp_context command;dora3::copy_recomp_context(command,*ctx);command.r4=0x5B;
+                dora3_s1_801B4FBC(ram,&command);
+                command.r4=0x175;command.r5=1;dora3_s3_801BA0C4(ram,&command);
+                if(gameplay_slice&&scene_fd_request(ram)) {
+                    scene_completion_slice=SceneCompletionSlice{*gameplay_slice,epoch};
+                    for(unsigned i=0;i<scene_frame_completed.size();++i)
+                        if(scene_frame_completed[i]&&scene_completed_identity(ram,*scene_frame_completed[i]))scene_source_handoffs[i]=scene_frame_completed[i];
+                }
+                slot09_scene_handoffs[slot]=Slot09SceneHandoff{v.actor,v.physical,v.model,v.lifetime,game_model_animation().run_token(v.model),slot09_source_pass+1,
+                    slot09_scene_fields(ram,v.actor,v.physical,v.model)};
+            }
+        }
+    }
+
     if(site==0x8022FE60&&!object_call&&!active_simulation_slice()) {
         const auto actor=uint32_t(word(ram,0x8021BDEC)),slot=(actor-0x801734B8u)/0xCC;
         if(slot<slot09_special_turns.size())cancel_slot09_special_turn(ram,slot);
@@ -2278,7 +2440,10 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
     if(site==0x801E8C9C && object_call) {
         const auto actor=uint32_t(word(ram,0x8021BDEC));
         if(!live(ram)||!active_simulation_slice()||!owns_common_object(ram,actor))return 1;
-        begin_object_scope(ram,actor);return 0;
+        begin_object_scope(ram,actor);
+        const auto slot=(actor-0x801734B8u)/0xCC;
+        if(slot<scene_frame_entered.size())scene_frame_entered[slot]=true;
+        return 0;
     }
     if(site==0x801D1160 && projectile_call) {
         if(!live(ram)||!active_simulation_slice())return 1;
@@ -2449,8 +2614,8 @@ void native_gameplay_preview_update(uint8_t* rdram,recomp_context* original,Nano
         SimulationScope step(slice);recomp_context ctx;dora3::copy_recomp_context(ctx,*original);
         struct GameplaySliceScope {
             std::optional<SimulationSlice> saved=gameplay_slice;
-            explicit GameplaySliceScope(const SimulationSlice& value){gameplay_slice=value;}
-            ~GameplaySliceScope(){gameplay_slice=saved;}
+            explicit GameplaySliceScope(const SimulationSlice& value){scene_completion_slice.reset();scene_frame_completed={};scene_frame_entered={};gameplay_slice=value;}
+            ~GameplaySliceScope(){scene_completion_slice.reset();gameplay_slice=saved;}
         } global_time(slice);
         NativeInputScope input(rdram,cursor+Nanoseconds(advanced/60));advanced+=slice.numerator;
         try {

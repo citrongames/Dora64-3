@@ -1,3 +1,4 @@
+#include <numeric>
 #include "native_camera_timeline.hpp"
 #include <algorithm>
 #include <span>
@@ -62,6 +63,17 @@ void OrdinaryCameraTimeline::advance(uint8_t* rdram,recomp_context* ctx,const Si
     if(initialized_&&(slice.tick!=tick_||slice.phase!=phase_||slice.denominator!=denominator_))throw std::logic_error("Non-contiguous camera time");
     const auto current=capture(rdram,camera,own);
     if(slice.phase==0){initial_=current;anchored_=true;}
+    else if(anchored_&&initialized_&&root==root_&&camera==camera_&&slice.ends_tick()&&current!=published_&&
+            std::equal(current.begin(),current.begin()+28+std::accumulate(own.begin(),own.end(),size_t{0},[](size_t n,Region v){return n+v.size;}),published_.begin())) {
+        // A Source-end shake command changes only the five shared shake
+        // fields. Keep the original camera equation anchor and apply the new
+        // command in this ending Source camera evaluation, regardless of how
+        // many variable frames preceded it. External pose/root writes still
+        // use the ordinary invalidation path below.
+        const auto shake_start=28+std::accumulate(own.begin(),own.end(),size_t{0},[](size_t n,Region v){return n+v.size;});
+        std::copy(current.begin()+shake_start,current.end(),initial_.begin()+shake_start);
+        restore(rdram,camera,own,initial_);
+    }
     else if(!initialized_||root!=root_||camera!=camera_||current!=published_) {
         // A cut, new shake command, restore, or another owner changed the state.
         // Never roll that write back. Run incremental equations until the next

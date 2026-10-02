@@ -214,6 +214,12 @@ extern "C" void dora3_s3_801B922C(uint8_t*,recomp_context*) {std::abort();}
 // executed by the player/world and pending-story fixtures; reaching it
 // here is a strict unexpected-boundary failure, never a no-op.
 extern "C" void dora3_s3_core_801B91D4(uint8_t*,recomp_context*) {std::abort();}
+// The image-scene loop fixture never enters sceneFD NPC dialogue. Those
+// real quest/request callbacks run in the player/world scene fixtures;
+// reaching them here must fail instead of hiding an unexpected boundary.
+extern "C" void dora3_s1_801B4FBC(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801BA0C4(uint8_t*,recomp_context*) {std::abort();}
+
 // This loop-only scene has no NPCs. Both real angle helpers execute in
 // player/world proof; an unexpected visit here must fail immediately.
 extern "C" void dora3_s3_demo_801E8590(uint8_t*,recomp_context*) {std::abort();}

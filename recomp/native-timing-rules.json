@@ -7149,6 +7149,18 @@
       "role": "special28_source_end_original_geometry",
       "evidence": "ROM1398A0 FBAC actual E88C4/E8590, FC3C delay-slot yaw write and FE40 epilogue; only geometry predicted; entire Original story decision remains Source-end",
       "status": "Isolated212; proof pending"
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x8022F254",
+      "function_name": "dora3_s44_remaining_8022F254",
+      "function_sha256": "7065c45cce35125df06cc0018064d620d70de9565925ea1cee4db551a208d87d",
+      "site": "0x8022F380",
+      "expected_word": "0x0C06D3EF",
+      "operation": "native_slot09_scene_publication",
+      "role": "sceneFD_source_end_flag_request_after_complete_common_actor",
+      "evidence": "Actual F380..F398 flag5B/BA0C4; BA05C changes request globals only, not actor/model fields. Common epilogue publishes after actual model/motion age. Next Source common pass uses checked identity/run/scene/request/fields handoff",
+      "status": "Isolated216; strict scene/timing/reset/pool proof pending"
     }
   ]
 }

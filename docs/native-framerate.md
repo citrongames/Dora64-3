@@ -1,5 +1,22 @@
 ## Продолжение main234 — проверены Source-награды и имена, runtime прежний
 
+
+## Текущий проверенный этап: main235
+
+FD175/1 переход комнаты и поздняяSource-end командаshake камеры перенесены
+после полного224прогона. Текущийуже начатыйframe завершается; следующийBB080
+входит в реальныйresource barrier перед старымworld pool. Камера сохраняет
+anchor при проверенномD5594 shake command.12отчётов совпадают сgeneration235;
+96canonicalunits/ABI проверены, смысловыеимена712/377/481 синхронизированы.
+Полныйпрогон:5088Source/720Native/34464frozen comparisons; камера10975;
+scene-frame39fields/64schedules; реальныйscene-transition/two-bank scope32schedules.
+Items118/123/127 иeffects130 остаютсяSource-owned;144проверкиNative задержки
+effects вcandidate236 ещё не означают Native траектории или подключения вmain.
+Детали и границыCPU/synthetic проверки — вdocs/work-in-progress.md иresearch.
+Test037 прежний; новыйEXE не собирался. ПолныйvariableFPS остаётся в работе.
+
+---
+
 Каталог712/377/481 и Source/mixed diagnostics сохранены отдельным этапом.
 168 Source lifetime schedules и119252 Native интервала между Source callbacks
 сохраняют предметы118/123/127 и шесть effects130; Native trajectory ещё не

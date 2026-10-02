@@ -5,12 +5,12 @@
     "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
     "research/native-simulation-check.cpp": "bdd6a55e7ed77a6fbeadceefe6a6f7bf264ac11dcbe5e2b5384535d7822c2ac3",
     "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
-    "recomp/native-timing-rules.json": "e4f26772f1e78d0dfeb90bd0f4e6e5c9c05b28771e3d13aabb25512223def8c0",
-    "tools/native_timing_patches.py": "c0b1a571bd477ddf69a07a4681d166ab27ca9db0e8c7ef270df3bc1621a42e6b",
+    "recomp/native-timing-rules.json": "fae3f8016727e0ec9890cd166703afe15d41d4f45c1336b50a7af5b58e782cfd",
+    "tools/native_timing_patches.py": "57507936d9a6fba154eecdf94271dcc9cf321b88b3f944ba2852680ed5586bf5",
     "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
     "tools/check_native_simulation.py": "5b2f76a96a58d4747c7b77bd5cdd484692443ae03ffb1d4065aea36f2e8d389b"
   },
-  "generation_receipt_sha256": "24b582c903d245a4309f6fee035458671ec8af95a5d6335257bca678165f4859",
+  "generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "original_functions": [
     "dora3_s28_mini_801C42C8",
@@ -26,16 +26,10 @@
     "Gravity/displacement pairing additionally checked in native-gravity-check; full collision integration remains separate",
     "No scene is enabled by these operand hooks alone"
   ],
-  "annotation_only_relocation": {
-    "from_generation": "startup-v213",
-    "report_sha256": "63e0020734369b2b76ab551739860ee7a5588d489bb15275c29a880d48830644",
-    "generation_receipt_sha256": "56fd7e92cd079182ec5bb5767254402caf6497c51f77cdb1cca0d958427f4a96",
-    "evidence": "Every runtime/fixture/checker input unchanged; all96 canonical generated C units and raw frontier/hooks/overlay table identical; one new room-ID wrapper alias/description and5 actual register scopes; unchanged Source behavior and ABI"
-  },
-  "annotation_only_relocation_234": {
-    "from_generation": "startup-v217",
-    "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
-    "previous_report_sha256": "233d1aed833696125c76c5c11137ff6a00da90d8d4a4b64b330ea42dd4c12fb3",
-    "evidence": "All runtime/checker/header inputs unchanged; all96 canonical C units/frontier/hooks/overlay table identical. Updated descriptions/14 Source register scopes and independently executed Original/mixed pickup diagnostics do not alter this compiled proof."
+  "exact_input_relocation_235": {
+    "from_generation": "build-local/candidate224/build-local/startup-v224",
+    "report_sha256": "0395039b46e9ed76eafbfa95032711adc0e37e23afa0faf4dd52db046823a66b",
+    "generation_receipt_sha256": "6d5ea6d0c91aa01dba9fe68acad136b4fff9f43fb434a39b07e7279c44f1c90f",
+    "evidence": "All reported compiled sources/checkers/headers identical;96 canonical C units and raw frontier/hooks/overlay table identical to frozen224 and fresh235 rehearsal. This relocates the named executed proof and does not claim a new run."
   }
 }

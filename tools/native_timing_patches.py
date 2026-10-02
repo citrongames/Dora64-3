@@ -331,7 +331,7 @@ def timing_hooks(sections,compiled,rom):
         elif op=='native_object_scope_end':
             if rule['section']!='.scene1' or (address,site,word)!=(0x801E8BDC,0x801E8E7C,0x3C028022):
                 raise ValueError('Unreviewed common object scope continuation')
-            text='dora3_native_object_scope_end();'
+            text='dora3_native_preview_hook(rdram,ctx,0x801E8E7Cu); dora3_native_object_scope_end();'
         elif op=='player_damage_counter_phase':
             targets={(0x801C6084,0x801C6094,0x94820044):'L_801C60F0',
                      (0x801C67C8,0x801C67D8,0x94820044):'L_801C6834'}
@@ -499,6 +499,10 @@ def timing_hooks(sections,compiled,rom):
                 label=f'dora3_after_slot09_dialogue_{site:08X}'
                 text=f'if ({call}) goto {label};';hooks[name,end].insert(0,label+':;')
             else:text=f'if ({call}) return;' if site==address else call+';'
+        elif op=='native_slot09_scene_publication':
+            if rule['section']!='.remaining_slot1_09' or (address,site,word)!=(0x8022F254,0x8022F380,0x0C06D3EF):
+                raise ValueError('Unreviewed sceneFD quest/request tail')
+            text='if (dora3_native_preview_hook(rdram,ctx,0x8022F380u)) goto L_8022F668;'
         elif op=='native_slot09_decision':
             approved={2149769140: (2149769124, 2149769380), 2149769380: (2149769124, None), 2149772196: (2149772180, 2149772344), 2149772344: (2149772180, None), 2149774980: (2149774964, 2149775104), 2149775104: (2149774964, None), 2149778520: (2149778504, 2149778620), 2149778620: (2149778504, None), 2149776992: (2149776972, 2149777144), 2149777144: (2149776972, None)}
             if rule['section']!='.remaining_slot1_09' or site not in approved or approved[site][0]!=address:

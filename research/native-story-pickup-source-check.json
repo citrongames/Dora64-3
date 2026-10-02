@@ -41,14 +41,14 @@
     "dora3_s3_demo_801E8404"
   ],
   "source_sha256": {
-    "src/native_gameplay_preview.cpp": "c60f3ef8c6f9783eb5376b74183810f168d93e22274fd7220b7e06745377e998",
+    "src/native_gameplay_preview.cpp": "d48c83d5d296ed59f29e15e491187a4b34cdb0bde248bae5bbb486928a1c1092",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
-    "src/native_camera_timeline.cpp": "35f21fafbaae833ae6561a0c710f0b9f791e7f9a929e633cc72b3e0b056db120",
+    "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "research/native-story-pickup-source-check.cpp": "4d6de2d617919ce9c0b0c7b7878731c281a9059d45292bfc1ba960f2984c9160",
-    "tools/check_native_player_update.py": "e3b8849b610854b8cfc8b1870534a388ab1b2aa9be27818a480b388b1cdc04ab",
+    "tools/check_native_player_update.py": "7f3fdf18d70dff2701a731a35509e917b6d82cdb01242534257a14622d318305",
     "tools/check_native_story_pickups.py": "adba5ec7d6c95b6caa8f05b7c594c2334371713ec20f3586654986517d5004b5",
     "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
@@ -83,7 +83,7 @@
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f"
   },
-  "generation_receipt_sha256": "24b582c903d245a4309f6fee035458671ec8af95a5d6335257bca678165f4859",
+  "generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
   "reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "validated_schedules": {
     "settings": 24,
@@ -111,9 +111,15 @@
     "Only successful and already-set quest branches; full-pool failure and real-level dialogue progression remain unverified",
     "Render FPS is a setting matrix only; this check does not claim Native item trajectories"
   ],
-  "checker_metadata_only_update_234": {
-    "previous_checker_sha256": "35048853f4219006111fa859ee6185e2dfc6b020c82bbe610ef90b6ddaf73c83",
-    "previous_report_sha256": "d282e3dfa8d53e7fa2e08a412fad252080b2074d443356350220ed17943cc75c",
-    "evidence": "Compiled preparation, flags, fixture, runtime and validation branches unchanged. Added hashes of headers verified immutable before/through both executions; clarified diagnostic activation/bank flags in limitations. No new test execution is claimed."
+  "exact_input_relocation_235": {
+    "from_generation": "build-local/candidate235/build-local/startup-v235",
+    "report_sha256": "fe50aadeed06cc932a7b7cb293228fe2147277647338dd1249a32582f20b90f3",
+    "generation_receipt_sha256": "86b5cc21c9d07fe9764a11fe87c9db31775349b06649346ff749ac12bc8b0911",
+    "evidence": "All reported compiled sources/checkers/headers identical;96 canonical C units and raw frontier/hooks/overlay table identical to frozen224 and fresh235 rehearsal. This relocates the named executed proof and does not claim a new run."
+  },
+  "checker_metadata_only_update_235": {
+    "previous_checker_sha256": "661afcfac368efa4744ac67f0bc18b5a270a05bd693e674441ce8647dc07f03f",
+    "previous_report_sha256": "620c96faa95eec60c7923e80968ec6c9fe1be1c4d2734fb84ab8a0168685f4ca",
+    "evidence": "Only the post-execution full report caption now parses existing PASS stdout. No compiled preparation/runtime/fixture/Source or scene-frame diagnostic branch changes."
   }
 }

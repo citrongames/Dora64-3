@@ -1,5 +1,5 @@
 {
-  "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 1008 actual slot09 constructors; 5088 slot09 Source schedules; 720 slot09 Native schedules; 624 slot09 rejections; 34464 slot09 frozen189 comparisons; 30488 slot09 intermediate yaw samples; 3192 common NPC B schedules; 1152 actual city constructor/profile/Original comparisons; 2304 story100 Source schedules; 1152 story100 Native edge schedules; 768 story100 ownership rejections; 15360 story100 Original full-RAM/context/heap/resource/command/model-count comparisons; 768 special200/201 Source schedules; 192 special200/201 Native edge schedules; 96 special200/201 ownership rejections; 5280 special200/201 Original full-RAM/context/heap/resource/command/model-count comparisons; 288 dense Original special counter samples; 4608 city dialogue actual contact-producer Original comparisons; 3072 city dialogue Source schedules; 2304 city dialogue Native edge schedules; 384 city dialogue overlay rejections; 19712 city dialogue intermediate yaw samples; 20736 city dialogue Original full-RAM/context/heap/resource/command comparisons; 48 linked actual descriptor construction/attachment/retirement schedules; 1008 linked Source schedules; 720 linked Native schedules; 288 linked ownership rejections; 308 linked intermediate yaw samples; 6768 linked Original full-RAM/context/heap/resource/command comparisons; 384 linked actual contact-producer Original comparisons; 1536 city patrol Source schedules; 1152 city patrol Native schedules; 192 city patrol overlay rejections; 1232 city intermediate position samples; 11904 city Original full-RAM/context/command comparisons; 864 dialogue75/76/77 Source outcome/bob/turn/contact/birth schedules; 144 dialogue Native pause/reentry/rebind/write schedules; 72 dialogue overlay rejection schedules; 1032 dialogue signed return/wrap intermediate yaw samples; 288 city7/9 Source projection/sprite/contact/dialogue/delay/event/retirement schedules; 96 city Native off-grid schedules; 48 city overlay-identity rejection schedules; 96 simple object Source schedules; 96 simple object Native off-grid schedules; 1152 orbital Source/contact/birth/moving-target/AI-resume schedules; 480 orbital Native pause/rebind/recreation/write/state schedules; 1376 orbital intermediate signed return/wrap yaw samples; 144 off-grid surface constructor/reentry/model-rebind/yaw/exit Native schedules; 216 full surface60..62 producer/spin/exit/kick/orientation Source schedules; 96 connected door59 pause/camera/fade/room-request Source schedules; 1392 connected lethal32..49/death50..56/respawn Source/body/fade/scene/real-model-retirement schedules; 144 six-character post-ready67/Ground/new-model reacquisition schedules; 192 healthy hover49/63 Source count/control/exit/landing schedules; 144 Native hover off-grid recovery schedules; 192 Native constructor/idle/complete special64/67 recovery schedules; 216 Source special64/67 character frame commands/clip/cancel/surface recovery schedules; 144 Native off-grid special command/stop/turn/write/rebind schedules; 264 Source special65/66 stop/turn/cancellation schedules; 48 recovery31 scalar stop/clip/return Source schedules; 48 waiting46/47 count/kick/yaw/recovery Source schedules; 96 hazard40..45 delay/kick/fall/collapse/rise/recovery Source schedules; 48 airborne ground damage kick/fall/collapse/rise/recovery Source schedules; 336 Native real damage/health/rumble/complete recovery partition schedules; 48 heavy damage kick/counter/fall/collapse/rise/recovery Source schedules; 48 ground damage kick/landing/recovery/cooldown Source schedules; 48 healthy flight damage speed/orientation/clip/return schedules; 24 Native off-grid flight A/stick partition schedules; 24 held-B four-shot flight repeat/release/lifetime schedules; 96 Native flight weapon press/release/birth/trajectory/retirement schedules; 192 flight weapon9/10 and charge11/12 full Source pool schedules; 96 whole-player flight Source speed/orientation/collision/animation/A-transition/RNG schedules; 24 full original ground/jump/fall/landing and 48 reversal/braking dispatcher/input/drive/contact/model-clip/pose schedules; 168 flight/pause/hit/real-newborn/lifetime schedules; 72 growth/spin/fade schedules against Original at every source tick; 72 ballistic/countdown/real five-link-chain schedules; 24 real four-phase/rebind/opacity/lifetime schedules; 24 bounce/real conversion/complete child lifetimes; 384 homing clocks/real impact/retirement schedules; 48 real charge/attachment/radius/opacity/conversion/retirement schedules; 48 live player-producer birth/initial commands/zero-time clock/lifetime schedules; 120 interaction free/capture/seek/spawn/drag/retirement schedules and Original quarter-interval capture geometry; 48 interaction live births including same-address captured NPC recreation; 192 real charge weapon action/B-entry/shot/complete lifetime schedules; 96 Native B-edge exact shot and birth-relative charge lifetime schedules; 48 held B four-shot repeat/release/full retirement schedules; 432 Native press/release moving-weapon trigger/initial-age/complete resource lifetimes; 864 moving weapon action/shot/full pool Source endpoint/complete child lifetime schedules; 216 terminal-effect lifetimes/retirements against unpatched Original and 912 full-RAM common-world Original comparisons; both source rates at 60/73/120/144/165/360 FPS; single held-button jump and landing, one transition per reversal state, free-bank pose restoration, source-time counters/sounds, legacy player suppression, coupled native props/source-owned AI command timestamps, opacity/blink/real flipbook cadence, contact-list preservation and context preservation; no game/GPU.",
+  "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 1008 actual slot09 constructors; 5088 slot09 Source schedules; 720 slot09 Native schedules; 576 slot09 rejections; 34464 slot09 frozen189 comparisons; 31624 slot09 intermediate yaw samples; 3192 common NPC B schedules; 1152 actual city constructor/profile/Original comparisons; 2304 story100 Source schedules; 1152 story100 Native edge schedules; 768 story100 ownership rejections; 15360 story100 Original full-RAM/context/heap/resource/command/model-count comparisons; 768 special200/201 Source schedules; 192 special200/201 Native edge schedules; 96 special200/201 ownership rejections; 5280 special200/201 Original full-RAM/context/heap/resource/command/model-count comparisons; 288 dense Original special counter samples; 4608 city dialogue actual contact-producer Original comparisons; 3072 city dialogue Source schedules; 2304 city dialogue Native edge schedules; 384 city dialogue overlay rejections; 19712 city dialogue intermediate yaw samples; 20736 city dialogue Original full-RAM/context/heap/resource/command comparisons; 48 linked actual descriptor construction/attachment/retirement schedules; 1008 linked Source schedules; 720 linked Native schedules; 288 linked ownership rejections; 308 linked intermediate yaw samples; 6768 linked Original full-RAM/context/heap/resource/command comparisons; 384 linked actual contact-producer Original comparisons; 1536 city patrol Source schedules; 1152 city patrol Native schedules; 192 city patrol overlay rejections; 1232 city intermediate position samples; 11904 city Original full-RAM/context/command comparisons; 864 dialogue75/76/77 Source outcome/bob/turn/contact/birth schedules; 144 dialogue Native pause/reentry/rebind/write schedules; 72 dialogue overlay rejection schedules; 1032 dialogue signed return/wrap intermediate yaw samples; 288 city7/9 Source projection/sprite/contact/dialogue/delay/event/retirement schedules; 96 city Native off-grid schedules; 48 city overlay-identity rejection schedules; 96 simple object Source schedules; 96 simple object Native off-grid schedules; 1152 orbital Source/contact/birth/moving-target/AI-resume schedules; 480 orbital Native pause/rebind/recreation/write/state schedules; 1376 orbital intermediate signed return/wrap yaw samples; 144 off-grid surface constructor/reentry/model-rebind/yaw/exit Native schedules; 216 full surface60..62 producer/spin/exit/kick/orientation Source schedules; 96 connected door59 pause/camera/fade/room-request Source schedules; 1392 connected lethal32..49/death50..56/respawn Source/body/fade/scene/real-model-retirement schedules; 144 six-character post-ready67/Ground/new-model reacquisition schedules; 192 healthy hover49/63 Source count/control/exit/landing schedules; 144 Native hover off-grid recovery schedules; 192 Native constructor/idle/complete special64/67 recovery schedules; 216 Source special64/67 character frame commands/clip/cancel/surface recovery schedules; 144 Native off-grid special command/stop/turn/write/rebind schedules; 264 Source special65/66 stop/turn/cancellation schedules; 48 recovery31 scalar stop/clip/return Source schedules; 48 waiting46/47 count/kick/yaw/recovery Source schedules; 96 hazard40..45 delay/kick/fall/collapse/rise/recovery Source schedules; 48 airborne ground damage kick/fall/collapse/rise/recovery Source schedules; 336 Native real damage/health/rumble/complete recovery partition schedules; 48 heavy damage kick/counter/fall/collapse/rise/recovery Source schedules; 48 ground damage kick/landing/recovery/cooldown Source schedules; 48 healthy flight damage speed/orientation/clip/return schedules; 24 Native off-grid flight A/stick partition schedules; 24 held-B four-shot flight repeat/release/lifetime schedules; 96 Native flight weapon press/release/birth/trajectory/retirement schedules; 192 flight weapon9/10 and charge11/12 full Source pool schedules; 96 whole-player flight Source speed/orientation/collision/animation/A-transition/RNG schedules; 24 full original ground/jump/fall/landing and 48 reversal/braking dispatcher/input/drive/contact/model-clip/pose schedules; 168 flight/pause/hit/real-newborn/lifetime schedules; 72 growth/spin/fade schedules against Original at every source tick; 72 ballistic/countdown/real five-link-chain schedules; 24 real four-phase/rebind/opacity/lifetime schedules; 24 bounce/real conversion/complete child lifetimes; 384 homing clocks/real impact/retirement schedules; 48 real charge/attachment/radius/opacity/conversion/retirement schedules; 48 live player-producer birth/initial commands/zero-time clock/lifetime schedules; 120 interaction free/capture/seek/spawn/drag/retirement schedules and Original quarter-interval capture geometry; 48 interaction live births including same-address captured NPC recreation; 192 real charge weapon action/B-entry/shot/complete lifetime schedules; 96 Native B-edge exact shot and birth-relative charge lifetime schedules; 48 held B four-shot repeat/release/full retirement schedules; 432 Native press/release moving-weapon trigger/initial-age/complete resource lifetimes; 864 moving weapon action/shot/full pool Source endpoint/complete child lifetime schedules; 216 terminal-effect lifetimes/retirements against unpatched Original and 912 full-RAM common-world Original comparisons; both source rates at 60/73/120/144/165/360 FPS; single held-button jump and landing, one transition per reversal state, free-bank pose restoration, source-time counters/sounds, legacy player suppression, coupled native props/source-owned AI command timestamps, opacity/blink/real flipbook cadence, contact-list preservation and context preservation; no game/GPU.",
   "original_functions": [
     "actual_dora3_s3_801E6968",
     "dora3_controller_accumulate",
@@ -808,23 +808,24 @@
     "dora3_s3_core_801E5828"
   ],
   "source_sha256": {
-    "src/native_gameplay_preview.cpp": "c60f3ef8c6f9783eb5376b74183810f168d93e22274fd7220b7e06745377e998",
+    "src/native_gameplay_preview.cpp": "d48c83d5d296ed59f29e15e491187a4b34cdb0bde248bae5bbb486928a1c1092",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
-    "src/native_camera_timeline.cpp": "35f21fafbaae833ae6561a0c710f0b9f791e7f9a929e633cc72b3e0b056db120",
+    "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-    "research/native-player-update-check.cpp": "9516a103f37a8741038dd06eec3b02f08c448981b1a2f671fe9a1fc602cf1409",
+    "research/native-player-update-check.cpp": "edc2f396cfe4a61da29caa84fbe22eec46655237525e31b18df392475ddb44d5",
+    "src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
     "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
     "src/native_model_animation.hpp": "2132dc8530bf55e774ed8ed4f4ebf12cda94ce4e8615a0d386c77917de2650b7",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
     "src/native_gameplay_preview.hpp": "c217908d86f9b319a3acffcf4f3edb0e7cfa92b8de4742c21988f4d052638b11",
     "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
-    "recomp/native-timing-rules.json": "e4f26772f1e78d0dfeb90bd0f4e6e5c9c05b28771e3d13aabb25512223def8c0",
+    "recomp/native-timing-rules.json": "fae3f8016727e0ec9890cd166703afe15d41d4f45c1336b50a7af5b58e782cfd",
     "research/player-state-inventory.json": "c6497c19972e73478ac5d71ffcef6304924aeb087121f0c2e38528fb1bbd150f",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
-    "tools/check_native_player_update.py": "e3b8849b610854b8cfc8b1870534a388ab1b2aa9be27818a480b388b1cdc04ab"
+    "tools/check_native_player_update.py": "7f3fdf18d70dff2701a731a35509e917b6d82cdb01242534257a14622d318305"
   },
   "validated_npc_action_schedules": {
     "common_selector_B_dispatch_player_priority": 3192,
@@ -882,7 +883,7 @@
     "lethal48_to55_complete": 96
   },
   "validated_player_damage_schedules": {
-    "hover49_63_source_count_control_exit_landing": 144,
+    "hover49_63_source_count_control_exit_landing": 192,
     "hover49_63_native_constructor_rehit_rebind_writes_input_complete_recovery": 144,
     "healthy_flight48_source": 48,
     "ordinary_ground35_36_source": 48,
@@ -917,8 +918,8 @@
     "slot09_actualD1498_release_once_exact_command_origin": 240,
     "slot09_source": 5088,
     "slot09_native_edges": 720,
-    "slot09_intermediate_yaw_samples": 30488,
-    "slot09_rejections": 624,
+    "slot09_intermediate_yaw_samples": 31624,
+    "slot09_rejections": 576,
     "slot09_frozen_original_ram_context_heap_resources_commands_models": 34464,
     "city_actual_constructors_original": 1152,
     "city_story100_source": 2304,
@@ -976,7 +977,7 @@
     "size": 36304,
     "sha256": "f5284a1979a9fd3f5f46fe48c9a361e300aca936d8cb123aa87f50bdbcee5f7a"
   },
-  "generation_receipt_sha256": "24b582c903d245a4309f6fee035458671ec8af95a5d6335257bca678165f4859",
+  "generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "limitations": [
@@ -984,29 +985,21 @@
     "Homing targets are static; moving86 verified for six Source ticks, stationary86 through tracking-window closure; real level gameplay remains unverified",
     "Live producers invoke real constructors during the player callback; interaction contact flags are instrumented and captured NPC paused; player states20/27/57/58 and aerial weapons9/10/11/12 tested; healthy damage32..49/63 tested through real recovery; lethal32/35/37/40/43/46/47/48/49 through death50..56/fade/game-over/scene resource cleanup; actual C9BE0 six-character model/resource recreation and post-ready67/Ground Native reacquisition tested; room DMA/resource decode/level construction remains a synthetic boundary; byte status pointers use actual unaligned Original records; special64/65/66/67 Source and Native command/character-frame/real-idle/cancellation/full-recovery tested; actual model3 creation/attachment/destruction execute on synthetic assets, city7 sprite5 executes its real pool constructor, other sprite producers remain instrumented; door59/surface60..62 Source and Native schedules execute real producer/actor pause/command writes; actual script camera advancement and room DMA/level construction remain unverified; external hover49 selecting producer, real-level collision assets, dialogue progression/layout/input and sound queue remain unverified; actual common NPC collision selection/B priority executes Original overlap, twelve actual kind callbacks and linked parent on synthetic geometry (actual dialogue initializer executes with a checked audio-queue failure boundary); orbital intermediate return yaw checks cover both nonzero directions and360-degree wrap; city13..17/20..22 wait/walk callbacks checked with exact private counts, clip commands and fractional X/Z; their dialogue3 callbacks, story100/secondary-model/wrapped-kind6 families and kind21 special200/201 callbacks are tested against frozen189 on synthetic assets; Original special201 yaw snaps, unapplied rate5C and six-tick release are preserved, including repeated writes within a single period; other unreviewed AI states retain Source ownership; linked18/19 and story18/6 have actual constructor/contact/final-command-delivery proof; slot09 dialogue/event families beyond reviewed idle/patrol/wait, other active NPCs/platforms, story-room orbital dialogue producer, real levels, cutscenes, minigames and2D remain outstanding"
   ],
-  "validation_origin": {
-    "candidate": "build-local/candidate212",
-    "generation": "startup-v212b",
-    "report_sha256": "2e83dcde760f005e39a9e23f13e1b12ddf57cbd5c06eb8c71e22658a6f328d82",
-    "generation_receipt_sha256": "e5e27887b8ddbb57c2ffb96928c8b2a5835696a1c61896a561b3b99e5146f983",
-    "relocation_evidence": "Every full-player runtime/fixture/checker source input identical; all96 canonical C units and raw frontier/hooks/overlay table identical; independent711 description token/ABI/storage validation; source snapshot unchanged during full run"
+  "exact_input_relocation_235": {
+    "from_generation": "build-local/candidate224/build-local/startup-v224",
+    "report_sha256": "3eae83efab0769feb13daf33d306397ebf8ed95f2901899b91c5605db1a45093",
+    "generation_receipt_sha256": "6d5ea6d0c91aa01dba9fe68acad136b4fff9f43fb434a39b07e7279c44f1c90f",
+    "evidence": "All reported compiled sources/checkers/headers identical;96 canonical C units and raw frontier/hooks/overlay table identical to frozen224 and fresh235 rehearsal. This relocates the named executed proof and does not claim a new run."
   },
-  "annotation_only_relocation": {
-    "from_generation": "startup-v213",
-    "report_sha256": "9b024817ad7420a4287f609fcfe1ab6c1635f8be3e42be122af2c44c74ed4357",
-    "generation_receipt_sha256": "56fd7e92cd079182ec5bb5767254402caf6497c51f77cdb1cca0d958427f4a96",
-    "evidence": "Every runtime/fixture/checker input unchanged; all96 canonical generated C units and raw frontier/hooks/overlay table identical; one new room-ID wrapper alias/description and5 actual register scopes; unchanged Source behavior and ABI"
+  "factual_report_caption_correction_235": {
+    "field": "hover49_63_source_count_control_exit_landing",
+    "previous": 144,
+    "actual": 192,
+    "evidence": "Parsed the actual PASS stdout of full224; checker/runtime/test branches unchanged. The legacy caption was hardcoded."
   },
-  "format_only_relocation": {
-    "path": "research/native-player-motion-check.cpp",
-    "previous_source_sha256": "ad4e95b033860edb9fc2ab8e46f6a83db6e5745cc7b48dc1a15f4d58790c52bf",
-    "current_source_sha256": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
-    "evidence": "Removed exactly two empty EOF lines after final brace; every code byte unchanged; generation217/canonical C/runtime/ABI unchanged; no behavior check weakened"
-  },
-  "annotation_only_relocation_234": {
-    "from_generation": "startup-v217",
-    "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
-    "previous_report_sha256": "920abec993a9a72a93d22b7ba9c03d0d3cd1db0531e263107e1acb28eba8a8af",
-    "evidence": "All runtime/checker/header inputs unchanged; all96 canonical C units/frontier/hooks/overlay table identical. Updated descriptions/14 Source register scopes and independently executed Original/mixed pickup diagnostics do not alter this compiled proof."
+  "checker_metadata_only_update_235": {
+    "previous_checker_sha256": "661afcfac368efa4744ac67f0bc18b5a270a05bd693e674441ce8647dc07f03f",
+    "previous_report_sha256": "9d521d18136b16c062c9773bbd1f13b383e4203a481ddc726dbaed71c20dc9bf",
+    "evidence": "Only the post-execution full report caption now parses existing PASS stdout. No compiled preparation/runtime/fixture/Source or scene-frame diagnostic branch changes."
   }
 }

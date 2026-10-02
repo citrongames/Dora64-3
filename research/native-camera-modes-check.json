@@ -1,6 +1,6 @@
 {
-  "scope": "Thirteen ordinary camera roots: anchored equation endpoint equivalence, shared fractional samples, external-write ownership; no scene activation",
-  "result": "801D5864 diagnostic_max_rate_spread=0 field=0 variant=0\n801D7294 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8578 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8A24 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8FF0 diagnostic_max_rate_spread=0 field=0 variant=0\n801DB720 diagnostic_max_rate_spread=0 field=0 variant=0\n801D9B00 diagnostic_max_rate_spread=0 field=0 variant=0\n801D9C94 diagnostic_max_rate_spread=0 field=0 variant=0\n801DA06C diagnostic_max_rate_spread=0 field=0 variant=0\n801DAB58 diagnostic_max_rate_spread=0 field=0 variant=0\n801DA588 diagnostic_max_rate_spread=0 field=0 variant=0\n801DAF50 diagnostic_max_rate_spread=0 field=0 variant=0\n801DB3D0 diagnostic_max_rate_spread=0 field=0 variant=0\nPASS: 9571 Original/full-tick memory comparisons across thirteen ordinary camera roots. Native equations also match at shared fractional timestamps; external writes/reset preserved; synthetic room triangles through original collision query, no real level/GPU.",
+  "scope": "Thirteen ordinary camera roots: anchored equation endpoint equivalence, shared fractional samples, external-write ownership and Source-end shake commands; no scene activation",
+  "result": "801D5864 diagnostic_max_rate_spread=0 field=0 variant=0\n801D7294 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8578 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8A24 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8FF0 diagnostic_max_rate_spread=0 field=0 variant=0\n801DB720 diagnostic_max_rate_spread=0 field=0 variant=0\n801D9B00 diagnostic_max_rate_spread=0 field=0 variant=0\n801D9C94 diagnostic_max_rate_spread=0 field=0 variant=0\n801DA06C diagnostic_max_rate_spread=0 field=0 variant=0\n801DAB58 diagnostic_max_rate_spread=0 field=0 variant=0\n801DA588 diagnostic_max_rate_spread=0 field=0 variant=0\n801DAF50 diagnostic_max_rate_spread=0 field=0 variant=0\n801DB3D0 diagnostic_max_rate_spread=0 field=0 variant=0\nPASS: 10975 Original/full-tick memory comparisons across thirteen ordinary camera roots. Native equations also match at shared fractional timestamps; Source-end real shake commands at three final cuts and two dividers, external writes/reset preserved; synthetic room triangles through original collision query, no real level/GPU.",
   "original_functions": [
     "dora3_lib_80055BC0",
     "dora3_lib_80055BD0",
@@ -38,24 +38,31 @@
     "dora3_s3_801DAB58",
     "dora3_s3_801DAF50",
     "dora3_s3_801DB3D0",
-    "dora3_s3_801DB720"
+    "dora3_s3_801DB720",
+    "dora3_s3_core_801D5594"
   ],
   "source_sha256": {
     "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
-    "src/native_camera_timeline.cpp": "35f21fafbaae833ae6561a0c710f0b9f791e7f9a929e633cc72b3e0b056db120",
-    "research/native-camera-modes-check.cpp": "9d357bd8d5da8ecb7da6971122903f294006b98b69ddcb00c35ab24659db0635",
+    "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
+    "research/native-camera-modes-check.cpp": "53c68efd4e29283ab4e9944f206b833ba9ee826a4050b02bc435224ca36d6bf7",
     "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
     "src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
-    "recomp/native-timing-rules.json": "e4f26772f1e78d0dfeb90bd0f4e6e5c9c05b28771e3d13aabb25512223def8c0",
-    "tools/native_timing_patches.py": "c0b1a571bd477ddf69a07a4681d166ab27ca9db0e8c7ef270df3bc1621a42e6b",
+    "recomp/native-timing-rules.json": "fae3f8016727e0ec9890cd166703afe15d41d4f45c1336b50a7af5b58e782cfd",
+    "tools/native_timing_patches.py": "57507936d9a6fba154eecdf94271dcc9cf321b88b3f944ba2852680ed5586bf5",
     "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
-    "tools/check_native_camera_modes.py": "0762faf74f328963ca4bdba0deb14c994d9485a9d05486ccb81748424b72a3fa"
+    "tools/check_native_camera_modes.py": "5474f494eab96267d69aaa8cb6050ce543b1d0fc8c91b85628fb0ab3b88f1365"
   },
-  "generation_receipt_sha256": "24b582c903d245a4309f6fee035458671ec8af95a5d6335257bca678165f4859",
+  "generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "limitations": [
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",
     "Whole-tick equivalence compares owned state, excluding scratch stack/registers of replaced leaf functions",
     "Synthetic actors and no-map/room geometry through original query; no real level, mode-switch input or changing-player trajectory verification"
-  ]
+  ],
+  "exact_input_relocation_235": {
+    "from_generation": "build-local/candidate224/build-local/startup-v224",
+    "report_sha256": "2892fc95454cca62fb6c3892a61c526a8d3ea46aec80013fd61a73785323443f",
+    "generation_receipt_sha256": "6d5ea6d0c91aa01dba9fe68acad136b4fff9f43fb434a39b07e7279c44f1c90f",
+    "evidence": "All reported compiled sources/checkers/headers identical;96 canonical C units and raw frontier/hooks/overlay table identical to frozen224 and fresh235 rehearsal. This relocates the named executed proof and does not claim a new run."
+  }
 }

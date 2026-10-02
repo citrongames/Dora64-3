@@ -11,6 +11,8 @@
 using namespace dora3::native_time;
 extern "C" {
 void dora3_s0_80040104(uint8_t*,recomp_context*);
+void dora3_s3_core_801D5594(uint8_t*,recomp_context*);
+void reference_dora3_s3_core_801D5594(uint8_t*,recomp_context*);
 void dora3_s3_801D5864(uint8_t*,recomp_context*);
 void reference_dora3_s3_801D5864(uint8_t*,recomp_context*);
 void dora3_s3_801D7294(uint8_t*,recomp_context*);
@@ -149,6 +151,39 @@ int main(int argc,char** argv) {
             }
         }
 
+        // The real charge ctor starts shake after movement at Source end,
+        // before the camera callback. That command must not discard the camera
+        // equation anchor merely because the final Native fraction is shorter.
+        // Compare its endpoint to the actual Original command + camera once,
+        // including all shared camera/shake fields, for different final cuts.
+        for(unsigned variant=0;variant<6;++variant)for(unsigned divider:{2u,3u})
+        for(unsigned cut:{2u,3u,10u})for(unsigned command:{0u,1u,2u}) {
+            auto initial=image;auto* initial_ram=reinterpret_cast<uint8_t*>(initial.data());seed(initial_ram,variant);
+            {auto* rdram=initial_ram;MEM_W(0,int32_t(0x801A39DC))=int(divider);}
+            auto actual=initial,expected=initial;
+            auto* ram=reinterpret_cast<uint8_t*>(actual.data());auto* ref=reinterpret_cast<uint8_t*>(expected.data());
+            OrdinaryCameraTimeline time;
+            const auto den=uint64_t(divider)*second,first=den-den/cut;
+            recomp_context c{};c.f_odd=&c.f0.u32h;c.r29=int32_t(0x80300000);c.r4=int32_t(camera);
+            time.advance(ram,&c,{first,den,0,0},uint32_t(std::stoul(mode.name,nullptr,16)),mode.actual);
+            auto cue=[&](uint8_t* memory,recomp_func_t* function) {
+                recomp_context ctx{};ctx.f_odd=&ctx.f0.u32h;ctx.r29=int32_t(0x80300000);
+                ctx.r4=command==1?3:1;ctx.r5=command==1?9:command==2?1:6;
+                ctx.r6=std::bit_cast<int32_t>(command==1?-4.f:command==2?0.f:10.f);
+                function(memory,&ctx);
+            };
+            cue(ram,dora3_s3_core_801D5594);cue(ref,reference_dora3_s3_core_801D5594);
+            run(ref,mode.original);
+            c.r4=int32_t(camera);time.advance(ram,&c,{den-first,den,0,first},uint32_t(std::stoul(mode.name,nullptr,16)),mode.actual);
+            auto equal_region=[&](uint32_t start,unsigned size) {
+                auto* rdram=ram;
+                for(unsigned off=0;off<size;++off)if(MEM_BU(int32_t(off),int32_t(start))!=ref[((start&0xFFFFFF)+off)^3]) {
+                    std::cerr<<mode.name<<" Source-end shake mismatch variant="<<variant<<" divider="<<divider<<" cut="<<cut<<" command="<<command<<" address="<<std::hex<<start+off<<std::dec<<'\n';std::abort();
+                }
+            };
+            equal_region(camera,0x34);equal_region(0x802181EC,0x144);++checks;
+        }
+
         // A write from another subsystem must survive the next sample, including
         // halfwords adjacent to camera fields. Owned external writes invalidate
         // the anchor; an explicit reset also permits a new scene clock.
@@ -167,7 +202,7 @@ int main(int argc,char** argv) {
         camera_time.reset();advance({3000000000ull,3000000000ull,0,0});++checks;
         std::cout<<mode.name<<" diagnostic_max_rate_spread="<<spread<<" field="<<worst_field<<" variant="<<worst_variant<<'\n';
     }
-    std::cout<<"PASS: "<<checks<<" Original/full-tick memory comparisons across thirteen ordinary camera roots. Native equations also match at shared fractional timestamps; external writes/reset preserved; synthetic room triangles through original collision query, no real level/GPU.\n";
+    std::cout<<"PASS: "<<checks<<" Original/full-tick memory comparisons across thirteen ordinary camera roots. Native equations also match at shared fractional timestamps; Source-end real shake commands at three final cuts and two dividers, external writes/reset preserved; synthetic room triangles through original collision query, no real level/GPU.\n";
 }
 
 extern "C" int dora3_native_preview_hook(uint8_t*,recomp_context*,uint32_t) {return 0;}

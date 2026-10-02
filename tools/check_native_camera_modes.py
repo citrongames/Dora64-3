@@ -16,8 +16,8 @@ def main():
     assert old['rom_sha256']==receipt['rom_sha256']
     for n,v in old['generated'].items():assert sha(ref/n)==v,n
     def extract(folder):
-        bodies={re.search(r'void (\w+)\(',b)[1]:b for p in (folder/'RecompiledFuncs').glob('*.c') for b in re.findall(r'RECOMP_FUNC void \w+\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)',read_decompiled_source(p),re.S)}
-        todo=['dora3_s3_801D5864', 'dora3_s3_801D7294', 'dora3_s3_801D8578', 'dora3_s3_801D8A24', 'dora3_s3_801D8FF0', 'dora3_s3_801DB720', 'dora3_s3_801D9B00', 'dora3_s3_801D9C94', 'dora3_s3_801DA06C', 'dora3_s3_801DAB58', 'dora3_s3_801DA588', 'dora3_s3_801DAF50', 'dora3_s3_801DB3D0'];out={}
+        bodies={re.search(r'void (\w+)\(',b)[1]:b for p in (folder/'RecompiledFuncs').glob('*.c') for b in re.findall(r'RECOMP_FUNC\s+void \w+\([^\n]+\n.*?(?=RECOMP_FUNC\s+void |\Z)',read_decompiled_source(p),re.S)}
+        todo=['dora3_s3_core_801D5594','dora3_s3_801D5864', 'dora3_s3_801D7294', 'dora3_s3_801D8578', 'dora3_s3_801D8A24', 'dora3_s3_801D8FF0', 'dora3_s3_801DB720', 'dora3_s3_801D9B00', 'dora3_s3_801D9C94', 'dora3_s3_801DA06C', 'dora3_s3_801DAB58', 'dora3_s3_801DA588', 'dora3_s3_801DAF50', 'dora3_s3_801DB3D0'];out={}
         while todo:
             name=todo.pop()
             if name in out:continue
@@ -43,7 +43,7 @@ def main():
     subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror','-fsanitize=address,undefined',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
     result=subprocess.check_output([str(out/'check'),str(out/'seed.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')).strip()
     tracked=sources+[ROOT/'src/native_simulation_time.hpp',ROOT/'src/native_camera_timeline.hpp',ROOT/'recomp/native-timing-rules.json',ROOT/'tools/native_timing_patches.py',ROOT/'tools/generate_startup.py',Path(__file__).resolve()]
-    report=dict(scope='Thirteen ordinary camera roots: anchored equation endpoint equivalence, shared fractional samples, external-write ownership; no scene activation',result=result,original_functions=sorted(patched),source_sha256={str(p.relative_to(ROOT)):sha(p) for p in tracked},generation_receipt_sha256=sha(g/'generation-receipt.json'),reference_receipt_sha256=sha(ref/'generation-receipt.json'),
+    report=dict(scope='Thirteen ordinary camera roots: anchored equation endpoint equivalence, shared fractional samples, external-write ownership and Source-end shake commands; no scene activation',result=result,original_functions=sorted(patched),source_sha256={str(p.relative_to(ROOT)):sha(p) for p in tracked},generation_receipt_sha256=sha(g/'generation-receipt.json'),reference_receipt_sha256=sha(ref/'generation-receipt.json'),
         limitations=['Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally','Whole-tick equivalence compares owned state, excluding scratch stack/registers of replaced leaf functions','Synthetic actors and no-map/room geometry through original query; no real level, mode-switch input or changing-player trajectory verification'])
     (ROOT/'research/native-camera-modes-check.json').write_text(json.dumps(report,indent=2)+'\n');print(result)
 if __name__=='__main__':main()
