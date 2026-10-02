@@ -1,3 +1,22 @@
+## Продолжение main234 — проверены Source-награды и имена, runtime прежний
+
+Каталог712/377/481 и Source/mixed diagnostics сохранены отдельным этапом.
+168 Source lifetime schedules и119252 Native интервала между Source callbacks
+сохраняют предметы118/123/127 и шесть effects130; Native trajectory ещё не
+подключена. Diagnostic bank flags не означают session/presentation/GPU test.
+Все96 canonical C units и ABI идентичны217;10 current reports соответствуют234.
+Fresh ordinary camera component9571 проверяет прежний camera code.
+
+Isolated FD220 full прошёл5088 Source/720 Native/34464 frozen comparisons.
+Полный224 с Source-end camera-shake fix ещё идёт; этот runtime не включён вmain.
+Actual Source room barrier имеет permanent isolated231 CPU check на двух banks,
+с остановкой до Original destructors и новой загрузки. Следующий connected
+checkpoint ожидает224 full. Native rewards/effects, другие levels/enemies/
+platforms, script cameras/cutscenes, minigames/2D иобщая интеграция остаются.
+Нового Windows EXE нет; test037 иNPC B fix сохранены. Git — основное сохранение.
+
+---
+
 ## Продолжение v193 — сюжетные городские NPC прошли общую проверку
 
 Story100 семей13/14/15/16/17/20/21/22, вторичные модели и связанные kind6,

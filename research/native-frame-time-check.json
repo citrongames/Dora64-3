@@ -8,7 +8,7 @@
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "tools/check_native_frame_time.py": "8c930fabbd13f3a5b552386b4caf62fb6f4caf1c19d58651d81d21ad070173fc"
   },
-  "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
+  "generation_receipt_sha256": "24b582c903d245a4309f6fee035458671ec8af95a5d6335257bca678165f4859",
   "original_functions": [
     "dora3_fade_tick",
     "dora3_s0_8003948C",
@@ -28,5 +28,11 @@
     "report_sha256": "c7dcb66cbb51ead2800c9ed695a072cec6fafd4be700df405528130b051476a2",
     "generation_receipt_sha256": "56fd7e92cd079182ec5bb5767254402caf6497c51f77cdb1cca0d958427f4a96",
     "evidence": "Every runtime/fixture/checker input unchanged; all96 canonical generated C units and raw frontier/hooks/overlay table identical; one new room-ID wrapper alias/description and5 actual register scopes; unchanged Source behavior and ABI"
+  },
+  "annotation_only_relocation_234": {
+    "from_generation": "startup-v217",
+    "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
+    "previous_report_sha256": "d259c69a1a64bbb92b0fcf4c703ff602a4b89e611fc1308c6e7aeea85783c593",
+    "evidence": "All runtime/checker/header inputs unchanged; all96 canonical C units/frontier/hooks/overlay table identical. Updated descriptions/14 Source register scopes and independently executed Original/mixed pickup diagnostics do not alter this compiled proof."
   }
 }

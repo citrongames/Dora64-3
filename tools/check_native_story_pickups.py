@@ -28,9 +28,13 @@ def main():
     parser.add_argument('--rom', type=Path, required=True)
     parser.add_argument('--reference', type=Path, default=ROOT/'build-local/startup-v61')
     parser.add_argument('--city-reference', type=Path, default=ROOT/'build-local/startup-v189')
+    parser.add_argument('--scope',choices=['original','native-source'],default='original')
     args = parser.parse_args()
     generation = args.generated.resolve()
-    out = ROOT/'build-local/native-story-pickup-source-check'
+    diagnostic=args.scope=='native-source'
+    folder='native-story-pickup-native-source-check' if diagnostic else 'native-story-pickup-source-check'
+    report_name=folder+'.json'
+    out=ROOT/'build-local'/folder
     out.mkdir(exist_ok=True)
     # Use the same verified real common pool, constructors, resource lists,
     # destructors, model implementation and frozen Oracle as the whole-world check.
@@ -38,6 +42,8 @@ def main():
     preparation = checker.read_text()
     preparation = preparation[:preparation.index("    subprocess.run(['gcc','-std=c17'")]
     preparation = preparation.replace("out=ROOT/'build-local/native-player-update-check'", "out=ROOT/'build-local/native-story-pickup-source-check'")
+    preparation = preparation.replace("out=ROOT/('build-local/native-player-update-check' if a.scope=='full' else 'build-local/native-scene-frame-check')", "out=ROOT/'build-local/native-story-pickup-source-check'")
+    preparation=preparation.replace("out=ROOT/'build-local/native-story-pickup-source-check'",f"out=ROOT/'build-local/{folder}'")
     sys.argv = [str(checker), '--generated', str(generation), '--rom', str(args.rom),
                 '--reference', str(args.reference), '--city-reference', str(args.city_reference)]
     preparation += "\nmain()\n"
@@ -71,6 +77,7 @@ def main():
         '-I'+str(path) for path in [ROOT/'src', ROOT/'research', generation,
                                   generation/'RecompiledFuncs', out,
                                   ROOT/'build-deps/lib/N64ModernRuntime/N64Recomp/include']]]
+    if diagnostic:flags+=['-DDORA3_STORY_SOURCE_NATIVE_CHECK']
     subprocess.run(['gcc', '-std=c17', '-fsanitize=address', *flags, '-c',
                     str(out/'functions.c'), '-o', str(out/'functions.o')], check=True)
     sources = [ROOT/'src'/name for name in ['native_gameplay_preview.cpp',
@@ -92,6 +99,7 @@ def main():
     assert output.startswith('PASS: 168 ')
     tracked = sources+[fixture, checker, Path(__file__).resolve(),
                        ROOT/'research/native-npc-interaction-check.inc', ROOT/'recomp/startup.json']
+    tracked+=sorted((ROOT/'src').glob('*.hpp'))
     report = dict(result=output, extra_original_functions=sorted(selected),
         source_sha256={str(path.relative_to(ROOT)):sha(path) for path in tracked},
         generation_receipt_sha256=sha(generation/'generation-receipt.json'),
@@ -103,7 +111,12 @@ def main():
         limitations=['Source producer replay compares full guest RAM/context/heap/resources/commands/model count with frozen189; items and all six effects execute actual Original lifetimes and destructors on synthetic assets',
             'Only successful and already-set quest branches; full-pool failure and real-level dialogue progression remain unverified',
             'Render FPS is a setting matrix only; this check does not claim Native item trajectories'])
-    (ROOT/'research/native-story-pickup-source-check.json').write_text(json.dumps(report,indent=2)+'\n')
+    if diagnostic:
+        report['scope']='Source-owned items and six effects during actual Native gameplay time; no Native geometry adoption'
+        report['validated_schedules']['real_native_intervals']=int(re.search(r'(\d+) real Native intervals',output)[1])
+        report['validated_schedules']['source_item_constructors_under_native_banks']=96
+        report['limitations'][-1]='Real native_gameplay_preview/input/simulation scopes interleave with Source updates; game-loop activation and bank ownership are diagnostic flags. No scheduler/session/presentation/renderer execution; no new Native item ownership'
+    (ROOT/'research'/report_name).write_text(json.dumps(report,indent=2)+'\n')
 
 if __name__ == '__main__':
     main()

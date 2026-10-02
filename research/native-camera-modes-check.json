@@ -41,18 +41,18 @@
     "dora3_s3_801DB720"
   ],
   "source_sha256": {
-    "src/native_simulation_time.cpp": "676c19c638c2a810abfdbc409982562418ab0732884c471fda1a62293fda17fa",
-    "src/native_camera_timeline.cpp": "6a8e78fcdeed8d0444888f8b8347127b237378bab8e1ee37c061a0b59955d8cf",
-    "research/native-camera-modes-check.cpp": "d5a4c7622c855e28505c17b14e983c52dc619cd0d0d25319f6a726d11b41222f",
-    "src/native_simulation_time.hpp": "5241b075b7b689630626a4476eaefb52bc5f0b3e9756f80efa52c91948dcdd99",
-    "src/native_camera_timeline.hpp": "fcdef37b2752a79a8e9cafd48645e54880b4b355db8419ae19ca7d156d8ecd58",
-    "recomp/native-timing-rules.json": "5f3174e2ccca13c2714282855515e4d0ad43bb49e75d1abc6d3f8cf0ff349ff4",
-    "tools/native_timing_patches.py": "ecbc4f48c51c8a5fa270e04f0c17e539e80820ac449a794449236be0613e8941",
-    "tools/generate_startup.py": "e82e8a1c00c44b9b0d1face04fd8b54b04e62659ab229cab0938097ae2d09fc7",
-    "tools/check_native_camera_modes.py": "1d7b7ee9d999d189986a00e55b56fcc86aef8749873dc86f7ff87da3a3a5dae6"
+    "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
+    "src/native_camera_timeline.cpp": "35f21fafbaae833ae6561a0c710f0b9f791e7f9a929e633cc72b3e0b056db120",
+    "research/native-camera-modes-check.cpp": "9d357bd8d5da8ecb7da6971122903f294006b98b69ddcb00c35ab24659db0635",
+    "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
+    "src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
+    "recomp/native-timing-rules.json": "e4f26772f1e78d0dfeb90bd0f4e6e5c9c05b28771e3d13aabb25512223def8c0",
+    "tools/native_timing_patches.py": "c0b1a571bd477ddf69a07a4681d166ab27ca9db0e8c7ef270df3bc1621a42e6b",
+    "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
+    "tools/check_native_camera_modes.py": "0762faf74f328963ca4bdba0deb14c994d9485a9d05486ccb81748424b72a3fa"
   },
-  "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8",
-  "reference_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
+  "generation_receipt_sha256": "24b582c903d245a4309f6fee035458671ec8af95a5d6335257bca678165f4859",
+  "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "limitations": [
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",
     "Whole-tick equivalence compares owned state, excluding scratch stack/registers of replaced leaf functions",

@@ -2375,3 +2375,48 @@ Source-only pickup proof иактуальные/исторические reports
 prototypes иnegative diagnostics остаются в ignored build-local, не входят вmain.
 ROM/generated game C/assets/saves/keys исключены. Commit/push результат проверяется
 по remote main после операции; публикация релизов/тегов и смена приватности не запрошены.
+
+### Main234 — Source-награды, читаемые переменные и проверка Native interleaving
+
+Сохранён отдельный завершённый этап без изменения игрового runtime: каталог
+712 descriptions/377 semantic aliases/481 register scopes. Добавлены14 scopes
+относительно217:6 для исходного room-request порядка и8 для constructor/reset,
+задержки и инициализации эффектов. Уточнены возврат первого actor из E6968,
+поля scene-object reset, child detach без удаления собственной модели,
+различие old/new velocity branches в ED5F4/EC598 и radius-before-growth порядок.
+Имена/docs согласованы генератором;96 canonical C units/frontier/hooks/overlay
+table идентичны217, C tokens и C17 syntax compilation прошли.
+
+Свежие main234 Source168 и mixed168 прошли с ASan/UBSan/LSan. В mixed выполнено
+119252 настоящих native_gameplay_preview интервала: все live actor/physics/model
+bytes, heap/resource references/model count/commands и caller context остались
+прежними между Source callbacks.96 реальных item constructors выполнены при
+diagnostic Native activation/bank flags. Session/scheduler/GPU здесь не исполняются.
+Предметы118/123/127 и шесть эффектов130 остаются Source-owned; тест не объявляет
+их движение переведённым на Native FPS. Проверены оба Original20/30 и60..360FPS.
+
+Свежая проверка существующей камеры:9571 Original/full-tick comparisons на13
+roots; camera implementation не менялась. Предыдущий component report был
+историческим и не входил в восемь актуальных217 reports; stale source hash
+пойман до каких-либо изменений и не перенесён как текущий. Все10 актуальных
+reports теперь совпадают с generation234/current source hashes; прежние runtime
+checks имеют явный annotation-only origin217/full212b. Header manifests Source
+checks дополнены с явным metadata-only происхождением, диагностические flags
+описаны без заявления настоящего presentation/session run.
+
+Isolated FD220 full PASS:5088 Source/720 Native/34464 frozen comparisons,
+1008 constructors/576 rejection/31624 intermediate yaw и3192 NPC B schedules.
+Полный224 с Source-end shake correction ещё выполняется. Permanent isolated231
+room test прошёл: actual BB080→BA0F4→B9FDC, два опубликованных banks, шесть receive
+events, три FIFO messages, сохранение context/scratch; останавливается после
+первого реального resource barrier, до destructors/DMA/new-room construction.
+Isolated233 объединяет этот proof и reward diagnostics; FD/camera runtime пока
+не переносится в main. Independent actor-life observation229 также изолирован.
+
+Следом: завершить224 full и сохранить проверенный room/camera блок, затем
+подключить настоящие награды/effect trajectories с исходным command/branch
+порядком. Остальные уровни/NPC/enemies/platforms, script cameras/cutscenes,
+миниигры и2D, общий интеграционный прогон и платформенные builds ещё остаются.
+Windows test037 и подтверждённый NPC dialogue fix сохранены; нового EXE нет,
+игра/окно/renderer/GPU не запускались. Проверенные этапы сохраняются commit/push
+в main; локальные архивы только дополнительные копии.

@@ -2640,8 +2640,8 @@
       "size": 92,
       "legacy_name": "dora3_s3_801B9FDC",
       "name": "dora3_scene1_retire_room_resources_801B9FDC",
-      "description": "Первая фаза room transition: удаление старых акторов и ресурсов комнаты.",
-      "evidence": "Разбор Original функций; docs/native-simulation.md и connected CPU checks v175.",
+      "description": "Освобождает старую комнату девятью исходными cleanup callbacks. Подключённый Native barrier на входе сначала дожидается guest task completion, внешнего retirement и прекращения host чтения всех frame banks; только затем Original начинает удалять actors, models и ресурсы. Вызывается первой фазой обработки запроса комнаты.",
+      "evidence": "Exact canonical Original 9 cleanup calls; unchanged existing Native resource barrier hook; connected220 actual BB080→BA0F4→B9FDC drain proof with two frame banks. Test stops before Original destructors; cleanup body and new-room load not claimed dynamically tested here.",
       "rom_sha256": "57418634d9e6fb82bbeec83044e62541feac34fa9959da65bba612fb0118a6fe",
       "locals": []
     },
@@ -2651,8 +2651,8 @@
       "size": 40,
       "legacy_name": "dora3_s3_801BA05C",
       "name": "dora3_scene1_request_room_801BA05C",
-      "description": "Публикует исходный запрос комнаты: pending word802170EC=1, mode802170FC=a1, descriptor80217100=a0 и shared descriptor8021D474=a0. Не меняет actor, physics или model и не загружает комнату самостоятельно; исходный BB080 после вызова продолжает оставшиеся NPC, игрока, снаряды и камеру, запрос обслуживается отдельными callbacks.",
-      "evidence": "Overlay-qualified canonical Original BA05C/BA0C4 and BB080 order, ROM instructions, existing connected175 transition checks; description/scopes only, no Native scene-transition completion claimed",
+      "description": "Публикует исходный запрос комнаты: pending word802170EC=1, mode802170FC=a1, descriptor80217100=a0 и shared descriptor8021D474=a0. Если NPC вызывает его внутри уже начатого world update, текущий BB080 продолжает оставшиеся NPC, игрока, снаряды и камеру. Следующий целый BB080 сначала вызывает обработчик room transition; сам запрос ничего не выделяет и не удаляет.",
+      "evidence": "Canonical BA05C/BA0C4/BB080 order and ROM; connected220 completion of current Native slice and next whole Source BB080→BA0F4→B9FDC resource barrier. Existing aliases/register storage unchanged.",
       "rom_sha256": "9ee6190006ba62c202e2f4332d95d6e0fbd89b67259949c0b9a3cd697fa125d1",
       "locals": [
         {
@@ -2740,10 +2740,71 @@
       "size": 352,
       "legacy_name": "dora3_s3_801BA0F4",
       "name": "dora3_scene1_update_room_transition_801BA0F4",
-      "description": "Двухфазная передача комнаты: сначала cleanup, затем загрузка и fade.",
-      "evidence": "Разбор Original функций; docs/native-simulation.md и connected CPU checks v175.",
+      "description": "Обслуживает room request в начале Source world update. При pending stage1 записывает stage2, освобождает старые ресурсы через B9FDC, задаёт hold10 и возвращает1: BB080 выходит до старого world/player/projectile/camera update. При stage2 обнуляет pending, вызывает загрузку B9954(1), затем выбирает исходные fade/scene команды по request mode. Остальные стадии возвращают0.",
+      "evidence": "Exact canonical .scene1 body and scoped ROM register accesses; connected220 proves stage1 enters real Native resource barrier before first destructor and prevents old-world callbacks. Phase2 description from static Original analysis only.",
       "rom_sha256": "ba64092b83cf6dcfa95c8000186b80cdd234d46b0d29fba74c5bc3f008aa3e93",
-      "locals": []
+      "locals": [
+        {
+          "name": "room_transition_pending_phase_r16",
+          "expression": "ctx->r16",
+          "start": "0x801BA104",
+          "end": "0x801BA148",
+          "description": "Загруженная исходная стадия pending request; далее s0 переиспользуется для другой роли",
+          "instructions": {
+            "0x801BA100": "0x8E1070EC",
+            "0x801BA10C": "0x1611001B"
+          }
+        },
+        {
+          "name": "room_transition_load_phase_r16",
+          "expression": "ctx->r16",
+          "start": "0x801BA17C",
+          "end": "0x801BA1A4",
+          "description": "Та же загруженная стадия на отдельном пути stage2; сравнение с mode2",
+          "instructions": {
+            "0x801BA180": "0x1602002F",
+            "0x801BA1A0": "0x10700010"
+          }
+        },
+        {
+          "name": "room_transition_descriptor_r2",
+          "expression": "ctx->r2",
+          "start": "0x801BA12C",
+          "end": "0x801BA130",
+          "description": "Указатель pending descriptor после cleanup, до замены v0 результатом сравнения",
+          "instructions": {
+            "0x801BA128": "0x8C427100",
+            "0x801BA12C": "0x8C430000"
+          }
+        },
+        {
+          "name": "room_transition_requested_id_r3",
+          "expression": "ctx->r3",
+          "start": "0x801BA130",
+          "end": "0x801BA13C",
+          "description": "ID комнаты из descriptor для проверки диапазона и вычисления смещения таблицы",
+          "instructions": {
+            "0x801BA12C": "0x8C430000",
+            "0x801BA130": "0x2862015E",
+            "0x801BA138": "0x00031080"
+          }
+        },
+        {
+          "name": "room_transition_mode_r3",
+          "expression": "ctx->r3",
+          "start": "0x801BA1A0",
+          "end": "0x801BA1D8",
+          "description": "Исходный request mode после загрузки; выбор ветки до calls, меняющих caller-saved регистры",
+          "instructions": {
+            "0x801BA19C": "0x8C6370FC",
+            "0x801BA1A0": "0x10700010",
+            "0x801BA1A4": "0x28620003",
+            "0x801BA1B0": "0x10710009",
+            "0x801BA1C0": "0x1062000F",
+            "0x801BA1C8": "0x10620014"
+          }
+        }
+      ]
     },
     {
       "section": ".scene1",
@@ -2751,8 +2812,8 @@
       "size": 692,
       "legacy_name": "dora3_s3_801BB080",
       "name": "dora3_scene1_world_update_801BB080",
-      "description": "Обычное обновление мира: ввод, игрок, объекты и камеры; содержит границы передачи сцены.",
-      "evidence": "Разбор Original функций; docs/native-simulation.md и connected CPU checks v175.",
+      "description": "Главный Source update обычной комнаты. На входе сначала обслуживает room/scene transitions и выходит, если переход уже занял этот update. Затем обновляет world pool, игрока, снаряды, world origin и камеру. Новый запрос комнаты из NPC внутри world pool не прерывает остаток текущего update; pending запрос обрабатывается на следующем входе, перед старым world pool.",
+      "evidence": "Canonical .scene1 control-flow and exact ROM branch after BA0F4; connected220 current frame continuation and actual next BB080→BA0F4→B9FDC barrier, no old-world callback after pending stage1. Source/Native coordinator evidence, synthetic resources only.",
       "rom_sha256": "e315ff070053b6c0595b58323195ba35d393fdfba6f998d3ad148a81f1df4d0a",
       "locals": [
         {
@@ -2764,6 +2825,16 @@
           "instructions": {
             "0x801BB250": "0x3C028022",
             "0x801BB254": "0x8C42D49C"
+          }
+        },
+        {
+          "name": "room_transition_handled_r2",
+          "expression": "ctx->r2",
+          "start": "0x801BB0D0",
+          "end": "0x801BB0D8",
+          "description": "Результат BA0F4: nonzero завершает этот world update до остальных callbacks",
+          "instructions": {
+            "0x801BB0D0": "0x14400093"
           }
         }
       ]
@@ -8518,10 +8589,35 @@
       "size": 1284,
       "legacy_name": "dora3_s3_801E6968",
       "name": "dora3_world_construct_descriptor_actor_group_801E6968",
-      "description": "Считает FFF0 objects доFFFF, находит свободные world slots30..229, выделяет physics F4, выполняет parser/model constructor, задаёт home coords/yaw и metadata defaults. Связывает entries группы parent/child и peer indices. Декодирование ресурсов проверено на синтетических данных; actor+ A8 должен уже иметь корректного отдельного resource owner.",
-      "evidence": "Exact overlay-qualified ROM/canonical189 instruction and metadata analysis; isolated191t real variants0/1/2 and contact producer PASS:48 construction/attachment/retirement,1008 Source/720 Native/288 ownership rejection/308 yaw/6768 full-RAM+context+heap+resource+command comparisons plus384 contact comparisons,24 settings ASan/UBSan/LSan. Exact final publication delivery; synthetic asset decode/sprite2/audio/input boundaries. Connected main191 integration PASS (629 Original functions/regions; all seven matched formal reports).",
+      "description": "Читает FFF0 entries доFFFF, для каждого находит свободный common slot30..229, выделяет physics F4, публикует actor98, выполняет descriptor parser/model constructor и задаёт home coords/yaw/defaults. Связывает parent/child и peer indices. Возвращает первый созданный actor из stack10, даже при нескольких entries. Scene-object initializer при обычном reuse здесь не вызывается; actor98 получает новый allocation перед parser.",
+      "evidence": "Exact overlay-qualified ROM/canonical189; first return is lw stack10 at E6E14 followed by pool lookup. Actual Source quest producer/item/six-effect lifetime tests and separate three-entry Original constructor diagnostic. No new Native item ownership.",
       "rom_sha256": "16f71bc6fbd320a211afbb1a7b2b6ea996c24319237784181df2de18ada0d48c",
-      "locals": []
+      "locals": [
+        {
+          "name": "constructed_common_actor_r17",
+          "expression": "ctx->r17",
+          "start": "0x801E6ADC",
+          "end": "0x801E6AFC",
+          "description": "Actor выбранного common slot: его новый physics уже опубликован, далее передаётся parser и сбросу transform",
+          "instructions": {
+            "0x801E6AD8": "0xAE300098",
+            "0x801E6ADC": "0x02202021",
+            "0x801E6AEC": "0x02202021"
+          }
+        },
+        {
+          "name": "constructed_common_physics_r16",
+          "expression": "ctx->r16",
+          "start": "0x801E6ACC",
+          "end": "0x801E6AEC",
+          "description": "Новый allocation F4 именно этой итерации, сохранённый в actor98 перед вызовом parser",
+          "instructions": {
+            "0x801E6ACC": "0x00408021",
+            "0x801E6AD0": "0x02002021",
+            "0x801E6AD8": "0xAE300098"
+          }
+        }
+      ]
     },
     {
       "section": ".scene1",
@@ -8962,8 +9058,8 @@
       "size": 568,
       "legacy_name": "dora3_s3_core_801EC598",
       "name": "dora3_pickup_collect_detach_six_effects_fade_retire_801EC598",
-      "description": "Original pickup state10: при latch28==0 ставит latch1/float58=1, отсоединяет три существующие attachment slots, шесть раз вызывает настоящий E6968 по descriptor801FC950 и записывает effect index0..5 в новый physics44. Null результата здесь не проверяет. Задаёт движение40/4 и звук CF либоD0 по точной ROM kind117..128 таблице. Каждый callback прибавляет20 к yaw и вызывает E810C. При Y velocity14<=0 обнуляет её, уменьшает opacity58 на ROM double 0.05, передаёт opacity модели через E89CC и при <= ROM double 0.1 вызывает настоящий destructorE6E6C. Только описание исходного body; actual effect lifetimes и Native conversion пока не заявлены.",
-      "evidence": "Exact frozen189 canonical C/MIPS review; function/operand ROM hashes; naming only, no Native pickup/effect completion claim",
+      "description": "Original pickup state10: при latch28==0 ставит latch1/float58=1, отсоединяет три существующие attachment slots, шесть раз вызывает настоящий E6968 по descriptor801FC950 и записывает effect index0..5 в новый physics44. Null результата здесь не проверяет. Задаёт движение40/4 и звук CF либоD0 по точной ROM kind117..128 таблице. Каждый callback прибавляет20 к yaw и вызывает E810C. При Y velocity14<=0 обнуляет её, уменьшает opacity58 на ROM double 0.05, передаёт opacity модели через E89CC и при <= ROM double 0.1 вызывает настоящий destructorE6E6C. E7528 разрывает parent/child indices и не освобождает собственную модель. E810C меняет velocity и проверяет столкновение, а позицию интегрирует общий pool tail. После E810C здесь проверяется знак новой скорости. Source lifetime предметов118/123/127 и шести effects130 проверен168 сценариями; Native interleaving сохраняет их Source-владение, Native trajectory ещё не подключена.",
+      "evidence": "Exact canonical frozen189 and ROM. Source producer/full six-effect retirement168 and mixed Native/Source168 with119252 actual Native intervals. E7528 clears attachment/parent indices only, E810C is gravity/collision probe rather than displacement; synthetic assets, no game/GPU.",
       "rom_sha256": "f2c4c2d6d22cb8a0b849c43688f087e24619d61f17cbeaec9fd7f89b11c41fb1",
       "locals": [
         {
@@ -9120,7 +9216,55 @@
       "description": "Kind130 state1: однократно преобразует signed selector44: при >=ROM double80211740 (3.0) вычитает6, иначе добавляет1; обнуляет count34 и устанавливает physics markerCA=1. Затем каждый Original вызов повышает signed16 count34; после abs(selector44) тиков связывает clip0, rate45, модельный marker через A4A4, opacity0.5, uniform scale1 и выбирает state10/latch0. Это настоящие шесть эффектов Source descriptor801FC950, не NPC.",
       "evidence": "Exact canonical frozen189 scene1 ROM instructions and Source constants; actual item118/123/127 producer and complete six flash130 effect lifetimes passed168 schedules in isolated202; only executed Source states1/10 and shared collision helpers validated",
       "rom_sha256": "e46b37a6b2d14a0bb6206be5c53d33f00a9d50db6ea3260b199867a93a0d587a",
-      "locals": []
+      "locals": [
+        {
+          "name": "flash_delay_initial_physics_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ED4B4",
+          "end": "0x801ED4CC",
+          "description": "Physics текущего эффекта: чтение и установка однократного init latch28",
+          "instructions": {
+            "0x801ED4BC": "0x80620028",
+            "0x801ED4C8": "0xA0620028"
+          }
+        },
+        {
+          "name": "flash_delay_count_physics_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ED528",
+          "end": "0x801ED534",
+          "description": "Physics для чтения/записи count34; следующий instruction заменяет этот регистр signed selector",
+          "instructions": {
+            "0x801ED528": "0x94620034",
+            "0x801ED530": "0xA4620034"
+          }
+        },
+        {
+          "name": "flash_signed_delay_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ED53C",
+          "end": "0x801ED568",
+          "description": "Signed selector44; количество задержки равно его модулю, отрицательные варианты считаются отдельной ветвью",
+          "instructions": {
+            "0x801ED53C": "0x04600006",
+            "0x801ED544": "0x0083102A",
+            "0x801ED558": "0x00031023"
+          }
+        },
+        {
+          "name": "flash_transition_actor_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ED5C0",
+          "end": "0x801ED5E4",
+          "description": "Actor эффекта при публикации uniform scale1 и state10; здесь регистр уже не physics и не selector",
+          "instructions": {
+            "0x801ED5D4": "0xE4600020",
+            "0x801ED5D8": "0xE460001C",
+            "0x801ED5DC": "0xE4600018",
+            "0x801ED5E0": "0xAC620094"
+          }
+        }
+      ]
     },
     {
       "section": ".scene1",
@@ -9128,8 +9272,8 @@
       "size": 676,
       "legacy_name": "dora3_s3_core_801ED5F4",
       "name": "dora3_pickup_flash_spiral_fade_retire_801ED5F4",
-      "description": "Kind130 state10: init opacity58=0.5/radius5C=10, phase34=180 для отрицательного selector44 и0 для остальных, vertical velocity44/gravity4. Каждый Original вызов возвращает X/Z к signed spawnBE/C2, phase+=30 с wrap, добавляет sin/cos offset radius5C, radius+=5. При отрицательной Y velocity opacity уменьшается на ROM80211750 (0.05), Y velocity становится-5, а opacity ниже ROM80211758 (0.1) вызывает настоящую E6E6C. Иначе E810C проверяет столкновение, scale растёт на ROM80211760 (0.2), opacity ниже1 растёт на ROM80211768 (0.05); E89CC публикует её в group0. Полный Source lifetime проверен на synthetic assets; Native trajectory пока не подключена.",
-      "evidence": "Exact canonical frozen189 scene1 ROM instructions and Source constants; actual item118/123/127 producer and complete six flash130 effect lifetimes passed168 schedules in isolated202; only executed Source states1/10 and shared collision helpers validated",
+      "description": "Kind130 state10: init opacity58=0.5/radius5C=10, phase34=180 для отрицательного selector44 и0 для остальных, vertical velocity44/gravity4. Каждый Original вызов возвращает X/Z к signed spawnBE/C2, phase+=30 с wrap, добавляет sin/cos offset radius5C, radius+=5. При отрицательной Y velocity opacity уменьшается на ROM80211750 (0.05), Y velocity становится-5, а opacity ниже ROM80211758 (0.1) вызывает настоящую E6E6C. Иначе E810C проверяет столкновение, scale растёт на ROM80211760 (0.2), opacity ниже1 растёт на ROM80211768 (0.05); E89CC публикует её в group0. Полный Source lifetime проверен на synthetic assets; Native trajectory пока не подключена. Ветвление falling/rising использует старую velocity14 до вызова E810C, в отличие от EC598. Sin/cos используют увеличенную фазу, но радиус до +5; общий pool tail затем отдельно добавляет velocity offsets. Float opacity при росте может немного превысить1: Original проверяет старое значение, а не ограничивает новое.",
+      "evidence": "Exact ROM ordering ED6A8..ED880/canonical189; actual six Source effect lifetimes and mixed Native interleaving baseline232. No Native trajectory adoption.",
       "rom_sha256": "460716dabeacd0f8e5bfdcd680eca4761e5061634830b27d0e6482d2b4601f04",
       "locals": [
         {
@@ -9154,6 +9298,18 @@
             "0x801ED734": "0x8E10BDEC",
             "0x801ED750": "0xC60200A4",
             "0x801ED758": "0xE60200A4"
+          }
+        },
+        {
+          "name": "flash_motion_initial_physics_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ED624",
+          "end": "0x801ED65C",
+          "description": "Physics эффекта до вызова вертикального impulse: selector44, opacity58 и radius5C",
+          "instructions": {
+            "0x801ED644": "0x94620044",
+            "0x801ED648": "0xE4620058",
+            "0x801ED64C": "0xE460005C"
           }
         }
       ]
@@ -10413,10 +10569,24 @@
       "size": 108,
       "legacy_name": "dora3_scene_object_init",
       "name": "dora3_scene_object_init",
-      "description": "Clears transform state, sets unit scale, calls transform initializer and empty event hook",
-      "evidence": "Существующие именованные ROM функции в recomp/startup.json; покрытие исполнения см. прежние отчёты.",
+      "description": "Очищает actor transform0..14, byte6A, state94 и coordinates9C/A0/A4; задаёт unit scale18/1C/20, вызывает axis initializer и пустой event hook. Actor98 и model74 здесь не очищает. Descriptor group constructor не вызывает эту функцию при каждом reuse; новый physics публикуется отдельным allocation/parser путём.",
+      "evidence": "Exact startup ROM stores and actual common pool retirement/reset in Source pickup lifetime tests; raw actor98/model74 remain unchanged by this initializer. No host actor-observation hook is added by these descriptions.",
       "rom_sha256": "06f9df9ec1a7caff880d151fcca395458d006890a5174ba4c15637453314b2cb",
-      "locals": []
+      "locals": [
+        {
+          "name": "reset_scene_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x8002E880",
+          "end": "0x8002E8C8",
+          "description": "Actor argument для всех очищаемых полей и исходных axis/event callbacks",
+          "instructions": {
+            "0x8002E87C": "0x00808021",
+            "0x8002E884": "0xAE000000",
+            "0x8002E8A0": "0xE6000018",
+            "0x8002E8B0": "0x02002021"
+          }
+        }
+      ]
     },
     {
       "section": ".startup",

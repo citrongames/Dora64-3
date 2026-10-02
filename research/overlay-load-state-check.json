@@ -1,6 +1,6 @@
 {
   "result": "PASS: 49 actual ROM overlay ranges, verified DMA/reload, identical VRAM replacement, partial overwrite, parent invalidation, scene unload and boot reset; ASan/UBSan/LSan; no game/GPU.",
-  "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
+  "generation_receipt_sha256": "24b582c903d245a4309f6fee035458671ec8af95a5d6335257bca678165f4859",
   "source_sha256": {
     "src/startup_runtime.cpp": "d7865de6f338a7c90cb31833f6c0efb424bf4705b8006563979e86a2d5cd3241",
     "research/overlay-load-state-check.cpp": "e637e658340adedb016e09d258c99348ccb0e4768de7bcc71aaba1051e68aba5",
@@ -48,5 +48,11 @@
     "report_sha256": "8fe59a6ba27e611a344f022b1134c3ff1338294d538035bf2892a2beca57ae5e",
     "generation_receipt_sha256": "56fd7e92cd079182ec5bb5767254402caf6497c51f77cdb1cca0d958427f4a96",
     "evidence": "Every runtime/fixture/checker input unchanged; all96 canonical generated C units and raw frontier/hooks/overlay table identical; one new room-ID wrapper alias/description and5 actual register scopes; unchanged Source behavior and ABI"
+  },
+  "annotation_only_relocation_234": {
+    "from_generation": "startup-v217",
+    "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
+    "previous_report_sha256": "21f6b2e3773c0026f2f0652a70619849257b2ea6828336db5d33fccf9aaeae75",
+    "evidence": "All runtime/checker/header inputs unchanged; all96 canonical C units/frontier/hooks/overlay table identical. Updated descriptions/14 Source register scopes and independently executed Original/mixed pickup diagnostics do not alter this compiled proof."
   }
 }

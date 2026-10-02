@@ -976,7 +976,7 @@
     "size": 36304,
     "sha256": "f5284a1979a9fd3f5f46fe48c9a361e300aca936d8cb123aa87f50bdbcee5f7a"
   },
-  "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
+  "generation_receipt_sha256": "24b582c903d245a4309f6fee035458671ec8af95a5d6335257bca678165f4859",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "limitations": [
@@ -1002,5 +1002,11 @@
     "previous_source_sha256": "ad4e95b033860edb9fc2ab8e46f6a83db6e5745cc7b48dc1a15f4d58790c52bf",
     "current_source_sha256": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
     "evidence": "Removed exactly two empty EOF lines after final brace; every code byte unchanged; generation217/canonical C/runtime/ABI unchanged; no behavior check weakened"
+  },
+  "annotation_only_relocation_234": {
+    "from_generation": "startup-v217",
+    "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
+    "previous_report_sha256": "920abec993a9a72a93d22b7ba9c03d0d3cd1db0531e263107e1acb28eba8a8af",
+    "evidence": "All runtime/checker/header inputs unchanged; all96 canonical C units/frontier/hooks/overlay table identical. Updated descriptions/14 Source register scopes and independently executed Original/mixed pickup diagnostics do not alter this compiled proof."
   }
 }

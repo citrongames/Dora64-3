@@ -523,6 +523,26 @@ void poses(uint8_t* rdram,recomp_context& c,const std::array<uint32_t,2>& owners
 }
 #include "native-npc-interaction-check.inc"
 #include "slot09-overlay-fixture.hpp"
+#ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
+static unsigned story_native_intervals=0,story_native_ctor_models=0;
+static std::vector<int32_t> story_actor_state(uint8_t* rdram) {
+    std::vector<int32_t> state;
+    for(unsigned slot=30;slot<230;++slot) {
+        const auto actor=0x80171CD0u+slot*0xCC;
+        if(!MEM_W(0x94,int32_t(actor)))continue;
+        const auto physical=uint32_t(MEM_W(0x98,int32_t(actor)));
+        const auto kind=MEM_H(0x20,int32_t(physical));
+        assert(kind==118||kind==123||kind==127||kind==130);
+        state.push_back(int32_t(actor));
+        for(unsigned offset=0;offset<0xCC;offset+=4)state.push_back(MEM_W(int32_t(offset),int32_t(actor)));
+        for(unsigned offset=0;offset<0xF4;offset+=4)state.push_back(MEM_W(int32_t(offset),int32_t(physical)));
+        const auto model=uint32_t(MEM_W(0x74,int32_t(actor)));
+        assert(model&&game_model_animation().lifetime_token(model));
+        for(unsigned offset=0;offset<0x84;offset+=4)state.push_back(MEM_W(int32_t(offset),int32_t(model)));
+    }
+    return state;
+}
+#endif
 int main(int argc,char** argv) {
     assert(argc==2);std::vector<uint32_t> image(0x400000/4);std::ifstream in(argv[1],std::ios::binary);
     in.read(reinterpret_cast<char*>(image.data()),0x400000);assert(in.gcount()==0x400000);
@@ -610,11 +630,25 @@ int main(int argc,char** argv) {
                 // pre-producer model because only the new item adds a model.
                 for(unsigned slot=31;slot<230;++slot) {const auto a=0x80171CD0u+slot*0xCC;if(MEM_W(0x94,int32_t(a))) {c.r4=int32_t(a);dora3_s3_801E656C(rdram,&c);c.r4=int32_t(a);c.r5=0xFFFF;dora3_s0_8002EA4C(rdram,&c);c.r4=int32_t(a);dora3_scene_object_init(rdram,&c);}}
                 memory=before;allocations=before_heap;next_address=before_next;resource_references=before_refs;
+#ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
+                assert(native_gameplay_preview_eligible(rdram));preview_live=true;
+                native_gameplay_preview_begin(rdram,0,divider);input_now=0;
+                // The actual BB080 Source entry suspends individual Native
+                // roots before its Original callbacks publish commands.
+                dora3_native_preview_hook(rdram,&c,0x801BB080);
+#endif
                 source_producer(false);auto actual_context=c;actual_context.f_odd=nullptr;
                 assert(memory==expected&&std::memcmp(&actual_context,&expected_context,sizeof(c))==0&&allocations==expected_heap&&next_address==expected_next&&resource_references==expected_refs&&city_commands==expected_commands&&game_model_animation().model_count()==expected_models);
                 std::vector<uint32_t> items;const unsigned item_kind=profile==3?127:profile==2?123:118;
                 for(unsigned slot=31;slot<230;++slot) {const auto a=0x80171CD0u+slot*0xCC;if(MEM_W(0x94,int32_t(a))) {const auto ph=uint32_t(MEM_W(0x98,int32_t(a)));assert(MEM_H(0x20,int32_t(ph))==int16_t(item_kind));items.push_back(a);assert(MEM_W(0x94,int32_t(a))==10&&MEM_H(0xD8,int32_t(ph))==0);}}
                 assert(items.size()==(profile<4?1u:0u));
+#ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
+                for(const auto item:items) {
+                    assert(game_model_animation().native_birth(uint32_t(MEM_W(0x74,int32_t(item)))));
+                    ++story_native_ctor_models;
+                }
+                unsigned story_frame=1;
+#endif
                 if(profile<=1)assert(has(0x10)&&has(0xB)&&has(profile?0x13:0x12)&&!has(profile?0x12:0x13));
                 if(profile==2)assert(has(0x2F)&&has(0x2C));
                 if(profile==3)assert(has(0x2D));
@@ -623,7 +657,22 @@ int main(int argc,char** argv) {
                 // newly constructed effects. No fake model/effect destructor.
                 unsigned seen_effects=0;std::set<uint32_t> effect_addresses;bool item_retired=items.empty();
                 for(unsigned tick=1;tick<=96;++tick) {
-                    const auto units=uint64_t(second)*divider*tick;input_now=Nanoseconds((units+59)/60);city_source_stamp={Nanoseconds(units/60),unsigned(units%60)};
+                    const auto units=uint64_t(second)*divider*tick;
+#ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
+                    const auto boundary=Nanoseconds((units+59)/60);
+                    auto native_to=[&](Nanoseconds stamp) {
+                        const auto state=story_actor_state(rdram);const auto heap=allocations;
+                        const auto refs=resource_references;const auto model_count=game_model_animation().model_count();
+                        const auto commands=city_commands;const auto caller=c;
+                        input_now=stamp;native_gameplay_preview_update(rdram,&c,stamp);
+                        assert(story_actor_state(rdram)==state&&allocations==heap&&resource_references==refs&&game_model_animation().model_count()==model_count&&city_commands==commands);
+                        assert(std::memcmp(&caller,&c,sizeof(c))==0);
+                        ++story_native_intervals;
+                    };
+                    while(second*story_frame/fps<boundary) {native_to(second*story_frame/fps);++story_frame;}
+                    native_to(boundary);
+#endif
+                    input_now=Nanoseconds((units+59)/60);city_source_stamp={Nanoseconds(units/60),unsigned(units%60)};
                     c=saved;c.f_odd=&c.f0.u32h;dora3_s3_801E8BDC(rdram,&c);
                     for(unsigned slot=30;slot<230;++slot) {const auto a=0x80171CD0u+slot*0xCC;if(!MEM_W(0x94,int32_t(a)))continue;const auto ph=uint32_t(MEM_W(0x98,int32_t(a)));const auto k=MEM_H(0x20,int32_t(ph));assert(k==int(item_kind)||k==130);
                         if(k==130)effect_addresses.insert(a);
@@ -633,11 +682,19 @@ int main(int argc,char** argv) {
                 seen_effects=unsigned(effect_addresses.size());assert(seen_effects==(profile<4?6u:0u)&&item_retired);
                 for(unsigned slot=30;slot<230;++slot)assert(MEM_W(0x94,int32_t(0x80171CD0u+slot*0xCC))==0);
                 assert(allocations==baseline_heap&&resource_references==baseline_refs&&game_model_animation().model_count()==baseline_models);
+#ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
+                native_gameplay_preview_reset(rdram);preview_live=false;
+#endif
                 ++cases;
             }
             linked_watch=linked_construct_watch=slot09_loaded=false;native_gameplay_preview_reset(rdram);preview_live=false;
             for(auto m:owners) {c.r4=int32_t(m);dora3_s0_8003B77C(rdram,&c);}
         }
     }
+#ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
+    assert(story_native_ctor_models==96&&story_native_intervals>16000);
+    std::cout<<"PASS: "<<cases<<" mixed Native/Source quest item schedules; "<<story_native_intervals<<" real Native intervals preserve all live item/effect actor, physics and model bytes, heap/resources/commands/context; "<<story_native_ctor_models<<" actual Source item constructors under Native banks; no new Native item ownership; no game/GPU.\n";
+#else
     std::cout<<"PASS: "<<cases<<" Source quest item producer and complete six-effect lifetime schedules; synthetic assets; no new Native ownership; no game/GPU.\n";
+#endif
 }

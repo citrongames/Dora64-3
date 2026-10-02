@@ -30,6 +30,8 @@
 | `character_status_r3` | `ctx->r3` | Байтовая запись здоровья текущего персонажа из8021D4A8 | 1 |
 | `character_status_r4` | `ctx->r4` | Байтовая запись здоровья текущего персонажа из8021D4A8 | 1 |
 | `city_wait_count_r3` | `ctx->r3` | Private signed wait counter after its lhu read, increment/store and sign extension; before v1 becomes actor pointer | 8 |
+| `constructed_common_actor_r17` | `ctx->r17` | Actor выбранного common slot: его новый physics уже опубликован, далее передаётся parser и сбросу transform | 1 |
+| `constructed_common_physics_r16` | `ctx->r16` | Новый allocation F4 именно этой итерации, сохранённый в actor98 перед вызовом parser | 1 |
 | `constructed_parent_actor_r16` | `ctx->r16` | New parent actor, possibly null, retained through sprite/child initialization | 1 |
 | `contact_candidate_actor_r16` | `ctx->r16` | Advancing world actor cursor before projectile/pair loops reuse the register | 1 |
 | `contact_candidate_pool_index_r17` | `ctx->r17` | Pool index30..229 during the player contact search | 1 |
@@ -53,6 +55,11 @@
 | `dialogue_state2_r16` | `ctx->r16` | State2 constant preserved across the dialogue call | 1 |
 | `drive_command_r4` | `ctx->r4` | Входная команда scalar drive; сохранена до конца функции. | 1 |
 | `first_shape_index_output_r16` | `ctx->r16` | Output pointer for the first colliding shape index | 1 |
+| `flash_delay_count_physics_r3` | `ctx->r3` | Physics для чтения/записи count34; следующий instruction заменяет этот регистр signed selector | 1 |
+| `flash_delay_initial_physics_r3` | `ctx->r3` | Physics текущего эффекта: чтение и установка однократного init latch28 | 1 |
+| `flash_motion_initial_physics_r3` | `ctx->r3` | Physics эффекта до вызова вертикального impulse: selector44, opacity58 и radius5C | 1 |
+| `flash_signed_delay_r3` | `ctx->r3` | Signed selector44; количество задержки равно его модулю, отрицательные варианты считаются отдельной ветвью | 1 |
+| `flash_transition_actor_r3` | `ctx->r3` | Actor эффекта при публикации uniform scale1 и state10; здесь регистр уже не physics и не selector | 1 |
 | `game_counter_delta_r5` | `ctx->r5` | Signed input delta consumed by the original byte addition | 1 |
 | `game_counter_index_r4` | `ctx->r4` | Input counter index retained without register reuse | 2 |
 | `health_delta_r4` | `ctx->r4` | Входная прибавка к здоровью; r4 далее переиспользуется как указатель status. | 1 |
@@ -95,6 +102,7 @@
 | `player_physics_r8` | `ctx->r8` | Физическое состояние персонажа из8021D4B0 | 1 |
 | `pool_search_actor_r3` | `ctx->r3` | Actor record cursor while testing occupied states | 1 |
 | `pool_search_index_r4` | `ctx->r4` | Parent lower bound and advancing free-slot search index | 1 |
+| `reset_scene_actor_r16` | `ctx->r16` | Actor argument для всех очищаемых полей и исходных axis/event callbacks | 1 |
 | `resolved_contact_parent_r6` | `ctx->r6` | Contact owner after resolving the optional attachment parent | 1 |
 | `retiring_actor_r17` | `ctx->r17` | Actor retained through peer cleanup, optional effects and final destructor | 1 |
 | `retiring_physics_r19` | `ctx->r19` | Physics record retained until the final EA4C destruction | 1 |
@@ -104,6 +112,12 @@
 | `room_request_id_input_r4` | `ctx->r4` | Input ID until stored; a0 later becomes descriptor pointer | 1 |
 | `room_request_mode_r5` | `ctx->r5` | Input mode stored exactly, with no boolean conversion | 1 |
 | `room_request_pending_one_r2` | `ctx->r2` | Exact register assigned1 and stored as pending request | 1 |
+| `room_transition_descriptor_r2` | `ctx->r2` | Указатель pending descriptor после cleanup, до замены v0 результатом сравнения | 1 |
+| `room_transition_handled_r2` | `ctx->r2` | Результат BA0F4: nonzero завершает этот world update до остальных callbacks | 1 |
+| `room_transition_load_phase_r16` | `ctx->r16` | Та же загруженная стадия на отдельном пути stage2; сравнение с mode2 | 1 |
+| `room_transition_mode_r3` | `ctx->r3` | Исходный request mode после загрузки; выбор ветки до calls, меняющих caller-saved регистры | 1 |
+| `room_transition_pending_phase_r16` | `ctx->r16` | Загруженная исходная стадия pending request; далее s0 переиспользуется для другой роли | 1 |
+| `room_transition_requested_id_r3` | `ctx->r3` | ID комнаты из descriptor для проверки диапазона и вычисления смещения таблицы | 1 |
 | `second_shape_index_output_r17` | `ctx->r17` | Output pointer for the second colliding shape index | 1 |
 | `selected_contact_pool_index_r3` | `ctx->r3` | Signed contact index before address-scale arithmetic reuses the register | 1 |
 | `slot09_kind24_bind_clip6_once_init_physics_r3` | `ctx->r3` | Physics only for the initial latch28 check/write, before subsequent callbacks or register reuse | 1 |

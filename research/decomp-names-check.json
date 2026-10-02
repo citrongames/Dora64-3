@@ -1,6 +1,6 @@
 {
-  "result": "PASS: 712 descriptions; 377 semantic function names; 467 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
-  "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
+  "result": "PASS: 712 descriptions; 377 semantic function names; 481 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
+  "generation_receipt_sha256": "24b582c903d245a4309f6fee035458671ec8af95a5d6335257bca678165f4859",
   "files": [
     {
       "file": "funcs_0.c",
@@ -65,19 +65,19 @@
     {
       "file": "funcs_18.c",
       "canonical_sha256": "8b50015cb3b90f24e6ad8076c2ab50ef218409bfdf7bfd275482b6f39b527b09",
-      "named_sha256": "1e262682c9ea0d8c01c67454e61f0cf253496b28e1b005b8cc5942c3dff90506",
+      "named_sha256": "d05f892adb32b2cb328e4e2cf4a0acffb919bb1816b4659f74ccd8e1736b379d",
       "tokens": 141228
     },
     {
       "file": "funcs_19.c",
       "canonical_sha256": "1e3d3fd3cffa823f0f370eae0b9fa76135dc58c571ee251c7c0dabed12a130d4",
-      "named_sha256": "ac4f4a7a56a533b4d838335117993c39129ae1382f76ac58f448663b6e6ac8d4",
+      "named_sha256": "c71d9904fa30eb0a79e0f415df539aa15a558ab61a2340f3fc1ba2883bde373e",
       "tokens": 147296
     },
     {
       "file": "funcs_2.c",
       "canonical_sha256": "e5d1b113416184d58b882c9877af458374fc6d8ae0c0d6a0dd6f3319a4f42837",
-      "named_sha256": "3acdf1a9b53355d13b94dd9cbdae860908d7128838a508018049019ac90d79f4",
+      "named_sha256": "a1bac073e7b82a250c6f3574bd070af074f0dc626a9581496ca0a814ae1ef570",
       "tokens": 154023
     },
     {
@@ -179,7 +179,7 @@
     {
       "file": "funcs_35.c",
       "canonical_sha256": "5102530ee53efc8386a739287394324c8361cb6b3671a05fc349efc5864eafca",
-      "named_sha256": "66fca18a310b6f6906b4f42e8613967665dc627186a4629667047c4dccc53593",
+      "named_sha256": "304a32ca007791ea794c5bf538478f98cdfdee27aa42e3336f3cb47070e588d8",
       "tokens": 169755
     },
     {
@@ -197,13 +197,13 @@
     {
       "file": "funcs_38.c",
       "canonical_sha256": "052328a9465f21539472bec54d55cec83208fc04380f42dd23f6007903f10bfd",
-      "named_sha256": "ab3e2a81d3384b3289b5983480f6c36f2d11be5cd58b0ada00794dee505035f9",
+      "named_sha256": "c2f387331372956a649df1b2ced348c2b9847ca5a36116231e3d762c06579185",
       "tokens": 125034
     },
     {
       "file": "funcs_39.c",
       "canonical_sha256": "37fae6cfeaf72ddeeb29a02fa3cfb8381493adfd51876f8a783b858a95e6c816",
-      "named_sha256": "a9f36677db7eb37d543786eab36bc54c38662bf62896d5adbed9187cf326061d",
+      "named_sha256": "2e8502e8462a336551769858ceda993d7a89e615f55c30b27847e331b6b6786d",
       "tokens": 101077
     },
     {
@@ -582,6 +582,6 @@
   "source_sha256": {
     "tools/decomp_annotations.py": "cc18b42a710a9998b9b33cbfe2c79009451496078b2136cdceb603d047c4b16b",
     "tools/check_decomp_names.py": "bc742b8b16c9a6f24481d2b41a80c268a9a7feee4c2d95e6f1a537d026d1c74c",
-    "recomp/decomp-symbols.json": "efe77731d7cf8314dd09ca2499dbfccd1db0b81e6414f461e1504bbea6da7270"
+    "recomp/decomp-symbols.json": "1492310349e61fba8186d75d691c8278cdf9a06273bd833b6a948b1775040aa0"
   }
 }

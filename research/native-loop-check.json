@@ -26,7 +26,7 @@
     "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
     "tools/check_native_loop.py": "ffad5dbf0419c73663b9ecd52e24dfec48809bf874eca67ff5a3ad5fc927cff9"
   },
-  "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
+  "generation_receipt_sha256": "24b582c903d245a4309f6fee035458671ec8af95a5d6335257bca678165f4859",
   "original_functions": [
     "dora3_color_buffer_setup",
     "dora3_depth_buffer_clear",
@@ -127,5 +127,11 @@
     "report_sha256": "5bba8640eb2144ed132e12a85abb11ef71735e939d9952778ca4cd90fd74abe3",
     "generation_receipt_sha256": "56fd7e92cd079182ec5bb5767254402caf6497c51f77cdb1cca0d958427f4a96",
     "evidence": "Every runtime/fixture/checker input unchanged; all96 canonical generated C units and raw frontier/hooks/overlay table identical; one new room-ID wrapper alias/description and5 actual register scopes; unchanged Source behavior and ABI"
+  },
+  "annotation_only_relocation_234": {
+    "from_generation": "startup-v217",
+    "generation_receipt_sha256": "d1fdf502ad50994c4ae3bc2f70ee1ad3825a8b04e7994f6e5319e1f0d448d576",
+    "previous_report_sha256": "37abdeb13fd6076e6fe9c659b30e75a702c76e41750505c04fb613dd03265603",
+    "evidence": "All runtime/checker/header inputs unchanged; all96 canonical C units/frontier/hooks/overlay table identical. Updated descriptions/14 Source register scopes and independently executed Original/mixed pickup diagnostics do not alter this compiled proof."
   }
 }
