@@ -148,5 +148,13 @@
       }
     },
     "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
+  },
+  "superseded_by_282": {
+    "current_reports": [
+      "research/native-player-update-check.json",
+      "research/native-pickup-reveal-guard-check.json",
+      "research/native-pickup-arc-guard-check.json"
+    ],
+    "evidence": "Historical main276 receipt and its executed origin retained. New Native4/7/8 runtime changed; this is not a current282 execution proof. No source hashes re-labelled."
   }
 }

@@ -248,6 +248,7 @@ extern "C" void dora3_s3_core_801CB2F8(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s3_core_801CB3A8(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s3_core_801CB870(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_lib_80057A80(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_lib_80055BD0(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s3_core_801D05A8(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s3_core_801C120C(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s3_core_801C2798(uint8_t*,recomp_context*) {std::abort();}
@@ -266,3 +267,4 @@ extern "C" void dora3_s0_8002F064(uint8_t*,recomp_context*) {std::abort();}
 // This image-loop scope never enters gameplay; the reward and scene scopes
 // execute the real gravity/probe body. Any unexpected activation is fatal.
 extern "C" void dora3_s3_801E810C(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_801E89CC(uint8_t*,recomp_context*) {std::abort();}

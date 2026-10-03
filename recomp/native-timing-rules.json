@@ -7545,6 +7545,42 @@
       "role": "Native_pure_pickup5_6_motion_scale_Source_private_command_order",
       "evidence": "Exact ROM/canonical body and callback identities; final266 full O2,producer216/41472 endpoints,loop/transition;264 external guards and Source replay with explicit dead-local delta. No game/renderer/GPU; unreviewed states remain Source-owned.",
       "status": "Verified main276: actual Native pure motion after Source init; exact Original ordered private commands"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EC194",
+      "function_name": "dora3_s3_core_801EC194",
+      "function_sha256": "a5b67811a008aeb055896332a1fdd513af98b1a1364e40ad760b093b35f084da",
+      "site": "0x801EC194",
+      "expected_word": "0x3C038022",
+      "operation": "native_pickup_sequence",
+      "role": "Native_pickup7_pure_spin_speed_fade_Source_initializer_retirement",
+      "evidence": "Exact Original ROM/body/site guards; actual279/283 complete lifetime and external guards, fresh281 O2 broad player/world/NPC, fresh283 loop and scene resource barrier. Arc283 covers both positive-time rejected phases in all216 applicable worlds;281 coverage assertion failure retained. Native8 admits actual phase0 angle<90 or phase1 angle<target; incompatible external angle retains Source until actual wrap/clamp. No renderer/real level-selector/full-pool exhaustion proof.",
+      "status": "Verified main282 Native initialized4/7/8 pure motion with ordered Original Source commands"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EC2A8",
+      "function_name": "dora3_s3_core_801EC2A8",
+      "function_sha256": "e60bc84680104cde949fbee65a68925754284880691c6b38eb493e07207496cb",
+      "site": "0x801EC2A8",
+      "expected_word": "0x3C038022",
+      "operation": "native_pickup_sequence",
+      "role": "Native_pickup8_pure_two_phase_geometry_Source_integer_angle_latch_phase",
+      "evidence": "Exact Original ROM/body/site guards; actual279/283 complete lifetime and external guards, fresh281 O2 broad player/world/NPC, fresh283 loop and scene resource barrier. Arc283 covers both positive-time rejected phases in all216 applicable worlds;281 coverage assertion failure retained. Native8 admits actual phase0 angle<90 or phase1 angle<target; incompatible external angle retains Source until actual wrap/clamp. No renderer/real level-selector/full-pool exhaustion proof.",
+      "status": "Verified main282 Native initialized4/7/8 pure motion with ordered Original Source commands"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EBEDC",
+      "function_name": "dora3_s3_core_801EBEDC",
+      "function_sha256": "9af4bd789ee6633cc508381826b1c44a773e87745cd9cc4bfce29f1a60b5d7f7",
+      "site": "0x801EBEDC",
+      "expected_word": "0x3C038022",
+      "operation": "native_pickup_sequence",
+      "role": "Native_pickup4_pure_reveal_scale_Source_half_angle_latch_collection",
+      "evidence": "Exact Original ROM/body/site guards; actual279/283 complete lifetime and external guards, fresh281 O2 broad player/world/NPC, fresh283 loop and scene resource barrier. Arc283 covers both positive-time rejected phases in all216 applicable worlds;281 coverage assertion failure retained. Native8 admits actual phase0 angle<90 or phase1 angle<target; incompatible external angle retains Source until actual wrap/clamp. No renderer/real level-selector/full-pool exhaustion proof.",
+      "status": "Verified main282 Native initialized4/7/8 pure motion with ordered Original Source commands"
     }
   ]
 }

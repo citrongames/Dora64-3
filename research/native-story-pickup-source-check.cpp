@@ -578,9 +578,25 @@ static unsigned reward_idle_yaw_samples=0;
 #include "native-periodic-producer-check.inc"
 #include "native-periodic-producer-guard-check.inc"
 #include "native-pickup-uncollected-source-check.inc"
+#include "native-pickup-spin-guard-check.inc"
+#include "native-pickup-arc-guard-check.inc"
+#include "native-pickup-reveal-source-check.inc"
+#include "native-pickup-reveal-guard-check.inc"
 int main(int argc,char** argv) {
     assert(argc==2);std::vector<uint32_t> image(0x400000/4);std::ifstream in(argv[1],std::ios::binary);
     in.read(reinterpret_cast<char*>(image.data()),0x400000);assert(in.gcount()==0x400000);
+#ifdef DORA3_PICKUP_REVEAL_GUARD_CHECK
+    check_pickup_reveal_guards(image);return 0;
+#endif
+#ifdef DORA3_PICKUP_REVEAL_SOURCE_CHECK
+    check_pickup_reveal_source(image);return 0;
+#endif
+#ifdef DORA3_PICKUP_ARC_GUARD_CHECK
+    check_pickup_arc_guards(image);return 0;
+#endif
+#ifdef DORA3_PICKUP_SPIN_GUARD_CHECK
+    check_pickup_spin_guards(image);return 0;
+#endif
 #ifdef DORA3_PICKUP_UNCOLLECTED_SOURCE_CHECK
     check_pickup_uncollected_source(image);return 0;
 #endif

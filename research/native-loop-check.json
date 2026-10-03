@@ -8,7 +8,7 @@
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "src/native_model_animation.cpp": "8696ac3189b3d95c3627172aa05b70929831aeeb427780ece5e844d07a03d664",
     "src/native_game_loop.cpp": "515b06226d61a7afa1bef038173d15e83ccbcad1de6b3afab833966a8f64ecfb",
-    "src/native_gameplay_preview.cpp": "a7834f8c6388e426c8614b096f7ac817a2d6d4cd0170a8188151a6c4adf03343",
+    "src/native_gameplay_preview.cpp": "029afa686e178ca0f131c8f31af0b1ce8f0334b522698ca89edb5045a4a7f15e",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_scene_policy.cpp": "4d091632bf6780fa9e55c2ce1cca996334ec0fc5866a8bfcc512154a21dacef7",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
@@ -17,16 +17,16 @@
     "src/native_present.cpp": "9ff1ff3be5d4c16b57f5668a394a3e3fa4bafc303c32f52be63833ab33df2f5d",
     "src/native_present_hooks.cpp": "e659ba490ecea74c75fd50de47f0ea95ad9c32c6c30c6352e2123d7150914701",
     "src/native_graphics_pump.cpp": "4170bf4b463147cfe1e50dff3653a0b3749685ec4563137f39be190a4150c5d0",
-    "research/native-loop-check.cpp": "2dfb5630bdb393927087b1a129e01540d6f38e5778292a80f579ba9ccc54ae72",
+    "research/native-loop-check.cpp": "818644a5a20e0aed3b2d7157c9ae9651a46478f5abccf0f8c8091fcaa9f90a52",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
     "src/native_scene_policy.hpp": "54fbae50b42fbaa5faf12f7cd9bd13aebabdbae495231a615e8c6fd670a3f70c",
     "src/native_frame_session.hpp": "fdc799da001be3c6653126beacb987ce3811ba6f1cc5eeac5922e539089f8e83",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
     "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
-    "tools/check_native_loop.py": "f5571c3a2c19da2731d454b07ac56bef7842a8f09e403087fdca37a6e56d8322"
+    "tools/check_native_loop.py": "625bac56875c1c00acb6e7baba13b88a741403c9a3c110006f92d14d7e319449"
   },
-  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
+  "generation_receipt_sha256": "b966428e4e1e801eec58536983381f73e35c5aafab1eaff883f14db9d5eb34b6",
   "original_functions": [
     "dora3_color_buffer_setup",
     "dora3_depth_buffer_clear",
@@ -78,6 +78,7 @@
     "dora3_controller_reset_accumulator",
     "dora3_deferred_free_tick",
     "dora3_frame_timestamp",
+    "dora3_lib_80055BD0",
     "dora3_native_completion_during_pause",
     "dora3_native_game_message",
     "dora3_native_guest_completion",
@@ -110,6 +111,7 @@
     "dora3_s3_801DCDF0",
     "dora3_s3_801DD8FC",
     "dora3_s3_801E810C",
+    "dora3_s3_801E89CC",
     "dora3_s3_core_801C120C",
     "dora3_s3_core_801CFA94",
     "dora3_s3_core_801D0088",
@@ -123,11 +125,11 @@
     "osVirtualToPhysical_recomp",
     "osWritebackDCacheAll_recomp"
   ],
-  "execution_origin_276": {
-    "stage": 266,
-    "report_sha256": "6bd2c88b991e341e60a173f12f7f6cdc05df2bc8517e269b4e82c9fd5a1ddd5b",
-    "generation_receipt_sha256": "4593df7cd9eae5e7da7cc5b4a040145f1513d10bf8eedbbfca9b15d9536c90e4",
-    "source_delta": {},
-    "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
+  "execution_origin_282": {
+    "stage": 283,
+    "report_sha256": "2d3b3634051a4244522a38fa400ce9ef9338c7354cc49d52198c6464564d6911",
+    "generation_receipt_sha256": "c63cecc180991d03ab88e402aaac0a273deab976d2e22a3e8b3c7151f8667b12",
+    "metadata_only_input_changes": {},
+    "evidence": "Runtime and every tracked fixture/header/checker input exact;96 canonical C/frontier/hooks/overlay table exact. Complete current main catalog and timing rule status/evidence updated; exact executed/current rule hashes retained separately. Actual execution origin retained; no repeated main execution claim."
   }
 }

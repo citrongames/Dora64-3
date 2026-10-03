@@ -2,7 +2,7 @@
   "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 336 actual slot09 constructors; 0 slot09 Source schedules; 32 slot09 Native edge schedules; 0 slot09 rejections; 0 slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; 0 slot09 intermediate yaw samples; settings=8; ASan/UBSan/LSan; no game/GPU.",
   "scope": "Actual Source BB080 -> BA0F4 -> B9FDC first room resource barrier after an entered Native FD frame; no game/GPU",
   "source_sha256": {
-    "src/native_gameplay_preview.cpp": "a7834f8c6388e426c8614b096f7ac817a2d6d4cd0170a8188151a6c4adf03343",
+    "src/native_gameplay_preview.cpp": "029afa686e178ca0f131c8f31af0b1ce8f0334b522698ca89edb5045a4a7f15e",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "319b3228e69fb6a6fcbfa81aaff831eeecfe54426538e10ca35726609c917cc4",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
@@ -15,9 +15,9 @@
     "src/native_game_loop.cpp": "515b06226d61a7afa1bef038173d15e83ccbcad1de6b3afab833966a8f64ecfb",
     "src/native_frame_bridge.cpp": "c1c7ae5fb4ab80e03b178a744a13ac90973b32d787b6fec432afb2e27182b995",
     "research/native-scene-transition-check.cpp": "aceaf91c5657dc9a01cfbcae2f116f87806d093aa362c0b7cb676d3023103816",
-    "tools/check_native_player_update.py": "99cdc31dd9c74950061cc2de16b5140deb72c101cb8ce0a20a3e5c0a58382adc",
+    "tools/check_native_player_update.py": "681b681045386f9444f2cc0e2cb9d1c5c2327a74f1121766a949e863742beb21",
     "tools/check_native_scene_transition.py": "f0bbd915fd5112281ed36cb2866c77d5c8c11c5ebfe660c8715f522166e18735",
-    "recomp/native-timing-rules.json": "cf77884cf65905cd49079a5a656cdbeb61bf10452b789663cb1b88db656d8c2d",
+    "recomp/native-timing-rules.json": "c7bd2ff16d9f1f1e32668843c03aeb90847cd6991b3ad29212fb1b869b455ba1",
     "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
     "research/player-state-inventory.json": "c6497c19972e73478ac5d71ffcef6304924aeb087121f0c2e38528fb1bbd150f",
@@ -52,7 +52,7 @@
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f"
   },
-  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
+  "generation_receipt_sha256": "b966428e4e1e801eec58536983381f73e35c5aafab1eaff883f14db9d5eb34b6",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "original_room_functions": [
@@ -94,7 +94,7 @@
     "dora3_s3_801EFCE8"
   ],
   "diagnostic_generated_sha256": {
-    "functions.c": "0617b797bd56e02515a2a0e74a50bb3e1c74833ce702b08318d1c99271096a4e",
+    "functions.c": "537f71330a29b04192c01852adb428cfe21bd6e491476935242100a19e3a1d51",
     "room-functions.c": "b76aaacd74bf04f0686c9012efea2075574f6d0822fcf1a311bb001640ee0f7a",
     "loop.cpp": "5128cf3cc558eddf8f0ff87bb797c318470c34453a52538d4f062cf5bc7cb28a",
     "bridge.cpp": "ac1e4bbf762d5ff2da1d2f1d82fb705a3d6badceddf1ed246b03deb5598a9eec"
@@ -126,17 +126,17 @@
     "Empty projectile pool here; active/newborn projectile continuation is checked separately by the scene-frame scope",
     "Tests exact command routing and two-bank/early guest completion/late retirement/late host read/FIFO/context; no actual GPU retirement"
   ],
-  "execution_origin_276": {
-    "stage": 266,
-    "report_sha256": "339c36e323c0f5f84e263a9479c128a325ba161d60ac76520a0a3dd5a4afffc3",
-    "generation_receipt_sha256": "4593df7cd9eae5e7da7cc5b4a040145f1513d10bf8eedbbfca9b15d9536c90e4",
-    "source_delta": {
+  "execution_origin_282": {
+    "stage": 283,
+    "report_sha256": "f6a825fdfa79eb3a3b796b58d00103fb5c0770f610937af3b3296869f75c14a5",
+    "generation_receipt_sha256": "c63cecc180991d03ab88e402aaac0a273deab976d2e22a3e8b3c7151f8667b12",
+    "metadata_only_input_changes": {
       "recomp/native-timing-rules.json": {
-        "executed_sha256": "751a5ca5cbbddeef36417f37461129cb0c7bddae127621bddf5105f9aad32fc8",
-        "current_sha256": "cf77884cf65905cd49079a5a656cdbeb61bf10452b789663cb1b88db656d8c2d",
-        "evidence": "Only status/evidence for four already executed hooks updated; every semantic rule field exact,96 canonical C and hooks/overlay table exact."
+        "executed_sha256": "6d73230cc0afcb440e33ac20ffef71d785f305153ca701ad0adf8cc1558fdc2f",
+        "current_sha256": "c7bd2ff16d9f1f1e32668843c03aeb90847cd6991b3ad29212fb1b869b455ba1",
+        "reason": "Only status/evidence metadata changed; every semantic rule and96 canonical C/frontier/hooks/overlay table exact"
       }
     },
-    "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
+    "evidence": "Runtime and every tracked fixture/header/checker input exact;96 canonical C/frontier/hooks/overlay table exact. Complete current main catalog and timing rule status/evidence updated; exact executed/current rule hashes retained separately. Actual execution origin retained; no repeated main execution claim."
   }
 }

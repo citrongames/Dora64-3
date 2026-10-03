@@ -373,7 +373,7 @@ def timing_hooks(sections,compiled,rom):
                 raise ValueError('Unreviewed city state/sprite command boundary')
             text=f'dora3_native_preview_hook(rdram,ctx,0x{site:08X}u);'
         elif op=='native_pickup_sequence':
-            if rule['section']!='.scene1' or address!=site or site not in [0x801EBFC8,0x801EC0D0] or word!=0x3C038022:raise ValueError('Unreviewed pickup5/6 callback')
+            if rule['section']!='.scene1' or address!=site or site not in [0x801EBEDC,0x801EBFC8,0x801EC0D0,0x801EC194,0x801EC2A8] or word!=0x3C038022:raise ValueError('Unreviewed pickup4/5/6/7/8 callback')
             text=f'if (dora3_native_preview_hook(rdram,ctx,0x{site:08X}u)) return;'
         elif op=='native_periodic_effect':
             if rule['section']!='.scene1' or (address,site,word)!=(0x801ED8FC,0x801ED8FC,0x3C038022):raise ValueError('Unreviewed periodic131 callback')

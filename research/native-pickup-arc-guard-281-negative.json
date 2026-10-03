@@ -1,0 +1,22 @@
+{
+  "result": "FAIL: final aggregate arc guard coverage assertion; all884736 endpoint comparisons reached; not a full PASS",
+  "stage": 281,
+  "generation_receipt_sha256": "815b02c77302a6354ca4b1e002ed4a22281ce223bb2b39cb1d617d3a6cc1b9db",
+  "source_sha256": {
+    "src/native_gameplay_preview.cpp": "029afa686e178ca0f131c8f31af0b1ce8f0334b522698ca89edb5045a4a7f15e",
+    "tools/check_native_story_pickups.py": "5383a4bdd8d1aa14d21fd3376239de4d3598315dbd6ff5b160afe8a6bb40f808",
+    "tools/native_timing_patches.py": "5ffb00da224ca89b5535cde5e0245c0c81b48a7f925f2cc93852c4ad9332f413",
+    "research/native-pickup-arc-guard-check.inc": "d1f0fa5e2e681297487d0f8f5d95582554411a629c37d306f956a06471c8ac24",
+    "research/native-story-pickup-source-check.cpp": "1b3e2cef132e8b7d93c38fba0101c9f174b8895747c669564af101e9bb7695c8"
+  },
+  "log_sha256": "b75a6765fefcf0ac611ef996520d50436289096c537234ba6c7a21056e34ec21",
+  "failed_assertion": "check: /home/vova/projects/DoraRecomp3/build-local/candidate281/research/native-pickup-arc-guard-check.inc:243: void check_pickup_arc_guards(const std::vector<unsigned int>&): Assertion `arc_first_xyz>3456&&arc_second_xz>3456&&arc_scale>3456&&arc_phases>3456&&arc_returns>3456&&arc_rejected_intervals>3456' failed.",
+  "completed_progress": [
+    3456,
+    3456,
+    884736
+  ],
+  "diagnosis": "The aggregate threshold demanded more than3456 rejected calls although only24 settings*3 targets*3 kinds=216 guard6/beforeNative worlds leave an invalid angle across an interval. AfterNative commands run through actual Source wrap/clamp immediately. No runtime field or lifetime comparison failed before final coverage assertion.",
+  "repair283": "Runtime and scheduling unchanged; every applicable world must observe both rejected phases on positive elapsed intervals, all other worlds zero rejected-phase observations. All raw-field/endpoint/lifetime assertions retained. Fresh283 recorded3132 rejected calls across all216 applicable worlds and884736 complete endpoints.",
+  "current_generation": false
+}

@@ -1,7 +1,8 @@
 #ifdef DORA3_PICKUP_UNCOLLECTED_SOURCE_CHECK
 static void check_pickup_uncollected_source(const std::vector<uint32_t>& image) {
     std::map<std::array<unsigned,6>,std::vector<FlashPoolSnapshot>> oracles;
-    unsigned source_cases=0,native_cases=0,endpoints=0,intervals=0,source_births=0,spin_states=0,arc_phases=0,arc_returns=0;
+    unsigned source_cases=0,native_cases=0,endpoints=0,intervals=0,source_births=0,spin_yaw=0,spin_rate=0,spin_alpha=0,spin_states=0,arc_phases=0,arc_returns=0;
+    unsigned arc_first_xyz=0,arc_second_xz=0,arc_scale=0;
     unsigned idle_yaw_samples=0,collected_yaw_samples=0,flash_height_samples=0,periodic_height_samples=0,rise_samples=0,shrink_samples=0;
     for(unsigned playback:{0u,1u})for(unsigned camera:{12u,2u})for(unsigned divider:{2u,3u})
     for(unsigned fps:{60u,73u,120u,144u,165u,360u})for(unsigned target:{45u,120u,270u})for(unsigned item_kind:{118u,123u,127u})for(unsigned initial_state:{7u,8u}) {
@@ -83,6 +84,23 @@ static void check_pickup_uncollected_source(const std::vector<uint32_t>& image) 
                 for(auto [a,size]:std::array<std::pair<uint32_t,unsigned>,3>{{{actor,0xCC},{physical,0xF4},{m,0x84}}})
                     for(unsigned off=0;off<size;off+=4) {
                         auto value=MEM_W(int32_t(off),int32_t(a));
+#ifdef DORA3_PICKUP_ARC_NATIVE_CHECK
+                        if(kind==int16_t(item_kind)&&state==8) {
+                            if((a==actor&&(off==0x9C||off==0xA0||off==0xA4||off==0x18||off==0x1C||off==0x20))||
+                               (a==physical&&off==0xC4)||(a==m&&(off==0x64||off==0x74||off==0x78)))value=0;
+                            if(a==physical&&off==0x28)value&=~int32_t(0x0000FF00u);
+                            if(a==physical&&off==0xC8)value&=~int32_t(0xFF000000u);
+                            if(a==m&&off==0x7C)value&=~int32_t(0x02000000u);
+                        }
+#endif
+#ifdef DORA3_PICKUP_SPIN_NATIVE_CHECK
+                        if(kind==int16_t(item_kind)&&state==7) {
+                            if((a==actor&&off==0x10)||(a==physical&&(off==0x58||off==0x5C||off==0xC4))||(a==m&&(off==0x64||off==0x74||off==0x78)))value=0;
+                            if(a==physical&&off==0x28)value&=~int32_t(0x0000FF00u);
+                            if(a==physical&&off==0xC8)value&=~int32_t(0xFF000000u);
+                            if(a==m&&off==0x7C)value&=~int32_t(0x02000000u);
+                        }
+#endif
                         if(kind==131&&((a==actor&&off==0xA0)||(a==m&&off==0x64)))value=0;
                         if(kind==131&&a==m&&off==0x7C)value&=~int32_t(0x02000000u);
                         if(kind==131&&a==physical&&off==0x28)value&=~int32_t(0x0000FF00u);
@@ -100,6 +118,9 @@ static void check_pickup_uncollected_source(const std::vector<uint32_t>& image) 
                     const auto before=source_owned();const auto context=c;input_now=stamp;
                     const auto old_state=MEM_W(0x94,int32_t(effect)),old_yaw=MEM_W(0x10,int32_t(effect));
                     const auto old_height=MEM_W(0xA0,int32_t(effect)),old_scale=MEM_W(0x18,int32_t(effect));
+                    const auto old_x=MEM_W(0x9C,int32_t(effect)),old_z=MEM_W(0xA4,int32_t(effect));
+                    const auto old_arc_phase=MEM_H(0x34,int32_t(ph));
+                    const auto old_speed=MEM_W(0x58,int32_t(ph)),old_alpha=MEM_W(0x5C,int32_t(ph));
                     std::map<uint32_t,int32_t> flash_heights,periodic_heights;
                     for(unsigned slot=30;slot<230;++slot) {
                         const auto a=0x80171CD0u+slot*0xCC;if(!MEM_W(0x94,int32_t(a)))continue;
@@ -107,6 +128,11 @@ static void check_pickup_uncollected_source(const std::vector<uint32_t>& image) 
                         if(MEM_H(0x20,MEM_W(0x98,int32_t(a)))==131)periodic_heights[a]=MEM_W(0xA0,int32_t(a));
                     }
                     native_gameplay_preview_update(rdram,&c,stamp);
+                    if(old_state==8&&(old_x!=MEM_W(0x9C,int32_t(effect))||old_z!=MEM_W(0xA4,int32_t(effect)))) {
+                        if(old_arc_phase==0)++arc_first_xyz;else ++arc_second_xz;
+                    }
+                    if(old_state==8&&old_scale!=MEM_W(0x18,int32_t(effect)))++arc_scale;
+                    if(old_state==7) {spin_yaw+=old_yaw!=MEM_W(0x10,int32_t(effect));spin_rate+=old_speed!=MEM_W(0x58,int32_t(ph));spin_alpha+=old_alpha!=MEM_W(0x5C,int32_t(ph));}
                     if(old_state==5&&MEM_W(0xA0,int32_t(effect))!=old_height)++rise_samples;
                     if(old_state==6&&MEM_W(0x18,int32_t(effect))!=old_scale)++shrink_samples;
                     if(MEM_W(0x94,int32_t(effect))&&MEM_W(0x10,int32_t(effect))!=old_yaw) {
@@ -164,10 +190,32 @@ static void check_pickup_uncollected_source(const std::vector<uint32_t>& image) 
         if(playback==0)++source_cases;else ++native_cases;
     }
     assert(source_cases==432&&native_cases==432&&endpoints==432*256&&source_births==432&&intervals>10000);
+#ifdef DORA3_PICKUP_SPIN_NATIVE_CHECK
+    assert(spin_yaw>216&&spin_rate>216&&spin_alpha>216);
+#endif
+#ifdef DORA3_PICKUP_ARC_NATIVE_CHECK
+    assert(arc_first_xyz>216&&arc_second_xz>216&&arc_scale>216);
+#endif
     assert(spin_states>216&&arc_phases>216&&arc_returns>216);
     assert(idle_yaw_samples>216&&collected_yaw_samples>216&&flash_height_samples>216);
+#ifdef DORA3_PICKUP_SPIN_NATIVE_CHECK
+#ifdef DORA3_PICKUP_ARC_NATIVE_CHECK
+    std::cout<<"PASS: 432 Original and432 mixed Native/Source uncollected pickup states7/8 Native initialized7/8 schedules; "<<intervals<<" Native intervals; "<<endpoints<<" exact complete live actor/physics/model/heap/resource/command frozen Original endpoints; actual first init, two-phase arc/clamp/return, mode3 collection and full six-flash retirement. No game/GPU.\n";
+#else
+    std::cout<<"PASS: 432 Original and432 mixed Native/Source uncollected pickup states7/8 Native initialized7/Source-only8 schedules; state7 pure yaw/speed/opacity between Source boundaries and actual Source initialization/blink reset/retirement, state8 actual two-phase arc with latch init/angle wrap/truncation/phase switch/target clamp/state1 return, then actual Source contact at140 and full six-flash130 lifetime; "<<intervals
+        <<" Native intervals preserve ordered private state7 commands and all unclaimed state8 actor/physics/model bytes, heap/resources/commands; "<<endpoints<<" exact complete live actor/physics/model/heap/resource/command frozen Original endpoints; spin/second-arc/idle samples "<<spin_states<<'/'<<arc_phases<<'/'<<arc_returns
+        <<"; Native initialized stationary7; Source-only8; existing Native idle/collected/flash ownership unchanged, synthetic assets and external state parameters; no game/GPU.\n";
+#endif
+#else
     std::cout<<"PASS: 432 Original and432 mixed Native/Source uncollected pickup states7/8 source-only schedules; state7 actual spin acceleration/fade/retirement, state8 actual two-phase arc with latch init/angle wrap/truncation/phase switch/target clamp/state1 return, then actual Source contact at140 and full six-flash130 lifetime; "<<intervals
         <<" Native intervals preserve all unclaimed state7/8 actor/physics/model bytes, heap/resources/commands; "<<endpoints<<" exact complete live actor/physics/model/heap/resource/command frozen Original endpoints; spin/second-arc/idle samples "<<spin_states<<'/'<<arc_phases<<'/'<<arc_returns
         <<"; Source-only state7/8, existing Native idle/collected/flash ownership unchanged, synthetic assets and external state parameters; no game/GPU.\n";
+#endif
+#ifdef DORA3_PICKUP_SPIN_NATIVE_CHECK
+#ifdef DORA3_PICKUP_ARC_NATIVE_CHECK
+    std::cout<<"Native arc firstXYZ/secondXZ/scale="<<arc_first_xyz<<'/'<<arc_second_xz<<'/'<<arc_scale<<"; initialized8 geometry uses actual Original trig helpers; integer angle/phase/latch/return stay Source.\n";
+#endif
+    std::cout<<"Native spin intermediate yaw/speed/opacity="<<spin_yaw<<'/'<<spin_rate<<'/'<<spin_alpha<<'\n';
+#endif
 }
 #endif
