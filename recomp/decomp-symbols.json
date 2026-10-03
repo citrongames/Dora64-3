@@ -13538,11 +13538,46 @@
       "vram": "0x8005A140",
       "size": 256,
       "legacy_name": "dora3_lib_8005A140",
-      "name": "dora3_lib_8005A140",
-      "description": "Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending",
-      "evidence": "Существующие именованные ROM функции в recomp/startup.json; покрытие исполнения см. прежние отчёты.",
+      "name": "dora3_matrix_multiply_float4x4_8005A140",
+      "description": "Умножает две матрицы4×4 из float: результат=A×B, элементы вычисляются исходными последовательными mul.s/add.s. Первые15 результатов сохраняет в64-байтовом стеке, последний пишет перед копированием остальных; выход может совпадать с входом. Используется при объединении поворота и переноса родителя.",
+      "evidence": "Exact .startup ROM identity/hash; разбор parent EBAD4 BB50..BC1C и этих матричных тел. Actual Source-parent307 PASS864 paired lifetimes/221184 whole frozen endpoints; Native current-parent matrix scope310 отдельно, не переносится в этот каталог как завершённый runtime.",
       "rom_sha256": "cc9f778be8060dae1b07f9fbd3e9132ca30bf9f764246cc294a02a6f3bd1d69e",
-      "locals": []
+      "locals": [
+        {
+          "name": "matrix_left_row_cursor_r4",
+          "expression": "ctx->r4",
+          "start": "0x8005A140",
+          "end": "0x8005A1B0",
+          "description": "Курсор строки левой матрицы; после обхода больше не используется как входной указатель",
+          "instructions": {
+            "0x8005A154": "0xC4840000",
+            "0x8005A1A0": "0x24840010"
+          }
+        },
+        {
+          "name": "matrix_right_input_r5",
+          "expression": "ctx->r5",
+          "start": "0x8005A140",
+          "end": "0x8005A1E4",
+          "description": "Начало правой матрицы; до загрузки временного результата в этот регистр",
+          "instructions": {
+            "0x8005A148": "0x24A30010",
+            "0x8005A150": "0x00A03821"
+          }
+        },
+        {
+          "name": "matrix_product_output_r6",
+          "expression": "ctx->r6",
+          "start": "0x8005A140",
+          "end": "0x8005A230",
+          "description": "Выходная матрица, включая прямую запись последнего элемента и копирование остальных",
+          "instructions": {
+            "0x8005A1AC": "0xE4C8003C",
+            "0x8005A1EC": "0xACC80000",
+            "0x8005A224": "0xACC70038"
+          }
+        }
+      ]
     },
     {
       "section": ".startup",
@@ -13571,33 +13606,162 @@
       "vram": "0x8005A300",
       "size": 96,
       "legacy_name": "dora3_lib_8005A300",
-      "name": "dora3_lib_8005A300",
-      "description": "Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending",
-      "evidence": "Существующие именованные ROM функции в recomp/startup.json; покрытие исполнения см. прежние отчёты.",
+      "name": "dora3_matrix_make_translation_float4x4_8005A300",
+      "description": "Записывает64-байтовую единичную матрицу4×4 и задаёт перенос в последней строке: X/Y/Z из float-битов a1/a2/a3 в offsets30/34/38. Раскладка соответствует последующему преобразованию точки как вектора-строки; функции не нужна память вне выхода.",
+      "evidence": "Exact .startup ROM identity/hash; разбор parent EBAD4 BB50..BC1C и этих матричных тел. Actual Source-parent307 PASS864 paired lifetimes/221184 whole frozen endpoints; Native current-parent matrix scope310 отдельно, не переносится в этот каталог как завершённый runtime.",
       "rom_sha256": "15facbbfaf7bbbe5dfd08219d55bc9e9abc935a7be7e22c5ae5d723e32d78cf5",
-      "locals": []
+      "locals": [
+        {
+          "name": "translation_matrix_output_r4",
+          "expression": "ctx->r4",
+          "start": "0x8005A300",
+          "end": "0x8005A348",
+          "description": "Указатель на64-байтовую выходную матрицу",
+          "instructions": {
+            "0x8005A304": "0xAC880000",
+            "0x8005A334": "0xAC850030",
+            "0x8005A344": "0xAC88003C"
+          }
+        },
+        {
+          "name": "translation_x_float_bits_r5",
+          "expression": "ctx->r5",
+          "start": "0x8005A300",
+          "end": "0x8005A348",
+          "description": "Float-биты переносаX; сохраняются без числового преобразования",
+          "instructions": {
+            "0x8005A334": "0xAC850030"
+          }
+        },
+        {
+          "name": "translation_y_float_bits_r6",
+          "expression": "ctx->r6",
+          "start": "0x8005A300",
+          "end": "0x8005A348",
+          "description": "Float-биты переносаY",
+          "instructions": {
+            "0x8005A338": "0xAC860034"
+          }
+        },
+        {
+          "name": "translation_z_float_bits_r7",
+          "expression": "ctx->r7",
+          "start": "0x8005A300",
+          "end": "0x8005A348",
+          "description": "Float-биты переносаZ",
+          "instructions": {
+            "0x8005A33C": "0xAC870038"
+          }
+        }
+      ]
     },
     {
       "section": ".startup",
       "vram": "0x8005A360",
       "size": 176,
       "legacy_name": "dora3_lib_8005A360",
-      "name": "dora3_lib_8005A360",
-      "description": "Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending",
-      "evidence": "Существующие именованные ROM функции в recomp/startup.json; покрытие исполнения см. прежние отчёты.",
+      "name": "dora3_matrix_transform_point_float3_8005A360",
+      "description": "Преобразует точку(X,Y,Z,1) вектором-строкой через float-матрицу4×4. Для каждого выхода использует три произведения и перенос из последней строки, без деления наW; три результата записывает по указателям из stack10/14/18. При parent-follow получает локальное смещение(0,-70,0).",
+      "evidence": "Exact .startup ROM identity/hash; разбор parent EBAD4 BB50..BC1C и этих матричных тел. Actual Source-parent307 PASS864 paired lifetimes/221184 whole frozen endpoints; Native current-parent matrix scope310 отдельно, не переносится в этот каталог как завершённый runtime.",
       "rom_sha256": "8a7e22a20fef22c599a9f7c612e452804c74f86ba56b9a9f08c58e4af1f08179",
-      "locals": []
+      "locals": [
+        {
+          "name": "point_transform_matrix_r4",
+          "expression": "ctx->r4",
+          "start": "0x8005A360",
+          "end": "0x8005A410",
+          "description": "Входная матрица; регистр сохраняет указатель во всей функции",
+          "instructions": {
+            "0x8005A360": "0xC4820000",
+            "0x8005A3D0": "0xC4820034",
+            "0x8005A3FC": "0xC4820038"
+          }
+        },
+        {
+          "name": "point_input_x_float_bits_r5",
+          "expression": "ctx->r5",
+          "start": "0x8005A360",
+          "end": "0x8005A36C",
+          "description": "Float-биты входногоX до переноса в f6; позднее a1 имеет другую роль",
+          "instructions": {
+            "0x8005A364": "0x44853000"
+          }
+        },
+        {
+          "name": "point_input_y_float_bits_r6",
+          "expression": "ctx->r6",
+          "start": "0x8005A360",
+          "end": "0x8005A378",
+          "description": "Float-биты входногоY до переноса в f8",
+          "instructions": {
+            "0x8005A374": "0x44864000"
+          }
+        },
+        {
+          "name": "point_input_z_float_bits_r7",
+          "expression": "ctx->r7",
+          "start": "0x8005A360",
+          "end": "0x8005A388",
+          "description": "Float-биты входногоZ до переноса в f10",
+          "instructions": {
+            "0x8005A384": "0x44875000"
+          }
+        }
+      ]
     },
     {
       "section": ".startup",
       "vram": "0x8005A410",
       "size": 352,
       "legacy_name": "dora3_lib_8005A410",
-      "name": "dora3_lib_8005A410",
-      "description": "Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending",
-      "evidence": "Существующие именованные ROM функции в recomp/startup.json; покрытие исполнения см. прежние отчёты.",
+      "name": "dora3_matrix_make_axis_rotation_degrees_8005A410",
+      "description": "Строит float-матрицу4×4 вращения вокруг нормализованной оси. Принимает угол в градусах через float-биты a1, осьX/Y через a2/a3 и осьZ через исходный stack10; использует настоящие normalize/sin/cos и исходный порядок float-операций. Сохраняет выход в s0; собственный стек72 байта.",
+      "evidence": "Exact .startup ROM identity/hash; разбор parent EBAD4 BB50..BC1C и этих матричных тел. Actual Source-parent307 PASS864 paired lifetimes/221184 whole frozen endpoints; Native current-parent matrix scope310 отдельно, не переносится в этот каталог как завершённый runtime.",
       "rom_sha256": "885f294f792e02c1f5cd1f1bc631a288318ee7d9d64c0d16af84c3b7a04a3278",
-      "locals": []
+      "locals": [
+        {
+          "name": "axis_rotation_output_matrix_r16",
+          "expression": "ctx->r16",
+          "start": "0x8005A41C",
+          "end": "0x8005A54C",
+          "description": "Выходная матрица между сохранением a0 в s0 и восстановлением старого s0",
+          "instructions": {
+            "0x8005A418": "0x00808021",
+            "0x8005A4B4": "0x02002021",
+            "0x8005A544": "0xE6180028"
+          }
+        },
+        {
+          "name": "axis_rotation_angle_float_bits_r5",
+          "expression": "ctx->r5",
+          "start": "0x8005A410",
+          "end": "0x8005A428",
+          "description": "Float-биты угла до переноса в f20; затем a1 становится указателем компоненты оси",
+          "instructions": {
+            "0x8005A424": "0x4485A000"
+          }
+        },
+        {
+          "name": "axis_rotation_x_float_bits_r6",
+          "expression": "ctx->r6",
+          "start": "0x8005A410",
+          "end": "0x8005A430",
+          "description": "Float-биты осиX до сохранения в scratch-аргумент нормализации",
+          "instructions": {
+            "0x8005A42C": "0xAFA60050"
+          }
+        },
+        {
+          "name": "axis_rotation_y_float_bits_r7",
+          "expression": "ctx->r7",
+          "start": "0x8005A410",
+          "end": "0x8005A454",
+          "description": "Float-биты осиY до delay-slot сохранения перед нормализацией",
+          "instructions": {
+            "0x8005A450": "0xAFA70054"
+          }
+        }
+      ]
     },
     {
       "section": ".startup",

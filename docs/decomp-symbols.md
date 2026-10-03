@@ -24,7 +24,7 @@ ROM инструкции, типы, float порядок, register storage и co
 address-map и ссылки на старые полные имена в остальных документах.
 `--check` проверяет, что документация соответствует каталогу.
 
-В каталоге: 725 описаний функций, 390 новых смысловых имён и 506 ограниченных областей переменных.
+В каталоге: 725 описаний функций, 394 новых смысловых имён и 521 ограниченных областей переменных.
 
 | Overlay / адрес | Читаемое имя | Прежнее ABI имя | Назначение |
 |---|---|---|---|
@@ -726,12 +726,12 @@ address-map и ссылки на старые полные имена в ост�
 | .startup / 0x80059FE0 | `dora3_lib_80059FE0` | `dora3_lib_80059FE0` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
 | .startup / 0x8005A040 | `dora3_lib_8005A040` | `dora3_lib_8005A040` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
 | .startup / 0x8005A0C0 | `dora3_lib_8005A0C0` | `dora3_lib_8005A0C0` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
-| .startup / 0x8005A140 | `dora3_lib_8005A140` | `dora3_lib_8005A140` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
+| .startup / 0x8005A140 | `dora3_matrix_multiply_float4x4_8005A140` | `dora3_lib_8005A140` | Умножает две матрицы4×4 из float: результат=A×B, элементы вычисляются исходными последовательными mul.s/add.s. Первые15 результатов сохраняет в64-байтовом стеке, последний пишет перед копированием остальных; выход может совпадать с входом. Используется при объединении поворота и переноса родителя. |
 | .startup / 0x8005A240 | `dora3_lib_8005A240` | `dora3_lib_8005A240` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
 | .startup / 0x8005A2A0 | `dora3_lib_8005A2A0` | `dora3_lib_8005A2A0` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
-| .startup / 0x8005A300 | `dora3_lib_8005A300` | `dora3_lib_8005A300` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
-| .startup / 0x8005A360 | `dora3_lib_8005A360` | `dora3_lib_8005A360` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
-| .startup / 0x8005A410 | `dora3_lib_8005A410` | `dora3_lib_8005A410` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
+| .startup / 0x8005A300 | `dora3_matrix_make_translation_float4x4_8005A300` | `dora3_lib_8005A300` | Записывает64-байтовую единичную матрицу4×4 и задаёт перенос в последней строке: X/Y/Z из float-битов a1/a2/a3 в offsets30/34/38. Раскладка соответствует последующему преобразованию точки как вектора-строки; функции не нужна память вне выхода. |
+| .startup / 0x8005A360 | `dora3_matrix_transform_point_float3_8005A360` | `dora3_lib_8005A360` | Преобразует точку(X,Y,Z,1) вектором-строкой через float-матрицу4×4. Для каждого выхода использует три произведения и перенос из последней строки, без деления наW; три результата записывает по указателям из stack10/14/18. При parent-follow получает локальное смещение(0,-70,0). |
+| .startup / 0x8005A410 | `dora3_matrix_make_axis_rotation_degrees_8005A410` | `dora3_lib_8005A410` | Строит float-матрицу4×4 вращения вокруг нормализованной оси. Принимает угол в градусах через float-биты a1, осьX/Y через a2/a3 и осьZ через исходный stack10; использует настоящие normalize/sin/cos и исходный порядок float-операций. Сохраняет выход в s0; собственный стек72 байта. |
 | .startup / 0x8005E270 | `dora3_empty_init` | `dora3_empty_init` | Actual ROM function is jr ra / nop |
 | .startup / 0x8005F9D0 | `dora3_lib_8005F9D0` | `dora3_lib_8005F9D0` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
 | .startup / 0x8005FF50 | `dora3_lib_8005FF50` | `dora3_lib_8005FF50` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |

@@ -983,7 +983,7 @@
     "size": 36304,
     "sha256": "f5284a1979a9fd3f5f46fe48c9a361e300aca936d8cb123aa87f50bdbcee5f7a"
   },
-  "generation_receipt_sha256": "d521635f7e8baa8b9dbdf6a868e485c6a6052092657e2bcbf41af7d78e4cc92d",
+  "generation_receipt_sha256": "82ff5665524a2852c78a949cc80c00cf1caab5c7b7d0098a342fa078187ecfe0",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "limitations": [
@@ -1003,5 +1003,10 @@
       }
     },
     "evidence": "Every actual runtime/checker/fixture/header input exact; all96 canonical C/frontier/hooks/overlays exact. Main286 catalog and confirmed4/7/8 evidence preserved, Source2/collected10 descriptions updated. Actual291 execution origin retained; no repeated main execution claim."
+  },
+  "execution_origin_314": {
+    "report_before_names_sha256": "fcce6c0381cbcbceba2eab462b6af0b584c67fb97426121c153b5e5994506ef3",
+    "generation_receipt_sha256": "d521635f7e8baa8b9dbdf6a868e485c6a6052092657e2bcbf41af7d78e4cc92d",
+    "reason": "Four matrix aliases and15 register scopes only; every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact. Actual291 execution_origin_295 retained, no new runtime execution claim."
   }
 }

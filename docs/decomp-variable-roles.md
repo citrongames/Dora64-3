@@ -24,6 +24,10 @@
 | `actor_pool_index_r7` | `ctx->r7` | Actor pool index compared with peer backlink entries | 1 |
 | `animation_command_r5` | `ctx->r5` | Входной номер кадра для seek либо команда0/1/переключить для флага. | 3 |
 | `animation_model_r4` | `ctx->r4` | Входной handle модели; не меняется в этой leaf функции. | 3 |
+| `axis_rotation_angle_float_bits_r5` | `ctx->r5` | Float-биты угла до переноса в f20; затем a1 становится указателем компоненты оси | 1 |
+| `axis_rotation_output_matrix_r16` | `ctx->r16` | Выходная матрица между сохранением a0 в s0 и восстановлением старого s0 | 1 |
+| `axis_rotation_x_float_bits_r6` | `ctx->r6` | Float-биты осиX до сохранения в scratch-аргумент нормализации | 1 |
+| `axis_rotation_y_float_bits_r7` | `ctx->r7` | Float-биты осиY до delay-slot сохранения перед нормализацией | 1 |
 | `bobbing_actor_r16` | `ctx->r16` | Actor retained across the sine and angle normalization calls | 1 |
 | `candidate_contact_physics_r4` | `ctx->r4` | Candidate physics after the actor argument is replaced by its physics pointer | 1 |
 | `cat_contact_mode_r3` | `ctx->r3` | Shared contact mode before the checked sound command | 1 |
@@ -66,6 +70,9 @@
 | `interaction_player_state_r3` | `ctx->r3` | Player state retained across the Original interaction state gates | 1 |
 | `linked_parent_physics_r2` | `ctx->r2` | Parent physics used for the pending clip read | 1 |
 | `linked_parent_pool_index_r3` | `ctx->r3` | Parent pool index before address-scale arithmetic reuses this register | 1 |
+| `matrix_left_row_cursor_r4` | `ctx->r4` | Курсор строки левой матрицы; после обхода больше не используется как входной указатель | 1 |
+| `matrix_product_output_r6` | `ctx->r6` | Выходная матрица, включая прямую запись последнего элемента и копирование остальных | 1 |
+| `matrix_right_input_r5` | `ctx->r5` | Начало правой матрицы; до загрузки временного результата в этот регистр | 1 |
 | `model_opacity_f2` | `ctx->f2` | Float opacity loaded from a1 bits, retained through the exact1 comparison and final store | 1 |
 | `npc_contact_mode_r3` | `ctx->r3` | Contact mode through the complete mode switch, before v1 is reused for state guard arithmetic | 8 |
 | `npc_entry_physics_r3` | `ctx->r3` | Physics record only across the initial latch28 read/write; v1 is reused afterward | 10 |
@@ -122,6 +129,10 @@
 | `player_physics_r4` | `ctx->r4` | Физическое состояние персонажа из8021D4B0 | 25 |
 | `player_physics_r6` | `ctx->r6` | Физическое состояние персонажа из8021D4B0 | 1 |
 | `player_physics_r8` | `ctx->r8` | Физическое состояние персонажа из8021D4B0 | 1 |
+| `point_input_x_float_bits_r5` | `ctx->r5` | Float-биты входногоX до переноса в f6; позднее a1 имеет другую роль | 1 |
+| `point_input_y_float_bits_r6` | `ctx->r6` | Float-биты входногоY до переноса в f8 | 1 |
+| `point_input_z_float_bits_r7` | `ctx->r7` | Float-биты входногоZ до переноса в f10 | 1 |
+| `point_transform_matrix_r4` | `ctx->r4` | Входная матрица; регистр сохраняет указатель во всей функции | 1 |
 | `pool_search_actor_r3` | `ctx->r3` | Actor record cursor while testing occupied states | 1 |
 | `pool_search_index_r4` | `ctx->r4` | Parent lower bound and advancing free-slot search index | 1 |
 | `reset_scene_actor_r16` | `ctx->r16` | Actor argument для всех очищаемых полей и исходных axis/event callbacks | 1 |
@@ -185,6 +196,10 @@
 | `story_profile_r17` | `ctx->r17` | Story-selected profile2 or0/1 retained across allocator calls | 8 |
 | `target_actor_r5` | `ctx->r5` | Input actor whose physics update permission changes | 1 |
 | `target_heading_f14` | `ctx->f14` | Входной target angle до аргумента нормализации разницы | 1 |
+| `translation_matrix_output_r4` | `ctx->r4` | Указатель на64-байтовую выходную матрицу | 1 |
+| `translation_x_float_bits_r5` | `ctx->r5` | Float-биты переносаX; сохраняются без числового преобразования | 1 |
+| `translation_y_float_bits_r6` | `ctx->r6` | Float-биты переносаY | 1 |
+| `translation_z_float_bits_r7` | `ctx->r7` | Float-биты переносаZ | 1 |
 | `update_permission_r16` | `ctx->r16` | Saved permission command used for both pools and player state | 1 |
 | `vertical_collision_actor_r17` | `ctx->r17` | Exact Original register storage for this proven instruction region only | 1 |
 | `vertical_collision_physics_r16` | `ctx->r16` | Exact Original register storage for this proven instruction region only | 1 |
