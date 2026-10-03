@@ -81,7 +81,7 @@
     "research/native-flash-delay-check.inc": "649388f0cd651ca4a367a9f21e7cd23ba3bbd0b908a4d95c76a2f292c015650b",
     "research/native-flash-motion-check.inc": "da708e4b650d6d3a6f2c97414654cfc5f9df0c5aad2334a15ab5b86746d40c76"
   },
-  "generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
+  "generation_receipt_sha256": "1fcde63a7f8dfb3104d3ea16878099c95d61d9ede439197e6e944b304b14edac",
   "reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "validated_schedules": {
     "settings": 24,
@@ -118,5 +118,10 @@
       }
     },
     "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
+  },
+  "naming_only_relocation_267": {
+    "executed_report_sha256": "8b1413d9b2f3893548d62f4fdc3ac50eac6dda529662911142a505ff4047852d",
+    "previous_generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
+    "evidence": "Names-only main267:4 new semantic aliases/8 register scopes;96 canonical C units/frontier/hooks/overlay table equal255, runtime and all execution inputs exact. Fresh723/388/506 names/preprocessed tokens/C17/ABI check. Existing runtime execution proof preserved; no new game run claimed."
   }
 }

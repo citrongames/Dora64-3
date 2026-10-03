@@ -24,7 +24,7 @@ ROM инструкции, типы, float порядок, register storage и co
 address-map и ссылки на старые полные имена в остальных документах.
 `--check` проверяет, что документация соответствует каталогу.
 
-В каталоге: 719 описаний функций, 384 новых смысловых имён и 498 ограниченных областей переменных.
+В каталоге: 723 описаний функций, 388 новых смысловых имён и 506 ограниченных областей переменных.
 
 | Overlay / адрес | Читаемое имя | Прежнее ABI имя | Назначение |
 |---|---|---|---|
@@ -747,3 +747,7 @@ address-map и ссылки на старые полные имена в ост�
 | .startup / 0x80062260 | `dora3_lib_80062260` | `dora3_lib_80062260` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
 | .startup / 0x800623D0 | `dora3_lib_800623D0` | `dora3_lib_800623D0` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
 | .startup / 0x800623F0 | `dora3_lib_800623F0` | `dora3_lib_800623F0` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
+| .scene1 / 0x801ED8EC | `dora3_periodic_pickup_effect_constructor_noop_801ED8EC` | `dora3_s3_core_801ED8EC` | Kind131 constructor пустой; descriptor801FC964 создаёт общий actor/model через E6968. Private инициализация происходит в первом update. |
+| .scene1 / 0x801ED8F4 | `dora3_periodic_pickup_effect_contact_noop_801ED8F4` | `dora3_s3_core_801ED8F4` | Kind131 contact callback пустой; не запускает диалог, сбор или столкновительную реакцию. |
+| .scene1 / 0x801ED8FC | `dora3_periodic_pickup_effect_fall_and_retire_801ED8FC` | `dora3_s3_core_801ED8FC` | Kind131: при первом Source update latch28=1/CA=1, clip0 и animation seek30, actual RNG(-100/-50) смещает X/Y, uniform scale1.5 и VY-5. Каждый Original update проверяет Y<=50 до общего перемещения и вызывает E6E6C. |
+| .startup / 0x8002A41C | `dora3_actor_group_seek_animation_8002A41C` | `dora3_s0_8002A41C` | Для actor/group выбирает model из actor74+4*group, truncates floata2 до целого и вызывает model seek80039564. Значения30/45 здесь — время seek, не rate. |

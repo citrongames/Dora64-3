@@ -13763,6 +13763,144 @@
       "evidence": "Существующие именованные ROM функции в recomp/startup.json; покрытие исполнения см. прежние отчёты.",
       "rom_sha256": "ad6d9d208fad9c1f451011b2673aefab83ed068b0875f2109ecb054f67b72fac",
       "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED8EC",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801ED8EC",
+      "name": "dora3_periodic_pickup_effect_constructor_noop_801ED8EC",
+      "description": "Kind131 constructor пустой; descriptor801FC964 создаёт общий actor/model через E6968. Private инициализация происходит в первом update.",
+      "evidence": "Exact overlay-qualified ROM/body and public84-byte kind131 callback table/descriptor801FC964; actual Original initializer/RNG/clip/seek30/scale1.5/pre-step Y threshold and complete Source resource lifetimes checked in isolated259/264. This main267 change adds names/comments/scoped register aliases only; current main runtime remains reward255.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED8F4",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801ED8F4",
+      "name": "dora3_periodic_pickup_effect_contact_noop_801ED8F4",
+      "description": "Kind131 contact callback пустой; не запускает диалог, сбор или столкновительную реакцию.",
+      "evidence": "Exact overlay-qualified ROM/body and public84-byte kind131 callback table/descriptor801FC964; actual Original initializer/RNG/clip/seek30/scale1.5/pre-step Y threshold and complete Source resource lifetimes checked in isolated259/264. This main267 change adds names/comments/scoped register aliases only; current main runtime remains reward255.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED8FC",
+      "size": 276,
+      "legacy_name": "dora3_s3_core_801ED8FC",
+      "name": "dora3_periodic_pickup_effect_fall_and_retire_801ED8FC",
+      "description": "Kind131: при первом Source update latch28=1/CA=1, clip0 и animation seek30, actual RNG(-100/-50) смещает X/Y, uniform scale1.5 и VY-5. Каждый Original update проверяет Y<=50 до общего перемещения и вызывает E6E6C.",
+      "evidence": "Exact overlay-qualified ROM/body and public84-byte kind131 callback table/descriptor801FC964; actual Original initializer/RNG/clip/seek30/scale1.5/pre-step Y threshold and complete Source resource lifetimes checked in isolated259/264. This main267 change adds names/comments/scoped register aliases only; current main runtime remains reward255.",
+      "rom_sha256": "b160c914edd62cd5f1ab6ce078ccc2ba14f2dfb38c5cff9dd7167278250db620",
+      "locals": [
+        {
+          "name": "periodic_initial_physics_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ED904",
+          "end": "0x801ED91C",
+          "description": "Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name.",
+          "instructions": {
+            "0x801ED900": "0x8C63BCDC",
+            "0x801ED90C": "0x80620028",
+            "0x801ED918": "0xA0620028"
+          }
+        },
+        {
+          "name": "periodic_random_x_actor_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ED964",
+          "end": "0x801ED984",
+          "description": "Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name.",
+          "instructions": {
+            "0x801ED960": "0x8C63BDEC",
+            "0x801ED964": "0xC460009C",
+            "0x801ED980": "0xE460009C"
+          }
+        },
+        {
+          "name": "periodic_scale_y_actor_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ED98C",
+          "end": "0x801ED9CC",
+          "description": "Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name.",
+          "instructions": {
+            "0x801ED988": "0x8C63BDEC",
+            "0x801ED99C": "0xC46400A0",
+            "0x801ED9C4": "0xE46400A0"
+          }
+        },
+        {
+          "name": "periodic_velocity_physics_r4",
+          "expression": "ctx->r4",
+          "start": "0x801ED99C",
+          "end": "0x801ED9CC",
+          "description": "Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name.",
+          "instructions": {
+            "0x801ED998": "0x8C84BCDC",
+            "0x801ED9C8": "0xE4860014"
+          }
+        },
+        {
+          "name": "periodic_threshold_actor_r4",
+          "expression": "ctx->r4",
+          "start": "0x801ED9D4",
+          "end": "0x801ED9F4",
+          "description": "Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name.",
+          "instructions": {
+            "0x801ED9D0": "0x8C84BDEC",
+            "0x801ED9DC": "0xC48200A0",
+            "0x801ED9F0": "0x0C079B9B"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".startup",
+      "vram": "0x8002A41C",
+      "size": 56,
+      "legacy_name": "dora3_s0_8002A41C",
+      "name": "dora3_actor_group_seek_animation_8002A41C",
+      "description": "Для actor/group выбирает model из actor74+4*group, truncates floata2 до целого и вызывает model seek80039564. Значения30/45 здесь — время seek, не rate.",
+      "evidence": "Exact Original ROM/canonical instructions8002A41C..A44C: floata2 truncates to integera1, model selected at actor74+4*group, actual80039564 seeks model64. Values30/45 are animation time, not rate. Main267 names/comments only; no runtime or ABI change.",
+      "rom_sha256": "14e0fd13d60b52db0a2bc89fafaa2ae2e927c54e6f0088b9a26624a8f1864c4c",
+      "locals": [
+        {
+          "name": "seek_input_actor_r4",
+          "expression": "ctx->r4",
+          "start": "0x8002A41C",
+          "end": "0x8002A42C",
+          "description": "Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name.",
+          "instructions": {
+            "0x8002A424": "0x00A42821",
+            "0x8002A42C": "0x8CA40074"
+          }
+        },
+        {
+          "name": "seek_group_offset_r5",
+          "expression": "ctx->r5",
+          "start": "0x8002A424",
+          "end": "0x8002A430",
+          "description": "Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name.",
+          "instructions": {
+            "0x8002A420": "0x00052880",
+            "0x8002A424": "0x00A42821",
+            "0x8002A42C": "0x8CA40074"
+          }
+        },
+        {
+          "name": "seek_time_float_bits_r6",
+          "expression": "ctx->r6",
+          "start": "0x8002A41C",
+          "end": "0x8002A434",
+          "description": "Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name.",
+          "instructions": {
+            "0x8002A430": "0x44860000"
+          }
+        }
+      ]
     }
   ]
 }

@@ -78,6 +78,11 @@
 | `object_physics_r3` | `ctx->r3` | Physics pointer до установки входного флага state2 | 1 |
 | `object_physics_r3` | `ctx->r3` | Текущий physics record до однократного вызова выбора клипа | 1 |
 | `opacity_model_r4` | `ctx->r4` | Unchanged model pointer for opacity flag/time writes | 1 |
+| `periodic_initial_physics_r3` | `ctx->r3` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
+| `periodic_random_x_actor_r3` | `ctx->r3` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
+| `periodic_scale_y_actor_r3` | `ctx->r3` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
+| `periodic_threshold_actor_r4` | `ctx->r4` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
+| `periodic_velocity_physics_r4` | `ctx->r4` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
 | `pickup_attached_parent_actor_r16` | `ctx->r16` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_attachment_slot_r16` | `ctx->r16` | Attachment-slot loop0..2 only; register reused for the effect index after this scope | 1 |
 | `pickup_collect_initial_physics_r3` | `ctx->r3` | Physics pointer only for the initial latch28 read/write before register reuse | 1 |
@@ -136,6 +141,9 @@
 | `room_transition_pending_phase_r16` | `ctx->r16` | Загруженная исходная стадия pending request; далее s0 переиспользуется для другой роли | 1 |
 | `room_transition_requested_id_r3` | `ctx->r3` | ID комнаты из descriptor для проверки диапазона и вычисления смещения таблицы | 1 |
 | `second_shape_index_output_r17` | `ctx->r17` | Output pointer for the second colliding shape index | 1 |
+| `seek_group_offset_r5` | `ctx->r5` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
+| `seek_input_actor_r4` | `ctx->r4` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
+| `seek_time_float_bits_r6` | `ctx->r6` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
 | `selected_contact_pool_index_r3` | `ctx->r3` | Signed contact index before address-scale arithmetic reuses the register | 1 |
 | `slot09_kind24_bind_clip6_once_init_physics_r3` | `ctx->r3` | Physics only for the initial latch28 check/write, before subsequent callbacks or register reuse | 1 |
 | `slot09_kind24_contact_mode_r3` | `ctx->r3` | Original contact mode through mode1/3/4 comparisons only; no alias after register reuse | 1 |

@@ -2624,3 +2624,18 @@ collision/dialogue progression и renderer этим synthetic CPU этапом �
 Donor/32 dependency pins/Windows test037 прежние. Новый EXE не собирался;
 игру, окно, renderer иGPU я не запускала. Завершённые проверенные этапы
 сохраняются commit/push в существующей main; архивы — дополнительная копия.
+
+## Читаемость267: periodic-effect131 и animation seek
+
+В main добавлены четыре смысловых имени и восемь областей регистров: пустые
+constructor/contact kind131, его Source падение/порог удаления и общий выбор
+model-group с animation seek. Всего723 описания,388 имён функций,506 областей
+переменных. Значения30/45 у `dora3_actor_group_seek_animation_8002A41C`
+обозначают время анимации после truncation, а не её скорость.
+
+Проверка267:96 canonical C единиц точно совпадают с main255; одинаковые
+preprocessed tokens, успешный C17 syntax check, прежние ABI/ROM/overlay identity,
+frontier/hooks/overlay table. Runtime этого коммита остаётся reward255. Native
+idle/подъём5/уменьшение6/падающий131 проверены в изолированном264; окончательный266
+прошёл loop/scene-transition/names и продолжает общую CPU-проверку. Native7 пока
+отдельный кандидат268 без результата. Новый Windows EXE не собирался;037 сохранён.

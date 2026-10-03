@@ -1,6 +1,6 @@
 {
-  "result": "PASS: 719 descriptions; 384 semantic function names; 498 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
-  "generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
+  "result": "PASS: 723 descriptions; 388 semantic function names; 506 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
+  "generation_receipt_sha256": "1fcde63a7f8dfb3104d3ea16878099c95d61d9ede439197e6e944b304b14edac",
   "files": [
     {
       "file": "funcs_0.c",
@@ -11,7 +11,7 @@
     {
       "file": "funcs_1.c",
       "canonical_sha256": "aaf50911b1e39d3c29b312d7e4528604fdfeefcc46f03dc81ac0f2747f3ca8ab",
-      "named_sha256": "0eead833eec7979137997c2fdd4bf12b3e75e9177a0ca1cfe1dfebdcbb300d23",
+      "named_sha256": "b6cb449a7824cd725d73c06e841bd7ad2f7d9864125e9e2811f03ae5eff1f73c",
       "tokens": 106141
     },
     {
@@ -89,25 +89,25 @@
     {
       "file": "funcs_21.c",
       "canonical_sha256": "25e6b27b0bac87ca03237ccf2c3c53d977eda232cb43d393463ff52d0c7a7219",
-      "named_sha256": "116c5449db0b3668beb07a759a5b9c1473a28c888fc37e4afb388489260678f0",
+      "named_sha256": "11c2d984e4df5233ca4395c8fafd16bb5af4c4219507e10b9b3cbb9eb02d4567",
       "tokens": 168835
     },
     {
       "file": "funcs_22.c",
       "canonical_sha256": "0d9602ef6a56bd66d0c9c89d055255fc34fbcd87bc9e2e5effc4c6370feff042",
-      "named_sha256": "a6adc015cfeda87f9f19bc399ca47a30dc23d2edddc183363922657dc5e4361b",
+      "named_sha256": "fea12a292058855306763642baf10c9965ece12ff851ef15c1d8220056a52af2",
       "tokens": 111018
     },
     {
       "file": "funcs_23.c",
       "canonical_sha256": "8f7812bee31678500525c0048c14c74ad7afae5ab4a8114eb85a7407c6497c21",
-      "named_sha256": "e61b515028b87b1abce0865798868a07de5c6094395c805f63bd7140cf02896d",
+      "named_sha256": "7e515489f6e5e796341407f9223e40434c02fb9720c1fc8c0e7f3e7093709f85",
       "tokens": 105933
     },
     {
       "file": "funcs_24.c",
       "canonical_sha256": "1091fb8920b215123403640248ee8957762a64826a389714a25287fada91a90b",
-      "named_sha256": "6b2528101d73af3fc83204d5de97bce0a3bd4b37af99255a294bb96fe38df8b4",
+      "named_sha256": "7f5da531ababb8cd38a1d659e8a21e3360d429294de0729987e59ab63ad2d093",
       "tokens": 105786
     },
     {
@@ -125,7 +125,7 @@
     {
       "file": "funcs_27.c",
       "canonical_sha256": "b8528ea1f1f1c585a46de06f7ecf58d3ab8006712282b27134b0b028012b8afa",
-      "named_sha256": "2e8ba5d47ce4701a76ceaa029ef613c3da320755f3a834107e8eec84ecdf0327",
+      "named_sha256": "e13f3019e3080279b9700f5b59139ba8b533e1052f8dae45ac2e0f71a94acef7",
       "tokens": 239044
     },
     {
@@ -167,7 +167,7 @@
     {
       "file": "funcs_33.c",
       "canonical_sha256": "c2a7410f967f87672790c9b96a1ee4cbc286f19afbfeab8b31c837218e9c7315",
-      "named_sha256": "aa2fb7d10fef994be0f735003014dd2df476e966246669d0561b52b99bbb21f1",
+      "named_sha256": "bfedb665b6e5e73eb0b2f25218fcdb18ccc6f4ec5799771e63c37a07f01725af",
       "tokens": 207320
     },
     {
@@ -197,13 +197,13 @@
     {
       "file": "funcs_38.c",
       "canonical_sha256": "88ce4a46b52bd85d8ceffa71a4114536cd8d13afc011a1200c550d626efb3441",
-      "named_sha256": "d893715f1ba034b97b8d8313d2ce44cde38c5b181fe64c4f521717c4ea123348",
+      "named_sha256": "7b7b07728baeb9f8bed9c40a539e3037a74e408c8c962ab9b774d3726d2a164b",
       "tokens": 125135
     },
     {
       "file": "funcs_39.c",
       "canonical_sha256": "dac688d0589a726bee488b1942f22f281009af9cf02fb5122322e519adeffe9d",
-      "named_sha256": "05db773f92a1009470816f4ec76f55bad7e5eb5d8b9abb16713d9b34f0a71718",
+      "named_sha256": "89d02147dd00ba3da9b5efb5bf12dbb249abb78c5038374907cb5b7b8ca9f4d4",
       "tokens": 101306
     },
     {
@@ -239,7 +239,7 @@
     {
       "file": "funcs_44.c",
       "canonical_sha256": "a5053ad7065038f6610ae9e74e17671a7997b08093b3f7c0f77bfcf07e97c72a",
-      "named_sha256": "e34f52e996f07a392f498ee9719c262fcb795d9f59774ccbb8cd2b9b5f655cce",
+      "named_sha256": "7f68d61e83393f02c6311b8015c81f8e1cdc5c0ab405e7fdc33e82ab16d0e095",
       "tokens": 195530
     },
     {
@@ -269,7 +269,7 @@
     {
       "file": "funcs_49.c",
       "canonical_sha256": "5b101216b1a06da5d0863bf893fe0f2d4047f97874967e0e45aded70cf066470",
-      "named_sha256": "f476cc37251ba0bdc2c12f7b31c7ebe92770cc2854190e6fd3a5e29aa65d1591",
+      "named_sha256": "01d9b062c860e2842e1a9b2f95f56476cb57ac99838a9b51e3eecc193d68567d",
       "tokens": 196313
     },
     {
@@ -323,7 +323,7 @@
     {
       "file": "funcs_57.c",
       "canonical_sha256": "ab0e441395d5327ba46d262ad972ceee58f9d9b4d01273faf08452b20234b4ed",
-      "named_sha256": "e1893acbb2c772c64cd6c824dc43d90132197aa611065b27078c898b3e4a8820",
+      "named_sha256": "efc94326b4cf534b6337f5f549776117a8d4034d55133076826f68ce38c8614e",
       "tokens": 147131
     },
     {
@@ -365,7 +365,7 @@
     {
       "file": "funcs_63.c",
       "canonical_sha256": "4c99fd232960089cf0323e2dc1ac4069ece14b382fe884188511a048d73f86ea",
-      "named_sha256": "8e8c291a38c97833c857cf632369667cfb28afdf807af9b1e121ab7e96fa2100",
+      "named_sha256": "ec089e693a26fdc857499333cf0ccca79b32a1d458cbb1498a2862cc0d5d733d",
       "tokens": 262732
     },
     {
@@ -383,19 +383,19 @@
     {
       "file": "funcs_66.c",
       "canonical_sha256": "f6ee3dcbea4692cfc1084222893415bf5120e5856d044f02e781f38f9f832ccf",
-      "named_sha256": "d85a6a60469070a98200418fe20fac3d1758c614c71e0b7bd0a77e899815928f",
+      "named_sha256": "341d4f32473cb2ced54f3c37d1f7419e9bb17baf71bdfc5338776f1b9f09ae50",
       "tokens": 189495
     },
     {
       "file": "funcs_67.c",
       "canonical_sha256": "14d069069e4c1ecb8aba8b945faeeacafcb2749dc31f9f1f4b0d34f234bfe1e0",
-      "named_sha256": "69a809bf81f453112902b7d6ab3d9463f4c7666de941990b4a8e01bac56a4787",
+      "named_sha256": "f07e7234fd6e5553957b42bb693b7578ddf4a760961cfb717317cac72a906eee",
       "tokens": 163049
     },
     {
       "file": "funcs_68.c",
       "canonical_sha256": "06a29ad8b3f7dea5255241c79f6d1665cf5fdd6d1cbef5eb81615f362bb25f4b",
-      "named_sha256": "3df358f6919b6a9f375ae8a836aa6bc5cf933b5e7ca8d5e27654ffed9d9f788c",
+      "named_sha256": "b877da7e105bbd9f9f2dbf9ed9d89eceec155b6c515fbd26b56c449c644cbd3d",
       "tokens": 190322
     },
     {
@@ -419,7 +419,7 @@
     {
       "file": "funcs_71.c",
       "canonical_sha256": "5854e1d007421ee1b41ce6aa439d03b1a136938f4fc79f87c0d0cc3f8049fe23",
-      "named_sha256": "0f55dc1b29efb2628e7113f886d4d2522ae8552473706c2d7322725dc4eda7d1",
+      "named_sha256": "dbec11d5688c08ff828bc43f8d086757ab85a19bf663c20d0087559e88386d5f",
       "tokens": 181120
     },
     {
@@ -431,13 +431,13 @@
     {
       "file": "funcs_73.c",
       "canonical_sha256": "d56166fa20d310671c37762f6e8bd8d667851d06d2b5ea594e1ae30cc8b9ec62",
-      "named_sha256": "563ed6f5017f43f5343c9cd23166b0125df2dd121f8f70470feb2543647c0fdb",
+      "named_sha256": "5915296426f2b54e9c7d0d0ed4133583930fc4573de9cb04bd8d8733e19deaee",
       "tokens": 168679
     },
     {
       "file": "funcs_74.c",
       "canonical_sha256": "f3fb5ba67d4f41ebd8db7d05659aa6ce58eb55b642e4ff72ca3b85e8b0161d80",
-      "named_sha256": "c077a640fdf081ff1e69272d2498e2b627de1d5c66ae65ceac8431fcad71847e",
+      "named_sha256": "6c595d674ee082039032c53a7f324da0524a79cd19cfd28b3efbdb3d88d98dc4",
       "tokens": 199236
     },
     {
@@ -485,7 +485,7 @@
     {
       "file": "funcs_81.c",
       "canonical_sha256": "84bb0928432b159ea6dfb5b8bfc1c49332b08b7a285361ba157c67f331f36c99",
-      "named_sha256": "37d07e033499f3eea5d60fac493661b57d52ced5783f65e477c4764f3f7d678f",
+      "named_sha256": "3c3eb59e1cfa030b84b327ef87121a599ebebbec34fd02d24d2c0b032486006b",
       "tokens": 334362
     },
     {
@@ -497,7 +497,7 @@
     {
       "file": "funcs_83.c",
       "canonical_sha256": "4b6fdd21262fffec0aa17ee0ee6152e46bc00cd486aed682927d0321cd39a4b4",
-      "named_sha256": "37b0eed3d3532e21df1738a5cde376a9fdfccbb4c5de86300fb3199dc98d623c",
+      "named_sha256": "3c7ed44f24770ed68b95680b6931b95af861065465d1cd57a5e8b75fd78e37de",
       "tokens": 294713
     },
     {
@@ -515,7 +515,7 @@
     {
       "file": "funcs_86.c",
       "canonical_sha256": "e3b5b4116ca7fca7b74f5fe989e1cbe787c57d3be66d727875dc0cf584236a77",
-      "named_sha256": "13a0e4e404cecc161b9cee24f9e48bece3cf4639007cee4d34d20b7684f2c219",
+      "named_sha256": "2ab92cc9b0824ea773ea3fedd25a0ed4ed47b2e05157fccc9339cf4d9dbca491",
       "tokens": 192994
     },
     {
@@ -533,7 +533,7 @@
     {
       "file": "funcs_89.c",
       "canonical_sha256": "f196cd4a3b49a5d13d53879f52649fd6910cd06b0df439cd9e63c7512868e9db",
-      "named_sha256": "272b3e1a14fb05d6215301a76495cf07db2f66e16351937109f13af54e9fa3d8",
+      "named_sha256": "a88737e4a26f7943e818e4bd477c045621ce6d2cc96411fce5ba915bd26d2724",
       "tokens": 144465
     },
     {
@@ -551,13 +551,13 @@
     {
       "file": "funcs_91.c",
       "canonical_sha256": "0ce147b2a6b9209b3d47adb3ff8e4bf3886b88783ffbce6df33c71f6b3591b50",
-      "named_sha256": "e825141bcf7bd76cb416a553f575125271349ad76d55ffd5069c0484b37d3089",
+      "named_sha256": "8e1e13a2a6e97c6eaf46da2acdc961eda96827084af96df7094d83cc153f1310",
       "tokens": 156924
     },
     {
       "file": "funcs_92.c",
       "canonical_sha256": "15311123d547c8b5b2e643d2ba5f3cc43e0da98e106705b641d272fedad9077d",
-      "named_sha256": "893987d9d9798533dac74bab8e681632b3ca58127bb5ccd838ba6fb7bb85cc52",
+      "named_sha256": "0d251e9af2246ab8ab84be6a59e388c71c3bffd268c1ab73991124cbd183f188",
       "tokens": 127556
     },
     {
@@ -582,6 +582,6 @@
   "source_sha256": {
     "tools/decomp_annotations.py": "cc18b42a710a9998b9b33cbfe2c79009451496078b2136cdceb603d047c4b16b",
     "tools/check_decomp_names.py": "bc742b8b16c9a6f24481d2b41a80c268a9a7feee4c2d95e6f1a537d026d1c74c",
-    "recomp/decomp-symbols.json": "08717abe43e203d3c427490e96506881fb095b31c015b02584c9a82d18c4d9fc"
+    "recomp/decomp-symbols.json": "0dd89cd6777fbaddf99c7a59fbab9c8de39cbb3b846ea6f0c49a2fc9f8517772"
   }
 }
