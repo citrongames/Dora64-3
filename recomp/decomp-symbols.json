@@ -9050,7 +9050,267 @@
       "description": "Original pickup state1 поворачивает actor yaw10 на4 градуса за исходное обновление через настоящий angle helper31A0C. Других записей и команд не содержит; Native владение предметом не заявлено.",
       "evidence": "Exact frozen189 canonical C/MIPS review; function/operand ROM hashes; naming only, no Native pickup/effect completion claim",
       "rom_sha256": "38668fa1c26bb3ed9c11611a2064f29938a4279115bf6abd6f7d29060db323f9",
-      "locals": []
+      "locals": [
+        {
+          "name": "pickup_idle_actor_before_turn_r2",
+          "expression": "ctx->r2",
+          "start": "0x801EBAA8",
+          "end": "0x801EBABC",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EBAB8": "0xC44C0010",
+            "0x801EBAA0": "0x8C42BDEC"
+          }
+        },
+        {
+          "name": "pickup_idle_actor_after_turn_r2",
+          "expression": "ctx->r2",
+          "start": "0x801EBAC4",
+          "end": "0x801EBACC",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EBAC0": "0x8C42BDEC",
+            "0x801EBAC8": "0xE4400010"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EBAD4",
+      "size": 492,
+      "legacy_name": "dora3_s3_core_801EBAD4",
+      "name": "dora3_pickup_follow_parent_or_settle_state2_801EBAD4",
+      "description": "Original state2 инициализирует latch28/count34. При parent index7C!=-1 преобразует offset(0,-70,0) настоящими матрицами parent pitch/yaw и position, пишет actor XYZ и копирует yaw/pitch. Без parent один раз задаёт actor pitch0, Y velocity0/gravity2; затем выполняет E810C probe с offset-50. Успех probe обнуляет velocityY, сбрасывает latch и возвращает state1. Сам E810C позицию не интегрирует.",
+      "evidence": "Exact overlay-qualified Original ROM/body and dispatcher80211718 review; constants802116A8..D0 and actual register instructions verified. Naming/comment change only; uncollected Native ownership is not expanded.",
+      "rom_sha256": "d29ac1a738e3485660143e9eb57dacafe241c64973c7be1dc44d2ac857d13d9c",
+      "locals": [
+        {
+          "name": "pickup_attached_parent_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801EBB50",
+          "end": "0x801EBC20",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EBB4C": "0x02028021",
+            "0x801EBB54": "0x8E05000C",
+            "0x801EBC0C": "0xC6000010"
+          }
+        },
+        {
+          "name": "pickup_parent_transform_matrix_r17",
+          "expression": "ctx->r17",
+          "start": "0x801EBB78",
+          "end": "0x801EBBEC",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EBB74": "0x27B10060",
+            "0x801EBB88": "0x02202021",
+            "0x801EBBBC": "0x00803021"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EBCC0",
+      "size": 540,
+      "legacy_name": "dora3_s3_core_801EBCC0",
+      "name": "dora3_pickup_scatter_collision_move_state3_801EBCC0",
+      "description": "Original state3 один раз задаёт speed0=20/count34=0 и yaw4 из actor yaw+180+результат настоящего RNG3196C(-15). Каждый Source проход уменьшает speed на2. Две ветви actual collision/probe пересчитывают yaw через E8404 либо E8210/E8238; до пяти реакций count34 сбрасывают speed20. Actor yaw вращается на5; actual E7F54 выполняет движение, E7EB8 выбирает высоту, actorY получает выбранную высоту+50. При speed<=0 сбрасывает latch и ставит state1, сохраняя оставшийся порядок этого прохода.",
+      "evidence": "Exact overlay-qualified Original ROM/body and dispatcher80211718 review; constants802116A8..D0 and actual register instructions verified. Naming/comment change only; uncollected Native ownership is not expanded.",
+      "rom_sha256": "eed8b6e1fc4d51194916ec72d5634a3f189d3d69ab3562b2ffc329b39ae288a1",
+      "locals": [
+        {
+          "name": "pickup_scatter_height_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801EBE7C",
+          "end": "0x801EBEC0",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EBE78": "0x8E10BDEC",
+            "0x801EBE94": "0x02002021",
+            "0x801EBEBC": "0xE60000A0"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EBEDC",
+      "size": 236,
+      "legacy_name": "dora3_s3_core_801EBEDC",
+      "name": "dora3_pickup_expand_into_collection_state4_801EBEDC",
+      "description": "Original state4 очищает count34 при первом входе, затем прибавляет5 к углу через31A0C с short truncation/wrap. Actual math57A80 по углу в радианах задаёт одну величину трём actor scale18/1C/20. При short angle>=90 сбрасывает latch28 и ставит state10. Дискретный переход следует после записи масштаба.",
+      "evidence": "Exact overlay-qualified Original ROM/body and dispatcher80211718 review; constants802116A8..D0 and actual register instructions verified. Naming/comment change only; uncollected Native ownership is not expanded.",
+      "rom_sha256": "9af4bd789ee6633cc508381826b1c44a773e87745cd9cc4bfce29f1a60b5d7f7",
+      "locals": [
+        {
+          "name": "pickup_expand_scale_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801EBF6C",
+          "end": "0x801EBF8C",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EBF68": "0x8E10BDEC",
+            "0x801EBF88": "0xE6000018"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EBFC8",
+      "size": 264,
+      "legacy_name": "dora3_s3_core_801EBFC8",
+      "name": "dora3_pickup_rise_with_periodic_effect_state5_801EBFC8",
+      "description": "Original state5 один раз очищает half34/36, задаёт Y velocity5 и сохраняет начальный actor scale18 в physics30. Пока half34==0, half36 растёт раз в Source проход; каждые3 вызывает настоящий E6968 с descriptor801FC964 в actor XYZ со Z+50. При actorY>=250 обнуляет Y velocity, увеличивает half34 и подаёт sound55; остаётся state5 до внешней команды.",
+      "evidence": "Exact overlay-qualified Original ROM/body and dispatcher80211718 review; constants802116A8..D0 and actual register instructions verified. Naming/comment change only; uncollected Native ownership is not expanded. Descriptor801FC964 is distinct from collected flash descriptor801FC950; this name deliberately describes the proven periodic constructor, without claiming an unreviewed effect kind.",
+      "rom_sha256": "7f12272e3e7985be58c87492065974400628eeab9e2e13c44390289ca09f2121",
+      "locals": [
+        {
+          "name": "pickup_rise_initial_physics_r3",
+          "expression": "ctx->r3",
+          "start": "0x801EBFD0",
+          "end": "0x801EBFF0",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EBFCC": "0x8C63BCDC",
+            "0x801EBFD8": "0x80620028",
+            "0x801EBFE4": "0xA0620028"
+          }
+        },
+        {
+          "name": "pickup_rise_initial_actor_r3",
+          "expression": "ctx->r3",
+          "start": "0x801EBFF8",
+          "end": "0x801EC014",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EBFF4": "0x8C63BDEC",
+            "0x801EC008": "0xC4620018"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC0D0",
+      "size": 196,
+      "legacy_name": "dora3_s3_core_801EC0D0",
+      "name": "dora3_pickup_shrink_then_signal_state6_801EC0D0",
+      "description": "Original state6 один раз задаёт Y velocity-1. Каждый Source проход уменьшает единый actor scale18/1C/20 на ROM double0.05 и пишет тот же scale в physics30. При scale<=2 ставит state1, сбрасывает latch28, обнуляет Y velocity, вызывает D1498(1) и sound56 ровно в этой ветви.",
+      "evidence": "Exact overlay-qualified Original ROM/body and dispatcher80211718 review; constants802116A8..D0 and actual register instructions verified. Naming/comment change only; uncollected Native ownership is not expanded.",
+      "rom_sha256": "c63b651186f98b179661e5822a0d2e9cf65fae6567fa3e4a719589d0a86d4e87",
+      "locals": [
+        {
+          "name": "pickup_shrink_actor_r3",
+          "expression": "ctx->r3",
+          "start": "0x801EC110",
+          "end": "0x801EC16C",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EC10C": "0x8C63BDEC",
+            "0x801EC130": "0xE4600018",
+            "0x801EC164": "0xAC620094"
+          }
+        },
+        {
+          "name": "pickup_shrink_physics_r4",
+          "expression": "ctx->r4",
+          "start": "0x801EC12C",
+          "end": "0x801EC16C",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EC128": "0x8C84BCDC",
+            "0x801EC13C": "0xE4800030",
+            "0x801EC168": "0xA0800028"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC194",
+      "size": 276,
+      "legacy_name": "dora3_s3_core_801EC194",
+      "name": "dora3_pickup_accelerate_spin_then_fade_state7_801EC194",
+      "description": "Original state7 один раз задаёт physics58=1 и5C=1. Actor yaw увеличивается на текущую float58. Пока старое значение58<35, скорость вращения увеличивается на ROM double0.3. Затем float5C уменьшается на0.3, halfD8 обнуляется и actual E89CC передаёт opacity модели. При новом5C<=0.3 actual E6E6C удаляет объект. Инициализация, старый speed branch и момент удаления сохраняют Source порядок.",
+      "evidence": "Exact overlay-qualified Original ROM/body and dispatcher80211718 review; constants802116A8..D0 and actual register instructions verified. Naming/comment change only; uncollected Native ownership is not expanded.",
+      "rom_sha256": "a5b67811a008aeb055896332a1fdd513af98b1a1364e40ad760b093b35f084da",
+      "locals": [
+        {
+          "name": "pickup_spin_initial_physics_r3",
+          "expression": "ctx->r3",
+          "start": "0x801EC19C",
+          "end": "0x801EC1D4",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EC198": "0x8C63BCDC",
+            "0x801EC1A8": "0x80620028",
+            "0x801EC1B4": "0xA0620028"
+          }
+        },
+        {
+          "name": "pickup_spin_opacity_actor_r4",
+          "expression": "ctx->r4",
+          "start": "0x801EC1F8",
+          "end": "0x801EC26C",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EC1F4": "0x8C84BDEC",
+            "0x801EC200": "0xE4800010",
+            "0x801EC264": "0x0C07A273"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC2A8",
+      "size": 752,
+      "legacy_name": "dora3_s3_core_801EC2A8",
+      "name": "dora3_pickup_two_stage_arc_reveal_state8_801EC2A8",
+      "description": "Original state8 очищает half34 при первом входе. В первой фазе half36+=5 с angle wrap/truncation; actual trig задаёт XYZ из shortBE/C0, высоты50 и радиуса300, а также единый scale2*trig(angle). При angle>=90 очищает36 и увеличивает34. Во второй фазе36+=3, ограничивается half44; достижение44 сбрасывает latch и ставит state1. X/Z идут по actual trig с радиусом300, Y/scale второй фазой не переписываются.",
+      "evidence": "Exact overlay-qualified Original ROM/body and dispatcher80211718 review; constants802116A8..D0 and actual register instructions verified. Naming/comment change only; uncollected Native ownership is not expanded.",
+      "rom_sha256": "e60bc84680104cde949fbee65a68925754284880691c6b38eb493e07207496cb",
+      "locals": [
+        {
+          "name": "pickup_first_arc_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801EC324",
+          "end": "0x801EC478",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EC320": "0x8E10BDEC",
+            "0x801EC344": "0xE600009C",
+            "0x801EC42C": "0xE60200A0"
+          }
+        },
+        {
+          "name": "pickup_first_arc_z_actor_r17",
+          "expression": "ctx->r17",
+          "start": "0x801EC3B0",
+          "end": "0x801EC3E4",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EC3AC": "0x8E31BDEC",
+            "0x801EC3E0": "0xE62000A4"
+          }
+        },
+        {
+          "name": "pickup_second_arc_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801EC530",
+          "end": "0x801EC57C",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EC52C": "0x8E10BDEC",
+            "0x801EC548": "0xE600009C",
+            "0x801EC578": "0xE60000A4"
+          }
+        }
+      ]
     },
     {
       "section": ".scene1",
@@ -9108,10 +9368,33 @@
       "size": 204,
       "legacy_name": "dora3_s3_core_801EC7D0",
       "name": "dora3_pickup_dispatch_states1_to10_801EC7D0",
-      "description": "Общий Original update предмета: читает state94 текущего actor8021BDEC, принимает диапазон1..10 и передаёт управление через точную ROM таблицу80211718. За диапазоном возвращает управление без private update. Конкретные движения отдельных состояний ещё не заявлены как Native.",
-      "evidence": "Exact frozen189 canonical instruction review and verified scene1 public84-byte kind table; ROM descriptors801FC818/801FC894/801FC904 match Source seed; Source-only naming, no Native pickup completion claim",
+      "description": "Original общий dispatcher предмета читает actor state94 и точную ROM jump table80211718: states1..8 вызывают EBA9C/EBAD4/EBCC0/EBEDC/EBFC8/EC0D0/EC194/EC2A8; state9 ничего не делает, state10 вызывает EC598. Значения вне1..10 также возвращаются без callback. Данная аннотация не расширяет Native владение этими состояниями.",
+      "evidence": "Exact frozen189 canonical instruction review and verified scene1 public84-byte kind table; ROM descriptors801FC818/801FC894/801FC904 match Source seed; Source-only naming, no Native pickup completion claim Exact overlay-qualified Original ROM/body and dispatcher80211718 review; constants802116A8..D0 and actual register instructions verified. Naming/comment change only; uncollected Native ownership is not expanded.",
       "rom_sha256": "1a9cb47b317802e4b8c09dcac024235ab8d41f0525fb88a88307edde8645f5da",
-      "locals": []
+      "locals": [
+        {
+          "name": "pickup_dispatch_state_r2",
+          "expression": "ctx->r2",
+          "start": "0x801EC7E4",
+          "end": "0x801EC7E8",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EC7E0": "0x8C420094",
+            "0x801EC7E4": "0x2443FFFF"
+          }
+        },
+        {
+          "name": "pickup_dispatch_state_index_r3",
+          "expression": "ctx->r3",
+          "start": "0x801EC7E8",
+          "end": "0x801EC7F4",
+          "description": "Exact original register storage in the proven instruction region; register reuse outside the region retains the original name.",
+          "instructions": {
+            "0x801EC7E4": "0x2443FFFF",
+            "0x801EC7E8": "0x2C62000A"
+          }
+        }
+      ]
     },
     {
       "section": ".scene1",

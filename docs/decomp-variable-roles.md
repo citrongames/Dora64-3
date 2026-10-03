@@ -78,12 +78,29 @@
 | `object_physics_r3` | `ctx->r3` | Physics pointer до установки входного флага state2 | 1 |
 | `object_physics_r3` | `ctx->r3` | Текущий physics record до однократного вызова выбора клипа | 1 |
 | `opacity_model_r4` | `ctx->r4` | Unchanged model pointer for opacity flag/time writes | 1 |
+| `pickup_attached_parent_actor_r16` | `ctx->r16` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_attachment_slot_r16` | `ctx->r16` | Attachment-slot loop0..2 only; register reused for the effect index after this scope | 1 |
 | `pickup_collect_initial_physics_r3` | `ctx->r3` | Physics pointer only for the initial latch28 read/write before register reuse | 1 |
+| `pickup_dispatch_state_index_r3` | `ctx->r3` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_dispatch_state_r2` | `ctx->r2` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_effect_index_r16` | `ctx->r16` | Six-effect creation loop index0..5 written into spawned physics44 | 1 |
+| `pickup_expand_scale_actor_r16` | `ctx->r16` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_first_arc_actor_r16` | `ctx->r16` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_first_arc_z_actor_r17` | `ctx->r17` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_flash_cosine_actor_r16` | `ctx->r16` | Exact Original register storage for this proven instruction region only | 1 |
 | `pickup_flash_sine_actor_r16` | `ctx->r16` | Exact Original register storage for this proven instruction region only | 1 |
+| `pickup_idle_actor_after_turn_r2` | `ctx->r2` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_idle_actor_before_turn_r2` | `ctx->r2` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_key_crystal_contact_quest_mode_r3` | `ctx->r3` | Original contact mode only through the mode3 comparison; register becomes scene identity afterwards | 1 |
+| `pickup_parent_transform_matrix_r17` | `ctx->r17` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_rise_initial_actor_r3` | `ctx->r3` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_rise_initial_physics_r3` | `ctx->r3` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_scatter_height_actor_r16` | `ctx->r16` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_second_arc_actor_r16` | `ctx->r16` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_shrink_actor_r3` | `ctx->r3` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_shrink_physics_r4` | `ctx->r4` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_spin_initial_physics_r3` | `ctx->r3` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_spin_opacity_actor_r4` | `ctx->r4` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_star_piece_contact_quest_mode_r3` | `ctx->r3` | Original contact mode only through the mode3 comparison; register becomes scene identity afterwards | 1 |
 | `player_actor_r2` | `ctx->r2` | Текущий actor персонажа из8021D49C | 58 |
 | `player_actor_r3` | `ctx->r3` | Текущий actor персонажа из8021D49C | 15 |

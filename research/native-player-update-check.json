@@ -977,7 +977,7 @@
     "size": 36304,
     "sha256": "f5284a1979a9fd3f5f46fe48c9a361e300aca936d8cb123aa87f50bdbcee5f7a"
   },
-  "generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
+  "generation_receipt_sha256": "0c3504b465a334012069de397935252c280e3103b7149622c14db88ae59f96ce",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "limitations": [
@@ -1001,5 +1001,10 @@
     "previous_checker_sha256": "661afcfac368efa4744ac67f0bc18b5a270a05bd693e674441ce8647dc07f03f",
     "previous_report_sha256": "9d521d18136b16c062c9773bbd1f13b383e4203a481ddc726dbaed71c20dc9bf",
     "evidence": "Only the post-execution full report caption now parses existing PASS stdout. No compiled preparation/runtime/fixture/Source or scene-frame diagnostic branch changes."
+  },
+  "naming_only_relocation_249": {
+    "executed_report_sha256": "c85c2c38d6f0929bf9ba6700da129e00af73332796d37cba47041d64605a4b14",
+    "previous_generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
+    "evidence": "Only Source annotation catalog changed: seven functions and17 scoped register roles. Runtime/rules/fixture/checker/header inputs and all96 canonical generated C units/frontier/hooks/overlay table exactly equal main235. This preserves the executed proof and does not claim a fresh gameplay regression."
   }
 }

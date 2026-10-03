@@ -52,7 +52,7 @@
     "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
     "tools/check_native_camera_modes.py": "5474f494eab96267d69aaa8cb6050ce543b1d0fc8c91b85628fb0ab3b88f1365"
   },
-  "generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
+  "generation_receipt_sha256": "0c3504b465a334012069de397935252c280e3103b7149622c14db88ae59f96ce",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "limitations": [
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",
@@ -64,5 +64,10 @@
     "report_sha256": "2892fc95454cca62fb6c3892a61c526a8d3ea46aec80013fd61a73785323443f",
     "generation_receipt_sha256": "6d5ea6d0c91aa01dba9fe68acad136b4fff9f43fb434a39b07e7279c44f1c90f",
     "evidence": "All reported compiled sources/checkers/headers identical;96 canonical C units and raw frontier/hooks/overlay table identical to frozen224 and fresh235 rehearsal. This relocates the named executed proof and does not claim a new run."
+  },
+  "naming_only_relocation_249": {
+    "executed_report_sha256": "914e9998593d8280dacf22b17b7f79efd3e78c0f38accf64e3e6644488f438e5",
+    "previous_generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
+    "evidence": "Only Source annotation catalog changed: seven functions and17 scoped register roles. Runtime/rules/fixture/checker/header inputs and all96 canonical generated C units/frontier/hooks/overlay table exactly equal main235. This preserves the executed proof and does not claim a fresh gameplay regression."
   }
 }

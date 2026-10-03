@@ -1,6 +1,6 @@
 {
-  "result": "PASS: 712 descriptions; 377 semantic function names; 481 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
-  "generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
+  "result": "PASS: 719 descriptions; 384 semantic function names; 498 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
+  "generation_receipt_sha256": "0c3504b465a334012069de397935252c280e3103b7149622c14db88ae59f96ce",
   "files": [
     {
       "file": "funcs_0.c",
@@ -197,7 +197,7 @@
     {
       "file": "funcs_38.c",
       "canonical_sha256": "052328a9465f21539472bec54d55cec83208fc04380f42dd23f6007903f10bfd",
-      "named_sha256": "c2f387331372956a649df1b2ced348c2b9847ca5a36116231e3d762c06579185",
+      "named_sha256": "4d55567bfa19a0d5dccfb429fb590a8603a0a0e454b5a297088deaa8f3d21ae2",
       "tokens": 125034
     },
     {
@@ -582,6 +582,6 @@
   "source_sha256": {
     "tools/decomp_annotations.py": "cc18b42a710a9998b9b33cbfe2c79009451496078b2136cdceb603d047c4b16b",
     "tools/check_decomp_names.py": "bc742b8b16c9a6f24481d2b41a80c268a9a7feee4c2d95e6f1a537d026d1c74c",
-    "recomp/decomp-symbols.json": "3dd417e814d862554bd1bead27c6ab6be999d80a02430e6438ab14504c9912e8"
+    "recomp/decomp-symbols.json": "a692cc0824fc97a875076ad00310583e3bc075e6ef6f048c5c42debff6f77afa"
   }
 }
