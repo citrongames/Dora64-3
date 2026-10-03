@@ -581,10 +581,18 @@ static unsigned reward_idle_yaw_samples=0;
 #include "native-pickup-spin-guard-check.inc"
 #include "native-pickup-arc-guard-check.inc"
 #include "native-pickup-reveal-source-check.inc"
+#include "native-pickup-settle-scatter-source-check.inc"
+#include "native-pickup-settle-guard-check.inc"
 #include "native-pickup-reveal-guard-check.inc"
 int main(int argc,char** argv) {
     assert(argc==2);std::vector<uint32_t> image(0x400000/4);std::ifstream in(argv[1],std::ios::binary);
     in.read(reinterpret_cast<char*>(image.data()),0x400000);assert(in.gcount()==0x400000);
+#ifdef DORA3_PICKUP_SETTLE_GUARD_CHECK
+    check_pickup_settle_guards(image);return 0;
+#endif
+#ifdef DORA3_PICKUP_SETTLE_SCATTER_SOURCE_CHECK
+    check_pickup_settle_scatter_source(image);return 0;
+#endif
 #ifdef DORA3_PICKUP_REVEAL_GUARD_CHECK
     check_pickup_reveal_guards(image);return 0;
 #endif

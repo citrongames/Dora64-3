@@ -814,7 +814,7 @@
     "dora3_s3_core_801E5828"
   ],
   "source_sha256": {
-    "src/native_gameplay_preview.cpp": "029afa686e178ca0f131c8f31af0b1ce8f0334b522698ca89edb5045a4a7f15e",
+    "src/native_gameplay_preview.cpp": "1bafccec248520b85de1dded2396a07d879b7fba9f9be580c847c2c5c4d447b6",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "319b3228e69fb6a6fcbfa81aaff831eeecfe54426538e10ca35726609c917cc4",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
@@ -828,7 +828,7 @@
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
     "src/native_gameplay_preview.hpp": "c217908d86f9b319a3acffcf4f3edb0e7cfa92b8de4742c21988f4d052638b11",
     "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
-    "recomp/native-timing-rules.json": "c7bd2ff16d9f1f1e32668843c03aeb90847cd6991b3ad29212fb1b869b455ba1",
+    "recomp/native-timing-rules.json": "b791d28472620547b5ebb0a2cf03c5165730c6d3ad677da7359b78f442507bf5",
     "research/player-state-inventory.json": "c6497c19972e73478ac5d71ffcef6304924aeb087121f0c2e38528fb1bbd150f",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
     "tools/check_native_player_update.py": "681b681045386f9444f2cc0e2cb9d1c5c2327a74f1121766a949e863742beb21"
@@ -983,7 +983,7 @@
     "size": 36304,
     "sha256": "f5284a1979a9fd3f5f46fe48c9a361e300aca936d8cb123aa87f50bdbcee5f7a"
   },
-  "generation_receipt_sha256": "aad8dcd962f76d454c7323c39db7fc43b8f11d114cfe2b478072817bb7267567",
+  "generation_receipt_sha256": "d521635f7e8baa8b9dbdf6a868e485c6a6052092657e2bcbf41af7d78e4cc92d",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "limitations": [
@@ -991,22 +991,17 @@
     "Homing targets are static; moving86 verified for six Source ticks, stationary86 through tracking-window closure; real level gameplay remains unverified",
     "Live producers invoke real constructors during the player callback; interaction contact flags are instrumented and captured NPC paused; player states20/27/57/58 and aerial weapons9/10/11/12 tested; healthy damage32..49/63 tested through real recovery; lethal32/35/37/40/43/46/47/48/49 through death50..56/fade/game-over/scene resource cleanup; actual C9BE0 six-character model/resource recreation and post-ready67/Ground Native reacquisition tested; room DMA/resource decode/level construction remains a synthetic boundary; byte status pointers use actual unaligned Original records; special64/65/66/67 Source and Native command/character-frame/real-idle/cancellation/full-recovery tested; actual model3 creation/attachment/destruction execute on synthetic assets, city7 sprite5 executes its real pool constructor, other sprite producers remain instrumented; door59/surface60..62 Source and Native schedules execute real producer/actor pause/command writes; actual script camera advancement and room DMA/level construction remain unverified; external hover49 selecting producer, real-level collision assets, dialogue progression/layout/input and sound queue remain unverified; actual common NPC collision selection/B priority executes Original overlap, twelve actual kind callbacks and linked parent on synthetic geometry (actual dialogue initializer executes with a checked audio-queue failure boundary); orbital intermediate return yaw checks cover both nonzero directions and360-degree wrap; city13..17/20..22 wait/walk callbacks checked with exact private counts, clip commands and fractional X/Z; their dialogue3 callbacks, story100/secondary-model/wrapped-kind6 families and kind21 special200/201 callbacks are tested against frozen189 on synthetic assets; Original special201 yaw snaps, unapplied rate5C and six-tick release are preserved, including repeated writes within a single period; other unreviewed AI states retain Source ownership; linked18/19 and story18/6 have actual constructor/contact/final-command-delivery proof; slot09 dialogue/event families beyond reviewed idle/patrol/wait, other active NPCs/platforms, story-room orbital dialogue producer, real levels, cutscenes, minigames and2D remain outstanding"
   ],
-  "execution_origin_282": {
-    "stage": 281,
-    "report_sha256": "d8a6eb351bace74380a112a5ea51c858d74727b5e43d2441b0d1773e71b67c2f",
-    "generation_receipt_sha256": "815b02c77302a6354ca4b1e002ed4a22281ce223bb2b39cb1d617d3a6cc1b9db",
+  "execution_origin_295": {
+    "stage": 291,
+    "report_sha256": "36790694ec07f4d8d14fe98eadcec63882fb9cc9cd1d013fcea9eb2e37e35315",
+    "generation_receipt_sha256": "8319cae950a8db615f3f0f3056d09db782633b8d1ede94c4d1b2e688ce19c69d",
     "metadata_only_input_changes": {
       "recomp/native-timing-rules.json": {
-        "executed_sha256": "6d73230cc0afcb440e33ac20ffef71d785f305153ca701ad0adf8cc1558fdc2f",
-        "current_sha256": "c7bd2ff16d9f1f1e32668843c03aeb90847cd6991b3ad29212fb1b869b455ba1",
-        "reason": "Only status/evidence metadata changed; every semantic rule and96 canonical C/frontier/hooks/overlay table exact"
+        "executed_sha256": "460872a41ea5d44715da4a9689f23b78de689ac2e045ffd734dc1997eedd9f2a",
+        "current_sha256": "b791d28472620547b5ebb0a2cf03c5165730c6d3ad677da7359b78f442507bf5",
+        "reason": "Status/evidence only; all semantic timing rules and96 canonical C/frontier/hooks/overlays exact"
       }
     },
-    "evidence": "Runtime and every tracked fixture/header/checker input exact;96 canonical C/frontier/hooks/overlay table exact. Complete current main catalog and timing rule status/evidence updated; exact executed/current rule hashes retained separately. Actual execution origin retained; no repeated main execution claim."
-  },
-  "catalog_only_origin_286": {
-    "prior_main282_report_sha256": "c3c3bd81ece7308be2c76c8beb98c4835172166ef653f73c420615a4c6f86903",
-    "prior_generation_receipt_sha256": "b966428e4e1e801eec58536983381f73e35c5aafab1eaff883f14db9d5eb34b6",
-    "evidence": "Only confirmed reset helper names/descriptions and catalog changed; every tracked runtime/checker/fixture/header input exact,96 canonical C/frontier/hooks/overlays exact. Original actual279/281/283 execution origins retained; no repeat runtime execution claimed."
+    "evidence": "Every actual runtime/checker/fixture/header input exact; all96 canonical C/frontier/hooks/overlays exact. Main286 catalog and confirmed4/7/8 evidence preserved, Source2/collected10 descriptions updated. Actual291 execution origin retained; no repeated main execution claim."
   }
 }

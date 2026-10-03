@@ -7581,6 +7581,18 @@
       "role": "Native_pickup4_pure_reveal_scale_Source_half_angle_latch_collection",
       "evidence": "Exact Original ROM/body/site guards; actual279/283 complete lifetime and external guards, fresh281 O2 broad player/world/NPC, fresh283 loop and scene resource barrier. Arc283 covers both positive-time rejected phases in all216 applicable worlds;281 coverage assertion failure retained. Native8 admits actual phase0 angle<90 or phase1 angle<target; incompatible external angle retains Source until actual wrap/clamp. No renderer/real level-selector/full-pool exhaustion proof.",
       "status": "Verified main282 Native initialized4/7/8 pure motion with ordered Original Source commands"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EBAD4",
+      "function_name": "dora3_s3_core_801EBAD4",
+      "function_sha256": "d29ac1a738e3485660143e9eb57dacafe241c64973c7be1dc44d2ac857d13d9c",
+      "site": "0x801EBAD4",
+      "expected_word": "0x3C038022",
+      "operation": "native_pickup_sequence",
+      "role": "initialized_no_parent_pickup_settle_Original_commands",
+      "status": "Verified main295 initialized no-parent Native2 with ordered Original Source commands",
+      "evidence": "Actual291 basic432 paired complete lifetimes,8 external profiles*3456 paired worlds/884736 whole endpoints and cache/terrain rollback; actual Source contact/collection/six-effect retirement. Query-before-collected-fade repair preserves below-surface parent handoff positive velocity; actual289 negative retained. Full O2/loop/scene barrier and related reveal/arc regressions291 passed. Parent-follow/Native3 remain Source in main295; no game/GPU/real level claim."
     }
   ]
 }

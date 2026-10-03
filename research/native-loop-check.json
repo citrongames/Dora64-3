@@ -8,7 +8,7 @@
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "src/native_model_animation.cpp": "8696ac3189b3d95c3627172aa05b70929831aeeb427780ece5e844d07a03d664",
     "src/native_game_loop.cpp": "515b06226d61a7afa1bef038173d15e83ccbcad1de6b3afab833966a8f64ecfb",
-    "src/native_gameplay_preview.cpp": "029afa686e178ca0f131c8f31af0b1ce8f0334b522698ca89edb5045a4a7f15e",
+    "src/native_gameplay_preview.cpp": "1bafccec248520b85de1dded2396a07d879b7fba9f9be580c847c2c5c4d447b6",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_scene_policy.cpp": "4d091632bf6780fa9e55c2ce1cca996334ec0fc5866a8bfcc512154a21dacef7",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
@@ -26,7 +26,7 @@
     "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
     "tools/check_native_loop.py": "625bac56875c1c00acb6e7baba13b88a741403c9a3c110006f92d14d7e319449"
   },
-  "generation_receipt_sha256": "aad8dcd962f76d454c7323c39db7fc43b8f11d114cfe2b478072817bb7267567",
+  "generation_receipt_sha256": "d521635f7e8baa8b9dbdf6a868e485c6a6052092657e2bcbf41af7d78e4cc92d",
   "original_functions": [
     "dora3_color_buffer_setup",
     "dora3_depth_buffer_clear",
@@ -125,16 +125,11 @@
     "osVirtualToPhysical_recomp",
     "osWritebackDCacheAll_recomp"
   ],
-  "execution_origin_282": {
-    "stage": 283,
-    "report_sha256": "2d3b3634051a4244522a38fa400ce9ef9338c7354cc49d52198c6464564d6911",
-    "generation_receipt_sha256": "c63cecc180991d03ab88e402aaac0a273deab976d2e22a3e8b3c7151f8667b12",
+  "execution_origin_295": {
+    "stage": 291,
+    "report_sha256": "8c472ff41fabe3dc5daf1ffe1625fa8861d4d74349117b87a3b137a23d001240",
+    "generation_receipt_sha256": "8319cae950a8db615f3f0f3056d09db782633b8d1ede94c4d1b2e688ce19c69d",
     "metadata_only_input_changes": {},
-    "evidence": "Runtime and every tracked fixture/header/checker input exact;96 canonical C/frontier/hooks/overlay table exact. Complete current main catalog and timing rule status/evidence updated; exact executed/current rule hashes retained separately. Actual execution origin retained; no repeated main execution claim."
-  },
-  "catalog_only_origin_286": {
-    "prior_main282_report_sha256": "c990b121ae4c4b80b89ae485f065d9c46383f08ab0af4023a6ad0d4aeb887e2c",
-    "prior_generation_receipt_sha256": "b966428e4e1e801eec58536983381f73e35c5aafab1eaff883f14db9d5eb34b6",
-    "evidence": "Only confirmed reset helper names/descriptions and catalog changed; every tracked runtime/checker/fixture/header input exact,96 canonical C/frontier/hooks/overlays exact. Original actual279/281/283 execution origins retained; no repeat runtime execution claimed."
+    "evidence": "Every actual runtime/checker/fixture/header input exact; all96 canonical C/frontier/hooks/overlays exact. Main286 catalog and confirmed4/7/8 evidence preserved, Source2/collected10 descriptions updated. Actual291 execution origin retained; no repeated main execution claim."
   }
 }

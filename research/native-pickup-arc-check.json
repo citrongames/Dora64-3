@@ -40,15 +40,15 @@
     "dora3_s3_demo_801E8404"
   ],
   "source_sha256": {
-    "src/native_gameplay_preview.cpp": "029afa686e178ca0f131c8f31af0b1ce8f0334b522698ca89edb5045a4a7f15e",
+    "src/native_gameplay_preview.cpp": "1bafccec248520b85de1dded2396a07d879b7fba9f9be580c847c2c5c4d447b6",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "319b3228e69fb6a6fcbfa81aaff831eeecfe54426538e10ca35726609c917cc4",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "src/native_model_animation.cpp": "8696ac3189b3d95c3627172aa05b70929831aeeb427780ece5e844d07a03d664",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-    "research/native-story-pickup-source-check.cpp": "1b3e2cef132e8b7d93c38fba0101c9f174b8895747c669564af101e9bb7695c8",
+    "research/native-story-pickup-source-check.cpp": "631cf7aea65de424ba724bcf5c199bb40dbf631c844625971ad718b382792f45",
     "tools/check_native_player_update.py": "681b681045386f9444f2cc0e2cb9d1c5c2327a74f1121766a949e863742beb21",
-    "tools/check_native_story_pickups.py": "5383a4bdd8d1aa14d21fd3376239de4d3598315dbd6ff5b160afe8a6bb40f808",
+    "tools/check_native_story_pickups.py": "b4ae4cc005d76e517cea09ea000ee74b02b68e6daef318eeb7d662adc865efab",
     "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
@@ -86,7 +86,7 @@
     "research/native-periodic-producer-check.inc": "c778c8103d470d0c7123d2b85eeaa4e099f50d04285f4af42eaa53665cdd8f61",
     "research/native-pickup-uncollected-source-check.inc": "c20b527ce89f00746ff9d7b64e6c130eae1dc41ccb23cdb2669616b0a1a87959"
   },
-  "generation_receipt_sha256": "aad8dcd962f76d454c7323c39db7fc43b8f11d114cfe2b478072817bb7267567",
+  "generation_receipt_sha256": "d521635f7e8baa8b9dbdf6a868e485c6a6052092657e2bcbf41af7d78e4cc92d",
   "reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "validated_schedules": {
     "settings": 24,
@@ -141,16 +141,11 @@
     "External state and arc BE/C0/44 parameters; no real script selector, renderer or pool exhaustion proof"
   ],
   "scope": "Native initialized state7 spin/fade and state8 two-phase XYZ/scale geometry; ordered Source angle/phase/latch/return and actual mode3 collection/full lifetimes",
-  "execution_origin_282": {
-    "stage": 283,
-    "report_sha256": "09f7a05f2db2ec0c1a2046aee1759f602103be69dee35cf4aaabd0138a841ed8",
-    "generation_receipt_sha256": "c63cecc180991d03ab88e402aaac0a273deab976d2e22a3e8b3c7151f8667b12",
+  "execution_origin_295": {
+    "stage": 291,
+    "report_sha256": "d0aea55fcfa7f4031f2b7f526e2599e8ae94279b5e35207755967f211001aea5",
+    "generation_receipt_sha256": "8319cae950a8db615f3f0f3056d09db782633b8d1ede94c4d1b2e688ce19c69d",
     "metadata_only_input_changes": {},
-    "evidence": "Runtime and every tracked fixture/header/checker input exact;96 canonical C/frontier/hooks/overlay table exact. Complete current main catalog and timing rule status/evidence updated; exact executed/current rule hashes retained separately. Actual execution origin retained; no repeated main execution claim."
-  },
-  "catalog_only_origin_286": {
-    "prior_main282_report_sha256": "d2d4b25e39aef70495a0839c55002cfcda134196908c4413916ed8f580c0ded2",
-    "prior_generation_receipt_sha256": "b966428e4e1e801eec58536983381f73e35c5aafab1eaff883f14db9d5eb34b6",
-    "evidence": "Only confirmed reset helper names/descriptions and catalog changed; every tracked runtime/checker/fixture/header input exact,96 canonical C/frontier/hooks/overlays exact. Original actual279/281/283 execution origins retained; no repeat runtime execution claimed."
+    "evidence": "Every actual runtime/checker/fixture/header input exact; all96 canonical C/frontier/hooks/overlays exact. Main286 catalog and confirmed4/7/8 evidence preserved, Source2/collected10 descriptions updated. Actual291 execution origin retained; no repeated main execution claim."
   }
 }

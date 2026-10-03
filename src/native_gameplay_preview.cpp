@@ -14,6 +14,7 @@
 #include <array>
 #include <cmath>
 #include <limits>
+#include <cstring>
 extern "C" void dora3_s3_801C8B28(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_801E8BDC(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_801E89CC(uint8_t*,recomp_context*);
@@ -321,6 +322,81 @@ void reward_source_restore(uint8_t* rdram,RewardSourcePeriod& period) {
     period.replayed=true;
 }
 
+// Source owns state2 initialization, surface decisions and the state1 command.
+// Native previews only the initialized no-parent trajectory. The actual query
+// below uses the Source command baseline and rolls back all of its guest writes.
+struct PickupSettleSourcePeriod {
+    RewardSourcePeriod common;
+    int32_t initial_velocity,expected_velocity;
+    float end_velocity=0;
+};
+std::array<std::optional<PickupSettleSourcePeriod>,200> pickup_settle_source_periods;
+void pickup_settle_restore(uint8_t* rdram,PickupSettleSourcePeriod& period) {
+    const auto address=period.common.physical+0x14;
+    if(word(rdram,address)==period.expected_velocity)MEM_W(0,int32_t(address))=period.initial_velocity;
+    reward_source_restore(rdram,period.common);
+}
+void pickup_settle_begin(uint8_t* rdram,uint32_t actor,uint32_t physical,uint32_t model,unsigned slot,uint64_t source_pass) {
+    const auto& slice=*active_simulation_slice();const auto fields=reward_source_fields(rdram,actor,physical);
+    const auto lifetime=game_model_animation().lifetime_token(model),run=game_model_animation().run_token(model),time_command=game_model_animation().time_command_token(model);
+    const auto model_time=word(rdram,model+0x64);const auto flags=MEM_BU(0x7C,int32_t(model));const auto velocity=word(rdram,physical+0x14);
+    auto& prior=pickup_settle_source_periods[slot];
+    if(!prior||prior->common.actor!=actor||prior->common.physical!=physical||prior->common.model!=model||prior->common.lifetime!=lifetime||
+       prior->common.epoch!=epoch||prior->common.tick!=slice.tick||prior->common.denominator!=slice.denominator||prior->common.expected_phase!=slice.phase) {
+        const RewardSourcePeriod common{actor,physical,model,MEM_H(0x20,int32_t(physical)),2,0,lifetime,run,time_command,epoch,slice.tick,slice.denominator,slice.phase,slice.phase,slice.phase,
+            source_pass,fields,fields,model_time,model_time,word(rdram,model+0x78),word(rdram,model+0x78),word(rdram,model+0x74),word(rdram,model+0x74),flags,flags,false};
+        prior=PickupSettleSourcePeriod{common,velocity,velocity};
+    } else {
+        auto& common=prior->common;
+        for(unsigned i=0;i<fields.size();++i)if(common.expected[i]!=fields[i]) {
+            common.initial[i]=fields[i];if(i==0)common.start_phase=slice.phase;
+        }
+        if(prior->expected_velocity!=velocity){prior->initial_velocity=velocity;common.start_phase=slice.phase;}
+        if(common.time_command!=time_command||common.expected_model_time!=model_time)common.initial_model_time=model_time;
+        if(common.time_command!=time_command||common.expected_model_flags!=flags)common.initial_model_flags=flags;
+        if(common.expected_model_opacity!=word(rdram,model+0x78))common.initial_model_opacity=word(rdram,model+0x78);
+        if(common.expected_model_render_flag!=word(rdram,model+0x74))common.initial_model_render_flag=word(rdram,model+0x74);
+        common.run=run;common.time_command=time_command;
+    }
+}
+struct PickupVerticalForecast {float velocity;bool collision;};
+PickupVerticalForecast pickup_vertical_forecast(uint8_t* rdram,recomp_context* ctx,uint32_t actor,uint32_t physical,int32_t height,int32_t velocity,float offset) {
+    const auto stack=uint32_t(ctx->r29);
+    // Reviewed closure: E810C/E7EB8/E75D0/40104, two result resets/copy and
+    // pure triangle math. It writes Y velocity, the60-byte candidate/flag block
+    // and guest stack only. Maximum reviewed frame chain is below512 bytes;
+    // preserve4KiB below SP plus the outgoing argument area independently of
+    // the caller context. No heap, RNG, model or resource command is invoked.
+    if((stack&7)||stack<4096||!pointer(stack-4096,4128))throw std::logic_error("Invalid pickup settle query stack");
+    struct QueryRollback {
+        uint8_t* ram;uint32_t actor,physical,stack;
+        int32_t height,velocity;
+        std::array<uint8_t,4128> scratch;
+        std::array<uint8_t,60> candidates;
+        QueryRollback(uint8_t* rdram,uint32_t a,uint32_t ph,uint32_t sp):ram(rdram),actor(a),physical(ph),stack(sp),height(word(rdram,a+0xA0)),velocity(word(rdram,ph+0x14)) {
+            std::memcpy(scratch.data(),ram+((stack-4096)&0x1FFFFFFFu),scratch.size());
+            std::memcpy(candidates.data(),ram+(0x800DACB8u&0x1FFFFFFFu),candidates.size());
+        }
+        ~QueryRollback() {
+            uint8_t* rdram=ram;
+            MEM_W(0,int32_t(actor+0xA0))=height;MEM_W(0,int32_t(physical+0x14))=velocity;
+            std::memcpy(ram+((stack-4096)&0x1FFFFFFFu),scratch.data(),scratch.size());
+            std::memcpy(ram+(0x800DACB8u&0x1FFFFFFFu),candidates.data(),candidates.size());
+        }
+    } rollback(rdram,actor,physical,stack);
+    MEM_W(0,int32_t(actor+0xA0))=height;MEM_W(0,int32_t(physical+0x14))=velocity;
+    recomp_context query;dora3::copy_recomp_context(query,*ctx);
+    query.r4=int32_t(actor);query.r5=0;query.r6=0;query.r7=std::bit_cast<int32_t>(offset);MEM_W(0x10,query.r29)=0;
+    {SimulationSuspension source;dora3_s3_801E810C(rdram,&query);}
+    return {std::bit_cast<float>(uint32_t(word(rdram,physical+0x14))),query.r2!=0};
+}
+float pickup_settle_forecast(uint8_t* rdram,recomp_context* ctx,const PickupSettleSourcePeriod& period) {
+    const auto query=pickup_vertical_forecast(rdram,ctx,period.common.actor,period.common.physical,period.common.initial[0],period.initial_velocity,-50.f);
+    // EBAD4 overwrites even the collision-adjusted velocity with zero before
+    // the common movement tail. It does not snap Y to the plane's height.
+    return query.collision?0.f:query.velocity;
+}
+
 // State7 has a separate replay record: Source owns first initialization,
 // blink reset and final retirement; Native exposes yaw/speed/model opacity.
 struct PickupSpinSourcePeriod {
@@ -550,6 +626,25 @@ void pickup_spin_end(uint8_t* ram,uint32_t actor,unsigned slot,uint64_t source_p
     } else if(!native) {
         if(!common.replayed&&reward_source_identity(ram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase==common.denominator&&common.source_pass+1==source_pass)
             pickup_spin_restore(ram,*pending);
+        pending.reset();
+    }
+}
+void pickup_settle_end(uint8_t* ram,uint32_t actor,unsigned slot,uint64_t source_pass,bool native) {
+    if(slot>=pickup_settle_source_periods.size()||!pickup_settle_source_periods[slot])return;
+    auto& pending=pickup_settle_source_periods[slot];auto& common=pending->common;
+    uint8_t* rdram=ram;
+    if(native&&active_simulation_slice()) {
+        const auto& slice=*active_simulation_slice();
+        if(scene_frame_entered[slot]&&reward_source_identity(ram,common)&&common.tick==slice.tick&&common.denominator==slice.denominator) {
+            pending->expected_velocity=word(ram,common.physical+0x14);common.expected=reward_source_fields(ram,actor,common.physical);
+            common.expected_phase=slice.phase+slice.numerator;common.expected_model_time=word(ram,common.model+0x64);
+            common.expected_model_opacity=word(ram,common.model+0x78);common.expected_model_render_flag=word(ram,common.model+0x74);
+            common.expected_model_flags=MEM_BU(0x7C,int32_t(common.model));common.run=game_model_animation().run_token(common.model);
+            common.time_command=game_model_animation().time_command_token(common.model);
+        }
+    } else if(!native) {
+        if(!common.replayed&&reward_source_identity(ram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase==common.denominator&&common.source_pass+1==source_pass)
+            pickup_settle_restore(ram,*pending);
         pending.reset();
     }
 }
@@ -934,7 +1029,13 @@ bool owns_common_object(uint8_t* ram,uint32_t actor) {
         const auto reveal_angle=MEM_H(0x34,int32_t(physics));
         const bool reveal=state==4&&MEM_BU(0x28,int32_t(physics))==1&&(blink==0||blink==1)&&reveal_angle>=0&&reveal_angle<90&&
             word(ram,physics+0x10)==0&&word(ram,physics+0x14)==0&&word(ram,physics+0x18)==0;
-        return ((state==10&&MEM_BU(0x28,int32_t(physics))==1)||stationary_idle||sequence||spin||arc||reveal)&&pointer(model,0x84)&&
+        const auto settle_velocity=std::bit_cast<float>(uint32_t(vy));
+        const auto settle_y=std::bit_cast<float>(uint32_t(word(ram,actor+0xA0)));
+        const bool settle=state==2&&MEM_BU(0x28,int32_t(physics))==1&&MEM_H(0x34,int32_t(physics))==1&&MEM_H(0x7C,int32_t(physics))==-1&&
+            (blink==0||blink==1)&&word(ram,physics+0x10)==0&&word(ram,physics+0x18)==0&&
+            word(ram,physics+0x1C)==std::bit_cast<int32_t>(2.f)&&std::isfinite(settle_y)&&
+            std::isfinite(settle_velocity)&&settle_velocity<=0&&settle_velocity>=-48;
+        return ((state==10&&MEM_BU(0x28,int32_t(physics))==1)||stationary_idle||sequence||spin||arc||reveal||settle)&&pointer(model,0x84)&&
             game_model_animation().lifetime_token(model)&&!game_model_animation().native_birth(model)&&
             uint32_t(word(ram,0x80202064u+unsigned(kind)*84u))==update&&
             uint32_t(word(ram,0x80202068u+unsigned(kind)*84u))==contact;
@@ -1472,7 +1573,7 @@ void native_gameplay_preview_reset(uint8_t* ram) {
     if(ram)native_input_end(ram);
     for(unsigned slot=0;slot<slot09_story_starts.size();++slot)cancel_slot09_story_start(ram,slot);
     for(unsigned slot=0;slot<slot09_special_turns.size();++slot)cancel_slot09_special_turn(ram,slot);
-    scene_completion_slice.reset();scene_frame_completed={};scene_frame_entered={};flash_delay_commits={};reward_pool_claims={};reward_source_ceilings={};flash_motion_clocks={};pickup_motion_clocks={};flash_motion_initializers={};pickup_idle_source_periods={};reward_source_periods={};pickup_spin_source_periods={};pickup_arc_source_periods={};pickup_reveal_source_periods={};
+    scene_completion_slice.reset();scene_frame_completed={};scene_frame_entered={};flash_delay_commits={};reward_pool_claims={};reward_source_ceilings={};flash_motion_clocks={};pickup_motion_clocks={};flash_motion_initializers={};pickup_idle_source_periods={};reward_source_periods={};pickup_spin_source_periods={};pickup_arc_source_periods={};pickup_reveal_source_periods={};pickup_settle_source_periods={};
     for(auto& handoff:scene_source_handoffs)if(handoff&&!scene_completed_handoff_valid(ram,*handoff))handoff.reset();
     slot09_scene_publications={};
     for(auto& handoff:slot09_scene_handoffs)if(handoff&&!slot09_scene_handoff_valid(ram,*handoff))handoff.reset();
@@ -1694,6 +1795,13 @@ int pickup_motion_hook(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
             for(float x:{value->yaw,value->alpha,value->velocity,value->gravity,value->y})
                 if(!std::isfinite(x))throw std::logic_error("Nonfinite pickup motion baseline");
         }
+        // EC740 tests the NEW collision-adjusted velocity. A floor below an
+        // externally positioned item can turn a falling command into upward
+        // correction; fading from gravity alone would consume opacity before
+        // the actual end-of-period query. Re-evaluate the exact Original probe
+        // from this period's baseline and roll back stack/candidates/velocity.
+        value->end_velocity=pickup_vertical_forecast(rdram,ctx,actor,physical,
+            std::bit_cast<int32_t>(value->y),std::bit_cast<int32_t>(value->velocity),0.f).velocity;
         return 0;
     }
     if(!value||value->actor!=actor||value->physical!=physical||value->model!=model||value->lifetime!=lifetime||
@@ -1735,6 +1843,17 @@ int pickup_motion_hook(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
 }
 
 extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32_t site) {
+    if(site==0x801EBAD4&&object_call&&active_simulation_slice()) {
+        uint8_t* rdram=ram;const auto actor=uint32_t(word(ram,0x8021BDEC)),physical=uint32_t(word(ram,actor+0x98)),slot=(actor-0x801734B8u)/0xCC;
+        if(!owns_common_object(ram,actor)||slot>=pickup_settle_source_periods.size()||!pickup_settle_source_periods[slot])
+            throw std::logic_error("Missing Native pickup settle Source period");
+        auto& period=*pickup_settle_source_periods[slot];const auto& slice=*active_simulation_slice();
+        period.end_velocity=pickup_settle_forecast(ram,ctx,period);
+        const auto initial=std::bit_cast<float>(uint32_t(period.initial_velocity));
+        const double age=double(slice.phase+slice.numerator-period.common.start_phase)/double(slice.denominator);
+        MEM_W(0,int32_t(physical+0x14))=std::bit_cast<int32_t>(float(double(initial)+(double(period.end_velocity)-initial)*age));
+        return 1; // Source retains probe decision, latch and state1 transition.
+    }
     if(site==0x801EBEDC&&object_call&&active_simulation_slice()) {
         uint8_t* rdram=ram;
         const auto actor=uint32_t(word(ram,0x8021BDEC)),slot=(actor-0x801734B8u)/0xCC;
@@ -1826,6 +1945,11 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
     }
     if(site==0x801E8C9C&&!object_call) {
         const auto actor=uint32_t(word(ram,0x8021BDEC)),slot=(actor-0x801734B8u)/0xCC;
+        if(slot<pickup_settle_source_periods.size())if(auto& pending=pickup_settle_source_periods[slot];pending) {
+            auto& common=pending->common;
+            if(reward_source_identity(ram,common)&&common.expected_phase==common.denominator&&common.source_pass+1==slot09_source_pass)pickup_settle_restore(ram,*pending);
+            else pending.reset();
+        }
         if(slot<pickup_reveal_source_periods.size())if(auto& pending=pickup_reveal_source_periods[slot];pending) {
             auto& common=pending->common;
             if(reward_source_identity(ram,common)&&common.expected_phase==common.denominator&&common.source_pass+1==slot09_source_pass)reward_source_restore(ram,common);
@@ -1848,8 +1972,16 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
         }
     }
     if(site==0x801E8E10&&object_call&&active_simulation_slice()) {
-
+        uint8_t* rdram=ram;
         const auto actor=uint32_t(word(ram,0x8021BDEC)),physical=uint32_t(word(ram,0x8021BCDC)),slot=(actor-0x801734B8u)/0xCC;
+        if(pointer(physical,0xF4)&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==2&&owns_common_object(ram,actor)) {
+            if(slot>=pickup_settle_source_periods.size()||!pickup_settle_source_periods[slot])throw std::logic_error("Missing Native pickup settle geometry period");
+            const auto& period=*pickup_settle_source_periods[slot];const auto& slice=*active_simulation_slice();
+            const auto initial=std::bit_cast<float>(uint32_t(period.initial_velocity)),height=std::bit_cast<float>(uint32_t(period.common.initial[0]));
+            const double age=double(slice.phase+slice.numerator-period.common.start_phase)/double(slice.denominator);
+            const auto delta=period.end_velocity==0?0.:legacy_kinematic_step(initial,double(period.end_velocity)-initial,age).displacement;
+            ctx->f0.fl=float(double(height)+delta);ctx->f2.fl=0;return 1;
+        }
         if(pointer(physical,0xF4)&&reward_sequence_state(ram,actor,physical)&&owns_common_object(ram,actor)) {
             if(slot>=reward_source_periods.size()||!reward_source_periods[slot])throw std::logic_error("Missing periodic effect geometry period");
             const auto& period=*reward_source_periods[slot];const auto& slice=*active_simulation_slice();
@@ -1860,6 +1992,7 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
     }
     if(site==0x801E8E7C) {
         const auto actor=uint32_t(word(ram,0x8021BDEC)),slot=(actor-0x801734B8u)/0xCC;
+        pickup_settle_end(ram,actor,slot,slot09_source_pass,object_call);
         pickup_spin_end(ram,actor,slot,slot09_source_pass,object_call);
         pickup_arc_end(ram,actor,slot,slot09_source_pass,object_call);
         pickup_reveal_end(ram,actor,slot,slot09_source_pass,object_call);
@@ -3278,6 +3411,8 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
         const auto physical=uint32_t(word(ram,actor+0x98)),model=uint32_t(word(ram,actor+0x74));
         if(slot<reward_pool_claims.size()&&(MEM_H(0x20,int32_t(physical))==130||MEM_H(0x20,int32_t(physical))==131||collected_pickup_kind(MEM_H(0x20,int32_t(physical)))))
             reward_pool_claims[slot]=RewardPoolClaim{actor,physical,model,game_model_animation().lifetime_token(model),epoch};
+        if(slot<pickup_settle_source_periods.size()&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==2)
+            pickup_settle_begin(ram,actor,physical,model,slot,slot09_source_pass);
         if(slot<pickup_reveal_source_periods.size()&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==4)
             pickup_reveal_begin(ram,actor,physical,model,slot,slot09_source_pass);
         if(slot<pickup_arc_source_periods.size()&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==8)
@@ -3406,6 +3541,8 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
             }
         }
         const auto physical=uint32_t(word(ram,actor+0x98));
+        if(pointer(physical,0xF4)&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==2)return 0;
+        if(slot<pickup_settle_source_periods.size()&&pickup_settle_source_periods[slot]&&pickup_settle_source_periods[slot]->common.replayed)return 0;
         if(pointer(physical,0xF4)&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==4)return 0;
         if(slot<pickup_reveal_source_periods.size()&&pickup_reveal_source_periods[slot]&&pickup_reveal_source_periods[slot]->common.replayed)return 0;
         if(pointer(physical,0xF4)&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==8)return 0;

@@ -1,0 +1,29 @@
+{
+  "result": "FAIL: genuine guarded lifetime opacity endpoint after below-surface parent handoff; not PASS",
+  "stage": 289,
+  "generation_receipt_sha256": "416c3da85ec05a0620b9febfa516323c0c74170538fe7147ef214704a74ec8a5",
+  "source_sha256": {
+    "src/native_gameplay_preview.cpp": "1fccd1983780eb36298879a9cc5ab6e222c1c17972dd20df233a186706d17c53",
+    "tools/check_native_story_pickups.py": "b4ae4cc005d76e517cea09ea000ee74b02b68e6daef318eeb7d662adc865efab",
+    "tools/native_timing_patches.py": "b6120f20ca42203904c8e2a33040ff8ef072b2339d8b8daea8e1ef023cbd0e40",
+    "research/native-pickup-settle-guard-check.inc": "3fc4809ffce58c1ce267ba6686d12acaab25c9c15aaa946ac729884f0b123c58",
+    "research/native-story-pickup-source-check.cpp": "631cf7aea65de424ba724bcf5c199bb40dbf631c844625971ad718b382792f45"
+  },
+  "log_sha256": "aa47d36a7790aaa9b19af1ede2d3c8d91a6b67b3dc433e3b1b89070e204a47df",
+  "diagnostic290_log_sha256": "31a7d72ef25eb5bcbbe888b6e814555af426933a484bbb1945358e73717bda93",
+  "parameters": {
+    "fps": 60,
+    "divider": 2,
+    "camera": 12,
+    "target": 80,
+    "kind": 118,
+    "guard": 6,
+    "placement": 0,
+    "tick": 141
+  },
+  "actual_opacity_word": "0x3F6CCCCD",
+  "original_opacity_word": "0x3F733333",
+  "diagnosis": "Actual parent handoff leaves itemY=-72. Next Original collected E810C changes VY to+72; checking only pre-query gravity during Native prematurely fades by0.025 and violates whole Source endpoint. The fixture parent pool index0 is not the standalone player pointer; its old above-floor comment does not describe the executed coordinates.",
+  "repair291": "Actual query from period baseline before Native opacity branch, full temporary state rollback; ordered Source query and transition unchanged. All eight guard profiles preserved and fresh3456 paired full lifetimes PASS.",
+  "current_generation": false
+}

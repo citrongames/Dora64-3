@@ -1,33 +1,27 @@
 ## Продолжение main234 — проверены Source-награды и имена, runtime прежний
 
 
-## Текущий проверенный этап: main286
+## Текущий проверенный этап: main295
 
-Предметы118/123/127 после настоящего Source входа обновляют появление4,
-подъём5/уменьшение6, вращение/исчезновение7, двухфазную дугу8 и сбор10
-на Native интервалах; неподвижное ожидание1 иeffects130/131 сохранены.
-Original20/30 сохраняет исходную скорость. Init, целые angle/phase/latch,
-переходы, контакты, команды иудаление сохраняют Original Source порядок.
-Native8 допускает phase0 angle0..89/phase1 angle0..target-1; несовместимые
-внешние команды остаются Source до настоящего wrap/clamp.
+Предметы118/123/127 после настоящего Source входа обновляют no-parent
+оседание2, появление4, подъём5/уменьшение6, вращение7, двухфазную дугу8
+и сбор10 на Native интервалах. Actual query перед ветвью collected fade
+сохраняет Original новую velocity, включая положительный выход ниже поверхности.
+Original20/30/init/целые счётчики/переходы/контакты/команды/удаление сохранены.
 
-Fresh279 reveal3456 иfresh283 arc3456 paired guards/по884736 whole endpoints,
-fresh283 basic432 обоих Native7/8, full281 O2 player/world/NPC/3192 B schedules,
-5088 Source/720 Native slot09/34464 comparisons, loop иscene resource barrier
-прошли. Семь текущих отчётов сохраняют actual279/281/283 origins; names286 fresh.
-Arc283 требует обе отклонённые фазы на положительных интервалах во всех216
-применимых мирах. Ранее281 остановился на неверной общей coverage-проверке;
-его884736 равных endpoints сохранены, но весь запуск не считаетсяPASS.
-725 описаний/390 имён/506 scopes и96 canonical C/tokens/C17/ABI сохранены.
-Исторические276 отчёты остаются historical, без новой runtime PASS привязки.
+Fresh291 basic432/110592 иsettle guards3456/884736 whole endpoints,
+related reveal/arc guards/combined7/8 lifetimes, full O2 player/world/NPC3192 B,
+loop иscene resource barrier прошли. Восемь291 executed origins точны;
+names295 fresh725/390/506,96 canonical C/tokens/C17/ABI. Negative289 opacity
+ошибка сохранена явно;291 меняет query-before-fade, не ослабляет assertions.
 
-State2/3,parent-follow/moving idle/прочие семейства предметов иостальные
-уровни/враги/платформы/script cameras/cutscenes/minigames/2D остаются.
-Полный variable FPS не завершён. Test037 прежний; нового EXE нет.
-
-В main286 добавлены подтверждённые имена двух reset helpers поверхности и
-исправлено описание specialFE. Runtime main282 сохранён; шесть actual279/281/283
-origins перенесены только после точного сравнения входов и canonical C.
+Разлёт3 иследование за родителем пока отдельные кандидаты. Negative303
+сохраняет отсутствие Native idle после VX/VZ=-0; исправленный312 short20
+прошёл, full проверки предстоят. Native attached310 basic864/221184 с
+36432 frozen current-parent matrices прошёл; guards/whole integration остаются.
+Parent-follow/moving idle/прочие item families/прочие levels/enemies/platforms/
+script cameras/cutscenes/minigames/2D/интеграция остаются. Полный variable FPS
+не завершён. Test037 прежний; нового Windows EXE или запуска game/GPU нет.
 
 ---
 
