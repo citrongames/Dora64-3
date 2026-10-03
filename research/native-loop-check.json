@@ -26,7 +26,7 @@
     "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
     "tools/check_native_loop.py": "625bac56875c1c00acb6e7baba13b88a741403c9a3c110006f92d14d7e319449"
   },
-  "generation_receipt_sha256": "82ff5665524a2852c78a949cc80c00cf1caab5c7b7d0098a342fa078187ecfe0",
+  "generation_receipt_sha256": "ebb621d77f2ba02d6b7e78e0a7b6271fc95059641de57fb83c3f46626b6c49ed",
   "original_functions": [
     "dora3_color_buffer_setup",
     "dora3_depth_buffer_clear",
@@ -136,5 +136,10 @@
     "report_before_names_sha256": "eb9bd513e98464c2721b40f35f4dd0acd620124e8212538a07a17c5d6e080341",
     "generation_receipt_sha256": "d521635f7e8baa8b9dbdf6a868e485c6a6052092657e2bcbf41af7d78e4cc92d",
     "reason": "Four matrix aliases and15 register scopes only; every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact. Actual291 execution_origin_295 retained, no new runtime execution claim."
+  },
+  "execution_origin_336": {
+    "report_before_names_sha256": "37a4e097c3903facdc15665a4468a7be9ddbb135858f4481bd153e776aa765ba",
+    "generation_receipt_sha256": "82ff5665524a2852c78a949cc80c00cf1caab5c7b7d0098a342fa078187ecfe0",
+    "reason": "33 Source-qualified pickup wrapper aliases and10 descriptor register scopes only. Every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact; actual291 origins retained, no repeated runtime execution claim."
   }
 }

@@ -14087,6 +14087,499 @@
       "evidence": "Exact84-byte ROM body and complete canonical startup instruction review. Caller40104/4006C initializes both candidates; actual E756C specialFE invokes these resets and sets bit0. Names describe known normal directions without assuming floor/ceiling roles. Source280 no-parent settle/scatter432 paired worlds/110592 complete lifetime endpoints passed; naming adds no Native ownership.",
       "rom_sha256": "b5dcdf7f5b32a902c4d73d0671e490276a738dfc611180d9d62f18d9152761fc",
       "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC8F8",
+      "size": 36,
+      "legacy_name": "dora3_s3_core_801EC8F8",
+      "name": "dora3_pickup_spawn_kind111_default_801EC8F8",
+      "description": "Простой Original producer kind111: строит адрес ROM descriptor801FC770 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind111/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "0af65b68684667927e737e913a06ca4fa788555745d2496776c340be4cbbc19f",
+      "locals": [
+        {
+          "name": "pickup_kind111_descriptor_address_r4",
+          "expression": "ctx->r4",
+          "start": "0x801EC900",
+          "end": "0x801EC910",
+          "description": "Original a0 при сборке и передаче точного ROM descriptor801FC770; за пределами этого вызова исходное имя регистра сохранено.",
+          "instructions": {
+            "0x801EC900": "0x3C048020",
+            "0x801EC904": "0x2484C770",
+            "0x801EC908": "0x0C07AE3E"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC938",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801EC938",
+      "name": "dora3_pickup_kind111_update_801EC938",
+      "description": "Callback update kind111 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind111/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC91C",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801EC91C",
+      "name": "dora3_pickup_kind111_contact_collect_801EC91C",
+      "description": "Callback contact kind111 из настоящей84-byte таблицы80202060. Передаёт вызов общему801EBA38, который проверяет contact mode3 и выбирает collected state10. Собственных сюжетных флагов или дополнительных записей в этом wrapper нет.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind111/contact; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "fcd0a424edf4d8cda5d31ad725de680fd9bc4417e12ed9afabdc630c34d751a2",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC954",
+      "size": 36,
+      "legacy_name": "dora3_s3_core_801EC954",
+      "name": "dora3_pickup_spawn_kind112_default_801EC954",
+      "description": "Простой Original producer kind112: строит адрес ROM descriptor801FC78C в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind112/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "c8b0820dca332e3d4b7487cafc44b0c30062f63477c3818311df635453fd7c88",
+      "locals": [
+        {
+          "name": "pickup_kind112_descriptor_address_r4",
+          "expression": "ctx->r4",
+          "start": "0x801EC95C",
+          "end": "0x801EC96C",
+          "description": "Original a0 при сборке и передаче точного ROM descriptor801FC78C; за пределами этого вызова исходное имя регистра сохранено.",
+          "instructions": {
+            "0x801EC95C": "0x3C048020",
+            "0x801EC960": "0x2484C78C",
+            "0x801EC964": "0x0C07AE3E"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC994",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801EC994",
+      "name": "dora3_pickup_kind112_update_801EC994",
+      "description": "Callback update kind112 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind112/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC978",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801EC978",
+      "name": "dora3_pickup_kind112_contact_collect_801EC978",
+      "description": "Callback contact kind112 из настоящей84-byte таблицы80202060. Передаёт вызов общему801EBA38, который проверяет contact mode3 и выбирает collected state10. Собственных сюжетных флагов или дополнительных записей в этом wrapper нет.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind112/contact; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "fcd0a424edf4d8cda5d31ad725de680fd9bc4417e12ed9afabdc630c34d751a2",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC9B0",
+      "size": 36,
+      "legacy_name": "dora3_s3_core_801EC9B0",
+      "name": "dora3_pickup_spawn_kind113_default_801EC9B0",
+      "description": "Простой Original producer kind113: строит адрес ROM descriptor801FC7A8 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind113/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "e938dbbae9e337a46c2919242231f221b196bc69b535ed9e3346101dfb6adc0d",
+      "locals": [
+        {
+          "name": "pickup_kind113_descriptor_address_r4",
+          "expression": "ctx->r4",
+          "start": "0x801EC9B8",
+          "end": "0x801EC9C8",
+          "description": "Original a0 при сборке и передаче точного ROM descriptor801FC7A8; за пределами этого вызова исходное имя регистра сохранено.",
+          "instructions": {
+            "0x801EC9B8": "0x3C048020",
+            "0x801EC9BC": "0x2484C7A8",
+            "0x801EC9C0": "0x0C07AE3E"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC9F0",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801EC9F0",
+      "name": "dora3_pickup_kind113_update_801EC9F0",
+      "description": "Callback update kind113 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind113/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC9D4",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801EC9D4",
+      "name": "dora3_pickup_kind113_contact_collect_801EC9D4",
+      "description": "Callback contact kind113 из настоящей84-byte таблицы80202060. Передаёт вызов общему801EBA38, который проверяет contact mode3 и выбирает collected state10. Собственных сюжетных флагов или дополнительных записей в этом wrapper нет.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind113/contact; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "fcd0a424edf4d8cda5d31ad725de680fd9bc4417e12ed9afabdc630c34d751a2",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECA68",
+      "size": 36,
+      "legacy_name": "dora3_s3_core_801ECA68",
+      "name": "dora3_pickup_spawn_kind114_default_801ECA68",
+      "description": "Простой Original producer kind114: строит адрес ROM descriptor801FC7E0 в a0, задаёт a1=1 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind114/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "2a19f14718487e05139648968b434aeb3632bddf582625184b63cc01ebc561b2",
+      "locals": [
+        {
+          "name": "pickup_kind114_descriptor_address_r4",
+          "expression": "ctx->r4",
+          "start": "0x801ECA70",
+          "end": "0x801ECA80",
+          "description": "Original a0 при сборке и передаче точного ROM descriptor801FC7E0; за пределами этого вызова исходное имя регистра сохранено.",
+          "instructions": {
+            "0x801ECA70": "0x3C048020",
+            "0x801ECA74": "0x2484C7E0",
+            "0x801ECA78": "0x0C07AE3E"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECAA8",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ECAA8",
+      "name": "dora3_pickup_kind114_update_801ECAA8",
+      "description": "Callback update kind114 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind114/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECA8C",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ECA8C",
+      "name": "dora3_pickup_kind114_contact_collect_801ECA8C",
+      "description": "Callback contact kind114 из настоящей84-byte таблицы80202060. Передаёт вызов общему801EBA38, который проверяет contact mode3 и выбирает collected state10. Собственных сюжетных флагов или дополнительных записей в этом wrapper нет.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind114/contact; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "fcd0a424edf4d8cda5d31ad725de680fd9bc4417e12ed9afabdc630c34d751a2",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC89C",
+      "size": 36,
+      "legacy_name": "dora3_s3_core_801EC89C",
+      "name": "dora3_pickup_spawn_kind115_default_801EC89C",
+      "description": "Простой Original producer kind115: строит адрес ROM descriptor801FC754 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind115/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "f89999ff3a573eedf25b34e9342ee6c717c0468a1af54e24b04d419f92553ef6",
+      "locals": [
+        {
+          "name": "pickup_kind115_descriptor_address_r4",
+          "expression": "ctx->r4",
+          "start": "0x801EC8A4",
+          "end": "0x801EC8B4",
+          "description": "Original a0 при сборке и передаче точного ROM descriptor801FC754; за пределами этого вызова исходное имя регистра сохранено.",
+          "instructions": {
+            "0x801EC8A4": "0x3C048020",
+            "0x801EC8A8": "0x2484C754",
+            "0x801EC8AC": "0x0C07AE3E"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC8DC",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801EC8DC",
+      "name": "dora3_pickup_kind115_update_801EC8DC",
+      "description": "Callback update kind115 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind115/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EC8C0",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801EC8C0",
+      "name": "dora3_pickup_kind115_contact_collect_801EC8C0",
+      "description": "Callback contact kind115 из настоящей84-byte таблицы80202060. Передаёт вызов общему801EBA38, который проверяет contact mode3 и выбирает collected state10. Собственных сюжетных флагов или дополнительных записей в этом wrapper нет.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind115/contact; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "fcd0a424edf4d8cda5d31ad725de680fd9bc4417e12ed9afabdc630c34d751a2",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECA0C",
+      "size": 36,
+      "legacy_name": "dora3_s3_core_801ECA0C",
+      "name": "dora3_pickup_spawn_kind116_default_801ECA0C",
+      "description": "Простой Original producer kind116: строит адрес ROM descriptor801FC7C4 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind116/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "e09a907a1c660f67ad6316836567b01aa4e597e5623d8937c6aeaa1bcada8384",
+      "locals": [
+        {
+          "name": "pickup_kind116_descriptor_address_r4",
+          "expression": "ctx->r4",
+          "start": "0x801ECA14",
+          "end": "0x801ECA24",
+          "description": "Original a0 при сборке и передаче точного ROM descriptor801FC7C4; за пределами этого вызова исходное имя регистра сохранено.",
+          "instructions": {
+            "0x801ECA14": "0x3C048020",
+            "0x801ECA18": "0x2484C7C4",
+            "0x801ECA1C": "0x0C07AE3E"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECA4C",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ECA4C",
+      "name": "dora3_pickup_kind116_update_801ECA4C",
+      "description": "Callback update kind116 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind116/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECA30",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ECA30",
+      "name": "dora3_pickup_kind116_contact_collect_801ECA30",
+      "description": "Callback contact kind116 из настоящей84-byte таблицы80202060. Передаёт вызов общему801EBA38, который проверяет contact mode3 и выбирает collected state10. Собственных сюжетных флагов или дополнительных записей в этом wrapper нет.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind116/contact; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "fcd0a424edf4d8cda5d31ad725de680fd9bc4417e12ed9afabdc630c34d751a2",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECB6C",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ECB6C",
+      "name": "dora3_pickup_kind117_update_801ECB6C",
+      "description": "Callback update kind117 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind117/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECD3C",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ECD3C",
+      "name": "dora3_pickup_kind119_update_801ECD3C",
+      "description": "Callback update kind119 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind119/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECDD4",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ECDD4",
+      "name": "dora3_pickup_kind120_update_801ECDD4",
+      "description": "Callback update kind120 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind120/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECE6C",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ECE6C",
+      "name": "dora3_pickup_kind121_update_801ECE6C",
+      "description": "Callback update kind121 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind121/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECF3C",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ECF3C",
+      "name": "dora3_pickup_kind122_update_801ECF3C",
+      "description": "Callback update kind122 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind122/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED03C",
+      "size": 36,
+      "legacy_name": "dora3_s3_core_801ED03C",
+      "name": "dora3_pickup_spawn_kind124_default_801ED03C",
+      "description": "Простой Original producer kind124: строит адрес ROM descriptor801FC8B0 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind124/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "347fc82ce881be91a77479e7d88d697fa80527a89ef68a3475d8906d8921f0d1",
+      "locals": [
+        {
+          "name": "pickup_kind124_descriptor_address_r4",
+          "expression": "ctx->r4",
+          "start": "0x801ED044",
+          "end": "0x801ED054",
+          "description": "Original a0 при сборке и передаче точного ROM descriptor801FC8B0; за пределами этого вызова исходное имя регистра сохранено.",
+          "instructions": {
+            "0x801ED044": "0x3C048020",
+            "0x801ED048": "0x2484C8B0",
+            "0x801ED04C": "0x0C07AE3E"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED07C",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ED07C",
+      "name": "dora3_pickup_kind124_update_801ED07C",
+      "description": "Callback update kind124 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind124/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED060",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ED060",
+      "name": "dora3_pickup_kind124_contact_collect_801ED060",
+      "description": "Callback contact kind124 из настоящей84-byte таблицы80202060. Передаёт вызов общему801EBA38, который проверяет contact mode3 и выбирает collected state10. Собственных сюжетных флагов или дополнительных записей в этом wrapper нет.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind124/contact; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "fcd0a424edf4d8cda5d31ad725de680fd9bc4417e12ed9afabdc630c34d751a2",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED098",
+      "size": 36,
+      "legacy_name": "dora3_s3_core_801ED098",
+      "name": "dora3_pickup_spawn_kind125_default_801ED098",
+      "description": "Простой Original producer kind125: строит адрес ROM descriptor801FC8CC в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind125/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "d9e4ec597b7601f2ec47db26d716d3a5f66f36114c2a83f6bf7a39491fea3a2d",
+      "locals": [
+        {
+          "name": "pickup_kind125_descriptor_address_r4",
+          "expression": "ctx->r4",
+          "start": "0x801ED0A0",
+          "end": "0x801ED0B0",
+          "description": "Original a0 при сборке и передаче точного ROM descriptor801FC8CC; за пределами этого вызова исходное имя регистра сохранено.",
+          "instructions": {
+            "0x801ED0A0": "0x3C048020",
+            "0x801ED0A4": "0x2484C8CC",
+            "0x801ED0A8": "0x0C07AE3E"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED104",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ED104",
+      "name": "dora3_pickup_kind125_update_801ED104",
+      "description": "Callback update kind125 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind125/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED1E8",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ED1E8",
+      "name": "dora3_pickup_kind126_update_801ED1E8",
+      "description": "Callback update kind126 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind126/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED204",
+      "size": 36,
+      "legacy_name": "dora3_s3_core_801ED204",
+      "name": "dora3_pickup_spawn_kind127_default_801ED204",
+      "description": "Простой Original producer kind127: строит адрес ROM descriptor801FC904 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind127/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "d7ee494f364a587bf3c63bc376e6d6f29130f294c82d4e199eedf30327bd65cd",
+      "locals": [
+        {
+          "name": "pickup_kind127_descriptor_address_r4",
+          "expression": "ctx->r4",
+          "start": "0x801ED20C",
+          "end": "0x801ED21C",
+          "description": "Original a0 при сборке и передаче точного ROM descriptor801FC904; за пределами этого вызова исходное имя регистра сохранено.",
+          "instructions": {
+            "0x801ED20C": "0x3C048020",
+            "0x801ED210": "0x2484C904",
+            "0x801ED214": "0x0C07AE3E"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED260",
+      "size": 36,
+      "legacy_name": "dora3_s3_core_801ED260",
+      "name": "dora3_pickup_spawn_kind128_default_801ED260",
+      "description": "Простой Original producer kind128: строит адрес ROM descriptor801FC920 в a0, задаёт a1=1 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind128/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "aec905e783762ef7b40ac59d8863516f151f981092bae8baa92b6cb0aa9ee7d0",
+      "locals": [
+        {
+          "name": "pickup_kind128_descriptor_address_r4",
+          "expression": "ctx->r4",
+          "start": "0x801ED268",
+          "end": "0x801ED278",
+          "description": "Original a0 при сборке и передаче точного ROM descriptor801FC920; за пределами этого вызова исходное имя регистра сохранено.",
+          "instructions": {
+            "0x801ED268": "0x3C048020",
+            "0x801ED26C": "0x2484C920",
+            "0x801ED270": "0x0C07AE3E"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED2A0",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ED2A0",
+      "name": "dora3_pickup_kind128_update_801ED2A0",
+      "description": "Callback update kind128 из настоящей84-byte таблицы80202060. Передаёт вызов общему dispatcher801EC7D0 состояний1..10; собственной арифметики движения, таймеров и переходов здесь нет. аннотация не расширяет runtime владение.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind128/update; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "7cebfcd655273f05fe08017b032a57b0a02a4a8319325ea9e75e72991e724e8d",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED284",
+      "size": 28,
+      "legacy_name": "dora3_s3_core_801ED284",
+      "name": "dora3_pickup_kind128_contact_collect_801ED284",
+      "description": "Callback contact kind128 из настоящей84-byte таблицы80202060. Передаёт вызов общему801EBA38, который проверяет contact mode3 и выбирает collected state10. Собственных сюжетных флагов или дополнительных записей в этом wrapper нет.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind128/contact; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "rom_sha256": "fcd0a424edf4d8cda5d31ad725de680fd9bc4417e12ed9afabdc630c34d751a2",
+      "locals": []
     }
   ]
 }

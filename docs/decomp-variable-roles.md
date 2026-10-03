@@ -104,6 +104,16 @@
 | `pickup_idle_actor_after_turn_r2` | `ctx->r2` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_idle_actor_before_turn_r2` | `ctx->r2` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_key_crystal_contact_quest_mode_r3` | `ctx->r3` | Original contact mode only through the mode3 comparison; register becomes scene identity afterwards | 1 |
+| `pickup_kind111_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC770; за пределами этого вызова исходное имя регистра сохранено. | 1 |
+| `pickup_kind112_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC78C; за пределами этого вызова исходное имя регистра сохранено. | 1 |
+| `pickup_kind113_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC7A8; за пределами этого вызова исходное имя регистра сохранено. | 1 |
+| `pickup_kind114_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC7E0; за пределами этого вызова исходное имя регистра сохранено. | 1 |
+| `pickup_kind115_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC754; за пределами этого вызова исходное имя регистра сохранено. | 1 |
+| `pickup_kind116_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC7C4; за пределами этого вызова исходное имя регистра сохранено. | 1 |
+| `pickup_kind124_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC8B0; за пределами этого вызова исходное имя регистра сохранено. | 1 |
+| `pickup_kind125_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC8CC; за пределами этого вызова исходное имя регистра сохранено. | 1 |
+| `pickup_kind127_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC904; за пределами этого вызова исходное имя регистра сохранено. | 1 |
+| `pickup_kind128_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC920; за пределами этого вызова исходное имя регистра сохранено. | 1 |
 | `pickup_parent_transform_matrix_r17` | `ctx->r17` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_rise_initial_actor_r3` | `ctx->r3` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_rise_initial_physics_r3` | `ctx->r3` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |

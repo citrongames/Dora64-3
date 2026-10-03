@@ -88,7 +88,7 @@
     "research/native-pickup-reveal-source-check.inc": "8bbd0d8eb1e5686d1f553427fb9321cd5405e61b80f1c6769fb8a9b1aec59dc9",
     "research/native-pickup-reveal-guard-check.inc": "94202f702cab50cd165289c004125cdb76abe361b7c5d2abbab8aa7e5cb54fa1"
   },
-  "generation_receipt_sha256": "82ff5665524a2852c78a949cc80c00cf1caab5c7b7d0098a342fa078187ecfe0",
+  "generation_receipt_sha256": "ebb621d77f2ba02d6b7e78e0a7b6271fc95059641de57fb83c3f46626b6c49ed",
   "reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "validated_schedules": {
     "settings": 24,
@@ -154,5 +154,10 @@
     "report_before_names_sha256": "d92d59f4e8a2c8ab64dab52edecd06e4f9ef910764f1b97b08591018d6061765",
     "generation_receipt_sha256": "d521635f7e8baa8b9dbdf6a868e485c6a6052092657e2bcbf41af7d78e4cc92d",
     "reason": "Four matrix aliases and15 register scopes only; every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact. Actual291 execution_origin_295 retained, no new runtime execution claim."
+  },
+  "execution_origin_336": {
+    "report_before_names_sha256": "667db228196029e81933991bca8d55de06209c27ec70e2f262136a0868c9fe55",
+    "generation_receipt_sha256": "82ff5665524a2852c78a949cc80c00cf1caab5c7b7d0098a342fa078187ecfe0",
+    "reason": "33 Source-qualified pickup wrapper aliases and10 descriptor register scopes only. Every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact; actual291 origins retained, no repeated runtime execution claim."
   }
 }
