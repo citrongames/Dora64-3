@@ -75,6 +75,7 @@ std::array<int32_t,11> motion_fields(uint8_t* rdram,uint32_t actor,uint32_t phys
             MEM_H(0x34,int32_t(physical)),MEM_H(0x36,int32_t(physical)),MEM_BU(0xC9,int32_t(physical))};
 }
 struct Model {
+    uint64_t time_command=0;
     uint64_t lifetime=0,run=0;
     std::vector<Bone> bones;
     std::optional<Observation> observation;
@@ -150,6 +151,10 @@ uint64_t ModelAnimation::lifetime_token(uint32_t model) const {
 uint64_t ModelAnimation::run_token(uint32_t model) const {
     const auto owner=state_->models.find(model);
     return owner==state_->models.end()?0:owner->second.run;
+}
+uint64_t ModelAnimation::time_command_token(uint32_t model) const {
+    const auto owner=state_->models.find(model);
+    return owner==state_->models.end()?0:owner->second.time_command;
 }
 bool ModelAnimation::ended_this_tick(uint32_t model) const {
     const auto* slice=active_simulation_slice();const auto owner=state_->models.find(model);
@@ -230,6 +235,7 @@ void ModelAnimation::hook(uint8_t* rdram,recomp_context* ctx,uint32_t address,Na
         if(auto i=s.models.find(model);i!=s.models.end()) {
             restore(rdram,i->second);i->second.observation.reset();i->second.native_clock.reset();i->second.events.clear();i->second.event_sequence=0;i->second.acquired_start=false;
             i->second.run=++s.next_run;
+            if(address==0x80039564||address==0x8003B6BC||address==0x8003B744)i->second.time_command=i->second.run;
             if(address==0x8003B6BC || address==0x8003B744)i->second.last_pose.reset();
         }
         return;

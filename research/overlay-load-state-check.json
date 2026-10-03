@@ -1,6 +1,6 @@
 {
   "result": "PASS: 49 actual ROM overlay ranges, verified DMA/reload, identical VRAM replacement, partial overwrite, parent invalidation, scene unload and boot reset; ASan/UBSan/LSan; no game/GPU.",
-  "generation_receipt_sha256": "1fcde63a7f8dfb3104d3ea16878099c95d61d9ede439197e6e944b304b14edac",
+  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
   "source_sha256": {
     "src/startup_runtime.cpp": "d7865de6f338a7c90cb31833f6c0efb424bf4705b8006563979e86a2d5cd3241",
     "research/overlay-load-state-check.cpp": "e637e658340adedb016e09d258c99348ccb0e4768de7bcc71aaba1051e68aba5",
@@ -43,16 +43,11 @@
   "limitations": [
     "Runtime overlay registry load/unload endpoints are observations; no OS DMA scheduling, renderer, or full frontend linkage in this component check."
   ],
-  "exact_input_relocation_255": {
-    "from_generation": "build-local/candidate244/build-local/startup-v244b",
-    "executed_report_sha256": "bbc010ae920c35e77f16fcdb8c038bb2bab9869d2d9291f5b4272dbe58e5cdd4",
-    "executed_generation_receipt_sha256": "af8fc0fe10af98a9ed86844191365625bb0ebd104384a775c1a16bb21e015239",
-    "metadata_only_changes": {},
-    "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
-  },
-  "naming_only_relocation_267": {
-    "executed_report_sha256": "3bb211f3b7bddf2d102d7ce4c2900fbfd3423aeeb2862d7ec236b71842fd4629",
-    "previous_generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
-    "evidence": "Names-only main267:4 new semantic aliases/8 register scopes;96 canonical C units/frontier/hooks/overlay table equal255, runtime and all execution inputs exact. Fresh723/388/506 names/preprocessed tokens/C17/ABI check. Existing runtime execution proof preserved; no new game run claimed."
+  "execution_origin_276": {
+    "stage": 264,
+    "report_sha256": "49e866b75a53a7e7d506bc05f047f440c49a16b2f45a963ca5654000e3370552",
+    "generation_receipt_sha256": "6aed1eab317b2d8e3e21ac7bdea067a6b8be0ffd084738804cb8fca17ce7f539",
+    "source_delta": {},
+    "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
   }
 }

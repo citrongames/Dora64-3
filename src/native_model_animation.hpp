@@ -63,6 +63,7 @@ public:
     std::uint64_t lifetime_token(std::uint32_t) const;
     // A seek/rebind or a real flag command starts another animation run.
     std::uint64_t run_token(std::uint32_t) const;
+    std::uint64_t time_command_token(std::uint32_t) const;
     // Reviewed discrete owners can consume a crossing at their source end
     // without changing the raw end flag's one-advance pulse semantics.
     bool ended_this_tick(std::uint32_t) const;

@@ -383,6 +383,12 @@ void dora3_s3_801E5A1C(uint8_t*,recomp_context*) {}
 void dora3_s3_801E5B98(uint8_t*,recomp_context*) {}
 void dora3_s3_801E5D10(uint8_t*,recomp_context*) {}
 recomp_func_t* get_function(int32_t address) {
+
+#if defined(DORA3_PERIODIC_EFFECT_SOURCE_CHECK)||defined(DORA3_PERIODIC_PRODUCER_CHECK)||defined(DORA3_PERIODIC_EFFECT_GUARD_CHECK)
+    if(uint32_t(address)==0x801ED8ECu)return dora3_s3_core_801ED8EC;
+    if(uint32_t(address)==0x801ED8F4u)return dora3_s3_core_801ED8F4;
+    if(uint32_t(address)==0x801ED8FCu)return flash_pool_reference?reference_dora3_s3_core_801ED8FC:dora3_s3_core_801ED8FC;
+#endif
     if(uint32_t(address)==0x801ECC6Cu)return dora3_s3_core_801ECC6C;
     if(uint32_t(address)==0x801ECBE4u)return dora3_s3_core_801ECBE4;
     if(uint32_t(address)==0x801ED020u)return dora3_s3_core_801ED020;
@@ -543,6 +549,7 @@ static unsigned story_native_intervals=0,story_native_ctor_models=0;
 static unsigned reward_item_yaw_samples=0,reward_item_height_samples=0,reward_item_alpha_samples=0;
 #ifdef DORA3_STORY_PICKUP_CONTACT_CHECK
 static unsigned reward_contact_cases=0;
+static unsigned reward_idle_yaw_samples=0;
 #endif
 #endif
 [[maybe_unused]] static std::vector<int32_t> story_actor_state(uint8_t* rdram) {
@@ -566,13 +573,43 @@ static unsigned reward_contact_cases=0;
 #include "native-flash-delay-check.inc"
 #include "native-flash-motion-check.inc"
 #include "native-flash-pool-check.inc"
+#include "native-periodic-effect-source-check.inc"
+#include "native-periodic-effect-guard-check.inc"
+#include "native-periodic-producer-check.inc"
+#include "native-periodic-producer-guard-check.inc"
+#include "native-pickup-uncollected-source-check.inc"
 int main(int argc,char** argv) {
     assert(argc==2);std::vector<uint32_t> image(0x400000/4);std::ifstream in(argv[1],std::ios::binary);
     in.read(reinterpret_cast<char*>(image.data()),0x400000);assert(in.gcount()==0x400000);
+#ifdef DORA3_PICKUP_UNCOLLECTED_SOURCE_CHECK
+    check_pickup_uncollected_source(image);return 0;
+#endif
+#ifdef DORA3_PERIODIC_EFFECT_GUARD_CHECK
+    check_periodic_effect_guards(image);return 0;
+#endif
+#ifdef DORA3_PERIODIC_EFFECT_SOURCE_CHECK
+    check_periodic_effect_source(image);return 0;
+#endif
+#ifdef DORA3_PERIODIC_PRODUCER_GUARD_CHECK
+    check_periodic_producer_guards(image);return 0;
+#endif
+#ifdef DORA3_PERIODIC_PRODUCER_CHECK
+    check_periodic_producer(image);return 0;
+#endif
     unsigned native_moving_edge_cases=0,repeat_weapon_cases=0,player_flight_cases=0,flight_weapon_cases=0,flight_native_input_cases=0,flight_repeat_cases=0,flight_edge_cases=0,flight_damage_cases=0,ground_damage_cases=0,heavy_damage_cases=0,native_damage_cases=0,air_damage_cases=0,hazard_damage_cases=0,waiting_damage_cases=0,recovery31_cases=0,special_player_cases=0,native_special_cases=0,special_recovery_cases=0,native_special_recovery_cases=0,hover_source_cases=0,hover_native_cases=0,death_source_cases=0,respawn_recovery_cases=0,surface_source_cases=0,door_source_cases=0,surface_native_cases=0;
     unsigned cases=0,terminal_cases=0,flight_cases=0,growth_cases=0,ballistic_cases=0,phase_cases=0,bounce_cases=0,homing_cases=0,charge_cases=0,charge_birth_cases=0,interaction_cases=0,interaction_birth_cases=0,weapon_cases=0,moving_weapon_cases=0,native_weapon_cases=0;
 #ifdef DORA3_STORY_EFFECT_POOL_CHECK
     for(unsigned playback:{0u,1u})
+#ifdef DORA3_STORY_PICKUP_IDLE_GUARD_CHECK
+    for(unsigned guard_case:{1u,2u,3u,4u,5u,6u,7u,8u})
+    for(unsigned contact_tick:{20u})
+#elif defined(DORA3_STORY_PICKUP_CONTACT_CHECK)
+    for(unsigned guard_case:{0u})
+    for(unsigned contact_tick:{2u,4u,11u,20u})
+#else
+    for(unsigned guard_case:{0u})
+    for(unsigned contact_tick:{0u})
+#endif
 #endif
     for(unsigned camera_mode:{12u,2u})for(unsigned divider:{2u,3u}) {
         std::array<double,6> baseline{};double baseline_peak=0,baseline_landed=0;
@@ -679,8 +716,8 @@ int main(int argc,char** argv) {
                 for(unsigned slot=31;slot<230;++slot) {const auto a=0x80171CD0u+slot*0xCC;if(MEM_W(0x94,int32_t(a))) {const auto ph=uint32_t(MEM_W(0x98,int32_t(a)));assert(MEM_H(0x20,int32_t(ph))==int16_t(item_kind));items.push_back(a);assert(MEM_W(0x94,int32_t(a))==10&&MEM_H(0xD8,int32_t(ph))==0);}}
                 assert(items.size()==(profile<4?1u:0u));
 #ifdef DORA3_STORY_PICKUP_CONTACT_CHECK
-                // Exercise a genuine Source contact after three untouched
-                // idle passes. This external state1 command is fixture input;
+                // Exercise genuine Source contacts after different idle ages.
+                // The external state1 command is fixture input;
                 // the constructor and mode3 contact remain actual game code.
                 for(const auto item:items) {
                     MEM_W(0x94,int32_t(item))=1;
@@ -717,6 +754,46 @@ int main(int argc,char** argv) {
                 unsigned seen_effects=0;std::set<uint32_t> effect_addresses;bool item_retired=items.empty();
                 for(unsigned tick=1;tick<=96;++tick) {
                     const auto units=uint64_t(second)*divider*tick;
+#ifdef DORA3_STORY_PICKUP_IDLE_GUARD_CHECK
+                    // Commands occur at the previous whole Source boundary,
+                    // before this period's Native intervals. Both playbacks
+                    // receive exactly the same external command and timestamp.
+                    input_now=Nanoseconds((uint64_t(second)*divider*(tick-1)+59)/60);
+                    city_source_stamp={Nanoseconds(uint64_t(second)*divider*(tick-1)/60),
+                        unsigned((uint64_t(second)*divider*(tick-1))%60)};
+                    for(const auto item:items)if(MEM_W(0x94,int32_t(item))) {
+                        const auto ph=MEM_W(0x98,int32_t(item));
+                        if(guard_case==1) {
+                            if(tick==5)MEM_B(0xC9,ph)=1;
+                            if(tick==21)MEM_B(0xC9,ph)=0;
+                        } else if(guard_case==2) {
+                            if(tick==5)wf(rdram,uint32_t(ph)+0x10,11);
+                            if(tick==10)wf(rdram,uint32_t(ph)+0x10,0);
+                        } else if(guard_case==3) {
+                            if(tick==5)MEM_W(0x94,int32_t(item))=9;
+                            if(tick==10)MEM_W(0x94,int32_t(item))=1;
+                        } else if(guard_case==4) {
+                            if(tick==5)MEM_W(0,int32_t(0x80202064u+item_kind*84u))=int32_t(0x801E5D84u);
+                            if(tick==10)MEM_W(0,int32_t(0x80202064u+item_kind*84u))=int32_t(item_kind==118?0x801ECC6Cu:item_kind==123?0x801ED020u:0x801ED244u);
+                        } else if(guard_case==5) {
+                            if(tick==5)MEM_W(0,int32_t(0x80202068u+item_kind*84u))=int32_t(0x801E5D84u);
+                            if(tick==10)MEM_W(0,int32_t(0x80202068u+item_kind*84u))=int32_t(item_kind==118?0x801ECBE4u:item_kind==123?0x801ECFB4u:0x801ED228u);
+                        } else if(guard_case==6) {
+                            if(tick==5)wf(rdram,item+0x10,175);
+                            if(tick==7)wf(rdram,item+0x10,359);
+                            if(tick==9)wf(rdram,item+0x10,-2);
+                        } else if(guard_case==7) {
+                            if(tick==5){wf(rdram,uint32_t(ph)+0xC4,.25f);MEM_B(0xC8,ph)=2;}
+                            if(tick==8){wf(rdram,uint32_t(ph)+0xC4,.875f);MEM_B(0xC8,ph)=1;}
+                        } else if(guard_case==8&&tick==5) {
+                            // These item actors have no B4 clip table. Use the
+                            // real model seek command with its actual ABI:
+                            // model pointer in a0 and float time bits in a1.
+                            c.r4=MEM_W(0x74,int32_t(item));c.r5=0;
+                            dora3_s0_80039564(rdram,&c);c=saved;c.f_odd=&c.f0.u32h;
+                        }
+                    }
+#endif
 #ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
                     const auto boundary=Nanoseconds((units+59)/60);
                     auto native_to=[&](Nanoseconds stamp) {
@@ -738,6 +815,9 @@ int main(int argc,char** argv) {
                         assert(flash_pool_source_items(rdram)==state);++flash_pool_intervals;
                         for(auto [item,pose]:item_poses)if(MEM_W(0x94,int32_t(item))) {
                             const auto ph=MEM_W(0x98,int32_t(item));
+#ifdef DORA3_STORY_PICKUP_CONTACT_CHECK
+                            if(MEM_W(0x94,int32_t(item))==1)reward_idle_yaw_samples+=pose[0]!=rf(rdram,item+0x10);
+#endif
                             reward_item_yaw_samples+=pose[0]!=rf(rdram,item+0x10);
                             reward_item_height_samples+=pose[1]!=rf(rdram,item+0xA0);
                             reward_item_alpha_samples+=pose[2]!=rf(rdram,uint32_t(ph)+0x58);
@@ -762,7 +842,7 @@ int main(int argc,char** argv) {
                     input_now=Nanoseconds((units+59)/60);city_source_stamp={Nanoseconds(units/60),unsigned(units%60)};
                     c=saved;c.f_odd=&c.f0.u32h;
 #ifdef DORA3_STORY_PICKUP_CONTACT_CHECK
-                    if(tick==4)for(const auto item:items) {
+                    if(tick==contact_tick)for(const auto item:items) {
                         assert(MEM_W(0x94,int32_t(item))==1);
                         const auto old_actor=MEM_W(0,int32_t(0x8021BDEC)),old_physical=MEM_W(0,int32_t(0x8021BCDC)),old_mode=MEM_W(0,int32_t(0x8021BCE4));
                         const auto ph=MEM_W(0x98,int32_t(item));
@@ -792,8 +872,8 @@ int main(int argc,char** argv) {
 #endif
                     dora3_s3_801E8BDC(rdram,&c);
 #ifdef DORA3_STORY_EFFECT_POOL_CHECK
-                    if(playback==0)flash_pool_oracles[{fps,divider,camera_mode,profile}].push_back(flash_pool_snapshot(rdram));
-                    else flash_pool_compare(rdram,fps,divider,camera_mode,profile,tick);
+                    if(playback==0)flash_pool_oracles[{fps,divider,camera_mode,profile,contact_tick,guard_case}].push_back(flash_pool_snapshot(rdram));
+                    else flash_pool_compare(rdram,fps,divider,camera_mode,profile,tick,contact_tick,guard_case);
 #endif
                     for(unsigned slot=30;slot<230;++slot) {const auto a=0x80171CD0u+slot*0xCC;if(!MEM_W(0x94,int32_t(a)))continue;const auto ph=uint32_t(MEM_W(0x98,int32_t(a)));const auto k=MEM_H(0x20,int32_t(ph));assert(k==int(item_kind)||k==130);
                         if(k==130)effect_addresses.insert(a);
@@ -818,11 +898,24 @@ int main(int argc,char** argv) {
     }
 #ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
 #ifdef DORA3_STORY_EFFECT_POOL_CHECK
+#ifdef DORA3_STORY_PICKUP_IDLE_GUARD_CHECK
+    assert(flash_pool_cases==1344&&flash_pool_endpoints==1344*96&&flash_pool_samples>2000);
+#elif defined(DORA3_STORY_PICKUP_CONTACT_CHECK)
+    assert(flash_pool_cases==672&&flash_pool_endpoints==672*96&&flash_pool_samples>2000);
+#else
     assert(flash_pool_cases==168&&flash_pool_endpoints==168*96&&flash_pool_samples>2000);
+#endif
     assert(reward_item_yaw_samples>2000&&reward_item_height_samples>1000&&reward_item_alpha_samples>2000);
 #ifdef DORA3_STORY_PICKUP_CONTACT_CHECK
-    assert(reward_contact_cases==96);
-    std::cout<<"PASS: 96 actual Source mode3 contact callbacks after three Source idle passes; Native leaves uncollected state1 and collection initialization untouched; actual Source state10 acquisition and ordered six-effect lifetime.\n";
+#ifdef DORA3_STORY_PICKUP_IDLE_GUARD_CHECK
+    assert(reward_contact_cases==768&&reward_idle_yaw_samples>=768);
+    std::cout<<"PASS: 768 actual Source mode3 contacts after Native idle pause/resume, moving-state1 rejection, state9 return, both callback replacements, external yaw/opacity commands and actual model seek; paired complete frozen Original lifetimes.\n";
+#else
+    assert(reward_contact_cases==384);
+    assert(reward_idle_yaw_samples>=384);
+    std::cout<<"PASS: 384 actual Source mode3 contact callbacks at Original periods2/4/11/20; Native stationary idle yaw advances between Source endpoints; collection initialization stays Source; actual Source state10 acquisition and ordered six-effect lifetime.\n";
+#endif
+    std::cout<<"Native idle intermediate yaw changes="<<reward_idle_yaw_samples<<"\n";
 #endif
     std::cout<<"PASS: "<<flash_pool_cases<<" connected Native flash pool and Source reward producer schedules; "<<flash_pool_intervals<<" real Native intervals; "<<flash_pool_endpoints<<" full live actor/physics/model/heap/resource/command Original endpoints; "<<flash_pool_samples<<" intermediate effect height changes; item yaw/height/alpha samples "<<reward_item_yaw_samples<<"/"<<reward_item_height_samples<<"/"<<reward_item_alpha_samples<<"; actual Source birth pass, all six selectors, full animation tail and genuine retirement; Native collected118/123/127 and flash130 state10; ordered initialization/delay retained at Source boundaries; no game/GPU.\n";
 #else

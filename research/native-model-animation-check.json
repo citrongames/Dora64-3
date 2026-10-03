@@ -55,31 +55,26 @@
     "dora3_s3_core_801C1664"
   ],
   "source_sha256": {
-    "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
-    "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
+    "src/native_model_animation.cpp": "8696ac3189b3d95c3627172aa05b70929831aeeb427780ece5e844d07a03d664",
+    "src/native_simulation_time.cpp": "319b3228e69fb6a6fcbfa81aaff831eeecfe54426538e10ca35726609c917cc4",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "research/native-model-animation-check.cpp": "80937651a56a133aca4c459566085e8f809cacf31b4d952d7251fa198a80d96e",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
-    "src/native_model_animation.hpp": "2132dc8530bf55e774ed8ed4f4ebf12cda94ce4e8615a0d386c77917de2650b7",
+    "src/native_model_animation.hpp": "94d54daf5af8970667417ed8564745f34c6909f4854329a3265c647f4f5263f6",
     "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "tools/check_native_model_animation.py": "213240f0c67dbfee952ec46bdf7e377c5f785a35a09ad2157823890121de9b5d"
   },
-  "generation_receipt_sha256": "1fcde63a7f8dfb3104d3ea16878099c95d61d9ede439197e6e944b304b14edac",
+  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
   "remaining": [
     "Unreviewed phase1 commands, matrix consumers and full scene coverage still need integration audit",
     "This component does not convert movement, camera, collision, AI, scripts or all 2D systems"
   ],
-  "exact_input_relocation_255": {
-    "from_generation": "build-local/candidate244/build-local/startup-v244b",
-    "executed_report_sha256": "0cbe662b4be5f25d916280e896bf5de41c00535456c39da2e382f5496f3a9703",
-    "executed_generation_receipt_sha256": "af8fc0fe10af98a9ed86844191365625bb0ebd104384a775c1a16bb21e015239",
-    "metadata_only_changes": {},
-    "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
-  },
-  "naming_only_relocation_267": {
-    "executed_report_sha256": "a7ca502fdab0a4ce0aa31d9f0630d237aafb070e3dfa91117304d15f744dc4ec",
-    "previous_generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
-    "evidence": "Names-only main267:4 new semantic aliases/8 register scopes;96 canonical C units/frontier/hooks/overlay table equal255, runtime and all execution inputs exact. Fresh723/388/506 names/preprocessed tokens/C17/ABI check. Existing runtime execution proof preserved; no new game run claimed."
+  "execution_origin_276": {
+    "stage": 264,
+    "report_sha256": "c078fa9475f1e390b07efacb3e65b78290f90369471c964343dd50f5884f82bd",
+    "generation_receipt_sha256": "6aed1eab317b2d8e3e21ac7bdea067a6b8be0ffd084738804cb8fca17ce7f539",
+    "source_delta": {},
+    "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
   }
 }

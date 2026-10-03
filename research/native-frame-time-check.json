@@ -8,7 +8,7 @@
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "tools/check_native_frame_time.py": "8c930fabbd13f3a5b552386b4caf62fb6f4caf1c19d58651d81d21ad070173fc"
   },
-  "generation_receipt_sha256": "1fcde63a7f8dfb3104d3ea16878099c95d61d9ede439197e6e944b304b14edac",
+  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
   "original_functions": [
     "dora3_fade_tick",
     "dora3_s0_8003948C",
@@ -23,16 +23,11 @@
     "Physics, camera, scripts and per-scene callbacks not converted",
     "This report tests math and original command semantics, not visual correctness"
   ],
-  "exact_input_relocation_255": {
-    "from_generation": "build-local/candidate244/build-local/startup-v244b",
-    "executed_report_sha256": "268b3dbb4ba94e069380bf8be9dd45f93a7fd3e38e0719e44b1dee021fb5ec81",
-    "executed_generation_receipt_sha256": "af8fc0fe10af98a9ed86844191365625bb0ebd104384a775c1a16bb21e015239",
-    "metadata_only_changes": {},
-    "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
-  },
-  "naming_only_relocation_267": {
-    "executed_report_sha256": "bcb64ef549542ffba445f7e88bc73b6d5b66e25d1374ba70e84c0662a7587e49",
-    "previous_generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
-    "evidence": "Names-only main267:4 new semantic aliases/8 register scopes;96 canonical C units/frontier/hooks/overlay table equal255, runtime and all execution inputs exact. Fresh723/388/506 names/preprocessed tokens/C17/ABI check. Existing runtime execution proof preserved; no new game run claimed."
+  "execution_origin_276": {
+    "stage": 264,
+    "report_sha256": "ce24a4d5ef5a5404e8f48c9cf9ca48ce771dfea9e40fbd3bec2261a605560cb0",
+    "generation_receipt_sha256": "6aed1eab317b2d8e3e21ac7bdea067a6b8be0ffd084738804cb8fca17ce7f539",
+    "source_delta": {},
+    "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
   }
 }

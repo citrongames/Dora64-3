@@ -9048,7 +9048,7 @@
       "legacy_name": "dora3_s3_core_801EBA9C",
       "name": "dora3_pickup_idle_rotate_yaw_801EBA9C",
       "description": "Original pickup state1 поворачивает actor yaw10 на4 градуса за исходное обновление через настоящий angle helper31A0C. Других записей и команд не содержит; Native владение предметом не заявлено.",
-      "evidence": "Exact frozen189 canonical C/MIPS review; function/operand ROM hashes; naming only, no Native pickup/effect completion claim",
+      "evidence": "Exact overlay-qualified Original ROM/body and public callback identities. Main276 integrates final266 Native idle/rise5/shrink6/initialized131 pure motion with per-field Source replay; fresh266 full O2 player/world/NPC PASS,216 paired producer worlds/41472 complete endpoints, loop/scene-transition PASS;264 guards3456 paired worlds/663552 whole endpoints and idle contacts768 preserve explicit execution origin plus only266 dead-local removal. Source first init/private counters/spawns/sound/signal/contact/retirement retain actual pool order. Synthetic assets, no renderer/real-level selector/full pool exhaustion proof.",
       "rom_sha256": "38668fa1c26bb3ed9c11611a2064f29938a4279115bf6abd6f7d29060db323f9",
       "locals": [
         {
@@ -9165,7 +9165,7 @@
       "legacy_name": "dora3_s3_core_801EBFC8",
       "name": "dora3_pickup_rise_with_periodic_effect_state5_801EBFC8",
       "description": "Original state5 один раз очищает half34/36, задаёт Y velocity5 и сохраняет начальный actor scale18 в physics30. Пока half34==0, half36 растёт раз в Source проход; каждые3 вызывает настоящий E6968 с descriptor801FC964 в actor XYZ со Z+50. При actorY>=250 обнуляет Y velocity, увеличивает half34 и подаёт sound55; остаётся state5 до внешней команды.",
-      "evidence": "Exact overlay-qualified Original ROM/body and dispatcher80211718 review; constants802116A8..D0 and actual register instructions verified. Naming/comment change only; uncollected Native ownership is not expanded. Descriptor801FC964 is distinct from collected flash descriptor801FC950; this name deliberately describes the proven periodic constructor, without claiming an unreviewed effect kind.",
+      "evidence": "Exact overlay-qualified Original ROM/body and public callback identities. Main276 integrates final266 Native idle/rise5/shrink6/initialized131 pure motion with per-field Source replay; fresh266 full O2 player/world/NPC PASS,216 paired producer worlds/41472 complete endpoints, loop/scene-transition PASS;264 guards3456 paired worlds/663552 whole endpoints and idle contacts768 preserve explicit execution origin plus only266 dead-local removal. Source first init/private counters/spawns/sound/signal/contact/retirement retain actual pool order. Synthetic assets, no renderer/real-level selector/full pool exhaustion proof.",
       "rom_sha256": "7f12272e3e7985be58c87492065974400628eeab9e2e13c44390289ca09f2121",
       "locals": [
         {
@@ -9200,7 +9200,7 @@
       "legacy_name": "dora3_s3_core_801EC0D0",
       "name": "dora3_pickup_shrink_then_signal_state6_801EC0D0",
       "description": "Original state6 один раз задаёт Y velocity-1. Каждый Source проход уменьшает единый actor scale18/1C/20 на ROM double0.05 и пишет тот же scale в physics30. При scale<=2 ставит state1, сбрасывает latch28, обнуляет Y velocity, вызывает D1498(1) и sound56 ровно в этой ветви.",
-      "evidence": "Exact overlay-qualified Original ROM/body and dispatcher80211718 review; constants802116A8..D0 and actual register instructions verified. Naming/comment change only; uncollected Native ownership is not expanded.",
+      "evidence": "Exact overlay-qualified Original ROM/body and public callback identities. Main276 integrates final266 Native idle/rise5/shrink6/initialized131 pure motion with per-field Source replay; fresh266 full O2 player/world/NPC PASS,216 paired producer worlds/41472 complete endpoints, loop/scene-transition PASS;264 guards3456 paired worlds/663552 whole endpoints and idle contacts768 preserve explicit execution origin plus only266 dead-local removal. Source first init/private counters/spawns/sound/signal/contact/retirement retain actual pool order. Synthetic assets, no renderer/real-level selector/full pool exhaustion proof.",
       "rom_sha256": "c63b651186f98b179661e5822a0d2e9cf65fae6567fa3e4a719589d0a86d4e87",
       "locals": [
         {
@@ -13792,8 +13792,8 @@
       "size": 276,
       "legacy_name": "dora3_s3_core_801ED8FC",
       "name": "dora3_periodic_pickup_effect_fall_and_retire_801ED8FC",
-      "description": "Kind131: при первом Source update latch28=1/CA=1, clip0 и animation seek30, actual RNG(-100/-50) смещает X/Y, uniform scale1.5 и VY-5. Каждый Original update проверяет Y<=50 до общего перемещения и вызывает E6E6C.",
-      "evidence": "Exact overlay-qualified ROM/body and public84-byte kind131 callback table/descriptor801FC964; actual Original initializer/RNG/clip/seek30/scale1.5/pre-step Y threshold and complete Source resource lifetimes checked in isolated259/264. This main267 change adds names/comments/scoped register aliases only; current main runtime remains reward255.",
+      "description": "Kind131: при первом Source update latch28=1/CA=1, clip0 и animation seek30, actual RNG(-100/-50) смещает X/Y, uniform scale1.5 и VY-5. Каждый Original update проверяет Y<=50 до общего перемещения и вызывает E6E6C. Native после первой Source инициализации обновляет чистое движение Y и время модели между Original границами. Private проверка порога и удаление выполняются в исходном порядке пула; паузы и внешние команды сохраняют последнее действительное Source состояние.",
+      "evidence": "Exact overlay-qualified Original ROM/body and public callback identities. Main276 integrates final266 Native idle/rise5/shrink6/initialized131 pure motion with per-field Source replay; fresh266 full O2 player/world/NPC PASS,216 paired producer worlds/41472 complete endpoints, loop/scene-transition PASS;264 guards3456 paired worlds/663552 whole endpoints and idle contacts768 preserve explicit execution origin plus only266 dead-local removal. Source first init/private counters/spawns/sound/signal/contact/retirement retain actual pool order. Synthetic assets, no renderer/real-level selector/full pool exhaustion proof.",
       "rom_sha256": "b160c914edd62cd5f1ab6ce078ccc2ba14f2dfb38c5cff9dd7167278250db620",
       "locals": [
         {

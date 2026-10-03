@@ -303,6 +303,11 @@ def timing_hooks(sections,compiled,rom):
             if rule['section']!='.scene1' or address!=0x801D10D8 or site!=0x801D117C or word!=0x02202021:
                 raise ValueError('Unreviewed projectile clip boundary')
             text='if (dora3_native_simulation_active()) { int phase_result=dora3_native_preview_hook(rdram,ctx,0x801D117Cu); if (phase_result==2) goto dora3_projectile_exit; if (phase_result==1) goto dora3_projectile_next; }'
+        elif op=='native_pickup_idle_turn':
+            if rule['section']!='.scene1' or address!=0x801EBA9C or site!=0x801EBAB4 or word!=0x0C00C683:
+                raise ValueError('Unreviewed pickup idle turn instruction')
+            text='if (dora3_native_preview_hook(rdram,ctx,0x801EBAB4u)) goto dora3_after_pickup_idle_turn;'
+            hooks[name,0x801EBABC].insert(0,'dora3_after_pickup_idle_turn:;')
         elif op=='native_reward_opacity_end_gate':
             if rule['section']!='.scene1' or address!=0x801E8BDC or site!=0x801E8CD4 or word!=0xA06000C8:
                 raise ValueError('Unreviewed reward opacity command end')
@@ -367,6 +372,12 @@ def timing_hooks(sections,compiled,rom):
             if rule['section']!='.level1_slot1' or (address,site,word) not in allowed:
                 raise ValueError('Unreviewed city state/sprite command boundary')
             text=f'dora3_native_preview_hook(rdram,ctx,0x{site:08X}u);'
+        elif op=='native_pickup_sequence':
+            if rule['section']!='.scene1' or address!=site or site not in [0x801EBFC8,0x801EC0D0] or word!=0x3C038022:raise ValueError('Unreviewed pickup5/6 callback')
+            text=f'if (dora3_native_preview_hook(rdram,ctx,0x{site:08X}u)) return;'
+        elif op=='native_periodic_effect':
+            if rule['section']!='.scene1' or (address,site,word)!=(0x801ED8FC,0x801ED8FC,0x3C038022):raise ValueError('Unreviewed periodic131 callback')
+            text='if (dora3_native_preview_hook(rdram,ctx,0x801ED8FCu)) return;'
         elif op=='native_object_scope_end':
             if rule['section']!='.scene1' or (address,site,word)!=(0x801E8BDC,0x801E8E7C,0x3C028022):
                 raise ValueError('Unreviewed common object scope continuation')

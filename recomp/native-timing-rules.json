@@ -7497,6 +7497,54 @@
       "evidence": "Actual Original jump delay-slot store clears physics byteC8 after clamping common opacityC4 to1. Native float rounding can clamp before a full Original period; defer only the command clear for reviewed collected118/123/127. Source and other owners unchanged. Negative243 tick10: live physical word28 actual01000000 vs frozen01000100, all other actor/model/resources/commands equal.",
       "expected_word": "0xA06000C8",
       "function_sha256": "2879bb417c70bc311b9f21b162530b9232eaee84dc501722c82f9006d8bfae7f"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EBA9C",
+      "function_name": "dora3_s3_core_801EBA9C",
+      "function_sha256": "38668fa1c26bb3ed9c11611a2064f29938a4279115bf6abd6f7d29060db323f9",
+      "site": "0x801EBAB4",
+      "expected_word": "0x0C00C683",
+      "operation": "native_pickup_idle_turn",
+      "role": "stationary_uncollected_item_yaw4_at_fractional_Original_age",
+      "status": "Verified main276: actual Native pure motion after Source init; exact Original ordered private commands",
+      "evidence": "Exact ROM/canonical body and callback identities; final266 full O2,producer216/41472 endpoints,loop/transition;264 external guards and Source replay with explicit dead-local delta. No game/renderer/GPU; unreviewed states remain Source-owned."
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801ED8FC",
+      "function_name": "dora3_s3_core_801ED8FC",
+      "function_sha256": "b160c914edd62cd5f1ab6ce078ccc2ba14f2dfb38c5cff9dd7167278250db620",
+      "site": "0x801ED8FC",
+      "expected_word": "0x3C038022",
+      "operation": "native_periodic_effect",
+      "role": "periodic_effect131_ordered_Source_retirement_and_completed_model_advance",
+      "evidence": "Exact ROM/canonical body and callback identities; final266 full O2,producer216/41472 endpoints,loop/transition;264 external guards and Source replay with explicit dead-local delta. No game/renderer/GPU; unreviewed states remain Source-owned.",
+      "status": "Verified main276: actual Native pure motion after Source init; exact Original ordered private commands"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EBFC8",
+      "function_name": "dora3_s3_core_801EBFC8",
+      "function_sha256": "7f12272e3e7985be58c87492065974400628eeab9e2e13c44390289ca09f2121",
+      "site": "0x801EBFC8",
+      "expected_word": "0x3C038022",
+      "operation": "native_pickup_sequence",
+      "role": "Native_pure_pickup5_6_motion_scale_Source_private_command_order",
+      "evidence": "Exact ROM/canonical body and callback identities; final266 full O2,producer216/41472 endpoints,loop/transition;264 external guards and Source replay with explicit dead-local delta. No game/renderer/GPU; unreviewed states remain Source-owned.",
+      "status": "Verified main276: actual Native pure motion after Source init; exact Original ordered private commands"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EC0D0",
+      "function_name": "dora3_s3_core_801EC0D0",
+      "function_sha256": "c63b651186f98b179661e5822a0d2e9cf65fae6567fa3e4a719589d0a86d4e87",
+      "site": "0x801EC0D0",
+      "expected_word": "0x3C038022",
+      "operation": "native_pickup_sequence",
+      "role": "Native_pure_pickup5_6_motion_scale_Source_private_command_order",
+      "evidence": "Exact ROM/canonical body and callback identities; final266 full O2,producer216/41472 endpoints,loop/transition;264 external guards and Source replay with explicit dead-local delta. No game/renderer/GPU; unreviewed states remain Source-owned.",
+      "status": "Verified main276: actual Native pure motion after Source init; exact Original ordered private commands"
     }
   ]
 }

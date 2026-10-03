@@ -1,6 +1,6 @@
 {
   "result": "PASS: 723 descriptions; 388 semantic function names; 506 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
-  "generation_receipt_sha256": "1fcde63a7f8dfb3104d3ea16878099c95d61d9ede439197e6e944b304b14edac",
+  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
   "files": [
     {
       "file": "funcs_0.c",
@@ -196,15 +196,15 @@
     },
     {
       "file": "funcs_38.c",
-      "canonical_sha256": "88ce4a46b52bd85d8ceffa71a4114536cd8d13afc011a1200c550d626efb3441",
-      "named_sha256": "7b7b07728baeb9f8bed9c40a539e3037a74e408c8c962ab9b774d3726d2a164b",
-      "tokens": 125135
+      "canonical_sha256": "bcbd85013fd5e19f9193c25d8f92a7ddca2bdeb066b6aa009e1deea3a6451478",
+      "named_sha256": "4d439841ff4a706a2d395887f71e80d38e7652e9f8c3dec0fabbc38da082c6d0",
+      "tokens": 125178
     },
     {
       "file": "funcs_39.c",
-      "canonical_sha256": "dac688d0589a726bee488b1942f22f281009af9cf02fb5122322e519adeffe9d",
-      "named_sha256": "89d02147dd00ba3da9b5efb5bf12dbb249abb78c5038374907cb5b7b8ca9f4d4",
-      "tokens": 101306
+      "canonical_sha256": "c28b8e5af5ad6430cb6bf63333227c54c6d18ac6380b980ad35cdc10e4a00ece",
+      "named_sha256": "39026bea48bb867256e17a9a4da1ec468a27c8a4005125c44fd779cb8a2aab1e",
+      "tokens": 101319
     },
     {
       "file": "funcs_4.c",
@@ -582,6 +582,6 @@
   "source_sha256": {
     "tools/decomp_annotations.py": "cc18b42a710a9998b9b33cbfe2c79009451496078b2136cdceb603d047c4b16b",
     "tools/check_decomp_names.py": "bc742b8b16c9a6f24481d2b41a80c268a9a7feee4c2d95e6f1a537d026d1c74c",
-    "recomp/decomp-symbols.json": "0dd89cd6777fbaddf99c7a59fbab9c8de39cbb3b846ea6f0c49a2fc9f8517772"
+    "recomp/decomp-symbols.json": "2346471ebf08172c60482288a728b8c0e8442fefa77fa54c429fd2e6a92030eb"
   }
 }

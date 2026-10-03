@@ -8,7 +8,7 @@ struct FlashPoolSnapshot {
     std::size_t models;
     bool operator==(const FlashPoolSnapshot&)const=default;
 };
-static std::map<std::array<unsigned,4>,std::vector<FlashPoolSnapshot>> flash_pool_oracles;
+static std::map<std::array<unsigned,6>,std::vector<FlashPoolSnapshot>> flash_pool_oracles;
 static FlashPoolSnapshot flash_pool_snapshot(uint8_t* rdram) {
     FlashPoolSnapshot value{{},city_commands,allocations,resource_references,game_model_animation().model_count()};
     for(unsigned slot=30;slot<230;++slot) {
@@ -30,7 +30,9 @@ static std::vector<int32_t> flash_pool_source_items(uint8_t* rdram) {
         const auto actor=0x80171CD0u+slot*0xCC;
         if(!MEM_W(0x94,int32_t(actor)))continue;
         const auto physical=uint32_t(MEM_W(0x98,int32_t(actor))),model=uint32_t(MEM_W(0x74,int32_t(actor)));
-        if(MEM_H(0x20,int32_t(physical))==130||(MEM_W(0x94,int32_t(actor))==10&&MEM_BU(0x28,int32_t(physical))==1))continue;
+        const bool stationary_idle=MEM_W(0x94,int32_t(actor))==1&&MEM_W(0x10,int32_t(physical))==0&&
+            MEM_W(0x14,int32_t(physical))==0&&MEM_W(0x18,int32_t(physical))==0;
+        if(MEM_H(0x20,int32_t(physical))==130||stationary_idle||(MEM_W(0x94,int32_t(actor))==10&&MEM_BU(0x28,int32_t(physical))==1))continue;
         for(auto [address,size]:std::array<std::pair<uint32_t,unsigned>,3>{{{actor,0xCC},{physical,0xF4},{model,0x84}}})
             for(unsigned offset=0;offset<size;offset+=4)result.push_back(MEM_W(int32_t(offset),int32_t(address)));
     }
@@ -46,11 +48,12 @@ static std::vector<float> flash_pool_heights(uint8_t* rdram) {
     }
     return value;
 }
-static void flash_pool_compare(uint8_t* rdram,unsigned fps,unsigned divider,unsigned camera,unsigned profile,unsigned tick) {
+static void flash_pool_compare(uint8_t* rdram,unsigned fps,unsigned divider,unsigned camera,unsigned profile,unsigned tick,unsigned contact_tick,unsigned guard_case) {
     const auto actual=flash_pool_snapshot(rdram);
-    const auto& expected=flash_pool_oracles.at({fps,divider,camera,profile}).at(tick-1);
+    const auto& expected=flash_pool_oracles.at({fps,divider,camera,profile,contact_tick,guard_case}).at(tick-1);
     if(actual!=expected) {
         std::cerr<<"Flash pool mismatch fps="<<fps<<" divider="<<divider<<" camera="<<camera<<" profile="<<profile<<" tick="<<tick
+            <<" guard="<<guard_case<<" contact_tick="<<contact_tick
             <<" words="<<actual.words.size()<<'/'<<expected.words.size()<<" commands="<<actual.commands.size()<<'/'<<expected.commands.size()
             <<" heap="<<actual.heap.size()<<'/'<<expected.heap.size()<<" models="<<actual.models<<'/'<<expected.models<<'\n';
         for(unsigned i=0;i<std::min(actual.words.size(),expected.words.size());++i)

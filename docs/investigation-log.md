@@ -4018,3 +4018,58 @@ frontier/hooks/overlay table. Runtime этого коммита остаётся
 idle/подъём5/уменьшение6/падающий131 проверены в изолированном264; окончательный266
 прошёл loop/scene-transition/names и продолжает общую CPU-проверку. Native7 пока
 отдельный кандидат268 без результата. Новый Windows EXE не собирался;037 сохранён.
+
+
+## main276 — Native idle, подъём5, уменьшение6 и periodic effect131
+
+В основную версию перенесён окончательный runtime266: неподвижные предметы
+118/123/127 вращаются между исходными периодами; state5 поднимается, state6
+непрерывно уменьшает размер, инициализированный effect131 падает с исходной
+скоростью. Первый вход, actual RNG/clip/seek30, private counters, создание
+дочерних эффектов, звук/сигнал, настоящий contact и удаление сохраняют
+исходный Source порядок. Незнакомые состояния/скорости/обработчики остаются Source.
+
+Перед Source callback возвращаются только неизменённые Native continuous поля.
+Новая команда seek/bind/release имеет отдельную time-command identity; pause/
+clamp команды и внешние координаты/opacity/scale сохраняются. Model time,
+opacity/render flag и неизменённый completion pulse возвращаются к command
+baseline. Это предотвращает двойное продвижение модели и дрейф при pauseC9.
+При уменьшении допускается раннее округление scale до2 внутри периода,
+а threshold/signal/sound исполняются только настоящим Source callback.
+
+Свежий полный266 O2/ASan/UBSan/LSan прогон завершён:5088 Source/720 Native
+slot09 schedules/34464 сравнения,3192 actual NPC/B, городские/linked/patrol/
+orbital NPC, player/weapon/damage/death/recovery/surface/door и прежние группы.
+Свежие266 producer216 worlds/306828 intervals/41472 whole live endpoints,
+Source-only7/8 baseline432 worlds/818460 intervals/110592 endpoints, loop и
+scene-transition также прошли. В264 завершены producer guards3456 worlds/
+4909248 intervals/663552 endpoints, idle guards1344 worlds/768 контактов,
+periodic guards1152 worlds/221184 endpoints и camera/model/time/simulation/
+frame/overlay проверки.16 текущих отчётов имеют явное происхождение исполнения:
+пять266, десять264 и свежий names276. У264 указан только удалённый unused local
+и добавленный, не выбранный в прежних scopes Source7/8 тест; точное обратное
+преобразование проверено. Повторное исполнение этих264 scopes вmain не заявляется.
+
+Сохранены723 описания/388 смысловых имён/506 областей регистров.96 canonical
+C единиц/frontier/hooks/overlay table совпадают с проверенными264/266; fresh
+preprocessing tokens/C17/ABI check прошёл. Описания idle/5/6/131 и документы
+обновлены. Исторические255/267 receipts помечены superseded и не считаются
+текущими проверками новой реализации. Строгая компиляция264 сначала отвергла
+unused rdram;266 удаляет только эту локальную переменную. Исследование O2
+ELF не дало побитового равенства и не считается PASS; использованы реальные
+свежие266 исполнения. Не ослаблялись проверки компилятора.
+
+Следующий блок изолирован: Native7 spin/fade прошёл432 basic и3456 guard
+worlds/884736 guarded endpoints; Native8 two-phase arc прошёл432 basic worlds/
+110592 whole endpoints/25002 first XYZ+scale и70998 second XZ изменений.
+Guard8 и общий272 прогон ещё идут. Source4 baseline274 уже прошёл216 worlds/
+55296 endpoints, Native4 пока не подключён. Strict arc loop275 прошёл после
+удаления unused physical local; actual Original trig исполняется в gameplay
+scope, explicit abort-only math boundary используется только image-loop fixture.
+
+Full variable FPS ещё не завершён: state2/3 и другие семейства предметов,
+враги/платформы, сценарные камеры/заставки, миниигры/2D и общая интеграция
+остаются. CPU fixtures используют synthetic assets и внешние state команды;
+реальные level selectors/collision/render и исчерпание полного пула этим
+этапом не доказаны. Donor/32 pins/test037 сохранены; нового Windows EXE нет,
+игра/окно/renderer/GPU не запускались. Проверенные этапы сохраняются commit/push.

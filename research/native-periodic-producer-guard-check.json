@@ -1,0 +1,174 @@
+{
+  "result": "PASS: 3456 Original and3456 mixed Native/Source guarded pickup5/6 rise/periodic131 producer, explicit state6 shrink/signal, Native stationary state1 and actual Source mode3 collection/full six-flash130 lifetime schedules; 4909248 real Native intervals; intermediate idle/collected yaw, flash/periodic131 heights 690336/607104/4212864/1918560; Native rise/shrink samples 217080/662418; 663552 exact live actor/physics/model/heap/resource/command frozen Original endpoints; Source state5/6 and131 private command fields freeze between boundaries, genuine constructors/destructors and complete resource lifetime; Native initialized131 drift and pickup5/6 Y/scale with Source ordered private commands and retirement; 8 guards before/after Native: actor pause, moving rejection, callback replacement, absoluteY/uniform scale, actual blink D8=6/reentry1, seek0, opacity and model pause/resume at clip-edge periods; no game/GPU.",
+  "compile_optimization": "O2",
+  "extra_original_functions": [
+    "dora3_lib_8005A140",
+    "dora3_lib_8005A300",
+    "dora3_s3_801E80FC",
+    "dora3_s3_801E89CC",
+    "dora3_s3_core_801E8A94",
+    "dora3_s3_core_801EBA38",
+    "dora3_s3_core_801EBA9C",
+    "dora3_s3_core_801EBAD4",
+    "dora3_s3_core_801EBCC0",
+    "dora3_s3_core_801EBEDC",
+    "dora3_s3_core_801EBFC8",
+    "dora3_s3_core_801EC0D0",
+    "dora3_s3_core_801EC194",
+    "dora3_s3_core_801EC2A8",
+    "dora3_s3_core_801EC598",
+    "dora3_s3_core_801EC7D0",
+    "dora3_s3_core_801ECBE4",
+    "dora3_s3_core_801ECC6C",
+    "dora3_s3_core_801ECFB4",
+    "dora3_s3_core_801ED020",
+    "dora3_s3_core_801ED228",
+    "dora3_s3_core_801ED244",
+    "dora3_s3_core_801ED4A4",
+    "dora3_s3_core_801ED4AC",
+    "dora3_s3_core_801ED5F4",
+    "dora3_s3_core_801ED898",
+    "dora3_s3_core_801ED8EC",
+    "dora3_s3_core_801ED8F4",
+    "dora3_s3_core_801ED8FC",
+    "dora3_s3_demo_801E7528",
+    "dora3_s3_demo_801E7604",
+    "dora3_s3_demo_801E7A50",
+    "dora3_s3_demo_801E7B44",
+    "dora3_s3_demo_801E7B78",
+    "dora3_s3_demo_801E8210",
+    "dora3_s3_demo_801E8238",
+    "dora3_s3_demo_801E8404"
+  ],
+  "source_sha256": {
+    "src/native_gameplay_preview.cpp": "a7834f8c6388e426c8614b096f7ac817a2d6d4cd0170a8188151a6c4adf03343",
+    "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
+    "src/native_simulation_time.cpp": "319b3228e69fb6a6fcbfa81aaff831eeecfe54426538e10ca35726609c917cc4",
+    "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
+    "src/native_model_animation.cpp": "8696ac3189b3d95c3627172aa05b70929831aeeb427780ece5e844d07a03d664",
+    "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
+    "research/native-story-pickup-source-check.cpp": "d8d729cd64d34e56f0bcc5bdc3a9daf78815b63f524701ec98ebfdf1720d32ef",
+    "tools/check_native_player_update.py": "99cdc31dd9c74950061cc2de16b5140deb72c101cb8ce0a20a3e5c0a58382adc",
+    "tools/check_native_story_pickups.py": "8cadfc4c20e980cd7f8b9f98cf7b7e68f76a76f15307bb91ed416c17a927849d",
+    "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
+    "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
+    "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
+    "src/graphics_sync.hpp": "03fb24d4c08a7403d809cc8e1e9a594c1c029f51aa3e3f42a99a4a93aaacd655",
+    "src/live_graphics.hpp": "e8e0a028de63be949ca494f29816b2a4118e56aabe141e74902ff89d92054e49",
+    "src/live_io.hpp": "1ac7f6ceb515bd4e85b90355ff676bf5a7f102547a21ed12d8ec0b1bed967b08",
+    "src/n64_hardware.hpp": "b18a04de14a457d8d40787316f992cca5a579def5ff5fe64e9e17bb1729dc5d2",
+    "src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
+    "src/native_effects.hpp": "ddd57439bc9435e2c91791a3a1f3dc28a1cce7057bbf6d84a58e0f4a39e34805",
+    "src/native_frame_bridge.hpp": "a405469b02b662d7ad973c5475f05465defe0d346b7add98717e9393794fe545",
+    "src/native_frame_producer.hpp": "4df446b4e0456927e3242838687391f68d374149a8aac7a805f4f07d91fbb2a6",
+    "src/native_frame_scheduler.hpp": "ae108bfcf8c9bbd628f648a8781afd1a9a5ab8668aa676212a60ebf88329bfde",
+    "src/native_frame_session.hpp": "fdc799da001be3c6653126beacb987ce3811ba6f1cc5eeac5922e539089f8e83",
+    "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
+    "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
+    "src/native_gameplay_preview.hpp": "c217908d86f9b319a3acffcf4f3edb0e7cfa92b8de4742c21988f4d052638b11",
+    "src/native_graphics_pump.hpp": "3fdcb53d2f68a9b6d344beb44ea58a190c637bd2320cf3e77fbb8af2649bdcd3",
+    "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
+    "src/native_model_animation.hpp": "94d54daf5af8970667417ed8564745f34c6909f4854329a3265c647f4f5263f6",
+    "src/native_present.hpp": "c17a60839de06f09c2c5245091a7389c7126a3146019b8477483bc86d03e9158",
+    "src/native_presentation_gate.hpp": "f0fbc1799c6b1bb5a8196e6a6935254a8021cf9c098dafca6b7d9bbadcd3cb97",
+    "src/native_process_time.hpp": "610e46d91cf59a3581ef2f001e64975e2002e60f01dd165e7acb2b283abf01f7",
+    "src/native_scene_policy.hpp": "54fbae50b42fbaa5faf12f7cd9bd13aebabdbae495231a615e8c6fd670a3f70c",
+    "src/native_script_camera.hpp": "e7bb2e1ba4d036ca2ead349d884daf9a0f857b935d0f3d9359c8cfa12a4d2d94",
+    "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
+    "src/native_vi_snapshot.hpp": "0fb280fcc557a64b1c6637653a57a231723a2cd642bd0f8a6163bc03413e2030",
+    "src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
+    "src/port_display.hpp": "60617c7b1edec4037e218ef06e5ba18964c6d347098df558e456714085d8bec7",
+    "src/port_menu.hpp": "5f3314b598c9824d4eaa4ee221d688e32bec6af922ac03fe9e32f2fedbb24ed5",
+    "src/port_settings.hpp": "44e0c1a5a17b3c29f7ffb0fa8ceccc481173dad2b5b07853baf441a007c4f106",
+    "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
+    "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f",
+    "research/native-flash-pool-check.inc": "654c6474c0a39c2b15f3c21ab7ecbd1b92b1a0c3d281e70243bbb858549134fd",
+    "research/native-periodic-effect-source-check.inc": "c28c1e7c4d4189249c28c227f9fc1458419d817a82a18ecf4920536d7a6b7940",
+    "research/native-periodic-producer-check.inc": "c778c8103d470d0c7123d2b85eeaa4e099f50d04285f4af42eaa53665cdd8f61",
+    "research/native-periodic-producer-guard-check.inc": "aec8a15c0bdfb7cca6440351c559f119ad6861765f143bb10213a6bb5e5c14dd"
+  },
+  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
+  "reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
+  "validated_schedules": {
+    "settings": 24,
+    "source_schedules": 3456,
+    "mixed_schedules": 3456,
+    "heights": [
+      80,
+      250,
+      400
+    ],
+    "item_kinds": [
+      118,
+      123,
+      127
+    ],
+    "external_state6_period": 40,
+    "actual_mode3_contact_period": 100,
+    "periods": 192,
+    "original_rates": [
+      20,
+      30
+    ],
+    "configured_native_rates": [
+      60,
+      73,
+      120,
+      144,
+      165,
+      360
+    ],
+    "new_native_ownership": {
+      "131": [
+        1
+      ],
+      "118": [
+        5,
+        6
+      ],
+      "123": [
+        5,
+        6
+      ],
+      "127": [
+        5,
+        6
+      ]
+    },
+    "state5_state6_native_ownership": true,
+    "guard_profiles": 8,
+    "command_placements": [
+      "before Native period",
+      "after Native period before Source"
+    ]
+  },
+  "limitations": [
+    "Actual constructors, periodic131 producer, real Source state6 signal, Native idle and real collection/six130 complete retirement on synthetic assets",
+    "Actor pause/moving/callback/Y/scale/blink/seek/opacity/model pause external fixture commands; no real script selector or renderer proof",
+    "Commands inside a Native interval and actual full-pool exhaustion remain outside this matrix"
+  ],
+  "scope": "Actual pickup118/123/127 Native5/6 motion/scale with eight external commands before/after Native intervals; whole Source pool/lifetime oracle",
+  "execution_origin_276": {
+    "stage": 264,
+    "report_sha256": "30073825a138132aa623b7a87c4ba4cb958f0599369e53578e46c9529eaf41d0",
+    "generation_receipt_sha256": "6aed1eab317b2d8e3e21ac7bdea067a6b8be0ffd084738804cb8fca17ce7f539",
+    "source_delta": {
+      "src/native_gameplay_preview.cpp": {
+        "executed_sha256": "6145f90ac02e1d87cd610123b7e4f202e3a84709fcf93063c71130e549f3f66f",
+        "current_sha256": "a7834f8c6388e426c8614b096f7ac817a2d6d4cd0170a8188151a6c4adf03343",
+        "evidence": "Only unused rdram local removed from Native common Y hook; source delta asserted before integration. Fresh final266 full/producer/loop/transition PASS, no O2 ELF identity claim."
+      },
+      "research/native-story-pickup-source-check.cpp": {
+        "executed_sha256": "4e48c56dcd1d6b282055ec58e0cf87565ac01a8c21e3c5d114d16fff46a12d54",
+        "current_sha256": "d8d729cd64d34e56f0bcc5bdc3a9daf78815b63f524701ec98ebfdf1720d32ef",
+        "evidence": "Only added Source7/8 scope, include and guarded invocation; exact removal reconstructs executed264 source. Existing264 selected scopes keep this macro undefined and all scope branches/compilation/preparation exact."
+      },
+      "tools/check_native_story_pickups.py": {
+        "executed_sha256": "feed48e8012ec8db85f1d19c5672dfe91a1a82228af28eda009e111558dca7f4",
+        "current_sha256": "8cadfc4c20e980cd7f8b9f98cf7b7e68f76a76f15307bb91ed416c17a927849d",
+        "evidence": "Only added Source7/8 scope, include and guarded invocation; exact removal reconstructs executed264 source. Existing264 selected scopes keep this macro undefined and all scope branches/compilation/preparation exact."
+      }
+    },
+    "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
+  }
+}

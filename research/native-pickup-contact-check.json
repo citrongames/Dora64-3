@@ -1,5 +1,6 @@
 {
-  "result": "PASS: 96 actual Source mode3 contact callbacks after three Source idle passes; Native leaves uncollected state1 and collection initialization untouched; actual Source state10 acquisition and ordered six-effect lifetime.\nPASS: 168 connected Native flash pool and Source reward producer schedules; 119252 real Native intervals; 16128 full live actor/physics/model/heap/resource/command Original endpoints; 85328 intermediate effect height changes; item yaw/height/alpha samples 15616/4592/11144; actual Source birth pass, all six selectors, full animation tail and genuine retirement; Native collected118/123/127 and flash130 state10; ordered initialization/delay retained at Source boundaries; no game/GPU.",
+  "result": "PASS: 384 actual Source mode3 contact callbacks at Original periods2/4/11/20; Native stationary idle yaw advances between Source endpoints; collection initialization stays Source; actual Source state10 acquisition and ordered six-effect lifetime.\nNative idle intermediate yaw changes=21576\nPASS: 672 connected Native flash pool and Source reward producer schedules; 477008 real Native intervals; 64512 full live actor/physics/model/heap/resource/command Original endpoints; 341064 intermediate effect height changes; item yaw/height/alpha samples 84072/18312/44536; actual Source birth pass, all six selectors, full animation tail and genuine retirement; Native collected118/123/127 and flash130 state10; ordered initialization/delay retained at Source boundaries; no game/GPU.",
+  "compile_optimization": "O2",
   "extra_original_functions": [
     "dora3_lib_8005A140",
     "dora3_lib_8005A300",
@@ -37,15 +38,15 @@
     "dora3_s3_demo_801E8404"
   ],
   "source_sha256": {
-    "src/native_gameplay_preview.cpp": "20339eea746f7757cbef3cd94201c187f3c2b186737f3e450630ea02b5be1c7b",
+    "src/native_gameplay_preview.cpp": "a7834f8c6388e426c8614b096f7ac817a2d6d4cd0170a8188151a6c4adf03343",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
-    "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
+    "src/native_simulation_time.cpp": "319b3228e69fb6a6fcbfa81aaff831eeecfe54426538e10ca35726609c917cc4",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
-    "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
+    "src/native_model_animation.cpp": "8696ac3189b3d95c3627172aa05b70929831aeeb427780ece5e844d07a03d664",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-    "research/native-story-pickup-source-check.cpp": "2430785b51424010b7c8b8c220bfa4b42cb1203db8054a505eb3e7984f2eb2e9",
-    "tools/check_native_player_update.py": "60b94898572128ad31ed20651c50be98a2158f5b90470a18d4faa0bbc712f894",
-    "tools/check_native_story_pickups.py": "db0789ab86dcc1c9bf7a4c6fcb6bb3731edd3103b9b7af2338f11a5fa2ba5010",
+    "research/native-story-pickup-source-check.cpp": "d8d729cd64d34e56f0bcc5bdc3a9daf78815b63f524701ec98ebfdf1720d32ef",
+    "tools/check_native_player_update.py": "99cdc31dd9c74950061cc2de16b5140deb72c101cb8ce0a20a3e5c0a58382adc",
+    "tools/check_native_story_pickups.py": "8cadfc4c20e980cd7f8b9f98cf7b7e68f76a76f15307bb91ed416c17a927849d",
     "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
@@ -64,7 +65,7 @@
     "src/native_gameplay_preview.hpp": "c217908d86f9b319a3acffcf4f3edb0e7cfa92b8de4742c21988f4d052638b11",
     "src/native_graphics_pump.hpp": "3fdcb53d2f68a9b6d344beb44ea58a190c637bd2320cf3e77fbb8af2649bdcd3",
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-    "src/native_model_animation.hpp": "2132dc8530bf55e774ed8ed4f4ebf12cda94ce4e8615a0d386c77917de2650b7",
+    "src/native_model_animation.hpp": "94d54daf5af8970667417ed8564745f34c6909f4854329a3265c647f4f5263f6",
     "src/native_present.hpp": "c17a60839de06f09c2c5245091a7389c7126a3146019b8477483bc86d03e9158",
     "src/native_presentation_gate.hpp": "f0fbc1799c6b1bb5a8196e6a6935254a8021cf9c098dafca6b7d9bbadcd3cb97",
     "src/native_process_time.hpp": "610e46d91cf59a3581ef2f001e64975e2002e60f01dd165e7acb2b283abf01f7",
@@ -78,14 +79,14 @@
     "src/port_settings.hpp": "44e0c1a5a17b3c29f7ffb0fa8ceccc481173dad2b5b07853baf441a007c4f106",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f",
-    "research/native-flash-pool-check.inc": "5231763449896193e784712543fb90c8d275a518a4ccaa38548f914c8862b291"
+    "research/native-flash-pool-check.inc": "654c6474c0a39c2b15f3c21ab7ecbd1b92b1a0c3d281e70243bbb858549134fd"
   },
-  "generation_receipt_sha256": "1fcde63a7f8dfb3104d3ea16878099c95d61d9ede439197e6e944b304b14edac",
+  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
   "reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "validated_schedules": {
     "settings": 24,
     "producer_profiles": 7,
-    "connected_schedules": 168,
+    "connected_schedules": 672,
     "original_rates": [
       20,
       30
@@ -100,44 +101,64 @@
     ],
     "new_native_ownership": {
       "118": [
+        1,
         10
       ],
       "123": [
+        1,
         10
       ],
       "127": [
+        1,
         10
       ],
       "130": [
         10
       ]
     },
-    "actual_mode3_contacts": 96,
-    "source_idle_passes_before_contact": 3
+    "actual_mode3_contacts": 384,
+    "original_contact_periods": [
+      2,
+      4,
+      11,
+      20
+    ],
+    "original_idle_periods_before_contact": [
+      1,
+      3,
+      10,
+      19
+    ],
+    "idle_motion": "Only stationary state1 after actual first Source pass; measured fractional yaw changes and exact Original whole-pool endpoints"
   },
   "limitations": [
     "Actual Source producer, ordered Source delay states, Native flash state10 common pool, descriptor constructors, full model-advance tail and retirement on synthetic resources",
     "Frame-bank ownership and loop activation are fixture flags; no real NativeRuntime/FrameSession/presentation/renderer in this scoped proof",
-    "Uncollected item states remain Source-owned; real-level collision and full pool exhaustion not yet covered",
+    "Only stationary reviewed state1 and collected state10 have Native ownership; other item states, real-level collision and full pool exhaustion remain outside this proof",
     "Fixture external state1 command after genuine quest producer; no real-level item placement/contact selector or collection trigger claim"
   ],
-  "scope": "Actual Source mode3 contact after three uncollected state1 passes, Source initialization then connected Native item/effect state10; paired frozen Original",
-  "exact_input_relocation_255": {
-    "from_generation": "build-local/candidate244/build-local/startup-v244b",
-    "executed_report_sha256": "ae6bc94906fc81ac82285742fb4158fec3c1310aef01c3cb6ffaeb0de6e87a1b",
-    "executed_generation_receipt_sha256": "af8fc0fe10af98a9ed86844191365625bb0ebd104384a775c1a16bb21e015239",
-    "metadata_only_changes": {
-      "tools/check_native_player_update.py": {
-        "executed_sha256": "56e1481260963ae544b2295ece2f4aedd5cd9cb22b7c1d49b99b8ef5d67bc4c7",
-        "current_sha256": "60b94898572128ad31ed20651c50be98a2158f5b90470a18d4faa0bbc712f894",
-        "evidence": "Only the post-execution report caption parses measured hover192 from PASS stdout instead of hardcoded144; compilation/preparation/fixture branches exact."
+  "scope": "Stationary Native state1 and genuine Source mode3 contact, Source initialization then connected Native state10 item/effect lifetime; paired frozen Original",
+  "execution_origin_276": {
+    "stage": 264,
+    "report_sha256": "00b1849613edb12907295e578539eefc8671ba65be4ca5419d125ab109fd1d17",
+    "generation_receipt_sha256": "6aed1eab317b2d8e3e21ac7bdea067a6b8be0ffd084738804cb8fca17ce7f539",
+    "source_delta": {
+      "src/native_gameplay_preview.cpp": {
+        "executed_sha256": "6145f90ac02e1d87cd610123b7e4f202e3a84709fcf93063c71130e549f3f66f",
+        "current_sha256": "a7834f8c6388e426c8614b096f7ac817a2d6d4cd0170a8188151a6c4adf03343",
+        "evidence": "Only unused rdram local removed from Native common Y hook; source delta asserted before integration. Fresh final266 full/producer/loop/transition PASS, no O2 ELF identity claim."
+      },
+      "research/native-story-pickup-source-check.cpp": {
+        "executed_sha256": "4e48c56dcd1d6b282055ec58e0cf87565ac01a8c21e3c5d114d16fff46a12d54",
+        "current_sha256": "d8d729cd64d34e56f0bcc5bdc3a9daf78815b63f524701ec98ebfdf1720d32ef",
+        "evidence": "Only added Source7/8 scope, include and guarded invocation; exact removal reconstructs executed264 source. Existing264 selected scopes keep this macro undefined and all scope branches/compilation/preparation exact."
+      },
+      "tools/check_native_story_pickups.py": {
+        "executed_sha256": "feed48e8012ec8db85f1d19c5672dfe91a1a82228af28eda009e111558dca7f4",
+        "current_sha256": "8cadfc4c20e980cd7f8b9f98cf7b7e68f76a76f15307bb91ed416c17a927849d",
+        "evidence": "Only added Source7/8 scope, include and guarded invocation; exact removal reconstructs executed264 source. Existing264 selected scopes keep this macro undefined and all scope branches/compilation/preparation exact."
       }
     },
-    "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
-  },
-  "naming_only_relocation_267": {
-    "executed_report_sha256": "51b7466725ef076d29d3b3b66a6665e512b38778bf0fabf75ec120882d769f36",
-    "previous_generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
-    "evidence": "Names-only main267:4 new semantic aliases/8 register scopes;96 canonical C units/frontier/hooks/overlay table equal255, runtime and all execution inputs exact. Fresh723/388/506 names/preprocessed tokens/C17/ABI check. Existing runtime execution proof preserved; no new game run claimed."
+    "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
   }
 }

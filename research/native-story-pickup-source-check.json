@@ -124,5 +124,13 @@
     "executed_report_sha256": "2983d23d27421d080be7c9da41ae2f34b76b840f9fff7745ecf5022b9736e5b4",
     "previous_generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
     "evidence": "Names-only main267:4 new semantic aliases/8 register scopes;96 canonical C units/frontier/hooks/overlay table equal255, runtime and all execution inputs exact. Fresh723/388/506 names/preprocessed tokens/C17/ABI check. Existing runtime execution proof preserved; no new game run claimed."
+  },
+  "superseded_by_276": {
+    "current_reports": [
+      "research/native-player-update-check.json",
+      "research/native-periodic-producer-check.json",
+      "research/native-pickup-idle-guards-check.json"
+    ],
+    "evidence": "Historical main255/267 inputs preserved; not a current276 execution proof. Current ownership adds stationary idle/5/6/131; scope limits remain explicit."
   }
 }

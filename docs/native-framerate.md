@@ -1,29 +1,25 @@
 ## Продолжение main234 — проверены Source-награды и имена, runtime прежний
 
 
-## Текущий проверенный этап: main255
+## Текущий проверенный этап: main276
 
-Собранные предметы118/123/127 state10 и шесть эффектов130 state10 подключены
-к настоящим Native обновлениям движения, вращения, масштаба и исчезновения.
-Source birth/init, сбор и state1 delay/clip команды сохраняют исходный порядок.
-Несобранные предметы и эффект131 пока Source-owned в main.
+Native stationary idle/подъём5/уменьшение6 у предметов118/123/127 и падение
+инициализированного periodic effect131 подключены вместе с прежним Native
+сбором/state10/six flash130. Source first init, private counters/spawns/
+sound/signal/contact/retirement сохраняют порядок. Original20/30 неизменён.
 
-Полный244 player/world/NPC регрессионный прогон прошёл на24 настройках20/30Hz
-и60/73/120/144/165/360FPS:5088 slot09 Source/720 Native/34464 frozen comparisons
-и3192 NPC/B schedules. Connected reward:168 worlds/119252 Native intervals/
-16128 точных live actor/physics/model/heap/resource/command endpoints.
-Настоящий Source contact96, камера10975, текущий кадр64, реальный room barrier32,
-loop/model/time/simulation/overlay и отдельные flash scopes также прошли.
+Свежий полный266 O2 player/world/NPC прогон завершён:5088 Source/720 Native
+slot09/34464 comparisons и3192 NPC/B, все прежние player/weapon/world группы.
+Producer216/41472 endpoints; external producer guards3456/663552 endpoints;
+idle guards768 contacts; periodic guards1152/221184 endpoints. Loop/transition/
+camera/model/time/simulation/frame/overlay пройдены.16 текущих отчётов сохраняют
+исполненные266/264 origins и явные cosmetic/unselected-scope deltas; names276 fresh.
+723 описания/388 имён/506 scopes,96 canonical C/C17/tokens/ABI сохранены.
 
-15 текущих отчётов соответствуют generation255:14 сохраняют точный origin244,
-names report fresh. Все96 canonical units/frontier/hooks/overlay table точны;
-719 описаний/384 имени/498 register scopes сохранены. Исправлена подпись
-animation seek45. Подробнее:docs/work-in-progress.md.
-
-Idle248/guards252/Source effect131/producer254e проходят следующую отдельную
-стадию; они не включены в main255. FD room handoff и поздняя camera shake
-сохраняются. Test037 прежний; нового EXE нет. Остальные предметы, уровни,
-сценарные камеры, миниигры и2D остаются. Полный variable FPS не завершён.
+Native7 spin/fade и Native8 arc пока отдельные кандидаты: основные проверки
+прошли, общий272 иguard8 идут. State4 исходный путь проверен; Native4 ещё нет.
+Остальные предметы/уровни/враги/платформы/script cameras/cutscenes/minigames/2D
+остаются. Полный variable FPS не завершён. Test037 прежний, нового EXE нет.
 
 ---
 

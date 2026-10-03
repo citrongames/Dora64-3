@@ -239,7 +239,15 @@ double bounded_drift(double v,double a,double duration,double low,double high) {
         const double t=(bound-v-0.5*a)/a;
         if(t>0 && t<duration)points[count++]=t;
     }
-    std::sort(points,points+count);double result=0;
+    // Only the two endpoints and at most two clamp crossings exist.
+    // A bounded insertion sort keeps that small range explicit even under
+    // GCC15 O2, whose generic sort's 16-element path diagnoses this array.
+    for(unsigned i=1;i<count;++i) {
+        const auto value=points[i];unsigned j=i;
+        while(j && value<points[j-1]) {points[j]=points[j-1];--j;}
+        points[j]=value;
+    }
+    double result=0;
     for(unsigned i=1;i<count;++i) {
         const auto x=points[i-1],y=points[i];
         result+=(y-x)*0.5*(std::clamp(v+a*(x+0.5),low,high)+std::clamp(v+a*(y+0.5),low,high));

@@ -1,25 +1,26 @@
 {
   "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 672 actual slot09 constructors; 0 slot09 Source schedules; 64 slot09 Native edge schedules; 0 slot09 rejections; 0 slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; 0 slot09 intermediate yaw samples; settings=16; ASan/UBSan/LSan; no game/GPU.",
+  "compile_optimization": "O2",
   "scope": "FD current entered frame, exact rational endpoint: actual active103 and player-born103, request/control and 60/73 partition, Original20/30 and ordinary cameras12/2",
   "source_sha256": {
-    "src/native_gameplay_preview.cpp": "20339eea746f7757cbef3cd94201c187f3c2b186737f3e450630ea02b5be1c7b",
+    "src/native_gameplay_preview.cpp": "a7834f8c6388e426c8614b096f7ac817a2d6d4cd0170a8188151a6c4adf03343",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
-    "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
+    "src/native_simulation_time.cpp": "319b3228e69fb6a6fcbfa81aaff831eeecfe54426538e10ca35726609c917cc4",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
-    "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
+    "src/native_model_animation.cpp": "8696ac3189b3d95c3627172aa05b70929831aeeb427780ece5e844d07a03d664",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "research/native-scene-frame-check.cpp": "468ee02668c4d105041e566ca3a25157ddb8719ab55e2e3efeb0cf192137831a",
     "src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
     "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
-    "src/native_model_animation.hpp": "2132dc8530bf55e774ed8ed4f4ebf12cda94ce4e8615a0d386c77917de2650b7",
+    "src/native_model_animation.hpp": "94d54daf5af8970667417ed8564745f34c6909f4854329a3265c647f4f5263f6",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
     "src/native_gameplay_preview.hpp": "c217908d86f9b319a3acffcf4f3edb0e7cfa92b8de4742c21988f4d052638b11",
     "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
-    "recomp/native-timing-rules.json": "2752c47f221b5643d4a36bd09272ac537a096d8bd32d4ad1045518cb8c9185a4",
+    "recomp/native-timing-rules.json": "cf77884cf65905cd49079a5a656cdbeb61bf10452b789663cb1b88db656d8c2d",
     "research/player-state-inventory.json": "c6497c19972e73478ac5d71ffcef6304924aeb087121f0c2e38528fb1bbd150f",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
-    "tools/check_native_player_update.py": "60b94898572128ad31ed20651c50be98a2158f5b90470a18d4faa0bbc712f894"
+    "tools/check_native_player_update.py": "99cdc31dd9c74950061cc2de16b5140deb72c101cb8ce0a20a3e5c0a58382adc"
   },
   "original_functions": [
     "actual_dora3_s3_801E6968",
@@ -832,7 +833,7 @@
     "dora3_s3_core_801B9284",
     "dora3_s3_core_801E5828"
   ],
-  "generation_receipt_sha256": "1fcde63a7f8dfb3104d3ea16878099c95d61d9ede439197e6e944b304b14edac",
+  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "validated": {
@@ -864,22 +865,22 @@
     "No game/renderer/GPU; actual resource barrier and next whole BB080 room replacement have separate proof",
     "Complete later projectile life and broad player/world states remain the full checker scope"
   ],
-  "exact_input_relocation_255": {
-    "from_generation": "build-local/candidate244/build-local/startup-v244b",
-    "executed_report_sha256": "5531d673902a66492f2f376cc72b3391ca43dd6a1b3739a3e551e6f7b54d70e9",
-    "executed_generation_receipt_sha256": "af8fc0fe10af98a9ed86844191365625bb0ebd104384a775c1a16bb21e015239",
-    "metadata_only_changes": {
-      "tools/check_native_player_update.py": {
-        "executed_sha256": "56e1481260963ae544b2295ece2f4aedd5cd9cb22b7c1d49b99b8ef5d67bc4c7",
-        "current_sha256": "60b94898572128ad31ed20651c50be98a2158f5b90470a18d4faa0bbc712f894",
-        "evidence": "Only the post-execution report caption parses measured hover192 from PASS stdout instead of hardcoded144; compilation/preparation/fixture branches exact."
+  "execution_origin_276": {
+    "stage": 264,
+    "report_sha256": "18ce774024bb478e1ff26b602f038f17e1a53375b8b31e8332aead0f81e202c5",
+    "generation_receipt_sha256": "6aed1eab317b2d8e3e21ac7bdea067a6b8be0ffd084738804cb8fca17ce7f539",
+    "source_delta": {
+      "src/native_gameplay_preview.cpp": {
+        "executed_sha256": "6145f90ac02e1d87cd610123b7e4f202e3a84709fcf93063c71130e549f3f66f",
+        "current_sha256": "a7834f8c6388e426c8614b096f7ac817a2d6d4cd0170a8188151a6c4adf03343",
+        "evidence": "Only unused rdram local removed from Native common Y hook; source delta asserted before integration. Fresh final266 full/producer/loop/transition PASS, no O2 ELF identity claim."
+      },
+      "recomp/native-timing-rules.json": {
+        "executed_sha256": "751a5ca5cbbddeef36417f37461129cb0c7bddae127621bddf5105f9aad32fc8",
+        "current_sha256": "cf77884cf65905cd49079a5a656cdbeb61bf10452b789663cb1b88db656d8c2d",
+        "evidence": "Only status/evidence for four already executed hooks updated; every semantic rule field exact,96 canonical C and hooks/overlay table exact."
       }
     },
-    "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
-  },
-  "naming_only_relocation_267": {
-    "executed_report_sha256": "c452259a1db0db9df0e5b3a40c70714a4dbad4b8f54db64bd543d77d67cd3d45",
-    "previous_generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
-    "evidence": "Names-only main267:4 new semantic aliases/8 register scopes;96 canonical C units/frontier/hooks/overlay table equal255, runtime and all execution inputs exact. Fresh723/388/506 names/preprocessed tokens/C17/ABI check. Existing runtime execution proof preserved; no new game run claimed."
+    "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
   }
 }
