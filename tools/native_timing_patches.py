@@ -303,6 +303,45 @@ def timing_hooks(sections,compiled,rom):
             if rule['section']!='.scene1' or address!=0x801D10D8 or site!=0x801D117C or word!=0x02202021:
                 raise ValueError('Unreviewed projectile clip boundary')
             text='if (dora3_native_simulation_active()) { int phase_result=dora3_native_preview_hook(rdram,ctx,0x801D117Cu); if (phase_result==2) goto dora3_projectile_exit; if (phase_result==1) goto dora3_projectile_next; }'
+        elif op=='native_reward_opacity_end_gate':
+            if rule['section']!='.scene1' or address!=0x801E8BDC or site!=0x801E8CD4 or word!=0xA06000C8:
+                raise ValueError('Unreviewed reward opacity command end')
+            # The original store is a delay slot of j L_801E8D08. Suppression
+            # jumps to that same destination, preserving both generated paths.
+            text='if (dora3_native_preview_hook(rdram,ctx,0x801E8CD4u)) goto L_801E8D08;'
+        elif op=='native_reward_common_opacity':
+            allowed={0x801E8CB0:0x46340000,0x801E8CE8:0x46340001}
+            if rule['section']!='.scene1' or address!=0x801E8BDC or site not in allowed or word!=allowed[site]:
+                raise ValueError('Unreviewed reward opacity instruction')
+            label=f'dora3_after_reward_opacity_{site:08X}'
+            text=f'if (dora3_native_preview_hook(rdram,ctx,0x{site:08X}u)) goto {label};'
+            hooks[name,site+4].insert(0,label+':;')
+        elif op in {'native_pickup_motion_input' ,'native_pickup_motion_replace','native_pickup_motion_retire_gate'}:
+            allowed={0x801EC6F4:(0x3C028022,'native_pickup_motion_input',0x801EC6F8),0x801EC704:(0x0C00C683,'native_pickup_motion_replace',0x801EC70C),0x801EC72C:(0x0C07A043,'native_pickup_motion_replace',0x801EC734),0x801EC740:(0x4614003E,'native_pickup_motion_input',0x801EC744),0x801EC764:(0x46220001,'native_pickup_motion_replace',0x801EC768),0x801EC79C:(0x4622003E,'native_pickup_motion_retire_gate',0x801EC7A0),0x801EC7B8:(0x8FBF0020,'native_pickup_motion_input',0x801EC7BC)}
+            if rule['section']!='.scene1' or address!=0x801EC598 or site not in allowed or (word,op)!=allowed[site][:2]:
+                raise ValueError('Unreviewed collected pickup motion instruction')
+            call=f'dora3_native_preview_hook(rdram,ctx,0x{site:08X}u)'
+            label=f'dora3_after_pickup_{site:08X}'
+            if op=='native_pickup_motion_input':text=call+';'
+            else:
+                text=('if ('+call+') { c1cs=0; goto '+label+'; }') if op=='native_pickup_motion_retire_gate' else ('if ('+call+') goto '+label+';')
+                hooks[name,allowed[site][2]].insert(0,label+':;')
+        elif op in {'native_flash_motion_input','native_flash_motion_replace','native_flash_motion_retire_gate'}:
+            allowed={0x801ED5F4:(0x3C038022,'native_flash_motion_input',0x801ED5F8),0x801ED664:(0x3C038022,'native_flash_motion_input',0x801ED668),0x801ED6B0:(0x0C00C683,'native_flash_motion_replace',0x801ED6B8),0x801ED6E0:(0x46346302,'native_flash_motion_input',0x801ED6E4),0x801ED70C:(0x46020002,'native_flash_motion_input',0x801ED710),0x801ED72C:(0x46346302,'native_flash_motion_input',0x801ED730),0x801ED74C:(0x46020002,'native_flash_motion_input',0x801ED750),0x801ED76C:(0x46020000,'native_flash_motion_replace',0x801ED770),0x801ED778:(0x4604103E,'native_flash_motion_input',0x801ED77C),0x801ED79C:(0x46220001,'native_flash_motion_replace',0x801ED7A0),0x801ED7B8:(0x4624103C,'native_flash_motion_retire_gate',0x801ED7BC),0x801ED7F4:(0x0C07A043,'native_flash_motion_replace',0x801ED7FC),0x801ED814:(0x46220000,'native_flash_motion_replace',0x801ED818),0x801ED840:(0x4600203C,'native_flash_motion_input',0x801ED844),0x801ED85C:(0x46220000,'native_flash_motion_replace',0x801ED860),0x801ED884:(0x8FBF001C,'native_flash_motion_input',0x801ED888)}
+            if rule['section']!='.scene1' or address!=0x801ED5F4 or site not in allowed or (word,op)!=allowed[site][:2]:
+                raise ValueError('Unreviewed flash motion instruction')
+            call=f'dora3_native_preview_hook(rdram,ctx,0x{site:08X}u)'
+            label=f'dora3_after_flash_{site:08X}'
+            if op=='native_flash_motion_input':text=call+';'
+            else:
+                text=f'if ({call}) goto {label};' if op=='native_flash_motion_replace' else 'if ('+call+') { c1cs=0; goto '+label+'; }'
+                hooks[name,allowed[site][2]].insert(0,label+':;')
+        elif op=='native_flash_delay':
+            allowed={(0x801ED520,0x3C038022),(0x801ED5E8,0x8FBF0018)}
+            if rule['section']!='.scene1' or address!=0x801ED4AC or (site,word) not in allowed:
+                raise ValueError('Unreviewed flash delay count/clip boundary')
+            call=f'dora3_native_preview_hook(rdram,ctx,0x{site:08X}u)'
+            text=f'if ({call}) goto L_801ED5E8;' if site==0x801ED520 else call+';'
         elif op=='native_object_boundary':
             sites={
                 0x801D10D8:(0x801D10D8,''),

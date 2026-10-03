@@ -2,7 +2,7 @@
   "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 336 actual slot09 constructors; 0 slot09 Source schedules; 32 slot09 Native edge schedules; 0 slot09 rejections; 0 slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; 0 slot09 intermediate yaw samples; settings=8; ASan/UBSan/LSan; no game/GPU.",
   "scope": "Actual Source BB080 -> BA0F4 -> B9FDC first room resource barrier after an entered Native FD frame; no game/GPU",
   "source_sha256": {
-    "src/native_gameplay_preview.cpp": "d48c83d5d296ed59f29e15e491187a4b34cdb0bde248bae5bbb486928a1c1092",
+    "src/native_gameplay_preview.cpp": "20339eea746f7757cbef3cd94201c187f3c2b186737f3e450630ea02b5be1c7b",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
@@ -15,9 +15,9 @@
     "src/native_game_loop.cpp": "515b06226d61a7afa1bef038173d15e83ccbcad1de6b3afab833966a8f64ecfb",
     "src/native_frame_bridge.cpp": "c1c7ae5fb4ab80e03b178a744a13ac90973b32d787b6fec432afb2e27182b995",
     "research/native-scene-transition-check.cpp": "aceaf91c5657dc9a01cfbcae2f116f87806d093aa362c0b7cb676d3023103816",
-    "tools/check_native_player_update.py": "7f3fdf18d70dff2701a731a35509e917b6d82cdb01242534257a14622d318305",
+    "tools/check_native_player_update.py": "60b94898572128ad31ed20651c50be98a2158f5b90470a18d4faa0bbc712f894",
     "tools/check_native_scene_transition.py": "f0bbd915fd5112281ed36cb2866c77d5c8c11c5ebfe660c8715f522166e18735",
-    "recomp/native-timing-rules.json": "fae3f8016727e0ec9890cd166703afe15d41d4f45c1336b50a7af5b58e782cfd",
+    "recomp/native-timing-rules.json": "2752c47f221b5643d4a36bd09272ac537a096d8bd32d4ad1045518cb8c9185a4",
     "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
     "research/player-state-inventory.json": "c6497c19972e73478ac5d71ffcef6304924aeb087121f0c2e38528fb1bbd150f",
@@ -52,7 +52,7 @@
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f"
   },
-  "generation_receipt_sha256": "0c3504b465a334012069de397935252c280e3103b7149622c14db88ae59f96ce",
+  "generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "original_room_functions": [
@@ -94,7 +94,7 @@
     "dora3_s3_801EFCE8"
   ],
   "diagnostic_generated_sha256": {
-    "functions.c": "4abaa4a57e8a98da26bc2e2590aee013c7b4b79078153f4de565828bde687ad9",
+    "functions.c": "0617b797bd56e02515a2a0e74a50bb3e1c74833ce702b08318d1c99271096a4e",
     "room-functions.c": "b76aaacd74bf04f0686c9012efea2075574f6d0822fcf1a311bb001640ee0f7a",
     "loop.cpp": "5128cf3cc558eddf8f0ff87bb797c318470c34453a52538d4f062cf5bc7cb28a",
     "bridge.cpp": "ac1e4bbf762d5ff2da1d2f1d82fb705a3d6badceddf1ed246b03deb5598a9eec"
@@ -126,20 +126,17 @@
     "Empty projectile pool here; active/newborn projectile continuation is checked separately by the scene-frame scope",
     "Tests exact command routing and two-bank/early guest completion/late retirement/late host read/FIFO/context; no actual GPU retirement"
   ],
-  "exact_input_relocation_235": {
-    "from_generation": "build-local/candidate231/build-local/startup-v231",
-    "report_sha256": "a98bb5728cc39ef456959b1f0dee087a8a42ae9bfd8a5d7b76501a212ecb77c3",
-    "generation_receipt_sha256": "ffafdde1204fd9065de67b0a65d8519d18b89c6561065a2120a72c70496716ac",
-    "evidence": "All reported compiled sources/checkers/headers identical;96 canonical C units and raw frontier/hooks/overlay table identical to frozen224 and fresh235 rehearsal. This relocates the named executed proof and does not claim a new run."
-  },
-  "checker_metadata_only_update_235": {
-    "previous_checker_sha256": "661afcfac368efa4744ac67f0bc18b5a270a05bd693e674441ce8647dc07f03f",
-    "previous_report_sha256": "7d6256cabfb50e69f9503b389e9da5cb9a30dcac12c44855997033cc41c013cb",
-    "evidence": "Only the post-execution full report caption now parses existing PASS stdout. No compiled preparation/runtime/fixture/Source or scene-frame diagnostic branch changes."
-  },
-  "naming_only_relocation_249": {
-    "executed_report_sha256": "1deda16b2babc07cedac56fe42a41a0108bf73ad5df0269cb5cfeb252ed304af",
-    "previous_generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
-    "evidence": "Only Source annotation catalog changed: seven functions and17 scoped register roles. Runtime/rules/fixture/checker/header inputs and all96 canonical generated C units/frontier/hooks/overlay table exactly equal main235. This preserves the executed proof and does not claim a fresh gameplay regression."
+  "exact_input_relocation_255": {
+    "from_generation": "build-local/candidate244/build-local/startup-v244b",
+    "executed_report_sha256": "f0af3d6d4b23806af75c861407a87f126991622b17a4a6dfe1992c8bafffd6af",
+    "executed_generation_receipt_sha256": "af8fc0fe10af98a9ed86844191365625bb0ebd104384a775c1a16bb21e015239",
+    "metadata_only_changes": {
+      "tools/check_native_player_update.py": {
+        "executed_sha256": "56e1481260963ae544b2295ece2f4aedd5cd9cb22b7c1d49b99b8ef5d67bc4c7",
+        "current_sha256": "60b94898572128ad31ed20651c50be98a2158f5b90470a18d4faa0bbc712f894",
+        "evidence": "Only the post-execution report caption parses measured hover192 from PASS stdout instead of hardcoded144; compilation/preparation/fixture branches exact."
+      }
+    },
+    "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
   }
 }

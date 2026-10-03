@@ -47,27 +47,23 @@
     "research/native-camera-modes-check.cpp": "53c68efd4e29283ab4e9944f206b833ba9ee826a4050b02bc435224ca36d6bf7",
     "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
     "src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
-    "recomp/native-timing-rules.json": "fae3f8016727e0ec9890cd166703afe15d41d4f45c1336b50a7af5b58e782cfd",
-    "tools/native_timing_patches.py": "57507936d9a6fba154eecdf94271dcc9cf321b88b3f944ba2852680ed5586bf5",
+    "recomp/native-timing-rules.json": "2752c47f221b5643d4a36bd09272ac537a096d8bd32d4ad1045518cb8c9185a4",
+    "tools/native_timing_patches.py": "95e55f9aeb090c96c679ab018edc202263624f454a2eaced7a1447f028831961",
     "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
     "tools/check_native_camera_modes.py": "5474f494eab96267d69aaa8cb6050ce543b1d0fc8c91b85628fb0ab3b88f1365"
   },
-  "generation_receipt_sha256": "0c3504b465a334012069de397935252c280e3103b7149622c14db88ae59f96ce",
+  "generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "limitations": [
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",
     "Whole-tick equivalence compares owned state, excluding scratch stack/registers of replaced leaf functions",
     "Synthetic actors and no-map/room geometry through original query; no real level, mode-switch input or changing-player trajectory verification"
   ],
-  "exact_input_relocation_235": {
-    "from_generation": "build-local/candidate224/build-local/startup-v224",
-    "report_sha256": "2892fc95454cca62fb6c3892a61c526a8d3ea46aec80013fd61a73785323443f",
-    "generation_receipt_sha256": "6d5ea6d0c91aa01dba9fe68acad136b4fff9f43fb434a39b07e7279c44f1c90f",
-    "evidence": "All reported compiled sources/checkers/headers identical;96 canonical C units and raw frontier/hooks/overlay table identical to frozen224 and fresh235 rehearsal. This relocates the named executed proof and does not claim a new run."
-  },
-  "naming_only_relocation_249": {
-    "executed_report_sha256": "914e9998593d8280dacf22b17b7f79efd3e78c0f38accf64e3e6644488f438e5",
-    "previous_generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
-    "evidence": "Only Source annotation catalog changed: seven functions and17 scoped register roles. Runtime/rules/fixture/checker/header inputs and all96 canonical generated C units/frontier/hooks/overlay table exactly equal main235. This preserves the executed proof and does not claim a fresh gameplay regression."
+  "exact_input_relocation_255": {
+    "from_generation": "build-local/candidate244/build-local/startup-v244b",
+    "executed_report_sha256": "bece0cab7332bb9c054fa33bc5f15cd154023f529807151637d4d7348dc0b511",
+    "executed_generation_receipt_sha256": "af8fc0fe10af98a9ed86844191365625bb0ebd104384a775c1a16bb21e015239",
+    "metadata_only_changes": {},
+    "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
   }
 }

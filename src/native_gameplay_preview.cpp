@@ -16,6 +16,7 @@
 #include <limits>
 extern "C" void dora3_s3_801C8B28(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_801E8BDC(uint8_t*,recomp_context*);
+extern "C" void dora3_s3_801E810C(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_demo_801E88C4(uint8_t*,recomp_context*);
 extern "C" void dora3_s0_80031A0C(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_demo_801E8590(uint8_t*,recomp_context*);
@@ -220,6 +221,46 @@ struct ObjectReturnTurn {
 };
 std::array<std::optional<ObjectPeriodicPose>,200> object_periodic_poses;
 std::array<std::optional<ObjectReturnTurn>,200> object_return_turns;
+// The flash delay is a discrete command measured in Original periods. Its
+// model lifetime/run and observed count/state prevent duplicate end commits.
+struct FlashDelayCommit {
+    uint32_t actor,physical,model;uint64_t lifetime,run,epoch,tick,denominator;
+    std::array<int32_t,3> fields;
+};
+std::array<std::optional<FlashDelayCommit>,200> flash_delay_commits;
+// A Source-born reward gets its first actual Source pool pass before Native
+// claims this model lifetime. Slot reuse and clip changes are different events.
+struct RewardPoolClaim {uint32_t actor,physical,model;uint64_t lifetime,epoch;};
+std::array<std::optional<RewardPoolClaim>,200> reward_pool_claims;
+struct RewardSourceCeiling {uint32_t actor,physical,model;uint64_t lifetime,epoch,tick,phase,denominator;};
+std::array<std::optional<RewardSourceCeiling>,200> reward_source_ceilings;
+bool reward_pool_claim_matches(uint8_t* ram,uint32_t actor) {
+    if(actor<0x801734B8u||(actor-0x801734B8u)%0xCC)return false;
+    const auto slot=(actor-0x801734B8u)/0xCC;
+    if(slot>=reward_pool_claims.size()||!reward_pool_claims[slot])return false;
+    const auto& claim=*reward_pool_claims[slot];
+    return claim.actor==actor&&claim.epoch==epoch&&claim.physical==uint32_t(word(ram,actor+0x98))&&
+        claim.model==uint32_t(word(ram,actor+0x74))&&claim.lifetime==game_model_animation().lifetime_token(claim.model);
+}
+struct FlashMotionClock {
+    uint32_t actor,physical,model;
+    uint64_t lifetime,run,epoch,tick,denominator,start_phase,expected_phase;
+    float phase,radius,alpha,scale,velocity,gravity,y,expected_y;
+    bool first_motion;
+    std::array<int32_t,9> expected;
+};
+std::array<std::optional<FlashMotionClock>,200> flash_motion_clocks;
+struct PickupMotionClock {
+    uint32_t actor,physical,model;int kind;
+    uint64_t lifetime,run,epoch,tick,denominator,start_phase,expected_phase;
+    float yaw,alpha,velocity,gravity,y,expected_y,end_velocity;
+    std::array<int32_t,5> expected;
+};
+std::array<std::optional<PickupMotionClock>,200> pickup_motion_clocks;
+bool collected_pickup_kind(int kind) {return kind==118||kind==123||kind==127;}
+
+std::array<bool,200> flash_motion_initializers{};
+
 // A city's wait/clip/patrol decision is a once-per-period command. Common
 // geometry and model time still advance over every actual Native interval.
 struct CityDecisionPeriod {
@@ -617,6 +658,27 @@ bool owns_common_object(uint8_t* ram,uint32_t actor) {
         }
         callback=0x801EB864u;
     }
+    else if(collected_pickup_kind(kind)) {
+        const auto model=uint32_t(word(ram,actor+0x74));
+        const uint32_t update=kind==118?0x801ECC6Cu:kind==123?0x801ED020u:0x801ED244u;
+        const uint32_t contact=kind==118?0x801ECBE4u:kind==123?0x801ECFB4u:0x801ED228u;
+        return word(ram,actor+0x94)==10&&MEM_BU(0x28,int32_t(physics))==1&&pointer(model,0x84)&&
+            game_model_animation().lifetime_token(model)&&!game_model_animation().native_birth(model)&&
+            uint32_t(word(ram,0x80202064u+unsigned(kind)*84u))==update&&
+            uint32_t(word(ram,0x80202068u+unsigned(kind)*84u))==contact;
+    }
+    else if(kind==130) {
+        const auto state=word(ram,actor+0x94);const auto model=uint32_t(word(ram,actor+0x74));
+        // Only the exact flash state dispatcher and its no-op partner are
+        // reviewed. An effect not yet visited by Source cannot receive past dt.
+        // Delay has no visible movement. Its discrete clip command stays in
+        // the ordered Source pool while reward producers are Source-owned:
+        // an effect can reuse a free slot before its own producer this pass.
+        return state==10&&pointer(model,0x84)&&game_model_animation().lifetime_token(model)&&
+            !game_model_animation().native_birth(model)&&
+            uint32_t(word(ram,0x80202064u+130u*84u))==0x801ED898u&&
+            uint32_t(word(ram,0x80202068u+130u*84u))==0x801ED4A4u;
+    }
     else if(kind==80)callback=0x801EF2ECu;
     else if(kind>=71&&kind<=74)callback=0x801EEFC8u;
     else if(kind==7)callback=0x8022D938u;
@@ -658,7 +720,7 @@ void register_object_clocks(uint8_t* ram,const SimulationSlice& slice) {
         const auto actor=0x801734B8u+slot*0xCC;
         if(!word(ram,actor+0x94)||!owns_common_object(ram,actor)) {cancel_slot09_story_start(ram,slot);cancel_slot09_special_turn(ram,slot);object_clocks[slot]={};continue;}
         const auto identity=object_identity(ram,actor,start);
-        if(identity.kind!=7&&identity.kind!=9&&identity.kind!=18&&!city_patrol_callback(identity.kind)&&!slot09_callback(identity.kind)&&(identity.kind<71||identity.kind>77)) {object_clocks[slot]={};continue;}
+        if(identity.kind!=7&&identity.kind!=9&&identity.kind!=18&&identity.kind!=130&&!collected_pickup_kind(identity.kind)&&!city_patrol_callback(identity.kind)&&!slot09_callback(identity.kind)&&(identity.kind<71||identity.kind>77)) {object_clocks[slot]={};continue;}
         auto& clock=object_clocks[slot];
         if(!same_object(clock,identity)) {clock=identity;if(!clock.local)clock.origin=0;}
     }
@@ -669,6 +731,26 @@ struct Slot09DialogueReentry {
 std::array<std::optional<Slot09DialogueReentry>,200> slot09_source_dialogues,slot09_native_reentries;
 void begin_object_scope(uint8_t* ram,uint32_t actor) {
     if(!gameplay_slice)return;
+    const auto flash_physical=uint32_t(word(ram,actor+0x98));uint8_t* flash_ram=ram;
+    if(pointer(flash_physical,0xF4)&&([&] {uint8_t* rdram=flash_ram;const auto kind=MEM_H(0x20,int32_t(flash_physical));return kind==130||collected_pickup_kind(kind);})()&&
+       gameplay_slice->phase&&gameplay_slice->phase<60&&
+       (!reward_pool_claim_matches(ram,actor)||([&] {
+           const auto slot=(actor-0x801734B8u)/0xCC;
+           if(slot>=reward_source_ceilings.size()||!reward_source_ceilings[slot])return false;
+           const auto ceiling=*reward_source_ceilings[slot];reward_source_ceilings[slot].reset();
+           return ceiling.actor==actor&&ceiling.physical==flash_physical&&ceiling.model==uint32_t(word(ram,actor+0x74))&&
+               ceiling.lifetime==game_model_animation().lifetime_token(ceiling.model)&&ceiling.epoch==epoch&&
+               ceiling.tick==gameplay_slice->tick&&ceiling.phase==gameplay_slice->phase&&ceiling.denominator==gameplay_slice->denominator;
+       })())&&
+       !game_model_animation().native_birth(uint32_t(word(ram,actor+0x74)))) {
+        // Source submits rational ends with a <1ns ceiling. Include that
+        // ceiling only at the first acquisition, preserving full Original steps.
+        const auto& slice=*gameplay_slice;
+        object_suspension.emplace();
+        try {object_scope.emplace(SimulationSlice{slice.numerator+slice.phase,slice.denominator,slice.tick,0});}
+        catch(...) {object_suspension.reset();throw;}
+        object_command_at_source_start=true;return;
+    }
     const auto reentry_slot=(actor-0x801734B8u)/0xCC;
     if(reentry_slot<slot09_native_reentries.size())if(auto& pending=slot09_native_reentries[reentry_slot];pending) {
         const auto handoff=*pending;pending.reset();
@@ -1107,7 +1189,7 @@ void native_gameplay_preview_reset(uint8_t* ram) {
     if(ram)native_input_end(ram);
     for(unsigned slot=0;slot<slot09_story_starts.size();++slot)cancel_slot09_story_start(ram,slot);
     for(unsigned slot=0;slot<slot09_special_turns.size();++slot)cancel_slot09_special_turn(ram,slot);
-    scene_completion_slice.reset();scene_frame_completed={};scene_frame_entered={};
+    scene_completion_slice.reset();scene_frame_completed={};scene_frame_entered={};flash_delay_commits={};reward_pool_claims={};reward_source_ceilings={};flash_motion_clocks={};pickup_motion_clocks={};flash_motion_initializers={};
     for(auto& handoff:scene_source_handoffs)if(handoff&&!scene_completed_handoff_valid(ram,*handoff))handoff.reset();
     slot09_scene_publications={};
     for(auto& handoff:slot09_scene_handoffs)if(handoff&&!slot09_scene_handoff_valid(ram,*handoff))handoff.reset();
@@ -1153,7 +1235,270 @@ extern "C" void dora3_native_object_scope_end() {
     object_command_at_end=false;object_command_at_source_start=false;
     object_scope.reset();object_suspension.reset();
 }
+namespace {
+std::array<int32_t,9> flash_motion_fields(uint8_t* rdram,uint32_t actor,uint32_t physical) {
+    return {MEM_H(0x34,int32_t(physical)),word(rdram,physical+0x5C),word(rdram,physical+0x58),
+        word(rdram,actor+0x18),word(rdram,physical+0x14),word(rdram,physical+0x1C),
+        word(rdram,physical+0x44),word(rdram,physical+0xBC),word(rdram,physical+0xC0)};
+}
+bool flash_motion_site(uint32_t site) {
+    switch(site) {
+    case 0x801ED5F4:case 0x801ED664:case 0x801ED6B0:case 0x801ED6E0:
+    case 0x801ED70C:case 0x801ED72C:case 0x801ED74C:case 0x801ED76C:
+    case 0x801ED778:case 0x801ED79C:case 0x801ED7B8:case 0x801ED7F4:
+    case 0x801ED814:case 0x801ED840:case 0x801ED85C:case 0x801ED884:return true;
+    default:return false;
+    }
+}
+// Native geometry retains the Original period's old-velocity branch and
+// float baselines. The probe/retirement decisions still commit at its end.
+// Common tail integration publishes the continuous kick-then-drift curve.
+int flash_motion_hook(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
+    const auto* active=active_simulation_slice();if(!active)return 0;
+    const bool axis=site==0x801E8E00||site==0x801E8E10||site==0x801E8E20;
+    if(!axis&&!flash_motion_site(site))return 0;
+    const auto actor=uint32_t(word(rdram,0x8021BDEC)),physical=uint32_t(word(rdram,0x8021BCDC));
+    // E656C has already cleared actor98 and EA4C has replaced model74 by
+    // FFFFFFFF at this exact Original end. Close the known period before
+    // validating a live actor, without reading either retired allocation.
+    if(site==0x801ED884&&actor>=0x801734B8u&&(actor-0x801734B8u)%0xCC==0&&pointer(actor,0xCC)&&
+       !word(rdram,actor+0x94)&&!word(rdram,actor+0x98)&&uint32_t(word(rdram,actor+0x74))==0xFFFFFFFFu) {
+        const auto index=(actor-0x801734B8u)/0xCC;
+        if(index<flash_motion_clocks.size())if(auto& prior=flash_motion_clocks[index];prior&&
+           prior->actor==actor&&prior->physical==physical&&prior->epoch==epoch&&
+           prior->tick==active->tick&&prior->denominator==active->denominator&&
+           prior->expected_phase==active->phase&&active->ends_tick()) {prior.reset();return 0;}
+        throw std::logic_error("Unreviewed flash retirement continuation");
+    }
+    if(axis&&(!pointer(physical,0xF4)||MEM_H(0x20,int32_t(physical))!=130))return 0;
+    if(actor<0x801734B8u||(actor-0x801734B8u)%0xCC||!pointer(actor,0xCC)||!pointer(physical,0xF4)||
+       uint32_t(word(rdram,actor+0x98))!=physical||MEM_H(0x20,int32_t(physical))!=130||
+       uint32_t(word(rdram,0x80202064u+130u*84u))!=0x801ED898u||
+       uint32_t(word(rdram,0x80202068u+130u*84u))!=0x801ED4A4u)
+        throw std::logic_error("Invalid flash motion identity");
+    const auto slot=(actor-0x801734B8u)/0xCC,model=uint32_t(word(rdram,actor+0x74));
+    if(slot>=flash_motion_clocks.size())throw std::logic_error("Invalid flash motion slot");
+    auto& value=flash_motion_clocks[slot];const auto& slice=*active;
+    auto real=[&](uint32_t address){return std::bit_cast<float>(word(rdram,address));};
+    auto put=[&](uint32_t address,float x){MEM_W(0,int32_t(address))=std::bit_cast<int32_t>(x);};
+    if(site==0x801ED5F4) {flash_motion_initializers[slot]=MEM_B(0x28,int32_t(physical))==0;return 0;}
+    if(site==0x801ED884&&!word(rdram,actor+0x94)) {value.reset();return 0;}
+    const auto lifetime=game_model_animation().lifetime_token(model),run=game_model_animation().run_token(model);
+    if(!lifetime)throw std::logic_error("Unregistered flash motion model");
+    if(site==0x801ED664) {
+        const auto fields=flash_motion_fields(rdram,actor,physical);
+        if(!value||value->actor!=actor||value->physical!=physical||value->model!=model||
+           value->lifetime!=lifetime||value->run!=run||value->epoch!=epoch||
+           value->tick!=slice.tick||value->denominator!=slice.denominator||
+           value->expected_phase!=slice.phase||value->expected!=fields||
+           std::bit_cast<int32_t>(value->expected_y)!=word(rdram,actor+0xA0)) {
+            value=FlashMotionClock{actor,physical,model,lifetime,run,epoch,slice.tick,slice.denominator,
+                slice.phase,slice.phase,float(MEM_H(0x34,int32_t(physical))),real(physical+0x5C),
+                real(physical+0x58),real(actor+0x18),real(physical+0x14),real(physical+0x1C),
+                real(actor+0xA0),real(actor+0xA0),flash_motion_initializers[slot],fields};
+            for(float x:{value->phase,value->radius,value->alpha,value->scale,value->velocity,value->gravity,value->y})
+                if(!std::isfinite(x))throw std::logic_error("Nonfinite flash motion baseline");
+        }
+        return 0;
+    }
+    if(!value||value->actor!=actor||value->physical!=physical||value->model!=model||
+       value->lifetime!=lifetime||value->run!=run||value->epoch!=epoch||
+       value->tick!=slice.tick||value->denominator!=slice.denominator)
+        {if(axis)return 0;throw std::logic_error("Stale flash motion period");}
+    auto& clock=*value;
+    const double age=double(slice.phase+slice.numerator-clock.start_phase)/double(slice.denominator);
+    auto phase=[&] {double x=clock.phase+30.*age;if(x>=360)x-=360;else if(x<0)x+=360;return float(x);};
+    if(axis) {
+        if(site!=0x801E8E10)return 1; // Absolute orbit X/Z keep their Original velocity offsets.
+        double displacement;
+        if(clock.velocity<0)displacement=-5.*age;
+        else {
+            const float end=slice.ends_tick()?real(physical+0x14):std::max(-48.f,clock.velocity-clock.gravity);
+            displacement=legacy_kinematic_step(clock.velocity,double(end)-clock.velocity,age).displacement;
+        }
+        ctx->f0.fl=float(double(clock.y)+displacement);ctx->f2.fl=0;
+        clock.expected_y=ctx->f0.fl;return 1;
+    }
+    switch(site) {
+    case 0x801ED6B0:ctx->f12.fl=ctx->f0.fl=phase();ctx->f14.fl=30;ctx->f2.fl=360;return 1;
+    case 0x801ED6E0:case 0x801ED72C:ctx->f12.d=double(phase());return 0;
+    case 0x801ED70C:case 0x801ED74C:
+        // A new motion state starts at its home position. Later periods
+        // acquire the already advanced radius and its preceding pose.
+        ctx->f2.fl=float(clock.first_motion?double(clock.radius)*age:double(clock.radius)+5.*(age-1.));return 0;
+    case 0x801ED76C:ctx->f0.fl=float(double(clock.radius)+5.*age);return 1;
+    case 0x801ED778:ctx->f4.fl=clock.velocity;return 0;
+    case 0x801ED79C:ctx->f0.d=double(clock.alpha)-ctx->f2.d*age;return 1;
+    case 0x801ED7B8:if(slice.ends_tick()&&object_call)object_command_at_end=true;return !slice.ends_tick();
+    case 0x801ED7F4:
+        if(slice.ends_tick()) {
+            // Execute the genuine Original gravity/collision probe at its
+            // Original start height; its resulting velocity fixes this endpoint.
+            const float current_y=real(actor+0xA0);
+            put(actor+0xA0,clock.y);put(physical+0x14,clock.velocity);
+            MEM_W(0x10,ctx->r29)=ctx->r5;
+            recomp_context source;dora3::copy_recomp_context(source,*ctx);
+            {SimulationSuspension original;dora3_s3_801E810C(rdram,&source);}
+            dora3::copy_recomp_context(*ctx,source);put(actor+0xA0,current_y);
+        } else {
+            const float end=std::max(-48.f,clock.velocity-clock.gravity);
+            put(physical+0x14,float(double(clock.velocity)+(double(end)-clock.velocity)*age));
+        }
+        return 1;
+    case 0x801ED814:ctx->f0.d=double(clock.scale)+ctx->f2.d*age;return 1;
+    case 0x801ED840:ctx->f4.fl=clock.alpha;return 0;
+    case 0x801ED85C:ctx->f0.d=double(clock.alpha)+ctx->f2.d*age;return 1;
+    case 0x801ED884:
+        clock.expected=flash_motion_fields(rdram,actor,physical);
+        clock.expected_phase=slice.phase+slice.numerator;
+        clock.expected_y=real(actor+0xA0);return 0;
+    default:return 0;
+    }
+}
+}
+
+namespace {
+bool pickup_motion_site(uint32_t site) {
+    switch(site) {
+    case 0x801EC6F4:case 0x801EC704:case 0x801EC72C:case 0x801EC740:
+    case 0x801EC764:case 0x801EC79C:case 0x801EC7B8:return true;
+    default:return false;
+    }
+}
+std::array<int32_t,5> pickup_motion_fields(uint8_t* rdram,uint32_t actor,uint32_t physical) {
+    return {word(rdram,actor+0x10),word(rdram,physical+0x58),word(rdram,physical+0x14),
+        word(rdram,physical+0x1C),MEM_BU(0x28,int32_t(physical))};
+    // The common pool owns byte2A and changes it around opacity publication.
+    // Only EC598's own initialization latch28 belongs to this motion clock.
+}
+// Collection initializes its six Source effects once. This continuous period
+// then keeps the Original NEW-velocity fade branch and its float baselines.
+int pickup_motion_hook(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
+    const auto* active=active_simulation_slice();if(!active)return 0;
+    const bool axis=site==0x801E8E10;
+    if(!axis&&!pickup_motion_site(site))return 0;
+    const auto actor=uint32_t(word(rdram,0x8021BDEC)),physical=uint32_t(word(rdram,0x8021BCDC));
+    if(site==0x801EC7B8&&actor>=0x801734B8u&&(actor-0x801734B8u)%0xCC==0&&pointer(actor,0xCC)&&
+       !word(rdram,actor+0x94)&&!word(rdram,actor+0x98)&&uint32_t(word(rdram,actor+0x74))==0xFFFFFFFFu) {
+        const auto index=(actor-0x801734B8u)/0xCC;
+        if(index<pickup_motion_clocks.size())if(auto& prior=pickup_motion_clocks[index];prior&&
+           prior->actor==actor&&prior->physical==physical&&prior->epoch==epoch&&prior->tick==active->tick&&
+           prior->denominator==active->denominator&&prior->expected_phase==active->phase&&active->ends_tick()) {
+            prior.reset();return 0;
+        }
+        throw std::logic_error("Unreviewed pickup retirement continuation");
+    }
+    if(axis&&(!pointer(physical,0xF4)||!collected_pickup_kind(MEM_H(0x20,int32_t(physical)))))return 0;
+    if(actor<0x801734B8u||(actor-0x801734B8u)%0xCC||!pointer(actor,0xCC)||!pointer(physical,0xF4)||
+       uint32_t(word(rdram,actor+0x98))!=physical||!collected_pickup_kind(MEM_H(0x20,int32_t(physical)))||
+       word(rdram,actor+0x94)!=10||MEM_BU(0x28,int32_t(physical))!=1||!owns_common_object(rdram,actor))
+        throw std::logic_error("Invalid collected pickup motion identity");
+    const auto slot=(actor-0x801734B8u)/0xCC,model=uint32_t(word(rdram,actor+0x74));
+    if(slot>=pickup_motion_clocks.size())throw std::logic_error("Invalid collected pickup motion slot");
+    const auto lifetime=game_model_animation().lifetime_token(model),run=game_model_animation().run_token(model);
+    auto real=[&](uint32_t address){return std::bit_cast<float>(word(rdram,address));};
+    auto put=[&](uint32_t address,float x){MEM_W(0,int32_t(address))=std::bit_cast<int32_t>(x);};
+    auto& value=pickup_motion_clocks[slot];const auto& slice=*active;
+    if(site==0x801EC6F4) {
+        const auto fields=pickup_motion_fields(rdram,actor,physical);
+        if(!value||value->actor!=actor||value->physical!=physical||value->model!=model||value->lifetime!=lifetime||
+           value->run!=run||value->epoch!=epoch||value->tick!=slice.tick||value->denominator!=slice.denominator||
+           value->expected_phase!=slice.phase||value->expected!=fields||std::bit_cast<int32_t>(value->expected_y)!=word(rdram,actor+0xA0)) {
+            const float velocity=real(physical+0x14),gravity=real(physical+0x1C);
+            value=PickupMotionClock{actor,physical,model,MEM_H(0x20,int32_t(physical)),lifetime,run,epoch,
+                slice.tick,slice.denominator,slice.phase,slice.phase,real(actor+0x10),real(physical+0x58),
+                velocity,gravity,real(actor+0xA0),real(actor+0xA0),std::max(-48.f,velocity-gravity),fields};
+            for(float x:{value->yaw,value->alpha,value->velocity,value->gravity,value->y})
+                if(!std::isfinite(x))throw std::logic_error("Nonfinite pickup motion baseline");
+        }
+        return 0;
+    }
+    if(!value||value->actor!=actor||value->physical!=physical||value->model!=model||value->lifetime!=lifetime||
+       value->run!=run||value->epoch!=epoch||value->tick!=slice.tick||value->denominator!=slice.denominator)
+        {if(axis)return 0;throw std::logic_error("Stale pickup motion period");}
+    auto& clock=*value;
+    const double age=double(slice.phase+slice.numerator-clock.start_phase)/double(slice.denominator);
+    if(axis) {
+        const float end=std::max(0.f,clock.end_velocity);
+        const auto displacement=legacy_kinematic_step(clock.velocity,double(end)-clock.velocity,age).displacement;
+        ctx->f0.fl=float(double(clock.y)+displacement);ctx->f2.fl=0;clock.expected_y=ctx->f0.fl;return 1;
+    }
+    switch(site) {
+    case 0x801EC704: {
+        double yaw=double(clock.yaw)+20.*age;if(yaw>=360)yaw-=360;else if(yaw<0)yaw+=360;
+        ctx->f12.fl=clock.yaw;ctx->f14.fl=20;ctx->f0.fl=float(yaw);return 1;
+    }
+    case 0x801EC72C:
+        if(slice.ends_tick()) {
+            const float current_y=real(actor+0xA0);put(actor+0xA0,clock.y);put(physical+0x14,clock.velocity);
+            MEM_W(0x10,ctx->r29)=ctx->f20.u32l;
+            recomp_context source;dora3::copy_recomp_context(source,*ctx);
+            {SimulationSuspension original;dora3_s3_801E810C(rdram,&source);}
+            dora3::copy_recomp_context(*ctx,source);put(actor+0xA0,current_y);
+            clock.end_velocity=real(physical+0x14);
+        } else {
+            put(physical+0x14,float(double(clock.velocity)+(double(clock.end_velocity)-clock.velocity)*age));
+        }
+        return 1;
+    case 0x801EC740:ctx->f0.fl=clock.end_velocity;return 0;
+    case 0x801EC764:ctx->f0.d=double(clock.alpha)-ctx->f2.d*age;return 1;
+    case 0x801EC79C:if(slice.ends_tick()&&object_call)object_command_at_end=true;return !slice.ends_tick();
+    case 0x801EC7B8:
+        clock.expected=pickup_motion_fields(rdram,actor,physical);clock.expected_phase=slice.phase+slice.numerator;
+        clock.expected_y=real(actor+0xA0);return 0;
+    default:return 0;
+    }
+}
+}
+
 extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32_t site) {
+    if((site==0x801E8CB0||site==0x801E8CE8||site==0x801E8CD4)&&object_call&&live(ram)&&active_simulation_slice()) {
+        uint8_t* rdram=ram;const auto actor=uint32_t(word(ram,0x8021BDEC)),physical=uint32_t(word(ram,0x8021BCDC));
+        if(pointer(physical,0xF4)&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&owns_common_object(ram,actor)) {
+            // Guest float rounding can reach opacity1 before this Original
+            // period ends. Keep the fade command C8 through that last piece;
+            // only the real Source end clears it. Otherwise another piece
+            // enters E8D38 and clears publication marker2A one period early.
+            if(site==0x801E8CD4)return !active_simulation_slice()->ends_tick();
+            const auto model=uint32_t(word(ram,actor+0x74));
+            const auto original_delta=std::bit_cast<double>(uint64_t(LD(int32_t(0x802115A8u),0)));
+            ctx->f0.d=double(game_model_animation().scalar_linear(ram,model,physical+0xC4,float(ctx->f0.d),
+                site==0x801E8CB0?original_delta:-original_delta));
+            return 1;
+        }
+        return 0;
+    }
+    if(pickup_motion_site(site)||site==0x801E8E10) {
+        const int result=pickup_motion_hook(ram,ctx,site);
+        if(pickup_motion_site(site)||result)return result;
+    }
+    if(flash_motion_site(site)||site==0x801E8E00||site==0x801E8E10||site==0x801E8E20) {
+        const int result=flash_motion_hook(ram,ctx,site);
+        if(flash_motion_site(site)||result)return result;
+    }
+    if((site==0x801ED520||site==0x801ED5E8)&&active_simulation_slice()) {
+        const auto& slice=*active_simulation_slice();uint8_t* rdram=ram;
+        const auto actor=uint32_t(word(ram,0x8021BDEC)),physical=uint32_t(word(ram,0x8021BCDC));
+        if(actor<0x801734B8u||(actor-0x801734B8u)%0xCC||!pointer(actor,0xCC)||!pointer(physical,0xF4)||
+           uint32_t(word(ram,actor+0x98))!=physical||MEM_H(0x20,int32_t(physical))!=130||
+           uint32_t(word(ram,0x80202060u+130u*84u+4))!=0x801ED898u||
+           uint32_t(word(ram,0x80202060u+130u*84u+8))!=0x801ED4A4u)
+            throw std::logic_error("Invalid flash delay actor or callback identity");
+        const auto slot=(actor-0x801734B8u)/0xCC,model=uint32_t(word(ram,actor+0x74));
+        const auto lifetime=game_model_animation().lifetime_token(model),run=game_model_animation().run_token(model);
+        if(slot>=flash_delay_commits.size()||!lifetime)throw std::logic_error("Unregistered flash delay model");
+        const std::array<int32_t,3> fields{MEM_H(0x34,int32_t(physical)),MEM_H(0x44,int32_t(physical)),word(ram,actor+0x94)};
+        auto& previous=flash_delay_commits[slot];
+        const FlashDelayCommit observed{actor,physical,model,lifetime,run,epoch,slice.tick,slice.denominator,fields};
+        if(site==0x801ED5E8) {if(slice.ends_tick())previous=observed;return 0;}
+        if(!slice.ends_tick())return 1;
+        if(previous) {const auto& v=*previous;
+            if(v.actor==actor&&v.physical==physical&&v.model==model&&v.lifetime==lifetime&&v.run==run&&
+               v.epoch==epoch&&v.tick==slice.tick&&v.denominator==slice.denominator&&v.fields==fields)return 1;}
+        if(object_call)object_command_at_end=true;
+        if(word(ram,actor+0x94)!=1)throw std::logic_error("Flash delay invoked outside state1");
+        return 0;
+    }
     if(site==0x801E8BDC&&!object_call) {
         ++slot09_source_pass;
         for(auto& handoff:scene_source_handoffs)if(handoff&&(handoff->source_pass<slot09_source_pass||!scene_completed_handoff_valid(ram,*handoff)))handoff.reset();
@@ -2440,8 +2785,22 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
     if(site==0x801E8C9C && object_call) {
         const auto actor=uint32_t(word(ram,0x8021BDEC));
         if(!live(ram)||!active_simulation_slice()||!owns_common_object(ram,actor))return 1;
+        const auto flash_physical=uint32_t(word(ram,actor+0x98));uint8_t* flash_ram=ram;
+        if(([&] {uint8_t* rdram=flash_ram;const auto kind=MEM_H(0x20,int32_t(flash_physical));return kind==130||collected_pickup_kind(kind);})()&&
+           active_simulation_slice()->phase==0&&active_simulation_slice()->numerator<60) {
+            // The Source submission ceiling is not a new discrete callback.
+            // Its time is included once in this lifetime's next real interval.
+            const auto slot=(actor-0x801734B8u)/0xCC,model=uint32_t(word(ram,actor+0x74));
+            const auto& slice=*active_simulation_slice();
+            if(slot<reward_source_ceilings.size())reward_source_ceilings[slot]=RewardSourceCeiling{actor,flash_physical,model,
+                game_model_animation().lifetime_token(model),epoch,slice.tick,slice.numerator,slice.denominator};
+            return 1;
+        }
         begin_object_scope(ram,actor);
-        const auto slot=(actor-0x801734B8u)/0xCC;
+        const auto slot=(actor-0x801734B8u)/0xCC;uint8_t* rdram=ram;
+        const auto physical=uint32_t(word(ram,actor+0x98)),model=uint32_t(word(ram,actor+0x74));
+        if(slot<reward_pool_claims.size()&&(MEM_H(0x20,int32_t(physical))==130||collected_pickup_kind(MEM_H(0x20,int32_t(physical)))))
+            reward_pool_claims[slot]=RewardPoolClaim{actor,physical,model,game_model_animation().lifetime_token(model),epoch};
         if(slot<scene_frame_entered.size())scene_frame_entered[slot]=true;
         return 0;
     }
@@ -2519,6 +2878,9 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
                 return 1;
             }
         }
+        const auto physical=uint32_t(word(ram,actor+0x98));
+        if(pointer(physical,0xF4)&&(MEM_H(0x20,int32_t(physical))==130||collected_pickup_kind(MEM_H(0x20,int32_t(physical)))))
+            return owns_common_object(ram,actor)&&reward_pool_claim_matches(ram,actor);
         return owns_common_object(ram,actor);
     }
     case 0x801C8B28:if(!motion_call) {motion_allowed=true;return 1;}break;

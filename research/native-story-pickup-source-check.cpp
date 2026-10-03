@@ -14,10 +14,14 @@
 #include <iostream>
 #include <set>
 #include <vector>
+#include <map>
 using namespace dora3::native_time;
 #include "player-fixture.hpp"
 constexpr uint32_t other=0x80254000,asset=0x80100000,clip=0x80101000;
 static bool preview_live=false;
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+static bool flash_pool_reference=false;
+#endif
 struct DeathHandoff {};
 struct DeathCommand {
     uint32_t site;SourceTimestamp stamp;int32_t a0,a1;
@@ -385,8 +389,18 @@ recomp_func_t* get_function(int32_t address) {
     if(uint32_t(address)==0x801ECFB4u)return dora3_s3_core_801ECFB4;
     if(uint32_t(address)==0x801ED244u)return dora3_s3_core_801ED244;
     if(uint32_t(address)==0x801ED228u)return dora3_s3_core_801ED228;
-    if(uint32_t(address)==0x801ED898u)return dora3_s3_core_801ED898;
-    if(uint32_t(address)==0x801ED4A4u)return dora3_s3_core_801ED4A4;
+    if(uint32_t(address)==0x801ED898u) {
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+        if(flash_pool_reference)return reference_dora3_s3_core_801ED898;
+#endif
+        return dora3_s3_core_801ED898;
+    }
+    if(uint32_t(address)==0x801ED4A4u) {
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+        if(flash_pool_reference)return reference_dora3_s3_core_801ED4A4;
+#endif
+        return dora3_s3_core_801ED4A4;
+    }
     if(uint32_t(address)==0x8022DD94u) {assert(city_loaded);return dora3_s8_level1_8022DD94;}
     if(uint32_t(address)==0x8022E6F4u) {assert(city_loaded);return dora3_s8_level1_8022E6F4;}
     if(uint32_t(address)==0x8022EFC4u) {assert(city_loaded);return dora3_s8_level1_8022EFC4;}
@@ -525,7 +539,13 @@ void poses(uint8_t* rdram,recomp_context& c,const std::array<uint32_t,2>& owners
 #include "slot09-overlay-fixture.hpp"
 #ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
 static unsigned story_native_intervals=0,story_native_ctor_models=0;
-static std::vector<int32_t> story_actor_state(uint8_t* rdram) {
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+static unsigned reward_item_yaw_samples=0,reward_item_height_samples=0,reward_item_alpha_samples=0;
+#ifdef DORA3_STORY_PICKUP_CONTACT_CHECK
+static unsigned reward_contact_cases=0;
+#endif
+#endif
+[[maybe_unused]] static std::vector<int32_t> story_actor_state(uint8_t* rdram) {
     std::vector<int32_t> state;
     for(unsigned slot=30;slot<230;++slot) {
         const auto actor=0x80171CD0u+slot*0xCC;
@@ -543,11 +563,17 @@ static std::vector<int32_t> story_actor_state(uint8_t* rdram) {
     return state;
 }
 #endif
+#include "native-flash-delay-check.inc"
+#include "native-flash-motion-check.inc"
+#include "native-flash-pool-check.inc"
 int main(int argc,char** argv) {
     assert(argc==2);std::vector<uint32_t> image(0x400000/4);std::ifstream in(argv[1],std::ios::binary);
     in.read(reinterpret_cast<char*>(image.data()),0x400000);assert(in.gcount()==0x400000);
     unsigned native_moving_edge_cases=0,repeat_weapon_cases=0,player_flight_cases=0,flight_weapon_cases=0,flight_native_input_cases=0,flight_repeat_cases=0,flight_edge_cases=0,flight_damage_cases=0,ground_damage_cases=0,heavy_damage_cases=0,native_damage_cases=0,air_damage_cases=0,hazard_damage_cases=0,waiting_damage_cases=0,recovery31_cases=0,special_player_cases=0,native_special_cases=0,special_recovery_cases=0,native_special_recovery_cases=0,hover_source_cases=0,hover_native_cases=0,death_source_cases=0,respawn_recovery_cases=0,surface_source_cases=0,door_source_cases=0,surface_native_cases=0;
     unsigned cases=0,terminal_cases=0,flight_cases=0,growth_cases=0,ballistic_cases=0,phase_cases=0,bounce_cases=0,homing_cases=0,charge_cases=0,charge_birth_cases=0,interaction_cases=0,interaction_birth_cases=0,weapon_cases=0,moving_weapon_cases=0,native_weapon_cases=0;
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+    for(unsigned playback:{0u,1u})
+#endif
     for(unsigned camera_mode:{12u,2u})for(unsigned divider:{2u,3u}) {
         std::array<double,6> baseline{};double baseline_peak=0,baseline_landed=0;
         std::array<std::array<double,5>,2> turn_baseline{};
@@ -589,6 +615,9 @@ int main(int argc,char** argv) {
             const auto baseline_next=next_address;const auto baseline_refs=resource_references;
             const auto baseline_models=game_model_animation().model_count();assert(baseline_models==2);
             for(unsigned profile=0;profile<7;++profile) {
+#ifdef DORA3_STORY_EFFECT_DELAY_CHECK
+                if(profile!=0)continue;
+#endif
                 memory=baseline_memory;allocations=baseline_heap;next_address=baseline_next;resource_references=baseline_refs;
                 c=saved;c.f_odd=&c.f0.u32h;city_commands.clear();input_now=0;city_source_stamp={0,0};
                 for(unsigned slot=30;slot<230;++slot) {c.r4=int32_t(0x80171CD0u+slot*0xCC);dora3_scene_object_init(rdram,&c);MEM_H(0xA8,c.r4)=-1;}
@@ -631,28 +660,58 @@ int main(int argc,char** argv) {
                 for(unsigned slot=31;slot<230;++slot) {const auto a=0x80171CD0u+slot*0xCC;if(MEM_W(0x94,int32_t(a))) {c.r4=int32_t(a);dora3_s3_801E656C(rdram,&c);c.r4=int32_t(a);c.r5=0xFFFF;dora3_s0_8002EA4C(rdram,&c);c.r4=int32_t(a);dora3_scene_object_init(rdram,&c);}}
                 memory=before;allocations=before_heap;next_address=before_next;resource_references=before_refs;
 #ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+                flash_pool_reference=playback==0;
+                if(playback==1) {
+#endif
                 assert(native_gameplay_preview_eligible(rdram));preview_live=true;
                 native_gameplay_preview_begin(rdram,0,divider);input_now=0;
                 // The actual BB080 Source entry suspends individual Native
                 // roots before its Original callbacks publish commands.
                 dora3_native_preview_hook(rdram,&c,0x801BB080);
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+                }
+#endif
 #endif
                 source_producer(false);auto actual_context=c;actual_context.f_odd=nullptr;
                 assert(memory==expected&&std::memcmp(&actual_context,&expected_context,sizeof(c))==0&&allocations==expected_heap&&next_address==expected_next&&resource_references==expected_refs&&city_commands==expected_commands&&game_model_animation().model_count()==expected_models);
                 std::vector<uint32_t> items;const unsigned item_kind=profile==3?127:profile==2?123:118;
                 for(unsigned slot=31;slot<230;++slot) {const auto a=0x80171CD0u+slot*0xCC;if(MEM_W(0x94,int32_t(a))) {const auto ph=uint32_t(MEM_W(0x98,int32_t(a)));assert(MEM_H(0x20,int32_t(ph))==int16_t(item_kind));items.push_back(a);assert(MEM_W(0x94,int32_t(a))==10&&MEM_H(0xD8,int32_t(ph))==0);}}
                 assert(items.size()==(profile<4?1u:0u));
+#ifdef DORA3_STORY_PICKUP_CONTACT_CHECK
+                // Exercise a genuine Source contact after three untouched
+                // idle passes. This external state1 command is fixture input;
+                // the constructor and mode3 contact remain actual game code.
+                for(const auto item:items) {
+                    MEM_W(0x94,int32_t(item))=1;
+                    MEM_B(0x28,MEM_W(0x98,int32_t(item)))=0;
+                }
+#endif
 #ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
                 for(const auto item:items) {
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+                    if(playback==1)
+#endif
                     assert(game_model_animation().native_birth(uint32_t(MEM_W(0x74,int32_t(item)))));
                     ++story_native_ctor_models;
                 }
                 unsigned story_frame=1;
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+                if(playback==0)preview_live=true;
+#endif
 #endif
                 if(profile<=1)assert(has(0x10)&&has(0xB)&&has(profile?0x13:0x12)&&!has(profile?0x12:0x13));
                 if(profile==2)assert(has(0x2F)&&has(0x2C));
                 if(profile==3)assert(has(0x2D));
                 c.r4=int32_t(parent);dora3_s3_801E656C(rdram,&c);c.r4=int32_t(parent);c.r5=0xFFFF;dora3_s0_8002EA4C(rdram,&c);c.r4=int32_t(parent);dora3_scene_object_init(rdram,&c);
+#ifdef DORA3_STORY_EFFECT_DELAY_CHECK
+                for(const auto item:items) {c.r4=int32_t(item);dora3_s3_801E656C(rdram,&c);c.r4=int32_t(item);c.r5=0xFFFF;dora3_s0_8002EA4C(rdram,&c);c.r4=int32_t(item);dora3_scene_object_init(rdram,&c);}
+#ifdef DORA3_STORY_EFFECT_MOTION_CHECK
+                check_flash_motion(rdram,c,fps,divider);
+#else
+                check_flash_delay(rdram,c,fps,divider);
+#endif
+#else
                 // The real pool dispatcher visits the item and its six actual
                 // newly constructed effects. No fake model/effect destructor.
                 unsigned seen_effects=0;std::set<uint32_t> effect_addresses;bool item_retired=items.empty();
@@ -661,19 +720,81 @@ int main(int argc,char** argv) {
 #ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
                     const auto boundary=Nanoseconds((units+59)/60);
                     auto native_to=[&](Nanoseconds stamp) {
-                        const auto state=story_actor_state(rdram);const auto heap=allocations;
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+                        const auto state=flash_pool_source_items(rdram);const auto heights=flash_pool_heights(rdram);
+                        std::map<uint32_t,std::array<float,3>> item_poses;
+                        for(auto item:items)if(MEM_W(0x94,int32_t(item))) {
+                            const auto ph=MEM_W(0x98,int32_t(item));
+                            item_poses[item]={rf(rdram,item+0x10),rf(rdram,item+0xA0),rf(rdram,uint32_t(ph)+0x58)};
+                        }
+#else
+                        const auto state=story_actor_state(rdram);
+#endif
+                        const auto heap=allocations;
                         const auto refs=resource_references;const auto model_count=game_model_animation().model_count();
                         const auto commands=city_commands;const auto caller=c;
                         input_now=stamp;native_gameplay_preview_update(rdram,&c,stamp);
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+                        assert(flash_pool_source_items(rdram)==state);++flash_pool_intervals;
+                        for(auto [item,pose]:item_poses)if(MEM_W(0x94,int32_t(item))) {
+                            const auto ph=MEM_W(0x98,int32_t(item));
+                            reward_item_yaw_samples+=pose[0]!=rf(rdram,item+0x10);
+                            reward_item_height_samples+=pose[1]!=rf(rdram,item+0xA0);
+                            reward_item_alpha_samples+=pose[2]!=rf(rdram,uint32_t(ph)+0x58);
+                        }
+                        const auto next_heights=flash_pool_heights(rdram);
+                        if(next_heights.size()==heights.size())for(unsigned i=0;i<heights.size();++i)if(heights[i]!=next_heights[i])++flash_pool_samples;
+#else
                         assert(story_actor_state(rdram)==state&&allocations==heap&&resource_references==refs&&game_model_animation().model_count()==model_count&&city_commands==commands);
+#endif
                         assert(std::memcmp(&caller,&c,sizeof(c))==0);
                         ++story_native_intervals;
                     };
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+                    if(playback==1) {
+#endif
                     while(second*story_frame/fps<boundary) {native_to(second*story_frame/fps);++story_frame;}
                     native_to(boundary);
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+                    }
+#endif
 #endif
                     input_now=Nanoseconds((units+59)/60);city_source_stamp={Nanoseconds(units/60),unsigned(units%60)};
-                    c=saved;c.f_odd=&c.f0.u32h;dora3_s3_801E8BDC(rdram,&c);
+                    c=saved;c.f_odd=&c.f0.u32h;
+#ifdef DORA3_STORY_PICKUP_CONTACT_CHECK
+                    if(tick==4)for(const auto item:items) {
+                        assert(MEM_W(0x94,int32_t(item))==1);
+                        const auto old_actor=MEM_W(0,int32_t(0x8021BDEC)),old_physical=MEM_W(0,int32_t(0x8021BCDC)),old_mode=MEM_W(0,int32_t(0x8021BCE4));
+                        const auto ph=MEM_W(0x98,int32_t(item));
+                        MEM_W(0,int32_t(0x8021BDEC))=int32_t(item);
+                        MEM_W(0,int32_t(0x8021BCDC))=ph;
+                        MEM_W(0,int32_t(0x8021BCE4))=3;
+                        if(item_kind==118) {
+                            if(playback==0)reference_dora3_s3_core_801ECBE4(rdram,&c);
+                            else dora3_s3_core_801ECBE4(rdram,&c);
+                        } else if(item_kind==123) {
+                            if(playback==0)reference_dora3_s3_core_801ECFB4(rdram,&c);
+                            else dora3_s3_core_801ECFB4(rdram,&c);
+                        } else {
+                            if(playback==0)reference_dora3_s3_core_801ED228(rdram,&c);
+                            else dora3_s3_core_801ED228(rdram,&c);
+                        }
+                        assert(MEM_W(0x94,int32_t(item))==10&&MEM_BU(0x28,ph)==0);
+                        MEM_W(0,int32_t(0x8021BDEC))=old_actor;
+                        MEM_W(0,int32_t(0x8021BCDC))=old_physical;
+                        MEM_W(0,int32_t(0x8021BCE4))=old_mode;
+                        c=saved;c.f_odd=&c.f0.u32h;
+                        if(playback==1)++reward_contact_cases;
+                    }
+#endif
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+                    if(playback==0)reference_dora3_s3_801E8BDC(rdram,&c);else
+#endif
+                    dora3_s3_801E8BDC(rdram,&c);
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+                    if(playback==0)flash_pool_oracles[{fps,divider,camera_mode,profile}].push_back(flash_pool_snapshot(rdram));
+                    else flash_pool_compare(rdram,fps,divider,camera_mode,profile,tick);
+#endif
                     for(unsigned slot=30;slot<230;++slot) {const auto a=0x80171CD0u+slot*0xCC;if(!MEM_W(0x94,int32_t(a)))continue;const auto ph=uint32_t(MEM_W(0x98,int32_t(a)));const auto k=MEM_H(0x20,int32_t(ph));assert(k==int(item_kind)||k==130);
                         if(k==130)effect_addresses.insert(a);
                     }
@@ -685,6 +806,10 @@ int main(int argc,char** argv) {
 #ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
                 native_gameplay_preview_reset(rdram);preview_live=false;
 #endif
+#endif
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+                if(playback==1)++flash_pool_cases;
+#endif
                 ++cases;
             }
             linked_watch=linked_construct_watch=slot09_loaded=false;native_gameplay_preview_reset(rdram);preview_live=false;
@@ -692,9 +817,29 @@ int main(int argc,char** argv) {
         }
     }
 #ifdef DORA3_STORY_SOURCE_NATIVE_CHECK
+#ifdef DORA3_STORY_EFFECT_POOL_CHECK
+    assert(flash_pool_cases==168&&flash_pool_endpoints==168*96&&flash_pool_samples>2000);
+    assert(reward_item_yaw_samples>2000&&reward_item_height_samples>1000&&reward_item_alpha_samples>2000);
+#ifdef DORA3_STORY_PICKUP_CONTACT_CHECK
+    assert(reward_contact_cases==96);
+    std::cout<<"PASS: 96 actual Source mode3 contact callbacks after three Source idle passes; Native leaves uncollected state1 and collection initialization untouched; actual Source state10 acquisition and ordered six-effect lifetime.\n";
+#endif
+    std::cout<<"PASS: "<<flash_pool_cases<<" connected Native flash pool and Source reward producer schedules; "<<flash_pool_intervals<<" real Native intervals; "<<flash_pool_endpoints<<" full live actor/physics/model/heap/resource/command Original endpoints; "<<flash_pool_samples<<" intermediate effect height changes; item yaw/height/alpha samples "<<reward_item_yaw_samples<<"/"<<reward_item_height_samples<<"/"<<reward_item_alpha_samples<<"; actual Source birth pass, all six selectors, full animation tail and genuine retirement; Native collected118/123/127 and flash130 state10; ordered initialization/delay retained at Source boundaries; no game/GPU.\n";
+#else
     assert(story_native_ctor_models==96&&story_native_intervals>16000);
     std::cout<<"PASS: "<<cases<<" mixed Native/Source quest item schedules; "<<story_native_intervals<<" real Native intervals preserve all live item/effect actor, physics and model bytes, heap/resources/commands/context; "<<story_native_ctor_models<<" actual Source item constructors under Native banks; no new Native item ownership; no game/GPU.\n";
+#endif
+#else
+#ifdef DORA3_STORY_EFFECT_DELAY_CHECK
+#ifdef DORA3_STORY_EFFECT_MOTION_CHECK
+    assert(flash_motion_cases==288&&flash_motion_samples>2000);
+    std::cout<<"PASS: "<<flash_motion_cases<<" Native flash motion/birth/acquisition/complete retirement schedules; "<<flash_motion_intervals<<" real generated callback and common-tail intervals; "<<flash_motion_endpoints<<" frozen189 live actor/physics/model/heap/resource/command endpoints; "<<flash_motion_samples<<" intermediate height updates; no pool ownership expansion; no game/GPU.\n";
+#else
+    assert(flash_delay_cases==144&&flash_delay_duplicates>0);
+    std::cout<<"PASS: "<<flash_delay_cases<<" Native flash delay schedules; "<<flash_delay_intervals<<" actual patched Original callback intervals; "<<flash_delay_duplicates<<" duplicate-end rejections; six actual descriptor constructors, whole actor/physics/model and commands equal frozen Original at every period end; no ownership expansion; no game/GPU.\n";
+#endif
 #else
     std::cout<<"PASS: "<<cases<<" Source quest item producer and complete six-effect lifetime schedules; synthetic assets; no new Native ownership; no game/GPU.\n";
+#endif
 #endif
 }

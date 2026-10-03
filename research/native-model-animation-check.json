@@ -65,20 +65,16 @@
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "tools/check_native_model_animation.py": "213240f0c67dbfee952ec46bdf7e377c5f785a35a09ad2157823890121de9b5d"
   },
-  "generation_receipt_sha256": "0c3504b465a334012069de397935252c280e3103b7149622c14db88ae59f96ce",
+  "generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
   "remaining": [
     "Unreviewed phase1 commands, matrix consumers and full scene coverage still need integration audit",
     "This component does not convert movement, camera, collision, AI, scripts or all 2D systems"
   ],
-  "exact_input_relocation_235": {
-    "from_generation": "build-local/candidate224/build-local/startup-v224",
-    "report_sha256": "730eb6744c6a8a3fb62644fea4ad6089f05ad441b00d9ccfeea5d702b13510a0",
-    "generation_receipt_sha256": "6d5ea6d0c91aa01dba9fe68acad136b4fff9f43fb434a39b07e7279c44f1c90f",
-    "evidence": "All reported compiled sources/checkers/headers identical;96 canonical C units and raw frontier/hooks/overlay table identical to frozen224 and fresh235 rehearsal. This relocates the named executed proof and does not claim a new run."
-  },
-  "naming_only_relocation_249": {
-    "executed_report_sha256": "bbed53fea00e401ba376510b3aa3a8afe708f07cff8933c63de5030fbe8ba50a",
-    "previous_generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
-    "evidence": "Only Source annotation catalog changed: seven functions and17 scoped register roles. Runtime/rules/fixture/checker/header inputs and all96 canonical generated C units/frontier/hooks/overlay table exactly equal main235. This preserves the executed proof and does not claim a fresh gameplay regression."
+  "exact_input_relocation_255": {
+    "from_generation": "build-local/candidate244/build-local/startup-v244b",
+    "executed_report_sha256": "0cbe662b4be5f25d916280e896bf5de41c00535456c39da2e382f5496f3a9703",
+    "executed_generation_receipt_sha256": "af8fc0fe10af98a9ed86844191365625bb0ebd104384a775c1a16bb21e015239",
+    "metadata_only_changes": {},
+    "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
   }
 }

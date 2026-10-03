@@ -129,5 +129,9 @@
     "executed_report_sha256": "92db133f15827c7b1753fa11437ed9eb216450fb841d8cbd86a0d01071b1e02a",
     "previous_generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
     "evidence": "Only Source annotation catalog changed: seven functions and17 scoped register roles. Runtime/rules/fixture/checker/header inputs and all96 canonical generated C units/frontier/hooks/overlay table exactly equal main235. This preserves the executed proof and does not claim a fresh gameplay regression."
+  },
+  "superseded_by_255": {
+    "report": "research/native-flash-pool-check.json",
+    "evidence": "Historical235 Source-owned items/effects proof. Current collected118/123/127 and flash130 state10 ownership is validated by connected244 relocated as255; historical input set is not current."
   }
 }

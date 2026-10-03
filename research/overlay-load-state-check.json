@@ -1,6 +1,6 @@
 {
   "result": "PASS: 49 actual ROM overlay ranges, verified DMA/reload, identical VRAM replacement, partial overwrite, parent invalidation, scene unload and boot reset; ASan/UBSan/LSan; no game/GPU.",
-  "generation_receipt_sha256": "0c3504b465a334012069de397935252c280e3103b7149622c14db88ae59f96ce",
+  "generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
   "source_sha256": {
     "src/startup_runtime.cpp": "d7865de6f338a7c90cb31833f6c0efb424bf4705b8006563979e86a2d5cd3241",
     "research/overlay-load-state-check.cpp": "e637e658340adedb016e09d258c99348ccb0e4768de7bcc71aaba1051e68aba5",
@@ -43,15 +43,11 @@
   "limitations": [
     "Runtime overlay registry load/unload endpoints are observations; no OS DMA scheduling, renderer, or full frontend linkage in this component check."
   ],
-  "exact_input_relocation_235": {
-    "from_generation": "build-local/candidate224/build-local/startup-v224",
-    "report_sha256": "57fa86ea77fbf9a514eb651f3a6ae0f286a62ba089a6eaceb586bee7d1819172",
-    "generation_receipt_sha256": "6d5ea6d0c91aa01dba9fe68acad136b4fff9f43fb434a39b07e7279c44f1c90f",
-    "evidence": "All reported compiled sources/checkers/headers identical;96 canonical C units and raw frontier/hooks/overlay table identical to frozen224 and fresh235 rehearsal. This relocates the named executed proof and does not claim a new run."
-  },
-  "naming_only_relocation_249": {
-    "executed_report_sha256": "adf6bdafbe2510eafd2524d19cdb85c3c961290bfd363d694892f918399c7a42",
-    "previous_generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
-    "evidence": "Only Source annotation catalog changed: seven functions and17 scoped register roles. Runtime/rules/fixture/checker/header inputs and all96 canonical generated C units/frontier/hooks/overlay table exactly equal main235. This preserves the executed proof and does not claim a fresh gameplay regression."
+  "exact_input_relocation_255": {
+    "from_generation": "build-local/candidate244/build-local/startup-v244b",
+    "executed_report_sha256": "bbc010ae920c35e77f16fcdb8c038bb2bab9869d2d9291f5b4272dbe58e5cdd4",
+    "executed_generation_receipt_sha256": "af8fc0fe10af98a9ed86844191365625bb0ebd104384a775c1a16bb21e015239",
+    "metadata_only_changes": {},
+    "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
   }
 }

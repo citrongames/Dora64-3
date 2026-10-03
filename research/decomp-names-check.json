@@ -1,6 +1,6 @@
 {
   "result": "PASS: 719 descriptions; 384 semantic function names; 498 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
-  "generation_receipt_sha256": "0c3504b465a334012069de397935252c280e3103b7149622c14db88ae59f96ce",
+  "generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
   "files": [
     {
       "file": "funcs_0.c",
@@ -184,9 +184,9 @@
     },
     {
       "file": "funcs_36.c",
-      "canonical_sha256": "b8c7be67ad30aa4a40d43b7887ada1bb22e4f1ea4d4fc10068bee0a16329fb12",
-      "named_sha256": "f6d14873057534102c1ae02fb3b1247ee53a0d18b74242823f9ab7756659395e",
-      "tokens": 161381
+      "canonical_sha256": "14d6f5ee03836f1bb2d1a11c1dbad61c1ac2973a694426795ed05fe73ea8466d",
+      "named_sha256": "a447880719b4fe9d937ee8dff8440cd9d75377dd9023e196f00b79a65d28aaaf",
+      "tokens": 161443
     },
     {
       "file": "funcs_37.c",
@@ -196,15 +196,15 @@
     },
     {
       "file": "funcs_38.c",
-      "canonical_sha256": "052328a9465f21539472bec54d55cec83208fc04380f42dd23f6007903f10bfd",
-      "named_sha256": "4d55567bfa19a0d5dccfb429fb590a8603a0a0e454b5a297088deaa8f3d21ae2",
-      "tokens": 125034
+      "canonical_sha256": "88ce4a46b52bd85d8ceffa71a4114536cd8d13afc011a1200c550d626efb3441",
+      "named_sha256": "d893715f1ba034b97b8d8313d2ce44cde38c5b181fe64c4f521717c4ea123348",
+      "tokens": 125135
     },
     {
       "file": "funcs_39.c",
-      "canonical_sha256": "37fae6cfeaf72ddeeb29a02fa3cfb8381493adfd51876f8a783b858a95e6c816",
-      "named_sha256": "2e8502e8462a336551769858ceda993d7a89e615f55c30b27847e331b6b6786d",
-      "tokens": 101077
+      "canonical_sha256": "dac688d0589a726bee488b1942f22f281009af9cf02fb5122322e519adeffe9d",
+      "named_sha256": "05db773f92a1009470816f4ec76f55bad7e5eb5d8b9abb16713d9b34f0a71718",
+      "tokens": 101306
     },
     {
       "file": "funcs_4.c",
@@ -582,6 +582,6 @@
   "source_sha256": {
     "tools/decomp_annotations.py": "cc18b42a710a9998b9b33cbfe2c79009451496078b2136cdceb603d047c4b16b",
     "tools/check_decomp_names.py": "bc742b8b16c9a6f24481d2b41a80c268a9a7feee4c2d95e6f1a537d026d1c74c",
-    "recomp/decomp-symbols.json": "a692cc0824fc97a875076ad00310583e3bc075e6ef6f048c5c42debff6f77afa"
+    "recomp/decomp-symbols.json": "08717abe43e203d3c427490e96506881fb095b31c015b02584c9a82d18c4d9fc"
   }
 }

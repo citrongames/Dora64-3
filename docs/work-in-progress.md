@@ -2530,3 +2530,97 @@ NPC, враги и платформы, сценарные камеры, заст
 Test037 и подтверждённые исправления диалогов сохранены. Новый EXE не
 собирался; игра, окно, renderer иGPU не запускались. Проверенные этапы
 сохраняются commit/push в main, архивы — дополнительная копия.
+
+
+## main255 — собранные предметы и эффекты прошли полный связанный прогон
+
+После настоящей Source инициализации собранные предметы118/123/127 state10
+и шесть эффектов130 state10 обновляют движение, вращение, масштаб и исчезновение
+на реальных Native интервалах. Original20/30 сохраняет исходный путь.
+Первое появление модели, сбор предмета, attachment detach и delay/clip команды
+остаются в упорядоченном Source проходе. Приняты только доказанные kind/state,
+зарегистрированная model lifetime и обе точные записи таблицы callbacks.
+
+Подключённый244 pool scope прошёл168 сценариев на24 настройках20/30Hz и
+60/73/120/144/165/360FPS:119252 Native-интервала и16128 точных состояний всех
+живых actor/physics/model, heap, ресурсов и команд. Наблюдались85312 изменений
+высоты эффектов внутри исходных периодов и15616 yaw/4616 Y/11128 alpha изменений
+предметов. Настоящие Source конструкторы, selectors0..5, полный model tail и
+реальные destructors исполнялись до полного освобождения ресурсов.
+Отдельный244 contact scope исполнил96 настоящих mode3 Source callbacks после
+трёх исходных idle проходов и168 connected worlds; новые функции state1 пока
+не становятся Native в main255.
+
+Проверка243 обнаружила преждевременное завершение общей opacity команды:
+из-за float rounding C4 достигала1 внутри периода, C8 очищалась, а следующий
+кусок времени раньше Original сбрасывал marker2A. Исправление244 сохраняет
+завершение C8 на исходном конце, оставляя саму opacity clamp прежней.
+Старые240/241 не считаются пригодными для переноса; остановленный полный240
+прогон не выдаётся за PASS. Дополнительно сохранены первоначальная Source
+birth pass, один rational Source ceiling<1ns, отдельный collection latch28,
+Original old-velocity ветвь flash и new-velocity ветвь collected pickup,
+радиус до+5, реальные end probes и порядок освобождения общего пула.
+
+Новый полный244 регрессионный прогон прошёл:1008 slot09 конструкторов,
+5088 Source schedules,720 Native schedules,576 ownership rejections,
+34464 frozen189 comparisons;3192 сценария настоящего выбора NPC/B,
+1152 actual city constructor comparisons,3072 Source/2304 Native городских
+диалоговых сценария. Player/weapon/damage/death/recovery, полёт, surface/door,
+linked/patrol/orbit и остальные прежние группы проверены в той же реализации.
+Healthy hover Source реально192; прежняя подпись144 в serializer исправлена
+по исполненному stdout без изменения сценариев.
+
+Свежие244 camera10975, scene-frame64/16 settings/672 constructors и реальный
+scene-transition32/8 settings/336 constructors/two-bank resource barrier
+прошли. Проверены simulation280 differential/2036 slices, model lifetime/run/
+seek/pose, frame time и overlay invalidation49. Flash motion:288 schedules,
+57504 intervals,8208 endpoints,49272 intermediate heights; delay:144 schedules,
+2012 intervals и144 duplicate-end rejection. Все14 исполненных отчётов имеют
+точные source hashes и явный origin244 при переносе в main255. Это перенос
+доказанного исполнения с96 одинаковыми canonical C units/frontier/hooks/
+overlay table; повторный полный запуск в main не заявляется. Пятнадцатый
+отчёт имён исполнен заново для main255.
+
+Каталог main249 сохранён целиком:719 описаний,384 смысловых имени функций,
+498 областей переменных; семь функций несобранных состояний2..8 и их17 scopes
+не потеряны. Обновлены только четыре описания/evidence блока сбора и flash.
+Исправлено прежнее неточное «rate45»:8002A41C берёт group model74, truncates
+float argument до целого и вызывает80039564, который записывает animation
+seek time в model64. Это seek45, compiled игровой путь был правильным.
+Fresh names check подтвердил96 canonical round trips, равные preprocessing
+tokens, C17 syntax и прежние ABI/register storage. Документы пересозданы из
+каталога; исторический Source-owned diagnostic помечен superseded_by_255.
+
+Следующий блок остаётся изолированным:
+
+- Idle248:384 настоящих контакта после1/3/10/19 исходных периодов,
+  672 worlds/477008 intervals/64512 endpoints; переход к сбору сохраняет
+  исходные yaw/C4/C8/2A и проверяет lifetime/run/epoch/ближайший Source pass.
+- Guards252:768 contacts/1344 worlds/954016 intervals/129024 endpoints;
+  pauseC9, движение, state/callback replacements, yaw/opacity writes и
+  настоящий model seek0. Неверный тест250/251 с clip lookup у предмета без
+  B4 таблицы падал в frozen Source, заменён корректным seek; runtime прежний.
+- Source253b effect131:descriptor801FC964 действительно kind131;72 Original
+  и72 mixed lifetimes/51108 intervals/6912 endpoints. Init вызывает
+  настоящий RNG(-100/-50), clip0/seek30, scale1.5 и VY-5; удаление проверяет
+  pre-step Y<=50. Старая подпись stdout «rate30» неточна, фактический compiled
+  вызов — seek30; исполненное происхождение отчёта сохраняется.
+- Coupled254e:216 Original и216 mixed цепочек state5 periodic131 producer →
+  external state6 shrink/signal → Native idle → Source mode3 collection →
+  six flash130 complete retirement.306828 intervals/41472 точных endpoints,
+  intermediate idle/collected yaw/flash Y44064/37944/263304. Первая версия
+  помещала itemY400 над synthetic ceiling250, из-за чего даже Original flash
+  lifetime не завершался; ceiling1000 исправляет только условия этого scope,
+  настоящая floor/collision logic сохранена. State5/6/131 всё ещё Source-owned.
+- В253b заново прошли loop/barrier и scene-transition/NPC3192 для idle248
+  runtime. Полный244 не выдаётся за полный прогон иной idle248 реализации.
+
+Остаются остальные состояния и семейства предметов, дальнейшие уровни/NPC/
+enemies/platforms, script cameras/cutscenes, миниигры и2D; затем общая
+интеграция и платформенные сборки. Full pool exhaustion, реальные placement/
+collision/dialogue progression и renderer этим synthetic CPU этапом не
+проверены. Полный variable FPS ещё не завершён.
+
+Donor/32 dependency pins/Windows test037 прежние. Новый EXE не собирался;
+игру, окно, renderer иGPU я не запускала. Завершённые проверенные этапы
+сохраняются commit/push в существующей main; архивы — дополнительная копия.

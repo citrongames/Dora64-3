@@ -1,6 +1,6 @@
 {
   "scope": "Original game loop/update/dispatcher/full graphics build/draw/submit with real common coordinator; synthetic scheduler/VI/input/sound/present endpoints; no renderer",
-  "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 270 native white-fade builds with 240 distinct alpha values; 76 discrete updates, 1085 native builds, 3 Original builds, 232 VI events; no GPU",
+  "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 270 native white-fade builds with 240 distinct alpha values; 76 discrete updates, 1083 native builds, 3 Original builds, 232 VI events; no GPU",
   "sanitizers": "ASan/LSan",
   "source_sha256": {
     "src/native_process_time.cpp": "b7025893d91cf6851de180e5c90c34c72a0f6f3977a2a51236f6369615562c59",
@@ -8,7 +8,7 @@
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
     "src/native_game_loop.cpp": "515b06226d61a7afa1bef038173d15e83ccbcad1de6b3afab833966a8f64ecfb",
-    "src/native_gameplay_preview.cpp": "d48c83d5d296ed59f29e15e491187a4b34cdb0bde248bae5bbb486928a1c1092",
+    "src/native_gameplay_preview.cpp": "20339eea746f7757cbef3cd94201c187f3c2b186737f3e450630ea02b5be1c7b",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_scene_policy.cpp": "4d091632bf6780fa9e55c2ce1cca996334ec0fc5866a8bfcc512154a21dacef7",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
@@ -17,16 +17,16 @@
     "src/native_present.cpp": "9ff1ff3be5d4c16b57f5668a394a3e3fa4bafc303c32f52be63833ab33df2f5d",
     "src/native_present_hooks.cpp": "e659ba490ecea74c75fd50de47f0ea95ad9c32c6c30c6352e2123d7150914701",
     "src/native_graphics_pump.cpp": "4170bf4b463147cfe1e50dff3653a0b3749685ec4563137f39be190a4150c5d0",
-    "research/native-loop-check.cpp": "aa59399f33f1391e4922d12d8cfa750d27d1a380b558a9150061c7db451e1299",
+    "research/native-loop-check.cpp": "2dfb5630bdb393927087b1a129e01540d6f38e5778292a80f579ba9ccc54ae72",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
     "src/native_scene_policy.hpp": "54fbae50b42fbaa5faf12f7cd9bd13aebabdbae495231a615e8c6fd670a3f70c",
     "src/native_frame_session.hpp": "fdc799da001be3c6653126beacb987ce3811ba6f1cc5eeac5922e539089f8e83",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
     "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
-    "tools/check_native_loop.py": "ffad5dbf0419c73663b9ecd52e24dfec48809bf874eca67ff5a3ad5fc927cff9"
+    "tools/check_native_loop.py": "f5571c3a2c19da2731d454b07ac56bef7842a8f09e403087fdca37a6e56d8322"
   },
-  "generation_receipt_sha256": "0c3504b465a334012069de397935252c280e3103b7149622c14db88ae59f96ce",
+  "generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
   "original_functions": [
     "dora3_color_buffer_setup",
     "dora3_depth_buffer_clear",
@@ -109,6 +109,7 @@
     "dora3_s3_801DCC50",
     "dora3_s3_801DCDF0",
     "dora3_s3_801DD8FC",
+    "dora3_s3_801E810C",
     "dora3_s3_core_801C120C",
     "dora3_s3_core_801CFA94",
     "dora3_s3_core_801D0088",
@@ -122,15 +123,11 @@
     "osVirtualToPhysical_recomp",
     "osWritebackDCacheAll_recomp"
   ],
-  "exact_input_relocation_235": {
-    "from_generation": "build-local/candidate224/build-local/startup-v224",
-    "report_sha256": "5195b5ec1070cddce6b3bc05d89c2262f807d525e7be6b27cae3de87c7a0a98f",
-    "generation_receipt_sha256": "6d5ea6d0c91aa01dba9fe68acad136b4fff9f43fb434a39b07e7279c44f1c90f",
-    "evidence": "All reported compiled sources/checkers/headers identical;96 canonical C units and raw frontier/hooks/overlay table identical to frozen224 and fresh235 rehearsal. This relocates the named executed proof and does not claim a new run."
-  },
-  "naming_only_relocation_249": {
-    "executed_report_sha256": "7b515dead4b7baba47ed826b47c6a4685ead1e7498dc20755344882741558d6a",
-    "previous_generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
-    "evidence": "Only Source annotation catalog changed: seven functions and17 scoped register roles. Runtime/rules/fixture/checker/header inputs and all96 canonical generated C units/frontier/hooks/overlay table exactly equal main235. This preserves the executed proof and does not claim a fresh gameplay regression."
+  "exact_input_relocation_255": {
+    "from_generation": "build-local/candidate244/build-local/startup-v244b",
+    "executed_report_sha256": "08d8049e404a68bafcbdbdaf2b59ddb9cf85c9dfd1701aafb72e773ab9b24cc8",
+    "executed_generation_receipt_sha256": "af8fc0fe10af98a9ed86844191365625bb0ebd104384a775c1a16bb21e015239",
+    "metadata_only_changes": {},
+    "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
   }
 }

@@ -3,11 +3,7 @@
   "extra_original_functions": [
     "dora3_lib_8005A140",
     "dora3_lib_8005A300",
-    "dora3_s3_801E756C",
-    "dora3_s3_801E75D0",
-    "dora3_s3_801E7EB8",
     "dora3_s3_801E80FC",
-    "dora3_s3_801E810C",
     "dora3_s3_801E89CC",
     "dora3_s3_core_801E8A94",
     "dora3_s3_core_801EBA38",
@@ -41,15 +37,15 @@
     "dora3_s3_demo_801E8404"
   ],
   "source_sha256": {
-    "src/native_gameplay_preview.cpp": "d48c83d5d296ed59f29e15e491187a4b34cdb0bde248bae5bbb486928a1c1092",
+    "src/native_gameplay_preview.cpp": "20339eea746f7757cbef3cd94201c187f3c2b186737f3e450630ea02b5be1c7b",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "src/native_model_animation.cpp": "b23d0a4b9c77e285d5fea142ebe8d64551554fc40771d5ab2f22ee4d98a1950f",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-    "research/native-story-pickup-source-check.cpp": "4d6de2d617919ce9c0b0c7b7878731c281a9059d45292bfc1ba960f2984c9160",
-    "tools/check_native_player_update.py": "7f3fdf18d70dff2701a731a35509e917b6d82cdb01242534257a14622d318305",
-    "tools/check_native_story_pickups.py": "adba5ec7d6c95b6caa8f05b7c594c2334371713ec20f3586654986517d5004b5",
+    "research/native-story-pickup-source-check.cpp": "2430785b51424010b7c8b8c220bfa4b42cb1203db8054a505eb3e7984f2eb2e9",
+    "tools/check_native_player_update.py": "60b94898572128ad31ed20651c50be98a2158f5b90470a18d4faa0bbc712f894",
+    "tools/check_native_story_pickups.py": "db0789ab86dcc1c9bf7a4c6fcb6bb3731edd3103b9b7af2338f11a5fa2ba5010",
     "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
@@ -83,7 +79,7 @@
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f"
   },
-  "generation_receipt_sha256": "0c3504b465a334012069de397935252c280e3103b7149622c14db88ae59f96ce",
+  "generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
   "reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "validated_schedules": {
     "settings": 24,
@@ -111,20 +107,17 @@
     "Only successful and already-set quest branches; full-pool failure and real-level dialogue progression remain unverified",
     "Render FPS is a setting matrix only; this check does not claim Native item trajectories"
   ],
-  "exact_input_relocation_235": {
-    "from_generation": "build-local/candidate235/build-local/startup-v235",
-    "report_sha256": "fe50aadeed06cc932a7b7cb293228fe2147277647338dd1249a32582f20b90f3",
-    "generation_receipt_sha256": "86b5cc21c9d07fe9764a11fe87c9db31775349b06649346ff749ac12bc8b0911",
-    "evidence": "All reported compiled sources/checkers/headers identical;96 canonical C units and raw frontier/hooks/overlay table identical to frozen224 and fresh235 rehearsal. This relocates the named executed proof and does not claim a new run."
-  },
-  "checker_metadata_only_update_235": {
-    "previous_checker_sha256": "661afcfac368efa4744ac67f0bc18b5a270a05bd693e674441ce8647dc07f03f",
-    "previous_report_sha256": "620c96faa95eec60c7923e80968ec6c9fe1be1c4d2734fb84ab8a0168685f4ca",
-    "evidence": "Only the post-execution full report caption now parses existing PASS stdout. No compiled preparation/runtime/fixture/Source or scene-frame diagnostic branch changes."
-  },
-  "naming_only_relocation_249": {
-    "executed_report_sha256": "b11867cb35c40c82ca26f46f2420bd3165cc6f19c18c29db8239183755cb3bca",
-    "previous_generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
-    "evidence": "Only Source annotation catalog changed: seven functions and17 scoped register roles. Runtime/rules/fixture/checker/header inputs and all96 canonical generated C units/frontier/hooks/overlay table exactly equal main235. This preserves the executed proof and does not claim a fresh gameplay regression."
+  "exact_input_relocation_255": {
+    "from_generation": "build-local/candidate244/build-local/startup-v244b",
+    "executed_report_sha256": "d9254e7ba97b6447f3bce0ab732e8d95cf6b28127ba175a68a622fb55938b482",
+    "executed_generation_receipt_sha256": "af8fc0fe10af98a9ed86844191365625bb0ebd104384a775c1a16bb21e015239",
+    "metadata_only_changes": {
+      "tools/check_native_player_update.py": {
+        "executed_sha256": "56e1481260963ae544b2295ece2f4aedd5cd9cb22b7c1d49b99b8ef5d67bc4c7",
+        "current_sha256": "60b94898572128ad31ed20651c50be98a2158f5b90470a18d4faa0bbc712f894",
+        "evidence": "Only the post-execution report caption parses measured hover192 from PASS stdout instead of hardcoded144; compilation/preparation/fixture branches exact."
+      }
+    },
+    "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
   }
 }

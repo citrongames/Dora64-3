@@ -1,24 +1,29 @@
 ## Продолжение main234 — проверены Source-награды и имена, runtime прежний
 
 
-## Текущий проверенный этап: main249
+## Текущий проверенный этап: main255
 
-Исполняемый код равен main235: завершение Native кадра при FD175/1 переходе
-комнаты и поздняя Source команда shake камеры сохранены. В main предметы
-118/123/127 и эффекты130 пока Source-owned.
+Собранные предметы118/123/127 state10 и шесть эффектов130 state10 подключены
+к настоящим Native обновлениям движения, вращения, масштаба и исчезновения.
+Source birth/init, сбор и state1 delay/clip команды сохраняют исходный порядок.
+Несобранные предметы и эффект131 пока Source-owned в main.
 
-Обновлён только каталог:719 описаний,384 имени функций,498 областей переменных.
-Новые имена покрывают семь исходных функций предмета state2..8, уточнены
-state1 и dispatcher. Все96 canonical C units, tokens, C17 и ABI проверены;
-12 отчётов привязаны к generation249 с явным происхождением исполнения.
+Полный244 player/world/NPC регрессионный прогон прошёл на24 настройках20/30Hz
+и60/73/120/144/165/360FPS:5088 slot09 Source/720 Native/34464 frozen comparisons
+и3192 NPC/B schedules. Connected reward:168 worlds/119252 Native intervals/
+16128 точных live actor/physics/model/heap/resource/command endpoints.
+Настоящий Source contact96, камера10975, текущий кадр64, реальный room barrier32,
+loop/model/time/simulation/overlay и отдельные flash scopes также прошли.
 
-Изолированный244 collected-item/flash блок прошёл168 связанных сценариев и
-16128 Original endpoints; его полный регрессионный прогон ещё идёт. Native
-вращение неподвижных предметов в248 прошло672 сценария,384 реальных Source
-контакта и64512 endpoints. Эти изменения ещё не перенесены в main.
-Подробности, отрицательные результаты и границы CPU проверок — в
-docs/work-in-progress.md. Test037 прежний; нового EXE нет. Полный variable FPS
-и оставшиеся игровые системы продолжают разрабатываться.
+15 текущих отчётов соответствуют generation255:14 сохраняют точный origin244,
+names report fresh. Все96 canonical units/frontier/hooks/overlay table точны;
+719 описаний/384 имени/498 register scopes сохранены. Исправлена подпись
+animation seek45. Подробнее:docs/work-in-progress.md.
+
+Idle248/guards252/Source effect131/producer254e проходят следующую отдельную
+стадию; они не включены в main255. FD room handoff и поздняя camera shake
+сохраняются. Test037 прежний; нового EXE нет. Остальные предметы, уровни,
+сценарные камеры, миниигры и2D остаются. Полный variable FPS не завершён.
 
 ---
 

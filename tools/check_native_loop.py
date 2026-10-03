@@ -34,6 +34,7 @@ def main():
  assert not phase_boundaries.intersection(selected)
  external.update(phase_boundaries)
  external.add('dora3_s3_core_801C120C')
+ external.add('dora3_s3_801E810C')
  out=r/'build-local/native-loop-check';out.mkdir(exist_ok=True)
  (out/'functions.c').write_text('#include "startup_hooks.h"\n#include "funcs.h"\n'+'\n'.join(selected.values()))
  (out/'loop-functions.h').write_text('extern "C" {\n'+'\n'.join(f'void {n}(uint8_t*,recomp_context*);' for n in selected)+'\n}\n')

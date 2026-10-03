@@ -248,8 +248,12 @@
     "dora3_s3_801E656C",
     "dora3_s3_801E662C",
     "dora3_s3_801E6E6C",
+    "dora3_s3_801E756C",
+    "dora3_s3_801E75D0",
+    "dora3_s3_801E7EB8",
     "dora3_s3_801E7F54",
     "dora3_s3_801E7FC4",
+    "dora3_s3_801E810C",
     "dora3_s3_801E8BDC",
     "dora3_s3_801EB8A0",
     "dora3_s3_801EF4E0",
@@ -808,7 +812,7 @@
     "dora3_s3_core_801E5828"
   ],
   "source_sha256": {
-    "src/native_gameplay_preview.cpp": "d48c83d5d296ed59f29e15e491187a4b34cdb0bde248bae5bbb486928a1c1092",
+    "src/native_gameplay_preview.cpp": "20339eea746f7757cbef3cd94201c187f3c2b186737f3e450630ea02b5be1c7b",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "d9d08c2a85ca1474994db2426a465c64d2ddc530486c1341dad6898f273fedd3",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
@@ -822,10 +826,10 @@
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
     "src/native_gameplay_preview.hpp": "c217908d86f9b319a3acffcf4f3edb0e7cfa92b8de4742c21988f4d052638b11",
     "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
-    "recomp/native-timing-rules.json": "fae3f8016727e0ec9890cd166703afe15d41d4f45c1336b50a7af5b58e782cfd",
+    "recomp/native-timing-rules.json": "2752c47f221b5643d4a36bd09272ac537a096d8bd32d4ad1045518cb8c9185a4",
     "research/player-state-inventory.json": "c6497c19972e73478ac5d71ffcef6304924aeb087121f0c2e38528fb1bbd150f",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
-    "tools/check_native_player_update.py": "7f3fdf18d70dff2701a731a35509e917b6d82cdb01242534257a14622d318305"
+    "tools/check_native_player_update.py": "60b94898572128ad31ed20651c50be98a2158f5b90470a18d4faa0bbc712f894"
   },
   "validated_npc_action_schedules": {
     "common_selector_B_dispatch_player_priority": 3192,
@@ -977,7 +981,7 @@
     "size": 36304,
     "sha256": "f5284a1979a9fd3f5f46fe48c9a361e300aca936d8cb123aa87f50bdbcee5f7a"
   },
-  "generation_receipt_sha256": "0c3504b465a334012069de397935252c280e3103b7149622c14db88ae59f96ce",
+  "generation_receipt_sha256": "00426f16756f43c8f9822eeed4ea69dc1a1a05a2304650e34067c03de69dfba4",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "limitations": [
@@ -985,26 +989,23 @@
     "Homing targets are static; moving86 verified for six Source ticks, stationary86 through tracking-window closure; real level gameplay remains unverified",
     "Live producers invoke real constructors during the player callback; interaction contact flags are instrumented and captured NPC paused; player states20/27/57/58 and aerial weapons9/10/11/12 tested; healthy damage32..49/63 tested through real recovery; lethal32/35/37/40/43/46/47/48/49 through death50..56/fade/game-over/scene resource cleanup; actual C9BE0 six-character model/resource recreation and post-ready67/Ground Native reacquisition tested; room DMA/resource decode/level construction remains a synthetic boundary; byte status pointers use actual unaligned Original records; special64/65/66/67 Source and Native command/character-frame/real-idle/cancellation/full-recovery tested; actual model3 creation/attachment/destruction execute on synthetic assets, city7 sprite5 executes its real pool constructor, other sprite producers remain instrumented; door59/surface60..62 Source and Native schedules execute real producer/actor pause/command writes; actual script camera advancement and room DMA/level construction remain unverified; external hover49 selecting producer, real-level collision assets, dialogue progression/layout/input and sound queue remain unverified; actual common NPC collision selection/B priority executes Original overlap, twelve actual kind callbacks and linked parent on synthetic geometry (actual dialogue initializer executes with a checked audio-queue failure boundary); orbital intermediate return yaw checks cover both nonzero directions and360-degree wrap; city13..17/20..22 wait/walk callbacks checked with exact private counts, clip commands and fractional X/Z; their dialogue3 callbacks, story100/secondary-model/wrapped-kind6 families and kind21 special200/201 callbacks are tested against frozen189 on synthetic assets; Original special201 yaw snaps, unapplied rate5C and six-tick release are preserved, including repeated writes within a single period; other unreviewed AI states retain Source ownership; linked18/19 and story18/6 have actual constructor/contact/final-command-delivery proof; slot09 dialogue/event families beyond reviewed idle/patrol/wait, other active NPCs/platforms, story-room orbital dialogue producer, real levels, cutscenes, minigames and2D remain outstanding"
   ],
-  "exact_input_relocation_235": {
-    "from_generation": "build-local/candidate224/build-local/startup-v224",
-    "report_sha256": "3eae83efab0769feb13daf33d306397ebf8ed95f2901899b91c5605db1a45093",
-    "generation_receipt_sha256": "6d5ea6d0c91aa01dba9fe68acad136b4fff9f43fb434a39b07e7279c44f1c90f",
-    "evidence": "All reported compiled sources/checkers/headers identical;96 canonical C units and raw frontier/hooks/overlay table identical to frozen224 and fresh235 rehearsal. This relocates the named executed proof and does not claim a new run."
-  },
-  "factual_report_caption_correction_235": {
+  "factual_report_caption_correction_255": {
     "field": "hover49_63_source_count_control_exit_landing",
     "previous": 144,
     "actual": 192,
-    "evidence": "Parsed the actual PASS stdout of full224; checker/runtime/test branches unchanged. The legacy caption was hardcoded."
+    "evidence": "Executed244 full PASS stdout; compiled scenario count unchanged."
   },
-  "checker_metadata_only_update_235": {
-    "previous_checker_sha256": "661afcfac368efa4744ac67f0bc18b5a270a05bd693e674441ce8647dc07f03f",
-    "previous_report_sha256": "9d521d18136b16c062c9773bbd1f13b383e4203a481ddc726dbaed71c20dc9bf",
-    "evidence": "Only the post-execution full report caption now parses existing PASS stdout. No compiled preparation/runtime/fixture/Source or scene-frame diagnostic branch changes."
-  },
-  "naming_only_relocation_249": {
-    "executed_report_sha256": "c85c2c38d6f0929bf9ba6700da129e00af73332796d37cba47041d64605a4b14",
-    "previous_generation_receipt_sha256": "ed431ea8c805b02adc06ae78c244832d99235df1851aa3fa25a457f6195c18b1",
-    "evidence": "Only Source annotation catalog changed: seven functions and17 scoped register roles. Runtime/rules/fixture/checker/header inputs and all96 canonical generated C units/frontier/hooks/overlay table exactly equal main235. This preserves the executed proof and does not claim a fresh gameplay regression."
+  "exact_input_relocation_255": {
+    "from_generation": "build-local/candidate244/build-local/startup-v244b",
+    "executed_report_sha256": "9aee0d906452753b81fdf07bd74eeb79f5944908b37515a3616a1a0ad1c53660",
+    "executed_generation_receipt_sha256": "af8fc0fe10af98a9ed86844191365625bb0ebd104384a775c1a16bb21e015239",
+    "metadata_only_changes": {
+      "tools/check_native_player_update.py": {
+        "executed_sha256": "56e1481260963ae544b2295ece2f4aedd5cd9cb22b7c1d49b99b8ef5d67bc4c7",
+        "current_sha256": "60b94898572128ad31ed20651c50be98a2158f5b90470a18d4faa0bbc712f894",
+        "evidence": "Only the post-execution report caption parses measured hover192 from PASS stdout instead of hardcoded144; compilation/preparation/fixture branches exact."
+      }
+    },
+    "evidence": "All runtime/fixture/header inputs preserved and96 canonical C units/frontier/hooks/overlay table exact. Main249719/384/498 Source annotations retained; four description/evidence updates include factual seek45 correction. This relocates the executed244 proof; it does not claim another main run."
   }
 }
