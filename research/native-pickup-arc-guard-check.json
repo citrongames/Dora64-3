@@ -87,7 +87,7 @@
     "research/native-pickup-uncollected-source-check.inc": "c20b527ce89f00746ff9d7b64e6c130eae1dc41ccb23cdb2669616b0a1a87959",
     "research/native-pickup-arc-guard-check.inc": "0c8bb5bb3e4e36aae3432d797f10f249835f5aa6b47acd91bb1b5d9296e29d94"
   },
-  "generation_receipt_sha256": "b966428e4e1e801eec58536983381f73e35c5aafab1eaff883f14db9d5eb34b6",
+  "generation_receipt_sha256": "aad8dcd962f76d454c7323c39db7fc43b8f11d114cfe2b478072817bb7267567",
   "reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "validated_schedules": {
     "settings": 24,
@@ -153,5 +153,10 @@
     "generation_receipt_sha256": "c63cecc180991d03ab88e402aaac0a273deab976d2e22a3e8b3c7151f8667b12",
     "metadata_only_input_changes": {},
     "evidence": "Runtime and every tracked fixture/header/checker input exact;96 canonical C/frontier/hooks/overlay table exact. Complete current main catalog and timing rule status/evidence updated; exact executed/current rule hashes retained separately. Actual execution origin retained; no repeated main execution claim."
+  },
+  "catalog_only_origin_286": {
+    "prior_main282_report_sha256": "e3fccd36699783bcc7bd0e87805b252742b0a8a0e235f5e694b555eda7762dd9",
+    "prior_generation_receipt_sha256": "b966428e4e1e801eec58536983381f73e35c5aafab1eaff883f14db9d5eb34b6",
+    "evidence": "Only confirmed reset helper names/descriptions and catalog changed; every tracked runtime/checker/fixture/header input exact,96 canonical C/frontier/hooks/overlays exact. Original actual279/281/283 execution origins retained; no repeat runtime execution claimed."
   }
 }

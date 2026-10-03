@@ -8683,9 +8683,9 @@
       "vram": "0x801E756C",
       "size": 100,
       "legacy_name": "dora3_s3_801E756C",
-      "name": "dora3_collision_refresh_surface_type_FE_801E756C",
-      "description": "Выбирает collision record по global bit0; если byte surface type равенFE, повторяет настоящие startup3FFC4/40018 queries и устанавливает bit0=1. Другие типы сохраняют исходный результат.",
-      "evidence": "Exact canonical frozen189 scene1 ROM instructions and Source constants; actual item118/123/127 producer and complete six flash130 effect lifetimes passed168 schedules in isolated202; only executed Source states1/10 and shared collision helpers validated",
+      "name": "dora3_collision_reset_special_surface_FE_801E756C",
+      "description": "Выбирает 28-байтовый collision candidate800DACB8/800DACD4 по global bit0. Если byte surface type равенFE, сбрасывает оба кандидата настоящими startup3FFC4/40018 reset helpers и устанавливает bit0=1. Повторного поиска поверхности не выполняет; другие типы сохраняют исходный результат.",
+      "evidence": "Exact100-byte overlay-qualified ROM body and complete canonical caller/helper review. Previous description incorrectly called3FFC4/40018 queries; their exact84-byte bodies only reset result records. Source280 no-parent settle/scatter432 paired worlds/110592 actual Original full-lifetime endpoints passed; no runtime behavior or Native ownership change.",
       "rom_sha256": "a257510b4bf72c9aab6ed3b1f4663a0477d1d0a57a30f6c8f417cc18fb8c5bdc",
       "locals": []
     },
@@ -13901,6 +13901,28 @@
           }
         }
       ]
+    },
+    {
+      "section": ".startup",
+      "vram": "0x8003FFC4",
+      "size": 84,
+      "legacy_name": "dora3_s0_8003FFC4",
+      "name": "dora3_collision_reset_upward_plane_candidate_8003FFC4",
+      "description": "Сбрасывает 28-байтовый кандидат поверхности по адресу800DACB8: высоту и дополнительный scalar в-1000000, normal(0,+1,0), type word0 и index-1. Не выполняет поиск столкновений и не меняет второй кандидат или global flags.",
+      "evidence": "Exact84-byte ROM body and complete canonical startup instruction review. Caller40104/4006C initializes both candidates; actual E756C specialFE invokes these resets and sets bit0. Names describe known normal directions without assuming floor/ceiling roles. Source280 no-parent settle/scatter432 paired worlds/110592 complete lifetime endpoints passed; naming adds no Native ownership.",
+      "rom_sha256": "f34083bff3f8c5658ab0485f5eebfddb11435e7b833ddada658e293fd6664797",
+      "locals": []
+    },
+    {
+      "section": ".startup",
+      "vram": "0x80040018",
+      "size": 84,
+      "legacy_name": "dora3_s0_80040018",
+      "name": "dora3_collision_reset_downward_plane_candidate_80040018",
+      "description": "Сбрасывает 28-байтовый кандидат поверхности по адресу800DACD4: высоту и дополнительный scalar в+1000000, normal(0,-1,0), type word0 и index-1. Не выполняет поиск столкновений и не меняет первый кандидат или global flags.",
+      "evidence": "Exact84-byte ROM body and complete canonical startup instruction review. Caller40104/4006C initializes both candidates; actual E756C specialFE invokes these resets and sets bit0. Names describe known normal directions without assuming floor/ceiling roles. Source280 no-parent settle/scatter432 paired worlds/110592 complete lifetime endpoints passed; naming adds no Native ownership.",
+      "rom_sha256": "b5dcdf7f5b32a902c4d73d0671e490276a738dfc611180d9d62f18d9152761fc",
+      "locals": []
     }
   ]
 }

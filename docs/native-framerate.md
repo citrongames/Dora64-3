@@ -1,7 +1,7 @@
 ## Продолжение main234 — проверены Source-награды и имена, runtime прежний
 
 
-## Текущий проверенный этап: main282
+## Текущий проверенный этап: main286
 
 Предметы118/123/127 после настоящего Source входа обновляют появление4,
 подъём5/уменьшение6, вращение/исчезновение7, двухфазную дугу8 и сбор10
@@ -14,16 +14,20 @@ Native8 допускает phase0 angle0..89/phase1 angle0..target-1; несов
 Fresh279 reveal3456 иfresh283 arc3456 paired guards/по884736 whole endpoints,
 fresh283 basic432 обоих Native7/8, full281 O2 player/world/NPC/3192 B schedules,
 5088 Source/720 Native slot09/34464 comparisons, loop иscene resource barrier
-прошли. Семь текущих отчётов сохраняют actual279/281/283 origins; names282 fresh.
+прошли. Семь текущих отчётов сохраняют actual279/281/283 origins; names286 fresh.
 Arc283 требует обе отклонённые фазы на положительных интервалах во всех216
 применимых мирах. Ранее281 остановился на неверной общей coverage-проверке;
 его884736 равных endpoints сохранены, но весь запуск не считаетсяPASS.
-723 описания/388 имён/506 scopes и96 canonical C/tokens/C17/ABI сохранены.
+725 описаний/390 имён/506 scopes и96 canonical C/tokens/C17/ABI сохранены.
 Исторические276 отчёты остаются historical, без новой runtime PASS привязки.
 
 State2/3,parent-follow/moving idle/прочие семейства предметов иостальные
 уровни/враги/платформы/script cameras/cutscenes/minigames/2D остаются.
 Полный variable FPS не завершён. Test037 прежний; нового EXE нет.
+
+В main286 добавлены подтверждённые имена двух reset helpers поверхности и
+исправлено описание specialFE. Runtime main282 сохранён; шесть actual279/281/283
+origins перенесены только после точного сравнения входов и canonical C.
 
 ---
 

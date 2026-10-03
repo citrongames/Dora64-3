@@ -983,7 +983,7 @@
     "size": 36304,
     "sha256": "f5284a1979a9fd3f5f46fe48c9a361e300aca936d8cb123aa87f50bdbcee5f7a"
   },
-  "generation_receipt_sha256": "b966428e4e1e801eec58536983381f73e35c5aafab1eaff883f14db9d5eb34b6",
+  "generation_receipt_sha256": "aad8dcd962f76d454c7323c39db7fc43b8f11d114cfe2b478072817bb7267567",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "limitations": [
@@ -1003,5 +1003,10 @@
       }
     },
     "evidence": "Runtime and every tracked fixture/header/checker input exact;96 canonical C/frontier/hooks/overlay table exact. Complete current main catalog and timing rule status/evidence updated; exact executed/current rule hashes retained separately. Actual execution origin retained; no repeated main execution claim."
+  },
+  "catalog_only_origin_286": {
+    "prior_main282_report_sha256": "c3c3bd81ece7308be2c76c8beb98c4835172166ef653f73c420615a4c6f86903",
+    "prior_generation_receipt_sha256": "b966428e4e1e801eec58536983381f73e35c5aafab1eaff883f14db9d5eb34b6",
+    "evidence": "Only confirmed reset helper names/descriptions and catalog changed; every tracked runtime/checker/fixture/header input exact,96 canonical C/frontier/hooks/overlays exact. Original actual279/281/283 execution origins retained; no repeat runtime execution claimed."
   }
 }

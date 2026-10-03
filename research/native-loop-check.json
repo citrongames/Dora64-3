@@ -26,7 +26,7 @@
     "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
     "tools/check_native_loop.py": "625bac56875c1c00acb6e7baba13b88a741403c9a3c110006f92d14d7e319449"
   },
-  "generation_receipt_sha256": "b966428e4e1e801eec58536983381f73e35c5aafab1eaff883f14db9d5eb34b6",
+  "generation_receipt_sha256": "aad8dcd962f76d454c7323c39db7fc43b8f11d114cfe2b478072817bb7267567",
   "original_functions": [
     "dora3_color_buffer_setup",
     "dora3_depth_buffer_clear",
@@ -131,5 +131,10 @@
     "generation_receipt_sha256": "c63cecc180991d03ab88e402aaac0a273deab976d2e22a3e8b3c7151f8667b12",
     "metadata_only_input_changes": {},
     "evidence": "Runtime and every tracked fixture/header/checker input exact;96 canonical C/frontier/hooks/overlay table exact. Complete current main catalog and timing rule status/evidence updated; exact executed/current rule hashes retained separately. Actual execution origin retained; no repeated main execution claim."
+  },
+  "catalog_only_origin_286": {
+    "prior_main282_report_sha256": "c990b121ae4c4b80b89ae485f065d9c46383f08ab0af4023a6ad0d4aeb887e2c",
+    "prior_generation_receipt_sha256": "b966428e4e1e801eec58536983381f73e35c5aafab1eaff883f14db9d5eb34b6",
+    "evidence": "Only confirmed reset helper names/descriptions and catalog changed; every tracked runtime/checker/fixture/header input exact,96 canonical C/frontier/hooks/overlays exact. Original actual279/281/283 execution origins retained; no repeat runtime execution claimed."
   }
 }
