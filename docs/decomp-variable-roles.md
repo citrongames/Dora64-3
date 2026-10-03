@@ -110,17 +110,31 @@
 | `pickup_kind114_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC7E0; за пределами этого вызова исходное имя регистра сохранено. | 1 |
 | `pickup_kind115_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC754; за пределами этого вызова исходное имя регистра сохранено. | 1 |
 | `pickup_kind116_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC7C4; за пределами этого вызова исходное имя регистра сохранено. | 1 |
+| `pickup_kind117_contact_mode_r3` | `ctx->r3` | Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается. | 1 |
+| `pickup_kind117_quest_parameter_address_r16` | `ctx->r16` | Original s0 хранит адрес8021BE10 от завершения построения адреса до восстановления caller s0; сам flag читается как halfword. | 1 |
+| `pickup_kind119_contact_mode_r3` | `ctx->r3` | Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается. | 1 |
+| `pickup_kind119_quest_parameter_address_r16` | `ctx->r16` | Original s0 хранит адрес8021BE10 от завершения построения адреса до восстановления caller s0; сам flag читается как halfword. | 1 |
+| `pickup_kind120_contact_mode_r3` | `ctx->r3` | Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается. | 1 |
+| `pickup_kind121_contact_mode_r3` | `ctx->r3` | Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается. | 1 |
+| `pickup_kind122_contact_mode_r3` | `ctx->r3` | Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается. | 1 |
+| `pickup_kind122_quest_parameter_address_r16` | `ctx->r16` | Original s0 хранит адрес8021BE10 от завершения построения адреса до восстановления caller s0; сам flag читается как halfword. | 1 |
 | `pickup_kind124_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC8B0; за пределами этого вызова исходное имя регистра сохранено. | 1 |
+| `pickup_kind125_contact_mode_r3` | `ctx->r3` | Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается. | 1 |
 | `pickup_kind125_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC8CC; за пределами этого вызова исходное имя регистра сохранено. | 1 |
+| `pickup_kind126_contact_mode_r3` | `ctx->r3` | Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается. | 1 |
 | `pickup_kind127_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC904; за пределами этого вызова исходное имя регистра сохранено. | 1 |
 | `pickup_kind128_descriptor_address_r4` | `ctx->r4` | Original a0 при сборке и передаче точного ROM descriptor801FC920; за пределами этого вызова исходное имя регистра сохранено. | 1 |
 | `pickup_parent_transform_matrix_r17` | `ctx->r17` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_rise_initial_actor_r3` | `ctx->r3` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_rise_initial_physics_r3` | `ctx->r3` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_scale_actor_r4` | `ctx->r4` | Original a0 указывает на actor весь body; stores18/1C/20 задают XYZ scale. | 1 |
+| `pickup_scale_kind_r3` | `ctx->r3` | Original v1 хранит kind из physical20 для проверки диапазона и табличного индекса; далее не переназначается. | 1 |
 | `pickup_scatter_height_actor_r16` | `ctx->r16` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_second_arc_actor_r16` | `ctx->r16` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_shrink_actor_r3` | `ctx->r3` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_shrink_physics_r4` | `ctx->r4` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
+| `pickup_spawn_linked_effect_index_r17` | `ctx->r17` | Original s1 теперь индекс0..2: проверяет свободный physical80 link, задаёт индекс связанного child и считает три места. | 1 |
+| `pickup_spawn_linked_effect_selector_r17` | `ctx->r17` | Original s1 хранит второй аргумент после копии a1; сравнивается signed low16 с1. Область заканчивается до новой роли loop index. | 1 |
 | `pickup_spin_initial_physics_r3` | `ctx->r3` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_spin_opacity_actor_r4` | `ctx->r4` | Exact original register storage in the proven instruction region; register reuse outside the region retains the original name. | 1 |
 | `pickup_star_piece_contact_quest_mode_r3` | `ctx->r3` | Original contact mode only through the mode3 comparison; register becomes scene identity afterwards | 1 |

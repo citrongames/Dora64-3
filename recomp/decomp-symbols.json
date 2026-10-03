@@ -14094,8 +14094,8 @@
       "size": 36,
       "legacy_name": "dora3_s3_core_801EC8F8",
       "name": "dora3_pickup_spawn_kind111_default_801EC8F8",
-      "description": "Простой Original producer kind111: строит адрес ROM descriptor801FC770 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
-      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind111/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "description": "Простой Original producer kind111: строит адрес ROM descriptor801FC770 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; Selector1 создаёт три связанных kind129 эффекта; selector0 оставляет только основной предмет. Actual339 проверяет настоящий путь producer и occupied-pool отказ. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind111/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage. Actual339144 paired full4MiB Source constructor/quest/linked129/occupied-pool comparisons PASS; no automatic129 lifetime claim.",
       "rom_sha256": "0af65b68684667927e737e913a06ca4fa788555745d2496776c340be4cbbc19f",
       "locals": [
         {
@@ -14140,8 +14140,8 @@
       "size": 36,
       "legacy_name": "dora3_s3_core_801EC954",
       "name": "dora3_pickup_spawn_kind112_default_801EC954",
-      "description": "Простой Original producer kind112: строит адрес ROM descriptor801FC78C в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
-      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind112/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "description": "Простой Original producer kind112: строит адрес ROM descriptor801FC78C в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; Selector1 создаёт три связанных kind129 эффекта; selector0 оставляет только основной предмет. Actual339 проверяет настоящий путь producer и occupied-pool отказ. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind112/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage. Actual339144 paired full4MiB Source constructor/quest/linked129/occupied-pool comparisons PASS; no automatic129 lifetime claim.",
       "rom_sha256": "c8b0820dca332e3d4b7487cafc44b0c30062f63477c3818311df635453fd7c88",
       "locals": [
         {
@@ -14186,8 +14186,8 @@
       "size": 36,
       "legacy_name": "dora3_s3_core_801EC9B0",
       "name": "dora3_pickup_spawn_kind113_default_801EC9B0",
-      "description": "Простой Original producer kind113: строит адрес ROM descriptor801FC7A8 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
-      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind113/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "description": "Простой Original producer kind113: строит адрес ROM descriptor801FC7A8 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; Selector1 создаёт три связанных kind129 эффекта; selector0 оставляет только основной предмет. Actual339 проверяет настоящий путь producer и occupied-pool отказ. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind113/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage. Actual339144 paired full4MiB Source constructor/quest/linked129/occupied-pool comparisons PASS; no automatic129 lifetime claim.",
       "rom_sha256": "e938dbbae9e337a46c2919242231f221b196bc69b535ed9e3346101dfb6adc0d",
       "locals": [
         {
@@ -14232,8 +14232,8 @@
       "size": 36,
       "legacy_name": "dora3_s3_core_801ECA68",
       "name": "dora3_pickup_spawn_kind114_default_801ECA68",
-      "description": "Простой Original producer kind114: строит адрес ROM descriptor801FC7E0 в a0, задаёт a1=1 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
-      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind114/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "description": "Простой Original producer kind114: строит адрес ROM descriptor801FC7E0 в a0, задаёт a1=1 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; Selector1 создаёт три связанных kind129 эффекта; selector0 оставляет только основной предмет. Actual339 проверяет настоящий путь producer и occupied-pool отказ. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind114/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage. Actual339144 paired full4MiB Source constructor/quest/linked129/occupied-pool comparisons PASS; no automatic129 lifetime claim.",
       "rom_sha256": "2a19f14718487e05139648968b434aeb3632bddf582625184b63cc01ebc561b2",
       "locals": [
         {
@@ -14278,8 +14278,8 @@
       "size": 36,
       "legacy_name": "dora3_s3_core_801EC89C",
       "name": "dora3_pickup_spawn_kind115_default_801EC89C",
-      "description": "Простой Original producer kind115: строит адрес ROM descriptor801FC754 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
-      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind115/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "description": "Простой Original producer kind115: строит адрес ROM descriptor801FC754 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; Selector1 создаёт три связанных kind129 эффекта; selector0 оставляет только основной предмет. Actual339 проверяет настоящий путь producer и occupied-pool отказ. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind115/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage. Actual339144 paired full4MiB Source constructor/quest/linked129/occupied-pool comparisons PASS; no automatic129 lifetime claim.",
       "rom_sha256": "f89999ff3a573eedf25b34e9342ee6c717c0468a1af54e24b04d419f92553ef6",
       "locals": [
         {
@@ -14324,8 +14324,8 @@
       "size": 36,
       "legacy_name": "dora3_s3_core_801ECA0C",
       "name": "dora3_pickup_spawn_kind116_default_801ECA0C",
-      "description": "Простой Original producer kind116: строит адрес ROM descriptor801FC7C4 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
-      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind116/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "description": "Простой Original producer kind116: строит адрес ROM descriptor801FC7C4 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; Selector1 создаёт три связанных kind129 эффекта; selector0 оставляет только основной предмет. Actual339 проверяет настоящий путь producer и occupied-pool отказ. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind116/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage. Actual339144 paired full4MiB Source constructor/quest/linked129/occupied-pool comparisons PASS; no automatic129 lifetime claim.",
       "rom_sha256": "e09a907a1c660f67ad6316836567b01aa4e597e5623d8937c6aeaa1bcada8384",
       "locals": [
         {
@@ -14425,8 +14425,8 @@
       "size": 36,
       "legacy_name": "dora3_s3_core_801ED03C",
       "name": "dora3_pickup_spawn_kind124_default_801ED03C",
-      "description": "Простой Original producer kind124: строит адрес ROM descriptor801FC8B0 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
-      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind124/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "description": "Простой Original producer kind124: строит адрес ROM descriptor801FC8B0 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; Selector1 создаёт три связанных kind129 эффекта; selector0 оставляет только основной предмет. Actual339 проверяет настоящий путь producer и occupied-pool отказ. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind124/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage. Actual339144 paired full4MiB Source constructor/quest/linked129/occupied-pool comparisons PASS; no automatic129 lifetime claim.",
       "rom_sha256": "347fc82ce881be91a77479e7d88d697fa80527a89ef68a3475d8906d8921f0d1",
       "locals": [
         {
@@ -14471,8 +14471,8 @@
       "size": 36,
       "legacy_name": "dora3_s3_core_801ED098",
       "name": "dora3_pickup_spawn_kind125_default_801ED098",
-      "description": "Простой Original producer kind125: строит адрес ROM descriptor801FC8CC в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
-      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind125/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "description": "Простой Original producer kind125: строит адрес ROM descriptor801FC8CC в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; Selector1 создаёт три связанных kind129 эффекта; selector0 оставляет только основной предмет. Actual339 проверяет настоящий путь producer и occupied-pool отказ. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind125/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage. Actual339144 paired full4MiB Source constructor/quest/linked129/occupied-pool comparisons PASS; no automatic129 lifetime claim.",
       "rom_sha256": "d9e4ec597b7601f2ec47db26d716d3a5f66f36114c2a83f6bf7a39491fea3a2d",
       "locals": [
         {
@@ -14517,8 +14517,8 @@
       "size": 36,
       "legacy_name": "dora3_s3_core_801ED204",
       "name": "dora3_pickup_spawn_kind127_default_801ED204",
-      "description": "Простой Original producer kind127: строит адрес ROM descriptor801FC904 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
-      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind127/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "description": "Простой Original producer kind127: строит адрес ROM descriptor801FC904 в a0, задаёт a1=0 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; Selector1 создаёт три связанных kind129 эффекта; selector0 оставляет только основной предмет. Actual339 проверяет настоящий путь producer и occupied-pool отказ. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind127/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage. Actual339144 paired full4MiB Source constructor/quest/linked129/occupied-pool comparisons PASS; no automatic129 lifetime claim.",
       "rom_sha256": "d7ee494f364a587bf3c63bc376e6d6f29130f294c82d4e199eedf30327bd65cd",
       "locals": [
         {
@@ -14541,8 +14541,8 @@
       "size": 36,
       "legacy_name": "dora3_s3_core_801ED260",
       "name": "dora3_pickup_spawn_kind128_default_801ED260",
-      "description": "Простой Original producer kind128: строит адрес ROM descriptor801FC920 в a0, задаёт a1=1 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; смысл selector вне доказанного вызова не угадывается. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
-      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind128/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
+      "description": "Простой Original producer kind128: строит адрес ROM descriptor801FC920 в a0, задаёт a1=1 и вызывает общий allocator/initializer801EB8F8. У этого wrapper нет проверки сюжетных флагов; Selector1 создаёт три связанных kind129 эффекта; selector0 оставляет только основной предмет. Actual339 проверяет настоящий путь producer и occupied-pool отказ. Проверка generic descriptor lifetimes не заменяет отдельную проверку script producer.",
+      "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind128/constructor; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage. Actual339144 paired full4MiB Source constructor/quest/linked129/occupied-pool comparisons PASS; no automatic129 lifetime claim.",
       "rom_sha256": "aec905e783762ef7b40ac59d8863516f151f981092bae8baa92b6cb0aa9ee7d0",
       "locals": [
         {
@@ -14579,6 +14579,412 @@
       "description": "Callback contact kind128 из настоящей84-byte таблицы80202060. Передаёт вызов общему801EBA38, который проверяет contact mode3 и выбирает collected state10. Собственных сюжетных флагов или дополнительных записей в этом wrapper нет.",
       "evidence": "Exact frozen189 canonical C and instruction review; actual Source323 seed84-byte table kind128/contact; Source331 all18 generic descriptor/contact/full-retirement lifetimes and quest flags4608 endpoints PASS. Private script producer/full Native integration not claimed; naming preserves ABI/register storage.",
       "rom_sha256": "fcd0a424edf4d8cda5d31ad725de680fd9bc4417e12ed9afabdc630c34d751a2",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECAC4",
+      "size": 88,
+      "legacy_name": "dora3_s3_core_801ECAC4",
+      "name": "dora3_pickup_spawn_kind117_quest_guard_801ECAC4",
+      "description": "Original producer kind117 из настоящей84-byte таблицы. Проверяет переданный halfword flag из8021BE10, включая flag0; если он уже установлен, не создаёт предмет. После успешного создания сохраняет flag в physical44. Связанные эффекты здесь не создаются. Настоящий shared801EB8F8 читает script XYZ/yaw, выделяет объект и применяет табличный масштаб; флаги и порядок создания остаются Source.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "79b1ff90dd9e951222346612b7e192cd72478e2454b887ddef65a0d638f4adba",
+      "locals": [
+        {
+          "name": "pickup_kind117_quest_parameter_address_r16",
+          "expression": "ctx->r16",
+          "start": "0x801ECAD4",
+          "end": "0x801ECB10",
+          "description": "Original s0 хранит адрес8021BE10 от завершения построения адреса до восстановления caller s0; сам flag читается как halfword.",
+          "instructions": {
+            "0x801ECACC": "0x3C108022",
+            "0x801ECAD0": "0x2610BE10"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECB88",
+      "size": 92,
+      "legacy_name": "dora3_s3_core_801ECB88",
+      "name": "dora3_pickup_spawn_kind118_quest_guard_801ECB88",
+      "description": "Original producer kind118 из настоящей84-byte таблицы. Проверяет flag19 в sceneA0 или flag22 в sceneA3; в остальных сценах создаёт без этой проверки. Запрос создания включает три связанных kind129 эффекта. Настоящий shared801EB8F8 читает script XYZ/yaw, выделяет объект и применяет табличный масштаб; флаги и порядок создания остаются Source.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "5163223c768d12386ad7d8ffcced76feee80ad978620b5b70ec863c2cb5624e1",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECC88",
+      "size": 100,
+      "legacy_name": "dora3_s3_core_801ECC88",
+      "name": "dora3_pickup_spawn_kind119_quest_guard_801ECC88",
+      "description": "Original producer kind119 из настоящей84-byte таблицы. Ненулевой flag из8021BE10 запрещает повторное создание; flag0 обходит проверку. После создания сохраняет flag в physical44. Создаёт три связанных kind129 эффекта. Настоящий shared801EB8F8 читает script XYZ/yaw, выделяет объект и применяет табличный масштаб; флаги и порядок создания остаются Source.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "45e0a0a6164a5c4b31549c029bc36e677b8a4b70472125a1fc251e219a44e0aa",
+      "locals": [
+        {
+          "name": "pickup_kind119_quest_parameter_address_r16",
+          "expression": "ctx->r16",
+          "start": "0x801ECC98",
+          "end": "0x801ECCE0",
+          "description": "Original s0 хранит адрес8021BE10 от завершения построения адреса до восстановления caller s0; сам flag читается как halfword.",
+          "instructions": {
+            "0x801ECC90": "0x3C108022",
+            "0x801ECC94": "0x2610BE10"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECD58",
+      "size": 52,
+      "legacy_name": "dora3_s3_core_801ECD58",
+      "name": "dora3_pickup_spawn_kind120_quest_guard_801ECD58",
+      "description": "Original producer kind120 из настоящей84-byte таблицы. Flag44 запрещает повторное создание. При разрешении создаёт предмет и три связанных kind129 эффекта. Настоящий shared801EB8F8 читает script XYZ/yaw, выделяет объект и применяет табличный масштаб; флаги и порядок создания остаются Source.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "e373d43654128a405808268ed385a3cba71ae62d2bd9ee2bc6ca1e080f8c2388",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECDF0",
+      "size": 52,
+      "legacy_name": "dora3_s3_core_801ECDF0",
+      "name": "dora3_pickup_spawn_kind121_quest_guard_801ECDF0",
+      "description": "Original producer kind121 из настоящей84-byte таблицы. Flag46 запрещает повторное создание. При разрешении создаёт предмет и три связанных kind129 эффекта. Настоящий shared801EB8F8 читает script XYZ/yaw, выделяет объект и применяет табличный масштаб; флаги и порядок создания остаются Source.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "a488f76ba72c37d22306d01c05cae007a1418f007b91ad0dca7fec28de716f17",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECE88",
+      "size": 100,
+      "legacy_name": "dora3_s3_core_801ECE88",
+      "name": "dora3_pickup_spawn_kind122_quest_guard_801ECE88",
+      "description": "Original producer kind122 из настоящей84-byte таблицы. Ненулевой flag из8021BE10 запрещает повторное создание; flag0 обходит проверку. После создания сохраняет flag в physical44. Создаёт три связанных kind129 эффекта. Настоящий shared801EB8F8 читает script XYZ/yaw, выделяет объект и применяет табличный масштаб; флаги и порядок создания остаются Source.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "b0ed78e3a8422b0ebf8171df24a5b539695a543f2c3252b3e27b3bf5d87cd739",
+      "locals": [
+        {
+          "name": "pickup_kind122_quest_parameter_address_r16",
+          "expression": "ctx->r16",
+          "start": "0x801ECE98",
+          "end": "0x801ECEE0",
+          "description": "Original s0 хранит адрес8021BE10 от завершения построения адреса до восстановления caller s0; сам flag читается как halfword.",
+          "instructions": {
+            "0x801ECE90": "0x3C108022",
+            "0x801ECE94": "0x2610BE10"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECF58",
+      "size": 92,
+      "legacy_name": "dora3_s3_core_801ECF58",
+      "name": "dora3_pickup_spawn_kind123_quest_guard_801ECF58",
+      "description": "Original producer kind123 из настоящей84-byte таблицы. Проверяет flag54 в sceneFA или flag5D в sceneFB; в остальных сценах создаёт без этой проверки. Связанные эффекты здесь не создаются. Настоящий shared801EB8F8 читает script XYZ/yaw, выделяет объект и применяет табличный масштаб; флаги и порядок создания остаются Source.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "d9ea32db7ce0d940e51008b14ed3609440929ea1d2ec51fefb170c36de4ac370",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED120",
+      "size": 92,
+      "legacy_name": "dora3_s3_core_801ED120",
+      "name": "dora3_pickup_spawn_kind126_quest_guard_801ED120",
+      "description": "Original producer kind126 из настоящей84-byte таблицы. Проверяет flag6C в scene117 или flag6F в scene119; в остальных сценах создаёт без этой проверки. Запрос создания включает три связанных kind129 эффекта. Настоящий shared801EB8F8 читает script XYZ/yaw, выделяет объект и применяет табличный масштаб; флаги и порядок создания остаются Source.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "9802497846a37cb7d169d4ee6171b386e419ae622c9264c2398395f591723f01",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECB1C",
+      "size": 80,
+      "legacy_name": "dora3_s3_core_801ECB1C",
+      "name": "dora3_pickup_kind117_contact_quest_801ECB1C",
+      "description": "Contact callback kind117: только при contact mode3 выставляет flag из physical44. Затем всегда вызывает общий801EBA38, который отдельно проверяет mode3 и выбирает сбор state10. Callback сохраняет Original quest/collection order.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "39e2076ef52e9877e74bcf3945d1078c3980a648857527c93cde614ee1e7c702",
+      "locals": [
+        {
+          "name": "pickup_kind117_contact_mode_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ECB20",
+          "end": "0x801ECB48",
+          "description": "Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается.",
+          "instructions": {
+            "0x801ECB20": "0x8C63BCE4",
+            "0x801ECB2C": "0x1062000A",
+            "0x801ECB38": "0x14400007",
+            "0x801ECB40": "0x14620005"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECCEC",
+      "size": 80,
+      "legacy_name": "dora3_s3_core_801ECCEC",
+      "name": "dora3_pickup_kind119_contact_quest_801ECCEC",
+      "description": "Contact callback kind119: только при contact mode3 выставляет flag из physical44. Затем всегда вызывает общий801EBA38, который отдельно проверяет mode3 и выбирает сбор state10. Callback сохраняет Original quest/collection order.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "39e2076ef52e9877e74bcf3945d1078c3980a648857527c93cde614ee1e7c702",
+      "locals": [
+        {
+          "name": "pickup_kind119_contact_mode_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ECCF0",
+          "end": "0x801ECD18",
+          "description": "Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается.",
+          "instructions": {
+            "0x801ECCF0": "0x8C63BCE4",
+            "0x801ECCFC": "0x1062000A",
+            "0x801ECD08": "0x14400007",
+            "0x801ECD10": "0x14620005"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECD8C",
+      "size": 72,
+      "legacy_name": "dora3_s3_core_801ECD8C",
+      "name": "dora3_pickup_kind120_contact_quest_801ECD8C",
+      "description": "Contact callback kind120: только при contact mode3 выставляет flag44. Затем всегда вызывает общий801EBA38, который отдельно проверяет mode3 и выбирает сбор state10. Callback сохраняет Original quest/collection order.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "d2d68b42da6f489bb9717ce766b934a826dc3cdd64b18be2cf5d177e9b9a314b",
+      "locals": [
+        {
+          "name": "pickup_kind120_contact_mode_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ECD90",
+          "end": "0x801ECDB8",
+          "description": "Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается.",
+          "instructions": {
+            "0x801ECD90": "0x8C63BCE4",
+            "0x801ECD9C": "0x10620008",
+            "0x801ECDA8": "0x14400005",
+            "0x801ECDB0": "0x14620003"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECE24",
+      "size": 72,
+      "legacy_name": "dora3_s3_core_801ECE24",
+      "name": "dora3_pickup_kind121_contact_quest_801ECE24",
+      "description": "Contact callback kind121: только при contact mode3 выставляет flag46. Затем всегда вызывает общий801EBA38, который отдельно проверяет mode3 и выбирает сбор state10. Callback сохраняет Original quest/collection order.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "b27f3cf9ec80c5851e02ec591954acff2cca307a4edcb515308caf6cabed13b1",
+      "locals": [
+        {
+          "name": "pickup_kind121_contact_mode_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ECE28",
+          "end": "0x801ECE50",
+          "description": "Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается.",
+          "instructions": {
+            "0x801ECE28": "0x8C63BCE4",
+            "0x801ECE34": "0x10620008",
+            "0x801ECE40": "0x14400005",
+            "0x801ECE48": "0x14620003"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ECEEC",
+      "size": 80,
+      "legacy_name": "dora3_s3_core_801ECEEC",
+      "name": "dora3_pickup_kind122_contact_quest_801ECEEC",
+      "description": "Contact callback kind122: только при contact mode3 выставляет flag из physical44. Затем всегда вызывает общий801EBA38, который отдельно проверяет mode3 и выбирает сбор state10. Callback сохраняет Original quest/collection order.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "39e2076ef52e9877e74bcf3945d1078c3980a648857527c93cde614ee1e7c702",
+      "locals": [
+        {
+          "name": "pickup_kind122_contact_mode_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ECEF0",
+          "end": "0x801ECF18",
+          "description": "Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается.",
+          "instructions": {
+            "0x801ECEF0": "0x8C63BCE4",
+            "0x801ECEFC": "0x1062000A",
+            "0x801ECF08": "0x14400007",
+            "0x801ECF10": "0x14620005"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED0BC",
+      "size": 72,
+      "legacy_name": "dora3_s3_core_801ED0BC",
+      "name": "dora3_pickup_kind125_contact_quest_801ED0BC",
+      "description": "Contact callback kind125: только при contact mode3 выставляет flag57. Затем всегда вызывает общий801EBA38, который отдельно проверяет mode3 и выбирает сбор state10. Callback сохраняет Original quest/collection order.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "b48d33cca26dda417b8eec2d9de4f1787aea299ca653d7c50919f839ee434d7d",
+      "locals": [
+        {
+          "name": "pickup_kind125_contact_mode_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ED0C0",
+          "end": "0x801ED0E8",
+          "description": "Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается.",
+          "instructions": {
+            "0x801ED0C0": "0x8C63BCE4",
+            "0x801ED0CC": "0x10620008",
+            "0x801ED0D8": "0x14400005",
+            "0x801ED0E0": "0x14620003"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED17C",
+      "size": 108,
+      "legacy_name": "dora3_s3_core_801ED17C",
+      "name": "dora3_pickup_kind126_contact_quest_801ED17C",
+      "description": "Contact callback kind126: только при contact mode3 выставляет flag6C для scene117 или flag6F для scene119; другие scene не добавляют этот flag. Затем всегда вызывает общий801EBA38, который отдельно проверяет mode3 и выбирает сбор state10. Callback сохраняет Original quest/collection order.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "18fbcab3456b98953d5826d3b1df56d783d8ee846ab48a69088d4cd19f2cffa0",
+      "locals": [
+        {
+          "name": "pickup_kind126_contact_mode_r3",
+          "expression": "ctx->r3",
+          "start": "0x801ED180",
+          "end": "0x801ED1A8",
+          "description": "Original contact mode из8021BCE4 только в доказанных проверках mode1/<2/mode3; дальнейшая роль регистра не переименовывается.",
+          "instructions": {
+            "0x801ED180": "0x8C63BCE4",
+            "0x801ED18C": "0x10620011",
+            "0x801ED198": "0x1440000E",
+            "0x801ED1A0": "0x1462000C"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EB8A0",
+      "size": 88,
+      "legacy_name": "dora3_s3_801EB8A0",
+      "name": "dora3_pickup_apply_kind_scale_801EB8A0",
+      "description": "Для kind111..128 вычисляет одинаковый XYZ scale из signed halfword таблицы по адресу801FC652+2*kind и Original double-константы802116A0. Для других kind не меняет масштаб. Вызывается настоящим producer после descriptor constructor.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "6e486a10ad085d82cf3855f10a9d7132affdf20d3b016c1405400260e0694553",
+      "locals": [
+        {
+          "name": "pickup_scale_actor_r4",
+          "expression": "ctx->r4",
+          "start": "0x801EB8A0",
+          "end": "0x801EB8F8",
+          "description": "Original a0 указывает на actor весь body; stores18/1C/20 задают XYZ scale.",
+          "instructions": {
+            "0x801EB8A0": "0x8C820098",
+            "0x801EB8E4": "0xE4800020",
+            "0x801EB8E8": "0xE480001C",
+            "0x801EB8EC": "0xE4800018"
+          }
+        },
+        {
+          "name": "pickup_scale_kind_r3",
+          "expression": "ctx->r3",
+          "start": "0x801EB8A4",
+          "end": "0x801EB8F8",
+          "description": "Original v1 хранит kind из physical20 для проверки диапазона и табличного индекса; далее не переназначается.",
+          "instructions": {
+            "0x801EB8A4": "0x94430020",
+            "0x801EB8A8": "0x2462FF91",
+            "0x801EB8B4": "0x00031400"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EB8F8",
+      "size": 320,
+      "legacy_name": "dora3_s3_core_801EB8F8",
+      "name": "dora3_pickup_spawn_script_descriptor_801EB8F8",
+      "description": "Общий Original producer: читает script halfwords XYZ/yaw из8021BE02..8021BE08, вызывает801E6968 с переданным descriptor и применяет scale111..128 через801EB8A0. Если signed low16 второго аргумента равен1, создаёт три kind129 эффекта через801E70E0 в свободных physical80 links и записывает child physical44=index0..2. При отказе основного allocator возвращает0. В конце сохраняет исходный actor scaleX в physical30. Actual339 проверяет создание/quest/full occupied pool/explicit cleanup; автоматический lifecycle129 и частично заполненный linked pool здесь не доказаны.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "f6328e873b52ba526bd00b3903ff165a0a4f3105f211da3f95b6abead6cf0e3a",
+      "locals": [
+        {
+          "name": "pickup_spawn_linked_effect_selector_r17",
+          "expression": "ctx->r17",
+          "start": "0x801EB930",
+          "end": "0x801EB9A0",
+          "description": "Original s1 хранит второй аргумент после копии a1; сравнивается signed low16 с1. Область заканчивается до новой роли loop index.",
+          "instructions": {
+            "0x801EB92C": "0x00A08821",
+            "0x801EB990": "0x00111400",
+            "0x801EB994": "0x00021403",
+            "0x801EB99C": "0x1443001C"
+          }
+        },
+        {
+          "name": "pickup_spawn_linked_effect_index_r17",
+          "expression": "ctx->r17",
+          "start": "0x801EB9A0",
+          "end": "0x801EBA10",
+          "description": "Original s1 теперь индекс0..2: проверяет свободный physical80 link, задаёт индекс связанного child и считает три места.",
+          "instructions": {
+            "0x801EB9A0": "0x00008821",
+            "0x801EB9F8": "0x00408821",
+            "0x801EBA04": "0x28420003"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED2BC",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801ED2BC",
+      "name": "dora3_pickup_linked_effect_constructor_noop_801ED2BC",
+      "description": "Kind129 constructor callback из public84-byte таблицы: Original jr ra/nop, никаких игровых записей/команд. Общий descriptor parser и model/physics allocation выполняются снаружи; первый update separately initializes эффект.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED2C4",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801ED2C4",
+      "name": "dora3_pickup_linked_effect_contact_noop_801ED2C4",
+      "description": "Kind129 contact callback из public84-byte таблицы: Original jr ra/nop, никаких игровых записей/команд. Общий descriptor parser и model/physics allocation выполняются снаружи; первый update separately initializes эффект.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801ED2CC",
+      "size": 464,
+      "legacy_name": "dora3_s3_core_801ED2CC",
+      "name": "dora3_pickup_linked_effect_update_source_801ED2CC",
+      "description": "Обновляет связанный kind129 эффект. Source первый вход задаёт latch28,count34,RNG delay20..49 и прячет модель; при живом parent7C сохраняет parent XYZ в physical58/5C/60. На Source пороге меняет clip/seek, выбирает настоящим RNG мгновенный XYZ offset вокруг сохранённого центра и сбрасывает count/delay. Когда parent снят, вызывает801E6E6C. Это дискретные команды/телепортации Original, а не постоянная velocity; Native129 ownership этой аннотацией не добавляется.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "rom_sha256": "55ee21c0de2fc9268e675f22e95008a7d69814d43f5768e9ad57cbe3829ef081",
       "locals": []
     }
   ]

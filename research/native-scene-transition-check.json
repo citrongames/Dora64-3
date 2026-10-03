@@ -52,7 +52,7 @@
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f"
   },
-  "generation_receipt_sha256": "ebb621d77f2ba02d6b7e78e0a7b6271fc95059641de57fb83c3f46626b6c49ed",
+  "generation_receipt_sha256": "10c62a1cf6d3c381b316e5b34191e2c346c925f214f73978eac0e36f4d30cc1c",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "original_room_functions": [
@@ -148,5 +148,10 @@
     "report_before_names_sha256": "71e996261c7a4e32fb0aabfb24516143272d2d7232ab70e011ce20fdfbe3259e",
     "generation_receipt_sha256": "82ff5665524a2852c78a949cc80c00cf1caab5c7b7d0098a342fa078187ecfe0",
     "reason": "33 Source-qualified pickup wrapper aliases and10 descriptor register scopes only. Every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact; actual291 origins retained, no repeated runtime execution claim."
+  },
+  "execution_origin_343": {
+    "report_before_names_sha256": "3466df81a9f57eb730898a42981aa3c79f2d29799dae0e6c3d0e6db4dfa0a35e",
+    "generation_receipt_sha256": "ebb621d77f2ba02d6b7e78e0a7b6271fc95059641de57fb83c3f46626b6c49ed",
+    "reason": "20 Source-qualified quest/creation/linked-effect aliases and14 exact register scopes only. Every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact; actual291 origins retained, no repeated runtime execution claim."
   }
 }
