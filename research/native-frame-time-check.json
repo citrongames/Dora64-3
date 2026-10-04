@@ -5,10 +5,11 @@
   "source_sha256": {
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "research/native-frame-time-check.cpp": "e56c1b90a4346117cb88b3a022b6a806a307b1955c4d5934e7669d4b9210a76b",
+    "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
-    "tools/check_native_frame_time.py": "8c930fabbd13f3a5b552386b4caf62fb6f4caf1c19d58651d81d21ad070173fc"
+    "tools/check_native_frame_time.py": "8cf2f4889f07dfd1fea7e230ff71e2823972284399da9b3bf806b96437ca955c"
   },
-  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
+  "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df",
   "original_functions": [
     "dora3_fade_tick",
     "dora3_s0_8003948C",

@@ -24,6 +24,7 @@ def main():
  (out/'native-present-worker.h').write_text('static void process_action(const std::variant<ScreenUpdateAction>& action) { for (int once=0;once<1;++once) {\n'+body+'} }\n')
  sources=[ROOT/'research/native-loop-stubs.cpp']+[ROOT/'src'/n for n in ['native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_present.cpp']]+[ROOT/'research/native-present-check.cpp']
  flags=['-O1','-g','-pthread','-fno-omit-frame-pointer','-fno-strict-aliasing','-fsanitize='+args.sanitizer,*['-I'+str(p) for p in [ROOT/'src',out,runtime/'ultramodern/include',runtime/'N64Recomp/include',runtime/'thirdparty']]]
+ sources.append(ROOT/'research/native-inactive-enemy-fixture.cpp')
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',TSAN_OPTIONS='halt_on_error=1')).strip()
  tracked=sources+[ROOT/'src/recomp_context_copy.hpp',ROOT/'src/native_present.hpp',ROOT/'src/native_vi_snapshot.hpp',ROOT/'tools/prepare_runtime_timing.py',Path(__file__).resolve()]

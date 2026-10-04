@@ -40,6 +40,7 @@
 | `contact_candidate_actor_r16` | `ctx->r16` | Advancing world actor cursor before projectile/pair loops reuse the register | 1 |
 | `contact_candidate_pool_index_r17` | `ctx->r17` | Pool index30..229 during the player contact search | 1 |
 | `contact_first_actor_r21` | `ctx->r21` | First actor retained through geometry, reciprocal slots and contact angles | 1 |
+| `contact_mode_r16` | `ctx->r16` | Режим контакта8021BCE4, сохраняется в s0 через E70E0 | 1 |
 | `contact_mode_r3` | `ctx->r3` | Contact mode loaded from the shared event global before dispatch | 1 |
 | `contact_mode_r3` | `ctx->r3` | Режим контакта, загруженный из8021BCE4 до выбора ветки | 1 |
 | `contact_parent_actor_r5` | `ctx->r5` | Parent actor whose dialogue guard and state write precede the game-flag call | 1 |
@@ -49,6 +50,7 @@
 | `controller_index_r16` | `ctx->r16` | Индекс контроллера; не указатель actor. Значение входного a0 сохранено в s0. | 1 |
 | `counter_bank3678_delta_r5` | `ctx->r5` | Exact Original register storage in this proven instruction region only | 1 |
 | `counter_bank3678_index_r4` | `ctx->r4` | Exact Original register storage in this proven instruction region only | 1 |
+| `created_minicar_r18` | `ctx->r18` | Результат E6968, живой actor MiniCar до восстановления s2 | 1 |
 | `created_npc_actor_r16` | `ctx->r16` | Allocated actor returned by descriptor construction, including the checked null-allocation path | 8 |
 | `created_npc_physics_r18` | `ctx->r18` | Physics record of the successfully created actor | 8 |
 | `current_heading_f12` | `ctx->f12` | Входной current angle до перезаписи f12 целевым углом | 1 |
@@ -59,6 +61,12 @@
 | `dialogue_state2_r16` | `ctx->r16` | State2 constant preserved across the dialogue call | 1 |
 | `dialogue_state_r16` | `ctx->r16` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |
 | `drive_command_r4` | `ctx->r4` | Входная команда scalar drive; сохранена до конца функции. | 1 |
+| `enemy_actor_r16` | `ctx->r16` | Указатель actor из global8021BDEC до следующей записи регистра | 14 |
+| `enemy_actor_r16` | `ctx->r16` | Указатель текущего actor из global8021BDEC; scope заканчивается перед следующей записью этого регистра | 12 |
+| `enemy_actor_r17` | `ctx->r17` | Указатель текущего actor из global8021BDEC; scope заканчивается перед следующей записью этого регистра | 2 |
+| `enemy_contact_mode_r3` | `ctx->r3` | Значение contact mode из global8021BCE4 до переиспользования v1 как указателя actor/physics | 10 |
+| `enemy_state_r3` | `ctx->r3` | Actor94 state до первого private callback; r3 после jal может иметь другую роль | 10 |
+| `enemy_state_r3` | `ctx->r3` | Actor94 state до первого private callback; после jal регистр меняет роль | 10 |
 | `first_shape_index_output_r16` | `ctx->r16` | Output pointer for the first colliding shape index | 1 |
 | `flash_delay_count_physics_r3` | `ctx->r3` | Physics для чтения/записи count34; следующий instruction заменяет этот регистр signed selector | 1 |
 | `flash_delay_initial_physics_r3` | `ctx->r3` | Physics текущего эффекта: чтение и установка однократного init latch28 | 1 |
@@ -91,6 +99,8 @@
 | `matrix_left_row_cursor_r4` | `ctx->r4` | Курсор строки левой матрицы; после обхода больше не используется как входной указатель | 1 |
 | `matrix_product_output_r6` | `ctx->r6` | Выходная матрица, включая прямую запись последнего элемента и копирование остальных | 1 |
 | `matrix_right_input_r5` | `ctx->r5` | Начало правой матрицы; до загрузки временного результата в этот регистр | 1 |
+| `minicar_physics_r17` | `ctx->r17` | Physics98 созданного MiniCar, route settings/counters | 1 |
+| `minicar_route_points_r17` | `ctx->r17` | Таблица signed-short X/Z waypoint pairs из physics48 | 1 |
 | `model_opacity_f2` | `ctx->f2` | Float opacity loaded from a1 bits, retained through the exact1 comparison and final store | 1 |
 | `npc_contact_mode_r3` | `ctx->r3` | Contact mode through the complete mode switch, before v1 is reused for state guard arithmetic | 8 |
 | `npc_entry_physics_r3` | `ctx->r3` | Physics record only across the initial latch28 read/write; v1 is reused afterward | 10 |
@@ -189,6 +199,182 @@
 | `pool_search_actor_r3` | `ctx->r3` | Actor record cursor while testing occupied states | 1 |
 | `pool_search_index_r4` | `ctx->r4` | Parent lower bound and advancing free-slot search index | 1 |
 | `pool_skip_private_update_byte29` | `ctx->r2` | Значение byte29; ненулевой флаг пропускает private update объекта. | 1 |
+| `powan_actor_r16_802211A8` | `ctx->r16` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r16_80221FB0` | `ctx->r16` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r16_80222044` | `ctx->r16` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r16_80222074` | `ctx->r16` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r16_802239AC` | `ctx->r16` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r16_80223A88` | `ctx->r16` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r16_80223B78` | `ctx->r16` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_8022096C` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80220CD8` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80220D0C` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80220D78` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80221004` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_802212AC` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80221328` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80221374` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_8022146C` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_802215CC` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_802216E4` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80221BE4` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_802221C0` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80222460` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80222558` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_802229FC` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80222A24` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80222A80` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80223324` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_8022334C` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_802233A8` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_80223574` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r2_802239F4` | `ctx->r2` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80220B20` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80220C1C` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_802211F0` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80221490` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_802214EC` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_8022169C` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80221774` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_802220FC` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_8022224C` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80222328` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80222344` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80222514` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_802225E8` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_802228E4` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80223014` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_8022307C` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80223108` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_802231EC` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80223208` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80223280` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80223598` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80223700` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r3_80223724` | `ctx->r3` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_8022093C` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_80220FD4` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_8022150C` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_802217C0` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_802217EC` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_80221850` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_80221BB4` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_80221CB8` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_802223AC` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_80222854` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_80222C7C` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_80222DD4` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_80222EC8` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_802235FC` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_80223970` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_actor_r4_80223B98` | `ctx->r4` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r16_80223B28` | `ctx->r16` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80220AC8` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80220B28` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80220C14` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80221430` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80221488` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80221504` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_802216AC` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_8022176C` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_802217B8` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80221C70` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80221D3C` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80221E4C` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80222244` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80222304` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_8022233C` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_802225E0` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80222948` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80222AD8` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80222D00` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80222DCC` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80222FD4` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80223110` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_802231C8` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80223200` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80223288` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80223590` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80223608` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_8022371C` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_802238C0` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r2_80223968` | `ctx->r2` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80220974` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80220994` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80220A04` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80220A9C` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80220AE0` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80220B88` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80220BE0` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80220C44` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80220C80` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80220D44` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_8022100C` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_8022102C` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221084` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221100` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221230` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_802212D4` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221330` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_8022137C` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_802213D8` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_802215A4` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221604` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221660` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221798` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_802217E4` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221874` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_802218AC` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221BEC` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221C0C` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221CC0` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221D98` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221DE0` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80221F90` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222064` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222140` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222180` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_802221E4` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222368` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_802223A4` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222438` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222498` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_8022260C` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222904` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222AC4` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222BF8` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222C34` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222C84` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222D54` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222DAC` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222E88` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80222ED0` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_802230CC` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_8022322C` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_802232A4` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_802234F8` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_8022357C` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_802235C0` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80223748` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_80223884` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r3_802239FC` | `ctx->r3` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_802211F8` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_802212B4` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_802214B8` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_80221E60` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_80221EF0` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_80222104` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_802221C8` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_802222AC` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_802224F4` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_80222E20` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_8022300C` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_80223170` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_80223550` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_80223684` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_802236DC` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_8022390C` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `powan_physics_r4_80223AAC` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
 | `reset_scene_actor_r16` | `ctx->r16` | Actor argument для всех очищаемых полей и исходных axis/event callbacks | 1 |
 | `resolved_contact_parent_r6` | `ctx->r6` | Contact owner after resolving the optional attachment parent | 1 |
 | `retiring_actor_r17` | `ctx->r17` | Actor retained through peer cleanup, optional effects and final destructor | 1 |

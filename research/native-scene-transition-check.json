@@ -5,11 +5,12 @@
     "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
     "src/native_ui.cpp": "926660c872b31ea3598e593f7efc852abf6879177c62546f50416814c99c674e",
     "src/native_effects.cpp": "5a2dd315a623e5cf80ccd6b51af56c4f0f1e5bc750c871b4e0231d675f9f3b19",
-    "src/native_gameplay_preview.cpp": "a84b8129f0ad1a61d6df0c0912d335de74d5f03cd8dd58f59fb917725cd1adb7",
+    "src/native_gameplay_preview.cpp": "e0284f94f09dd9a790c03d2e5150d3cb686405a603c9229355037fb0b1aa8b8a",
+    "src/native_enemy.cpp": "a216242f24dcc630e23fb7d3a9eb062e77ec3bf2131936da77843d489e984cb4",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
-    "src/native_model_animation.cpp": "8696ac3189b3d95c3627172aa05b70929831aeeb427780ece5e844d07a03d664",
+    "src/native_model_animation.cpp": "e8eae318142d64c9b5462112494e56a9da766ebcd29b24b91e67997b8f6b80db",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "src/native_frame_scheduler.cpp": "5aebb567341ad6853cc9eaa25ad093fe463a8614bfbae39d9b017140014cd118",
     "src/native_scene_policy.cpp": "15170625b065fcd9d3604173ddcfebecf4d7314b960c36c1f9f71c164038127d",
@@ -18,9 +19,9 @@
     "src/native_game_loop.cpp": "aa027cf1706fa22facc21cba72913183f292f530c0a215428c591118b6e85d65",
     "src/native_frame_bridge.cpp": "c1c7ae5fb4ab80e03b178a744a13ac90973b32d787b6fec432afb2e27182b995",
     "research/native-scene-transition-check.cpp": "f485f8712e7ea03c0ee18393cd5e65d5ce239ae629526a7a46b00661764db312",
-    "tools/check_native_player_update.py": "794ded0f7faf9385b82f65b6a816583412a37cbcd61e954921fbccf84a5275c6",
-    "tools/check_native_scene_transition.py": "015ef2e554b81ad57385db6ec1a080837f99ebca966125cb1d436d7e4b8cfc6c",
-    "recomp/native-timing-rules.json": "50c1eba10e12dcc61c06ea6545c47b09567ff066947d900024b5a1b8aa49f758",
+    "tools/check_native_player_update.py": "2641d00f6d48b1bca66c603523733179c4b9d07d2fe7ae4e268ca18d8386b807",
+    "tools/check_native_scene_transition.py": "03d9ec77a7276de51dccbec69498696162c2e4bf699605d46cf1f528fd35ed87",
+    "recomp/native-timing-rules.json": "ab66251eaaa7787fc16a4217fa5d9e8f51e65714739e5d9f03ebdf5211ccd3ad",
     "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
     "research/player-state-inventory.json": "c6497c19972e73478ac5d71ffcef6304924aeb087121f0c2e38528fb1bbd150f",
@@ -32,16 +33,17 @@
     "src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
     "src/native_cutscene.hpp": "d7c9362cc9c4f70191ebb7bad1c9ded08ea478811c477e269fc9bae630e1c1e4",
     "src/native_effects.hpp": "ddd57439bc9435e2c91791a3a1f3dc28a1cce7057bbf6d84a58e0f4a39e34805",
+    "src/native_enemy.hpp": "e2eff9ce1d272ceb4b8b3000cc9d5710d92ecdf5800408b1c63d1a9b644496b7",
     "src/native_frame_bridge.hpp": "a405469b02b662d7ad973c5475f05465defe0d346b7add98717e9393794fe545",
     "src/native_frame_producer.hpp": "4df446b4e0456927e3242838687391f68d374149a8aac7a805f4f07d91fbb2a6",
     "src/native_frame_scheduler.hpp": "ae108bfcf8c9bbd628f648a8781afd1a9a5ab8668aa676212a60ebf88329bfde",
     "src/native_frame_session.hpp": "fdc799da001be3c6653126beacb987ce3811ba6f1cc5eeac5922e539089f8e83",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
-    "src/native_gameplay_preview.hpp": "c217908d86f9b319a3acffcf4f3edb0e7cfa92b8de4742c21988f4d052638b11",
+    "src/native_gameplay_preview.hpp": "0ca9756c9bcf1ccef41d8a033643b2b07efc6046f63317e75770754500763224",
     "src/native_graphics_pump.hpp": "3fdcb53d2f68a9b6d344beb44ea58a190c637bd2320cf3e77fbb8af2649bdcd3",
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-    "src/native_model_animation.hpp": "94d54daf5af8970667417ed8564745f34c6909f4854329a3265c647f4f5263f6",
+    "src/native_model_animation.hpp": "de9586bfb8163fa1d7d1fab8947eba23bf4b0467a3cf1eb8fc8db869990878be",
     "src/native_present.hpp": "c17a60839de06f09c2c5245091a7389c7126a3146019b8477483bc86d03e9158",
     "src/native_presentation_gate.hpp": "f0fbc1799c6b1bb5a8196e6a6935254a8021cf9c098dafca6b7d9bbadcd3cb97",
     "src/native_process_time.hpp": "610e46d91cf59a3581ef2f001e64975e2002e60f01dd165e7acb2b283abf01f7",
@@ -57,7 +59,7 @@
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f"
   },
-  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
+  "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "original_room_functions": [
@@ -99,7 +101,7 @@
     "dora3_s3_801EFCE8"
   ],
   "diagnostic_generated_sha256": {
-    "functions.c": "f323e0a501fb2d1901cd0bcf9928cea86f953f2243852e00b118b53bb68bc9b4",
+    "functions.c": "7c66606840ef383b62193e57c7b2e501c562e768192b00f5bdbd055822daa100",
     "room-functions.c": "65f609693fd509eb4944af9ca90a5446eaf7d32696c14629ee944f495d4366d9",
     "loop.cpp": "8fcdb3ee4ca2e5482ecd926ebd264ccd2ce6418e1fcf97634451ea0406541d00",
     "bridge.cpp": "ac1e4bbf762d5ff2da1d2f1d82fb705a3d6badceddf1ed246b03deb5598a9eec"
@@ -130,10 +132,5 @@
     "Stops after actual first resource barrier, before original destructors and subsequent room DMA/decode/construction",
     "Empty projectile pool here; active/newborn projectile continuation is checked separately by the scene-frame scope",
     "Tests exact command routing and two-bank/early guest completion/late retirement/late host read/FIFO/context; no actual GPU retirement"
-  ],
-  "additional_compiled_inputs_sha256": {
-    "research/native-gameplay-cutscene-fixture.cpp": "50ab2ef307407c5306de004401f8048a4e4a487fb1de023578b54a888bb4373d",
-    "research/native-ui-menu-fatal-fixture.cpp": "949fa3b36ca1442ca88cea33cc50595af73d2f1e526a710eb3945e479506ae7b"
-  },
-  "provenance_note": "Additional fixture hashes audited after execution; compiled sources unchanged. Result/execution/checker SHA retained; no rerun claimed."
+  ]
 }

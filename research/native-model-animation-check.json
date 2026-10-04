@@ -55,17 +55,18 @@
     "dora3_s3_core_801C1664"
   ],
   "source_sha256": {
-    "src/native_model_animation.cpp": "8696ac3189b3d95c3627172aa05b70929831aeeb427780ece5e844d07a03d664",
+    "src/native_model_animation.cpp": "e8eae318142d64c9b5462112494e56a9da766ebcd29b24b91e67997b8f6b80db",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "research/native-model-animation-check.cpp": "80937651a56a133aca4c459566085e8f809cacf31b4d952d7251fa198a80d96e",
+    "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
-    "src/native_model_animation.hpp": "94d54daf5af8970667417ed8564745f34c6909f4854329a3265c647f4f5263f6",
+    "src/native_model_animation.hpp": "de9586bfb8163fa1d7d1fab8947eba23bf4b0467a3cf1eb8fc8db869990878be",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
-    "tools/check_native_model_animation.py": "213240f0c67dbfee952ec46bdf7e377c5f785a35a09ad2157823890121de9b5d"
+    "tools/check_native_model_animation.py": "3c984442c30366fee7914d628808a6fe03972ae7f046e573847bb7a3c8da6959"
   },
-  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
+  "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df",
   "remaining": [
     "Unreviewed phase1 commands, matrix consumers and full scene coverage still need integration audit",
     "This component does not convert movement, camera, collision, AI, scripts or all 2D systems"

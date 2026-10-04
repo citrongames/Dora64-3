@@ -14,3 +14,6 @@ std::optional<dora3::native_time::Nanoseconds> native_gameplay_preview_render_ti
 extern "C" int dora3_native_preview_hook(uint8_t*,recomp_context*,uint32_t);
 extern "C" void dora3_native_projectile_scope_end();
 extern "C" void dora3_native_object_scope_end();
+
+// True only inside the actual Native common-pool pass, never in Original AI.
+bool native_gameplay_preview_object_pass();

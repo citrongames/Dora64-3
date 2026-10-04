@@ -55,7 +55,7 @@ def main():
     flags=['-DDORA3_FIXTURE_REAL_LOOP','-O0','-g','-pthread','-fno-omit-frame-pointer','-fno-strict-aliasing',*['-I'+str(path) for path in [ROOT/'src',ROOT/'research',g,g/'RecompiledFuncs',out,ROOT/'build-deps/lib/N64ModernRuntime/N64Recomp/include']]]
     for source in ['functions','room-functions']:
         subprocess.run(['gcc','-std=c17','-fsanitize=address',*flags,'-c',str(out/f'{source}.c'),'-o',str(out/f'{source}.o')],check=True)
-    runtime_names=['native_cutscene.cpp','native_ui.cpp','native_effects.cpp','native_gameplay_preview.cpp','native_input_timeline.cpp','native_simulation_time.cpp','native_camera_timeline.cpp','native_model_animation.cpp','native_frame_time.cpp','native_frame_scheduler.cpp','native_scene_policy.cpp','native_present.cpp','native_process_time.cpp']
+    runtime_names=['native_cutscene.cpp','native_ui.cpp','native_effects.cpp','native_gameplay_preview.cpp','native_enemy.cpp','native_input_timeline.cpp','native_simulation_time.cpp','native_camera_timeline.cpp','native_model_animation.cpp','native_frame_time.cpp','native_frame_scheduler.cpp','native_scene_policy.cpp','native_present.cpp','native_process_time.cpp']
     sources=[ROOT/'research/native-gameplay-cutscene-fixture.cpp',ROOT/'research/native-ui-menu-fatal-fixture.cpp']+[ROOT/'src'/name for name in runtime_names]+[out/'loop.cpp',out/'bridge.cpp',fixture]
     binary=out/'check'
     subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror','-Wno-unused-variable','-Wno-unused-but-set-variable','-fsanitize=address,undefined',*flags,*map(str,sources),str(out/'functions.o'),str(out/'boundaries.cpp'),str(out/'room-functions.o'),str(out/'room-boundaries.cpp'),'-o',str(binary)],check=True)

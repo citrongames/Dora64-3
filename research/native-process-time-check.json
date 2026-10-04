@@ -12,13 +12,14 @@
     "src/native_process_time.cpp": "b7025893d91cf6851de180e5c90c34c72a0f6f3977a2a51236f6369615562c59",
     "src/native_effects.cpp": "5a2dd315a623e5cf80ccd6b51af56c4f0f1e5bc750c871b4e0231d675f9f3b19",
     "research/native-process-time-check.cpp": "751cceb4380ecf1c024cd2369b473363c9d390c8e6e6897c98168291a844f57c",
+    "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-    "recomp/native-timing-rules.json": "50c1eba10e12dcc61c06ea6545c47b09567ff066947d900024b5a1b8aa49f758",
-    "tools/native_timing_patches.py": "09c1314a8c38bcd13c92c30f76ca919d390d6a8ac9b044f9d34fe1b4de19ff3a",
-    "tools/generate_startup.py": "b2fd1951e6fefd48c00c1c19ae2ec9c6ba82f13967c5030945a59a03d35b7f27",
-    "tools/check_native_process_time.py": "4699d7c4ef7f7964ad6e0f96bb35a3bd2bc907c0adecf6d9f40887937cd48dc9"
+    "recomp/native-timing-rules.json": "ab66251eaaa7787fc16a4217fa5d9e8f51e65714739e5d9f03ebdf5211ccd3ad",
+    "tools/native_timing_patches.py": "3f65a89a0f4412fb2c7b25e12eb31f21f75d4d37f45f1c8c8fbb5b4ff10280dc",
+    "tools/generate_startup.py": "98a7f482369446981292db1add1d01f9430838d9e080b5fc780d75cd1a10ad11",
+    "tools/check_native_process_time.py": "e319f0f0db8a432d2ef9fe10923592d2294723dfb078a03817d89cc09a157836"
   },
-  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
+  "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df",
   "reference_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
   "limitations": [
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",

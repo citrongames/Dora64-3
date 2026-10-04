@@ -8,6 +8,9 @@
 #include <array>
 
 namespace dora3::native_time {
+// A discrete AI command samples all real clip advances since its previous
+// decision, including cues/end pulses crossed between Native render slices.
+struct ModelEventCheckpoint {uint64_t run=0;long double distance=0;float time=0;uint64_t ends=0;};
 struct SourceMotionSample {
     std::array<float,3> position{},velocity{},bend{};
     float yaw=0,pitch=0,oscillator=0,pitch_offset=0;
@@ -67,6 +70,10 @@ public:
     // Reviewed discrete owners can consume a crossing at their source end
     // without changing the raw end flag's one-advance pulse semantics.
     bool ended_this_tick(std::uint32_t) const;
+    bool command_ended(std::uint32_t,const ModelEventCheckpoint&) const;
+    ModelEventCheckpoint command_event_checkpoint(uint8_t*,std::uint32_t) const;
+    bool command_frame_event(uint8_t*,std::uint32_t,const ModelEventCheckpoint&,float,float,std::uint64_t) const;
+
 private:
     struct State;
     std::unique_ptr<State> state_;

@@ -18,6 +18,12 @@
 #include <map>
 using namespace dora3::native_time;
 #include "player-fixture.hpp"
+#ifdef DORA3_ENEMY_CHECK
+#include "enemy-fixture-data.hpp"
+static unsigned enemy_fixture_rom=0;
+static bool enemy_fixture_active=false,enemy_fixture_reference=false;
+static std::vector<std::array<int32_t,5>> enemy_fixture_commands;
+#endif
 constexpr uint32_t other=0x80254000,asset=0x80100000,clip=0x80101000;
 static bool preview_live=false;
 #ifdef DORA3_STORY_EFFECT_POOL_CHECK
@@ -145,6 +151,10 @@ double simulation_stamp(bool end) {
 extern "C" {
 int dora3_native_loop_gameplay_active(){return preview_live;}
 int dora3_overlay_loaded(uint32_t rom) {
+#ifdef DORA3_ENEMY_CHECK
+    if(enemy_fixture_active&&(rom==0xCEC60u||rom==0xD9910u||rom==0xEDDB0u||rom==0x12FD90u))return rom==enemy_fixture_rom&&city_identity_verified;
+#endif
+
     if(rom==0x1398A0u)return slot09_loaded&&city_identity_verified;
     if(rom==0x132F80u)return city_loaded&&city_identity_verified;
     assert(rom==0xEDDB0u||rom==0x15E440u);return dialogue_actor_loaded&&city_identity_verified;
@@ -184,6 +194,11 @@ static bool scatter_geometry_source_watch=false;
 static unsigned scatter_geometry_source_reactions=0;
 #endif
 void dora3_trace(uint8_t* rdram,recomp_context* c,uint32_t site,uint32_t kind) {
+#ifdef DORA3_ENEMY_CHECK
+    if(enemy_fixture_active&&(site==0x8002A328||site==0x8002A454||site==0x80042838||site==0x801B50F4||site==0x801B922C))
+        enemy_fixture_commands.push_back({int32_t(site),int32_t(c->r4),int32_t(c->r5),int32_t(c->r6),int32_t(c->r7)});
+#endif
+
 #ifdef DORA3_PICKUP_SCATTER_GEOMETRY_CHECK
     if(scatter_geometry_source_watch&&site==0x801E8238)++scatter_geometry_source_reactions;
 #endif
@@ -346,6 +361,10 @@ void dora3_s0_80042838(uint8_t* rdram,recomp_context* c) {
 }
 void dora3_s0_800428C8(uint8_t*,recomp_context*) {}
 void dora3_s0_800444C0(uint8_t*,recomp_context* c) {
+#ifdef DORA3_ENEMY_CHECK
+    if(enemy_fixture_active) {assert(c->r4==0xE6&&c->r5==1);c->r2=-1;return;}
+#endif
+
     if(slot09_loaded&&linked_watch)assert(c->r4==0xE6&&c->r5==1);
     else assert(city_watch&&c->r4==0xE6&&c->r5==1);
     c->r2=-1; // Checked sound-queue failure; real dialogue setup ignores the return.
@@ -354,6 +373,13 @@ void dora3_s0_80042894(uint8_t*,recomp_context*) {}
 // Synthetic resource lookup only: real guest constructors, resource lists,
 // model/channel binding and all actor/physics retirement stay in the closure.
 void dora3_resource_by_id(uint8_t*,recomp_context* c) {
+#ifdef DORA3_ENEMY_CHECK
+    if(enemy_fixture_active) {
+        if(c->r4!=0||!enemy_fixture_resource_ids.count({resource_kind,int32_t(c->r5)})) {std::cerr<<"Enemy unexpected resource kind="<<resource_kind<<" id="<<c->r5<<'\n';std::abort();}
+        c->r2=resource_kind==4?3:resource_kind==3?4:resource_kind==2?2:1;++resource_references[unsigned(c->r2)];return;
+    }
+#endif
+
     if(linked_construct_watch) {
         if(c->r4!=0||!linked_resource_ids.count({resource_kind,int32_t(c->r5)})) {std::cerr<<"Linked unexpected resource group="<<c->r4<<" kind="<<resource_kind<<" id="<<c->r5<<'\n';std::abort();}
         c->r2=resource_kind==4?3:resource_kind==3?4:resource_kind==2?2:1;++resource_references[unsigned(c->r2)];return;
@@ -378,6 +404,15 @@ void dora3_s0_80030CC8(uint8_t*,recomp_context* c) {
 // Unported visual effect allocation is an explicit failed-allocation boundary;
 // its location, single command and gameplay recovery are still checked.
 void dora3_s3_801E6968(uint8_t* rdram,recomp_context* c) {
+#ifdef DORA3_ENEMY_CHECK
+    if(enemy_fixture_active) {
+        assert(MEM_HU(0,c->r4)==0xFFF0);const auto kind=MEM_HU(2,c->r4);
+        bool admitted=false;for(const auto& d:enemy_fixture_definitions)if(d.kind==unsigned(kind)&&d.rom==enemy_fixture_rom)admitted=true;
+        if(!admitted){enemy_fixture_commands.push_back({int32_t(0x801E6968u),int32_t(c->r4),int32_t(c->r5),int32_t(c->r6),int32_t(c->r7)});c->r2=0;return;}
+        actual_dora3_s3_801E6968(rdram,c);return;
+    }
+#endif
+
     if(linked_construct_watch) {actual_dora3_s3_801E6968(rdram,c);return;}
     const auto actor=uint32_t(MEM_W(0,int32_t(0x8021D49C)));
     assert(uint32_t(c->r4)==0x801FC39Cu || uint32_t(c->r4)==0x801FC3E0u || uint32_t(c->r4)==0x801FC400u);
@@ -391,6 +426,10 @@ void dora3_s3_801E5A1C(uint8_t*,recomp_context*) {}
 void dora3_s3_801E5B98(uint8_t*,recomp_context*) {}
 void dora3_s3_801E5D10(uint8_t*,recomp_context*) {}
 recomp_func_t* get_function(int32_t address) {
+#ifdef DORA3_ENEMY_CHECK
+    if(enemy_fixture_active)if(auto* function=enemy_fixture_lookup(enemy_fixture_rom,uint32_t(address),enemy_fixture_reference))return function;
+#endif
+
 
 #if defined(DORA3_PERIODIC_EFFECT_SOURCE_CHECK)||defined(DORA3_PERIODIC_PRODUCER_CHECK)||defined(DORA3_PERIODIC_EFFECT_GUARD_CHECK)
     if(uint32_t(address)==0x801ED8ECu)return dora3_s3_core_801ED8EC;
@@ -631,9 +670,14 @@ static unsigned reward_idle_yaw_samples=0;
 #include "native-pickup-scatter-guard-check.inc"
 #include "native-pickup-scatter-geometry-check.inc"
 #include "native-pickup-reveal-guard-check.inc"
+#include "native-enemy-source-check.inc"
 int main(int argc,char** argv) {
     assert(argc==2);std::vector<uint32_t> image(0x400000/4);std::ifstream in(argv[1],std::ios::binary);
     in.read(reinterpret_cast<char*>(image.data()),0x400000);assert(in.gcount()==0x400000);
+#ifdef DORA3_ENEMY_CHECK
+    check_enemy_sources(image);return 0;
+#endif
+
 #ifdef DORA3_PICKUP_SCATTER_GEOMETRY_CHECK
     check_pickup_scatter_geometry(image);return 0;
 #endif

@@ -1,3 +1,40 @@
+# Test-042 — первая связанная группа врагов и активного AI
+
+Сборка: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-042.exe, generation358.
+SHA256: `c57b8b3443f00b56edcd387d5aef71709182a328ce6e6eda7e7b724fcdd84eb5`. Это промежуточный крупный этап блока2;
+остальные семейства и боссы ещё предстоят.
+
+Подключены25 типов: Kinopper1/2, Pyonger1/2 и снаряд, BroboA100/A101/A103/A104
+с двумя снарядами и эффектом, Sabotti1/2/3, MiniCar1/2 и дым, PatPot и снаряд,
+Powan1..4 и эффект превращения. В режиме Manual движение, повороты, наклоны,
+разобранные scale/opacity и время моделей продолжаются на дополнительных
+кадрах. Исходные команды AI, ожидания, RNG, выстрелы, контакты, сюжетные
+переходы и освобождение ресурсов сохраняют исходный порядок и скорость.
+Связанные дети используют настоящую геометрию Original с актуальной позой
+родителя. Original20/30 и прежние ABI/register storage сохранены.
+
+До сборки завершён весь connected CPU pre-build:28 checks, включая полный
+player/world/NPC/weapon/damage/death/recovery на24 настройках. Отдельная
+подключённая группа врагов:300 frozen/current Original и900 Native schedules,
+72 000 pool endpoints,768 настоящих контактов, actual constructors/retirement.
+Исправлены потеря transparency flag в общем prelude и знаковое смещение чтения
+в Powan orbit. Каталог:1001 descriptions/670 function aliases/834 register scopes;
+добавлены152 имени функций и238 имён переменных в доказанных областях.
+
+CPU-проверки используют синтетические ресурсы и геометрию; не разобранные
+scripts/effects возвращают allocation failure с записью команды. Все ветки,
+death particles и реальные уровни этим не доказаны. Игра/renderer/GPU локально
+не запускались.32 dependency pins и donor сохранены. Полный блок2 и весь
+variable FPS ещё не завершены. Детали: docs/native-enemies.md и
+research/native-prebuild-check.json.
+
+Настройки/saves читаются рядом с EXE совместно с предыдущими сборками.
+ROM должен лежать рядом; он не включён и не копируется при упаковке.
+
+---
+
+История предыдущих сборок:
+
 # Test-041 — исправления поворотов, меню и камеры
 
 Сборка `D:/Games/DoraRecomp3/testbuild/Dora64-3-test-041.exe` передана изgeneration356.

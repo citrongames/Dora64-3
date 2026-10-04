@@ -4,13 +4,14 @@
   "source_sha256": {
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "research/native-simulation-check.cpp": "bdd6a55e7ed77a6fbeadceefe6a6f7bf264ac11dcbe5e2b5384535d7822c2ac3",
+    "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-    "recomp/native-timing-rules.json": "50c1eba10e12dcc61c06ea6545c47b09567ff066947d900024b5a1b8aa49f758",
-    "tools/native_timing_patches.py": "09c1314a8c38bcd13c92c30f76ca919d390d6a8ac9b044f9d34fe1b4de19ff3a",
-    "tools/generate_startup.py": "b2fd1951e6fefd48c00c1c19ae2ec9c6ba82f13967c5030945a59a03d35b7f27",
-    "tools/check_native_simulation.py": "5b2f76a96a58d4747c7b77bd5cdd484692443ae03ffb1d4065aea36f2e8d389b"
+    "recomp/native-timing-rules.json": "ab66251eaaa7787fc16a4217fa5d9e8f51e65714739e5d9f03ebdf5211ccd3ad",
+    "tools/native_timing_patches.py": "3f65a89a0f4412fb2c7b25e12eb31f21f75d4d37f45f1c8c8fbb5b4ff10280dc",
+    "tools/generate_startup.py": "98a7f482369446981292db1add1d01f9430838d9e080b5fc780d75cd1a10ad11",
+    "tools/check_native_simulation.py": "e639240c45ab9eb6cc7218f27fef15e236e48a3f2a8dabd9beb4043cbe0e7827"
   },
-  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
+  "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "original_functions": [
     "dora3_s28_mini_801C42C8",

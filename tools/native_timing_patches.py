@@ -69,6 +69,139 @@ APPROVED_UI_SITES={('ui_source_end', '.startup', 2147647928, 2147648108, 2411659
  ('ui_draw_boundary', '.scene_common', 2149278648, 2149279372, 65011720): {'end': 1},
  ('ui_draw_boundary', '.scene34', 2149317700, 2149317700, 666763240): {'end': 0},
  ('ui_draw_boundary', '.scene34', 2149317700, 2149317800, 2411659284): {'end': 1}}
+APPROVED_ENEMY_EQUATIONS={('.demo_slot0', 2149707132, 2149707588, 3829399572): True, ('.demo_slot0', 2149701560, 2149701724, 3831496704): True, ('.demo_slot0', 2149703200, 2149703728, 3833593856): True, ('.demo_slot0', 2149705284, 2149706096, 3837788160): True, ('.demo_slot0', 2149705284, 2149706308, 3829399552): True, ('.demo_slot0', 2149708340, 2149708524, 3831496704): True, ('.demo_slot0', 2149708924, 2149709236, 3833593856): True, ('.demo_slot0', 2149708924, 2149709600, 3831496704): True, ('.demo_slot0', 2149710068, 2149710540, 3829399552): True, ('.demo_slot0', 2149710944, 2149711140, 3831496704): True, ('.demo_slot0', 2149711532, 2149711840, 3833593856): True, ('.demo_slot0', 2149711532, 2149712172, 3831496704): True, ('.demo_slot0', 2149713432, 2149713944, 3829399552): True, ('.demo_slot0', 2149701560, 2149702184, 3833725088): True, ('.demo_slot0', 2149704732, 2149705092, 3833725088): True, ('.demo_slot0', 2149701560, 2149702340, 3831496864): True, ('.demo_slot0', 2149704732, 2149705252, 3831496864): True, ('.demo_slot1', 2149768180, 2149768284, 3833593872): True, ('.demo_slot1', 2149770384, 2149770488, 3833593872): True, ('.demo_slot1', 2149768692, 2149769056, 3829399568): True, ('.demo_slot1', 2149767616, 2149767780, 3833593856): True, ('.demo_slot1', 2149767616, 2149767848, 3833593856): True}
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0',2149702376,2149702812,3833593856)]=True
+APPROVED_ENEMY_BOUNDARIES={('.demo_slot0', 2149714248, 2149714344, 2248278070): 'native_enemy_attachment_begin', ('.demo_slot0', 2149714248, 2149714356, 2248343676): 'native_enemy_attachment_label', ('.demo_slot0', 2149714248, 2149714824, 1006796834): 'native_enemy_attachment_end', ('.startup', 2147718468, 2147718472, 65011720): 'native_enemy_clip_end'}
+APPROVED_ENEMY_CALLBACKS={('.demo_slot1', 2149768336, 2149768336, 1006796834): 1244560, ('.demo_slot1', 2149770540, 2149770540, 1006796834): 1244560, ('.demo_slot0', 2149710564, 2149710564, 1006796834): 846944, ('.demo_slot0', 2149713968, 2149713968, 1006796834): 846944, ('.demo_slot0', 2149715152, 2149715152, 1006796834): 846944, ('.demo_slot0', 2149704348, 2149704348, 1006796834): 846944, ('.demo_slot0', 2149706876, 2149706876, 1006796834): 846944, ('.demo_slot0', 2149707844, 2149707844, 1006796834): 846944}
+
+APPROVED_ENEMY_CALLBACKS[('.remaining_slot0_04', 2149712728, 2149712728, 1006796834)]=891152
+APPROVED_ENEMY_CALLBACKS[('.remaining_slot0_04', 2149714860, 2149714860, 1006796834)]=891152
+APPROVED_ENEMY_CALLBACKS[('.demo_slot0', 2149707944, 2149707944, 1006927906)]=846944
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149711156, 2149711320, 3829399564)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149713084, 2149713384, 3829399564)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149712512, 2149712676, 3829399572)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149714572, 2149714780, 3829399572)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149713456, 2149714452, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149713456, 2149714036, 3829399552)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149713456, 2149713892, 3829399556)]=True
+
+APPROVED_ENEMY_EVENTS={('.demo_slot0',0x8021E644,0x8021E794,0x46020032)}
+
+APPROVED_ENEMY_CALLBACKS[('.remaining_slot0_04', 2149717580, 2149717580, 1006796834)]=891152
+APPROVED_ENEMY_CALLBACKS[('.level1_slot0', 2149705216, 2149705216, 1006796834)]=974256
+APPROVED_ENEMY_CALLBACKS[('.level1_slot0', 2149708840, 2149708840, 1006796834)]=974256
+APPROVED_ENEMY_CALLBACKS[('.level1_slot0', 2149709336, 2149709336, 1006796834)]=974256
+APPROVED_ENEMY_CALLBACKS[('.level1_slot0', 2149713208, 2149713208, 1006796834)]=974256
+APPROVED_ENEMY_CALLBACKS[('.level1_slot0', 2149713864, 2149713864, 1006796834)]=974256
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149715240, 2149715600, 3829399556)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149715240, 2149715624, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149715836, 2149716040, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149715836, 2149716764, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149715836, 2149717056, 3831496720)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149717264, 2149717424, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149715836, 2149716412, 3841982464)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149715836, 2149716812, 3831496704)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149715836, 2149716996, 3833593856)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149715836, 2149716772, 3833856012)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149717264, 2149717540, 3833593880)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149717264, 2149717544, 3833593888)]=True
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149717264, 2149717556, 3833856028)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149702092, 2149702412, 3831496712)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149704132, 2149705116, 3833593864)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149706056, 2149706480, 3829399560)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149702488, 2149702696, 3831496704)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149702488, 2149703584, 3833593856)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149704132, 2149704448, 3833593856)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149706056, 2149706588, 3833593856)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149706056, 2149707420, 3829399552)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149706056, 2149707584, 3833593856)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149706056, 2149707952, 3833593856)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149708064, 2149708328, 3829399552)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149702488, 2149703656, 3829399568)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149706056, 2149707232, 3829399568)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149706056, 2149707988, 3829530640)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149702488, 2149703728, 3829399572)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149702488, 2149703804, 3829399572)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149706056, 2149707372, 3829399572)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149710040, 2149710800, 3831496704)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149711180, 2149711736, 3831496704)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149712012, 2149712140, 3831496704)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149712012, 2149712804, 3831496704)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149711180, 2149711688, 3858759684)]=True
+APPROVED_ENEMY_BOUNDARIES[('.level1_slot0', 2149708984, 2149709000, 2153906216)]='native_enemy_attachment_begin'
+APPROVED_ENEMY_BOUNDARIES[('.level1_slot0', 2149708984, 2149709036, 1006927906)]='native_enemy_attachment_label'
+APPROVED_ENEMY_EVENTS.add(('.level1_slot0', 2149702488, 2149703836, 1174536242))
+APPROVED_ENEMY_EVENTS.add(('.level1_slot0', 2149706056, 2149707128, 1174536242))
+APPROVED_ENEMY_CALLBACKS[('.level1_slot0', 2149715472, 2149715472, 1006796834)]=974256
+APPROVED_ENEMY_CALLBACKS[('.level1_slot0', 2149718184, 2149718184, 1006862370)]=974256
+APPROVED_ENEMY_CALLBACKS[('.level1_slot0', 2149721608, 2149721608, 1006862370)]=974256
+APPROVED_ENEMY_CALLBACKS[('.level1_slot0', 2149726020, 2149726020, 1006862370)]=974256
+APPROVED_ENEMY_CALLBACKS[('.level1_slot0', 2149726336, 2149726336, 1006862370)]=974256
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149709164, 2149709308, 3829399640)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149714652, 2149714932, 3831496708)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149716524, 2149716636, 3830186000)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149716688, 2149717060, 3829399556)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149717172, 2149717620, 3831496708)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149719048, 2149719236, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149719048, 2149719268, 3831496712)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149719048, 2149719348, 2892365912)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149720544, 2149720856, 3829399556)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149720932, 2149721352, 3833593860)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149722368, 2149723272, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149722368, 2149723304, 3831496712)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149722368, 2149723384, 2892365912)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149723560, 2149723860, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149723560, 2149723892, 3831496712)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149723560, 2149723976, 3831496792)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149723560, 2149724108, 3833593944)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149723560, 2149724164, 3829399552)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149724360, 2149724636, 3829399556)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149724712, 2149725540, 3833593860)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149725628, 2149725936, 3833593860)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149726336, 2149726648, 3858759696)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149714652, 2149714980, 3831496720)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149716688, 2149717144, 3831496720)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149717172, 2149717884, 3831496720)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149720544, 2149720908, 3831496720)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149720932, 2149721584, 3831496720)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149724360, 2149724688, 3831496720)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149724712, 2149725600, 3831496720)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149725628, 2149725996, 3831496720)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149716096, 2149716364, 3858890908)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149716096, 2149716428, 3858890916)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149716096, 2149716476, 3831496720)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149719516, 2149720104, 3858890908)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149719516, 2149720168, 3858890916)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149719516, 2149720328, 3831496720)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149717908, 2149718136, 3833856016)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149719516, 2149719912, 3858890912)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149719516, 2149720280, 3858890912)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149726336, 2149726724, 3858759704)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149726336, 2149727144, 3858759704)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149726336, 2149726900, 3858759708)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149726336, 2149727048, 3858759768)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149726336, 2149726732, 3829399584)]=True
+APPROVED_ENEMY_EQUATIONS[('.level1_slot0', 2149726336, 2149727152, 3833593888)]=True
+APPROVED_ENEMY_EVENTS.add(('.level1_slot0', 2149719516, 2149719736, 1174536242))
+APPROVED_ENEMY_EVENTS.add(('.level1_slot0', 2149722368, 2149722980, 1174536242))
+APPROVED_ENEMY_EVENTS.add(('.level1_slot0', 2149724712, 2149725300, 1174536242))
+APPROVED_ENEMY_CALLBACKS[('.demo_slot0', 2149726024, 2149726024, 1006796834)]=846944
+APPROVED_ENEMY_CALLBACKS[('.demo_slot0', 2149729164, 2149729164, 1006796834)]=846944
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149723988, 2149724244, 3831496708)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149724396, 2149724628, 3829399556)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149725292, 2149725620, 3829399556)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149726992, 2149727160, 3831496796)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149726992, 2149727188, 3829399640)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149726992, 2149727208, 3829399556)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149727384, 2149727548, 3829399556)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149728720, 2149728856, 3831496708)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149723988, 2149724248, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149724396, 2149724636, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149725292, 2149725644, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149726992, 2149727216, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149727384, 2149727556, 3833593872)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot0', 2149728720, 2149728860, 3833593872)]=True
+APPROVED_ENEMY_EVENTS.add(('.demo_slot0', 2149724396, 2149724844, 1174536242))
 def timing_hooks(sections,compiled,rom):
     data=json.loads((ROOT/'recomp/native-timing-rules.json').read_text())
     if data['version']!=1 or hashlib.sha256(rom).hexdigest()!=data['rom_sha256']:
@@ -345,6 +478,10 @@ def timing_hooks(sections,compiled,rom):
                 hooks[name,read+8].insert(0,f'{var}_model=(uint32_t)ctx->r4; {var}_time=ctx->f0.fl;')
             label=f'dora3_after_timing_{site:08X}'
             text=f'if (dora3_native_simulation_active()) {{ c1cs=dora3_native_model_event(rdram,{var}_model,{var}_time,ctx->f{other}.fl*{scale}.0f,0x{i:02X}{site:08X}ull); goto {label}; }}'
+            if rule.get('enemy_source_commands'):
+                if (rule['section'],address,site,word) not in APPROVED_ENEMY_EVENTS:raise ValueError('Unreviewed enemy clip cue')
+                hooks[name,read+8].append(f'dora3_native_enemy_model_read(rdram,{var}_model);')
+                text+=f' if (dora3_native_enemy_commands_active()) {{ c1cs=dora3_native_enemy_model_event(rdram,{var}_model,{var}_time,ctx->f{other}.fl*{scale}.0f,0x{i:02X}{site:08X}ull); goto {label}; }}'
             if rule.get('source_start_consumed'):
                 if rule['section']!='.scene1' or (address,site) not in {(0x801C4F7C,0x801C4F9C),(0x801C533C,0x801C535C)}:
                     raise ValueError('Unreviewed acquired initial shot event')
@@ -542,6 +679,43 @@ def timing_hooks(sections,compiled,rom):
             if rule['section']!='.scene1' or allowed.get((address,site))!=word:
                 raise ValueError('Unreviewed player command boundary')
             text=f'dora3_native_preview_hook(rdram,ctx,0x{site:08X}u);'
+        elif op=='native_enemy_projection':
+            if rule['section']!='.scene1' or (address,site,word) not in {(2149482524, 2149482596, 1174447362), (2149482324, 2149482408, 1174409346), (2149482524, 2149482656, 1174451586), (2149482436, 2149482500, 3860070420), (2149482524, 2149482612, 1174447362), (2149482324, 2149482376, 1174409346), (2149482524, 2149482712, 1174447362), (2149482524, 2149482672, 1174451586)}:raise ValueError('Unreviewed enemy velocity projection')
+            text=f'dora3_native_enemy_projection(rdram,ctx,0x{site:08X}u);'
+        elif op=='native_enemy_equation':
+            if (rule['section'],address,site,word) not in APPROVED_ENEMY_EQUATIONS:raise ValueError('Unreviewed enemy scalar equation')
+            text=f'dora3_native_enemy_equation(rdram,ctx,0x{site:08X}u);'
+        elif op in {'native_enemy_attachment_begin','native_enemy_attachment_label','native_enemy_attachment_end','native_enemy_clip_end'}:
+            if APPROVED_ENEMY_BOUNDARIES.get((rule['section'],address,site,word))!=op:raise ValueError('Unreviewed enemy command boundary')
+            text={'native_enemy_attachment_begin':'if (dora3_native_enemy_attachment_only()) goto dora3_enemy_attachment_pose;',
+                  'native_enemy_attachment_label':'dora3_enemy_attachment_pose:;',
+                  'native_enemy_attachment_end':'if (dora3_native_enemy_attachment_only()) goto L_80220C80;',
+                  'native_enemy_clip_end':'dora3_native_enemy_clip_end(rdram,ctx);'}[op]
+        elif op=='native_enemy_model_zero':
+            if (rule['section'],address,site,word)!=('.demo_slot0',0x8022036C,0x802205B4,0x4602003E):raise ValueError('Unreviewed parent zero cue')
+            var='dora3_enemy_parent_model'
+            hooks[name,address].append(f'uint32_t {var}=0;')
+            hooks[name,0x802205AC].insert(0,f'{var}=(uint32_t)ctx->r4; dora3_native_enemy_model_read(rdram,{var});')
+            label=f'dora3_after_timing_{site:08X}'
+            hooks[name,site+4].insert(0,label+':;')
+            text=f'if (dora3_native_enemy_commands_active()) {{ c1cs=dora3_native_enemy_model_zero(rdram,{var},ctx->f0.fl,0x{i:02X}{site:08X}ull); goto {label}; }}'
+        elif op=='native_enemy_callback':
+            approved=APPROVED_ENEMY_CALLBACKS
+            key=(rule['section'],address,site,word)
+            if key not in approved:raise ValueError('Unreviewed stage enemy callback')
+            text=f'if (dora3_native_enemy_callback(rdram,ctx,0x{address:08X}u,0x{approved[key]:08X}u,{name})) return;'
+        elif op in {'native_enemy_gravity','native_enemy_turn'}:
+            allowed={('native_enemy_gravity',0x801E810C,0x801E810C,0x27BDFFC0):0,
+                     ('native_enemy_gravity',0x801E810C,0x801E81F0,0x8FBF002C):1,
+                     ('native_enemy_turn',0x801E88C4,0x801E88C4,0x27BDFFD8):0,
+                     ('native_enemy_turn',0x801E88C4,0x801E8930,0x8FBF0014):1}
+            key=(op,address,site,word)
+            if rule['section']!='.scene1' or key not in allowed or rule['end']!=allowed[key]:raise ValueError('Unreviewed enemy equation boundary')
+            helper='dora3_native_enemy_gravity' if op=='native_enemy_gravity' else 'dora3_native_enemy_turn'
+            text=f'{helper}(rdram,ctx,{allowed[key]}u);'
+        elif op=='native_enemy_blink':
+            if (rule['section'],address,site,word)!=('.scene1',0x801E8BDC,0x801E8DA4,0x844200D8):raise ValueError('Unreviewed enemy blink counter')
+            text='if (dora3_native_enemy_blink_skip(rdram)) { ctx->r5=0; goto L_801E8DF0; }'
         elif op=='native_object_axis_displacement':
             if rule['section']!='.scene1' or address!=0x801E8BDC or site not in (0x801E8E00,0x801E8E10,0x801E8E20) or word!=0x46020000:
                 raise ValueError('Unreviewed common object axis displacement')

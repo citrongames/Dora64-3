@@ -10,13 +10,14 @@
     "src/native_present.cpp": "9ff1ff3be5d4c16b57f5668a394a3e3fa4bafc303c32f52be63833ab33df2f5d",
     "src/native_present_hooks.cpp": "e659ba490ecea74c75fd50de47f0ea95ad9c32c6c30c6352e2123d7150914701",
     "research/native-frame-bridge-check.cpp": "660a6027b22660be528c0108d981222d4bfe349d59f3f017856f344c237c4376",
+    "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/native_frame_bridge.hpp": "a405469b02b662d7ad973c5475f05465defe0d346b7add98717e9393794fe545",
     "src/native_frame_scheduler.hpp": "ae108bfcf8c9bbd628f648a8781afd1a9a5ab8668aa676212a60ebf88329bfde",
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556",
-    "tools/check_native_frame_bridge.py": "7854ed1f8d95bd3416bf98ba36cb8a8ee2a2db813c3544846d0f76dfec362a49"
+    "tools/check_native_frame_bridge.py": "f8479604fda294249150d2be67788c145396c4747e2da992f8e558f9dfef1e47"
   },
-  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
+  "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df",
   "adapted_queue_sha256": "9bad8075f25fac5787a24acaf863c26dacc112d3cb1bfb2fea8b8452cec14930",
   "limitations": [
     "Thread scheduler endpoints and scene callbacks are stubs; no renderer",

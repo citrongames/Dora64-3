@@ -1,167 +1,180 @@
 {
-  "result": "PARTIAL: 26 completed CPU pre-build checks on generation356; full player interrupted at the explicit user request",
-  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
-  "base_commit": "6cab58e44748b98b6e71721e4445f678acac0f24",
+  "result": "PASS: 28 connected CPU pre-build checks on generation358, including complete full-player partitions and actual enemy constructors/contacts/retirement",
+  "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df",
+  "base_commit": "5566d6d8af275008caccaa53eb3338370dd9f027",
   "checks": {
     "ui": {
       "path": "research/native-ui-check.json",
-      "sha256": "fa432fd8cdb6faf1dcdf569008d170db093d9b7a5a5aea05292eabf6a1204a45",
+      "sha256": "b8b5cd4189935e51cb3a1b1c4f483b14b9c0e1feeef5c9d8633f1c8589ef655c",
       "result": "PASS: 116 connected UI cases; 64 Original motion endpoints; 153 Native math samples; 234 repeated Original UI draw/command comparisons; 37 ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "cutscene": {
       "path": "research/native-cutscene-check.json",
-      "sha256": "46a4696679fc93279e26ead6da05d7a00d7f07b9f05ea6f660bbc26a626acc17",
+      "sha256": "6a271a4d2328aba5993764d4cbdc41a2b8ade7f4de7ded6fd4a69ae3246e5bff",
       "result": "PASS: 154 connected cutscene cases, 506 exact Source endpoints, 1431 Native intervals, 18 ownership/policy guards; 52 actual motion functions, all four linked cameras, XYZ/rotation/scale/polar/jump/alpha, Original20/30 at60/73FPS, actual interpreter wait/cut/finish, Source restoration and full-RAM/context duplicate-time checks; ASan/UBSan; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "model_animation": {
       "path": "research/native-model-animation-check.json",
-      "sha256": "476ff8faa4aa911e6f6aa429c51c75be5ea2b1531d29894b308a9b1496460918",
+      "sha256": "315bf002a808ca109f952dd5214e297b9995941920019226b338d146ecee581f",
       "result": "PASS: 20 crossing timelines / actual player frame-18 event; 24 native simulation model timelines with nondestructive events and no render double-advance; 12 fractional short-angle wrap schedules; 12 latched angular-command schedules; 12 preceding opacity-command schedules; 12 exact-float scalar/retirement timelines with pause/write/acquisition/lifetime invalidation; 74 original linear/morph native pose samples at 60/73/120/144/165/360 Hz and both dividers; Hermite curve through original matrix builder, bank isolation, guest context/time/event preservation, pause/seek/clamp/rebind/stale updates, unknown-write rollback, deferred logic morph, draw-time deletion and same-address recreation; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "frame_time": {
       "path": "research/native-frame-time-check.json",
-      "sha256": "2f9f5dc68a4764c18dddec4185b1ff2a955868ff5412a1f98dba6dfc1ed9edb3",
+      "sha256": "074a0c9919d72f5aa2ada9721f9986f3a1c65b6f2dabb792b15213b919bbb7e7",
       "result": "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. All five original fade commands, inter-frame timestamp, no-op fractional retention, same-time commands and unknown-write rejection; rational Source command origins/reversal at12 FPS/divider settings with nonzero origin. No game/window/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "simulation": {
       "path": "research/native-simulation-check.json",
-      "sha256": "f86ed870dfb328eb6a98d40a7d66c074baa9ba49f4009fe0d02f509dc1502fc9",
+      "sha256": "39f36d37ada76e3eb3e3d845e585bc98bba28042ba97a9a2d1bcbeceff82d85f",
       "result": "PASS: 280 differential executions of seven original MIPS motion/camera helpers; Original and whole ticks unchanged; 12 20/30 Hz schedules at 60/73/120/144/165/360 FPS, 2036 real motion slices, exact discrete boundaries, constant-force kick/drift trajectory, approach/decay, long gaps, scene-reset cancellation and scope cleanup; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "camera_control": {
       "path": "research/native-camera-control-check.json",
-      "sha256": "9c28d10bc8041eb6612221d4021ce3d260649757719c6d3ff1aaa612e022f3ad",
+      "sha256": "21733b0cc83b06f6507e64f052c4ff4044df1f7e433b3991112dfc6be6cfd010",
       "result": "PASS: 970 camera control/transition/coefficient cases; actual original angle helper, Original and full-step RAM equivalence; 60/73/120/144/165/360FPS, 20/30Hz; minimum distance20 unchanged; pitch dead-zone tolerance0.11 degrees; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "camera_modes": {
       "path": "research/native-camera-modes-check.json",
-      "sha256": "2626d7dab8f6e59f6edd3fdfe7929f95f223522bc8d8720528a364f6204315b6",
+      "sha256": "2e6b01dd1c5f15c522218e97fb0da0d14b043501daaffe8a63a5059ce7a535c6",
       "result": "801D5864 diagnostic_max_rate_spread=0 field=0 variant=0\n801D7294 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8578 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8A24 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8FF0 diagnostic_max_rate_spread=0 field=0 variant=0\n801DB720 diagnostic_max_rate_spread=0 field=0 variant=0\n801D9B00 diagnostic_max_rate_spread=0 field=0 variant=0\n801D9C94 diagnostic_max_rate_spread=0 field=0 variant=0\n801DA06C diagnostic_max_rate_spread=0 field=0 variant=0\n801DAB58 diagnostic_max_rate_spread=0 field=0 variant=0\n801DA588 diagnostic_max_rate_spread=0 field=0 variant=0\n801DAF50 diagnostic_max_rate_spread=0 field=0 variant=0\n801DB3D0 diagnostic_max_rate_spread=0 field=0 variant=0\nPASS: 10975 Original/full-tick memory comparisons across thirteen ordinary camera roots. Native equations also match at shared fractional timestamps; Source-end real shake commands at three final cuts and two dividers, external writes/reset preserved; synthetic room triangles through original collision query, no real level/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "script_camera": {
       "path": "research/native-script-camera-check.json",
-      "sha256": "6cafcfbad7d880af0736bd792e5b71a29df79faa6f607803117f0f67938254f0",
+      "sha256": "6dbfe6c7b3a016123e334f15049499d6383c0eeba0ff97b396e38b1dc32d00f1",
       "result": "PASS: 3920 script-camera cases; four cameras, all four modes, six orbit channels, local channels and combined rotations; Original/whole-step RAM differential, durations 0/1/2/7/40, 20/30 Hz timing at 60/73/120/144/165/360 FPS, original trigonometry and eye geometry; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "effects": {
       "path": "research/native-effects-check.json",
-      "sha256": "6f522194166db6d62d549da1748f6068c3e6b6c81d5213271ab43aacd6b9ea88",
+      "sha256": "e3202541660d46ce7f8641780e035c00c75fd2b5912f53d4c1400d2176fe9820",
       "result": "PASS: 200 rectangle/zoom/sprite cases; all four rectangle modes, loop/clamp sprite events, durations0/1/2/7/40; original whole-step equivalence and per-tick state/event comparison at60/73/144/360FPS and20/30Hz; real fractional zoom changes; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "gravity": {
       "path": "research/native-gravity-check.json",
-      "sha256": "c7117d231399de7f2dd3a35e1323e1fde8cee0b434ccb94ca3e4335763ada9d4",
+      "sha256": "c42d001b3082855e3de7413ef0b527a16c143a38f1e5967cd7e291954fe00a96",
       "result": "PASS: 786 original/gravity trajectory cases; 60/73/120/144/165/360FPS, 20/30Hz, both terminal caps, player special branches, contacts and scoped actor isolation; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "input": {
       "path": "research/native-input-check.json",
-      "sha256": "6b44e793888455c1943a34704aa46e7e5baf0227b324d65085c06ff0f1c4b7ca",
+      "sha256": "124e536d2ac7c5d6127e1caad31f5736e7d5b45491475dc3c9225965ae28abd2",
       "result": "PASS: 12 real VI accumulator/latch schedules at 60/73/120/144/165/360 FPS, four-port ownership, short presses, analog thresholds, Original handoff, disconnect/reconnect and scene reset; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "player_motion": {
       "path": "research/native-player-motion-check.json",
-      "sha256": "f978f6ff462a1d3b06903c6d778bbb997c1d7dcb1b25840aa02dbe5b7363cc94",
+      "sha256": "72ed5d80f7ebe9d3888bc3db61197d7b752df9005c6d1ea38466e870d3e0e94f",
       "result": "PASS: 168 drive partitions; 24 joint player/vector/gravity/contact/camera trajectories at 60/73/144/360FPS; Original equivalence; movement cache preserved across camera boundary; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "process_time": {
       "path": "research/native-process-time-check.json",
-      "sha256": "949dd31c21c0305bc8bf1fe3e5fb31c75327873e8904b798a0b464f0c41d6c96",
+      "sha256": "c3fed413269be782c1ceba1d39e3164e21d970f9836530716b931da8d1d6edaf",
       "result": "PASS: 2053 process dispatcher checks; all eight slots, states0..5, waits0/1/3, Original memory equivalence, repeated draw/simulation dispatch, delayed first activation; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "frame_bridge": {
       "path": "research/native-frame-bridge-address-check.json",
-      "sha256": "468a41b61ba6229228295aee359329da65587c8a1f1ce35d376b127ab6563f09",
+      "sha256": "c395552fb1e40fb100226748d926ebbda2bc6c3c65e3345cd5d8d96b697ea679",
       "result": "PASS: registered type2 drains during pause while unregistered type2 remains Original; real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context and all odd FPRs preserved in FR=0/FR=1; stale scene/rate wakes; quiescent reset; update before bank reservation, scene/rate cancellation; 2000 concurrent deliveries",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "frame_scheduler": {
       "path": "research/native-frame-scheduler-address-check.json",
-      "sha256": "038c77172b8030c44bdd3f86ccc7ffbba31549a2638825036d5e520cb86c613a",
+      "sha256": "87f800e0eaeedde578567e32184722393fff820c2b81ef9a96ed1085d22d67ec",
       "result": "PASS: one queued wake; immutable token behind 32-bit message; two banks; publication and independent guest/host completion; stale scene/rate tokens; enqueue rejection; elapsed-time conservation under backpressure; Original bypass; concurrent completion order; original ROM VI gate and completion-before-swap order; native 60/73/144/165/360 scheduling builds original 2D fade display lists with extra alpha phases and unchanged duration. No game/window/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "graphics_pump": {
       "path": "research/native-graphics-pump-check.json",
-      "sha256": "e7910e77dea73e5af14668101f73ad93d8bc3f0e6a8c30e3f9ebe8fed8cff51c",
+      "sha256": "9d2d98ed5195dba22c106501effdbe5a1331b23ac90c8afa8953676be1c152d7",
       "result": "PASS: immediate game+host completion and bank reuse after both SP/DP caller tails (SP-first and DP-first); registered native framebuffer bypass, present after swap, type2 consumption and delayed host acknowledgement; original submit -> native-only wake -> original scheduler including full event queue; no synthetic VI/client broadcast; audio priority/yield, SP/DP completion, framebuffer gate, pause, late Original wake and context/thread-local isolation preserved",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "loop": {
       "path": "research/native-loop-check.json",
-      "sha256": "809a2c9c8b6f3e78d43204120b7a99b5fabecd8772a17f8b00c983fcde07e3d8",
-      "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 270 native white-fade builds with 240 distinct alpha values; 76 discrete updates, 1084 native builds, 3 Original builds, 232 VI events; no GPU",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "sha256": "a8386cbca6bfea304fa84c296091f6bb72e54a895da16b453ccd5397a3b9799a",
+      "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 270 native white-fade builds with 240 distinct alpha values; 76 discrete updates, 1085 native builds, 3 Original builds, 232 VI events; no GPU",
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "scene34_draw": {
       "path": "research/native-scene34-draw-check.json",
-      "sha256": "209c2b47b39907c4141388e349469ef5ed113ce9752de43939c7b76fbac15656",
+      "sha256": "c7a43ea65d9a8bca8310fa3bcb1e4f4a6a856eeddc95314129a5d522fb17a62f",
       "result": "PASS: scene34 image branch original draw closure; CI4/CI8 headers, 3 sizes, 2 banks, alpha 0/128/255; 802 actual 2D command lists at 60/73/144/165/360 with native fade; all guest RAM outside DL/cursor/stack unchanged; no renderer or live scene activation",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "session": {
       "path": "research/native-session-address-check.json",
-      "sha256": "f55fc94dc475089d61cb2831a2aa7d5c4a8b2656ff25d91937591e98e71fd97e",
+      "sha256": "5baae4fd2439d509ffad2d52ecd84a3bd749a64e468ff47404b09569d28345aa",
       "result": "PASS: in-progress Original read delays native entry; late reads denied; exit waits both completions; cancellation/stale reservation/pause/reset; actual sleeping producer wakes on deadline, mailbox receive, bank release and rate change; stops/joins with pending wake and restarts idle",
       "generation_receipt_sha256": null
     },
     "present": {
       "path": "research/native-present-address-check.json",
-      "sha256": "ecc2224ec7f275f32a5a563c5389fdd7bcd441634f95ef89c0e4774c4cd0f347",
+      "sha256": "d7b01a40b9b33b40978d0e475d70edc070750dde935935b925ed059364ce3dcd",
       "result": "PASS: all six completion orderings, early/duplicate/stale callbacks, two-bank backpressure, concurrent host/game completion; exact runtime VI oracle (16 combinations), copied framebuffer/mode, no VI state advance, enqueue rejection, real worker acknowledges after reads and drops late periodic actions",
       "generation_receipt_sha256": null
     },
     "scene_transition": {
       "path": "research/native-scene-transition-check.json",
-      "sha256": "ced317e37fe95a354113db759573df7ee4d92314ac73943e4b5a528c66e10100",
+      "sha256": "958159855e9ca46fc97599ff2d616ec9560326edd1c8a710089cd3ae2870153b",
       "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 336 actual slot09 constructors; 0 slot09 Source schedules; 32 slot09 Native edge schedules; 0 slot09 rejections; 0 slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; 0 slot09 intermediate yaw samples; settings=8; ASan/UBSan/LSan; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
-    "story_pickups": {
-      "path": "research/native-pickup-linked-batch-check.json",
-      "sha256": "c94e99b21361c8bba7eead0ecfb5a923b68ed79a80798c0c6618f019d7c2258e",
-      "result": "PASS: 72 Original and72 mixed Native/Source actual Native linked129 animation and standard pickup lifetimes;8 actual private producers with three129 children, three heights/XYZ velocity profiles, actual parent contact/quest/collection/six-flash130 and129 unlink/automatic retirement; 73656 Native intervals preserve every Source-only129 actor/physics word and unclaimed model/parent field; 19440 intermediate129 model-time changes and 73656 exact whole-snapshot duplicate-time checks; 18432 exact full live actor/physics/model/heap/resources/commands/quest/RNG/collision-result endpoints. Actual Source RNG timers/teleports/clip commands and complete resources on synthetic assets; Native129 owns only common model time/completion pulse after actual Source initialization and live reciprocal links; no actual selecting script/real-level renderer claim; no game/GPU.\nPASS: 117 Original and117 mixed Native/Source guarded linked129 animation lifetimes;13 command profiles at before/after/mid Native intervals, three root velocity profiles, actual private producer118 with three129 children, three heights/XYZ velocity profiles, actual parent contact/quest/collection/six-flash130 and129 unlink/automatic retirement; 129675 Native intervals preserve every Source-only129 actor/physics word and unclaimed model/parent field; 34830 intermediate129 model-time changes and 129675 exact whole-snapshot duplicate-time checks; 29952 exact full live actor/physics/model/heap/resources/commands/quest/RNG/collision-result endpoints. Actual Source RNG timers/teleports/clip commands and complete resources on synthetic assets; Native129 owns only common model time/completion pulse after actual Source initialization and live reciprocal links; no actual selecting script/real-level renderer claim; no game/GPU.\nPASS: linked Native animation batch;189 paired complete lifetimes/48384 exact Original endpoints; private commands and resources retain Source order; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
-    },
-    "names": {
-      "path": "research/decomp-names-check.json",
-      "sha256": "64038ee6b2ecac242d20b036022434089fc445f23bd631a6b3bd452a52e53afb",
-      "result": "PASS: 849 descriptions; 518 semantic function names; 596 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
-    },
-    "overlay": {
-      "path": "research/overlay-load-state-check.json",
-      "sha256": "9e8c874ee07036544e8ee34c88d8343ed884940ab126c39d083a59eddee4ade2",
-      "result": "PASS: 49 actual ROM overlay ranges, verified DMA/reload, identical VRAM replacement, partial overwrite, parent invalidation, scene unload and boot reset; ASan/UBSan/LSan; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+    "player_update": {
+      "path": "research/native-player-update-check.json",
+      "sha256": "654b49cea0dbf0f9dc531a1f25fe1112a57cc71bb675d81af2e0026e53101a24",
+      "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 1008 actual slot09 constructors; 5088 slot09 Source schedules; 720 slot09 Native schedules; 576 slot09 rejections; 34464 slot09 frozen189 comparisons; 31624 slot09 intermediate yaw samples; 3192 common NPC B schedules; 1152 actual city constructor/profile/Original comparisons; 2304 story100 Source schedules; 1152 story100 Native edge schedules; 768 story100 ownership rejections; 15360 story100 Original full-RAM/context/heap/resource/command/model-count comparisons; 768 special200/201 Source schedules; 192 special200/201 Native edge schedules; 96 special200/201 ownership rejections; 5280 special200/201 Original full-RAM/context/heap/resource/command/model-count comparisons; 288 dense Original special counter samples; 4608 city dialogue actual contact-producer Original comparisons; 3072 city dialogue Source schedules; 2304 city dialogue Native edge schedules; 384 city dialogue overlay rejections; 19712 city dialogue intermediate yaw samples; 20736 city dialogue Original full-RAM/context/heap/resource/command comparisons; 48 linked actual descriptor construction/attachment/retirement schedules; 1008 linked Source schedules; 720 linked Native schedules; 288 linked ownership rejections; 308 linked intermediate yaw samples; 6768 linked Original full-RAM/context/heap/resource/command comparisons; 384 linked actual contact-producer Original comparisons; 1536 city patrol Source schedules; 1152 city patrol Native schedules; 192 city patrol overlay rejections; 1232 city intermediate position samples; 11904 city Original full-RAM/context/command comparisons; 864 dialogue75/76/77 Source outcome/bob/turn/contact/birth schedules; 144 dialogue Native pause/reentry/rebind/write schedules; 72 dialogue overlay rejection schedules; 1032 dialogue signed return/wrap intermediate yaw samples; 288 city7/9 Source projection/sprite/contact/dialogue/delay/event/retirement schedules; 96 city Native off-grid schedules; 48 city overlay-identity rejection schedules; 96 simple object Source schedules; 96 simple object Native off-grid schedules; 1152 orbital Source/contact/birth/moving-target/AI-resume schedules; 480 orbital Native pause/rebind/recreation/write/state schedules; 1376 orbital intermediate signed return/wrap yaw samples; 144 off-grid surface constructor/reentry/model-rebind/yaw/exit Native schedules; 216 full surface60..62 producer/spin/exit/kick/orientation Source schedules; 96 connected door59 pause/camera/fade/room-request Source schedules; 1392 connected lethal32..49/death50..56/respawn Source/body/fade/scene/real-model-retirement schedules; 144 six-character post-ready67/Ground/new-model reacquisition schedules; 192 healthy hover49/63 Source count/control/exit/landing schedules; 144 Native hover off-grid recovery schedules; 192 Native constructor/idle/complete special64/67 recovery schedules; 216 Source special64/67 character frame commands/clip/cancel/surface recovery schedules; 144 Native off-grid special command/stop/turn/write/rebind schedules; 264 Source special65/66 stop/turn/cancellation schedules; 48 recovery31 scalar stop/clip/return Source schedules; 48 waiting46/47 count/kick/yaw/recovery Source schedules; 96 hazard40..45 delay/kick/fall/collapse/rise/recovery Source schedules; 48 airborne ground damage kick/fall/collapse/rise/recovery Source schedules; 336 Native real damage/health/rumble/complete recovery partition schedules; 48 heavy damage kick/counter/fall/collapse/rise/recovery Source schedules; 48 ground damage kick/landing/recovery/cooldown Source schedules; 48 healthy flight damage speed/orientation/clip/return schedules; 24 Native off-grid flight A/stick partition schedules; 24 held-B four-shot flight repeat/release/lifetime schedules; 96 Native flight weapon press/release/birth/trajectory/retirement schedules; 192 flight weapon9/10 and charge11/12 full Source pool schedules; 96 whole-player flight Source speed/orientation/collision/animation/A-transition/RNG schedules; 24 full original ground/jump/fall/landing and 48 reversal/braking dispatcher/input/drive/contact/model-clip/pose schedules; 168 flight/pause/hit/real-newborn/lifetime schedules; 72 growth/spin/fade schedules against Original at every source tick; 72 ballistic/countdown/real five-link-chain schedules; 24 real four-phase/rebind/opacity/lifetime schedules; 24 bounce/real conversion/complete child lifetimes; 384 homing clocks/real impact/retirement schedules; 48 real charge/attachment/radius/opacity/conversion/retirement schedules; 48 live player-producer birth/initial commands/zero-time clock/lifetime schedules; 120 interaction free/capture/seek/spawn/drag/retirement schedules and Original quarter-interval capture geometry; 48 interaction live births including same-address captured NPC recreation; 192 real charge weapon action/B-entry/shot/complete lifetime schedules; 96 Native B-edge exact shot and birth-relative charge lifetime schedules; 48 held B four-shot repeat/release/full retirement schedules; 432 Native press/release moving-weapon trigger/initial-age/complete resource lifetimes; 864 moving weapon action/shot/full pool Source endpoint/complete child lifetime schedules; 216 terminal-effect lifetimes/retirements against unpatched Original and 912 full-RAM common-world Original comparisons; both source rates at 60/73/120/144/165/360 FPS; single held-button jump and landing, one transition per reversal state, free-bank pose restoration, source-time counters/sounds, legacy player suppression, coupled native props/source-owned AI command timestamps, opacity/blink/real flipbook cadence, contact-list preservation and context preservation; no game/GPU.",
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     },
     "scene_frame": {
       "path": "research/native-scene-frame-check.json",
-      "sha256": "8831f2496304853c5e89b56a9893932913fc20ce7aacffa64c1520073790ea87",
+      "sha256": "fc7dde73eefab636e37d335ce14837cacd1b95957d867222947240cf7e6fa4c0",
       "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 672 actual slot09 constructors; 0 slot09 Source schedules; 64 slot09 Native edge schedules; 0 slot09 rejections; 0 slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; 0 slot09 intermediate yaw samples; settings=16; ASan/UBSan/LSan; no game/GPU.",
-      "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58"
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
+    },
+    "story_pickups": {
+      "path": "research/native-pickup-linked-batch-check.json",
+      "sha256": "fec3efc2bb43be86dfe09b85631f10d193332dedfc8ab179858b1123ce900452",
+      "result": "PASS: 72 Original and72 mixed Native/Source actual Native linked129 animation and standard pickup lifetimes;8 actual private producers with three129 children, three heights/XYZ velocity profiles, actual parent contact/quest/collection/six-flash130 and129 unlink/automatic retirement; 73656 Native intervals preserve every Source-only129 actor/physics word and unclaimed model/parent field; 19440 intermediate129 model-time changes and 73656 exact whole-snapshot duplicate-time checks; 18432 exact full live actor/physics/model/heap/resources/commands/quest/RNG/collision-result endpoints. Actual Source RNG timers/teleports/clip commands and complete resources on synthetic assets; Native129 owns only common model time/completion pulse after actual Source initialization and live reciprocal links; no actual selecting script/real-level renderer claim; no game/GPU.\nPASS: 117 Original and117 mixed Native/Source guarded linked129 animation lifetimes;13 command profiles at before/after/mid Native intervals, three root velocity profiles, actual private producer118 with three129 children, three heights/XYZ velocity profiles, actual parent contact/quest/collection/six-flash130 and129 unlink/automatic retirement; 129675 Native intervals preserve every Source-only129 actor/physics word and unclaimed model/parent field; 34830 intermediate129 model-time changes and 129675 exact whole-snapshot duplicate-time checks; 29952 exact full live actor/physics/model/heap/resources/commands/quest/RNG/collision-result endpoints. Actual Source RNG timers/teleports/clip commands and complete resources on synthetic assets; Native129 owns only common model time/completion pulse after actual Source initialization and live reciprocal links; no actual selecting script/real-level renderer claim; no game/GPU.\nPASS: linked Native animation batch;189 paired complete lifetimes/48384 exact Original endpoints; private commands and resources retain Source order; no game/GPU.",
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
+    },
+    "enemy": {
+      "path": "research/native-enemy-check.json",
+      "sha256": "ab35140a7f41360222ba9ece2ec8f30e82312f7fb094c741933fb2d42191e03c",
+      "result": "PASS: enemy 300 frozen/current Original and 900 Native schedules; 72000 pool endpoints, 638850 intervals, 638850 zero-dt checks, 768 genuine contacts; 25 kinds/4 ROM overlays, actual constructors/retirement on synthetic assets; no game/GPU.",
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
+    },
+    "names": {
+      "path": "research/decomp-names-check.json",
+      "sha256": "91ab0cd468be1424d904b82b76ccf1fb614c5551740374e79d9cc65f6e509adc",
+      "result": "PASS: 1001 descriptions; 670 semantic function names; 834 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
+    },
+    "overlay": {
+      "path": "research/overlay-load-state-check.json",
+      "sha256": "703ffe3f25581d496a6b639bbc7cfb5422a1d5143ced598058e653eb9dc4e05a",
+      "result": "PASS: 49 actual ROM overlay ranges, verified DMA/reload, identical VRAM replacement, partial overwrite, parent invalidation, scene unload and boot reset; ASan/UBSan/LSan; no game/GPU.",
+      "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df"
     }
   },
   "source_sha256": {
-    "recomp/decomp-symbols.json": "67c7e1f62c35b5d8c0d515d4f83d50fc61934fcfdec7bca4aba8f9b44ac82be2",
-    "recomp/native-timing-rules.json": "50c1eba10e12dcc61c06ea6545c47b09567ff066947d900024b5a1b8aa49f758",
+    "recomp/decomp-symbols.json": "9d515e9acc15b5f277575089bb3924e9697d3202f4dc2e60ef024221f4454293",
+    "recomp/native-timing-rules.json": "ab66251eaaa7787fc16a4217fa5d9e8f51e65714739e5d9f03ebdf5211ccd3ad",
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
     "research/native-camera-control-check.cpp": "1c906070f434aace292a3e51cdce9b888e388bfeaf9fd948e835a9031b9d89d0",
     "research/native-camera-modes-check.cpp": "53c68efd4e29283ab4e9944f206b833ba9ee826a4050b02bc435224ca36d6bf7",
     "research/native-cutscene-check.cpp": "518540c9b532d003fc1d100904f5d6c386d29b6d6d2ccf44d0bab0aac51249cd",
     "research/native-effects-check.cpp": "06f1ea314a4a480fd62b8399a1157e91690517dc17db4b56c7f8678adb43f292",
+    "research/native-enemy-source-check.inc": "413cdf40f9a20271237f1f49d54ff9fc3e1b51376310a3959525b2d209a4ac8a",
     "research/native-flash-pool-check.inc": "654c6474c0a39c2b15f3c21ab7ecbd1b92b1a0c3d281e70243bbb858549134fd",
     "research/native-frame-bridge-check.cpp": "660a6027b22660be528c0108d981222d4bfe349d59f3f017856f344c237c4376",
     "research/native-frame-scheduler-check.cpp": "542f67dafc9159f7cc1ac4a8c4b28fab4b9b7204ba540d6d30b2c998d21162a8",
@@ -169,6 +182,7 @@
     "research/native-gameplay-cutscene-fixture.cpp": "50ab2ef307407c5306de004401f8048a4e4a487fb1de023578b54a888bb4373d",
     "research/native-graphics-pump-check.cpp": "7eb191d431fd47790e208ddaacd924a35efc2d6d58c447006c8ed2ad90877118",
     "research/native-gravity-check.cpp": "95ce36b649cb0fa5205d17e05ba90aa333d43c26323b43ffce2244e736b0eb19",
+    "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
     "research/native-inactive-gameplay-fixture.cpp": "fef1725b2e76e343c0e04cdad773df3a6604684f7f34eebaa1a94718cc0bdf1a",
     "research/native-input-check.cpp": "ea42a1347957173d2aae86f6315aed85ed11bdb6bacd7fe73b752a312637f025",
     "research/native-loop-check.cpp": "ee73343f852036adaaee510e7193d9b6e77d59346b44d1dade76147207c59f6e",
@@ -182,6 +196,7 @@
     "research/native-pickup-settle-scatter-source-check.inc": "36197e05fb4b432d848cbd876589e927ed9355f4c35f4c3a04a6ecfd29bee2dc",
     "research/native-pickup-uncollected-source-check.inc": "dc4c0b063c04a78de3fce3ffa0e588bbd5d06f9f86fbb04fba9b5d5e73da269e",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
+    "research/native-player-update-check.cpp": "edc2f396cfe4a61da29caa84fbe22eec46655237525e31b18df392475ddb44d5",
     "research/native-present-check.cpp": "b95f71694eccfa79c4a449d91c8f45c4cab84b53a171773851b399334fa052c3",
     "research/native-process-time-check.cpp": "751cceb4380ecf1c024cd2369b473363c9d390c8e6e6897c98168291a844f57c",
     "research/native-scene-frame-check.cpp": "468ee02668c4d105041e566ca3a25157ddb8719ab55e2e3efeb0cf192137831a",
@@ -190,7 +205,7 @@
     "research/native-script-camera-check.cpp": "2af1d9dddf04d6ad10277017223388ee71e36c5b764e32006210059897ab634b",
     "research/native-session-check.cpp": "f7139aa68d4036c4663ad861ef00031584a517b71da7197eeb516565c55f3fc0",
     "research/native-simulation-check.cpp": "bdd6a55e7ed77a6fbeadceefe6a6f7bf264ac11dcbe5e2b5384535d7822c2ac3",
-    "research/native-story-pickup-source-check.cpp": "3aa3c27cbd27ad9a76e6aa66603dd11b23b281868e2019324acf0baf295080a2",
+    "research/native-story-pickup-source-check.cpp": "bf1cc8d564e608eabe6dece78ccbd61b995b1d2f1c9f279740fbcf7a31bd938f",
     "research/native-ui-check.cpp": "224e2ce566d8313386a71f7d7dcd012dd300989aa737263087a3ca409e8c76e2",
     "research/native-ui-inactive-fixture.cpp": "8450c346b48c007ea59b9b8ad7d39e4e73033bd23ec371fb82ce2204e227e391",
     "research/native-ui-menu-fatal-fixture.cpp": "949fa3b36ca1442ca88cea33cc50595af73d2f1e526a710eb3945e479506ae7b",
@@ -207,6 +222,8 @@
     "src/native_cutscene.hpp": "d7c9362cc9c4f70191ebb7bad1c9ded08ea478811c477e269fc9bae630e1c1e4",
     "src/native_effects.cpp": "5a2dd315a623e5cf80ccd6b51af56c4f0f1e5bc750c871b4e0231d675f9f3b19",
     "src/native_effects.hpp": "ddd57439bc9435e2c91791a3a1f3dc28a1cce7057bbf6d84a58e0f4a39e34805",
+    "src/native_enemy.cpp": "a216242f24dcc630e23fb7d3a9eb062e77ec3bf2131936da77843d489e984cb4",
+    "src/native_enemy.hpp": "e2eff9ce1d272ceb4b8b3000cc9d5710d92ecdf5800408b1c63d1a9b644496b7",
     "src/native_frame_bridge.cpp": "c1c7ae5fb4ab80e03b178a744a13ac90973b32d787b6fec432afb2e27182b995",
     "src/native_frame_bridge.hpp": "a405469b02b662d7ad973c5475f05465defe0d346b7add98717e9393794fe545",
     "src/native_frame_producer.cpp": "362e5dd959e067a90ee4df1600d4893707b4a04361df957d7d922dd2635026e2",
@@ -218,14 +235,14 @@
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "src/native_game_loop.cpp": "aa027cf1706fa22facc21cba72913183f292f530c0a215428c591118b6e85d65",
     "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
-    "src/native_gameplay_preview.cpp": "a84b8129f0ad1a61d6df0c0912d335de74d5f03cd8dd58f59fb917725cd1adb7",
-    "src/native_gameplay_preview.hpp": "c217908d86f9b319a3acffcf4f3edb0e7cfa92b8de4742c21988f4d052638b11",
+    "src/native_gameplay_preview.cpp": "e0284f94f09dd9a790c03d2e5150d3cb686405a603c9229355037fb0b1aa8b8a",
+    "src/native_gameplay_preview.hpp": "0ca9756c9bcf1ccef41d8a033643b2b07efc6046f63317e75770754500763224",
     "src/native_graphics_pump.cpp": "4170bf4b463147cfe1e50dff3653a0b3749685ec4563137f39be190a4150c5d0",
     "src/native_graphics_pump.hpp": "3fdcb53d2f68a9b6d344beb44ea58a190c637bd2320cf3e77fbb8af2649bdcd3",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-    "src/native_model_animation.cpp": "8696ac3189b3d95c3627172aa05b70929831aeeb427780ece5e844d07a03d664",
-    "src/native_model_animation.hpp": "94d54daf5af8970667417ed8564745f34c6909f4854329a3265c647f4f5263f6",
+    "src/native_model_animation.cpp": "e8eae318142d64c9b5462112494e56a9da766ebcd29b24b91e67997b8f6b80db",
+    "src/native_model_animation.hpp": "de9586bfb8163fa1d7d1fab8947eba23bf4b0467a3cf1eb8fc8db869990878be",
     "src/native_present.cpp": "9ff1ff3be5d4c16b57f5668a394a3e3fa4bafc303c32f52be63833ab33df2f5d",
     "src/native_present.hpp": "c17a60839de06f09c2c5245091a7389c7126a3146019b8477483bc86d03e9158",
     "src/native_present_hooks.cpp": "e659ba490ecea74c75fd50de47f0ea95ad9c32c6c30c6352e2123d7150914701",
@@ -249,60 +266,57 @@
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f",
     "src/startup_runtime.cpp": "d7865de6f338a7c90cb31833f6c0efb424bf4705b8006563979e86a2d5cd3241",
     "tools/check_decomp_names.py": "bc742b8b16c9a6f24481d2b41a80c268a9a7feee4c2d95e6f1a537d026d1c74c",
-    "tools/check_native_camera_control.py": "21fa9d9b8b647a39236110fe6f0491055ae948d71a25336442584532d82d1c74",
-    "tools/check_native_camera_modes.py": "5474f494eab96267d69aaa8cb6050ce543b1d0fc8c91b85628fb0ab3b88f1365",
-    "tools/check_native_cutscene.py": "67fa493fdf0c4da9f6126b4651e73b75ede2c16b09a45208b209e398c29295f6",
-    "tools/check_native_effects.py": "e8392bf1d803b65dd1b6ae8e474538034add468ca071c5ad73a60d80b81d8d6d",
-    "tools/check_native_frame_bridge.py": "7854ed1f8d95bd3416bf98ba36cb8a8ee2a2db813c3544846d0f76dfec362a49",
-    "tools/check_native_frame_scheduler.py": "d230ee355dbb4850d189d2b3242d9ab3df4f2d896d6d7c9dcb478a1e312998ae",
-    "tools/check_native_frame_time.py": "8c930fabbd13f3a5b552386b4caf62fb6f4caf1c19d58651d81d21ad070173fc",
-    "tools/check_native_graphics_pump.py": "bc60a4572ecea6ccd67a8db6569c8a66f67ea6cea84b3b959153aa5e1d71920f",
-    "tools/check_native_gravity.py": "1f9474b620800cd53cc1a1f37d3933a2fc01c06c1a20d461a97edeb89c6235e3",
-    "tools/check_native_input.py": "c90969552df9f682fad712205ccfda2cb4a3807fa9de07f5ea5ac006603e608b",
-    "tools/check_native_loop.py": "25cadc330a7a92802bca817a076f57bf65515457e2da7fa74001112f34058015",
-    "tools/check_native_model_animation.py": "213240f0c67dbfee952ec46bdf7e377c5f785a35a09ad2157823890121de9b5d",
-    "tools/check_native_player_motion.py": "07bf1c26fc5d36faa78511042f5e9036a30c921f964c46466701bd9bd53b49c4",
-    "tools/check_native_player_update.py": "794ded0f7faf9385b82f65b6a816583412a37cbcd61e954921fbccf84a5275c6",
-    "tools/check_native_prebuild.py": "7930387b602697655fb14e3352c4596d63f8542bc72ef32c5074a48e8d3aecb3",
-    "tools/check_native_present.py": "8e17fea40d504760bc32a76b58246990a218e8e8f0acd48109b92bc9a80072e7",
-    "tools/check_native_process_time.py": "4699d7c4ef7f7964ad6e0f96bb35a3bd2bc907c0adecf6d9f40887937cd48dc9",
-    "tools/check_native_scene34_draw.py": "641015183e7cd1f605977df21a6b6866b1022d0ea44f3bb98c78a765f1bf178a",
-    "tools/check_native_scene_transition.py": "015ef2e554b81ad57385db6ec1a080837f99ebca966125cb1d436d7e4b8cfc6c",
-    "tools/check_native_script_camera.py": "3c857d73fde374e265f05224f119aa6e3f70a4bcd941afebf4d0270084a45ef4",
-    "tools/check_native_session.py": "6a9cbbe7bcb96e32044506517bb6156131c4d811b24cf44ffeef724628b959f7",
-    "tools/check_native_simulation.py": "5b2f76a96a58d4747c7b77bd5cdd484692443ae03ffb1d4065aea36f2e8d389b",
-    "tools/check_native_story_pickups.py": "a70a762a93c6bacc9b81995f0b43121fbf996c2a592c4a2976bf76d30479f86c",
-    "tools/check_native_ui.py": "7146b14394c91b729223ef18f2de0489e0b9a915db9efe82ba4f48f2ae15c86d",
+    "tools/check_native_camera_control.py": "33adfe87eb049e081e6be643c9ccf002fab16820d446284f351d2f480d85eb4c",
+    "tools/check_native_camera_modes.py": "ed30501c7710bc934cc7cbd40903b46e6032e2ecab8663cb503bc51b4d7c38e6",
+    "tools/check_native_cutscene.py": "1f450d9f6748a719d90d568d88e14c908c638f5690ff03b89bd3027371c2c103",
+    "tools/check_native_effects.py": "fc4af5f600d2a52bae1e78ef267e00a6ba7216d483e51445255db4ff748c8e9e",
+    "tools/check_native_enemy.py": "abff9c42f9652ae198f7b9187e8ddfba5ce4ad0a97db043abf3a37c1dac02390",
+    "tools/check_native_frame_bridge.py": "f8479604fda294249150d2be67788c145396c4747e2da992f8e558f9dfef1e47",
+    "tools/check_native_frame_scheduler.py": "3bb1c46ae7bc07f7588b58e877e2eddb4fa031f5fda7cbfc42ce40c33e426c3f",
+    "tools/check_native_frame_time.py": "8cf2f4889f07dfd1fea7e230ff71e2823972284399da9b3bf806b96437ca955c",
+    "tools/check_native_graphics_pump.py": "9cf450647884b4e7e67a8a56a413cc1c116f9c4dcb601c26b9d67cc68c378a6d",
+    "tools/check_native_gravity.py": "cb94f6dc66955d07a10183a1c6c6fc46477c0ebd1c9c4d9badb2d33e029f8ac6",
+    "tools/check_native_input.py": "4fddb8885f820d6c52e723d135004862205979d4de687aa5e931f49cd8d7a8fc",
+    "tools/check_native_loop.py": "08b2ab1377e5e183ce9970dd87acca6edce9f525703483ae9a97d90a8c5b29f2",
+    "tools/check_native_model_animation.py": "3c984442c30366fee7914d628808a6fe03972ae7f046e573847bb7a3c8da6959",
+    "tools/check_native_player_motion.py": "6439369f51080b1d8681c9672d63afb4f5badef3577df1dfa67cc7fc71944c04",
+    "tools/check_native_player_update.py": "2641d00f6d48b1bca66c603523733179c4b9d07d2fe7ae4e268ca18d8386b807",
+    "tools/check_native_player_update_partitions.py": "e5daee33931f4dedacd81d816f9d8d23ede570faa53d6627039c50a2410fd15f",
+    "tools/check_native_prebuild.py": "eec5e33f8e8a5c81ac21d77f814b1db2810ee3f067c0bbaf89f6780f4003fe10",
+    "tools/check_native_present.py": "5d09333a20df03814963334eafaea996301f933396c001032c85f0b6068fb69c",
+    "tools/check_native_process_time.py": "e319f0f0db8a432d2ef9fe10923592d2294723dfb078a03817d89cc09a157836",
+    "tools/check_native_scene34_draw.py": "6943a1b2ba9747a01d3d6d6a8ee2a81547ba53ae9044f1dc323fcacfa6ffe2aa",
+    "tools/check_native_scene_transition.py": "03d9ec77a7276de51dccbec69498696162c2e4bf699605d46cf1f528fd35ed87",
+    "tools/check_native_script_camera.py": "301df1d8649f0bcbb0f8ac8d882227f3b2882a2c6c7d57d361c0cb90a098ceac",
+    "tools/check_native_session.py": "2b5655a78f8ab91786cf9f8da3bc5e0a54e38cf25074069262b324de712dfea5",
+    "tools/check_native_simulation.py": "e639240c45ab9eb6cc7218f27fef15e236e48a3f2a8dabd9beb4043cbe0e7827",
+    "tools/check_native_story_pickups.py": "19c87bafcbb2f60a8993df3353c44b50afba089a902f854ebe8d126aa6147b05",
+    "tools/check_native_ui.py": "aee50b1c54a1078bc4a0bb1f945f713c6bb849ae327159dbdaa4f76e04d5a413",
     "tools/check_overlay_load_state.py": "1a4934ececa9e8ab732ad36f4e1189601a59e64a56c86554cca370fec68f8864",
     "tools/decomp_annotations.py": "cc18b42a710a9998b9b33cbfe2c79009451496078b2136cdceb603d047c4b16b",
-    "tools/generate_startup.py": "b2fd1951e6fefd48c00c1c19ae2ec9c6ba82f13967c5030945a59a03d35b7f27",
-    "tools/native_timing_patches.py": "09c1314a8c38bcd13c92c30f76ca919d390d6a8ac9b044f9d34fe1b4de19ff3a",
+    "tools/generate_startup.py": "98a7f482369446981292db1add1d01f9430838d9e080b5fc780d75cd1a10ad11",
+    "tools/native_timing_patches.py": "3f65a89a0f4412fb2c7b25e12eb31f21f75d4d37f45f1c8c8fbb5b4ff10280dc",
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556"
   },
-  "local_execution_manifest_sha256": "282017ac2358b59b231173b1a973490ad8b5829c3c4ac63369a923f99f8ec3a8",
-  "initial_attempt_manifest_sha256": "2e59af8eb66c09529afc6320d9627a3bb08780b9fa4f85acca150c1352d1a67f",
+  "local_execution_manifest_sha256": "f300c779b97df3af1179292202c16a3764ca1fb37ccc7adebf926e0e23e8a5a3",
+  "initial_attempt_manifest_sha256": "92c5df40a90166a10c6288b0c579f1157d6913397eae597f6d3bb0d3a704ab8f",
+  "retry_manifest_sha256": "5214072240e9396a2326df8d7c62af1940bc93061e87bb0eb36121242f73370f",
   "no_game_gpu": true,
   "full_variable_fps_complete": false,
-  "user_requested_skip": true,
-  "full_cpu_suite_complete": false,
-  "completed_checks": 26,
-  "skipped_checks": [
-    "player_update"
-  ],
-  "user_skip_manifest_sha256": "5698a8ca171de37612e4de1ad324f93d16a7edda6b5bd128d52b48198baa5b28",
+  "user_requested_skip": false,
+  "full_cpu_suite_complete": true,
+  "completed_checks": 28,
+  "skipped_checks": [],
   "validated": [
-    "Signed wrapped angular velocity and acceleration for participant XYZ turns/tilts and script camera, Source handoff/restoration",
-    "Actual files root draw with background/prompt/arrow/highlight blink clocks and Original nested row multiplicity",
-    "UI-only policy rejection for unsupported game-world states; menu/gameplay/cutscene ownership selection",
-    "Input/time/model/camera/effects/gravity/process clocks, session/presentation/loop/banks/FIFO/late retirement",
-    "Live/newborn projectile scene-frame continuation and actual first room resource barrier",
-    "Connected item/linked129 complete lifetimes and commands; readable aliases/tokens/ABI/overlay identity"
+    "25 ROM-qualified enemy/NPC/projectile/effect types: 300 frozen/current Original and 900 Native schedules",
+    "Full player/world/NPC/weapon/damage/death/recovery, all24 settings and all original assertions",
+    "UI/cutscene/model/input/time/camera/effects/gravity/process and frame/session/presentation/bank/FIFO links",
+    "Scene transition, live/newborn projectiles, connected pickup lifetimes, decomp aliases and overlay identity"
   ],
   "limitations": [
-    "CPU fixtures use synthetic room/model/texture assets and explicit sound/resource/graphics boundaries; no real-level visual verification",
-    "Full player/world/weapon/damage/death/recovery dispatcher did not complete; serial and parallel attempts interrupted, not PASS",
-    "Standalone gravity/motion use explicit inactive GameplayPreview boundaries; acquired projectile implementations covered by scene-frame scope only",
-    "Pickup linked batch checks189 paired lifetimes at one setting; earlier exhaustive private guard/settings reports retain their original execution provenance and are not claimed rerun",
-    "Full variable FPS for remaining objects/platforms/enemy AI/minigames/general integration is unfinished"
+    "Synthetic models/room/resource/sound/graphics boundaries; no real level, renderer/GPU or visual validation",
+    "Unreviewed enemy scripts/effects return actual allocation failure and record commands; not all death particles or every FSM branch instantiated",
+    "Standalone leaf checks use explicit inactive enemy boundaries; acquired enemy owners covered by actual connected enemy scope",
+    "Remaining enemy families/bosses and full variable FPS for objects/platforms/minigames/general integration unfinished"
   ]
 }

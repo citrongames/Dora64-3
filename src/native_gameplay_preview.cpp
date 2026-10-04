@@ -1,4 +1,5 @@
 #include "native_gameplay_preview.hpp"
+#include "native_enemy.hpp"
 #include "native_simulation_time.hpp"
 #include "native_camera_timeline.hpp"
 #include "native_input_timeline.hpp"
@@ -990,7 +991,7 @@ bool scene_completed_identity(uint8_t* ram,const SceneCompletedObject& v) {
         game_model_animation().lifetime_token(v.model)!=v.lifetime||game_model_animation().run_token(v.model)!=v.run||
         !owns_common_object(ram,v.actor))return false;
     uint8_t* rdram=ram;const auto kind=MEM_H(0x20,int32_t(v.physical));
-    return kind>=0&&kind<230&&uint32_t(word(ram,0x80202064u+unsigned(kind)*84))==v.callback&&
+    return kind>=0&&kind<592&&uint32_t(word(ram,0x80202064u+unsigned(kind)*84))==v.callback&&
         scene_object_fields(ram,v.actor,v.physical,v.model)==v.expected;
 }
 bool scene_completed_handoff_valid(uint8_t* ram,const SceneCompletedObject& v) {
@@ -1002,7 +1003,7 @@ std::optional<SceneCompletedObject> scene_capture_completed(uint8_t* ram,uint32_
     if(!pointer(physical,0xDC)||!pointer(model,0x84))return std::nullopt;
     const auto lifetime=game_model_animation().lifetime_token(model);if(!lifetime)return std::nullopt;
     uint8_t* rdram=ram;const auto kind=MEM_H(0x20,int32_t(physical));
-    if(kind<0||kind>=230)return std::nullopt;
+    if(kind<0||kind>=592)return std::nullopt;
     return SceneCompletedObject{actor,physical,model,uint32_t(word(ram,0x80202064u+unsigned(kind)*84)),lifetime,
         game_model_animation().run_token(model),slot09_source_pass+1,scene_object_fields(ram,actor,physical,model)};
 }
@@ -1305,6 +1306,7 @@ bool owns_common_object(uint8_t* ram,uint32_t actor) {
     if(!pointer(actor,0xCC))return false;
     const auto physics=uint32_t(word(ram,actor+0x98));
     if(!pointer(physics,0xDC))return false;
+    if(native_enemy_owned(ram,actor))return true;
     uint8_t* rdram=ram;
     const auto kind=MEM_H(0x20,int32_t(physics));
     // Reviewed callbacks in .scene1 share common movement/opacity/timers
@@ -1451,7 +1453,7 @@ void register_object_clocks(uint8_t* ram,const SimulationSlice& slice) {
         const auto actor=0x801734B8u+slot*0xCC;
         if(!word(ram,actor+0x94)||!owns_common_object(ram,actor)) {cancel_slot09_story_start(ram,slot);cancel_slot09_special_turn(ram,slot);object_clocks[slot]={};continue;}
         const auto identity=object_identity(ram,actor,start);
-        if(identity.kind!=7&&identity.kind!=9&&identity.kind!=18&&identity.kind!=129&&identity.kind!=130&&identity.kind!=131&&!standard_pickup_kind(identity.kind)&&!city_patrol_callback(identity.kind)&&!slot09_callback(identity.kind)&&(identity.kind<71||identity.kind>77)) {object_clocks[slot]={};continue;}
+        if(identity.kind!=7&&identity.kind!=9&&identity.kind!=18&&identity.kind!=129&&identity.kind!=130&&identity.kind!=131&&!standard_pickup_kind(identity.kind)&&!city_patrol_callback(identity.kind)&&!slot09_callback(identity.kind)&&!native_enemy_kind(identity.kind)&&(identity.kind<71||identity.kind>77)) {object_clocks[slot]={};continue;}
         auto& clock=object_clocks[slot];
         if(!same_object(clock,identity)) {clock=identity;if(!clock.local)clock.origin=0;}
     }
@@ -1516,7 +1518,9 @@ void begin_object_scope(uint8_t* ram,uint32_t actor) {
     }
     const auto slot=(actor-0x801734B8u)/0xCC;
     if(slot>=object_clocks.size())return;
-    const auto& clock=object_clocks[slot];
+    auto& clock=object_clocks[slot];
+    const auto current=object_identity(ram,actor,slice_position(*gameplay_slice,false));
+    if(native_enemy_kind(current.kind)&&current.local&&!same_object(clock,current))clock=current;
     if(!clock.local||!clock.origin||!same_object(clock,object_identity(ram,actor,0)))return;
     const auto start=slice_position(*gameplay_slice,false);
     if(start<clock.origin)throw std::logic_error("Object received time before birth");
@@ -1916,7 +1920,19 @@ extern "C" void dora3_native_homing_end(uint8_t* rdram,recomp_context* ctx) {
     const auto actor=uint32_t(ctx->r17),model=uint32_t(word(rdram,actor+0x74));
     game_model_animation().motion_end(rdram,model,actor);
 }
+bool native_gameplay_preview_object_pass() {return object_call&&active_simulation_slice()&&timeline;}
+void native_gameplay_preview_enemy_command_clock(uint8_t* ram,uint32_t actor) {
+    if(!object_call||!gameplay_slice||!native_enemy_owned(ram,actor))throw std::logic_error("Invalid enemy command clock");
+    const auto slot=(actor-0x801734B8u)/0xCC;
+    auto fresh=object_identity(ram,actor,slice_position(*gameplay_slice,false));fresh.local=true;
+    object_clocks[slot]=fresh;
+    object_scope.reset();object_suspension.reset();object_suspension.emplace();
+    try {object_scope.emplace(SimulationSlice{gameplay_slice->numerator,gameplay_slice->denominator,0,0});}
+    catch(...){object_suspension.reset();throw;}
+}
+
 void native_gameplay_preview_reset(uint8_t* ram) {
+    native_enemy_reset();
     if(ram)native_input_end(ram);
     for(unsigned slot=0;slot<slot09_story_starts.size();++slot)cancel_slot09_story_start(ram,slot);
     for(unsigned slot=0;slot<slot09_special_turns.size();++slot)cancel_slot09_special_turn(ram,slot);
@@ -2184,6 +2200,8 @@ int pickup_motion_hook(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
 }
 
 extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32_t site) {
+    if(site==0x801E8E00||site==0x801E8E10||site==0x801E8E20)
+        if(native_enemy_axis(ram,ctx,site))return 1;
     if(site==0x801EBCC0&&object_call&&active_simulation_slice()) {
         uint8_t* rdram=ram;const auto actor=uint32_t(word(ram,0x8021BDEC)),physical=uint32_t(word(ram,actor+0x98)),slot=(actor-0x801734B8u)/0xCC;
         if(!owns_common_object(ram,actor)||slot>=pickup_scatter_source_periods.size()||!pickup_scatter_source_periods[slot])throw std::logic_error("Missing Native scatter period");
@@ -2415,6 +2433,7 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
     }
     if(site==0x801E8E7C) {
         const auto actor=uint32_t(word(ram,0x8021BDEC)),slot=(actor-0x801734B8u)/0xCC;
+        native_enemy_motion_end(ram,actor);
         pickup_idle_motion_end(ram,actor,slot,slot09_source_pass,object_call,slot<scene_frame_entered.size()&&scene_frame_entered[slot]);
         flash_source_end(ram,actor,slot,slot09_source_pass,object_call,slot<scene_frame_entered.size()&&scene_frame_entered[slot]);
         pickup_scatter_end(ram,actor,slot,slot09_source_pass,object_call);

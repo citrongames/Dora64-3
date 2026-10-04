@@ -7,9 +7,10 @@
   "source_sha256": {
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "research/native-input-check.cpp": "ea42a1347957173d2aae86f6315aed85ed11bdb6bacd7fe73b752a312637f025",
+    "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-    "tools/check_native_input.py": "c90969552df9f682fad712205ccfda2cb4a3807fa9de07f5ea5ac006603e608b"
+    "tools/check_native_input.py": "4fddb8885f820d6c52e723d135004862205979d4de687aa5e931f49cd8d7a8fc"
   },
-  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
+  "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df",
   "sanitizers": "ASan/LSan; UBSan new C++"
 }

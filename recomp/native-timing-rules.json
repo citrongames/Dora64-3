@@ -2413,7 +2413,8 @@
       "threshold_scale": 1,
       "role": "animation_frame_crossing",
       "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel",
-      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending"
+      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending",
+      "enemy_source_commands": true
     },
     {
       "section": ".demo_slot0",
@@ -2460,8 +2461,9 @@
       "other_register": 2,
       "threshold_scale": 1,
       "role": "animation_frame_crossing",
-      "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel",
-      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending"
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending",
+      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending",
+      "enemy_source_commands": true
     },
     {
       "section": ".level1_slot0",
@@ -2471,13 +2473,14 @@
       "site": "0x8021E09C",
       "expected_word": "0x46020032",
       "operation": "model_frame_event",
-      "read_site": "0x8021e088",
+      "read_site": "0x8021E088",
       "register": 0,
       "other_register": 2,
       "threshold_scale": 1,
       "role": "animation_frame_crossing",
       "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel",
-      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending"
+      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending",
+      "enemy_source_commands": true
     },
     {
       "section": ".level1_slot0",
@@ -2487,13 +2490,14 @@
       "site": "0x8021ED78",
       "expected_word": "0x46020032",
       "operation": "model_frame_event",
-      "read_site": "0x8021ed64",
+      "read_site": "0x8021ED64",
       "register": 0,
       "other_register": 2,
       "threshold_scale": 1,
       "role": "animation_frame_crossing",
       "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel",
-      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending"
+      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending",
+      "enemy_source_commands": true
     },
     {
       "section": ".level1_slot0",
@@ -2503,13 +2507,14 @@
       "site": "0x80221EB8",
       "expected_word": "0x46020032",
       "operation": "model_frame_event",
-      "read_site": "0x80221ea4",
+      "read_site": "0x80221EA4",
       "register": 0,
       "other_register": 2,
       "threshold_scale": 1,
       "role": "animation_frame_crossing",
       "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel",
-      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending"
+      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending",
+      "enemy_source_commands": true
     },
     {
       "section": ".level1_slot0",
@@ -2519,13 +2524,14 @@
       "site": "0x80222B64",
       "expected_word": "0x46020032",
       "operation": "model_frame_event",
-      "read_site": "0x80222b54",
+      "read_site": "0x80222B54",
       "register": 0,
       "other_register": 2,
       "threshold_scale": 1,
       "role": "animation_frame_crossing",
       "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel",
-      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending"
+      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending",
+      "enemy_source_commands": true
     },
     {
       "section": ".level1_slot0",
@@ -2541,7 +2547,8 @@
       "threshold_scale": 1,
       "role": "animation_frame_crossing",
       "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel",
-      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending"
+      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending",
+      "enemy_source_commands": true
     },
     {
       "section": ".cave_slot0",
@@ -8414,6 +8421,1691 @@
       "evidence": "Actual full files draw root includes BDA88 decoration6840, BEA58 prompt6700/arrow68C0/highlight681C, BDEFC rows, BEDA8 answers and68AC draw-state copy. Snapshot6700..68C8 preserves Original draw multiplicity on additional Native frames.",
       "status": "Explicit UI owner; Original outside owner unchanged",
       "end": 1
+    },
+    {
+      "section": ".demo_slot1",
+      "function": "0x8022DC90",
+      "function_name": "dora3_s5_demo_8022DC90",
+      "function_sha256": "779e012ed836cae55cf04e938deb67726a4479413a75da1126fe21f17e0c5b26",
+      "site": "0x8022DC90",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending"
+    },
+    {
+      "section": ".demo_slot1",
+      "function": "0x8022E52C",
+      "function_name": "dora3_s5_demo_8022E52C",
+      "function_sha256": "c437b1d189653d973858459f15b2f74eb315817e49cad5d507cba2f7035760a6",
+      "site": "0x8022E52C",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021FAE4",
+      "function_name": "dora3_s4_demo_8021FAE4",
+      "function_sha256": "d89c7fe9b5aee5905ba53154d6486b45642d947490a54eafc0b0380bb024d84f",
+      "site": "0x8021FAE4",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80220830",
+      "function_name": "dora3_s4_demo_80220830",
+      "function_sha256": "1bffe62e93346bd3219e67b00583fed124afe5140417be50f7d463f1f969644b",
+      "site": "0x80220830",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80220CD0",
+      "function_name": "dora3_s4_demo_80220CD0",
+      "function_sha256": "9ba21ddac8e8cac31c9c9ec1bec0fcfa7fb03b30983b39a1a1bb2f98d42d25b5",
+      "site": "0x80220CD0",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021E29C",
+      "function_name": "dora3_s4_demo_8021E29C",
+      "function_sha256": "62738ddd91fd2e417cda9ebd6b3b363e78a64b0dc9d258a2b0d9ea5fc94d96f0",
+      "site": "0x8021E29C",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021EC7C",
+      "function_name": "dora3_s4_demo_8021EC7C",
+      "function_sha256": "6559cb7f655778a7d002f332dcf05f013990e068a4da47759b5a0a166c221124",
+      "site": "0x8021EC7C",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021F044",
+      "function_name": "dora3_s4_demo_8021F044",
+      "function_sha256": "91119fb6d6f28d58339f08b7a68013bae25be170d5134c58a2d10ba26d35cf97",
+      "site": "0x8021F044",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E810C",
+      "function_name": "dora3_s3_801E810C",
+      "function_sha256": "14e80423d53c6265fa6992e75f151e5f3a36ea708e077fce5e7f92ec48e1fa24",
+      "site": "0x801E810C",
+      "expected_word": "0x27BDFFC0",
+      "operation": "native_enemy_gravity",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending",
+      "end": 0
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E810C",
+      "function_name": "dora3_s3_801E810C",
+      "function_sha256": "14e80423d53c6265fa6992e75f151e5f3a36ea708e077fce5e7f92ec48e1fa24",
+      "site": "0x801E81F0",
+      "expected_word": "0x8FBF002C",
+      "operation": "native_enemy_gravity",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending",
+      "end": 1
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E88C4",
+      "function_name": "dora3_s3_demo_801E88C4",
+      "function_sha256": "46f258c7c258e338f8d40b9faa3ff14139809422c0aa1cb988f4133a1897f3ff",
+      "site": "0x801E88C4",
+      "expected_word": "0x27BDFFD8",
+      "operation": "native_enemy_turn",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending",
+      "end": 0
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E88C4",
+      "function_name": "dora3_s3_demo_801E88C4",
+      "function_sha256": "46f258c7c258e338f8d40b9faa3ff14139809422c0aa1cb988f4133a1897f3ff",
+      "site": "0x801E8930",
+      "expected_word": "0x8FBF0014",
+      "operation": "native_enemy_turn",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending",
+      "end": 1
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E8BDC",
+      "function_name": "dora3_s3_801E8BDC",
+      "function_sha256": "2879bb417c70bc311b9f21b162530b9232eaee84dc501722c82f9006d8bfae7f",
+      "site": "0x801E8DA4",
+      "expected_word": "0x844200D8",
+      "operation": "native_enemy_blink",
+      "evidence": "Block2: exact Original stage callback and common equation/command boundary; no game/GPU; connected validation pending",
+      "end": 0
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021ED7C",
+      "function_name": "dora3_s4_demo_8021ED7C",
+      "function_sha256": "c7aac5754235fb902af161c80741fd24ca3573a8ebf22d5296428c5c2ee68ca6",
+      "site": "0x8021EF44",
+      "expected_word": "0xE4400014",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021D7B8",
+      "function_name": "dora3_s4_demo_8021D7B8",
+      "function_sha256": "d62a89ec83e28a32bf9e4487aed877b10360eb60289c86c415553949192ff8e9",
+      "site": "0x8021D85C",
+      "expected_word": "0xE4600000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021DE20",
+      "function_name": "dora3_s4_demo_8021DE20",
+      "function_sha256": "4a1d3e4f25e4d6fb7671e9124e34757aa58d27f7a43e8d9fd5ed2686d9e37e14",
+      "site": "0x8021E030",
+      "expected_word": "0xE4800000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021E644",
+      "function_name": "dora3_s4_demo_8021E644",
+      "function_sha256": "f8900fdc1e8279f9a989e2ea163668b5ddb6a1947b5dfbecda40a39b8f6ec67f",
+      "site": "0x8021E970",
+      "expected_word": "0xE4C00000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021E644",
+      "function_name": "dora3_s4_demo_8021E644",
+      "function_sha256": "f8900fdc1e8279f9a989e2ea163668b5ddb6a1947b5dfbecda40a39b8f6ec67f",
+      "site": "0x8021EA44",
+      "expected_word": "0xE4400000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021F234",
+      "function_name": "dora3_s4_demo_8021F234",
+      "function_sha256": "51488c1d03a6c3f97b06c71a5f8b9962e3640361a581c6e14437a1bee90e1e07",
+      "site": "0x8021F2EC",
+      "expected_word": "0xE4600000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021F47C",
+      "function_name": "dora3_s4_demo_8021F47C",
+      "function_sha256": "80048f20fd2db75079a3eb7ddeb04a5c10c1fec6ed7ab0369d55b4c1c6b6d3ed",
+      "site": "0x8021F5B4",
+      "expected_word": "0xE4800000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021F47C",
+      "function_name": "dora3_s4_demo_8021F47C",
+      "function_sha256": "80048f20fd2db75079a3eb7ddeb04a5c10c1fec6ed7ab0369d55b4c1c6b6d3ed",
+      "site": "0x8021F720",
+      "expected_word": "0xE4600000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021F8F4",
+      "function_name": "dora3_s4_demo_8021F8F4",
+      "function_sha256": "16e5afd68fa4b3c263a4edb2c394683263d0efec8b3ca6adf866149886d5ba64",
+      "site": "0x8021FACC",
+      "expected_word": "0xE4400000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021FC60",
+      "function_name": "dora3_s4_demo_8021FC60",
+      "function_sha256": "37aeca3a0ac71a24a647a8c55b85df85331a6a16e3ebfebdf77c16c95e539540",
+      "site": "0x8021FD24",
+      "expected_word": "0xE4600000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021FEAC",
+      "function_name": "dora3_s4_demo_8021FEAC",
+      "function_sha256": "045c8584967e276201da244c4d637e82190e53dedbdd4cd7d1a48d5aab586f0f",
+      "site": "0x8021FFE0",
+      "expected_word": "0xE4800000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021FEAC",
+      "function_name": "dora3_s4_demo_8021FEAC",
+      "function_sha256": "045c8584967e276201da244c4d637e82190e53dedbdd4cd7d1a48d5aab586f0f",
+      "site": "0x8022012C",
+      "expected_word": "0xE4600000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80220618",
+      "function_name": "dora3_s4_demo_80220618",
+      "function_sha256": "73d5aa6f80cfd4354c54483e497e4d667d595c82905913b7c87cac80a3ebe244",
+      "site": "0x80220818",
+      "expected_word": "0xE4400000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021D7B8",
+      "function_name": "dora3_s4_demo_8021D7B8",
+      "function_sha256": "d62a89ec83e28a32bf9e4487aed877b10360eb60289c86c415553949192ff8e9",
+      "site": "0x8021DA28",
+      "expected_word": "0xE48200A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021E41C",
+      "function_name": "dora3_s4_demo_8021E41C",
+      "function_sha256": "5ccf4efc912e8f6ac6bf160cc08ead1c236b7f799f82eb72b91aa560e2c359e3",
+      "site": "0x8021E584",
+      "expected_word": "0xE48200A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021D7B8",
+      "function_name": "dora3_s4_demo_8021D7B8",
+      "function_sha256": "d62a89ec83e28a32bf9e4487aed877b10360eb60289c86c415553949192ff8e9",
+      "site": "0x8021DAC4",
+      "expected_word": "0xE46000A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021E41C",
+      "function_name": "dora3_s4_demo_8021E41C",
+      "function_sha256": "5ccf4efc912e8f6ac6bf160cc08ead1c236b7f799f82eb72b91aa560e2c359e3",
+      "site": "0x8021E624",
+      "expected_word": "0xE46000A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot1",
+      "function": "0x8022DBF4",
+      "function_name": "dora3_s5_demo_8022DBF4",
+      "function_sha256": "6601911827c0c27b247ebeaa5d34066910513b26deee3a59571df5c455c5223d",
+      "site": "0x8022DC5C",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot1",
+      "function": "0x8022E490",
+      "function_name": "dora3_s5_demo_8022E490",
+      "function_sha256": "a9370049f0c165089662c0b32d5cdc79d87ff992f87afcc145fe715682633499",
+      "site": "0x8022E4F8",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot1",
+      "function": "0x8022DDF4",
+      "function_name": "dora3_s5_demo_8022DDF4",
+      "function_sha256": "027790831a6e8ff53b0ed904fa98f4cbec9da8889e4680bf4646caf93ad70d50",
+      "site": "0x8022DF60",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot1",
+      "function": "0x8022D9C0",
+      "function_name": "dora3_s5_demo_8022D9C0",
+      "function_sha256": "0b04afbd1160efe77b32c258fdaaa1591b2fe8cf9130716c2c2ef5752bac0f96",
+      "site": "0x8022DA64",
+      "expected_word": "0xE4800000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot1",
+      "function": "0x8022D9C0",
+      "function_name": "dora3_s5_demo_8022D9C0",
+      "function_sha256": "0b04afbd1160efe77b32c258fdaaa1591b2fe8cf9130716c2c2ef5752bac0f96",
+      "site": "0x8022DAA8",
+      "expected_word": "0xE4800000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80220948",
+      "function_name": "dora3_s4_demo_80220948",
+      "function_sha256": "bbb9e1a6ffed2a149bb2683d860fb8c6185b11c9840ecaeadf9fa5b0a5e6701e",
+      "site": "0x802209A8",
+      "expected_word": "0x86020036",
+      "operation": "native_enemy_attachment_begin",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80220948",
+      "function_name": "dora3_s4_demo_80220948",
+      "function_sha256": "bbb9e1a6ffed2a149bb2683d860fb8c6185b11c9840ecaeadf9fa5b0a5e6701e",
+      "site": "0x802209B4",
+      "expected_word": "0x8603007C",
+      "operation": "native_enemy_attachment_label",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80220948",
+      "function_name": "dora3_s4_demo_80220948",
+      "function_sha256": "bbb9e1a6ffed2a149bb2683d860fb8c6185b11c9840ecaeadf9fa5b0a5e6701e",
+      "site": "0x80220B88",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_attachment_end",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".startup",
+      "function": "0x80039544",
+      "function_name": "dora3_s0_menu_80039544",
+      "function_sha256": "4966c488cfd922c9accc09c1a33adbc9b3732e7edd1313c27591a40a3d982b06",
+      "site": "0x80039548",
+      "expected_word": "0x03E00008",
+      "operation": "native_enemy_clip_end",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8022036C",
+      "function_name": "dora3_s4_demo_8022036C",
+      "function_sha256": "c21c8270c31da89b3edfd857fe10c330babe730a74d010ed296cf86a5786cf94",
+      "site": "0x802205B4",
+      "expected_word": "0x4602003E",
+      "operation": "native_enemy_model_zero",
+      "evidence": "Reviewed block2 Original equation/attachment/clip-command boundary; full block CPU validation pending"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E7F54",
+      "function_name": "dora3_s3_801E7F54",
+      "function_sha256": "aa38cd448460ecd671975adfa8831a1be0f8a0b2556adf5e0d79774f7f3099b3",
+      "site": "0x801E7F88",
+      "expected_word": "0x46001082",
+      "operation": "native_enemy_projection",
+      "evidence": "Actual shared horizontal/vertical projection operands; full connected enemy validation pending"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E7F54",
+      "function_name": "dora3_s3_801E7F54",
+      "function_sha256": "aa38cd448460ecd671975adfa8831a1be0f8a0b2556adf5e0d79774f7f3099b3",
+      "site": "0x801E7FA8",
+      "expected_word": "0x46001082",
+      "operation": "native_enemy_projection",
+      "evidence": "Actual shared horizontal/vertical projection operands; full connected enemy validation pending"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E7FC4",
+      "function_name": "dora3_s3_801E7FC4",
+      "function_sha256": "3878a3c68a11702933e35ecbabf08eb5ffb6717e25c1bdd1230b1b08f38b1c96",
+      "site": "0x801E8004",
+      "expected_word": "0xE6140014",
+      "operation": "native_enemy_projection",
+      "evidence": "Actual shared horizontal/vertical projection operands; full connected enemy validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021DAE8",
+      "function_name": "dora3_s4_demo_8021DAE8",
+      "function_sha256": "01cd2a739e57a02069f63cae92577f623e16f0fcbdf3fb45873adc8d6b14e70b",
+      "site": "0x8021DC9C",
+      "expected_word": "0xE4800000",
+      "operation": "native_enemy_equation",
+      "evidence": "BroboA100 pursuit phase2 decrements scalar speed by1; transition clamp remains instantaneous; full block validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220358",
+      "function_name": "dora3_s31_remaining_80220358",
+      "function_sha256": "6741a96b31852776aa347eab16c8c8fcd44d565796197ff6be3fe2da0cb44917",
+      "site": "0x80220358",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Reviewed complete Sabotti1/2 state1/2/10 and BroboA101 effect; Original float stores/counters/collision commands; connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220BAC",
+      "function_name": "dora3_s31_remaining_80220BAC",
+      "function_sha256": "289073dd77df8ba223f65c9f608c6383a08dcfa84bffa89bcc2ae7163a4619a1",
+      "site": "0x80220BAC",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Reviewed complete Sabotti1/2 state1/2/10 and BroboA101 effect; Original float stores/counters/collision commands; connected validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8021F0A8",
+      "function_name": "dora3_s4_demo_8021F0A8",
+      "function_sha256": "56c63f8163625a5d00ed6c276709326230bb0553053cd813daa0152767dea170",
+      "site": "0x8021F0A8",
+      "expected_word": "0x3C048022",
+      "operation": "native_enemy_callback",
+      "evidence": "Reviewed complete Sabotti1/2 state1/2/10 and BroboA101 effect; Original float stores/counters/collision commands; connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x8021FD34",
+      "function_name": "dora3_s31_remaining_8021FD34",
+      "function_sha256": "30d8487d372557fbc2d30f1a5aae9070d455cd5c6abbc0597cfcfb216e3e2168",
+      "site": "0x8021FDD8",
+      "expected_word": "0xE440000C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed complete Sabotti1/2 state1/2/10 and BroboA101 effect; Original float stores/counters/collision commands; connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x802204BC",
+      "function_name": "dora3_s31_remaining_802204BC",
+      "function_sha256": "7ddc1a87d6f3345c9c809ff3de2e3680ae54e38bb1597f3701d79056ade848c2",
+      "site": "0x802205E8",
+      "expected_word": "0xE440000C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed complete Sabotti1/2 state1/2/10 and BroboA101 effect; Original float stores/counters/collision commands; connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220280",
+      "function_name": "dora3_s31_remaining_80220280",
+      "function_sha256": "b43ba2d868563e0cf272f5b0401100dedccd8d8ae4fd50a8b1a5bdf5d5935dbe",
+      "site": "0x80220324",
+      "expected_word": "0xE4400014",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed complete Sabotti1/2 state1/2/10 and BroboA101 effect; Original float stores/counters/collision commands; connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220A8C",
+      "function_name": "dora3_s31_remaining_80220A8C",
+      "function_sha256": "8f5ee96b4b1695e958784004dfd42d8f0ffa42ab34a9729f54b5239384cc6bc9",
+      "site": "0x80220B5C",
+      "expected_word": "0xE4400014",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed complete Sabotti1/2 state1/2/10 and BroboA101 effect; Original float stores/counters/collision commands; connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220630",
+      "function_name": "dora3_s31_remaining_80220630",
+      "function_sha256": "229227dbfa3435e5463e72ace421761240ae905af09b99674cadb39950ce81bb",
+      "site": "0x80220A14",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed complete Sabotti1/2 state1/2/10 and BroboA101 effect; Original float stores/counters/collision commands; connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220630",
+      "function_name": "dora3_s31_remaining_80220630",
+      "function_sha256": "229227dbfa3435e5463e72ace421761240ae905af09b99674cadb39950ce81bb",
+      "site": "0x80220874",
+      "expected_word": "0xE4400000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed complete Sabotti1/2 state1/2/10 and BroboA101 effect; Original float stores/counters/collision commands; connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220630",
+      "function_name": "dora3_s31_remaining_80220630",
+      "function_sha256": "229227dbfa3435e5463e72ace421761240ae905af09b99674cadb39950ce81bb",
+      "site": "0x802207E4",
+      "expected_word": "0xE4400004",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed complete Sabotti1/2 state1/2/10 and BroboA101 effect; Original float stores/counters/collision commands; connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x8022164C",
+      "function_name": "dora3_s31_remaining_8022164C",
+      "function_sha256": "de20b5a5cdd17721f0933f4f95cfc0349dd3a66be47bf7c24cbb042964e32748",
+      "site": "0x8022164C",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021E600",
+      "function_name": "dora3_s7_level1_8021E600",
+      "function_sha256": "7e8fdb70bebf7d5e360bc43b1fe09942ba2d171d476b01d99ce1c461bbff51da",
+      "site": "0x8021E600",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021F428",
+      "function_name": "dora3_s7_level1_8021F428",
+      "function_sha256": "bcb9b2d33248182ec39665a67bff7f77159cc11b7256b12291ea2ca16945a271",
+      "site": "0x8021F428",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021F618",
+      "function_name": "dora3_s7_level1_8021F618",
+      "function_sha256": "4d3f570afe33cd78f71350f1d992e35e1b2ce98a8e0aa7ca6f7793fa5bf6b939",
+      "site": "0x8021F618",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80220538",
+      "function_name": "dora3_s7_level1_80220538",
+      "function_sha256": "399db2062dba149f5f3eb2073ee3d8f0dc547133801dc73ce4511293f619afa2",
+      "site": "0x80220538",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x802207C8",
+      "function_name": "dora3_s7_level1_802207C8",
+      "function_sha256": "61033e35e1e840a97ea00b5eae57d8c6a8f8adeb26cf3581fd69febfce2c9d14",
+      "site": "0x802207C8",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220D28",
+      "function_name": "dora3_s31_remaining_80220D28",
+      "function_sha256": "d256f9ee984550a39846a06988d36eba3b71a61ef03997a200b3cd8ac2d09870",
+      "site": "0x80220E90",
+      "expected_word": "0xE4400004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220D28",
+      "function_name": "dora3_s31_remaining_80220D28",
+      "function_sha256": "d256f9ee984550a39846a06988d36eba3b71a61ef03997a200b3cd8ac2d09870",
+      "site": "0x80220EA8",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220F7C",
+      "function_name": "dora3_s31_remaining_80220F7C",
+      "function_sha256": "ba7697a214b4036dc1e7a5b795e4bd6c8d9f7e08bf28302bf31a4635d478a5c9",
+      "site": "0x80221048",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220F7C",
+      "function_name": "dora3_s31_remaining_80220F7C",
+      "function_sha256": "ba7697a214b4036dc1e7a5b795e4bd6c8d9f7e08bf28302bf31a4635d478a5c9",
+      "site": "0x8022131C",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220F7C",
+      "function_name": "dora3_s31_remaining_80220F7C",
+      "function_sha256": "ba7697a214b4036dc1e7a5b795e4bd6c8d9f7e08bf28302bf31a4635d478a5c9",
+      "site": "0x80221440",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80221510",
+      "function_name": "dora3_s31_remaining_80221510",
+      "function_sha256": "7f50aad64631721fac2b62deed9fe512708e596da93be5f83e0278a0425e8a6f",
+      "site": "0x802215B0",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220F7C",
+      "function_name": "dora3_s31_remaining_80220F7C",
+      "function_sha256": "ba7697a214b4036dc1e7a5b795e4bd6c8d9f7e08bf28302bf31a4635d478a5c9",
+      "site": "0x802211BC",
+      "expected_word": "0xE5000000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220F7C",
+      "function_name": "dora3_s31_remaining_80220F7C",
+      "function_sha256": "ba7697a214b4036dc1e7a5b795e4bd6c8d9f7e08bf28302bf31a4635d478a5c9",
+      "site": "0x8022134C",
+      "expected_word": "0xE4600000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220F7C",
+      "function_name": "dora3_s31_remaining_80220F7C",
+      "function_sha256": "ba7697a214b4036dc1e7a5b795e4bd6c8d9f7e08bf28302bf31a4635d478a5c9",
+      "site": "0x80221404",
+      "expected_word": "0xE4800000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80220F7C",
+      "function_name": "dora3_s31_remaining_80220F7C",
+      "function_sha256": "ba7697a214b4036dc1e7a5b795e4bd6c8d9f7e08bf28302bf31a4635d478a5c9",
+      "site": "0x80221324",
+      "expected_word": "0xE484000C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80221510",
+      "function_name": "dora3_s31_remaining_80221510",
+      "function_sha256": "7f50aad64631721fac2b62deed9fe512708e596da93be5f83e0278a0425e8a6f",
+      "site": "0x80221624",
+      "expected_word": "0xE4800018",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80221510",
+      "function_name": "dora3_s31_remaining_80221510",
+      "function_sha256": "7f50aad64631721fac2b62deed9fe512708e596da93be5f83e0278a0425e8a6f",
+      "site": "0x80221628",
+      "expected_word": "0xE4800020",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".remaining_slot0_04",
+      "function": "0x80221510",
+      "function_name": "dora3_s31_remaining_80221510",
+      "function_sha256": "7f50aad64631721fac2b62deed9fe512708e596da93be5f83e0278a0425e8a6f",
+      "site": "0x80221634",
+      "expected_word": "0xE484001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021D9CC",
+      "function_name": "dora3_s7_level1_8021D9CC",
+      "function_sha256": "7f9a58c61f6de8d663227d59c859f885d9f5bf2cc79b113d9000ee1ce8405dd4",
+      "site": "0x8021DB0C",
+      "expected_word": "0xE4600008",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021E1C4",
+      "function_name": "dora3_s7_level1_8021E1C4",
+      "function_sha256": "b08f9d35ade0b60ea96a016cf49900db4d9e4c4e0c76e9a472dd021fccdd209d",
+      "site": "0x8021E59C",
+      "expected_word": "0xE4800008",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021E948",
+      "function_name": "dora3_s7_level1_8021E948",
+      "function_sha256": "90ebc8416d2e9152db549c56ec0fd7e21454c6a6c6db5ca29aa8c26cb7506d03",
+      "site": "0x8021EAF0",
+      "expected_word": "0xE4400008",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021DB58",
+      "function_name": "dora3_s7_level1_8021DB58",
+      "function_sha256": "fa8b0138c0fb7be674743a275c2b111c131d08923c6abc95b534cfec71f9dfac",
+      "site": "0x8021DC28",
+      "expected_word": "0xE4600000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021DB58",
+      "function_name": "dora3_s7_level1_8021DB58",
+      "function_sha256": "fa8b0138c0fb7be674743a275c2b111c131d08923c6abc95b534cfec71f9dfac",
+      "site": "0x8021DFA0",
+      "expected_word": "0xE4800000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021E1C4",
+      "function_name": "dora3_s7_level1_8021E1C4",
+      "function_sha256": "b08f9d35ade0b60ea96a016cf49900db4d9e4c4e0c76e9a472dd021fccdd209d",
+      "site": "0x8021E300",
+      "expected_word": "0xE4800000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021E948",
+      "function_name": "dora3_s7_level1_8021E948",
+      "function_sha256": "90ebc8416d2e9152db549c56ec0fd7e21454c6a6c6db5ca29aa8c26cb7506d03",
+      "site": "0x8021EB5C",
+      "expected_word": "0xE4800000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021E948",
+      "function_name": "dora3_s7_level1_8021E948",
+      "function_sha256": "90ebc8416d2e9152db549c56ec0fd7e21454c6a6c6db5ca29aa8c26cb7506d03",
+      "site": "0x8021EE9C",
+      "expected_word": "0xE4400000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021E948",
+      "function_name": "dora3_s7_level1_8021E948",
+      "function_sha256": "90ebc8416d2e9152db549c56ec0fd7e21454c6a6c6db5ca29aa8c26cb7506d03",
+      "site": "0x8021EF40",
+      "expected_word": "0xE4800000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021E948",
+      "function_name": "dora3_s7_level1_8021E948",
+      "function_sha256": "90ebc8416d2e9152db549c56ec0fd7e21454c6a6c6db5ca29aa8c26cb7506d03",
+      "site": "0x8021F0B0",
+      "expected_word": "0xE4800000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021F120",
+      "function_name": "dora3_s7_level1_8021F120",
+      "function_sha256": "f0ca27e5d3906ff6d03b016becf2db72c49d20771de730e58d57b1521f13a7d0",
+      "site": "0x8021F228",
+      "expected_word": "0xE4400000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021DB58",
+      "function_name": "dora3_s7_level1_8021DB58",
+      "function_sha256": "fa8b0138c0fb7be674743a275c2b111c131d08923c6abc95b534cfec71f9dfac",
+      "site": "0x8021DFE8",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021E948",
+      "function_name": "dora3_s7_level1_8021E948",
+      "function_sha256": "90ebc8416d2e9152db549c56ec0fd7e21454c6a6c6db5ca29aa8c26cb7506d03",
+      "site": "0x8021EDE0",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021E948",
+      "function_name": "dora3_s7_level1_8021E948",
+      "function_sha256": "90ebc8416d2e9152db549c56ec0fd7e21454c6a6c6db5ca29aa8c26cb7506d03",
+      "site": "0x8021F0D4",
+      "expected_word": "0xE4420010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021DB58",
+      "function_name": "dora3_s7_level1_8021DB58",
+      "function_sha256": "fa8b0138c0fb7be674743a275c2b111c131d08923c6abc95b534cfec71f9dfac",
+      "site": "0x8021E030",
+      "expected_word": "0xE4400014",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021DB58",
+      "function_name": "dora3_s7_level1_8021DB58",
+      "function_sha256": "fa8b0138c0fb7be674743a275c2b111c131d08923c6abc95b534cfec71f9dfac",
+      "site": "0x8021E07C",
+      "expected_word": "0xE4400014",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021E948",
+      "function_name": "dora3_s7_level1_8021E948",
+      "function_sha256": "90ebc8416d2e9152db549c56ec0fd7e21454c6a6c6db5ca29aa8c26cb7506d03",
+      "site": "0x8021EE6C",
+      "expected_word": "0xE4400014",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021F8D8",
+      "function_name": "dora3_s7_level1_8021F8D8",
+      "function_sha256": "ac9fc34c6d1f34d3e774b53073639e61a3be9d921a5b58b4a27e19203b0ccfce",
+      "site": "0x8021FBD0",
+      "expected_word": "0xE4600000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021FD4C",
+      "function_name": "dora3_s7_level1_8021FD4C",
+      "function_sha256": "49668528c5a73c4d09113f58db77fde0a3b2b07b782ca0c04036268daa0693c0",
+      "site": "0x8021FF78",
+      "expected_word": "0xE4600000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8022008C",
+      "function_name": "dora3_s7_level1_8022008C",
+      "function_sha256": "f4c81598c694f7d1d3dba5a21ff44ad1c42f8a041a0dd38890a135496034e0cd",
+      "site": "0x8022010C",
+      "expected_word": "0xE4600000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8022008C",
+      "function_name": "dora3_s7_level1_8022008C",
+      "function_sha256": "f4c81598c694f7d1d3dba5a21ff44ad1c42f8a041a0dd38890a135496034e0cd",
+      "site": "0x802203A4",
+      "expected_word": "0xE4600000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021FD4C",
+      "function_name": "dora3_s7_level1_8021FD4C",
+      "function_sha256": "49668528c5a73c4d09113f58db77fde0a3b2b07b782ca0c04036268daa0693c0",
+      "site": "0x8021FF48",
+      "expected_word": "0xE6000004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E801C",
+      "function_name": "dora3_s3_demo_801E801C",
+      "function_sha256": "b97ea923dcc732c8db9dd44c39571bb076ec07244d1916d4f5adc0423e77ceea",
+      "site": "0x801E8064",
+      "expected_word": "0x4600A502",
+      "operation": "native_enemy_projection",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E801C",
+      "function_name": "dora3_s3_demo_801E801C",
+      "function_sha256": "b97ea923dcc732c8db9dd44c39571bb076ec07244d1916d4f5adc0423e77ceea",
+      "site": "0x801E8074",
+      "expected_word": "0x4600A502",
+      "operation": "native_enemy_projection",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E801C",
+      "function_name": "dora3_s3_demo_801E801C",
+      "function_sha256": "b97ea923dcc732c8db9dd44c39571bb076ec07244d1916d4f5adc0423e77ceea",
+      "site": "0x801E80A0",
+      "expected_word": "0x4600B582",
+      "operation": "native_enemy_projection",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E801C",
+      "function_name": "dora3_s3_demo_801E801C",
+      "function_sha256": "b97ea923dcc732c8db9dd44c39571bb076ec07244d1916d4f5adc0423e77ceea",
+      "site": "0x801E80B0",
+      "expected_word": "0x4600B582",
+      "operation": "native_enemy_projection",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E801C",
+      "function_name": "dora3_s3_demo_801E801C",
+      "function_sha256": "b97ea923dcc732c8db9dd44c39571bb076ec07244d1916d4f5adc0423e77ceea",
+      "site": "0x801E80D8",
+      "expected_word": "0x4600A502",
+      "operation": "native_enemy_projection",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021F4B8",
+      "function_name": "dora3_s7_level1_8021F4B8",
+      "function_sha256": "9a3df582c991552229e1cde2f073e9f55f14a25b66bb66efffbbc1cd95ceddfc",
+      "site": "0x8021F4C8",
+      "expected_word": "0x80620028",
+      "operation": "native_enemy_attachment_begin",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021F4B8",
+      "function_name": "dora3_s7_level1_8021F4B8",
+      "function_sha256": "9a3df582c991552229e1cde2f073e9f55f14a25b66bb66efffbbc1cd95ceddfc",
+      "site": "0x8021F4EC",
+      "expected_word": "0x3C048022",
+      "operation": "native_enemy_attachment_label",
+      "evidence": "Exact frozen356 full Sabotti3/MiniCar/PatPot callback, constructor, contact and shared projection closure; Native connected validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80220E10",
+      "function_name": "dora3_s7_level1_80220E10",
+      "function_sha256": "9c9e6592f95822ef7943766a311b0c4b86c69bef0074619150ee46fdc97432bc",
+      "site": "0x80220E10",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x802218A8",
+      "function_name": "dora3_s7_level1_802218A8",
+      "function_sha256": "d5595dcdfd8f2d82bb8a7268628c913081ad38c13051b74387d7a0515b99bf6e",
+      "site": "0x802218A8",
+      "expected_word": "0x3C038022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80222608",
+      "function_name": "dora3_s7_level1_80222608",
+      "function_sha256": "85496b74c1af0ba0ea29c1cac9b876f523353d3b84c08eca42bc290f20f9852a",
+      "site": "0x80222608",
+      "expected_word": "0x3C038022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80223744",
+      "function_name": "dora3_s7_level1_80223744",
+      "function_sha256": "6c795f3ab07c214f6ef1009ec31f3aab81930d1524a6c599ade75ab70a699a2a",
+      "site": "0x80223744",
+      "expected_word": "0x3C038022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80223880",
+      "function_name": "dora3_s7_level1_80223880",
+      "function_sha256": "43a97e29c3e433e0e343facdebbebf0ae4098b0762366fb6c567162926c00669",
+      "site": "0x80223880",
+      "expected_word": "0x3C038022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8021F56C",
+      "function_name": "dora3_s7_level1_8021F56C",
+      "function_sha256": "d78c979529549fc58c88b9b2778d4ce9b3faa8a3acf8c04244382ea170110fa8",
+      "site": "0x8021F5FC",
+      "expected_word": "0xE4400058",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80220ADC",
+      "function_name": "dora3_s7_level1_80220ADC",
+      "function_sha256": "120de913b94dc0b095736c4dcf5bba774b66b1d317ebbc596ea3c170d3345264",
+      "site": "0x80220BF4",
+      "expected_word": "0xE4600004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x8022122C",
+      "function_name": "dora3_s7_level1_8022122C",
+      "function_sha256": "90f00e798d93968ea2f0ffaced29adb944683dc75400bd80c5394984ad5d8d7c",
+      "site": "0x8022129C",
+      "expected_word": "0xE44C0010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x802212D0",
+      "function_name": "dora3_s7_level1_802212D0",
+      "function_sha256": "27ad000906f3158c154c642de4aec3a5701084d23fb2eb577f9c2ba94cf60c47",
+      "site": "0x80221444",
+      "expected_word": "0xE4400004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x802214B4",
+      "function_name": "dora3_s7_level1_802214B4",
+      "function_sha256": "793d1aa4c6eca660058fd4d4a4a350e6a3e35a8ec8def2fb44678bba36650786",
+      "site": "0x80221674",
+      "expected_word": "0xE4600004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80221C08",
+      "function_name": "dora3_s7_level1_80221C08",
+      "function_sha256": "b2a75ecd918f1436303ba26c3101a7ee660e23447efba89538c1f3730a477cc1",
+      "site": "0x80221CC4",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80221C08",
+      "function_name": "dora3_s7_level1_80221C08",
+      "function_sha256": "b2a75ecd918f1436303ba26c3101a7ee660e23447efba89538c1f3730a477cc1",
+      "site": "0x80221CE4",
+      "expected_word": "0xE4600008",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80221C08",
+      "function_name": "dora3_s7_level1_80221C08",
+      "function_sha256": "b2a75ecd918f1436303ba26c3101a7ee660e23447efba89538c1f3730a477cc1",
+      "site": "0x80221D34",
+      "expected_word": "0xAC660058",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x802221E0",
+      "function_name": "dora3_s7_level1_802221E0",
+      "function_sha256": "aa994a90206a5a0f93e19717b4c1568d1bdf0cc129953d255588b406acdecf60",
+      "site": "0x80222318",
+      "expected_word": "0xE4400004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80222364",
+      "function_name": "dora3_s7_level1_80222364",
+      "function_sha256": "7d1b9b8de1500576837acb3e012c102f7ccc5d105f1b7898e22a6d7187b92103",
+      "site": "0x80222508",
+      "expected_word": "0xE4800004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80222900",
+      "function_name": "dora3_s7_level1_80222900",
+      "function_sha256": "8b76d0f5c652108761c2c208ac88c5a0d80775b5c109cbae5f28817643007efd",
+      "site": "0x80222C88",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80222900",
+      "function_name": "dora3_s7_level1_80222900",
+      "function_sha256": "8b76d0f5c652108761c2c208ac88c5a0d80775b5c109cbae5f28817643007efd",
+      "site": "0x80222CA8",
+      "expected_word": "0xE4600008",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80222900",
+      "function_name": "dora3_s7_level1_80222900",
+      "function_sha256": "8b76d0f5c652108761c2c208ac88c5a0d80775b5c109cbae5f28817643007efd",
+      "site": "0x80222CF8",
+      "expected_word": "0xAC660058",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80222DA8",
+      "function_name": "dora3_s7_level1_80222DA8",
+      "function_sha256": "c1b4d3553d57830fcf4922ad1c9ac9015224248084636bb6e24950e0220462be",
+      "site": "0x80222ED4",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80222DA8",
+      "function_name": "dora3_s7_level1_80222DA8",
+      "function_sha256": "c1b4d3553d57830fcf4922ad1c9ac9015224248084636bb6e24950e0220462be",
+      "site": "0x80222EF4",
+      "expected_word": "0xE4600008",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80222DA8",
+      "function_name": "dora3_s7_level1_80222DA8",
+      "function_sha256": "c1b4d3553d57830fcf4922ad1c9ac9015224248084636bb6e24950e0220462be",
+      "site": "0x80222F48",
+      "expected_word": "0xE4600058",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80222DA8",
+      "function_name": "dora3_s7_level1_80222DA8",
+      "function_sha256": "c1b4d3553d57830fcf4922ad1c9ac9015224248084636bb6e24950e0220462be",
+      "site": "0x80222FCC",
+      "expected_word": "0xE4800058",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80222DA8",
+      "function_name": "dora3_s7_level1_80222DA8",
+      "function_sha256": "c1b4d3553d57830fcf4922ad1c9ac9015224248084636bb6e24950e0220462be",
+      "site": "0x80223004",
+      "expected_word": "0xE4400000",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x802230C8",
+      "function_name": "dora3_s7_level1_802230C8",
+      "function_sha256": "1c0282a8970a6076304dc322aa984367c6a910780bf623298f1481eb47b054e5",
+      "site": "0x802231DC",
+      "expected_word": "0xE4400004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80223228",
+      "function_name": "dora3_s7_level1_80223228",
+      "function_sha256": "96ef1b44afaa4d483b5cbd0010b5709d00c264d40d5f3d2a40792adfb4236674",
+      "site": "0x80223564",
+      "expected_word": "0xE4800004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x802235BC",
+      "function_name": "dora3_s7_level1_802235BC",
+      "function_sha256": "c86d9402b17c2e2f66ec622812c54f2ce6227469d45108cb6e7838703e289c1c",
+      "site": "0x802236F0",
+      "expected_word": "0xE4800004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80223880",
+      "function_name": "dora3_s7_level1_80223880",
+      "function_sha256": "43a97e29c3e433e0e343facdebbebf0ae4098b0762366fb6c567162926c00669",
+      "site": "0x802239B8",
+      "expected_word": "0xE6000010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80220ADC",
+      "function_name": "dora3_s7_level1_80220ADC",
+      "function_sha256": "120de913b94dc0b095736c4dcf5bba774b66b1d317ebbc596ea3c170d3345264",
+      "site": "0x80220C24",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x802212D0",
+      "function_name": "dora3_s7_level1_802212D0",
+      "function_sha256": "27ad000906f3158c154c642de4aec3a5701084d23fb2eb577f9c2ba94cf60c47",
+      "site": "0x80221498",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x802214B4",
+      "function_name": "dora3_s7_level1_802214B4",
+      "function_sha256": "793d1aa4c6eca660058fd4d4a4a350e6a3e35a8ec8def2fb44678bba36650786",
+      "site": "0x8022177C",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x802221E0",
+      "function_name": "dora3_s7_level1_802221E0",
+      "function_sha256": "aa994a90206a5a0f93e19717b4c1568d1bdf0cc129953d255588b406acdecf60",
+      "site": "0x8022234C",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80222364",
+      "function_name": "dora3_s7_level1_80222364",
+      "function_sha256": "7d1b9b8de1500576837acb3e012c102f7ccc5d105f1b7898e22a6d7187b92103",
+      "site": "0x802225F0",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x802230C8",
+      "function_name": "dora3_s7_level1_802230C8",
+      "function_sha256": "1c0282a8970a6076304dc322aa984367c6a910780bf623298f1481eb47b054e5",
+      "site": "0x80223210",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80223228",
+      "function_name": "dora3_s7_level1_80223228",
+      "function_sha256": "96ef1b44afaa4d483b5cbd0010b5709d00c264d40d5f3d2a40792adfb4236674",
+      "site": "0x802235A0",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x802235BC",
+      "function_name": "dora3_s7_level1_802235BC",
+      "function_sha256": "c86d9402b17c2e2f66ec622812c54f2ce6227469d45108cb6e7838703e289c1c",
+      "site": "0x8022372C",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80221080",
+      "function_name": "dora3_s7_level1_80221080",
+      "function_sha256": "52934a680cfe408adb8fd034e554d733672b8afafe30f41e6331f1737cc2b497",
+      "site": "0x8022118C",
+      "expected_word": "0xE602009C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80221080",
+      "function_name": "dora3_s7_level1_80221080",
+      "function_sha256": "52934a680cfe408adb8fd034e554d733672b8afafe30f41e6331f1737cc2b497",
+      "site": "0x802211CC",
+      "expected_word": "0xE60200A4",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80221080",
+      "function_name": "dora3_s7_level1_80221080",
+      "function_sha256": "52934a680cfe408adb8fd034e554d733672b8afafe30f41e6331f1737cc2b497",
+      "site": "0x802211FC",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80221DDC",
+      "function_name": "dora3_s7_level1_80221DDC",
+      "function_sha256": "413c8b09511103ab23fde7fd0b754e89905d6884078f31ed0084e4711fe62c9e",
+      "site": "0x80222028",
+      "expected_word": "0xE602009C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80221DDC",
+      "function_name": "dora3_s7_level1_80221DDC",
+      "function_sha256": "413c8b09511103ab23fde7fd0b754e89905d6884078f31ed0084e4711fe62c9e",
+      "site": "0x80222068",
+      "expected_word": "0xE60200A4",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80221DDC",
+      "function_name": "dora3_s7_level1_80221DDC",
+      "function_sha256": "413c8b09511103ab23fde7fd0b754e89905d6884078f31ed0084e4711fe62c9e",
+      "site": "0x80222108",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80221794",
+      "function_name": "dora3_s7_level1_80221794",
+      "function_sha256": "dcf8caa45335f5c02eab2ea1cf291661a1b26d822aa591e1ddcd95f1530bb919",
+      "site": "0x80221878",
+      "expected_word": "0xE4840010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80221DDC",
+      "function_name": "dora3_s7_level1_80221DDC",
+      "function_sha256": "413c8b09511103ab23fde7fd0b754e89905d6884078f31ed0084e4711fe62c9e",
+      "site": "0x80221F68",
+      "expected_word": "0xE60200A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80221DDC",
+      "function_name": "dora3_s7_level1_80221DDC",
+      "function_sha256": "413c8b09511103ab23fde7fd0b754e89905d6884078f31ed0084e4711fe62c9e",
+      "site": "0x802220D8",
+      "expected_word": "0xE60200A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80223880",
+      "function_name": "dora3_s7_level1_80223880",
+      "function_sha256": "43a97e29c3e433e0e343facdebbebf0ae4098b0762366fb6c567162926c00669",
+      "site": "0x80223A04",
+      "expected_word": "0xE6000018",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80223880",
+      "function_name": "dora3_s7_level1_80223880",
+      "function_sha256": "43a97e29c3e433e0e343facdebbebf0ae4098b0762366fb6c567162926c00669",
+      "site": "0x80223BA8",
+      "expected_word": "0xE6000018",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80223880",
+      "function_name": "dora3_s7_level1_80223880",
+      "function_sha256": "43a97e29c3e433e0e343facdebbebf0ae4098b0762366fb6c567162926c00669",
+      "site": "0x80223AB4",
+      "expected_word": "0xE600001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80223880",
+      "function_name": "dora3_s7_level1_80223880",
+      "function_sha256": "43a97e29c3e433e0e343facdebbebf0ae4098b0762366fb6c567162926c00669",
+      "site": "0x80223B48",
+      "expected_word": "0xE6000058",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80223880",
+      "function_name": "dora3_s7_level1_80223880",
+      "function_sha256": "43a97e29c3e433e0e343facdebbebf0ae4098b0762366fb6c567162926c00669",
+      "site": "0x80223A0C",
+      "expected_word": "0xE4400020",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".level1_slot0",
+      "function": "0x80223880",
+      "function_name": "dora3_s7_level1_80223880",
+      "function_sha256": "43a97e29c3e433e0e343facdebbebf0ae4098b0762366fb6c567162926c00669",
+      "site": "0x80223BB0",
+      "expected_word": "0xE4800020",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 full Powan1..4/effect constructor/contact/private closure and common opacity setters; connected Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80223748",
+      "function_name": "dora3_s4_demo_80223748",
+      "function_sha256": "8d763ee111e3022097198756a6d9e5cdb0d20d3a07ff7d6ee84fbd600ab60f67",
+      "site": "0x80223748",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8022438C",
+      "function_name": "dora3_s4_demo_8022438C",
+      "function_sha256": "6f6fa9749aec687ebe594c89d7349a21ef9699acb25f27af767bf4755a4a021f",
+      "site": "0x8022438C",
+      "expected_word": "0x3C028022",
+      "operation": "native_enemy_callback",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80222F54",
+      "function_name": "dora3_s4_demo_80222F54",
+      "function_sha256": "f400e84e24e51f0c5d5178b5bc71f5b8d97993b1d71393b80352f202bf6605bf",
+      "site": "0x80223054",
+      "expected_word": "0xE4600004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x802230EC",
+      "function_name": "dora3_s4_demo_802230EC",
+      "function_sha256": "d7c64de1fbfc243f1bc7354e72b04fa107eef4515a640afc4da3097ba6e30217",
+      "site": "0x802231D4",
+      "expected_word": "0xE4400004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8022346C",
+      "function_name": "dora3_s4_demo_8022346C",
+      "function_sha256": "f4811511c22043f566c9d12d4a78943568fc95bb4c9d73a4474225ac436913b8",
+      "site": "0x802235B4",
+      "expected_word": "0xE4400004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80223B10",
+      "function_name": "dora3_s4_demo_80223B10",
+      "function_sha256": "5a5b36f0f29d24e1a0655ab5aa405ccdbbdacd928cb318f3242c8e351704127b",
+      "site": "0x80223BB8",
+      "expected_word": "0xE460005C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80223B10",
+      "function_name": "dora3_s4_demo_80223B10",
+      "function_sha256": "5a5b36f0f29d24e1a0655ab5aa405ccdbbdacd928cb318f3242c8e351704127b",
+      "site": "0x80223BD4",
+      "expected_word": "0xE4400058",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80223B10",
+      "function_name": "dora3_s4_demo_80223B10",
+      "function_sha256": "5a5b36f0f29d24e1a0655ab5aa405ccdbbdacd928cb318f3242c8e351704127b",
+      "site": "0x80223BE8",
+      "expected_word": "0xE4400004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80223C98",
+      "function_name": "dora3_s4_demo_80223C98",
+      "function_sha256": "b60b44ff05f6e367abc37ca54dcf76b3e8a68fc251d5b5989ec5974fc916c2fa",
+      "site": "0x80223D3C",
+      "expected_word": "0xE4400004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x802241D0",
+      "function_name": "dora3_s4_demo_802241D0",
+      "function_sha256": "5713f7c75b2e981818d8307d4fef21c7dad8d08919c114661d85b6dce19a5710",
+      "site": "0x80224258",
+      "expected_word": "0xE4600004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80222F54",
+      "function_name": "dora3_s4_demo_80222F54",
+      "function_sha256": "f400e84e24e51f0c5d5178b5bc71f5b8d97993b1d71393b80352f202bf6605bf",
+      "site": "0x80223058",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x802230EC",
+      "function_name": "dora3_s4_demo_802230EC",
+      "function_sha256": "d7c64de1fbfc243f1bc7354e72b04fa107eef4515a640afc4da3097ba6e30217",
+      "site": "0x802231DC",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x8022346C",
+      "function_name": "dora3_s4_demo_8022346C",
+      "function_sha256": "f4811511c22043f566c9d12d4a78943568fc95bb4c9d73a4474225ac436913b8",
+      "site": "0x802235CC",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80223B10",
+      "function_name": "dora3_s4_demo_80223B10",
+      "function_sha256": "5a5b36f0f29d24e1a0655ab5aa405ccdbbdacd928cb318f3242c8e351704127b",
+      "site": "0x80223BF0",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x80223C98",
+      "function_name": "dora3_s4_demo_80223C98",
+      "function_sha256": "b60b44ff05f6e367abc37ca54dcf76b3e8a68fc251d5b5989ec5974fc916c2fa",
+      "site": "0x80223D44",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
+    },
+    {
+      "section": ".demo_slot0",
+      "function": "0x802241D0",
+      "function_name": "dora3_s4_demo_802241D0",
+      "function_sha256": "5713f7c75b2e981818d8307d4fef21c7dad8d08919c114661d85b6dce19a5710",
+      "site": "0x8022425C",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact frozen356 BroboA103/A104 complete constructor/contact/private/jump-table closure; turn-rate5C -> total58/yaw4 kick-before-drift, mode1 spin-before-decrement and cue18 reviewed; Native validation pending"
     }
   ]
 }

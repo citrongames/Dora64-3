@@ -85,8 +85,8 @@ struct Model {
     bool native_born=false;
     bool acquired_start=false;
     std::optional<NativeAnimationClock> native_clock;
-    uint64_t event_sequence=0;
-    long double event_from=0,event_to=0;
+    uint64_t event_sequence=0,end_sequence=0;
+    long double event_from=0,event_to=0,event_distance=0;
     bool event_clamp=false;
     std::map<std::pair<uint64_t,uint32_t>,EventCursor> events;
     std::unordered_map<uint32_t,NativeScalarClock> scalars;
@@ -160,6 +160,30 @@ bool ModelAnimation::ended_this_tick(uint32_t model) const {
     const auto* slice=active_simulation_slice();const auto owner=state_->models.find(model);
     return slice && owner!=state_->models.end() && owner->second.native_clock &&
         owner->second.native_clock->end_tick==slice->tick;
+}
+bool ModelAnimation::command_ended(uint32_t model,const ModelEventCheckpoint& checkpoint) const {
+    const auto i=state_->models.find(model);
+    return i!=state_->models.end()&&i->second.run==checkpoint.run&&i->second.end_sequence!=checkpoint.ends;
+}
+ModelEventCheckpoint ModelAnimation::command_event_checkpoint(uint8_t* rdram,uint32_t model) const {
+    const auto i=state_->models.find(model);if(i==state_->models.end())return {};
+    return {i->second.run,i->second.event_distance,real(rdram,model+0x64),i->second.end_sequence};
+}
+bool ModelAnimation::command_frame_event(uint8_t* rdram,uint32_t model,const ModelEventCheckpoint& checkpoint,
+                                        float observed,float target,uint64_t site) const {
+    const auto i=state_->models.find(model);
+    if(i==state_->models.end()||i->second.run!=checkpoint.run||!i->second.native_clock||
+       std::bit_cast<int32_t>(observed)!=word(rdram,model+0x64))return observed==target;
+    const auto& entry=i->second;const auto& clock=*entry.native_clock;
+    if(!std::isfinite(target)||target<0||target>clock.duration)return false;
+    const long double start=checkpoint.time,end=start+entry.event_distance-checkpoint.distance,duration=clock.duration;
+    (void)site;
+    if(observed==target)return true;
+    if(entry.event_clamp)return start<target&&end>=target;
+    if(target==duration)return false;
+    if(end>start)return std::floor((end-target)/duration)>std::floor((start-target)/duration);
+    if(end<start)return std::ceil((start-target)/duration)>std::ceil((end-target)/duration);
+    return false;
 }
 void ModelAnimation::reset() {
     if(state_->frame)throw std::logic_error("Model reset during active frame");
@@ -395,11 +419,12 @@ void ModelAnimation::advance_simulation(uint8_t* rdram,recomp_context* ctx) {
     long double next=std::fmod(absolute,duration);
     if(next<0)next+=duration;
     if((flags&1) && rate>=0 && absolute>=duration) {next=duration;ended=true;}
-    if(ended)clock->end_tick=slice->tick;
+    if(ended){clock->end_tick=slice->tick;++entry.end_sequence;}
     const bool clamped=(flags&1) && rate>=0;
     const auto event_from=clamped ? std::min(before,static_cast<long double>(duration)) : before;
     const auto event_to=clamped ? std::min(absolute,static_cast<long double>(duration)) : absolute;
     if(event_from!=event_to) {
+        entry.event_distance+=event_to-event_from;
         ++entry.event_sequence;entry.event_from=event_from;entry.event_to=event_to;entry.event_clamp=clamped;
     }
     real(rdram,model+0x64,float(next));

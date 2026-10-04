@@ -15,14 +15,15 @@
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_effects.cpp": "5a2dd315a623e5cf80ccd6b51af56c4f0f1e5bc750c871b4e0231d675f9f3b19",
     "research/native-effects-check.cpp": "06f1ea314a4a480fd62b8399a1157e91690517dc17db4b56c7f8678adb43f292",
+    "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
     "src/native_effects.hpp": "ddd57439bc9435e2c91791a3a1f3dc28a1cce7057bbf6d84a58e0f4a39e34805",
-    "recomp/native-timing-rules.json": "50c1eba10e12dcc61c06ea6545c47b09567ff066947d900024b5a1b8aa49f758",
-    "tools/native_timing_patches.py": "09c1314a8c38bcd13c92c30f76ca919d390d6a8ac9b044f9d34fe1b4de19ff3a",
-    "tools/generate_startup.py": "b2fd1951e6fefd48c00c1c19ae2ec9c6ba82f13967c5030945a59a03d35b7f27",
-    "tools/check_native_effects.py": "e8392bf1d803b65dd1b6ae8e474538034add468ca071c5ad73a60d80b81d8d6d"
+    "recomp/native-timing-rules.json": "ab66251eaaa7787fc16a4217fa5d9e8f51e65714739e5d9f03ebdf5211ccd3ad",
+    "tools/native_timing_patches.py": "3f65a89a0f4412fb2c7b25e12eb31f21f75d4d37f45f1c8c8fbb5b4ff10280dc",
+    "tools/generate_startup.py": "98a7f482369446981292db1add1d01f9430838d9e080b5fc780d75cd1a10ad11",
+    "tools/check_native_effects.py": "fc4af5f600d2a52bae1e78ef267e00a6ba7216d483e51445255db4ff748c8e9e"
   },
-  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
+  "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df",
   "reference_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
   "limitations": [
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",
