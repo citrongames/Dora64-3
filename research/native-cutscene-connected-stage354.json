@@ -1,0 +1,28 @@
+{
+  "result": "PASS: targeted connected scene1 camera/cutscene block; Original commands/resources retained",
+  "date_utc": "2026-10-04T02:30:40.163183+00:00",
+  "generation": 354,
+  "baseline": "6f25236787de0c8fbe9aa1df0980beae2206659a",
+  "checks": {
+    "native-cutscene-check": {
+      "result": "PASS: 64 connected cutscene cases, 416 exact Source endpoints, 1131 Native intervals, 18 ownership/policy guards; 52 actual motion functions, all four linked cameras, XYZ/rotation/scale/polar/jump/alpha, Original20/30 at60/73FPS, actual interpreter wait/cut/finish, Source restoration and full-RAM/context duplicate-time checks; ASan/UBSan; no game/GPU.",
+      "report_sha256": "6cf26fbc54fa988d55b99cc545f1c8ae79f7dce48fd4b24acbd7fc4382d99306",
+      "generation_receipt_sha256": "bdc44b441de9208957dd71e43ed8f0ff51c7cb7154f326e66c03fb973a65daac"
+    },
+    "decomp-names-check": {
+      "result": "PASS: 810 descriptions; 479 semantic function names; 587 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
+      "report_sha256": "890a682adf8537f3e8eb931fbe97b093be74ebd7fdffcac0ea2f14012d13808d",
+      "generation_receipt_sha256": "bdc44b441de9208957dd71e43ed8f0ff51c7cb7154f326e66c03fb973a65daac"
+    }
+  },
+  "scope": "Participant XYZ/rotation/scale/polar/jump/visual alpha, four scripted camera modes with moving follow targets/orbits/local motion, world origin, BB080 Source brackets and Original interpreter wait/camera cut/completion. Native computes actual guest equations in isolated image, not pose interpolation.",
+  "previous_runtime": "main352/test-038 pickup block, player/NPC/dialogue/weapon fixes retained; no unchanged full-world rerun",
+  "limitations": [
+    "Synthetic CPU controllers/ROM math; actual GPU and real story levels require user visual test",
+    "Selected actual camera/wait opcodes tested; remaining interpreter opcodes unchanged and not reinvoked by Native",
+    "Resource-free and text/widget restoration are counted fixture boundaries",
+    "Other overlays/minigames/2D/enemies/platforms/integration remain future blocks"
+  ],
+  "full_game_variable_fps_complete": false,
+  "no_game_gpu": true
+}

@@ -2973,3 +2973,90 @@ settings/saves/shared DLL сохранены; source195/test037 архивиро
 затем оставшиеся script cameras/cutscenes/minigames/2D. Полный variable FPS игры
 ещё не завершён. Проверки нового блока — только необходимые пути после реализации,
 перед следующим Windows build; многократные полные прогоны не возобновлять.
+
+
+## Блок3 — сценарные камеры и катсцены (353, реализация готова к целевой проверке)
+
+Выбран пользователем вместо следующего блока платформ. Native policy подключает
+scene1 script-active для Original20/30Hz. Восемь Original script threads, opcode
+dispatch, wait/pause/skip/cursors, создание/освобождение объектов, clips, звук,
+диалоги и переходы исполняются на прежних Source updates. BB080 entry/end hooks
+возвращают Source transforms перед командами и захватывают новый Source anchor
+после всей цепочки, включая common actor/model update и eye geometry.
+
+Каждый дополнительный кадр исполняет исходные equations участников, четырёх камер,
+world origin и геометрии глаз в отдельном4MiB guest image с явным временем. Native
+публикует XYZ/rotation/scale, camera target/eye/orbit/local/follow/distance и visual
+alpha model group0. Это расчёт движения, а не interpolation двух готовых poses.
+Source timers/flags/blink/physics/model lifecycle/registers/stack/RNG остаются
+неизменны. Прыжки используют fractional gravity/drift и исходные collision queries;
+плоскости мира и ceiling/floor не заменяются приближённым host ground plane.
+
+Commands обрамляются настоящими Source hooks, включая equal-valued setters.
+Наблюдаемые внешние controller changes сбрасывают anchor; actor/physics/model
+identity guards запрещают восстановление прежних transforms в заменённый actor.
+Pause/transition/resource barriers используют существующее завершение frame tasks.
+Специальные overlay режимы/миниигры относятся к оставшемуся блоку4.
+
+Каталог дополнен33 разобранными функциями и18 scoped register names; документы
+функций/переменных/карта адресов обновляются генератором. Только после всего блока
+проверяются его52 motion functions, interpreter/camera commands и новые boundaries,
+плюс целостность имён и Windows compilation. Старые player/NPC/pickup matrices
+не перезапускаются. Пока это implementation, а не PASS и не готовый EXE.
+
+По окончании блока передать новый Windows build, commit/push в main и предложить
+пользователю оставшиеся1:объекты/платформы,2:враги/AI,4:миниигры/спецрежимы,
+5:2D/UI,6:общая интеграция. Следующий блок начинать только после выбора.
+Full variable FPS игры ещё не завершён. Игра/GPU локально не запускаются.
+
+
+## Блок3 завершён — main354 / test-039
+
+Windows test039 сохранён: `D:/Games/DoraRecomp3/testbuild/Dora64-3-test-039.exe`.
+SHA256 `2cca20028497f3e1a4833833d91a88d092809abd29601592ed967458e0f22827`. Native scene1 scripted policy подключена при20/30Hz:
+участники сцены получают непрерывные XYZ, rotation, scale, polar movement,
+jump gravity/collision drift и visual alpha. Четыре сценарные камеры обновляют
+target/eye/angles/distance, orbits, local motion и следование за движущимися
+участниками; world origin и eye geometry принадлежат тому же кадру.
+
+Восемь script threads, порядок opcodes, wait/pause/Start skip/cursors, birth/free,
+clip/seek, sound/text, fade и scene completion сохраняют прежний Source порядок.
+Native не вызывает interpreter/spawn/audio/RNG/allocator в дополнительных кадрах:
+motion closure52 functions исполняется в private guest image. Source commands
+читают исходные transforms, а не последний Native sample; BB080 end захватывает
+новую базу после всего исходного world update. Возврат к Original/pause использует
+прежние безопасные frame/resource boundaries. Actor/physics/model identity guards
+защищают заменённые объекты. Дискретный blink/physical opacity marker2A остаются Source.
+
+Свежая targeted354:64 connected cases,416 полных Source endpoints,1131 Native
+intervals,18 guards; Manual60/73 с Original20/30, actual participant/camera math,
+actual interpreter wait/cut/finish, full-RAM/context Source restoration и duplicate
+timestamps. Проверен также предел1ns после уже движущегося Source кадра с активными
+orbit/local channels: следящая камера не применяет преждевременно весь follow offset.
+ASan/UBSan прошли. Synthetic controllers и ROM constants/geometry closure:
+реальные уровни/renderer не проверялись, free/text/widget boundaries считаются
+стендом; прочие opcodes сохранены исходными, но весь их игровой content не прогонялся.
+
+Каталог810 descriptions/479 function aliases/587 register scopes. Разобраны33
+функции сценариев/камер, добавлены18 точных областей переменных. Fresh names354:
+96 canonical C units, одинаковые preprocessed tokens, C17 syntax и прежний ABI.
+Старое pending в metadata353 описывает момент подготовки; текущий результат354
+подтверждён research/native-cutscene-check.json и connected-stage354 receipt.
+Windows MSVC RelWithDebInfo прошёл; EXE соответствует проверенному коду/generation.
+32 dependency pins/donor прежние. Предыдущие EXE/DLL/ROM/settings/saves сохранены;
+Windows source352/test038 архивирован перед039. Game/GPU локально не запускались.
+
+История отрицательных результатов сохранена: первая compile353 показала missing
+clock declaration и ошибки нового CPU fixture, исправлены до исполнения.
+Округлённый вверх30Hz endpoint не должен запускать следующий timer/geometry prelude
+из-за остатка меньше1ns; устранён только этот residue, без лимита run duration/FPS.
+Дополнительный разбор следящего eye orbit подтвердил repeated Source correction:
+во fractional Native step offset перед вращением масштабируется по времени,
+полный Original шаг и прочие Native owners не меняются. Замена тестового model
+сначала ошибочно указывала на другой уже Native-owned live model; fixture теперь
+использует отдельный replacement, а восстановление существующего владельца сохранено.
+
+Блок3 закрыт на уровне реализации и целевой CPU/Windows сборки. Full variable FPS
+всей игры ещё не завершён. Unchanged player/NPC/pickup/weapon suites не перезапускались.
+Следующий блок выбирает пользователь:1 объекты/платформы;2 враги/активный AI;
+4 миниигры/специальные режимы;5 2D/UI;6 общая интеграция. До выбора не начинать следующий.

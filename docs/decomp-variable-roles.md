@@ -102,6 +102,9 @@
 | `object_physics_r3` | `ctx->r3` | Physics pointer до установки входного флага state2 | 1 |
 | `object_physics_r3` | `ctx->r3` | Текущий physics record до однократного вызова выбора клипа | 1 |
 | `opacity_model_r4` | `ctx->r4` | Unchanged model pointer for opacity flag/time writes | 1 |
+| `participant_actor_r19` | `ctx->r19` | Actor для публикации трёх angles до восстановления s3. | 1 |
+| `participant_control_r18` | `ctx->r18` | Сохранённый participant control до восстановления s2 в epilogue. | 1 |
+| `participant_pool_control_r16` | `ctx->r16` | Текущая60-entry control record в loop body. | 1 |
 | `periodic_initial_physics_r3` | `ctx->r3` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
 | `periodic_random_x_actor_r3` | `ctx->r3` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
 | `periodic_scale_y_actor_r3` | `ctx->r3` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
@@ -199,6 +202,11 @@
 | `room_transition_mode_r3` | `ctx->r3` | Исходный request mode после загрузки; выбор ветки до calls, меняющих caller-saved регистры | 1 |
 | `room_transition_pending_phase_r16` | `ctx->r16` | Загруженная исходная стадия pending request; далее s0 переиспользуется для другой роли | 1 |
 | `room_transition_requested_id_r3` | `ctx->r3` | ID комнаты из descriptor для проверки диапазона и вычисления смещения таблицы | 1 |
+| `script_camera_control_r16` | `ctx->r16` | Текущий camera control stride1B8 до восстановления s0. | 1 |
+| `script_camera_output_r17` | `ctx->r17` | Output camera stride34 после смены роли индекса s1. | 1 |
+| `script_motion_control_r4` | `ctx->r4` | Control записи движения/камеры; точное storage исходного a0, без замены register ABI. | 11 |
+| `script_thread_record_r16` | `ctx->r16` | Текущая thread record stride10 в восьмипоточном Source interpreter. | 1 |
+| `script_thread_wait_r3` | `ctx->r3` | Signed wait6 до перехода к opcode; scope не захватывает новые роли v1. | 1 |
 | `second_shape_index_output_r17` | `ctx->r17` | Output pointer for the second colliding shape index | 1 |
 | `seek_group_offset_r5` | `ctx->r5` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
 | `seek_input_actor_r4` | `ctx->r4` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |

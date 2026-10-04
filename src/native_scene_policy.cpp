@@ -1,6 +1,7 @@
 #include "native_scene_policy.hpp"
 #include "recomp.h"
 #include "native_gameplay_preview.hpp"
+#include "native_cutscene.hpp"
 namespace {
 int32_t word(uint8_t* rdram,uint32_t address) {return MEM_W(0,int32_t(address));}
 bool scene34_armed=false;
@@ -28,6 +29,10 @@ bool image_eligible(uint8_t* rdram) {
     // dependency model and is not authorized by this initial scene policy.
     return word(rdram,0x801A9C88)==0;
 }
+bool cutscene20_eligible(uint8_t* ram) {return word(ram,0x801A39DC)==3&&native_cutscene_eligible(ram);}
+bool cutscene30_eligible(uint8_t* ram) {return word(ram,0x801A39DC)==2&&native_cutscene_eligible(ram);}
+const ScenePolicy cutscene20_policy{"scene1-scripted",cutscene20_eligible,3,native_cutscene_update};
+const ScenePolicy cutscene30_policy{"scene1-scripted-30",cutscene30_eligible,2,native_cutscene_update};
 bool gameplay20_eligible(uint8_t* ram) {return word(ram,0x801A39DC)==3&&native_gameplay_preview_eligible(ram);}
 bool gameplay30_eligible(uint8_t* ram) {return word(ram,0x801A39DC)==2&&native_gameplay_preview_eligible(ram);}
 const ScenePolicy gameplay20_policy{"scene1-ground-preview",gameplay20_eligible,3,native_gameplay_preview_update};
@@ -38,6 +43,8 @@ const ScenePolicy* select_native_scene_policy(uint8_t* rdram) {
     // Additional reviewed scene families join this registry, without changing
     // the event loop, ownership protocol or settings implementation.
     if(image_policy.eligible(rdram))return &image_policy;
+    if(cutscene20_policy.eligible(rdram))return &cutscene20_policy;
+    if(cutscene30_policy.eligible(rdram))return &cutscene30_policy;
     if(gameplay20_policy.eligible(rdram))return &gameplay20_policy;
     if(gameplay30_policy.eligible(rdram))return &gameplay30_policy;
     return nullptr;

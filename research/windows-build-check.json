@@ -1,21 +1,21 @@
 {
-  "date_utc": "2026-10-04T01:18:58.392579+00:00",
-  "base_commit": "55fab9a59a623c5d1adb0ce32a9e2544350bb79d",
+  "date_utc": "2026-10-04T02:34:35.366889+00:00",
+  "base_commit": "6f25236787de0c8fbe9aa1df0980beae2206659a",
   "dirty": true,
-  "build_id": "test-038",
-  "cpu_generation": "startup-v352",
+  "build_id": "test-039",
+  "cpu_generation": "startup-v354",
   "audio_generation": "audio-rsp-v1",
-  "scope": "Connected Native pickup111..128 motion/parent-follow/idle/scatter/reveal/rise/shrink/spin/arc/collection and linked129 common animation. Actual Source constructor/quest/contact/RNG/clip/seek/teleports/destruction order retained. Targeted129 pre-build Manual60/Original20 command/lifetime suite and names/ABI checked; existing scoped candidate proofs have exact retained origins. Unchanged player/NPC/weapons not rerun.",
+  "scope": "Connected Native scene1 cutscene participants and four scripted cameras: motion/rotation/scale/polar/jump/visual alpha, moving follow targets/orbits/local channels/eye geometry/world origin. Source interpreter and commands/resources unchanged. Targeted connected354 and names/ABI checked after complete block; unchanged player/NPC/pickup/weapons not rerun",
   "compiled": true,
   "locally_launched": false,
   "previous_user_test": "test-033: jitter fixed;034:no crashes;037: NPC dialogue action confirmed working",
-  "executable_sha256": "6e10c54e008aa94b69d48a52744c2584baafc8ad95aea99d43f5f7249d414979",
+  "executable_sha256": "2cca20028497f3e1a4833833d91a88d092809abd29601592ed967458e0f22827",
   "source_sha256": {
     "dependencies.lock.json": "5d137a6b483c5bcb57a11a91183de1c03f55358675ca6f97c5a0473310ca011d",
-    "recomp/decomp-symbols.json": "bff4ebe2c0ce7dc98d9fee8af0aba8255c594626acfa8dfbbaeb19009f0c0a65",
-    "recomp/native-timing-rules.json": "d0d200d025de33251d0553e43c1d83f3e855f691af94a4db4038b7de7aa01f66",
+    "recomp/decomp-symbols.json": "9f99cfbad9d53b1c63d35085b2dac609d7a2de70c1f9d1379dae74b8fe1f1183",
+    "recomp/native-timing-rules.json": "d9e2a9fc4d6f6a1793f8b6ef629a17fcbd3b25fc1d6f036824555f736bdc5d6d",
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
-    "research/runtime/CMakeLists.txt": "83740825f0a15e2da6407100e996250471ec663298cf243dc51ba62cdc288f58",
+    "research/runtime/CMakeLists.txt": "594bbd07153ec57fc8aa927a55fdc21774659ce08f70d8967d7ffb164d2a96a2",
     "src/boot_probe.c": "6273227311ce1cede191dca13c4b65ad47beba349fee3ead4520587d1f5b57fc",
     "src/decoder_probe.c": "6c7ddfb41a27c5a204e5b7c29e81a5977aad811dc87c04991fe4185922896f29",
     "src/frame_lights.cpp": "f62604ab789b595bb804c2a55e251b32f49c267786bfdb7c4e07a51d2839c053",
@@ -32,6 +32,8 @@
     "src/n64_hardware_backend.cpp": "e0031e99be8ca477a29780824508462522d7782d4a9a343ddd89720ab5faad6f",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
+    "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
+    "src/native_cutscene.hpp": "d7c9362cc9c4f70191ebb7bad1c9ded08ea478811c477e269fc9bae630e1c1e4",
     "src/native_effects.cpp": "5a2dd315a623e5cf80ccd6b51af56c4f0f1e5bc750c871b4e0231d675f9f3b19",
     "src/native_effects.hpp": "ddd57439bc9435e2c91791a3a1f3dc28a1cce7057bbf6d84a58e0f4a39e34805",
     "src/native_frame_bridge.cpp": "c1c7ae5fb4ab80e03b178a744a13ac90973b32d787b6fec432afb2e27182b995",
@@ -44,7 +46,7 @@
     "src/native_frame_settings.cpp": "968a5c5765bde96da8ce49846dee46c3cb1652bcc1208f310e7372a10bf38a3f",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
-    "src/native_game_loop.cpp": "515b06226d61a7afa1bef038173d15e83ccbcad1de6b3afab833966a8f64ecfb",
+    "src/native_game_loop.cpp": "de1e4c40b06372cba07276d77057a09b050063b136eb0e4dd20f320956ac0a53",
     "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
     "src/native_gameplay_preview.cpp": "a84b8129f0ad1a61d6df0c0912d335de74d5f03cd8dd58f59fb917725cd1adb7",
     "src/native_gameplay_preview.hpp": "c217908d86f9b319a3acffcf4f3edb0e7cfa92b8de4742c21988f4d052638b11",
@@ -60,7 +62,7 @@
     "src/native_presentation_gate.hpp": "f0fbc1799c6b1bb5a8196e6a6935254a8021cf9c098dafca6b7d9bbadcd3cb97",
     "src/native_process_time.cpp": "b7025893d91cf6851de180e5c90c34c72a0f6f3977a2a51236f6369615562c59",
     "src/native_process_time.hpp": "610e46d91cf59a3581ef2f001e64975e2002e60f01dd165e7acb2b283abf01f7",
-    "src/native_scene_policy.cpp": "4d091632bf6780fa9e55c2ce1cca996334ec0fc5866a8bfcc512154a21dacef7",
+    "src/native_scene_policy.cpp": "00b33a8a2f97816a69fc8af84fe6caaff1eb32c809e994c3980be41775694830",
     "src/native_scene_policy.hpp": "54fbae50b42fbaa5faf12f7cd9bd13aebabdbae495231a615e8c6fd670a3f70c",
     "src/native_script_camera.cpp": "6e78545af75c7a50b2d6994bd54b634c1cf9fbe03a6a0ca42eb5cf0d15d95b69",
     "src/native_script_camera.hpp": "e7bb2e1ba4d036ca2ead349d884daf9a0f857b935d0f3d9359c8cfa12a4d2d94",
@@ -82,26 +84,24 @@
     "src/startup_runtime.cpp": "d7865de6f338a7c90cb31833f6c0efb424bf4705b8006563979e86a2d5cd3241",
     "tools/build_windows.ps1": "7f4b3d3b21b3c9951d3307c7a49f4f0b8fcf04f56a901f293790b6c7a43ed6d4",
     "tools/decomp_annotations.py": "cc18b42a710a9998b9b33cbfe2c79009451496078b2136cdceb603d047c4b16b",
-    "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
-    "tools/native_timing_patches.py": "ca099c18630a1f3fe21a260a00c5dc536932508b7f28f693df3aa242ea417838",
+    "tools/generate_startup.py": "5e2af421e4fbbeff4c89b19afe3a69dff46e1c1ff37c103bfca3c8fc2029356a",
+    "tools/native_timing_patches.py": "6e968d9478569e7053f2635ef07db6a2d4ba0b3bc2aece04c46e787a9337c401",
     "tools/package_windows.ps1": "42607366748bcbe8fc315d5d1fa4d627bed52d84d295541594844f6a0180399f"
   },
   "generated_receipt_sha256": {
-    "startup-v352": "7d1576bd4e5f4609ee80a4bd3a363e5c5066bd84abf69bcc6a28d79434eda8b6",
+    "startup-v354": "bdc44b441de9208957dd71e43ed8f0ff51c7cb7154f326e66c03fb973a65daac",
     "audio-rsp-v1": "37d8a18d17164015501b6b4a4dd5e4175a05fdf62f0f2ab3202707c5c340483f"
   },
   "component_checks": {
-    "decomp-names-check": "a15bc83bf9edeb9c0bb580e21d96a0d02e4abdf1c6a41336200aa1e5b514e27c",
-    "native-pickup-linked-batch-check": "5decd3118dd79366bbf80a12780589ead0c7d92b1c86d417b90644a254d750b2"
+    "decomp-names-check": "890a682adf8537f3e8eb931fbe97b093be74ebd7fdffcac0ea2f14012d13808d",
+    "native-cutscene-check": "6cf26fbc54fa988d55b99cc545f1c8ae79f7dce48fd4b24acbd7fc4382d99306"
   },
-  "connected_stage_sha256": "e5703b66f3a551e1fee221642a00336a22668827f4c1888f6028e56828ce82a0",
+  "connected_stage_sha256": "28c2649041bde63024e835736b2e55b5799d75786280a5ac471906be3c5f8c2f",
   "donor_unchanged": "680d81feb4c57309ba80536300d73725ea9dffaa",
   "dependency_pins_verified": 32,
   "limitations": [
     "Targeted CPU fixture uses synthetic assets/room. Real levels/rendering verified by user; no local game/GPU launch.",
     "Full variable FPS for remaining game systems is unfinished."
   ],
-  "validation_policy": "Affected paths after complete connected block, before packaging; no repeated whole-game cross products.",
-  "connected_stage_execution_snapshot_sha256": "3931986165e68fd24475b7b739c7881cf674def86b31747dca36700f0441215f",
-  "post_package_metadata_note": "Connected-stage initial/current input fields clarified after packaging; runtime/generated/EXE/source_sha256/component-check inputs remain byte-identical. Packaged build-info retains the original staging snapshot."
+  "validation_policy": "Affected paths after complete connected block, before packaging; no repeated whole-game cross products."
 }

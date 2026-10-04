@@ -8448,10 +8448,34 @@
       "size": 504,
       "legacy_name": "dora3_s3_801E0760",
       "name": "dora3_camera_dispatch_scripted_mode_801E0760",
-      "description": "Dispatcher сценарной камеры; безопасное общее подключение variable FPS ещё не завершено.",
-      "evidence": "Разбор Original функций; docs/native-simulation.md и connected CPU checks v175.",
+      "description": "Четыре camera controls stride1B8: Source channel timers, mode0/1 absolute target либо2/3 participant follow, затем angles/distance либо explicit eye, orbit и local translations. Native связан с participant pose и world origin того же кадра; interpreter и camera activation/mode commands выполняются один раз Source.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source.",
       "rom_sha256": "7087448ad2016eb33339f1ae01837b64d0963e31cf207b1a1309796539f0a051",
-      "locals": []
+      "locals": [
+        {
+          "name": "script_camera_control_r16",
+          "expression": "ctx->r16",
+          "start": "0x801E07A0",
+          "end": "0x801E0948",
+          "description": "Текущий camera control stride1B8 до восстановления s0.",
+          "instructions": {
+            "0x801E079C": "0x00438021",
+            "0x801E07A0": "0x86020034",
+            "0x801E07E0": "0x86040036"
+          }
+        },
+        {
+          "name": "script_camera_output_r17",
+          "expression": "ctx->r17",
+          "start": "0x801E07E8",
+          "end": "0x801E0944",
+          "description": "Output camera stride34 после смены роли индекса s1.",
+          "instructions": {
+            "0x801E07E4": "0x00438821",
+            "0x801E08FC": "0x02202821"
+          }
+        }
+      ]
     },
     {
       "section": ".scene1",
@@ -15316,6 +15340,539 @@
           }
         }
       ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E4484",
+      "size": 400,
+      "legacy_name": "dora3_s3_801E4484",
+      "name": "dora3_cutscene_update_script_threads_801E4484",
+      "rom_sha256": "a542aac1e81032736cd809ffb73372771dee1842d1d8b081849297166d34cc07",
+      "locals": [
+        {
+          "name": "script_thread_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801E44FC",
+          "end": "0x801E4578",
+          "description": "Текущая thread record stride10 в восьмипоточном Source interpreter.",
+          "instructions": {
+            "0x801E44F8": "0x00548021",
+            "0x801E44FC": "0x86020004",
+            "0x801E4508": "0x86020006"
+          }
+        },
+        {
+          "name": "script_thread_wait_r3",
+          "expression": "ctx->r3",
+          "start": "0x801E4514",
+          "end": "0x801E4520",
+          "description": "Signed wait6 до перехода к opcode; scope не захватывает новые роли v1.",
+          "instructions": {
+            "0x801E4510": "0x00401821",
+            "0x801E4514": "0x2462FFFF"
+          }
+        }
+      ],
+      "description": "Обновляет восемь script threads в порядке слотов: пропускает завершённые/paused, уменьшает wait, исполняет команды до separator1, затем participant pool и scripted camera. Если все потоки завершены, вызывает исходное освобождение. Native не повторяет interpreter на дополнительных кадрах.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E3ECC",
+      "size": 1464,
+      "legacy_name": "dora3_s3_801E3ECC",
+      "name": "dora3_cutscene_dispatch_opcode_801E3ECC",
+      "rom_sha256": "97f5c0afed9ae74bfda0f83ed3f61c12d5729da3f4d26539119ae7569a78c499",
+      "locals": [],
+      "description": "Диспетчер opcode по текущему halfword потока. Вызывает исходные команды камеры, участников, моделей, диалога, звука, fade, загрузки и переходов; сами команды и program cursors остаются Source-owned.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E3CE8",
+      "size": 284,
+      "legacy_name": "dora3_s3_801E3CE8",
+      "name": "dora3_cutscene_load_script_threads_801E3CE8",
+      "rom_sha256": "2d8cb1c04690ace0834ff418c8d64cfe4bfd880c6ccdb6eed14a7d291d011584",
+      "locals": [],
+      "description": "Выделяет/загружает script block, устанавливает script-active, настраивает восемь потоков по относительным offsets и исходный текстовый блок. Native вступает после завершённого Source update и барьера ресурсов.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E3E04",
+      "size": 144,
+      "legacy_name": "dora3_s3_801E3E04",
+      "name": "dora3_cutscene_release_script_camera_block_801E3E04",
+      "rom_sha256": "f6b24aafb4f54523a900c7281856e7201a238076640b07e542e449bebfacf4e4",
+      "locals": [],
+      "description": "Возвращает первый scripted target в обычную камеру, обнуляет четыре control records, задаёт исходный -1 и освобождает script allocation. Вызывается Source, после завершения существующих frame tasks.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E3E94",
+      "size": 56,
+      "legacy_name": "dora3_s3_801E3E94",
+      "name": "dora3_cutscene_finish_and_reset_801E3E94",
+      "rom_sha256": "8c1c1ac92cc718cb4d6d27d7282766af0d81115fabf18408dca5adb34c84ce31",
+      "locals": [],
+      "description": "Завершает сценарий: освобождает block, очищает script-active и scripted state, восстанавливает исходные text/widget controls. Native после этого прекращает владеть прежними transforms.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E4614",
+      "size": 236,
+      "legacy_name": "dora3_s3_801E4614",
+      "name": "dora3_cutscene_reset_controls_801E4614",
+      "rom_sha256": "3b3cd077b66de3a6b8c5862a0cc4ac49498297216274e5bdecd66199e4a2ed26",
+      "locals": [],
+      "description": "Очищает script state и четыре camera-control records, сбрасывает исходные счётчики и flags. Не запускает interpreter или движение.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E3768",
+      "size": 164,
+      "legacy_name": "dora3_s3_801E3768",
+      "name": "dora3_cutscene_update_participant_pool_801E3768",
+      "rom_sha256": "5cc82be4500fdbb30df7b8c390c16c42b37b473a176455c63348dbba19951298",
+      "locals": [
+        {
+          "name": "participant_pool_control_r16",
+          "expression": "ctx->r16",
+          "start": "0x801E37B0",
+          "end": "0x801E37DC",
+          "description": "Текущая60-entry control record в loop body.",
+          "instructions": {
+            "0x801E37AC": "0x00728021",
+            "0x801E37B0": "0x86020004",
+            "0x801E37CC": "0x8E050000"
+          }
+        }
+      ],
+      "description": "Обходит60 participant records со strideD4. Для активных обновляет Source channel timers, polar timers, затем движение/вращение/scale/пол/прозрачность/видимость. Native вычисляет этот motion closure в отдельном guest image, публикуя только continuous transforms/visual alpha/visual alpha; реальные event flags и команды сохраняет Source.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E30A0",
+      "size": 172,
+      "legacy_name": "dora3_s3_801E30A0",
+      "name": "dora3_cutscene_update_participant_channel_timers_801E30A0",
+      "rom_sha256": "9c5a19a593be2238ce8954e0b068309a9b30f2cd55292c6be4bf36ed374d6fe1",
+      "locals": [
+        {
+          "name": "script_motion_control_r4",
+          "expression": "ctx->r4",
+          "start": "0x801E30A0",
+          "end": "0x801E314C",
+          "description": "Control записи движения/камеры; точное storage исходного a0, без замены register ABI.",
+          "instructions": {
+            "0x801E30A0": "0x27BDFFF8"
+          }
+        }
+      ],
+      "description": "Три группы по три signed halfword duration: ненулевой счётчик уменьшается; при0 обнуляется соответствующий channel rate из3C..5C. Входной a0 — participant control, не actor.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E314C",
+      "size": 108,
+      "legacy_name": "dora3_s3_801E314C",
+      "name": "dora3_cutscene_update_participant_polar_timers_801E314C",
+      "rom_sha256": "a0d86bc75c83ac98a0199cc56e33fda7463627e96bd12de7a4d7788b9fdf0be4",
+      "locals": [
+        {
+          "name": "script_motion_control_r4",
+          "expression": "ctx->r4",
+          "start": "0x801E314C",
+          "end": "0x801E31B8",
+          "description": "Control записи движения/камеры; точное storage исходного a0, без замены register ABI.",
+          "instructions": {
+            "0x801E314C": "0x27BDFFF8"
+          }
+        }
+      ],
+      "description": "Обрабатывает два signed polar duration C4/C6: уменьшает ненулевой либо обнуляет speed и direction поля при0; Source порядок выполняется перед polar movement.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E31B8",
+      "size": 296,
+      "legacy_name": "dora3_s3_801E31B8",
+      "name": "dora3_cutscene_step_participant_jump_801E31B8",
+      "rom_sha256": "e81cf954f8a62162881643e24adf7fe3a0926650dc94775e69ddba846a9ab821",
+      "locals": [],
+      "description": "При9C запускает исходную vertical collision query с velocity40/gravity98 и offset88. По landing/ceiling result обновляет jump flags и height, затем возвращает temporary physics velocity/gravity в0. Allocation/audio/RNG здесь нет. Native jump gravity и displacement привязаны к Source anchor; реальные landing/completion flags остаются Source, query geometry вычисляется в private image.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E32E0",
+      "size": 120,
+      "legacy_name": "dora3_s3_801E32E0",
+      "name": "dora3_cutscene_step_participant_position_801E32E0",
+      "rom_sha256": "7897d6af0e9cbb98b7b3800917f882d992c7e8a53fe8643eb8cc17a2fe602e7c",
+      "locals": [
+        {
+          "name": "script_motion_control_r4",
+          "expression": "ctx->r4",
+          "start": "0x801E32E0",
+          "end": "0x801E3358",
+          "description": "Control записи движения/камеры; точное storage исходного a0, без замены register ABI.",
+          "instructions": {
+            "0x801E32E0": "0x00003021"
+          }
+        }
+      ],
+      "description": "Три оси: rate3C += acceleration60, position18 += rate; публикует actor9C/A0/A4 с offsets84/88/8C. Native использует kick-then-drift displacement с исходными endpoint values.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E3358",
+      "size": 156,
+      "legacy_name": "dora3_s3_801E3358",
+      "name": "dora3_cutscene_step_participant_rotation_801E3358",
+      "rom_sha256": "06868eb3f7cc8a81d9350fcebf8b8ba5eefccad69e2cd95d6330aa610e63fc7b",
+      "locals": [
+        {
+          "name": "participant_control_r18",
+          "expression": "ctx->r18",
+          "start": "0x801E3364",
+          "end": "0x801E33E0",
+          "description": "Сохранённый participant control до восстановления s2 в epilogue.",
+          "instructions": {
+            "0x801E3360": "0x00809021",
+            "0x801E33C0": "0xC6400024"
+          }
+        },
+        {
+          "name": "participant_actor_r19",
+          "expression": "ctx->r19",
+          "start": "0x801E336C",
+          "end": "0x801E33DC",
+          "description": "Actor для публикации трёх angles до восстановления s3.",
+          "instructions": {
+            "0x801E3368": "0x00A09821",
+            "0x801E33C4": "0xE660000C"
+          }
+        }
+      ],
+      "description": "Три оси: angular rate48 и acceleration6C через Original angle helper, затем angle24 и накопленный rate; записывает actor C/10/14. Native сохраняет Original wrap и ABI.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E33F4",
+      "size": 96,
+      "legacy_name": "dora3_s3_801E33F4",
+      "name": "dora3_cutscene_step_participant_scale_801E33F4",
+      "rom_sha256": "b739c533e7b46e8b8919018200cd7c3ea630c7b691f52b4b8fae5431108180d3",
+      "locals": [
+        {
+          "name": "script_motion_control_r4",
+          "expression": "ctx->r4",
+          "start": "0x801E33F4",
+          "end": "0x801E3454",
+          "description": "Control записи движения/камеры; точное storage исходного a0, без замены register ABI.",
+          "instructions": {
+            "0x801E33F4": "0x00003021"
+          }
+        }
+      ],
+      "description": "Три оси: scale rate54 += acceleration78, scale30 += rate; записывает actor18/1C/20. Отдельные position offsets здесь не применяются.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E3454",
+      "size": 312,
+      "legacy_name": "dora3_s3_801E3454",
+      "name": "dora3_cutscene_step_participant_polar_motion_801E3454",
+      "rom_sha256": "a2477f6965b7a1d1f933c2bfe11fd388a1c0807bc1498d17879361623dfc44dd",
+      "locals": [],
+      "description": "При C4/C6 применяет исходные planar/vertical polar speed, direction и acceleration через E7F54/E7FC4, затем добавляет XYZ и offsets. Physics temporary direction/velocity очищаются исходной функцией.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E358C",
+      "size": 476,
+      "legacy_name": "dora3_s3_801E358C",
+      "name": "dora3_cutscene_compose_participant_motion_801E358C",
+      "rom_sha256": "ef1224544a169551a9c71d4b5b831b0a5b054cf9a6e098ba52ad037c5efa18bb",
+      "locals": [],
+      "description": "Порядок: jump, XYZ, angles, scale, polar motion, floor-follow, opacity, visibility. Continuous fields и дискретные completion/blink flags различаются; Native scratch writes не меняют Source actor/control/model commands.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DF854",
+      "size": 188,
+      "legacy_name": "dora3_s3_801DF854",
+      "name": "dora3_camera_update_scripted_channel_timers_801DF854",
+      "rom_sha256": "0564bfef400ed73f67362d6f4e29e7c6890ae758e0c6162be0d0397f0fd8cdbf",
+      "locals": [
+        {
+          "name": "script_motion_control_r4",
+          "expression": "ctx->r4",
+          "start": "0x801DF854",
+          "end": "0x801DF910",
+          "description": "Control записи движения/камеры; точное storage исходного a0, без замены register ABI.",
+          "instructions": {
+            "0x801DF854": "0x27BDFFF8"
+          }
+        }
+      ],
+      "description": "Пять групп по три duration EC..108: ненулевые уменьшаются, при0 обнуляются соответствующие rate/acceleration. Вход — control текущей сценарной камеры.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DF910",
+      "size": 200,
+      "legacy_name": "dora3_s3_801DF910",
+      "name": "dora3_camera_update_scripted_orbit_timers_801DF910",
+      "rom_sha256": "b01f52f55992649fdbbdc5b03a74e76d1d938177295f0310db7c57c0e6d21b3d",
+      "locals": [
+        {
+          "name": "script_motion_control_r4",
+          "expression": "ctx->r4",
+          "start": "0x801DF910",
+          "end": "0x801DF9D8",
+          "description": "Control записи движения/камеры; точное storage исходного a0, без замены register ABI.",
+          "instructions": {
+            "0x801DF910": "0x27BDFFF8"
+          }
+        }
+      ],
+      "description": "Две группы по три orbit duration11C..126: уменьшает счётчики, при0 очищает channel enable/rate/acceleration.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DF9D8",
+      "size": 212,
+      "legacy_name": "dora3_s3_801DF9D8",
+      "name": "dora3_camera_update_scripted_local_timers_801DF9D8",
+      "rom_sha256": "d20fcd0768884b3dedbb4ce054137dd1b9ff07c2186fca8a97c1e53c1b345609",
+      "locals": [
+        {
+          "name": "script_motion_control_r4",
+          "expression": "ctx->r4",
+          "start": "0x801DF9D8",
+          "end": "0x801DFAAC",
+          "description": "Control записи движения/камеры; точное storage исходного a0, без замены register ABI.",
+          "instructions": {
+            "0x801DF9D8": "0x27BDFFF8"
+          }
+        }
+      ],
+      "description": "Две группы по три local translation duration164..16E: уменьшает счётчики; при0 очищает enabled, direction, acceleration и speed.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DFAAC",
+      "size": 84,
+      "legacy_name": "dora3_s3_801DFAAC",
+      "name": "dora3_camera_step_scripted_absolute_target_801DFAAC",
+      "rom_sha256": "299dc667b8ee7b92853c6ed8d3802fdb167815b621236fdbd5e4e6a32f0cee15",
+      "locals": [
+        {
+          "name": "script_motion_control_r4",
+          "expression": "ctx->r4",
+          "start": "0x801DFAAC",
+          "end": "0x801DFB00",
+          "description": "Control записи движения/камеры; точное storage исходного a0, без замены register ABI.",
+          "instructions": {
+            "0x801DFAAC": "0x00003021"
+          }
+        }
+      ],
+      "description": "Двигает target38 по rate74/accelerationB0; обнуляет camera target0, к которому дальнейшая композиция добавляет этот control target.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DFB00",
+      "size": 164,
+      "legacy_name": "dora3_s3_801DFB00",
+      "name": "dora3_camera_step_scripted_participant_follow_801DFB00",
+      "rom_sha256": "c1b3181151ced1a107f7c996c38585f993e7fc18b1d466d8823936692b26440b",
+      "locals": [
+        {
+          "name": "script_motion_control_r4",
+          "expression": "ctx->r4",
+          "start": "0x801DFB00",
+          "end": "0x801DFBA4",
+          "description": "Control записи движения/камеры; точное storage исходного a0, без замены register ABI.",
+          "instructions": {
+            "0x801DFB00": "0x8483010A"
+          }
+        }
+      ],
+      "description": "При активном participant index10A копирует его position18 в camera target38. Добавляет накопленный follow offset68 с rateA4 и передаёт offset в camera0; дальнейшая композиция применяет target ровно один раз.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DFBA4",
+      "size": 152,
+      "legacy_name": "dora3_s3_801DFBA4",
+      "name": "dora3_camera_step_scripted_angles_801DFBA4",
+      "rom_sha256": "cbb7d983194581565bd153506ad9fd1e07e9321dcedd31cd0273783cfccad300",
+      "locals": [],
+      "description": "Через Original angle helper обновляет angular rates80 отBC и angles44, затем публикует camera18/1C/20. Native acceleration и drift масштабируются раздельно.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DFC3C",
+      "size": 36,
+      "legacy_name": "dora3_s3_801DFC3C",
+      "name": "dora3_camera_step_scripted_distance_801DFC3C",
+      "rom_sha256": "72cef8c065c940d44b5f4ced38ccba02deba1658c03c74e6ec6786944ce26a7b",
+      "locals": [
+        {
+          "name": "script_motion_control_r4",
+          "expression": "ctx->r4",
+          "start": "0x801DFC3C",
+          "end": "0x801DFC60",
+          "description": "Control записи движения/камеры; точное storage исходного a0, без замены register ABI.",
+          "instructions": {
+            "0x801DFC3C": "0xC4820098"
+          }
+        }
+      ],
+      "description": "distance rate98 += accelerationD4, distance5C += rate; передаёт итог в camera30. Native сохраняет semi-implicit Source recurrence на целых тактах.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DFC60",
+      "size": 120,
+      "legacy_name": "dora3_s3_801DFC60",
+      "name": "dora3_camera_step_scripted_eye_801DFC60",
+      "rom_sha256": "eb907f7b99269efeec580813155102f6d9d9269c3f31186105b2704258b03915",
+      "locals": [
+        {
+          "name": "script_motion_control_r4",
+          "expression": "ctx->r4",
+          "start": "0x801DFC60",
+          "end": "0x801DFCD8",
+          "description": "Control записи движения/камеры; точное storage исходного a0, без замены register ABI.",
+          "instructions": {
+            "0x801DFC60": "0x00003021"
+          }
+        }
+      ],
+      "description": "Двигает explicit eye50 по rate8C/accelerationC8 и публикует camera C/10/14. Общая композиция затем корректирует orbit/local channels.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DFCD8",
+      "size": 788,
+      "legacy_name": "dora3_s3_801DFCD8",
+      "name": "dora3_camera_compose_scripted_target_orbits_801DFCD8",
+      "rom_sha256": "41b50f6d483bb2e9f65ab6ea5b2143b8de858cad08e6c13afcaf7e9e76e906b1",
+      "locals": [],
+      "description": "Композиция трёх enabled orbit planes и Source angular rates над target, сохраняя порядок Original trigonometry. Абсолютный и following режимы используют разные relative vectors.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DFFEC",
+      "size": 824,
+      "legacy_name": "dora3_s3_801DFFEC",
+      "name": "dora3_camera_compose_scripted_eye_orbits_801DFFEC",
+      "rom_sha256": "c25804ba1f45e9d6cb7e25e15536617cf131af0dae361e0f20f4fdc156f55085",
+      "locals": [],
+      "description": "Композиция трёх enabled orbit planes над explicit eye50 вокруг target38; потом camera eye записывается относительно target. В following mode3 повторяемая correction follow offset перед вращением получает fractional time; иначе первый Native подкадр ошибочно вычитает сразу весь offset. Whole Source step сохранён.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E0324",
+      "size": 500,
+      "legacy_name": "dora3_s3_801E0324",
+      "name": "dora3_camera_step_scripted_local_target_801E0324",
+      "rom_sha256": "8eba837b39d90515b8cbb9c76d4b68583a7d29556696175bb2de551c64a1095d",
+      "locals": [],
+      "description": "Два направленных local translation канала для target, с direction override и speed/acceleration. Геометрия направления зависит от absolute angle либо explicit-eye vector.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E0518",
+      "size": 584,
+      "legacy_name": "dora3_s3_801E0518",
+      "name": "dora3_camera_step_scripted_local_eye_801E0518",
+      "rom_sha256": "349369526a4315af0bba5abae00e38c97c656922dd27aa3b644a1a0686aec58d",
+      "locals": [],
+      "description": "Два направленных local translation канала для eye; Source mode и direction override определяют геометрию. Единицы времени применяются к speed, не к мгновенному direction command.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DE198",
+      "size": 80,
+      "legacy_name": "dora3_s3_801DE198",
+      "name": "dora3_camera_scripted_mode_uses_eye_geometry_801DE198",
+      "rom_sha256": "6bcd3e3b4c47fd9819963ef3675a527fb3725fd0554f6d1c5848346ab65f1dab",
+      "locals": [],
+      "description": "Возвращает1 только для active camera в mode0/2; BB080 для них вызывает resident8002F064. Mode1/3 уже публикуют explicit eye собственной композицией.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DE424",
+      "size": 260,
+      "legacy_name": "dora3_s3_801DE424",
+      "name": "dora3_cutscene_command_activate_camera_801DE424",
+      "rom_sha256": "bc3557fbcd17b7392e4c5bbac84ab3470364a50e4c3947df0c14a05a6da86d8e",
+      "locals": [],
+      "description": "Читает camera index потока; для ещё неактивной камеры копирует исходные target/angles/distance и задаёт active/control target index. Cursor и включение — Source команда.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DE528",
+      "size": 340,
+      "legacy_name": "dora3_s3_801DE528",
+      "name": "dora3_cutscene_command_set_camera_mode_801DE528",
+      "rom_sha256": "df568ad41f66e3296fa6647037deab5ce1a97a0c0c130b4d01849e40ee139e31",
+      "locals": [],
+      "description": "Source opcode задаёт mode и linkage; для2/3 читает participant index и XYZ follow offset, для0/1 переводит накопленный follow offset в absolute target. Меняет только активную камеру.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E0B58",
+      "size": 528,
+      "legacy_name": "dora3_s3_801E0B58",
+      "name": "dora3_cutscene_command_create_participant_801E0B58",
+      "rom_sha256": "b19885fcac5a9ed91362c3dda14c694cee66dcc2a2ced1f0a46ad8d72ec798ec",
+      "locals": [],
+      "description": "Source opcode читает slot/type/character/position/height flags, создаёт actor через настоящий E6968, ставит physics byte29 и сохраняет position/rotation/scale в control. Birth/resources происходят один раз; Native не исполняет этот opcode.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E0D68",
+      "size": 424,
+      "legacy_name": "dora3_s3_801E0D68",
+      "name": "dora3_cutscene_command_create_player_participant_801E0D68",
+      "rom_sha256": "f43661674e8baa28143784a0d140d8b7fb11c651fc289c6883c2fc4bb1453ef8",
+      "locals": [],
+      "description": "Source opcode выбирает character-specific actor type, создаёт участника с physics byte29 и копирует transforms текущего player actor в control. Исходные creation/selection gates сохраняются.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
     }
   ]
 }

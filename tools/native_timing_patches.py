@@ -292,7 +292,7 @@ def timing_hooks(sections,compiled,rom):
             hooks[name,site+4].insert(0,label+':;')
         elif op=='ground_preview_boundary':
             action={0x801BB080:'',0x801C8B28:'return;',0x801C8F10:'return;',0x801C8F34:'return;',0x801C9048:'return;',0x801DBD7C:'goto L_801DBE78;',0x801DBE78:'goto L_801DBF88;'}[site]
-            prefix=''
+            prefix='dora3_native_cutscene_source(rdram,ctx,0); ' if site==0x801BB080 else ''
             call=f'dora3_native_preview_hook(rdram,ctx,0x{site:08X}u)'
             text=prefix+(f'if ({call}) {{ {action} }}' if action else call+';')
         elif op=='projectile_phase_callback':
@@ -671,6 +671,28 @@ def timing_hooks(sections,compiled,rom):
         elif op=='tick_end_entry':
             if site!=address:raise ValueError('Timer gate is not an entry hook')
             text='if (!dora3_native_simulation_tick_end()) return;'
+        elif op=='cutscene_follow_eye_basis':
+            if rule['section']!='.scene1' or address!=0x801DFFEC or (site,word) not in {(0x801E0038,0x46020000),(0x801E0050,0x46020000),(0x801E0064,0x46020000)}:raise ValueError('Unreviewed following eye basis')
+            # Original repeated orbit recurrence subtracts the follow offset
+            # from the old eye vector before rotation. This per-period basis
+            # correction needs fractional time just like its angular drift.
+            text='if (dora3_native_cutscene_equations_active()) ctx->f2.fl=dora3_native_rate_f32(ctx->f2.fl);'
+        elif op=='cutscene_jump_gravity':
+            if rule['section']!='.scene1' or (address,site,word)!=(0x801E810C,0x801E8138,0x46001081):raise ValueError('Unreviewed scripted gravity')
+            label=f'dora3_after_timing_{site:08X}'
+            text=f'if (dora3_native_cutscene_equations_active()) {{ ctx->f2.fl=dora3_native_cutscene_gravity_f32(ctx->f2.fl,ctx->f0.fl,(uint32_t)ADD32(ctx->r16,0x14)); goto {label}; }}'
+            hooks[name,site+4].insert(0,label+':;')
+        elif op=='cutscene_jump_query':
+            if rule['section']!='.scene1' or (address,site,word)!=(0x801E7EB8,0x801E7EE0,0x46002100):raise ValueError('Unreviewed scripted jump query')
+            text='if (dora3_native_cutscene_equations_active()) ctx->f0.fl=dora3_native_cutscene_query_velocity((uint32_t)ctx->r2,ctx->f0.fl);'
+        elif op=='cutscene_axis_displacement':
+            if rule['section']!='.scene1' or (address,site,word)!=(0x801E32E0,0x801E330C,0x46020000):raise ValueError('Unreviewed scripted axis displacement')
+            label=f'dora3_after_timing_{site:08X}'
+            text=f'if (dora3_native_simulation_active()) {{ ctx->f0.fl += dora3_native_cutscene_axis_drift(rdram,(uint32_t)ctx->r4,(uint32_t)ctx->r5,(uint32_t)(ctx->r3-ctx->r4),ctx->f2.fl,(uint32_t)MEM_W(0x60,ctx->r3)); goto {label}; }}'
+            hooks[name,site+4].insert(0,label+':;')
+        elif op=='cutscene_source_end':
+            if rule['section']!='.scene1' or (address,site,word)!=(0x801BB080,0x801BB320,0x8FBF0018):raise ValueError('Unreviewed scripted Source endpoint')
+            text='dora3_native_cutscene_source(rdram,ctx,1);'
         elif op=='tick_entry':
             if site!=address:raise ValueError('Timer gate is not an entry hook')
             text='if (!dora3_native_simulation_tick_start()) return;'

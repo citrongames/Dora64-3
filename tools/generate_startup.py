@@ -101,6 +101,8 @@ def main():
     declarations.append('float dora3_native_model_latched_turn(uint8_t*,uint32_t,uint32_t,float,float);')
     declarations.extend(['float dora3_native_drive_f32(float,float,float,float,float,uint32_t);', 'void dora3_native_project_drive_f32(float,float,uint32_t,uint32_t,uint32_t);'])
     declarations.append('void dora3_native_camera_dispatch(uint8_t*,recomp_context*,uint32_t,void (*)(uint8_t*,recomp_context*));')
+    declarations.append('void dora3_native_cutscene_source(uint8_t*,recomp_context*,unsigned);')
+    declarations.extend(['int dora3_native_cutscene_equations_active(void);','float dora3_native_cutscene_gravity_f32(float,float,uint32_t);','float dora3_native_cutscene_query_velocity(uint32_t,float);','float dora3_native_cutscene_axis_drift(uint8_t*,uint32_t,uint32_t,uint32_t,float,uint32_t);'])
     declarations.append('int dora3_native_loop_receive_deferred(uint8_t*, recomp_context*);')
     declarations.append('int dora3_native_game_message(uint8_t*, recomp_context*);')
     declarations.append('uint32_t dora3_bus_read32(uint8_t*, uint32_t);')
