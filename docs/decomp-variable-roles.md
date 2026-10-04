@@ -57,6 +57,7 @@
 | `dialogue_descriptor_r4` | `ctx->r4` | Input descriptor until a0 is reused for runtime parameters | 1 |
 | `dialogue_entry_physics_r3` | `ctx->r3` | Physics record used only for the initial dialogue latch read and write; v1 changes role afterward | 8 |
 | `dialogue_state2_r16` | `ctx->r16` | State2 constant preserved across the dialogue call | 1 |
+| `dialogue_state_r16` | `ctx->r16` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |
 | `drive_command_r4` | `ctx->r4` | Входная команда scalar drive; сохранена до конца функции. | 1 |
 | `first_shape_index_output_r16` | `ctx->r16` | Output pointer for the first colliding shape index | 1 |
 | `flash_delay_count_physics_r3` | `ctx->r3` | Physics для чтения/записи count34; следующий instruction заменяет этот регистр signed selector | 1 |
@@ -102,6 +103,8 @@
 | `object_physics_r3` | `ctx->r3` | Physics pointer до установки входного флага state2 | 1 |
 | `object_physics_r3` | `ctx->r3` | Текущий physics record до однократного вызова выбора клипа | 1 |
 | `opacity_model_r4` | `ctx->r4` | Unchanged model pointer for opacity flag/time writes | 1 |
+| `panel_record_r7` | `ctx->r7` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |
+| `panel_update_slot_r16` | `ctx->r16` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |
 | `participant_actor_r19` | `ctx->r19` | Actor для публикации трёх angles до восстановления s3. | 1 |
 | `participant_control_r18` | `ctx->r18` | Сохранённый participant control до восстановления s2 в epilogue. | 1 |
 | `participant_pool_control_r16` | `ctx->r16` | Текущая60-entry control record в loop body. | 1 |
@@ -252,6 +255,9 @@
 | `story_profile_r17` | `ctx->r17` | Story-selected profile2 or0/1 retained across allocator calls | 8 |
 | `target_actor_r5` | `ctx->r5` | Input actor whose physics update permission changes | 1 |
 | `target_heading_f14` | `ctx->f14` | Входной target angle до аргумента нормализации разницы | 1 |
+| `title_letter_record_r3` | `ctx->r3` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 2 |
+| `title_letter_record_r4` | `ctx->r4` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |
+| `title_letter_record_r5` | `ctx->r5` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |
 | `translation_matrix_output_r4` | `ctx->r4` | Указатель на64-байтовую выходную матрицу | 1 |
 | `translation_x_float_bits_r5` | `ctx->r5` | Float-биты переносаX; сохраняются без числового преобразования | 1 |
 | `translation_y_float_bits_r6` | `ctx->r6` | Float-биты переносаY | 1 |
@@ -260,5 +266,7 @@
 | `vertical_collision_actor_r17` | `ctx->r17` | Exact Original register storage for this proven instruction region only | 1 |
 | `vertical_collision_physics_r16` | `ctx->r16` | Exact Original register storage for this proven instruction region only | 1 |
 | `vertical_parameters_physics_r2` | `ctx->r2` | Exact Original register storage for this proven instruction region only | 1 |
+| `widget_draw_slot_r18` | `ctx->r18` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |
+| `widget_record_r16` | `ctx->r16` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |
 | `world_actor_r3` | `ctx->r3` | Текущий обновляемый объект мира из8021BDEC | 1 |
 | `world_actor_r4` | `ctx->r4` | Текущий обновляемый объект мира из8021BDEC | 2 |

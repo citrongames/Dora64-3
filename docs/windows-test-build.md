@@ -1,3 +1,33 @@
+# Test-040 — меню, диалоги и HUD
+
+Windows сборка готова и передана изgeneration355 после полного связанного блока5. Native Manual
+получает новые2D display lists в title/files/intro/selection и в общей scene1 UI.
+Дробные уравнения panel bounds, screen rectangle, title drop/slide/exit/bounce,
+intro alpha и fixed selection actor/text movement вычисляют новую геометрию.
+Input/repeat, dialogue pages/answers, scripts/waits, sounds, saves/pak/EEPROM
+сохраняют Original частоту. Widgets reveal/lifetime, dialogue arrow, files visual
+counters и final panel draw не ускоряются на дополнительных Native кадрах.
+При повторе используется состояние перед тем же Original draw; после него
+восстанавливается Source результат. Source multiplicity для нескольких views
+сохранена. Пропускается только повторный sound JAL, arrow builder остаётся.
+Пауза/пропущенный Source UI domain не получают дробного обновления.
+
+849 описаний/518 понятных имён функций/596 областей переменных. Перед сборкой
+пройдены80 UI cases,64 Original motion endpoints,153 Native math samples,
+72 repeated draw/command comparisons,37 ownership/pause/policy guards; ASan/UBSan,
+full math RAM/context restoration. Names355:96 C units, exact canonical tokens
+и ABI/register storage. Player/NPC/weapons/pickup/camera suites не повторялись.
+Windows source354/test039 архивирован перед040. Игра/GPU не запускались.
+Текстуры/шрифты/звук — ограниченные counted fixture boundaries; реальные меню
+и диалоги визуально проверяет пользователь. UI fallback сохраняет исходные
+20/30Hz мира, если его Native подсистема ещё не подключена. Полный variable FPS
+всей игры не завершён: остаются1/2/4/6. Следующий блок выбирает пользователь.
+ROM только рядом сEXE, настройки/saves общие, предыдущие EXE/DLL/ROM сохраняются.
+
+---
+
+История предыдущих сборок:
+
 # Test-039 — сценарные камеры и катсцены
 
 Windows сборка готова и передана изgeneration354 после полного связанного блока3. Native Manual

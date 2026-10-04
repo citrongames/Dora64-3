@@ -2,6 +2,71 @@
 import collections,hashlib,json,struct
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
+APPROVED_UI_SITES={('ui_source_end', '.startup', 2147647928, 2147648108, 2411659308): {},
+ ('ui_draw_boundary', '.scene_common', 2149281308, 2149281308, 666763216): {'end': 0},
+ ('ui_draw_boundary', '.scene_common', 2149281308, 2149281796, 2411659304): {'end': 1},
+ ('ui_draw_boundary', '.scene_common', 2149285324, 2149285324, 1006796828): {'end': 0},
+ ('ui_draw_boundary', '.scene_common', 2149285324, 2149286716, 2411659340): {'end': 1},
+ ('ui_draw_boundary', '.scene34', 2149310204, 2149310204, 666763072): {'end': 0},
+ ('ui_draw_boundary', '.scene34', 2149310204, 2149313048, 2411659420): {'end': 1},
+ ('ui_draw_boundary', '.scene34', 2149327556, 2149327556, 1006796828): {'end': 0},
+ ('ui_draw_boundary', '.scene34', 2149327556, 2149328028, 65011720): {'end': 1},
+ ('ui_command_once', '.scene_common', 2149278648, 2149278672, 201396528): {},
+ ('ui_velocity', '.scene34', 2149301484, 2149301564, 1174536192): {'velocity': 0,
+                                                                   'acceleration': 2,
+                                                                   'base': 4,
+                                                                   'offset': 28},
+ ('ui_velocity', '.scene34', 2149301936, 2149302116, 1174409344): {'velocity': 2,
+                                                                   'acceleration': 0,
+                                                                   'base': 5,
+                                                                   'offset': 24},
+ ('ui_velocity', '.scene34', 2149302652, 2149302924, 1174536192): {'velocity': 0,
+                                                                   'acceleration': 2,
+                                                                   'base': 3,
+                                                                   'offset': 28},
+ ('ui_displacement', '.scene34', 2149301484, 2149301612, 1174536192): {'register': 2,
+                                                                       'base': 4,
+                                                                       'offset': 28},
+ ('ui_displacement', '.scene34', 2149301936, 2149302132, 1174536192): {'register': 2,
+                                                                       'base': 5,
+                                                                       'offset': 24},
+ ('ui_displacement', '.scene34', 2149302652, 2149302976, 1174536192): {'register': 2,
+                                                                       'base': 3,
+                                                                       'offset': 28},
+ ('ui_displacement', '.scene34', 2149302652, 2149303256, 1174413568): {'register': 0,
+                                                                       'base': 3,
+                                                                       'offset': 24},
+ ('ui_displacement', '.scene34', 2149303488, 2149303592, 1174536193): {'register': 2,
+                                                                       'base': 3,
+                                                                       'offset': 28},
+ ('ui_displacement', '.scene34', 2149303488, 2149303612, 3294756892): {'register': 0,
+                                                                       'base': 3,
+                                                                       'offset': 28},
+ ('ui_displacement', '.scene34', 2149303488, 2149303680, 1174536192): {'register': 2,
+                                                                       'base': 3,
+                                                                       'offset': 28},
+ ('ui_rate', '.scene34', 2149302652, 2149303096, 1176633345): {'register': 2, 'double': True},
+ ('ui_rate', '.scene34', 2149302652, 2149303156, 1176633345): {'register': 2, 'double': True},
+ ('ui_rate', '.scene34', 2149302652, 2149303176, 1174544640): {'register': 2, 'double': False},
+ ('ui_rate', '.scene34', 2149302652, 2149303212, 1176633344): {'register': 2, 'double': True},
+ ('ui_rate', '.scene34', 2149302652, 2149303228, 1174544641): {'register': 2, 'double': False},
+ ('ui_rate', '.scene34', 2149323960, 2149324100, 1174417792): {'register': 0, 'double': False},
+ ('ui_rate', '.scene34', 2149323960, 2149324116, 1174413568): {'register': 0, 'double': False},
+ ('ui_rate', '.scene34', 2149323960, 2149324304, 1174409344): {'register': 0, 'double': False},
+ ('ui_selection_y_drift', '.scene34', 2149323960, 2149324084, 1006714752): {},
+ ('ui_source_begin', '.startup', 2147647928, 2147647928, 666763216): {},
+ ('ui_domain', '.scene_common', 2149276420, 2149276420, 666763232): {'domain': 1},
+ ('ui_domain', '.scene1', 2149311984, 2149311988, 2221113626): {'domain': 2},
+ ('ui_domain', '.scene34', 2149301484, 2149301484, 266304): {'domain': 4},
+ ('ui_domain', '.scene34', 2149301936, 2149301936, 266304): {'domain': 4},
+ ('ui_domain', '.scene34', 2149302652, 2149302652, 266304): {'domain': 4},
+ ('ui_domain', '.scene34', 2149303488, 2149303488, 266304): {'domain': 4},
+ ('ui_domain', '.scene34', 2149319976, 2149319976, 1006862364): {'domain': 8},
+ ('ui_domain', '.scene34', 2149323960, 2149323960, 1006796823): {'domain': 16},
+ ('ui_domain', '.scene34', 2149325456, 2149325456, 1006796828): {'domain': 32},
+ ('ui_domain', '.scene34', 2149325984, 2149325984, 1006862364): {'domain': 64},
+ ('ui_draw_boundary', '.scene_common', 2149278648, 2149278648, 1006796828): {'end': 0},
+ ('ui_draw_boundary', '.scene_common', 2149278648, 2149279372, 65011720): {'end': 1}}
 def timing_hooks(sections,compiled,rom):
     data=json.loads((ROOT/'recomp/native-timing-rules.json').read_text())
     if data['version']!=1 or hashlib.sha256(rom).hexdigest()!=data['rom_sha256']:
@@ -690,6 +755,30 @@ def timing_hooks(sections,compiled,rom):
             label=f'dora3_after_timing_{site:08X}'
             text=f'if (dora3_native_simulation_active()) {{ ctx->f0.fl += dora3_native_cutscene_axis_drift(rdram,(uint32_t)ctx->r4,(uint32_t)ctx->r5,(uint32_t)(ctx->r3-ctx->r4),ctx->f2.fl,(uint32_t)MEM_W(0x60,ctx->r3)); goto {label}; }}'
             hooks[name,site+4].insert(0,label+':;')
+        elif op.startswith('ui_'):
+            approved=APPROVED_UI_SITES.get((op,rule['section'],address,site,word))
+            if approved is None or any(rule.get(k)!=v for k,v in approved.items()):raise ValueError('Unreviewed UI boundary/equation')
+            if op=='ui_source_end':text='dora3_native_ui_source(rdram,ctx);'
+            elif op=='ui_source_begin':text='dora3_native_ui_source_begin(rdram,ctx);'
+            elif op=='ui_domain':text=f'dora3_native_ui_domain(rdram,{rule["domain"]});'
+            elif op=='ui_draw_boundary':text=f'dora3_native_ui_draw_boundary(rdram,0x{address:08X}u,{rule["end"]});'
+            elif op=='ui_command_once':
+                label=f'dora3_after_ui_sound_{site:08X}'
+                text=f'if (!dora3_native_ui_command_once(0x{address:08X}u)) goto {label};'
+                hooks[name,site+8].insert(0,label+':;')
+            elif op=='ui_velocity':
+                dst=(word>>6)&31;vel=rule['velocity'];acc=rule['acceleration'];base=rule['base'];offset=rule['offset']
+                label=f'dora3_after_ui_{site:08X}'
+                text=f'if (dora3_native_ui_equations_active()) {{ ctx->f{dst}.fl=dora3_native_ui_velocity_f32(ctx->f{vel}.fl,ctx->f{acc}.fl,(uint32_t)ctx->r{base}+{offset}); goto {label}; }}'
+                hooks[name,site+4].insert(0,label+':;')
+            elif op=='ui_displacement':
+                text=f'if (dora3_native_ui_equations_active()) ctx->f{rule["register"]}.fl=dora3_native_ui_displacement_f32(ctx->f{rule["register"]}.fl,(uint32_t)ctx->r{rule["base"]}+{rule["offset"]});'
+            elif op=='ui_rate':
+                field='d' if rule['double'] else 'fl';helper='f64' if rule['double'] else 'f32'
+                text=f'ctx->f{rule["register"]}.{field}=dora3_native_ui_rate_{helper}(ctx->f{rule["register"]}.{field});'
+            elif op=='ui_selection_y_drift':
+                text='if (dora3_native_ui_equations_active()) { union { uint64_t bits; double value; } gain; gain.bits=LD(0,(int32_t)0x801C6340u); ctx->f2.d=dora3_native_ui_selection_y_f64(ctx->f2.d,ctx->f6.fl,gain.value); }'
+            else:raise ValueError('Unknown UI operation')
         elif op=='cutscene_source_end':
             if rule['section']!='.scene1' or (address,site,word)!=(0x801BB080,0x801BB320,0x8FBF0018):raise ValueError('Unreviewed scripted Source endpoint')
             text='dora3_native_cutscene_source(rdram,ctx,1);'

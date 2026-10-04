@@ -15873,6 +15873,541 @@
       "locals": [],
       "description": "Source opcode выбирает character-specific actor type, создаёт участника с physics byte29 и копирует transforms текущего player actor в control. Исходные creation/selection gates сохраняются.",
       "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B5B04",
+      "size": 344,
+      "legacy_name": "dora3_s1_801B5B04",
+      "rom_sha256": "a83d80cb7c02c0a7c512c6aba9989b6b60c338e25336f376f4cfc15784c9ec9e",
+      "locals": [
+        {
+          "name": "panel_update_slot_r16",
+          "expression": "ctx->r16",
+          "start": "0x801B5B14",
+          "end": "0x801B5C4C",
+          "description": "Reviewed UI slot/record role restricted to the exact Original instruction interval",
+          "instructions": {
+            "0x801B5B0C": "0x00008021",
+            "0x801B5C40": "0x28420008"
+          }
+        },
+        {
+          "name": "panel_record_r7",
+          "expression": "ctx->r7",
+          "start": "0x801B5B34",
+          "end": "0x801B5B9C",
+          "description": "Reviewed UI slot/record role restricted to the exact Original instruction interval",
+          "instructions": {
+            "0x801B5B30": "0x00623821",
+            "0x801B5B40": "0x84E20042"
+          }
+        }
+      ],
+      "name": "dora3_ui_panels_update_eight_801B5B04",
+      "description": "Восемь панелей размером44: при elapsed<duration увеличивает short42 и вычисляет пять visible words2C из start4+(signed(target18-start4)/duration)*elapsed. Сначала целочисленное деление, потом умножение; завершение отдельным следующим Source проходом копирует target и при флаге удаляет панель. Native считает это уравнение с дробным временем, сохраняя исходную квантизацию скорости.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B57E8",
+      "size": 100,
+      "legacy_name": "dora3_s1_801B57E8",
+      "rom_sha256": "bd474149e10afcaa72d5d815a5cf979d64410ca7f405eb30f9283408d6db5f8a",
+      "locals": [],
+      "name": "dora3_ui_panel_clear_801B57E8",
+      "description": "Обнуляет active/close-after/elapsed/duration и пять наборов start,target,visible по индексу. Вызывается исходным обновлением после завершения закрытия.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B58BC",
+      "size": 64,
+      "legacy_name": "dora3_s1_801B58BC",
+      "rom_sha256": "3d31ca4e01d8c88682c88da2833d37205818bc08a1f545f85446b83889638264",
+      "locals": [],
+      "name": "dora3_ui_panel_set_target_and_duration_801B58BC",
+      "description": "Записывает пять target words18..28 и short duration40. Не меняет текущие visible/start words: последующая Source команда определяет начало движения.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B58FC",
+      "size": 272,
+      "legacy_name": "dora3_s1_801B58FC",
+      "rom_sha256": "506f4ef93bb91ca1228bae7c676bdab101638f857b4916d969e5eec2045fcabc",
+      "locals": [],
+      "name": "dora3_ui_panel_open_from_center_or_edge_801B58FC",
+      "description": "Включает панель и строит начальные границы по mode0/1/2: точка центра, горизонтальная или вертикальная линия. Сохраняет target bounds/color/duration; последующие панели используют собственный elapsed.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B5A0C",
+      "size": 248,
+      "legacy_name": "dora3_s1_801B5A0C",
+      "rom_sha256": "3f0bac1b9377deaa821e50a1b974ab4a913fffc6ef4b9ad388bbddfa940beb1b",
+      "locals": [],
+      "name": "dora3_ui_panel_close_toward_center_or_edge_801B5A0C",
+      "description": "Сохраняет текущие границы как начало закрытия, выбирает target center/edge, сбрасывает elapsed и устанавливает close-after. Само удаление выполняет Original update после завершения duration.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B5C5C",
+      "size": 488,
+      "legacy_name": "dora3_s1_801B5C5C",
+      "rom_sha256": "b49b6c0e75bf84a497ad46354a09cf9587310c27ba64cdde1e9d436ac2448018",
+      "locals": [],
+      "name": "dora3_ui_panel_emit_rectangle_and_border_801B5C5C",
+      "description": "Выводит оригинальные fill-rectangle/color/border display-list команды из переданных целых экранных координат. Геометрия UI остаётся квантизованной по пикселям; Native каждый кадр пересчитывает входные координаты по времени.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B5E44",
+      "size": 140,
+      "legacy_name": "dora3_s1_801B5E44",
+      "rom_sha256": "53b549d1e2c7848ce262a5aa57b546da38fd2bb5f1ab0fc2a10a009f2f0c6449",
+      "locals": [],
+      "name": "dora3_ui_panels_draw_eight_801B5E44",
+      "description": "Рисует активные панели из пяти visible words2C..3C; последовательность Original команд цвета и рамок сохранена.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B6AF4",
+      "size": 8,
+      "legacy_name": "dora3_s1_801B6AF4",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": [],
+      "name": "dora3_ui_widgets_update_noop_801B6AF4",
+      "description": "Исходная phase0 функция не делает действий. Настоящие восемь widget timers меняются в функции рисования6E1C; Native не должен считать эту пустую заглушку переводом текста.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B6AFC",
+      "size": 20,
+      "legacy_name": "dora3_s1_801B6AFC",
+      "rom_sha256": "22d675b98bf24485131c0ac0ded85bc89bf3c3bf999db9e43ce4562f066ffc0c",
+      "locals": [],
+      "name": "dora3_ui_text_bind_block_801B6AFC",
+      "description": "Устанавливает общий текстовый блок для сообщений. Команда остаётся Source-owned и не повторяется на дополнительных Native кадрах.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B6E1C",
+      "size": 524,
+      "legacy_name": "dora3_s1_801B6E1C",
+      "rom_sha256": "d299833cf0ed2ccd24864f3eb7f6fc44c1c2b802a3f3f9a5ded646b406b4bee2",
+      "locals": [
+        {
+          "name": "widget_draw_slot_r18",
+          "expression": "ctx->r18",
+          "start": "0x801B6E4C",
+          "end": "0x801B7004",
+          "description": "Reviewed UI slot/record role restricted to the exact Original instruction interval",
+          "instructions": {
+            "0x801B6E28": "0xAFB50024",
+            "0x801B6FF8": "0x28420008"
+          }
+        },
+        {
+          "name": "widget_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801B6E6C",
+          "end": "0x801B6FEC",
+          "description": "Reviewed UI slot/record role restricted to the exact Original instruction interval",
+          "instructions": {
+            "0x801B6E68": "0x00628021",
+            "0x801B6EBC": "0x8602001A"
+          }
+        }
+      ],
+      "name": "dora3_ui_widgets_draw_and_advance_source_timers_801B6E1C",
+      "description": "Рисует восемь24-byte виджетов, продвигает reveal period1A/elapsed1C/glyph count20 и lifetime16/18, очищает истёкшие записи. Эти изменения находятся в phase1 Original; Native сохраняет один такой шаг на Source epoch, а дополнительные display lists восстанавливают только данные виджетов. Текст и срок показа не ускоряются вместе с FPS.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B7BB4",
+      "size": 536,
+      "legacy_name": "dora3_s1_801B7BB4",
+      "rom_sha256": "429743d520ddd9f2578028899afe951e67f941f240747378bf912ddd730a8bbe",
+      "locals": [
+        {
+          "name": "dialogue_state_r16",
+          "expression": "ctx->r16",
+          "start": "0x801B7BCC",
+          "end": "0x801B7DBC",
+          "description": "Reviewed UI slot/record role restricted to the exact Original instruction interval",
+          "instructions": {
+            "0x801B7BC8": "0x26108D50",
+            "0x801B7D3C": "0x86020000"
+          }
+        }
+      ],
+      "name": "dora3_ui_dialogue_update_input_page_and_waits_801B7BB4",
+      "description": "Source обработчик диалога: initial waits, A/B/directions и ответ, переход страницы через72BC, раскрытие text buffer через7A38, закрытие через7028 и два countdown. Native не повторяет кнопки и страницы на дополнительных кадрах.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B7A38",
+      "size": 380,
+      "legacy_name": "dora3_s1_801B7A38",
+      "rom_sha256": "3a4c571b0eea858d74f94bcfceee6fb8e2b6d1a39b4c94c3d6425aa69ff130fb",
+      "locals": [],
+      "name": "dora3_ui_dialogue_reveal_tokens_at_source_period_801B7A38",
+      "description": "Обрабатывает character delay и режим раскрытия, читает текстовые control tokens через74C8. Не является геометрией/анимацией; её opcode/cursor/busy/choice изменения остаются в исходном update.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B72BC",
+      "size": 292,
+      "legacy_name": "dora3_s1_801B72BC",
+      "rom_sha256": "add1ce41fc61ba52711eea1b54d5227a1db77ff69804709b09721a52c14b5bc3",
+      "locals": [],
+      "name": "dora3_ui_dialogue_advance_page_and_reset_reveal_801B72BC",
+      "description": "Выбирает следующую строку text block по текущему choice/page mode, очищает100 token slots и reveal counters, устанавливает исходные waits4/8. Source команда вызывается после исходного ввода/таймера.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B7DCC",
+      "size": 1444,
+      "legacy_name": "dora3_s1_801B7DCC",
+      "rom_sha256": "1827e50e6bb910037bdbd822932d59fdce5518726d89819c7b0c4e86ad5c6d45",
+      "locals": [],
+      "name": "dora3_ui_dialogue_draw_tokens_and_choice_arrow_801B7DCC",
+      "description": "Строит оригинальную панель и glyph commands из подготовленных tokens. Маркер продолжения изменяет два исходных bob fields8D38/8D40 при рисовании; Native сохраняет эту фазу один раз на Source epoch. Звук text draw тоже разрешён один раз за epoch через63B8.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B63B8",
+      "size": 732,
+      "legacy_name": "dora3_s1_801B63B8",
+      "rom_sha256": "78ab19c3f851e580e94db272b1a478f2b6553126b45c6f36358e46260d3e4237",
+      "locals": [],
+      "name": "dora3_ui_text_arrow_draw_and_sound_801B63B8",
+      "description": "Рисует Original arrow texture display list, меняет blink direction8D10/phase8D18 и при sound flag8D3C==0 запрашивает звук444C0. Native повторяет весь builder с исходным pre-draw состоянием; пропускается только повторный sound JAL63D0, geometry не пропускается. Source draw multiplicity и окончательные flags сохранены.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BBCEC",
+      "size": 308,
+      "legacy_name": "dora3_s2_menu_801BBCEC",
+      "rom_sha256": "4a729db0208515dbc3d42780a7f1896786d11aac7be29cd7e6d20162d96291e0",
+      "locals": [
+        {
+          "name": "title_letter_record_r4",
+          "expression": "ctx->r4",
+          "start": "0x801BBD0C",
+          "end": "0x801BBE18",
+          "description": "Reviewed UI slot/record role restricted to the exact Original instruction interval",
+          "instructions": {
+            "0x801BBD08": "0x00432021",
+            "0x801BBD34": "0xC480001C"
+          }
+        }
+      ],
+      "name": "dora3_ui_title_letters_drop_and_bounce_801BBCEC",
+      "description": "Восемь34-byte букв title: задержка2C относительно global66F4, velocity1C+=acceleration20 с cap30, Y14+=velocity и floor72. При касании обновляет bounce phase30/velocity. Native guest equations в отдельном image вычисляют kick/drift; phases и команды не публикуются.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BBEB0",
+      "size": 284,
+      "legacy_name": "dora3_s2_menu_801BBEB0",
+      "rom_sha256": "ea157d35a4772c18a8d3349fb794da76f45afee10b592c6a31209a07e885f81e",
+      "locals": [
+        {
+          "name": "title_letter_record_r5",
+          "expression": "ctx->r5",
+          "start": "0x801BBED0",
+          "end": "0x801BBFC4",
+          "description": "Reviewed UI slot/record role restricted to the exact Original instruction interval",
+          "instructions": {
+            "0x801BBECC": "0x00432821",
+            "0x801BBF68": "0xC4A00010"
+          }
+        }
+      ],
+      "name": "dora3_ui_title_letters_slide_horizontally_801BBEB0",
+      "description": "После Source задержки буква идёт по X10 через velocity18/acceleration20. Глобальный6480 разрешает arrival target index*32+32, исходные stop/initial velocity и group activation сохраняются. Native публикует только четыре visible float fields.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BC17C",
+      "size": 680,
+      "legacy_name": "dora3_s2_menu_801BC17C",
+      "rom_sha256": "37517774e5f9d9eee81986fbb0a5ae31d0546009ceb64c55262fb9e7f33bfcf3",
+      "locals": [
+        {
+          "name": "title_letter_record_r3",
+          "expression": "ctx->r3",
+          "start": "0x801BC19C",
+          "end": "0x801BC420",
+          "description": "Reviewed UI slot/record role restricted to the exact Original instruction interval",
+          "instructions": {
+            "0x801BC198": "0x00431821",
+            "0x801BC3E0": "0xE4620004"
+          }
+        }
+      ],
+      "name": "dora3_ui_title_letters_exit_with_motion_and_scale_801BC17C",
+      "description": "Выбирает acceleration по Y thresholds, меняет velocity/Y, scaleC при выходе и короткие Source phases, движется X к target24. Native временные приращения масштабированы, screen clamps/Source phases остаются в isolated image.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BC4C0",
+      "size": 292,
+      "legacy_name": "dora3_s2_menu_801BC4C0",
+      "rom_sha256": "16c77b8dceaa609af425d18f706d5c129372bf8e17abd23fc78f8368b23894f0",
+      "locals": [
+        {
+          "name": "title_letter_record_r3",
+          "expression": "ctx->r3",
+          "start": "0x801BC4E0",
+          "end": "0x801BC5DC",
+          "description": "Reviewed UI slot/record role restricted to the exact Original instruction interval",
+          "instructions": {
+            "0x801BC4DC": "0x00431821",
+            "0x801BC5C4": "0xE4620004"
+          }
+        }
+      ],
+      "name": "dora3_ui_title_letters_alternate_bounce_801BC4C0",
+      "description": "Чередует верхний/нижний шаг bounce по phase30, уменьшает velocity при одной ветви, после floor28 включает acceleration/state. Последние четыре буквы зеркалят visible Y относительно208. Native временные displacement применяются только в UI equation scope.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BCEF8",
+      "size": 384,
+      "legacy_name": "dora3_s2_menu_801BCEF8",
+      "rom_sha256": "9b8dc0637435589751125137a4764180d8ffc8ec6a3aa00f8416bcdeec4a3937",
+      "locals": [],
+      "name": "dora3_ui_title_update_input_and_letter_modes_801BCEF8",
+      "description": "Original selected-controller/repeat update, переход/ожидание, восемь букв по mode647C и counters66F4/6478. Native кадры вызывают только независимые letter equations; ввод и команды перехода остаются Source.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BD078",
+      "size": 92,
+      "legacy_name": "dora3_s2_menu_801BD078",
+      "rom_sha256": "5e70fbe89372f982a249a97c5657ae170d307640a941f343027ec6eb7a47a001",
+      "locals": [],
+      "name": "dora3_ui_title_draw_801BD078",
+      "description": "Оригинальная draw фаза title: buffer setup, текстуры и visible letter transforms. Получает рассчитанные Native координаты внутри ограниченного frame scope.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BFAA4",
+      "size": 416,
+      "legacy_name": "dora3_s2_menu_801BFAA4",
+      "rom_sha256": "3ad8b960c1deb719f87e88aac99e5310110d9147f140eac188e9fb0420383275",
+      "locals": [],
+      "name": "dora3_ui_files_update_input_states_and_blink_801BFAA4",
+      "description": "Обновляет selected controller/input repeat, девять состояний files menu с реальными commands/saves, transition countdown и blink counters. Native не повторяет выбор, запись файлов или команды звука на частых кадрах.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BDEFC",
+      "size": 2908,
+      "legacy_name": "dora3_s2_menu_801BDEFC",
+      "rom_sha256": "c878cbd803359723b153aa306d8f54de48b36adc993272eb4885e745647c9e80",
+      "locals": [],
+      "name": "dora3_ui_files_draw_rows_and_visual_counters_801BDEFC",
+      "description": "Рисует три file rows, progress data и выбранные маркеры. Внутри draw меняет UI counters683C/682C/6820; Native rollback дополнительных кадров ограничен range673C..68C8 и сохраняет исходную частоту этих шагов. Display-list записи продолжают строиться каждый кадр.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BFC44",
+      "size": 116,
+      "legacy_name": "dora3_s2_menu_801BFC44",
+      "rom_sha256": "037148232c282361187b0120742154845dd86b4a562a0514ad1c3e1003d15747",
+      "locals": [],
+      "name": "dora3_ui_files_draw_801BFC44",
+      "description": "Рисует buffer/background, file rows, prompts и choice marker. Source input, EEPROM/pak commands и сохранения не входят в частое Native вычисление.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801C0528",
+      "size": 212,
+      "legacy_name": "dora3_s2_menu_801C0528",
+      "rom_sha256": "72e7c8338df7c8dd432152fcd2deecec6c71d26fd206991723ca9699a5430c6f",
+      "locals": [],
+      "name": "dora3_ui_intro_alpha_cycle_source_states_801C0528",
+      "description": "Mode0 увеличивает alpha69A8 на10 до255, mode1 ждёт8 исходных шагов, mode2 уменьшает на10 до0. Native считает дробную opacity внутри одного Source phase; transitions/waits остаются Original.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801C0BBC",
+      "size": 204,
+      "legacy_name": "dora3_s2_menu_801C0BBC",
+      "rom_sha256": "4ecd06d8da11117bf77a557607318ae7a275543dcba5a51fda8ad6d787dc41b4",
+      "locals": [],
+      "name": "dora3_ui_intro_update_input_transition_and_alpha_801C0BBC",
+      "description": "Обрабатывает исходный контроллер/repeat, переходы и alpha cycle. Input/transition/hold не ускоряются в Native.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801C0C88",
+      "size": 56,
+      "legacy_name": "dora3_s2_menu_801C0C88",
+      "rom_sha256": "d2d59cae88b4236255d91e18cd3f2bf6bf99772d8e0aa3b5fb0a332b3daf044f",
+      "locals": [],
+      "name": "dora3_ui_intro_draw_801C0C88",
+      "description": "Строит оригинальные display-list команды intro image со sampled Native alpha, сохраняя Source состояние.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801C14B8",
+      "size": 404,
+      "legacy_name": "dora3_s2_menu_801C14B8",
+      "rom_sha256": "f2367baa6bdba4a2ad33bfde6dbd4105702bfb653377dc46100e6cb9c47bc60d",
+      "locals": [],
+      "name": "dora3_ui_selection_actor_entry_bob_and_rotation_801C14B8",
+      "description": "Фиксированный resident UI actor801724CC/D0 проходит entry/hold/exit: поза Y от общего sin baseline69F4 и Source counter69C8, вращение18/12 с clamp, offset50 и абсолютный1 в exit. Native временные приращения отделены от абсолютных offsets и Source state69E4.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801C1A90",
+      "size": 236,
+      "legacy_name": "dora3_s2_menu_801C1A90",
+      "rom_sha256": "0d7493782006f0184b718fcd1e0374d19255698310c4a1b8d7339c3ae37595a3",
+      "locals": [],
+      "name": "dora3_ui_selection_text_reveal_and_row_position_801C1A90",
+      "description": "Source раскрывает последовательность текста с исходным12-step pacing, движением row69E0 и обновлением line/cursor flags. Native дробно меняет только видимую позицию строки; текстовые cursors и completion flags не публикуются.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801C1CA0",
+      "size": 80,
+      "legacy_name": "dora3_s2_menu_801C1CA0",
+      "rom_sha256": "cdb3c41ae4b2bbf4ebcb2869e60a92b865c251e68b5c0009373168906bb8f26a",
+      "locals": [],
+      "name": "dora3_ui_selection_text_exit_and_wait_801C1CA0",
+      "description": "Source уменьшает видимый Y69C4 до104, затем countdown69C0 и completion69FC. Native меняет только видимую позицию на дробном кадре; переход выполняется Original.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801C1DEC",
+      "size": 192,
+      "legacy_name": "dora3_s2_menu_801C1DEC",
+      "rom_sha256": "de0065fef2c85063668eac2bf593e06b6c4cdc238e5c2b7fc9adf4dfb42548b9",
+      "locals": [],
+      "name": "dora3_ui_selection_prompt_wait_and_cycle_801C1DEC",
+      "description": "Source prompt FSM ждёт85/138 шагов и перебирает до пяти prompts; state/counters/completion остаются Original.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801C22C4",
+      "size": 480,
+      "legacy_name": "dora3_s2_menu_801C22C4",
+      "rom_sha256": "4b3bd1d813ca4dc4f8a2777f294b7f688ef0f1393026b18adc1fd31f874c6f33",
+      "locals": [],
+      "name": "dora3_ui_selection_final_panel_draw_and_grow_801C22C4",
+      "description": "Рисует финальную рамку после раскрытия строки115; в draw увеличивает growth69EC с cap66. Native сохраняет этот integer phase один раз за Source epoch и строит новые команды каждый кадр.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801C24A4",
+      "size": 472,
+      "legacy_name": "dora3_s2_menu_801C24A4",
+      "rom_sha256": "ab43eedd325a238f73522449f0080ba92573e4ed8b12670711219ed7e24f4574",
+      "locals": [],
+      "name": "dora3_ui_selection_update_source_owner_801C24A4",
+      "description": "Source владелец input/transition, text/prompt counters, sin angle69CC шаг10, six actors и camera geometry. UI Native переиспользует только pure math/visible fixed actor, не reinvoke full callback/input/resources.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801C267C",
+      "size": 356,
+      "legacy_name": "dora3_s2_menu_801C267C",
+      "rom_sha256": "3da525ec934894c27654aae0ed1f5eb4a37441b36c0ba84ff1b925f0f9b232dd",
+      "locals": [],
+      "name": "dora3_ui_selection_draw_801C267C",
+      "description": "Original draw меню выбора: buffer/view, actors, text/prompts и final panel. Native frame scope передаёт новую UI позу и сохраняет командные счётчики Source.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801BE5F0",
+      "size": 316,
+      "legacy_name": "dora3_s3_801BE5F0",
+      "rom_sha256": "6d8bfb82a31dcdef4ff891a477e7372eb8fb78556cf7c12bd8c190d8e2d52066",
+      "locals": [],
+      "name": "dora3_ui_screen_rectangle_update_801BE5F0",
+      "description": "Source rectangle transition: short elapsed171A4/duration17186, mode0/2 expansion или closure; radius300*ratio вокруг160/120. Native equations пересчитывают четыре float bounds, activity/таймер/режим остаются Source.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801BE72C",
+      "size": 192,
+      "legacy_name": "dora3_s3_801BE72C",
+      "rom_sha256": "99a1fe12ab01054b2941669e6d1480f21981678fb3252c4563165b9821ebcd4a",
+      "locals": [],
+      "name": "dora3_ui_screen_rectangle_draw_801BE72C",
+      "description": "Рисует экранный rectangle transition из sampled bounds1811C/17194/171E4/17198 и исходных цвета/режима. Source flags не изменяются Native геометрией.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801BED6C",
+      "size": 68,
+      "legacy_name": "dora3_s3_801BED6C",
+      "rom_sha256": "7e8a498efca839e8a99e4878a6d98fb7d3a055bf17e602ab9b0ae2bcbf0e6195",
+      "locals": [],
+      "name": "dora3_ui_hud_meter_draw_if_enabled_801BED6C",
+      "description": "Проверяет исходный HUD enable short171A8 и вызывает рисование цветного meter171A0. Границы/данные HUD читаются на каждом новом Native кадре.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801BE7EC",
+      "size": 1156,
+      "legacy_name": "dora3_s3_801BE7EC",
+      "rom_sha256": "728765f4c73170bdf18d719f64dd3b0760032cdad1e9f7e4ceac75dcf5f429ce",
+      "locals": [],
+      "name": "dora3_ui_hud_meter_emit_rectangles_801BE7EC",
+      "description": "Original display-list команды цветного HUD meter со значением a3, исходными рамками и сегментами. Отдельный Source game counter не превращается в frame counter.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801B9238",
+      "size": 76,
+      "legacy_name": "dora3_s3_801B9238",
+      "rom_sha256": "9d2be9afb4d3594c1e0e0e72f33efe9289ee85c226827f5069b85346d845e0c5",
+      "locals": [],
+      "name": "dora3_ui_dialogue_completion_release_player_801B9238",
+      "description": "Source проверяет dialogue busy и wait byte1710C; после окончания очищает1710D и возвращает player permission черезBBD5C. Этот callback не повторяется на дополнительных UI кадрах.",
+      "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
     }
   ]
 }

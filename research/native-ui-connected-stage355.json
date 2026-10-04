@@ -1,0 +1,28 @@
+{
+  "result": "PASS: targeted connected UI block; Original input/commands and Source draw multiplicity retained",
+  "date_utc": "2026-10-04T03:36:16.380379+00:00",
+  "generation": 355,
+  "baseline": "92b72f62e7337493df2a44d120027a1e4c5ff62b",
+  "checks": {
+    "native-ui-check": {
+      "result": "PASS: 80 connected UI cases; 64 Original motion endpoints; 153 Native math samples; 72 repeated Original UI draw/command comparisons; 37 ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.",
+      "report_sha256": "a0ff7c5da6a4734ea09d47b383339aa3e07571e249839cbcd796794a12c2a74a",
+      "generation_receipt_sha256": "df6ceb5b93d4b81547175f6a6061b146184965288a56e4319f850266e4c05be2"
+    },
+    "decomp-names-check": {
+      "result": "PASS: 849 descriptions; 518 semantic function names; 596 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
+      "report_sha256": "5cb8eca56d014b1e11373f795fe5efb0d6032be6764d5ba251ac23fa9c0bcb3a",
+      "generation_receipt_sha256": "df6ceb5b93d4b81547175f6a6061b146184965288a56e4319f850266e4c05be2"
+    }
+  },
+  "scope": "Panels and screen rectangle, four title letter modes, intro opacity, fixed selection actor bob/rotation and text row movement; widgets/dialogue/files/arrow/final-panel actual draw counters and command cadence; overlay-qualified owner and observed Source domains. Actual UI policy selection and framebuffer rejection compiled/executed for all five callback pairs at20/30Hz.",
+  "previous_runtime": "main354/test039 camera/cutscene block and prior player/NPC/dialogue/weapons/pickup fixes retained; no unchanged full-world rerun",
+  "limitations": [
+    "Synthetic UI assets/controllers and actual Original ROM bodies; no real renderer/game/GPU",
+    "Texture-info, textured glyph/rectangle/string draw and sound are counted fixture boundaries; raw arrow/panel/HUD command writes execute actual bodies",
+    "World stays at Original20/30 where its Native owner is not eligible; UI fallback is not full world conversion",
+    "Other overlay/minigame/platform/enemy/integration systems remain blocks1/2/4/6; real menu/dialogue visual checks external"
+  ],
+  "full_game_variable_fps_complete": false,
+  "no_game_gpu": true
+}
