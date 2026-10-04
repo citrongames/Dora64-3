@@ -88,7 +88,7 @@
     "research/native-pickup-settle-scatter-source-check.inc": "e282e2683aca683424b111608d185fc428ab7e177fad922de5f121e26a120391",
     "research/native-pickup-settle-guard-check.inc": "3fc4809ffce58c1ce267ba6686d12acaab25c9c15aaa946ac729884f0b123c58"
   },
-  "generation_receipt_sha256": "10c62a1cf6d3c381b316e5b34191e2c346c925f214f73978eac0e36f4d30cc1c",
+  "generation_receipt_sha256": "c52fd6e7a5bdc9a6463fd6174249018b13beb192aa7fb6ec039e62be1848ef5f",
   "reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "validated_schedules": {
     "settings": 24,
@@ -166,5 +166,10 @@
     "report_before_names_sha256": "293d574832035762c2d807781a97e410a2983a64de50a9ac1896f479967863d0",
     "generation_receipt_sha256": "ebb621d77f2ba02d6b7e78e0a7b6271fc95059641de57fb83c3f46626b6c49ed",
     "reason": "20 Source-qualified quest/creation/linked-effect aliases and14 exact register scopes only. Every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact; actual291 origins retained, no repeated runtime execution claim."
+  },
+  "execution_origin_348": {
+    "report_before_names_sha256": "a902c604bf8a8ec541ecb22648e52d4833b6274839f4c6fe0fe8bc9b66aed9c2",
+    "generation_receipt_sha256": "10c62a1cf6d3c381b316e5b34191e2c346c925f214f73978eac0e36f4d30cc1c",
+    "reason": "17 exact Source129 register scopes and Source344 lifetime evidence only; existing function aliases unchanged. Every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact; actual291 origins retained, no repeated runtime execution claim."
   }
 }

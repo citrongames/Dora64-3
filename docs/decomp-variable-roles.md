@@ -68,8 +68,25 @@
 | `game_counter_index_r4` | `ctx->r4` | Input counter index retained without register reuse | 2 |
 | `health_delta_r4` | `ctx->r4` | Входная прибавка к здоровью; r4 далее переиспользуется как указатель status. | 1 |
 | `interaction_player_state_r3` | `ctx->r3` | Player state retained across the Original interaction state gates | 1 |
+| `linked_cached_center_physics` | `ctx->r4` | Физика эффекта для parent7C и однократного сохранения XYZ родителя в float58/5C/60. | 1 |
+| `linked_delay_count` | `ctx->r3` | Count34 после lhu, увеличения и приведения к signed16 для сравнения с delay36; последующий boolean не переименовывается. | 1 |
+| `linked_delay_limit` | `ctx->r2` | Signed delay36 для сравнения с обновлённым signed count34. | 1 |
+| `linked_initial_count_physics` | `ctx->r2` | Физика эффекта до вызова RNG; delay-slot store сбрасывает count34 в0. | 1 |
+| `linked_initial_delay_physics` | `ctx->r3` | Физика эффекта для сохранения первого RNG delay20..49 в halfword36 до вызова markerCA setter. | 1 |
+| `linked_initial_parent_actor` | `ctx->r2` | Адрес настоящего parent actor после прибавления pool base; читаются float XYZ9C/A0/A4. | 1 |
+| `linked_initial_parent_pool_index` | `ctx->r3` | Signed halfword7C — индекс parent в общем actor pool; область заканчивается до превращения регистра в byte offset. | 1 |
+| `linked_initialization_physics` | `ctx->r3` | Физика эффекта из8021BCDC при чтении и установке initialization latch28. | 1 |
+| `linked_offset_x_physics` | `ctx->r3` | Физика эффекта при чтении сохранённого центра X из float58 для мгновенного RNG offset. | 1 |
+| `linked_offset_y_physics` | `ctx->r3` | Физика эффекта при чтении сохранённого центра Y из float5C для мгновенного RNG offset. | 1 |
+| `linked_offset_z_physics` | `ctx->r3` | Физика эффекта при чтении сохранённого центра Z из float60 для мгновенного RNG offset. | 1 |
 | `linked_parent_physics_r2` | `ctx->r2` | Parent physics used for the pending clip read | 1 |
 | `linked_parent_pool_index_r3` | `ctx->r3` | Parent pool index before address-scale arithmetic reuses this register | 1 |
+| `linked_renewed_delay_physics` | `ctx->r3` | Физика эффекта для нового RNG delay36 и обнуления count34 перед clip0 command. | 1 |
+| `linked_retirement_parent_index` | `ctx->r3` | Signed parent7C в финальном сравнении с-1; снятая связь вызывает настоящий Source destructor801E6E6C. | 1 |
+| `linked_retirement_physics` | `ctx->r2` | Физика эффекта для финальной проверки parent7C; область заканчивается до записи constant-1 в тот же регистр. | 1 |
+| `linked_teleport_x_actor` | `ctx->r2` | Настоящий actor эффекта для Source teleport X9C в delay slot следующего RNG вызова. | 1 |
+| `linked_teleport_y_actor` | `ctx->r2` | Настоящий actor эффекта для Source teleport YA0 в delay slot следующего RNG вызова. | 1 |
+| `linked_teleport_z_actor` | `ctx->r2` | Настоящий actor эффекта для Source teleport ZA4 после последнего RNG вызова. | 1 |
 | `matrix_left_row_cursor_r4` | `ctx->r4` | Курсор строки левой матрицы; после обхода больше не используется как входной указатель | 1 |
 | `matrix_product_output_r6` | `ctx->r6` | Выходная матрица, включая прямую запись последнего элемента и копирование остальных | 1 |
 | `matrix_right_input_r5` | `ctx->r5` | Начало правой матрицы; до загрузки временного результата в этот регистр | 1 |

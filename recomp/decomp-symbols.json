@@ -14923,8 +14923,8 @@
       "size": 320,
       "legacy_name": "dora3_s3_core_801EB8F8",
       "name": "dora3_pickup_spawn_script_descriptor_801EB8F8",
-      "description": "Общий Original producer: читает script halfwords XYZ/yaw из8021BE02..8021BE08, вызывает801E6968 с переданным descriptor и применяет scale111..128 через801EB8A0. Если signed low16 второго аргумента равен1, создаёт три kind129 эффекта через801E70E0 в свободных physical80 links и записывает child physical44=index0..2. При отказе основного allocator возвращает0. В конце сохраняет исходный actor scaleX в physical30. Actual339 проверяет создание/quest/full occupied pool/explicit cleanup; автоматический lifecycle129 и частично заполненный linked pool здесь не доказаны.",
-      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "description": "Общий Original producer: читает script halfwords XYZ/yaw из8021BE02..8021BE08, вызывает801E6968 с переданным descriptor и применяет scale111..128 через801EB8A0. Если signed low16 второго аргумента равен1, создаёт три kind129 эффекта через801E70E0 в свободных physical80 links и записывает child physical44=index0..2. При отказе основного allocator возвращает0. В конце сохраняет исходный actor scaleX в physical30. Actual339 проверяет создание/quest/full occupied pool/explicit cleanup; Actual344 дополнительно проверяет полный автоматический lifecycle трёх kind129 после настоящего создания; частично заполненный linked pool и реальный selecting script ещё не доказаны.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim. Actual34472 paired complete linked Source lifetimes/18432 exact whole endpoints from8 real private producers and3 actual129 children; real Source RNG/clip/seek/teleports/automatic unlink/destruction and heap/model/resource cleanup checked on synthetic assets. No actual selecting script/real-level renderer or current main Native129 claim.",
       "rom_sha256": "f6328e873b52ba526bd00b3903ff165a0a4f3105f211da3f95b6abead6cf0e3a",
       "locals": [
         {
@@ -14961,7 +14961,7 @@
       "legacy_name": "dora3_s3_core_801ED2BC",
       "name": "dora3_pickup_linked_effect_constructor_noop_801ED2BC",
       "description": "Kind129 constructor callback из public84-byte таблицы: Original jr ra/nop, никаких игровых записей/команд. Общий descriptor parser и model/physics allocation выполняются снаружи; первый update separately initializes эффект.",
-      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim. Actual34472 paired complete linked Source lifetimes/18432 exact whole endpoints from8 real private producers and3 actual129 children; real Source RNG/clip/seek/teleports/automatic unlink/destruction and heap/model/resource cleanup checked on synthetic assets. No actual selecting script/real-level renderer or current main Native129 claim.",
       "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
       "locals": []
     },
@@ -14972,7 +14972,7 @@
       "legacy_name": "dora3_s3_core_801ED2C4",
       "name": "dora3_pickup_linked_effect_contact_noop_801ED2C4",
       "description": "Kind129 contact callback из public84-byte таблицы: Original jr ra/nop, никаких игровых записей/команд. Общий descriptor parser и model/physics allocation выполняются снаружи; первый update separately initializes эффект.",
-      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim. Actual34472 paired complete linked Source lifetimes/18432 exact whole endpoints from8 real private producers and3 actual129 children; real Source RNG/clip/seek/teleports/automatic unlink/destruction and heap/model/resource cleanup checked on synthetic assets. No actual selecting script/real-level renderer or current main Native129 claim.",
       "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
       "locals": []
     },
@@ -14983,9 +14983,259 @@
       "legacy_name": "dora3_s3_core_801ED2CC",
       "name": "dora3_pickup_linked_effect_update_source_801ED2CC",
       "description": "Обновляет связанный kind129 эффект. Source первый вход задаёт latch28,count34,RNG delay20..49 и прячет модель; при живом parent7C сохраняет parent XYZ в physical58/5C/60. На Source пороге меняет clip/seek, выбирает настоящим RNG мгновенный XYZ offset вокруг сохранённого центра и сбрасывает count/delay. Когда parent снят, вызывает801E6E6C. Это дискретные команды/телепортации Original, а не постоянная velocity; Native129 ownership этой аннотацией не добавляется.",
-      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim. Actual34472 paired complete linked Source lifetimes/18432 exact whole endpoints from8 real private producers and3 actual129 children; real Source RNG/clip/seek/teleports/automatic unlink/destruction and heap/model/resource cleanup checked on synthetic assets. No actual selecting script/real-level renderer or current main Native129 claim.",
       "rom_sha256": "55ee21c0de2fc9268e675f22e95008a7d69814d43f5768e9ad57cbe3829ef081",
-      "locals": []
+      "locals": [
+        {
+          "name": "linked_initialization_physics",
+          "expression": "ctx->r3",
+          "start": "0x801ED2D0",
+          "end": "0x801ED2EC",
+          "description": "Физика эффекта из8021BCDC при чтении и установке initialization latch28.",
+          "instructions": {
+            "0x801ED2D0": "0x8C63BCDC",
+            "0x801ED2D4": "0x27BDFFE8",
+            "0x801ED2D8": "0xAFBF0010",
+            "0x801ED2DC": "0x80620028",
+            "0x801ED2E0": "0x14400022",
+            "0x801ED2E4": "0x24020001",
+            "0x801ED2E8": "0xA0620028"
+          }
+        },
+        {
+          "name": "linked_initial_count_physics",
+          "expression": "ctx->r2",
+          "start": "0x801ED2F0",
+          "end": "0x801ED300",
+          "description": "Физика эффекта до вызова RNG; delay-slot store сбрасывает count34 в0.",
+          "instructions": {
+            "0x801ED2F0": "0x8C42BCDC",
+            "0x801ED2F4": "0x2404001E",
+            "0x801ED2F8": "0x0C00C65B",
+            "0x801ED2FC": "0xA4400034"
+          }
+        },
+        {
+          "name": "linked_initial_delay_physics",
+          "expression": "ctx->r3",
+          "start": "0x801ED30C",
+          "end": "0x801ED320",
+          "description": "Физика эффекта для сохранения первого RNG delay20..49 в halfword36 до вызова markerCA setter.",
+          "instructions": {
+            "0x801ED30C": "0x8C63BCDC",
+            "0x801ED310": "0x24050001",
+            "0x801ED314": "0x24420014",
+            "0x801ED318": "0x0C07A2A5",
+            "0x801ED31C": "0xA4620036"
+          }
+        },
+        {
+          "name": "linked_cached_center_physics",
+          "expression": "ctx->r4",
+          "start": "0x801ED324",
+          "end": "0x801ED36C",
+          "description": "Физика эффекта для parent7C и однократного сохранения XYZ родителя в float58/5C/60.",
+          "instructions": {
+            "0x801ED324": "0x8C84BCDC",
+            "0x801ED328": "0x8483007C",
+            "0x801ED32C": "0x2402FFFF",
+            "0x801ED330": "0x1062000E",
+            "0x801ED334": "0x00031040",
+            "0x801ED338": "0x00431021",
+            "0x801ED33C": "0x00021900",
+            "0x801ED340": "0x00431021",
+            "0x801ED344": "0x00021080",
+            "0x801ED348": "0x3C038017",
+            "0x801ED34C": "0x24631CD0",
+            "0x801ED350": "0x00431021",
+            "0x801ED354": "0xC440009C",
+            "0x801ED358": "0xE4800058",
+            "0x801ED35C": "0xC44000A0",
+            "0x801ED360": "0xE480005C",
+            "0x801ED364": "0xC44000A4",
+            "0x801ED368": "0xE4800060"
+          }
+        },
+        {
+          "name": "linked_initial_parent_pool_index",
+          "expression": "ctx->r3",
+          "start": "0x801ED328",
+          "end": "0x801ED33C",
+          "description": "Signed halfword7C — индекс parent в общем actor pool; область заканчивается до превращения регистра в byte offset.",
+          "instructions": {
+            "0x801ED328": "0x8483007C",
+            "0x801ED32C": "0x2402FFFF",
+            "0x801ED330": "0x1062000E",
+            "0x801ED334": "0x00031040",
+            "0x801ED338": "0x00431021"
+          }
+        },
+        {
+          "name": "linked_initial_parent_actor",
+          "expression": "ctx->r2",
+          "start": "0x801ED350",
+          "end": "0x801ED36C",
+          "description": "Адрес настоящего parent actor после прибавления pool base; читаются float XYZ9C/A0/A4.",
+          "instructions": {
+            "0x801ED350": "0x00431021",
+            "0x801ED354": "0xC440009C",
+            "0x801ED358": "0xE4800058",
+            "0x801ED35C": "0xC44000A0",
+            "0x801ED360": "0xE480005C",
+            "0x801ED364": "0xC44000A4",
+            "0x801ED368": "0xE4800060"
+          }
+        },
+        {
+          "name": "linked_delay_count",
+          "expression": "ctx->r3",
+          "start": "0x801ED374",
+          "end": "0x801ED38C",
+          "description": "Count34 после lhu, увеличения и приведения к signed16 для сравнения с delay36; последующий boolean не переименовывается.",
+          "instructions": {
+            "0x801ED374": "0x94430034",
+            "0x801ED378": "0x24630001",
+            "0x801ED37C": "0xA4430034",
+            "0x801ED380": "0x84420036",
+            "0x801ED384": "0x00031C00",
+            "0x801ED388": "0x00031C03"
+          }
+        },
+        {
+          "name": "linked_delay_limit",
+          "expression": "ctx->r2",
+          "start": "0x801ED380",
+          "end": "0x801ED390",
+          "description": "Signed delay36 для сравнения с обновлённым signed count34.",
+          "instructions": {
+            "0x801ED380": "0x84420036",
+            "0x801ED384": "0x00031C00",
+            "0x801ED388": "0x00031C03",
+            "0x801ED38C": "0x0062182A"
+          }
+        },
+        {
+          "name": "linked_renewed_delay_physics",
+          "expression": "ctx->r3",
+          "start": "0x801ED3B0",
+          "end": "0x801ED3C8",
+          "description": "Физика эффекта для нового RNG delay36 и обнуления count34 перед clip0 command.",
+          "instructions": {
+            "0x801ED3B0": "0x8C63BCDC",
+            "0x801ED3B4": "0x00003021",
+            "0x801ED3B8": "0x24420014",
+            "0x801ED3BC": "0xA4620036",
+            "0x801ED3C0": "0x0C00A8CA",
+            "0x801ED3C4": "0xA4600034"
+          }
+        },
+        {
+          "name": "linked_offset_x_physics",
+          "expression": "ctx->r3",
+          "start": "0x801ED3E8",
+          "end": "0x801ED400",
+          "description": "Физика эффекта при чтении сохранённого центра X из float58 для мгновенного RNG offset.",
+          "instructions": {
+            "0x801ED3E8": "0x8C63BCDC",
+            "0x801ED3EC": "0xC4620058",
+            "0x801ED3F0": "0x44820000",
+            "0x801ED3F4": "0x00000000",
+            "0x801ED3F8": "0x46800020",
+            "0x801ED3FC": "0x46020000"
+          }
+        },
+        {
+          "name": "linked_offset_y_physics",
+          "expression": "ctx->r3",
+          "start": "0x801ED418",
+          "end": "0x801ED430",
+          "description": "Физика эффекта при чтении сохранённого центра Y из float5C для мгновенного RNG offset.",
+          "instructions": {
+            "0x801ED418": "0x8C63BCDC",
+            "0x801ED41C": "0xC462005C",
+            "0x801ED420": "0x44820000",
+            "0x801ED424": "0x00000000",
+            "0x801ED428": "0x46800020",
+            "0x801ED42C": "0x46020000"
+          }
+        },
+        {
+          "name": "linked_offset_z_physics",
+          "expression": "ctx->r3",
+          "start": "0x801ED448",
+          "end": "0x801ED460",
+          "description": "Физика эффекта при чтении сохранённого центра Z из float60 для мгновенного RNG offset.",
+          "instructions": {
+            "0x801ED448": "0x8C63BCDC",
+            "0x801ED44C": "0xC4620060",
+            "0x801ED450": "0x44820000",
+            "0x801ED454": "0x00000000",
+            "0x801ED458": "0x46800020",
+            "0x801ED45C": "0x46020000"
+          }
+        },
+        {
+          "name": "linked_teleport_x_actor",
+          "expression": "ctx->r2",
+          "start": "0x801ED404",
+          "end": "0x801ED414",
+          "description": "Настоящий actor эффекта для Source teleport X9C в delay slot следующего RNG вызова.",
+          "instructions": {
+            "0x801ED404": "0x8C42BDEC",
+            "0x801ED408": "0x24040028",
+            "0x801ED40C": "0x0C00C65B",
+            "0x801ED410": "0xE440009C"
+          }
+        },
+        {
+          "name": "linked_teleport_y_actor",
+          "expression": "ctx->r2",
+          "start": "0x801ED434",
+          "end": "0x801ED444",
+          "description": "Настоящий actor эффекта для Source teleport YA0 в delay slot следующего RNG вызова.",
+          "instructions": {
+            "0x801ED434": "0x8C42BDEC",
+            "0x801ED438": "0x2404FFE2",
+            "0x801ED43C": "0x0C00C65B",
+            "0x801ED440": "0xE44000A0"
+          }
+        },
+        {
+          "name": "linked_teleport_z_actor",
+          "expression": "ctx->r2",
+          "start": "0x801ED464",
+          "end": "0x801ED46C",
+          "description": "Настоящий actor эффекта для Source teleport ZA4 после последнего RNG вызова.",
+          "instructions": {
+            "0x801ED464": "0x8C42BDEC",
+            "0x801ED468": "0xE44000A4"
+          }
+        },
+        {
+          "name": "linked_retirement_physics",
+          "expression": "ctx->r2",
+          "start": "0x801ED470",
+          "end": "0x801ED478",
+          "description": "Физика эффекта для финальной проверки parent7C; область заканчивается до записи constant-1 в тот же регистр.",
+          "instructions": {
+            "0x801ED470": "0x8C42BCDC",
+            "0x801ED474": "0x8443007C"
+          }
+        },
+        {
+          "name": "linked_retirement_parent_index",
+          "expression": "ctx->r3",
+          "start": "0x801ED474",
+          "end": "0x801ED484",
+          "description": "Signed parent7C в финальном сравнении с-1; снятая связь вызывает настоящий Source destructor801E6E6C.",
+          "instructions": {
+            "0x801ED474": "0x8443007C",
+            "0x801ED478": "0x2402FFFF",
+            "0x801ED47C": "0x14620004",
+            "0x801ED480": "0x00000000"
+          }
+        }
+      ]
     }
   ]
 }

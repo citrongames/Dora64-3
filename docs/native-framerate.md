@@ -12,7 +12,7 @@ Original20/30/init/целые счётчики/переходы/контакты
 Fresh291 basic432/110592 иsettle guards3456/884736 whole endpoints,
 related reveal/arc guards/combined7/8 lifetimes, full O2 player/world/NPC3192 B,
 loop иscene resource barrier прошли. Восемь291 executed origins точны;
-Свежая names343:778/447/545,96 canonical C/tokens/C17/ABI; runtime main295 прежний. Negative289 opacity
+Свежая names348:778/447/562,96 canonical C/tokens/C17/ABI; runtime main295 прежний. Negative289 opacity
 ошибка сохранена явно;291 меняет query-before-fade, не ослабляет assertions.
 
 Разлёт3 иследование за родителем пока отдельные кандидаты. Negative303

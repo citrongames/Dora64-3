@@ -2882,3 +2882,37 @@ Native ownership. All18 candidate338 short states2..8 прошли:
 Candidate340 all24 idle/velocity matrix и338 broad scale matrix ещё идут.
 Full312, parent321 иguards332 остаются отдельными активными проверками.
 Полный variable FPS не завершён; нового EXE и game/GPU запуска нет.
+
+
+## main348 — переменные связанных эффектов и полный Source lifecycle
+
+Функция dora3_pickup_linked_effect_update_source_801ED2CC получила17
+ROM-qualified register scopes: physics на конкретных этапах, parent pool
+index/address, signed delay count/limit и actor при трёх мгновенных XYZ
+записях. Области заканчиваются до смены роли регистра; ctx storage,
+Original delay slots, ABI и машинный смысл сохранены. Каталог:
+778 описаний/447 имён функций/562 области переменных. Fresh347 и затем
+fresh348 проверили96 canonical C/preprocessed tokens/C17/ABI.
+
+Source344 прошла72 paired complete lifetimes/18432 exact whole endpoints:
+8 actual private constructors ×3 heights ×3 XYZ velocity profiles, три
+настоящих kind129 на каждый предмет, actual contact140/quest/collection,
+шесть effects130, автоматический unlink129 и полное model/heap/resource
+освобождение. В85680 Native интервалах все129 actor/physics/model words
+оставались Source-owned. Это synthetic assets/direct inputs; реальный
+selecting script, частично занятый linked pool и renderer не проверены.
+
+Source код129 не задаёт постоянную velocity: RNG instant teleports,
+delay/count/clip/seek/retirement сохраняют порядок Original. Candidate346
+отдельно проверяет только initialized common model animation с live
+reciprocal parent links; каждая из трёх моделей обязана показать реальные
+промежуточные time changes, а whole duplicate timestamp сохраняет весь
+snapshot/context. Initial preflight остановился до исполнения, потому что
+новый entry hook отсутствовал в strict canonical allowlist; добавлен только
+reviewed ED2CC, остальной body по-прежнему обязан совпасть с frozen189.
+Native346 результата пока нет; в main348 нового129 ownership нет.
+
+Runtime main295 и восемь настоящих291 origins неизменны, девятый report —
+fresh names348. Full312/parent321/guards332 и broad338/340 продолжаются
+в отдельных неизменяемых кандидатах. Полный variable FPS не завершён.
+Нового EXE и game/GPU запуска нет; test037 прежний.

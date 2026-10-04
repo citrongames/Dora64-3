@@ -983,7 +983,7 @@
     "size": 36304,
     "sha256": "f5284a1979a9fd3f5f46fe48c9a361e300aca936d8cb123aa87f50bdbcee5f7a"
   },
-  "generation_receipt_sha256": "10c62a1cf6d3c381b316e5b34191e2c346c925f214f73978eac0e36f4d30cc1c",
+  "generation_receipt_sha256": "c52fd6e7a5bdc9a6463fd6174249018b13beb192aa7fb6ec039e62be1848ef5f",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "limitations": [
@@ -1018,5 +1018,10 @@
     "report_before_names_sha256": "a6ca0395d3f07e91fed3d0e23e725494febe578b58790dd3abaa8aa6a39b8de5",
     "generation_receipt_sha256": "ebb621d77f2ba02d6b7e78e0a7b6271fc95059641de57fb83c3f46626b6c49ed",
     "reason": "20 Source-qualified quest/creation/linked-effect aliases and14 exact register scopes only. Every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact; actual291 origins retained, no repeated runtime execution claim."
+  },
+  "execution_origin_348": {
+    "report_before_names_sha256": "9457193671f56c1ef6a3059a32603f6173642df1977d3a83e01e0fec8cd5c9ff",
+    "generation_receipt_sha256": "10c62a1cf6d3c381b316e5b34191e2c346c925f214f73978eac0e36f4d30cc1c",
+    "reason": "17 exact Source129 register scopes and Source344 lifetime evidence only; existing function aliases unchanged. Every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact; actual291 origins retained, no repeated runtime execution claim."
   }
 }
