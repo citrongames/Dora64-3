@@ -269,3 +269,19 @@ extern "C" void dora3_s0_8002F064(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s3_801E810C(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s3_core_801EBCC0(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s3_801E89CC(uint8_t*,recomp_context*) {std::abort();}
+
+extern "C" void dora3_s3_801E3768(uint8_t*,recomp_context*) {std::abort();}
+
+extern "C" void dora3_s3_801E0760(uint8_t*,recomp_context*) {std::abort();}
+
+extern "C" void dora3_s2_menu_801BBCEC(uint8_t*,recomp_context*) {std::abort();}
+
+extern "C" void dora3_s2_menu_801BBEB0(uint8_t*,recomp_context*) {std::abort();}
+
+extern "C" void dora3_s2_menu_801BC17C(uint8_t*,recomp_context*) {std::abort();}
+
+extern "C" void dora3_s2_menu_801BC4C0(uint8_t*,recomp_context*) {std::abort();}
+
+extern "C" void dora3_s2_menu_801C14B8(uint8_t*,recomp_context*) {std::abort();}
+
+extern "C" void dora3_s3_core_801EBAD4(uint8_t*,recomp_context*) {std::abort();} // No gameplay pickups in the image-loop scope.

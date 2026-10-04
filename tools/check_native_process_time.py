@@ -39,7 +39,7 @@ def main():
     (out/'seed.bin').write_bytes(seed)
     runtime=ROOT/'build-deps/lib/N64ModernRuntime';flags=['-O1','-g','-fno-omit-frame-pointer','-fno-strict-aliasing',*['-I'+str(x) for x in [ROOT/'src',g,g/'RecompiledFuncs',runtime/'N64Recomp/include']]]
     subprocess.run(['gcc','-std=c17','-fsanitize=address',*flags,'-c',str(out/'functions.c'),'-o',str(out/'functions.o')],check=True)
-    sources=[ROOT/'src/native_simulation_time.cpp',ROOT/'src/native_process_time.cpp',ROOT/'research/native-process-time-check.cpp']
+    sources=[ROOT/'src/native_ui.cpp',ROOT/'research/native-ui-inactive-fixture.cpp',ROOT/'research/native-ui-menu-fatal-fixture.cpp',ROOT/'src/native_simulation_time.cpp',ROOT/'src/native_process_time.cpp',ROOT/'src/native_effects.cpp',ROOT/'research/native-process-time-check.cpp']
     subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror','-fsanitize=address,undefined',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
     result=subprocess.check_output([str(out/'check'),str(out/'seed.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')).strip()
     tracked=sources+[ROOT/'src/native_simulation_time.hpp',ROOT/'recomp/native-timing-rules.json',ROOT/'tools/native_timing_patches.py',ROOT/'tools/generate_startup.py',Path(__file__).resolve()]

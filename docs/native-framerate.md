@@ -1,4 +1,96 @@
-# Текущее состояние — main355 / test-040
+# Test-041 — исправления поворотов, меню и камеры
+
+Сборка `D:/Games/DoraRecomp3/testbuild/Dora64-3-test-041.exe` передана изgeneration356.
+SHA256 `e7716cc810d609635f266542e63aff34e537c8d37258ae7a7a5a755cb9ad2ec8`. Исправлены дробные повороты/наклоны моделей и сценарной камеры:
+Original wrapped velocity358 теперь интерпретируется как−2 между целыми шагами.
+Игровое меню files сохраняет исходную скорость prompt/arrow/background/highlight
+и nested rows. Common game UI входит в world policy; standalone UI ownership
+только для меню, поэтому неподключённые world branches сохраняют прежний cadence.
+
+Перед этим одним билдом завершены26 текущих CPU checks с проверкой связей подсистем:
+камера/катсцены/UI,
+модели/input/clocks/effects/gravity, loop/session/presentation/banks/FIFO/context,
+live/newborn projectile continuation и actual first room resource barrier.
+Cutscene154 cases/506 Source endpoints/1431 Native intervals; UI116 cases/234
+repeated Original draw comparisons. Names96 C units,849 descriptions/518aliases/
+596 variable scopes; Original ABI/register storage сохранены. Подробные результаты
+и границы: `research/native-prebuild-check.json`; Windows build совпадает с
+compiled source/generation.32 dependency pins и donor неизменны.
+
+Полный player/world/weapon/damage/death/recovery тест прерван по прямой просьбе
+пользователя «скипай их, давай билд». Он не объявляется PASS. Новые тесты перед
+041 не запускались; оставшиеся процессы остановлены. Это исключение для041.
+
+CPU fixtures используют synthetic assets и явные эффекты/ресурсы/graphics boundaries.
+Connected pickup batch189 lifetimes на одном setting; старые exhaustive private
+cross products сохраняют прежнее происхождение, не объявляются новым запуском.
+Игра/renderer/GPU локально не запускались. Реальный вид первой катсцены Нобиты
+на стуле, игровые меню и камера ещё требуют пользовательской визуальной оценки.
+Source355/test040 архивирован; все предыдущие EXE/DLL/ROM/settings/saves сохранены.
+Полный variable FPS всей игры ещё не завершён. Следующий блок выбирает пользователь:
+1 объекты/платформы;2 враги/активный AI;4 миниигры/специальные режимы;6 общая интеграция.
+
+## Исправления039/040 — этап356 / test-041
+
+Исправлены три связанные регрессии: дробные повороты/наклоны участников и
+сценарной камеры, ускорение декораций/стрелок/мигания игрового files-menu и
+UI-only захват Native сессии при неподключённом мире, ухудшавший плавность камеры.
+Original хранит угловую скорость−2 как358; Native теперь интегрирует её signed
+представление между исходными шагами. Полный шаг, Original20/30 и delay-slot
+store остаются точными. Исправлены reviewed XYZ actor rotation801E3358 и
+camera angle801DFBA4. Actual files root801BFC44 защищает всё состояние6700..68C8,
+включая prompt/background/arrow/highlight; Original multiple-view multiplicity
+сохраняется. Common game UI входит в eligible gameplay/cutscene policy, а
+самостоятельная UI policy относится только к меню. Неактивный screen rectangle
+больше не требует копирования4MiB на каждом кадре.
+
+Перед единственным Windows041 завершены26 текущих CPU pre-build checks: input,
+math/model/camera/UI/effects, общий loop/banks/FIFO/context/pause, live/newborn
+projectile scene-frame и actual first room resource barrier. Cutscene356:
+154 cases/506 exact Source endpoints/1431 Native intervals/18 guards; UI356:
+116 cases/64 motion endpoints/153 math samples/234 repeated draw comparisons/37
+guards. Отдельные signed rotation cases включают144FPS. Names356:96 C units,
+849 descriptions/518 semantic aliases/596 scoped variables, canonical
+round trip/preprocessed C tokens/ABI/register storage. Каталог/документы
+сохраняют соответствия прежним функциям. Итог research/native-prebuild-check.json.
+
+Полный player/world/weapon/damage/death/recovery тест не завершился. Пользователь
+прямо потребовал «скипай их, давай билд»; оставшиеся четыре CPU группы остановлены.
+Их незавершённые результаты не объявлены PASS. Для этой сборки полный pre-build
+прерван по просьбе пользователя; новые тесты перед041 не запускались.
+
+Первый общий прогон выявил устаревшие link fixtures после новых UI/cutscene/
+flight/projectile hooks и прежнюю ошибку списка Python в session checker.
+Исправлены обвязки; UI/effects/process/loop/player/transition/pickup и отдельные
+leaf checks повторялись только после своих ошибок. Прошедшие независимые
+проверки заново не запускались. Shared runtime проверяется настоящими модулями;
+off-scope script/menu roots имеют fatal sentinels. Старые gravity/motion leaf
+oracles не приобретают GameplayPreview: их inactive hooks явно обозначены,
+активные projectile owners покрывает завершённый scene-frame scope. Full-player
+scope остаётся незавершённым.
+
+Сохранён tools/check_native_prebuild.py для следующих крупных этапов: свежий
+полный набор перед build; --only повторяет failed/affected checks. Исторические
+exhaustive pickup cross products не выдаются за новый запуск: новый connected
+batch включает189 полных связанных lifetimes/48384 Original endpoints на одном
+setting. CPU tests используют synthetic assets и явные sound/resource/graphics
+границы; реальные уровни, вид первой катсцены, меню и плавность камеры визуально
+проверяет пользователь. Игра/renderer/GPU локально не запускались. Полный
+variable FPS всей игры ещё не завершён; следующими остаются блоки1/2/4/6.
+
+Самый большой full-player тест разбит на четыре независимые группы camera12/2
+и Original20/30. Каждая исполняет все60/73/120/144/165/360FPS и сохраняет свои
+исходные60FPS baselines. Game fixture не изменена: диагностическая копия
+добавляет только selector группы и assert шести настроек. Все прежние Source
+state/resource/command oracles, final counters и ASan/UBSan/LSan остаются.
+Новый экспериментальный tools/check_native_player_update_partitions.py рассчитан
+на четыре PASS и24 настройки; полный запуск этого launcher не завершён и его
+итоговая агрегация не подтверждена. Незавершённые serial и parallel прогоны
+сохранены как прерванные; они не объявляются полным PASS. Остальные
+26 checks не повторялись. Два пути на исходную fixture в подготовке launcher
+различены: read остаётся Original, только link использует derived copy.
+
+## Предыдущий этап — main355 / test-040
 
 Завершён выбранный блок5: общий2D/UI и основные title/files/intro/selection меню.
 Native кадры пересчитывают panel/rectangle bounds, title motion/scale, intro alpha,

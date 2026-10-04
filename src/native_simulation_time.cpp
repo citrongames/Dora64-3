@@ -147,6 +147,20 @@ extern "C" float dora3_native_displacement_f32(float velocity,std::uint32_t acce
     return float(double(velocity)*h+0.5*a*h*(1.0-h));
 }
 
+extern "C" float dora3_native_angular_displacement_f32(float velocity,uint32_t acceleration) {
+    if(!dora3::native_time::active_simulation_slice())return velocity;
+    const double h=dora3::native_time::simulation_ticks();
+    if(h==1)return velocity; // Exact Original normalized kick and angle add.
+    const double a=std::bit_cast<float>(acceleration);
+    // Original normalizes angular velocity as well as orientation. A small
+    // negative velocity becomes e.g.358 degrees; scaling that representation
+    // creates a large forward turn between matching whole-period endpoints.
+    // Recover the signed Source rate before the fractional acceleration kick,
+    // then integrate it. Only the final orientation uses Original angle wrap.
+    const double start=std::remainder(double(velocity)-a*h,360.0);
+    return float(start*h+0.5*a*h*(h+1));
+}
+
 extern "C" float dora3_native_gravity_f32(float velocity,float gravity,float terminal,std::uint32_t address) {
     using namespace dora3::native_time;
     const auto* step=active_simulation_slice();

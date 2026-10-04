@@ -201,6 +201,8 @@ double simulation_stamp(bool end) {
 extern "C" {
 int dora3_native_loop_gameplay_active(){return scene_loop_watch?fixture_real_loop_gameplay_active():preview_live;}
 int dora3_overlay_loaded(uint32_t rom) {
+    if(rom==0x70A50u)return true; // Synthetic resident gameplay overlay.
+    if(rom==0x635C0u||rom==0x5E400u)return false;
     if(rom==0x1398A0u)return slot09_loaded&&city_identity_verified;
     if(rom==0x132F80u)return city_loaded&&city_identity_verified;
     assert(rom==0xEDDB0u||rom==0x15E440u);return dialogue_actor_loaded&&city_identity_verified;

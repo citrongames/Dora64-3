@@ -117,6 +117,46 @@ static void check_publications(Image& actual,Image& expected,const std::vector<u
         if(!std::isfinite(x)||!std::isfinite(y)||std::abs(x-y)>0.003f){std::cerr<<std::hex<<address<<std::dec<<": "<<x<<" != "<<y<<" duration="<<duration<<" profile="<<profile<<" divider="<<divider<<" fps="<<fps<<" tick="<<tick<<"\n";std::abort();}
     }
 }
+static void signed_turns(const Image& seed_image,unsigned& cases,unsigned& endpoints,unsigned& intervals){
+ for(unsigned d:{2u,3u})for(unsigned fps:{60u,73u,144u})for(float rate:{-2.f,358.f,-.125f,359.875f,2.f})for(float acceleration:{0.f,-.0625f,.0625f}){
+  Image actual=seed_image;auto* rdram=bytes(actual);seed(rdram,7,0);
+  for(unsigned i=1;i<4;++i){MEM_H(4,int32_t(pc+i*0xD4))=0;MEM_H(0x34,int32_t(cc+i*0x1B8))=0;}
+  for(unsigned axis=0;axis<3;++axis){
+   wf(rdram,pc+0x24+axis*4,axis==0?1.f:axis==1?359.f:30.f);
+   wf(rdram,pc+0x48+axis*4,rate);wf(rdram,pc+0x6C+axis*4,acceleration);
+   wf(rdram,cc+0x44+axis*4,axis==0?1.f:axis==1?359.f:30.f);
+   wf(rdram,cc+0x80+axis*4,rate);wf(rdram,cc+0xBC+axis*4,acceleration);
+  }
+  Image source_pose=actual;auto c=context(),reference_context=context();CutsceneTimeline timeline;timeline.begin(rdram,0,d);
+  const auto end=(Nanoseconds(d)*second+59)/60;
+  for(unsigned frame=1;Nanoseconds(frame)*second/fps<end;++frame){
+   const auto stamp=Nanoseconds(frame)*second/fps;const double h=double(stamp)*60/(d*double(second));
+   timeline.advance(rdram,&c,stamp,native_cutscene_evaluate);
+   const double drift=std::remainder(double(rate),360.0)*h+0.5*acceleration*h*(h+1);
+   for(unsigned axis=0;axis<3;++axis){
+    const float start=axis==0?1.f:axis==1?359.f:30.f;
+    for(auto address:{pc+0x24+axis*4,0x8032000Cu+axis*4,cc+0x44+axis*4,cam+0x18+axis*4}){
+     const double error=std::remainder(double(rf(rdram,address))-start-drift,360.0);
+     if(std::abs(error)>.0001){std::cerr<<"signed turn "<<rate<<" acceleration "<<acceleration<<" error "<<error<<"\n";std::abort();}
+    }
+   }
+   ++intervals;
+  }
+  timeline.advance(rdram,&c,end,native_cutscene_evaluate);
+  Image expected=source_pose;source(bytes(expected),&reference_context,true);check_publications(actual,expected,publications(bytes(source_pose)),7,0,d,fps,1);++endpoints;
+  timeline.before_source(rdram);assert(actual==source_pose);
+  source(rdram,&c,true);assert(actual==expected);timeline.after_source(rdram,end);
+  const auto next=end+Nanoseconds(d)*second/120;timeline.advance(rdram,&c,next,native_cutscene_evaluate);
+  for(unsigned axis=0;axis<3;++axis){
+   const auto rate_address=pc+0x48+axis*4;
+   const double start=rf(bytes(expected),pc+0x24+axis*4),v=rf(bytes(expected),rate_address);
+   const double h=double(next-end)*60/(d*double(second));
+   const double drift=std::remainder(v,360.0)*h+0.5*acceleration*h*(h+1);
+   assert(std::abs(std::remainder(double(rf(rdram,pc+0x24+axis*4))-start-drift,360.0))<.0001);
+  }
+  timeline.reset(rdram);assert(actual==expected);++cases;
+ }
+}
 static void program(uint8_t* rdram){
     for(unsigned i=0;i<8;++i){MEM_H(4,int32_t(thread+i*0x10))=i?1:0;MEM_H(8,int32_t(thread+i*0x10))=int16_t(i);}
     MEM_W(0,int32_t(thread))=int32_t(0x80328000);
@@ -127,6 +167,7 @@ static void program(uint8_t* rdram){
 int main(int argc,char** argv){
     assert(argc==2);Image original(0x400000/4);std::ifstream in(argv[1],std::ios::binary);in.read(reinterpret_cast<char*>(original.data()),0x400000);assert(in.gcount()==0x400000);
     unsigned cases=0,endpoints=0,intervals=0,guards=0;
+    signed_turns(original,cases,endpoints,intervals);
     for(unsigned duration:{0u,1u,7u})for(unsigned profile=0;profile<4;++profile){
         Image initial=original;seed(bytes(initial),duration,profile);auto owned=publications(bytes(initial));
         Image expected=initial,actual=initial;auto c=context(),r=context();source(bytes(expected),&r,true);source(bytes(actual),&c,false);

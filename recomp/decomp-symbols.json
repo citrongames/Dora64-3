@@ -15563,7 +15563,7 @@
           }
         }
       ],
-      "description": "Три оси: angular rate48 и acceleration6C через Original angle helper, затем angle24 и накопленный rate; записывает actor C/10/14. Native сохраняет Original wrap и ABI.",
+      "description": "Три оси: angular rate48 и acceleration6C через Original angle helper, затем angle24 и накопленный rate; записывает actor C/10/14. Native сохраняет Original wrap и ABI. Дробный angular drift использует signed Source rate: normalized358 означает минус2, не358*h. Original whole-period normalization и delay-slot velocity store сохранены.",
       "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
     },
     {
@@ -15728,7 +15728,7 @@
       "name": "dora3_camera_step_scripted_angles_801DFBA4",
       "rom_sha256": "cbb7d983194581565bd153506ad9fd1e07e9321dcedd31cd0273783cfccad300",
       "locals": [],
-      "description": "Через Original angle helper обновляет angular rates80 отBC и angles44, затем публикует camera18/1C/20. Native acceleration и drift масштабируются раздельно.",
+      "description": "Через Original angle helper обновляет angular rates80 отBC и angles44, затем публикует camera18/1C/20. Native acceleration и drift масштабируются раздельно. Дробный angular drift использует signed Source rate: normalized358 означает минус2, не358*h. Original whole-period normalization и delay-slot velocity store сохранены.",
       "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
     },
     {
@@ -16241,7 +16241,7 @@
       "rom_sha256": "037148232c282361187b0120742154845dd86b4a562a0514ad1c3e1003d15747",
       "locals": [],
       "name": "dora3_ui_files_draw_801BFC44",
-      "description": "Рисует buffer/background, file rows, prompts и choice marker. Source input, EEPROM/pak commands и сохранения не входят в частое Native вычисление.",
+      "description": "Рисует buffer/background, file rows, prompts и choice marker. Source input, EEPROM/pak commands и сохранения не входят в частое Native вычисление. Native cadence охватывает полный root, включая decoration6840, prompt6700, arrow68C0, highlight681C и draw-state68AC; UI state6700..68C8 сохраняется для repeated frames, не только row helper.",
       "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
     },
     {

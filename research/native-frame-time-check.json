@@ -8,7 +8,7 @@
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "tools/check_native_frame_time.py": "8c930fabbd13f3a5b552386b4caf62fb6f4caf1c19d58651d81d21ad070173fc"
   },
-  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
+  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
   "original_functions": [
     "dora3_fade_tick",
     "dora3_s0_8003948C",
@@ -22,20 +22,5 @@
     "Animation guest event delivery not connected; shared fade commands covered separately by live loop check",
     "Physics, camera, scripts and per-scene callbacks not converted",
     "This report tests math and original command semantics, not visual correctness"
-  ],
-  "execution_origin_276": {
-    "stage": 264,
-    "report_sha256": "ce24a4d5ef5a5404e8f48c9cf9ca48ce771dfea9e40fbd3bec2261a605560cb0",
-    "generation_receipt_sha256": "6aed1eab317b2d8e3e21ac7bdea067a6b8be0ffd084738804cb8fca17ce7f539",
-    "source_delta": {},
-    "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
-  },
-  "superseded_by_282": {
-    "current_reports": [
-      "research/native-player-update-check.json",
-      "research/native-pickup-reveal-guard-check.json",
-      "research/native-pickup-arc-guard-check.json"
-    ],
-    "evidence": "Historical main276 receipt and its executed origin retained. New Native4/7/8 runtime changed; this is not a current282 execution proof. No source hashes re-labelled."
-  }
+  ]
 }

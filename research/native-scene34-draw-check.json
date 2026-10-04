@@ -3,13 +3,13 @@
   "result": "PASS: scene34 image branch original draw closure; CI4/CI8 headers, 3 sizes, 2 banks, alpha 0/128/255; 802 actual 2D command lists at 60/73/144/165/360 with native fade; all guest RAM outside DL/cursor/stack unchanged; no renderer or live scene activation",
   "sanitizers": "ASan/LSan",
   "source_sha256": {
-    "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
+    "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "research/native-scene34-draw-check.cpp": "3033239c807cb8ca5b2462bc92a128e4e2537d08d4c37bed3514342ef31300fa",
-    "src/native_frame_time.hpp": "690b956211a59a3c217663de10b78d3c34188cd3835f6d6a903dc53443859f8c",
+    "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
-    "tools/check_native_scene34_draw.py": "a3bad1884316b09ba92f10edcc38eb4f3f02f6238f4b780fc85725ec188b879f"
+    "tools/check_native_scene34_draw.py": "641015183e7cd1f605977df21a6b6866b1022d0ea44f3bb98c78a765f1bf178a"
   },
-  "generation_receipt_sha256": "330766bb445dd12d75241203e3860bf6ee5db40f67526996837ee3c0c9084ab3",
+  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
   "original_functions": [
     "dora3_fade_draw_dispatch",
     "dora3_texture_rect_state",

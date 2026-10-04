@@ -34,11 +34,12 @@ recomp_func_t* get_function(int32_t){std::abort();}
 #define DECL(name) void name(uint8_t*,recomp_context*);void reference_##name(uint8_t*,recomp_context*);
 DECL(dora3_s2_menu_801BBCEC) DECL(dora3_s2_menu_801BBEB0) DECL(dora3_s2_menu_801BC17C) DECL(dora3_s2_menu_801BC4C0)
 DECL(dora3_s2_menu_801C0528) DECL(dora3_s2_menu_801C14B8) DECL(dora3_s2_menu_801C1A90) DECL(dora3_s2_menu_801C1CA0)
-DECL(dora3_s2_menu_801C22C4) DECL(dora3_s2_menu_801BDEFC) DECL(dora3_lib_80057A80)
+DECL(dora3_s2_menu_801BFC44) DECL(dora3_s2_menu_801C22C4) DECL(dora3_s2_menu_801BDEFC) DECL(dora3_lib_80057A80)
 DECL(dora3_s1_801B5B04) DECL(dora3_s1_801B6E1C) DECL(dora3_s1_801B7DCC) DECL(dora3_s1_801B7BB4) DECL(dora3_s1_801B63B8)
 DECL(dora3_s3_801BE5F0) DECL(dora3_s3_801BE72C) DECL(dora3_s3_801BE7EC)
 void ui_fixture_boundary(uint8_t* rdram,recomp_context* c,const char* name){
  const std::string_view n(name);
+ if(n=="dora3_color_buffer_setup"||n=="dora3_depth_buffer_clear"){commands.push_back({4,uint32_t(c->r4),0,0,0});return;}
  if(n=="dora3_s0_800444C0"){++sounds;return;}
  if(n=="dora3_texture_info") {
   const std::array<uint32_t,6> ptr{uint32_t(c->r5),uint32_t(c->r6),uint32_t(c->r7),uint32_t(MEM_W(16,c->r29)),uint32_t(MEM_W(20,c->r29)),uint32_t(MEM_W(24,c->r29))};
@@ -159,6 +160,17 @@ static void drawing(const Image& game,const Image& menu){
   for(unsigned mode:{0u,2u,6u,8u}){a=menu;auto* r=bytes(a);clear(r,0x801C673C,0x18C);w(r,0x801C673C)=mode;w(r,0x801C6820)=3;w(r,0x801C682C)=4;w(r,0x801C683C)=5;draw_pair(a,dora3_s2_menu_801BDEFC,reference_dora3_s2_menu_801BDEFC,0x801C673C,0x18C,d,0x801BFAA4,0x801BFC44);}
  }
 }
+static void complete_files_draw(const Image& menu){
+ overlay=0x635C0;
+ for(unsigned d:{2u,3u})for(unsigned mode:{0u,1u,2u,5u,6u,8u})for(int blink:{1,2,3}){
+  Image a=menu;auto* r=bytes(a);clear(r,0x801C6700,0x1C8);
+  w(r,0x801C673C)=int(mode);w(r,0x801C6700)=32;w(r,0x801C6884)=2;
+  w(r,0x801C68C0)=blink;w(r,0x801C6840)=2;w(r,0x801C681C)=3;
+  w(r,0x801C6820)=3;w(r,0x801C682C)=4;w(r,0x801C683C)=5;
+  w(r,0x801AEC00)=int32_t(0x80330000);
+  draw_pair(a,dora3_s2_menu_801BFC44,reference_dora3_s2_menu_801BFC44,0x801C6700,0x1C8,d,0x801BFAA4,0x801BFC44);
+ }
+}
 static void ownership(const Image& seed){
  Image a=seed;auto* r=bytes(a);overlay=0x635C0;pair(r,0x801BCEF8,0x801BD078,3);assert(native_ui_menu_eligible(r));++guards;
  overlay=0;assert(!native_ui_menu_eligible(r));++guards;overlay=0x635C0;
@@ -167,11 +179,11 @@ static void ownership(const Image& seed){
  pair(r,0x801BB730,0x801BB848,2);overlay=0x70A50;assert(native_ui_game_eligible(r));++guards;
  for(unsigned d:{2u,3u})for(auto callbacks:std::array<std::array<uint32_t,2>,5>{{{0x801BCEF8,0x801BD078},{0x801BFAA4,0x801BFC44},{0x801C0BBC,0x801C0C88},{0x801C24A4,0x801C267C},{0x801BB730,0x801BB848}}}){
   overlay=callbacks[0]==0x801BB730?0x70A50:0x635C0;pair(r,callbacks[0],callbacks[1],d);
-  const auto* policy=select_native_scene_policy(r);assert(policy&&policy->divider==d&&policy->update==nullptr);++guards;
+  const auto* policy=select_native_scene_policy(r);if(callbacks[0]==0x801BB730)assert(policy==nullptr);else assert(policy&&policy->divider==d&&policy->update==nullptr);++guards;
   w(r,0x801A9C88)=1;assert(select_native_scene_policy(r)==nullptr);w(r,0x801A9C88)=0;++guards;
  }
 }
 int main(int argc,char** argv){assert(argc==3);Image game(0x400000/4),menu(game.size());std::ifstream(argv[1],std::ios::binary).read(reinterpret_cast<char*>(game.data()),0x400000);std::ifstream(argv[2],std::ios::binary).read(reinterpret_cast<char*>(menu.data()),0x400000);
- title_math(menu);game_math(game);menu_math(menu);drawing(game,menu);ownership(menu);native_ui_reset();
+ title_math(menu);game_math(game);menu_math(menu);drawing(game,menu);complete_files_draw(menu);ownership(menu);native_ui_reset();
  std::cout<<"PASS: "<<cases<<" connected UI cases; "<<endpoints<<" Original motion endpoints; "<<samples<<" Native math samples; "<<draws<<" repeated Original UI draw/command comparisons; "<<guards<<" ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.\n";
 }

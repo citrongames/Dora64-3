@@ -66,7 +66,9 @@ APPROVED_UI_SITES={('ui_source_end', '.startup', 2147647928, 2147648108, 2411659
  ('ui_domain', '.scene34', 2149325456, 2149325456, 1006796828): {'domain': 32},
  ('ui_domain', '.scene34', 2149325984, 2149325984, 1006862364): {'domain': 64},
  ('ui_draw_boundary', '.scene_common', 2149278648, 2149278648, 1006796828): {'end': 0},
- ('ui_draw_boundary', '.scene_common', 2149278648, 2149279372, 65011720): {'end': 1}}
+ ('ui_draw_boundary', '.scene_common', 2149278648, 2149279372, 65011720): {'end': 1},
+ ('ui_draw_boundary', '.scene34', 2149317700, 2149317700, 666763240): {'end': 0},
+ ('ui_draw_boundary', '.scene34', 2149317700, 2149317800, 2411659284): {'end': 1}}
 def timing_hooks(sections,compiled,rom):
     data=json.loads((ROOT/'recomp/native-timing-rules.json').read_text())
     if data['version']!=1 or hashlib.sha256(rom).hexdigest()!=data['rom_sha256']:
@@ -802,7 +804,7 @@ def timing_hooks(sections,compiled,rom):
             if word!=0x0C00C683 or delay!=int(rule['delay_word'],16) or delay!=((57<<26)|(base<<21)|(14<<16)|off):
                 raise ValueError('Unreviewed angle call/delay slot')
             label=f'dora3_after_timing_{site:08X}'
-            text=f'if (dora3_native_simulation_active()) {{ MEM_W({off}, ctx->r{base}) = ctx->f14.u32l; ctx->f14.fl = dora3_native_displacement_f32(ctx->f14.fl, {acc(rule)}); dora3_s0_80031A0C(rdram, ctx); goto {label}; }}'
+            text=f'if (dora3_native_simulation_active()) {{ MEM_W({off}, ctx->r{base}) = ctx->f14.u32l; ctx->f14.fl = dora3_native_angular_displacement_f32(ctx->f14.fl, {acc(rule)}); dora3_s0_80031A0C(rdram, ctx); goto {label}; }}'
             hooks[name,site+8].insert(0,label+':;')
         else:raise ValueError('Unreviewed timing rule operation')
         hooks[name,site].append(text)

@@ -2,15 +2,15 @@
   "scope": "Shared simulation timeline and explicit operand patches, not scene activation or full physics/collision integration",
   "result": "PASS: 280 differential executions of seven original MIPS motion/camera helpers; Original and whole ticks unchanged; 12 20/30 Hz schedules at 60/73/120/144/165/360 FPS, 2036 real motion slices, exact discrete boundaries, constant-force kick/drift trajectory, approach/decay, long gaps, scene-reset cancellation and scope cleanup; no game/GPU.",
   "source_sha256": {
-    "src/native_simulation_time.cpp": "319b3228e69fb6a6fcbfa81aaff831eeecfe54426538e10ca35726609c917cc4",
+    "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "research/native-simulation-check.cpp": "bdd6a55e7ed77a6fbeadceefe6a6f7bf264ac11dcbe5e2b5384535d7822c2ac3",
-    "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
-    "recomp/native-timing-rules.json": "cf77884cf65905cd49079a5a656cdbeb61bf10452b789663cb1b88db656d8c2d",
-    "tools/native_timing_patches.py": "4fa18f0c8c494b009f5756d75b781cbdb422c2b833dcf9be8156348450dfc8df",
-    "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
+    "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
+    "recomp/native-timing-rules.json": "50c1eba10e12dcc61c06ea6545c47b09567ff066947d900024b5a1b8aa49f758",
+    "tools/native_timing_patches.py": "09c1314a8c38bcd13c92c30f76ca919d390d6a8ac9b044f9d34fe1b4de19ff3a",
+    "tools/generate_startup.py": "b2fd1951e6fefd48c00c1c19ae2ec9c6ba82f13967c5030945a59a03d35b7f27",
     "tools/check_native_simulation.py": "5b2f76a96a58d4747c7b77bd5cdd484692443ae03ffb1d4065aea36f2e8d389b"
   },
-  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
+  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "original_functions": [
     "dora3_s28_mini_801C42C8",
@@ -25,26 +25,5 @@
     "Synthetic memory; no game/GPU; seven selected original helpers, not all gameplay closures",
     "Gravity/displacement pairing additionally checked in native-gravity-check; full collision integration remains separate",
     "No scene is enabled by these operand hooks alone"
-  ],
-  "execution_origin_276": {
-    "stage": 264,
-    "report_sha256": "4e84f5602f79c4bbcf8b6ebec85f15db1dbbb589c1ef929072068e581dfd8f49",
-    "generation_receipt_sha256": "6aed1eab317b2d8e3e21ac7bdea067a6b8be0ffd084738804cb8fca17ce7f539",
-    "source_delta": {
-      "recomp/native-timing-rules.json": {
-        "executed_sha256": "751a5ca5cbbddeef36417f37461129cb0c7bddae127621bddf5105f9aad32fc8",
-        "current_sha256": "cf77884cf65905cd49079a5a656cdbeb61bf10452b789663cb1b88db656d8c2d",
-        "evidence": "Only status/evidence for four already executed hooks updated; every semantic rule field exact,96 canonical C and hooks/overlay table exact."
-      }
-    },
-    "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
-  },
-  "superseded_by_282": {
-    "current_reports": [
-      "research/native-player-update-check.json",
-      "research/native-pickup-reveal-guard-check.json",
-      "research/native-pickup-arc-guard-check.json"
-    ],
-    "evidence": "Historical main276 receipt and its executed origin retained. New Native4/7/8 runtime changed; this is not a current282 execution proof. No source hashes re-labelled."
-  }
+  ]
 }

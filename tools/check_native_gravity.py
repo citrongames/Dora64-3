@@ -37,13 +37,13 @@ def main():
         data=rom[s['rom']:s['rom']+s['size']];base=s['vram']&0xFFFFFF
         for i in range(0,len(data),4):seed[base+i:base+i+4]=data[i:i+4][::-1]
     (out/'seed.bin').write_bytes(seed)
-    runtime=ROOT/'build-deps/lib/N64ModernRuntime';flags=['-O1','-g','-fno-omit-frame-pointer','-fno-strict-aliasing',*['-I'+str(x) for x in [ROOT/'src',g,g/'RecompiledFuncs',runtime/'N64Recomp/include']]]
+    runtime=ROOT/'build-deps/lib/N64ModernRuntime';flags=['-DDORA3_FIXTURE_INACTIVE_PROJECTILE','-O1','-g','-fno-omit-frame-pointer','-fno-strict-aliasing',*['-I'+str(x) for x in [ROOT/'src',g,g/'RecompiledFuncs',runtime/'N64Recomp/include']]]
     subprocess.run(['gcc','-std=c17','-fsanitize=address',*flags,'-c',str(out/'functions.c'),'-o',str(out/'functions.o')],check=True)
-    sources=[ROOT/'src/native_simulation_time.cpp',ROOT/'research/native-gravity-check.cpp']
+    sources=[ROOT/'research/native-inactive-gameplay-fixture.cpp',ROOT/'src/native_simulation_time.cpp',ROOT/'research/native-gravity-check.cpp']
     subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror','-fsanitize=address,undefined',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
     result=subprocess.check_output([str(out/'check'),str(out/'seed.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')).strip()
     tracked=sources+[ROOT/'src/native_simulation_time.hpp',ROOT/'recomp/native-timing-rules.json',ROOT/'tools/native_timing_patches.py',ROOT/'tools/generate_startup.py',Path(__file__).resolve()]
     report=dict(scope='Gravity and matching displacement; Original equivalence, terminal-speed partition invariance; not scene activation',result=result,original_functions=sorted(patched),source_sha256={str(p.relative_to(ROOT)):sha(p) for p in tracked},generation_receipt_sha256=sha(g/'generation-receipt.json'),reference_receipt_sha256=sha(ref/'generation-receipt.json'),
-        limitations=['Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally','Whole-tick equivalence compares owned state, excluding scratch stack/registers of replaced leaf functions','Full player collision solver and scene integration are not covered; terminal drift is a continuous extension and may differ slightly from original discrete cap-crossing displacement'])
+        limitations=['Inactive GameplayPreview/flight/projectile owner boundaries only; full player-update and scene-frame checks cover the real acquired implementations','Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally','Whole-tick equivalence compares owned state, excluding scratch stack/registers of replaced leaf functions','Full player collision solver and scene integration are not covered; terminal drift is a continuous extension and may differ slightly from original discrete cap-crossing displacement'])
     (ROOT/'research/native-gravity-check.json').write_text(json.dumps(report,indent=2)+'\n');print(result)
 if __name__=='__main__':main()

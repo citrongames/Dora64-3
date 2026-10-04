@@ -9,17 +9,19 @@
     "dora3_s3_core_801CB6D4"
   ],
   "source_sha256": {
-    "src/native_simulation_time.cpp": "676c19c638c2a810abfdbc409982562418ab0732884c471fda1a62293fda17fa",
+    "research/native-inactive-gameplay-fixture.cpp": "fef1725b2e76e343c0e04cdad773df3a6604684f7f34eebaa1a94718cc0bdf1a",
+    "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "research/native-gravity-check.cpp": "95ce36b649cb0fa5205d17e05ba90aa333d43c26323b43ffce2244e736b0eb19",
-    "src/native_simulation_time.hpp": "5241b075b7b689630626a4476eaefb52bc5f0b3e9756f80efa52c91948dcdd99",
-    "recomp/native-timing-rules.json": "5f3174e2ccca13c2714282855515e4d0ad43bb49e75d1abc6d3f8cf0ff349ff4",
-    "tools/native_timing_patches.py": "ecbc4f48c51c8a5fa270e04f0c17e539e80820ac449a794449236be0613e8941",
-    "tools/generate_startup.py": "e82e8a1c00c44b9b0d1face04fd8b54b04e62659ab229cab0938097ae2d09fc7",
-    "tools/check_native_gravity.py": "6a33305f33acd4452efe7f375c80031b8613e01e6c38aa545ee5d2a0bd6989a9"
+    "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
+    "recomp/native-timing-rules.json": "50c1eba10e12dcc61c06ea6545c47b09567ff066947d900024b5a1b8aa49f758",
+    "tools/native_timing_patches.py": "09c1314a8c38bcd13c92c30f76ca919d390d6a8ac9b044f9d34fe1b4de19ff3a",
+    "tools/generate_startup.py": "b2fd1951e6fefd48c00c1c19ae2ec9c6ba82f13967c5030945a59a03d35b7f27",
+    "tools/check_native_gravity.py": "1f9474b620800cd53cc1a1f37d3933a2fc01c06c1a20d461a97edeb89c6235e3"
   },
-  "generation_receipt_sha256": "2fc4ca6de680c011b486192428047f7fe7d1653c3482ebdd36b2f42ad7c6daa8",
+  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
   "reference_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
   "limitations": [
+    "Inactive GameplayPreview/flight/projectile owner boundaries only; full player-update and scene-frame checks cover the real acquired implementations",
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",
     "Whole-tick equivalence compares owned state, excluding scratch stack/registers of replaced leaf functions",
     "Full player collision solver and scene integration are not covered; terminal drift is a continuous extension and may differ slightly from original discrete cap-crossing displacement"

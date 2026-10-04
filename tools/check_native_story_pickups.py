@@ -200,7 +200,7 @@ def main():
     if motion:flags+=['-DDORA3_STORY_EFFECT_MOTION_CHECK']
     subprocess.run(['gcc', '-std=c17', '-fsanitize=address', *flags, '-c',
                     str(out/'functions.c'), '-o', str(out/'functions.o')], check=True)
-    sources = [ROOT/'src'/name for name in ['native_gameplay_preview.cpp',
+    sources = [ROOT/'src/native_cutscene.cpp',ROOT/'research/native-gameplay-cutscene-fixture.cpp']+[ROOT/'src'/name for name in ['native_gameplay_preview.cpp',
         'native_input_timeline.cpp', 'native_simulation_time.cpp', 'native_camera_timeline.cpp',
         'native_model_animation.cpp', 'native_frame_time.cpp']]
     binary = out/'check'

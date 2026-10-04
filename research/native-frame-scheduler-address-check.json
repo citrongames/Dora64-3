@@ -3,14 +3,15 @@
   "result": "PASS: one queued wake; immutable token behind 32-bit message; two banks; publication and independent guest/host completion; stale scene/rate tokens; enqueue rejection; elapsed-time conservation under backpressure; Original bypass; concurrent completion order; original ROM VI gate and completion-before-swap order; native 60/73/144/165/360 scheduling builds original 2D fade display lists with extra alpha phases and unchanged duration. No game/window/GPU.",
   "sanitizer": "address",
   "source_sha256": {
-    "src/native_frame_time.cpp": "78026dd5270df8efaa3623a80d2d58d4728159791beee2b767113b7f40859976",
-    "src/native_frame_scheduler.cpp": "d67945691ca4068d55f19ccde47536fec171223aeac8e619500c22785bc2e792",
+    "research/native-loop-stubs.cpp": "9a7fb7796516f951c6bc8d7db29dcc1d08d60290f02f6f4364f032fdd87e37f9",
+    "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
+    "src/native_frame_scheduler.cpp": "5aebb567341ad6853cc9eaa25ad093fe463a8614bfbae39d9b017140014cd118",
     "research/native-frame-scheduler-check.cpp": "542f67dafc9159f7cc1ac4a8c4b28fab4b9b7204ba540d6d30b2c998d21162a8",
-    "src/native_frame_scheduler.hpp": "5682caf553bb8dba579f43860bbb9bce498b6b51756708d8bd7750e2abc483af",
-    "src/native_frame_time.hpp": "690b956211a59a3c217663de10b78d3c34188cd3835f6d6a903dc53443859f8c",
-    "tools/check_native_frame_scheduler.py": "5e50d18b4493695cb974df1851c8e47aa40413bcc0f699d64c6b8238c673a749"
+    "src/native_frame_scheduler.hpp": "ae108bfcf8c9bbd628f648a8781afd1a9a5ab8668aa676212a60ebf88329bfde",
+    "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
+    "tools/check_native_frame_scheduler.py": "d230ee355dbb4850d189d2b3242d9ab3df4f2d896d6d7c9dcb478a1e312998ae"
   },
-  "generation_receipt_sha256": "05514f788edea09f4ca2901805986f12678238356db1861d78f52ff509f1d247",
+  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
   "original_functions": [
     "dora3_scheduler_framebuffer_ready",
     "dora3_scheduler_task_complete",

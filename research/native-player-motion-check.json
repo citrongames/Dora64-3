@@ -65,26 +65,22 @@
     "dora3_s3_core_801C1664"
   ],
   "source_sha256": {
-    "src/native_simulation_time.cpp": "f572309706089641697615771ab9daf2df9650a9c6da906e433ac86af7a9d922",
-    "src/native_camera_timeline.cpp": "35f21fafbaae833ae6561a0c710f0b9f791e7f9a929e633cc72b3e0b056db120",
+    "research/native-inactive-gameplay-fixture.cpp": "fef1725b2e76e343c0e04cdad773df3a6604684f7f34eebaa1a94718cc0bdf1a",
+    "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
+    "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
-    "src/native_simulation_time.hpp": "82b5828efa416cecace48d7f3f6d5196a102aa05f9a2808ad37aaeb1f7a2965f",
-    "recomp/native-timing-rules.json": "54655d9c6fcc5fae71b62bf0ad70c32f9fa78b30521db30eba2983b93ce30f9f",
-    "tools/native_timing_patches.py": "2550559f4bb96df93d2ee5edc6991bc4f5c491e542f5f8ad75d5d043dca5916e",
-    "tools/generate_startup.py": "39097f2a44768dab5c3e8b7006b66dab99193c46bf5ae98914b4dbdabb445166",
-    "tools/check_native_player_motion.py": "fd5fa12e6925cfec5feff62c6e30d89c7e0c56b6e26050c8915b7c650cd530fe"
+    "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
+    "recomp/native-timing-rules.json": "50c1eba10e12dcc61c06ea6545c47b09567ff066947d900024b5a1b8aa49f758",
+    "tools/native_timing_patches.py": "09c1314a8c38bcd13c92c30f76ca919d390d6a8ac9b044f9d34fe1b4de19ff3a",
+    "tools/generate_startup.py": "b2fd1951e6fefd48c00c1c19ae2ec9c6ba82f13967c5030945a59a03d35b7f27",
+    "tools/check_native_player_motion.py": "07bf1c26fc5d36faa78511042f5e9036a30c921f964c46466701bd9bd53b49c4"
   },
-  "generation_receipt_sha256": "59558f8d68f7a8213f90278932d94a43a9839267b9e2c33c885a415f698268d8",
+  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "limitations": [
+    "Inactive GameplayPreview/flight/projectile owner boundaries only; full player-update and scene-frame checks cover the real acquired implementations",
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",
     "Whole-tick equivalence compares owned state, excluding scratch stack/registers of replaced leaf functions",
     "Synthetic room geometry; special upper-limit transition and camera input toggle are fail-fast sentinels, not tested; no full player state dispatcher or real level"
-  ],
-  "format_only_relocation": {
-    "path": "research/native-player-motion-check.cpp",
-    "previous_source_sha256": "ad4e95b033860edb9fc2ab8e46f6a83db6e5745cc7b48dc1a15f4d58790c52bf",
-    "current_source_sha256": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
-    "evidence": "Removed exactly two empty EOF lines after final brace; every code byte unchanged; generation217/canonical C/runtime/ABI unchanged; no behavior check weakened"
-  }
+  ]
 }

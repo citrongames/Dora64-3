@@ -1,32 +1,35 @@
 {
   "scope": "Original game loop/update/dispatcher/full graphics build/draw/submit with real common coordinator; synthetic scheduler/VI/input/sound/present endpoints; no renderer",
-  "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 270 native white-fade builds with 240 distinct alpha values; 76 discrete updates, 1085 native builds, 3 Original builds, 232 VI events; no GPU",
+  "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 270 native white-fade builds with 240 distinct alpha values; 76 discrete updates, 1084 native builds, 3 Original builds, 232 VI events; no GPU",
   "sanitizers": "ASan/LSan",
   "source_sha256": {
+    "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
+    "src/native_ui.cpp": "926660c872b31ea3598e593f7efc852abf6879177c62546f50416814c99c674e",
+    "src/native_effects.cpp": "5a2dd315a623e5cf80ccd6b51af56c4f0f1e5bc750c871b4e0231d675f9f3b19",
     "src/native_process_time.cpp": "b7025893d91cf6851de180e5c90c34c72a0f6f3977a2a51236f6369615562c59",
-    "src/native_simulation_time.cpp": "319b3228e69fb6a6fcbfa81aaff831eeecfe54426538e10ca35726609c917cc4",
+    "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "src/native_model_animation.cpp": "8696ac3189b3d95c3627172aa05b70929831aeeb427780ece5e844d07a03d664",
-    "src/native_game_loop.cpp": "515b06226d61a7afa1bef038173d15e83ccbcad1de6b3afab833966a8f64ecfb",
-    "src/native_gameplay_preview.cpp": "1bafccec248520b85de1dded2396a07d879b7fba9f9be580c847c2c5c4d447b6",
+    "src/native_game_loop.cpp": "aa027cf1706fa22facc21cba72913183f292f530c0a215428c591118b6e85d65",
+    "src/native_gameplay_preview.cpp": "a84b8129f0ad1a61d6df0c0912d335de74d5f03cd8dd58f59fb917725cd1adb7",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
-    "src/native_scene_policy.cpp": "4d091632bf6780fa9e55c2ce1cca996334ec0fc5866a8bfcc512154a21dacef7",
+    "src/native_scene_policy.cpp": "15170625b065fcd9d3604173ddcfebecf4d7314b960c36c1f9f71c164038127d",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "src/native_frame_scheduler.cpp": "5aebb567341ad6853cc9eaa25ad093fe463a8614bfbae39d9b017140014cd118",
     "src/native_frame_bridge.cpp": "c1c7ae5fb4ab80e03b178a744a13ac90973b32d787b6fec432afb2e27182b995",
     "src/native_present.cpp": "9ff1ff3be5d4c16b57f5668a394a3e3fa4bafc303c32f52be63833ab33df2f5d",
     "src/native_present_hooks.cpp": "e659ba490ecea74c75fd50de47f0ea95ad9c32c6c30c6352e2123d7150914701",
     "src/native_graphics_pump.cpp": "4170bf4b463147cfe1e50dff3653a0b3749685ec4563137f39be190a4150c5d0",
-    "research/native-loop-check.cpp": "818644a5a20e0aed3b2d7157c9ae9651a46478f5abccf0f8c8091fcaa9f90a52",
+    "research/native-loop-check.cpp": "ee73343f852036adaaee510e7193d9b6e77d59346b44d1dade76147207c59f6e",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
     "src/native_scene_policy.hpp": "54fbae50b42fbaa5faf12f7cd9bd13aebabdbae495231a615e8c6fd670a3f70c",
     "src/native_frame_session.hpp": "fdc799da001be3c6653126beacb987ce3811ba6f1cc5eeac5922e539089f8e83",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
-    "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
-    "tools/check_native_loop.py": "625bac56875c1c00acb6e7baba13b88a741403c9a3c110006f92d14d7e319449"
+    "tools/generate_startup.py": "b2fd1951e6fefd48c00c1c19ae2ec9c6ba82f13967c5030945a59a03d35b7f27",
+    "tools/check_native_loop.py": "25cadc330a7a92802bca817a076f57bf65515457e2da7fa74001112f34058015"
   },
-  "generation_receipt_sha256": "c52fd6e7a5bdc9a6463fd6174249018b13beb192aa7fb6ec039e62be1848ef5f",
+  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
   "original_functions": [
     "dora3_color_buffer_setup",
     "dora3_depth_buffer_clear",
@@ -79,6 +82,7 @@
     "dora3_deferred_free_tick",
     "dora3_frame_timestamp",
     "dora3_lib_80055BD0",
+    "dora3_lib_80057A80",
     "dora3_native_completion_during_pause",
     "dora3_native_game_message",
     "dora3_native_guest_completion",
@@ -100,9 +104,16 @@
     "dora3_s0_8002A2E8",
     "dora3_s0_8002A328",
     "dora3_s0_8002EA4C",
+    "dora3_s0_8002F064",
     "dora3_s0_80047EF4",
     "dora3_s0_menu_8002A3B0",
+    "dora3_s2_menu_801BBCEC",
+    "dora3_s2_menu_801BBEB0",
+    "dora3_s2_menu_801BC17C",
+    "dora3_s2_menu_801BC4C0",
+    "dora3_s2_menu_801C14B8",
     "dora3_s3_801B922C",
+    "dora3_s3_801BBDDC",
     "dora3_s3_801C05F0",
     "dora3_s3_801C0624",
     "dora3_s3_801DC880",
@@ -110,11 +121,15 @@
     "dora3_s3_801DCC50",
     "dora3_s3_801DCDF0",
     "dora3_s3_801DD8FC",
+    "dora3_s3_801E0760",
+    "dora3_s3_801E3768",
     "dora3_s3_801E810C",
     "dora3_s3_801E89CC",
     "dora3_s3_core_801C120C",
     "dora3_s3_core_801CFA94",
     "dora3_s3_core_801D0088",
+    "dora3_s3_core_801EBAD4",
+    "dora3_s3_core_801EBCC0",
     "dora3_scene34_controller_message",
     "dora3_scene_transition_framebuffer_copy",
     "dora3_sound_events_tick",
@@ -124,36 +139,5 @@
     "osSendMesg_recomp",
     "osVirtualToPhysical_recomp",
     "osWritebackDCacheAll_recomp"
-  ],
-  "execution_origin_295": {
-    "stage": 291,
-    "report_sha256": "8c472ff41fabe3dc5daf1ffe1625fa8861d4d74349117b87a3b137a23d001240",
-    "generation_receipt_sha256": "8319cae950a8db615f3f0f3056d09db782633b8d1ede94c4d1b2e688ce19c69d",
-    "metadata_only_input_changes": {},
-    "evidence": "Every actual runtime/checker/fixture/header input exact; all96 canonical C/frontier/hooks/overlays exact. Main286 catalog and confirmed4/7/8 evidence preserved, Source2/collected10 descriptions updated. Actual291 execution origin retained; no repeated main execution claim."
-  },
-  "execution_origin_314": {
-    "report_before_names_sha256": "eb9bd513e98464c2721b40f35f4dd0acd620124e8212538a07a17c5d6e080341",
-    "generation_receipt_sha256": "d521635f7e8baa8b9dbdf6a868e485c6a6052092657e2bcbf41af7d78e4cc92d",
-    "reason": "Four matrix aliases and15 register scopes only; every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact. Actual291 execution_origin_295 retained, no new runtime execution claim."
-  },
-  "execution_origin_336": {
-    "report_before_names_sha256": "37a4e097c3903facdc15665a4468a7be9ddbb135858f4481bd153e776aa765ba",
-    "generation_receipt_sha256": "82ff5665524a2852c78a949cc80c00cf1caab5c7b7d0098a342fa078187ecfe0",
-    "reason": "33 Source-qualified pickup wrapper aliases and10 descriptor register scopes only. Every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact; actual291 origins retained, no repeated runtime execution claim."
-  },
-  "execution_origin_343": {
-    "report_before_names_sha256": "3a35c300d82c16186b35fd9e2b451886d9c487aecaafa840b12e2d7bbc211b23",
-    "generation_receipt_sha256": "ebb621d77f2ba02d6b7e78e0a7b6271fc95059641de57fb83c3f46626b6c49ed",
-    "reason": "20 Source-qualified quest/creation/linked-effect aliases and14 exact register scopes only. Every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact; actual291 origins retained, no repeated runtime execution claim."
-  },
-  "execution_origin_348": {
-    "report_before_names_sha256": "43c460002819d4166969f0544c1ee92dc834fd6e441397447577f8cac1aa398a",
-    "generation_receipt_sha256": "10c62a1cf6d3c381b316e5b34191e2c346c925f214f73978eac0e36f4d30cc1c",
-    "reason": "17 exact Source129 register scopes and Source344 lifetime evidence only; existing function aliases unchanged. Every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact; actual291 origins retained, no repeated runtime execution claim."
-  },
-  "superseded_by_352": {
-    "current_generation": false,
-    "reason": "Historical validated main348/runtime295 proof retained. Connected item/effect runtime352 changes; no repeated whole-game execution claim. Targeted pre-build validation only."
-  }
+  ]
 }

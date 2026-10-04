@@ -67,7 +67,7 @@ struct UiState {
     unsigned domains=0;
     std::vector<uint32_t> working;
     std::vector<Field> fields;
-    std::array<Guard,5> guards{};
+    std::array<Guard,6> guards{};
     struct Drift {uint32_t address;float velocity,displacement;};
     std::vector<Drift> drifts;
 } state;
@@ -161,8 +161,12 @@ void native_ui_begin(uint8_t* ram,Nanoseconds now,unsigned divider) {
     state.guards[2].pc=0x801BDEFC;state.guards[2].address=0x801C673C;state.guards[2].size=0x18C;
     state.guards[3].pc=0x801C22C4;state.guards[3].address=0x801C69EC;state.guards[3].size=4;
     state.guards[4].pc=0x801B63B8;state.guards[4].address=0x801B8D10;state.guards[4].size=0x30;
+    // Files root also advances decoration6840, prompt6700, arrow68C0 and
+    // highlight681C outside the row helper. Preserve its complete draw state.
+    state.guards[5].pc=0x801BFC44;state.guards[5].address=0x801C6700;state.guards[5].size=0x1C8;
 }
 UiFrameScope::UiFrameScope(uint8_t* ram,recomp_context* ctx,Nanoseconds now):ram_(ram) {
+    uint8_t* rdram=ram;
     if(state.frame)throw std::logic_error("Nested UI frame");
     if(state.ram!=ram||state.owner==Profile::None||profile(ram)!=state.owner){ram_=nullptr;return;}
     state.frame=true;state.fields.clear();
@@ -172,7 +176,7 @@ UiFrameScope::UiFrameScope(uint8_t* ram,recomp_context* ctx,Nanoseconds now):ram
     try {
         if(state.owner==Profile::Game) {
             if(state.domains&Panels)evaluate_panels(ram,state.h);
-            if((state.domains&Rectangle)&&state.h>0) {
+            if((state.domains&Rectangle)&&state.h>0&&MEM_H(0,int32_t(0x8021811A))==1) {
                 auto* scratch=reinterpret_cast<uint8_t*>(state.working.data());std::memcpy(scratch,ram,image_size);
                 constexpr uint64_t denominator=3000000000ull;
                 SimulationScope time({uint64_t(state.h*denominator),denominator,state.epoch,0});

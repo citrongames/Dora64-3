@@ -96,6 +96,7 @@ extern "C" double dora3_native_rate_f64(double);
 extern "C" int dora3_native_simulation_active();
 extern "C" int dora3_native_simulation_tick_start();
 extern "C" float dora3_native_displacement_f32(float, std::uint32_t);
+extern "C" float dora3_native_angular_displacement_f32(float, std::uint32_t);
 
 extern "C" float dora3_native_gravity_f32(float, float, float, std::uint32_t);
 extern "C" float dora3_native_gravity_displacement_f32(float, std::uint32_t);

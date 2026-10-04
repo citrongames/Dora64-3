@@ -42,42 +42,21 @@
     "dora3_s3_core_801D5594"
   ],
   "source_sha256": {
-    "src/native_simulation_time.cpp": "319b3228e69fb6a6fcbfa81aaff831eeecfe54426538e10ca35726609c917cc4",
+    "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "research/native-camera-modes-check.cpp": "53c68efd4e29283ab4e9944f206b833ba9ee826a4050b02bc435224ca36d6bf7",
-    "src/native_simulation_time.hpp": "05418d7db1479f40c373751bed307c2f5f7582d9002a24934fe5585cfca978d6",
+    "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
     "src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
-    "recomp/native-timing-rules.json": "cf77884cf65905cd49079a5a656cdbeb61bf10452b789663cb1b88db656d8c2d",
-    "tools/native_timing_patches.py": "4fa18f0c8c494b009f5756d75b781cbdb422c2b833dcf9be8156348450dfc8df",
-    "tools/generate_startup.py": "05fac1eadb715f2e913d146cde310362e4c35222ef2000203269f657837409e0",
+    "recomp/native-timing-rules.json": "50c1eba10e12dcc61c06ea6545c47b09567ff066947d900024b5a1b8aa49f758",
+    "tools/native_timing_patches.py": "09c1314a8c38bcd13c92c30f76ca919d390d6a8ac9b044f9d34fe1b4de19ff3a",
+    "tools/generate_startup.py": "b2fd1951e6fefd48c00c1c19ae2ec9c6ba82f13967c5030945a59a03d35b7f27",
     "tools/check_native_camera_modes.py": "5474f494eab96267d69aaa8cb6050ce543b1d0fc8c91b85628fb0ab3b88f1365"
   },
-  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
+  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "limitations": [
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",
     "Whole-tick equivalence compares owned state, excluding scratch stack/registers of replaced leaf functions",
     "Synthetic actors and no-map/room geometry through original query; no real level, mode-switch input or changing-player trajectory verification"
-  ],
-  "execution_origin_276": {
-    "stage": 264,
-    "report_sha256": "13d1b716a10204df03f80243ee0cff3491f21d506072561a6dd3e6252df70e1a",
-    "generation_receipt_sha256": "6aed1eab317b2d8e3e21ac7bdea067a6b8be0ffd084738804cb8fca17ce7f539",
-    "source_delta": {
-      "recomp/native-timing-rules.json": {
-        "executed_sha256": "751a5ca5cbbddeef36417f37461129cb0c7bddae127621bddf5105f9aad32fc8",
-        "current_sha256": "cf77884cf65905cd49079a5a656cdbeb61bf10452b789663cb1b88db656d8c2d",
-        "evidence": "Only status/evidence for four already executed hooks updated; every semantic rule field exact,96 canonical C and hooks/overlay table exact."
-      }
-    },
-    "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
-  },
-  "superseded_by_282": {
-    "current_reports": [
-      "research/native-player-update-check.json",
-      "research/native-pickup-reveal-guard-check.json",
-      "research/native-pickup-arc-guard-check.json"
-    ],
-    "evidence": "Historical main276 receipt and its executed origin retained. New Native4/7/8 runtime changed; this is not a current282 execution proof. No source hashes re-labelled."
-  }
+  ]
 }

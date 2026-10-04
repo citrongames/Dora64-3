@@ -1,6 +1,6 @@
 {
   "result": "PASS: 49 actual ROM overlay ranges, verified DMA/reload, identical VRAM replacement, partial overwrite, parent invalidation, scene unload and boot reset; ASan/UBSan/LSan; no game/GPU.",
-  "generation_receipt_sha256": "c3d9de93db1d17d544a3f1a21f59b8938f757fea4cf4b9fa1bc2f6ba18911906",
+  "generation_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
   "source_sha256": {
     "src/startup_runtime.cpp": "d7865de6f338a7c90cb31833f6c0efb424bf4705b8006563979e86a2d5cd3241",
     "research/overlay-load-state-check.cpp": "e637e658340adedb016e09d258c99348ccb0e4768de7bcc71aaba1051e68aba5",
@@ -42,20 +42,5 @@
   "game_launched": false,
   "limitations": [
     "Runtime overlay registry load/unload endpoints are observations; no OS DMA scheduling, renderer, or full frontend linkage in this component check."
-  ],
-  "execution_origin_276": {
-    "stage": 264,
-    "report_sha256": "49e866b75a53a7e7d506bc05f047f440c49a16b2f45a963ca5654000e3370552",
-    "generation_receipt_sha256": "6aed1eab317b2d8e3e21ac7bdea067a6b8be0ffd084738804cb8fca17ce7f539",
-    "source_delta": {},
-    "evidence": "96 canonical C units/frontier/hooks/overlay table exact; all other runtime/fixture/header inputs exact. This preserves actual execution origin, no repeated main run claim."
-  },
-  "superseded_by_282": {
-    "current_reports": [
-      "research/native-player-update-check.json",
-      "research/native-pickup-reveal-guard-check.json",
-      "research/native-pickup-arc-guard-check.json"
-    ],
-    "evidence": "Historical main276 receipt and its executed origin retained. New Native4/7/8 runtime changed; this is not a current282 execution proof. No source hashes re-labelled."
-  }
+  ]
 }

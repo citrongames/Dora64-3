@@ -39,8 +39,8 @@ bool gameplay30_eligible(uint8_t* ram) {return word(ram,0x801A39DC)==2&&native_g
 const ScenePolicy gameplay20_policy{"scene1-ground-preview",gameplay20_eligible,3,native_gameplay_preview_update};
 const ScenePolicy gameplay30_policy{"scene1-ground-preview-30",gameplay30_eligible,2,native_gameplay_preview_update};
 const ScenePolicy image_policy{"scene34-image",image_eligible,3};
-bool ui20_eligible(uint8_t* ram){return word(ram,0x801A39DC)==3&&(dora3::native_time::native_ui_menu_eligible(ram)||dora3::native_time::native_ui_game_eligible(ram));}
-bool ui30_eligible(uint8_t* ram){return word(ram,0x801A39DC)==2&&(dora3::native_time::native_ui_menu_eligible(ram)||dora3::native_time::native_ui_game_eligible(ram));}
+bool ui20_eligible(uint8_t* ram){return word(ram,0x801A39DC)==3&&dora3::native_time::native_ui_menu_eligible(ram);}
+bool ui30_eligible(uint8_t* ram){return word(ram,0x801A39DC)==2&&dora3::native_time::native_ui_menu_eligible(ram);}
 const ScenePolicy ui20_policy{"reviewed-common-ui-20",ui20_eligible,3};
 const ScenePolicy ui30_policy{"reviewed-common-ui-30",ui30_eligible,2};
 }
@@ -52,6 +52,9 @@ const ScenePolicy* select_native_scene_policy(uint8_t* rdram) {
     if(cutscene30_policy.eligible(rdram))return &cutscene30_policy;
     if(gameplay20_policy.eligible(rdram))return &gameplay20_policy;
     if(gameplay30_policy.eligible(rdram))return &gameplay30_policy;
+    // Common game UI shares the world policy. Acquiring a UI-only session in
+    // gameplay/cutscenes would disable the previous renderer cadence while
+    // leaving camera/world motion at20/30Hz. Standalone UI owns menus only.
     if(ui20_policy.eligible(rdram))return &ui20_policy;
     if(ui30_policy.eligible(rdram))return &ui30_policy;
     return nullptr;

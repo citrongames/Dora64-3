@@ -121,3 +121,5 @@ reference=original;actual=original;
     }
     std::cout<<"PASS: "<<cases<<" script-camera cases; four cameras, all four modes, six orbit channels, local channels and combined rotations; Original/whole-step RAM differential, durations 0/1/2/7/40, 20/30 Hz timing at 60/73/120/144/165/360 FPS, original trigonometry and eye geometry; no game/GPU.\n";
 }
+
+extern "C" int dora3_native_cutscene_equations_active(){return 0;} // ScriptCameraTimeline has no CutsceneTimeline owner.

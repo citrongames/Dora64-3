@@ -1,3 +1,63 @@
+## Исправления039/040 — этап356 / test-041 передан
+
+Исправлены три связанные регрессии: дробные повороты/наклоны участников и
+сценарной камеры, ускорение декораций/стрелок/мигания игрового files-menu и
+UI-only захват Native сессии при неподключённом мире, ухудшавший плавность камеры.
+Original хранит угловую скорость−2 как358; Native теперь интегрирует её signed
+представление между исходными шагами. Полный шаг, Original20/30 и delay-slot
+store остаются точными. Исправлены reviewed XYZ actor rotation801E3358 и
+camera angle801DFBA4. Actual files root801BFC44 защищает всё состояние6700..68C8,
+включая prompt/background/arrow/highlight; Original multiple-view multiplicity
+сохраняется. Common game UI входит в eligible gameplay/cutscene policy, а
+самостоятельная UI policy относится только к меню. Неактивный screen rectangle
+больше не требует копирования4MiB на каждом кадре.
+
+Перед единственным Windows041 завершены26 текущих CPU pre-build checks: input,
+math/model/camera/UI/effects, общий loop/banks/FIFO/context/pause, live/newborn
+projectile scene-frame и actual first room resource barrier. Cutscene356:
+154 cases/506 exact Source endpoints/1431 Native intervals/18 guards; UI356:
+116 cases/64 motion endpoints/153 math samples/234 repeated draw comparisons/37
+guards. Отдельные signed rotation cases включают144FPS. Names356:96 C units,
+849 descriptions/518 semantic aliases/596 scoped variables, canonical
+round trip/preprocessed C tokens/ABI/register storage. Каталог/документы
+сохраняют соответствия прежним функциям. Итог research/native-prebuild-check.json.
+
+Полный player/world/weapon/damage/death/recovery тест не завершился. Пользователь
+прямо потребовал «скипай их, давай билд»; оставшиеся четыре CPU группы остановлены.
+Их незавершённые результаты не объявлены PASS. Для этой сборки полный pre-build
+прерван по просьбе пользователя; новые тесты перед041 не запускались.
+
+Первый общий прогон выявил устаревшие link fixtures после новых UI/cutscene/
+flight/projectile hooks и прежнюю ошибку списка Python в session checker.
+Исправлены обвязки; UI/effects/process/loop/player/transition/pickup и отдельные
+leaf checks повторялись только после своих ошибок. Прошедшие независимые
+проверки заново не запускались. Shared runtime проверяется настоящими модулями;
+off-scope script/menu roots имеют fatal sentinels. Старые gravity/motion leaf
+oracles не приобретают GameplayPreview: их inactive hooks явно обозначены,
+активные projectile owners покрывает завершённый scene-frame scope. Full-player
+scope остаётся незавершённым.
+
+Сохранён tools/check_native_prebuild.py для следующих крупных этапов: свежий
+полный набор перед build; --only повторяет failed/affected checks. Исторические
+exhaustive pickup cross products не выдаются за новый запуск: новый connected
+batch включает189 полных связанных lifetimes/48384 Original endpoints на одном
+setting. CPU tests используют synthetic assets и явные sound/resource/graphics
+границы; реальные уровни, вид первой катсцены, меню и плавность камеры визуально
+проверяет пользователь. Игра/renderer/GPU локально не запускались. Полный
+variable FPS всей игры ещё не завершён; следующими остаются блоки1/2/4/6.
+
+Самый большой full-player тест разбит на четыре независимые группы camera12/2
+и Original20/30. Каждая исполняет все60/73/120/144/165/360FPS и сохраняет свои
+исходные60FPS baselines. Game fixture не изменена: диагностическая копия
+добавляет только selector группы и assert шести настроек. Все прежние Source
+state/resource/command oracles, final counters и ASan/UBSan/LSan остаются.
+Новый экспериментальный tools/check_native_player_update_partitions.py рассчитан
+на четыре PASS и24 настройки; полный запуск этого launcher не завершён и его
+итоговая агрегация не подтверждена. Незавершённые serial и parallel прогоны
+сохранены как прерванные; они не объявляются полным PASS. Остальные
+26 checks не повторялись. Два пути на исходную fixture в подготовке launcher
+различены: read остаётся Original, только link использует derived copy.
+
 ## Продолжение v193 — сюжетные городские NPC прошли общую проверку
 
 Story100 семей13/14/15/16/17/20/21/22, вторичные модели и связанные kind6,
