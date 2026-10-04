@@ -1,7 +1,7 @@
 ## Продолжение main234 — проверены Source-награды и имена, runtime прежний
 
 
-## Текущий проверенный этап: main295
+## Текущий рабочий этап: main352 / test-038
 
 Предметы118/123/127 после настоящего Source входа обновляют no-parent
 оседание2, появление4, подъём5/уменьшение6, вращение7, двухфазную дугу8
@@ -22,6 +22,63 @@ loop иscene resource barrier прошли. Восемь291 executed origins т�
 Parent-follow/moving idle/прочие item families/прочие levels/enemies/platforms/
 script cameras/cutscenes/minigames/2D/интеграция остаются. Полный variable FPS
 не завершён. Test037 прежний; нового Windows EXE или запуска game/GPU нет.
+
+
+## Рабочая интеграция352 — общий Native блок предметов и эффектов
+
+В основной рабочий код перенесены разлёт3, parent-follow2, движение idle1,
+Native paths стандартных111..128 и common animation129. Source сохраняет
+creation/quest/contact/init/count/RNG/clip/seek/teleports/retirement. Внешние
+команды и поздняя пауза возвращают неизменённые непрерывные поля к Source baseline;
+новые реальные команды сохраняются. Pending opacity marker2A у129 запрещает
+преждевременный Native common update. Функция владения129 получила отдельное имя.
+
+Каталог778/447/569: дополнены семь точных ROM-qualified переменных opacity,
+private callback и blink общего pool updater. Alias/ABI/register storage прежние.
+Документы используют смысловые имена, generated game code/ROM вGit не входят.
+
+Изолированные реальные proofs312/321smoke/325/328/333/338short/339/340/344/346
+сохранены с точным происхождением в research/native-pickup-connected-stage352.json.
+Они не объявлены полным проверенным запуском нового runtime. На340 все18семейств
+прошли3888 paired worlds/995328 exact endpoints. Чрезмерные старые full312/321,
+guard321/332 иfull338 scatter/producer остановлены по уточнению пользователя;
+их interrupted receipts сохранены, это не PASS. Уже завершённые proofs действуют
+для прежних входов. Старые main348/runtime295 отчёты явно исторические.
+
+Передtest038 остаётся только необходимая проверка затронутых команд129 при
+Manual60/Original20 и проверки сборки/целостности переименований. Не запускаем
+снова неизменённые player/NPC/оружие/остальные подсистемы. В этом CPU-блоке189
+полных paired lifetimes/48384 Original endpoints от восьми реальных producers
+и13 command profiles. Новый EXE готовится после этого общего элемента.
+Полный variable FPS остальных уровней/врагов/платформ/камер/катсцен/миниигр/2D
+ещё требует разработки. Игра/GPU локально не запускаются.
+
+
+## Test-038 готов — единый этап предметов и эффектов
+
+Windows EXE сохранён: `D:/Games/DoraRecomp3/testbuild/Dora64-3-test-038.exe`.
+SHA256 `6e10c54e008aa94b69d48a52744c2584baafc8ad95aea99d43f5f7249d414979`. Generation352, MSVC RelWithDebInfo; приложение/GPU не запускались.
+Вmain перенесён общий Native блок motion/parent-follow/idle/scatter/reveal/rise/
+shrink/spin/arc/collection стандартных111..128 и common animation129. Дискретные
+Source commands/RNG/contact/quest/init/retirement сохранены. Имёна и документы:
+778 описаний/447 function aliases/569 register scopes;96 canonical C/tokens/C17/ABI
+прошли. Целевой pre-build suite Manual60/Original20 прошёл189 paired lifetimes/
+48384 полных endpoints,13 команд до/после/внутри Native периода. Runtime350 opacity
+negative сохранён. Первый352 Source-стенд некорректно разрывал только child7C;
+это оставляло parent80 на освобождённую физику. Настоящий E7528 очищает обе стороны;
+исправлен только fixture, полный Original endpoint/resource/coverage контроль сохранён.
+
+Player/NPC/оружие/остальные неизменённые системы заново не прогонялись. Старые
+exhaustive interrupted312/321/332/338 не объявлены PASS. Предыдущие scoped proofs
+с точными inputs/origins закреплены вresearch/native-pickup-connected-stage352.json.
+EXE/source/generated receipts совпали;32pins/donor прежние. Все старые EXE, ROM,
+settings/saves/shared DLL сохранены; source195/test037 архивирован перед038.
+Пользовательские реальные уровни/renderer в этом этапе не проверялись.
+
+Следующий крупный блок — оставшиеся враги/объекты/платформы и их связанные события;
+затем оставшиеся script cameras/cutscenes/minigames/2D. Полный variable FPS игры
+ещё не завершён. Проверки нового блока — только необходимые пути после реализации,
+перед следующим Windows build; многократные полные прогоны не возобновлять.
 
 ---
 

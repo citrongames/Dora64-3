@@ -1,0 +1,335 @@
+#ifdef DORA3_PICKUP_LINKED_BATCH_CHECK
+static void check_pickup_linked_guards(const std::vector<uint32_t>& image) {
+    std::map<std::array<unsigned,9>,std::vector<FlashPoolSnapshot>> oracles;
+    unsigned source_cases=0,native_cases=0,endpoints=0,intervals=0,source_births=0,spin_states=0,arc_phases=0,arc_returns=0;
+    unsigned settle_steps=0,scatter_steps=0;
+    unsigned scatter_yaw_samples=0,scatter_position_samples=0,scatter_speed_samples=0,scatter_rollback_samples=0;
+    unsigned settle_height_samples=0,settle_velocity_samples=0,query_rollback_samples=0;
+    unsigned idle_yaw_samples=0,collected_yaw_samples=0,flash_height_samples=0,periodic_height_samples=0,rise_samples=0,shrink_samples=0,linked_model_samples=0,linked_zero_dt_checks=0;
+    for(unsigned camera:{12u})for(unsigned divider:{3u})
+    for(unsigned fps:{60u})for(unsigned target:{250u})for(unsigned item_kind:{118u})for(unsigned initial_state:{1u})for(unsigned velocity_profile:{0u,1u,2u})for(unsigned guard=0;guard<13;++guard)for(unsigned placement:{0u,1u,2u})for(unsigned playback:{0u,1u}) {
+        auto memory=image;auto* rdram=reinterpret_cast<uint8_t*>(memory.data());seed(rdram,0,true);
+        std::memset(rdram+(0x80171CD0&0xFFFFFF),0,230*0xCC);
+        MEM_W(0x94,int32_t(player))=1;MEM_W(0,int32_t(0x8021D640))=int32_t(other);
+        wf(rdram,player+0xA0,0);wf(rdram,physics+0x14,0);MEM_W(0x30,int32_t(control))=-1;
+        wf(rdram,control+0x1C,1);MEM_H(0x16,int32_t(control))=40;MEM_H(0x18,int32_t(control))=0;
+        MEM_W(0,int32_t(0x801B36E0))=0;MEM_B(0,int32_t(0x801B36EC))=0;
+        for(unsigned i=0;i<8;++i) {
+            const auto slot=int32_t(0x801A44F0+i*20);MEM_W(0,slot)=i<2?2:0;
+            MEM_W(12,slot)=i;MEM_W(16,slot)=int32_t(i?0x801BB848:0x801BB730);
+        }
+        for(auto a:{0x8021D484u,0x8021D494u,0x80218AD8u,0x801A9C88u})MEM_W(0,int32_t(a))=0;
+        MEM_W(0,int32_t(0x801AA648))=MEM_W(0,int32_t(0x801A9500))=1;
+        MEM_B(0,int32_t(0x801A48B4))=1;MEM_H(0,int32_t(0x80171560))=0;
+        MEM_B(2,int32_t(0x80171560))=MEM_B(3,int32_t(0x80171560))=MEM_B(4,int32_t(0x80171560))=0;
+        recomp_context c{};c.r29=int32_t(0x80300000);c.f_odd=&c.f0.u32h;c.r4=1;
+        game_model_animation().reset();allocations.clear();resource_references={};next_address=0x802A0000;
+        const auto owners=models(rdram,c);c.r4=1;wf(rdram,params+0x10,15);
+        MEM_W(0,int32_t(0x801A39DC))=int(divider);MEM_B(0,int32_t(0x801B361A))=int8_t(camera);
+        c.f12.fl=rf(rdram,player+0x9C);c.f14.fl=rf(rdram,player+0xA0);c.r6=MEM_W(0xA4,int32_t(player));
+        dora3_s3_801BBDDC(rdram,&c);if(camera==2)dora3_s3_801D7134(rdram,&c);
+        c.r4=1;const auto caller=c;
+        native_gameplay_preview_reset(rdram);preview_live=false;
+        room(rdram);
+        // The shared player fixture's ceiling is250; the explicit height400
+        // item starts outside that room. Keep the genuine floor/collision code,
+        // but place the ceiling above all three producer trajectories.
+        for(unsigned n=2;n<4;++n)wf(rdram,0x80280000u+0x20+n*44+36,-1000.f);
+        city_loaded=false;slot09_loaded=linked_construct_watch=linked_watch=true;
+        city_watch=patrol_watch=city_dialogue_watch=false;city_commands.clear();city_source_initial_stamp.reset();
+        std::copy(slot09_overlay_words.begin(),slot09_overlay_words.end(),memory.begin()+slot09_overlay_vram_offset/4);
+        MEM_W(0,int32_t(0x801AEC00+20))=int32_t(asset);MEM_W(0,int32_t(0x801AEC00+40))=int32_t(clip);
+        MEM_W(0,int32_t(0x801AEC00+80))=int32_t(0x80102000u);
+        for(unsigned slot=30;slot<230;++slot) {
+            c.r4=int32_t(0x80171CD0u+slot*0xCC);dora3_scene_object_init(rdram,&c);MEM_H(0xA8,c.r4)=-1;
+        }
+        const auto before_heap=allocations;const auto before_refs=resource_references;
+        const auto before_models=game_model_animation().model_count();assert(before_models==2);
+        input_now=0;city_source_stamp={0,0};flash_pool_reference=playback==0;
+        if(playback==1) {
+            assert(native_gameplay_preview_eligible(rdram));preview_live=true;
+            native_gameplay_preview_begin(rdram,0,divider);dora3_native_preview_hook(rdram,&c,0x801BB080);
+        }
+        for(unsigned i=0;i<16;++i)MEM_W(4*int32_t(i),int32_t(0x801B3628u))=0;
+        MEM_H(0,int32_t(0x801B36B8u))=item_kind==126?0x117:0xA0;
+        MEM_H(0,int32_t(0x8021BE10u))=31;
+        MEM_H(0,int32_t(0x8021BE02u))=500;MEM_H(2,int32_t(0x8021BE02u))=int16_t(target);
+        MEM_H(4,int32_t(0x8021BE02u))=-300;MEM_H(6,int32_t(0x8021BE02u))=359;
+        c=caller;c.f_odd=&c.f0.u32h;
+        const std::array<void(*)(uint8_t*,recomp_context*),18> constructors{dora3_s3_core_801EC8F8,dora3_s3_core_801EC954,dora3_s3_core_801EC9B0,dora3_s3_core_801ECA68,dora3_s3_core_801EC89C,dora3_s3_core_801ECA0C,dora3_s3_core_801ECAC4,dora3_s3_core_801ECB88,dora3_s3_core_801ECC88,dora3_s3_core_801ECD58,dora3_s3_core_801ECDF0,dora3_s3_core_801ECE88,dora3_s3_core_801ECF58,dora3_s3_core_801ED03C,dora3_s3_core_801ED098,dora3_s3_core_801ED120,dora3_s3_core_801ED204,dora3_s3_core_801ED260};
+        const std::array<void(*)(uint8_t*,recomp_context*),18> references{reference_dora3_s3_core_801EC8F8,reference_dora3_s3_core_801EC954,reference_dora3_s3_core_801EC9B0,reference_dora3_s3_core_801ECA68,reference_dora3_s3_core_801EC89C,reference_dora3_s3_core_801ECA0C,reference_dora3_s3_core_801ECAC4,reference_dora3_s3_core_801ECB88,reference_dora3_s3_core_801ECC88,reference_dora3_s3_core_801ECD58,reference_dora3_s3_core_801ECDF0,reference_dora3_s3_core_801ECE88,reference_dora3_s3_core_801ECF58,reference_dora3_s3_core_801ED03C,reference_dora3_s3_core_801ED098,reference_dora3_s3_core_801ED120,reference_dora3_s3_core_801ED204,reference_dora3_s3_core_801ED260};
+        (playback==0?references[item_kind-111]:constructors[item_kind-111])(rdram,&c);
+        const auto effect=0x801734B8u;assert(MEM_W(0x94,int32_t(effect)));
+        const auto ph=uint32_t(MEM_W(0x98,int32_t(effect))),model=uint32_t(MEM_W(0x74,int32_t(effect)));
+        assert(MEM_H(0x20,int32_t(ph))==int16_t(item_kind)&&MEM_W(0x94,int32_t(effect))!=0);
+        MEM_W(0x94,int32_t(effect))=int(initial_state);MEM_B(0x28,int32_t(ph))=0;
+        MEM_H(0x7C,int32_t(ph))=-1;
+        const std::array<std::array<float,3>,3> velocities{{{2.f,0.f,-3.f},{0.f,1.f,0.f},{-2.f,-1.f,1.f}}};
+        for(unsigned axis=0;axis<3;++axis)wf(rdram,ph+0x10+4*axis,velocities[velocity_profile][axis]);
+ // Explicit no-parent branch for Source2 baseline.
+
+        // Explicit state/input parameters; actual descriptor ctor and state
+        // initializers remain Original. The state8 entry sets latch28=1.
+        // Preserve actual script producer physical44 quest identity and Original initial scale.
+
+        assert(game_model_animation().lifetime_token(model));if(playback==1){assert(game_model_animation().native_birth(model));++source_births;}
+        auto snapshot=[&] {
+            FlashPoolSnapshot value{{},city_commands,allocations,resource_references,game_model_animation().model_count()};
+            for(unsigned slot=30;slot<230;++slot) {
+                const auto actor=0x80171CD0u+slot*0xCC;value.words.push_back(MEM_W(0x94,int32_t(actor)));
+                if(!MEM_W(0x94,int32_t(actor)))continue;
+                const auto physical=uint32_t(MEM_W(0x98,int32_t(actor))),m=uint32_t(MEM_W(0x74,int32_t(actor)));
+                const auto kind=MEM_H(0x20,int32_t(physical));assert(kind==int16_t(item_kind)||kind==129||kind==130||kind==131);
+                assert(game_model_animation().lifetime_token(m));
+                for(auto [a,size]:std::array<std::pair<uint32_t,unsigned>,3>{{{actor,0xCC},{physical,0xF4},{m,0x84}}})
+                    for(unsigned off=0;off<size;off+=4)value.words.push_back(MEM_W(int32_t(off),int32_t(a)));
+            }
+            for(unsigned i=0;i<16;++i)value.words.push_back(MEM_W(4*int32_t(i),int32_t(0x801B3628u)));
+            value.words.push_back(MEM_W(0,int32_t(0x801AA620)));
+            value.words.push_back(MEM_W(0,int32_t(0x8021BDFC)));
+            for(unsigned i=0;i<15;++i)value.words.push_back(MEM_W(int32_t(4*i),int32_t(0x800DACB8u)));
+            return value;
+        };
+        const auto linked_slot=MEM_H(0x80,int32_t(ph));assert(linked_slot>=30&&linked_slot<230);
+        const auto linked=0x80171CD0u+unsigned(linked_slot)*0xCC,lp=uint32_t(MEM_W(0x98,int32_t(linked))),lm=uint32_t(MEM_W(0x74,int32_t(linked)));
+        const auto update_address=0x80202064u+129u*84,contact_address=0x80202068u+129u*84;
+        const auto original_update=MEM_W(0,int32_t(update_address)),original_contact=MEM_W(0,int32_t(contact_address));
+        auto command=[&](unsigned tick) {
+            if(!MEM_W(0x94,int32_t(linked)))return;
+            if(guard==0){if(tick==3)MEM_B(0xC9,int32_t(lp))=1;if(tick==6)MEM_B(0xC9,int32_t(lp))=0;}
+            if(guard==1){if(tick==3)for(unsigned axis=0;axis<3;++axis)wf(rdram,lp+0x10+4*axis,std::array<float,3>{2.f,-1.f,3.f}[axis]);if(tick==6)for(unsigned axis=0;axis<3;++axis)wf(rdram,lp+0x10+4*axis,0.f);}
+            if(guard==2){if(tick==3)MEM_W(0,int32_t(update_address))=int32_t(0x801E5D84u);if(tick==6)MEM_W(0,int32_t(update_address))=original_update;}
+            if(guard==3&&tick==3){wf(rdram,linked+0x9C,700.f);wf(rdram,linked+0xA0,450.f);wf(rdram,linked+0xA4,200.f);}
+            if(guard==4){if(tick==3)MEM_H(0xD8,int32_t(lp))=6;if(tick==6)MEM_H(0xD8,int32_t(lp))=0;}
+            if(guard==5) {
+                if(tick==3){recomp_context seek;dora3::copy_recomp_context(seek,caller);seek.r4=int32_t(lm);seek.r5=0;dora3_s0_80039564(rdram,&seek);}
+                if(tick==4||tick==6){recomp_context pause;dora3::copy_recomp_context(pause,caller);pause.r4=int32_t(lm);pause.r5=0;pause.r6=tick==4?0:1;dora3_s0_80039578(rdram,&pause);}
+            }
+            if(guard==6&&tick==3) {
+                // Actual group-opacity setter also publishes physical2A=1.
+                // Do not add a raw C4/C8 command that would mask its ownership.
+                recomp_context opacity;dora3::copy_recomp_context(opacity,caller);
+                opacity.r4=int32_t(linked);opacity.r5=0;opacity.r6=std::bit_cast<int32_t>(.25f);
+                dora3_s3_801E89CC(rdram,&opacity);
+            }
+            if(guard==7){if(tick==3)MEM_H(0x80,int32_t(ph))=-1;if(tick==6)MEM_H(0x80,int32_t(ph))=int16_t(linked_slot);}
+            // Source may wait49 periods before the first real clip. Unlink after actual animation coverage.
+            if(guard==8&&tick==60) {
+                // Real game detach clears both ends before129 retires. A raw
+                // child7C=-1 would leave a freed physics pointer in parent80.
+                recomp_context detach;dora3::copy_recomp_context(detach,caller);
+                detach.r4=int32_t(effect);detach.r5=0;
+                (playback==0?reference_dora3_s3_demo_801E7528:dora3_s3_demo_801E7528)(rdram,&detach);
+            }
+            if(guard==9){if(tick==3)MEM_W(0,int32_t(contact_address))=int32_t(0x801E5D84u);if(tick==6)MEM_W(0,int32_t(contact_address))=original_contact;}
+            if(guard==10) {
+                if(tick==3) {
+                    MEM_B(0x29,int32_t(lp))=1;
+                    recomp_context opacity;dora3::copy_recomp_context(opacity,caller);
+                    opacity.r4=int32_t(linked);opacity.r5=0;opacity.r6=std::bit_cast<int32_t>(.25f);
+                    dora3_s3_801E89CC(rdram,&opacity);
+                }
+                if(tick==6)MEM_B(0x29,int32_t(lp))=0;
+            }
+            if(guard==11){if(tick==3)MEM_B(0xCA,int32_t(lp))=0;if(tick==6)MEM_B(0xCA,int32_t(lp))=1;}
+            if(guard==12) {
+                if(tick==3)for(unsigned axis=0;axis<3;++axis)MEM_W(0x10+4*int(axis),int32_t(lp))=int32_t(0x80000000u);
+                if(tick==6)for(unsigned axis=0;axis<3;++axis)MEM_W(0x10+4*int(axis),int32_t(lp))=0;
+            }
+
+        };
+        auto source_owned=[&] {
+            std::vector<int32_t> words;
+            for(unsigned slot=30;slot<230;++slot) {
+                const auto actor=0x80171CD0u+slot*0xCC;const auto state=MEM_W(0x94,int32_t(actor));if(!state)continue;
+                const auto physical=uint32_t(MEM_W(0x98,int32_t(actor))),m=uint32_t(MEM_W(0x74,int32_t(actor)));
+                const auto kind=MEM_H(0x20,int32_t(physical));
+                const bool idle=kind==int16_t(item_kind)&&state==1;
+                const bool settle=kind==int16_t(item_kind)&&state==2&&MEM_BU(0x28,int32_t(physical))==1&&MEM_H(0x34,int32_t(physical))==1&&MEM_H(0x7C,int32_t(physical))==-1;
+                const bool scatter=kind==int16_t(item_kind)&&state==3&&MEM_BU(0x28,int32_t(physical))==1&&MEM_H(0x7C,int32_t(physical))==-1&&MEM_W(0x14,int32_t(physical))==0;
+                if((kind==int16_t(item_kind)&&state==10&&MEM_BU(0x28,int32_t(physical))==1)||(kind==130&&state==10))continue;
+                for(auto [a,size]:std::array<std::pair<uint32_t,unsigned>,3>{{{actor,0xCC},{physical,0xF4},{m,0x84}}})
+                    for(unsigned off=0;off<size;off+=4) {
+                        auto value=MEM_W(int32_t(off),int32_t(a));
+#ifdef DORA3_PICKUP_SCATTER_NATIVE_CHECK
+                        if(scatter&&((a==actor&&(off==0x10||off==0x9C||off==0xA0||off==0xA4))||(a==physical&&(off==0||off==0x10||off==0x14||off==0x18||off==0xC4))||(a==m&&(off==0x64||off==0x78||off==0x74))))value=0;
+                        if(scatter&&a==m&&off==0x7C)value&=~int32_t(0x02000000u);
+                        if(scatter&&a==physical&&off==0xC8)value&=~int32_t(0xFF000000u);
+                        if(scatter&&a==physical&&off==0x28)value&=~int32_t(0x0000FF00u);
+#endif
+#ifdef DORA3_PICKUP_SETTLE_NATIVE_CHECK
+                        if(settle&&((a==actor&&off==0xA0)||(a==physical&&off==0x14)||(a==m&&off==0x64)||(a==physical&&off==0xC4)||(a==m&&(off==0x78||off==0x74))))value=0;
+                        if(settle&&a==m&&off==0x7C)value&=~int32_t(0x02000000u);
+                        if(settle&&a==physical&&off==0xC8)value&=~int32_t(0xFF000000u);
+                        if(settle&&a==physical&&off==0x28)value&=~int32_t(0x0000FF00u);
+#endif
+                        if(idle&&((a==actor&&(off==0x10||off==0x9C||off==0xA0||off==0xA4))||(a==physical&&off==0xC4)||(a==m&&(off==0x64||off==0x78||off==0x74))))value=0;
+                        if(idle&&a==m&&off==0x7C)value&=~int32_t(0x02000000u);
+                        if(idle&&a==physical&&off==0xC8)value&=~int32_t(0xFF000000u);
+                        if(idle&&a==physical&&off==0x28)value&=~int32_t(0x0000FF00u);
+                        if(kind==131&&((a==actor&&off==0xA0)||(a==m&&off==0x64)))value=0;
+                        if(kind==131&&a==m&&off==0x7C)value&=~int32_t(0x02000000u);
+                        if(kind==131&&a==physical&&off==0x28)value&=~int32_t(0x0000FF00u);
+                        // Only common model time/completion pulse belongs to Native129.
+                        // All actor pose/physics/centre/count/RNG words stay exact between Native intervals, including explicit external inputs.
+                        if(kind==129&&a==m&&off==0x64)value=0;
+                        if(kind==129&&a==m&&off==0x7C)value&=~int32_t(0x02000000u);
+                        words.push_back(value);
+                    }
+            }
+            return words;
+        };
+        std::array<unsigned,3> pair_linked_samples{};
+        for(unsigned child=0;child<3;++child) {
+            const auto slot=MEM_H(0x80+2*int(child),int32_t(ph));assert(slot>=30&&slot<230);
+            const auto linked=0x80171CD0u+unsigned(slot)*0xCC,lp=uint32_t(MEM_W(0x98,int32_t(linked)));
+            assert(MEM_W(0x94,int32_t(linked))==1&&MEM_H(0x20,int32_t(lp))==129&&
+                   MEM_H(0x44,int32_t(lp))==int16_t(child)&&MEM_H(0x7C,int32_t(lp))==30);
+        }
+        unsigned frame=1;bool retired=false;
+        for(unsigned tick=1;tick<=256;++tick) {
+            const auto units=uint64_t(second)*divider*tick;const auto boundary=Nanoseconds((units+59)/60);
+            c=caller;c.f_odd=&c.f0.u32h;
+            if(placement==0) {
+                const auto start_units=uint64_t(second)*divider*(tick-1);input_now=Nanoseconds((start_units+59)/60);
+                city_source_stamp={Nanoseconds(start_units/60),unsigned(start_units%60)};command(tick);
+            }
+            if(playback==1) {
+                auto native_to=[&](Nanoseconds stamp) {
+                    const auto before=source_owned();const auto context=c;input_now=stamp;
+                    const auto old_state=MEM_W(0x94,int32_t(effect)),old_yaw=MEM_W(0x10,int32_t(effect));
+                    const auto old_height=MEM_W(0xA0,int32_t(effect)),old_scale=MEM_W(0x18,int32_t(effect));
+                    std::map<uint32_t,int32_t> flash_heights,periodic_heights;
+                    std::map<uint32_t,int32_t> linked_times;
+                    for(unsigned slot=30;slot<230;++slot) {
+                        const auto a=0x80171CD0u+slot*0xCC;if(!MEM_W(0x94,int32_t(a)))continue;
+                        if(MEM_H(0x20,MEM_W(0x98,int32_t(a)))==129)linked_times[a]=MEM_W(0x64,MEM_W(0x74,int32_t(a)));
+                        if(MEM_H(0x20,MEM_W(0x98,int32_t(a)))==130)flash_heights[a]=MEM_W(0xA0,int32_t(a));
+                        if(MEM_H(0x20,MEM_W(0x98,int32_t(a)))==131)periodic_heights[a]=MEM_W(0xA0,int32_t(a));
+                    }
+                    const auto old_velocity=MEM_W(0x14,int32_t(ph));
+                    std::array<int32_t,15> candidates{};for(unsigned i=0;i<candidates.size();++i)candidates[i]=MEM_W(int32_t(4*i),int32_t(0x800DACB8u));
+                    std::array<int32_t,52> terrain{};for(unsigned i=0;i<terrain.size();++i)terrain[i]=MEM_W(int32_t(4*i),int32_t(0x80280000u));
+                    const auto old_scatter_x=MEM_W(0x9C,int32_t(effect)),old_scatter_z=MEM_W(0xA4,int32_t(effect)),old_scatter_speed=MEM_W(0,int32_t(ph));
+                    const auto random_word=MEM_W(0,int32_t(0x801AA620));
+                    native_gameplay_preview_update(rdram,&c,stamp);
+#ifdef DORA3_PICKUP_SCATTER_NATIVE_CHECK
+                    if(old_state==3) {
+                        if(MEM_W(0x10,int32_t(effect))!=old_yaw)++scatter_yaw_samples;
+                        if(MEM_W(0x9C,int32_t(effect))!=old_scatter_x||MEM_W(0xA4,int32_t(effect))!=old_scatter_z||MEM_W(0xA0,int32_t(effect))!=old_height)++scatter_position_samples;
+                        if(MEM_W(0,int32_t(ph))!=old_scatter_speed)++scatter_speed_samples;
+                        assert(random_word==MEM_W(0,int32_t(0x801AA620)));
+                        for(unsigned i=0;i<candidates.size();++i)assert(candidates[i]==MEM_W(int32_t(4*i),int32_t(0x800DACB8u)));
+                        for(unsigned i=0;i<terrain.size();++i)assert(terrain[i]==MEM_W(int32_t(4*i),int32_t(0x80280000u)));
+                        ++scatter_rollback_samples;
+                    }
+#endif
+                    if(old_state==2) {
+                        if(MEM_W(0xA0,int32_t(effect))!=old_height)++settle_height_samples;
+                        if(MEM_W(0x14,int32_t(ph))!=old_velocity)++settle_velocity_samples;
+                        for(unsigned i=0;i<candidates.size();++i)assert(candidates[i]==MEM_W(int32_t(4*i),int32_t(0x800DACB8u)));
+                        for(unsigned i=0;i<terrain.size();++i)assert(terrain[i]==MEM_W(int32_t(4*i),int32_t(0x80280000u)));
+                        ++query_rollback_samples;
+                    }
+                    if(old_state==5&&MEM_W(0xA0,int32_t(effect))!=old_height)++rise_samples;
+                    if(old_state==6&&MEM_W(0x18,int32_t(effect))!=old_scale)++shrink_samples;
+                    if(MEM_W(0x94,int32_t(effect))&&MEM_W(0x10,int32_t(effect))!=old_yaw) {
+                        if(old_state==1)++idle_yaw_samples;
+                        if(old_state==10)++collected_yaw_samples;
+                    }
+                    for(auto [a,y]:flash_heights)if(MEM_W(0x94,int32_t(a))&&MEM_W(0xA0,int32_t(a))!=y)++flash_height_samples;
+                    for(auto [a,y]:periodic_heights)if(MEM_W(0x94,int32_t(a))&&MEM_W(0xA0,int32_t(a))!=y)++periodic_height_samples;
+                    for(auto [a,time]:linked_times)if(MEM_W(0x94,int32_t(a))&&MEM_W(0x64,MEM_W(0x74,int32_t(a)))!=time) {
+                        const auto index=MEM_H(0x44,MEM_W(0x98,int32_t(a)));assert(index>=0&&index<3);
+                        ++linked_model_samples;++pair_linked_samples[unsigned(index)];
+                    }
+                    const auto after=source_owned();
+                    if(after!=before||std::memcmp(&context,&c,sizeof(c))!=0) {
+                        std::cerr<<"Linked protected-field mismatch kind="<<item_kind<<" height="<<target<<" velocity="<<velocity_profile<<" guard="<<guard<<" placement="<<placement<<" tick="<<tick<<" stamp="<<stamp<<" context_equal="<<(std::memcmp(&context,&c,sizeof(c))==0)<<'\n';
+                        for(unsigned i=0;i<std::min(after.size(),before.size());++i)
+                            if(after[i]!=before[i])std::cerr<<" protected_word="<<i<<" actual="<<std::hex<<after[i]<<" before="<<before[i]<<std::dec<<'\n';
+                        std::abort();
+                    }
+                    ++intervals;
+                    const auto duplicate=snapshot();
+                    native_gameplay_preview_update(rdram,&c,stamp);
+                    assert(snapshot()==duplicate&&std::memcmp(&context,&c,sizeof(c))==0);++linked_zero_dt_checks;
+
+                };
+                const auto start_units=uint64_t(second)*divider*(tick-1);
+                const auto midpoint=Nanoseconds((start_units+units+119)/120);bool pending=placement==2;
+                auto mid_command=[&] {
+                    input_now=midpoint;city_source_stamp={Nanoseconds((start_units+units)/120),unsigned((start_units+units)%120)/2};command(tick);pending=false;
+                };
+                while(second*frame/fps<boundary) {
+                    const auto stamp=second*frame/fps;
+                    if(pending&&stamp>=midpoint){native_to(midpoint);mid_command();}
+                    native_to(stamp);++frame;
+                }
+                if(pending){native_to(midpoint);mid_command();}
+                native_to(boundary);
+
+            }
+            if(playback==0&&placement==2) {
+                const auto start_units=uint64_t(second)*divider*(tick-1);input_now=Nanoseconds((start_units+units+119)/120);
+                city_source_stamp={Nanoseconds((start_units+units)/120),unsigned((start_units+units)%120)/2};command(tick);
+            }
+            input_now=boundary;city_source_stamp={Nanoseconds(units/60),unsigned(units%60)};
+            if(placement==1)command(tick);
+            c=caller;c.f_odd=&c.f0.u32h;
+            if(tick==140) {
+                assert(MEM_W(0x94,int32_t(effect))==1);
+                const auto old_actor=MEM_W(0,int32_t(0x8021BDEC)),old_physical=MEM_W(0,int32_t(0x8021BCDC)),old_mode=MEM_W(0,int32_t(0x8021BCE4));
+                MEM_W(0,int32_t(0x8021BDEC))=int32_t(effect);MEM_W(0,int32_t(0x8021BCDC))=int32_t(ph);MEM_W(0,int32_t(0x8021BCE4))=3;
+                const std::array<void(*)(uint8_t*,recomp_context*),18> contacts{dora3_s3_core_801EC91C,dora3_s3_core_801EC978,dora3_s3_core_801EC9D4,dora3_s3_core_801ECA8C,dora3_s3_core_801EC8C0,dora3_s3_core_801ECA30,dora3_s3_core_801ECB1C,dora3_s3_core_801ECBE4,dora3_s3_core_801ECCEC,dora3_s3_core_801ECD8C,dora3_s3_core_801ECE24,dora3_s3_core_801ECEEC,dora3_s3_core_801ECFB4,dora3_s3_core_801ED060,dora3_s3_core_801ED0BC,dora3_s3_core_801ED17C,dora3_s3_core_801ED228,dora3_s3_core_801ED284};
+                const std::array<void(*)(uint8_t*,recomp_context*),18> references{reference_dora3_s3_core_801EC91C,reference_dora3_s3_core_801EC978,reference_dora3_s3_core_801EC9D4,reference_dora3_s3_core_801ECA8C,reference_dora3_s3_core_801EC8C0,reference_dora3_s3_core_801ECA30,reference_dora3_s3_core_801ECB1C,reference_dora3_s3_core_801ECBE4,reference_dora3_s3_core_801ECCEC,reference_dora3_s3_core_801ECD8C,reference_dora3_s3_core_801ECE24,reference_dora3_s3_core_801ECEEC,reference_dora3_s3_core_801ECFB4,reference_dora3_s3_core_801ED060,reference_dora3_s3_core_801ED0BC,reference_dora3_s3_core_801ED17C,reference_dora3_s3_core_801ED228,reference_dora3_s3_core_801ED284};
+                (playback==0?references[item_kind-111]:contacts[item_kind-111])(rdram,&c);
+                assert(MEM_W(0x94,int32_t(effect))==10&&MEM_BU(0x28,int32_t(ph))==0);
+                MEM_W(0,int32_t(0x8021BDEC))=old_actor;MEM_W(0,int32_t(0x8021BCDC))=old_physical;MEM_W(0,int32_t(0x8021BCE4))=old_mode;
+                c=caller;c.f_odd=&c.f0.u32h;
+            }
+            if(playback==0)reference_dora3_s3_801E8BDC(rdram,&c);else dora3_s3_801E8BDC(rdram,&c);
+            const auto value=snapshot();const auto key=std::array<unsigned,9>{fps,divider,camera,target,item_kind,initial_state,velocity_profile,guard,placement};
+            if(playback==0)oracles[key].push_back(value);else {
+                if(value!=oracles.at(key).at(tick-1)) {
+                    std::cerr<<"Periodic producer mismatch fps="<<fps<<" divider="<<divider<<" camera="<<camera<<" target="<<target<<" initial_state="<<initial_state<<" item_kind="<<item_kind<<" velocity_profile="<<velocity_profile<<" guard="<<guard<<" placement="<<placement<<" tick="<<tick<<'\n';
+                    for(unsigned i=0;i<std::min(value.words.size(),oracles.at(key).at(tick-1).words.size());++i)
+                        if(value.words[i]!=oracles.at(key).at(tick-1).words[i])std::cerr<<" word="<<i<<" actual="<<std::hex<<value.words[i]<<" expected="<<oracles.at(key).at(tick-1).words[i]<<std::dec<<'\n';
+                    std::abort();
+                }
+                ++endpoints;
+            }
+            if(playback==0&&MEM_W(0x94,int32_t(effect))==2)++settle_steps;
+            if(playback==0&&MEM_W(0x94,int32_t(effect))==3)++scatter_steps;
+            if(playback==0&&MEM_W(0x94,int32_t(effect))==7&&rf(rdram,ph+0x58)>1)++spin_states;
+            if(playback==0&&MEM_W(0x94,int32_t(effect))==8&&MEM_H(0x34,int32_t(ph))==1)++arc_phases;
+            if(playback==0&&initial_state==8&&MEM_W(0x94,int32_t(effect))==1)++arc_returns;
+            if(!MEM_W(0x94,int32_t(effect)))retired=true;
+        }
+        if(!(retired&&allocations==before_heap&&resource_references==before_refs&&game_model_animation().model_count()==before_models)) {
+            std::cerr<<"Periodic producer lifetime mismatch playback="<<playback<<" fps="<<fps<<" divider="<<divider<<" camera="<<camera<<" target="<<target<<" initial_state="<<initial_state<<" kind="<<item_kind
+                <<" retired="<<retired<<" heap_equal="<<(allocations==before_heap)<<" refs_equal="<<(resource_references==before_refs)<<" models="<<game_model_animation().model_count()<<" expected_models="<<before_models<<'\n';
+            for(unsigned slot=30;slot<230;++slot) {
+                const auto a=0x80171CD0u+slot*0xCC;const auto state=MEM_W(0x94,int32_t(a));if(!state)continue;
+                const auto physical=MEM_W(0x98,int32_t(a));
+                std::cerr<<" live_slot="<<slot<<" kind="<<MEM_H(0x20,physical)<<" state="<<state<<" y="<<rf(rdram,a+0xA0)<<" vy="<<rf(rdram,uint32_t(physical)+0x14)
+                    <<" latch="<<int(MEM_BU(0x28,physical))<<" count="<<MEM_H(0x34,physical)<<" phase="<<MEM_H(0x36,physical)<<'\n';
+            }
+            std::abort();
+        }
+        if(playback==1)for(unsigned child=0;child<3;++child)if(!pair_linked_samples[child]) {
+            std::cerr<<"Missing Native129 model coverage kind="<<item_kind<<" height="<<target<<" velocity="<<velocity_profile<<" child="<<child<<'\n';
+            std::abort();
+        }
+        if(playback==1)oracles.erase(std::array<unsigned,9>{fps,divider,camera,target,item_kind,initial_state,velocity_profile,guard,placement});
+        assert(oracles.size()<=1);
+        native_gameplay_preview_reset(rdram);preview_live=false;slot09_loaded=linked_construct_watch=linked_watch=false;
+        for(auto m:owners){c.r4=int32_t(m);dora3_s0_8003B77C(rdram,&c);}
+        if(playback==0)++source_cases;else ++native_cases;
+    }
+    assert(source_cases==117&&native_cases==117&&endpoints==117*256&&source_births==117&&intervals>18000&&oracles.empty());
+    assert(idle_yaw_samples>72&&collected_yaw_samples>72&&flash_height_samples>72);
+    assert(linked_model_samples>72&&linked_zero_dt_checks==intervals);
+    std::cout<<"PASS: 117 Original and117 mixed Native/Source guarded linked129 animation lifetimes;13 command profiles at before/after/mid Native intervals, three root velocity profiles, actual private producer118 with three129 children, three heights/XYZ velocity profiles, actual parent contact/quest/collection/six-flash130 and129 unlink/automatic retirement; "<<intervals<<" Native intervals preserve every Source-only129 actor/physics word and unclaimed model/parent field; "<<linked_model_samples<<" intermediate129 model-time changes and "<<linked_zero_dt_checks<<" exact whole-snapshot duplicate-time checks; "<<endpoints<<" exact full live actor/physics/model/heap/resources/commands/quest/RNG/collision-result endpoints. Actual Source RNG timers/teleports/clip commands and complete resources on synthetic assets; Native129 owns only common model time/completion pulse after actual Source initialization and live reciprocal links; no actual selecting script/real-level renderer claim; no game/GPU.\n";
+}
+#endif

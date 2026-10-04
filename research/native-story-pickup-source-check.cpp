@@ -1,5 +1,6 @@
 #include "native_simulation_time.hpp"
 #include "native_gameplay_preview.hpp"
+#include "recomp_context_copy.hpp"
 #include "native_input_timeline.hpp"
 #include "native_camera_timeline.hpp"
 #include "native_model_animation.hpp"
@@ -84,7 +85,7 @@ static unsigned linked_constructor_cases=0;
 static bool linked_watch=false,linked_original_reference=false;
 static unsigned linked_source_cases=0,linked_native_cases=0,linked_rejections=0,linked_yaw_samples=0,linked_original_ram_cases=0;
 static unsigned linked_contact_cases=0;
-static const std::set<std::pair<unsigned,int32_t>> linked_resource_ids{{1,692},{4,693},{1,712},{4,713},{1,710},{4,711},{1,1819},{2,1820},{1,906},{1,917},{1,964},{1,997},{1,1001},{2,354},{2,907},{2,908},{2,909},{2,910},{2,911},{2,912},{2,913},{2,914},{2,915},{2,916},{2,918},{2,919},{2,920},{2,921},{2,922},{2,923},{2,924},{2,925},{2,965},{2,966},{2,967},{2,968},{2,969},{2,970},{2,998},{2,1002},{2,1003},{2,1004},{2,1005},{2,1006},{2,1007},{3,983},{3,984},{3,999},{3,1000},{3,1009},{3,1010},{4,802},{1,777},{1,803},{1,804},{1,810},{1,816},{1,817},{1,830},{1,831},{1,846},{1,880},{1,893},{2,97},{2,99},{2,778},{2,779},{2,780},{2,781},{2,782},{2,783},{2,784},{2,785},{2,786},{2,787},{2,788},{2,789},{2,790},{2,791},{2,792},{2,793},{2,794},{2,795},{2,818},{2,819},{2,820},{2,821},{2,822},{2,823},{2,824},{2,832},{2,833},{2,834},{2,835},{2,836},{2,837},{2,838},{2,839},{2,840},{2,841},{2,847},{2,848},{2,849},{2,850},{2,851},{2,852},{2,853},{2,881},{2,882},{2,883},{2,884},{2,885},{2,886},{2,887},{2,888},{2,894},{2,895},{2,896},{2,897},{2,898},{2,899},{2,900},{2,933},{3,796},{3,797},{3,798},{3,799},{3,800},{3,801},{3,805},{3,806},{3,807},{3,808},{3,809},{3,811},{3,812},{3,813},{3,814},{3,815},{3,825},{3,826},{3,827},{3,828},{3,829},{3,842},{3,843},{3,844},{3,845},{3,854},{3,855},{3,856},{3,857},{3,858},{3,889},{3,890},{3,891},{3,892},{3,901},{3,902},{3,903},{3,904},{3,905},{4,802},{1,859},{1,869},{2,860},{2,861},{2,862},{2,863},{2,864},{2,865},{2,866},{2,867},{2,868},{2,870},{2,871},{2,872},{2,873},{3,874},{3,875},{3,876},{3,877},{3,878},{4,879},{1,0x476},{2,0x477}};
+static const std::set<std::pair<unsigned,int32_t>> linked_resource_ids{{1,692},{4,693},{1,712},{4,713},{1,710},{4,711},{1,1819},{2,1820},{1,906},{1,917},{1,964},{1,997},{1,1001},{2,354},{2,907},{2,908},{2,909},{2,910},{2,911},{2,912},{2,913},{2,914},{2,915},{2,916},{2,918},{2,919},{2,920},{2,921},{2,922},{2,923},{2,924},{2,925},{2,965},{2,966},{2,967},{2,968},{2,969},{2,970},{2,998},{2,1002},{2,1003},{2,1004},{2,1005},{2,1006},{2,1007},{3,983},{3,984},{3,999},{3,1000},{3,1009},{3,1010},{4,802},{1,777},{1,803},{1,804},{1,810},{1,816},{1,817},{1,830},{1,831},{1,846},{1,880},{1,893},{2,97},{2,99},{2,778},{2,779},{2,780},{2,781},{2,782},{2,783},{2,784},{2,785},{2,786},{2,787},{2,788},{2,789},{2,790},{2,791},{2,792},{2,793},{2,794},{2,795},{2,818},{2,819},{2,820},{2,821},{2,822},{2,823},{2,824},{2,832},{2,833},{2,834},{2,835},{2,836},{2,837},{2,838},{2,839},{2,840},{2,841},{2,847},{2,848},{2,849},{2,850},{2,851},{2,852},{2,853},{2,881},{2,882},{2,883},{2,884},{2,885},{2,886},{2,887},{2,888},{2,894},{2,895},{2,896},{2,897},{2,898},{2,899},{2,900},{2,933},{3,796},{3,797},{3,798},{3,799},{3,800},{3,801},{3,805},{3,806},{3,807},{3,808},{3,809},{3,811},{3,812},{3,813},{3,814},{3,815},{3,825},{3,826},{3,827},{3,828},{3,829},{3,842},{3,843},{3,844},{3,845},{3,854},{3,855},{3,856},{3,857},{3,858},{3,889},{3,890},{3,891},{3,892},{3,901},{3,902},{3,903},{3,904},{3,905},{4,802},{1,859},{1,869},{2,860},{2,861},{2,862},{2,863},{2,864},{2,865},{2,866},{2,867},{2,868},{2,870},{2,871},{2,872},{2,873},{3,874},{3,875},{3,876},{3,877},{3,878},{4,879},{1,0x476},{2,0x477},{1,678},{4,679},{1,680},{4,681},{1,682},{4,683},{1,684},{4,685},{1,686},{4,679},{1,688},{4,689},{1,690},{4,691},{1,692},{4,693},{1,694},{4,695},{1,696},{4,697},{1,698},{4,699},{1,700},{4,701},{1,712},{4,713},{1,708},{4,709},{1,702},{4,703},{1,706},{4,707},{1,710},{4,711},{1,704},{4,705}};
 static bool patrol_original_reference=false;
 static unsigned patrol_original_ram_cases=0;
 static unsigned patrol_source_cases=0,patrol_native_cases=0,patrol_rejections=0,patrol_position_samples=0;
@@ -178,7 +179,14 @@ bool hover_command_watch=false;
 std::array<unsigned,2> hover_commands{};
 bool special_command_watch=false;
 std::array<unsigned,3> special_commands{};
+#ifdef DORA3_PICKUP_SCATTER_GEOMETRY_CHECK
+static bool scatter_geometry_source_watch=false;
+static unsigned scatter_geometry_source_reactions=0;
+#endif
 void dora3_trace(uint8_t* rdram,recomp_context* c,uint32_t site,uint32_t kind) {
+#ifdef DORA3_PICKUP_SCATTER_GEOMETRY_CHECK
+    if(scatter_geometry_source_watch&&site==0x801E8238)++scatter_geometry_source_reactions;
+#endif
     // D1498 is the actual Source script-command publication, including the
     // kind24 close path whose physics78 marker requests exactly one release.
     if(slot09_loaded&&linked_watch&&site==0x801D1498) {
@@ -389,6 +397,39 @@ recomp_func_t* get_function(int32_t address) {
     if(uint32_t(address)==0x801ED8F4u)return dora3_s3_core_801ED8F4;
     if(uint32_t(address)==0x801ED8FCu)return flash_pool_reference?reference_dora3_s3_core_801ED8FC:dora3_s3_core_801ED8FC;
 #endif
+    if(uint32_t(address)==0x801EC938u)return dora3_s3_core_801EC938;
+    if(uint32_t(address)==0x801EC91Cu)return dora3_s3_core_801EC91C;
+    if(uint32_t(address)==0x801EC994u)return dora3_s3_core_801EC994;
+    if(uint32_t(address)==0x801EC978u)return dora3_s3_core_801EC978;
+    if(uint32_t(address)==0x801EC9F0u)return dora3_s3_core_801EC9F0;
+    if(uint32_t(address)==0x801EC9D4u)return dora3_s3_core_801EC9D4;
+    if(uint32_t(address)==0x801ECAA8u)return dora3_s3_core_801ECAA8;
+    if(uint32_t(address)==0x801ECA8Cu)return dora3_s3_core_801ECA8C;
+    if(uint32_t(address)==0x801EC8DCu)return dora3_s3_core_801EC8DC;
+    if(uint32_t(address)==0x801EC8C0u)return dora3_s3_core_801EC8C0;
+    if(uint32_t(address)==0x801ECA4Cu)return dora3_s3_core_801ECA4C;
+    if(uint32_t(address)==0x801ECA30u)return dora3_s3_core_801ECA30;
+    if(uint32_t(address)==0x801ECB6Cu)return dora3_s3_core_801ECB6C;
+    if(uint32_t(address)==0x801ECB1Cu)return dora3_s3_core_801ECB1C;
+    if(uint32_t(address)==0x801ECD3Cu)return dora3_s3_core_801ECD3C;
+    if(uint32_t(address)==0x801ECCECu)return dora3_s3_core_801ECCEC;
+    if(uint32_t(address)==0x801ECDD4u)return dora3_s3_core_801ECDD4;
+    if(uint32_t(address)==0x801ECD8Cu)return dora3_s3_core_801ECD8C;
+    if(uint32_t(address)==0x801ECE6Cu)return dora3_s3_core_801ECE6C;
+    if(uint32_t(address)==0x801ECE24u)return dora3_s3_core_801ECE24;
+    if(uint32_t(address)==0x801ECF3Cu)return dora3_s3_core_801ECF3C;
+    if(uint32_t(address)==0x801ECEECu)return dora3_s3_core_801ECEEC;
+    if(uint32_t(address)==0x801ED07Cu)return dora3_s3_core_801ED07C;
+    if(uint32_t(address)==0x801ED060u)return dora3_s3_core_801ED060;
+    if(uint32_t(address)==0x801ED104u)return dora3_s3_core_801ED104;
+    if(uint32_t(address)==0x801ED0BCu)return dora3_s3_core_801ED0BC;
+    if(uint32_t(address)==0x801ED1E8u)return dora3_s3_core_801ED1E8;
+    if(uint32_t(address)==0x801ED17Cu)return dora3_s3_core_801ED17C;
+    if(uint32_t(address)==0x801ED2A0u)return dora3_s3_core_801ED2A0;
+    if(uint32_t(address)==0x801ED284u)return dora3_s3_core_801ED284;
+    if(uint32_t(address)==0x801ED2BCu)return flash_pool_reference?reference_dora3_s3_core_801ED2BC:dora3_s3_core_801ED2BC;
+    if(uint32_t(address)==0x801ED2CCu)return flash_pool_reference?reference_dora3_s3_core_801ED2CC:dora3_s3_core_801ED2CC;
+    if(uint32_t(address)==0x801ED2C4u)return flash_pool_reference?reference_dora3_s3_core_801ED2C4:dora3_s3_core_801ED2C4;
     if(uint32_t(address)==0x801ECC6Cu)return dora3_s3_core_801ECC6C;
     if(uint32_t(address)==0x801ECBE4u)return dora3_s3_core_801ECBE4;
     if(uint32_t(address)==0x801ED020u)return dora3_s3_core_801ED020;
@@ -582,13 +623,37 @@ static unsigned reward_idle_yaw_samples=0;
 #include "native-pickup-arc-guard-check.inc"
 #include "native-pickup-reveal-source-check.inc"
 #include "native-pickup-settle-scatter-source-check.inc"
+#include "native-pickup-moving-idle-source-check.inc"
+#include "native-pickup-linked-basic-check.inc"
+#include "native-pickup-linked-guard-check.inc"
+#include "native-pickup-parent-source-check.inc"
 #include "native-pickup-settle-guard-check.inc"
+#include "native-pickup-scatter-guard-check.inc"
+#include "native-pickup-scatter-geometry-check.inc"
 #include "native-pickup-reveal-guard-check.inc"
 int main(int argc,char** argv) {
     assert(argc==2);std::vector<uint32_t> image(0x400000/4);std::ifstream in(argv[1],std::ios::binary);
     in.read(reinterpret_cast<char*>(image.data()),0x400000);assert(in.gcount()==0x400000);
+#ifdef DORA3_PICKUP_SCATTER_GEOMETRY_CHECK
+    check_pickup_scatter_geometry(image);return 0;
+#endif
+#ifdef DORA3_PICKUP_SCATTER_GUARD_CHECK
+    check_pickup_scatter_guards(image);return 0;
+#endif
 #ifdef DORA3_PICKUP_SETTLE_GUARD_CHECK
     check_pickup_settle_guards(image);return 0;
+#endif
+#ifdef DORA3_PICKUP_LINKED_BATCH_CHECK
+    check_pickup_linked_basic(image);
+    check_pickup_linked_guards(image);
+    std::cout<<"PASS: linked Native animation batch;189 paired complete lifetimes/48384 exact Original endpoints; private commands and resources retain Source order; no game/GPU.\n";
+    return 0;
+#endif
+#ifdef DORA3_PICKUP_MOVING_IDLE_SOURCE_CHECK
+    check_pickup_moving_idle_source(image);return 0;
+#endif
+#ifdef DORA3_PICKUP_PARENT_SOURCE_CHECK
+    check_pickup_parent_source(image);return 0;
 #endif
 #ifdef DORA3_PICKUP_SETTLE_SCATTER_SOURCE_CHECK
     check_pickup_settle_scatter_source(image);return 0;

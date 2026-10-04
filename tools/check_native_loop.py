@@ -35,6 +35,8 @@ def main():
  external.update(phase_boundaries)
  external.add('dora3_s3_core_801C120C')
  external.add('dora3_s3_801E810C')
+ external.add('dora3_s3_core_801EBCC0')
+ external.add('dora3_s3_core_801EBAD4')
  external.add('dora3_s3_801E89CC')
  external.add('dora3_lib_80055BD0')
  out=r/'build-local/native-loop-check';out.mkdir(exist_ok=True)

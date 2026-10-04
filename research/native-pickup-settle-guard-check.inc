@@ -85,7 +85,7 @@ static void check_pickup_settle_guards(const std::vector<uint32_t>& image) {
                 const auto actor=0x80171CD0u+slot*0xCC;const auto state=MEM_W(0x94,int32_t(actor));if(!state)continue;
                 const auto physical=uint32_t(MEM_W(0x98,int32_t(actor))),m=uint32_t(MEM_W(0x74,int32_t(actor)));
                 const auto kind=MEM_H(0x20,int32_t(physical));
-                const bool idle=kind==int16_t(item_kind)&&state==1&&MEM_W(0x10,int32_t(physical))==0&&MEM_W(0x14,int32_t(physical))==0&&MEM_W(0x18,int32_t(physical))==0;
+                const bool idle=kind==int16_t(item_kind)&&state==1&&(uint32_t(MEM_W(0x10,int32_t(physical)))&0x7FFFFFFFu)==0&&(uint32_t(MEM_W(0x14,int32_t(physical)))&0x7FFFFFFFu)==0&&(uint32_t(MEM_W(0x18,int32_t(physical)))&0x7FFFFFFFu)==0;
                 const auto velocity=rf(rdram,physical+0x14);
                 const auto blink=MEM_H(0xD8,int32_t(physical));
                 const auto update=item_kind==118?0x801ECC6Cu:item_kind==123?0x801ED020u:0x801ED244u;
@@ -113,8 +113,9 @@ static void check_pickup_settle_guards(const std::vector<uint32_t>& image) {
             return words;
         };
         if(guard==6) {
-            // The real parent offset is-70. Keep the explicit static parent
-            // above the room floor so releasing it tests actual settle reentry.
+            // The actual parent is pool index0, distinct from the standalone
+            // player fixture below. Its handoff can place the item below the
+            // floor; keep that genuine query/fade ordering regression covered.
             wf(rdram,player+0xA0,300.f);if(playback==1)assert(native_gameplay_preview_eligible(rdram));
         }
         const auto update_address=0x80202064u+item_kind*84,original_update=uint32_t(MEM_W(0,int32_t(update_address)));

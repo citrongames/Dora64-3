@@ -3,6 +3,7 @@ static void check_pickup_settle_scatter_source(const std::vector<uint32_t>& imag
     std::map<std::array<unsigned,6>,std::vector<FlashPoolSnapshot>> oracles;
     unsigned source_cases=0,native_cases=0,endpoints=0,intervals=0,source_births=0,spin_states=0,arc_phases=0,arc_returns=0;
     unsigned settle_steps=0,scatter_steps=0;
+    unsigned scatter_yaw_samples=0,scatter_position_samples=0,scatter_speed_samples=0,scatter_rollback_samples=0;
     unsigned settle_height_samples=0,settle_velocity_samples=0,query_rollback_samples=0;
     unsigned idle_yaw_samples=0,collected_yaw_samples=0,flash_height_samples=0,periodic_height_samples=0,rise_samples=0,shrink_samples=0;
     for(unsigned playback:{0u,1u})for(unsigned camera:{12u,2u})for(unsigned divider:{2u,3u})
@@ -74,6 +75,9 @@ static void check_pickup_settle_scatter_source(const std::vector<uint32_t>& imag
                 for(auto [a,size]:std::array<std::pair<uint32_t,unsigned>,3>{{{actor,0xCC},{physical,0xF4},{m,0x84}}})
                     for(unsigned off=0;off<size;off+=4)value.words.push_back(MEM_W(int32_t(off),int32_t(a)));
             }
+            value.words.push_back(MEM_W(0,int32_t(0x801AA620)));
+            value.words.push_back(MEM_W(0,int32_t(0x8021BDFC)));
+            for(unsigned i=0;i<15;++i)value.words.push_back(MEM_W(int32_t(4*i),int32_t(0x800DACB8u)));
             return value;
         };
         auto source_owned=[&] {
@@ -82,12 +86,19 @@ static void check_pickup_settle_scatter_source(const std::vector<uint32_t>& imag
                 const auto actor=0x80171CD0u+slot*0xCC;const auto state=MEM_W(0x94,int32_t(actor));if(!state)continue;
                 const auto physical=uint32_t(MEM_W(0x98,int32_t(actor))),m=uint32_t(MEM_W(0x74,int32_t(actor)));
                 const auto kind=MEM_H(0x20,int32_t(physical));
-                const bool idle=kind==int16_t(item_kind)&&state==1&&MEM_W(0x10,int32_t(physical))==0&&MEM_W(0x14,int32_t(physical))==0&&MEM_W(0x18,int32_t(physical))==0;
+                const bool idle=kind==int16_t(item_kind)&&state==1&&(uint32_t(MEM_W(0x10,int32_t(physical)))&0x7FFFFFFFu)==0&&(uint32_t(MEM_W(0x14,int32_t(physical)))&0x7FFFFFFFu)==0&&(uint32_t(MEM_W(0x18,int32_t(physical)))&0x7FFFFFFFu)==0;
                 const bool settle=kind==int16_t(item_kind)&&state==2&&MEM_BU(0x28,int32_t(physical))==1&&MEM_H(0x34,int32_t(physical))==1&&MEM_H(0x7C,int32_t(physical))==-1;
+                const bool scatter=kind==int16_t(item_kind)&&state==3&&MEM_BU(0x28,int32_t(physical))==1&&MEM_H(0x7C,int32_t(physical))==-1&&MEM_W(0x14,int32_t(physical))==0;
                 if(idle||(kind==int16_t(item_kind)&&state==10&&MEM_BU(0x28,int32_t(physical))==1)||(kind==130&&state==10))continue;
                 for(auto [a,size]:std::array<std::pair<uint32_t,unsigned>,3>{{{actor,0xCC},{physical,0xF4},{m,0x84}}})
                     for(unsigned off=0;off<size;off+=4) {
                         auto value=MEM_W(int32_t(off),int32_t(a));
+#ifdef DORA3_PICKUP_SCATTER_NATIVE_CHECK
+                        if(scatter&&((a==actor&&(off==0x10||off==0x9C||off==0xA0||off==0xA4))||(a==physical&&(off==0||off==0x10||off==0x14||off==0x18||off==0xC4))||(a==m&&(off==0x64||off==0x78||off==0x74))))value=0;
+                        if(scatter&&a==m&&off==0x7C)value&=~int32_t(0x02000000u);
+                        if(scatter&&a==physical&&off==0xC8)value&=~int32_t(0xFF000000u);
+                        if(scatter&&a==physical&&off==0x28)value&=~int32_t(0x0000FF00u);
+#endif
 #ifdef DORA3_PICKUP_SETTLE_NATIVE_CHECK
                         if(settle&&((a==actor&&off==0xA0)||(a==physical&&off==0x14)||(a==m&&off==0x64)||(a==physical&&off==0xC4)||(a==m&&(off==0x78||off==0x74))))value=0;
                         if(settle&&a==m&&off==0x7C)value&=~int32_t(0x02000000u);
@@ -120,7 +131,20 @@ static void check_pickup_settle_scatter_source(const std::vector<uint32_t>& imag
                     const auto old_velocity=MEM_W(0x14,int32_t(ph));
                     std::array<int32_t,15> candidates{};for(unsigned i=0;i<candidates.size();++i)candidates[i]=MEM_W(int32_t(4*i),int32_t(0x800DACB8u));
                     std::array<int32_t,52> terrain{};for(unsigned i=0;i<terrain.size();++i)terrain[i]=MEM_W(int32_t(4*i),int32_t(0x80280000u));
+                    const auto old_scatter_x=MEM_W(0x9C,int32_t(effect)),old_scatter_z=MEM_W(0xA4,int32_t(effect)),old_scatter_speed=MEM_W(0,int32_t(ph));
+                    const auto random_word=MEM_W(0,int32_t(0x801AA620));
                     native_gameplay_preview_update(rdram,&c,stamp);
+#ifdef DORA3_PICKUP_SCATTER_NATIVE_CHECK
+                    if(old_state==3) {
+                        if(MEM_W(0x10,int32_t(effect))!=old_yaw)++scatter_yaw_samples;
+                        if(MEM_W(0x9C,int32_t(effect))!=old_scatter_x||MEM_W(0xA4,int32_t(effect))!=old_scatter_z||MEM_W(0xA0,int32_t(effect))!=old_height)++scatter_position_samples;
+                        if(MEM_W(0,int32_t(ph))!=old_scatter_speed)++scatter_speed_samples;
+                        assert(random_word==MEM_W(0,int32_t(0x801AA620)));
+                        for(unsigned i=0;i<candidates.size();++i)assert(candidates[i]==MEM_W(int32_t(4*i),int32_t(0x800DACB8u)));
+                        for(unsigned i=0;i<terrain.size();++i)assert(terrain[i]==MEM_W(int32_t(4*i),int32_t(0x80280000u)));
+                        ++scatter_rollback_samples;
+                    }
+#endif
                     if(old_state==2) {
                         if(MEM_W(0xA0,int32_t(effect))!=old_height)++settle_height_samples;
                         if(MEM_W(0x14,int32_t(ph))!=old_velocity)++settle_velocity_samples;
@@ -190,9 +214,17 @@ static void check_pickup_settle_scatter_source(const std::vector<uint32_t>& imag
     assert(settle_steps>216&&scatter_steps>216&&idle_yaw_samples>216&&collected_yaw_samples>216&&flash_height_samples>216);
 #ifdef DORA3_PICKUP_SETTLE_NATIVE_CHECK
     assert(settle_height_samples>216&&settle_velocity_samples>216&&query_rollback_samples>216);
+#ifdef DORA3_PICKUP_SCATTER_NATIVE_CHECK
+    std::cout<<"PASS: 432 Original and432 mixed Native/Source initialized no-parent pickup2/3 Y/velocity/yaw/scatter motion with actual ordered Source gravity/probe/latch/state1 and full collection/six-flash retirement; Original heading/count/state/RNG commands retained; "<<intervals<<" Native calls, "<<endpoints<<" exact complete live actor/physics/model/heap/resource/command endpoints; "<<settle_height_samples<<'/'<<settle_velocity_samples<<" Native Y/velocity changes, "<<query_rollback_samples<<" collision-cache/terrain rollback checks; synthetic room/assets, explicit state/height/no-parent inputs; parent-follow,geometric wall/dynamic platform,real selectors,dynamic platform integration,renderer,pool exhaustion outside proof; no game/GPU.\n";
+#else
     std::cout<<"PASS: 432 Original and432 mixed Native/Source initialized no-parent pickup2 Y/velocity with actual ordered Source gravity/probe/latch/state1 and full collection/six-flash retirement; Source scatter3 unchanged; "<<intervals<<" Native calls, "<<endpoints<<" exact complete live actor/physics/model/heap/resource/command endpoints; "<<settle_height_samples<<'/'<<settle_velocity_samples<<" Native Y/velocity changes, "<<query_rollback_samples<<" collision-cache/terrain rollback checks; synthetic room/assets, explicit state/height/no-parent inputs; parent-follow,scatter3 Native,real selectors,dynamic platform integration,renderer,pool exhaustion outside proof; no game/GPU.\n";
+#endif
 #else
     std::cout<<"PASS: 432 Original and432 mixed Native/Source Source-owned pickup2/3 schedules; actual no-parent settle2 initializer/gravity/probe/state1 and scatter3 RNG/speed/collision/height/state1, real Source mode3 contact140 and full collected/six-flash retirement; "<<intervals<<" Native intervals keep unclaimed2/3 actor/physics/model fields unchanged; "<<endpoints<<" exact complete live actor/physics/model/heap/resource/command frozen Original endpoints; actual settle/scatter steps "<<settle_steps<<'/'<<scatter_steps<<"; synthetic room/assets and explicit state/height/no-parent inputs; Native2/3 and parent-follow branch remain outside proof; no real level/script/renderer/pool exhaustion claim; no game/GPU.\n";
+#endif
+#ifdef DORA3_PICKUP_SCATTER_NATIVE_CHECK
+    assert(scatter_yaw_samples>216&&scatter_position_samples>216&&scatter_speed_samples>216&&scatter_rollback_samples>216);
+    std::cout<<"PASS: Native initialized standard scatter3 yaw/speed/XYZ/velocities; "<<scatter_yaw_samples<<'/'<<scatter_position_samples<<'/'<<scatter_speed_samples<<" intermediate changes, "<<scatter_rollback_samples<<" RNG/collision-cache/terrain rollback checks; all432 paired whole lifetime endpoints above retain actual Original headings/count/RNG/state1/collection/retirement; parent-follow/wall rebound guards/dynamic platform/real selectors/render unverified; no game/GPU.\n";
 #endif
 }
 #endif

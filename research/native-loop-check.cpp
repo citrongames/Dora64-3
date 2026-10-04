@@ -267,4 +267,5 @@ extern "C" void dora3_s0_8002F064(uint8_t*,recomp_context*) {std::abort();}
 // This image-loop scope never enters gameplay; the reward and scene scopes
 // execute the real gravity/probe body. Any unexpected activation is fatal.
 extern "C" void dora3_s3_801E810C(uint8_t*,recomp_context*) {std::abort();}
+extern "C" void dora3_s3_core_801EBCC0(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s3_801E89CC(uint8_t*,recomp_context*) {std::abort();}

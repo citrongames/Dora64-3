@@ -8,10 +8,15 @@ EXTRA_HELPERS = {0x801E7528, 0x801E756C, 0x801E75D0, 0x801E7604,
                  0x801E7A50, 0x801E7B44, 0x801E7B78, 0x801E7EB8,
                  0x801E80FC, 0x801E810C, 0x801E8210, 0x801E8238,
                  0x801E8404, 0x801E89CC, 0x801E8A94, 0x8005A140, 0x8005A300}
+EXTRA_HELPERS.update({0x801EB8F8,0x801EB8A0})
 ROOTS = ['dora3_s3_core_801ECC6C', 'dora3_s3_core_801ECBE4',
          'dora3_s3_core_801ED020', 'dora3_s3_core_801ECFB4',
          'dora3_s3_core_801ED244', 'dora3_s3_core_801ED228',
          'dora3_s3_core_801ED898', 'dora3_s3_core_801ED4A4']
+
+ROOTS+= ['dora3_s3_core_801EC938', 'dora3_s3_core_801EC91C', 'dora3_s3_core_801EC994', 'dora3_s3_core_801EC978', 'dora3_s3_core_801EC9F0', 'dora3_s3_core_801EC9D4', 'dora3_s3_core_801ECAA8', 'dora3_s3_core_801ECA8C', 'dora3_s3_core_801EC8DC', 'dora3_s3_core_801EC8C0', 'dora3_s3_core_801ECA4C', 'dora3_s3_core_801ECA30', 'dora3_s3_core_801ECB6C', 'dora3_s3_core_801ECB1C', 'dora3_s3_core_801ECC6C', 'dora3_s3_core_801ECBE4', 'dora3_s3_core_801ECD3C', 'dora3_s3_core_801ECCEC', 'dora3_s3_core_801ECDD4', 'dora3_s3_core_801ECD8C', 'dora3_s3_core_801ECE6C', 'dora3_s3_core_801ECE24', 'dora3_s3_core_801ECF3C', 'dora3_s3_core_801ECEEC', 'dora3_s3_core_801ED020', 'dora3_s3_core_801ECFB4', 'dora3_s3_core_801ED07C', 'dora3_s3_core_801ED060', 'dora3_s3_core_801ED104', 'dora3_s3_core_801ED0BC', 'dora3_s3_core_801ED1E8', 'dora3_s3_core_801ED17C', 'dora3_s3_core_801ED244', 'dora3_s3_core_801ED228', 'dora3_s3_core_801ED2A0', 'dora3_s3_core_801ED284']
+
+ROOTS+=['dora3_s3_core_801EC8F8', 'dora3_s3_core_801EC954', 'dora3_s3_core_801EC9B0', 'dora3_s3_core_801ECA68', 'dora3_s3_core_801EC89C', 'dora3_s3_core_801ECA0C', 'dora3_s3_core_801ECAC4', 'dora3_s3_core_801ECB88', 'dora3_s3_core_801ECC88', 'dora3_s3_core_801ECD58', 'dora3_s3_core_801ECDF0', 'dora3_s3_core_801ECE88', 'dora3_s3_core_801ECF58', 'dora3_s3_core_801ED03C', 'dora3_s3_core_801ED098', 'dora3_s3_core_801ED120', 'dora3_s3_core_801ED204', 'dora3_s3_core_801ED260', 'dora3_s3_core_801ED2BC', 'dora3_s3_core_801ED2CC', 'dora3_s3_core_801ED2C4']
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -28,9 +33,21 @@ def main():
     parser.add_argument('--rom', type=Path, required=True)
     parser.add_argument('--reference', type=Path, default=ROOT/'build-local/startup-v61')
     parser.add_argument('--city-reference', type=Path, default=ROOT/'build-local/startup-v189')
-    parser.add_argument('--scope',choices=['original','native-source','effect-delay','effect-motion','effect-pool','pickup-contact','pickup-idle-guards','periodic-source','periodic-producer','periodic-guards','producer-guards','pickup-uncollected-source','pickup-spin-native','pickup-spin-guards','pickup-arc-native','pickup-arc-guards','pickup-reveal-source','pickup-reveal-native','pickup-reveal-guards','pickup-settle-scatter-source','pickup-settle-native','pickup-settle-guards'],default='original')
+    parser.add_argument('--scope',choices=['original','native-source','effect-delay','effect-motion','effect-pool','pickup-contact','pickup-idle-guards','periodic-source','periodic-producer','periodic-guards','producer-guards','pickup-uncollected-source','pickup-spin-native','pickup-spin-guards','pickup-arc-native','pickup-arc-guards','pickup-reveal-source','pickup-reveal-native','pickup-reveal-guards','pickup-settle-scatter-source','pickup-settle-native','pickup-settle-guards','pickup-scatter-native','pickup-scatter-guards','pickup-scatter-geometry','pickup-parent-source','pickup-parent-native','pickup-parent-guards','pickup-parent-guard-smoke','pickup-moving-idle-source','pickup-item-families-source','pickup-item-families-native','pickup-linked-batch'],default='original')
     parser.add_argument('--optimization',choices=['O0','O1','O2'],default='O0')
     args = parser.parse_args()
+    moving_idle_source=args.scope=='pickup-item-families-native'
+    linked_batch=args.scope=='pickup-linked-batch'
+    if moving_idle_source or linked_batch:args.scope='pickup-settle-scatter-source'
+    parent_guard=args.scope in ['pickup-parent-guards','pickup-parent-guard-smoke']
+    parent_smoke=args.scope=='pickup-parent-guard-smoke'
+    parent_native=args.scope in ['pickup-parent-native','pickup-parent-guards','pickup-parent-guard-smoke']
+    parent_source=args.scope in ['pickup-parent-source','pickup-parent-native','pickup-parent-guards','pickup-parent-guard-smoke']
+    if parent_source:args.scope='pickup-settle-scatter-source'
+    scatter_geometry=args.scope=='pickup-scatter-geometry'
+    scatter_guards=args.scope in ['pickup-scatter-guards','pickup-scatter-geometry']
+    scatter_native=args.scope in ['pickup-scatter-native','pickup-scatter-guards','pickup-scatter-geometry']
+    if scatter_native:args.scope='pickup-settle-guards' if scatter_guards else 'pickup-settle-native'
     generation = args.generated.resolve()
     diagnostic=args.scope in ['native-source','effect-pool','pickup-contact','pickup-idle-guards','periodic-source','periodic-producer','periodic-guards','producer-guards','pickup-uncollected-source','pickup-spin-native','pickup-spin-guards','pickup-arc-native','pickup-arc-guards','pickup-reveal-source','pickup-reveal-native','pickup-reveal-guards','pickup-settle-scatter-source','pickup-settle-native','pickup-settle-guards']
     settle_scatter_source=args.scope in ['pickup-settle-scatter-source','pickup-settle-native','pickup-settle-guards']
@@ -54,6 +71,10 @@ def main():
     motion=args.scope=='effect-motion'
     delay=args.scope in ['effect-delay','effect-motion']
     folder='native-pickup-settle-guard-check' if settle_guards else 'native-pickup-settle-check' if settle_native else 'native-pickup-settle-scatter-source-check' if settle_scatter_source else 'native-pickup-reveal-guard-check' if reveal_guards else 'native-pickup-reveal-check' if reveal_native else 'native-pickup-reveal-source-check' if reveal_source else 'native-pickup-arc-guard-check' if arc_guards else 'native-pickup-arc-check' if arc_native else 'native-pickup-spin-guard-check' if spin_guards else 'native-pickup-spin-check' if spin_native else 'native-pickup-uncollected-source-check' if uncollected_source else 'native-periodic-producer-guard-check' if producer_guard else 'native-periodic-effect-guard-check' if periodic_guard else 'native-periodic-producer-check' if producer else 'native-periodic-effect-source-check' if periodic else 'native-pickup-idle-guards-check' if guards else 'native-pickup-contact-check' if contact else 'native-flash-pool-check' if pool else 'native-flash-motion-check' if motion else 'native-flash-delay-check' if delay else ('native-story-pickup-native-source-check' if diagnostic else 'native-story-pickup-source-check')
+    if scatter_native:folder='native-pickup-scatter-geometry-check' if scatter_geometry else 'native-pickup-scatter-guard-check' if scatter_guards else 'native-pickup-scatter-check'
+    if parent_source:folder='native-pickup-parent-guard-smoke' if parent_smoke else 'native-pickup-parent-guard-check' if parent_guard else 'native-pickup-parent-check' if parent_native else 'native-pickup-parent-source-check'
+    if moving_idle_source:folder='native-pickup-item-families-check'
+    if linked_batch:folder='native-pickup-linked-batch-check'
     report_name=folder+'.json'
     out=ROOT/'build-local'/folder
     out.mkdir(exist_ok=True)
@@ -61,6 +82,11 @@ def main():
     # destructors, model implementation and frozen Oracle as the whole-world check.
     checker = ROOT/'tools/check_native_player_update.py'
     preparation = checker.read_text()
+    # Keep the scatter root in the story-specific selection so its independent
+    # frozen reference is emitted; the whole-world checker still selects it.
+    scatter_root="todo=['dora3_s3_core_801EBAD4','dora3_s3_core_801EBCC0','dora3_s3_801E89CC',"
+    assert preparation.count(scatter_root)==1
+    preparation=preparation.replace(scatter_root,"todo=['dora3_s3_801E89CC',")
     preparation = preparation[:preparation.index("    subprocess.run(['gcc','-std=c17'")]
     preparation = preparation.replace("out=ROOT/'build-local/native-player-update-check'", "out=ROOT/'build-local/native-story-pickup-source-check'")
     preparation = preparation.replace("out=ROOT/('build-local/native-player-update-check' if a.scope=='full' else 'build-local/native-scene-frame-check')", "out=ROOT/'build-local/native-story-pickup-source-check'")
@@ -113,7 +139,7 @@ def main():
                 body=body.replace('    '+hook+'\n','')
             assert body==frozen[name],name
             body=current[name]
-        elif pc in [0x801ED8FC,0x801EBAD4,0x801EBEDC,0x801EBFC8,0x801EC0D0,0x801EC194,0x801EC2A8]:
+        elif pc in [0x801ED2CC,0x801ED8FC,0x801EBCC0,0x801EBAD4,0x801EBEDC,0x801EBFC8,0x801EC0D0,0x801EC194,0x801EC2A8]:
             hook=f'; if (dora3_native_preview_hook(rdram,ctx,0x{pc:08X}u)) return;'
             assert body.count(hook)==1 and body.replace(hook,';')==frozen[name],name
         elif pc not in [0x801ED5F4,0x801EC598,0x801EBA9C]:assert body == frozen[name] and 'dora3_native_preview_hook' not in body, name
@@ -125,6 +151,7 @@ def main():
     header.write_text(header.read_text()+'\nextern "C" {\n'+'\n'.join(
         f'void {name}(uint8_t*,recomp_context*);' for name in selected)+'\n}\n')
     if pool:
+        assert 'dora3_s3_core_801EBCC0' in selected and 'dora3_s3_core_801EBCC0' not in existing
         references={name:frozen[name].replace('void '+name+'(', 'void reference_'+name+'(',1) for name in selected}
         for name,body in references.items():
             for dependency in selected:body=re.sub(r'\b'+dependency+r'(?=\(rdram, ctx\))','reference_'+dependency,body)
@@ -154,9 +181,13 @@ def main():
     if guards:flags+=['-DDORA3_STORY_PICKUP_IDLE_GUARD_CHECK']
     if spin_guards:flags+=['-DDORA3_PICKUP_SPIN_GUARD_CHECK']
     if spin_native:flags+=['-DDORA3_PICKUP_SPIN_NATIVE_CHECK']
-    if settle_scatter_source and not settle_guards:flags+=['-DDORA3_PICKUP_SETTLE_SCATTER_SOURCE_CHECK']
-    if settle_guards:flags+=['-DDORA3_PICKUP_SETTLE_GUARD_CHECK']
+    if settle_scatter_source and not settle_guards:flags+=['-DDORA3_PICKUP_LINKED_BATCH_CHECK' if linked_batch else '-DDORA3_PICKUP_MOVING_IDLE_SOURCE_CHECK' if moving_idle_source else '-DDORA3_PICKUP_PARENT_SOURCE_CHECK' if parent_source else '-DDORA3_PICKUP_SETTLE_SCATTER_SOURCE_CHECK']
+    if settle_guards and not scatter_guards:flags+=['-DDORA3_PICKUP_SETTLE_GUARD_CHECK']
+    if scatter_guards:flags+=['-DDORA3_PICKUP_SCATTER_GEOMETRY_CHECK' if scatter_geometry else '-DDORA3_PICKUP_SCATTER_GUARD_CHECK']
+    if parent_native:flags+=['-DDORA3_PICKUP_PARENT_NATIVE_CHECK']
+    if parent_smoke:flags+=['-DDORA3_PICKUP_PARENT_GUARD_SMOKE']
     if settle_native:flags+=['-DDORA3_PICKUP_SETTLE_NATIVE_CHECK']
+    if scatter_native:flags+=['-DDORA3_PICKUP_SCATTER_NATIVE_CHECK']
     if reveal_guards:flags+=['-DDORA3_PICKUP_REVEAL_GUARD_CHECK']
     if reveal_native:flags+=['-DDORA3_PICKUP_REVEAL_NATIVE_CHECK']
     if reveal_source:flags+=['-DDORA3_PICKUP_REVEAL_SOURCE_CHECK']
@@ -185,7 +216,7 @@ def main():
     output = (out/'result.log').read_text().strip()
     print(output, flush=True)
     result.check_returncode()
-    assert output.startswith('PASS: 3456 Original and3456 mixed Native/Source guarded no-parent pickup2' if settle_guards else 'PASS: 432 Original and432 mixed Native/Source initialized no-parent pickup2' if settle_native else 'PASS: 432 Original and432 mixed Native/Source Source-owned pickup2/3' if settle_scatter_source else 'PASS: 3456 Original and3456 mixed Native/Source guarded pickup4' if reveal_guards else 'PASS: 216 Original and216 mixed Native/Source Source-owned pickup4' if reveal_source else 'PASS: 3456 Original and3456 mixed Native/Source guarded pickup8' if arc_guards else 'PASS: 3456 Original and3456 mixed Native/Source guarded pickup7' if spin_guards else 'PASS: 432 Original and432 mixed Native/Source uncollected pickup states7/8' if uncollected_source else 'PASS: 3456 Original and3456 mixed Native/Source guarded pickup5/6' if producer_guard else 'PASS: 1152 Original and1152 mixed Native/Source periodic131' if periodic_guard else 'PASS: 216 Original and216 mixed Native/Source uncollected state5' if producer else 'PASS: 72 Original and72 mixed Native/Source periodic effect131' if periodic else 'PASS: 768 actual Source mode3 contacts' if guards else 'PASS: 384 actual Source mode3 contact' if contact else 'PASS: 168 connected Native flash pool' if pool else 'PASS: 288 Native flash motion' if motion else 'PASS: 144 Native flash delay' if delay else 'PASS: 168 ')
+    assert output.startswith('PASS: 72 Original and72 mixed Native/Source actual Native linked129 animation' if linked_batch else 'PASS: 18 Original and18 mixed Native/Source complete standard111..128 Native idle/collection family lifetimes' if moving_idle_source else ('PASS: 30 Original and30 mixed Native/Source guarded actual Parent130' if parent_smoke else 'PASS: 12960 Original and12960 mixed Native/Source guarded actual Parent130') if parent_guard else 'PASS: 864 Original and864 mixed Native/Source actual Parent130' if parent_source else 'PASS: 432 Original and432 mixed Native/Source scatter3 geometric surface-jump' if scatter_geometry else 'PASS: 4320 Original and4320 mixed Native/Source guarded initialized scatter3' if scatter_guards else 'PASS: 3456 Original and3456 mixed Native/Source guarded no-parent pickup2' if settle_guards else 'PASS: 432 Original and432 mixed Native/Source initialized no-parent pickup2/3' if scatter_native else 'PASS: 432 Original and432 mixed Native/Source initialized no-parent pickup2' if settle_native else 'PASS: 432 Original and432 mixed Native/Source Source-owned pickup2/3' if settle_scatter_source else 'PASS: 3456 Original and3456 mixed Native/Source guarded pickup4' if reveal_guards else 'PASS: 216 Original and216 mixed Native/Source Source-owned pickup4' if reveal_source else 'PASS: 3456 Original and3456 mixed Native/Source guarded pickup8' if arc_guards else 'PASS: 3456 Original and3456 mixed Native/Source guarded pickup7' if spin_guards else 'PASS: 432 Original and432 mixed Native/Source uncollected pickup states7/8' if uncollected_source else 'PASS: 3456 Original and3456 mixed Native/Source guarded pickup5/6' if producer_guard else 'PASS: 1152 Original and1152 mixed Native/Source periodic131' if periodic_guard else 'PASS: 216 Original and216 mixed Native/Source uncollected state5' if producer else 'PASS: 72 Original and72 mixed Native/Source periodic effect131' if periodic else 'PASS: 768 actual Source mode3 contacts' if guards else 'PASS: 384 actual Source mode3 contact' if contact else 'PASS: 168 connected Native flash pool' if pool else 'PASS: 288 Native flash motion' if motion else 'PASS: 144 Native flash delay' if delay else 'PASS: 168 ')
     tracked = sources+[fixture, checker, Path(__file__).resolve(),
                        ROOT/'research/native-npc-interaction-check.inc', ROOT/'recomp/startup.json']
     tracked+=sorted((ROOT/'src').glob('*.hpp'))
@@ -316,6 +347,35 @@ def main():
         report['source_sha256']['research/native-pickup-spin-guard-check.inc']=sha(ROOT/'research/native-pickup-spin-guard-check.inc')
         report['validated_schedules'].update(source_schedules=3456,mixed_schedules=3456,initial_states=[7],heights=[80,250,400],guard_profiles=8,command_placements=['before Native period','after Native period before Source'])
         report['validated_schedules'].pop('state8_targets',None);report['validated_schedules'].pop('actual_mode3_contact_period',None)
+    if parent_source:
+        report['source_sha256']['research/native-pickup-parent-source-check.inc']=sha(ROOT/'research/native-pickup-parent-source-check.inc')
+        pairs=30 if parent_smoke else 12960 if parent_guard else 864
+        report['scope']='Native initialized attached2 child118/123/127 from real current Source-born flash130 parent pose; guarded complete frozen Original lifetimes'
+        report['parent_source_baseline']=dict(paired_worlds=pairs,whole_endpoints=pairs*256,actual_parent_ctor=True,source_only_attached2=not parent_native,new_native_parent_ownership=parent_native,explicit_parent_kind=130)
+        report['validated_schedules']=dict(settings=1 if parent_smoke else 24,source_schedules=pairs,mixed_schedules=pairs,initial_states=[2],heights=[80] if parent_smoke else [80,250,400],item_kinds=[118] if parent_smoke else [118,123,127],parent_index=30,parent_profiles=[0] if parent_smoke else [0,5],command_profiles=10,command_placements=['before Native','after Native before Source','mid Native interval'],periods=256,actual_mode3_contact_period=140,original_rates=[20] if parent_smoke else [20,30],configured_native_rates=[60] if parent_smoke else [60,73,120,144,165,360],new_native_ownership={'118':[2],'123':[2],'127':[2]})
+        report['limitations']=['Real Parent130/child constructors, actual Original matrix closure and whole live pool/physics/model/heap/resource/command/RNG/candidate endpoints on synthetic room/assets','Child C9/VY/update callback/absolute pose/blink/real seek and model pause/detach-rebind, parent C9/update callback/real seek and model pause external inputs before/after Native; duplicate-dt requires no pose change','Only earlier live Source-born flash130 parent; player/other parent controllers, real-level scripts, renderer and pool exhaustion outside proof']
+    if moving_idle_source:
+        report['scope']='Actual standard111..128 generic descriptor/contact/complete-lifetime Native idle/collection'
+        report['source_sha256']['research/native-pickup-moving-idle-source-check.inc']=sha(ROOT/'research/native-pickup-moving-idle-source-check.inc')
+        report['validated_schedules']=dict(settings=1,paired_worlds=18,whole_endpoints=4608,periods=256,item_kinds=list(range(111,129)),heights=[250],initial_state=1,velocity_profiles=[[2,0,-3]],parent_index=-1,actual_contact_period=140,new_moving_idle_native_ownership=True)
+        report['limitations']=['Actual descriptor/private idle yaw/common movement/model/opacity and full live pool/physics/models/heap/resources/commands on synthetic room/assets','Explicit constant velocities and direct actual Source mode3 contact inputs; no live selecting script/renderer/pool exhaustion proof','Native111..128 verified exact callback pairs; actual Source contact/quest/retirement order retained. Other states/full fps/guards/private script producer creation guards/real-level selectors not yet tested']
+    if scatter_geometry:
+        report['source_sha256']['research/native-pickup-scatter-geometry-check.inc']=sha(ROOT/'research/native-pickup-scatter-geometry-check.inc')
+        report['native_scatter3_geometry']=dict(paired_worlds=432,whole_endpoints=110592,real_original_query_and_reflection=True,source_reaction_required_per_world=True,mesh='Synthetic floor elevations0/300 atX500;8 real floor/ceiling triangles; no query outcome injection')
+    if scatter_guards and not scatter_geometry:
+        report['source_sha256']['research/native-pickup-scatter-guard-check.inc']=sha(ROOT/'research/native-pickup-scatter-guard-check.inc')
+        report['native_scatter3_guards']=dict(paired_worlds=4320,whole_endpoints=1105920,profiles=10,each_world_contact_and_boundary_reactions_required=True,geometric_wall_proof=False)
+    if scatter_native and not scatter_guards:
+        assert 'PASS: Native initialized standard scatter3' in output
+        report['native_scatter3_candidate']=dict(new_native3_ownership=True,standard_even_source_speed=True,source_heading_count_rng_transition=True,wall_rebound_guard_proof_pending=True)
+    if linked_batch:
+        assert 'PASS: 117 Original and117 mixed Native/Source guarded linked129 animation lifetimes' in output
+        assert output.endswith('PASS: linked Native animation batch;189 paired complete lifetimes/48384 exact Original endpoints; private commands and resources retain Source order; no game/GPU.')
+        report['scope']='Connected Native129 animation batch: eight actual private producers and13 external command profiles; all complete item/linked/collection/retirement lifetimes'
+        for name in ['native-pickup-linked-basic-check.inc','native-pickup-linked-guard-check.inc']:
+            report['source_sha256']['research/'+name]=sha(ROOT/'research'/name)
+        report['validated_schedules']=dict(settings=1,paired_worlds=189,whole_endpoints=48384,periods=256,basic_worlds=72,guard_worlds=117,item_kinds=[114,118,119,120,121,122,126,128],heights=[80,250,400],velocity_profiles=[[2,0,-3],[0,1,0],[-2,-1,1]],actual_parent_contact_period=140,actual_private_producers=True,command_profiles=13,command_placements=['before Native','after Native before Source','mid Native'],linked_effect_kind=129,linked_count_per_parent=3,new_native129_ownership=True)
+        report['limitations']=['Actual Source constructors/RNG/private129 callbacks/common pool/automatic unlink and complete resources on synthetic assets','Native129 common animation only; real Source commands, initial state1/velocities/direct contact inputs. Broader settings and final whole-game integration remain pending; no live selecting script/renderer proof']
     (ROOT/'research'/report_name).write_text(json.dumps(report,indent=2)+'\n')
 
 if __name__ == '__main__':

@@ -8910,8 +8910,8 @@
       "size": 92,
       "legacy_name": "dora3_s3_801E89CC",
       "name": "dora3_actor_set_group_opacity_and_physics_marker_801E89CC",
-      "description": "Передаёт actor/model-group index/opacity в A51C, сохраняя opacity во float f20 и physics pointer в s0. Затем ставит physics byte2A=0 для opacity>=1, иначе1. A51C выбирает именно model group74+4*index; роль byte2A описана точной проверкой, неизвестные визуальные эффекты не угадываются.",
-      "evidence": "Exact frozen189 canonical C/MIPS review; function/operand ROM hashes; naming only, no Native pickup/effect completion claim",
+      "description": "Передаёт actor/model-group index/opacity в A51C, сохраняя opacity во float f20 и physics pointer в s0. Затем ставит physics byte2A=0 для opacity>=1, иначе1. A51C выбирает именно model group74+4*index; роль byte2A описана точной проверкой, неизвестные визуальные эффекты не угадываются. Общий pool E8D38..E8D44 при C8=0/byte29=0 снимает этот marker на Source входе; команда должна сохраниться до этого входа.",
+      "evidence": "Exact frozen189 canonical C/MIPS review; function/operand ROM hashes; naming only, no Native pickup/effect completion claim Exact shared pool E8D38/E8D3C/E8D44 review; Native linked129 pending-opacity guard is staged, not yet proved.",
       "rom_sha256": "7a86cb581a5a3d592b698df084224354c30dce3c944ffb48ec74ac7737e730e0",
       "locals": [
         {
@@ -8945,8 +8945,8 @@
       "size": 752,
       "legacy_name": "dora3_s3_801E8BDC",
       "name": "dora3_scene1_update_actor_pool_801E8BDC",
-      "description": "Обновляет пул объектов мира; Native геометрия и исходные дискретные события имеют разные часы.",
-      "evidence": "Разбор Original функций; docs/native-simulation.md и connected CPU checks v175.",
+      "description": "Обновляет объекты мира в порядке пула: пропускает неактивные/paused записи, обрабатывает common opacity, проверяет byte29 и вызывает exact84-byte type update table. Общий tail отдельно обновляет blink/XYZ/model. E8D44 снимает opacity marker2A только приC8=0/byte29=0. Native непрерывное движение/анимация используют отдельное время; init, дискретные команды, RNG, contacts и retirement сохраняют Source порядок.",
+      "evidence": "Разбор Original функций; docs/native-simulation.md и connected CPU checks v175. Exact752-byte ROM identity and seven instruction-qualified register scopes for opacity marker/private callback/blink; connected Source/Native pickup proofs retain original pool ordering.",
       "rom_sha256": "2879bb417c70bc311b9f21b162530b9232eaee84dc501722c82f9006d8bfae7f",
       "locals": [
         {
@@ -8991,6 +8991,86 @@
           "instructions": {
             "0x801E8DE8": "0x3C048022",
             "0x801E8DEC": "0x8C84BDEC"
+          }
+        },
+        {
+          "name": "pool_opacity_command_physics",
+          "expression": "ctx->r3",
+          "start": "0x801E8D38",
+          "end": "0x801E8D48",
+          "description": "Физика объекта при Source byte29 check и снятии opacity marker2A.",
+          "instructions": {
+            "0x801E8D38": "0x80620029",
+            "0x801E8D44": "0xA060002A"
+          }
+        },
+        {
+          "name": "pool_skip_private_update_byte29",
+          "expression": "ctx->r2",
+          "start": "0x801E8D3C",
+          "end": "0x801E8D44",
+          "description": "Значение byte29; ненулевой флаг пропускает private update объекта.",
+          "instructions": {
+            "0x801E8D38": "0x80620029",
+            "0x801E8D3C": "0x14400012"
+          }
+        },
+        {
+          "name": "pool_private_dispatch_physics",
+          "expression": "ctx->r3",
+          "start": "0x801E8D50",
+          "end": "0x801E8D60",
+          "description": "Текущая физика при повторном byte29 check и чтении signed kind20.",
+          "instructions": {
+            "0x801E8D4C": "0x8C63BCDC",
+            "0x801E8D50": "0x80620029",
+            "0x801E8D5C": "0x84620020"
+          }
+        },
+        {
+          "name": "pool_private_actor_kind",
+          "expression": "ctx->r2",
+          "start": "0x801E8D60",
+          "end": "0x801E8D68",
+          "description": "Signed kind20 до вычисления84-byte callback table offset.",
+          "instructions": {
+            "0x801E8D5C": "0x84620020",
+            "0x801E8D60": "0x00021880",
+            "0x801E8D64": "0x00621821"
+          }
+        },
+        {
+          "name": "pool_private_callback_offset",
+          "expression": "ctx->r3",
+          "start": "0x801E8D74",
+          "end": "0x801E8D7C",
+          "description": "84*kind для адреса update entry80202064.",
+          "instructions": {
+            "0x801E8D74": "0x3C028020",
+            "0x801E8D78": "0x00431021",
+            "0x801E8D7C": "0x8C422064"
+          }
+        },
+        {
+          "name": "pool_private_update_callback",
+          "expression": "ctx->r2",
+          "start": "0x801E8D80",
+          "end": "0x801E8D88",
+          "description": "Точный callback pointer из таблицы; вызывает LOOKUP_FUNC.",
+          "instructions": {
+            "0x801E8D7C": "0x8C422064",
+            "0x801E8D80": "0x0040F809"
+          }
+        },
+        {
+          "name": "pool_blink_source_ticks",
+          "expression": "ctx->r2",
+          "start": "0x801E8DA8",
+          "end": "0x801E8DAC",
+          "description": "Signed D8 countdown до сравнения с2; следующий slti меняет рольr2.",
+          "instructions": {
+            "0x801E8DA4": "0x844200D8",
+            "0x801E8DA8": "0x00403021"
           }
         }
       ]
@@ -9047,8 +9127,8 @@
       "size": 56,
       "legacy_name": "dora3_s3_core_801EBA9C",
       "name": "dora3_pickup_idle_rotate_yaw_801EBA9C",
-      "description": "Original pickup state1 поворачивает actor yaw10 на4 градуса за исходное обновление через настоящий angle helper31A0C. Других записей и команд не содержит; Native владение предметом не заявлено.",
-      "evidence": "Exact overlay-qualified Original ROM/body and public callback identities. Main276 integrates final266 Native idle/rise5/shrink6/initialized131 pure motion with per-field Source replay; fresh266 full O2 player/world/NPC PASS,216 paired producer worlds/41472 complete endpoints, loop/scene-transition PASS;264 guards3456 paired worlds/663552 whole endpoints and idle contacts768 preserve explicit execution origin plus only266 dead-local removal. Source first init/private counters/spawns/sound/signal/contact/retirement retain actual pool order. Synthetic assets, no renderer/real-level selector/full pool exhaustion proof.",
+      "description": "Original pickup state1 поворачивает actor yaw10 на4 градуса за исходное обновление через настоящий angle helper31A0C. Других записей и команд не содержит; Native владение предметом не заявлено. Native state1 учитывает Source VX/VY/VZ, принимает+0/-0 без изменения guest bits и возвращает unchanged yaw/XYZ/common/model поля перед Source или поздней паузой.",
+      "evidence": "Exact overlay-qualified Original ROM/body and public callback identities. Main276 integrates final266 Native idle/rise5/shrink6/initialized131 pure motion with per-field Source replay; fresh266 full O2 player/world/NPC PASS,216 paired producer worlds/41472 complete endpoints, loop/scene-transition PASS;264 guards3456 paired worlds/663552 whole endpoints and idle contacts768 preserve explicit execution origin plus only266 dead-local removal. Source first init/private counters/spawns/sound/signal/contact/retirement retain actual pool order. Synthetic assets, no renderer/real-level selector/full pool exhaustion proof. Actual325648,328270 command-guard and3403888 all18-family idle/collection/retirement lifetimes PASS at their original candidate inputs.",
       "rom_sha256": "38668fa1c26bb3ed9c11611a2064f29938a4279115bf6abd6f7d29060db323f9",
       "locals": [
         {
@@ -9117,8 +9197,8 @@
       "size": 540,
       "legacy_name": "dora3_s3_core_801EBCC0",
       "name": "dora3_pickup_scatter_collision_move_state3_801EBCC0",
-      "description": "Original state3 один раз задаёт speed0=20/count34=0 и yaw4 из actor yaw+180+результат настоящего RNG3196C(-15). Каждый Source проход уменьшает speed на2. Две ветви actual collision/probe пересчитывают yaw через E8404 либо E8210/E8238; до пяти реакций count34 сбрасывают speed20. Actor yaw вращается на5; actual E7F54 выполняет движение, E7EB8 выбирает высоту, actorY получает выбранную высоту+50. При speed<=0 сбрасывает latch и ставит state1, сохраняя оставшийся порядок этого прохода.",
-      "evidence": "Exact overlay-qualified Original ROM/body and dispatcher80211718 review; constants802116A8..D0 and actual register instructions verified. Naming/comment change only; uncollected Native ownership is not expanded.",
+      "description": "Разлёт стандартного предмета вstate3: Source задаёт speed20/heading с настоящим RNG, уменьшает speed на2, отражает heading при контакте/границе и меняет целые count/state. E7F54 вычисляет VX/VZ, отдельный common pool tail перемещает XYZ. Native прогнозирует настоящий Original collision closure с возвратом временных actor/physics/stack/RNG/results и обновляет yaw/XYZ/speed между Source тактами.",
+      "evidence": "Exact overlay-qualified Original ROM/body and dispatcher80211718 review; constants802116A8..D0 and actual register instructions verified. Naming/comment change only; uncollected Native ownership is not expanded. Actual312 basic432 and guarded4320 paired lifetimes/1105920 exact endpoints plus432 geometric query lifetimes. Source signed-zero stop preserves bits and Native idle coverage. Whole-world rerun312 was interrupted at user request, not PASS; unrelated NPC/player paths were not changed in this integration.",
       "rom_sha256": "eed8b6e1fc4d51194916ec72d5634a3f189d3d69ab3562b2ffc329b39ae288a1",
       "locals": [
         {
@@ -14982,8 +15062,8 @@
       "size": 464,
       "legacy_name": "dora3_s3_core_801ED2CC",
       "name": "dora3_pickup_linked_effect_update_source_801ED2CC",
-      "description": "Обновляет связанный kind129 эффект. Source первый вход задаёт latch28,count34,RNG delay20..49 и прячет модель; при живом parent7C сохраняет parent XYZ в physical58/5C/60. На Source пороге меняет clip/seek, выбирает настоящим RNG мгновенный XYZ offset вокруг сохранённого центра и сбрасывает count/delay. Когда parent снят, вызывает801E6E6C. Это дискретные команды/телепортации Original, а не постоянная velocity; Native129 ownership этой аннотацией не добавляется.",
-      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim. Actual34472 paired complete linked Source lifetimes/18432 exact whole endpoints from8 real private producers and3 actual129 children; real Source RNG/clip/seek/teleports/automatic unlink/destruction and heap/model/resource cleanup checked on synthetic assets. No actual selecting script/real-level renderer or current main Native129 claim.",
+      "description": "Обновляет связанный kind129 эффект. Source первый вход задаёт latch28,count34,RNG delay20..49 и прячет модель; при живом parent7C сохраняет parent XYZ в physical58/5C/60. На Source пороге меняет clip/seek, выбирает настоящим RNG мгновенный XYZ offset вокруг сохранённого центра и сбрасывает count/delay. Когда parent снят, вызывает801E6E6C. Это дискретные команды/телепортации Original, а не постоянная velocity; Native129 ownership этой аннотацией не добавляется. Отдельный Native домен может обновлять только common model time/completion pulse после Source initialization, без захвата перечисленных дискретных полей.",
+      "evidence": "Exact frozen189/336 canonical instruction review and actual Source seed public84-byte callback identity. Actual339144 paired Source constructor branch cases preserve4MiB RAM/context/heap/resources/commands; Source331/Native333 and338 short item lifetimes are separate scoped proofs, no current main Native expansion or automatic129 lifetime claim. Actual34472 paired complete linked Source lifetimes/18432 exact whole endpoints from8 real private producers and3 actual129 children; real Source RNG/clip/seek/teleports/automatic unlink/destruction and heap/model/resource cleanup checked on synthetic assets. No actual selecting script/real-level renderer or current main Native129 claim. Actual34672 paired Native129 basic lifetimes PASS; actual350 external-command protected-field check FAILED and is retained. Consolidated351 pending-opacity/reentry batch remains pending, no current main Native129 claim.",
       "rom_sha256": "55ee21c0de2fc9268e675f22e95008a7d69814d43f5768e9ad57cbe3829ef081",
       "locals": [
         {

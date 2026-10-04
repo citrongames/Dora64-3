@@ -7555,8 +7555,8 @@
       "expected_word": "0x3C038022",
       "operation": "native_pickup_sequence",
       "role": "Native_pickup7_pure_spin_speed_fade_Source_initializer_retirement",
-      "evidence": "Exact Original ROM/body/site guards; actual279/283 complete lifetime and external guards, fresh281 O2 broad player/world/NPC, fresh283 loop and scene resource barrier. Arc283 covers both positive-time rejected phases in all216 applicable worlds;281 coverage assertion failure retained. Native8 admits actual phase0 angle<90 or phase1 angle<target; incompatible external angle retains Source until actual wrap/clamp. No renderer/real level-selector/full-pool exhaustion proof.",
-      "status": "Verified main282 Native initialized4/7/8 pure motion with ordered Original Source commands"
+      "evidence": "Reviewed genuine Original pure continuous fields and Source command replay. Existing Native basics passed; final combined281 proof pending. No game/renderer/GPU.",
+      "status": "Isolated281: basic scopes passed, final guard/combined regression pending"
     },
     {
       "section": ".scene1",
@@ -7567,8 +7567,8 @@
       "expected_word": "0x3C038022",
       "operation": "native_pickup_sequence",
       "role": "Native_pickup8_pure_two_phase_geometry_Source_integer_angle_latch_phase",
-      "evidence": "Exact Original ROM/body/site guards; actual279/283 complete lifetime and external guards, fresh281 O2 broad player/world/NPC, fresh283 loop and scene resource barrier. Arc283 covers both positive-time rejected phases in all216 applicable worlds;281 coverage assertion failure retained. Native8 admits actual phase0 angle<90 or phase1 angle<target; incompatible external angle retains Source until actual wrap/clamp. No renderer/real level-selector/full-pool exhaustion proof.",
-      "status": "Verified main282 Native initialized4/7/8 pure motion with ordered Original Source commands"
+      "evidence": "Reviewed genuine Original pure continuous fields and Source command replay. Existing Native basics passed; final combined281 proof pending. No game/renderer/GPU.",
+      "status": "Isolated281: basic scopes passed, final guard/combined regression pending"
     },
     {
       "section": ".scene1",
@@ -7579,8 +7579,8 @@
       "expected_word": "0x3C038022",
       "operation": "native_pickup_sequence",
       "role": "Native_pickup4_pure_reveal_scale_Source_half_angle_latch_collection",
-      "evidence": "Exact Original ROM/body/site guards; actual279/283 complete lifetime and external guards, fresh281 O2 broad player/world/NPC, fresh283 loop and scene resource barrier. Arc283 covers both positive-time rejected phases in all216 applicable worlds;281 coverage assertion failure retained. Native8 admits actual phase0 angle<90 or phase1 angle<target; incompatible external angle retains Source until actual wrap/clamp. No renderer/real level-selector/full-pool exhaustion proof.",
-      "status": "Verified main282 Native initialized4/7/8 pure motion with ordered Original Source commands"
+      "evidence": "Reviewed genuine Original pure continuous fields and Source command replay. Existing Native basics passed; final combined281 proof pending. No game/renderer/GPU.",
+      "status": "Isolated281: basic scopes passed, final guard/combined regression pending"
     },
     {
       "section": ".scene1",
@@ -7591,8 +7591,32 @@
       "expected_word": "0x3C038022",
       "operation": "native_pickup_sequence",
       "role": "initialized_no_parent_pickup_settle_Original_commands",
-      "status": "Verified main295 initialized no-parent Native2 with ordered Original Source commands",
-      "evidence": "Actual291 basic432 paired complete lifetimes,8 external profiles*3456 paired worlds/884736 whole endpoints and cache/terrain rollback; actual Source contact/collection/six-effect retirement. Query-before-collected-fade repair preserves below-surface parent handoff positive velocity; actual289 negative retained. Full O2/loop/scene barrier and related reveal/arc regressions291 passed. Parent-follow/Native3 remain Source in main295; no game/GPU/real level claim."
+      "status": "Candidate287: two285 strict compilation errors fixed; Native behavior proof pending",
+      "evidence": "Only reviewed118/123/127 state2 with latch1/count1,parent-1,gravity2,stationaryXZ,finite descendingVY and D8 sentinel. Actual E810C forecast rolls back velocity,60-byte collision candidates/flags and4128-byte guest stack; EBAD4 Source keeps ordered collision/latch/state1. Native3/parent branch remains Source."
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EBCC0",
+      "function_name": "dora3_s3_core_801EBCC0",
+      "function_sha256": "eed8b6e1fc4d51194916ec72d5634a3f189d3d69ab3562b2ffc329b39ae288a1",
+      "site": "0x801EBCC0",
+      "expected_word": "0x3C038022",
+      "operation": "native_pickup_sequence",
+      "role": "initialized_standard_pickup_scatter_Source_commands",
+      "status": "Candidate296: forecast294 exact all-RAM rollback/packet proof; Native3 behavior pending",
+      "evidence": "Source keeps init/RNG/heading/count/state1. Native previews initialized no-parent,VY0,standard even speed2..20 and its acquired fractional descendants; yaw/speed/XYZ/velocities only. Exact28-function Original proposal with472-byte max chain, actor/physics/candidates/RNG/contact-flags/stack rollback. Wall rebound/dynamic integration and full Native proof pending."
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801ED2CC",
+      "function_name": "dora3_s3_core_801ED2CC",
+      "function_sha256": "55ee21c0de2fc9268e675f22e95008a7d69814d43f5768e9ad57cbe3829ef081",
+      "site": "0x801ED2CC",
+      "expected_word": "0x3C038022",
+      "operation": "native_linked_pickup_effect",
+      "role": "linked129_common_model_animation_with_private_Source_RNG_teleports_and_retirement",
+      "status": "Candidate346: Source344 exact complete lifetimes passed; Native model ownership awaiting actual comparison",
+      "evidence": "Frozen189464-byte body exact; Source34472 paired/18432 whole endpoints from8 real private producers and3 linked children. Native only initialized zero XYZ velocity/real reciprocal live parent/model/actual callback identity; replay common/model baselines before actual Source callback. No continuous private129 motion."
     }
   ]
 }

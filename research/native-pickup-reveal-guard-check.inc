@@ -79,7 +79,7 @@ static void check_pickup_reveal_guards(const std::vector<uint32_t>& image) {
                 const auto actor=0x80171CD0u+slot*0xCC;const auto state=MEM_W(0x94,int32_t(actor));if(!state)continue;
                 const auto physical=uint32_t(MEM_W(0x98,int32_t(actor))),m=uint32_t(MEM_W(0x74,int32_t(actor)));
                 const auto kind=MEM_H(0x20,int32_t(physical));
-                const bool idle=kind==int16_t(item_kind)&&state==1&&MEM_W(0x10,int32_t(physical))==0&&MEM_W(0x14,int32_t(physical))==0&&MEM_W(0x18,int32_t(physical))==0;
+                const bool idle=kind==int16_t(item_kind)&&state==1&&(uint32_t(MEM_W(0x10,int32_t(physical)))&0x7FFFFFFFu)==0&&(uint32_t(MEM_W(0x14,int32_t(physical)))&0x7FFFFFFFu)==0&&(uint32_t(MEM_W(0x18,int32_t(physical)))&0x7FFFFFFFu)==0;
                 if(idle||(kind==int16_t(item_kind)&&state==10&&MEM_BU(0x28,int32_t(physical))==1)||(kind==130&&state==10))continue;
                 for(auto [a,size]:std::array<std::pair<uint32_t,unsigned>,3>{{{actor,0xCC},{physical,0xF4},{m,0x84}}})
                     for(unsigned off=0;off<size;off+=4) {

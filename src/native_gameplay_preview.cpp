@@ -260,7 +260,7 @@ struct PickupMotionClock {
     std::array<int32_t,5> expected;
 };
 std::array<std::optional<PickupMotionClock>,200> pickup_motion_clocks;
-bool collected_pickup_kind(int kind) {return kind==118||kind==123||kind==127;}
+bool standard_pickup_kind(int kind) {return kind>=111&&kind<=128;}
 struct PickupIdleSourcePeriod {
     uint32_t actor,physical,model;uint64_t lifetime,run,epoch,tick,denominator,start_phase,expected_phase,source_pass;
     std::array<int32_t,4> initial,expected;
@@ -286,7 +286,7 @@ std::array<int32_t,8> reward_source_fields(uint8_t* rdram,uint32_t actor,uint32_
 }
 bool reward_sequence_state(uint8_t* rdram,uint32_t actor,uint32_t physical) {
     const auto kind=MEM_H(0x20,int32_t(physical));const auto state=word(rdram,actor+0x94);
-    return kind==131||(collected_pickup_kind(kind)&&(state==5||state==6));
+    return kind==129||kind==131||(standard_pickup_kind(kind)&&(state==5||state==6));
 }
 bool reward_source_identity(uint8_t* rdram,const RewardSourcePeriod& period) {
     return period.epoch==epoch&&pointer(period.actor,0xCC)&&pointer(period.physical,0xF4)&&
@@ -322,6 +322,142 @@ void reward_source_restore(uint8_t* rdram,RewardSourcePeriod& period) {
     period.replayed=true;
 }
 
+// Idle1 has a pure yaw callback; the actual common tail adds VX/VY/VZ.
+// Retain a Source command baseline for moving and stopped items alike, so
+// collection, a late pause, or an external velocity command cannot consume
+// a displayed fractional position as a second Original movement step.
+bool pickup_idle_motion_eligible(uint8_t* rdram,uint32_t actor,uint32_t physical) {
+    if(!standard_pickup_kind(MEM_H(0x20,int32_t(physical)))||word(rdram,actor+0x94)!=1||MEM_H(0x7C,int32_t(physical))!=-1)return false;
+    const auto blink=MEM_H(0xD8,int32_t(physical));if(blink!=0&&blink!=1)return false;
+    for(auto address:{actor+0x10,actor+0x9C,actor+0xA0,actor+0xA4,physical+0x10,physical+0x14,physical+0x18})
+        if(!std::isfinite(std::bit_cast<float>(uint32_t(word(rdram,address)))))return false;
+    return true;
+}
+struct PickupIdleMotionSourcePeriod {
+    RewardSourcePeriod common;
+    std::array<int32_t,6> initial,expected;
+};
+std::array<std::optional<PickupIdleMotionSourcePeriod>,200> pickup_idle_motion_source_periods;
+std::array<uint32_t,6> pickup_idle_motion_addresses(uint32_t actor,uint32_t physical) {
+    return {actor+0x10,actor+0x9C,actor+0xA4,physical+0x10,physical+0x14,physical+0x18};
+}
+std::array<int32_t,6> pickup_idle_motion_fields(uint8_t* rdram,uint32_t actor,uint32_t physical) {
+    std::array<int32_t,6> fields{};const auto addresses=pickup_idle_motion_addresses(actor,physical);
+    for(unsigned i=0;i<fields.size();++i)fields[i]=word(rdram,addresses[i]);
+    return fields;
+}
+void pickup_idle_motion_restore(uint8_t* rdram,PickupIdleMotionSourcePeriod& period) {
+    const auto addresses=pickup_idle_motion_addresses(period.common.actor,period.common.physical);
+    for(unsigned i=0;i<addresses.size();++i)
+        if(word(rdram,addresses[i])==period.expected[i])MEM_W(0,int32_t(addresses[i]))=period.initial[i];
+    reward_source_restore(rdram,period.common);
+}
+void pickup_idle_motion_begin(uint8_t* rdram,uint32_t actor,uint32_t physical,uint32_t model,unsigned slot,uint64_t source_pass) {
+    const auto& slice=*active_simulation_slice();const auto fields=reward_source_fields(rdram,actor,physical);const auto motion=pickup_idle_motion_fields(rdram,actor,physical);
+    const auto lifetime=game_model_animation().lifetime_token(model),run=game_model_animation().run_token(model),time_command=game_model_animation().time_command_token(model);
+    const auto model_time=word(rdram,model+0x64);const auto flags=MEM_BU(0x7C,int32_t(model));auto& prior=pickup_idle_motion_source_periods[slot];
+    if(!prior||!reward_source_identity(rdram,prior->common)||prior->common.actor!=actor||prior->common.tick!=slice.tick||
+       prior->common.denominator!=slice.denominator||prior->common.expected_phase!=slice.phase) {
+        const RewardSourcePeriod common{actor,physical,model,MEM_H(0x20,int32_t(physical)),1,0,lifetime,run,time_command,epoch,slice.tick,slice.denominator,slice.phase,slice.phase,slice.phase,
+            source_pass,fields,fields,model_time,model_time,word(rdram,model+0x78),word(rdram,model+0x78),word(rdram,model+0x74),word(rdram,model+0x74),flags,flags,false};
+        prior=PickupIdleMotionSourcePeriod{common,motion,motion};
+    } else {
+        auto& common=prior->common;
+        for(unsigned i=0;i<fields.size();++i)if(common.expected[i]!=fields[i])common.initial[i]=fields[i];
+        for(unsigned i=0;i<motion.size();++i)if(prior->expected[i]!=motion[i])prior->initial[i]=motion[i];
+        if(common.time_command!=time_command||common.expected_model_time!=model_time)common.initial_model_time=model_time;
+        if(common.time_command!=time_command||common.expected_model_flags!=flags)common.initial_model_flags=flags;
+        if(common.expected_model_opacity!=word(rdram,model+0x78))common.initial_model_opacity=word(rdram,model+0x78);
+        if(common.expected_model_render_flag!=word(rdram,model+0x74))common.initial_model_render_flag=word(rdram,model+0x74);
+        common.run=run;common.time_command=time_command;
+    }
+}
+void pickup_idle_motion_end(uint8_t* rdram,uint32_t actor,unsigned slot,uint64_t source_pass,bool native,bool entered) {
+    if(slot>=pickup_idle_motion_source_periods.size())return;
+    auto& pending=pickup_idle_motion_source_periods[slot];if(!pending)return;
+    auto& common=pending->common;
+    if(native&&active_simulation_slice()) {
+        const auto& slice=*active_simulation_slice();
+        if(entered&&reward_source_identity(rdram,common)&&common.tick==slice.tick&&common.denominator==slice.denominator) {
+            pending->expected=pickup_idle_motion_fields(rdram,actor,common.physical);common.expected=reward_source_fields(rdram,actor,common.physical);
+            common.expected_phase=slice.phase+slice.numerator;common.expected_model_time=word(rdram,common.model+0x64);
+            common.expected_model_opacity=word(rdram,common.model+0x78);common.expected_model_render_flag=word(rdram,common.model+0x74);
+            common.expected_model_flags=MEM_BU(0x7C,int32_t(common.model));common.run=game_model_animation().run_token(common.model);
+            common.time_command=game_model_animation().time_command_token(common.model);
+        }
+    } else if(!native) {
+        if(!common.replayed&&reward_source_identity(rdram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase<=common.denominator&&common.source_pass+1==source_pass)
+            pickup_idle_motion_restore(rdram,*pending);
+        pending.reset();
+    }
+}
+
+// Source owns initialized flash130 query/retirement commands. Replay only
+// unchanged displayed fields before that callback, including a late C9 pause.
+struct FlashSourcePeriod {
+    RewardSourcePeriod common;
+    std::array<int32_t,7> initial,expected;
+};
+std::array<std::optional<FlashSourcePeriod>,200> flash_source_periods;
+std::array<int32_t,7> flash_source_fields(uint8_t* rdram,uint32_t actor,uint32_t physical) {
+    return {word(rdram,actor+0x9C),word(rdram,actor+0xA4),MEM_H(0x34,int32_t(physical)),
+        word(rdram,physical+0x5C),word(rdram,physical+0x58),word(rdram,physical+0x14),word(rdram,physical+0x1C)};
+}
+void flash_source_restore(uint8_t* rdram,FlashSourcePeriod& period) {
+    const auto actor=period.common.actor,physical=period.common.physical;
+    const std::array<uint32_t,7> addresses{actor+0x9C,actor+0xA4,physical+0x34,physical+0x5C,physical+0x58,physical+0x14,physical+0x1C};
+    for(unsigned i=0;i<addresses.size();++i) {
+        const auto actual=i==2?MEM_H(0,int32_t(addresses[i])):word(rdram,addresses[i]);
+        if(actual==period.expected[i]) {
+            if(i==2)MEM_H(0,int32_t(addresses[i]))=int16_t(period.initial[i]);
+            else MEM_W(0,int32_t(addresses[i]))=period.initial[i];
+        }
+    }
+    reward_source_restore(rdram,period.common);
+}
+void flash_source_begin(uint8_t* rdram,uint32_t actor,uint32_t physical,uint32_t model,unsigned slot,uint64_t source_pass) {
+    const auto& slice=*active_simulation_slice();const auto fields=reward_source_fields(rdram,actor,physical);const auto motion=flash_source_fields(rdram,actor,physical);
+    const auto lifetime=game_model_animation().lifetime_token(model),run=game_model_animation().run_token(model),time_command=game_model_animation().time_command_token(model);
+    const auto model_time=word(rdram,model+0x64);const auto flags=MEM_BU(0x7C,int32_t(model));auto& old=flash_source_periods[slot];
+    if(!old||!reward_source_identity(rdram,old->common)||old->common.actor!=actor||old->common.physical!=physical||old->common.model!=model||
+       old->common.tick!=slice.tick||old->common.denominator!=slice.denominator||old->common.expected_phase!=slice.phase) {
+        const RewardSourcePeriod common{actor,physical,model,130,10,0,lifetime,run,time_command,epoch,slice.tick,slice.denominator,slice.phase,slice.phase,slice.phase,
+            source_pass,fields,fields,model_time,model_time,word(rdram,model+0x78),word(rdram,model+0x78),word(rdram,model+0x74),word(rdram,model+0x74),flags,flags,false};
+        old=FlashSourcePeriod{common,motion,motion};
+    } else {
+        auto& common=old->common;
+        for(unsigned i=0;i<fields.size();++i)if(common.expected[i]!=fields[i])common.initial[i]=fields[i];
+        for(unsigned i=0;i<motion.size();++i)if(old->expected[i]!=motion[i])old->initial[i]=motion[i];
+        if(common.time_command!=time_command||common.expected_model_time!=model_time)common.initial_model_time=model_time;
+        if(common.time_command!=time_command||common.expected_model_flags!=flags)common.initial_model_flags=flags;
+        if(common.expected_model_opacity!=word(rdram,model+0x78))common.initial_model_opacity=word(rdram,model+0x78);
+        if(common.expected_model_render_flag!=word(rdram,model+0x74))common.initial_model_render_flag=word(rdram,model+0x74);
+        common.run=run;common.time_command=time_command;
+    }
+}
+void flash_source_end(uint8_t* rdram,uint32_t actor,unsigned slot,uint64_t source_pass,bool native,bool entered) {
+    if(slot>=flash_source_periods.size())return;
+    auto& old=flash_source_periods[slot];if(!old)return;
+    auto& common=old->common;
+    if(native&&active_simulation_slice()) {
+        const auto& slice=*active_simulation_slice();
+        if(entered&&reward_source_identity(rdram,common)&&common.tick==slice.tick&&common.denominator==slice.denominator) {
+            old->expected=flash_source_fields(rdram,actor,common.physical);common.expected=reward_source_fields(rdram,actor,common.physical);
+            common.expected_phase=slice.phase+slice.numerator;common.expected_model_time=word(rdram,common.model+0x64);
+            common.expected_model_opacity=word(rdram,common.model+0x78);common.expected_model_render_flag=word(rdram,common.model+0x74);
+            common.expected_model_flags=MEM_BU(0x7C,int32_t(common.model));common.run=game_model_animation().run_token(common.model);
+            common.time_command=game_model_animation().time_command_token(common.model);
+        }
+    } else if(!native) {
+        if(!common.replayed&&reward_source_identity(rdram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase<=common.denominator&&common.source_pass+1==source_pass)
+            flash_source_restore(rdram,*old);
+        old.reset();
+    }
+}
+
+// A Source command can reject an owner partway through its period. Replay
+// every valid displayed fraction, preserving external fields; a full-period
+// requirement would discard the baseline on a mid-interval detach or pause.
 // Source owns state2 initialization, surface decisions and the state1 command.
 // Native previews only the initialized no-parent trajectory. The actual query
 // below uses the Source command baseline and rolls back all of its guest writes.
@@ -329,9 +465,24 @@ struct PickupSettleSourcePeriod {
     RewardSourcePeriod common;
     int32_t initial_velocity,expected_velocity;
     float end_velocity=0;
+    uint32_t parent=0;
+    std::array<int32_t,5> initial_pose{},expected_pose{};
 };
 std::array<std::optional<PickupSettleSourcePeriod>,200> pickup_settle_source_periods;
+std::array<uint32_t,5> pickup_attachment_addresses(uint32_t actor) {
+    return {actor+0xC,actor+0x10,actor+0x9C,actor+0xA0,actor+0xA4};
+}
+std::array<int32_t,5> pickup_attachment_fields(uint8_t* rdram,uint32_t actor) {
+    std::array<int32_t,5> values{};const auto addresses=pickup_attachment_addresses(actor);
+    for(unsigned i=0;i<values.size();++i)values[i]=word(rdram,addresses[i]);
+    return values;
+}
 void pickup_settle_restore(uint8_t* rdram,PickupSettleSourcePeriod& period) {
+    if(period.parent) {
+        const auto addresses=pickup_attachment_addresses(period.common.actor);
+        for(unsigned i=0;i<addresses.size();++i)
+            if(word(rdram,addresses[i])==period.expected_pose[i])MEM_W(0,int32_t(addresses[i]))=period.initial_pose[i];
+    }
     const auto address=period.common.physical+0x14;
     if(word(rdram,address)==period.expected_velocity)MEM_W(0,int32_t(address))=period.initial_velocity;
     reward_source_restore(rdram,period.common);
@@ -340,17 +491,44 @@ void pickup_settle_begin(uint8_t* rdram,uint32_t actor,uint32_t physical,uint32_
     const auto& slice=*active_simulation_slice();const auto fields=reward_source_fields(rdram,actor,physical);
     const auto lifetime=game_model_animation().lifetime_token(model),run=game_model_animation().run_token(model),time_command=game_model_animation().time_command_token(model);
     const auto model_time=word(rdram,model+0x64);const auto flags=MEM_BU(0x7C,int32_t(model));const auto velocity=word(rdram,physical+0x14);
+    const auto parent_index=MEM_H(0x7C,int32_t(physical));
+    const auto parent=parent_index==-1?0u:0x80171CD0u+uint32_t(parent_index)*0xCC;
+    const auto pose=pickup_attachment_fields(rdram,actor);
     auto& prior=pickup_settle_source_periods[slot];
     if(!prior||prior->common.actor!=actor||prior->common.physical!=physical||prior->common.model!=model||prior->common.lifetime!=lifetime||
-       prior->common.epoch!=epoch||prior->common.tick!=slice.tick||prior->common.denominator!=slice.denominator||prior->common.expected_phase!=slice.phase) {
+       prior->common.epoch!=epoch||prior->common.tick!=slice.tick||prior->common.denominator!=slice.denominator||prior->common.expected_phase!=slice.phase||prior->parent!=parent) {
+        const auto previous=prior;
         const RewardSourcePeriod common{actor,physical,model,MEM_H(0x20,int32_t(physical)),2,0,lifetime,run,time_command,epoch,slice.tick,slice.denominator,slice.phase,slice.phase,slice.phase,
             source_pass,fields,fields,model_time,model_time,word(rdram,model+0x78),word(rdram,model+0x78),word(rdram,model+0x74),word(rdram,model+0x74),flags,flags,false};
         prior=PickupSettleSourcePeriod{common,velocity,velocity};
+        prior->parent=parent;prior->initial_pose=prior->expected_pose=pose;
+        // Rebinding within this Source period changes the geometry domain,
+        // not the unchanged common opacity/model/pose command baselines.
+        // Preserve them even if the old owner was rejected for a fraction;
+        // explicit writes still win through each expected-value comparison.
+        if(previous&&reward_source_identity(rdram,previous->common)&&previous->common.actor==actor&&previous->common.physical==physical&&previous->common.model==model&&
+           previous->common.tick==slice.tick&&previous->common.denominator==slice.denominator&&previous->common.source_pass==source_pass) {
+            const auto& old=previous->common;auto& next=prior->common;
+            for(unsigned i=0;i<fields.size();++i)if(fields[i]==old.expected[i])next.initial[i]=old.initial[i];
+            if(velocity==previous->expected_velocity)prior->initial_velocity=previous->initial_velocity;
+            for(unsigned i=0;i<pose.size();++i) {
+                const auto expected=i==3?old.expected[0]:previous->expected_pose[i];
+                if(pose[i]==expected)prior->initial_pose[i]=i==3?old.initial[0]:previous->initial_pose[i];
+            }
+            if(time_command==old.time_command) {
+                if(model_time==old.expected_model_time)next.initial_model_time=old.initial_model_time;
+                if((flags&2)==(old.expected_model_flags&2))next.initial_model_flags=uint8_t((flags&~2u)|(old.initial_model_flags&2));
+            }
+            if(word(rdram,model+0x78)==old.expected_model_opacity)next.initial_model_opacity=old.initial_model_opacity;
+            if(word(rdram,model+0x74)==old.expected_model_render_flag)next.initial_model_render_flag=old.initial_model_render_flag;
+        }
     } else {
         auto& common=prior->common;
         for(unsigned i=0;i<fields.size();++i)if(common.expected[i]!=fields[i]) {
             common.initial[i]=fields[i];if(i==0)common.start_phase=slice.phase;
         }
+        if(parent)for(unsigned i=0;i<pose.size();++i)
+            if(prior->expected_pose[i]!=pose[i])prior->initial_pose[i]=pose[i];
         if(prior->expected_velocity!=velocity){prior->initial_velocity=velocity;common.start_phase=slice.phase;}
         if(common.time_command!=time_command||common.expected_model_time!=model_time)common.initial_model_time=model_time;
         if(common.time_command!=time_command||common.expected_model_flags!=flags)common.initial_model_flags=flags;
@@ -395,6 +573,95 @@ float pickup_settle_forecast(uint8_t* rdram,recomp_context* ctx,const PickupSett
     // EBAD4 overwrites even the collision-adjusted velocity with zero before
     // the common movement tail. It does not snap Y to the plane's height.
     return query.collision?0.f:query.velocity;
+}
+
+// Source owns initialization/RNG, collision headings, count34 and state1.
+// Native exposes only the initialized standard trajectory and visual turn.
+struct PickupScatterSourcePeriod {
+    RewardSourcePeriod common;
+    std::array<int32_t,7> initial,expected; // yaw10,X,Z,speed0,VX,VY,VZ
+    std::array<int32_t,12> proposal{};
+};
+std::array<std::optional<PickupScatterSourcePeriod>,200> pickup_scatter_source_periods;
+std::array<uint32_t,7> pickup_scatter_addresses(uint32_t actor,uint32_t physical) {
+    return {actor+0x10,actor+0x9C,actor+0xA4,physical,physical+0x10,physical+0x14,physical+0x18};
+}
+std::array<int32_t,7> pickup_scatter_fields(uint8_t* ram,uint32_t actor,uint32_t physical) {
+    std::array<int32_t,7> result{};const auto fields=pickup_scatter_addresses(actor,physical);
+    for(unsigned i=0;i<fields.size();++i)result[i]=word(ram,fields[i]);
+    return result;
+}
+void pickup_scatter_restore(uint8_t* ram,PickupScatterSourcePeriod& period) {
+    uint8_t* rdram=ram;const auto addresses=pickup_scatter_addresses(period.common.actor,period.common.physical);
+    for(unsigned i=0;i<addresses.size();++i)if(word(ram,addresses[i])==period.expected[i])MEM_W(0,int32_t(addresses[i]))=period.initial[i];
+    reward_source_restore(ram,period.common);
+}
+void pickup_scatter_begin(uint8_t* rdram,uint32_t actor,uint32_t physical,uint32_t model,unsigned slot,uint64_t source_pass) {
+    const auto& slice=*active_simulation_slice();const auto fields=reward_source_fields(rdram,actor,physical);
+    const auto scatter=pickup_scatter_fields(rdram,actor,physical);
+    const auto lifetime=game_model_animation().lifetime_token(model),run=game_model_animation().run_token(model),time_command=game_model_animation().time_command_token(model);
+    const auto model_time=word(rdram,model+0x64);const auto flags=MEM_BU(0x7C,int32_t(model));auto& prior=pickup_scatter_source_periods[slot];
+    if(!prior||prior->common.actor!=actor||prior->common.physical!=physical||prior->common.model!=model||prior->common.lifetime!=lifetime||
+       prior->common.epoch!=epoch||prior->common.tick!=slice.tick||prior->common.denominator!=slice.denominator||prior->common.expected_phase!=slice.phase) {
+        const RewardSourcePeriod common{actor,physical,model,MEM_H(0x20,int32_t(physical)),3,0,lifetime,run,time_command,epoch,slice.tick,slice.denominator,slice.phase,slice.phase,slice.phase,
+            source_pass,fields,fields,model_time,model_time,word(rdram,model+0x78),word(rdram,model+0x78),word(rdram,model+0x74),word(rdram,model+0x74),flags,flags,false};
+        prior=PickupScatterSourcePeriod{common,scatter,scatter,{}};
+    } else {
+        auto& common=prior->common;
+        for(unsigned i=0;i<fields.size();++i)if(common.expected[i]!=fields[i]) {common.initial[i]=fields[i];if(i==0)common.start_phase=slice.phase;}
+        for(unsigned i=0;i<scatter.size();++i)if(prior->expected[i]!=scatter[i]) {prior->initial[i]=scatter[i];common.start_phase=slice.phase;}
+        if(common.time_command!=time_command||common.expected_model_time!=model_time)common.initial_model_time=model_time;
+        if(common.time_command!=time_command||common.expected_model_flags!=flags)common.initial_model_flags=flags;
+        if(common.expected_model_opacity!=word(rdram,model+0x78))common.initial_model_opacity=word(rdram,model+0x78);
+        if(common.expected_model_render_flag!=word(rdram,model+0x74))common.initial_model_render_flag=word(rdram,model+0x74);
+        common.run=run;common.time_command=time_command;
+    }
+}
+
+extern "C" void dora3_s3_core_801EBCC0(uint8_t*,recomp_context*);
+extern "C" void dora3_s3_core_801EBAD4(uint8_t*,recomp_context*);
+std::array<int32_t,12> pickup_scatter_forecast(uint8_t* rdram,recomp_context* ctx,const PickupScatterSourcePeriod& period) {
+    const auto actor=period.common.actor,physical=period.common.physical,stack=uint32_t(ctx->r29);
+    if(!pointer(actor,0xCC)||!pointer(physical,0xF4)||(stack&7)||stack<4096||!pointer(stack-4096,4128))
+        throw std::logic_error("Invalid scatter forecast fixture identity/stack");
+    // Static28-function closure has no external call. The initialized state3
+    // proposal can write its own actor/physics, stack, the two collision result
+    // candidates, halfword collision flags and the Original RNG seed. This
+    // reviewed rollback forecast supports initialized Native3 movement. The
+    // separate Source prototype checks ALL4MiB RAM/context/heap/resources/commands
+    // and model count; Native guards also compare RNG/cache/terrain and whole lifetimes.
+    struct ScatterRollback {
+        uint8_t* ram;uint32_t actor,physical,stack;int32_t random_word,contact_word;
+        std::array<uint8_t,0xCC> actor_record;
+        std::array<uint8_t,0xF4> physical_record;
+        std::array<uint8_t,4128> scratch;
+        std::array<uint8_t,60> candidates;
+        ScatterRollback(uint8_t* rdram,uint32_t a,uint32_t ph,uint32_t sp):ram(rdram),actor(a),physical(ph),stack(sp),
+            random_word(word(rdram,0x801AA620)),contact_word(word(rdram,0x8021BDFC)) {
+            std::memcpy(actor_record.data(),ram+(actor&0x1FFFFFFFu),actor_record.size());
+            std::memcpy(physical_record.data(),ram+(physical&0x1FFFFFFFu),physical_record.size());
+            std::memcpy(scratch.data(),ram+((stack-4096)&0x1FFFFFFFu),scratch.size());
+            std::memcpy(candidates.data(),ram+(0x800DACB8u&0x1FFFFFFFu),candidates.size());
+        }
+        ~ScatterRollback() {
+            uint8_t* rdram=ram;
+            std::memcpy(ram+(actor&0x1FFFFFFFu),actor_record.data(),actor_record.size());
+            std::memcpy(ram+(physical&0x1FFFFFFFu),physical_record.data(),physical_record.size());
+            std::memcpy(ram+((stack-4096)&0x1FFFFFFFu),scratch.data(),scratch.size());
+            std::memcpy(ram+(0x800DACB8u&0x1FFFFFFFu),candidates.data(),candidates.size());
+            MEM_W(0,int32_t(0x801AA620))=random_word;MEM_W(0,int32_t(0x8021BDFC))=contact_word;
+        }
+    } rollback(rdram,actor,physical,stack);
+    const auto addresses=pickup_scatter_addresses(actor,physical);
+    for(unsigned i=0;i<addresses.size();++i)MEM_W(0,int32_t(addresses[i]))=period.initial[i];
+    MEM_W(0,int32_t(actor+0xA0))=period.common.initial[0];
+    recomp_context query;dora3::copy_recomp_context(query,*ctx);
+    if(active_simulation_slice()) {SimulationSuspension source;dora3_s3_core_801EBCC0(rdram,&query);}
+    else dora3_s3_core_801EBCC0(rdram,&query); // Source entry already has no Native simulation to suspend.
+    const std::array<int32_t,12> values{word(rdram,actor+0x10),word(rdram,actor+0x9C),word(rdram,actor+0xA0),word(rdram,actor+0xA4),
+        word(rdram,physical),word(rdram,physical+4),word(rdram,physical+0x10),word(rdram,physical+0x14),word(rdram,physical+0x18),
+        word(rdram,actor+0x94),MEM_BU(0x28,int32_t(physical)),MEM_H(0x34,int32_t(physical))};
+    return values;
 }
 
 // State7 has a separate replay record: Source owns first initialization,
@@ -624,8 +891,27 @@ void pickup_spin_end(uint8_t* ram,uint32_t actor,unsigned slot,uint64_t source_p
             common.time_command=game_model_animation().time_command_token(common.model);
         }
     } else if(!native) {
-        if(!common.replayed&&reward_source_identity(ram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase==common.denominator&&common.source_pass+1==source_pass)
+        if(!common.replayed&&reward_source_identity(ram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase<=common.denominator&&common.source_pass+1==source_pass)
             pickup_spin_restore(ram,*pending);
+        pending.reset();
+    }
+}
+void pickup_scatter_end(uint8_t* ram,uint32_t actor,unsigned slot,uint64_t source_pass,bool native) {
+    if(slot>=pickup_scatter_source_periods.size()||!pickup_scatter_source_periods[slot])return;
+    auto& pending=pickup_scatter_source_periods[slot];auto& common=pending->common;
+    uint8_t* rdram=ram;
+    if(native&&active_simulation_slice()) {
+        const auto& slice=*active_simulation_slice();
+        if(scene_frame_entered[slot]&&reward_source_identity(ram,common)&&common.tick==slice.tick&&common.denominator==slice.denominator) {
+            pending->expected=pickup_scatter_fields(ram,actor,common.physical);common.expected=reward_source_fields(ram,actor,common.physical);
+            common.expected_phase=slice.phase+slice.numerator;common.expected_model_time=word(ram,common.model+0x64);
+            common.expected_model_opacity=word(ram,common.model+0x78);common.expected_model_render_flag=word(ram,common.model+0x74);
+            common.expected_model_flags=MEM_BU(0x7C,int32_t(common.model));common.run=game_model_animation().run_token(common.model);
+            common.time_command=game_model_animation().time_command_token(common.model);
+        }
+    } else if(!native) {
+        if(!common.replayed&&reward_source_identity(ram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase<=common.denominator&&common.source_pass+1==source_pass)
+            pickup_scatter_restore(ram,*pending);
         pending.reset();
     }
 }
@@ -637,13 +923,14 @@ void pickup_settle_end(uint8_t* ram,uint32_t actor,unsigned slot,uint64_t source
         const auto& slice=*active_simulation_slice();
         if(scene_frame_entered[slot]&&reward_source_identity(ram,common)&&common.tick==slice.tick&&common.denominator==slice.denominator) {
             pending->expected_velocity=word(ram,common.physical+0x14);common.expected=reward_source_fields(ram,actor,common.physical);
+            if(pending->parent)pending->expected_pose=pickup_attachment_fields(ram,actor);
             common.expected_phase=slice.phase+slice.numerator;common.expected_model_time=word(ram,common.model+0x64);
             common.expected_model_opacity=word(ram,common.model+0x78);common.expected_model_render_flag=word(ram,common.model+0x74);
             common.expected_model_flags=MEM_BU(0x7C,int32_t(common.model));common.run=game_model_animation().run_token(common.model);
             common.time_command=game_model_animation().time_command_token(common.model);
         }
     } else if(!native) {
-        if(!common.replayed&&reward_source_identity(ram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase==common.denominator&&common.source_pass+1==source_pass)
+        if(!common.replayed&&reward_source_identity(ram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase<=common.denominator&&common.source_pass+1==source_pass)
             pickup_settle_restore(ram,*pending);
         pending.reset();
     }
@@ -662,7 +949,7 @@ void pickup_reveal_end(uint8_t* ram,uint32_t actor,unsigned slot,uint64_t source
             common.time_command=game_model_animation().time_command_token(common.model);
         }
     } else if(!native) {
-        if(!common.replayed&&reward_source_identity(ram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase==common.denominator&&common.source_pass+1==source_pass)
+        if(!common.replayed&&reward_source_identity(ram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase<=common.denominator&&common.source_pass+1==source_pass)
             reward_source_restore(ram,common);
         pending.reset();
     }
@@ -681,7 +968,7 @@ void pickup_arc_end(uint8_t* ram,uint32_t actor,unsigned slot,uint64_t source_pa
             common.time_command=game_model_animation().time_command_token(common.model);
         }
     } else if(!native) {
-        if(!common.replayed&&reward_source_identity(ram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase==common.denominator&&common.source_pass+1==source_pass)
+        if(!common.replayed&&reward_source_identity(ram,common)&&MEM_BU(0xC9,int32_t(common.physical))==1&&common.expected_phase<=common.denominator&&common.source_pass+1==source_pass)
             pickup_arc_restore(ram,*pending);
         pending.reset();
     }
@@ -974,6 +1261,46 @@ std::optional<PlayerShotCue> player_shot_cue(int state) {
     if(state==28||state==29)return PlayerShotCue{18.f,0x10801C5584ull};
     return std::nullopt;
 }
+// EBAD4 addresses the parent through the real common-pool index, strideCC.
+// This first attached domain uses an earlier, live Source-born flash130;
+// other parent controllers retain Source ownership until separately proven.
+uint32_t pickup_attachment_parent(uint8_t* ram,uint32_t actor,uint32_t physical) {
+    uint8_t* rdram=ram;const auto index=MEM_H(0x7C,int32_t(physical));
+    if(index<30||index>=230)return 0;
+    const auto parent=0x80171CD0u+uint32_t(index)*0xCC;
+    if(parent>=actor||!pointer(parent,0xCC)||!word(ram,parent+0x94))return 0;
+    const auto pp=uint32_t(word(ram,parent+0x98)),pm=uint32_t(word(ram,parent+0x74));
+    if(!pointer(pp,0xF4)||MEM_H(0x20,int32_t(pp))!=130||!pointer(pm,0x84)||
+       !game_model_animation().lifetime_token(pm)||game_model_animation().native_birth(pm)||!owns_common_object(ram,parent))return 0;
+    for(auto address:pickup_attachment_addresses(parent))
+        if(!std::isfinite(std::bit_cast<float>(uint32_t(word(ram,address)))))return 0;
+    return parent;
+}
+bool owns_linked_pickup_animation(uint8_t* rdram,uint32_t actor,uint32_t physics) {
+    const auto model=uint32_t(word(rdram,actor+0x74));
+    // Source alone initializes the cached centre, RNG delay, clip/seek,
+    // instantaneous pose and retirement. There is no private velocity.
+    // Acquire common model time only after a real Source pool visit and
+    // while the constructor's actual reciprocal parent links stay live.
+    // A real E89CC opacity command sets2A. Preserve it until the Source
+    // common pool clears it at E8D44; Native must not consume that command.
+    if(actor<0x801734B8u||actor>=0x801734B8u+200*0xCC||(actor-0x801734B8u)%0xCC||
+       word(rdram,actor+0x94)!=1||MEM_BU(0x28,int32_t(physics))!=1||
+       MEM_BU(0xCA,int32_t(physics))!=1||MEM_BU(0xC8,int32_t(physics))!=0||
+        MEM_BU(0x2A,int32_t(physics))!=0||MEM_H(0xD8,int32_t(physics))!=0||
+       !pointer(model,0x84)||!game_model_animation().lifetime_token(model)||game_model_animation().native_birth(model)||
+       uint32_t(word(rdram,0x80202064u+129u*84u))!=0x801ED2CCu||
+       uint32_t(word(rdram,0x80202068u+129u*84u))!=0x801ED2C4u)return false;
+    for(unsigned axis=0;axis<3;++axis)if(uint32_t(word(rdram,physics+0x10+4*axis))&0x7fffffffu)return false;
+    const auto parent_index=MEM_H(0x7C,int32_t(physics)),child_index=MEM_H(0x44,int32_t(physics));
+    if(parent_index<30||parent_index>=230||child_index<0||child_index>=3)return false;
+    const auto parent=0x80171CD0u+unsigned(parent_index)*0xCC,pp=uint32_t(word(rdram,parent+0x98));
+    if(!word(rdram,parent+0x94)||!pointer(pp,0xF4)||!standard_pickup_kind(MEM_H(0x20,int32_t(pp)))||
+       MEM_H(0x80+2*child_index,int32_t(pp))!=int16_t((actor-0x80171CD0u)/0xCC))return false;
+    const auto parent_model=uint32_t(word(rdram,parent+0x74));
+    return pointer(parent_model,0x84)&&game_model_animation().lifetime_token(parent_model);
+}
+
 bool owns_common_object(uint8_t* ram,uint32_t actor) {
     if(!pointer(actor,0xCC))return false;
     const auto physics=uint32_t(word(ram,actor+0x98));
@@ -998,12 +1325,14 @@ bool owns_common_object(uint8_t* ram,uint32_t actor) {
         }
         callback=0x801EB864u;
     }
-    else if(collected_pickup_kind(kind)) {
+    else if(standard_pickup_kind(kind)) {
         const auto model=uint32_t(word(ram,actor+0x74));
-        const uint32_t update=kind==118?0x801ECC6Cu:kind==123?0x801ED020u:0x801ED244u;
-        const uint32_t contact=kind==118?0x801ECBE4u:kind==123?0x801ECFB4u:0x801ED228u;
+        static constexpr std::array<uint32_t,18> updates{0x801EC938u,0x801EC994u,0x801EC9F0u,0x801ECAA8u,0x801EC8DCu,0x801ECA4Cu,0x801ECB6Cu,0x801ECC6Cu,0x801ECD3Cu,0x801ECDD4u,0x801ECE6Cu,0x801ECF3Cu,0x801ED020u,0x801ED07Cu,0x801ED104u,0x801ED1E8u,0x801ED244u,0x801ED2A0u};
+        const auto update=updates[unsigned(kind-111)];
+        static constexpr std::array<uint32_t,18> contacts{0x801EC91Cu,0x801EC978u,0x801EC9D4u,0x801ECA8Cu,0x801EC8C0u,0x801ECA30u,0x801ECB1Cu,0x801ECBE4u,0x801ECCECu,0x801ECD8Cu,0x801ECE24u,0x801ECEECu,0x801ECFB4u,0x801ED060u,0x801ED0BCu,0x801ED17Cu,0x801ED228u,0x801ED284u};
+        const auto contact=contacts[unsigned(kind-111)];
         const auto state=word(ram,actor+0x94);
-        const bool stationary_idle=state==1&&word(ram,physics+0x10)==0&&word(ram,physics+0x14)==0&&word(ram,physics+0x18)==0;
+        const bool stationary_idle=state==1&&(uint32_t(word(ram,physics+0x10))&0x7fffffffu)==0&&(uint32_t(word(ram,physics+0x14))&0x7fffffffu)==0&&(uint32_t(word(ram,physics+0x18))&0x7fffffffu)==0;
         const auto scale=std::bit_cast<float>(uint32_t(word(ram,actor+0x18)));
         const auto vy=word(ram,physics+0x14);
         // Original D8 values0/1 do not blink or decrement (E8DA4..DB0).
@@ -1035,11 +1364,27 @@ bool owns_common_object(uint8_t* ram,uint32_t actor) {
             (blink==0||blink==1)&&word(ram,physics+0x10)==0&&word(ram,physics+0x18)==0&&
             word(ram,physics+0x1C)==std::bit_cast<int32_t>(2.f)&&std::isfinite(settle_y)&&
             std::isfinite(settle_velocity)&&settle_velocity<=0&&settle_velocity>=-48;
-        return ((state==10&&MEM_BU(0x28,int32_t(physics))==1)||stationary_idle||sequence||spin||arc||reveal||settle)&&pointer(model,0x84)&&
+        const auto scatter_speed=std::bit_cast<float>(uint32_t(word(ram,physics)));
+        const auto scatter_slot=(actor-0x801734B8u)/0xCC;
+        const bool source_scatter_speed=std::isfinite(scatter_speed)&&scatter_speed>=2&&scatter_speed<=20&&std::fmod(scatter_speed,2.f)==0;
+        const bool displayed_scatter_speed=scatter_slot<pickup_scatter_source_periods.size()&&pickup_scatter_source_periods[scatter_slot]&&
+            reward_source_identity(ram,pickup_scatter_source_periods[scatter_slot]->common)&&
+            pickup_scatter_source_periods[scatter_slot]->expected[3]==word(ram,physics);
+        const bool scatter=state==3&&MEM_BU(0x28,int32_t(physics))==1&&MEM_H(0x34,int32_t(physics))>=0&&MEM_H(0x34,int32_t(physics))<=5&&
+            MEM_H(0x7C,int32_t(physics))==-1&&(blink==0||blink==1)&&vy==0&&(source_scatter_speed||displayed_scatter_speed)&&
+            std::isfinite(std::bit_cast<float>(uint32_t(word(ram,physics+4))))&&
+            std::isfinite(std::bit_cast<float>(uint32_t(word(ram,actor+0x10))))&&std::isfinite(std::bit_cast<float>(uint32_t(word(ram,actor+0x9C))))&&
+            std::isfinite(std::bit_cast<float>(uint32_t(word(ram,actor+0xA0))))&&std::isfinite(std::bit_cast<float>(uint32_t(word(ram,actor+0xA4))))&&
+            std::isfinite(std::bit_cast<float>(uint32_t(word(ram,physics+0x10))))&&std::isfinite(std::bit_cast<float>(uint32_t(word(ram,physics+0x18))));
+        const bool attached=state==2&&MEM_BU(0x28,int32_t(physics))==1&&MEM_H(0x34,int32_t(physics))==0&&
+            (blink==0||blink==1)&&word(ram,physics+0x10)==0&&vy==0&&word(ram,physics+0x18)==0&&
+            pickup_attachment_parent(ram,actor,physics)!=0;
+        return ((state==10&&MEM_BU(0x28,int32_t(physics))==1)||stationary_idle||pickup_idle_motion_eligible(rdram,actor,physics)||sequence||spin||arc||reveal||settle||scatter||attached)&&pointer(model,0x84)&&
             game_model_animation().lifetime_token(model)&&!game_model_animation().native_birth(model)&&
             uint32_t(word(ram,0x80202064u+unsigned(kind)*84u))==update&&
             uint32_t(word(ram,0x80202068u+unsigned(kind)*84u))==contact;
     }
+    else if(kind==129)return owns_linked_pickup_animation(rdram,actor,physics);
     else if(kind==131) {
         const auto model=uint32_t(word(ram,actor+0x74));
         // Only the initialized, pure downward drift is reviewed. Source owns
@@ -1053,12 +1398,14 @@ bool owns_common_object(uint8_t* ram,uint32_t actor) {
     }
     else if(kind==130) {
         const auto state=word(ram,actor+0x94);const auto model=uint32_t(word(ram,actor+0x74));
+        // Real state10 initialization/clip commands remain Source-owned.
+        // Native acquires only the initialized motion after latch28=1.
         // Only the exact flash state dispatcher and its no-op partner are
         // reviewed. An effect not yet visited by Source cannot receive past dt.
         // Delay has no visible movement. Its discrete clip command stays in
         // the ordered Source pool while reward producers are Source-owned:
         // an effect can reuse a free slot before its own producer this pass.
-        return state==10&&pointer(model,0x84)&&game_model_animation().lifetime_token(model)&&
+        return state==10&&MEM_BU(0x28,int32_t(physics))==1&&pointer(model,0x84)&&game_model_animation().lifetime_token(model)&&
             !game_model_animation().native_birth(model)&&
             uint32_t(word(ram,0x80202064u+130u*84u))==0x801ED898u&&
             uint32_t(word(ram,0x80202068u+130u*84u))==0x801ED4A4u;
@@ -1104,7 +1451,7 @@ void register_object_clocks(uint8_t* ram,const SimulationSlice& slice) {
         const auto actor=0x801734B8u+slot*0xCC;
         if(!word(ram,actor+0x94)||!owns_common_object(ram,actor)) {cancel_slot09_story_start(ram,slot);cancel_slot09_special_turn(ram,slot);object_clocks[slot]={};continue;}
         const auto identity=object_identity(ram,actor,start);
-        if(identity.kind!=7&&identity.kind!=9&&identity.kind!=18&&identity.kind!=130&&identity.kind!=131&&!collected_pickup_kind(identity.kind)&&!city_patrol_callback(identity.kind)&&!slot09_callback(identity.kind)&&(identity.kind<71||identity.kind>77)) {object_clocks[slot]={};continue;}
+        if(identity.kind!=7&&identity.kind!=9&&identity.kind!=18&&identity.kind!=129&&identity.kind!=130&&identity.kind!=131&&!standard_pickup_kind(identity.kind)&&!city_patrol_callback(identity.kind)&&!slot09_callback(identity.kind)&&(identity.kind<71||identity.kind>77)) {object_clocks[slot]={};continue;}
         auto& clock=object_clocks[slot];
         if(!same_object(clock,identity)) {clock=identity;if(!clock.local)clock.origin=0;}
     }
@@ -1116,7 +1463,7 @@ std::array<std::optional<Slot09DialogueReentry>,200> slot09_source_dialogues,slo
 void begin_object_scope(uint8_t* ram,uint32_t actor) {
     if(!gameplay_slice)return;
     const auto flash_physical=uint32_t(word(ram,actor+0x98));uint8_t* flash_ram=ram;
-    if(pointer(flash_physical,0xF4)&&([&] {uint8_t* rdram=flash_ram;const auto kind=MEM_H(0x20,int32_t(flash_physical));return kind==130||kind==131||collected_pickup_kind(kind);})()&&
+    if(pointer(flash_physical,0xF4)&&([&] {uint8_t* rdram=flash_ram;const auto kind=MEM_H(0x20,int32_t(flash_physical));return kind==129||kind==130||kind==131||standard_pickup_kind(kind);})()&&
        gameplay_slice->phase&&gameplay_slice->phase<60&&
        (!reward_pool_claim_matches(ram,actor)||([&] {
            const auto slot=(actor-0x801734B8u)/0xCC;
@@ -1573,7 +1920,7 @@ void native_gameplay_preview_reset(uint8_t* ram) {
     if(ram)native_input_end(ram);
     for(unsigned slot=0;slot<slot09_story_starts.size();++slot)cancel_slot09_story_start(ram,slot);
     for(unsigned slot=0;slot<slot09_special_turns.size();++slot)cancel_slot09_special_turn(ram,slot);
-    scene_completion_slice.reset();scene_frame_completed={};scene_frame_entered={};flash_delay_commits={};reward_pool_claims={};reward_source_ceilings={};flash_motion_clocks={};pickup_motion_clocks={};flash_motion_initializers={};pickup_idle_source_periods={};reward_source_periods={};pickup_spin_source_periods={};pickup_arc_source_periods={};pickup_reveal_source_periods={};pickup_settle_source_periods={};
+    scene_completion_slice.reset();scene_frame_completed={};scene_frame_entered={};flash_delay_commits={};reward_pool_claims={};reward_source_ceilings={};flash_motion_clocks={};flash_source_periods={};pickup_motion_clocks={};flash_motion_initializers={};pickup_idle_source_periods={};pickup_idle_motion_source_periods={};reward_source_periods={};pickup_spin_source_periods={};pickup_arc_source_periods={};pickup_reveal_source_periods={};pickup_settle_source_periods={};pickup_scatter_source_periods={};
     for(auto& handoff:scene_source_handoffs)if(handoff&&!scene_completed_handoff_valid(ram,*handoff))handoff.reset();
     slot09_scene_publications={};
     for(auto& handoff:slot09_scene_handoffs)if(handoff&&!slot09_scene_handoff_valid(ram,*handoff))handoff.reset();
@@ -1713,22 +2060,16 @@ int flash_motion_hook(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
     case 0x801ED76C:ctx->f0.fl=float(double(clock.radius)+5.*age);return 1;
     case 0x801ED778:ctx->f4.fl=clock.velocity;return 0;
     case 0x801ED79C:ctx->f0.d=double(clock.alpha)-ctx->f2.d*age;return 1;
-    case 0x801ED7B8:if(slice.ends_tick()&&object_call)object_command_at_end=true;return !slice.ends_tick();
-    case 0x801ED7F4:
-        if(slice.ends_tick()) {
-            // Execute the genuine Original gravity/collision probe at its
-            // Original start height; its resulting velocity fixes this endpoint.
-            const float current_y=real(actor+0xA0);
-            put(actor+0xA0,clock.y);put(physical+0x14,clock.velocity);
-            MEM_W(0x10,ctx->r29)=ctx->r5;
-            recomp_context source;dora3::copy_recomp_context(source,*ctx);
-            {SimulationSuspension original;dora3_s3_801E810C(rdram,&source);}
-            dora3::copy_recomp_context(*ctx,source);put(actor+0xA0,current_y);
-        } else {
-            const float end=std::max(-48.f,clock.velocity-clock.gravity);
-            put(physical+0x14,float(double(clock.velocity)+(double(end)-clock.velocity)*age));
-        }
+    case 0x801ED7B8:return object_call?1:!slice.ends_tick(); // Original Source alone retires model/heap/resources.
+    case 0x801ED7F4: {
+        // E7F4 receives zero a1/a2/a3/stack10. Probe the real endpoint
+        // without committing its candidate block before a late Source command.
+        const auto query=pickup_vertical_forecast(rdram,ctx,actor,physical,
+            std::bit_cast<int32_t>(clock.y),std::bit_cast<int32_t>(clock.velocity),0.f);
+        const float end=slice.ends_tick()?query.velocity:std::max(-48.f,clock.velocity-clock.gravity);
+        put(physical+0x14,float(double(clock.velocity)+(double(end)-clock.velocity)*age));
         return 1;
+    }
     case 0x801ED814:ctx->f0.d=double(clock.scale)+ctx->f2.d*age;return 1;
     case 0x801ED840:ctx->f4.fl=clock.alpha;return 0;
     case 0x801ED85C:ctx->f0.d=double(clock.alpha)+ctx->f2.d*age;return 1;
@@ -1772,9 +2113,9 @@ int pickup_motion_hook(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
         }
         throw std::logic_error("Unreviewed pickup retirement continuation");
     }
-    if(axis&&(!pointer(physical,0xF4)||!collected_pickup_kind(MEM_H(0x20,int32_t(physical)))||word(rdram,actor+0x94)!=10))return 0;
+    if(axis&&(!pointer(physical,0xF4)||!standard_pickup_kind(MEM_H(0x20,int32_t(physical)))||word(rdram,actor+0x94)!=10))return 0;
     if(actor<0x801734B8u||(actor-0x801734B8u)%0xCC||!pointer(actor,0xCC)||!pointer(physical,0xF4)||
-       uint32_t(word(rdram,actor+0x98))!=physical||!collected_pickup_kind(MEM_H(0x20,int32_t(physical)))||
+       uint32_t(word(rdram,actor+0x98))!=physical||!standard_pickup_kind(MEM_H(0x20,int32_t(physical)))||
        word(rdram,actor+0x94)!=10||MEM_BU(0x28,int32_t(physical))!=1||!owns_common_object(rdram,actor))
         throw std::logic_error("Invalid collected pickup motion identity");
     const auto slot=(actor-0x801734B8u)/0xCC,model=uint32_t(word(rdram,actor+0x74));
@@ -1843,11 +2184,41 @@ int pickup_motion_hook(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
 }
 
 extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32_t site) {
+    if(site==0x801EBCC0&&object_call&&active_simulation_slice()) {
+        uint8_t* rdram=ram;const auto actor=uint32_t(word(ram,0x8021BDEC)),physical=uint32_t(word(ram,actor+0x98)),slot=(actor-0x801734B8u)/0xCC;
+        if(!owns_common_object(ram,actor)||slot>=pickup_scatter_source_periods.size()||!pickup_scatter_source_periods[slot])throw std::logic_error("Missing Native scatter period");
+        auto& period=*pickup_scatter_source_periods[slot];const auto& slice=*active_simulation_slice();period.proposal=pickup_scatter_forecast(ram,ctx,period);
+        const double age=double(slice.phase+slice.numerator-period.common.start_phase)/double(slice.denominator);
+        recomp_context angle;dora3::copy_recomp_context(angle,*ctx);angle.f12.fl=std::bit_cast<float>(uint32_t(period.initial[0]));angle.f14.fl=float(5.*age);
+        dora3_s0_80031A0C(ram,&angle);MEM_W(0x10,int32_t(actor))=angle.f0.u32l;
+        const auto addresses=pickup_scatter_addresses(actor,physical);
+        for(unsigned i=3;i<addresses.size();++i) {
+            const auto first=std::bit_cast<float>(uint32_t(period.initial[i]));const auto last=std::bit_cast<float>(uint32_t(period.proposal[i==3?4:i+2]));
+            MEM_W(0,int32_t(addresses[i]))=std::bit_cast<int32_t>(float(double(first)+(double(last)-first)*age));
+        }
+        return 1; // Source commits collision heading/count/RNG/state transition once.
+    }
     if(site==0x801EBAD4&&object_call&&active_simulation_slice()) {
         uint8_t* rdram=ram;const auto actor=uint32_t(word(ram,0x8021BDEC)),physical=uint32_t(word(ram,actor+0x98)),slot=(actor-0x801734B8u)/0xCC;
         if(!owns_common_object(ram,actor)||slot>=pickup_settle_source_periods.size()||!pickup_settle_source_periods[slot])
             throw std::logic_error("Missing Native pickup settle Source period");
         auto& period=*pickup_settle_source_periods[slot];const auto& slice=*active_simulation_slice();
+        if(period.parent) {
+            if(pickup_attachment_parent(ram,actor,physical)!=period.parent)
+                throw std::logic_error("Changed Native pickup attachment parent");
+            // Initialized attached EBAD4 writes only child XYZ/pitch/yaw and
+            // its matrix stack. Run those actual Original matrix operations
+            // against the parent's current Native pose; preserve caller/stack.
+            // Maximum reviewed attached stack depth is208+72=280 bytes.
+            const auto stack=uint32_t(ctx->r29);if(stack<0x80000140u||!pointer(stack-320,352))
+                throw std::logic_error("Invalid pickup attachment matrix stack");
+            std::array<uint8_t,352> saved{};std::memcpy(saved.data(),ram+((stack-320)&0xFFFFFF),saved.size());
+            struct RestoreStack {uint8_t* ram;uint32_t stack;const std::array<uint8_t,352>& saved;
+                ~RestoreStack(){std::memcpy(ram+((stack-320)&0xFFFFFF),saved.data(),saved.size());}} restore{ram,stack,saved};
+            recomp_context geometry;dora3::copy_recomp_context(geometry,*ctx);
+            {SimulationSuspension matrix;dora3_s3_core_801EBAD4(ram,&geometry);}
+            return 1; // Source keeps initialization, parent index and detach/settle command.
+        }
         period.end_velocity=pickup_settle_forecast(ram,ctx,period);
         const auto initial=std::bit_cast<float>(uint32_t(period.initial_velocity));
         const double age=double(slice.phase+slice.numerator-period.common.start_phase)/double(slice.denominator);
@@ -1924,6 +2295,11 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
         }
         return 1; // Actual initialization, D8 reset and destructor keep Source order.
     }
+    if(site==0x801ED2CC&&object_call&&active_simulation_slice()) {
+        const auto actor=uint32_t(word(ram,0x8021BDEC));
+        if(!owns_common_object(ram,actor))throw std::logic_error("Unreviewed linked pickup animation owner");
+        return 1; // Keep RNG/count/clip/seek/teleports/unlink/retirement in Source.
+    }
     if(site==0x801ED8FC&&object_call&&active_simulation_slice()) {
         const auto actor=uint32_t(word(ram,0x8021BDEC));
         if(!owns_common_object(ram,actor))throw std::logic_error("Unreviewed periodic effect private callback");
@@ -1945,38 +2321,85 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
     }
     if(site==0x801E8C9C&&!object_call) {
         const auto actor=uint32_t(word(ram,0x8021BDEC)),slot=(actor-0x801734B8u)/0xCC;
+        if(slot<pickup_idle_motion_source_periods.size())if(auto& pending=pickup_idle_motion_source_periods[slot];pending) {
+            auto& common=pending->common;
+            if(reward_source_identity(ram,common)&&common.expected_phase<=common.denominator&&common.source_pass+1==slot09_source_pass)pickup_idle_motion_restore(ram,*pending);
+            else pending.reset();
+        }
+        if(slot<flash_source_periods.size())if(auto& pending=flash_source_periods[slot];pending) {
+            auto& common=pending->common;
+            if(reward_source_identity(ram,common)&&common.expected_phase<=common.denominator&&common.source_pass+1==slot09_source_pass)flash_source_restore(ram,*pending);
+            else pending.reset();
+        }
+        if(slot<pickup_scatter_source_periods.size())if(auto& pending=pickup_scatter_source_periods[slot];pending) {
+            auto& common=pending->common;
+            if(reward_source_identity(ram,common)&&common.expected_phase<=common.denominator&&common.source_pass+1==slot09_source_pass)pickup_scatter_restore(ram,*pending);
+            else pending.reset();
+        }
         if(slot<pickup_settle_source_periods.size())if(auto& pending=pickup_settle_source_periods[slot];pending) {
             auto& common=pending->common;
-            if(reward_source_identity(ram,common)&&common.expected_phase==common.denominator&&common.source_pass+1==slot09_source_pass)pickup_settle_restore(ram,*pending);
+            if(reward_source_identity(ram,common)&&common.expected_phase<=common.denominator&&common.source_pass+1==slot09_source_pass)pickup_settle_restore(ram,*pending);
             else pending.reset();
         }
         if(slot<pickup_reveal_source_periods.size())if(auto& pending=pickup_reveal_source_periods[slot];pending) {
             auto& common=pending->common;
-            if(reward_source_identity(ram,common)&&common.expected_phase==common.denominator&&common.source_pass+1==slot09_source_pass)reward_source_restore(ram,common);
+            if(reward_source_identity(ram,common)&&common.expected_phase<=common.denominator&&common.source_pass+1==slot09_source_pass)reward_source_restore(ram,common);
             else pending.reset();
         }
         if(slot<pickup_arc_source_periods.size())if(auto& pending=pickup_arc_source_periods[slot];pending) {
             auto& common=pending->common;
-            if(reward_source_identity(ram,common)&&common.expected_phase==common.denominator&&common.source_pass+1==slot09_source_pass)pickup_arc_restore(ram,*pending);
+            if(reward_source_identity(ram,common)&&common.expected_phase<=common.denominator&&common.source_pass+1==slot09_source_pass)pickup_arc_restore(ram,*pending);
             else pending.reset();
         }
         if(slot<pickup_spin_source_periods.size())if(auto& pending=pickup_spin_source_periods[slot];pending) {
             auto& common=pending->common;
-            if(reward_source_identity(ram,common)&&common.expected_phase==common.denominator&&common.source_pass+1==slot09_source_pass)pickup_spin_restore(ram,*pending);
+            if(reward_source_identity(ram,common)&&common.expected_phase<=common.denominator&&common.source_pass+1==slot09_source_pass)pickup_spin_restore(ram,*pending);
             else pending.reset();
         }
         if(slot<reward_source_periods.size())if(auto& pending=reward_source_periods[slot];pending) {
-            if(reward_source_identity(ram,*pending)&&pending->expected_phase==pending->denominator&&
+            if(reward_source_identity(ram,*pending)&&pending->expected_phase<=pending->denominator&&
                pending->source_pass+1==slot09_source_pass)reward_source_restore(ram,*pending);
             else pending.reset();
+        }
+    }
+    if((site==0x801E8E00||site==0x801E8E10||site==0x801E8E20)&&object_call&&active_simulation_slice()) {
+        const auto actor=uint32_t(word(ram,0x8021BDEC)),slot=(actor-0x801734B8u)/0xCC;
+        if(slot<pickup_scatter_source_periods.size()&&pickup_scatter_source_periods[slot]&&word(ram,actor+0x94)==3) {
+            const auto& period=*pickup_scatter_source_periods[slot];const auto& slice=*active_simulation_slice();
+            if(reward_source_identity(ram,period.common)&&period.common.tick==slice.tick&&period.common.denominator==slice.denominator) {
+                const double age=double(slice.phase+slice.numerator-period.common.start_phase)/double(slice.denominator);
+                if(site==0x801E8E10) {
+                    const auto first=std::bit_cast<float>(uint32_t(period.common.initial[0])),last=std::bit_cast<float>(uint32_t(period.proposal[2]));
+                    ctx->f0.fl=float(double(first)+(double(last)-first)*age);
+                } else {
+                    const bool x=site==0x801E8E00;const auto first=std::bit_cast<float>(uint32_t(period.initial[x?1:2]));
+                    const auto velocity=std::bit_cast<float>(uint32_t(period.initial[x?4:6])),last=std::bit_cast<float>(uint32_t(period.proposal[x?6:8]));
+                    ctx->f0.fl=float(double(first)+legacy_kinematic_step(velocity,double(last)-velocity,age).displacement);
+                }
+                ctx->f2.fl=0;return 1;
+            }
+        }
+    }
+    if((site==0x801E8E00||site==0x801E8E10||site==0x801E8E20)&&object_call&&active_simulation_slice()) {
+        const auto actor=uint32_t(word(ram,0x8021BDEC)),physical=uint32_t(word(ram,0x8021BCDC)),slot=(actor-0x801734B8u)/0xCC;
+        if(slot<pickup_idle_motion_source_periods.size()&&pickup_idle_motion_source_periods[slot]&&word(ram,actor+0x94)==1) {
+            const auto& common=pickup_idle_motion_source_periods[slot]->common;
+            if(reward_source_identity(ram,common)) {
+                const unsigned axis=site==0x801E8E00?0:site==0x801E8E10?1:2;
+                const auto position=actor+0x9C+4*axis,velocity=physical+0x10+4*axis;
+                ctx->f0.fl=game_model_animation().scalar_linear(ram,common.model,position,
+                    std::bit_cast<float>(uint32_t(word(ram,position))),std::bit_cast<float>(uint32_t(word(ram,velocity))));
+                ctx->f2.fl=0;return 1;
+            }
         }
     }
     if(site==0x801E8E10&&object_call&&active_simulation_slice()) {
         uint8_t* rdram=ram;
         const auto actor=uint32_t(word(ram,0x8021BDEC)),physical=uint32_t(word(ram,0x8021BCDC)),slot=(actor-0x801734B8u)/0xCC;
-        if(pointer(physical,0xF4)&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==2&&owns_common_object(ram,actor)) {
+        if(pointer(physical,0xF4)&&standard_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==2&&owns_common_object(ram,actor)) {
             if(slot>=pickup_settle_source_periods.size()||!pickup_settle_source_periods[slot])throw std::logic_error("Missing Native pickup settle geometry period");
             const auto& period=*pickup_settle_source_periods[slot];const auto& slice=*active_simulation_slice();
+            if(period.parent)return 0; // Attached Source requires zero velocities; keep the genuine common XYZ stores.
             const auto initial=std::bit_cast<float>(uint32_t(period.initial_velocity)),height=std::bit_cast<float>(uint32_t(period.common.initial[0]));
             const double age=double(slice.phase+slice.numerator-period.common.start_phase)/double(slice.denominator);
             const auto delta=period.end_velocity==0?0.:legacy_kinematic_step(initial,double(period.end_velocity)-initial,age).displacement;
@@ -1992,6 +2415,9 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
     }
     if(site==0x801E8E7C) {
         const auto actor=uint32_t(word(ram,0x8021BDEC)),slot=(actor-0x801734B8u)/0xCC;
+        pickup_idle_motion_end(ram,actor,slot,slot09_source_pass,object_call,slot<scene_frame_entered.size()&&scene_frame_entered[slot]);
+        flash_source_end(ram,actor,slot,slot09_source_pass,object_call,slot<scene_frame_entered.size()&&scene_frame_entered[slot]);
+        pickup_scatter_end(ram,actor,slot,slot09_source_pass,object_call);
         pickup_settle_end(ram,actor,slot,slot09_source_pass,object_call);
         pickup_spin_end(ram,actor,slot,slot09_source_pass,object_call);
         pickup_arc_end(ram,actor,slot,slot09_source_pass,object_call);
@@ -2017,7 +2443,7 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
                 // previewed period here, while that pause command stays set.
                 uint8_t* rdram=ram;
                 if(!pending->replayed&&reward_source_identity(ram,*pending)&&
-                   MEM_BU(0xC9,int32_t(pending->physical))==1&&pending->expected_phase==pending->denominator&&
+                   MEM_BU(0xC9,int32_t(pending->physical))==1&&pending->expected_phase<=pending->denominator&&
                    pending->source_pass+1==slot09_source_pass)reward_source_restore(ram,*pending);
                 pending.reset();
             }
@@ -2026,13 +2452,15 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
 
     if(site==0x801EBAB4&&object_call&&live(ram)&&active_simulation_slice()) {
         uint8_t* rdram=ram;const auto actor=uint32_t(word(ram,0x8021BDEC)),physical=uint32_t(word(ram,0x8021BCDC));
-        if(!pointer(physical,0xF4)||!collected_pickup_kind(MEM_H(0x20,int32_t(physical)))||word(ram,actor+0x94)!=1||!owns_common_object(ram,actor))
+        if(!pointer(physical,0xF4)||!standard_pickup_kind(MEM_H(0x20,int32_t(physical)))||word(ram,actor+0x94)!=1||!owns_common_object(ram,actor))
             throw std::logic_error("Invalid stationary pickup idle turn");
         const auto model=uint32_t(word(ram,actor+0x74));
         const float yaw=std::bit_cast<float>(word(ram,actor+0x10));
         ctx->f12.fl=yaw;ctx->f14.fl=4;ctx->f2.fl=360;
         ctx->f0.fl=game_model_animation().scalar_latched_turn(ram,model,actor+0x10,yaw,4);
         const auto slot=(actor-0x801734B8u)/0xCC;
+        if(slot<pickup_idle_motion_source_periods.size()&&pickup_idle_motion_source_periods[slot]&&
+           reward_source_identity(ram,pickup_idle_motion_source_periods[slot]->common))return 1;
         if(slot>=pickup_idle_source_periods.size()||!pickup_idle_source_periods[slot])
             throw std::logic_error("Missing stationary pickup Source period");
         auto& period=*pickup_idle_source_periods[slot];
@@ -2043,7 +2471,9 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
     }
     if((site==0x801E8CB0||site==0x801E8CE8||site==0x801E8CD4)&&object_call&&live(ram)&&active_simulation_slice()) {
         uint8_t* rdram=ram;const auto actor=uint32_t(word(ram,0x8021BDEC)),physical=uint32_t(word(ram,0x8021BCDC));
-        if(pointer(physical,0xF4)&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&owns_common_object(ram,actor)) {
+        if(pointer(physical,0xF4)&&(standard_pickup_kind(MEM_H(0x20,int32_t(physical)))||MEM_H(0x20,int32_t(physical))==130)&&owns_common_object(ram,actor)) {
+            // Source-born flash130 uses this same opacity command. Accumulating
+            // individually rounded Native increments loses Original endpoints.
             // Guest float rounding can reach opacity1 before this Original
             // period ends. Keep the fade command C8 through that last piece;
             // only the real Source end clears it. Otherwise another piece
@@ -2101,7 +2531,7 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
         // proven callback/opacity baselines before the real Source initializer.
         uint8_t* idle_ram=ram;const auto idle_physical=uint32_t(word(ram,actor+0x98)),idle_model=uint32_t(word(ram,actor+0x74));
         if(slot<pickup_idle_source_periods.size()&&pickup_idle_source_periods[slot]&&pointer(idle_physical,0xF4)&&
-           ([&] {uint8_t* rdram=idle_ram;return collected_pickup_kind(MEM_H(0x20,int32_t(idle_physical)))&&MEM_BU(0x28,int32_t(idle_physical))==0;})()&&word(ram,actor+0x94)==10) {
+           ([&] {uint8_t* rdram=idle_ram;return standard_pickup_kind(MEM_H(0x20,int32_t(idle_physical)))&&MEM_BU(0x28,int32_t(idle_physical))==0;})()&&word(ram,actor+0x94)==10) {
             const auto period=*pickup_idle_source_periods[slot];
             if(period.actor==actor&&period.physical==idle_physical&&period.model==idle_model&&period.epoch==epoch&&
                period.lifetime==game_model_animation().lifetime_token(idle_model)&&period.run==game_model_animation().run_token(idle_model)&&
@@ -3396,7 +3826,7 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
         const auto actor=uint32_t(word(ram,0x8021BDEC));
         if(!live(ram)||!active_simulation_slice()||!owns_common_object(ram,actor))return 1;
         const auto flash_physical=uint32_t(word(ram,actor+0x98));uint8_t* flash_ram=ram;
-        if(([&] {uint8_t* rdram=flash_ram;const auto kind=MEM_H(0x20,int32_t(flash_physical));return kind==130||kind==131||collected_pickup_kind(kind);})()&&
+        if(([&] {uint8_t* rdram=flash_ram;const auto kind=MEM_H(0x20,int32_t(flash_physical));return kind==129||kind==130||kind==131||standard_pickup_kind(kind);})()&&
            active_simulation_slice()->phase==0&&active_simulation_slice()->numerator<60) {
             // The Source submission ceiling is not a new discrete callback.
             // Its time is included once in this lifetime's next real interval.
@@ -3409,15 +3839,18 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
         begin_object_scope(ram,actor);
         const auto slot=(actor-0x801734B8u)/0xCC;uint8_t* rdram=ram;
         const auto physical=uint32_t(word(ram,actor+0x98)),model=uint32_t(word(ram,actor+0x74));
-        if(slot<reward_pool_claims.size()&&(MEM_H(0x20,int32_t(physical))==130||MEM_H(0x20,int32_t(physical))==131||collected_pickup_kind(MEM_H(0x20,int32_t(physical)))))
+        if(slot<reward_pool_claims.size()&&(MEM_H(0x20,int32_t(physical))==129||MEM_H(0x20,int32_t(physical))==130||MEM_H(0x20,int32_t(physical))==131||standard_pickup_kind(MEM_H(0x20,int32_t(physical)))))
             reward_pool_claims[slot]=RewardPoolClaim{actor,physical,model,game_model_animation().lifetime_token(model),epoch};
-        if(slot<pickup_settle_source_periods.size()&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==2)
+        if(slot<flash_source_periods.size()&&MEM_H(0x20,int32_t(physical))==130)flash_source_begin(ram,actor,physical,model,slot,slot09_source_pass);
+        if(slot<pickup_scatter_source_periods.size()&&standard_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==3)
+            pickup_scatter_begin(ram,actor,physical,model,slot,slot09_source_pass);
+        if(slot<pickup_settle_source_periods.size()&&standard_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==2)
             pickup_settle_begin(ram,actor,physical,model,slot,slot09_source_pass);
-        if(slot<pickup_reveal_source_periods.size()&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==4)
+        if(slot<pickup_reveal_source_periods.size()&&standard_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==4)
             pickup_reveal_begin(ram,actor,physical,model,slot,slot09_source_pass);
-        if(slot<pickup_arc_source_periods.size()&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==8)
+        if(slot<pickup_arc_source_periods.size()&&standard_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==8)
             pickup_arc_begin(ram,actor,physical,model,slot,slot09_source_pass);
-        if(slot<pickup_spin_source_periods.size()&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==7)
+        if(slot<pickup_spin_source_periods.size()&&standard_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==7)
             pickup_spin_begin(ram,actor,physical,model,slot,slot09_source_pass);
         if(slot<reward_source_periods.size()&&reward_sequence_state(ram,actor,physical)) {
             const auto& slice=*active_simulation_slice();const auto fields=reward_source_fields(ram,actor,physical);
@@ -3443,7 +3876,7 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
             }
             // Original changes vertical velocity before the common tail.
             // Predict its pure motion without publishing the ordered command.
-            if(collected_pickup_kind(prior->kind)) {
+            if(standard_pickup_kind(prior->kind)) {
                 const auto y=std::bit_cast<float>(uint32_t(prior->initial[0]));
                 if(prior->state==5&&MEM_H(0x34,int32_t(physical))==0&&y>=250.f)prior->velocity=0;
                 if(prior->state==6) {
@@ -3453,7 +3886,9 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
                 }
             }
         }
-        if(slot<pickup_idle_source_periods.size()&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==1) {
+        if(slot<pickup_idle_motion_source_periods.size()&&pickup_idle_motion_eligible(rdram,actor,physical))
+            pickup_idle_motion_begin(ram,actor,physical,model,slot,slot09_source_pass);
+        if(slot<pickup_idle_source_periods.size()&&standard_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==1&&!pickup_idle_motion_eligible(rdram,actor,physical)) {
             const auto& slice=*active_simulation_slice();
             const auto fields=pickup_idle_source_fields(ram,actor,physical);
             const auto lifetime=game_model_animation().lifetime_token(model),run=game_model_animation().run_token(model);
@@ -3541,17 +3976,22 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
             }
         }
         const auto physical=uint32_t(word(ram,actor+0x98));
-        if(pointer(physical,0xF4)&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==2)return 0;
+        if(pointer(physical,0xF4)&&pickup_idle_motion_eligible(rdram,actor,physical))return 0;
+        if(slot<pickup_idle_motion_source_periods.size()&&pickup_idle_motion_source_periods[slot]&&pickup_idle_motion_source_periods[slot]->common.replayed)return 0;
+        if(pointer(physical,0xF4)&&standard_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==3)return 0;
+        if(slot<pickup_scatter_source_periods.size()&&pickup_scatter_source_periods[slot]&&pickup_scatter_source_periods[slot]->common.replayed)return 0;
+        if(pointer(physical,0xF4)&&standard_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==2)return 0;
         if(slot<pickup_settle_source_periods.size()&&pickup_settle_source_periods[slot]&&pickup_settle_source_periods[slot]->common.replayed)return 0;
-        if(pointer(physical,0xF4)&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==4)return 0;
+        if(pointer(physical,0xF4)&&standard_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==4)return 0;
         if(slot<pickup_reveal_source_periods.size()&&pickup_reveal_source_periods[slot]&&pickup_reveal_source_periods[slot]->common.replayed)return 0;
-        if(pointer(physical,0xF4)&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==8)return 0;
+        if(pointer(physical,0xF4)&&standard_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==8)return 0;
         if(slot<pickup_arc_source_periods.size()&&pickup_arc_source_periods[slot]&&pickup_arc_source_periods[slot]->common.replayed)return 0;
-        if(pointer(physical,0xF4)&&collected_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==7)return 0;
+        if(pointer(physical,0xF4)&&standard_pickup_kind(MEM_H(0x20,int32_t(physical)))&&word(ram,actor+0x94)==7)return 0;
         if(slot<pickup_spin_source_periods.size()&&pickup_spin_source_periods[slot]&&pickup_spin_source_periods[slot]->common.replayed)return 0;
         if(pointer(physical,0xF4)&&reward_sequence_state(ram,actor,physical))return 0;
         if(slot<reward_source_periods.size()&&reward_source_periods[slot]&&reward_source_periods[slot]->replayed)return 0;
-        if(pointer(physical,0xF4)&&(MEM_H(0x20,int32_t(physical))==130||collected_pickup_kind(MEM_H(0x20,int32_t(physical)))))
+        if(pointer(physical,0xF4)&&MEM_H(0x20,int32_t(physical))==130)return 0; // Replayed Source callback owns actual query/retirement.
+        if(pointer(physical,0xF4)&&standard_pickup_kind(MEM_H(0x20,int32_t(physical))))
             return owns_common_object(ram,actor)&&reward_pool_claim_matches(ram,actor);
         return owns_common_object(ram,actor);
     }

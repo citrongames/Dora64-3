@@ -1,0 +1,15 @@
+{
+  "result": "FAIL: Source fixture asymmetric raw unlink leads Original collection detach to stale/freed child physics; not a Native runtime PASS",
+  "negative_log_sha256": "4a88f77626ba088e6d830f52b9bf8fde1439b2c5d604ba5fd6434104a39deeab",
+  "generation_receipt_sha256": "7d1576bd4e5f4609ee80a4bd3a363e5c5066bd84abf69bcc6a28d79434eda8b6",
+  "failed_input_sha256": {
+    "src/native_gameplay_preview.cpp": "a84b8129f0ad1a61d6df0c0912d335de74d5f03cd8dd58f59fb917725cd1adb7",
+    "research/native-story-pickup-source-check.cpp": "3aa3c27cbd27ad9a76e6aa66603dd11b23b281868e2019324acf0baf295080a2",
+    "research/native-pickup-linked-basic-check.inc": "aa86d37a231fe751c0289223b75851329a18d0525af503f9a5c8f1d65e10128b",
+    "research/native-pickup-linked-guard-check.inc": "7c7a8cd116024cd7855fdb90877b09e939912cc9c2882de9e7fcc5ad44ec03f1",
+    "tools/check_native_story_pickups.py": "806b7ce08c7e508869f4872784da154c2910bcdc7746d79e67ef1128eb7ef96d"
+  },
+  "repair": "Use actual E7528(parent,child_slot0): clears parent physics80 and child physics7C together, then actual129 automatic retirement. Preserve all lifetimes/endpoints and per-child Native coverage.",
+  "runtime_unchanged": true,
+  "repaired_fixture_sha256": "c923b27d73b0f6c80de4f29c59056123dbff9a5c60a1878458ab0a26396c098b"
+}

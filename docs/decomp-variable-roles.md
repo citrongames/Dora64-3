@@ -174,8 +174,15 @@
 | `point_input_y_float_bits_r6` | `ctx->r6` | Float-биты входногоY до переноса в f8 | 1 |
 | `point_input_z_float_bits_r7` | `ctx->r7` | Float-биты входногоZ до переноса в f10 | 1 |
 | `point_transform_matrix_r4` | `ctx->r4` | Входная матрица; регистр сохраняет указатель во всей функции | 1 |
+| `pool_blink_source_ticks` | `ctx->r2` | Signed D8 countdown до сравнения с2; следующий slti меняет рольr2. | 1 |
+| `pool_opacity_command_physics` | `ctx->r3` | Физика объекта при Source byte29 check и снятии opacity marker2A. | 1 |
+| `pool_private_actor_kind` | `ctx->r2` | Signed kind20 до вычисления84-byte callback table offset. | 1 |
+| `pool_private_callback_offset` | `ctx->r3` | 84*kind для адреса update entry80202064. | 1 |
+| `pool_private_dispatch_physics` | `ctx->r3` | Текущая физика при повторном byte29 check и чтении signed kind20. | 1 |
+| `pool_private_update_callback` | `ctx->r2` | Точный callback pointer из таблицы; вызывает LOOKUP_FUNC. | 1 |
 | `pool_search_actor_r3` | `ctx->r3` | Actor record cursor while testing occupied states | 1 |
 | `pool_search_index_r4` | `ctx->r4` | Parent lower bound and advancing free-slot search index | 1 |
+| `pool_skip_private_update_byte29` | `ctx->r2` | Значение byte29; ненулевой флаг пропускает private update объекта. | 1 |
 | `reset_scene_actor_r16` | `ctx->r16` | Actor argument для всех очищаемых полей и исходных axis/event callbacks | 1 |
 | `resolved_contact_parent_r6` | `ctx->r6` | Contact owner after resolving the optional attachment parent | 1 |
 | `retiring_actor_r17` | `ctx->r17` | Actor retained through peer cleanup, optional effects and final destructor | 1 |

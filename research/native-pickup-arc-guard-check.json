@@ -173,5 +173,9 @@
     "report_before_names_sha256": "ebbbaf083c8da3ed3a0a25f556dd6994baa468f375ad602c7f0cb369ba252144",
     "generation_receipt_sha256": "10c62a1cf6d3c381b316e5b34191e2c346c925f214f73978eac0e36f4d30cc1c",
     "reason": "17 exact Source129 register scopes and Source344 lifetime evidence only; existing function aliases unchanged. Every runtime/checker/fixture/header input and96 canonical C/frontier/hooks/overlays exact; actual291 origins retained, no repeated runtime execution claim."
+  },
+  "superseded_by_352": {
+    "current_generation": false,
+    "reason": "Historical validated main348/runtime295 proof retained. Connected item/effect runtime352 changes; no repeated whole-game execution claim. Targeted pre-build validation only."
   }
 }

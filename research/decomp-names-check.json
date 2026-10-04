@@ -1,6 +1,6 @@
 {
-  "result": "PASS: 778 descriptions; 447 semantic function names; 562 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
-  "generation_receipt_sha256": "c52fd6e7a5bdc9a6463fd6174249018b13beb192aa7fb6ec039e62be1848ef5f",
+  "result": "PASS: 778 descriptions; 447 semantic function names; 569 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
+  "generation_receipt_sha256": "7d1576bd4e5f4609ee80a4bd3a363e5c5066bd84abf69bcc6a28d79434eda8b6",
   "files": [
     {
       "file": "funcs_0.c",
@@ -185,7 +185,7 @@
     {
       "file": "funcs_36.c",
       "canonical_sha256": "14d6f5ee03836f1bb2d1a11c1dbad61c1ac2973a694426795ed05fe73ea8466d",
-      "named_sha256": "c6f445a122fa17f9e990ec4b24ca2d4202e7ee0d893ebcf7fb0697cf45ab2730",
+      "named_sha256": "93491b555ff4911828b5ecda044849a2db7242a4ced79b58a39ed9286c6bbebf",
       "tokens": 161443
     },
     {
@@ -196,15 +196,15 @@
     },
     {
       "file": "funcs_38.c",
-      "canonical_sha256": "cb088e0f1582aef75843b31bbd316857c36cbc537accd9424f3c204408fc63ea",
-      "named_sha256": "51227a6887c349dedbc5cbd4bd27f90e0ae3aba6cb18ff186f2a928517c54e3a",
-      "tokens": 125230
+      "canonical_sha256": "89e6d43a2a5150800932264b54e68005b86a5e83f88dd7fb24b63d57c83ea1a8",
+      "named_sha256": "72ce2a565ae48d79a8f72692405ff388965acf1fb6747da5ebd3e98c2083bba7",
+      "tokens": 125243
     },
     {
       "file": "funcs_39.c",
-      "canonical_sha256": "c28b8e5af5ad6430cb6bf63333227c54c6d18ac6380b980ad35cdc10e4a00ece",
-      "named_sha256": "0d353448b25bc153c8fb49129e7c7b45d6532f5ea71ef9dce2b4c86925e8e4c2",
-      "tokens": 101319
+      "canonical_sha256": "baeacaf0a422300feb6bd1e7b4c57f02ef6dfc1a4d5de79f7196429d4fb89d7d",
+      "named_sha256": "39f6dedaa99bf1910aee047dcbcb3953f7990442fca04f20dc24b5e1fb1a8edc",
+      "tokens": 101332
     },
     {
       "file": "funcs_4.c",
@@ -582,6 +582,6 @@
   "source_sha256": {
     "tools/decomp_annotations.py": "cc18b42a710a9998b9b33cbfe2c79009451496078b2136cdceb603d047c4b16b",
     "tools/check_decomp_names.py": "bc742b8b16c9a6f24481d2b41a80c268a9a7feee4c2d95e6f1a537d026d1c74c",
-    "recomp/decomp-symbols.json": "cbf1833ec9065aa0267f3dfeb194929129d1a98467b5fe336349e320b65e5698"
+    "recomp/decomp-symbols.json": "bff4ebe2c0ce7dc98d9fee8af0aba8255c594626acfa8dfbbaeb19009f0c0a65"
   }
 }
