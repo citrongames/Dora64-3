@@ -6,11 +6,12 @@
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "research/native-scene34-draw-check.cpp": "3033239c807cb8ca5b2462bc92a128e4e2537d08d4c37bed3514342ef31300fa",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
+    "research/native-inactive-minigame-fixture.cpp": "dafaccdff31181ed0e62dec4a4ec04bfe1eb6c6fd377201f2e81e4f75dbbe4bb",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
-    "tools/check_native_scene34_draw.py": "6943a1b2ba9747a01d3d6d6a8ee2a81547ba53ae9044f1dc323fcacfa6ffe2aa"
+    "tools/check_native_scene34_draw.py": "da12f8462678d78e5c41bbe3ab3d80437b4c57134d2ead5c36f9181f647af29c"
   },
-  "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
+  "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
   "original_functions": [
     "dora3_fade_draw_dispatch",
     "dora3_texture_rect_state",

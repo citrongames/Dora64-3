@@ -16,14 +16,15 @@
     "src/native_effects.cpp": "5a2dd315a623e5cf80ccd6b51af56c4f0f1e5bc750c871b4e0231d675f9f3b19",
     "research/native-effects-check.cpp": "06f1ea314a4a480fd62b8399a1157e91690517dc17db4b56c7f8678adb43f292",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
+    "research/native-inactive-minigame-fixture.cpp": "dafaccdff31181ed0e62dec4a4ec04bfe1eb6c6fd377201f2e81e4f75dbbe4bb",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
     "src/native_effects.hpp": "ddd57439bc9435e2c91791a3a1f3dc28a1cce7057bbf6d84a58e0f4a39e34805",
     "recomp/native-timing-rules.json": "c2c332ec813d3875029208501206c31f66444623c0ecfbbd3f290454529f5ef0",
-    "tools/native_timing_patches.py": "2abf46f682763169bdcd4fd908147826575dbaf1890292ceada3a7b13b36e2e4",
-    "tools/generate_startup.py": "1c73c4b4fe91b8ced86d98df9dd9425d23a45c119aff61f09f451d218c73a8f0",
-    "tools/check_native_effects.py": "fc4af5f600d2a52bae1e78ef267e00a6ba7216d483e51445255db4ff748c8e9e"
+    "tools/native_timing_patches.py": "4b015e2e76618cb11d71f671f08faed36287d24c28ec2efee0025aa719fb5829",
+    "tools/generate_startup.py": "65d1bbba590dcac60809575aadfc8455d8ef1225a5b23c4aa7a5816732fc2407",
+    "tools/check_native_effects.py": "0800c82e8ff5a64e663e52d91709e5315d6d0294f5f8e09b1ed1b6ea2ca9735a"
   },
-  "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
+  "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
   "reference_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
   "limitations": [
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",

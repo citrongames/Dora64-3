@@ -40,6 +40,7 @@ def main():
  external.update({'dora3_s3_801E3768','dora3_s3_801E0760','dora3_s3_801BBDDC','dora3_s0_8002F064','dora3_s2_menu_801BBCEC','dora3_s2_menu_801BBEB0','dora3_s2_menu_801BC17C','dora3_s2_menu_801BC4C0','dora3_s2_menu_801C14B8','dora3_lib_80057A80'})
  external.add('dora3_s3_801E89CC')
  external.add('dora3_lib_80055BD0')
+ external.update({'dora3_s0_80040104','dora3_s0_800327A4','dora3_s0_8002DA98'})
  external.add('dora3_s33_remaining_8021FED8')
  out=r/'build-local/native-loop-check';out.mkdir(exist_ok=True)
  (out/'functions.c').write_text('#include "startup_hooks.h"\n#include "funcs.h"\n'+'\n'.join(selected.values()))
@@ -49,7 +50,7 @@ def main():
  runtime=r/'build-deps/lib/N64ModernRuntime'
  flags=['-O1','-g','-pthread','-fsanitize=address','-fno-omit-frame-pointer','-fno-strict-aliasing',*['-I'+str(x) for x in [r/'src',g,g/'RecompiledFuncs',out,runtime/'N64Recomp/include']]]
  subprocess.run(['gcc','-std=c17',*flags,'-c',str(out/'functions.c'),'-o',str(out/'functions.o')],check=True)
- sources=[r/'src'/n for n in ['native_cutscene.cpp','native_ui.cpp','native_effects.cpp','native_process_time.cpp','native_simulation_time.cpp','native_camera_timeline.cpp','native_model_animation.cpp','native_game_loop.cpp','native_gameplay_preview.cpp','native_enemy.cpp','native_input_timeline.cpp','native_scene_policy.cpp','native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_present.cpp','native_present_hooks.cpp','native_graphics_pump.cpp']]+[r/'research/native-loop-check.cpp']
+ sources=[r/'src'/n for n in ['native_cutscene.cpp','native_ui.cpp','native_effects.cpp','native_process_time.cpp','native_simulation_time.cpp','native_camera_timeline.cpp','native_model_animation.cpp','native_game_loop.cpp','native_minigames.cpp','native_minigame_math.cpp','native_gameplay_preview.cpp','native_enemy.cpp','native_input_timeline.cpp','native_scene_policy.cpp','native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_present.cpp','native_present_hooks.cpp','native_graphics_pump.cpp']]+[r/'research/native-loop-check.cpp']
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check'),str(out/'seed.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1')).strip()
  tracked=sources+[ROOT/'src/recomp_context_copy.hpp',r/'src/native_game_loop.hpp',r/'src/native_scene_policy.hpp',r/'src/native_frame_session.hpp',r/'src/frame_lights.hpp',r/'tools/generate_startup.py',Path(__file__).resolve()]

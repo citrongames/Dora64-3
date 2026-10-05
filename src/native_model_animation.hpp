@@ -6,6 +6,7 @@
 #include <memory>
 #include <optional>
 #include <array>
+#include <utility>
 
 namespace dora3::native_time {
 // A discrete AI command samples all real clip advances since its previous
@@ -68,6 +69,9 @@ public:
     void reset(); // Only at a quiescent runtime boundary.
     std::size_t model_count() const;
     std::uint64_t lifetime_token(std::uint32_t) const;
+    // Read-only completed Original advance for reviewed minigame operands.
+    // Resolves after the Source callback, including a getter before its advance.
+    std::optional<std::pair<AnimationState,unsigned>> original_clock_sample(uint8_t*,std::uint32_t) const;
     // A seek/rebind or a real flag command starts another animation run.
     std::uint64_t run_token(std::uint32_t) const;
     std::uint64_t time_command_token(std::uint32_t) const;

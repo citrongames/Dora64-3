@@ -70,13 +70,14 @@
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
+    "research/native-inactive-minigame-fixture.cpp": "dafaccdff31181ed0e62dec4a4ec04bfe1eb6c6fd377201f2e81e4f75dbbe4bb",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
     "recomp/native-timing-rules.json": "c2c332ec813d3875029208501206c31f66444623c0ecfbbd3f290454529f5ef0",
-    "tools/native_timing_patches.py": "2abf46f682763169bdcd4fd908147826575dbaf1890292ceada3a7b13b36e2e4",
-    "tools/generate_startup.py": "1c73c4b4fe91b8ced86d98df9dd9425d23a45c119aff61f09f451d218c73a8f0",
-    "tools/check_native_player_motion.py": "6439369f51080b1d8681c9672d63afb4f5badef3577df1dfa67cc7fc71944c04"
+    "tools/native_timing_patches.py": "4b015e2e76618cb11d71f671f08faed36287d24c28ec2efee0025aa719fb5829",
+    "tools/generate_startup.py": "65d1bbba590dcac60809575aadfc8455d8ef1225a5b23c4aa7a5816732fc2407",
+    "tools/check_native_player_motion.py": "0450b10ea9655e0eb8d4af7b16bf95bd273bb40c9333e0f58a24715a2f492999"
   },
-  "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
+  "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "limitations": [
     "Inactive GameplayPreview/flight/projectile owner boundaries only; full player-update and scene-frame checks cover the real acquired implementations",

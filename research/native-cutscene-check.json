@@ -165,16 +165,17 @@
     "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
     "research/native-cutscene-check.cpp": "518540c9b532d003fc1d100904f5d6c386d29b6d6d2ccf44d0bab0aac51249cd",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
+    "research/native-inactive-minigame-fixture.cpp": "dafaccdff31181ed0e62dec4a4ec04bfe1eb6c6fd377201f2e81e4f75dbbe4bb",
     "src/native_cutscene.hpp": "d7c9362cc9c4f70191ebb7bad1c9ded08ea478811c477e269fc9bae630e1c1e4",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-    "src/native_scene_policy.cpp": "15170625b065fcd9d3604173ddcfebecf4d7314b960c36c1f9f71c164038127d",
-    "src/native_game_loop.cpp": "aa027cf1706fa22facc21cba72913183f292f530c0a215428c591118b6e85d65",
+    "src/native_scene_policy.cpp": "0e936417ad80fb481d592e2d6c6727d9bbc48f6f44fb7c7f3a8ffd4124985a01",
+    "src/native_game_loop.cpp": "6c6009b63ce0b95f4b9a356b1cfe523351e42b7cbca83633c2e268ed1c02cfa4",
     "recomp/native-timing-rules.json": "c2c332ec813d3875029208501206c31f66444623c0ecfbbd3f290454529f5ef0",
-    "tools/native_timing_patches.py": "2abf46f682763169bdcd4fd908147826575dbaf1890292ceada3a7b13b36e2e4",
-    "tools/generate_startup.py": "1c73c4b4fe91b8ced86d98df9dd9425d23a45c119aff61f09f451d218c73a8f0",
-    "tools/check_native_cutscene.py": "1f450d9f6748a719d90d568d88e14c908c638f5690ff03b89bd3027371c2c103"
+    "tools/native_timing_patches.py": "4b015e2e76618cb11d71f671f08faed36287d24c28ec2efee0025aa719fb5829",
+    "tools/generate_startup.py": "65d1bbba590dcac60809575aadfc8455d8ef1225a5b23c4aa7a5816732fc2407",
+    "tools/check_native_cutscene.py": "fc100b5bd43f3dcfc4a5729e95b8d839bcc1e97d480cea236a7672d0bc35e812"
   },
-  "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
+  "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "limitations": [
     "Synthetic controllers and original ROM math/constants; no real level/renderer or GPU",

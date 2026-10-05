@@ -7,7 +7,7 @@ from pathlib import Path
 import argparse, concurrent.futures, datetime, hashlib, json, subprocess, sys, threading, time
 
 ROOT=Path(__file__).resolve().parents[1]
-CHECKS=('ui cutscene model_animation frame_time simulation camera_control camera_modes '
+CHECKS=('minigames ui cutscene model_animation frame_time simulation camera_control camera_modes '
         'script_camera effects gravity input player_motion process_time frame_bridge '
         'frame_scheduler graphics_pump loop scene34_draw session present scene_transition '
         'player_update scene_frame story_pickups scene_objects enemy names overlay docs').split()
@@ -45,16 +45,23 @@ def main():
         special={'names':'check_decomp_names.py','overlay':'check_overlay_load_state.py','docs':'update_decomp_docs.py','scene_frame':'check_native_player_update.py','player_update':'check_native_player_update_partitions.py'}
         cmd=[sys.executable,str(ROOT/'tools'/special.get(key,'check_native_'+key+'.py'))]
         if key not in NO_GENERATED:cmd+=['--generated',str(g)]
-        if key in ROM_CHECKS or key in {'enemy','scene_objects'}:cmd+=['--rom',str(a.rom.resolve())]
-        if key in REFERENCE_CHECKS or key in {'enemy','scene_objects'}:cmd+=['--reference',str((a.leaf_reference if key in LEAF_REFERENCE else a.reference).resolve())]
+        if key in ROM_CHECKS or key in {'enemy','scene_objects','minigames'}:cmd+=['--rom',str(a.rom.resolve())]
+        if key in REFERENCE_CHECKS or key in {'enemy','scene_objects','minigames'}:cmd+=['--reference',str((a.leaf_reference if key in LEAF_REFERENCE else a.reference).resolve())]
         if key in {'scene_transition','player_update','scene_frame','story_pickups','enemy','scene_objects'}:cmd+=['--city-reference',str(a.city_reference.resolve())]
         if key in {'player_update','scene_frame','story_pickups'}:cmd+=['--optimization','O2']
+        if key=='minigames':
+            cmd[cmd.index('--reference')+1]=str(ROOT/'build-local/startup-scene-block1-v4')
         if key=='scene_frame':cmd+=['--scope','scene-frame']
         if key=='story_pickups':cmd+=['--scope','pickup-linked-batch']
         if key=='enemy':cmd+=['--enemy-reference',str(a.enemy_reference.resolve())]
         if key=='scene_objects':cmd+=['--enemy-reference',str((ROOT/'build-local/startup-v362').resolve())]
         if key=='scene_objects':cmd+=['--workers',str(a.scene_workers)]
-        if key=='scene_objects' and (ROOT/'build-local/native-scene-object-check/parser-abi-resume.json').exists():cmd+=['--resume-evidence',str(ROOT/'build-local/native-scene-object-check/parser-abi-resume.json')]
+        if key=='scene_objects' and (ROOT/'build-local/native-scene-object-check/block4-completed-replay.json').exists():
+            cmd+=['--completed-replay',str(ROOT/'build-local/native-scene-object-check/block4-completed-replay.json')]
+        if key=='scene_objects':
+            retained=ROOT/'build-local/native-scene-object-check/parser-abi-resume.json'
+            if retained.exists() and json.loads(retained.read_text()).get('generation_receipt_sha256')==receipt:
+                cmd+=['--resume-evidence',str(retained)]
         if key=='enemy' and a.enemy_resume_evidence:cmd+=['--resume-evidence',str(a.enemy_resume_evidence.resolve())]
         if key=='docs':cmd+=['--check']
         return cmd

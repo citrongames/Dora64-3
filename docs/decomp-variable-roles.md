@@ -3099,6 +3099,8 @@
 | `current_physics_v1_8023F91C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
 | `current_physics_v1_80240238` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
 | `current_physics_v1_8024026C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_piece_actor_s1` | `ctx->r17` | Текущий actor из группы9, stride0xCC; индекс/адрес меняются внутри цикла, роль указателя сохраняется. | 1 |
+| `current_piece_z_field_s0` | `ctx->r16` | Указатель на localZ текущего piece actor; относительные -4/+4/+8 — localY/Euler pitch/yaw. | 1 |
 | `derorin_actor_r16_8022FF44` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `derorin_actor_r16_8022FFAC` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `derorin_actor_r16_8022FFE4` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -3951,6 +3953,7 @@
 | `panel_update_slot_r16` | `ctx->r16` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |
 | `participant_actor_r19` | `ctx->r19` | Actor для публикации трёх angles до восстановления s3. | 1 |
 | `participant_control_r18` | `ctx->r18` | Сохранённый participant control до восстановления s2 в epilogue. | 1 |
+| `participant_driver_s2` | `ctx->r18` | Доказанный a1 participant driver до восстановления callee-saved s2; поля команд и шагов остаются Source. | 1 |
 | `participant_pool_control_r16` | `ctx->r16` | Текущая60-entry control record в loop body. | 1 |
 | `periodic_initial_physics_r3` | `ctx->r3` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
 | `periodic_random_x_actor_r3` | `ctx->r3` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
@@ -4209,6 +4212,10 @@
 | `powan_physics_r4_802236DC` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
 | `powan_physics_r4_8022390C` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
 | `powan_physics_r4_80223AAC` | `ctx->r4` | Physical private state/counters из global8021BCDC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
+| `projectile_actor_s1` | `ctx->r17` | Spherical projectile actor до восстановления s1; ресурс/счёт/retire остаются Source. | 1 |
+| `projectile_actor_s1` | `ctx->r17` | Текущий spherical projectile actor; Source retire использует тот же указатель. | 1 |
+| `projectile_driver_s0` | `ctx->r16` | Driver actor+98 в ветви движения; углы, скорость и spherical XYZ velocity. | 1 |
+| `projectile_driver_s0` | `ctx->r16` | Driver, прочитанный из actor+98; speed, yaw/pitch и производные XYZ velocity. | 1 |
 | `radicon_actor_r16_8022E4FC` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `radicon_actor_r2_8022D8A4` | `ctx->r2` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `radicon_actor_r2_8022DAA8` | `ctx->r2` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -4768,6 +4775,7 @@
 | `special28_return_physics_r3` | `ctx->r3` | Exact Original register storage in this proven instruction region only | 1 |
 | `sprite_record_r16` | `ctx->r16` | Выбранная sprite pool record после преобразования индекса в адрес | 1 |
 | `sprite_record_r4` | `ctx->r4` | Восьмибайтная запись sprite pool, переданная параметром | 1 |
+| `stage_actor_s0` | `ctx->r16` | Постоянный stage actor0x80174970 до восстановления s0; setup rotation является отдельной командой. | 1 |
 | `state2_update_count_r2` | `ctx->r2` | Счётчик обновлений state2 до превращения регистра в результат сравнения | 1 |
 | `story_completion_word_r4` | `ctx->r4` | Exact Original register storage in this proven instruction region only | 1 |
 | `story_constructor_variant_r18` | `ctx->r18` | Resolved variant0/1/2, retained until the constructor epilogue | 1 |
@@ -5168,6 +5176,7 @@
 | `thunderdischarge_physics_r4_8022151C` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `thunderdischarge_physics_r4_802215B8` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `thunderdischarge_physics_r4_80221820` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
+| `tile_actor_s0` | `ctx->r16` | Actor, вычисленный по трём индексам; Euler angles и шесть sprite channels. | 1 |
 | `title_letter_record_r3` | `ctx->r3` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 2 |
 | `title_letter_record_r4` | `ctx->r4` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |
 | `title_letter_record_r5` | `ctx->r5` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |

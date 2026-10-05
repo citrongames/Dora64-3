@@ -47,6 +47,7 @@ def main():
   subprocess.run(['gcc','-std=c17','-fsanitize=address',*flags,'-c',str(out/'functions.c'),'-o',str(out/'functions.o')],check=True);cached.write_text(stamp)
  sources=[ROOT/'src/native_simulation_time.cpp',ROOT/'src/native_effects.cpp',ROOT/'src/native_ui.cpp',ROOT/'src/native_scene_policy.cpp',ROOT/'research/native-ui-check.cpp']
  sources.append(ROOT/'research/native-inactive-enemy-fixture.cpp')
+ sources.append(ROOT/'research/native-inactive-minigame-fixture.cpp')
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror','-fsanitize=address,undefined',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check'),str(out/'game.bin'),str(out/'menu.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')).strip()
  tracked=sources+[ROOT/'src/native_ui.hpp',ROOT/'src/native_scene_policy.cpp',ROOT/'src/native_game_loop.cpp',ROOT/'recomp/native-timing-rules.json',ROOT/'tools/native_timing_patches.py',ROOT/'tools/generate_startup.py',Path(__file__).resolve()]

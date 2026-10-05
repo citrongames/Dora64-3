@@ -1,179 +1,185 @@
 {
-  "result": "PASS:29 connected CPU pre-build checks after complete selected block1 implementation,289 scene/NPC kinds and292 ROM-qualified variants; Source/fractional-motion/model-time and player/enemy/world connections",
-  "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
-  "base_commit": "f2988922c74fe29a2c8b0df0f639f11a584fa2c3",
+  "result": "PASS:30 connected CPU pre-build checks after complete selected block4, all nine minigames and three common modes; Original commands and Native motion/model/camera/2D ownership",
+  "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
+  "base_commit": "7820d684c7369468503e7e415974ce3472558ae0",
   "checks": {
+    "minigames": {
+      "path": "research/native-minigame-check.json",
+      "sha256": "6e9b7b8314eca09eaa0a3f69cd18a51ac4d200f7840bae42d8a62a278fb8fb80",
+      "result": "PASS: all9 minigame modules and3 common callback pairs; 138 Source/Native cases, 946 fractional slices;20/30Hz and Manual60/73/120/144/165/360; command-once, linked Euler motion, contact impulses, angle wrapping, model/draw input ownership and exact restoration; synthetic resources, no game/GPU",
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
+    },
     "ui": {
       "path": "research/native-ui-check.json",
-      "sha256": "59975f33b3ebe393e00e738e570605c83ece83665190221a0e5e0d3a5d57875f",
+      "sha256": "a25cf775ff42e772b6849cda84bb866eacece4abc0266b34832f4ffd31e9c40b",
       "result": "PASS: 116 connected UI cases; 64 Original motion endpoints; 153 Native math samples; 234 repeated Original UI draw/command comparisons; 37 ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "cutscene": {
       "path": "research/native-cutscene-check.json",
-      "sha256": "a010608c1db5935d273d9eccad7379a193cec6ba2eae4e1561d0fe84829ca37c",
+      "sha256": "63961ef658e5440d624c75c4a36db6aaee620cfc3f39478f5ac917252f8a3c8c",
       "result": "PASS: 154 connected cutscene cases, 506 exact Source endpoints, 1431 Native intervals, 18 ownership/policy guards; 52 actual motion functions, all four linked cameras, XYZ/rotation/scale/polar/jump/alpha, Original20/30 at60/73FPS, actual interpreter wait/cut/finish, Source restoration and full-RAM/context duplicate-time checks; ASan/UBSan; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "model_animation": {
       "path": "research/native-model-animation-check.json",
-      "sha256": "bd4f0bd78781aa3f97034e694cf4d6e9671256d8ddbdc4c8281885cf2bfa189a",
+      "sha256": "495816839a06a2c8b8d1d0242e5720f14d775a9320caa05175cbd98ca3714c64",
       "result": "PASS: 20 crossing timelines / actual player frame-18 event; 24 native simulation model timelines with nondestructive events and no render double-advance; 12 fractional short-angle wrap schedules; 12 latched angular-command schedules; 12 preceding opacity-command schedules; 12 exact-float scalar/retirement timelines with pause/write/acquisition/lifetime invalidation; 74 original linear/morph native pose samples at 60/73/120/144/165/360 Hz and both dividers; Hermite curve through original matrix builder, bank isolation, guest context/time/event preservation, pause/seek/clamp/rebind/stale updates, unknown-write rollback, deferred logic morph, draw-time deletion and same-address recreation; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "frame_time": {
       "path": "research/native-frame-time-check.json",
-      "sha256": "cea351a2afa25b073a7ab7fff96ec21c365c9fe982264d862ee509223ef63fed",
+      "sha256": "e41d2f7f6948abbcd018ce57d53c893a76fc03f6524983ad7dabd4872516772f",
       "result": "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. All five original fade commands, inter-frame timestamp, no-op fractional retention, same-time commands and unknown-write rejection; rational Source command origins/reversal at12 FPS/divider settings with nonzero origin. No game/window/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "simulation": {
       "path": "research/native-simulation-check.json",
-      "sha256": "5b5739c124cd9ef1ba5579553da26eaf3a8dc3dc41afedc65fd12230275c17a7",
+      "sha256": "8d8f412ec6f97229da707eadefe30a7fc77c5428c3b339535a8cc8b344d3db3e",
       "result": "PASS: 280 differential executions of seven original MIPS motion/camera helpers; Original and whole ticks unchanged; 12 20/30 Hz schedules at 60/73/120/144/165/360 FPS, 2036 real motion slices, exact discrete boundaries, constant-force kick/drift trajectory, approach/decay, long gaps, scene-reset cancellation and scope cleanup; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "camera_control": {
       "path": "research/native-camera-control-check.json",
-      "sha256": "b3bec4eba4907ea48531b897c63c04bfbc7295ef210728f1b2e031d728e94945",
+      "sha256": "54b995b76934cd24b721920290e9a2b9d34b8cc6d7df93b87e326b51275a3ffb",
       "result": "PASS: 970 camera control/transition/coefficient cases; actual original angle helper, Original and full-step RAM equivalence; 60/73/120/144/165/360FPS, 20/30Hz; minimum distance20 unchanged; pitch dead-zone tolerance0.11 degrees; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "camera_modes": {
       "path": "research/native-camera-modes-check.json",
-      "sha256": "452ea70195f5411d70704c71d354d918baa45d41e9f727deaa5de4e230074ac7",
+      "sha256": "26a8043fd6dc33da2cf5ea86c7da44faea4d22a8794364d266570b759f4a1f76",
       "result": "801D5864 diagnostic_max_rate_spread=0 field=0 variant=0\n801D7294 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8578 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8A24 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8FF0 diagnostic_max_rate_spread=0 field=0 variant=0\n801DB720 diagnostic_max_rate_spread=0 field=0 variant=0\n801D9B00 diagnostic_max_rate_spread=0 field=0 variant=0\n801D9C94 diagnostic_max_rate_spread=0 field=0 variant=0\n801DA06C diagnostic_max_rate_spread=0 field=0 variant=0\n801DAB58 diagnostic_max_rate_spread=0 field=0 variant=0\n801DA588 diagnostic_max_rate_spread=0 field=0 variant=0\n801DAF50 diagnostic_max_rate_spread=0 field=0 variant=0\n801DB3D0 diagnostic_max_rate_spread=0 field=0 variant=0\nPASS: 10975 Original/full-tick memory comparisons across thirteen ordinary camera roots. Native equations also match at shared fractional timestamps; Source-end real shake commands at three final cuts and two dividers, external writes/reset preserved; synthetic room triangles through original collision query, no real level/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "script_camera": {
       "path": "research/native-script-camera-check.json",
-      "sha256": "4fcd8022bf438f09f90b28951d8ed2888b50dfb6def8756f0d07c1e9f83fee56",
+      "sha256": "fba81a4859346c08af4a565f3a34116816a6e634e185b277f81f0c37a7f1780a",
       "result": "PASS: 3920 script-camera cases; four cameras, all four modes, six orbit channels, local channels and combined rotations; Original/whole-step RAM differential, durations 0/1/2/7/40, 20/30 Hz timing at 60/73/120/144/165/360 FPS, original trigonometry and eye geometry; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "effects": {
       "path": "research/native-effects-check.json",
-      "sha256": "5fec35717551b3703f0e70ce64b32db8f95bd423e733196c73f324d5d571e8ec",
+      "sha256": "76254093ee25e00fcf2c46de429bf6d8b84e470845b50dcac74618472ee07bbe",
       "result": "PASS: 200 rectangle/zoom/sprite cases; all four rectangle modes, loop/clamp sprite events, durations0/1/2/7/40; original whole-step equivalence and per-tick state/event comparison at60/73/144/360FPS and20/30Hz; real fractional zoom changes; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "gravity": {
       "path": "research/native-gravity-check.json",
-      "sha256": "aaaaaf949b489d562de88633e2d1133109849fda1ed0fd8cb44224481385c148",
+      "sha256": "cf520810289405d99023881a79634f1245a7b51a5eb8dee4621c35d4b16ceebd",
       "result": "PASS: 786 original/gravity trajectory cases; 60/73/120/144/165/360FPS, 20/30Hz, both terminal caps, player special branches, contacts and scoped actor isolation; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "input": {
       "path": "research/native-input-check.json",
-      "sha256": "866d8d572ec57fdda3b53ed053d4590e141175162e77055761ccfb1059353323",
+      "sha256": "1b97053cc34a47124bc1afe061f0883e58941caa11fd72e6408fce0f9f94ecf5",
       "result": "PASS: 12 real VI accumulator/latch schedules at 60/73/120/144/165/360 FPS, four-port ownership, short presses, analog thresholds, Original handoff, disconnect/reconnect and scene reset; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "player_motion": {
       "path": "research/native-player-motion-check.json",
-      "sha256": "cb408fd444434f81edb6dec15f3f870ad8dd57af06d664043ab41de543a66832",
+      "sha256": "1538243c35e8bdadd866e0e58d47b163a501d0264159867ad71bb26dd1ed94e7",
       "result": "PASS: 168 drive partitions; 24 joint player/vector/gravity/contact/camera trajectories at 60/73/144/360FPS; Original equivalence; movement cache preserved across camera boundary; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "process_time": {
       "path": "research/native-process-time-check.json",
-      "sha256": "069a6ffe666149c43b024160b84d323a496fb9bef19a76fc38d0eda2f725325d",
+      "sha256": "373c23e82131c3e729a3a28493c284f311520b03068333f3e54761147fe972e2",
       "result": "PASS: 2053 process dispatcher checks; all eight slots, states0..5, waits0/1/3, Original memory equivalence, repeated draw/simulation dispatch, delayed first activation; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "frame_bridge": {
       "path": "research/native-frame-bridge-address-check.json",
-      "sha256": "f9e2cad6a775095f8dc349d9a85daaa2142c46e2918877b45d1952deddd54769",
+      "sha256": "39a6bf88fe7c2bb8e734c447ee5e832ec9128dca960e2a6cc532571875e5876c",
       "result": "PASS: registered type2 drains during pause while unregistered type2 remains Original; real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context and all odd FPRs preserved in FR=0/FR=1; stale scene/rate wakes; quiescent reset; update before bank reservation, scene/rate cancellation; 2000 concurrent deliveries",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "frame_scheduler": {
       "path": "research/native-frame-scheduler-address-check.json",
-      "sha256": "2958797887f911a2fb75f90ae8bd518f78bc7de9c87ba1a6bf9879efc3e6ac0d",
+      "sha256": "c9aa1d0664bdf25cc6154d04a15b38ffa943aea5d90a42540261e6285a616eb6",
       "result": "PASS: one queued wake; immutable token behind 32-bit message; two banks; publication and independent guest/host completion; stale scene/rate tokens; enqueue rejection; elapsed-time conservation under backpressure; Original bypass; concurrent completion order; original ROM VI gate and completion-before-swap order; native 60/73/144/165/360 scheduling builds original 2D fade display lists with extra alpha phases and unchanged duration. No game/window/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "graphics_pump": {
       "path": "research/native-graphics-pump-check.json",
-      "sha256": "12b1e88b410b40eff86a8b496355f2c6a27219523f8429b304d0b2b264ebd259",
+      "sha256": "ed078bf46ff440c4a00e5d5016c520df8e773300dab59b02b606369f46225156",
       "result": "PASS: immediate game+host completion and bank reuse after both SP/DP caller tails (SP-first and DP-first); registered native framebuffer bypass, present after swap, type2 consumption and delayed host acknowledgement; original submit -> native-only wake -> original scheduler including full event queue; no synthetic VI/client broadcast; audio priority/yield, SP/DP completion, framebuffer gate, pause, late Original wake and context/thread-local isolation preserved",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "loop": {
       "path": "research/native-loop-check.json",
-      "sha256": "16606a2284d72c6278d3e25c710e30e610c326a920c23d7544d34e38aefcafc5",
-      "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 270 native white-fade builds with 238 distinct alpha values; 76 discrete updates, 1085 native builds, 3 Original builds, 232 VI events; no GPU",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "sha256": "01acdb092efc10b39878d7707316f543fc832283404607cf3bd3128765f092bc",
+      "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 270 native white-fade builds with 240 distinct alpha values; 76 discrete updates, 1083 native builds, 3 Original builds, 232 VI events; no GPU",
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "scene34_draw": {
       "path": "research/native-scene34-draw-check.json",
-      "sha256": "2136571d5f8bf9a0f767c6ff883a74a2f3026969080d590bf8033a1bb962078f",
+      "sha256": "b4b1daea3dfb8e612d4648a66b857a212b58bc8d3ebb4929783784f37c46fa84",
       "result": "PASS: scene34 image branch original draw closure; CI4/CI8 headers, 3 sizes, 2 banks, alpha 0/128/255; 802 actual 2D command lists at 60/73/144/165/360 with native fade; all guest RAM outside DL/cursor/stack unchanged; no renderer or live scene activation",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "session": {
       "path": "research/native-session-address-check.json",
-      "sha256": "5baae4fd2439d509ffad2d52ecd84a3bd749a64e468ff47404b09569d28345aa",
+      "sha256": "c04cb78772b5e4edddb9f36cd330af79b7e7fc066756bf12f400105ac4897cd8",
       "result": "PASS: in-progress Original read delays native entry; late reads denied; exit waits both completions; cancellation/stale reservation/pause/reset; actual sleeping producer wakes on deadline, mailbox receive, bank release and rate change; stops/joins with pending wake and restarts idle",
       "generation_receipt_sha256": null
     },
     "present": {
       "path": "research/native-present-address-check.json",
-      "sha256": "d7b01a40b9b33b40978d0e475d70edc070750dde935935b925ed059364ce3dcd",
+      "sha256": "b68fbfe5c01489daad522c2879b41667bc0825275a68b4146da30dd9b8048e8e",
       "result": "PASS: all six completion orderings, early/duplicate/stale callbacks, two-bank backpressure, concurrent host/game completion; exact runtime VI oracle (16 combinations), copied framebuffer/mode, no VI state advance, enqueue rejection, real worker acknowledges after reads and drops late periodic actions",
       "generation_receipt_sha256": null
     },
     "scene_transition": {
       "path": "research/native-scene-transition-check.json",
-      "sha256": "fba454d7e890594d522dc7c8735afc0c9280101ce2fc099a9b44424fe867dd81",
+      "sha256": "c29d20074fa28d6f7f0bdbaa18ec1957bb6ad5a6085b1a8e0faf473d0d01e703",
       "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 336 actual slot09 constructors; 0 slot09 Source schedules; 32 slot09 Native edge schedules; 0 slot09 rejections; 0 slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; 0 slot09 intermediate yaw samples; settings=8; ASan/UBSan/LSan; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "player_update": {
       "path": "research/native-player-update-check.json",
-      "sha256": "aec0340519147fdf4617b1465c35c42be7312ab150f3941afd41ca770e5a98fd",
+      "sha256": "46a678e0633697370119e2e2272e06fbbaf1cecfc5e671a31c7f9dcad82fc4c1",
       "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 1008 actual slot09 constructors; 5088 slot09 Source schedules; 720 slot09 Native schedules; 576 slot09 rejections; 34464 slot09 frozen189 comparisons; 31624 slot09 intermediate yaw samples; 3192 common NPC B schedules; 1152 actual city constructor/profile/Original comparisons; 2304 story100 Source schedules; 1152 story100 Native edge schedules; 768 story100 ownership rejections; 15360 story100 Original full-RAM/context/heap/resource/command/model-count comparisons; 768 special200/201 Source schedules; 192 special200/201 Native edge schedules; 96 special200/201 ownership rejections; 5280 special200/201 Original full-RAM/context/heap/resource/command/model-count comparisons; 288 dense Original special counter samples; 4608 city dialogue actual contact-producer Original comparisons; 3072 city dialogue Source schedules; 2304 city dialogue Native edge schedules; 384 city dialogue overlay rejections; 19712 city dialogue intermediate yaw samples; 20736 city dialogue Original full-RAM/context/heap/resource/command comparisons; 48 linked actual descriptor construction/attachment/retirement schedules; 1008 linked Source schedules; 720 linked Native schedules; 288 linked ownership rejections; 308 linked intermediate yaw samples; 6768 linked Original full-RAM/context/heap/resource/command comparisons; 384 linked actual contact-producer Original comparisons; 1536 city patrol Source schedules; 1152 city patrol Native schedules; 192 city patrol overlay rejections; 1232 city intermediate position samples; 11904 city Original full-RAM/context/command comparisons; 864 dialogue75/76/77 Source outcome/bob/turn/contact/birth schedules; 144 dialogue Native pause/reentry/rebind/write schedules; 72 dialogue overlay rejection schedules; 1032 dialogue signed return/wrap intermediate yaw samples; 288 city7/9 Source projection/sprite/contact/dialogue/delay/event/retirement schedules; 96 city Native off-grid schedules; 48 city overlay-identity rejection schedules; 96 simple object Source schedules; 96 simple object Native off-grid schedules; 1152 orbital Source/contact/birth/moving-target/AI-resume schedules; 480 orbital Native pause/rebind/recreation/write/state schedules; 1376 orbital intermediate signed return/wrap yaw samples; 144 off-grid surface constructor/reentry/model-rebind/yaw/exit Native schedules; 216 full surface60..62 producer/spin/exit/kick/orientation Source schedules; 96 connected door59 pause/camera/fade/room-request Source schedules; 1392 connected lethal32..49/death50..56/respawn Source/body/fade/scene/real-model-retirement schedules; 144 six-character post-ready67/Ground/new-model reacquisition schedules; 192 healthy hover49/63 Source count/control/exit/landing schedules; 144 Native hover off-grid recovery schedules; 192 Native constructor/idle/complete special64/67 recovery schedules; 216 Source special64/67 character frame commands/clip/cancel/surface recovery schedules; 144 Native off-grid special command/stop/turn/write/rebind schedules; 264 Source special65/66 stop/turn/cancellation schedules; 48 recovery31 scalar stop/clip/return Source schedules; 48 waiting46/47 count/kick/yaw/recovery Source schedules; 96 hazard40..45 delay/kick/fall/collapse/rise/recovery Source schedules; 48 airborne ground damage kick/fall/collapse/rise/recovery Source schedules; 336 Native real damage/health/rumble/complete recovery partition schedules; 48 heavy damage kick/counter/fall/collapse/rise/recovery Source schedules; 48 ground damage kick/landing/recovery/cooldown Source schedules; 48 healthy flight damage speed/orientation/clip/return schedules; 24 Native off-grid flight A/stick partition schedules; 24 held-B four-shot flight repeat/release/lifetime schedules; 96 Native flight weapon press/release/birth/trajectory/retirement schedules; 192 flight weapon9/10 and charge11/12 full Source pool schedules; 96 whole-player flight Source speed/orientation/collision/animation/A-transition/RNG schedules; 24 full original ground/jump/fall/landing and 48 reversal/braking dispatcher/input/drive/contact/model-clip/pose schedules; 168 flight/pause/hit/real-newborn/lifetime schedules; 72 growth/spin/fade schedules against Original at every source tick; 72 ballistic/countdown/real five-link-chain schedules; 24 real four-phase/rebind/opacity/lifetime schedules; 24 bounce/real conversion/complete child lifetimes; 384 homing clocks/real impact/retirement schedules; 48 real charge/attachment/radius/opacity/conversion/retirement schedules; 48 live player-producer birth/initial commands/zero-time clock/lifetime schedules; 120 interaction free/capture/seek/spawn/drag/retirement schedules and Original quarter-interval capture geometry; 48 interaction live births including same-address captured NPC recreation; 192 real charge weapon action/B-entry/shot/complete lifetime schedules; 96 Native B-edge exact shot and birth-relative charge lifetime schedules; 48 held B four-shot repeat/release/full retirement schedules; 432 Native press/release moving-weapon trigger/initial-age/complete resource lifetimes; 864 moving weapon action/shot/full pool Source endpoint/complete child lifetime schedules; 216 terminal-effect lifetimes/retirements against unpatched Original and 912 full-RAM common-world Original comparisons; both source rates at 60/73/120/144/165/360 FPS; single held-button jump and landing, one transition per reversal state, free-bank pose restoration, source-time counters/sounds, legacy player suppression, coupled native props/source-owned AI command timestamps, opacity/blink/real flipbook cadence, contact-list preservation and context preservation; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "scene_frame": {
       "path": "research/native-scene-frame-check.json",
-      "sha256": "ae4783d1e20e868740558ff00cf1a84e22671a3a79fa4f689f615ff106018e66",
+      "sha256": "18067ca072f4533a2d66a7ca0592e6d4c61ba6a440078fe031cebb71b4f23a92",
       "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 672 actual slot09 constructors; 0 slot09 Source schedules; 64 slot09 Native edge schedules; 0 slot09 rejections; 0 slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; 0 slot09 intermediate yaw samples; settings=16; ASan/UBSan/LSan; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "story_pickups": {
       "path": "research/native-pickup-linked-batch-check.json",
-      "sha256": "9649d868b9844befa92c99fd8b80d1e52bd57fbbcac1ec8e4c94644a2a03c92e",
+      "sha256": "b25def4fbc313b609d3b71d3ead836226c77a34f14eaee6dc075ee2006d72a08",
       "result": "PASS: 72 Original and72 mixed Native/Source actual Native linked129 animation and standard pickup lifetimes;8 actual private producers with three129 children, three heights/XYZ velocity profiles, actual parent contact/quest/collection/six-flash130 and129 unlink/automatic retirement; 73656 Native intervals preserve every Source-only129 actor/physics word and unclaimed model/parent field; 19440 intermediate129 model-time changes and 73656 exact whole-snapshot duplicate-time checks; 18432 exact full live actor/physics/model/heap/resources/commands/quest/RNG/collision-result endpoints. Actual Source RNG timers/teleports/clip commands and complete resources on synthetic assets; Native129 owns only common model time/completion pulse after actual Source initialization and live reciprocal links; no actual selecting script/real-level renderer claim; no game/GPU.\nPASS: 117 Original and117 mixed Native/Source guarded linked129 animation lifetimes;13 command profiles at before/after/mid Native intervals, three root velocity profiles, actual private producer118 with three129 children, three heights/XYZ velocity profiles, actual parent contact/quest/collection/six-flash130 and129 unlink/automatic retirement; 129675 Native intervals preserve every Source-only129 actor/physics word and unclaimed model/parent field; 34830 intermediate129 model-time changes and 129675 exact whole-snapshot duplicate-time checks; 29952 exact full live actor/physics/model/heap/resources/commands/quest/RNG/collision-result endpoints. Actual Source RNG timers/teleports/clip commands and complete resources on synthetic assets; Native129 owns only common model time/completion pulse after actual Source initialization and live reciprocal links; no actual selecting script/real-level renderer claim; no game/GPU.\nPASS: linked Native animation batch;189 paired complete lifetimes/48384 exact Original endpoints; private commands and resources retain Source order; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "scene_objects": {
       "path": "research/native-scene-object-check.json",
-      "sha256": "0d907dd2fb3d97e01a42074f4137f809b57d526da078885020a43fd4e86f02ab",
-      "result": "PASS: scene 3504 frozen/current Original and 10512 Native schedules across all292 ROM variants / 289 kinds; fresh replay=1 kinds/48 cases, retained unchanged=291 kinds; 2880 fresh pool endpoints, 25554 intervals, 25554 zero-dt checks, 32 genuine contacts; 289 scene/NPC kinds including platforms, doors, switches, traps, event actors and effects, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 0=1,2, 1=1,2, 2=1,2,3, 3=1,2,3, 4=1, 5=1, 6=1,2, 7=1,2, 8=1,2,3, 9=1,2,3, 10=1,2, 11=1,2, 12=1,2,3, 13=1, 14=1, 15=1, 16=1, 17=1,2, 18=1,2, 19=1,2, 20=1,2, 21=1,2, 22=1,2, 23=1,2, 24=1,2, 25=1,2, 26=1,2, 27=1,2,3, 28=1,2,3, 29=1,2,3, 30=1,2,3, 31=1,2,3, 32=1,2,3, 33=1,2,3, 34=1,2,3, 35=1,2,3, 36=1,2, 37=2,3, 38=1, 39=1,2, 40=1,2, 41=1,2, 42=1,3, 43=1, 44=1, 45=1,2, 46=1, 47=1, 48=1, 49=1, 50=1, 51=1, 52=1, 53=1, 54=1, 55=1, 56=1, 57=1, 58=1, 59=1, 60=1, 61=1, 62=1, 63=1, 64=1, 65=1, 66=1, 67=1, 68=1, 69=1, 70=1, 71=1, 72=1, 73=1, 74=1, 75=1, 76=1, 77=1, 78=1, 79=1, 80=1, 81=1, 82=1, 83=1, 84=1, 85=1, 86=1, 87=1, 88=1, 89=1, 90=1, 91=1, 92=1, 93=1, 94=1, 95=1, 96=1, 97=1, 98=1, 99=1, 100=1, 101=1, 102=1, 103=1, 104=1, 105=1, 106=1, 107=1, 108=1, 109=1, 110=1, 111=1, 112=1, 113=1, 114=1, 115=1, 116=1, 117=1, 118=1, 119=1, 120=1, 121=1, 122=1, 123=1, 124=1, 125=1, 126=1, 127=1, 128=1, 129=1, 130=1, 131=1, 132=1, 133=1, 134=1, 135=1, 136=1, 137=1, 138=1, 139=1, 140=1, 141=1, 142=1, 143=1, 144=1, 145=1, 146=1, 147=1, 148=1, 149=1, 150=1, 151=1, 152=1, 153=1, 154=1, 155=1, 156=1, 157=1, 158=1, 159=1, 160=1, 161=1, 162=1, 163=1, 164=1, 165=1, 166=1, 167=1, 168=1, 169=1, 170=1, 171=1, 172=1, 173=1, 174=, 175=1, 176=1, 177=1, 178=1, 179=1, 180=1, 181=1, 182=1, 183=1, 184=1, 185=1, 186=1, 187=1, 188=1, 189=1, 190=1, 191=1, 192=1, 193=1, 194=3, 195=3, 196=1, 197=1, 198=1, 199=1, 200=1, 201=1, 202=1, 203=1, 204=1, 205=1, 206=1, 207=1, 208=1, 209=1, 210=1, 211=1, 212=1, 213=1, 214=1, 215=1, 216=1, 217=1, 218=1, 219=1, 220=1, 221=1, 222=1, 223=1, 224=1, 225=1, 226=1, 227=1, 228=1, 229=1, 230=1, 231=1, 232=1, 233=1, 234=1, 235=1, 236=1, 237=1, 238=1, 239=1, 240=1, 241=1, 242=1, 243=1, 244=1, 245=1, 246=1, 247=1, 248=1, 249=1, 250=1, 251=1, 252=1, 253=1, 254=1, 255=1, 256=1, 257=1, 258=1, 259=1, 260=1, 261=1, 262=1, 263=1, 264=1, 265=1, 266=1, 267=1,10, 268=1, 269=1, 270=1, 271=1, 272=1, 273=1, 274=1, 275=1, 276=1, 277=1, 278=1, 279=1, 280=1, 281=1, 282=1, 283=1, 284=2, 285=1, 286=1, 287=1, 288=1, 289=1, 290=1, 291=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "sha256": "4b6597f766bfe1f074835c380433d1e96344deb587f43a54462a6580fea7dfb5",
+      "result": "PASS: scene 3504 frozen/current Original and 10512 Native schedules across all292 ROM variants / 289 kinds; fresh replay=292 kinds/14016 cases, retained unchanged=0 kinds; 840960 fresh pool endpoints, 7461768 intervals, 7461768 zero-dt checks, 9184 genuine contacts; 289 scene/NPC kinds including platforms, doors, switches, traps, event actors and effects, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 0=1,2, 1=1,2, 2=1,2,3, 3=1,2,3, 4=1, 5=1, 6=1,2, 7=1,2, 8=1,2,3, 9=1,2,3, 10=1,2, 11=1,2, 12=1,2,3, 13=1, 14=1, 15=1, 16=1, 17=1,2, 18=1,2, 19=1,2, 20=1,2, 21=1,2, 22=1,2, 23=1,2, 24=1,2, 25=1,2, 26=1,2, 27=1,2,3, 28=1,2,3, 29=1,2,3, 30=1,2,3, 31=1,2,3, 32=1,2,3, 33=1,2,3, 34=1,2,3, 35=1,2,3, 36=1,2, 37=2,3, 38=1, 39=1,2, 40=1,2, 41=1,2, 42=1,3, 43=1, 44=1, 45=1,2, 46=1, 47=1, 48=1, 49=1, 50=1, 51=1, 52=1, 53=1, 54=1, 55=1, 56=1, 57=1, 58=1, 59=1, 60=1, 61=1, 62=1, 63=1, 64=1, 65=1, 66=1, 67=1, 68=1, 69=1, 70=1, 71=1, 72=1, 73=1, 74=1, 75=1, 76=1, 77=1, 78=1, 79=1, 80=1, 81=1, 82=1, 83=1, 84=1, 85=1, 86=1, 87=1, 88=1, 89=1, 90=1, 91=1, 92=1, 93=1, 94=1, 95=1, 96=1, 97=1, 98=1, 99=1, 100=1, 101=1, 102=1, 103=1, 104=1, 105=1, 106=1, 107=1, 108=1, 109=1, 110=1, 111=1, 112=1, 113=1, 114=1, 115=1, 116=1, 117=1, 118=1, 119=1, 120=1, 121=1, 122=1, 123=1, 124=1, 125=1, 126=1, 127=1, 128=1, 129=1, 130=1, 131=1, 132=1, 133=1, 134=1, 135=1, 136=1, 137=1, 138=1, 139=1, 140=1, 141=1, 142=1, 143=1, 144=1, 145=1, 146=1, 147=1, 148=1, 149=1, 150=1, 151=1, 152=1, 153=1, 154=1, 155=1, 156=1, 157=1, 158=1, 159=1, 160=1, 161=1, 162=1, 163=1, 164=1, 165=1, 166=1, 167=1, 168=1, 169=1, 170=1, 171=1, 172=1, 173=1, 174=, 175=1, 176=1, 177=1, 178=1, 179=1, 180=1, 181=1, 182=1, 183=1, 184=1, 185=1, 186=1, 187=1, 188=1, 189=1, 190=1, 191=1, 192=1, 193=1, 194=3, 195=3, 196=1, 197=1, 198=1, 199=1, 200=1, 201=1, 202=1, 203=1, 204=1, 205=1, 206=1, 207=1, 208=1, 209=1, 210=1, 211=1, 212=1, 213=1, 214=1, 215=1, 216=1, 217=1, 218=1, 219=1, 220=1, 221=1, 222=1, 223=1, 224=1, 225=1, 226=1, 227=1, 228=1, 229=1, 230=1, 231=1, 232=1, 233=1, 234=1, 235=1, 236=1, 237=1, 238=1, 239=1, 240=1, 241=1, 242=1, 243=1, 244=1, 245=1, 246=1, 247=1, 248=1, 249=1, 250=1, 251=1, 252=1, 253=1, 254=1, 255=1, 256=1, 257=1, 258=1, 259=1, 260=1, 261=1, 262=1, 263=1, 264=1, 265=1, 266=1, 267=1,10, 268=1, 269=1, 270=1, 271=1, 272=1, 273=1, 274=1, 275=1, 276=1, 277=1, 278=1, 279=1, 280=1, 281=1, 282=1, 283=1, 284=2, 285=1, 286=1, 287=1, 288=1, 289=1, 290=1, 291=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "enemy": {
       "path": "research/native-enemy-check.json",
-      "sha256": "b7a210f5347a0286e97f5adc98b7a9d252a87e0de0902770d2a8984b6d2d471a",
+      "sha256": "3bdea899e34ea52807f689641fd8e621b749e766bd095d4a9a819c28189c160b",
       "result": "PASS: enemy 2616 frozen/current Original and 7848 Native schedules across all218 kinds; fresh replay=218 kinds/10464 cases, retained unchanged=0 kinds; 627840 fresh pool endpoints, 5570772 intervals, 5570772 zero-dt checks, 6464 genuine contacts; 218 kinds including all135 ordinary/all79 bosses and4 outbound owners, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 257=1, 258=1, 259=1, 264=1, 265=1, 266=2, 267=2,3, 268=1, 269=2, 270=2, 271=1,2, 272=2, 273=1, 274=2, 275=2,3, 276=1,10, 277=2, 278=1, 279=1,2,4, 280=1, 281=1,2,3,4, 282=1,2,3,5, 283=1,2,3,4, 284=1,2, 285=1, 286=1, 287=1,3, 288=2, 289=2,3,4, 290=1,2, 291=1,2, 292=1, 293=2,3, 294=1, 295=2,3, 296=1, 297=2,3, 298=2,3, 299=1,10, 300=2, 301=1, 302=1, 303=1, 304=1, 305=1, 306=1, 307=1, 308=1,2,3, 309=1,2,3, 310=1,2,3, 311=1, 312=2,3, 313=2, 314=2,3, 315=1,10, 316=1,10, 317=1, 318=1, 319=1,2, 320=1,2, 321=2, 322=1, 323=1, 324=1, 325=1, 326=2, 327=2, 328=1,10, 329=1, 330=2, 331=2, 332=2,3, 333=1,10, 334=2, 335=1,10, 336=2, 337=1,2,3, 338=1, 339=2, 340=1,10, 341=1,2,3, 342=1,2, 343=1,2, 344=1,2, 345=1, 346=3, 347=1,3,4,5, 348=1,2, 349=1, 350=1,3,10, 351=1,2, 352=1,10, 353=1, 354=1, 355=1, 356=1, 357=1, 358=1, 359=1,2,3, 360=2, 361=1, 362=3, 363=1,10, 364=2,3, 365=2,3, 366=2,3, 367=1, 368=1,3,4, 369=1, 370=1, 371=1,2, 372=1, 373=1,2, 374=1, 375=1, 376=1, 377=1,2, 378=1,2, 379=1, 380=1, 381=1, 382=1, 383=1, 384=1, 385=1, 386=1, 387=1,2, 388=2,4, 389=2, 390=3,4, 391=1, 392=1, 393=1, 394=1, 395=2, 396=1, 397=1,10, 398=1, 399=1,2,4, 400=1, 401=1,2, 402=1, 403=1,2, 404=1, 405=1, 406=1, 407=1, 408=1, 409=1, 410=4, 411=1, 412=1, 413=1, 414=1,10, 415=1,10, 416=1, 417=1, 418=1,10, 419=1, 420=1, 421=10, 422=1, 423=1,2,3, 424=1, 425=1, 426=1, 427=1, 428=1,3, 429=1,10, 430=1,10, 431=1, 432=1, 433=1, 434=1, 435=2, 436=1, 437=1, 438=1,10, 439=1, 440=1, 441=1, 442=1, 443=1,10, 444=1, 445=1, 446=1, 447=1, 448=1, 449=1, 450=1,10, 451=1,2, 452=1, 453=1, 454=1,2,4, 455=1, 456=1, 457=1,2,3,4, 458=1,10, 459=1,10, 460=1,2,3,4, 461=1,2,3,4, 462=1,2,3,4,10, 463=1, 464=1, 465=10, 466=1, 467=1,3,4, 468=1, 469=1, 470=1,2,3,4, 471=1,2,3,4, 472=1,3, 473=1, 474=1, 475=1, 476=1, 477=1, 478=1, rabbit landing transitions=24 ground hits=24 stable ground=1776 fractional samples=51108",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "names": {
       "path": "research/decomp-names-check.json",
-      "sha256": "1a7e35d3a4d28ba71bea8f6775ad2ac89e736ede322f9815693b13508f2ae369",
-      "result": "PASS: 2532 descriptions; 2201 semantic function names; 5765 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "sha256": "629d3a3d6263eee4d627f73b4c4a749bea17b8848073976a4ad160eadea3086d",
+      "result": "PASS: 2593 descriptions; 2262 semantic function names; 5774 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     },
     "overlay": {
       "path": "research/overlay-load-state-check.json",
-      "sha256": "5704f180b0234e8ced20f384ac9d5e25c5dded0c805b913c9dafc57da8df5f88",
+      "sha256": "e2c3b9993ae1c9f41c8e39330601d1311ea89b9f1b85f5398cba09896afca460",
       "result": "PASS: 49 actual ROM overlay ranges, verified DMA/reload, identical VRAM replacement, partial overwrite, parent invalidation, scene unload and boot reset; ASan/UBSan/LSan; no game/GPU.",
-      "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db"
+      "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8"
     }
   },
   "source_sha256": {
-    "recomp/decomp-symbols.json": "1f9c54f65d67c658e6daf21dc446bf1fe9f7f5a0a6f04aa2594b800a8a98456b",
+    "recomp/decomp-symbols.json": "1af359861597ad3b4a231ccc8d7b89522eafa5c55fc42e424cc91ced5aebe8f2",
     "recomp/native-timing-rules.json": "c2c332ec813d3875029208501206c31f66444623c0ecfbbd3f290454529f5ef0",
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
     "research/native-camera-control-check.cpp": "1c906070f434aace292a3e51cdce9b888e388bfeaf9fd948e835a9031b9d89d0",
@@ -186,14 +192,17 @@
     "research/native-frame-bridge-check.cpp": "660a6027b22660be528c0108d981222d4bfe349d59f3f017856f344c237c4376",
     "research/native-frame-scheduler-check.cpp": "542f67dafc9159f7cc1ac4a8c4b28fab4b9b7204ba540d6d30b2c998d21162a8",
     "research/native-frame-time-check.cpp": "e56c1b90a4346117cb88b3a022b6a806a307b1955c4d5934e7669d4b9210a76b",
-    "research/native-gameplay-cutscene-fixture.cpp": "50ab2ef307407c5306de004401f8048a4e4a487fb1de023578b54a888bb4373d",
+    "research/native-gameplay-cutscene-fixture.cpp": "cfa64f8dc3eeda442c67db0f454704ed0bea01e36aa897cfdb1bbbad5a950fdf",
     "research/native-graphics-pump-check.cpp": "7eb191d431fd47790e208ddaacd924a35efc2d6d58c447006c8ed2ad90877118",
     "research/native-gravity-check.cpp": "95ce36b649cb0fa5205d17e05ba90aa333d43c26323b43ffce2244e736b0eb19",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
     "research/native-inactive-gameplay-fixture.cpp": "fef1725b2e76e343c0e04cdad773df3a6604684f7f34eebaa1a94718cc0bdf1a",
+    "research/native-inactive-minigame-fixture.cpp": "dafaccdff31181ed0e62dec4a4ec04bfe1eb6c6fd377201f2e81e4f75dbbe4bb",
     "research/native-input-check.cpp": "ea42a1347957173d2aae86f6315aed85ed11bdb6bacd7fe73b752a312637f025",
-    "research/native-loop-check.cpp": "c9f80d8e401934323abc8475a04f2666113cdb5e5263ef27d3ead8b5cf911465",
+    "research/native-loop-check.cpp": "aa8d63b0c68ab09e0072dc850eaf5dfbc8e6113100651b03bb3a7cd4ce82958b",
     "research/native-loop-stubs.cpp": "9a7fb7796516f951c6bc8d7db29dcc1d08d60290f02f6f4364f032fdd87e37f9",
+    "research/native-minigame-check.cpp": "187ed8c6b3c397ebe1ea509fa715463f5319d28329b624c42c699f47976af448",
+    "research/native-minigame-reviewed.json": "ac7478876413e6dbcea14a446395cf67bf7a4d5f4b5ed5dd5b60c8ebb500dba6",
     "research/native-model-animation-check.cpp": "80937651a56a133aca4c459566085e8f809cacf31b4d952d7251fa198a80d96e",
     "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
     "research/native-periodic-effect-source-check.inc": "c28c1e7c4d4189249c28c227f9fc1458419d817a82a18ecf4920536d7a6b7940",
@@ -207,9 +216,8 @@
     "research/native-present-check.cpp": "b95f71694eccfa79c4a449d91c8f45c4cab84b53a171773851b399334fa052c3",
     "research/native-process-time-check.cpp": "751cceb4380ecf1c024cd2369b473363c9d390c8e6e6897c98168291a844f57c",
     "research/native-scene-frame-check.cpp": "468ee02668c4d105041e566ca3a25157ddb8719ab55e2e3efeb0cf192137831a",
-    "research/native-scene-object-reviewed-owners.json": "c11af0889a20a1990f5a338ef53f4dfe48e7f2c639fc5fa1d77043e0e25936cd",
     "research/native-scene-object-source-check.inc": "c6b234f9bf02b686c654998cc4a66264624003f5c1009cdc2dd4b75dc1e452a0",
-    "research/native-scene-transition-check.cpp": "f485f8712e7ea03c0ee18393cd5e65d5ce239ae629526a7a46b00661764db312",
+    "research/native-scene-transition-check.cpp": "10c338bc0a7fe3afb57c69d6e7a17e3920d0e54eecdae98e808ef2e4e5d60f66",
     "research/native-scene34-draw-check.cpp": "3033239c807cb8ca5b2462bc92a128e4e2537d08d4c37bed3514342ef31300fa",
     "research/native-script-camera-check.cpp": "2af1d9dddf04d6ad10277017223388ee71e36c5b764e32006210059897ab634b",
     "research/native-session-check.cpp": "f7139aa68d4036c4663ad861ef00031584a517b71da7197eeb516565c55f3fc0",
@@ -243,7 +251,7 @@
     "src/native_frame_session.hpp": "fdc799da001be3c6653126beacb987ce3811ba6f1cc5eeac5922e539089f8e83",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
-    "src/native_game_loop.cpp": "aa027cf1706fa22facc21cba72913183f292f530c0a215428c591118b6e85d65",
+    "src/native_game_loop.cpp": "6c6009b63ce0b95f4b9a356b1cfe523351e42b7cbca83633c2e268ed1c02cfa4",
     "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
     "src/native_gameplay_preview.cpp": "e25b8e14cc5cfbb92e5bfff7fd0d27532eaf6a11ef532a12c4988bd2aa38657a",
     "src/native_gameplay_preview.hpp": "0ca9756c9bcf1ccef41d8a033643b2b07efc6046f63317e75770754500763224",
@@ -251,8 +259,13 @@
     "src/native_graphics_pump.hpp": "3fdcb53d2f68a9b6d344beb44ea58a190c637bd2320cf3e77fbb8af2649bdcd3",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-    "src/native_model_animation.cpp": "913de72cc75acb46ece90e9fc9c668f279e5ada81bf41192866624b639b6a1d7",
-    "src/native_model_animation.hpp": "b492ff635927095a58f311588fb7e0cd139e7cb7b286bb1c073d40598bbc74b6",
+    "src/native_minigame_math.cpp": "788727bda739dce11f14f0f093ffc72f2c4d9d27ebe89ec8079a2e24013c50ad",
+    "src/native_minigame_math.hpp": "44d8a7de614ce01288bf575918b3ce3279d909e2b4ca380e2713db97f8662e6b",
+    "src/native_minigame_registry.hpp": "ecb8436565168dc627e12fb8c06c15bd5a84fef9cb8c6516eb8caa389f237e8c",
+    "src/native_minigames.cpp": "dd17a3bbb38a97ab40c667a05164fc5ddf341c9437c8df422f0b39b8b16fcadc",
+    "src/native_minigames.hpp": "e9dcab5e06f9c191f73f940bbd1561934888100d73d58fd2388366ee0cb6c5eb",
+    "src/native_model_animation.cpp": "6a8c6ff61b105ccaa385893ea650ae811b80cb0463bace4ca2bc3383c26e04cf",
+    "src/native_model_animation.hpp": "cf0ac6506c490cf4ea5182a5e91e43897180b476b2fc4ba1791aac590f7e5505",
     "src/native_present.cpp": "9ff1ff3be5d4c16b57f5668a394a3e3fa4bafc303c32f52be63833ab33df2f5d",
     "src/native_present.hpp": "c17a60839de06f09c2c5245091a7389c7126a3146019b8477483bc86d03e9158",
     "src/native_present_hooks.cpp": "e659ba490ecea74c75fd50de47f0ea95ad9c32c6c30c6352e2123d7150914701",
@@ -260,7 +273,7 @@
     "src/native_process_time.cpp": "b7025893d91cf6851de180e5c90c34c72a0f6f3977a2a51236f6369615562c59",
     "src/native_process_time.hpp": "610e46d91cf59a3581ef2f001e64975e2002e60f01dd165e7acb2b283abf01f7",
     "src/native_scene_objects.hpp": "cc51bfd8da7dc472c06f8cb6f52ee1a6515dd4f99a5bf5130416f216d54378ac",
-    "src/native_scene_policy.cpp": "15170625b065fcd9d3604173ddcfebecf4d7314b960c36c1f9f71c164038127d",
+    "src/native_scene_policy.cpp": "0e936417ad80fb481d592e2d6c6727d9bbc48f6f44fb7c7f3a8ffd4124985a01",
     "src/native_scene_policy.hpp": "54fbae50b42fbaa5faf12f7cd9bd13aebabdbae495231a615e8c6fd670a3f70c",
     "src/native_script_camera.cpp": "6e78545af75c7a50b2d6994bd54b634c1cf9fbe03a6a0ca42eb5cf0d15d95b69",
     "src/native_script_camera.hpp": "e7bb2e1ba4d036ca2ead349d884daf9a0f857b935d0f3d9359c8cfa12a4d2d94",
@@ -277,1456 +290,58 @@
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f",
     "src/startup_runtime.cpp": "82748ef8ce079755b3a91564cbbb2d5cceab2bb86d8b4bb53805b75f8b6bf5d9",
     "tools/check_decomp_names.py": "bc742b8b16c9a6f24481d2b41a80c268a9a7feee4c2d95e6f1a537d026d1c74c",
-    "tools/check_native_camera_control.py": "33adfe87eb049e081e6be643c9ccf002fab16820d446284f351d2f480d85eb4c",
-    "tools/check_native_camera_modes.py": "ed30501c7710bc934cc7cbd40903b46e6032e2ecab8663cb503bc51b4d7c38e6",
-    "tools/check_native_cutscene.py": "1f450d9f6748a719d90d568d88e14c908c638f5690ff03b89bd3027371c2c103",
-    "tools/check_native_effects.py": "fc4af5f600d2a52bae1e78ef267e00a6ba7216d483e51445255db4ff748c8e9e",
+    "tools/check_native_camera_control.py": "3cfcff8c805fea9efcd12b33330caf49dfd1b54d8e3a56d6b7996a972cede3c0",
+    "tools/check_native_camera_modes.py": "026613abe6ec8fac62a7b6da9e7c92d2c6be3057e6612d0f00915548f23be8b2",
+    "tools/check_native_cutscene.py": "fc100b5bd43f3dcfc4a5729e95b8d839bcc1e97d480cea236a7672d0bc35e812",
+    "tools/check_native_effects.py": "0800c82e8ff5a64e663e52d91709e5315d6d0294f5f8e09b1ed1b6ea2ca9735a",
     "tools/check_native_enemy.py": "1c1351e1b2a0df2b4efff982ec145497d69090131fc65f9c73b74dcdef3b8c22",
-    "tools/check_native_frame_bridge.py": "f8479604fda294249150d2be67788c145396c4747e2da992f8e558f9dfef1e47",
-    "tools/check_native_frame_scheduler.py": "3bb1c46ae7bc07f7588b58e877e2eddb4fa031f5fda7cbfc42ce40c33e426c3f",
-    "tools/check_native_frame_time.py": "8cf2f4889f07dfd1fea7e230ff71e2823972284399da9b3bf806b96437ca955c",
-    "tools/check_native_graphics_pump.py": "9cf450647884b4e7e67a8a56a413cc1c116f9c4dcb601c26b9d67cc68c378a6d",
-    "tools/check_native_gravity.py": "cb94f6dc66955d07a10183a1c6c6fc46477c0ebd1c9c4d9badb2d33e029f8ac6",
-    "tools/check_native_input.py": "4fddb8885f820d6c52e723d135004862205979d4de687aa5e931f49cd8d7a8fc",
-    "tools/check_native_loop.py": "897f28ab53de650edb8f69e67dd76e855aedb608cfb48f474b5e3e5fc91d207e",
-    "tools/check_native_model_animation.py": "3c984442c30366fee7914d628808a6fe03972ae7f046e573847bb7a3c8da6959",
-    "tools/check_native_player_motion.py": "6439369f51080b1d8681c9672d63afb4f5badef3577df1dfa67cc7fc71944c04",
+    "tools/check_native_frame_bridge.py": "d0cbca595e7a3a578ba1352286ecdb65bd39845d506005cafdb6935442798844",
+    "tools/check_native_frame_scheduler.py": "a8757ca8c7953be03d731be3af7659d5f1c6dd84631417e68b71b7068599f77d",
+    "tools/check_native_frame_time.py": "9e357ff69be17a36836dbb799868435038c5dc1a0a061634eb6410144645bf9f",
+    "tools/check_native_graphics_pump.py": "171ec99008e2be029ae6b2acdc00ebd2836f3f042c4b59f886d2e9fc4737203d",
+    "tools/check_native_gravity.py": "9a53fc107c6435931f5f9ffdb676e7487a296d2039e2710b0c468fc6eb6cf7e4",
+    "tools/check_native_input.py": "1291597abe0db3dd1e1b09f3b3a24135fd6ce5deee32ab50f96b35c1e9a44e46",
+    "tools/check_native_loop.py": "ce7a24d29a0530db8068dd97155ef8570814495edf69e0c3b0f9070bf9b13035",
+    "tools/check_native_minigames.py": "84c6531e601bf7759938578e273f023521e1f9a6f3c1078080ce4f4cc734b2fc",
+    "tools/check_native_model_animation.py": "3afc84d1fd93be9a1ea40a1662a72832e4f177a1f2a66db04c6482aaf28bb1df",
+    "tools/check_native_player_motion.py": "0450b10ea9655e0eb8d4af7b16bf95bd273bb40c9333e0f58a24715a2f492999",
     "tools/check_native_player_update.py": "161d424fc7ebeccd32416b8c121c9b04e598086772f35b09b94c562ac211bf18",
     "tools/check_native_player_update_partitions.py": "4189a9e60709fb0a7ff281817b669607cdc13413e44ba77dffd8457faec028cf",
-    "tools/check_native_prebuild.py": "eecaf5cdc085629867e1bc54a9e37f89acd16ea2430ad8dba438f19a47bbda09",
-    "tools/check_native_present.py": "5d09333a20df03814963334eafaea996301f933396c001032c85f0b6068fb69c",
-    "tools/check_native_process_time.py": "e319f0f0db8a432d2ef9fe10923592d2294723dfb078a03817d89cc09a157836",
-    "tools/check_native_scene34_draw.py": "6943a1b2ba9747a01d3d6d6a8ee2a81547ba53ae9044f1dc323fcacfa6ffe2aa",
-    "tools/check_native_scene_objects.py": "4d4659000e29e9007f83402b6f92d77731b0721a5dcd1c958cacecc4143ef9cc",
+    "tools/check_native_prebuild.py": "8266dde4de636094108733592d4be2d2c272202a9baa22c389996835f1e09abb",
+    "tools/check_native_present.py": "81ee4f8a66f3dabff3f53f99c3e4652cd0d32a9415a696f0e6c51f3cff97af25",
+    "tools/check_native_process_time.py": "8d0de137043f3261e1e8864e3b2457bfdc483658d75737cdab92f5bb59adb1b5",
+    "tools/check_native_scene34_draw.py": "da12f8462678d78e5c41bbe3ab3d80437b4c57134d2ead5c36f9181f647af29c",
+    "tools/check_native_scene_objects.py": "1f56140bb426cc4c31ff672c93b571510b980773b25902f3f5b86f77c23e9b73",
     "tools/check_native_scene_transition.py": "03d9ec77a7276de51dccbec69498696162c2e4bf699605d46cf1f528fd35ed87",
-    "tools/check_native_script_camera.py": "301df1d8649f0bcbb0f8ac8d882227f3b2882a2c6c7d57d361c0cb90a098ceac",
-    "tools/check_native_session.py": "2b5655a78f8ab91786cf9f8da3bc5e0a54e38cf25074069262b324de712dfea5",
-    "tools/check_native_simulation.py": "e639240c45ab9eb6cc7218f27fef15e236e48a3f2a8dabd9beb4043cbe0e7827",
+    "tools/check_native_script_camera.py": "7e71500775d55a88f4805ddea1f0c2a5edd1c4532bb87bad0d49e3624a6d1de6",
+    "tools/check_native_session.py": "642e1727ae1a279f8ee3636e98c2729b2980e57690d00591de32c18fc9645d04",
+    "tools/check_native_simulation.py": "71e5d9d48c68ca74b2828feb622a6947f4ac2e911512b2db8263f33e96e2cdd6",
     "tools/check_native_story_pickups.py": "19c87bafcbb2f60a8993df3353c44b50afba089a902f854ebe8d126aa6147b05",
-    "tools/check_native_ui.py": "aee50b1c54a1078bc4a0bb1f945f713c6bb849ae327159dbdaa4f76e04d5a413",
+    "tools/check_native_ui.py": "29e3c2617c0b5b48c47ca4f1bc2e4646f8a7de238b58ce9ac97c05d012ce9f64",
     "tools/check_overlay_load_state.py": "1a4934ececa9e8ab732ad36f4e1189601a59e64a56c86554cca370fec68f8864",
     "tools/decomp_annotations.py": "cc18b42a710a9998b9b33cbfe2c79009451496078b2136cdceb603d047c4b16b",
-    "tools/generate_startup.py": "1c73c4b4fe91b8ced86d98df9dd9425d23a45c119aff61f09f451d218c73a8f0",
+    "tools/generate_startup.py": "65d1bbba590dcac60809575aadfc8455d8ef1225a5b23c4aa7a5816732fc2407",
+    "tools/native_minigame_patches.py": "c9027db03c9d8ee96970ebc30680aadcbcbc4cd97316fbd2fe316fc905dd4678",
     "tools/native_oracle_cache.py": "e551a0b1ee7871f3258426a8e23a09ad0c11cc11de4fc95f88e9a5934de7984c",
-    "tools/native_timing_patches.py": "2abf46f682763169bdcd4fd908147826575dbaf1890292ceada3a7b13b36e2e4",
+    "tools/native_timing_patches.py": "4b015e2e76618cb11d71f671f08faed36287d24c28ec2efee0025aa719fb5829",
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556"
   },
-  "local_execution_manifest_sha256": "0213e34b7dc3f77602fd8e4a8e904b4326f13a5afebf1440b9e991dd1232cb9a",
+  "local_execution_manifest_sha256": "42c7396ac335c58ed06ffd6f97c970ff65304cd0a65e0b0eb3fd986122fd7292",
   "no_game_gpu": true,
   "full_variable_fps_complete": false,
   "user_requested_skip": false,
   "full_cpu_suite_complete": true,
-  "completed_checks": 29,
+  "completed_checks": 30,
   "skipped_checks": [],
   "full_enemy_block_complete": true,
   "full_scene_object_block_complete": true,
+  "full_minigame_block_complete": true,
   "validated": [
-    "All289 selected additional/reviewed world/NPC kinds;292 ROM-qualified variants including ambiguous descriptor banks",
-    "1163 exact frozen/current Source bodies; constructors/contact/parser/SDK/link/retirement with explicit synthetic boundaries",
-    "PASS: scene 3504 frozen/current Original and 10512 Native schedules across all292 ROM variants / 289 kinds; fresh replay=1 kinds/48 cases, retained unchanged=291 kinds; 2880 fresh pool endpoints, 25554 intervals, 25554 zero-dt checks, 32 genuine contacts; 289 scene/NPC kinds including platforms, doors, switches, traps, event actors and effects, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 0=1,2, 1=1,2, 2=1,2,3, 3=1,2,3, 4=1, 5=1, 6=1,2, 7=1,2, 8=1,2,3, 9=1,2,3, 10=1,2, 11=1,2, 12=1,2,3, 13=1, 14=1, 15=1, 16=1, 17=1,2, 18=1,2, 19=1,2, 20=1,2, 21=1,2, 22=1,2, 23=1,2, 24=1,2, 25=1,2, 26=1,2, 27=1,2,3, 28=1,2,3, 29=1,2,3, 30=1,2,3, 31=1,2,3, 32=1,2,3, 33=1,2,3, 34=1,2,3, 35=1,2,3, 36=1,2, 37=2,3, 38=1, 39=1,2, 40=1,2, 41=1,2, 42=1,3, 43=1, 44=1, 45=1,2, 46=1, 47=1, 48=1, 49=1, 50=1, 51=1, 52=1, 53=1, 54=1, 55=1, 56=1, 57=1, 58=1, 59=1, 60=1, 61=1, 62=1, 63=1, 64=1, 65=1, 66=1, 67=1, 68=1, 69=1, 70=1, 71=1, 72=1, 73=1, 74=1, 75=1, 76=1, 77=1, 78=1, 79=1, 80=1, 81=1, 82=1, 83=1, 84=1, 85=1, 86=1, 87=1, 88=1, 89=1, 90=1, 91=1, 92=1, 93=1, 94=1, 95=1, 96=1, 97=1, 98=1, 99=1, 100=1, 101=1, 102=1, 103=1, 104=1, 105=1, 106=1, 107=1, 108=1, 109=1, 110=1, 111=1, 112=1, 113=1, 114=1, 115=1, 116=1, 117=1, 118=1, 119=1, 120=1, 121=1, 122=1, 123=1, 124=1, 125=1, 126=1, 127=1, 128=1, 129=1, 130=1, 131=1, 132=1, 133=1, 134=1, 135=1, 136=1, 137=1, 138=1, 139=1, 140=1, 141=1, 142=1, 143=1, 144=1, 145=1, 146=1, 147=1, 148=1, 149=1, 150=1, 151=1, 152=1, 153=1, 154=1, 155=1, 156=1, 157=1, 158=1, 159=1, 160=1, 161=1, 162=1, 163=1, 164=1, 165=1, 166=1, 167=1, 168=1, 169=1, 170=1, 171=1, 172=1, 173=1, 174=, 175=1, 176=1, 177=1, 178=1, 179=1, 180=1, 181=1, 182=1, 183=1, 184=1, 185=1, 186=1, 187=1, 188=1, 189=1, 190=1, 191=1, 192=1, 193=1, 194=3, 195=3, 196=1, 197=1, 198=1, 199=1, 200=1, 201=1, 202=1, 203=1, 204=1, 205=1, 206=1, 207=1, 208=1, 209=1, 210=1, 211=1, 212=1, 213=1, 214=1, 215=1, 216=1, 217=1, 218=1, 219=1, 220=1, 221=1, 222=1, 223=1, 224=1, 225=1, 226=1, 227=1, 228=1, 229=1, 230=1, 231=1, 232=1, 233=1, 234=1, 235=1, 236=1, 237=1, 238=1, 239=1, 240=1, 241=1, 242=1, 243=1, 244=1, 245=1, 246=1, 247=1, 248=1, 249=1, 250=1, 251=1, 252=1, 253=1, 254=1, 255=1, 256=1, 257=1, 258=1, 259=1, 260=1, 261=1, 262=1, 263=1, 264=1, 265=1, 266=1, 267=1,10, 268=1, 269=1, 270=1, 271=1, 272=1, 273=1, 274=1, 275=1, 276=1, 277=1, 278=1, 279=1, 280=1, 281=1, 282=1, 283=1, 284=2, 285=1, 286=1, 287=1, 288=1, 289=1, 290=1, 291=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
-    "Source-order parent paths and lifetime guards; player door increments preserve concurrent motion; waits/RNG/story/contacts/spawns remain Source commands",
-    "PASS: enemy 2616 frozen/current Original and 7848 Native schedules across all218 kinds; fresh replay=218 kinds/10464 cases, retained unchanged=0 kinds; 627840 fresh pool endpoints, 5570772 intervals, 5570772 zero-dt checks, 6464 genuine contacts; 218 kinds including all135 ordinary/all79 bosses and4 outbound owners, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 257=1, 258=1, 259=1, 264=1, 265=1, 266=2, 267=2,3, 268=1, 269=2, 270=2, 271=1,2, 272=2, 273=1, 274=2, 275=2,3, 276=1,10, 277=2, 278=1, 279=1,2,4, 280=1, 281=1,2,3,4, 282=1,2,3,5, 283=1,2,3,4, 284=1,2, 285=1, 286=1, 287=1,3, 288=2, 289=2,3,4, 290=1,2, 291=1,2, 292=1, 293=2,3, 294=1, 295=2,3, 296=1, 297=2,3, 298=2,3, 299=1,10, 300=2, 301=1, 302=1, 303=1, 304=1, 305=1, 306=1, 307=1, 308=1,2,3, 309=1,2,3, 310=1,2,3, 311=1, 312=2,3, 313=2, 314=2,3, 315=1,10, 316=1,10, 317=1, 318=1, 319=1,2, 320=1,2, 321=2, 322=1, 323=1, 324=1, 325=1, 326=2, 327=2, 328=1,10, 329=1, 330=2, 331=2, 332=2,3, 333=1,10, 334=2, 335=1,10, 336=2, 337=1,2,3, 338=1, 339=2, 340=1,10, 341=1,2,3, 342=1,2, 343=1,2, 344=1,2, 345=1, 346=3, 347=1,3,4,5, 348=1,2, 349=1, 350=1,3,10, 351=1,2, 352=1,10, 353=1, 354=1, 355=1, 356=1, 357=1, 358=1, 359=1,2,3, 360=2, 361=1, 362=3, 363=1,10, 364=2,3, 365=2,3, 366=2,3, 367=1, 368=1,3,4, 369=1, 370=1, 371=1,2, 372=1, 373=1,2, 374=1, 375=1, 376=1, 377=1,2, 378=1,2, 379=1, 380=1, 381=1, 382=1, 383=1, 384=1, 385=1, 386=1, 387=1,2, 388=2,4, 389=2, 390=3,4, 391=1, 392=1, 393=1, 394=1, 395=2, 396=1, 397=1,10, 398=1, 399=1,2,4, 400=1, 401=1,2, 402=1, 403=1,2, 404=1, 405=1, 406=1, 407=1, 408=1, 409=1, 410=4, 411=1, 412=1, 413=1, 414=1,10, 415=1,10, 416=1, 417=1, 418=1,10, 419=1, 420=1, 421=10, 422=1, 423=1,2,3, 424=1, 425=1, 426=1, 427=1, 428=1,3, 429=1,10, 430=1,10, 431=1, 432=1, 433=1, 434=1, 435=2, 436=1, 437=1, 438=1,10, 439=1, 440=1, 441=1, 442=1, 443=1,10, 444=1, 445=1, 446=1, 447=1, 448=1, 449=1, 450=1,10, 451=1,2, 452=1, 453=1, 454=1,2,4, 455=1, 456=1, 457=1,2,3,4, 458=1,10, 459=1,10, 460=1,2,3,4, 461=1,2,3,4, 462=1,2,3,4,10, 463=1, 464=1, 465=10, 466=1, 467=1,3,4, 468=1, 469=1, 470=1,2,3,4, 471=1,2,3,4, 472=1,3, 473=1, 474=1, 475=1, 476=1, 477=1, 478=1, rabbit landing transitions=24 ground hits=24 stable ground=1776 fractional samples=51108",
-    "Full player/world/NPC/weapon/damage/death/recovery connections;all24 settings,six Manual rates",
-    "UI/cutscene/cameras/model/input/time/effects/gravity/FIFO/frame/session/overlay,scene transitions and pickup links",
-    "Semantic function aliases/scoped variable names: exact canonical C,ABI,ROM identity and generated-document validation"
+    "PASS: all9 minigame modules and3 common callback pairs; 138 Source/Native cases, 946 fractional slices;20/30Hz and Manual60/73/120/144/165/360; command-once, linked Euler motion, contact impulses, angle wrapping, model/draw input ownership and exact restoration; synthetic resources, no game/GPU",
+    "695 frozen044/current Original minigame instruction streams;12 exact ROM-qualified update/draw pairs",
+    "Complete connected player/world/objects/enemy/weapon/input/camera/UI/model/effects/frame/session/transition suite",
+    "Command-once and exact Source restoration, actor/driver/model ownership, shared draw transforms and result pulses"
   ],
-  "scene_retained_scope_provenance": {
-    "retained_variants": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26,
-      27,
-      28,
-      29,
-      30,
-      31,
-      32,
-      33,
-      34,
-      35,
-      36,
-      37,
-      38,
-      39,
-      40,
-      41,
-      42,
-      43,
-      44,
-      46,
-      47,
-      48,
-      49,
-      50,
-      51,
-      52,
-      53,
-      54,
-      55,
-      56,
-      57,
-      58,
-      59,
-      60,
-      61,
-      62,
-      63,
-      64,
-      65,
-      66,
-      67,
-      68,
-      69,
-      70,
-      71,
-      72,
-      73,
-      74,
-      75,
-      76,
-      77,
-      78,
-      79,
-      80,
-      81,
-      82,
-      83,
-      84,
-      85,
-      86,
-      87,
-      88,
-      89,
-      90,
-      91,
-      92,
-      93,
-      94,
-      95,
-      96,
-      97,
-      98,
-      99,
-      100,
-      101,
-      102,
-      103,
-      104,
-      105,
-      106,
-      107,
-      108,
-      109,
-      110,
-      111,
-      112,
-      113,
-      114,
-      115,
-      116,
-      117,
-      118,
-      119,
-      120,
-      121,
-      122,
-      123,
-      124,
-      125,
-      126,
-      127,
-      128,
-      129,
-      130,
-      131,
-      132,
-      133,
-      134,
-      135,
-      136,
-      137,
-      138,
-      139,
-      140,
-      141,
-      142,
-      143,
-      144,
-      145,
-      146,
-      147,
-      148,
-      149,
-      150,
-      151,
-      152,
-      153,
-      154,
-      155,
-      156,
-      157,
-      158,
-      159,
-      160,
-      161,
-      162,
-      163,
-      164,
-      165,
-      166,
-      167,
-      168,
-      169,
-      170,
-      171,
-      172,
-      173,
-      174,
-      175,
-      176,
-      177,
-      178,
-      179,
-      180,
-      181,
-      182,
-      183,
-      184,
-      185,
-      186,
-      187,
-      188,
-      189,
-      190,
-      191,
-      192,
-      193,
-      194,
-      195,
-      196,
-      197,
-      198,
-      199,
-      200,
-      201,
-      202,
-      203,
-      204,
-      205,
-      206,
-      207,
-      208,
-      209,
-      210,
-      211,
-      212,
-      213,
-      214,
-      215,
-      216,
-      217,
-      218,
-      219,
-      220,
-      221,
-      222,
-      223,
-      224,
-      225,
-      226,
-      227,
-      228,
-      229,
-      230,
-      231,
-      232,
-      233,
-      234,
-      235,
-      236,
-      237,
-      238,
-      239,
-      240,
-      241,
-      242,
-      243,
-      244,
-      245,
-      246,
-      247,
-      248,
-      249,
-      250,
-      251,
-      252,
-      253,
-      254,
-      255,
-      256,
-      257,
-      258,
-      259,
-      260,
-      261,
-      262,
-      263,
-      264,
-      265,
-      266,
-      267,
-      268,
-      269,
-      270,
-      271,
-      272,
-      273,
-      274,
-      275,
-      276,
-      277,
-      278,
-      279,
-      280,
-      281,
-      282,
-      283,
-      284,
-      285,
-      286,
-      287,
-      288,
-      289,
-      290,
-      291
-    ],
-    "retained_states": {
-      "0": [
-        1,
-        2
-      ],
-      "1": [
-        1,
-        2
-      ],
-      "2": [
-        1,
-        2,
-        3
-      ],
-      "3": [
-        1,
-        2,
-        3
-      ],
-      "4": [
-        1
-      ],
-      "5": [
-        1
-      ],
-      "6": [
-        1,
-        2
-      ],
-      "7": [
-        1,
-        2
-      ],
-      "8": [
-        1,
-        2,
-        3
-      ],
-      "9": [
-        1,
-        2,
-        3
-      ],
-      "10": [
-        1,
-        2
-      ],
-      "11": [
-        1,
-        2
-      ],
-      "12": [
-        1,
-        2,
-        3
-      ],
-      "13": [
-        1
-      ],
-      "14": [
-        1
-      ],
-      "15": [
-        1
-      ],
-      "16": [
-        1
-      ],
-      "17": [
-        1,
-        2
-      ],
-      "18": [
-        1,
-        2
-      ],
-      "19": [
-        1,
-        2
-      ],
-      "20": [
-        1,
-        2
-      ],
-      "21": [
-        1,
-        2
-      ],
-      "22": [
-        1,
-        2
-      ],
-      "23": [
-        1,
-        2
-      ],
-      "24": [
-        1,
-        2
-      ],
-      "25": [
-        1,
-        2
-      ],
-      "26": [
-        1,
-        2
-      ],
-      "27": [
-        1,
-        2,
-        3
-      ],
-      "28": [
-        1,
-        2,
-        3
-      ],
-      "29": [
-        1,
-        2,
-        3
-      ],
-      "30": [
-        1,
-        2,
-        3
-      ],
-      "31": [
-        1,
-        2,
-        3
-      ],
-      "32": [
-        1,
-        2,
-        3
-      ],
-      "33": [
-        1,
-        2,
-        3
-      ],
-      "34": [
-        1,
-        2,
-        3
-      ],
-      "35": [
-        1,
-        2,
-        3
-      ],
-      "36": [
-        1,
-        2
-      ],
-      "37": [
-        2,
-        3
-      ],
-      "38": [
-        1
-      ],
-      "39": [
-        1,
-        2
-      ],
-      "40": [
-        1,
-        2
-      ],
-      "41": [
-        1,
-        2
-      ],
-      "42": [
-        1,
-        3
-      ],
-      "43": [
-        1
-      ],
-      "44": [
-        1
-      ],
-      "46": [
-        1
-      ],
-      "47": [
-        1
-      ],
-      "48": [
-        1
-      ],
-      "49": [
-        1
-      ],
-      "50": [
-        1
-      ],
-      "51": [
-        1
-      ],
-      "52": [
-        1
-      ],
-      "53": [
-        1
-      ],
-      "54": [
-        1
-      ],
-      "55": [
-        1
-      ],
-      "56": [
-        1
-      ],
-      "57": [
-        1
-      ],
-      "58": [
-        1
-      ],
-      "59": [
-        1
-      ],
-      "60": [
-        1
-      ],
-      "61": [
-        1
-      ],
-      "62": [
-        1
-      ],
-      "63": [
-        1
-      ],
-      "64": [
-        1
-      ],
-      "65": [
-        1
-      ],
-      "66": [
-        1
-      ],
-      "67": [
-        1
-      ],
-      "68": [
-        1
-      ],
-      "69": [
-        1
-      ],
-      "70": [
-        1
-      ],
-      "71": [
-        1
-      ],
-      "72": [
-        1
-      ],
-      "73": [
-        1
-      ],
-      "74": [
-        1
-      ],
-      "75": [
-        1
-      ],
-      "76": [
-        1
-      ],
-      "77": [
-        1
-      ],
-      "78": [
-        1
-      ],
-      "79": [
-        1
-      ],
-      "80": [
-        1
-      ],
-      "81": [
-        1
-      ],
-      "82": [
-        1
-      ],
-      "83": [
-        1
-      ],
-      "84": [
-        1
-      ],
-      "85": [
-        1
-      ],
-      "86": [
-        1
-      ],
-      "87": [
-        1
-      ],
-      "88": [
-        1
-      ],
-      "89": [
-        1
-      ],
-      "90": [
-        1
-      ],
-      "91": [
-        1
-      ],
-      "92": [
-        1
-      ],
-      "93": [
-        1
-      ],
-      "94": [
-        1
-      ],
-      "95": [
-        1
-      ],
-      "96": [
-        1
-      ],
-      "97": [
-        1
-      ],
-      "98": [
-        1
-      ],
-      "99": [
-        1
-      ],
-      "100": [
-        1
-      ],
-      "101": [
-        1
-      ],
-      "102": [
-        1
-      ],
-      "103": [
-        1
-      ],
-      "104": [
-        1
-      ],
-      "105": [
-        1
-      ],
-      "106": [
-        1
-      ],
-      "107": [
-        1
-      ],
-      "108": [
-        1
-      ],
-      "109": [
-        1
-      ],
-      "110": [
-        1
-      ],
-      "111": [
-        1
-      ],
-      "112": [
-        1
-      ],
-      "113": [
-        1
-      ],
-      "114": [
-        1
-      ],
-      "115": [
-        1
-      ],
-      "116": [
-        1
-      ],
-      "117": [
-        1
-      ],
-      "118": [
-        1
-      ],
-      "119": [
-        1
-      ],
-      "120": [
-        1
-      ],
-      "121": [
-        1
-      ],
-      "122": [
-        1
-      ],
-      "123": [
-        1
-      ],
-      "124": [
-        1
-      ],
-      "125": [
-        1
-      ],
-      "126": [
-        1
-      ],
-      "127": [
-        1
-      ],
-      "128": [
-        1
-      ],
-      "129": [
-        1
-      ],
-      "130": [
-        1
-      ],
-      "131": [
-        1
-      ],
-      "132": [
-        1
-      ],
-      "133": [
-        1
-      ],
-      "134": [
-        1
-      ],
-      "135": [
-        1
-      ],
-      "136": [
-        1
-      ],
-      "137": [
-        1
-      ],
-      "138": [
-        1
-      ],
-      "139": [
-        1
-      ],
-      "140": [
-        1
-      ],
-      "141": [
-        1
-      ],
-      "142": [
-        1
-      ],
-      "143": [
-        1
-      ],
-      "144": [
-        1
-      ],
-      "145": [
-        1
-      ],
-      "146": [
-        1
-      ],
-      "147": [
-        1
-      ],
-      "148": [
-        1
-      ],
-      "149": [
-        1
-      ],
-      "150": [
-        1
-      ],
-      "151": [
-        1
-      ],
-      "152": [
-        1
-      ],
-      "153": [
-        1
-      ],
-      "154": [
-        1
-      ],
-      "155": [
-        1
-      ],
-      "156": [
-        1
-      ],
-      "157": [
-        1
-      ],
-      "158": [
-        1
-      ],
-      "159": [
-        1
-      ],
-      "160": [
-        1
-      ],
-      "161": [
-        1
-      ],
-      "162": [
-        1
-      ],
-      "163": [
-        1
-      ],
-      "164": [
-        1
-      ],
-      "165": [
-        1
-      ],
-      "166": [
-        1
-      ],
-      "167": [
-        1
-      ],
-      "168": [
-        1
-      ],
-      "169": [
-        1
-      ],
-      "170": [
-        1
-      ],
-      "171": [
-        1
-      ],
-      "172": [
-        1
-      ],
-      "173": [
-        1
-      ],
-      "174": [],
-      "175": [
-        1
-      ],
-      "176": [
-        1
-      ],
-      "177": [
-        1
-      ],
-      "178": [
-        1
-      ],
-      "179": [
-        1
-      ],
-      "180": [
-        1
-      ],
-      "181": [
-        1
-      ],
-      "182": [
-        1
-      ],
-      "183": [
-        1
-      ],
-      "184": [
-        1
-      ],
-      "185": [
-        1
-      ],
-      "186": [
-        1
-      ],
-      "187": [
-        1
-      ],
-      "188": [
-        1
-      ],
-      "189": [
-        1
-      ],
-      "190": [
-        1
-      ],
-      "191": [
-        1
-      ],
-      "192": [
-        1
-      ],
-      "193": [
-        1
-      ],
-      "194": [
-        3
-      ],
-      "195": [
-        3
-      ],
-      "196": [
-        1
-      ],
-      "197": [
-        1
-      ],
-      "198": [
-        1
-      ],
-      "199": [
-        1
-      ],
-      "200": [
-        1
-      ],
-      "201": [
-        1
-      ],
-      "202": [
-        1
-      ],
-      "203": [
-        1
-      ],
-      "204": [
-        1
-      ],
-      "205": [
-        1
-      ],
-      "206": [
-        1
-      ],
-      "207": [
-        1
-      ],
-      "208": [
-        1
-      ],
-      "209": [
-        1
-      ],
-      "210": [
-        1
-      ],
-      "211": [
-        1
-      ],
-      "212": [
-        1
-      ],
-      "213": [
-        1
-      ],
-      "214": [
-        1
-      ],
-      "215": [
-        1
-      ],
-      "216": [
-        1
-      ],
-      "217": [
-        1
-      ],
-      "218": [
-        1
-      ],
-      "219": [
-        1
-      ],
-      "220": [
-        1
-      ],
-      "221": [
-        1
-      ],
-      "222": [
-        1
-      ],
-      "223": [
-        1
-      ],
-      "224": [
-        1
-      ],
-      "225": [
-        1
-      ],
-      "226": [
-        1
-      ],
-      "227": [
-        1
-      ],
-      "228": [
-        1
-      ],
-      "229": [
-        1
-      ],
-      "230": [
-        1
-      ],
-      "231": [
-        1
-      ],
-      "232": [
-        1
-      ],
-      "233": [
-        1
-      ],
-      "234": [
-        1
-      ],
-      "235": [
-        1
-      ],
-      "236": [
-        1
-      ],
-      "237": [
-        1
-      ],
-      "238": [
-        1
-      ],
-      "239": [
-        1
-      ],
-      "240": [
-        1
-      ],
-      "241": [
-        1
-      ],
-      "242": [
-        1
-      ],
-      "243": [
-        1
-      ],
-      "244": [
-        1
-      ],
-      "245": [
-        1
-      ],
-      "246": [
-        1
-      ],
-      "247": [
-        1
-      ],
-      "248": [
-        1
-      ],
-      "249": [
-        1
-      ],
-      "250": [
-        1
-      ],
-      "251": [
-        1
-      ],
-      "252": [
-        1
-      ],
-      "253": [
-        1
-      ],
-      "254": [
-        1
-      ],
-      "255": [
-        1
-      ],
-      "256": [
-        1
-      ],
-      "257": [
-        1
-      ],
-      "258": [
-        1
-      ],
-      "259": [
-        1
-      ],
-      "260": [
-        1
-      ],
-      "261": [
-        1
-      ],
-      "262": [
-        1
-      ],
-      "263": [
-        1
-      ],
-      "264": [
-        1
-      ],
-      "265": [
-        1
-      ],
-      "266": [
-        1
-      ],
-      "267": [
-        1,
-        10
-      ],
-      "268": [
-        1
-      ],
-      "269": [
-        1
-      ],
-      "270": [
-        1
-      ],
-      "271": [
-        1
-      ],
-      "272": [
-        1
-      ],
-      "273": [
-        1
-      ],
-      "274": [
-        1
-      ],
-      "275": [
-        1
-      ],
-      "276": [
-        1
-      ],
-      "277": [
-        1
-      ],
-      "278": [
-        1
-      ],
-      "279": [
-        1
-      ],
-      "280": [
-        1
-      ],
-      "281": [
-        1
-      ],
-      "282": [
-        1
-      ],
-      "283": [
-        1
-      ],
-      "284": [
-        2
-      ],
-      "285": [
-        1
-      ],
-      "286": [
-        1
-      ],
-      "287": [
-        1
-      ],
-      "288": [
-        1
-      ],
-      "289": [
-        1
-      ],
-      "290": [
-        1
-      ],
-      "291": [
-        1
-      ]
-    },
-    "old_fixture": "build-local/native-scene-object-check/replay-1791183425813031452/fixture-before-foreign-motion-counter.inc",
-    "old_fixture_sha256": "64fd00e1495896e80be85e12a959b96d698fd991bbac14459164bfa64a1978c8",
-    "old_line": "                        const auto saved=c;const auto position=MEM_W(0x9C,int32_t(target_actor)),yaw=MEM_W(0x10,int32_t(target_actor));input_now=stamp;",
-    "new_line": "                        const auto saved=c;const auto position=MEM_W(0x9C,int32_t(target_actor)),yaw=MEM_W(0x10,int32_t(target_actor));input_now=stamp;\n                        std::array<int32_t,4> foreign_before{};\n                        if(definition.kind==109)foreign_before={MEM_W(0x9C,int32_t(player)),MEM_W(0xA0,int32_t(player)),MEM_W(0xA4,int32_t(player)),MEM_W(0x10,int32_t(player))};",
-    "fixture_edits": [
-      {
-        "old": "                        if(MEM_W(0x94,int32_t(target_actor))&&(MEM_W(0x9C,int32_t(target_actor))!=position||MEM_W(0x10,int32_t(target_actor))!=yaw))++moving_samples;",
-        "new": "                        if(MEM_W(0x94,int32_t(target_actor))&&(MEM_W(0x9C,int32_t(target_actor))!=position||MEM_W(0x10,int32_t(target_actor))!=yaw))++moving_samples;\n                        // Door109 moves the player, not the door actor. Its\n                        // strict foreign-player snapshot is compared above;\n                        // count that genuine movement in the replay metric.\n                        if(definition.kind==109&&foreign_before!=std::array<int32_t,4>{MEM_W(0x9C,int32_t(player)),MEM_W(0xA0,int32_t(player)),MEM_W(0xA4,int32_t(player)),MEM_W(0x10,int32_t(player))})++moving_samples;"
-      }
-    ],
-    "unchanged_compiled_dependencies_sha256": {
-      "/home/vova/projects/DoraRecomp3/src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
-      "/home/vova/projects/DoraRecomp3/src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-      "/home/vova/projects/DoraRecomp3/build-deps/lib/N64ModernRuntime/N64Recomp/include/recomp.h": "190dd64184df17e3f24a78b761cda8bbfe639f9106d0d98ecc760ee84fe0616a",
-      "/home/vova/projects/DoraRecomp3/src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
-      "/home/vova/projects/DoraRecomp3/src/native_frame_bridge.hpp": "a405469b02b662d7ad973c5475f05465defe0d346b7add98717e9393794fe545",
-      "/home/vova/projects/DoraRecomp3/src/native_frame_scheduler.hpp": "ae108bfcf8c9bbd628f648a8781afd1a9a5ab8668aa676212a60ebf88329bfde",
-      "/home/vova/projects/DoraRecomp3/src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
-      "/home/vova/projects/DoraRecomp3/src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
-      "/home/vova/projects/DoraRecomp3/src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-      "/home/vova/projects/DoraRecomp3/src/native_gameplay_preview.cpp": "e25b8e14cc5cfbb92e5bfff7fd0d27532eaf6a11ef532a12c4988bd2aa38657a",
-      "/home/vova/projects/DoraRecomp3/src/native_gameplay_preview.hpp": "0ca9756c9bcf1ccef41d8a033643b2b07efc6046f63317e75770754500763224",
-      "/home/vova/projects/DoraRecomp3/src/native_enemy.hpp": "0f963a7886c55e3c19ce07202a53932dd194d67d11100297edd3ac9530b7147e",
-      "/home/vova/projects/DoraRecomp3/src/native_scene_objects.hpp": "cc51bfd8da7dc472c06f8cb6f52ee1a6515dd4f99a5bf5130416f216d54378ac",
-      "/home/vova/projects/DoraRecomp3/src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
-      "/home/vova/projects/DoraRecomp3/src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
-      "/home/vova/projects/DoraRecomp3/src/native_model_animation.hpp": "b492ff635927095a58f311588fb7e0cd139e7cb7b286bb1c073d40598bbc74b6",
-      "/home/vova/projects/DoraRecomp3/src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
-      "/home/vova/projects/DoraRecomp3/src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-      "/home/vova/projects/DoraRecomp3/src/native_model_animation.cpp": "913de72cc75acb46ece90e9fc9c668f279e5ada81bf41192866624b639b6a1d7",
-      "/home/vova/projects/DoraRecomp3/research/native-story-pickup-source-check.cpp": "9b2363e882821187c9b16f3bb92a7629e344383c486f64bf99bcfc35074016ac",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/player-update-functions.h": "e1939ddd12fe9c1b5361c89704a252cdafa64d5b2ddc571e92bf9d47ea1024c3",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/player-fixture.hpp": "3227f1b961743574b36fac62ea5b5e7e79697ad9e6807b0cacc725ae2073b5ec",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/enemy-fixture-data.hpp": "936555725988858f0bc3e8d1e9e2b7e72b159b10e7808a0cd544a7fda2fdb333",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/player-update-dispatch.hpp": "3a53bdaa52ea99ad5b96e095c9412816ae3de8ccea2d1fcf2a3535643afc51b7",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/terminal-effect-dispatch.hpp": "0467f7acad40c01711b8dd98774fcca459c3439a3fb8d820bccbaa1bbd57c388",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/flight-dispatch.hpp": "e880dd0358895d93ef6d949063e64def53aff843cb0e4fddbf6cf59b769edf05",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/growth-dispatch.hpp": "293ef721b43fe5b463bb3c6a0b7e79f1162569b6f43124a49702946dcf71da3f",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/ballistic-dispatch.hpp": "90ec5333df4cdfbfc873d2044ab9d00f6e290f64569804c2a340e7cc03c4bc21",
-      "/home/vova/projects/DoraRecomp3/research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/slot09-overlay-fixture.hpp": "ddabcac8b2642984d81ff2b6f9980568f0b0000b41303abada160043fe408e86",
-      "/home/vova/projects/DoraRecomp3/research/native-flash-delay-check.inc": "649388f0cd651ca4a367a9f21e7cd23ba3bbd0b908a4d95c76a2f292c015650b",
-      "/home/vova/projects/DoraRecomp3/research/native-flash-motion-check.inc": "da708e4b650d6d3a6f2c97414654cfc5f9df0c5aad2334a15ab5b86746d40c76",
-      "/home/vova/projects/DoraRecomp3/research/native-flash-pool-check.inc": "654c6474c0a39c2b15f3c21ab7ecbd1b92b1a0c3d281e70243bbb858549134fd",
-      "/home/vova/projects/DoraRecomp3/research/native-periodic-effect-source-check.inc": "c28c1e7c4d4189249c28c227f9fc1458419d817a82a18ecf4920536d7a6b7940",
-      "/home/vova/projects/DoraRecomp3/research/native-periodic-effect-guard-check.inc": "0ae0fecd289d36d36297e71046fb57d5b90ac5f870ab24e3c85af16fa1998795",
-      "/home/vova/projects/DoraRecomp3/research/native-periodic-producer-check.inc": "c778c8103d470d0c7123d2b85eeaa4e099f50d04285f4af42eaa53665cdd8f61",
-      "/home/vova/projects/DoraRecomp3/research/native-periodic-producer-guard-check.inc": "aec8a15c0bdfb7cca6440351c559f119ad6861765f143bb10213a6bb5e5c14dd",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-uncollected-source-check.inc": "dc4c0b063c04a78de3fce3ffa0e588bbd5d06f9f86fbb04fba9b5d5e73da269e",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-spin-guard-check.inc": "3b7be439fe8104f84b6b6c372b86c2792b2f5f50c68fbd508f090ecdbe1af03c",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-arc-guard-check.inc": "e75d344b73021004ce226d89f2a26f8b204d399de82bce71941214698caf8aa7",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-reveal-source-check.inc": "b0696c935d3e578b2c5bc7556713add98b8830bef522e803d1bf9783087a51a3",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-settle-scatter-source-check.inc": "36197e05fb4b432d848cbd876589e927ed9355f4c35f4c3a04a6ecfd29bee2dc",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-moving-idle-source-check.inc": "454aabc4cb37a5e74c5ab199b6c83519eb0ec65e0dee727a91a4f78ba35150af",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-linked-basic-check.inc": "aa86d37a231fe751c0289223b75851329a18d0525af503f9a5c8f1d65e10128b",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-linked-guard-check.inc": "c923b27d73b0f6c80de4f29c59056123dbff9a5c60a1878458ab0a26396c098b",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-parent-source-check.inc": "d56d802284e293f88954600696fa821696ea3cb154ee5737a824e7c2bed5e2d1",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-settle-guard-check.inc": "cfa8f2ecd197c67efb0ae4d0e03583b9f6a57b1cbe4c3d790c464340b8d827d1",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-scatter-guard-check.inc": "37bc031d4cc2c85b25dba6313fd9e0ef355ee036df63e8278280beda03382cbb",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-scatter-geometry-check.inc": "6fca5eae3382a919049f2a26a41146d689139059253e29a1ba579e78988b5ef2",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-reveal-guard-check.inc": "4260f9e395701c21f6e897c9ede24ad9aa0db094374259596bd6247b2777d43d",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/boundaries.cpp": "321ac92d9b6e6520c723b40676d9504171074bf5ac56df15e2104930110b0324",
-      "/home/vova/projects/DoraRecomp3/src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
-      "/home/vova/projects/DoraRecomp3/src/native_cutscene.hpp": "d7c9362cc9c4f70191ebb7bad1c9ded08ea478811c477e269fc9bae630e1c1e4",
-      "/home/vova/projects/DoraRecomp3/research/native-gameplay-cutscene-fixture.cpp": "50ab2ef307407c5306de004401f8048a4e4a487fb1de023578b54a888bb4373d",
-      "/home/vova/projects/DoraRecomp3/src/native_enemy.cpp": "aac71b3e4be7b62a53e94c749fd89b0a86d1ac83f251734c2dfa409e344352f1",
-      "/home/vova/projects/DoraRecomp3/src/native_enemy_projection_math.hpp": "b9a243b6898ed1e4ecdffe6fb43d64eb12ffe214d8812dfc94cf17e98de1ae7a",
-      "/home/vova/projects/DoraRecomp3/src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2"
-    },
-    "generic_parser_variants": [
-      45
-    ],
-    "input_equivalence": [
-      {
-        "path": "/home/vova/projects/DoraRecomp3/src/native_enemy.cpp",
-        "old_sha256": "1449e57a7a21b7df8ab137e10f317936dc484e9cd8b520583cf20eeb9986f38a",
-        "new_sha256": "aac71b3e4be7b62a53e94c749fd89b0a86d1ac83f251734c2dfa409e344352f1",
-        "old_file": "build-local/native-scene-object-check/replay-1791177853251950884/native-enemy-before-signed-offset.cpp",
-        "edits": [
-          {
-            "old": "value.base=takeoff?0:double(MEM_H(0xBE + 2*axis,int32_t(physical)));",
-            "new": "value.base=takeoff?0:double(MEM_H(int32_t(0xBE + 2*axis),int32_t(physical)));"
-          }
-        ],
-        "affected_variants": [
-          15,
-          16,
-          17
-        ],
-        "evidence": "Only signed integer displacement in Fly/Fuyuu scene_equation branch changed;Source 80231080/10C0/1168/1974 and ROM1456C0. Retained completed variants exclude44/45/46."
-      },
-      {
-        "path": "/home/vova/projects/DoraRecomp3/research/native-story-pickup-source-check.cpp",
-        "old_sha256": "527e437c17db57da7fb2ed5b7da9ef9cc3182d77c7ff991aefc957afa6b648e8",
-        "new_sha256": "9b2363e882821187c9b16f3bb92a7629e344383c486f64bf99bcfc35074016ac",
-        "old_file": "build-local/native-scene-object-check/replay-1791179285325014349/story-before-slime-dispatch.cpp",
-        "edits": [
-          {
-            "old": "        if(auto* function=enemy_fixture_lookup(enemy_fixture_rom,uint32_t(address),enemy_fixture_reference))return function;",
-            "new": "#ifdef DORA3_SCENE_OBJECT_CHECK\n        // Slime NPCs produce the already ported common WrapSlime6 actor.\n        // Its real baseline Source callback is compiled in this fixture.\n        if(uint32_t(address)==0x801EB864u&&\n           (enemy_fixture_kind==33||enemy_fixture_kind==34||enemy_fixture_kind==42||enemy_fixture_kind==43))\n            return dora3_s3_core_801EB864;\n#endif\n        if(auto* function=enemy_fixture_lookup(enemy_fixture_rom,uint32_t(address),enemy_fixture_reference))return function;"
-          }
-        ],
-        "affected_variants": [
-          4,
-          5,
-          13,
-          14
-        ],
-        "evidence": "Only Scene fixture dispatch for Slime NPC producers33/34/42/43 and exact common callback EB864 changes;all retained completed variants exclude those kinds."
-      },
-      {
-        "path": "/home/vova/projects/DoraRecomp3/src/native_gameplay_preview.cpp",
-        "old_sha256": "4157e486bda4090b872c1a4b37d689b73a87f255b3f13198998db0bbd704ff4b",
-        "new_sha256": "e25b8e14cc5cfbb92e5bfff7fd0d27532eaf6a11ef532a12c4988bd2aa38657a",
-        "old_file": "build-local/native-scene-object-check/replay-1791182763827806130/preview-before-door-fade.cpp",
-        "edits": [
-          {
-            "old": "static bool native_gameplay_preview_conditions(uint8_t*,bool);",
-            "new": "static bool native_gameplay_preview_conditions(uint8_t*,bool,bool=false);"
-          },
-          {
-            "old": "std::optional<SceneCompletionSlice> scene_completion_slice;",
-            "new": "std::optional<SceneCompletionSlice> scene_completion_slice;\n// Door109's real B8ED0 command sets D494=16. BB080 keeps its common\n// world pool running during that fade, but skips player C8B28. Retain\n// only a fade actually entered by this Native door lifetime/epoch.\nstruct DoorFadeOwner {uint32_t actor,physical,model;uint64_t lifetime,epoch;};\nstd::optional<DoorFadeOwner> door_fade_owner;"
-          },
-          {
-            "old": "bool live(uint8_t* ram) {",
-            "new": "bool door_fade_active(uint8_t* rdram) {\n    if(!rdram||!timeline||word(rdram,0x8021D494)!=16)return false;\n    const auto valid=[&](const DoorFadeOwner& v) {\n        return v.epoch==epoch&&native_scene_object_owned(rdram,v.actor)&&\n            uint32_t(word(rdram,v.actor+0x98))==v.physical&&\n            uint32_t(word(rdram,v.actor+0x74))==v.model&&\n            game_model_animation().lifetime_token(v.model)==v.lifetime&&\n            MEM_H(0x20,int32_t(v.physical))==109&&word(rdram,v.actor+0x94)==2&&\n            MEM_BU(0x28,int32_t(v.physical))==1;\n    };\n    if(door_fade_owner&&valid(*door_fade_owner))return true;\n    door_fade_owner.reset();\n    if(!object_call||!active_simulation_slice())return false;\n    const uint32_t actor=uint32_t(word(rdram,0x8021BDEC));\n    if(!native_scene_object_owned(rdram,actor))return false;\n    const uint32_t physical=uint32_t(word(rdram,actor+0x98)),model=uint32_t(word(rdram,actor+0x74));\n    DoorFadeOwner owner{actor,physical,model,game_model_animation().lifetime_token(model),epoch};\n    if(!valid(owner))return false;\n    door_fade_owner=owner;return true;\n}\nbool live(uint8_t* ram) {"
-          },
-          {
-            "old": "static bool native_gameplay_preview_conditions(uint8_t* rdram,bool allow_room_request) {",
-            "new": "static bool native_gameplay_preview_conditions(uint8_t* rdram,bool allow_room_request,bool allow_door_fade) {"
-          },
-          {
-            "old": "if(word(rdram,0x8021D484)!=0||word(rdram,0x8021D494)!=0||word(rdram,0x80218AD8)!=0||",
-            "new": "if(word(rdram,0x8021D484)!=0||(word(rdram,0x8021D494)!=0&&!(allow_door_fade&&word(rdram,0x8021D494)==16))||word(rdram,0x80218AD8)!=0||"
-          },
-          {
-            "old": "bool native_gameplay_preview_eligible(uint8_t* ram) {return native_gameplay_preview_conditions(ram,false);}",
-            "new": "bool native_gameplay_preview_eligible(uint8_t* ram) {\n    return native_gameplay_preview_conditions(ram,false)||\n        (door_fade_active(ram)&&native_gameplay_preview_conditions(ram,false,true));\n}"
-          },
-          {
-            "old": "    slot09_decision_periods={};slot09_dialogue_periods={};",
-            "new": "    door_fade_owner.reset();\n    slot09_decision_periods={};slot09_dialogue_periods={};"
-          },
-          {
-            "old": "            if(motion_allowed) {\n                if(slice.phase==0)player_source_positions=capture_shot_attachment(rdram);",
-            "new": "            // Original BB080 skips player C8B28 while B8ED0's D494\n            // fade is nonzero; the common object pool still runs.\n            if(motion_allowed&&word(rdram,0x8021D494)==0) {\n                if(slice.phase==0)player_source_positions=capture_shot_attachment(rdram);"
-          }
-        ],
-        "affected_variants": [
-          45
-        ],
-        "evidence": "Only real Native Door109 state2+latch1+D49416 can acquire fade owner;all retained fixtures exclude45 and construct no109 cohort. Unacquired fade extension stays false;existing live conditions and motion guard withD4940 unchanged. Exact lifetime/epoch/request guards preserved."
-      }
-    ],
-    "artifacts_sha256": {
-      "build-local/native-scene-object-check/replay-1791183425813031452/executed-check": "58073f8f8c0d24f46bba9132d7fd44ad20120cd843ae934767351a1142fc7081",
-      "build-local/native-scene-object-check/replay-1791183425813031452/progress-0.log": "8fc51cae1ce1d151611cfec006d10c856c86bdc4edff0498ca2aceebd466e406",
-      "build-local/native-scene-object-check/replay-1791183425813031452/shard-0.log": "bbbae1a065d6a1a390c7de3ea88ab8fe3fe5b910d04fe1e79aabba64dd4c8ede"
-    },
-    "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
-    "prior_resume_evidence": {
-      "path": "build-local/native-scene-object-check/replay-1791183425813031452/prior-resume-evidence.json",
-      "sha256": "fe6d62c864c6b1b5af62619403f9550439b4a37ec4c3859c7b91c799f0011a7b"
-    },
-    "fresh_retained_variants": [
-      57,
-      69,
-      81,
-      93,
-      105,
-      117,
-      129,
-      141,
-      153,
-      165
-    ],
-    "correction": "All11 variant endpoint/command/resource scenarios passed;shard moving metric omitted Door109 foreign-player movement. Count real compared player XYZ/yaw motion for109;all endpoint/ownership assertions remain exact. Other10 complete variants retained."
-  },
   "player_partitioned_execution": {
     "groups": [
       {
@@ -1743,22 +358,22 @@
             360
           ]
         },
-        "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+        "inputs_sha256": "7a8df3f0a4e545536a868236ecb22c3b62ac4405cb82a2b63de57285ded98ccf",
         "exit_code": 0,
         "status": "PASS",
-        "elapsed_seconds": 5160.11,
-        "completed_utc": "2026-10-05T09:14:57.228357+00:00",
+        "elapsed_seconds": 4664.68,
+        "completed_utc": "2026-10-05T19:19:34.221128+00:00",
         "producer": {
           "runner_sha256": "4189a9e60709fb0a7ff281817b669607cdc13413e44ba77dffd8457faec028cf",
-          "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
-          "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+          "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
+          "inputs_sha256": "7a8df3f0a4e545536a868236ecb22c3b62ac4405cb82a2b63de57285ded98ccf",
           "execution": "fresh"
         },
         "artifacts_sha256": {
-          "check": "99d844b101cb2df24af15acb13e954e2f36212cf3f9d21a45b3e37fdd506c268",
+          "check": "d6f67f734348a8ed43b1dd87a6b85087d86aa2fcf28f3b2898ec5f867c225b59",
           "stdout.log": "d269170f6c64f89b95e306d28ab34d6eb5604f244f071bf4f6fb2d629491f198",
           "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "inputs.json": "52fe4fde2156f7893eccfb3ed3348f8660b2dac10577de8f6acad1eabdcfb393"
+          "inputs.json": "3131bdb65112ddf6a4ee802e17ce29ba7eadf030b2bf80f1295eab14d0f39732"
         },
         "reused": false
       },
@@ -1776,22 +391,22 @@
             360
           ]
         },
-        "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+        "inputs_sha256": "7a8df3f0a4e545536a868236ecb22c3b62ac4405cb82a2b63de57285ded98ccf",
         "exit_code": 0,
         "status": "PASS",
-        "elapsed_seconds": 5971.51,
-        "completed_utc": "2026-10-05T09:28:28.720714+00:00",
+        "elapsed_seconds": 5445.0,
+        "completed_utc": "2026-10-05T19:32:34.607512+00:00",
         "producer": {
           "runner_sha256": "4189a9e60709fb0a7ff281817b669607cdc13413e44ba77dffd8457faec028cf",
-          "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
-          "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+          "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
+          "inputs_sha256": "7a8df3f0a4e545536a868236ecb22c3b62ac4405cb82a2b63de57285ded98ccf",
           "execution": "fresh"
         },
         "artifacts_sha256": {
-          "check": "99d844b101cb2df24af15acb13e954e2f36212cf3f9d21a45b3e37fdd506c268",
+          "check": "d6f67f734348a8ed43b1dd87a6b85087d86aa2fcf28f3b2898ec5f867c225b59",
           "stdout.log": "9218bdcbc9be651be06f27bf69f841f4a0d75848922cbea92a525b619c300b52",
           "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "inputs.json": "52fe4fde2156f7893eccfb3ed3348f8660b2dac10577de8f6acad1eabdcfb393"
+          "inputs.json": "3131bdb65112ddf6a4ee802e17ce29ba7eadf030b2bf80f1295eab14d0f39732"
         },
         "reused": false
       },
@@ -1809,22 +424,22 @@
             360
           ]
         },
-        "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+        "inputs_sha256": "7a8df3f0a4e545536a868236ecb22c3b62ac4405cb82a2b63de57285ded98ccf",
         "exit_code": 0,
         "status": "PASS",
-        "elapsed_seconds": 5084.75,
-        "completed_utc": "2026-10-05T09:13:42.033737+00:00",
+        "elapsed_seconds": 4721.67,
+        "completed_utc": "2026-10-05T19:20:31.180863+00:00",
         "producer": {
           "runner_sha256": "4189a9e60709fb0a7ff281817b669607cdc13413e44ba77dffd8457faec028cf",
-          "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
-          "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+          "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
+          "inputs_sha256": "7a8df3f0a4e545536a868236ecb22c3b62ac4405cb82a2b63de57285ded98ccf",
           "execution": "fresh"
         },
         "artifacts_sha256": {
-          "check": "99d844b101cb2df24af15acb13e954e2f36212cf3f9d21a45b3e37fdd506c268",
+          "check": "d6f67f734348a8ed43b1dd87a6b85087d86aa2fcf28f3b2898ec5f867c225b59",
           "stdout.log": "d269170f6c64f89b95e306d28ab34d6eb5604f244f071bf4f6fb2d629491f198",
           "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "inputs.json": "52fe4fde2156f7893eccfb3ed3348f8660b2dac10577de8f6acad1eabdcfb393"
+          "inputs.json": "3131bdb65112ddf6a4ee802e17ce29ba7eadf030b2bf80f1295eab14d0f39732"
         },
         "reused": false
       },
@@ -1842,29 +457,29 @@
             360
           ]
         },
-        "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+        "inputs_sha256": "7a8df3f0a4e545536a868236ecb22c3b62ac4405cb82a2b63de57285ded98ccf",
         "exit_code": 0,
         "status": "PASS",
-        "elapsed_seconds": 5984.17,
-        "completed_utc": "2026-10-05T09:28:41.311409+00:00",
+        "elapsed_seconds": 5514.18,
+        "completed_utc": "2026-10-05T19:33:43.736566+00:00",
         "producer": {
           "runner_sha256": "4189a9e60709fb0a7ff281817b669607cdc13413e44ba77dffd8457faec028cf",
-          "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
-          "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+          "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
+          "inputs_sha256": "7a8df3f0a4e545536a868236ecb22c3b62ac4405cb82a2b63de57285ded98ccf",
           "execution": "fresh"
         },
         "artifacts_sha256": {
-          "check": "99d844b101cb2df24af15acb13e954e2f36212cf3f9d21a45b3e37fdd506c268",
+          "check": "d6f67f734348a8ed43b1dd87a6b85087d86aa2fcf28f3b2898ec5f867c225b59",
           "stdout.log": "9218bdcbc9be651be06f27bf69f841f4a0d75848922cbea92a525b619c300b52",
           "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-          "inputs.json": "52fe4fde2156f7893eccfb3ed3348f8660b2dac10577de8f6acad1eabdcfb393"
+          "inputs.json": "3131bdb65112ddf6a4ee802e17ce29ba7eadf030b2bf80f1295eab14d0f39732"
         },
         "reused": false
       }
     ],
     "total_settings": 24,
     "parallel_jobs": 4,
-    "cache_inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+    "cache_inputs_sha256": "7a8df3f0a4e545536a868236ecb22c3b62ac4405cb82a2b63de57285ded98ccf",
     "fresh_groups": 4,
     "retained_groups": 0,
     "original_fixture_sha256": "edc2f396cfe4a61da29caa84fbe22eec46655237525e31b18df392475ddb44d5",
@@ -1874,18 +489,14 @@
     "all_final_cpp_assertions": true,
     "retained_as_an_uar_ubsan_lsan": true,
     "diagnostic_generated_sha256": {
-      "functions.c": "989a3c1224ca5114ec7f9443da88d88f8c027f29f5de06d6c2456bc903ed6c75",
+      "functions.c": "de785f5710bb33ee57cdf2fd7508d691a1e1358eab26d3d2b6d3089ae818eec9",
       "player-update-functions.h": "0296444b1611a68d7c75d6035eeba4940de67c25b1ed977ef876da10a149a7d0",
       "boundaries.cpp": "1d2cf59e5796cde94ec0393b1ff51401538ef6a23546b236c4e1aa706a3c6bc1"
     }
   },
   "limitations": [
-    "Synthetic models, room geometry, sound queue and resource lookup; no real level/renderer/GPU",
-    "Synthetic room/model clips cannot establish visual quality in real levels",
-    "The coverage report records reached states; enumerating all kinds is not a claim that every AI branch is exercised",
-    "Some event descriptors use explicitly synthetic FFF0 programs with the real parser;this does not validate each original cutscene placement/script",
-    "Reached states are reported; coverage of all variants does not prove all possible state/contact/quest branches",
-    "Real moving-platform passenger contact,door presentation and NPC/level/cutscene visual quality require user verification;no local game/renderer/GPU",
-    "Minigames/special modes and final whole-game integration remain separate unfinished blocks"
+    "Synthetic CPU states/resources and reached branches; no local game/renderer/GPU visual proof.",
+    "Real minigame gameplay and visual quality require user verification.",
+    "Selected block4 is complete; block6 final whole-game integration remains."
   ]
 }

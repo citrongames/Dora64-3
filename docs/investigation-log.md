@@ -1,3 +1,45 @@
+## Test-045: весь блок4 — миниигры и специальные режимы
+
+Завершены девять миниигр и три общих режима: выбор, участники/настройка,
+результаты. Windows045 из startup-minigame-block4-v1 сохранён в
+D:/Games/DoraRecomp3/testbuild после30 connected CPU checks.
+Original20/30 сохраняет input/AI/FSM, счёт/раунды/RNG/waits, sound,
+clip/resource/spawn/free. Manual60..360 обновляет реальные уравнения
+движения, повороты/масштаб, камеры, модели/эффекты и2D с исходной скоростью.
+
+Движение участников1/4 учитывает промежуточные snapshot/projection fields.
+Все три косвенных обработчика8 включены. Terrain query использует настоящую
+CPU геометрию и возвращает scratch/stack. Контактные импульсы остаются
+однократными. Native draw сохраняет входы actor transforms, производные
+матрицы, world echoes и SDK scale globals; следующие Source updates видят
+свои значения. Связанные velocity/acceleration и camera moving-target rates
+интегрируются по времени; Source end step и дробные partitions согласованы.
+
+CPU доказательства:695 frozen044/current Original instruction streams,
+все9 модулей/3 common callback pairs,138 Source/Native cases и946 slices,
+20/30Hz и Manual60/73/120/144/165/360, command-once и Source restoration.
+Connected suite проверяет прежние объекты/NPC/врагов/оружие/урон/предметы,
+камеры/катсцены/UI/модели/эффекты/ввод, переходы, очереди и кадровые банки.
+Воспроизводимые cache entries сохраняют исходное execution provenance;
+изменённые зависимости запрещают reuse.
+
+2593 описания,2262 смысловых имени функций и5774 scoped variable names
+закреплены через ROM-qualified каталог; ABI и canonical C сохранены,
+адресные соответствия и документы обновлены. Работа сохраняется в private
+main коммитом/push; архивы только дополнительные. Прежние EXE, ROM,
+настройки, сохранения и DLL сохранены. Donor и32 dependency pins неизменны.
+
+Первая Windows compile попытка в ограниченной среде завершилась C1902.
+Версии компонентов MSVC совпадали; ошибка повторилась на отдельном C файле,
+а та же компиляция вне ограниченной среды прошла. Windows045 собран повторно
+из того же проверенного кода/генерации; оба журнала сохранены с SHA256.
+
+CPU states/resources и достигнутые ветви синтетические; это не полное
+прохождение миниигр и не визуальная проверка. Игра/renderer/GPU локально
+не запускались. Общий variable FPS ещё требует блока6 — итоговой интеграции,
+переходов, fallback/reset и связей всей игры. Его выбирает пользователь;
+автоматически новый блок не начинается.
+
 ## Test-044: весь выбранный блок1 — объекты, платформы и оставшиеся NPC
 
 Сборка044 из generation startup-scene-block1-v4 сохранена в
@@ -4919,3 +4961,62 @@ source/generation/log hashes. Player/world готовит новый резул�
 заново после изменений общего runtime. PASS ещё не получен; Windows044
 ещё не собран. Далее scene-frame/pickup checks, один Windows build,
 package preservation, commit/push main и выбор следующего блока4/6.
+
+
+## Блок4 после044: начало всей реализации миниигр
+
+Baseline7820d68/test044. По текущей generation найдено695 функций в10 ROM
+modules,9 отдельных игр и3 common update/draw pairs. Зафиксированы точные
+ROM/update/draw/return/body SHA identities. Current scoped source snapshots
+и Source call graph хранятся только в ignored build-local/continuation-20260930/block4.
+
+Добавлены незавершённые native_minigames runtime, native_minigame_math typed
+equation ledger,12-pair registry, generator adapter и policy/game-loop/CMake
+подключение. Ledger записывает арифметические зависимости; Source RAM/commands
+не меняются сбором выражений. Publication roles остаются пустыми и должны быть
+доказаны перед подключением. Actor SDK layout: local XYZ0/4/8,EulerC/10/14,
+scale18/1C/20,matrix24..60,dirty6A; components74/78/7C могут быть sprite handles,
+а не pointers. Lifetime model проверяется по правильному component slot,
+resourcesB0 иscene epoch. External stores отменяют устаревший mathematical lease.
+
+Source callback closure:1=52functions/21FP writers;2=32/12;3=42/12;4=61/26;
+5=26/4;6=30/4;7=31/9;8=53/18;9=35/7. Common3 pairs не имеют FP writers:
+их pulse/2D equations целочисленные и ещё требуют реализации. Эти числа —
+инвентарь, не coverage/PASS. Ни CPU replay, ни новая генерация/Windows build
+не запускались. Код блока4 не закончен; миниигровые symbols/variable roles,
+FP publication sites, integer visual motion, камеры, sprite/clip/time,
+выход/смена scene/callbacks и framebuffer dependency остаются текущей работой.
+Нельзя объявлять block4 completed либо выдавать его текущий scaffold за045.
+
+
+### Блок4 — motion implementation, незавершённый этап после044
+
+Добавлены конкретные arithmetic/store roles для5/6/7/9: actor XYZ/Euler,
+управляемые XY и spherical projectile velocity/XYZ. Одноразовые +400 X/Z,
+tile shift, начальные ориентации/placement, result shrink и Source retire не
+масштабируются. Общие результаты используют clamped fractional arrow и alpha
+на draw operands; direction/FSM/input/waits сохраняют Source.
+
+Equation ledger теперь различает command cancellation, polynomial discrete
+sum (gravity-linked displacement), geometric/affine recurrence,7 component
+handles и allocation identities, actor98 driver ownership. Stack-only spill
+tags не перекрывают motion-field expressions; FR0 paired spills сохраняют
+single-precision provenance. SDK cos80055BD0/sin80057A80/sqrt80055BC0 уточнены
+по настоящим ROM bodies, opaque call clobbers очищают старые caller tags.
+Draw-scoped lease восстанавливает SDK matrices/world-coordinate derivatives,
+не оставляя frame temporary state следующему Source update.
+
+В каталоге добавлены Source function names/descriptions и ограниченные ROM
+register scopes. Все изменения пока непроверенные: остальные миниигры,
+камеры, clip/counter operands и полный connected replay не закончены;
+генерация/test/build/commit/push блока4 не выполнялись. Не считать это
+завершением блока4 или поводом передавать частичный EXE.
+
+
+Уточнение Source evidence: SDK8002A14C вызывает8003AFEC для отрисовки модели,
+а не получения animation time. Ошибочная draft привязка была удалена до
+generation/tests/build. Typed time operand теперь допускается только на
+реальном lwc1 по registered model+64, с allocation/run/seek checks и completed
+Original observation. Добавлены module2 camera/driver/movement и module3
+camera/scale/position/scroll/fade roles; phase/contacts остаются Source.
+Registry implementation-ready guard закрыт: весь блок4 пока не завершён.

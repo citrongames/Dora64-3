@@ -672,6 +672,19 @@ bool ModelAnimation::frame_event(uint8_t* rdram,uint32_t model,float observed,fl
     entry.events.insert_or_assign(event_key,EventCursor{entry.event_sequence,slice->tick,slice->phase,slice->numerator,slice->denominator,result});
     return result;
 }
+std::optional<std::pair<AnimationState,unsigned>> ModelAnimation::original_clock_sample(uint8_t* rdram,std::uint32_t model) const {
+    const auto& s=*state_;
+    const auto found=s.models.find(model);
+    if(found==s.models.end()||!found->second.observation)return std::nullopt;
+    const auto& entry=found->second;const auto& observation=*entry.observation;
+    if(observation.step!=s.step||observation.divider!=unsigned(word(rdram,0x801A39DC))||
+       observation.expected_time!=word(rdram,model+0x64)||
+       observation.channels!=std::uint32_t(word(rdram,model+0x60))||
+       observation.descriptors!=std::uint32_t(word(rdram,model+0x18))||
+       (MEM_BU(0x7C,std::int32_t(model))&~2u)!=(observation.before.flags&~2u)||
+       word(rdram,observation.descriptors+4)!=std::bit_cast<std::int32_t>(observation.before.duration))return std::nullopt;
+    return std::pair{observation.before,observation.divider};
+}
 void ModelAnimation::begin_frame(uint8_t* rdram,recomp_context* ctx,Nanoseconds now,unsigned bank) {
     auto& s=*state_;
     if(s.frame || bank>1 || word(rdram,0x801A9544)!=int(bank))throw std::logic_error("Invalid model frame ownership");

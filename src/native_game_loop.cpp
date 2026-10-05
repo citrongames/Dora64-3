@@ -4,6 +4,7 @@
 #include "native_gameplay_preview.hpp"
 #include "native_cutscene.hpp"
 #include "native_ui.hpp"
+#include "native_minigames.hpp"
 #include "native_present.hpp"
 #include "recomp_context_copy.hpp"
 #include <deque>
@@ -46,6 +47,7 @@ void write_fade(uint8_t* rdram,FadeState state) {
 }
 std::optional<Nanoseconds> render_time() {
     if(active_policy&&active_policy->update==native_cutscene_update)return native_cutscene_render_time();
+    if(active_policy&&active_policy->update==native_minigame_update)return native_minigame_render_time();
     return native_gameplay_preview_render_time();
 }
 unsigned applied_fps=0;
@@ -56,7 +58,7 @@ bool common_eligible(uint8_t* rdram) {
 void finish_session(uint8_t* ram,Phase before,Phase after) {
     if(before!=Phase::Original && after==Phase::Original) {
         std::fprintf(stderr,"NATIVE LOOP drained frames=%llu; Original resumes\n",static_cast<unsigned long long>(frames));
-        active_policy=nullptr;fade.reset();applied_fps=0;dora3_native_camera_dispatch_reset();native_gameplay_preview_reset(ram);native_cutscene_reset(ram);native_ui_reset();
+        active_policy=nullptr;fade.reset();applied_fps=0;dora3_native_camera_dispatch_reset();native_gameplay_preview_reset(ram);native_cutscene_reset(ram);native_minigame_reset(ram);native_ui_reset();
     }
 }
 void build_frame(uint8_t*,recomp_context*,const FrameTicket&,FrameScheduler&);
@@ -68,6 +70,7 @@ void try_enter(uint8_t* rdram,Nanoseconds now,unsigned fps) {
     active_policy=entry_policy;entry_policy=nullptr;applied_fps=fps;frames=0;
     if(active_policy->update==native_gameplay_preview_update)native_gameplay_preview_begin(rdram,now,active_policy->divider);
     if(active_policy->update==native_cutscene_update)native_cutscene_begin(rdram,now,active_policy->divider);
+    if(active_policy->update==native_minigame_update)native_minigame_begin(rdram,now,active_policy->divider);
     native_ui_begin(rdram,now,active_policy->divider);
     fade.emplace(read_fade(rdram),active_policy->divider,now);
     game_frame_session().poll(now);
@@ -111,6 +114,7 @@ void build_frame(uint8_t* rdram,recomp_context* ctx,const FrameTicket& ticket,Fr
     {
         ModelFrameScope models(rdram,ctx,monotonic_time(),ticket.bank);
         UiFrameScope ui(rdram,ctx,monotonic_time());
+        MinigameFrameScope minigames(rdram);
         dora3_graphics_frame_build(rdram,ctx);
     }
     // Same ordering as the original loop: increment after blocking submit;
@@ -200,7 +204,7 @@ extern "C" void dora3_native_loop_retire(uint8_t* rdram,recomp_context* ctx) {
     if(auto bank=task_bank(uint32_t(ctx->r16))) { std::lock_guard lock(task_mutex);pending[*bank]=false; }
 }
 void dora3_native_loop_reset() {
-    dora3_native_process_time_reset();dora3_native_camera_dispatch_reset();native_gameplay_preview_reset();native_cutscene_reset();native_ui_reset();
+    dora3_native_process_time_reset();dora3_native_camera_dispatch_reset();native_gameplay_preview_reset();native_cutscene_reset();native_minigame_reset();native_ui_reset();
     std::lock_guard lock(task_mutex);pending={};invalidate_native_scene_policy();active_policy=nullptr;entry_policy=nullptr;
     fade.reset();applied_fps=0;frames=0;deferred_messages.clear();game_model_animation().reset();
 }
@@ -208,3 +212,5 @@ void dora3_native_loop_reset() {
 extern "C" int dora3_native_loop_gameplay_active() {return active_policy && active_policy->update==native_gameplay_preview_update && game_frame_session().phase()==FrameSession::Phase::Native;}
 
 extern "C" int dora3_native_loop_cutscene_active() {return active_policy&&active_policy->update==native_cutscene_update&&game_frame_session().phase()==FrameSession::Phase::Native;}
+
+extern "C" int dora3_native_loop_minigame_active(){return active_policy&&active_policy->update==native_minigame_update&&game_frame_session().phase()==FrameSession::Phase::Native;}

@@ -17,6 +17,7 @@ def main():
     subprocess.run(['gcc','-std=c17','-fsanitize=address',*flags,'-c',str(out/'functions.c'),'-o',str(out/'functions.o')],check=True)
     sources=[ROOT/'src/native_input_timeline.cpp',ROOT/'research/native-input-check.cpp']
     sources.append(ROOT/'research/native-inactive-enemy-fixture.cpp')
+    sources.append(ROOT/'research/native-inactive-minigame-fixture.cpp')
     subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror','-fsanitize=address,undefined',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
     result=subprocess.check_output([str(out/'check')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')).strip()
     tracked=sources+[ROOT/'src/native_input_timeline.hpp',Path(__file__).resolve()]

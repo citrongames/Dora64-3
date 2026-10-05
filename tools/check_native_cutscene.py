@@ -58,6 +58,7 @@ def main():
   cached.write_text(function_stamp)
  sources=[ROOT/'src/native_simulation_time.cpp',ROOT/'src/native_cutscene.cpp',ROOT/'research/native-cutscene-check.cpp']
  sources.append(ROOT/'research/native-inactive-enemy-fixture.cpp')
+ sources.append(ROOT/'research/native-inactive-minigame-fixture.cpp')
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror','-fsanitize=address,undefined',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check'),str(out/'seed.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')).strip()
  tracked=sources+[ROOT/'src/native_cutscene.hpp',ROOT/'src/native_simulation_time.hpp',ROOT/'src/native_scene_policy.cpp',ROOT/'src/native_game_loop.cpp',ROOT/'recomp/native-timing-rules.json',ROOT/'tools/native_timing_patches.py',ROOT/'tools/generate_startup.py',Path(__file__).resolve()]

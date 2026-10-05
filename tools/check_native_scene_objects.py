@@ -25,6 +25,7 @@ def main():
     for key in ['generated','rom','reference','city-reference','enemy-reference']:ap.add_argument('--'+key,type=Path,required=True)
     ap.add_argument('--optimization',choices=['O0','O1','O2'],default='O2')
     ap.add_argument('--workers',type=int,choices=range(1,9),default=4)
+    ap.add_argument('--completed-replay',type=Path,help='Retain an already completed whole run only when binary, seed, generated C and all actual compiler dependencies remain exact')
     ap.add_argument('--resume-evidence',type=Path,help='Verified unchanged completed kind scopes; affected/incomplete kinds still execute')
     a=ap.parse_args();g=a.generated.resolve();rom=a.rom.read_bytes();ref=a.enemy_reference.resolve()
     out=ROOT/'build-local/native-scene-object-check';out.mkdir(exist_ok=True)
@@ -248,6 +249,15 @@ def main():
         cache.write_text(signature)
     sources=[ROOT/'src'/n for n in ['native_cutscene.cpp','native_enemy.cpp','native_gameplay_preview.cpp','native_input_timeline.cpp','native_simulation_time.cpp','native_camera_timeline.cpp','native_model_animation.cpp','native_frame_time.cpp']]+[ROOT/'research/native-gameplay-cutscene-fixture.cpp',fixture]
     binary=out/'check'
+    completed=json.loads(a.completed_replay.read_text()) if a.completed_replay else None
+    if completed:
+        assert completed['generation_receipt_sha256']==sha(g/'generation-receipt.json')
+        assert completed['binary_sha256']==sha(binary) and completed['seed_sha256']==sha(out/'seed.bin')
+        assert binary.stat().st_mtime_ns==completed['binary_mtime_ns']
+        for name,digest in completed['compiled_inputs'].items():assert sha(Path(name))==digest,('Changed compiled dependency',name)
+        for name,digest in completed['compiled_artifacts_sha256'].items():assert sha(Path(name))==digest,('Changed compiled artifact',name)
+        for name,digest in completed['artifacts_sha256'].items():assert sha(Path(name))==digest,('Changed original replay log',name)
+
     compile_flags=['-std=c++20','-Wall','-Wextra','-Werror','-Wno-unused-variable','-Wno-unused-but-set-variable','-Wno-unused-function','-fsanitize=address,undefined',*flags]
     # Cache compilation only, never a scenario result. Exact source/header
     # content, flags and compiler version must match before reusing an object.
@@ -266,8 +276,9 @@ def main():
             assert sha(source)==source_before,'Source changed during compilation'
             record.write_text(json.dumps(dict(flags=compile_flags,toolchain=toolchain,inputs=dependencies())))
         objects.append(obj)
-    subprocess.run(['g++','-fsanitize=address,undefined',*map(str,objects),str(out/'functions.o'),'-o',str(binary)],check=True)
-    tracked=sources+[Path(__file__).resolve(),ROOT/'research/native-scene-object-source-check.inc',ROOT/'src/native_scene_objects.hpp',ROOT/'src/startup_runtime.cpp',ROOT/'tools/check_native_story_pickups.py',ROOT/'tools/check_native_player_update.py']+sorted((ROOT/'src').glob('*.hpp'))
+    if not completed:
+        subprocess.run(['g++','-fsanitize=address,undefined',*map(str,objects),str(out/'functions.o'),'-o',str(binary)],check=True)
+    tracked=sources+[Path(__file__).resolve(),ROOT/'research/native-scene-object-source-check.inc',ROOT/'src/native_scene_objects.hpp',ROOT/'src/startup_runtime.cpp',ROOT/'tools/check_native_story_pickups.py',ROOT/'tools/check_native_player_update.py']+sorted({Path(name) for record in object_dir.glob('*.json') for name in json.loads(record.read_text())['inputs'] if Path(name).suffix=='.hpp' and Path(name).is_relative_to(ROOT/'src')})
     checked_inputs={x.relative_to(ROOT).as_posix():sha(x) for x in tracked}
     resume=None;requested=set(range(len(defs)))
     if a.resume_evidence:
@@ -310,15 +321,20 @@ def main():
             return retained
         requested-=verify_retained(resume,(ROOT/'research/native-scene-object-source-check.inc').read_text())
 
-    run_dir=out/('replay-'+str(time.time_ns()));run_dir.mkdir()
+    run_dir=Path(completed['run_directory']) if completed else out/('replay-'+str(time.time_ns()))
+    if not completed:run_dir.mkdir()
     def run_shard(index):
         log=run_dir/('shard-'+str(index)+'.log')
         progress=run_dir/('progress-'+str(index)+'.log')
         env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1',
                  DORA3_ENEMY_PROGRESS_PATH=str(progress),DORA3_ENEMY_SHARD_COUNT=str(a.workers),DORA3_ENEMY_SHARD_INDEX=str(index))
         if resume:env['DORA3_ENEMY_INCLUDE_KINDS']=','.join(map(str,sorted(requested)))
-        with log.open('w') as stream:
-            result=subprocess.run([str(binary),str(out/'seed.bin')],stdout=stream,stderr=subprocess.STDOUT,env=env)
+        if completed:
+            assert log.is_file() and progress.is_file()
+            result=type('CompletedProcess',(),{'returncode':0})()
+        else:
+            with log.open('w') as stream:
+                result=subprocess.run([str(binary),str(out/'seed.bin')],stdout=stream,stderr=subprocess.STDOUT,env=env)
         lines=log.read_text().splitlines();records=[x.removeprefix('ENEMY SHARD RESULT ') for x in lines if x.startswith('ENEMY SHARD RESULT ')]
         if result.returncode or len(records)!=1:
             raise RuntimeError('Enemy shard '+str(index)+' failed: '+str(log)+'\n'+'\n'.join(lines[-80:]))
@@ -328,7 +344,7 @@ def main():
         assert {int(kind) for kind in value['states']}==expected
         return value
     shards=[];errors=[]
-    print('Scene replay: '+str(a.workers)+' isolated CPU workers, '+str(48*len(requested))+' fresh cases; '+str(len(defs)-len(requested))+' verified unchanged kinds retained; logs '+str(run_dir),flush=True)
+    print(('Retained completed scene replay; exact compiler inputs: ' if completed else 'Scene replay: ')+str(a.workers)+' isolated CPU workers, '+str(48*len(requested))+' fresh cases; '+str(len(defs)-len(requested))+' verified unchanged kinds retained; logs '+str(run_dir),flush=True)
     with concurrent.futures.ThreadPoolExecutor(max_workers=a.workers) as pool:
         pending=[pool.submit(run_shard,index) for index in range(a.workers) if any(case%a.workers==index for case in requested)]
         for future in concurrent.futures.as_completed(pending):
@@ -359,6 +375,6 @@ def main():
     output+=f" rabbit landing transitions={totals['rabbit_floor']} ground hits={totals['rabbit_ground_hits']} stable ground={totals['rabbit_stable_ground']} fractional samples={totals['rabbit_substeps']}\n"
     (out/'result.log').write_text(output);print(output,flush=True)
     (run_dir/'summary.json').write_text(json.dumps(dict(totals=totals,shards=shards,checked_inputs=checked_inputs),indent=2)+'\n')
-    report=dict(result=output.strip(),retained_generation_provenance=resume,fresh_replay_variants=[dict(case_id=i,kind=r[0],rom=r[1]) for i,r in enumerate(defs) if i in requested],retained_kinds=resume['retained_variants'] if resume else [],generation_receipt_sha256=sha(g/'generation-receipt.json'),enemy_reference_receipt_sha256=sha(ref/'generation-receipt.json'),source_sha256=checked_inputs,optimization=a.optimization,replay_workers=a.workers,replay_summary_sha256=sha(run_dir/'summary.json'),source_body_proof=sorted(proof),reviewed_kinds=[x[0] for x in defs],synthetic_descriptor_resource_ids=sorted(ids),synthetic_event_program_variants=synthetic,limitations=['Synthetic models, room geometry, sound queue and resource lookup; no real level/renderer/GPU','Synthetic room/model clips cannot establish visual quality in real levels','The coverage report records reached states; enumerating all kinds is not a claim that every AI branch is exercised'])
+    report=dict(completed_replay_provenance=completed,result=output.strip(),retained_generation_provenance=resume,fresh_replay_variants=[dict(case_id=i,kind=r[0],rom=r[1]) for i,r in enumerate(defs) if i in requested],retained_kinds=resume['retained_variants'] if resume else [],generation_receipt_sha256=sha(g/'generation-receipt.json'),enemy_reference_receipt_sha256=sha(ref/'generation-receipt.json'),source_sha256=checked_inputs,optimization=a.optimization,replay_workers=a.workers,replay_summary_sha256=sha(run_dir/'summary.json'),source_body_proof=sorted(proof),reviewed_kinds=[x[0] for x in defs],synthetic_descriptor_resource_ids=sorted(ids),synthetic_event_program_variants=synthetic,limitations=['Synthetic models, room geometry, sound queue and resource lookup; no real level/renderer/GPU','Synthetic room/model clips cannot establish visual quality in real levels','The coverage report records reached states; enumerating all kinds is not a claim that every AI branch is exercised'])
     (ROOT/'research/native-scene-object-check.json').write_text(json.dumps(report,indent=2)+'\n')
 if __name__=='__main__':main()

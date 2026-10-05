@@ -87766,6 +87766,781 @@
           }
         }
       ]
+    },
+    {
+      "section": ".minigame_5",
+      "vram": "0x801C50C0",
+      "size": 976,
+      "legacy_name": "dora3_s25_mini_801C50C0",
+      "name": "dora3_minigame5_update_nine_piece_motion_801C50C0",
+      "description": "Обновляет девять акторов участника: локальные XYZ и два угла, затем sprite channels1/2. +400 X/Z в phase3/timer19 — одноразовая перестановка, не скорость; input, wait и sound остаются Source.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "fbe9918e1b28baed964eab1a6bdb5b8084bb80093cd1b4b82b3e6afaa9dc417b",
+      "locals": [
+        {
+          "name": "participant_driver_s2",
+          "expression": "ctx->r18",
+          "start": "0x801C50CC",
+          "end": "0x801C5474",
+          "description": "Доказанный a1 participant driver до восстановления callee-saved s2; поля команд и шагов остаются Source.",
+          "instructions": {
+            "0x801C50C8": "0x00A09021",
+            "0x801C53A4": "0x4680A520"
+          }
+        },
+        {
+          "name": "current_piece_actor_s1",
+          "expression": "ctx->r17",
+          "start": "0x801C51B0",
+          "end": "0x801C5470",
+          "description": "Текущий actor из группы9, stride0xCC; индекс/адрес меняются внутри цикла, роль указателя сохраняется.",
+          "instructions": {
+            "0x801C51AC": "0x00438821",
+            "0x801C53CC": "0xE6200000"
+          }
+        },
+        {
+          "name": "current_piece_z_field_s0",
+          "expression": "ctx->r16",
+          "start": "0x801C51B8",
+          "end": "0x801C546C",
+          "description": "Указатель на localZ текущего piece actor; относительные -4/+4/+8 — localY/Euler pitch/yaw.",
+          "instructions": {
+            "0x801C51B4": "0x26300008",
+            "0x801C53F0": "0xE6000000"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".minigame_5",
+      "vram": "0x801C575C",
+      "size": 320,
+      "legacy_name": "dora3_s25_mini_801C575C",
+      "name": "dora3_minigame5_reset_board_sprite_actors_801C575C",
+      "description": "Обслуживает вторую группу из девяти акторов и sprite channels1/2. Перенос координат из ROM таблицы при phase3/timer19 остаётся мгновенной командой Source.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "56d451300841047140fa499793da4c89249858c85bad2e5caf53752cf394b129",
+      "locals": []
+    },
+    {
+      "section": ".minigame_5",
+      "vram": "0x801C59E8",
+      "size": 1244,
+      "legacy_name": "dora3_s25_mini_801C59E8",
+      "name": "dora3_minigame5_update_controlled_actor_801C59E8",
+      "description": "Source input/RNG задают целочисленный шаг участника; в конце функция прибавляет его к локальным XY управляемого актора. Native fractional equations подключены только к конечным двум motion stores.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "b281f1fa474efebdeefea9fc8f5d5ccbbdb9f21b2d38ff1952ae1ad57d1204a5",
+      "locals": []
+    },
+    {
+      "section": ".minigame_6",
+      "vram": "0x801C41F0",
+      "size": 324,
+      "legacy_name": "dora3_s26_mini_801C41F0",
+      "name": "dora3_minigame6_rotate_tile_actor_801C41F0",
+      "description": "Выбирает актор по трём индексам, выполняет одну из Euler rotations через SDK angle-wrap и обновляет шесть спрайтовых каналов. Component handles1..6 имеют тип5; их нельзя считать skeletal pointers.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "fe2107359c435b84600779e835b72b82eb719f12f070544a3db6ae4c0f9a84da",
+      "locals": [
+        {
+          "name": "tile_actor_s0",
+          "expression": "ctx->r16",
+          "start": "0x801C4230",
+          "end": "0x801C4324",
+          "description": "Actor, вычисленный по трём индексам; Euler angles и шесть sprite channels.",
+          "instructions": {
+            "0x801C422C": "0x00438021",
+            "0x801C42D8": "0xE6000014"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".minigame_6",
+      "vram": "0x801C55E8",
+      "size": 252,
+      "legacy_name": "dora3_s26_mini_801C55E8",
+      "name": "dora3_minigame6_apply_completed_tile_shift_801C55E8",
+      "description": "Проверяет два состояния тайла; переход2→3 сдвигает локальный X на144 один раз. Это команда завершения, не непрерывная скорость.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "0e5141b4eea3b44316edcbde87d5e39f53fcdf8fcac59fd0a04068be04676f00",
+      "locals": []
+    },
+    {
+      "section": ".minigame_6",
+      "vram": "0x801C5DC0",
+      "size": 440,
+      "legacy_name": "dora3_s26_mini_801C5DC0",
+      "name": "dora3_minigame6_update_stage_actor_801C5DC0",
+      "description": "Обслуживает центральный актор: первоначальная orientation из ROM таблицы однократна, последующее вращение на30 и локальный Z step50 выполняются до высоты200. Затем обновляет шесть sprite channels.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "4b07cb3810a4cf741f897e980d07433e7ab53f9f04ab10a19ea76fccebf36745",
+      "locals": [
+        {
+          "name": "stage_actor_s0",
+          "expression": "ctx->r16",
+          "start": "0x801C5DD8",
+          "end": "0x801C5F64",
+          "description": "Постоянный stage actor0x80174970 до восстановления s0; setup rotation является отдельной командой.",
+          "instructions": {
+            "0x801C5DD4": "0x26104970",
+            "0x801C5F1C": "0xE6000008"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".minigame_7",
+      "vram": "0x801C499C",
+      "size": 788,
+      "legacy_name": "dora3_s27_mini_801C499C",
+      "name": "dora3_minigame7_update_participant_entry_801C499C",
+      "description": "Source ввод/AI определяет фазу участника. Дробные обновления используют только накопительные локальный Z и Euler yaw; установка готового направления остаётся командой.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "01eecb1b076837dc2d6fac684bfd30192537281bd77b13f24dba6f0ea8cba71e",
+      "locals": []
+    },
+    {
+      "section": ".minigame_7",
+      "vram": "0x801C4E58",
+      "size": 284,
+      "legacy_name": "dora3_s27_mini_801C4E58",
+      "name": "dora3_minigame7_update_result_actor_801C4E58",
+      "description": "Локальный Z приближается шагом5/20 в исходных фазах. Уменьшение scaleZ в phase4/timer80 выполняется один раз, не является скоростью.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "245fda99a0f0e34257991947ba564ddf90ed1fa3dc103fd096193111ddde6430",
+      "locals": []
+    },
+    {
+      "section": ".minigame_7",
+      "vram": "0x801C5314",
+      "size": 692,
+      "legacy_name": "dora3_s27_mini_801C5314",
+      "name": "dora3_minigame7_update_aim_yaw_801C5314",
+      "description": "Source FSM задаёт величину поворота; SDK angle-wrap накапливает её в Euler yaw актора. Команды остановки/завершения остаются Source.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "219511fbe943997f97a9e15d62c5758ac7da541ae2f35e571c0bada2d767051b",
+      "locals": []
+    },
+    {
+      "section": ".minigame_7",
+      "vram": "0x801C5674",
+      "size": 420,
+      "legacy_name": "dora3_s27_mini_801C5674",
+      "name": "dora3_minigame7_create_launched_projectile_801C5674",
+      "description": "Source создание/настройка ресурса и начальная spherical aim/placement из ROM таблиц. Это однократный запуск; будущая траектория обновляется отдельной функцией.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "0ec134baa4128dcd63fae05c60473fdcaab61a404a490292f0b25d07f2bb912d",
+      "locals": []
+    },
+    {
+      "section": ".minigame_7",
+      "vram": "0x801C5818",
+      "size": 636,
+      "legacy_name": "dora3_s27_mini_801C5818",
+      "name": "dora3_minigame7_update_spherical_projectile_801C5818",
+      "description": "Вычисляет XYZ velocity через cos/sin от yaw/pitch driver98 и прибавляет к локальным XYZ актора. Проверка конца траектории, результаты, sound и освобождение остаются Source.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "b2dee7277cfdb237e99d463f017465963d05cd1114eca07e530416f2bf9f3f5f",
+      "locals": [
+        {
+          "name": "projectile_actor_s1",
+          "expression": "ctx->r17",
+          "start": "0x801C5870",
+          "end": "0x801C5A78",
+          "description": "Текущий spherical projectile actor; Source retire использует тот же указатель.",
+          "instructions": {
+            "0x801C586C": "0x00438821",
+            "0x801C5A50": "0xE6200000"
+          }
+        },
+        {
+          "name": "projectile_driver_s0",
+          "expression": "ctx->r16",
+          "start": "0x801C599C",
+          "end": "0x801C5A7C",
+          "description": "Driver, прочитанный из actor+98; speed, yaw/pitch и производные XYZ velocity.",
+          "instructions": {
+            "0x801C5998": "0x8E300098",
+            "0x801C5A44": "0xE6140014"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".minigame_7",
+      "vram": "0x801C5C14",
+      "size": 876,
+      "legacy_name": "dora3_s27_mini_801C5C14",
+      "name": "dora3_minigame7_update_controlled_actor_801C5C14",
+      "description": "Source input/RNG определяет дискретную команду шага; последние две записи накапливают локальные XY. Native обновляет только эти накопительные координаты.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "19c29128ae2c99fbd260aafe6f81f201e10d294d1809a83f72aafd06ec346667",
+      "locals": []
+    },
+    {
+      "section": ".minigame_9",
+      "vram": "0x801C5068",
+      "size": 764,
+      "legacy_name": "dora3_s29_mini_801C5068",
+      "name": "dora3_minigame9_update_participant_entry_801C5068",
+      "description": "Source ввод/AI и переходы фаз; накопительные локальный Z и yaw получают дробный шаг, готовое направление устанавливается однократно.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "2623057533a9dea795b00ef5d4a4e87de272b17057270f9b21f3a9914d31051b",
+      "locals": []
+    },
+    {
+      "section": ".minigame_9",
+      "vram": "0x801C5514",
+      "size": 264,
+      "legacy_name": "dora3_s29_mini_801C5514",
+      "name": "dora3_minigame9_update_result_actor_801C5514",
+      "description": "Локальный Z приближается шагом5/20; result shrink scaleZ в phase4/timer80 является однократной командой и не масштабируется частотой.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "8ed7364acf3757cc26cd33f6b4be078d8b3cca8807721fa4edd50f4d7f9ad427",
+      "locals": []
+    },
+    {
+      "section": ".minigame_9",
+      "vram": "0x801C59E4",
+      "size": 372,
+      "legacy_name": "dora3_s29_mini_801C59E4",
+      "name": "dora3_minigame9_update_aim_yaw_801C59E4",
+      "description": "Source FSM задаёт скорость поворота; Euler yaw накапливается через SDK angle-wrap. Значения driverC и завершение поворота сохраняют однократность.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "7133f5f4e2eea655a4e47ea31d724ddfb1171ce93866404fac21bb4214d90467",
+      "locals": []
+    },
+    {
+      "section": ".minigame_9",
+      "vram": "0x801C5BD8",
+      "size": 428,
+      "legacy_name": "dora3_s29_mini_801C5BD8",
+      "name": "dora3_minigame9_create_launched_projectile_801C5BD8",
+      "description": "Создаёт и размещает снаряд, связывает исходные ресурсы и начальные углы/скорость. Все записи являются командами запуска Source.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "9ed57e35d1d3a62691c015f651ec73eb6eeff35a3e83f73133aa97640e09e1de",
+      "locals": []
+    },
+    {
+      "section": ".minigame_9",
+      "vram": "0x801C5D84",
+      "size": 604,
+      "legacy_name": "dora3_s29_mini_801C5D84",
+      "name": "dora3_minigame9_update_spherical_projectile_801C5D84",
+      "description": "Вычисляет spherical XYZ velocity из driver98 через реальные Source cos/sin, затем двигает локальные XYZ. Попадание/счёт/retire/resource commands выполняются только Source.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "cae83a3a03f820357379c151b42e06489d735aee188a8e78b1c426043810e638",
+      "locals": [
+        {
+          "name": "projectile_actor_s1",
+          "expression": "ctx->r17",
+          "start": "0x801C5DE4",
+          "end": "0x801C5FC0",
+          "description": "Spherical projectile actor до восстановления s1; ресурс/счёт/retire остаются Source.",
+          "instructions": {
+            "0x801C5DE0": "0x00438821",
+            "0x801C5F94": "0xE6200000"
+          }
+        },
+        {
+          "name": "projectile_driver_s0",
+          "expression": "ctx->r16",
+          "start": "0x801C5EE0",
+          "end": "0x801C5FC4",
+          "description": "Driver actor+98 в ветви движения; углы, скорость и spherical XYZ velocity.",
+          "instructions": {
+            "0x801C5EDC": "0x8E300098",
+            "0x801C5F88": "0xE6140014"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".minigame_9",
+      "vram": "0x801C6360",
+      "size": 852,
+      "legacy_name": "dora3_s29_mini_801C6360",
+      "name": "dora3_minigame9_update_controlled_actor_801C6360",
+      "description": "Дискретный Source input/AI выбирает шаг; конечные две записи локальных XY получают дробное накопление.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "91fa931109b6814675ae68c8716d057114ca30254c9c46637416a4ffc4268875",
+      "locals": []
+    },
+    {
+      "section": ".minigame_1",
+      "vram": "0x801CACAC",
+      "size": 1204,
+      "legacy_name": "dora3_s21_mini_801CACAC",
+      "name": "dora3_minigame1_update_801CACAC",
+      "description": "Основной Source update миниигры1, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801CB160 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "d94dbc57cd314b1c4071a335cdea5fb7638e0a33dacc40da47ffcd81a8a32ab5",
+      "locals": []
+    },
+    {
+      "section": ".minigame_2",
+      "vram": "0x801C7CBC",
+      "size": 860,
+      "legacy_name": "dora3_s22_mini_801C7CBC",
+      "name": "dora3_minigame2_update_801C7CBC",
+      "description": "Основной Source update миниигры2, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C73F4 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "07e3e79bc79c2bd2631584b9d1a34ffb9e6a5194cb0801b8c3dcb61e99a86a8c",
+      "locals": []
+    },
+    {
+      "section": ".minigame_3",
+      "vram": "0x801C7CA4",
+      "size": 680,
+      "legacy_name": "dora3_s23_mini_801C7CA4",
+      "name": "dora3_minigame3_update_801C7CA4",
+      "description": "Основной Source update миниигры3, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C764C занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "c317868467f12576339314ca1e79874b55170638e9c0437ec9dcd92bad83189d",
+      "locals": []
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C94D0",
+      "size": 608,
+      "legacy_name": "dora3_s24_mini_801C94D0",
+      "name": "dora3_minigame4_update_801C94D0",
+      "description": "Основной Source update миниигры4, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C90C4 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "bea7d66e8ac7b91206160fde5e46b22a5c090654898b4e112b0fdfa40f67f4aa",
+      "locals": []
+    },
+    {
+      "section": ".minigame_5",
+      "vram": "0x801C67A4",
+      "size": 652,
+      "legacy_name": "dora3_s25_mini_801C67A4",
+      "name": "dora3_minigame5_update_801C67A4",
+      "description": "Основной Source update миниигры5, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C6A30 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "a2c7f075971e2754b51eacbd85288ddcd229bffec9c5c3f0217394426bb7fbcd",
+      "locals": []
+    },
+    {
+      "section": ".minigame_6",
+      "vram": "0x801C69F8",
+      "size": 1616,
+      "legacy_name": "dora3_s26_mini_801C69F8",
+      "name": "dora3_minigame6_update_801C69F8",
+      "description": "Основной Source update миниигры6, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C7048 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "16bf5aa5a1b81ae9057cd40449a010cbfc2b6ea22dc6842fdeed879a4acb5fbd",
+      "locals": []
+    },
+    {
+      "section": ".minigame_7",
+      "vram": "0x801C6844",
+      "size": 844,
+      "legacy_name": "dora3_s27_mini_801C6844",
+      "name": "dora3_minigame7_update_801C6844",
+      "description": "Основной Source update миниигры7, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C6B90 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "932ecdc506f24d046d691ce7b3b4ff88cb5892b0388c7ef4368c481a2eb12ce1",
+      "locals": []
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C7EF4",
+      "size": 892,
+      "legacy_name": "dora3_s28_mini_801C7EF4",
+      "name": "dora3_minigame8_update_801C7EF4",
+      "description": "Основной Source update миниигры8, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C8270 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "4c4440d290e2b018c015310f26a0812a86b1417bc5adfc91a6d3ebeedf069f89",
+      "locals": []
+    },
+    {
+      "section": ".minigame_9",
+      "vram": "0x801C7508",
+      "size": 860,
+      "legacy_name": "dora3_s29_mini_801C7508",
+      "name": "dora3_minigame9_update_801C7508",
+      "description": "Основной Source update миниигры9, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C7864 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "e84f4573537d599a8c8a3f0a76bdc8db29063cf00f8b0307d0b1f7e2e6911d9e",
+      "locals": []
+    },
+    {
+      "section": ".minigame_common",
+      "vram": "0x801BD5B8",
+      "size": 496,
+      "legacy_name": "dora3_s20_mini_801BD5B8",
+      "name": "dora3_minigame_common_update_selection_801BD5B8",
+      "description": "Source выбор миниигры: input/repeat,21-tick delay и выход к loader. Native не ускоряет эту командную последовательность.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "e4f07e7853a861b84380d9a6a54879a493aa5f43a4f19e62fcb5cdabe4bd0ac9",
+      "locals": []
+    },
+    {
+      "section": ".minigame_common",
+      "vram": "0x801BE430",
+      "size": 1376,
+      "legacy_name": "dora3_s20_mini_801BE430",
+      "name": "dora3_minigame_common_update_participants_801BE430",
+      "description": "Source настройки четырёх участников: контроллеры, выбор персонажей, RNG разрешения повторов, ожидания и переход к игре. Команды остаются однократными.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "2c7e4136970dbbe9e99ca7095b2b1100a888f34a3a1d8f85257430a8a8b186ea",
+      "locals": []
+    },
+    {
+      "section": ".minigame_common",
+      "vram": "0x801BF8CC",
+      "size": 532,
+      "legacy_name": "dora3_s20_mini_801BF8CC",
+      "name": "dora3_minigame_common_update_results_801BF8CC",
+      "description": "Source результаты/связанные общие экраны: FSM и input/waits сохраняются; отдельные clamped draw equations обслуживают стрелки3650 и alpha3670/3674 без изменения Source direction/state.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "ba40888b31095aace2e34f04a2803e76ff6fab7a7a8e35db917a78a345b400fd",
+      "locals": []
+    },
+    {
+      "section": ".minigame_3",
+      "vram": "0x801C4BB4",
+      "size": 164,
+      "legacy_name": "dora3_s23_mini_801C4BB4",
+      "name": "dora3_minigame3_advance_result_camera_801C4BB4",
+      "description": "Для текущей камеры после phase3 уменьшает distance30 до1300 и pitch по ROM step до30. Накопительные stores имеют post-arithmetic floors; SDK eye пересчитывается отдельно из той же дробной камеры.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "3030d1b722c4a03d391b1457600b438c9e18d6ee9bd7a6f610cb3369492b1c15",
+      "locals": []
+    },
+    {
+      "section": ".minigame_3",
+      "vram": "0x801C53F8",
+      "size": 364,
+      "legacy_name": "dora3_s23_mini_801C53F8",
+      "name": "dora3_minigame3_advance_growing_actor_801C53F8",
+      "description": "Активный actor растёт по XYZ scale до Source setter1 и движется по worldX шагом10. Spawn/replacement/free и переходы общих фаз остаются Source.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "530e87195ba08d4615746bad15f6676d780ef2e2874d174d983800c42b26b615",
+      "locals": []
+    },
+    {
+      "section": ".minigame_3",
+      "vram": "0x801C5E1C",
+      "size": 280,
+      "legacy_name": "dora3_s23_mini_801C5E1C",
+      "name": "dora3_minigame3_advance_retreating_actor_801C5E1C",
+      "description": "WorldX уменьшается на исходную ROM скорость; threshold checks управляют clip/FSM/retire только на Source updates. Native публикует только накопительное движение.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "2f32e3291a8b93bc65a0912b67ff28c7e4ad74edcdae2f6e34301aa627a20f8c",
+      "locals": []
+    },
+    {
+      "section": ".minigame_3",
+      "vram": "0x801C6864",
+      "size": 292,
+      "legacy_name": "dora3_s23_mini_801C6864",
+      "name": "dora3_minigame3_advance_lateral_actor_801C6864",
+      "description": "Source input/FSM задают signed lateral velocity и yaw; worldZ накапливается с bounds±250, yaw является производной командного поля. Source results/terminal flags не ускоряются.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "c02e8cb1555ad78505bde1a4fd3119614a956068ab4cbd60519ae8e8f7b5cbae",
+      "locals": []
+    },
+    {
+      "section": ".minigame_2",
+      "vram": "0x801C45D0",
+      "size": 364,
+      "legacy_name": "dora3_s22_mini_801C45D0",
+      "name": "dora3_minigame2_advance_oscillating_driver_801C45D0",
+      "description": "Четыре driver records stride0x54. Накопительный параметр1C изменяется шагом±4 и ограничивается±40; direction/state остаются Source командами.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "322856ddeeab0434eb50a0e7de7d5d58b689ee63abf200b39df09d06342b2579",
+      "locals": []
+    },
+    {
+      "section": ".minigame_2",
+      "vram": "0x801C510C",
+      "size": 164,
+      "legacy_name": "dora3_s22_mini_801C510C",
+      "name": "dora3_minigame2_advance_intro_camera_801C510C",
+      "description": "Накопительные camera distance и pitch в начале игры; floor distance300/pitch10. Pitch использует SDK angle-wrap; счётчик вступления остаётся Source.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "11417f1efde33cc5e494b10ebbb552e2c3d8bab2c03ca23f7803ca3da18a48e5",
+      "locals": []
+    },
+    {
+      "section": ".minigame_2",
+      "vram": "0x801C51B0",
+      "size": 380,
+      "legacy_name": "dora3_s22_mini_801C51B0",
+      "name": "dora3_minigame2_approach_camera_yaw_801C51B0",
+      "description": "Source выбирает цель камеры; yaw приближается к ней через wrapped angle increment с коэффициентом1/15 или1/30. Начальные distance/pitch и snap-to-target остаются Source.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "67fe931c57ec545156de8a60776637c8596200dca83a2e35b47661e2496325af",
+      "locals": []
+    },
+    {
+      "section": ".minigame_2",
+      "vram": "0x801C654C",
+      "size": 864,
+      "legacy_name": "dora3_s22_mini_801C654C",
+      "name": "dora3_minigame2_advance_participant_height_depth_801C654C",
+      "description": "Вычисляет вертикальный/depth шаг из изменяющегося driver10 и Source phase. Contact/landing, звуки/rumble и фиксация положения сохраняют однократность; накопительное движение отделено от setters.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "1b8476bc68ee3f81cee7fe32882d3e131b6e0a38acc4820081900ee1d405fbc6",
+      "locals": []
+    },
+    {
+      "section": ".minigame_2",
+      "vram": "0x801C68AC",
+      "size": 288,
+      "legacy_name": "dora3_s22_mini_801C68AC",
+      "name": "dora3_minigame2_update_net_participant_pitch_801C68AC",
+      "description": "Два промежуточных разворота по180 переводят pitch в удобную систему и обратно. Они не являются самостоятельной анимацией; Native отслеживает только итоговое накопление±0.3 с Source bounds/direction switch.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "bab9031d00c9f4a265a22a9f20d0c9c75be777ca5136e044d7d8a473eaffd858",
+      "locals": []
+    },
+    {
+      "section": ".minigame_1",
+      "vram": "0x801C4DD8",
+      "size": 272,
+      "legacy_name": "dora3_s21_mini_801C4DD8",
+      "name": "dora3_minigame1_advance_rising_effect_801C4DD8",
+      "description": "Непрерывно меняет scaleXYZ и worldY эффекта; счётчик жизни и конечное выключение остаются Source.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "d02c73a266641dfd90d79ccdd1be492b93612d0552759a151e7b5d36f653888d",
+      "locals": []
+    },
+    {
+      "section": ".minigame_1",
+      "vram": "0x801C51C0",
+      "size": 272,
+      "legacy_name": "dora3_s21_mini_801C51C0",
+      "name": "dora3_minigame1_advance_falling_effect_801C51C0",
+      "description": "Накопительные scaleXYZ/worldY второй группы эффектов; завершение/ресурсы сохраняют Source cadence.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "0c2bcb307f4ae670f928ccb67f5f961793041484177debec256f4d747a3a24a6",
+      "locals": []
+    },
+    {
+      "section": ".minigame_1",
+      "vram": "0x801C6944",
+      "size": 2092,
+      "legacy_name": "dora3_s21_mini_801C6944",
+      "name": "dora3_minigame1_update_energy_and_heading_801C6944",
+      "description": "Сохраняет Source input/ветви; обновляет speed/energy и wrapped направления участника. Переключения, обнуления и заданные импульсы остаются командами.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "4ba52af071e8bb581655156c397363526e215f5d7e83eb3a6a4df00859c472f9",
+      "locals": []
+    },
+    {
+      "section": ".minigame_1",
+      "vram": "0x801C7170",
+      "size": 1012,
+      "legacy_name": "dora3_s21_mini_801C7170",
+      "name": "dora3_minigame1_update_participant_speed_801C7170",
+      "description": "Исходные ускорение/замедление и speed squared; фиксированные стартовые/предельные значения остаются Source setters.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "f6ab33399e9f62725c13915d7d3aeb95292a9fc31446c5c121f52eb92de82263",
+      "locals": []
+    },
+    {
+      "section": ".minigame_1",
+      "vram": "0x801C77F4",
+      "size": 264,
+      "legacy_name": "dora3_s21_mini_801C77F4",
+      "name": "dora3_minigame1_align_participant_to_surface_801C77F4",
+      "description": "Выполняет настоящий SDK запрос поверхности и определяет worldY/pitch/roll. Результат связан с дробным XZ, поэтому Native использует тот же CPU query без новых игровых команд.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "028e3c974f6c220941f541bd9a2b187032bbbe8c0bb3defe80b8fe23ae2e4768",
+      "locals": []
+    },
+    {
+      "section": ".minigame_1",
+      "vram": "0x801C9728",
+      "size": 212,
+      "legacy_name": "dora3_s21_mini_801C9728",
+      "name": "dora3_minigame1_publish_projected_position_801C9728",
+      "description": "Публикует XZ после Source коррекции в driver/actor. Поправки контакта однократны; зависимые позиции получают Native equation.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "b53e9aed45ea4401225838386342c2ff5e1c4b4cd1be5f45082f28cf77ccd2ac",
+      "locals": []
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C3FCC",
+      "size": 232,
+      "legacy_name": "dora3_s24_mini_801C3FCC",
+      "name": "dora3_minigame4_advance_result_camera_801C3FCC",
+      "description": "Уменьшает pitch/distance и поднимает centerY камеры после phase3, с исходными границами.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "a87cfdb92d2824669a87c7d2f39d833064eba9015ded7041b0649b0c85166e3d",
+      "locals": []
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C50A0",
+      "size": 96,
+      "legacy_name": "dora3_s24_mini_801C50A0",
+      "name": "dora3_minigame4_publish_constrained_position_801C50A0",
+      "description": "Складывает actor XZ с velocity, корректирует по Source ограничителям и публикует driver/actor координаты.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "b36294bb8cc66d126537095f9f5acf79009dfb9f4d1533418c10bab43ace3207",
+      "locals": []
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C6230",
+      "size": 400,
+      "legacy_name": "dora3_s24_mini_801C6230",
+      "name": "dora3_minigame4_advance_jump_height_801C6230",
+      "description": "Source jump state задаёт height equation и signed parameter; worldY и yaw получают дробное время, импульсы/счётчики сохраняют однократность.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "d2231b7602ce1b1e75f2b41d2255ea3c36218ff6b6f349a3e46caf7639d05230",
+      "locals": []
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C7E74",
+      "size": 392,
+      "legacy_name": "dora3_s24_mini_801C7E74",
+      "name": "dora3_minigame4_derive_heading_velocity_801C7E74",
+      "description": "Выводит actor yaw и XZ velocity из driver speed/heading через реальные sin/cos.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "db8d8e885541133ccd79eb36bc39e30db454b60b6f087956aed3c4b506a10fd7",
+      "locals": []
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C87C8",
+      "size": 384,
+      "legacy_name": "dora3_s24_mini_801C87C8",
+      "name": "dora3_minigame4_publish_grounded_motion_801C87C8",
+      "description": "Публикует ограниченные XZ и высоту через оригинальный terrain query; Source stuck/AI состояния и команды не повторяются на Native frames.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "6b16c550ea5c665fa66a35e03db9692d1592b957430895c7506714b0888b8d63",
+      "locals": []
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C9AD0",
+      "size": 100,
+      "legacy_name": "dora3_s24_mini_801C9AD0",
+      "name": "dora3_minigame4_query_ground_height_801C9AD0",
+      "description": "CPU geometry query80040104 получает XYZ и возвращает surface type/height в caller output; временные collision globals принадлежат запросу.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "3418406024bb1932f5d5e10368d3ac8dcd12faa5295ac2c379d41d8eab470b3d",
+      "locals": []
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C5350",
+      "size": 516,
+      "legacy_name": "dora3_s28_mini_801C5350",
+      "name": "dora3_minigame8_advance_driver_approach_801C5350",
+      "description": "Накопительно приближает driver компоненты к исходным целям; конечные snap/reset остаются Source.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "3c8ff37027b2d483aa771a2a8a1572eeaa1b3a389f7bcdfa7f74b68fd94c5690",
+      "locals": []
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C6094",
+      "size": 576,
+      "legacy_name": "dora3_s28_mini_801C6094",
+      "name": "dora3_minigame8_advance_driver_acceleration_801C6094",
+      "description": "Source FSM выбирает ускорение/импульсы, накопительные driver4/8 получают дробное движение.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "05c6a1aa8d70934e415e4c9686234a4b413e2cea3f696302f36faf366338499a",
+      "locals": []
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C6CEC",
+      "size": 896,
+      "legacy_name": "dora3_s28_mini_801C6CEC",
+      "name": "dora3_minigame8_publish_actor_motion_801C6CEC",
+      "description": "Складывает worldXYZ с driver velocity, сохраняет Source terminal clamps и переносит положения в local XYZ для отрисовки.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "66248636b29ce1a03d4cc397b0ee828ee60d6e650447ea5c933b6d8d8485f743",
+      "locals": []
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C763C",
+      "size": 120,
+      "legacy_name": "dora3_s28_mini_801C763C",
+      "name": "dora3_minigame8_advance_camera_parameters_801C763C",
+      "description": "Накопительно меняет centerX/Y и два wrapped camera angles; последующая функция применяет подготовленный camera transition.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "3af0c5f607af1f1664a1f2818bc4317940f018b5cdb075ba59de134f2f5f6cad",
+      "locals": []
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C76B4",
+      "size": 736,
+      "legacy_name": "dora3_s28_mini_801C76B4",
+      "name": "dora3_minigame8_prepare_camera_transition_801C76B4",
+      "description": "Фиксирует начальные/целевые camera parameters и шаг перехода по10 компонентам. Настройка перехода остаётся однократной командой.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "4b52c4d0cf4f6b5b86ffcc12cfd573a344149d8d983b056ae694956d79321f8c",
+      "locals": []
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C7994",
+      "size": 204,
+      "legacy_name": "dora3_s28_mini_801C7994",
+      "name": "dora3_minigame8_apply_camera_transition_step_801C7994",
+      "description": "Прибавляет заранее рассчитанные increments к10 camera components. Native сохраняет реальную Source equation; исходный transition counter остаётся Source.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "516eb7a091689042a672a73ed4ef18e71635f5b27fd81d46afeec86708a47d43",
+      "locals": []
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C4E24",
+      "size": 164,
+      "legacy_name": "dora3_s28_mini_801C4E24",
+      "name": "dora3_minigame8_dispatch_active_objects_801C4E24",
+      "description": "Обновляет активные объекты10..59 через точную таблицу из трёх обработчиков, затем один раз обновляет модель и sprite clock; события и уничтожение сохраняют Source cadence.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "0d67ea9799732a2ddfcf2b969a3996813b4d2495e5e754931ab69bb8eea7c8ff",
+      "locals": []
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C4D74",
+      "size": 176,
+      "legacy_name": "dora3_s28_mini_801C4D74",
+      "name": "dora3_minigame8_update_flying_object_801C4D74",
+      "description": "Выводит XZ velocity из speed/heading, применяет gravity и worldXYZ, затем проверяет исходные контакты; hit/sound/free выполняются однократно.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "15a06f5ae8b79c23f9088938d5e61dfbfa2d87bc67222ba3f2660f076da7ad99",
+      "locals": []
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C4AF8",
+      "size": 220,
+      "legacy_name": "dora3_s28_mini_801C4AF8",
+      "name": "dora3_minigame8_update_expanding_fade_801C4AF8",
+      "description": "Приближает scaleXYZ к целевому размеру и уменьшает model opacity; Source terminal threshold освобождает объект один раз.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "bfc2e8c340b3ebf212dc0cb6ffa047b6b5789b494a09aa3c2718fd7e5ddafd80",
+      "locals": []
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C46B4",
+      "size": 224,
+      "legacy_name": "dora3_s28_mini_801C46B4",
+      "name": "dora3_minigame8_update_falling_object_801C46B4",
+      "description": "Продвигает worldXYZ по heading/gravity и вычисляет scaleXYZ из высоты. Исходные контакты и удаление не повторяются на дробных кадрах.",
+      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "rom_sha256": "b2f8e1fe2ad9f4cb6989db917082fda49300bc0d9d5bf0b95c1ae03c8bf81aa9",
+      "locals": []
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "result": "PASS: 49 actual ROM overlay ranges, verified DMA/reload, identical VRAM replacement, partial overwrite, parent invalidation, scene unload and boot reset; ASan/UBSan/LSan; no game/GPU.",
-  "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
+  "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
   "source_sha256": {
     "src/startup_runtime.cpp": "82748ef8ce079755b3a91564cbbb2d5cceab2bb86d8b4bb53805b75f8b6bf5d9",
     "research/overlay-load-state-check.cpp": "e637e658340adedb016e09d258c99348ccb0e4768de7bcc71aaba1051e68aba5",

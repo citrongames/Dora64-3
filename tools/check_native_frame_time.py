@@ -49,6 +49,7 @@ def main():
                     '-o', str(out / 'functions.o')], check=True)
     sources = [ROOT / 'src/native_frame_time.cpp', ROOT / 'research/native-frame-time-check.cpp']
     sources.append(ROOT/'research/native-inactive-enemy-fixture.cpp')
+    sources.append(ROOT/'research/native-inactive-minigame-fixture.cpp')
     subprocess.run(['g++', '-std=c++20', '-Wall', '-Wextra', '-Werror', *flags,
                     *map(str, sources), str(out / 'functions.o'), '-o', str(out / 'check')], check=True)
     env = dict(os.environ, ASAN_OPTIONS='detect_leaks=1:halt_on_error=1', UBSAN_OPTIONS='halt_on_error=1')

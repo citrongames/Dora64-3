@@ -11,6 +11,7 @@
     "src/native_frame_producer.cpp": "362e5dd959e067a90ee4df1600d4893707b4a04361df957d7d922dd2635026e2",
     "research/native-session-check.cpp": "f7139aa68d4036c4663ad861ef00031584a517b71da7197eeb516565c55f3fc0",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
+    "research/native-inactive-minigame-fixture.cpp": "dafaccdff31181ed0e62dec4a4ec04bfe1eb6c6fd377201f2e81e4f75dbbe4bb",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/native_frame_session.hpp": "fdc799da001be3c6653126beacb987ce3811ba6f1cc5eeac5922e539089f8e83",
     "src/native_frame_producer.hpp": "4df446b4e0456927e3242838687391f68d374149a8aac7a805f4f07d91fbb2a6",
@@ -19,6 +20,6 @@
     "src/native_frame_scheduler.hpp": "ae108bfcf8c9bbd628f648a8781afd1a9a5ab8668aa676212a60ebf88329bfde",
     "src/native_frame_bridge.hpp": "a405469b02b662d7ad973c5475f05465defe0d346b7add98717e9393794fe545",
     "src/native_present.hpp": "c17a60839de06f09c2c5245091a7389c7126a3146019b8477483bc86d03e9158",
-    "tools/check_native_session.py": "2b5655a78f8ab91786cf9f8da3bc5e0a54e38cf25074069262b324de712dfea5"
+    "tools/check_native_session.py": "642e1727ae1a279f8ee3636e98c2729b2980e57690d00591de32c18fc9645d04"
   }
 }

@@ -288,3 +288,9 @@ extern "C" void dora3_s3_core_801EBAD4(uint8_t*,recomp_context*) {std::abort();}
 // Boss1Bironn's real geometry executes in the enemy closure. The image-loop
 // scope contains no such actor; reaching this dependency is a fatal failure.
 extern "C" void dora3_s33_remaining_8021FED8(uint8_t*,recomp_context*) {std::abort();}
+
+// Image-loop fixture never admits minigame terrain or transform owners. The
+// minigame connected fixture executes their actual SDK bodies instead.
+extern "C" void dora3_s0_80040104(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s0_800327A4(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s0_8002DA98(uint8_t*,recomp_context*){std::abort();}

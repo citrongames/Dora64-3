@@ -1149,3 +1149,11 @@ default:std::abort();}if(gap)MEM_W(0x94,int32_t(prop))=0;links();assert(MEM_W(0x
     assert(slot09_yaw_samples==0);
     std::cout<<"PASS: "<<slot09_constructor_cases<<" actual slot09 constructors; "<<slot09_source_cases<<" slot09 Source schedules; "<<slot09_native_cases<<" slot09 Native edge schedules; "<<slot09_rejections<<" slot09 rejections; "<<slot09_original_cases<<" slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; "<<slot09_yaw_samples<<" slot09 intermediate yaw samples; settings="<<cases<<"; ASan/UBSan/LSan; no game/GPU.\n";
 }
+
+// This fixture admits world/scene-transition policies only. Mini-game motion,
+// draw ownership and real SDK paths are covered by the connected minigame check.
+#include "native_minigames.hpp"
+namespace dora3::native_time {
+MinigameFrameScope::MinigameFrameScope(uint8_t*){}
+MinigameFrameScope::~MinigameFrameScope()=default;
+}

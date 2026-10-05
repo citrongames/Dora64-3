@@ -3,6 +3,7 @@
 #include "native_gameplay_preview.hpp"
 #include "native_cutscene.hpp"
 #include "native_ui.hpp"
+#include "native_minigames.hpp"
 namespace {
 int32_t word(uint8_t* rdram,uint32_t address) {return MEM_W(0,int32_t(address));}
 bool scene34_armed=false;
@@ -43,11 +44,17 @@ bool ui20_eligible(uint8_t* ram){return word(ram,0x801A39DC)==3&&dora3::native_t
 bool ui30_eligible(uint8_t* ram){return word(ram,0x801A39DC)==2&&dora3::native_time::native_ui_menu_eligible(ram);}
 const ScenePolicy ui20_policy{"reviewed-common-ui-20",ui20_eligible,3};
 const ScenePolicy ui30_policy{"reviewed-common-ui-30",ui30_eligible,2};
+bool minigame20_eligible(uint8_t* ram){return word(ram,0x801A39DC)==3&&native_minigame_eligible(ram);}
+bool minigame30_eligible(uint8_t* ram){return word(ram,0x801A39DC)==2&&native_minigame_eligible(ram);}
+const ScenePolicy minigame20_policy{"reviewed-minigames-20",minigame20_eligible,3,native_minigame_update};
+const ScenePolicy minigame30_policy{"reviewed-minigames-30",minigame30_eligible,2,native_minigame_update};
 }
 const ScenePolicy* select_native_scene_policy(uint8_t* rdram) {
     // Additional reviewed scene families join this registry, without changing
     // the event loop, ownership protocol or settings implementation.
     if(image_policy.eligible(rdram))return &image_policy;
+    if(minigame20_policy.eligible(rdram))return &minigame20_policy;
+    if(minigame30_policy.eligible(rdram))return &minigame30_policy;
     if(cutscene20_policy.eligible(rdram))return &cutscene20_policy;
     if(cutscene30_policy.eligible(rdram))return &cutscene30_policy;
     if(gameplay20_policy.eligible(rdram))return &gameplay20_policy;

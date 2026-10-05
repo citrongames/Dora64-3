@@ -10,6 +10,7 @@ def main():
  sources=[ROOT/'research/native-loop-stubs.cpp']+[ROOT/'src'/n for n in ['native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_present.cpp','native_frame_producer.cpp']]+[ROOT/'research/native-session-check.cpp']
  flags=['-O1','-g','-pthread','-fno-omit-frame-pointer','-fno-strict-aliasing','-fsanitize='+a.sanitizer,'-I'+str(ROOT/'src'),'-I'+str(runtime/'N64Recomp/include')]
  sources.append(ROOT/'research/native-inactive-enemy-fixture.cpp')
+ sources.append(ROOT/'research/native-inactive-minigame-fixture.cpp')
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',TSAN_OPTIONS='halt_on_error=1'),timeout=30).strip()
  tracked=sources+[ROOT/'src/recomp_context_copy.hpp']+[ROOT/'src'/n for n in ['native_frame_session.hpp','native_frame_producer.hpp','native_presentation_gate.hpp','native_wake_signal.hpp','native_frame_scheduler.hpp','native_frame_bridge.hpp','native_present.hpp']]+[Path(__file__).resolve()]

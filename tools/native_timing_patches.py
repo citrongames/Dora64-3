@@ -2627,4 +2627,7 @@ def timing_hooks(sections,compiled,rom):
             hooks[name,site+8].insert(0,label+':;')
         else:raise ValueError('Unreviewed timing rule operation')
         hooks[name,site].append(text)
+    from native_minigame_patches import minigame_hooks
+    for key,lines in minigame_hooks(sections,compiled,rom).items():
+        hooks[key].extend(lines)
     return [(name,site,' '.join(text)) for (name,site),text in sorted(hooks.items())]

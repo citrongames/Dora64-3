@@ -34,6 +34,7 @@ def main():
  subprocess.run(['g++','-std=c++20',*flags,'-c',str(out/'mesgqueue.cpp'),'-o',str(out/'queue.o')],check=True)
  sources=[ROOT/'research/native-loop-stubs.cpp']+[ROOT/'src'/n for n in ['native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_graphics_pump.cpp','native_present.cpp','native_present_hooks.cpp']]+[ROOT/'research/native-graphics-pump-check.cpp']
  sources.append(ROOT/'research/native-inactive-enemy-fixture.cpp')
+ sources.append(ROOT/'research/native-inactive-minigame-fixture.cpp')
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,*map(str,sources),str(out/'functions.o'),str(out/'queue.o'),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check'),str(out/'seed.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1')).strip()
  # Reintroduce the old inner-epilogue hook in an isolated fixture. The same

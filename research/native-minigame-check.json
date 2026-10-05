@@ -1,0 +1,3781 @@
+{
+  "result": "PASS: all9 minigame modules and3 common callback pairs; 138 Source/Native cases, 946 fractional slices;20/30Hz and Manual60/73/120/144/165/360; command-once, linked Euler motion, contact impulses, angle wrapping, model/draw input ownership and exact restoration; synthetic resources, no game/GPU",
+  "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
+  "source_sha256": {
+    "src/native_minigames.cpp": "dd17a3bbb38a97ab40c667a05164fc5ddf341c9437c8df422f0b39b8b16fcadc",
+    "src/native_minigame_math.cpp": "788727bda739dce11f14f0f093ffc72f2c4d9d27ebe89ec8079a2e24013c50ad",
+    "src/native_model_animation.cpp": "6a8c6ff61b105ccaa385893ea650ae811b80cb0463bace4ca2bc3383c26e04cf",
+    "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
+    "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
+    "research/native-minigame-check.cpp": "187ed8c6b3c397ebe1ea509fa715463f5319d28329b624c42c699f47976af448",
+    "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
+    "src/native_minigames.hpp": "e9dcab5e06f9c191f73f940bbd1561934888100d73d58fd2388366ee0cb6c5eb",
+    "src/native_minigame_math.hpp": "44d8a7de614ce01288bf575918b3ce3279d909e2b4ca380e2713db97f8662e6b",
+    "src/native_minigame_registry.hpp": "ecb8436565168dc627e12fb8c06c15bd5a84fef9cb8c6516eb8caa389f237e8c",
+    "tools/native_minigame_patches.py": "c9027db03c9d8ee96970ebc30680aadcbcbc4cd97316fbd2fe316fc905dd4678",
+    "research/native-minigame-reviewed.json": "ac7478876413e6dbcea14a446395cf67bf7a4d5f4b5ed5dd5b60c8ebb500dba6",
+    "tools/check_native_minigames.py": "84c6531e601bf7759938578e273f023521e1f9a6f3c1078080ce4f4cc734b2fc"
+  },
+  "source_body_proof": [
+    {
+      "function": "dora3_s21_mini_801C911C",
+      "original_instruction_sha256": "770efd29922dc4f40aa8752456675dc2d3e3c7c3cefa552ad12a99389b9afe2a"
+    },
+    {
+      "function": "dora3_s21_mini_801C91B8",
+      "original_instruction_sha256": "44d46ad2fc379340f29392c39fd897b7d87915b4df8ea7b7fd7f094a9ef959e8"
+    },
+    {
+      "function": "dora3_s21_mini_801C9258",
+      "original_instruction_sha256": "eb723827e773482001fac5da37d06eb34880a9c741060fecce755af2adff8b9a"
+    },
+    {
+      "function": "dora3_s21_mini_801C92F0",
+      "original_instruction_sha256": "4a7f8056df272ee0fd308be3696d913cf29a431127423ae5327b70754023d042"
+    },
+    {
+      "function": "dora3_s21_mini_801C9344",
+      "original_instruction_sha256": "2caadfadf2d448d4f6bd0055ac3a2270f3d3a65b1a9486977700655321035925"
+    },
+    {
+      "function": "dora3_s21_mini_801C93AC",
+      "original_instruction_sha256": "2ba104909c800995757be8c11ed902c2b7929741aa29ae9bc32b41994b1611b7"
+    },
+    {
+      "function": "dora3_s21_mini_801C93D0",
+      "original_instruction_sha256": "4d32aa7165bc7c3b36c459818473539a61652f1dd8e5084fa91c5f2d680f16b0"
+    },
+    {
+      "function": "dora3_s21_mini_801C93F4",
+      "original_instruction_sha256": "a69fb49ea14dedd0e7a298575807016d0702ac08135eb6db20e204ffe6044f79"
+    },
+    {
+      "function": "dora3_s21_mini_801C9728",
+      "original_instruction_sha256": "e19e43f99b7cd779f51aa46d90805f06442a8fd845309b9886f799832d0ed027"
+    },
+    {
+      "function": "dora3_s21_mini_801C97FC",
+      "original_instruction_sha256": "a86d48a498ce3071291211f99f73890719766cbb3eee7eb28491055e6c61c2a1"
+    },
+    {
+      "function": "dora3_s21_mini_801C9B00",
+      "original_instruction_sha256": "2256d7d31d5edb6fe1ed7efff521a7831cfd50df064d68500a2d5a786a67a94b"
+    },
+    {
+      "function": "dora3_s21_mini_801C9CA0",
+      "original_instruction_sha256": "1125add47e3f02e2bdbe2900a3d2f763f9ec742cdd8afa18dc0cb4fc9abeeda6"
+    },
+    {
+      "function": "dora3_s21_mini_801C9D48",
+      "original_instruction_sha256": "52e4fe1102e47983868aaf5d436ca0cfeb3109a17ac34d2d9f1ebb9866bdf97a"
+    },
+    {
+      "function": "dora3_s21_mini_801C9D8C",
+      "original_instruction_sha256": "b2acc6db79ae74e00c79beb12f27712f9dd5b302b483a2b2023c354ab524bcc0"
+    },
+    {
+      "function": "dora3_s21_mini_801C9FD4",
+      "original_instruction_sha256": "3a672af40ebf311ee50bb5aa35883c585c2b6c8a9194a4ce7fd4066cbd51f66b"
+    },
+    {
+      "function": "dora3_s21_mini_801CA3B8",
+      "original_instruction_sha256": "211767c2a231c01e82679aed7c25805acfca340f4bd361663de1e0c8a0246563"
+    },
+    {
+      "function": "dora3_s21_mini_801CA5D8",
+      "original_instruction_sha256": "5e73330ce843129605a4b336bb5b816c6dd38ddb9df8c7b37da01a4c156f7177"
+    },
+    {
+      "function": "dora3_s21_mini_801CA96C",
+      "original_instruction_sha256": "986f04d7150cbc6c064a5867abfa96d0e7557303fbe271bb8819aa2072fddfb1"
+    },
+    {
+      "function": "dora3_s21_mini_801CAA24",
+      "original_instruction_sha256": "178749f41f77d741fbe0d26d3111a5c32128528e2cbc8cd8e357188ea7e682c6"
+    },
+    {
+      "function": "dora3_s21_mini_801CACAC",
+      "original_instruction_sha256": "6bc200156a90ff06a6660dd623933c28712fadc7a0e60b02d00e24537b03cce9"
+    },
+    {
+      "function": "dora3_s21_mini_801CB160",
+      "original_instruction_sha256": "91b1c6bc592e5c415e558e93fcdd531a464dc44ccfb17db833b2d3343e7ccbb2"
+    },
+    {
+      "function": "dora3_s21_mini_801CB4C0",
+      "original_instruction_sha256": "219579bd6391c5741656b8c5065e9afd10d7d7cb6bc1d6497cc68050174a54fb"
+    },
+    {
+      "function": "dora3_s22_mini_801C3680",
+      "original_instruction_sha256": "f76a3b317fb77cdc74a0ba813a4431f1bb85edf22b11344a3a3e18c7d1456343"
+    },
+    {
+      "function": "dora3_s22_mini_801C3700",
+      "original_instruction_sha256": "376fd857a75cd4379abadc3f22ac85720cb2933fdeb2cd4a659a330c4266d474"
+    },
+    {
+      "function": "dora3_s22_mini_801C371C",
+      "original_instruction_sha256": "5e88e7990e315e6857ebb8e41f5985a328ed634ffc01078f837c34b990b4d512"
+    },
+    {
+      "function": "dora3_s22_mini_801C37F8",
+      "original_instruction_sha256": "f8bc6264e13b81cc097a4cf2feae70d5d9e002c13b2afafe949c3bb396bb6fa7"
+    },
+    {
+      "function": "dora3_s22_mini_801C3940",
+      "original_instruction_sha256": "6c49ca00677a4d8f5dea9408845e9fde41bddacc791d19fa99d713b8fe42d716"
+    },
+    {
+      "function": "dora3_s22_mini_801C3AF4",
+      "original_instruction_sha256": "2053bd9d20ed3345798f88cff8ba39afca9f7c89f437d6f2182768fca9617361"
+    },
+    {
+      "function": "dora3_s22_mini_801C3B84",
+      "original_instruction_sha256": "5fce7c8df29ca99f01874516562771830e47371056c02ffb418462b18332c417"
+    },
+    {
+      "function": "dora3_s22_mini_801C3C10",
+      "original_instruction_sha256": "3747308eeafe9e7d9c50c4084a9489cef29fef0ce6d76c7abda6300b5c5cd9fb"
+    },
+    {
+      "function": "dora3_s22_mini_801C3D34",
+      "original_instruction_sha256": "bc7d62e50b7699434646ef04f79fcb305c86fadcd0a23a35297f2d873a9e226d"
+    },
+    {
+      "function": "dora3_s22_mini_801C3E88",
+      "original_instruction_sha256": "13ba7a7982793b4e7d318cbb6ed1502f73906c975d57ec2538277e48f38bd69f"
+    },
+    {
+      "function": "dora3_s22_mini_801C3F7C",
+      "original_instruction_sha256": "c525c28e2a16da8ce662d79b25699e70ee3a8f147f5fab669dba4df0137ffd6c"
+    },
+    {
+      "function": "dora3_s22_mini_801C40A4",
+      "original_instruction_sha256": "cf51b00ed40d48abfba3df998462ca3a69b3d88273bef52e4b2f07e9e319fb7c"
+    },
+    {
+      "function": "dora3_s22_mini_801C4210",
+      "original_instruction_sha256": "00707bdb3c9e4411b0ea74353e29b0fdd3a8b974991ed3acceea6f7a61c3adba"
+    },
+    {
+      "function": "dora3_s22_mini_801C423C",
+      "original_instruction_sha256": "a52b025c4efbc9bdf2d601c4795394b6d16ba1a0b4f5a1c4529217b91bc6b0f7"
+    },
+    {
+      "function": "dora3_s22_mini_801C42DC",
+      "original_instruction_sha256": "235043ac7ff6848cf89e4381d2a4243500e8eab57c4c60542b6833d4c6249c6e"
+    },
+    {
+      "function": "dora3_s22_mini_801C4478",
+      "original_instruction_sha256": "fbb2f30a4c585031b781163752399db0dd3e9de9ba7a8ff5189cc71c11cb820a"
+    },
+    {
+      "function": "dora3_s22_mini_801C45D0",
+      "original_instruction_sha256": "8d105176b636bf889ae56a8a26cf699a58721d209970cf60243434421be16ae3"
+    },
+    {
+      "function": "dora3_s22_mini_801C473C",
+      "original_instruction_sha256": "d543b3a2d3c5943185de7c84b1fcf4ea15655864161b72b5be6d4599a27b9d0b"
+    },
+    {
+      "function": "dora3_s22_mini_801C49B4",
+      "original_instruction_sha256": "be4f081e626d79b96dcbe3855d72c09c75f546dfc96afab03bca483d3542a680"
+    },
+    {
+      "function": "dora3_s22_mini_801C4AD0",
+      "original_instruction_sha256": "702eb3a0d377b95437d54a37fc5009b15af56280d773e6cb91221b014a658508"
+    },
+    {
+      "function": "dora3_s22_mini_801C4C34",
+      "original_instruction_sha256": "a73fa4fdf91ea57bdb6693461b860efa2b8fdb810ba0bbcc013afd1ddf233656"
+    },
+    {
+      "function": "dora3_s22_mini_801C4E58",
+      "original_instruction_sha256": "ce3b8dc5241cb59f2cfb109adc53485a8e3566152104c72313b98019f3fe56b3"
+    },
+    {
+      "function": "dora3_s22_mini_801C4EE8",
+      "original_instruction_sha256": "c8606add8dbf58842c3d8bc5b3d16a126c4f7c0f326c888cf64b5877ee63f4d6"
+    },
+    {
+      "function": "dora3_s22_mini_801C4EF0",
+      "original_instruction_sha256": "79678595953d9b2aab81b69f83d0a38e375e8e72da4ba796a16b8bae23a61c9f"
+    },
+    {
+      "function": "dora3_s22_mini_801C4F5C",
+      "original_instruction_sha256": "0122c12440fa35ae1c4730fd43165991f2bd26a5abe5f3601391e66dd6cb802c"
+    },
+    {
+      "function": "dora3_s22_mini_801C4FD4",
+      "original_instruction_sha256": "77aadef94ec9cbaeb196fa0caea150194084f1659bd129d917500419e07ac0cd"
+    },
+    {
+      "function": "dora3_s22_mini_801C510C",
+      "original_instruction_sha256": "25a2e03ec103bc139312138e77532f6abedd224f3bc4a99e010783d886a30516"
+    },
+    {
+      "function": "dora3_s22_mini_801C51B0",
+      "original_instruction_sha256": "e348a041b59a8a96520e1cd175db9ae51fb7d95e6dc39eee730353538b078ebd"
+    },
+    {
+      "function": "dora3_s24_mini_801C973C",
+      "original_instruction_sha256": "79a0dc7398b572d20e50ab0af151bef0af494b4509f0835776e3adc9ebe7a4fe"
+    },
+    {
+      "function": "dora3_s24_mini_801C9744",
+      "original_instruction_sha256": "0545bd24d745a7a189e9a0e462e8fe0132c92cf796f13083b4b9926a56df575b"
+    },
+    {
+      "function": "dora3_s24_mini_801C974C",
+      "original_instruction_sha256": "4ab7d67f3b79b4f15c71b09923f91329aae12cf2731e24b1ff4d588431441d43"
+    },
+    {
+      "function": "dora3_s24_mini_801C97A8",
+      "original_instruction_sha256": "5b91d609c9b59cf38b105e63db76787f6bb720d6f485d229d8ce08ded0cd9668"
+    },
+    {
+      "function": "dora3_s24_mini_801C97D4",
+      "original_instruction_sha256": "b679bb51f7dd41f1fcd67611fa208e3fd836ce145d3e02a951061edb538837fb"
+    },
+    {
+      "function": "dora3_s24_mini_801C9800",
+      "original_instruction_sha256": "815bf3f01d16abe1070041bb45173f747c8ad5091fa6d72e47e13f2c22aeb1b8"
+    },
+    {
+      "function": "dora3_s24_mini_801C9AD0",
+      "original_instruction_sha256": "5a41cefc8a5c1e95f462c21a8046a1b4004279b95adf8ae0a18101d1542e043e"
+    },
+    {
+      "function": "dora3_s25_mini_801C3680",
+      "original_instruction_sha256": "363d53fa279328ecc4bf6f7befc0b5a8e60b3aa218c269b2fbe022f86c0f6960"
+    },
+    {
+      "function": "dora3_s25_mini_801C3700",
+      "original_instruction_sha256": "d9fff42b51fadfcee83f4844d26d31395b6f40a259d73a03335621b100ff848a"
+    },
+    {
+      "function": "dora3_s25_mini_801C378C",
+      "original_instruction_sha256": "3242dc7a61b9505b590513c8b5583c24424db93668b77f72516f0d605a819f50"
+    },
+    {
+      "function": "dora3_s25_mini_801C3978",
+      "original_instruction_sha256": "eba3ad9a8e6fb05d14bd307492e922a4badd9a11cf19d21f58f7fbd1b40960f2"
+    },
+    {
+      "function": "dora3_s25_mini_801C3A48",
+      "original_instruction_sha256": "3c22dc0530029bf763ed3e0f8747edd843a712b085362a1fef95de6e44c1a780"
+    },
+    {
+      "function": "dora3_s25_mini_801C3A90",
+      "original_instruction_sha256": "a4dcba70123fc696c072472827942da9f11799ef6a807a61e49544eccae05e69"
+    },
+    {
+      "function": "dora3_s25_mini_801C3B24",
+      "original_instruction_sha256": "74a150e595c0b9990db530890a337319582b787cf390e6a36a5772565754e5c2"
+    },
+    {
+      "function": "dora3_s25_mini_801C3C30",
+      "original_instruction_sha256": "51826ae665e67cba801c32c4d2e9277fe7b56979ca44386ea3843b5feec53d90"
+    },
+    {
+      "function": "dora3_s25_mini_801C3D60",
+      "original_instruction_sha256": "f1a788689557f24502b84d23804dc11ed5a5cee883f9a1e0db9e88c7c4fc4308"
+    },
+    {
+      "function": "dora3_s25_mini_801C3DF8",
+      "original_instruction_sha256": "0afc033ea34048520cda396bb8c297d9b401b862325f089847cbe96f5ccd6092"
+    },
+    {
+      "function": "dora3_s25_mini_801C4090",
+      "original_instruction_sha256": "bef114513b1a1fc207808699e8f30e7d8b5bbb882a4cdf1c5bfd7bef10f43838"
+    },
+    {
+      "function": "dora3_s25_mini_801C4160",
+      "original_instruction_sha256": "a46ef0be5bb98b841d07c1d2878609725b5423abcfb0aaf14f93d796c2cee67c"
+    },
+    {
+      "function": "dora3_s25_mini_801C41C0",
+      "original_instruction_sha256": "02e2eac8221b4a79cd313fcfb96009cee58b38b5cc3b193ff87e0d625a20336e"
+    },
+    {
+      "function": "dora3_s25_mini_801C427C",
+      "original_instruction_sha256": "a738c67133fc5655687b63dcb7f681b194f8e218bbbfb9d923f16444a9920618"
+    },
+    {
+      "function": "dora3_s25_mini_801C43C0",
+      "original_instruction_sha256": "e6c9921e787ea0141e618818c2cd642fae7c52bb5fb813d49e78460f6c1fc6e3"
+    },
+    {
+      "function": "dora3_s25_mini_801C44E4",
+      "original_instruction_sha256": "4fb138bdb8b127ea11d70a91a9a4734fcb1b6a85c14ae64db4e66aaa267b39ad"
+    },
+    {
+      "function": "dora3_s25_mini_801C4654",
+      "original_instruction_sha256": "f082e3b5626eef362ec3d9af7ec9119d731cedd4126d8a403a0f9b979387dc14"
+    },
+    {
+      "function": "dora3_s25_mini_801C4724",
+      "original_instruction_sha256": "e9fb379149ead61d6931ec5ed43eab994d498e2fe933d2499f14723dd3909a6e"
+    },
+    {
+      "function": "dora3_s25_mini_801C4C94",
+      "original_instruction_sha256": "573b24e4df74de5eab8efdf68033c4808c758f998dd2edb6108c5e63b0a57e7d"
+    },
+    {
+      "function": "dora3_s25_mini_801C4D8C",
+      "original_instruction_sha256": "c95708a94c0e743308bae0ba7c2b0c64e0fd5d66fd055323f405dfba36368eda"
+    },
+    {
+      "function": "dora3_s25_mini_801C4EE0",
+      "original_instruction_sha256": "371025aa95e27a6b646778a4ec09fc9150328752bf95ce9da341d800cc3a5fb3"
+    },
+    {
+      "function": "dora3_s25_mini_801C50C0",
+      "original_instruction_sha256": "2805b1a30c39c63846390d2ae7bbbb0059f36597108a73641af426285e9177ac"
+    },
+    {
+      "function": "dora3_s25_mini_801C5490",
+      "original_instruction_sha256": "ef9f3f262649b0b14153bcfba180437b160cf6582319587f4eb7fde82206ac47"
+    },
+    {
+      "function": "dora3_s25_mini_801C553C",
+      "original_instruction_sha256": "a7f3295e338a965662f9fe574cbb56f0fe4bcf8fc5e5942c78ea1b6b2d6dceb1"
+    },
+    {
+      "function": "dora3_s25_mini_801C575C",
+      "original_instruction_sha256": "a74677fa6123a40e14ac61e982dc4b1faa22c6d2d39de370129a03e5d43f068b"
+    },
+    {
+      "function": "dora3_s25_mini_801C589C",
+      "original_instruction_sha256": "16db03824c8c6e52281b74c8d331715d006d3eb10e15bccb7215085b07f9a579"
+    },
+    {
+      "function": "dora3_s25_mini_801C5948",
+      "original_instruction_sha256": "ab10fbd01039afc51fcd3739d38ecc6da2fad308cd655573da0fa9a97077a6b4"
+    },
+    {
+      "function": "dora3_s25_mini_801C59E8",
+      "original_instruction_sha256": "c630866ebbec0786d7925f79852d469d64aca4418670f0f879e9ada47628990d"
+    },
+    {
+      "function": "dora3_s25_mini_801C5EC4",
+      "original_instruction_sha256": "5bc89d8bc24351c3b078081049fab166967500ee6915f4437504aa3545c18b01"
+    },
+    {
+      "function": "dora3_s25_mini_801C5F24",
+      "original_instruction_sha256": "8264f01206c4efdb923a074ae0ad8557fe4f7cf21b5dc85bf20254293e1db92d"
+    },
+    {
+      "function": "dora3_s25_mini_801C61EC",
+      "original_instruction_sha256": "34f392a327661420d2fbede4c3810e5998fd751bd5459555b5f3b7809d4c632e"
+    },
+    {
+      "function": "dora3_s25_mini_801C639C",
+      "original_instruction_sha256": "7cea3237ba60625f8bbbb6a9931239e2f473b84af6eb22fb0129376d3ed0fb4b"
+    },
+    {
+      "function": "dora3_s25_mini_801C6448",
+      "original_instruction_sha256": "cf609785c477d59b5133c29cff23c067b5144cc4907aa6fcc78963173ae2b439"
+    },
+    {
+      "function": "dora3_s25_mini_801C6514",
+      "original_instruction_sha256": "f58797bbefcc65213a784d1a94f7743ca3280f883e3f96850352624b2a01e6c3"
+    },
+    {
+      "function": "dora3_s25_mini_801C6564",
+      "original_instruction_sha256": "7d1638b9c5d615eb5bb2e2c2d7b8a1829da6ac9f4c3d835e4a22adced9463d23"
+    },
+    {
+      "function": "dora3_s25_mini_801C6688",
+      "original_instruction_sha256": "14f7043e9ec16ec331b2cb89ae4a7452f622f3050472e79460678c51742b307e"
+    },
+    {
+      "function": "dora3_s25_mini_801C676C",
+      "original_instruction_sha256": "1a860093633254b8f56900fa0ef5414be9c3ad8e476e86c5f972968114be2438"
+    },
+    {
+      "function": "dora3_s25_mini_801C6788",
+      "original_instruction_sha256": "1d5416b621b2afe81cb159ec84d193d7dff6871446bc1a167def5b2b1eaaf023"
+    },
+    {
+      "function": "dora3_s25_mini_801C67A4",
+      "original_instruction_sha256": "c308c8b7d293babfd3155a407d5c92a822be084a70677c2844ef65294065d75e"
+    },
+    {
+      "function": "dora3_s25_mini_801C6A30",
+      "original_instruction_sha256": "c90e30c760fe8062a2e5b83d145fedb4259ca270c707607e8c152d7a23879fb5"
+    },
+    {
+      "function": "dora3_s25_mini_801C6C74",
+      "original_instruction_sha256": "4ff1b13b7555675cb4c64205a025baf28a21bf70c2e6f71f645dee721bc6630d"
+    },
+    {
+      "function": "dora3_s26_mini_801C3680",
+      "original_instruction_sha256": "2a43cf7f49d1e646369e7ddeab5ed41fd991fccf752136ff9caccc94a67cbfec"
+    },
+    {
+      "function": "dora3_s26_mini_801C3700",
+      "original_instruction_sha256": "d9fff42b51fadfcee83f4844d26d31395b6f40a259d73a03335621b100ff848a"
+    },
+    {
+      "function": "dora3_s26_mini_801C7048",
+      "original_instruction_sha256": "54179ceb35255c7828433d6c466bfb4c129ba96cd7b43d8f43ac4681d721e61a"
+    },
+    {
+      "function": "dora3_s26_mini_801C72B8",
+      "original_instruction_sha256": "a641e3231975c8d96407a674967cf32c1a8b30c8905f67dd1a449f9d4d36e656"
+    },
+    {
+      "function": "dora3_s27_mini_801C3680",
+      "original_instruction_sha256": "9a82144a3c9dc943e85b422212f2aaf34747c4ac6f83acc493fefb88ee200e88"
+    },
+    {
+      "function": "dora3_s27_mini_801C3700",
+      "original_instruction_sha256": "d9fff42b51fadfcee83f4844d26d31395b6f40a259d73a03335621b100ff848a"
+    },
+    {
+      "function": "dora3_s27_mini_801C378C",
+      "original_instruction_sha256": "c3638017e27cdf93c21d69de85e4519a2f1c01e792073cd6ba3307c2cb2e8330"
+    },
+    {
+      "function": "dora3_s27_mini_801C38F8",
+      "original_instruction_sha256": "7fc6f3a022ca15167659f154f1b485630b30d850172ecf28065d0e9218b5fecc"
+    },
+    {
+      "function": "dora3_s27_mini_801C39EC",
+      "original_instruction_sha256": "0e2c5655182be65503d59ac59d20b4d47b30c465cf4b474cc55ba1e0a18a81cd"
+    },
+    {
+      "function": "dora3_s27_mini_801C3AE8",
+      "original_instruction_sha256": "8a17f232e0787a314de8e95b15382c4a1ce4bfe4cd8cc9007b4d200486fdb906"
+    },
+    {
+      "function": "dora3_s27_mini_801C3BB4",
+      "original_instruction_sha256": "30b73018287d45afa8d852e9c71667f1af3569faf4c7400c1aa5df220edf1964"
+    },
+    {
+      "function": "dora3_s27_mini_801C3C20",
+      "original_instruction_sha256": "544dac5e13e53b18812e9e523b2cfbd3b762c6027d9f505768a749c78417fafb"
+    },
+    {
+      "function": "dora3_s27_mini_801C3CD8",
+      "original_instruction_sha256": "aeb59735bc393d25efb4539e332260773e187f03613590a2beccefe3a3a05069"
+    },
+    {
+      "function": "dora3_s27_mini_801C3E0C",
+      "original_instruction_sha256": "8b75c2235cc5c1c526e1629c8cedccdf3253b7ac51655153d214c6bab8eecd91"
+    },
+    {
+      "function": "dora3_s27_mini_801C4070",
+      "original_instruction_sha256": "47b79b07ab1261887e95da807540e8e65e60e7ff0f4b21936aee5ed8bfde8dad"
+    },
+    {
+      "function": "dora3_s27_mini_801C4274",
+      "original_instruction_sha256": "9ac83cee109623805a97427d03d994eae64aa2dae916930c9dd0aaba3d173b56"
+    },
+    {
+      "function": "dora3_s27_mini_801C4338",
+      "original_instruction_sha256": "4a761a9403dca7d55ce68f620966a0442ad2a4a3cb7028e6493d7e9ea95ad75a"
+    },
+    {
+      "function": "dora3_s27_mini_801C4430",
+      "original_instruction_sha256": "1eaf3c531cd959debb1ce6c1ec5fc1e039d5ac9f6adb22164d80008679016c5c"
+    },
+    {
+      "function": "dora3_s27_mini_801C44E0",
+      "original_instruction_sha256": "213b3bc1091bfba5802c8df29826b68065707f0861d2cd8c4379af2164de41d4"
+    },
+    {
+      "function": "dora3_s27_mini_801C4510",
+      "original_instruction_sha256": "574c7903d0544cb5eded186dcbf6dffb7d63ef5b6fcf27adc33e7c31fb1465e0"
+    },
+    {
+      "function": "dora3_s27_mini_801C45E4",
+      "original_instruction_sha256": "f79eaf88cd96a86a167442bb9fb7e261634588049e97b053edcf636dea2274c6"
+    },
+    {
+      "function": "dora3_s27_mini_801C4680",
+      "original_instruction_sha256": "eb9b7ece620f558eed0c7ff1b4e66e6c90fba4c4920f28c766781a729eeeddea"
+    },
+    {
+      "function": "dora3_s27_mini_801C499C",
+      "original_instruction_sha256": "82def49809625167eee70682fdc22a13270836d4d66888213ca322e96c07f116"
+    },
+    {
+      "function": "dora3_s27_mini_801C4CB0",
+      "original_instruction_sha256": "581d7086a1deedc515b8df9e045f0116d1abfa8e84fb831d44a0ced357ae7a97"
+    },
+    {
+      "function": "dora3_s27_mini_801C4D20",
+      "original_instruction_sha256": "c5b7fb864acd3a6a49dd2fd005862db1257676bffc304c35e5668700c41119c8"
+    },
+    {
+      "function": "dora3_s27_mini_801C4E58",
+      "original_instruction_sha256": "3b624bee72e8f2e268f935dee42be7b014436b1b1e528da775b321a2636df59c"
+    },
+    {
+      "function": "dora3_s27_mini_801C4F74",
+      "original_instruction_sha256": "332ab7d28ad50bf4077f17ca4d07d7b52b852033fdb0597b2b223107c72126d0"
+    },
+    {
+      "function": "dora3_s27_mini_801C4FC4",
+      "original_instruction_sha256": "9333eacccbb94f4aeb64ecc9a75521bdf1739c582f622dfd749aec71602bc45c"
+    },
+    {
+      "function": "dora3_s27_mini_801C5050",
+      "original_instruction_sha256": "d6a68e261bf26e5e1571c26b8ce6902ad5980d023dab88e3d7afa382029b5bef"
+    },
+    {
+      "function": "dora3_s27_mini_801C50AC",
+      "original_instruction_sha256": "b735ccfa56425b6990b1f7156dad7d538dac954a8015c4e3286a8de8e45b58bb"
+    },
+    {
+      "function": "dora3_s27_mini_801C50FC",
+      "original_instruction_sha256": "08199cd29eadbc4f455366386a89896bb17755e6285baa4f4d857f14c226c4a3"
+    },
+    {
+      "function": "dora3_s27_mini_801C5314",
+      "original_instruction_sha256": "f7b5fde12eaea4254ac42a2e908635c60be7b40da9ae64b7a2c60eb16bf94f7b"
+    },
+    {
+      "function": "dora3_s27_mini_801C55C8",
+      "original_instruction_sha256": "fa9da041bf043e1286fa78e01e4eb51810b6c95b6cf99b90b3fc9f0bcefd8ff8"
+    },
+    {
+      "function": "dora3_s27_mini_801C5674",
+      "original_instruction_sha256": "f6c8b058e750831ced1da391d60f9accb80ed765275a5c754d33354701a48be1"
+    },
+    {
+      "function": "dora3_s27_mini_801C5818",
+      "original_instruction_sha256": "fd1879ab19581330fcc5126c49fbc8a3330fce49296875510df50190088d3cf8"
+    },
+    {
+      "function": "dora3_s27_mini_801C5A94",
+      "original_instruction_sha256": "fe6626beb43e64aa68b1c49c3b35a3627370e1603c1108a7bbb47b195cae9729"
+    },
+    {
+      "function": "dora3_s27_mini_801C5B14",
+      "original_instruction_sha256": "adda09f831eabf16da992ba6a82041c0ced92fd1e275286ba09b6c9ddf563b9a"
+    },
+    {
+      "function": "dora3_s27_mini_801C5B3C",
+      "original_instruction_sha256": "976469b2683ef814bacad73474f9dd56a0580a9e1667cbc225b32fd132f4e922"
+    },
+    {
+      "function": "dora3_s27_mini_801C5C14",
+      "original_instruction_sha256": "813542aa262bc6bc9a6ff358b7750a2316591c1add16ecb5477b4e837209f0d8"
+    },
+    {
+      "function": "dora3_s27_mini_801C5F80",
+      "original_instruction_sha256": "7dfb5b51aa0bdff942ab8aea4d61b29a234524d4cdaed6658075e4f513c632be"
+    },
+    {
+      "function": "dora3_s27_mini_801C619C",
+      "original_instruction_sha256": "f318c4bcb9f2b7c16b78b55f7529d9797bbdae6637c4d8aebebe5fef9cb70f1c"
+    },
+    {
+      "function": "dora3_s27_mini_801C6334",
+      "original_instruction_sha256": "d49f36a535b90c9287d1e55345ac719a8fc115a2de0dbb077de2fc76919cb169"
+    },
+    {
+      "function": "dora3_s27_mini_801C6490",
+      "original_instruction_sha256": "92dec4c38cf158a7dfffbfb045220ec6f8bbcd71c1e85481497c3bc1891eb623"
+    },
+    {
+      "function": "dora3_s27_mini_801C64F0",
+      "original_instruction_sha256": "36ba9a655094b7a0d219f460f25738a9db86b4cc6c77838b589318b6da29e275"
+    },
+    {
+      "function": "dora3_s27_mini_801C66F0",
+      "original_instruction_sha256": "20731a63a992b340942f52ca6e81a0b36c588de040738c863da2a51d1552412e"
+    },
+    {
+      "function": "dora3_s27_mini_801C6750",
+      "original_instruction_sha256": "0fd5177c87c9de40c62b518ddb2bba9240ae7e2d1dfa6f8eb8dfbbdafabd12fc"
+    },
+    {
+      "function": "dora3_s27_mini_801C680C",
+      "original_instruction_sha256": "44f00d491dc69c47660a3dcf25e2ce16dfaadf13fb21ba5cafdf6dfb24eb60e9"
+    },
+    {
+      "function": "dora3_s27_mini_801C6828",
+      "original_instruction_sha256": "65f7fd5140303a6cd31fada24470f33e479cf419b949aac6de0c74552112f12d"
+    },
+    {
+      "function": "dora3_s27_mini_801C6844",
+      "original_instruction_sha256": "4bd8964dee500fa950776cf17643b5f3cd1a9ec27edbb4e9ffefa45e8e28b299"
+    },
+    {
+      "function": "dora3_s27_mini_801C6B90",
+      "original_instruction_sha256": "51fe2461d91f68e792299732d8f7d8c69ed1eb07f59f944462fd9d983d8aa09a"
+    },
+    {
+      "function": "dora3_s27_mini_801C6CC4",
+      "original_instruction_sha256": "cf1edd22c6026a4eabc3214a70799da350b4cf677ef3fa668d56aa53516514a6"
+    },
+    {
+      "function": "dora3_s28_mini_801C3680",
+      "original_instruction_sha256": "1cbe0fed0a861171c9a124821e98d0912be449c42764558de7840d99213aa58d"
+    },
+    {
+      "function": "dora3_s29_mini_801C4C74",
+      "original_instruction_sha256": "be500c06ea44ffe866f663a004753d44207846469711533bdc25624538324bca"
+    },
+    {
+      "function": "dora3_s29_mini_801C4D10",
+      "original_instruction_sha256": "f92eb9be613b703f518a2356dd5376ba17cea61427ca8ee40f19297113da1b5c"
+    },
+    {
+      "function": "dora3_s29_mini_801C5068",
+      "original_instruction_sha256": "72837aaada908d4f4a56b0253f8739f049e5d643252ad5f7359f0b2453cc141f"
+    },
+    {
+      "function": "dora3_s29_mini_801C5364",
+      "original_instruction_sha256": "3574a8a8d149a1b628c05278adf03306c2bd8fc6a2a518ce17ebdd74ac18de74"
+    },
+    {
+      "function": "dora3_s29_mini_801C53D4",
+      "original_instruction_sha256": "e10c9e2e1351f6428c5575aba4d67700cddea761644d1f0bc3a19ca1e5aa73eb"
+    },
+    {
+      "function": "dora3_s29_mini_801C5514",
+      "original_instruction_sha256": "4fde18c16de0a01812420b456cc1e30bf39cbafdacfa4da40bded3c1cc1aa073"
+    },
+    {
+      "function": "dora3_s29_mini_801C561C",
+      "original_instruction_sha256": "6825925ce1a84914c5c4e7e7d1e9120602a8cb27579d2aca813b4a06c0b7a143"
+    },
+    {
+      "function": "dora3_s29_mini_801C566C",
+      "original_instruction_sha256": "59797b59237478a42369ada89cdefe41c17d9c3153aa4b5dde8ce26ee6f487fb"
+    },
+    {
+      "function": "dora3_s29_mini_801C56F8",
+      "original_instruction_sha256": "172fbe169c6b5b59017c38b65cf6e7ca6de00a792b34a609ba38b3f19b2ed2bd"
+    },
+    {
+      "function": "dora3_s29_mini_801C5754",
+      "original_instruction_sha256": "d833a0e1d8ba118d76e6afc58bf4a1dc9ebbb5ed44485d096e0b04427149f52a"
+    },
+    {
+      "function": "dora3_s29_mini_801C57A4",
+      "original_instruction_sha256": "abfb21b6f5b8410932475d4e35e97929679caac0b03876d5b55e44e934e03507"
+    },
+    {
+      "function": "dora3_s29_mini_801C59E4",
+      "original_instruction_sha256": "7e33c760b4ab83d3bb90d1cef43a96353d8bef39ac071861ebbc91d618aa2610"
+    },
+    {
+      "function": "dora3_s29_mini_801C5B58",
+      "original_instruction_sha256": "38be623da967b902b059ec6ae0fd7c3c22d03b2eb8c55534c1ce2a9a4196d104"
+    },
+    {
+      "function": "dora3_s29_mini_801C5BD8",
+      "original_instruction_sha256": "549711767184adeba02a14dce660900e5e9a9df6133bef6ee93a9c6dd16ded33"
+    },
+    {
+      "function": "dora3_s29_mini_801C5D84",
+      "original_instruction_sha256": "5b54f98bb604304971ec7302884ea2642b468471861c6cc45ab2f24d1ad82427"
+    },
+    {
+      "function": "dora3_s29_mini_801C5FE0",
+      "original_instruction_sha256": "5b543552eaa0c6b57e6d05e0d8e7bb06d57a794f3f261ea6544ac06ae29ffeca"
+    },
+    {
+      "function": "dora3_s29_mini_801C6060",
+      "original_instruction_sha256": "af590e901e744e87a392cf344e66181922f66fea1c0fe0346fe55b9a2758c9c8"
+    },
+    {
+      "function": "dora3_s29_mini_801C6090",
+      "original_instruction_sha256": "197e637ae65767a416090fcf3e5ea43bcf456bf547b93df5b4b4b586784ed4bf"
+    },
+    {
+      "function": "dora3_s29_mini_801C615C",
+      "original_instruction_sha256": "d87e2b92a0a1e61801e74e10c535757708d2d137f204d0181bb8c6e12206f5ac"
+    },
+    {
+      "function": "dora3_s29_mini_801C6360",
+      "original_instruction_sha256": "ef43997aa3fb7a329810e6e735ebf3d0bfd1aa7781945c914fbb311abc659d41"
+    },
+    {
+      "function": "dora3_s29_mini_801C66B4",
+      "original_instruction_sha256": "9c00275c09bb730c830237381e5a4b4dc05851e48519df2ecbf6d1af767a6ba2"
+    },
+    {
+      "function": "dora3_s29_mini_801C6820",
+      "original_instruction_sha256": "c3c34b6a61b2943a4f1d8944b502871721423a46f089087da876cbf83a011380"
+    },
+    {
+      "function": "dora3_s29_mini_801C6880",
+      "original_instruction_sha256": "7b13e10ae7ff4ff3a805fa1cc8dce95e6fd07661ec12929efa2e1ceb2dc90526"
+    },
+    {
+      "function": "dora3_s29_mini_801C68C8",
+      "original_instruction_sha256": "c86d229166bb652b094a079c621ede98878b949bd241266f8c87dd416e4f8aa3"
+    },
+    {
+      "function": "dora3_s29_mini_801C6918",
+      "original_instruction_sha256": "41acce4bcd16e8d5f8d802824f1c7b1ec87731b1f97e7ad0b84bd067c607c94d"
+    },
+    {
+      "function": "dora3_s29_mini_801C6F28",
+      "original_instruction_sha256": "c38ecf57960398cd0c3f5cbee294d26e9518b29f24c96a670f44dd1577ae3b38"
+    },
+    {
+      "function": "dora3_s29_mini_801C7060",
+      "original_instruction_sha256": "e9688cb68535ba0b23dd3fdb3b300b64b1608596024cb8af61b79217d659d48b"
+    },
+    {
+      "function": "dora3_s29_mini_801C7068",
+      "original_instruction_sha256": "3b216b4edc954de5bf3841a4a86fbfcaed8fb8a2ec498438b60f8fe3898db627"
+    },
+    {
+      "function": "dora3_s29_mini_801C71B8",
+      "original_instruction_sha256": "02459f02c20b2aa4ed38d3f7f9fee03a08089a7dacf2174afd14cfef7376cd4b"
+    },
+    {
+      "function": "dora3_s29_mini_801C73B8",
+      "original_instruction_sha256": "7cf15b91873b3d24dfa28bbaf7cc379833da8a58474b702cb754cc9a12be4a41"
+    },
+    {
+      "function": "dora3_s29_mini_801C7410",
+      "original_instruction_sha256": "ec5c85f37f867051a74de4bd1dc2b3cb612bd38653329fe851cc7fbf7c396c5e"
+    },
+    {
+      "function": "dora3_s29_mini_801C74D0",
+      "original_instruction_sha256": "65e06854e0fcf0308dd35378c54cca7e2152e0c5af2ea5692b87df60491e0699"
+    },
+    {
+      "function": "dora3_s29_mini_801C74EC",
+      "original_instruction_sha256": "c7e2f5e5f51b5d9e0076383f280be3fadd9613c3560c76477fc19e60d3fd1df1"
+    },
+    {
+      "function": "dora3_s29_mini_801C7508",
+      "original_instruction_sha256": "2651a907b38e4316822ef00b522d8b9027698c7e33c8c28d077c2a2d1e07d4cf"
+    },
+    {
+      "function": "dora3_s29_mini_801C7864",
+      "original_instruction_sha256": "61c177b7612a50b5babcceaa116da2efdb8aebd2e90843deafb84a1693ad4ff2"
+    },
+    {
+      "function": "dora3_s29_mini_801C79D4",
+      "original_instruction_sha256": "01b28ec1726d17d00016af9782b738d20873d97c6f46aa5e950d51bdb973bd59"
+    },
+    {
+      "function": "dora3_s24_mini_801C5C24",
+      "original_instruction_sha256": "a1786f8cb14a80ff9daaa40d0f357bdd6e5b393fede9a9d7be27d54b98285995"
+    },
+    {
+      "function": "dora3_s24_mini_801C5E8C",
+      "original_instruction_sha256": "0851ce36867cdf20514a8515973637c8c92494cb505c0921cdd9f02b133d25f0"
+    },
+    {
+      "function": "dora3_s24_mini_801C61F4",
+      "original_instruction_sha256": "3631410513b04b8a4f6c2cd756ebc6037f5c0d712066c02701454880ba3bf3b5"
+    },
+    {
+      "function": "dora3_s24_mini_801C6230",
+      "original_instruction_sha256": "f90092a994fb5e1ee0967a5580e09bb690ad8d882d5f466e50fafeeda4dc09b3"
+    },
+    {
+      "function": "dora3_s24_mini_801C63C0",
+      "original_instruction_sha256": "eee3384718360451064ce326b096f90d2e30506a036ab64d58d8c5a2bee6b0e4"
+    },
+    {
+      "function": "dora3_s24_mini_801C6480",
+      "original_instruction_sha256": "af45a6d6908e047e15c7c4616135a08bf4b031b36e6138d95410e96883465f01"
+    },
+    {
+      "function": "dora3_s24_mini_801C64BC",
+      "original_instruction_sha256": "357cdc83c7af116e15cac5725d729832989ee10be53ecfe72ef30ee8988e4a6d"
+    },
+    {
+      "function": "dora3_s24_mini_801C65D8",
+      "original_instruction_sha256": "d5ebec68c98b0ea91ed24237c262e6bbd59fc6aea42041a39fed1437fe4ab1eb"
+    },
+    {
+      "function": "dora3_s24_mini_801C66E0",
+      "original_instruction_sha256": "2b2d2ba22ce6bce61547aa39f9f5c64f3961d8bba2668aeea0fb2a2d3ccdc301"
+    },
+    {
+      "function": "dora3_s24_mini_801C678C",
+      "original_instruction_sha256": "8990f86333abe0c0c9b4a19714bdeda12f7c83a39fa88033fdef17c510c3fd21"
+    },
+    {
+      "function": "dora3_s24_mini_801C680C",
+      "original_instruction_sha256": "953b7eb367cd63bdc8d5b330c3d6d46684289e1690246a4a8fa304a0ad9541b9"
+    },
+    {
+      "function": "dora3_s24_mini_801C6A4C",
+      "original_instruction_sha256": "7c73b702dd45a868fd67057834cebac41e8452fd6be951429c8d92e4a01f20be"
+    },
+    {
+      "function": "dora3_s24_mini_801C6AB4",
+      "original_instruction_sha256": "02d8d6bfa56fcbb251bd3d3c311da8b76179ca5bac7f05c42fcbcc5e80001516"
+    },
+    {
+      "function": "dora3_s24_mini_801C6BAC",
+      "original_instruction_sha256": "951d6faf9032b48fa98ddb6e44a5d24585d8517a8d322832532f8b27df0a40be"
+    },
+    {
+      "function": "dora3_s24_mini_801C6EC0",
+      "original_instruction_sha256": "5fd4e582df287c214226ecd7b019f88d32bc570b4323c9518e4b8a3c28a77de7"
+    },
+    {
+      "function": "dora3_s24_mini_801C6F78",
+      "original_instruction_sha256": "09d1ed790922ab5a886b239eecbdec57e75bb092ee2c71266bdea3d86eae2768"
+    },
+    {
+      "function": "dora3_s24_mini_801C6F88",
+      "original_instruction_sha256": "aaf2238dde3ef633fd61bc821c98ec5541ff73f9581946b0dae2be3414685750"
+    },
+    {
+      "function": "dora3_s24_mini_801C7128",
+      "original_instruction_sha256": "64fcae589f4afdd1364213105c9b5ed1bef7758e5d6e90ca0d47748cba442c40"
+    },
+    {
+      "function": "dora3_s24_mini_801C7158",
+      "original_instruction_sha256": "0d12e3994a34d3d826db2f31aede3d88b521312d3bef02181cf82da80d231384"
+    },
+    {
+      "function": "dora3_s24_mini_801C719C",
+      "original_instruction_sha256": "8599a0245a081a30b42a2d5155a942b050a914ee116771573948b5b04d9b83c0"
+    },
+    {
+      "function": "dora3_s24_mini_801C71D4",
+      "original_instruction_sha256": "93b2b4576c538b53918dbb147acb7d616f32e5a018b29ff7ed95066b4196c840"
+    },
+    {
+      "function": "dora3_s24_mini_801C7204",
+      "original_instruction_sha256": "a2f249f6aa98f7d584c706af63bc0c6bc8aceb0a90bd8c987ecdf9c65eea3241"
+    },
+    {
+      "function": "dora3_s24_mini_801C7224",
+      "original_instruction_sha256": "8b54c94239b76c6106c52d633e06bf0613a0f51ba16c0d198388e34a74c5fe62"
+    },
+    {
+      "function": "dora3_s24_mini_801C7248",
+      "original_instruction_sha256": "b2b2acf60445556f7765ca4e071b1c4d77b8f44cd36a8fb57bdcf3403dd24b4c"
+    },
+    {
+      "function": "dora3_s24_mini_801C72B4",
+      "original_instruction_sha256": "5dc0db8df6529e452a9a8a86168c40c0af597c8895eda53cc3b1e58c82da68f4"
+    },
+    {
+      "function": "dora3_s24_mini_801C73A8",
+      "original_instruction_sha256": "194506513ae12a5193d00189ae07c0b195a5371658e50b5b5892d9dfa9796d21"
+    },
+    {
+      "function": "dora3_s24_mini_801C7490",
+      "original_instruction_sha256": "0589113f586c5ed6635e91b050250e9758f983a801d20c7ecf2e4ead1c92a896"
+    },
+    {
+      "function": "dora3_s24_mini_801C7570",
+      "original_instruction_sha256": "ca60422ba4fb12828f9b8994cbe40479835fc9f10074f1e39295fd690c5bb8fc"
+    },
+    {
+      "function": "dora3_s24_mini_801C75DC",
+      "original_instruction_sha256": "1e7b61e99c816ff7d602dd7d20d4419ced1c4050dd531743777de37b5a9ef893"
+    },
+    {
+      "function": "dora3_s24_mini_801C779C",
+      "original_instruction_sha256": "e77655b154d044455587884cd0bcbd77ca0d38e7fbab963b71462534d362f86f"
+    },
+    {
+      "function": "dora3_s24_mini_801C788C",
+      "original_instruction_sha256": "9f1a3c33a31733310db8cb87189f720a916b823c24f9034bdc16ea0a0bf34d59"
+    },
+    {
+      "function": "dora3_s24_mini_801C7970",
+      "original_instruction_sha256": "c2675f634bde373fced5a82c29dbbf159332be362c16542835815223bdec7694"
+    },
+    {
+      "function": "dora3_s24_mini_801C7B34",
+      "original_instruction_sha256": "48dc618715285ed83a743cc27ec82b5f28b57a39996daabe2cf1039d526a3e7c"
+    },
+    {
+      "function": "dora3_s24_mini_801C7E74",
+      "original_instruction_sha256": "85747b012eec4334bc31c414ae5904731384cfdb8b7b6ab9d3de69dbd6482c0b"
+    },
+    {
+      "function": "dora3_s24_mini_801C7FFC",
+      "original_instruction_sha256": "038078aacd9637bd83dd93913cdc8794e14275190d601e131503a7296bbe311f"
+    },
+    {
+      "function": "dora3_s24_mini_801C80D0",
+      "original_instruction_sha256": "e820f11d4b7f6b1d52aa17131cf24591e52da508b8d5dfce418ae76ec826934c"
+    },
+    {
+      "function": "dora3_s24_mini_801C8164",
+      "original_instruction_sha256": "9ffd5b11820bc5f6a667d79dd541ebc06218293c497d245b9fd6b631e8c53b49"
+    },
+    {
+      "function": "dora3_s24_mini_801C855C",
+      "original_instruction_sha256": "342a6d1a993bd5bf3271943740dbef714b80bb3729ff69f6f68313343df22bd5"
+    },
+    {
+      "function": "dora3_s24_mini_801C87C8",
+      "original_instruction_sha256": "f0358c6b8ec4cc2d6ca267f4d82fb82a9cad1ca2893458d37bb208d9ec25ceb3"
+    },
+    {
+      "function": "dora3_s24_mini_801C8948",
+      "original_instruction_sha256": "63517c4b6bc47e1db5c461459e124a6a22cd8708ed5ccf3a9b4bd839bb616f3e"
+    },
+    {
+      "function": "dora3_s24_mini_801C8980",
+      "original_instruction_sha256": "30f9f122f79f74e12c609aa48c2f18d43592558217f147572427a8fa2fc0a35b"
+    },
+    {
+      "function": "dora3_s24_mini_801C8BA8",
+      "original_instruction_sha256": "99907e92b3c4c753ee549a80a21101f4ca7cac893f7f71877539c70e8bbbadfc"
+    },
+    {
+      "function": "dora3_s24_mini_801C8CCC",
+      "original_instruction_sha256": "268d03b8c439f8755c4848a164a6c4f23c80fcb40418618f8bf10f4ae0ebcd77"
+    },
+    {
+      "function": "dora3_s24_mini_801C8DC4",
+      "original_instruction_sha256": "63ea9801585b4543aa5633c7fc3bddd5b337e4243c651128bdd7e3b9e0f54994"
+    },
+    {
+      "function": "dora3_s24_mini_801C8E60",
+      "original_instruction_sha256": "e049a8dffd4b013bab393712454c4bb211f4d36e5e7983244a5325181482b5be"
+    },
+    {
+      "function": "dora3_s24_mini_801C90C4",
+      "original_instruction_sha256": "e4a56a1ccf81f6685ea78bb0ecef27d3a4a71024cc1265062baba6a63d0943c8"
+    },
+    {
+      "function": "dora3_s24_mini_801C9354",
+      "original_instruction_sha256": "3d238ec8b05a41ec7eb5d1f8f54c2de698c3b5c1a5f9918bab780d204db8bc11"
+    },
+    {
+      "function": "dora3_s24_mini_801C9428",
+      "original_instruction_sha256": "b25d35ea61b95fb946f7335ca512ef5da5c452989579da58951f88b2deef8d02"
+    },
+    {
+      "function": "dora3_s24_mini_801C94D0",
+      "original_instruction_sha256": "7521ff2b136f49891433859fc7ee23fa1970412ef20a7d981d47dd9767cf6fc7"
+    },
+    {
+      "function": "dora3_s24_mini_801C9730",
+      "original_instruction_sha256": "65b1169338060c513d29e4a45800ad78c0221e4f21528cbb0b3c9950105fd919"
+    },
+    {
+      "function": "dora3_s21_mini_801C44F0",
+      "original_instruction_sha256": "a759bd5ce15b6258ce0d9262a51a87d166f4c0035731dd5c6d53d9694c32e0e5"
+    },
+    {
+      "function": "dora3_s21_mini_801C4590",
+      "original_instruction_sha256": "d76861169d8f6ab79b62c62c9b57b188cdf08772727163472e8705c4abfd010a"
+    },
+    {
+      "function": "dora3_s21_mini_801C472C",
+      "original_instruction_sha256": "98320a951b5c11f40064726a978404c3d7ca0d6b0385b832b1f210ef32fbdd54"
+    },
+    {
+      "function": "dora3_s21_mini_801C4820",
+      "original_instruction_sha256": "d43632b98dfab3f453670dff9697e7dce29b4f992f8ea23480b70c26a382fa83"
+    },
+    {
+      "function": "dora3_s21_mini_801C494C",
+      "original_instruction_sha256": "722cc32cb156cb4a55bef762c4839b1eb0b1d211a6dcf4c7990ca7deb751d557"
+    },
+    {
+      "function": "dora3_s21_mini_801C4AB8",
+      "original_instruction_sha256": "bf2737ae5f5cd690b15c767c368f9c08530a2dabb798ff94bc8fba963c52d6e5"
+    },
+    {
+      "function": "dora3_s21_mini_801C4BDC",
+      "original_instruction_sha256": "98452c978e5a64f6ac595ba5bf38c6ca2ec31ab0298d2770297ddc0613ad1f83"
+    },
+    {
+      "function": "dora3_s21_mini_801C4BE4",
+      "original_instruction_sha256": "3efe33018a7ae6b0e1bb349d08b49afe391404c887a558a6b25279361fa4f52a"
+    },
+    {
+      "function": "dora3_s21_mini_801C4D24",
+      "original_instruction_sha256": "e47618a68b505ac43a925490de4d9cf3c4bde229e778c88935f7751a79ef8326"
+    },
+    {
+      "function": "dora3_s21_mini_801C4DD8",
+      "original_instruction_sha256": "0e0282ba24d3ef9e5224a6eef1d42393d45bd57ad4dca70439157c493e186263"
+    },
+    {
+      "function": "dora3_s21_mini_801C4EE8",
+      "original_instruction_sha256": "7757c0311e0a5ac17757c30bb0a8f811b5f8087640edea6f6337572b0e637255"
+    },
+    {
+      "function": "dora3_s21_mini_801C4FF8",
+      "original_instruction_sha256": "947328174c52bc2c5252d34ef49b9fc5ca43a3bf31cd58bb93265d66b4438daa"
+    },
+    {
+      "function": "dora3_s21_mini_801C510C",
+      "original_instruction_sha256": "88a7e55e9a572d3d62c603a77a40b9000c6b43daa8340ee60441a8bb786b5443"
+    },
+    {
+      "function": "dora3_s21_mini_801C51C0",
+      "original_instruction_sha256": "ccc61990fedf3fc29e4748226910367b543ea3159a5d353d0aacbab090429a7f"
+    },
+    {
+      "function": "dora3_s21_mini_801C52D0",
+      "original_instruction_sha256": "926a8b89938430f3c58c0656a778491ed5a5b576bd258032f3489d69fb0d8e71"
+    },
+    {
+      "function": "dora3_s21_mini_801C53E0",
+      "original_instruction_sha256": "e76a3f1b76dab39b1852659f481cfc73e8051187f7ab06987bf275731f31abe6"
+    },
+    {
+      "function": "dora3_s21_mini_801C54F4",
+      "original_instruction_sha256": "2c5a960888ff7fd171977e1edc53f8b0e2a5ff64ec0df23dcbaa2d0f28c8bef8"
+    },
+    {
+      "function": "dora3_s21_mini_801C5584",
+      "original_instruction_sha256": "de3956ac8c639df60403591542fec82d8ea8da27b531d78f3e0b93ed2079ef55"
+    },
+    {
+      "function": "dora3_s21_mini_801C558C",
+      "original_instruction_sha256": "83b284d8878547278fb995abb678f2a45d8c0b343ab76386306c0f2dedb8441f"
+    },
+    {
+      "function": "dora3_s21_mini_801C55F8",
+      "original_instruction_sha256": "b80f982c2ac0b1a904d866f1b8081f55f3eb0cc6baeec4bfc452fad7451e89c6"
+    },
+    {
+      "function": "dora3_s21_mini_801C5730",
+      "original_instruction_sha256": "7b28fc408d16e9ab2a856cac7fbf55134d0ba3b458bf9a7f23384e6aa1b504dd"
+    },
+    {
+      "function": "dora3_s21_mini_801C578C",
+      "original_instruction_sha256": "1d1b2886bf7119e2509327e501c4ed0887afccde10884cf5cd2a74e7b719316e"
+    },
+    {
+      "function": "dora3_s21_mini_801C5908",
+      "original_instruction_sha256": "07d4684f72eff4f9983a8e967ef416b5fa1cd937b942b5d1f46a7edd643ae411"
+    },
+    {
+      "function": "dora3_s21_mini_801C5AA0",
+      "original_instruction_sha256": "1a1d6b2c0f2394f1c683e443787ad6c371c1feaef4c9ba9d73aed7c35e305861"
+    },
+    {
+      "function": "dora3_s21_mini_801C5B64",
+      "original_instruction_sha256": "5d8529d4552f8461ba386b5180b86e7041f828b52ed0d06b5c7579165155ad49"
+    },
+    {
+      "function": "dora3_s21_mini_801C5C34",
+      "original_instruction_sha256": "b5f7f4d0d947e26d4a486cf0c0d8e11e77f5912a4ed416057772bd7d05cc5fb2"
+    },
+    {
+      "function": "dora3_s21_mini_801C5CDC",
+      "original_instruction_sha256": "c9bbdda8b5b041a61ed74ed0809af950b65da5c3b77c94374c4111d93c149127"
+    },
+    {
+      "function": "dora3_s21_mini_801C5F1C",
+      "original_instruction_sha256": "48a91e88f2cc4104b22b83c8abd6dd4e37506530030626c4f1595837f4baef75"
+    },
+    {
+      "function": "dora3_s21_mini_801C5F88",
+      "original_instruction_sha256": "fddef57c1c382bd382b69508047db81e410f894ec16c69a11ef1ca40af3dbecf"
+    },
+    {
+      "function": "dora3_s21_mini_801C60BC",
+      "original_instruction_sha256": "7204f6d369b5db654c2684bc8004755c532ed75aa190284ac2dec46fec2d0cdf"
+    },
+    {
+      "function": "dora3_s21_mini_801C66FC",
+      "original_instruction_sha256": "8a87a350492c0ba545659c9a6cd2a483f8f8b106c118ba93b936a753b313e62a"
+    },
+    {
+      "function": "dora3_s21_mini_801C67C8",
+      "original_instruction_sha256": "fbbbb98c30fa07f508b1fc668223dc533695f9382c22de8f2baf2681848a2035"
+    },
+    {
+      "function": "dora3_s21_mini_801C6884",
+      "original_instruction_sha256": "626519395f9dd771ea0706fb4dbbbd88bdb57b4817dded5a4fc1fd5b9d86b2a4"
+    },
+    {
+      "function": "dora3_s21_mini_801C6944",
+      "original_instruction_sha256": "2ea20fb93935a0d53e53a2d9991680161e87af76b31756f9e94e91f3cd4dbf66"
+    },
+    {
+      "function": "dora3_s21_mini_801C7170",
+      "original_instruction_sha256": "66e00dac5780293a4bef77fb19cabbbfe36c91ef33ae1ac404d824d7a557ce45"
+    },
+    {
+      "function": "dora3_s21_mini_801C7564",
+      "original_instruction_sha256": "2873a993f143d870122d86bc032eed8e457c7a303c188ca2446babc0ce2a5cac"
+    },
+    {
+      "function": "dora3_s21_mini_801C76F8",
+      "original_instruction_sha256": "7f11d983386935e422b352e48f08ab53e58fbf9572fe01bcd7a22ce5fd67533d"
+    },
+    {
+      "function": "dora3_s21_mini_801C778C",
+      "original_instruction_sha256": "e71583eaebde85fb2a6339d25870126105a41a1d28b479327b6975bdf3bbe1b2"
+    },
+    {
+      "function": "dora3_s21_mini_801C77F4",
+      "original_instruction_sha256": "d235d8eda10507b97f403c9d3e4bcfccf0febfc7f24b74a60f243fcf01d5f562"
+    },
+    {
+      "function": "dora3_s21_mini_801C78FC",
+      "original_instruction_sha256": "c34ede92b7c5f6c0e168c1879783613a4ce2c8dcfe63400ffe4a29b1b85d1880"
+    },
+    {
+      "function": "dora3_s21_mini_801C7BFC",
+      "original_instruction_sha256": "77854c641977503e39bb7c6cd342b1dae591721b2b8aa757722535fefccf846b"
+    },
+    {
+      "function": "dora3_s21_mini_801C7C4C",
+      "original_instruction_sha256": "0b2ffec931105aee867b62c1e9f6d46562d4b052aeeb381a8293ae2bff876970"
+    },
+    {
+      "function": "dora3_s21_mini_801C7C9C",
+      "original_instruction_sha256": "5a8a6cff20420ea6554e35e7f7aaefd13d9d49fe0b19350c3363dc33ad510295"
+    },
+    {
+      "function": "dora3_s21_mini_801C7D78",
+      "original_instruction_sha256": "a9c4090025769f89370cf9a3183825b18e95e0f182a2ddeab0be91ac37113ef0"
+    },
+    {
+      "function": "dora3_s21_mini_801C7E54",
+      "original_instruction_sha256": "4e2cfe286de54941828ef086649f6a0d91e5e0524dd71308f983c2badade0b53"
+    },
+    {
+      "function": "dora3_s21_mini_801C7F30",
+      "original_instruction_sha256": "8c2bf77dfe5de680b721c2c04e70b5df6ba581091a17da268b9abc52ba4ae285"
+    },
+    {
+      "function": "dora3_s21_mini_801C800C",
+      "original_instruction_sha256": "c36bc23e89d6c8073e3b31ee0f2c1804c9c6c957e1fc771214d029c1cec09762"
+    },
+    {
+      "function": "dora3_s21_mini_801C8AB4",
+      "original_instruction_sha256": "8275ea429316fe88cc0366b841194a7f991002b90d95fc55a3edf200dd574322"
+    },
+    {
+      "function": "dora3_s21_mini_801C8C74",
+      "original_instruction_sha256": "98fbe7ad738da5fb0c0fbbd692fd261140e913cb930a0dbcfefbfcce504df409"
+    },
+    {
+      "function": "dora3_s21_mini_801C9024",
+      "original_instruction_sha256": "9b8147ba376daf17e5817faafd1c3ee13670f1b04cf2da7a6f3677a0193a08d9"
+    },
+    {
+      "function": "dora3_s23_mini_801C40D0",
+      "original_instruction_sha256": "1fc2b7125a87af908e7cb3a12d7ba113d4d36ab2ac4c6350b1e0af5cb6a5b92e"
+    },
+    {
+      "function": "dora3_s23_mini_801C40D8",
+      "original_instruction_sha256": "69952cd9c558d64312fc3d5c72dbca2456a647752b83c0a5990bc4a0495d6767"
+    },
+    {
+      "function": "dora3_s23_mini_801C41BC",
+      "original_instruction_sha256": "977b11d410c19fcfd224aa328f9cbbc4e0c8657465cb5bd48f5654cfbd360696"
+    },
+    {
+      "function": "dora3_s23_mini_801C4308",
+      "original_instruction_sha256": "873f57720c2a2a4630ea7c9bdf6b72984f3007efd0827e84efdb6435d4c4e0e2"
+    },
+    {
+      "function": "dora3_s23_mini_801C45E8",
+      "original_instruction_sha256": "545fcb661ca5160aa5055284e05e6f31e9e8660c2c4ae6f36f734827fe7ddd52"
+    },
+    {
+      "function": "dora3_s23_mini_801C4728",
+      "original_instruction_sha256": "718f069c35f9e94b70d67ce7c3c5a8ee3b953feb7ecd2715b0cf93004bd470fe"
+    },
+    {
+      "function": "dora3_s23_mini_801C47AC",
+      "original_instruction_sha256": "98dde94aecf60399487a71a61d15f3d127eb5845872210d27e1bab91a16d5dc9"
+    },
+    {
+      "function": "dora3_s23_mini_801C4A28",
+      "original_instruction_sha256": "76a6f77644c8b1b1dcf9101074ab279ac759da9f13c47d1f8c35d46d5cb1368d"
+    },
+    {
+      "function": "dora3_s23_mini_801C4A7C",
+      "original_instruction_sha256": "9c1fbae4f6f9711f63694e613437d5a945344f0ec21a6172c164968a48806f0d"
+    },
+    {
+      "function": "dora3_s23_mini_801C4BB4",
+      "original_instruction_sha256": "a0441303603c3da5c5d84f13415a16992f5d91f4e6a48a7fe1cdfc201951a7d0"
+    },
+    {
+      "function": "dora3_s23_mini_801C4C58",
+      "original_instruction_sha256": "852aa3d3c1b289204e6be0f7d5833648b4c98e64d923313092ea9a1c802c1857"
+    },
+    {
+      "function": "dora3_s23_mini_801C4E50",
+      "original_instruction_sha256": "a44994e0196b96dd1eade6ed94fbb106eed8affdc323f493d9c0f931856090e3"
+    },
+    {
+      "function": "dora3_s23_mini_801C4ECC",
+      "original_instruction_sha256": "2f856eb16d6a14e782e4c91109a6202722ec23bfd03c2d6eee1f37ae6f22943d"
+    },
+    {
+      "function": "dora3_s23_mini_801C4FD8",
+      "original_instruction_sha256": "4d2cb6779573001e80bf8e09c19871054692933c26d13b70476893b36e1c3270"
+    },
+    {
+      "function": "dora3_s23_mini_801C50A0",
+      "original_instruction_sha256": "badc575d31a575ddb1188744823a1869b58bd4b95bb3df63d6351efe49384948"
+    },
+    {
+      "function": "dora3_s23_mini_801C512C",
+      "original_instruction_sha256": "67cee331ba9564986d93c7f5abdbebf9ba68f4f143798356a9b108229f94fc56"
+    },
+    {
+      "function": "dora3_s23_mini_801C5260",
+      "original_instruction_sha256": "71ced867fb8a9527acde6ae7926542e51b35216bb3e34d7d5ac5b24aa4eb1ebb"
+    },
+    {
+      "function": "dora3_s23_mini_801C53F8",
+      "original_instruction_sha256": "4e25a85130a190c7721f5b7970db8175e21d696f74759c0de607cf15492edb41"
+    },
+    {
+      "function": "dora3_s23_mini_801C5564",
+      "original_instruction_sha256": "77f30f6f4a2b5353b709f1b729d69b51175d7410e2f2cc4df755323c7b82f84c"
+    },
+    {
+      "function": "dora3_s23_mini_801C5660",
+      "original_instruction_sha256": "e57eb2995378136b356f5e64e4638aca8a68198848e6cba88134bc142b8aaf5a"
+    },
+    {
+      "function": "dora3_s23_mini_801C57B0",
+      "original_instruction_sha256": "56c3ac90aa0098afb07c628351a45e70bee6013562fb57e0d5107b3d4eb889f9"
+    },
+    {
+      "function": "dora3_s23_mini_801C5820",
+      "original_instruction_sha256": "87ee52fd6d093fe677d27d0886656447cdc31d05b6407a73555932b0609caa72"
+    },
+    {
+      "function": "dora3_s23_mini_801C5920",
+      "original_instruction_sha256": "6e1146af6c960494396ebd7c7d9ec9854d4c10b360d8df49ee8a09a1a9c79e9c"
+    },
+    {
+      "function": "dora3_s23_mini_801C59E8",
+      "original_instruction_sha256": "a08f49c6ba0fa41ac9700c9f5f5c503ab6a5165b28c1eb579e56ef1332808ab1"
+    },
+    {
+      "function": "dora3_s23_mini_801C5A74",
+      "original_instruction_sha256": "ff00b3b58e8923cf2e968b86ac6b2c8e7ddc9de4ba8ea8e96bc66e7c73050f05"
+    },
+    {
+      "function": "dora3_s23_mini_801C5BA4",
+      "original_instruction_sha256": "24d338de129a84cf8be7c984cbadf6274cb98b4c8b187c10c8953956785a81cb"
+    },
+    {
+      "function": "dora3_s23_mini_801C5E1C",
+      "original_instruction_sha256": "26f55f2bae3cb9dda8d82b4955145cbd058d73c93030148323b6792d18601467"
+    },
+    {
+      "function": "dora3_s23_mini_801C5F34",
+      "original_instruction_sha256": "83358e06c912d410a309136d0b11c366aa62201b467ce4abc30bd6c8e87f71a3"
+    },
+    {
+      "function": "dora3_s23_mini_801C5F84",
+      "original_instruction_sha256": "0992d243fcb25eef3c7f223b069149fa829136fc5e6563361b7875f8f2f723ee"
+    },
+    {
+      "function": "dora3_s23_mini_801C60B8",
+      "original_instruction_sha256": "ddc030e06d3a47fab0a1fb0cbe11f0bdbed1f4a5836ef07f5b284357b0d432ff"
+    },
+    {
+      "function": "dora3_s23_mini_801C61EC",
+      "original_instruction_sha256": "1220cb49bcf15213cb16fdf4d1342ee33d998cded80c7dadb94678c014441425"
+    },
+    {
+      "function": "dora3_s23_mini_801C6258",
+      "original_instruction_sha256": "793a3c1e61a590da58d1ba7b174c74ae95a1ce667761bc57599801c5ad09d306"
+    },
+    {
+      "function": "dora3_s23_mini_801C6388",
+      "original_instruction_sha256": "07ef53d4bdb9b34f2ec644d90d177fba34d92639fe04c15efe82a00aa28d5aca"
+    },
+    {
+      "function": "dora3_s23_mini_801C63E8",
+      "original_instruction_sha256": "eb1dd6a276d02e980f0d5662a4577df32b7674437b09eff81f2aef55a4d7ab84"
+    },
+    {
+      "function": "dora3_s23_mini_801C6684",
+      "original_instruction_sha256": "37a90bcf76c1a5b3cf435e4ca3c67ba6a2824ba5900bd9cbe7bfe825a9af5134"
+    },
+    {
+      "function": "dora3_s23_mini_801C6700",
+      "original_instruction_sha256": "7f801c58dd6ae89a84df7c20208a7a1d2e19b5e1005fcaa98e30e7fe7f059781"
+    },
+    {
+      "function": "dora3_s23_mini_801C6710",
+      "original_instruction_sha256": "9915669a424a496738a7c08343ca2decf8282fc2a59afc993a1eccb4768399cb"
+    },
+    {
+      "function": "dora3_s23_mini_801C675C",
+      "original_instruction_sha256": "e3a51855e7096344aba3a595fd6b869ff585bf8bbf5980d173a3fe549a90c642"
+    },
+    {
+      "function": "dora3_s23_mini_801C6864",
+      "original_instruction_sha256": "bc10e68161f3e4438db06e73f7c0ce9d7629b0e16343048c6e9e5cc9749ce116"
+    },
+    {
+      "function": "dora3_s23_mini_801C6988",
+      "original_instruction_sha256": "d1fdf1eca85e86fe550ceb12319e05feb3111c8f3c21b600fab3432aab2a6986"
+    },
+    {
+      "function": "dora3_s23_mini_801C69CC",
+      "original_instruction_sha256": "fbb4cb8c58821a819967a4baa901b0770a48566d2b474440b5233240fe3f3bbc"
+    },
+    {
+      "function": "dora3_s23_mini_801C7200",
+      "original_instruction_sha256": "c2cb85e64b34277887301d8e57d659e0b65d9d8700104323016884fa83074236"
+    },
+    {
+      "function": "dora3_s23_mini_801C72CC",
+      "original_instruction_sha256": "8c38a97981920528d872ad48e7852aaef498d1624bf866f72899e550fb7be9ec"
+    },
+    {
+      "function": "dora3_s23_mini_801C73C4",
+      "original_instruction_sha256": "e3bc679004585ee03f7e5a9e532c2fb22b3ede6f00513c94816101492299d4b9"
+    },
+    {
+      "function": "dora3_s23_mini_801C7460",
+      "original_instruction_sha256": "67e73827798b958ed6b87fa6a83a0af92b03749e54ff688b1bbd932967290e37"
+    },
+    {
+      "function": "dora3_s23_mini_801C764C",
+      "original_instruction_sha256": "867fa7b444e4ed060ab52c747b5c502729b08ec0dd5b08ff152525f19606fe0a"
+    },
+    {
+      "function": "dora3_s23_mini_801C782C",
+      "original_instruction_sha256": "26c13c51bc7932f17985228572aefff3e62ed15830ebb9d120a06646c3718323"
+    },
+    {
+      "function": "dora3_s23_mini_801C78AC",
+      "original_instruction_sha256": "83645703418cd6e57ed151c78ab72c1f8c3a93b83efbe32afc35a8172719389e"
+    },
+    {
+      "function": "dora3_s23_mini_801C7A10",
+      "original_instruction_sha256": "9e024064c83b952748868ccce88d13057b8e99d4526a3159e70d03e504afc1c9"
+    },
+    {
+      "function": "dora3_s23_mini_801C7A8C",
+      "original_instruction_sha256": "2763095b063aa197a5401e05bc2e1e59a933eee5d03b5cb30d417676baf22100"
+    },
+    {
+      "function": "dora3_s26_mini_801C378C",
+      "original_instruction_sha256": "8b7ad5da3a28539309f59de8b6df6afc978d617915331f643c7e327ca1b8ca55"
+    },
+    {
+      "function": "dora3_s26_mini_801C37E8",
+      "original_instruction_sha256": "696f267f072f459afccc77d0e8e6ea806622bb82c5131a2b00b1664306e706d4"
+    },
+    {
+      "function": "dora3_s26_mini_801C3940",
+      "original_instruction_sha256": "4a2e5c456b6458ed51022adc3d4bf95abd5362618646637ea39fe95a0ce618c8"
+    },
+    {
+      "function": "dora3_s26_mini_801C3AA0",
+      "original_instruction_sha256": "66994b42f0664c2cd78bebfd05b8b22fa17b1cdb1d2851f175e9550eea3c3799"
+    },
+    {
+      "function": "dora3_s26_mini_801C3AD4",
+      "original_instruction_sha256": "adf5abc0399778f63d22cf05d1eff758c8cb662fe4d36d174694a0a28550d7f0"
+    },
+    {
+      "function": "dora3_s26_mini_801C3BB0",
+      "original_instruction_sha256": "32841a5566ab6b963f99512fb5ba396de9393aa3703b3f1b192fcce8fdd46d85"
+    },
+    {
+      "function": "dora3_s26_mini_801C3C24",
+      "original_instruction_sha256": "f9f8df37b6ecdfc9e239ed0c4348beba63b533ee1d42c5c621363c1137f535f1"
+    },
+    {
+      "function": "dora3_s26_mini_801C3CD4",
+      "original_instruction_sha256": "ae75f54ec0a7ed86123ce355597928880b768aff1bf6650b6e6f4f542ac31cc2"
+    },
+    {
+      "function": "dora3_s26_mini_801C3ED0",
+      "original_instruction_sha256": "7ce75d2c4fb6a8f3a98cd1a6d7c529546c722801c0a2711f72cb09e753601e36"
+    },
+    {
+      "function": "dora3_s26_mini_801C3FB0",
+      "original_instruction_sha256": "ef33e624b72a9ffee3f31d00ea5e3dc550a5f59f5e7c31a98e011e62ee0e9967"
+    },
+    {
+      "function": "dora3_s26_mini_801C41F0",
+      "original_instruction_sha256": "e85251cf2d207da555d1e873c40c23926c3e92c665d7ee26b3a672bd6d2c18cf"
+    },
+    {
+      "function": "dora3_s26_mini_801C4334",
+      "original_instruction_sha256": "735ae60ead81a619dea60f609d5c97e945445a56465ec35abaaec97470436ff6"
+    },
+    {
+      "function": "dora3_s26_mini_801C45E8",
+      "original_instruction_sha256": "2515f6ca5bcb93b1abb1cf2acbf897efc405dd88b6f659f34fe076159b70d8cb"
+    },
+    {
+      "function": "dora3_s26_mini_801C47E0",
+      "original_instruction_sha256": "63eab0156b5e7befb48fe557295cfde81e7663ea356935c04431f5e27b2238de"
+    },
+    {
+      "function": "dora3_s26_mini_801C489C",
+      "original_instruction_sha256": "cbb0d0499bba64c61d1d2825b3993fef258c193750cc48abd448607d06827f10"
+    },
+    {
+      "function": "dora3_s26_mini_801C48EC",
+      "original_instruction_sha256": "fd259bb214641ece1112b3024eef8babfda676b47bd16a2c3590537becd81da2"
+    },
+    {
+      "function": "dora3_s26_mini_801C4924",
+      "original_instruction_sha256": "be2e5d2e16b64516039e3dfea7475d7f1662475f45c1d55344c22e19283ff689"
+    },
+    {
+      "function": "dora3_s26_mini_801C4970",
+      "original_instruction_sha256": "f806854a0cc1cdb41a102879ee548b1d015b312fd6fca82b61c6fbc28973aa42"
+    },
+    {
+      "function": "dora3_s26_mini_801C49F8",
+      "original_instruction_sha256": "f5d5c44348ed90fc1b87af10c0e3007fd47698dcaddb0bfb9b84e26572b9073c"
+    },
+    {
+      "function": "dora3_s26_mini_801C4BA4",
+      "original_instruction_sha256": "d27cddb61a101feca734ecb7e947372af062b674ce1ef74549fe991238c81fe1"
+    },
+    {
+      "function": "dora3_s26_mini_801C4E00",
+      "original_instruction_sha256": "8cc213a28c97d04531e5adb37b0ac291528ae8eccc9fedb9c2ad1e63f966647d"
+    },
+    {
+      "function": "dora3_s26_mini_801C4E68",
+      "original_instruction_sha256": "d48ab3df99a95505a43bf08c80754c47c896635989922ef0957fbe43678f5b66"
+    },
+    {
+      "function": "dora3_s26_mini_801C4F44",
+      "original_instruction_sha256": "3a317fbc5b741defd581c3afadde641db2588cc021fdf0d78d1b99d6bb3dc281"
+    },
+    {
+      "function": "dora3_s26_mini_801C508C",
+      "original_instruction_sha256": "03bb93ced383240745c80aa62b6050394fd8fe9dae687fcd777802802546b6f5"
+    },
+    {
+      "function": "dora3_s26_mini_801C512C",
+      "original_instruction_sha256": "b697c709fe4cde5f717f56003ad7a6efe6c5672295e88ea2e4738d35a929f600"
+    },
+    {
+      "function": "dora3_s26_mini_801C52BC",
+      "original_instruction_sha256": "d5d7a71222518c45845625ef7b0e43106c6cc8b793b99c3722d0919795cb7613"
+    },
+    {
+      "function": "dora3_s26_mini_801C5348",
+      "original_instruction_sha256": "3a7f43fa904da45307c3839535b877854ed2866d5707d73585a604f658702151"
+    },
+    {
+      "function": "dora3_s26_mini_801C5524",
+      "original_instruction_sha256": "ffa37b124045fabbb73276ddc0bf49d90ef5425c1966322c61c26f416bfa7312"
+    },
+    {
+      "function": "dora3_s26_mini_801C55E8",
+      "original_instruction_sha256": "904847cccbe8507761806f2b0e444410173fbf741f6b3597f2f8b505ffa14e59"
+    },
+    {
+      "function": "dora3_s26_mini_801C56E4",
+      "original_instruction_sha256": "3e070aae79b54f79e2b92302a714a9286abd4651b8b78d2aba2e42078bc9c4ff"
+    },
+    {
+      "function": "dora3_s26_mini_801C5768",
+      "original_instruction_sha256": "2bd8d6d0db25ce704f2a313ca45f6a121c09b2406167e4c0a518a6ac3dcfbc01"
+    },
+    {
+      "function": "dora3_s26_mini_801C5A30",
+      "original_instruction_sha256": "c355aebd39d8c647572edf17e3a2d38920816cb4cbe2dc72c17781ffe43424a6"
+    },
+    {
+      "function": "dora3_s26_mini_801C5A38",
+      "original_instruction_sha256": "cf5c5dffe8da6d45869623f0c7bb4efb21ff84a8a062d63261b3c6091aff3244"
+    },
+    {
+      "function": "dora3_s26_mini_801C5C4C",
+      "original_instruction_sha256": "802a80aa1a070fa13101f8418e286b948a297a9669d135cdf661bea46dfde640"
+    },
+    {
+      "function": "dora3_s26_mini_801C5DC0",
+      "original_instruction_sha256": "d427cad79185b1111c5975d0e0a7d0dfbeb99bafe7cde4d03ab1192f76f2ddae"
+    },
+    {
+      "function": "dora3_s26_mini_801C5F78",
+      "original_instruction_sha256": "d36e9df46a06891129e595cb16aba0470c75da8c6dd9dc87d64590e16b48df32"
+    },
+    {
+      "function": "dora3_s26_mini_801C6018",
+      "original_instruction_sha256": "14b647d4c5a8ba6eafa3702c2fdb549a1d13bbe06145b76c754108d2fad7adcc"
+    },
+    {
+      "function": "dora3_s26_mini_801C603C",
+      "original_instruction_sha256": "1eba17f0f945374c097ec43dae7124ef76862b41b98b3dca3cabf7cee546598b"
+    },
+    {
+      "function": "dora3_s26_mini_801C6190",
+      "original_instruction_sha256": "9f62ef69aebf3170fd6d3eba316163e39a87e82d34ac06966a2889cfe0380b97"
+    },
+    {
+      "function": "dora3_s26_mini_801C623C",
+      "original_instruction_sha256": "816fbea37b59ab1b0619e467834a92ba56890aa4d21c82b721786f9aeadc509a"
+    },
+    {
+      "function": "dora3_s26_mini_801C6308",
+      "original_instruction_sha256": "7a141f6365b11a346d88318070aa521acd1f0c741fa621abdfb7503a034c7650"
+    },
+    {
+      "function": "dora3_s26_mini_801C6358",
+      "original_instruction_sha256": "817bf2b84aea0614eb698575e1561e961daaaab69af4c0d6f21775e3c2644f25"
+    },
+    {
+      "function": "dora3_s26_mini_801C647C",
+      "original_instruction_sha256": "7a84d0f5ea9a9718fdbec0e8cb9f8593cd732d1964acd68ef8aa560bbf26ea3b"
+    },
+    {
+      "function": "dora3_s26_mini_801C6578",
+      "original_instruction_sha256": "9ba4d80f37493b13db5d15060dbf22c8f08a43511cc45982d714227a22ba81e6"
+    },
+    {
+      "function": "dora3_s26_mini_801C663C",
+      "original_instruction_sha256": "f7e039351982ccc525ee6091c01509f0b1efe0a10c7e6722a76c27454f87e24e"
+    },
+    {
+      "function": "dora3_s26_mini_801C6664",
+      "original_instruction_sha256": "6a1a6e2da1f0ffea4acea0312bedbbc991ec03afd26e55a1e20d7d75f38b06df"
+    },
+    {
+      "function": "dora3_s26_mini_801C6798",
+      "original_instruction_sha256": "e90dc7f30ab8cded4a6dc07aa8e0f9bd3437212b693ab5c6049d8cecb95316ac"
+    },
+    {
+      "function": "dora3_s26_mini_801C69C0",
+      "original_instruction_sha256": "e6b60b158865ddefa77774f67a15599a908396fc5c6393f84e7e48d6db660345"
+    },
+    {
+      "function": "dora3_s26_mini_801C69DC",
+      "original_instruction_sha256": "cc21500cf3c65dda5b40ff10ac904a376b164f33bcfb0773dd900c03c4a9d291"
+    },
+    {
+      "function": "dora3_s26_mini_801C69F8",
+      "original_instruction_sha256": "a659a223a8b4c76b06298d84e6a8b945364acb9bca32e62982122943177cc414"
+    },
+    {
+      "function": "dora3_s28_mini_801C64E8",
+      "original_instruction_sha256": "72974348f23ad93ca4c676941b7652888e4eecd1dba96d18590b5abbfffde443"
+    },
+    {
+      "function": "dora3_s28_mini_801C66C0",
+      "original_instruction_sha256": "4f7bc59bd08d40abac08fb9dddf624de44fcf594dc2b9a5c5df1efa27d343411"
+    },
+    {
+      "function": "dora3_s28_mini_801C6818",
+      "original_instruction_sha256": "132ded946015880ad257fe203a145444df9444ee274511900e87768e8e77ca63"
+    },
+    {
+      "function": "dora3_s28_mini_801C6CEC",
+      "original_instruction_sha256": "ec1e5da371769527d6c7d4d3944d33e5c0db0318a048a0b16e66525d671590a1"
+    },
+    {
+      "function": "dora3_s28_mini_801C706C",
+      "original_instruction_sha256": "f7c915531325f9371feb34c5ef0233f123ba0aea8d38bedc6452bd2c25dba210"
+    },
+    {
+      "function": "dora3_s28_mini_801C70DC",
+      "original_instruction_sha256": "3d5e067dba2173524048b088b9f67dacd9ab982cdb2bb2a2c40735f6d3a99c15"
+    },
+    {
+      "function": "dora3_s28_mini_801C7118",
+      "original_instruction_sha256": "73ccb7a34b01d4f1e06090c1c7851b4ad925147c40d8b55c7dec87040cbca18c"
+    },
+    {
+      "function": "dora3_s28_mini_801C713C",
+      "original_instruction_sha256": "18bbe5982cfee290627bfa99b07d0261261c5bda8bdadd4291fceb56b1066846"
+    },
+    {
+      "function": "dora3_s28_mini_801C7304",
+      "original_instruction_sha256": "e65691c4eaa3c35d255435a761e7e945f0a7c1cd7b524e39019f8f46b486288e"
+    },
+    {
+      "function": "dora3_s28_mini_801C73C0",
+      "original_instruction_sha256": "0d8bcc81cde2c2ba3d6cd2ce6231a6e9700160996332a46ea6fdf6dab23292f0"
+    },
+    {
+      "function": "dora3_s28_mini_801C73EC",
+      "original_instruction_sha256": "92cf06c1242ffda938d093f1abe31e4c006abdb3d9d7973bd46433104e3c76b9"
+    },
+    {
+      "function": "dora3_s28_mini_801C7418",
+      "original_instruction_sha256": "6153c32ac2462cdb4c0b021ce5af4c3190f9d20f81b81a963aebe3d09e4bed11"
+    },
+    {
+      "function": "dora3_s28_mini_801C7444",
+      "original_instruction_sha256": "1fdc8b9cba4eac166c437349ddf5a4dde6f3526d729244201d7e78c79c720732"
+    },
+    {
+      "function": "dora3_s28_mini_801C7570",
+      "original_instruction_sha256": "fe9549ef59e6e38c61d0e89ca1ad4b6ee79803ab80895255f0de4f317dbe787e"
+    },
+    {
+      "function": "dora3_s28_mini_801C75EC",
+      "original_instruction_sha256": "570022d89e50da327775d46e872d32980b3f8c37957c7bfc4eb9e8c0a196261d"
+    },
+    {
+      "function": "dora3_s28_mini_801C763C",
+      "original_instruction_sha256": "b29f0f16173f7edc80e47eda90015c73c2516ad0c4b2b4782a33ffbdeb6a1b7d"
+    },
+    {
+      "function": "dora3_s28_mini_801C76B4",
+      "original_instruction_sha256": "014e4be9acb1d050b63a3cb90e47a7f8fe066a1e5ca933778b2be49b7f271650"
+    },
+    {
+      "function": "dora3_s28_mini_801C7994",
+      "original_instruction_sha256": "59e0cd877dabce74151737058063eb9e9b8d4b4d79e274393a7580145322f915"
+    },
+    {
+      "function": "dora3_s28_mini_801C7A60",
+      "original_instruction_sha256": "ba480542301b9d42dfabf4e4aaa89732b44aec4e44f548313be4807a7fa74df7"
+    },
+    {
+      "function": "dora3_s28_mini_801C7D5C",
+      "original_instruction_sha256": "0a2c331f60c2d4cd98b3247ffae7968b1f43112e0d9c40b999f5a0aa92ba7615"
+    },
+    {
+      "function": "dora3_s28_mini_801C7DD0",
+      "original_instruction_sha256": "3ab1d4ec98501847ffce89e45f2ffa1bcf27b86a002456529c919d8c5858d586"
+    },
+    {
+      "function": "dora3_s28_mini_801C7EBC",
+      "original_instruction_sha256": "de871eb37d593e9e49c8ecb76a771c40e1aaf8a47488319ef70ba205aa34f4ea"
+    },
+    {
+      "function": "dora3_s28_mini_801C7ED8",
+      "original_instruction_sha256": "64b4ba68dfc4f15d1a7d968b6832956430a4f575c1a7aecbc680d22d0cf16a08"
+    },
+    {
+      "function": "dora3_s28_mini_801C7EF4",
+      "original_instruction_sha256": "2f5725bf10da7254f9dd1f358d4ac8c939babd1436182e3b2bdabcf0f520e4d3"
+    },
+    {
+      "function": "dora3_s28_mini_801C8270",
+      "original_instruction_sha256": "745f8216f414ac4afe40b364806c84c54b71a3a9d902247f3dad5a91bba68349"
+    },
+    {
+      "function": "dora3_s28_mini_801C83AC",
+      "original_instruction_sha256": "7fb915ce0d74db93e555a65ee0928a845a7145a26bf62c25c627af67501523dc"
+    },
+    {
+      "function": "dora3_s29_mini_801C3680",
+      "original_instruction_sha256": "08e2f41c18e721ebcdff2df21b16facedb100f1bd68d760517f09ac3af1ba9fb"
+    },
+    {
+      "function": "dora3_s29_mini_801C3700",
+      "original_instruction_sha256": "d9fff42b51fadfcee83f4844d26d31395b6f40a259d73a03335621b100ff848a"
+    },
+    {
+      "function": "dora3_s29_mini_801C378C",
+      "original_instruction_sha256": "1656695c6ca81d96fd435869ba5e11d891a87bec542926784858b6e77375b4fe"
+    },
+    {
+      "function": "dora3_s29_mini_801C3904",
+      "original_instruction_sha256": "2e1d9236db443eb28e987fa1ef594548de364b0fe42d2adde7bb59c8cf1ff95e"
+    },
+    {
+      "function": "dora3_s29_mini_801C39A4",
+      "original_instruction_sha256": "983040d929426de5d2096668d560fed9155395a1cd79f2d1cb443ca0f417246d"
+    },
+    {
+      "function": "dora3_s29_mini_801C3A14",
+      "original_instruction_sha256": "145a896ffc9b9eacb2f839ba898b420e527c7aae64b66126df4fcb98f30802a7"
+    },
+    {
+      "function": "dora3_s29_mini_801C3B74",
+      "original_instruction_sha256": "10d7646e13070b43d88f725f9510c3d5b4fdd6eaec1fb4686ec27493c886d14b"
+    },
+    {
+      "function": "dora3_s29_mini_801C3C48",
+      "original_instruction_sha256": "ef2bb934366a9fe946aa09df838756f814b2b761430f228e7e749634886b6816"
+    },
+    {
+      "function": "dora3_s29_mini_801C3CC0",
+      "original_instruction_sha256": "2e65ce3665b4ff1aa327e02565cee4ce6626ffb506eae00053d9ebdd6e03dda4"
+    },
+    {
+      "function": "dora3_s29_mini_801C3ED0",
+      "original_instruction_sha256": "569a071cb06bc08eed21a5efcb4460b0fade6861dd05111f2554ed784e069b8f"
+    },
+    {
+      "function": "dora3_s29_mini_801C4094",
+      "original_instruction_sha256": "74e4cc94e95915d976188f9841f646cf9f6c8085d57cf997df3416d060a7eecc"
+    },
+    {
+      "function": "dora3_s29_mini_801C4100",
+      "original_instruction_sha256": "20e7d07130b651f5c3a1e026cff7d9b3a6a231b79519b4472b57edc8e3c786e0"
+    },
+    {
+      "function": "dora3_s29_mini_801C41FC",
+      "original_instruction_sha256": "11bcb47ee30b7c12614f0d1e052da4eeb651196915dad402b58e3e295b0203df"
+    },
+    {
+      "function": "dora3_s29_mini_801C4268",
+      "original_instruction_sha256": "f86dfbdcbc14ef8c41eb096822a392eb13cb78dd16496d201dce38dcbb69d51e"
+    },
+    {
+      "function": "dora3_s29_mini_801C4328",
+      "original_instruction_sha256": "3218a7f0d1c93c336d988ffebcd170940c971907e9de48b5572826afe7206c36"
+    },
+    {
+      "function": "dora3_s29_mini_801C4464",
+      "original_instruction_sha256": "7cd223f774252d186e69772d4a45c5c04868685cc409aa042dd53e1a695d9851"
+    },
+    {
+      "function": "dora3_s29_mini_801C4538",
+      "original_instruction_sha256": "94fad90fb8d5aa21c72b8fd0026687c087ac4b6d9a3d78899badcd77a00ef20e"
+    },
+    {
+      "function": "dora3_s29_mini_801C4560",
+      "original_instruction_sha256": "5a86556508e7560a8bf706965783e4907d8b99d2f02fa4d9052003e0892173d5"
+    },
+    {
+      "function": "dora3_s29_mini_801C47A8",
+      "original_instruction_sha256": "d158d74dbe56e8074a556c0769a1f3a9e5b49c7f603c164da30e308400b653f5"
+    },
+    {
+      "function": "dora3_s29_mini_801C49B0",
+      "original_instruction_sha256": "7adb5c217d50655d2e97ec15a34056ae0497d2682fbb2efae6570c8956276be2"
+    },
+    {
+      "function": "dora3_s29_mini_801C4A50",
+      "original_instruction_sha256": "b98b103553071d99b1f96f02e9a6c55fbbade6638a301e044d560aaaa7c873f3"
+    },
+    {
+      "function": "dora3_s29_mini_801C4B04",
+      "original_instruction_sha256": "dfbc0093a2317aa7da71507200365d823f49c4a29bb2f1a55a31a421b31174de"
+    },
+    {
+      "function": "dora3_s29_mini_801C4B70",
+      "original_instruction_sha256": "001aa2cd1aede8672c865e677e9c7bbe5b27c1fececc5c3ece89fa0bded97998"
+    },
+    {
+      "function": "dora3_s29_mini_801C4BA0",
+      "original_instruction_sha256": "ab7f0a3c6e1e2da51a708d7780c765f30622ba5e8053a26889aeeff9cc8b23a5"
+    },
+    {
+      "function": "dora3_s20_mini_801BD3E0",
+      "original_instruction_sha256": "6fb6ab4fb34f89439c8da6a8e20440e201f41470861f496cb7152ad0d61bd3ca"
+    },
+    {
+      "function": "dora3_s20_mini_801BD470",
+      "original_instruction_sha256": "e9075670c1be44754b4332da97e29b46d41d9be8c5a53a69b6e6dd5347aad7e8"
+    },
+    {
+      "function": "dora3_s20_mini_801BD580",
+      "original_instruction_sha256": "a778e5bc14e1ba4d7f3c1e14d92917c0cb0e9fea5605845f0ea4e8fb20a8b03b"
+    },
+    {
+      "function": "dora3_s20_mini_801BD59C",
+      "original_instruction_sha256": "1837e4043366bc2d5ac04ae9696e4cf1600d6ae0ac27d0349929343902eec4fd"
+    },
+    {
+      "function": "dora3_s20_mini_801BD5B8",
+      "original_instruction_sha256": "97d8606929095835fef1db3237742f60ed108983be1d0d4289c423106cb30345"
+    },
+    {
+      "function": "dora3_s20_mini_801BD7A8",
+      "original_instruction_sha256": "90fc2d31c9ecbf0122a19fd5e8f6b6b1c60871fb5aa3807081233957e1d74328"
+    },
+    {
+      "function": "dora3_s20_mini_801BDCD0",
+      "original_instruction_sha256": "97fff7f69d45ac67a69767947c97dc88333999f6a2f137ecde1e99c63e49d42f"
+    },
+    {
+      "function": "dora3_s20_mini_801BDE60",
+      "original_instruction_sha256": "765fea1d2fa737a82333f7ddfcf40049650549cc2549f7ef70632e8d401b5153"
+    },
+    {
+      "function": "dora3_s20_mini_801BDF2C",
+      "original_instruction_sha256": "e386527bfee2e6f8f6335c359cd815fc369f040cefc21a39fcb2219d1e03963a"
+    },
+    {
+      "function": "dora3_s20_mini_801BE22C",
+      "original_instruction_sha256": "3cba5f3a262e8d769224cdeaa564fcb4b83ef415f79de454642c30fd34edbb48"
+    },
+    {
+      "function": "dora3_s20_mini_801BE278",
+      "original_instruction_sha256": "ecc0f2cdc0ab72481a33b535bcde6ec72fdd71df231cd559f9f03007d77d592c"
+    },
+    {
+      "function": "dora3_s20_mini_801BE308",
+      "original_instruction_sha256": "057edf8525bf389fc03f4214fdce7361a333cd3894da8c422b81737d83aae6b8"
+    },
+    {
+      "function": "dora3_s20_mini_801BE3F8",
+      "original_instruction_sha256": "16e9b01e1749c51756a9d728ab8a4c0ddc8da26136220fa60720b5f7c7aa16af"
+    },
+    {
+      "function": "dora3_s20_mini_801BE414",
+      "original_instruction_sha256": "bf1dd9bc74b4846c030f7e9c88034dad69af8a18c6dd6adf0bc280172b07dcce"
+    },
+    {
+      "function": "dora3_s20_mini_801BE430",
+      "original_instruction_sha256": "b200357cc7e7221e18791dfa65985ee829271a05bc2afc1dd3d189bef33fea02"
+    },
+    {
+      "function": "dora3_s20_mini_801BE990",
+      "original_instruction_sha256": "23a60b86341c256e6a59ed02439cf20ec8616de9bc26c05476d4ef81279d5854"
+    },
+    {
+      "function": "dora3_s20_mini_801BEE34",
+      "original_instruction_sha256": "04e9626c57191665cf6517adaadb4be5e3fd1086edfd3e30c6fa14710d4bd8ef"
+    },
+    {
+      "function": "dora3_s20_mini_801BEF70",
+      "original_instruction_sha256": "1e0b2e83146efbb710b5119b2185082b6d12c98df5990ded9142d6dc73a3e549"
+    },
+    {
+      "function": "dora3_s20_mini_801BF0D8",
+      "original_instruction_sha256": "7b14a1f75860743f5faf86d46a7b3557e85a04d18f76c91bc8045ae93d45f3ef"
+    },
+    {
+      "function": "dora3_s20_mini_801BF168",
+      "original_instruction_sha256": "794ebaedf124daf4b5b891016e9851a0f34c059159e77dedc5f46e2748d29d6c"
+    },
+    {
+      "function": "dora3_s20_mini_801BF298",
+      "original_instruction_sha256": "e381a9854a162583eebcc89face18db531041a792dd49afcdfb00027b24ffd38"
+    },
+    {
+      "function": "dora3_s20_mini_801BF2B4",
+      "original_instruction_sha256": "23cd6edaff964fb4ee63db0278c37170707838859a035fb2adac6f71f2527ca7"
+    },
+    {
+      "function": "dora3_s20_mini_801BF2D0",
+      "original_instruction_sha256": "d18eb99130a54bc8a15207c6c4565dfa97205fc237544dab119460469f8de84d"
+    },
+    {
+      "function": "dora3_s20_mini_801BF350",
+      "original_instruction_sha256": "ff843960020ef231d9c2fe5b8d64d16fb301948459d58f9359d6077b2e9d93cb"
+    },
+    {
+      "function": "dora3_s20_mini_801BF6A0",
+      "original_instruction_sha256": "26c4ccf32a6d871a5e7e570f51ea5043c5412837b913600870b98bd3be5fa3ca"
+    },
+    {
+      "function": "dora3_s20_mini_801BF7BC",
+      "original_instruction_sha256": "2191dd440387b1a9683d1085525d03934921e57a5f11546ef954e48f0873fd32"
+    },
+    {
+      "function": "dora3_s20_mini_801BF878",
+      "original_instruction_sha256": "3f238bfb0e6bb0b9102b90938a4ed626f7a12b48a3eeb2a41c8d701b65e0e618"
+    },
+    {
+      "function": "dora3_s20_mini_801BF8CC",
+      "original_instruction_sha256": "ada3bcf0ea1a7872409ea40c0721252547f7a77c1d2e6663e7050dcd668d6084"
+    },
+    {
+      "function": "dora3_s20_mini_801BFAE0",
+      "original_instruction_sha256": "56f0e3724501de901d5a31fd8bbba183aaa1a2c48a870e5d670b9f5a7f0fedae"
+    },
+    {
+      "function": "dora3_s20_mini_801BFF38",
+      "original_instruction_sha256": "c5e16cac4afa51c7bd96fe9ba8fc18605da1a72ab16990ff3580fc9296b987a6"
+    },
+    {
+      "function": "dora3_s20_mini_801BFF64",
+      "original_instruction_sha256": "59780652aeea17be02b91bd239925f71a33d776f263581f07e0221f110f36590"
+    },
+    {
+      "function": "dora3_s20_mini_801BFF90",
+      "original_instruction_sha256": "d22552d119d12c9a148b10abb850bfca9921e521a8506d14a8ab3834b1b37554"
+    },
+    {
+      "function": "dora3_s20_mini_801BFFBC",
+      "original_instruction_sha256": "42edb3e0e4a13b91ed1505b99345e75e6b32f17ebe5f3402e3b004f9ce17c08e"
+    },
+    {
+      "function": "dora3_s20_mini_801C008C",
+      "original_instruction_sha256": "1257b7b8a70d3882182130c337888bf96d519674b9783f959a3028ec9d747273"
+    },
+    {
+      "function": "dora3_s20_mini_801C0868",
+      "original_instruction_sha256": "d91613e2bb31d3ea95490586ad5aad500546e12639b1e26b7f8005936117a567"
+    },
+    {
+      "function": "dora3_s20_mini_801C08A4",
+      "original_instruction_sha256": "dea9f03f87d5f1ff11a90dcb16201c4c29e8010a08f8246ba7db591b08c2968c"
+    },
+    {
+      "function": "dora3_s20_mini_801C102C",
+      "original_instruction_sha256": "156ab79e28af87014ade48ac1e8a08eebbd163a989eb05c31033f12efc7a1e4c"
+    },
+    {
+      "function": "dora3_s20_mini_801C1840",
+      "original_instruction_sha256": "146aebaccc9dd088b0c3d8b57cef1e303b2c31773b8e8a19d059246e9fb6246c"
+    },
+    {
+      "function": "dora3_s20_mini_801C1BDC",
+      "original_instruction_sha256": "86dc8cb3be4ce42f9c6e4c539d5cfa6da712d9c91279ce8ddcc169ebe3681fee"
+    },
+    {
+      "function": "dora3_s20_mini_801C1CD0",
+      "original_instruction_sha256": "0dd236a6a58570922170ba990089c2db2dbe1dfd1a4093d464e5e83a58022a01"
+    },
+    {
+      "function": "dora3_s21_mini_801C3680",
+      "original_instruction_sha256": "edfb92e4512a647a3d15f225672a1c533a3a7eae2055261ea2ac1fae62e1a2d9"
+    },
+    {
+      "function": "dora3_s21_mini_801C3700",
+      "original_instruction_sha256": "d2275b5f09d0320bf0143aee5bad6a1ac6b0ac45cd77f6253ffd4c2d8d500797"
+    },
+    {
+      "function": "dora3_s21_mini_801C38F8",
+      "original_instruction_sha256": "66c21adb85632a990f3617ea9a78008419491697e9f2074c7182fb14ef2c7393"
+    },
+    {
+      "function": "dora3_s21_mini_801C39D4",
+      "original_instruction_sha256": "1d38b6cb35276a36e856fe4f31eab3e82419270f6d380156cf8010836a95879d"
+    },
+    {
+      "function": "dora3_s21_mini_801C39DC",
+      "original_instruction_sha256": "5521b5f011b65752dcb09a9b16c744ce95ade7b09baf4bdab860f784869a44c0"
+    },
+    {
+      "function": "dora3_s21_mini_801C3AA4",
+      "original_instruction_sha256": "1ab5510824f9777192b654408e799dda419445e5ff889ff0769a05f3a293d382"
+    },
+    {
+      "function": "dora3_s21_mini_801C3CBC",
+      "original_instruction_sha256": "553f53ea1160ee7816c1736e2f8345fb7ddc1707bbd02c1b4ebba2082d5a2022"
+    },
+    {
+      "function": "dora3_s21_mini_801C3D98",
+      "original_instruction_sha256": "c3ad4629019ab8e6afd911bd453aacb9b703baaa0c208f1b764b2eed2cf80e81"
+    },
+    {
+      "function": "dora3_s21_mini_801C3FE0",
+      "original_instruction_sha256": "a5e5a07bf51b0a5e08987b9cc9e466eb797a51cac8d1965255bb5f84345d73c6"
+    },
+    {
+      "function": "dora3_s21_mini_801C44C4",
+      "original_instruction_sha256": "4c6cab122e9ccd5879367cc8e3660e71addcb85cc7a85c58c8728386c50d51b5"
+    },
+    {
+      "function": "dora3_s23_mini_801C7CA4",
+      "original_instruction_sha256": "a486b87ed5ca035cdb522147e84d5c262b01a7b0ecd313dfc22f3ca0174abe09"
+    },
+    {
+      "function": "dora3_s23_mini_801C7F4C",
+      "original_instruction_sha256": "7163a1be6a30a511b71b4ef02d6a30526ff47c2a8a1a851b6ec1cca7564b4100"
+    },
+    {
+      "function": "dora3_s23_mini_801C7F58",
+      "original_instruction_sha256": "4577a4ca132e8151d9d01f27a8e1f800e89f43df8d9a8875da74b7455f5dbc83"
+    },
+    {
+      "function": "dora3_s23_mini_801C7F60",
+      "original_instruction_sha256": "ccc9716a89e2dd42d6fe964d4fca3ba60b0710520d016c8c529987dc40f8c47c"
+    },
+    {
+      "function": "dora3_s23_mini_801C7F68",
+      "original_instruction_sha256": "f0c892ef28baa8f1230a94b729be3bba5bfefa0f0606015e90b329e321fabeba"
+    },
+    {
+      "function": "dora3_s23_mini_801C808C",
+      "original_instruction_sha256": "344eaab0e9dcdf487e7ab694633ba281931f9db0d60636f3c6a0f3570469360c"
+    },
+    {
+      "function": "dora3_s23_mini_801C80B8",
+      "original_instruction_sha256": "3bc72780e5cd82aee4a7a6fc19108d881259a185b98253c7d6a9dd1dcb9538bd"
+    },
+    {
+      "function": "dora3_s23_mini_801C80E4",
+      "original_instruction_sha256": "111b0b5e0296a08bee836fcb978f390b606913926cf257c4736b384e77b4d9f5"
+    },
+    {
+      "function": "dora3_s24_mini_801C3680",
+      "original_instruction_sha256": "ac962aa2bca3dd5cb75f805f28231102c58bee6e807db86568c70708ba7cdfba"
+    },
+    {
+      "function": "dora3_s24_mini_801C3710",
+      "original_instruction_sha256": "2170d45607d76fa1a057da90e608e308956694573aeb94f9173dd31718a50d30"
+    },
+    {
+      "function": "dora3_s24_mini_801C3788",
+      "original_instruction_sha256": "81544903d8bdef5db4394e50206815d10bfe48aae17d92557ee09fcd367a3ba6"
+    },
+    {
+      "function": "dora3_s24_mini_801C37EC",
+      "original_instruction_sha256": "b5571a2d2193cc70b6a4c817e829374f766716e732a7eeda4017166c4ed952e8"
+    },
+    {
+      "function": "dora3_s24_mini_801C3864",
+      "original_instruction_sha256": "37cf2f11c6f50669b7ec012a9d6540c2b46cf53dcab07238fd02ee8c6c6ef086"
+    },
+    {
+      "function": "dora3_s24_mini_801C38C8",
+      "original_instruction_sha256": "7bfc2fa14013c6faf44d09e54ab7586198f060d737f450c8d1a386ee444792fe"
+    },
+    {
+      "function": "dora3_s24_mini_801C3948",
+      "original_instruction_sha256": "390bfaf1daadaa00e4bbda72a64f5db299e65fa02a417556c632b6f5988c1be6"
+    },
+    {
+      "function": "dora3_s24_mini_801C3A30",
+      "original_instruction_sha256": "387dc2acfa5890ecf0f0b48705b9953b9f0e4c58c62d0a3f1d0a6980696562b9"
+    },
+    {
+      "function": "dora3_s24_mini_801C3AB0",
+      "original_instruction_sha256": "673db6f5cb5a83402c6776ba2df6e47e93bbfdc05dd2025278de818f4316f7de"
+    },
+    {
+      "function": "dora3_s24_mini_801C3BD0",
+      "original_instruction_sha256": "5fd78b5e1e523d52d2d351dffd6761bc1b5e950595870640cc3facd08f67d22f"
+    },
+    {
+      "function": "dora3_s24_mini_801C3BEC",
+      "original_instruction_sha256": "533663a3ba36adbfad1bf90f7847eaa49db0bc052cce79dc2b90e0ccc5116871"
+    },
+    {
+      "function": "dora3_s24_mini_801C3C34",
+      "original_instruction_sha256": "5886408b6cd469c22b29e3f90a522cd227e61733092d4479c0f0578dfc5dda85"
+    },
+    {
+      "function": "dora3_s24_mini_801C3C9C",
+      "original_instruction_sha256": "44f87f30d3ad5a22dc12bb06b30cf182d596c1e15840a25e48dce4fc98fa9271"
+    },
+    {
+      "function": "dora3_s24_mini_801C3D40",
+      "original_instruction_sha256": "c5225d531bceabb10574db805fa7f3cb6858d5c7edb902868068fe5419a65366"
+    },
+    {
+      "function": "dora3_s24_mini_801C3DD0",
+      "original_instruction_sha256": "211ab0bfd96d06b605cad99980665e063d85c0ac752ea68db8a33d0f68ae88dc"
+    },
+    {
+      "function": "dora3_s24_mini_801C3DD8",
+      "original_instruction_sha256": "3ce640cddef708033b5e90bd6c07cd1da713531fd595a9496b6ed166c23cf8c1"
+    },
+    {
+      "function": "dora3_s24_mini_801C3E44",
+      "original_instruction_sha256": "7c4de978bedbf9d15c0bb4d341a2f6f46df162c014241f33a0b72a86ab17aad5"
+    },
+    {
+      "function": "dora3_s24_mini_801C3E94",
+      "original_instruction_sha256": "a9d6f18eda94dd67f5c2616aa3364fe1e435206ffa107c71b53176df3a2cee35"
+    },
+    {
+      "function": "dora3_s24_mini_801C3FCC",
+      "original_instruction_sha256": "9bb2d993902c04874acb9ef24b9072f96bcb790b3c802318f211eb8802d1c95b"
+    },
+    {
+      "function": "dora3_s24_mini_801C40B4",
+      "original_instruction_sha256": "02848dbefada277c092e887ff2ab8a1aa879372aae55822654d1dd7610a08a9d"
+    },
+    {
+      "function": "dora3_s24_mini_801C42C0",
+      "original_instruction_sha256": "7f8fcc4e1774baa6a3cf2f5a15095e9a42c40da6b86af5f9b0d4c280552cd09f"
+    },
+    {
+      "function": "dora3_s24_mini_801C433C",
+      "original_instruction_sha256": "84723763d96d35ff7dfe1403b9fbec92459fd74d0f923896c840bec6d178bb1c"
+    },
+    {
+      "function": "dora3_s24_mini_801C4448",
+      "original_instruction_sha256": "2d1f35c500b49a77f92f2ac5e8c2893a2f14814c9a7a94cc5defdf142953b9ec"
+    },
+    {
+      "function": "dora3_s24_mini_801C453C",
+      "original_instruction_sha256": "1c58b78006610664e32c55cb72914583b4a113f33200ff0e08e05bcae3c5624a"
+    },
+    {
+      "function": "dora3_s24_mini_801C4678",
+      "original_instruction_sha256": "10f7105529903bd2de2bbdda08421b08fd3abbd32450cdb27a43d9bf3e8b77f5"
+    },
+    {
+      "function": "dora3_s24_mini_801C4730",
+      "original_instruction_sha256": "12a9cf4e72040b5ec1814b6db3e556645e9426736ac435eea3c82f352ce86604"
+    },
+    {
+      "function": "dora3_s24_mini_801C4844",
+      "original_instruction_sha256": "692d5577755e3725a444fa0d1f6107b22697e5f5fa268b26b8d2d4d97a09b2cb"
+    },
+    {
+      "function": "dora3_s24_mini_801C4954",
+      "original_instruction_sha256": "c8c04d48c80b36efb62926952868b8a5a77b509d9cb9c4690e222f88131130d4"
+    },
+    {
+      "function": "dora3_s24_mini_801C4B4C",
+      "original_instruction_sha256": "cf1e12e65b4077a218d6c03304d556e624044629b67dec26b6cba701ba0287dc"
+    },
+    {
+      "function": "dora3_s24_mini_801C4BE8",
+      "original_instruction_sha256": "13a943de4ab8bd93c9aa9fbb0cc2059c04766ec0abb70f9d8a6f6cf9ec7edeb1"
+    },
+    {
+      "function": "dora3_s24_mini_801C4DD4",
+      "original_instruction_sha256": "6d3c2870a489b7b0c023de8ba6c1ad3d52df409ae69e1dc3b79512dab827654f"
+    },
+    {
+      "function": "dora3_s24_mini_801C50A0",
+      "original_instruction_sha256": "ef5f8ecef9f0d419c849f1e2eab96e3998b3739f110040edc0e0bbaa5cc74be3"
+    },
+    {
+      "function": "dora3_s24_mini_801C5100",
+      "original_instruction_sha256": "e7b8e7a96c2d3b8bdbaf52ab87902c62490225e1cdacf905f99fbd4ce303f2b8"
+    },
+    {
+      "function": "dora3_s24_mini_801C5330",
+      "original_instruction_sha256": "6595e05fbae1d42a543c9a6eb442a43f72a3508d3e916f782870d05e0e3cd9ff"
+    },
+    {
+      "function": "dora3_s24_mini_801C5438",
+      "original_instruction_sha256": "d20f69fd9e3fdaa45953ac0643fbbe5e3fbc9eb0f7d902f53465771dda80613e"
+    },
+    {
+      "function": "dora3_s24_mini_801C5538",
+      "original_instruction_sha256": "619c4ce2655bfaabc872db0c4527e25c5a6aea643e53dc52c0fe1f58bbb26c01"
+    },
+    {
+      "function": "dora3_s24_mini_801C562C",
+      "original_instruction_sha256": "ab0e67804d9df6c1a65afc9b02cb4b92423c47a474f543c642a022ece6b87c98"
+    },
+    {
+      "function": "dora3_s24_mini_801C5768",
+      "original_instruction_sha256": "40eb7c7a0762592afb71caa84ad6bef79e5a72fe6155c87ecffa2f88b60b4f04"
+    },
+    {
+      "function": "dora3_s24_mini_801C5820",
+      "original_instruction_sha256": "da0f7e6348b72b34abae9920b71194441ea5382fc9fb2927009f6ef5baaa5593"
+    },
+    {
+      "function": "dora3_s24_mini_801C5934",
+      "original_instruction_sha256": "6e30f99809ed4b1fefb067586531776cc0e8554c99916d092df26b15b7836395"
+    },
+    {
+      "function": "dora3_s24_mini_801C59C8",
+      "original_instruction_sha256": "9ac720061b2735ad9fbffc42d67a20d7c9112043bb385739fead78db6c5a6b13"
+    },
+    {
+      "function": "dora3_s24_mini_801C5BB8",
+      "original_instruction_sha256": "2ec4ac27fe53200482e7f55f5005779b199c59187b25e8191fe6fff214606f99"
+    },
+    {
+      "function": "dora3_s28_mini_801C3700",
+      "original_instruction_sha256": "bccba3d79071360d2bc401739fc572801aa75f1c79af80eb41699178fe62d992"
+    },
+    {
+      "function": "dora3_s28_mini_801C378C",
+      "original_instruction_sha256": "e8b169ea3b159ab1a07b967ceb068e0f60ebe4b6506c385fd1902d25fee385c3"
+    },
+    {
+      "function": "dora3_s28_mini_801C37CC",
+      "original_instruction_sha256": "4a7b91a7292fe6fc7d23fe2eb51a6d931b6d79a3ec8b2f6877e171a6b2e2affb"
+    },
+    {
+      "function": "dora3_s28_mini_801C380C",
+      "original_instruction_sha256": "2d31af0e82b2437aaa09c6fdf6a353657165c97331166926e16d3c6a209ff8ac"
+    },
+    {
+      "function": "dora3_s28_mini_801C3A74",
+      "original_instruction_sha256": "213ee6b2638bff0046e85ff7516f7e65faa600ce2a660749c3ed296e2ce78351"
+    },
+    {
+      "function": "dora3_s28_mini_801C3AAC",
+      "original_instruction_sha256": "e577b36b9a099b4a9dfe5de4b87c8fc4702d4a905c2b4b14baab6c46b04ddfe9"
+    },
+    {
+      "function": "dora3_s28_mini_801C3C2C",
+      "original_instruction_sha256": "82f5dfebbe9bf5480fecafc3a2e0f47be7d543b5fb08c7cdbcb5d2390fe95d89"
+    },
+    {
+      "function": "dora3_s28_mini_801C3CB4",
+      "original_instruction_sha256": "fba9b243ab33cb97f436a67db16d2b5897b71ffa0793f3cfe9502dcc2b67a30d"
+    },
+    {
+      "function": "dora3_s28_mini_801C3CBC",
+      "original_instruction_sha256": "4dd1f0108c87820d6aed1dbe49d493ec487c7480eb08f58adc03fb1a521a1194"
+    },
+    {
+      "function": "dora3_s28_mini_801C3CEC",
+      "original_instruction_sha256": "ec53bec108bea926c9815c8d4c2a2d742750dc28b02b530f8693f50939583716"
+    },
+    {
+      "function": "dora3_s28_mini_801C3D88",
+      "original_instruction_sha256": "7555157b53588a412522a85f077b440d51f96badb75910aed7faaaedf3e8f966"
+    },
+    {
+      "function": "dora3_s28_mini_801C3E70",
+      "original_instruction_sha256": "2ed7416ccff56f59d98a7ce6be1fff7fe7be51968f7204608c4ba6756fc7929c"
+    },
+    {
+      "function": "dora3_s28_mini_801C3E9C",
+      "original_instruction_sha256": "cbb932aff3e0ec63b29f98a7d102e620a62e4eaa6a86d79d6cd5d0d4b9ebbf9f"
+    },
+    {
+      "function": "dora3_s28_mini_801C3EC8",
+      "original_instruction_sha256": "20b572efbf1b249ec075c071920a10767a868ee8c6857afda420d946befa74c8"
+    },
+    {
+      "function": "dora3_s28_mini_801C3EF4",
+      "original_instruction_sha256": "4ffb9f07fb29fb85662b14adc4ebc874cac3c5f42eed756d384bde13c4369abc"
+    },
+    {
+      "function": "dora3_s28_mini_801C4060",
+      "original_instruction_sha256": "90dd23b07960fd2230bf3b129b050177dd3ea96f77a5cefe958135922d836578"
+    },
+    {
+      "function": "dora3_s28_mini_801C4084",
+      "original_instruction_sha256": "dddc516fb5fd477c46ba809e796517e1a7bfbc1b6f6a2a3a2d6bdaa4e6494a51"
+    },
+    {
+      "function": "dora3_s28_mini_801C4218",
+      "original_instruction_sha256": "bb6e12ebdbaf2358ad23a105817f3d41f157dbc61ec29b2ee01c4bf8c8b7752a"
+    },
+    {
+      "function": "dora3_s28_mini_801C42C8",
+      "original_instruction_sha256": "a23cebed35646bc59857af7773f558eac5b1d6f8b537dc84acf414ecd71ad7ba"
+    },
+    {
+      "function": "dora3_s28_mini_801C4300",
+      "original_instruction_sha256": "d650cababab67d01a5b5f138a5b50ea32895a8c2968c9790904b306f104fda65"
+    },
+    {
+      "function": "dora3_s28_mini_801C4334",
+      "original_instruction_sha256": "1538636c1c7fa6555891e3b34678e6062cb575f09816b534017e4e73e9733887"
+    },
+    {
+      "function": "dora3_s28_mini_801C449C",
+      "original_instruction_sha256": "8121a626a9ff31c340adda5e5f129bb55782363e6d1cda418888b91bb10ae67d"
+    },
+    {
+      "function": "dora3_s28_mini_801C4520",
+      "original_instruction_sha256": "52271f4b95464fe786d2407363ea8ccbf6ee74fcc76176e3544c9b3a7dd37f94"
+    },
+    {
+      "function": "dora3_s28_mini_801C4558",
+      "original_instruction_sha256": "5e767a271b1229511eaa91d461b1f30baeb5dd3936b1f4e1c9c0e89911544463"
+    },
+    {
+      "function": "dora3_s28_mini_801C45AC",
+      "original_instruction_sha256": "9880fd328bf0d3bd5bac5e470742ddea0cc6b07d0f36fa344913142326ccf9f4"
+    },
+    {
+      "function": "dora3_s28_mini_801C46B4",
+      "original_instruction_sha256": "7ffdbaee29b928c0156b5108f13d8cc522e5b16cb05f86b30a9709f8011d031c"
+    },
+    {
+      "function": "dora3_s28_mini_801C4794",
+      "original_instruction_sha256": "37edd6af0e5e6ea2cbca96e6a3502c494c475709351eb799a761eb8a99ed32cd"
+    },
+    {
+      "function": "dora3_s28_mini_801C4940",
+      "original_instruction_sha256": "85523fa792671787c1b626bb487ee4e315abc2e0cad08f0a78067ed1fbc8b7e0"
+    },
+    {
+      "function": "dora3_s28_mini_801C4AF8",
+      "original_instruction_sha256": "d46fb2cd68957e5ede1f82489d6cd64f4a046733f19cad59111dea4f47031cdd"
+    },
+    {
+      "function": "dora3_s28_mini_801C4BD4",
+      "original_instruction_sha256": "e2c9dba225e72dc63723d4dc52d3b91abbe6f18a9e9939ead9c51711cf7ce637"
+    },
+    {
+      "function": "dora3_s28_mini_801C4D74",
+      "original_instruction_sha256": "69a155c463b30233b37ad9125cb1ce186e206941a3fceac589ff2f6f99f96ae9"
+    },
+    {
+      "function": "dora3_s28_mini_801C4E24",
+      "original_instruction_sha256": "93c1d4e764e42144e25b042d2732543e87670381d36ee6f7b20d49096ace1bec"
+    },
+    {
+      "function": "dora3_s28_mini_801C4EC8",
+      "original_instruction_sha256": "2b4870ddc6a4ebd78d7e0b70f37602a4470bc3f99f8676623583dc6ae243eff7"
+    },
+    {
+      "function": "dora3_s28_mini_801C4F88",
+      "original_instruction_sha256": "eb3557604dace60755c926b58d621974041e861a43c4cef6a8843bafd873a9ca"
+    },
+    {
+      "function": "dora3_s28_mini_801C5190",
+      "original_instruction_sha256": "ed48151f173d74f1b229cb44f98fbcdb1eb28dd29beba3baa56cbc9dc9fafaf8"
+    },
+    {
+      "function": "dora3_s28_mini_801C52E0",
+      "original_instruction_sha256": "bc2d1b20347f78f2ae6cef4c808123a38157c9edcfc4e4c9e11329d3367d1128"
+    },
+    {
+      "function": "dora3_s28_mini_801C5350",
+      "original_instruction_sha256": "f54973f5f2a3c01d999483e07a08b3a38bfba85c82a86880235d35b2474373fd"
+    },
+    {
+      "function": "dora3_s28_mini_801C5554",
+      "original_instruction_sha256": "fed4c0b7769f8a71c3863d1a9aa468fdec276fbf2d86225dfedf72acb7bbe1fa"
+    },
+    {
+      "function": "dora3_s28_mini_801C5720",
+      "original_instruction_sha256": "693b2367d0dbf4597e77e4fbdb8040cae15031a1ccd059fe4e99533c954ca7ee"
+    },
+    {
+      "function": "dora3_s28_mini_801C592C",
+      "original_instruction_sha256": "87bda07517555f6136df929cc78b7fbc095d00f01d8c2af58c10079b7660e841"
+    },
+    {
+      "function": "dora3_s28_mini_801C5A14",
+      "original_instruction_sha256": "eba2ed1d876e172b3d759712e4e3d896caa49df354c4a24907684bd4e7e132c0"
+    },
+    {
+      "function": "dora3_s28_mini_801C5A44",
+      "original_instruction_sha256": "7d8af24f9418ad7951566ccbf37c39efcaae1d40d3f7ad52e21fecb616960dec"
+    },
+    {
+      "function": "dora3_s28_mini_801C5A98",
+      "original_instruction_sha256": "dff28d0f1662d146ea3e4ae2c5f6e7ce5c9a156847899a6004c2f2435e55c815"
+    },
+    {
+      "function": "dora3_s28_mini_801C5AF8",
+      "original_instruction_sha256": "c5a67ebe5808d03728d842e3af37a5baeb76236da311634d98018ce2cb5cb7b5"
+    },
+    {
+      "function": "dora3_s28_mini_801C5BC4",
+      "original_instruction_sha256": "1d8a391c4f3deb68291f47b16fc7bc642bdc89c1ef6eaedb1a4671208c9118d6"
+    },
+    {
+      "function": "dora3_s28_mini_801C5D74",
+      "original_instruction_sha256": "067bef07fead86cb79503fc6089518e69d0efa9b978d48231a4c7e6987dc03f4"
+    },
+    {
+      "function": "dora3_s28_mini_801C5E88",
+      "original_instruction_sha256": "df4bedfd536e9a45969a96eea8a45b0a835851335b3b272d9bba53d5c92d7d84"
+    },
+    {
+      "function": "dora3_s28_mini_801C6094",
+      "original_instruction_sha256": "ce2c289064e3745341ae0af50ca7c11942b86a96bae49a832cf093df75a61aec"
+    },
+    {
+      "function": "dora3_s28_mini_801C62D4",
+      "original_instruction_sha256": "578913d114e1e5ed265218dcff118642963687552ed4e8eebaf45cb588234135"
+    },
+    {
+      "function": "dora3_s28_mini_801C64A4",
+      "original_instruction_sha256": "a7be523be5e94b3c7c52c4b193ee76d137f18b2407682aae684aa26a827f4cac"
+    },
+    {
+      "function": "dora3_s22_mini_801C532C",
+      "original_instruction_sha256": "421af0b8e2311c1e36c99a0b09a79b8dfef15f81ba3a96170919a36658e9abe5"
+    },
+    {
+      "function": "dora3_s22_mini_801C54C0",
+      "original_instruction_sha256": "6b2431c94a1017d37fd597083bbf4fffd56f61c03ab91834910936db46e2f40f"
+    },
+    {
+      "function": "dora3_s22_mini_801C5590",
+      "original_instruction_sha256": "e4cc9d1d983ecb31cceecb95b7d4c60a4a22be455d453a9b81e5f81c6cb1bb99"
+    },
+    {
+      "function": "dora3_s22_mini_801C56C8",
+      "original_instruction_sha256": "2ed2599670a82d65f12231f4cd8be5ac7011a54babc0fe5e131db0905e40441a"
+    },
+    {
+      "function": "dora3_s22_mini_801C5884",
+      "original_instruction_sha256": "19893600a661e953f67dbc2216138abc3e2d69909ff30583d9b4f24f730f371f"
+    },
+    {
+      "function": "dora3_s22_mini_801C59B4",
+      "original_instruction_sha256": "77854bf0885b7369df4b5fd8e389b6a4a5f5481c7aa74485fc42659cd98b7ef0"
+    },
+    {
+      "function": "dora3_s22_mini_801C5A5C",
+      "original_instruction_sha256": "d530de3a79a4675ab3bbc4ad5b24e8d48040bb3eaff2d18028cc611b1139f2b7"
+    },
+    {
+      "function": "dora3_s22_mini_801C5D4C",
+      "original_instruction_sha256": "85d8821efbd255ef28434bb3869331029efb9059e27618ca909639defc6b6d6b"
+    },
+    {
+      "function": "dora3_s22_mini_801C5DB8",
+      "original_instruction_sha256": "1ffb2eef20605cf23311c04bab8e4ae55ef4a78b9074081e4400ae512a599385"
+    },
+    {
+      "function": "dora3_s22_mini_801C5E74",
+      "original_instruction_sha256": "dd5bbfa4a2fa947ddad82fd44029cf5f5afaa1e4ee37d6b671031891e7773a5a"
+    },
+    {
+      "function": "dora3_s22_mini_801C5F3C",
+      "original_instruction_sha256": "51a3ac8f7d974346fbf41398b9a96377b377e5e502ff032b1cb4a71ccc34e5d4"
+    },
+    {
+      "function": "dora3_s22_mini_801C6034",
+      "original_instruction_sha256": "b65e5dd43c159ce9013fef8c22a310d455fb63be91da572f57d40c21e6f958fb"
+    },
+    {
+      "function": "dora3_s22_mini_801C60D0",
+      "original_instruction_sha256": "2e7ebcfb685fa7b2419c332d67d6abf33219285c4d3ea1b8b2b7b4f2f589e836"
+    },
+    {
+      "function": "dora3_s22_mini_801C6178",
+      "original_instruction_sha256": "e47da4acfadec8258a6b502ec5ebb52a7b66be94ce3d88f68b8881f8b8e32c2e"
+    },
+    {
+      "function": "dora3_s22_mini_801C6464",
+      "original_instruction_sha256": "a5ab8f7d0c7923f853b7c6c9ed6b8286e60a53b1c1617b59555855cfd487e28e"
+    },
+    {
+      "function": "dora3_s22_mini_801C654C",
+      "original_instruction_sha256": "2c3f2850dc432805ae14603813dd3c34e18b457f6e10a37808ab6bdb8e1e8cbe"
+    },
+    {
+      "function": "dora3_s22_mini_801C68AC",
+      "original_instruction_sha256": "7c1f2d19f6e0cb6d1781e35554f79ea6bcb443e148d241a2c0d57861cd7cfe16"
+    },
+    {
+      "function": "dora3_s22_mini_801C69CC",
+      "original_instruction_sha256": "44c0d997d05f714605e68dc5530e520d4c54dfc155800157eab3d5e90da2d64f"
+    },
+    {
+      "function": "dora3_s22_mini_801C6B0C",
+      "original_instruction_sha256": "ff2e8fba3befece6d8c98c433cfba8c1c5e7e8ff2ee83edcd592d54042066980"
+    },
+    {
+      "function": "dora3_s22_mini_801C6BCC",
+      "original_instruction_sha256": "af561e6c330139dc2d47b66694160afd89cbcf2b9474f54a7063fc096cf5fd43"
+    },
+    {
+      "function": "dora3_s22_mini_801C6D40",
+      "original_instruction_sha256": "37caca72e8bfd42e638a470579e0dfb9c016d35263491677d06334d580d768d4"
+    },
+    {
+      "function": "dora3_s22_mini_801C7068",
+      "original_instruction_sha256": "31b9a8cac610e323755f96a97d079bd2b9492ffaf957db13aaf5082fe37240b5"
+    },
+    {
+      "function": "dora3_s22_mini_801C7160",
+      "original_instruction_sha256": "5dff7708038ba13d6e40a87d5b971a06d65aaa2063937bebf5cc338027354749"
+    },
+    {
+      "function": "dora3_s22_mini_801C71FC",
+      "original_instruction_sha256": "ed66e68be66b4549263227d27c54e284c33a3fc777d60c01eb74bb0c2661b237"
+    },
+    {
+      "function": "dora3_s22_mini_801C73F4",
+      "original_instruction_sha256": "823a9a6f054b1f8ec2e9f67580104077f520ca4971c991fbfa369588406ff19e"
+    },
+    {
+      "function": "dora3_s22_mini_801C76F4",
+      "original_instruction_sha256": "64357627f5661039908168a3931998ca2f497e8c12e470ff4c4eebc713f1dce0"
+    },
+    {
+      "function": "dora3_s22_mini_801C77C0",
+      "original_instruction_sha256": "e7c5f0605549a28e9acfbd52d7c612a6ce8ea7b06706f99ec51a14e3f2e3efe6"
+    },
+    {
+      "function": "dora3_s22_mini_801C78F8",
+      "original_instruction_sha256": "70bd29ece1bd4eecd025413dc7ecc26ef37257a377caf7b0e3fabef4675cb365"
+    },
+    {
+      "function": "dora3_s22_mini_801C7B48",
+      "original_instruction_sha256": "eacdea1cb9eb824b3491a961214bdb3667d4362f10630bc63e413f1b9ab5677c"
+    },
+    {
+      "function": "dora3_s22_mini_801C7CBC",
+      "original_instruction_sha256": "a7f54f9016976eca09bb9de21fac562734fa098054e5ab0e59e1e570259c85be"
+    },
+    {
+      "function": "dora3_s22_mini_801C8018",
+      "original_instruction_sha256": "4d59f26bf8b82b8b88f6c05ceadeac8a00d91d4d7550741a79a2dd00badac5d6"
+    },
+    {
+      "function": "dora3_s22_mini_801C8024",
+      "original_instruction_sha256": "f10d447a80120cc430be04f2c9387f01a59cdcffd1d9a1b73e74436d175a1bc5"
+    },
+    {
+      "function": "dora3_s22_mini_801C802C",
+      "original_instruction_sha256": "dac33096babf59b47317a9448e1e0275b247466510b69195281af30bd388f8d1"
+    },
+    {
+      "function": "dora3_s22_mini_801C8034",
+      "original_instruction_sha256": "ff43506be6ddfac7995b15c708f03556bbf0f43090b889bd0972f06d0ec2b98f"
+    },
+    {
+      "function": "dora3_s22_mini_801C80F0",
+      "original_instruction_sha256": "ba09dbc6376122a14c472eade128eaec110430a9d19a4212db879ff8f8c43a92"
+    },
+    {
+      "function": "dora3_s22_mini_801C811C",
+      "original_instruction_sha256": "0d5ef271b6c8b815fefaf7a38655e0b53c6e86d92a7e71b80b8ea88d62d3b7f1"
+    },
+    {
+      "function": "dora3_s22_mini_801C8148",
+      "original_instruction_sha256": "e608542e58327bbcef7afaf590f73753a526c92a29017bab456c1dfc764e7633"
+    },
+    {
+      "function": "dora3_s23_mini_801C3680",
+      "original_instruction_sha256": "f83d44e841fc589f1f6b1fca48b0a851d129abc467e568b630751b014a614b6e"
+    },
+    {
+      "function": "dora3_s23_mini_801C3890",
+      "original_instruction_sha256": "7898e3cc6b1ea74f37ab7802d9543c68c6eea63aefd78ebbead12f7d67781b7b"
+    },
+    {
+      "function": "dora3_s23_mini_801C3958",
+      "original_instruction_sha256": "e115ed1b0832deff813cb158d422f6bc0a9d0765b37923b62eabfdece38ec132"
+    },
+    {
+      "function": "dora3_s23_mini_801C3C50",
+      "original_instruction_sha256": "1865f212fe3132a51b18d9ebff763742bb9e98adcff1eb340fec3e8a72afec76"
+    },
+    {
+      "function": "dora3_s23_mini_801C3C6C",
+      "original_instruction_sha256": "45e918291719f50cba144c4d5926d075c22b6fb5d65d6ccb9b89d175c8751545"
+    },
+    {
+      "function": "dora3_s23_mini_801C3D48",
+      "original_instruction_sha256": "de49eaef727a165200948375ff6912aa172db928fe2f84ee6cc9cf8dd19228d2"
+    },
+    {
+      "function": "dora3_s23_mini_801C3DB0",
+      "original_instruction_sha256": "05bb54a1b9f9788a45c956d0e573ee884f307b5a8c90cd32fa35b9eb55dbb17f"
+    },
+    {
+      "function": "dora3_s23_mini_801C3E50",
+      "original_instruction_sha256": "b2a1441e515d4d1289f977b5d229cc6c8fefba8669a45018305124777ffb432b"
+    },
+    {
+      "function": "dora3_s23_mini_801C3E6C",
+      "original_instruction_sha256": "05effe56093e3e8a56459ab80724784bfe44956c03fd753ba814450a2789614f"
+    },
+    {
+      "function": "dora3_s23_mini_801C3EB4",
+      "original_instruction_sha256": "73bd0cf355d89c18babac7db7ec5be0ea0b176109da9afea1d834a1e34936179"
+    },
+    {
+      "function": "dora3_s23_mini_801C3F1C",
+      "original_instruction_sha256": "77868ad0c0d6ced86cd13c94b166af752b2b6174b23e2e300f3399c5aefa242b"
+    },
+    {
+      "function": "dora3_s23_mini_801C3FC0",
+      "original_instruction_sha256": "3a9487df417284c01957c7762453ac1fc3c30daddb1f5edc297e6805e75d758c"
+    },
+    {
+      "function": "dora3_s23_mini_801C4040",
+      "original_instruction_sha256": "c1d2f32f3aa3c661910d04b19b22a22cd1bb5960ece8788c328bdfccd2df5329"
+    },
+    {
+      "function": "dora3_s20_mini_801B8ED0",
+      "original_instruction_sha256": "ea762e124b3cd3db616b991c1575ea10fdc0e7e148e1fb02cedba43d1ee31e0b"
+    },
+    {
+      "function": "dora3_s20_mini_801B8F0C",
+      "original_instruction_sha256": "abf691fbc89348ce24b2d6cd1bf9f617a4bf5ea2c8203459feeb6dfe948135c2"
+    },
+    {
+      "function": "dora3_s20_mini_801B8F64",
+      "original_instruction_sha256": "99a29538e0cf989c6ea41c52d65a510be91352637ffd39d8360263964583bf25"
+    },
+    {
+      "function": "dora3_s20_mini_801B8F88",
+      "original_instruction_sha256": "695edb946f4ac5e57f986690414680a48e47edd3da98558fd8942254f9ce57c1"
+    },
+    {
+      "function": "dora3_s20_mini_801B9048",
+      "original_instruction_sha256": "ab64ceb888d9456bd31873cc313f45627b2214268f9ca43689c8fa8a101fff9c"
+    },
+    {
+      "function": "dora3_s20_mini_801B9078",
+      "original_instruction_sha256": "ee427b086febe62950aceab0fd0bccaf186e8f0253e205e92bd38839d9468eff"
+    },
+    {
+      "function": "dora3_s20_mini_801B90E8",
+      "original_instruction_sha256": "8fe122e74f923a2a4fa25058e5e9a20658cda0146cd3df8ca8dc2e4d50281c6b"
+    },
+    {
+      "function": "dora3_s20_mini_801B9360",
+      "original_instruction_sha256": "ae1b16f286fb95820807347f3d2ac55770a6c03336bd3710d6ad00b53a1b097f"
+    },
+    {
+      "function": "dora3_s20_mini_801B95F4",
+      "original_instruction_sha256": "670f2675388bd9b9d02aa02b656dfd4a62c2a2d06a6f7262b72f073472d68788"
+    },
+    {
+      "function": "dora3_s20_mini_801B9A04",
+      "original_instruction_sha256": "e83b63eefe04d1135ca95d4116ceb66a09dd45f836ec607df789ff0b5b31b9a3"
+    },
+    {
+      "function": "dora3_s20_mini_801B9E5C",
+      "original_instruction_sha256": "12231ef5626bc28d72ff639fbfc4d8f5132cd601b8664fdd270b0dbc1d6120f1"
+    },
+    {
+      "function": "dora3_s20_mini_801B9F04",
+      "original_instruction_sha256": "8d50145f85adc6761a143ffa7f420477d5193069053bc668ce69565b61d50642"
+    },
+    {
+      "function": "dora3_s20_mini_801B9F7C",
+      "original_instruction_sha256": "4eea485c620699417a75ae54dc938d4f9b7c00c9473306627cd850eab7b553c7"
+    },
+    {
+      "function": "dora3_s20_mini_801B9FEC",
+      "original_instruction_sha256": "d6a93aae7a2e5bd218af479a2409e6fc936701e10efc0d0277ae719c3cd31cdd"
+    },
+    {
+      "function": "dora3_s20_mini_801BA064",
+      "original_instruction_sha256": "6fc3e7a91d68479df73f04d761eab2970281b1055dd4fe456bdaa21593b41227"
+    },
+    {
+      "function": "dora3_s20_mini_801BA0D4",
+      "original_instruction_sha256": "972f629b31babc996e6d6b5f9314fc5c100aeb50c512c7908d4f1a1d09d4f4fc"
+    },
+    {
+      "function": "dora3_s20_mini_801BA14C",
+      "original_instruction_sha256": "ff04e7cc0791412cf12db10e1742507a84f9c462bf50cd34f7bd104e04dfedfe"
+    },
+    {
+      "function": "dora3_s20_mini_801BA1B4",
+      "original_instruction_sha256": "d69a7ff3c1fc27ba8064a9d4226d0fc9e90b8095359a8eac2b38116020c97285"
+    },
+    {
+      "function": "dora3_s20_mini_801BA22C",
+      "original_instruction_sha256": "0a087bd517b26744dbbad0068f1e4c5d246bade6fddf1247b83569fa1fb027cb"
+    },
+    {
+      "function": "dora3_s20_mini_801BA294",
+      "original_instruction_sha256": "40bb85acbffe188a934ebb598ae8c047cb6247cb0d17e790dca4588ea39e084c"
+    },
+    {
+      "function": "dora3_s20_mini_801BA30C",
+      "original_instruction_sha256": "b600d13dde6079391ba8452a839f1a5a5db0e7e1f51fc8723ce8f23704d271a1"
+    },
+    {
+      "function": "dora3_s20_mini_801BA37C",
+      "original_instruction_sha256": "7d278c60f467654b552ff6daa9ddfa9b147f0067b7e1328959dfc103ce02ade5"
+    },
+    {
+      "function": "dora3_s20_mini_801BA3F4",
+      "original_instruction_sha256": "b7da2498ac3be812ba8bd1ca16580362b0bfbbb75438e99b478b845b12579e57"
+    },
+    {
+      "function": "dora3_s20_mini_801BA464",
+      "original_instruction_sha256": "bb7a6f2c6195788e8d5ef120b194d41c16db6e51ab1ac706816f7b2026ddcb57"
+    },
+    {
+      "function": "dora3_s20_mini_801BA4DC",
+      "original_instruction_sha256": "4e13c4e992a6a5da65332e814c27ddeefbad9fcf21a21bfb4d21a4dcd0b110b0"
+    },
+    {
+      "function": "dora3_s20_mini_801BA528",
+      "original_instruction_sha256": "7488a225f329be5d1f8d781e43300477a549e031bbeb98f5c9ea8e06998a32a0"
+    },
+    {
+      "function": "dora3_s20_mini_801BA5A0",
+      "original_instruction_sha256": "12ff97e90573fea2839a1eaafac35a6e38e9f6b1ff35bfb6bad6ea03fb4eed8c"
+    },
+    {
+      "function": "dora3_s20_mini_801BA5EC",
+      "original_instruction_sha256": "8e0498f0b1ce1ebcb2d5898cb446d11fcd4684903fefa2da6d592942be9b0462"
+    },
+    {
+      "function": "dora3_s20_mini_801BA664",
+      "original_instruction_sha256": "01c1723b862b3f802281066892ef28003f6dcc18b808f5759de631e83fef7df6"
+    },
+    {
+      "function": "dora3_s20_mini_801BA6B0",
+      "original_instruction_sha256": "dcb35f6970da310b29a15c55027f73afd94467e5ad55e2477be149eb9513505b"
+    },
+    {
+      "function": "dora3_s20_mini_801BA728",
+      "original_instruction_sha256": "a96b78e9ff43c134b2d2623e31949ed762a5ea97d1822db801b0798c3027e8c7"
+    },
+    {
+      "function": "dora3_s20_mini_801BA774",
+      "original_instruction_sha256": "1c3c86a14117a4f975d42c063901a4313a278b8ac123822826ae10e0f8b6e009"
+    },
+    {
+      "function": "dora3_s20_mini_801BA7EC",
+      "original_instruction_sha256": "4be9d4d3882e5419a1b3e98d4fcedd24f685c7ef784af48bacfce95e98ff23f8"
+    },
+    {
+      "function": "dora3_s20_mini_801BA838",
+      "original_instruction_sha256": "f56b70efe29169832a2e54a1216863df6cbdc1a97476fe30b27ffafaae8a438e"
+    },
+    {
+      "function": "dora3_s20_mini_801BABF8",
+      "original_instruction_sha256": "7664e81f99b6ca45d268167ee82408d0a9b44bbe6c9ed5858214a8dd0b82f330"
+    },
+    {
+      "function": "dora3_s20_mini_801BB20C",
+      "original_instruction_sha256": "1a9fca3f8e5e43dd03b0cf4d0c3a5023ffae6b30d8a39d4286852d3395b5ee86"
+    },
+    {
+      "function": "dora3_s20_mini_801BB364",
+      "original_instruction_sha256": "8daf5b4f303b293e74ca8c6d6b00ce1ecf4e939ad098891aa290e855543b64c3"
+    },
+    {
+      "function": "dora3_s20_mini_801BB4EC",
+      "original_instruction_sha256": "5b0743f882dec05cdf0c7fa2900b8af23970b328d0a93cb4b4dcaede8cd5dbf6"
+    },
+    {
+      "function": "dora3_s20_mini_801BB538",
+      "original_instruction_sha256": "b4872684b8558da832cbdf46ffd357379aaa924889ae351e3806ec9db10424d0"
+    },
+    {
+      "function": "dora3_s20_mini_801BB574",
+      "original_instruction_sha256": "994407faa97cb5661714ff62fbf97ee87f4a2f8c26d09cbfb83113b812ca2c06"
+    },
+    {
+      "function": "dora3_s20_mini_801BB6BC",
+      "original_instruction_sha256": "65358a9254b8dad5b9571ca9b0099ab97dac4742e98f0928161ccaef6f799141"
+    },
+    {
+      "function": "dora3_s20_mini_801BB7A4",
+      "original_instruction_sha256": "00399bc1371e3d8baca12b656e475621f14a996a58c9e184e9232d8bf4aa1935"
+    },
+    {
+      "function": "dora3_s20_mini_801BB7D4",
+      "original_instruction_sha256": "a92014bcbae7ecdc94a35244826596c30edff62c234283813de632cbe6a6cdcc"
+    },
+    {
+      "function": "dora3_s20_mini_801BB810",
+      "original_instruction_sha256": "6ed38f113bd709793de17f85a202f9241c5c5742f5db97d820e852696e6b5d77"
+    },
+    {
+      "function": "dora3_s20_mini_801BB890",
+      "original_instruction_sha256": "9ebde8338f180facb051f32382714b2f9ecac2b45a01c78d8ce531c28059d3c4"
+    },
+    {
+      "function": "dora3_s20_mini_801BBABC",
+      "original_instruction_sha256": "c8762414c4ef664d59b561f0a17c27ab8648186d924c4b14e9e23749b1595aa9"
+    },
+    {
+      "function": "dora3_s20_mini_801BBAF4",
+      "original_instruction_sha256": "433ef4f4d02b9e820d4831a21bc8d7281402b2cbc5bf81a913f43cc090be96e6"
+    },
+    {
+      "function": "dora3_s20_mini_801BBB58",
+      "original_instruction_sha256": "3d053727c448774930c5dcb5064ded30bcdedec7a03e07e33a89e867ea72720f"
+    },
+    {
+      "function": "dora3_s20_mini_801BBBA4",
+      "original_instruction_sha256": "21d111b8d94bab94d255b65a880a379ec7db13c45e4d354c17c1a0373a34f008"
+    },
+    {
+      "function": "dora3_s20_mini_801BC690",
+      "original_instruction_sha256": "a49f3fc65cedd73dc176926689c68d197da442e6cbbbf415d130582a85a86286"
+    },
+    {
+      "function": "dora3_s20_mini_801BC828",
+      "original_instruction_sha256": "62827d6a418a99afd80b093147039b8c903dbaa1f352e04938ad60621adefdd4"
+    },
+    {
+      "function": "dora3_s20_mini_801BCACC",
+      "original_instruction_sha256": "7841b905a9fe59ae44d8f581a6059bdbd831f6089a7dab1ad4cc4a322bd6258b"
+    },
+    {
+      "function": "dora3_s20_mini_801BCBF4",
+      "original_instruction_sha256": "96c31a1563843b02ed2c522df290b7f8eb5b8848d43a1e86c259391520312138"
+    },
+    {
+      "function": "dora3_s20_mini_801BCD14",
+      "original_instruction_sha256": "fa8154c6abbd9e4f38de745a21360c169e6a59a3d860ef22cff018b49d24ef4b"
+    },
+    {
+      "function": "dora3_s20_mini_801BCD58",
+      "original_instruction_sha256": "f1f2d2c67d4349e947485bbf333ff7a35ea0af061f9f39f6372684d63a395089"
+    },
+    {
+      "function": "dora3_s20_mini_801BD148",
+      "original_instruction_sha256": "39593c855e2de6631f3d8838e8b63a515dd957b84df4748ee6da01ea44cf64ff"
+    },
+    {
+      "function": "dora3_s20_mini_801BD154",
+      "original_instruction_sha256": "710fb4d248e5db47f29aa4644a4ca3197ee07da04c00d4282cab77029e307da8"
+    },
+    {
+      "function": "dora3_s20_mini_801BD250",
+      "original_instruction_sha256": "2a6bf9e9702914b3d2e8ff3d9475ad69c5abd78bfe867860a4bcb7a12026c84c"
+    },
+    {
+      "function": "dora3_s20_mini_801BD354",
+      "original_instruction_sha256": "838ee8fad6c80efc96a7263f9a52552da66228d50a6cbf674f377ba7f05b4877"
+    }
+  ],
+  "callbacks": [
+    {
+      "section": ".minigame_1",
+      "rom": 1663408,
+      "update": 2149362860,
+      "draw": 2149364064,
+      "function": "dora3_s21_mini_801CACAC",
+      "function_sha256": "d94dbc57cd314b1c4071a335cdea5fb7638e0a33dacc40da47ffcd81a8a32ab5",
+      "returns": [
+        2149364056
+      ]
+    },
+    {
+      "section": ".minigame_2",
+      "rom": 1701136,
+      "update": 2149350588,
+      "draw": 2149348340,
+      "function": "dora3_s22_mini_801C7CBC",
+      "function_sha256": "07e3e79bc79c2bd2631584b9d1a34ffb9e6a5194cb0801b8c3dcb61e99a86a8c",
+      "returns": [
+        2149351440
+      ]
+    },
+    {
+      "section": ".minigame_3",
+      "rom": 1721856,
+      "update": 2149350564,
+      "draw": 2149348940,
+      "function": "dora3_s23_mini_801C7CA4",
+      "function_sha256": "c317868467f12576339314ca1e79874b55170638e9c0437ec9dcd92bad83189d",
+      "returns": [
+        2149351236
+      ]
+    },
+    {
+      "section": ".minigame_4",
+      "rom": 1744464,
+      "update": 2149356752,
+      "draw": 2149355716,
+      "function": "dora3_s24_mini_801C94D0",
+      "function_sha256": "bea7d66e8ac7b91206160fde5e46b22a5c090654898b4e112b0fdfa40f67f4aa",
+      "returns": [
+        2149357352
+      ]
+    },
+    {
+      "section": ".minigame_5",
+      "rom": 1772432,
+      "update": 2149345188,
+      "draw": 2149345840,
+      "function": "dora3_s25_mini_801C67A4",
+      "function_sha256": "a2c7f075971e2754b51eacbd85288ddcd229bffec9c5c3f0217394426bb7fbcd",
+      "returns": [
+        2149345832
+      ]
+    },
+    {
+      "section": ".minigame_6",
+      "rom": 1787488,
+      "update": 2149345784,
+      "draw": 2149347400,
+      "function": "dora3_s26_mini_801C69F8",
+      "function_sha256": "16bf5aa5a1b81ae9057cd40449a010cbfc2b6ea22dc6842fdeed879a4acb5fbd",
+      "returns": [
+        2149347392
+      ]
+    },
+    {
+      "section": ".minigame_7",
+      "rom": 1805024,
+      "update": 2149345348,
+      "draw": 2149346192,
+      "function": "dora3_s27_mini_801C6844",
+      "function_sha256": "932ecdc506f24d046d691ce7b3b4ff88cb5892b0388c7ef4368c481a2eb12ce1",
+      "returns": [
+        2149346184
+      ]
+    },
+    {
+      "section": ".minigame_8",
+      "rom": 1819744,
+      "update": 2149351156,
+      "draw": 2149352048,
+      "function": "dora3_s28_mini_801C7EF4",
+      "function_sha256": "4c4440d290e2b018c015310f26a0812a86b1417bc5adfc91a6d3ebeedf069f89",
+      "returns": [
+        2149352040
+      ]
+    },
+    {
+      "section": ".minigame_9",
+      "rom": 1840816,
+      "update": 2149348616,
+      "draw": 2149349476,
+      "function": "dora3_s29_mini_801C7508",
+      "function_sha256": "e84f4573537d599a8c8a3f0a76bdc8db29063cf00f8b0307d0b1f7e2e6911d9e",
+      "returns": [
+        2149349468
+      ]
+    },
+    {
+      "section": ".minigame_common",
+      "rom": 1621488,
+      "update": 2149307832,
+      "draw": 2149308328,
+      "function": "dora3_s20_mini_801BD5B8",
+      "function_sha256": "e4f07e7853a861b84380d9a6a54879a493aa5f43a4f19e62fcb5cdabe4bd0ac9",
+      "returns": [
+        2149308320
+      ]
+    },
+    {
+      "section": ".minigame_common",
+      "rom": 1621488,
+      "update": 2149311536,
+      "draw": 2149312912,
+      "function": "dora3_s20_mini_801BE430",
+      "function_sha256": "2c7e4136970dbbe9e99ca7095b2b1100a888f34a3a1d8f85257430a8a8b186ea",
+      "returns": [
+        2149312904
+      ]
+    },
+    {
+      "section": ".minigame_common",
+      "rom": 1621488,
+      "update": 2149316812,
+      "draw": 2149325788,
+      "function": "dora3_s20_mini_801BF8CC",
+      "function_sha256": "ba40888b31095aace2e34f04a2803e76ff6fab7a7a8e35db917a78a345b400fd",
+      "returns": [
+        2149317336
+      ]
+    }
+  ],
+  "original_functions": [
+    "dora3_lib_80055BC0",
+    "dora3_lib_80055BD0",
+    "dora3_lib_80057A80",
+    "dora3_lib_80059FE0",
+    "dora3_lib_8005A140",
+    "dora3_lib_8005A240",
+    "dora3_lib_8005A2A0",
+    "dora3_lib_8005A300",
+    "dora3_lib_8005A410",
+    "dora3_s0_8002DA98",
+    "dora3_s0_8002F064",
+    "dora3_s0_8003175C",
+    "dora3_s0_80031884",
+    "dora3_s0_80031A0C",
+    "dora3_s0_80031A58",
+    "dora3_s0_80031AA4",
+    "dora3_s0_80031D5C",
+    "dora3_s0_80032214",
+    "dora3_s0_800327A4",
+    "dora3_s0_800389F0",
+    "dora3_s0_80038A88",
+    "dora3_s0_80038D58",
+    "dora3_s0_80038FA8",
+    "dora3_s0_80039078",
+    "dora3_s0_800391F0",
+    "dora3_s0_8003931C",
+    "dora3_s0_800393C4",
+    "dora3_s0_8003FFC4",
+    "dora3_s0_80040018",
+    "dora3_s0_8004006C",
+    "dora3_s0_800400D0",
+    "dora3_s0_80040104",
+    "dora3_s20_mini_801B8ED0",
+    "dora3_s20_mini_801B8F0C",
+    "dora3_s20_mini_801B8F64",
+    "dora3_s20_mini_801B8F88",
+    "dora3_s20_mini_801B9048",
+    "dora3_s20_mini_801B9078",
+    "dora3_s20_mini_801B90E8",
+    "dora3_s20_mini_801B9360",
+    "dora3_s20_mini_801B95F4",
+    "dora3_s20_mini_801B9A04",
+    "dora3_s20_mini_801B9E5C",
+    "dora3_s20_mini_801B9F04",
+    "dora3_s20_mini_801B9F7C",
+    "dora3_s20_mini_801B9FEC",
+    "dora3_s20_mini_801BA064",
+    "dora3_s20_mini_801BA0D4",
+    "dora3_s20_mini_801BA14C",
+    "dora3_s20_mini_801BA1B4",
+    "dora3_s20_mini_801BA22C",
+    "dora3_s20_mini_801BA294",
+    "dora3_s20_mini_801BA30C",
+    "dora3_s20_mini_801BA37C",
+    "dora3_s20_mini_801BA3F4",
+    "dora3_s20_mini_801BA464",
+    "dora3_s20_mini_801BA4DC",
+    "dora3_s20_mini_801BA528",
+    "dora3_s20_mini_801BA5A0",
+    "dora3_s20_mini_801BA5EC",
+    "dora3_s20_mini_801BA664",
+    "dora3_s20_mini_801BA6B0",
+    "dora3_s20_mini_801BA728",
+    "dora3_s20_mini_801BA774",
+    "dora3_s20_mini_801BA7EC",
+    "dora3_s20_mini_801BA838",
+    "dora3_s20_mini_801BABF8",
+    "dora3_s20_mini_801BB20C",
+    "dora3_s20_mini_801BB364",
+    "dora3_s20_mini_801BB4EC",
+    "dora3_s20_mini_801BB538",
+    "dora3_s20_mini_801BB574",
+    "dora3_s20_mini_801BB6BC",
+    "dora3_s20_mini_801BB7A4",
+    "dora3_s20_mini_801BB7D4",
+    "dora3_s20_mini_801BB810",
+    "dora3_s20_mini_801BB890",
+    "dora3_s20_mini_801BBABC",
+    "dora3_s20_mini_801BBAF4",
+    "dora3_s20_mini_801BBB58",
+    "dora3_s20_mini_801BBBA4",
+    "dora3_s20_mini_801BC690",
+    "dora3_s20_mini_801BC828",
+    "dora3_s20_mini_801BCACC",
+    "dora3_s20_mini_801BCBF4",
+    "dora3_s20_mini_801BCD14",
+    "dora3_s20_mini_801BCD58",
+    "dora3_s20_mini_801BD148",
+    "dora3_s20_mini_801BD154",
+    "dora3_s20_mini_801BD250",
+    "dora3_s20_mini_801BD354",
+    "dora3_s20_mini_801BD3E0",
+    "dora3_s20_mini_801BD470",
+    "dora3_s20_mini_801BD580",
+    "dora3_s20_mini_801BD59C",
+    "dora3_s20_mini_801BD5B8",
+    "dora3_s20_mini_801BD7A8",
+    "dora3_s20_mini_801BDCD0",
+    "dora3_s20_mini_801BDE60",
+    "dora3_s20_mini_801BDF2C",
+    "dora3_s20_mini_801BE22C",
+    "dora3_s20_mini_801BE278",
+    "dora3_s20_mini_801BE308",
+    "dora3_s20_mini_801BE3F8",
+    "dora3_s20_mini_801BE414",
+    "dora3_s20_mini_801BE430",
+    "dora3_s20_mini_801BE990",
+    "dora3_s20_mini_801BEE34",
+    "dora3_s20_mini_801BEF70",
+    "dora3_s20_mini_801BF0D8",
+    "dora3_s20_mini_801BF168",
+    "dora3_s20_mini_801BF298",
+    "dora3_s20_mini_801BF2B4",
+    "dora3_s20_mini_801BF2D0",
+    "dora3_s20_mini_801BF350",
+    "dora3_s20_mini_801BF6A0",
+    "dora3_s20_mini_801BF7BC",
+    "dora3_s20_mini_801BF878",
+    "dora3_s20_mini_801BF8CC",
+    "dora3_s20_mini_801BFAE0",
+    "dora3_s20_mini_801BFF38",
+    "dora3_s20_mini_801BFF64",
+    "dora3_s20_mini_801BFF90",
+    "dora3_s20_mini_801BFFBC",
+    "dora3_s20_mini_801C008C",
+    "dora3_s20_mini_801C0868",
+    "dora3_s20_mini_801C08A4",
+    "dora3_s20_mini_801C102C",
+    "dora3_s20_mini_801C1840",
+    "dora3_s20_mini_801C1BDC",
+    "dora3_s20_mini_801C1CD0",
+    "dora3_s21_mini_801C3680",
+    "dora3_s21_mini_801C3700",
+    "dora3_s21_mini_801C38F8",
+    "dora3_s21_mini_801C39D4",
+    "dora3_s21_mini_801C39DC",
+    "dora3_s21_mini_801C3AA4",
+    "dora3_s21_mini_801C3CBC",
+    "dora3_s21_mini_801C3D98",
+    "dora3_s21_mini_801C3FE0",
+    "dora3_s21_mini_801C44C4",
+    "dora3_s21_mini_801C44F0",
+    "dora3_s21_mini_801C4590",
+    "dora3_s21_mini_801C472C",
+    "dora3_s21_mini_801C4820",
+    "dora3_s21_mini_801C494C",
+    "dora3_s21_mini_801C4AB8",
+    "dora3_s21_mini_801C4BDC",
+    "dora3_s21_mini_801C4BE4",
+    "dora3_s21_mini_801C4D24",
+    "dora3_s21_mini_801C4DD8",
+    "dora3_s21_mini_801C4EE8",
+    "dora3_s21_mini_801C4FF8",
+    "dora3_s21_mini_801C510C",
+    "dora3_s21_mini_801C51C0",
+    "dora3_s21_mini_801C52D0",
+    "dora3_s21_mini_801C53E0",
+    "dora3_s21_mini_801C54F4",
+    "dora3_s21_mini_801C5584",
+    "dora3_s21_mini_801C558C",
+    "dora3_s21_mini_801C55F8",
+    "dora3_s21_mini_801C5730",
+    "dora3_s21_mini_801C578C",
+    "dora3_s21_mini_801C5908",
+    "dora3_s21_mini_801C5AA0",
+    "dora3_s21_mini_801C5B64",
+    "dora3_s21_mini_801C5C34",
+    "dora3_s21_mini_801C5CDC",
+    "dora3_s21_mini_801C5F1C",
+    "dora3_s21_mini_801C5F88",
+    "dora3_s21_mini_801C60BC",
+    "dora3_s21_mini_801C66FC",
+    "dora3_s21_mini_801C67C8",
+    "dora3_s21_mini_801C6884",
+    "dora3_s21_mini_801C6944",
+    "dora3_s21_mini_801C7170",
+    "dora3_s21_mini_801C7564",
+    "dora3_s21_mini_801C76F8",
+    "dora3_s21_mini_801C778C",
+    "dora3_s21_mini_801C77F4",
+    "dora3_s21_mini_801C78FC",
+    "dora3_s21_mini_801C7BFC",
+    "dora3_s21_mini_801C7C4C",
+    "dora3_s21_mini_801C7C9C",
+    "dora3_s21_mini_801C7D78",
+    "dora3_s21_mini_801C7E54",
+    "dora3_s21_mini_801C7F30",
+    "dora3_s21_mini_801C800C",
+    "dora3_s21_mini_801C8AB4",
+    "dora3_s21_mini_801C8C74",
+    "dora3_s21_mini_801C9024",
+    "dora3_s21_mini_801C911C",
+    "dora3_s21_mini_801C91B8",
+    "dora3_s21_mini_801C9258",
+    "dora3_s21_mini_801C92F0",
+    "dora3_s21_mini_801C9344",
+    "dora3_s21_mini_801C93AC",
+    "dora3_s21_mini_801C93D0",
+    "dora3_s21_mini_801C93F4",
+    "dora3_s21_mini_801C9728",
+    "dora3_s21_mini_801C97FC",
+    "dora3_s21_mini_801C9B00",
+    "dora3_s21_mini_801C9CA0",
+    "dora3_s21_mini_801C9D48",
+    "dora3_s21_mini_801C9D8C",
+    "dora3_s21_mini_801C9FD4",
+    "dora3_s21_mini_801CA3B8",
+    "dora3_s21_mini_801CA5D8",
+    "dora3_s21_mini_801CA96C",
+    "dora3_s21_mini_801CAA24",
+    "dora3_s21_mini_801CACAC",
+    "dora3_s21_mini_801CB160",
+    "dora3_s21_mini_801CB4C0",
+    "dora3_s22_mini_801C3680",
+    "dora3_s22_mini_801C3700",
+    "dora3_s22_mini_801C371C",
+    "dora3_s22_mini_801C37F8",
+    "dora3_s22_mini_801C3940",
+    "dora3_s22_mini_801C3AF4",
+    "dora3_s22_mini_801C3B84",
+    "dora3_s22_mini_801C3C10",
+    "dora3_s22_mini_801C3D34",
+    "dora3_s22_mini_801C3E88",
+    "dora3_s22_mini_801C3F7C",
+    "dora3_s22_mini_801C40A4",
+    "dora3_s22_mini_801C4210",
+    "dora3_s22_mini_801C423C",
+    "dora3_s22_mini_801C42DC",
+    "dora3_s22_mini_801C4478",
+    "dora3_s22_mini_801C45D0",
+    "dora3_s22_mini_801C473C",
+    "dora3_s22_mini_801C49B4",
+    "dora3_s22_mini_801C4AD0",
+    "dora3_s22_mini_801C4C34",
+    "dora3_s22_mini_801C4E58",
+    "dora3_s22_mini_801C4EE8",
+    "dora3_s22_mini_801C4EF0",
+    "dora3_s22_mini_801C4F5C",
+    "dora3_s22_mini_801C4FD4",
+    "dora3_s22_mini_801C510C",
+    "dora3_s22_mini_801C51B0",
+    "dora3_s22_mini_801C532C",
+    "dora3_s22_mini_801C54C0",
+    "dora3_s22_mini_801C5590",
+    "dora3_s22_mini_801C56C8",
+    "dora3_s22_mini_801C5884",
+    "dora3_s22_mini_801C59B4",
+    "dora3_s22_mini_801C5A5C",
+    "dora3_s22_mini_801C5D4C",
+    "dora3_s22_mini_801C5DB8",
+    "dora3_s22_mini_801C5E74",
+    "dora3_s22_mini_801C5F3C",
+    "dora3_s22_mini_801C6034",
+    "dora3_s22_mini_801C60D0",
+    "dora3_s22_mini_801C6178",
+    "dora3_s22_mini_801C6464",
+    "dora3_s22_mini_801C654C",
+    "dora3_s22_mini_801C68AC",
+    "dora3_s22_mini_801C69CC",
+    "dora3_s22_mini_801C6B0C",
+    "dora3_s22_mini_801C6BCC",
+    "dora3_s22_mini_801C6D40",
+    "dora3_s22_mini_801C7068",
+    "dora3_s22_mini_801C7160",
+    "dora3_s22_mini_801C71FC",
+    "dora3_s22_mini_801C73F4",
+    "dora3_s22_mini_801C76F4",
+    "dora3_s22_mini_801C77C0",
+    "dora3_s22_mini_801C78F8",
+    "dora3_s22_mini_801C7B48",
+    "dora3_s22_mini_801C7CBC",
+    "dora3_s22_mini_801C8018",
+    "dora3_s22_mini_801C8024",
+    "dora3_s22_mini_801C802C",
+    "dora3_s22_mini_801C8034",
+    "dora3_s22_mini_801C80F0",
+    "dora3_s22_mini_801C811C",
+    "dora3_s22_mini_801C8148",
+    "dora3_s23_mini_801C3680",
+    "dora3_s23_mini_801C3890",
+    "dora3_s23_mini_801C3958",
+    "dora3_s23_mini_801C3C50",
+    "dora3_s23_mini_801C3C6C",
+    "dora3_s23_mini_801C3D48",
+    "dora3_s23_mini_801C3DB0",
+    "dora3_s23_mini_801C3E50",
+    "dora3_s23_mini_801C3E6C",
+    "dora3_s23_mini_801C3EB4",
+    "dora3_s23_mini_801C3F1C",
+    "dora3_s23_mini_801C3FC0",
+    "dora3_s23_mini_801C4040",
+    "dora3_s23_mini_801C40D0",
+    "dora3_s23_mini_801C40D8",
+    "dora3_s23_mini_801C41BC",
+    "dora3_s23_mini_801C4308",
+    "dora3_s23_mini_801C45E8",
+    "dora3_s23_mini_801C4728",
+    "dora3_s23_mini_801C47AC",
+    "dora3_s23_mini_801C4A28",
+    "dora3_s23_mini_801C4A7C",
+    "dora3_s23_mini_801C4BB4",
+    "dora3_s23_mini_801C4C58",
+    "dora3_s23_mini_801C4E50",
+    "dora3_s23_mini_801C4ECC",
+    "dora3_s23_mini_801C4FD8",
+    "dora3_s23_mini_801C50A0",
+    "dora3_s23_mini_801C512C",
+    "dora3_s23_mini_801C5260",
+    "dora3_s23_mini_801C53F8",
+    "dora3_s23_mini_801C5564",
+    "dora3_s23_mini_801C5660",
+    "dora3_s23_mini_801C57B0",
+    "dora3_s23_mini_801C5820",
+    "dora3_s23_mini_801C5920",
+    "dora3_s23_mini_801C59E8",
+    "dora3_s23_mini_801C5A74",
+    "dora3_s23_mini_801C5BA4",
+    "dora3_s23_mini_801C5E1C",
+    "dora3_s23_mini_801C5F34",
+    "dora3_s23_mini_801C5F84",
+    "dora3_s23_mini_801C60B8",
+    "dora3_s23_mini_801C61EC",
+    "dora3_s23_mini_801C6258",
+    "dora3_s23_mini_801C6388",
+    "dora3_s23_mini_801C63E8",
+    "dora3_s23_mini_801C6684",
+    "dora3_s23_mini_801C6700",
+    "dora3_s23_mini_801C6710",
+    "dora3_s23_mini_801C675C",
+    "dora3_s23_mini_801C6864",
+    "dora3_s23_mini_801C6988",
+    "dora3_s23_mini_801C69CC",
+    "dora3_s23_mini_801C7200",
+    "dora3_s23_mini_801C72CC",
+    "dora3_s23_mini_801C73C4",
+    "dora3_s23_mini_801C7460",
+    "dora3_s23_mini_801C764C",
+    "dora3_s23_mini_801C782C",
+    "dora3_s23_mini_801C78AC",
+    "dora3_s23_mini_801C7A10",
+    "dora3_s23_mini_801C7A8C",
+    "dora3_s23_mini_801C7CA4",
+    "dora3_s23_mini_801C7F4C",
+    "dora3_s23_mini_801C7F58",
+    "dora3_s23_mini_801C7F60",
+    "dora3_s23_mini_801C7F68",
+    "dora3_s23_mini_801C808C",
+    "dora3_s23_mini_801C80B8",
+    "dora3_s23_mini_801C80E4",
+    "dora3_s24_mini_801C3680",
+    "dora3_s24_mini_801C3710",
+    "dora3_s24_mini_801C3788",
+    "dora3_s24_mini_801C37EC",
+    "dora3_s24_mini_801C3864",
+    "dora3_s24_mini_801C38C8",
+    "dora3_s24_mini_801C3948",
+    "dora3_s24_mini_801C3A30",
+    "dora3_s24_mini_801C3AB0",
+    "dora3_s24_mini_801C3BD0",
+    "dora3_s24_mini_801C3BEC",
+    "dora3_s24_mini_801C3C34",
+    "dora3_s24_mini_801C3C9C",
+    "dora3_s24_mini_801C3D40",
+    "dora3_s24_mini_801C3DD0",
+    "dora3_s24_mini_801C3DD8",
+    "dora3_s24_mini_801C3E44",
+    "dora3_s24_mini_801C3E94",
+    "dora3_s24_mini_801C3FCC",
+    "dora3_s24_mini_801C40B4",
+    "dora3_s24_mini_801C42C0",
+    "dora3_s24_mini_801C433C",
+    "dora3_s24_mini_801C4448",
+    "dora3_s24_mini_801C453C",
+    "dora3_s24_mini_801C4678",
+    "dora3_s24_mini_801C4730",
+    "dora3_s24_mini_801C4844",
+    "dora3_s24_mini_801C4954",
+    "dora3_s24_mini_801C4B4C",
+    "dora3_s24_mini_801C4BE8",
+    "dora3_s24_mini_801C4DD4",
+    "dora3_s24_mini_801C50A0",
+    "dora3_s24_mini_801C5100",
+    "dora3_s24_mini_801C5330",
+    "dora3_s24_mini_801C5438",
+    "dora3_s24_mini_801C5538",
+    "dora3_s24_mini_801C562C",
+    "dora3_s24_mini_801C5768",
+    "dora3_s24_mini_801C5820",
+    "dora3_s24_mini_801C5934",
+    "dora3_s24_mini_801C59C8",
+    "dora3_s24_mini_801C5BB8",
+    "dora3_s24_mini_801C5C24",
+    "dora3_s24_mini_801C5E8C",
+    "dora3_s24_mini_801C61F4",
+    "dora3_s24_mini_801C6230",
+    "dora3_s24_mini_801C63C0",
+    "dora3_s24_mini_801C6480",
+    "dora3_s24_mini_801C64BC",
+    "dora3_s24_mini_801C65D8",
+    "dora3_s24_mini_801C66E0",
+    "dora3_s24_mini_801C678C",
+    "dora3_s24_mini_801C680C",
+    "dora3_s24_mini_801C6A4C",
+    "dora3_s24_mini_801C6AB4",
+    "dora3_s24_mini_801C6BAC",
+    "dora3_s24_mini_801C6EC0",
+    "dora3_s24_mini_801C6F78",
+    "dora3_s24_mini_801C6F88",
+    "dora3_s24_mini_801C7128",
+    "dora3_s24_mini_801C7158",
+    "dora3_s24_mini_801C719C",
+    "dora3_s24_mini_801C71D4",
+    "dora3_s24_mini_801C7204",
+    "dora3_s24_mini_801C7224",
+    "dora3_s24_mini_801C7248",
+    "dora3_s24_mini_801C72B4",
+    "dora3_s24_mini_801C73A8",
+    "dora3_s24_mini_801C7490",
+    "dora3_s24_mini_801C7570",
+    "dora3_s24_mini_801C75DC",
+    "dora3_s24_mini_801C779C",
+    "dora3_s24_mini_801C788C",
+    "dora3_s24_mini_801C7970",
+    "dora3_s24_mini_801C7B34",
+    "dora3_s24_mini_801C7E74",
+    "dora3_s24_mini_801C7FFC",
+    "dora3_s24_mini_801C80D0",
+    "dora3_s24_mini_801C8164",
+    "dora3_s24_mini_801C855C",
+    "dora3_s24_mini_801C87C8",
+    "dora3_s24_mini_801C8948",
+    "dora3_s24_mini_801C8980",
+    "dora3_s24_mini_801C8BA8",
+    "dora3_s24_mini_801C8CCC",
+    "dora3_s24_mini_801C8DC4",
+    "dora3_s24_mini_801C8E60",
+    "dora3_s24_mini_801C90C4",
+    "dora3_s24_mini_801C9354",
+    "dora3_s24_mini_801C9428",
+    "dora3_s24_mini_801C94D0",
+    "dora3_s24_mini_801C9730",
+    "dora3_s24_mini_801C973C",
+    "dora3_s24_mini_801C9744",
+    "dora3_s24_mini_801C974C",
+    "dora3_s24_mini_801C97A8",
+    "dora3_s24_mini_801C97D4",
+    "dora3_s24_mini_801C9800",
+    "dora3_s24_mini_801C9AD0",
+    "dora3_s25_mini_801C3680",
+    "dora3_s25_mini_801C3700",
+    "dora3_s25_mini_801C378C",
+    "dora3_s25_mini_801C3978",
+    "dora3_s25_mini_801C3A48",
+    "dora3_s25_mini_801C3A90",
+    "dora3_s25_mini_801C3B24",
+    "dora3_s25_mini_801C3C30",
+    "dora3_s25_mini_801C3D60",
+    "dora3_s25_mini_801C3DF8",
+    "dora3_s25_mini_801C4090",
+    "dora3_s25_mini_801C4160",
+    "dora3_s25_mini_801C41C0",
+    "dora3_s25_mini_801C427C",
+    "dora3_s25_mini_801C43C0",
+    "dora3_s25_mini_801C44E4",
+    "dora3_s25_mini_801C4654",
+    "dora3_s25_mini_801C4724",
+    "dora3_s25_mini_801C4C94",
+    "dora3_s25_mini_801C4D8C",
+    "dora3_s25_mini_801C4EE0",
+    "dora3_s25_mini_801C50C0",
+    "dora3_s25_mini_801C5490",
+    "dora3_s25_mini_801C553C",
+    "dora3_s25_mini_801C575C",
+    "dora3_s25_mini_801C589C",
+    "dora3_s25_mini_801C5948",
+    "dora3_s25_mini_801C59E8",
+    "dora3_s25_mini_801C5EC4",
+    "dora3_s25_mini_801C5F24",
+    "dora3_s25_mini_801C61EC",
+    "dora3_s25_mini_801C639C",
+    "dora3_s25_mini_801C6448",
+    "dora3_s25_mini_801C6514",
+    "dora3_s25_mini_801C6564",
+    "dora3_s25_mini_801C6688",
+    "dora3_s25_mini_801C676C",
+    "dora3_s25_mini_801C6788",
+    "dora3_s25_mini_801C67A4",
+    "dora3_s25_mini_801C6A30",
+    "dora3_s25_mini_801C6C74",
+    "dora3_s26_mini_801C3680",
+    "dora3_s26_mini_801C3700",
+    "dora3_s26_mini_801C378C",
+    "dora3_s26_mini_801C37E8",
+    "dora3_s26_mini_801C3940",
+    "dora3_s26_mini_801C3AA0",
+    "dora3_s26_mini_801C3AD4",
+    "dora3_s26_mini_801C3BB0",
+    "dora3_s26_mini_801C3C24",
+    "dora3_s26_mini_801C3CD4",
+    "dora3_s26_mini_801C3ED0",
+    "dora3_s26_mini_801C3FB0",
+    "dora3_s26_mini_801C41F0",
+    "dora3_s26_mini_801C4334",
+    "dora3_s26_mini_801C45E8",
+    "dora3_s26_mini_801C47E0",
+    "dora3_s26_mini_801C489C",
+    "dora3_s26_mini_801C48EC",
+    "dora3_s26_mini_801C4924",
+    "dora3_s26_mini_801C4970",
+    "dora3_s26_mini_801C49F8",
+    "dora3_s26_mini_801C4BA4",
+    "dora3_s26_mini_801C4E00",
+    "dora3_s26_mini_801C4E68",
+    "dora3_s26_mini_801C4F44",
+    "dora3_s26_mini_801C508C",
+    "dora3_s26_mini_801C512C",
+    "dora3_s26_mini_801C52BC",
+    "dora3_s26_mini_801C5348",
+    "dora3_s26_mini_801C5524",
+    "dora3_s26_mini_801C55E8",
+    "dora3_s26_mini_801C56E4",
+    "dora3_s26_mini_801C5768",
+    "dora3_s26_mini_801C5A30",
+    "dora3_s26_mini_801C5A38",
+    "dora3_s26_mini_801C5C4C",
+    "dora3_s26_mini_801C5DC0",
+    "dora3_s26_mini_801C5F78",
+    "dora3_s26_mini_801C6018",
+    "dora3_s26_mini_801C603C",
+    "dora3_s26_mini_801C6190",
+    "dora3_s26_mini_801C623C",
+    "dora3_s26_mini_801C6308",
+    "dora3_s26_mini_801C6358",
+    "dora3_s26_mini_801C647C",
+    "dora3_s26_mini_801C6578",
+    "dora3_s26_mini_801C663C",
+    "dora3_s26_mini_801C6664",
+    "dora3_s26_mini_801C6798",
+    "dora3_s26_mini_801C69C0",
+    "dora3_s26_mini_801C69DC",
+    "dora3_s26_mini_801C69F8",
+    "dora3_s26_mini_801C7048",
+    "dora3_s26_mini_801C72B8",
+    "dora3_s27_mini_801C3680",
+    "dora3_s27_mini_801C3700",
+    "dora3_s27_mini_801C378C",
+    "dora3_s27_mini_801C38F8",
+    "dora3_s27_mini_801C39EC",
+    "dora3_s27_mini_801C3AE8",
+    "dora3_s27_mini_801C3BB4",
+    "dora3_s27_mini_801C3C20",
+    "dora3_s27_mini_801C3CD8",
+    "dora3_s27_mini_801C3E0C",
+    "dora3_s27_mini_801C4070",
+    "dora3_s27_mini_801C4274",
+    "dora3_s27_mini_801C4338",
+    "dora3_s27_mini_801C4430",
+    "dora3_s27_mini_801C44E0",
+    "dora3_s27_mini_801C4510",
+    "dora3_s27_mini_801C45E4",
+    "dora3_s27_mini_801C4680",
+    "dora3_s27_mini_801C499C",
+    "dora3_s27_mini_801C4CB0",
+    "dora3_s27_mini_801C4D20",
+    "dora3_s27_mini_801C4E58",
+    "dora3_s27_mini_801C4F74",
+    "dora3_s27_mini_801C4FC4",
+    "dora3_s27_mini_801C5050",
+    "dora3_s27_mini_801C50AC",
+    "dora3_s27_mini_801C50FC",
+    "dora3_s27_mini_801C5314",
+    "dora3_s27_mini_801C55C8",
+    "dora3_s27_mini_801C5674",
+    "dora3_s27_mini_801C5818",
+    "dora3_s27_mini_801C5A94",
+    "dora3_s27_mini_801C5B14",
+    "dora3_s27_mini_801C5B3C",
+    "dora3_s27_mini_801C5C14",
+    "dora3_s27_mini_801C5F80",
+    "dora3_s27_mini_801C619C",
+    "dora3_s27_mini_801C6334",
+    "dora3_s27_mini_801C6490",
+    "dora3_s27_mini_801C64F0",
+    "dora3_s27_mini_801C66F0",
+    "dora3_s27_mini_801C6750",
+    "dora3_s27_mini_801C680C",
+    "dora3_s27_mini_801C6828",
+    "dora3_s27_mini_801C6844",
+    "dora3_s27_mini_801C6B90",
+    "dora3_s27_mini_801C6CC4",
+    "dora3_s28_mini_801C3680",
+    "dora3_s28_mini_801C3700",
+    "dora3_s28_mini_801C378C",
+    "dora3_s28_mini_801C37CC",
+    "dora3_s28_mini_801C380C",
+    "dora3_s28_mini_801C3A74",
+    "dora3_s28_mini_801C3AAC",
+    "dora3_s28_mini_801C3C2C",
+    "dora3_s28_mini_801C3CB4",
+    "dora3_s28_mini_801C3CBC",
+    "dora3_s28_mini_801C3CEC",
+    "dora3_s28_mini_801C3D88",
+    "dora3_s28_mini_801C3E70",
+    "dora3_s28_mini_801C3E9C",
+    "dora3_s28_mini_801C3EC8",
+    "dora3_s28_mini_801C3EF4",
+    "dora3_s28_mini_801C4060",
+    "dora3_s28_mini_801C4084",
+    "dora3_s28_mini_801C4218",
+    "dora3_s28_mini_801C42C8",
+    "dora3_s28_mini_801C4300",
+    "dora3_s28_mini_801C4334",
+    "dora3_s28_mini_801C449C",
+    "dora3_s28_mini_801C4520",
+    "dora3_s28_mini_801C4558",
+    "dora3_s28_mini_801C45AC",
+    "dora3_s28_mini_801C46B4",
+    "dora3_s28_mini_801C4794",
+    "dora3_s28_mini_801C4940",
+    "dora3_s28_mini_801C4AF8",
+    "dora3_s28_mini_801C4BD4",
+    "dora3_s28_mini_801C4D74",
+    "dora3_s28_mini_801C4E24",
+    "dora3_s28_mini_801C4EC8",
+    "dora3_s28_mini_801C4F88",
+    "dora3_s28_mini_801C5190",
+    "dora3_s28_mini_801C52E0",
+    "dora3_s28_mini_801C5350",
+    "dora3_s28_mini_801C5554",
+    "dora3_s28_mini_801C5720",
+    "dora3_s28_mini_801C592C",
+    "dora3_s28_mini_801C5A14",
+    "dora3_s28_mini_801C5A44",
+    "dora3_s28_mini_801C5A98",
+    "dora3_s28_mini_801C5AF8",
+    "dora3_s28_mini_801C5BC4",
+    "dora3_s28_mini_801C5D74",
+    "dora3_s28_mini_801C5E88",
+    "dora3_s28_mini_801C6094",
+    "dora3_s28_mini_801C62D4",
+    "dora3_s28_mini_801C64A4",
+    "dora3_s28_mini_801C64E8",
+    "dora3_s28_mini_801C66C0",
+    "dora3_s28_mini_801C6818",
+    "dora3_s28_mini_801C6CEC",
+    "dora3_s28_mini_801C706C",
+    "dora3_s28_mini_801C70DC",
+    "dora3_s28_mini_801C7118",
+    "dora3_s28_mini_801C713C",
+    "dora3_s28_mini_801C7304",
+    "dora3_s28_mini_801C73C0",
+    "dora3_s28_mini_801C73EC",
+    "dora3_s28_mini_801C7418",
+    "dora3_s28_mini_801C7444",
+    "dora3_s28_mini_801C7570",
+    "dora3_s28_mini_801C75EC",
+    "dora3_s28_mini_801C763C",
+    "dora3_s28_mini_801C76B4",
+    "dora3_s28_mini_801C7994",
+    "dora3_s28_mini_801C7A60",
+    "dora3_s28_mini_801C7D5C",
+    "dora3_s28_mini_801C7DD0",
+    "dora3_s28_mini_801C7EBC",
+    "dora3_s28_mini_801C7ED8",
+    "dora3_s28_mini_801C7EF4",
+    "dora3_s28_mini_801C8270",
+    "dora3_s28_mini_801C83AC",
+    "dora3_s29_mini_801C3680",
+    "dora3_s29_mini_801C3700",
+    "dora3_s29_mini_801C378C",
+    "dora3_s29_mini_801C3904",
+    "dora3_s29_mini_801C39A4",
+    "dora3_s29_mini_801C3A14",
+    "dora3_s29_mini_801C3B74",
+    "dora3_s29_mini_801C3C48",
+    "dora3_s29_mini_801C3CC0",
+    "dora3_s29_mini_801C3ED0",
+    "dora3_s29_mini_801C4094",
+    "dora3_s29_mini_801C4100",
+    "dora3_s29_mini_801C41FC",
+    "dora3_s29_mini_801C4268",
+    "dora3_s29_mini_801C4328",
+    "dora3_s29_mini_801C4464",
+    "dora3_s29_mini_801C4538",
+    "dora3_s29_mini_801C4560",
+    "dora3_s29_mini_801C47A8",
+    "dora3_s29_mini_801C49B0",
+    "dora3_s29_mini_801C4A50",
+    "dora3_s29_mini_801C4B04",
+    "dora3_s29_mini_801C4B70",
+    "dora3_s29_mini_801C4BA0",
+    "dora3_s29_mini_801C4C74",
+    "dora3_s29_mini_801C4D10",
+    "dora3_s29_mini_801C5068",
+    "dora3_s29_mini_801C5364",
+    "dora3_s29_mini_801C53D4",
+    "dora3_s29_mini_801C5514",
+    "dora3_s29_mini_801C561C",
+    "dora3_s29_mini_801C566C",
+    "dora3_s29_mini_801C56F8",
+    "dora3_s29_mini_801C5754",
+    "dora3_s29_mini_801C57A4",
+    "dora3_s29_mini_801C59E4",
+    "dora3_s29_mini_801C5B58",
+    "dora3_s29_mini_801C5BD8",
+    "dora3_s29_mini_801C5D84",
+    "dora3_s29_mini_801C5FE0",
+    "dora3_s29_mini_801C6060",
+    "dora3_s29_mini_801C6090",
+    "dora3_s29_mini_801C615C",
+    "dora3_s29_mini_801C6360",
+    "dora3_s29_mini_801C66B4",
+    "dora3_s29_mini_801C6820",
+    "dora3_s29_mini_801C6880",
+    "dora3_s29_mini_801C68C8",
+    "dora3_s29_mini_801C6918",
+    "dora3_s29_mini_801C6F28",
+    "dora3_s29_mini_801C7060",
+    "dora3_s29_mini_801C7068",
+    "dora3_s29_mini_801C71B8",
+    "dora3_s29_mini_801C73B8",
+    "dora3_s29_mini_801C7410",
+    "dora3_s29_mini_801C74D0",
+    "dora3_s29_mini_801C74EC",
+    "dora3_s29_mini_801C7508",
+    "dora3_s29_mini_801C7864",
+    "dora3_s29_mini_801C79D4"
+  ],
+  "stub_boundaries": [
+    "dora3_color_buffer_setup",
+    "dora3_common_panel_draw",
+    "dora3_common_text_draw",
+    "dora3_common_text_state",
+    "dora3_common_ui_assets_init",
+    "dora3_depth_buffer_clear",
+    "dora3_fade_begin",
+    "dora3_fade_bounds_set",
+    "dora3_fade_color_step_set",
+    "dora3_fade_full_opacity",
+    "dora3_fade_hold",
+    "dora3_game_heap_alloc",
+    "dora3_game_heap_init_wrapper",
+    "dora3_input_repeat_update_all",
+    "dora3_lib_8005A040",
+    "dora3_lib_8005A360",
+    "dora3_native_model_morph_allowed",
+    "dora3_object_axis_b_set",
+    "dora3_pak_device_init",
+    "dora3_pak_find_controller",
+    "dora3_pak_flags_clear",
+    "dora3_process_pair_install",
+    "dora3_resource_by_id",
+    "dora3_rumble_ports_reset",
+    "dora3_s0_80027B70",
+    "dora3_s0_80028930",
+    "dora3_s0_80028BC8",
+    "dora3_s0_80028C74",
+    "dora3_s0_80028D50",
+    "dora3_s0_80029D48",
+    "dora3_s0_80029E7C",
+    "dora3_s0_8002A14C",
+    "dora3_s0_8002A1B8",
+    "dora3_s0_8002A204",
+    "dora3_s0_8002A2E8",
+    "dora3_s0_8002A328",
+    "dora3_s0_8002A3D4",
+    "dora3_s0_8002A3F8",
+    "dora3_s0_8002A41C",
+    "dora3_s0_8002A47C",
+    "dora3_s0_8002A4A4",
+    "dora3_s0_8002A51C",
+    "dora3_s0_8002A544",
+    "dora3_s0_8002A5F0",
+    "dora3_s0_8002A650",
+    "dora3_s0_8002A684",
+    "dora3_s0_8002DEF8",
+    "dora3_s0_8002E110",
+    "dora3_s0_8002E214",
+    "dora3_s0_8002E5D0",
+    "dora3_s0_8002EA4C",
+    "dora3_s0_8002F20C",
+    "dora3_s0_8002F2C8",
+    "dora3_s0_8002F4E0",
+    "dora3_s0_80030CC8",
+    "dora3_s0_8003196C",
+    "dora3_s0_80031B38",
+    "dora3_s0_800328E0",
+    "dora3_s0_80033C50",
+    "dora3_s0_800378C0",
+    "dora3_s0_80037FA0",
+    "dora3_s0_80038070",
+    "dora3_s0_8003813C",
+    "dora3_s0_8003820C",
+    "dora3_s0_8003B1B8",
+    "dora3_s0_8003B1C4",
+    "dora3_s0_8003B1D0",
+    "dora3_s0_8003B1DC",
+    "dora3_s0_8003FF40",
+    "dora3_s0_80042B58",
+    "dora3_s0_80042B90",
+    "dora3_s0_80042CAC",
+    "dora3_s0_800442B0",
+    "dora3_s0_80044330",
+    "dora3_s0_800444C0",
+    "dora3_s0_800445AC",
+    "dora3_s0_800445E0",
+    "dora3_s0_80044648",
+    "dora3_s0_closure_8003D1BC",
+    "dora3_s0_core_8002A580",
+    "dora3_s0_core_8003CCA4",
+    "dora3_s0_menu_8002A3B0",
+    "dora3_s0_menu_80042A9C",
+    "dora3_s0_menu_80043800",
+    "dora3_s0_menu_80043F1C",
+    "dora3_s0_menu_800446A0",
+    "dora3_s0_mini_800312EC",
+    "dora3_s0_mini_8003D324",
+    "dora3_s0_mini_8003D354",
+    "dora3_s0_mini_8003D5C4",
+    "dora3_s1_801B430C",
+    "dora3_s1_menu_801B51F4",
+    "dora3_s1_mini_801B5198",
+    "dora3_s1_mini_801B51B4",
+    "dora3_s1_mini_801B51D4",
+    "dora3_s1_mini_801B51E4",
+    "dora3_s1_mini_801B5208",
+    "dora3_scaled_texture_rect",
+    "dora3_scene_channels_clear",
+    "dora3_scene_cursor_align",
+    "dora3_scene_cursor_get",
+    "dora3_scene_cursor_set",
+    "dora3_scene_list_heads_clear",
+    "dora3_scene_select",
+    "dora3_scene_state_get",
+    "dora3_scene_subsystems_init",
+    "dora3_select_controller",
+    "dora3_texture_info",
+    "dora3_texture_palette_ptr",
+    "dora3_texture_payload_ptr",
+    "dora3_texture_rect_state"
+  ],
+  "no_game_gpu": true,
+  "limitations": [
+    "Synthetic CPU state/resources and reached branches; visual/full-game QA remains user-owned."
+  ]
+}
