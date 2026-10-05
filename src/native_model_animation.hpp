@@ -11,6 +11,10 @@ namespace dora3::native_time {
 // A discrete AI command samples all real clip advances since its previous
 // decision, including cues/end pulses crossed between Native render slices.
 struct ModelEventCheckpoint {uint64_t run=0;long double distance=0;float time=0;uint64_t ends=0;};
+// Read-only Source-step observation for discrete AI. The live Native clip
+// continues at its fractional time; callers may expose this sample only
+// during the original command, with allocation/run guards on restoration.
+struct SourceModelCommandSample {ModelEventCheckpoint checkpoint;uint8_t flags=0;};
 struct SourceMotionSample {
     std::array<float,3> position{},velocity{},bend{};
     float yaw=0,pitch=0,oscillator=0,pitch_offset=0;
@@ -72,6 +76,12 @@ public:
     bool ended_this_tick(std::uint32_t) const;
     bool command_ended(std::uint32_t,const ModelEventCheckpoint&) const;
     ModelEventCheckpoint command_event_checkpoint(uint8_t*,std::uint32_t) const;
+    // Discrete enemy FSM commands occur after the model's complete Source
+    // advance. A seek/rebind of an already processed model must not advance
+    // its new clip again in the remaining fractional part of that interval.
+    void begin_source_pool();
+    std::uint32_t source_command_actor(std::uint32_t);
+    SourceModelCommandSample source_command_sample(uint8_t*,std::uint32_t,const SimulationSlice&) const;
     bool command_frame_event(uint8_t*,std::uint32_t,const ModelEventCheckpoint&,float,float,std::uint64_t) const;
 
 private:

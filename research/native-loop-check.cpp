@@ -285,3 +285,6 @@ extern "C" void dora3_s2_menu_801BC4C0(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s2_menu_801C14B8(uint8_t*,recomp_context*) {std::abort();}
 
 extern "C" void dora3_s3_core_801EBAD4(uint8_t*,recomp_context*) {std::abort();} // No gameplay pickups in the image-loop scope.
+// Boss1Bironn's real geometry executes in the enemy closure. The image-loop
+// scope contains no such actor; reaching this dependency is a fatal failure.
+extern "C" void dora3_s33_remaining_8021FED8(uint8_t*,recomp_context*) {std::abort();}

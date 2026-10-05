@@ -125,6 +125,9 @@ def main():
     (out/'player-fixture.hpp').write_text(fixture[fixture.index('constexpr uint32_t player='):fixture.index('void run(')])
     stubs=(ROOT/'research'/fixture_name).read_text()
     supplied=set(re.findall(r'void (\w+)\(uint8_t\*',stubs))|{'dora3_trace','dora3_native_input_sample','dora3_native_model_advance','dora3_native_model_morph_allowed'}
+    # Isolated player/world scopes do not contain Boss1Bironn. The enemy
+    # preparation removes this fatal boundary when selecting its real body.
+    external.add('dora3_s33_remaining_8021FED8')
     generated=external-supplied
     print('Original functions:',len(selected),'explicit effect boundaries:',sorted(external),flush=True)
     (out/'boundaries.cpp').write_text('#include "recomp.h"\n#include <cstdio>\n#include <cstdlib>\n'+'\n'.join('extern "C" void '+n+'(uint8_t*,recomp_context*) {std::fputs("Uncovered '+n+'\\n",stderr);std::abort();}' for n in sorted(generated)))

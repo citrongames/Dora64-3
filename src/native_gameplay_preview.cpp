@@ -118,6 +118,8 @@ struct ProjectileClock {uint32_t physical=0,model=0;int kind=0;uint64_t origin=0
 std::array<ProjectileClock,20> projectile_clocks{};
 struct ObjectClock {uint32_t physical=0,model=0;int kind=0;uint64_t origin=0,lifetime=0;bool local=false;};
 std::array<ObjectClock,200> object_clocks{};
+struct DeferredEnemyBirth {ObjectClock owner;uint64_t deadline,denominator,epoch;};
+std::array<std::optional<DeferredEnemyBirth>,200> deferred_enemy_births{};
 std::optional<std::array<ProjectileClock,20>> zero_shot_before;
 uint64_t zero_shot_epoch=0;
 std::array<uint64_t,20> projectile_start_births{};
@@ -1921,6 +1923,13 @@ extern "C" void dora3_native_homing_end(uint8_t* rdram,recomp_context* ctx) {
     game_model_animation().motion_end(rdram,model,actor);
 }
 bool native_gameplay_preview_object_pass() {return object_call&&active_simulation_slice()&&timeline;}
+void native_gameplay_preview_enemy_defer_birth(uint8_t* ram,uint32_t actor) {
+    if(!object_call||!gameplay_slice||!native_enemy_owned(ram,actor))return;
+    const auto slot=(actor-0x801734B8u)/0xCC;const auto& slice=*gameplay_slice;
+    if(slot>=deferred_enemy_births.size())return;
+    const uint64_t deadline=(slice.tick+1)*slice.denominator;
+    deferred_enemy_births[slot]=DeferredEnemyBirth{object_identity(ram,actor,deadline),deadline,slice.denominator,epoch};
+}
 void native_gameplay_preview_enemy_command_clock(uint8_t* ram,uint32_t actor) {
     if(!object_call||!gameplay_slice||!native_enemy_owned(ram,actor))throw std::logic_error("Invalid enemy command clock");
     const auto slot=(actor-0x801734B8u)/0xCC;
@@ -1943,7 +1952,7 @@ void native_gameplay_preview_reset(uint8_t* ram) {
     ++epoch;timeline.reset();previous=source_origin=0;motion_call=camera_call=object_call=projectile_call=motion_allowed=camera_allowed=object_allowed=projectile_allowed=false;
     native_input_reset();
     object_clocks={};slot09_source_dialogues={};slot09_native_reentries={};object_command_at_source_start=false;
-    slot09_decision_periods={};slot09_dialogue_periods={};slot09_source_handoffs={};slot09_wait_decision.reset();projectile_clocks={};object_periodic_poses={};object_return_turns={};city_decision_periods={};city_dialogue_periods={};city_kaminari_periods={};city_kaminari_counters={};city_axis_clocks={};linked_city_periods={};linked_city_publications={};player_source_positions.reset();player_action_positions.reset();player_flight_clock.reset();player_hover_clock.reset();player_hover_height.reset();player_hover_counter.reset();player_hover_threshold.reset();player_death_period.reset();player_surface_action_period.reset();player_drive_clock.reset();player_gravity_clock.reset();player_height_clock.reset();player_translation_clocks={};player_cooldown_rearm.reset();player_source_contact.reset();player_damage_counter.reset();player_surface_init.reset();player_surface_counter.reset();player_idle_period.reset();player_wait_damage_counter.reset();player_wait_damage_impulse.reset();player_turn_clock.reset();player_stop_clock.reset();zero_shot_before.reset();projectile_start_births={};
+    slot09_decision_periods={};slot09_dialogue_periods={};slot09_source_handoffs={};slot09_wait_decision.reset();deferred_enemy_births={};projectile_clocks={};object_periodic_poses={};object_return_turns={};city_decision_periods={};city_dialogue_periods={};city_kaminari_periods={};city_kaminari_counters={};city_axis_clocks={};linked_city_periods={};linked_city_publications={};player_source_positions.reset();player_action_positions.reset();player_flight_clock.reset();player_hover_clock.reset();player_hover_height.reset();player_hover_counter.reset();player_hover_threshold.reset();player_death_period.reset();player_surface_action_period.reset();player_drive_clock.reset();player_gravity_clock.reset();player_height_clock.reset();player_translation_clocks={};player_cooldown_rearm.reset();player_source_contact.reset();player_damage_counter.reset();player_surface_init.reset();player_surface_counter.reset();player_idle_period.reset();player_wait_damage_counter.reset();player_wait_damage_impulse.reset();player_turn_clock.reset();player_stop_clock.reset();zero_shot_before.reset();projectile_start_births={};
 }
 std::optional<Nanoseconds> native_gameplay_preview_render_time() {
     return timeline?std::optional<Nanoseconds>{previous}:std::nullopt;
@@ -3855,6 +3864,18 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
                 game_model_animation().lifetime_token(model),epoch,slice.tick,slice.numerator,slice.denominator};
             return 1;
         }
+        const auto birth_slot=(actor-0x801734B8u)/0xCC;
+        if(birth_slot<deferred_enemy_births.size())if(auto& pending=deferred_enemy_births[birth_slot];pending) {
+            const auto birth=*pending;const auto& slice=*gameplay_slice;
+            if(birth.epoch!=epoch||birth.denominator!=slice.denominator||
+               !same_object(birth.owner,object_identity(ram,actor,0)))pending.reset();
+            else {
+                // An earlier reused slot starts at the next real Source pass,
+                // not at a later Native substep of the current pass.
+                if(slice_position(slice,false)<birth.deadline)return 1;
+                object_clocks[birth_slot]=birth.owner;object_clocks[birth_slot].local=true;pending.reset();
+            }
+        }
         begin_object_scope(ram,actor);
         const auto slot=(actor-0x801734B8u)/0xCC;uint8_t* rdram=ram;
         const auto physical=uint32_t(word(ram,actor+0x98)),model=uint32_t(word(ram,actor+0x74));
@@ -4132,7 +4153,7 @@ void native_gameplay_preview_update(uint8_t* rdram,recomp_context* original,Nano
                     if(!clock.local||!clock.lifetime)continue;
                     if(MEM_BU(0xC9,int32_t(clock.physical))==1)clock.origin+=slice.numerator;
                 }
-                object_call=true;dora3_s3_801E8BDC(rdram,&ctx);object_call=false;
+                game_model_animation().begin_source_pool();object_call=true;dora3_s3_801E8BDC(rdram,&ctx);native_enemy_source_pool_end(rdram);object_call=false;
                 if(!current() || !active_simulation_slice())return;
             }
             if(motion_allowed) {

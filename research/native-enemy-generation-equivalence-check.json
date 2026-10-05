@@ -1,0 +1,149 @@
+{
+  "result": "PASS: generation362 differs from361 only in three enemy pose-entry Native branches; all other generated files/bodies and selected independent CPU scopes unchanged",
+  "previous_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+  "generation_receipt_sha256": "45e04bee0660b4e5776e71a1d8283e72e9b69a0f2eba885e435018c36e2ff6c7",
+  "changed_inputs": {
+    "tools/native_timing_patches.py": {
+      "previous": "46cdba7599b04de486585f007f19a4ac42aad3b25e691f3106dc129829e3782a",
+      "current": "7bad47f4326bd52b6a79a472d0378f6dcc0ee4353a1e8235dc29528d214da540"
+    }
+  },
+  "changed_generated_files": [
+    "startup.toml",
+    "RecompiledFuncs/decomp-annotations.json",
+    "RecompiledFuncs/funcs_75.c",
+    "RecompiledFuncs/funcs_74.c",
+    "RecompiledFuncs/funcs_56.c"
+  ],
+  "changed_native_bodies": [
+    "dora3_brobodc08_hob_follow_and_delay_parent_heading_802205A8",
+    "dora3_brobodc08_real_t1_follow_sync_clip_and_collide_8021E238",
+    "dora3_rikurage_light_follow_parent_and_fade_80222B48"
+  ],
+  "independent_original_reports": {
+    "ui": {
+      "report": "native-ui-check.json",
+      "report_sha256": "5e54327875e36d2fdb05246f2a63e575a7d6e888f01afb0bc45ec5d33019e593",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "cutscene": {
+      "report": "native-cutscene-check.json",
+      "report_sha256": "7bfae3e01e36fff47b84595cbdd8671da06b3c2d6bc155321f6b11ed6b625b0a",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "model_animation": {
+      "report": "native-model-animation-check.json",
+      "report_sha256": "fa901a6f2ef56b77cd343f4502bc2d630eb766b9421cb1337ff246fcdebe4a15",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "frame_time": {
+      "report": "native-frame-time-check.json",
+      "report_sha256": "3ed1927bc88b60956eaef0de8903bd60cecdc51bdb8b1e97066d7c640391d115",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "simulation": {
+      "report": "native-simulation-check.json",
+      "report_sha256": "d7c0a109bb5b7802d24b6e72a3cbba88b41d2340c88c2166321b4b5163a3c8d2",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "camera_control": {
+      "report": "native-camera-control-check.json",
+      "report_sha256": "f88fd18d2df74059a6df3aee20c56f39e10754ace9c032c71e7d5450bcdef5a3",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "camera_modes": {
+      "report": "native-camera-modes-check.json",
+      "report_sha256": "826b6b965c934704c10a311519a6b346fc4c0164de3ee71a205145133197f73a",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "script_camera": {
+      "report": "native-script-camera-check.json",
+      "report_sha256": "52e71696e2a0d4593e0598ba89ffdc2aff9c83cc83e1cc441656adfd4239bdf1",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "effects": {
+      "report": "native-effects-check.json",
+      "report_sha256": "462cfc114c43337c248d38e96de827d14edb91100df4806f2d64535dad0384f5",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "gravity": {
+      "report": "native-gravity-check.json",
+      "report_sha256": "20da622422688620eeb8bd5b2210bf7e93438335568a35e79e521ad34af78516",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "input": {
+      "report": "native-input-check.json",
+      "report_sha256": "cb5cb1d0e3fa65aeda23b83f9b064c2b8fd64ee55e1f8a3a096e5230fc8310ed",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "player_motion": {
+      "report": "native-player-motion-check.json",
+      "report_sha256": "c1230efb9e4de2887bad4bdde653f5cd3cb261d8b9aa275e8c7a38456e3082b5",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "process_time": {
+      "report": "native-process-time-check.json",
+      "report_sha256": "244e56b2b16aafddce4a8ae415ca9f97fd377d28e43c1768b7f5dd2adef0e291",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "frame_bridge": {
+      "report": "native-frame-bridge-address-check.json",
+      "report_sha256": "4b8947510be328fd7b46c93b7d522fe90973675ab990124e918d4fa9db109a72",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "frame_scheduler": {
+      "report": "native-frame-scheduler-address-check.json",
+      "report_sha256": "0c5015c72cf236de796398f8004c5d54cff5e7d6193f771a2fcf579e1c60b1cf",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "graphics_pump": {
+      "report": "native-graphics-pump-check.json",
+      "report_sha256": "f266a459f8b587b7b243e07604fd85938a12b0e3e5e2e948fc474f9837d710bc",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "loop": {
+      "report": "native-loop-check.json",
+      "report_sha256": "8d29bc0697f06d179e8a67f2cbafa83ebb7b6308e5f88face9e64ab8c8561b63",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "scene34_draw": {
+      "report": "native-scene34-draw-check.json",
+      "report_sha256": "3d61a60a1e5a71ad6911b17a0f1925dbdd0103928f95ab2eefde3fb8b4e70ca8",
+      "checked_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+      "unchanged_selected_functions": true
+    },
+    "session": {
+      "report": "native-session-address-check.json",
+      "report_sha256": "5baae4fd2439d509ffad2d52ecd84a3bd749a64e468ff47404b09569d28345aa",
+      "checked_generation_receipt_sha256": null,
+      "unchanged_selected_functions": true
+    },
+    "present": {
+      "report": "native-present-address-check.json",
+      "report_sha256": "d7b01a40b9b33b40978d0e475d70edc070750dde935935b925ed059364ce3dcd",
+      "checked_generation_receipt_sha256": null,
+      "unchanged_selected_functions": true
+    }
+  },
+  "limitations": [
+    "Independent PASS results retain their actual361 provenance; they are not fresh362 executions",
+    "Enemy closure, names/overlay and remaining connected scopes must complete on362"
+  ]
+}

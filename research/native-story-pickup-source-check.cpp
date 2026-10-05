@@ -20,7 +20,9 @@ using namespace dora3::native_time;
 #include "player-fixture.hpp"
 #ifdef DORA3_ENEMY_CHECK
 #include "enemy-fixture-data.hpp"
-static unsigned enemy_fixture_rom=0;
+#include "native_enemy.hpp"
+static unsigned enemy_fixture_rom=0,enemy_fixture_parent_rom=0;
+static unsigned enemy_fixture_kind=0,enemy_fixture_mode=0,enemy_fixture_profile=0,enemy_fixture_tick=0;
 static bool enemy_fixture_active=false,enemy_fixture_reference=false;
 static std::vector<std::array<int32_t,5>> enemy_fixture_commands;
 #endif
@@ -152,7 +154,7 @@ extern "C" {
 int dora3_native_loop_gameplay_active(){return preview_live;}
 int dora3_overlay_loaded(uint32_t rom) {
 #ifdef DORA3_ENEMY_CHECK
-    if(enemy_fixture_active&&(rom==0xCEC60u||rom==0xD9910u||rom==0xEDDB0u||rom==0x12FD90u))return rom==enemy_fixture_rom&&city_identity_verified;
+    if(enemy_fixture_active)return (rom==0x70A50u||rom==enemy_fixture_rom||rom==enemy_fixture_parent_rom||(enemy_fixture_rom==0x70A50u&&rom==0x1561E0u))&&city_identity_verified;
 #endif
 
     if(rom==0x1398A0u)return slot09_loaded&&city_identity_verified;
@@ -195,8 +197,30 @@ static unsigned scatter_geometry_source_reactions=0;
 #endif
 void dora3_trace(uint8_t* rdram,recomp_context* c,uint32_t site,uint32_t kind) {
 #ifdef DORA3_ENEMY_CHECK
-    if(enemy_fixture_active&&(site==0x8002A328||site==0x8002A454||site==0x80042838||site==0x801B50F4||site==0x801B922C))
-        enemy_fixture_commands.push_back({int32_t(site),int32_t(c->r4),int32_t(c->r5),int32_t(c->r6),int32_t(c->r7)});
+    // Same ROM-qualified SDK entry adapter as the actual Windows runtime.
+    if(kind==0x1000&&site==0x8003955C)dora3_native_enemy_model_read(rdram,uint32_t(c->r4));
+#endif
+#ifdef DORA3_ENEMY_CHECK
+    if(enemy_fixture_active&&site==0x8002A3F8) {
+        const auto actor=uint32_t(c->r4),model=uint32_t(MEM_W(0x74+int32_t(c->r5)*4,int32_t(actor)));
+        if(!allocations.count(model)) {
+            std::cerr<<"Invalid Source model read: kind="<<enemy_fixture_kind<<" mode="<<enemy_fixture_mode
+                     <<" profile="<<enemy_fixture_profile<<" tick="<<enemy_fixture_tick<<" actor="<<std::hex<<actor
+                     <<" state="<<MEM_W(0x94,int32_t(actor))<<" model="<<model<<std::dec<<'\n';
+            std::abort();
+        }
+    }
+#endif
+#ifdef DORA3_ENEMY_CHECK
+    if(enemy_fixture_active&&(site==0x8002A328||site==0x8002A454||site==0x80042838||site==0x801B50F4||site==0x801B922C)) {
+        // A328->A170->3B6BC and A454->395BC consume only a0/a1/a2.
+        // B922C is a no-argument query. Preserve every consumed argument,
+        // rather than comparing unrelated caller-saved register residue.
+        const bool query=site==0x801B922C,model_command=site==0x8002A328||site==0x8002A454,
+            progress_command=site==0x801B50F4; // exact two-argument Source counter update
+        enemy_fixture_commands.push_back({int32_t(site),query?0:int32_t(c->r4),query?0:int32_t(c->r5),
+            query||progress_command?0:int32_t(c->r6),query||model_command||progress_command?0:int32_t(c->r7)});
+    }
 #endif
 
 #ifdef DORA3_PICKUP_SCATTER_GEOMETRY_CHECK
@@ -345,10 +369,16 @@ void do_break(uint32_t) {std::abort();}
 void switch_error(const char*,uint32_t,uint32_t) {std::abort();}
 void dora3_s0_80028BC8(uint8_t* rdram,recomp_context* c) {
     ++sprite_commands;
+#ifdef DORA3_ENEMY_CHECK
+    if(enemy_fixture_active){fixture_city_sprite_bind_80028BC8(rdram,c);return;}
+#endif
     if(linked_watch||city_dialogue_watch)city_commands.push_back({0x80028BC8,native_gameplay_preview_command_time().value_or(city_source_initial_stamp.value_or(city_source_stamp)),{int32_t(c->r4),int32_t(c->r5),int32_t(c->r6)}});
     if(city_watch&&uint32_t(c->r4)==prop) {++city_sprite_commands;fixture_city_sprite_bind_80028BC8(rdram,c);}
 }
 void dora3_s0_80042838(uint8_t* rdram,recomp_context* c) {
+#ifdef DORA3_ENEMY_CHECK
+    if(enemy_fixture_active)enemy_fixture_commands.push_back({int32_t(0x80042838u),int32_t(c->r4),int32_t(c->r5),int32_t(c->r6),int32_t(c->r7)});
+#endif
     if(c->r6==0xCB)++footsteps;
     // The common-contact regression also executes the Original non-talk
     // damage/player sound. Only F6 is the reviewed kind77 NPC command here;
@@ -359,17 +389,27 @@ void dora3_s0_80042838(uint8_t* rdram,recomp_context* c) {
     }
     else if(dialogue_actor_watch)assert(uint32_t(c->r4)==prop&&c->r5==0&&(c->r6==0xCF||c->r6==0xF6)&&c->r7==0&&MEM_W(0x10,c->r29)==0);
 }
-void dora3_s0_800428C8(uint8_t*,recomp_context*) {}
+void dora3_s0_800428C8(uint8_t*,recomp_context* c) {
+#ifdef DORA3_ENEMY_CHECK
+    if(enemy_fixture_active)enemy_fixture_commands.push_back({int32_t(0x800428C8u),int32_t(c->r4),int32_t(c->r5),int32_t(c->r6),0});
+#endif
+    (void)c;
+}
 void dora3_s0_800444C0(uint8_t*,recomp_context* c) {
 #ifdef DORA3_ENEMY_CHECK
-    if(enemy_fixture_active) {assert(c->r4==0xE6&&c->r5==1);c->r2=-1;return;}
+    if(enemy_fixture_active) {enemy_fixture_commands.push_back({int32_t(0x800444C0u),int32_t(c->r4),int32_t(c->r5),0,0});c->r2=-1;return;}
 #endif
 
     if(slot09_loaded&&linked_watch)assert(c->r4==0xE6&&c->r5==1);
     else assert(city_watch&&c->r4==0xE6&&c->r5==1);
     c->r2=-1; // Checked sound-queue failure; real dialogue setup ignores the return.
 }
-void dora3_s0_80042894(uint8_t*,recomp_context*) {}
+void dora3_s0_80042894(uint8_t*,recomp_context* c) {
+#ifdef DORA3_ENEMY_CHECK
+    if(enemy_fixture_active)enemy_fixture_commands.push_back({int32_t(0x80042894u),int32_t(c->r4),int32_t(c->r5),0,0});
+#endif
+    (void)c;
+}
 // Synthetic resource lookup only: real guest constructors, resource lists,
 // model/channel binding and all actor/physics retirement stay in the closure.
 void dora3_resource_by_id(uint8_t*,recomp_context* c) {
@@ -407,7 +447,7 @@ void dora3_s3_801E6968(uint8_t* rdram,recomp_context* c) {
 #ifdef DORA3_ENEMY_CHECK
     if(enemy_fixture_active) {
         assert(MEM_HU(0,c->r4)==0xFFF0);const auto kind=MEM_HU(2,c->r4);
-        bool admitted=false;for(const auto& d:enemy_fixture_definitions)if(d.kind==unsigned(kind)&&d.rom==enemy_fixture_rom)admitted=true;
+        bool admitted=false;for(const auto& d:enemy_fixture_definitions)if(d.kind==unsigned(kind)&&(d.rom==enemy_fixture_rom||d.rom==0x70A50u))admitted=true;
         if(!admitted){enemy_fixture_commands.push_back({int32_t(0x801E6968u),int32_t(c->r4),int32_t(c->r5),int32_t(c->r6),int32_t(c->r7)});c->r2=0;return;}
         actual_dora3_s3_801E6968(rdram,c);return;
     }
@@ -427,7 +467,12 @@ void dora3_s3_801E5B98(uint8_t*,recomp_context*) {}
 void dora3_s3_801E5D10(uint8_t*,recomp_context*) {}
 recomp_func_t* get_function(int32_t address) {
 #ifdef DORA3_ENEMY_CHECK
-    if(enemy_fixture_active)if(auto* function=enemy_fixture_lookup(enemy_fixture_rom,uint32_t(address),enemy_fixture_reference))return function;
+    if(enemy_fixture_active) {
+        if(auto* function=enemy_fixture_lookup(enemy_fixture_rom,uint32_t(address),enemy_fixture_reference))return function;
+        if(auto* function=enemy_fixture_lookup(0x70A50u,uint32_t(address),enemy_fixture_reference))return function;
+        if(enemy_fixture_parent_rom)if(auto* function=enemy_fixture_lookup(enemy_fixture_parent_rom,uint32_t(address),enemy_fixture_reference))return function;
+        if(enemy_fixture_rom==0x70A50u)if(auto* function=enemy_fixture_lookup(0x1561E0u,uint32_t(address),enemy_fixture_reference))return function;
+    }
 #endif
 
 

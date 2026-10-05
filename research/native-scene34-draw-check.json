@@ -10,7 +10,7 @@
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
     "tools/check_native_scene34_draw.py": "6943a1b2ba9747a01d3d6d6a8ee2a81547ba53ae9044f1dc323fcacfa6ffe2aa"
   },
-  "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df",
+  "generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
   "original_functions": [
     "dora3_fade_draw_dispatch",
     "dora3_texture_rect_state",

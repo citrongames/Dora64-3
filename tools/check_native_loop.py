@@ -40,6 +40,7 @@ def main():
  external.update({'dora3_s3_801E3768','dora3_s3_801E0760','dora3_s3_801BBDDC','dora3_s0_8002F064','dora3_s2_menu_801BBCEC','dora3_s2_menu_801BBEB0','dora3_s2_menu_801BC17C','dora3_s2_menu_801BC4C0','dora3_s2_menu_801C14B8','dora3_lib_80057A80'})
  external.add('dora3_s3_801E89CC')
  external.add('dora3_lib_80055BD0')
+ external.add('dora3_s33_remaining_8021FED8')
  out=r/'build-local/native-loop-check';out.mkdir(exist_ok=True)
  (out/'functions.c').write_text('#include "startup_hooks.h"\n#include "funcs.h"\n'+'\n'.join(selected.values()))
  (out/'loop-functions.h').write_text('extern "C" {\n'+'\n'.join(f'void {n}(uint8_t*,recomp_context*);' for n in selected)+'\n}\n')

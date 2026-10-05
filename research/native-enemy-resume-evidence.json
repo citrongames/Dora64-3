@@ -1,0 +1,972 @@
+{
+  "result": "Verified completed per-kind profiles from failed whole run20, retained only outside both changed ROM domains; not a whole-block PASS until the missing/affected scopes finish",
+  "previous_generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+  "generation_receipt_sha256": "45e04bee0660b4e5776e71a1d8283e72e9b69a0f2eba885e435018c36e2ff6c7",
+  "generation_equivalence_report_sha256": "20407212084adcd6ffb042854bd4829408c80a74e28877e053246ed9dddc8d46",
+  "retained_kinds": [
+    264,
+    265,
+    266,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278,
+    279,
+    280,
+    281,
+    282,
+    283,
+    284,
+    285,
+    286,
+    287,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    297,
+    298,
+    299,
+    308,
+    309,
+    310,
+    311,
+    312,
+    313,
+    314,
+    315,
+    316,
+    317,
+    318,
+    319,
+    321,
+    322,
+    323,
+    324,
+    325,
+    326,
+    327,
+    328,
+    329,
+    341,
+    342,
+    343,
+    344,
+    345,
+    346,
+    347,
+    354,
+    355,
+    356,
+    357,
+    358,
+    359,
+    360,
+    361,
+    362,
+    363,
+    364,
+    365,
+    367,
+    368,
+    370,
+    371,
+    372,
+    373,
+    374,
+    375,
+    376,
+    377,
+    378,
+    379,
+    380,
+    381,
+    382,
+    383,
+    384,
+    385,
+    386,
+    387,
+    388,
+    389,
+    390,
+    391,
+    392,
+    393,
+    394,
+    395,
+    396,
+    397,
+    398,
+    399,
+    400,
+    401,
+    402,
+    403,
+    404,
+    405,
+    406,
+    407,
+    408,
+    409,
+    410,
+    411,
+    412,
+    413,
+    414,
+    415,
+    416,
+    417,
+    418,
+    419,
+    420,
+    421,
+    422,
+    423,
+    424,
+    425,
+    426,
+    427,
+    428,
+    429,
+    430,
+    431,
+    432,
+    433,
+    434,
+    435,
+    436,
+    437,
+    438,
+    439,
+    440,
+    441,
+    442,
+    443,
+    444,
+    445,
+    446,
+    447,
+    448,
+    449,
+    450,
+    451,
+    452,
+    453,
+    454,
+    455,
+    456,
+    457,
+    458,
+    459,
+    460,
+    461,
+    462,
+    463,
+    464,
+    465,
+    466,
+    467,
+    468,
+    469,
+    470,
+    471,
+    472,
+    473,
+    474,
+    475,
+    476,
+    477,
+    478
+  ],
+  "rerun_kinds": [
+    257,
+    258,
+    259,
+    267,
+    300,
+    301,
+    302,
+    303,
+    304,
+    305,
+    306,
+    307,
+    320,
+    330,
+    331,
+    332,
+    333,
+    334,
+    335,
+    336,
+    337,
+    338,
+    339,
+    340,
+    348,
+    349,
+    350,
+    351,
+    352,
+    353,
+    366,
+    369
+  ],
+  "affected_roms": [
+    875792,
+    939136
+  ],
+  "old_progress_sha256": {
+    "build-local/native-enemy-check/replay-1791158732848522242/progress-0.log": "9e43ba26a1715c8fd691fac6df9b2d839ed3e156b15777037818f68d063ce31e",
+    "build-local/native-enemy-check/replay-1791158732848522242/shard-0.log": "8a5d0be4d55a1cfcad646645cd3ab2ea43109b046760e8e05fa48282c5aee0f0",
+    "build-local/native-enemy-check/replay-1791158732848522242/progress-1.log": "3c9718932eaf9aa855992cd232a94d23b41f6cb00a69bc4e2bc7621ee14cb115",
+    "build-local/native-enemy-check/replay-1791158732848522242/shard-1.log": "3548a882eed7d9261fbb5d7dcfd01e40eee241846d05bc5f7a4e1b6e92603de7",
+    "build-local/native-enemy-check/replay-1791158732848522242/progress-2.log": "6f625a09f8e0e388aae666b77ecb99fc6ae482e454ba69421d79f3a825b64e00",
+    "build-local/native-enemy-check/replay-1791158732848522242/shard-2.log": "9c11770421a04b5d66102d6690951280bf5b68bcc2a74076eee761463536e988",
+    "build-local/native-enemy-check/replay-1791158732848522242/progress-3.log": "d90d9b31b382786b993e3a5a16ff6166d74c4595846254548e24b4844fdf1324",
+    "build-local/native-enemy-check/replay-1791158732848522242/shard-3.log": "4b23bd46ea2b9602ec72ae79ee0d471d84c0aee71c62930657af8f6a40927db1"
+  },
+  "old_suite_log": {
+    "path": "build-local/enemy361-prebuild/enemy-attempt20.log",
+    "sha256": "eda36d119865d2a18d938e4961abd4abe1d7beb989bc477e3af2ed23cbe80239"
+  },
+  "retained_states": {
+    "264": [
+      1
+    ],
+    "265": [
+      1
+    ],
+    "266": [
+      2
+    ],
+    "268": [
+      1
+    ],
+    "269": [
+      2
+    ],
+    "270": [
+      2
+    ],
+    "271": [
+      1,
+      2
+    ],
+    "272": [
+      2
+    ],
+    "273": [
+      1
+    ],
+    "274": [
+      2
+    ],
+    "275": [
+      2,
+      3
+    ],
+    "276": [
+      1,
+      10
+    ],
+    "277": [
+      2
+    ],
+    "278": [
+      1
+    ],
+    "279": [
+      1,
+      2,
+      4
+    ],
+    "280": [
+      1
+    ],
+    "281": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "282": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "283": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "284": [
+      1,
+      2
+    ],
+    "285": [
+      1
+    ],
+    "286": [
+      1
+    ],
+    "287": [
+      1,
+      3
+    ],
+    "288": [
+      2
+    ],
+    "289": [
+      2,
+      3,
+      4
+    ],
+    "290": [
+      1,
+      2
+    ],
+    "291": [
+      1,
+      2
+    ],
+    "292": [
+      1
+    ],
+    "293": [
+      2,
+      3
+    ],
+    "294": [
+      1
+    ],
+    "295": [
+      2,
+      3
+    ],
+    "296": [
+      1
+    ],
+    "297": [
+      2,
+      3
+    ],
+    "298": [
+      2,
+      3
+    ],
+    "299": [
+      1,
+      10
+    ],
+    "308": [
+      1,
+      2,
+      3
+    ],
+    "309": [
+      1,
+      2,
+      3
+    ],
+    "310": [
+      1,
+      2,
+      3
+    ],
+    "311": [
+      1
+    ],
+    "312": [
+      2,
+      3
+    ],
+    "313": [
+      2
+    ],
+    "314": [
+      2,
+      3
+    ],
+    "315": [
+      1,
+      10
+    ],
+    "316": [
+      1,
+      10
+    ],
+    "317": [
+      1
+    ],
+    "318": [
+      1
+    ],
+    "319": [
+      1,
+      2
+    ],
+    "321": [
+      2
+    ],
+    "322": [
+      1
+    ],
+    "323": [
+      1
+    ],
+    "324": [
+      1
+    ],
+    "325": [
+      1
+    ],
+    "326": [
+      2
+    ],
+    "327": [
+      2
+    ],
+    "328": [
+      1,
+      10
+    ],
+    "329": [
+      1
+    ],
+    "341": [
+      1,
+      2,
+      3
+    ],
+    "342": [
+      1,
+      2
+    ],
+    "343": [
+      1,
+      2
+    ],
+    "344": [
+      1,
+      2
+    ],
+    "345": [
+      1
+    ],
+    "346": [
+      3
+    ],
+    "347": [
+      1,
+      3,
+      4,
+      5
+    ],
+    "354": [
+      1
+    ],
+    "355": [
+      1
+    ],
+    "356": [
+      1
+    ],
+    "357": [
+      1
+    ],
+    "358": [
+      1
+    ],
+    "359": [
+      1,
+      2,
+      3
+    ],
+    "360": [
+      2
+    ],
+    "361": [
+      1
+    ],
+    "362": [
+      3
+    ],
+    "363": [
+      1,
+      10
+    ],
+    "364": [
+      2,
+      3
+    ],
+    "365": [
+      2,
+      3
+    ],
+    "367": [
+      1
+    ],
+    "368": [
+      1,
+      3,
+      4
+    ],
+    "370": [
+      1
+    ],
+    "371": [
+      1,
+      2
+    ],
+    "372": [
+      1
+    ],
+    "373": [
+      1,
+      2
+    ],
+    "374": [
+      1
+    ],
+    "375": [
+      1
+    ],
+    "376": [
+      1
+    ],
+    "377": [
+      1,
+      2
+    ],
+    "378": [
+      1,
+      2
+    ],
+    "379": [
+      1
+    ],
+    "380": [
+      1
+    ],
+    "381": [
+      1
+    ],
+    "382": [
+      1
+    ],
+    "383": [
+      1
+    ],
+    "384": [
+      1
+    ],
+    "385": [
+      1
+    ],
+    "386": [
+      1
+    ],
+    "387": [
+      1,
+      2
+    ],
+    "388": [
+      2,
+      4
+    ],
+    "389": [
+      2
+    ],
+    "390": [
+      3,
+      4
+    ],
+    "391": [
+      1
+    ],
+    "392": [
+      1
+    ],
+    "393": [
+      1
+    ],
+    "394": [
+      1
+    ],
+    "395": [
+      2
+    ],
+    "396": [
+      1
+    ],
+    "397": [
+      1,
+      10
+    ],
+    "398": [
+      1
+    ],
+    "399": [
+      1,
+      2,
+      4
+    ],
+    "400": [
+      1
+    ],
+    "401": [
+      1,
+      2
+    ],
+    "402": [
+      1
+    ],
+    "403": [
+      1,
+      2
+    ],
+    "404": [
+      1
+    ],
+    "405": [
+      1
+    ],
+    "406": [
+      1
+    ],
+    "407": [
+      1
+    ],
+    "408": [
+      1
+    ],
+    "409": [
+      1
+    ],
+    "410": [
+      4
+    ],
+    "411": [
+      1
+    ],
+    "412": [
+      1
+    ],
+    "413": [
+      1
+    ],
+    "414": [
+      1,
+      10
+    ],
+    "415": [
+      1,
+      10
+    ],
+    "416": [
+      1
+    ],
+    "417": [
+      1
+    ],
+    "418": [
+      1,
+      10
+    ],
+    "419": [
+      1
+    ],
+    "420": [
+      1
+    ],
+    "421": [
+      10
+    ],
+    "422": [
+      1
+    ],
+    "423": [
+      1,
+      2,
+      3
+    ],
+    "424": [
+      1
+    ],
+    "425": [
+      1
+    ],
+    "426": [
+      1
+    ],
+    "427": [
+      1
+    ],
+    "428": [
+      1,
+      3
+    ],
+    "429": [
+      1,
+      10
+    ],
+    "430": [
+      1,
+      10
+    ],
+    "431": [
+      1
+    ],
+    "432": [
+      1
+    ],
+    "433": [
+      1
+    ],
+    "434": [
+      1
+    ],
+    "435": [
+      2
+    ],
+    "436": [
+      1
+    ],
+    "437": [
+      1
+    ],
+    "438": [
+      1,
+      10
+    ],
+    "439": [
+      1
+    ],
+    "440": [
+      1
+    ],
+    "441": [
+      1
+    ],
+    "442": [
+      1
+    ],
+    "443": [
+      1,
+      10
+    ],
+    "444": [
+      1
+    ],
+    "445": [
+      1
+    ],
+    "446": [
+      1
+    ],
+    "447": [
+      1
+    ],
+    "448": [
+      1
+    ],
+    "449": [
+      1
+    ],
+    "450": [
+      1,
+      10
+    ],
+    "451": [
+      1,
+      2
+    ],
+    "452": [
+      1
+    ],
+    "453": [
+      1
+    ],
+    "454": [
+      1,
+      2,
+      4
+    ],
+    "455": [
+      1
+    ],
+    "456": [
+      1
+    ],
+    "457": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "458": [
+      1,
+      10
+    ],
+    "459": [
+      1,
+      10
+    ],
+    "460": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "461": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "462": [
+      1,
+      2,
+      3,
+      4,
+      10
+    ],
+    "463": [
+      1
+    ],
+    "464": [
+      1
+    ],
+    "465": [
+      10
+    ],
+    "466": [
+      1
+    ],
+    "467": [
+      1,
+      3,
+      4
+    ],
+    "468": [
+      1
+    ],
+    "469": [
+      1
+    ],
+    "470": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "471": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "472": [
+      1,
+      3
+    ],
+    "473": [
+      1
+    ],
+    "474": [
+      1
+    ],
+    "475": [
+      1
+    ],
+    "476": [
+      1
+    ],
+    "477": [
+      1
+    ],
+    "478": [
+      1
+    ]
+  },
+  "unchanged_runtime_compiled_inputs_sha256": {
+    "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
+    "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
+    "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
+    "src/native_frame_bridge.hpp": "a405469b02b662d7ad973c5475f05465defe0d346b7add98717e9393794fe545",
+    "src/native_frame_scheduler.hpp": "ae108bfcf8c9bbd628f648a8781afd1a9a5ab8668aa676212a60ebf88329bfde",
+    "src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
+    "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
+    "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
+    "src/native_gameplay_preview.cpp": "f37fcb8708a3e65981af3fa4bca1bc31a213433a0b73b521f9bb62302bfb4312",
+    "src/native_gameplay_preview.hpp": "0ca9756c9bcf1ccef41d8a033643b2b07efc6046f63317e75770754500763224",
+    "src/native_enemy.hpp": "0f963a7886c55e3c19ce07202a53932dd194d67d11100297edd3ac9530b7147e",
+    "src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
+    "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
+    "src/native_model_animation.hpp": "b492ff635927095a58f311588fb7e0cd139e7cb7b286bb1c073d40598bbc74b6",
+    "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
+    "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
+    "src/native_model_animation.cpp": "913de72cc75acb46ece90e9fc9c668f279e5ada81bf41192866624b639b6a1d7",
+    "research/native-story-pickup-source-check.cpp": "a42d8f029cdfbe8eaffe6a77e9b18e2922ca6a304ac4dbe488eabc6a27cf6958",
+    "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
+    "research/native-flash-delay-check.inc": "649388f0cd651ca4a367a9f21e7cd23ba3bbd0b908a4d95c76a2f292c015650b",
+    "research/native-flash-motion-check.inc": "da708e4b650d6d3a6f2c97414654cfc5f9df0c5aad2334a15ab5b86746d40c76",
+    "research/native-flash-pool-check.inc": "654c6474c0a39c2b15f3c21ab7ecbd1b92b1a0c3d281e70243bbb858549134fd",
+    "research/native-periodic-effect-source-check.inc": "c28c1e7c4d4189249c28c227f9fc1458419d817a82a18ecf4920536d7a6b7940",
+    "research/native-periodic-effect-guard-check.inc": "0ae0fecd289d36d36297e71046fb57d5b90ac5f870ab24e3c85af16fa1998795",
+    "research/native-periodic-producer-check.inc": "c778c8103d470d0c7123d2b85eeaa4e099f50d04285f4af42eaa53665cdd8f61",
+    "research/native-periodic-producer-guard-check.inc": "aec8a15c0bdfb7cca6440351c559f119ad6861765f143bb10213a6bb5e5c14dd",
+    "research/native-pickup-uncollected-source-check.inc": "dc4c0b063c04a78de3fce3ffa0e588bbd5d06f9f86fbb04fba9b5d5e73da269e",
+    "research/native-pickup-spin-guard-check.inc": "3b7be439fe8104f84b6b6c372b86c2792b2f5f50c68fbd508f090ecdbe1af03c",
+    "research/native-pickup-arc-guard-check.inc": "e75d344b73021004ce226d89f2a26f8b204d399de82bce71941214698caf8aa7",
+    "research/native-pickup-reveal-source-check.inc": "b0696c935d3e578b2c5bc7556713add98b8830bef522e803d1bf9783087a51a3",
+    "research/native-pickup-settle-scatter-source-check.inc": "36197e05fb4b432d848cbd876589e927ed9355f4c35f4c3a04a6ecfd29bee2dc",
+    "research/native-pickup-moving-idle-source-check.inc": "454aabc4cb37a5e74c5ab199b6c83519eb0ec65e0dee727a91a4f78ba35150af",
+    "research/native-pickup-linked-basic-check.inc": "aa86d37a231fe751c0289223b75851329a18d0525af503f9a5c8f1d65e10128b",
+    "research/native-pickup-linked-guard-check.inc": "c923b27d73b0f6c80de4f29c59056123dbff9a5c60a1878458ab0a26396c098b",
+    "research/native-pickup-parent-source-check.inc": "d56d802284e293f88954600696fa821696ea3cb154ee5737a824e7c2bed5e2d1",
+    "research/native-pickup-settle-guard-check.inc": "cfa8f2ecd197c67efb0ae4d0e03583b9f6a57b1cbe4c3d790c464340b8d827d1",
+    "research/native-pickup-scatter-guard-check.inc": "37bc031d4cc2c85b25dba6313fd9e0ef355ee036df63e8278280beda03382cbb",
+    "research/native-pickup-scatter-geometry-check.inc": "6fca5eae3382a919049f2a26a41146d689139059253e29a1ba579e78988b5ef2",
+    "research/native-pickup-reveal-guard-check.inc": "4260f9e395701c21f6e897c9ede24ad9aa0db094374259596bd6247b2777d43d",
+    "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
+    "src/native_cutscene.hpp": "d7c9362cc9c4f70191ebb7bad1c9ded08ea478811c477e269fc9bae630e1c1e4",
+    "research/native-gameplay-cutscene-fixture.cpp": "50ab2ef307407c5306de004401f8048a4e4a487fb1de023578b54a888bb4373d",
+    "src/native_enemy.cpp": "a762c309fb5f42d9761477e4445a6ab136376b5fa67527cd398157469bcfd7ab",
+    "src/native_enemy_projection_math.hpp": "b9a243b6898ed1e4ecdffe6fb43d64eb12ffe214d8812dfc94cf17e98de1ae7a",
+    "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
+    "src/startup_runtime.cpp": "82748ef8ce079755b3a91564cbbb2d5cceab2bb86d8b4bb53805b75f8b6bf5d9",
+    "research/native-enemy-launch-contracts.json": "8b34d39c1003383492d9b623222fd3007f93d199ff4b67bfd9d44e38f3289f1d",
+    "tools/check_native_story_pickups.py": "19c87bafcbb2f60a8993df3353c44b50afba089a902f854ebe8d126aa6147b05",
+    "tools/check_native_player_update.py": "161d424fc7ebeccd32416b8c121c9b04e598086772f35b09b94c562ac211bf18"
+  },
+  "old_checker_binary": {
+    "path": "build-local/continuation-20260930/enemy373-before-resume/attempt20-check",
+    "sha256": "30679a01db87ee42e0b57af3c197ad6267271559c25f64eeea38232c673359df"
+  },
+  "old_fixture": {
+    "path": "build-local/continuation-20260930/enemy373-before-resume/native-enemy-source-check.inc",
+    "sha256": "bc4b382954fd2e1271ce153a02d7dee2a8840c36c3a212a62d72ba934a0caff9"
+  },
+  "current_fixture_sha256": "f34c5c3354ac33ef55aae6f32189eab56f754578a225c9705b28c97f8774aeab",
+  "unchanged_eight_mode_case_body_sha256": "56c82974c4bf984ba6d8b69972200648d1e2835a0c20e723ca8afd996f246d1a",
+  "limitation": "Retained361 scenarios were executed with the recorded earlier checker; only affected/uncompleted kinds run anew. Dense counter totals are reported for the new scoped replay only.",
+  "failure_only_diagnostic_block": "            if(allocations!=before_heap||resource_references!=before_refs||game_model_animation().model_count()!=before_models) {\n                std::cerr<<\"Enemy retirement mismatch kind=\"<<definition.kind<<\" divider=\"<<divider<<\" profile=\"<<profile<<\" mode=\"<<mode<<\" fps=\"<<fps<<\" models=\"<<game_model_animation().model_count()<<\" expected=\"<<before_models<<\" allocations=\"<<allocations.size()<<\" expected=\"<<before_heap.size()<<'\\n';\n                for(const auto address:allocations)if(!before_heap.contains(address))std::cerr<<\"Retained heap \"<<std::hex<<address<<std::dec<<'\\n';\n                for(unsigned i=0;i<resource_references.size();++i)if(resource_references[i]!=before_refs[i])std::cerr<<\"Resource refs \"<<i<<\" value=\"<<resource_references[i]<<\" expected=\"<<before_refs[i]<<'\\n';\n            }\n",
+  "source_cleanup_only_soundorago_block": "            // Soundorago's 800/1200-byte history belongs to its own death\n            // callback, not the common actor destructor. After the compared\n            // 96 ticks, request actual Source contact0 and let Source death\n            // reach genuine geometry contact before generic fixture teardown.\n            // This tail checks Source cleanup, not Native death animation.\n            if(definition.kind>=300&&definition.kind<=307) {\n                preview_live=false;native_gameplay_preview_reset(rdram);\n                for(unsigned slot=30;slot<230;++slot) {\n                    const uint32_t actor=0x80171CD0u+slot*0xCC,physical=uint32_t(MEM_W(0x98,int32_t(actor)));\n                    if(!MEM_W(0x94,int32_t(actor))||!physical)continue;\n                    const int kind=MEM_H(0x20,int32_t(physical));if(kind!=300&&kind!=305)continue;\n                    MEM_W(0,int32_t(0x8021BDEC))=int32_t(actor);MEM_W(0,int32_t(0x8021BCDC))=int32_t(physical);\n                    MEM_W(0,int32_t(0x8021BDF0))=MEM_W(0x74,int32_t(actor));MEM_W(0,int32_t(0x8021BCE4))=0;MEM_W(0,int32_t(0x8021BDF8))=-1;\n                    const auto address=uint32_t(MEM_W(0,int32_t(0x80202068+kind*84)));\n                    auto* contact=enemy_fixture_lookup(0x1561E0u,address,mode==0);assert(contact);\n                    c=caller;c.f_odd=&c.f0.u32h;contact(rdram,&c);\n                }\n                auto root_alive=[&]() {\n                    for(unsigned slot=30;slot<230;++slot) {\n                        const uint32_t actor=0x80171CD0u+slot*0xCC,physical=uint32_t(MEM_W(0x98,int32_t(actor)));\n                        if(!MEM_W(0x94,int32_t(actor))||!physical)continue;\n                        const int kind=MEM_H(0x20,int32_t(physical));if(kind==300||kind==305)return true;\n                    }\n                    return false;\n                };\n                for(unsigned step=0;step<512&&root_alive();++step) {\n                    c=caller;c.f_odd=&c.f0.u32h;\n                    if(mode==0)reference_dora3_s3_801E8BDC(rdram,&c);else dora3_s3_801E8BDC(rdram,&c);\n                }\n                assert(!root_alive());\n            }\n"
+}

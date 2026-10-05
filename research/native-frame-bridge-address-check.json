@@ -17,7 +17,7 @@
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556",
     "tools/check_native_frame_bridge.py": "f8479604fda294249150d2be67788c145396c4747e2da992f8e558f9dfef1e47"
   },
-  "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df",
+  "generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
   "adapted_queue_sha256": "9bad8075f25fac5787a24acaf863c26dacc112d3cb1bfb2fea8b8452cec14930",
   "limitations": [
     "Thread scheduler endpoints and scene callbacks are stubs; no renderer",

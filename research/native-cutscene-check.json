@@ -169,12 +169,12 @@
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
     "src/native_scene_policy.cpp": "15170625b065fcd9d3604173ddcfebecf4d7314b960c36c1f9f71c164038127d",
     "src/native_game_loop.cpp": "aa027cf1706fa22facc21cba72913183f292f530c0a215428c591118b6e85d65",
-    "recomp/native-timing-rules.json": "ab66251eaaa7787fc16a4217fa5d9e8f51e65714739e5d9f03ebdf5211ccd3ad",
-    "tools/native_timing_patches.py": "3f65a89a0f4412fb2c7b25e12eb31f21f75d4d37f45f1c8c8fbb5b4ff10280dc",
+    "recomp/native-timing-rules.json": "e139f8a605676ad0488c44b91e61598032b8cefa4c21d4f8ead6926411541b6f",
+    "tools/native_timing_patches.py": "46cdba7599b04de486585f007f19a4ac42aad3b25e691f3106dc129829e3782a",
     "tools/generate_startup.py": "98a7f482369446981292db1add1d01f9430838d9e080b5fc780d75cd1a10ad11",
     "tools/check_native_cutscene.py": "1f450d9f6748a719d90d568d88e14c908c638f5690ff03b89bd3027371c2c103"
   },
-  "generation_receipt_sha256": "c48920ef9d73712a33f81761bf4cc994c683172ccd18c01de557be2f386975df",
+  "generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "limitations": [
     "Synthetic controllers and original ROM math/constants; no real level/renderer or GPU",

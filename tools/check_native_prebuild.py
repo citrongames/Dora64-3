@@ -22,6 +22,7 @@ def main():
     for name in ('generated','rom','reference','leaf-reference','city-reference','output-dir'):
         parser.add_argument('--'+name,type=Path,required=True)
     parser.add_argument('--enemy-reference',type=Path,default=ROOT/'build-local/startup-v356')
+    parser.add_argument('--enemy-resume-evidence',type=Path)
     parser.add_argument('--jobs',type=int,choices=[1,2],default=2)
     parser.add_argument('--only',nargs='+',choices=CHECKS,help='Repeat only the explicitly affected checks in an existing run')
     a=parser.parse_args();g=a.generated.resolve();out=a.output_dir.resolve()
@@ -50,17 +51,19 @@ def main():
         if key=='scene_frame':cmd+=['--scope','scene-frame']
         if key=='story_pickups':cmd+=['--scope','pickup-linked-batch']
         if key=='enemy':cmd+=['--enemy-reference',str(a.enemy_reference.resolve())]
+        if key=='enemy' and a.enemy_resume_evidence:cmd+=['--resume-evidence',str(a.enemy_resume_evidence.resolve())]
         if key=='docs':cmd+=['--check']
         return cmd
     def save():path.write_text(json.dumps(manifest,indent=2)+'\n')
     for key in selected:
         previous=manifest['checks'].get(key)
-        manifest['checks'][key]=dict(command=command(key),status='QUEUED',attempts=previous.get('attempts',[])+[previous] if previous else [])
+        manifest['checks'][key]=dict(command=command(key),status='QUEUED',attempts=previous.get('attempts',[])+[{k:v for k,v in previous.items() if k!='attempts'}] if previous else [])
     save()
     def run(key):
         started=time.monotonic();record=manifest['checks'][key];cmd=record['command']
         log=out/(key+'-attempt'+str(len(record['attempts'])+1)+'.log')
-        with lock:record['status']='RUNNING';save();print('START '+key,flush=True)
+        assert not log.exists(), 'Refuse to overwrite an existing attempt log: '+str(log)
+        with lock:record.update(status='RUNNING',log=log.name);save();print('START '+key,flush=True)
         with log.open('w') as stream:result=subprocess.run(cmd,cwd=ROOT,stdout=stream,stderr=subprocess.STDOUT)
         with lock:
             record.update(status='PASS' if result.returncode==0 else 'FAIL',exit_code=result.returncode,
@@ -70,8 +73,12 @@ def main():
     # preparations sequential; their executables and output directories differ.
     connected={'player_update','scene_frame','story_pickups','scene_transition','enemy'}
     def run_connected():
-        for key in selected:
-            if key in connected:run(key)
+        # Newly completed enemy block goes first. A failing connected check
+        # leaves the expensive dependents queued until its cause is repaired.
+        order=(["enemy"] if "enemy" in selected else [])+[key for key in selected if key in connected and key!="enemy"]
+        for key in order:
+            run(key)
+            if manifest['checks'][key]['status']!='PASS':break
     with concurrent.futures.ThreadPoolExecutor(max_workers=a.jobs) as executor:
         futures=[executor.submit(run_connected)]
         futures += [executor.submit(run,key) for key in selected if key not in connected]

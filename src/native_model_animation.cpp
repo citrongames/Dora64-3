@@ -49,6 +49,7 @@ struct NativeAnimationClock {
     uint8_t expected_flags;
     std::optional<uint64_t> normalization_tick{};
     std::optional<uint64_t> end_tick{};
+    std::optional<SimulationSlice> last_slice{};
 };
 struct EventCursor {
     uint64_t sequence,tick,phase,numerator,denominator;
@@ -85,6 +86,8 @@ struct Model {
     bool native_born=false;
     bool acquired_start=false;
     std::optional<NativeAnimationClock> native_clock;
+    std::optional<SimulationSlice> source_step{},source_command_hold{};
+    uint64_t source_pool=0;
     uint64_t event_sequence=0,end_sequence=0;
     long double event_from=0,event_to=0,event_distance=0;
     bool event_clamp=false;
@@ -140,9 +143,14 @@ struct ModelAnimation::State {
     Nanoseconds origin=0;
     unsigned divider=0;
     bool frame=false;
+    uint32_t source_actor=0;uint64_t source_pool=0;
 };
 ModelAnimation::ModelAnimation():state_(std::make_unique<State>()) {}
 ModelAnimation::~ModelAnimation()=default;
+void ModelAnimation::begin_source_pool(){++state_->source_pool;}
+uint32_t ModelAnimation::source_command_actor(uint32_t actor) {
+    const auto prior=state_->source_actor;state_->source_actor=actor;return prior;
+}
 std::size_t ModelAnimation::model_count() const { return state_->models.size(); }
 uint64_t ModelAnimation::lifetime_token(uint32_t model) const {
     const auto owner=state_->models.find(model);
@@ -168,6 +176,46 @@ bool ModelAnimation::command_ended(uint32_t model,const ModelEventCheckpoint& ch
 ModelEventCheckpoint ModelAnimation::command_event_checkpoint(uint8_t* rdram,uint32_t model) const {
     const auto i=state_->models.find(model);if(i==state_->models.end())return {};
     return {i->second.run,i->second.event_distance,real(rdram,model+0x64),i->second.end_sequence};
+}
+SourceModelCommandSample ModelAnimation::source_command_sample(uint8_t* rdram,uint32_t model,const SimulationSlice& slice) const {
+    SourceModelCommandSample result{command_event_checkpoint(rdram,model),uint8_t(MEM_BU(0x7C,int32_t(model)))};
+    result.checkpoint.time=real(rdram,model+0x64);
+    const auto i=state_->models.find(model);
+    if(i==state_->models.end()||!i->second.native_clock)return result;
+    const auto& entry=i->second;const auto& clock=*entry.native_clock;
+    // A linked reader has its own birth-local clock. Project the model's
+    // actual Source interval, which may differ from that reader's phase.
+    const auto& observed=clock.last_slice?*clock.last_slice:slice;
+    const auto end=observed.phase+observed.numerator;
+    if(!observed.denominator||end>observed.denominator||clock.denominator!=observed.denominator||
+       clock.expected_time!=word(rdram,model+0x64)||clock.expected_flags!=result.flags||
+       (result.flags&8)||clock.channels!=uint32_t(word(rdram,model+0x60))||!clock.channels||
+       clock.descriptors!=uint32_t(word(rdram,model+0x18))||
+       clock.duration!=real(rdram,clock.descriptors+4))return result;
+    const long double remaining=observed.denominator-end;
+    auto position=[&](long double elapsed) {
+        const long double value=clock.origin+static_cast<long double>(clock.rate)*elapsed/clock.denominator;
+        const long double edge=std::round(value/clock.duration)*clock.duration;
+        const long double tolerance=8*std::numeric_limits<long double>::epsilon()*std::max(1.0L,std::abs(value));
+        return std::abs(value-edge)<=tolerance?edge:value;
+    };
+    const auto current=position(clock.elapsed),future=position(clock.elapsed+remaining);
+    const auto start=position(static_cast<long double>(clock.elapsed)-end);
+    const bool clamped=(result.flags&1)&&clock.rate>=0;
+    auto cycle=std::floor(start/clock.duration);
+    if(clock.rate<0&&start==clock.duration)cycle-=1;
+    const bool ended=clock.normalization_tick==observed.tick||cycle!=std::floor(future/clock.duration)||
+        (clamped&&future>=clock.duration);
+    const bool future_end=std::floor(current/clock.duration)!=std::floor(future/clock.duration)||
+        (clamped&&future>=clock.duration&&remaining>0);
+    result.checkpoint.distance+=clamped?std::min(future,static_cast<long double>(clock.duration))-
+        std::min(current,static_cast<long double>(clock.duration)):future-current;
+    long double time=std::fmod(future,clock.duration);if(time<0)time+=clock.duration;
+    if(clamped&&future>=clock.duration)time=clock.duration;
+    result.checkpoint.time=float(time);
+    if(future_end)++result.checkpoint.ends;
+    result.flags=uint8_t((result.flags&~2u)|(ended?2u:0u));
+    return result;
 }
 bool ModelAnimation::command_frame_event(uint8_t* rdram,uint32_t model,const ModelEventCheckpoint& checkpoint,
                                         float observed,float target,uint64_t site) const {
@@ -257,6 +305,28 @@ void ModelAnimation::hook(uint8_t* rdram,recomp_context* ctx,uint32_t address,Na
     case 0x8003B6BC: case 0x8003B744: // New/released channels, even identical pointers.
     case 0x80039564: // An explicit seek starts a new run, even to the same time.
         if(auto i=s.models.find(model);i!=s.models.end()) {
+            auto& entry=i->second;
+            bool processed=false;
+            if(s.source_actor&&entry.source_step&&entry.source_pool==s.source_pool)for(unsigned slot=30;slot<230;++slot) {
+                const uint32_t actor=0x80171CD0u+slot*0xCC;
+                if(actor>s.source_actor)break;
+                if(word(rdram,actor+0x94)&&uint32_t(word(rdram,actor+0x74))==model) {processed=true;break;}
+            }
+            if(processed) {
+                // Flag-only commands preserve the already consumed complete
+                // Source advance. A preceding getter may have published its
+                // time; sample the actual clock without treating that read
+                // shadow as a seek. The genuine SDK then applies the command.
+                if((address==0x80039578||address==0x800395BC)&&entry.native_clock) {
+                    const auto saved=word(rdram,model+0x64);
+                    word(rdram,model+0x64)=entry.native_clock->expected_time;
+                    const auto sample=source_command_sample(rdram,model,*entry.source_step);
+                    word(rdram,model+0x64)=saved;
+                    real(rdram,model+0x64,sample.checkpoint.time);
+                    MEM_B(0x7C,int32_t(model))=int8_t(sample.flags);
+                }
+                entry.source_command_hold=entry.source_step;
+            }
             restore(rdram,i->second);i->second.observation.reset();i->second.native_clock.reset();i->second.events.clear();i->second.event_sequence=0;i->second.acquired_start=false;
             i->second.run=++s.next_run;
             if(address==0x80039564||address==0x8003B6BC||address==0x8003B744)i->second.time_command=i->second.run;
@@ -298,7 +368,7 @@ void ModelAnimation::acquire_simulation(uint8_t* rdram,const AdvancePlan& plan,b
         // The new shared timeline can reuse tick/phase while an actor is
         // paused. Excluded models must not retain the old scalar baseline.
         const auto rate=plan(model);
-        if(replace_timeline)entry.acquired_start=false;
+        if(replace_timeline){entry.acquired_start=false;entry.source_step.reset();entry.source_command_hold.reset();}
         if(replace_timeline && entry.native_clock)entry.native_clock->end_tick.reset();
         if(replace_timeline || rate) {entry.scalars.clear();entry.angles.clear();entry.motions.clear();entry.bindings.clear();}
         if(!rate || !entry.observation || entry.native_clock || !entry.last_pose)continue;
@@ -380,6 +450,13 @@ void ModelAnimation::advance_simulation(uint8_t* rdram,recomp_context* ctx) {
     if(found==state_->models.end())throw std::logic_error("Unregistered model in native simulation");
     auto& entry=found->second;entry.observation.reset();
     word(rdram,0x80082724)=int32_t(model); // Original shared model selector.
+    entry.source_pool=state_->source_pool;
+    if(entry.source_command_hold) {
+        const auto& hold=*entry.source_command_hold;
+        if(hold.tick==slice->tick&&hold.denominator==slice->denominator)return;
+        entry.source_command_hold.reset();
+    }
+    entry.source_step=*slice;
     const auto flags=MEM_BU(0x7C,int32_t(model));
     const auto channels=uint32_t(word(rdram,model+0x60));
     if((flags&8)||!channels)return; // Paused/disabled retains its end flag.
@@ -429,7 +506,7 @@ void ModelAnimation::advance_simulation(uint8_t* rdram,recomp_context* ctx) {
     }
     real(rdram,model+0x64,float(next));
     const uint8_t after=uint8_t((flags&~2u)|(ended?2u:0u));MEM_B(0x7C,int32_t(model))=int8_t(after);
-    clock->time=next;clock->expected_time=word(rdram,model+0x64);clock->expected_flags=after;
+    clock->time=next;clock->expected_time=word(rdram,model+0x64);clock->expected_flags=after;clock->last_slice=*slice;
 }
 bool ModelAnimation::scalar_positive(uint8_t* rdram,uint32_t model,uint32_t address,float current) {
     const auto* slice=active_simulation_slice();

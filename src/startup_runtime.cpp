@@ -1,4 +1,5 @@
 #include "resource_retirement.hpp"
+#include "native_enemy.hpp"
 // Research frontend: runs reviewed original functions through the real runtime.
 // Unreviewed functions stop explicitly. The default mode stops at graphics/PCM;
 // the optional live RT64 mode continues through SDL input/audio.
@@ -143,6 +144,11 @@ extern "C" void dora3_trace(uint8_t* rdram,recomp_context* ctx,uint32_t address,
             std::fprintf(stderr,"OVERLAY CALL BEFORE VERIFIED LOAD OR REQUIRED OVERLAY address=%08X rom=%08X\n",address,section_rom);std::_Exit(85);
         }
     }
+    // Resident SDK3955C returns model64. A discrete Native enemy command
+    // samples the complete Source step before that genuine getter executes.
+    // Outside the guarded enemy command this adapter does nothing.
+    if(section_rom==0x1000&&address==0x8003955C)
+        dora3_native_enemy_model_read(rdram,uint32_t(ctx->r4));
     if(address==0x80058248)std::fprintf(stderr,"ORIGINAL DEBUG format=%08X\n",(uint32_t)ctx->r4);
     if(address==0x80030AE8)resource_rom=(uint32_t)ctx->r5;
     // Byte-wise decoder helpers are covered by the resource comparison below.
