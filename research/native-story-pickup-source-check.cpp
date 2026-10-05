@@ -468,6 +468,13 @@ void dora3_s3_801E5D10(uint8_t*,recomp_context*) {}
 recomp_func_t* get_function(int32_t address) {
 #ifdef DORA3_ENEMY_CHECK
     if(enemy_fixture_active) {
+#ifdef DORA3_SCENE_OBJECT_CHECK
+        // Slime NPCs produce the already ported common WrapSlime6 actor.
+        // Its real baseline Source callback is compiled in this fixture.
+        if(uint32_t(address)==0x801EB864u&&
+           (enemy_fixture_kind==33||enemy_fixture_kind==34||enemy_fixture_kind==42||enemy_fixture_kind==43))
+            return dora3_s3_core_801EB864;
+#endif
         if(auto* function=enemy_fixture_lookup(enemy_fixture_rom,uint32_t(address),enemy_fixture_reference))return function;
         if(auto* function=enemy_fixture_lookup(0x70A50u,uint32_t(address),enemy_fixture_reference))return function;
         if(enemy_fixture_parent_rom)if(auto* function=enemy_fixture_lookup(enemy_fixture_parent_rom,uint32_t(address),enemy_fixture_reference))return function;
@@ -715,7 +722,11 @@ static unsigned reward_idle_yaw_samples=0;
 #include "native-pickup-scatter-guard-check.inc"
 #include "native-pickup-scatter-geometry-check.inc"
 #include "native-pickup-reveal-guard-check.inc"
+#ifdef DORA3_SCENE_OBJECT_CHECK
+#include "native-scene-object-source-check.inc"
+#else
 #include "native-enemy-source-check.inc"
+#endif
 int main(int argc,char** argv) {
     assert(argc==2);std::vector<uint32_t> image(0x400000/4);std::ifstream in(argv[1],std::ios::binary);
     in.read(reinterpret_cast<char*>(image.data()),0x400000);assert(in.gcount()==0x400000);

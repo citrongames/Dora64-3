@@ -829,8 +829,8 @@
   "source_sha256": {
     "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
     "research/native-gameplay-cutscene-fixture.cpp": "50ab2ef307407c5306de004401f8048a4e4a487fb1de023578b54a888bb4373d",
-    "src/native_gameplay_preview.cpp": "f37fcb8708a3e65981af3fa4bca1bc31a213433a0b73b521f9bb62302bfb4312",
-    "src/native_enemy.cpp": "a762c309fb5f42d9761477e4445a6ab136376b5fa67527cd398157469bcfd7ab",
+    "src/native_gameplay_preview.cpp": "e25b8e14cc5cfbb92e5bfff7fd0d27532eaf6a11ef532a12c4988bd2aa38657a",
+    "src/native_enemy.cpp": "aac71b3e4be7b62a53e94c749fd89b0a86d1ac83f251734c2dfa409e344352f1",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
@@ -844,11 +844,12 @@
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
     "src/native_gameplay_preview.hpp": "0ca9756c9bcf1ccef41d8a033643b2b07efc6046f63317e75770754500763224",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-    "recomp/native-timing-rules.json": "e139f8a605676ad0488c44b91e61598032b8cefa4c21d4f8ead6926411541b6f",
+    "recomp/native-timing-rules.json": "c2c332ec813d3875029208501206c31f66444623c0ecfbbd3f290454529f5ef0",
     "research/player-state-inventory.json": "c6497c19972e73478ac5d71ffcef6304924aeb087121f0c2e38528fb1bbd150f",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
     "tools/check_native_player_update.py": "161d424fc7ebeccd32416b8c121c9b04e598086772f35b09b94c562ac211bf18",
-    "tools/check_native_player_update_partitions.py": "e5daee33931f4dedacd81d816f9d8d23ede570faa53d6627039c50a2410fd15f"
+    "tools/check_native_player_update_partitions.py": "4189a9e60709fb0a7ff281817b669607cdc13413e44ba77dffd8457faec028cf",
+    "tools/native_oracle_cache.py": "e551a0b1ee7871f3258426a8e23a09ad0c11cc11de4fc95f88e9a5934de7984c"
   },
   "validated_npc_action_schedules": {
     "common_selector_B_dispatch_player_priority": 3192,
@@ -1000,89 +1001,157 @@
     "size": 36304,
     "sha256": "f5284a1979a9fd3f5f46fe48c9a361e300aca936d8cb123aa87f50bdbcee5f7a"
   },
-  "generation_receipt_sha256": "45e04bee0660b4e5776e71a1d8283e72e9b69a0f2eba885e435018c36e2ff6c7",
+  "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "limitations": [
     "Synthetic room/model assets; sound, resource lookup/release, non-city sprite constructors and unreviewed AI instrumented; city7 sprite bind/frame-delay/release and city9 retirement execute actual Original code; dialogue75/76/77 contacts/descriptors/outcome/story byte counters/clip commands execute Original on synthetic assets with checked sound-command boundaries; hazard-hit E59BC/E5894/E5B20/E5A24/E5C98/E5BF8 execute Original with a checked failed-allocation E6968 boundary, visual effect allocation/lifetime unverified",
     "Homing targets are static; moving86 verified for six Source ticks, stationary86 through tracking-window closure; real level gameplay remains unverified",
     "Live producers invoke real constructors during the player callback; interaction contact flags are instrumented and captured NPC paused; player states20/27/57/58 and aerial weapons9/10/11/12 tested; healthy damage32..49/63 tested through real recovery; lethal32/35/37/40/43/46/47/48/49 through death50..56/fade/game-over/scene resource cleanup; actual C9BE0 six-character model/resource recreation and post-ready67/Ground Native reacquisition tested; room DMA/resource decode/level construction remains a synthetic boundary; byte status pointers use actual unaligned Original records; special64/65/66/67 Source and Native command/character-frame/real-idle/cancellation/full-recovery tested; actual model3 creation/attachment/destruction execute on synthetic assets, city7 sprite5 executes its real pool constructor, other sprite producers remain instrumented; door59/surface60..62 Source and Native schedules execute real producer/actor pause/command writes; actual script camera advancement and room DMA/level construction remain unverified; external hover49 selecting producer, real-level collision assets, dialogue progression/layout/input and sound queue remain unverified; actual common NPC collision selection/B priority executes Original overlap, twelve actual kind callbacks and linked parent on synthetic geometry (actual dialogue initializer executes with a checked audio-queue failure boundary); orbital intermediate return yaw checks cover both nonzero directions and360-degree wrap; city13..17/20..22 wait/walk callbacks checked with exact private counts, clip commands and fractional X/Z; their dialogue3 callbacks, story100/secondary-model/wrapped-kind6 families and kind21 special200/201 callbacks are tested against frozen189 on synthetic assets; Original special201 yaw snaps, unapplied rate5C and six-tick release are preserved, including repeated writes within a single period; other unreviewed AI states retain Source ownership; linked18/19 and story18/6 have actual constructor/contact/final-command-delivery proof; slot09 dialogue/event families beyond reviewed idle/patrol/wait, other active NPCs/platforms, story-room orbital dialogue producer, real levels, cutscenes, minigames and2D remain outstanding",
-    "Diagnostic fixture adds only an independent camera/source-rate selector and six-setting count guard; Source/Native oracles unchanged. Groups reset original image/resources per setting; each retains all six FPS baselines. Common3192 NPC oracle runs in each isolated process and is not summed as new distinct cases."
+    "Diagnostic fixture adds only an independent camera/source-rate selector and six-setting count guard; Source/Native oracles unchanged. Groups reset original image/resources per setting; each retains all six FPS baselines. Common3192 NPC oracle runs in each isolated process and is not summed as new distinct cases.",
+    "Cached groups retain actual execution provenance and artifacts; exact compiler/header/generated-code/seed/sanitizer inputs checked before reuse. A retained PASS is not a new run. --force-run ignores reuse; --verify-cache-only cannot compile or execute the oracle."
   ],
   "scope": "Full player/world/NPC/weapon/damage/death/recovery oracle; four isolated camera/source-rate groups, all24 settings and six Native FPS values",
   "partitioned_execution": {
     "groups": [
       {
-        "id": 0,
-        "camera_mode": 12,
-        "source_divider": 2,
-        "native_fps": [
-          60,
-          73,
-          120,
-          144,
-          165,
-          360
-        ],
+        "group": {
+          "id": 0,
+          "camera_mode": 12,
+          "source_divider": 2,
+          "native_fps": [
+            60,
+            73,
+            120,
+            144,
+            165,
+            360
+          ]
+        },
+        "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
         "exit_code": 0,
-        "elapsed_seconds": 4126.21,
-        "stdout_sha256": "d269170f6c64f89b95e306d28ab34d6eb5604f244f071bf4f6fb2d629491f198",
-        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        "status": "PASS",
+        "elapsed_seconds": 5160.11,
+        "completed_utc": "2026-10-05T09:14:57.228357+00:00",
+        "producer": {
+          "runner_sha256": "4189a9e60709fb0a7ff281817b669607cdc13413e44ba77dffd8457faec028cf",
+          "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
+          "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+          "execution": "fresh"
+        },
+        "artifacts_sha256": {
+          "check": "99d844b101cb2df24af15acb13e954e2f36212cf3f9d21a45b3e37fdd506c268",
+          "stdout.log": "d269170f6c64f89b95e306d28ab34d6eb5604f244f071bf4f6fb2d629491f198",
+          "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs.json": "52fe4fde2156f7893eccfb3ed3348f8660b2dac10577de8f6acad1eabdcfb393"
+        },
+        "reused": false
       },
       {
-        "id": 1,
-        "camera_mode": 12,
-        "source_divider": 3,
-        "native_fps": [
-          60,
-          73,
-          120,
-          144,
-          165,
-          360
-        ],
+        "group": {
+          "id": 1,
+          "camera_mode": 12,
+          "source_divider": 3,
+          "native_fps": [
+            60,
+            73,
+            120,
+            144,
+            165,
+            360
+          ]
+        },
+        "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
         "exit_code": 0,
-        "elapsed_seconds": 4707.67,
-        "stdout_sha256": "9218bdcbc9be651be06f27bf69f841f4a0d75848922cbea92a525b619c300b52",
-        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        "status": "PASS",
+        "elapsed_seconds": 5971.51,
+        "completed_utc": "2026-10-05T09:28:28.720714+00:00",
+        "producer": {
+          "runner_sha256": "4189a9e60709fb0a7ff281817b669607cdc13413e44ba77dffd8457faec028cf",
+          "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
+          "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+          "execution": "fresh"
+        },
+        "artifacts_sha256": {
+          "check": "99d844b101cb2df24af15acb13e954e2f36212cf3f9d21a45b3e37fdd506c268",
+          "stdout.log": "9218bdcbc9be651be06f27bf69f841f4a0d75848922cbea92a525b619c300b52",
+          "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs.json": "52fe4fde2156f7893eccfb3ed3348f8660b2dac10577de8f6acad1eabdcfb393"
+        },
+        "reused": false
       },
       {
-        "id": 2,
-        "camera_mode": 2,
-        "source_divider": 2,
-        "native_fps": [
-          60,
-          73,
-          120,
-          144,
-          165,
-          360
-        ],
+        "group": {
+          "id": 2,
+          "camera_mode": 2,
+          "source_divider": 2,
+          "native_fps": [
+            60,
+            73,
+            120,
+            144,
+            165,
+            360
+          ]
+        },
+        "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
         "exit_code": 0,
-        "elapsed_seconds": 4096.51,
-        "stdout_sha256": "d269170f6c64f89b95e306d28ab34d6eb5604f244f071bf4f6fb2d629491f198",
-        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        "status": "PASS",
+        "elapsed_seconds": 5084.75,
+        "completed_utc": "2026-10-05T09:13:42.033737+00:00",
+        "producer": {
+          "runner_sha256": "4189a9e60709fb0a7ff281817b669607cdc13413e44ba77dffd8457faec028cf",
+          "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
+          "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+          "execution": "fresh"
+        },
+        "artifacts_sha256": {
+          "check": "99d844b101cb2df24af15acb13e954e2f36212cf3f9d21a45b3e37fdd506c268",
+          "stdout.log": "d269170f6c64f89b95e306d28ab34d6eb5604f244f071bf4f6fb2d629491f198",
+          "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs.json": "52fe4fde2156f7893eccfb3ed3348f8660b2dac10577de8f6acad1eabdcfb393"
+        },
+        "reused": false
       },
       {
-        "id": 3,
-        "camera_mode": 2,
-        "source_divider": 3,
-        "native_fps": [
-          60,
-          73,
-          120,
-          144,
-          165,
-          360
-        ],
+        "group": {
+          "id": 3,
+          "camera_mode": 2,
+          "source_divider": 3,
+          "native_fps": [
+            60,
+            73,
+            120,
+            144,
+            165,
+            360
+          ]
+        },
+        "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
         "exit_code": 0,
-        "elapsed_seconds": 4762.7,
-        "stdout_sha256": "9218bdcbc9be651be06f27bf69f841f4a0d75848922cbea92a525b619c300b52",
-        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        "status": "PASS",
+        "elapsed_seconds": 5984.17,
+        "completed_utc": "2026-10-05T09:28:41.311409+00:00",
+        "producer": {
+          "runner_sha256": "4189a9e60709fb0a7ff281817b669607cdc13413e44ba77dffd8457faec028cf",
+          "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
+          "inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+          "execution": "fresh"
+        },
+        "artifacts_sha256": {
+          "check": "99d844b101cb2df24af15acb13e954e2f36212cf3f9d21a45b3e37fdd506c268",
+          "stdout.log": "9218bdcbc9be651be06f27bf69f841f4a0d75848922cbea92a525b619c300b52",
+          "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs.json": "52fe4fde2156f7893eccfb3ed3348f8660b2dac10577de8f6acad1eabdcfb393"
+        },
+        "reused": false
       }
     ],
     "total_settings": 24,
     "parallel_jobs": 4,
+    "cache_inputs_sha256": "bdf2a3d2f75a11e5376cf92c67bc02022f8e2b760e37864443570b03938e3f35",
+    "fresh_groups": 4,
+    "retained_groups": 0,
     "original_fixture_sha256": "edc2f396cfe4a61da29caa84fbe22eec46655237525e31b18df392475ddb44d5",
     "derived_fixture_sha256": "bdcbebadad3ed2e343ee9da8faddf5a83e3fc80a1447fddd9ba903df30a1f187",
     "preparation_checker_sha256": "161d424fc7ebeccd32416b8c121c9b04e598086772f35b09b94c562ac211bf18",

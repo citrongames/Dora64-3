@@ -1,3 +1,52 @@
+## Test-044: весь выбранный блок1 — объекты, платформы и оставшиеся NPC
+
+Сборка044 из generation startup-scene-block1-v4 сохранена в
+D:/Games/DoraRecomp3/testbuild после29 connected CPU checks.
+Реализованы289 типов,292 точных ROM-варианта:42 NPC,5 общих объектов,
+129 тестовых/EV/исчезающих/damage/platform объектов и113 stage objects.
+Движение, доказанные повороты/наклоны/масштаб/прозрачность и время моделей
+получают Manual dt. Wait/RNG/contact/quest/clip/spawn/retirement сохраняют
+Source порядок. Original20/30 и канонический ABI/ROM identity сохранены.
+
+Связанные траектории133/527/528/564 учитывают Source порядок родителя,
+epoch и lifetime. Door109 прибавляет своё перемещение к действительным
+координатам игрока, сохраняя его собственное движение. Init/reset/floor и
+terminal stores отменяют устаревшие математические предложения.
+Исправлено знаковое вычисление адреса Fly44–46 в Native NPC повороте.
+Door109 сохраняет Native обновление common-world во время своего реального
+B8ED0 затемнения(D494=16), с проверкой lifetime/epoch. Игрок C8B28 остаётся
+остановленным по Source правилу BB080. Устранён повторный Source шаг при
+раннем возврате из Native посреди периода; RAM/команды/модели сравниваются
+точно. Дополнительный CPU сценарий принудительно сохраняет прежнее
+разрешение движения игрока и подтверждает, что при fade он не обновляется.
+
+Строгий Source replay использует1163 exact frozen/current Source bodies,
+Original20/30 и Native60/73/120/144/165/360, три сценария, реальные
+constructors/parser/contact/SDK/retirement,96 периодов либо настоящий
+handoff сцены. Проверены связи с218 врагами, игроком, оружием, уроном,
+предметами, переходами, камерами, катсценами и игровым UI.
+Сохранённые полные варианты имеют checksum бинарников/логов и доказанные
+неизменённые ветви; cached player groups сохраняют фактическую execution
+provenance. Они не выдаются за свежие запуски.
+
+Каталог2532 описаний функций,2201 смысловых aliases и5765 scoped variable
+names проверен: canonical C, preprocessing tokens, syntax и ABI сохранены.
+Документы и старые адресные соответствия обновлены.32 dependency pins и
+donor неизменны; прежние EXE, ROM, настройки, сейвы и DLL сохранены.
+
+CPU модели/клипы/геометрия/ресурсы/звук синтетические; часть EV programs
+синтетическая с настоящим parser. Достигнутые состояния перечислены.
+Это не доказательство всех сюжетных ветвей и настоящих уровней. Контакт
+игрока с движущейся платформой и внешний вид проверяет пользователь.
+Игра/renderer/GPU локально не запускались. Замечания по визуальному
+результату врагов043, включая идентификацию механического кролика,
+не объявляются закрытыми без пользовательской проверки.
+
+Выбранный блок1 реализован, CPU проверен и включён в Windows044.
+Весь variable FPS ещё не завершён. Следующий блок выбирает пользователь:
+4 — миниигры/специальные режимы;6 — итоговая интеграция всей игры.
+Блоки2/3/5 реализованы ранее; новый блок автоматически не начинается.
+
 ## Test-043: весь выбранный блок2 включён в Native
 
 Сборка043 изgeneration362 сохранена в D:/Games/DoraRecomp3/testbuild после
@@ -4800,3 +4849,73 @@ dependency запрещает reuse. Холодный прогон при нов
 остаётся дорогим; сокращение его длительности не заявлено. Runtime/fixture043
 не изменены, старые actual CPU/Windows proofs сохранены. Документ:
 docs/native-test-execution.md. Cache safety проверена короткой отдельной fixture.
+
+
+## 2026-10-05: блок1, реализация и предсборочные исправления
+
+Выбран полный блок объектов/платформ/NPC:289 типов,292 ROM-qualified варианта.
+Добавлены отдельный scene registry, common Native command/model/motion owner,
+точные scalar/phase equations, Source-order parent paths и аддитивное движение
+игрока у Door109. Kind590 относится к NobiheyaDrawer в level1_slot2;
+одинаковый адрес Miire NOP в другом ROM не является этим владельцем.
+Варианты521/541/545 имеют отдельные подтверждённые descriptor banks.
+
+Генерация сначала выявила ошибки аннотаций: пустые диапазоны variables,
+псевдонимы одинаковых overlay адресов и регистры, устранённые canonical IR.
+Исправлены диапазоны, ROM-qualified aliases и недоказанные scopes;
+startup-scene-block1-v4 и canonical round-trip/names compilation прошли.
+
+Первый предсборочный запуск использовал неверный leaf reference79; повторены
+только пять соответствующих checks с доказанным69. В C++ исправлены
+лексическое чтение 0xBE+2 как числового суффикса и misleading indentation.
+
+В новом fixture constructors EB4E8 (485–487), DFC4 (569/570) и E328
+(572/573) читают placement kind8021BE00 для выбора FFF0 программы.
+Первое предположение, что descriptor непосредственно вызывает E6968,
+оказалось неверным; ROM instructions EB4EC/DFC8/E32C подтвердили настоящую
+причину. Исправлена запись placement kind, исходный ABI конструктора сохранён.
+
+ASAN выявил настоящий Native дефект Fly44/45: unsigned displacement
+0xBE+2*axis менял sign extension в MEM_H и уводил чтение за RDRAM.
+Смещение явно приведено к int32_t; затронутый loop и оставшийся scene replay
+повторяются. Старые завершённые варианты не содержат Fly/Fuyuu этой ветви.
+
+Retirement NPC43 расходился уже в frozen Original. Короткая CPU diagnosis
+под debugger показала реальный kind249 в слоте30 после удаления WrapSlime6
+в слоте31: Source destructor создаёт исчезновение в ранее пройденном слоте.
+Fixture теперь делает ограниченные дополнительные проходы настоящего общего
+destructor, только если остались реальные новые allocations. Для сохранённых
+полных сценариев эта ветвь неактивна: прежний ресурсный assert уже подтвердил
+точное равенство baseline. Native логика освобождения ради теста не подменялась.
+
+112 полностью завершённых ROM вариантов сохранены с проверкой точных
+Source/runtime dependency hashes, executable/log provenance и branch scopes.
+Частичные и затронутые варианты выполняются заново. Connected pre-build ещё
+не завершён; Windows044 не создан, локальная игра/GPU не запускались.
+
+
+Блок1, финальный connected replay: Source81 использует параметр placement BE10 как индекс четырёх dialogue programs; fixture sentinel31 был неверен. Source135 retirement запускает E50C0(effect5), который реально прикрепляет кости2..21 и переключает22: synthetic skeleton дополнен до23 узлов без подмены SDK. Source585 регистрирует переход через BA0C4/BA05C; BB080 вызывает BA0F4 раньше E8BDC, получает1 и пропускает старую сцену. Replay останавливает старый pool на этой границе, сравнивает все шесть request globals, команды, heap/model ownership. Независимые полные варианты сохранены с бинарниками, логами и обратимыми scoped edit certificates.
+
+
+Source Door109 contact3 вызывает BBD5C/BBD40 и последующую смену player SDK pose. Диагностика CPU baseline показала неизменную модель802A0000 и заменённый owned buffer+60=802A04B0, с2 моделями/6 baseline allocations. Retirement contract109 проверяет тот же строгий release/ownership/lifetime replacement, что585; все остальные blocks/resources по-прежнему должны совпадать точно.
+
+
+Native Door109 contact3: EA5D4 вызывает B8ED0(0), устанавливающий D494=16. Старый Native live сразу прекращался, и следующий Original pool повторял частично исполненный Source период (tick21: H34=103/H36=0 вместо102/1). BB080 при D49416 продолжает E8BDC, но пропускает C8B28. Добавлен lifetime/epoch-qualified fade owner лишь для реального Native Door109(state2,latch1); common-world Native продолжает работать, player C8B28 отключён по настоящему D494. Pending-room globals/другие gates/reset/replacement не разрешаются обходом. Повторяются дверь, незавершённые области и checks с изменённым preview input; прочие полные варианты сохраняют provenance.
+
+
+### Блок1: промежуточный статус перед044,26/29
+
+Весь выбранный код/ROM-qualified names/comments подготовлен. Scene replay
+PASS:289 типов/292 ROM-варианта,1163 frozen/current Source bodies,
+Original20/30 и Native60/73/120/144/165/360. Сохранены291 неизменённый
+полный вариант с обратимыми scoped edits и execution provenance;
+последний свежий replay двери109 сравнивает и foreign player поля.
+Door fade сохраняет common-world Native по BB080 и останавливает player;
+отдельный48-case CPU debug replay подтверждает старое motion permission.
+Полный новый enemy replay PASS:все218 типов/1233 exact Source bodies.
+Scene transitions PASS.26 завершённых checks проверены по текущим
+source/generation/log hashes. Player/world готовит новый результат:
+0/4 прежних exact-input cache groups пригодны,4/4 группы выполняются
+заново после изменений общего runtime. PASS ещё не получен; Windows044
+ещё не собран. Далее scene-frame/pickup checks, один Windows build,
+package preservation, commit/push main и выбор следующего блока4/6.

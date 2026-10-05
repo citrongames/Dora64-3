@@ -1,5 +1,6 @@
 #include "native_gameplay_preview.hpp"
 #include "native_enemy.hpp"
+#include "native_scene_objects.hpp"
 #include "native_simulation_time.hpp"
 #include "native_camera_timeline.hpp"
 #include "native_input_timeline.hpp"
@@ -65,7 +66,7 @@ extern "C" void dora3_s3_801DC880(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_801DCDF0(uint8_t*,recomp_context*);
 extern "C" void dora3_s3_801DD8FC(uint8_t*,recomp_context*);
 using namespace dora3::native_time;
-static bool native_gameplay_preview_conditions(uint8_t*,bool);
+static bool native_gameplay_preview_conditions(uint8_t*,bool,bool=false);
 namespace {
 int32_t word(uint8_t* ram,uint32_t p) {uint8_t* rdram=ram;return MEM_W(0,int32_t(p));}
 bool byte_pointer(uint32_t p,unsigned size) {return p>=0x80000000u&&uint64_t(p)+size<=0x80400000ull;}
@@ -97,6 +98,11 @@ std::optional<SimulationSlice> gameplay_slice;
 // eligibility condition revokes this permission immediately.
 struct SceneCompletionSlice {SimulationSlice slice;uint64_t run;};
 std::optional<SceneCompletionSlice> scene_completion_slice;
+// Door109's real B8ED0 command sets D494=16. BB080 keeps its common
+// world pool running during that fade, but skips player C8B28. Retain
+// only a fade actually entered by this Native door lifetime/epoch.
+struct DoorFadeOwner {uint32_t actor,physical,model;uint64_t lifetime,epoch;};
+std::optional<DoorFadeOwner> door_fade_owner;
 bool scene_fd_request(uint8_t* ram) {
     uint8_t* rdram=ram;
     return ram&&MEM_H(0,int32_t(0x801B36B8))==0xFD&&word(ram,0x802170EC)==1&&
@@ -1308,7 +1314,7 @@ bool owns_common_object(uint8_t* ram,uint32_t actor) {
     if(!pointer(actor,0xCC))return false;
     const auto physics=uint32_t(word(ram,actor+0x98));
     if(!pointer(physics,0xDC))return false;
-    if(native_enemy_owned(ram,actor))return true;
+    if(native_enemy_owned(ram,actor)||native_scene_object_owned(ram,actor))return true;
     uint8_t* rdram=ram;
     const auto kind=MEM_H(0x20,int32_t(physics));
     // Reviewed callbacks in .scene1 share common movement/opacity/timers
@@ -1455,7 +1461,7 @@ void register_object_clocks(uint8_t* ram,const SimulationSlice& slice) {
         const auto actor=0x801734B8u+slot*0xCC;
         if(!word(ram,actor+0x94)||!owns_common_object(ram,actor)) {cancel_slot09_story_start(ram,slot);cancel_slot09_special_turn(ram,slot);object_clocks[slot]={};continue;}
         const auto identity=object_identity(ram,actor,start);
-        if(identity.kind!=7&&identity.kind!=9&&identity.kind!=18&&identity.kind!=129&&identity.kind!=130&&identity.kind!=131&&!standard_pickup_kind(identity.kind)&&!city_patrol_callback(identity.kind)&&!slot09_callback(identity.kind)&&!native_enemy_kind(identity.kind)&&(identity.kind<71||identity.kind>77)) {object_clocks[slot]={};continue;}
+        if(identity.kind!=7&&identity.kind!=9&&identity.kind!=18&&identity.kind!=129&&identity.kind!=130&&identity.kind!=131&&!standard_pickup_kind(identity.kind)&&!city_patrol_callback(identity.kind)&&!slot09_callback(identity.kind)&&!native_enemy_kind(identity.kind)&&!native_scene_object_kind(identity.kind)&&(identity.kind<71||identity.kind>77)) {object_clocks[slot]={};continue;}
         auto& clock=object_clocks[slot];
         if(!same_object(clock,identity)) {clock=identity;if(!clock.local)clock.origin=0;}
     }
@@ -1522,7 +1528,7 @@ void begin_object_scope(uint8_t* ram,uint32_t actor) {
     if(slot>=object_clocks.size())return;
     auto& clock=object_clocks[slot];
     const auto current=object_identity(ram,actor,slice_position(*gameplay_slice,false));
-    if(native_enemy_kind(current.kind)&&current.local&&!same_object(clock,current))clock=current;
+    if((native_enemy_kind(current.kind)||native_scene_object_kind(current.kind))&&current.local&&!same_object(clock,current))clock=current;
     if(!clock.local||!clock.origin||!same_object(clock,object_identity(ram,actor,0)))return;
     const auto start=slice_position(*gameplay_slice,false);
     if(start<clock.origin)throw std::logic_error("Object received time before birth");
@@ -1615,6 +1621,26 @@ std::optional<float> planned_model_rate(uint8_t* ram,uint32_t model) {
     }
     return std::nullopt;
 }
+bool door_fade_active(uint8_t* rdram) {
+    if(!rdram||!timeline||word(rdram,0x8021D494)!=16)return false;
+    const auto valid=[&](const DoorFadeOwner& v) {
+        return v.epoch==epoch&&native_scene_object_owned(rdram,v.actor)&&
+            uint32_t(word(rdram,v.actor+0x98))==v.physical&&
+            uint32_t(word(rdram,v.actor+0x74))==v.model&&
+            game_model_animation().lifetime_token(v.model)==v.lifetime&&
+            MEM_H(0x20,int32_t(v.physical))==109&&word(rdram,v.actor+0x94)==2&&
+            MEM_BU(0x28,int32_t(v.physical))==1;
+    };
+    if(door_fade_owner&&valid(*door_fade_owner))return true;
+    door_fade_owner.reset();
+    if(!object_call||!active_simulation_slice())return false;
+    const uint32_t actor=uint32_t(word(rdram,0x8021BDEC));
+    if(!native_scene_object_owned(rdram,actor))return false;
+    const uint32_t physical=uint32_t(word(rdram,actor+0x98)),model=uint32_t(word(rdram,actor+0x74));
+    DoorFadeOwner owner{actor,physical,model,game_model_animation().lifetime_token(model),epoch};
+    if(!valid(owner))return false;
+    door_fade_owner=owner;return true;
+}
 bool live(uint8_t* ram) {
     return timeline && dora3_native_loop_gameplay_active() &&
         (native_gameplay_preview_eligible(ram)||(scene_completion_active(ram)&&native_gameplay_preview_conditions(ram,true)));
@@ -1658,7 +1684,7 @@ void initialize_player_projectiles(uint8_t* ram,recomp_context* ctx) {
     },false);
 }
 }
-static bool native_gameplay_preview_conditions(uint8_t* rdram,bool allow_room_request) {
+static bool native_gameplay_preview_conditions(uint8_t* rdram,bool allow_room_request,bool allow_door_fade) {
     for(unsigned i=0;i<8;++i) {
         const uint32_t slot=0x801A44F0+i*20;
         if(i<2) {
@@ -1669,7 +1695,7 @@ static bool native_gameplay_preview_conditions(uint8_t* rdram,bool allow_room_re
     // holds the world while the asynchronous transition is pending. Acquire
     // only after that whole Original callback has completed.
     if((!allow_room_request&&word(rdram,0x802170EC)!=0) || MEM_BU(0,int32_t(0x80217118))!=0 || word(rdram,0x802170F0)!=0)return false;
-    if(word(rdram,0x8021D484)!=0||word(rdram,0x8021D494)!=0||word(rdram,0x80218AD8)!=0||MEM_BU(0,int32_t(0x801B36EC))!=0||
+    if(word(rdram,0x8021D484)!=0||(word(rdram,0x8021D494)!=0&&!(allow_door_fade&&word(rdram,0x8021D494)==16))||word(rdram,0x80218AD8)!=0||MEM_BU(0,int32_t(0x801B36EC))!=0||
        word(rdram,0x801A9C88)!=0||word(rdram,0x801AA648)==0||word(rdram,0x801A9500)==0)return false;
     const auto player=uint32_t(word(rdram,0x8021D49C)),control=uint32_t(word(rdram,0x8021D6C0));
     if(!pointer(player,0xD4)||!pointer(uint32_t(word(rdram,0x8021D640)),0xD4)||!pointer(control,0x58)||!pointer(uint32_t(word(rdram,0x8021D4B0)),0xDC)||
@@ -1687,7 +1713,10 @@ static bool native_gameplay_preview_conditions(uint8_t* rdram,bool allow_room_re
         ((((state>=1&&state<=18)||state==21||state==22||state==24||state==25||state==28||state==29||state==31||state==59||state==60||state==61||state==62||state==64||state==65||state==66||state==67||live_ground_damage) && MEM_BU(0x28,int32_t(control))==0)
          || player_flight_state(rdram))));
 }
-bool native_gameplay_preview_eligible(uint8_t* ram) {return native_gameplay_preview_conditions(ram,false);}
+bool native_gameplay_preview_eligible(uint8_t* ram) {
+    return native_gameplay_preview_conditions(ram,false)||
+        (door_fade_active(ram)&&native_gameplay_preview_conditions(ram,false,true));
+}
 void native_gameplay_preview_begin(uint8_t* ram,Nanoseconds now,unsigned divider) {
     native_gameplay_preview_reset();timeline=std::make_shared<SimulationTimeline>(divider);previous=source_origin=now;
     native_input_begin(ram,now);
@@ -1924,14 +1953,14 @@ extern "C" void dora3_native_homing_end(uint8_t* rdram,recomp_context* ctx) {
 }
 bool native_gameplay_preview_object_pass() {return object_call&&active_simulation_slice()&&timeline;}
 void native_gameplay_preview_enemy_defer_birth(uint8_t* ram,uint32_t actor) {
-    if(!object_call||!gameplay_slice||!native_enemy_owned(ram,actor))return;
+    if(!object_call||!gameplay_slice||!(native_enemy_owned(ram,actor)||native_scene_object_owned(ram,actor)))return;
     const auto slot=(actor-0x801734B8u)/0xCC;const auto& slice=*gameplay_slice;
     if(slot>=deferred_enemy_births.size())return;
     const uint64_t deadline=(slice.tick+1)*slice.denominator;
     deferred_enemy_births[slot]=DeferredEnemyBirth{object_identity(ram,actor,deadline),deadline,slice.denominator,epoch};
 }
 void native_gameplay_preview_enemy_command_clock(uint8_t* ram,uint32_t actor) {
-    if(!object_call||!gameplay_slice||!native_enemy_owned(ram,actor))throw std::logic_error("Invalid enemy command clock");
+    if(!object_call||!gameplay_slice||!(native_enemy_owned(ram,actor)||native_scene_object_owned(ram,actor)))throw std::logic_error("Invalid enemy command clock");
     const auto slot=(actor-0x801734B8u)/0xCC;
     auto fresh=object_identity(ram,actor,slice_position(*gameplay_slice,false));fresh.local=true;
     object_clocks[slot]=fresh;
@@ -1952,6 +1981,7 @@ void native_gameplay_preview_reset(uint8_t* ram) {
     ++epoch;timeline.reset();previous=source_origin=0;motion_call=camera_call=object_call=projectile_call=motion_allowed=camera_allowed=object_allowed=projectile_allowed=false;
     native_input_reset();
     object_clocks={};slot09_source_dialogues={};slot09_native_reentries={};object_command_at_source_start=false;
+    door_fade_owner.reset();
     slot09_decision_periods={};slot09_dialogue_periods={};slot09_source_handoffs={};slot09_wait_decision.reset();deferred_enemy_births={};projectile_clocks={};object_periodic_poses={};object_return_turns={};city_decision_periods={};city_dialogue_periods={};city_kaminari_periods={};city_kaminari_counters={};city_axis_clocks={};linked_city_periods={};linked_city_publications={};player_source_positions.reset();player_action_positions.reset();player_flight_clock.reset();player_hover_clock.reset();player_hover_height.reset();player_hover_counter.reset();player_hover_threshold.reset();player_death_period.reset();player_surface_action_period.reset();player_drive_clock.reset();player_gravity_clock.reset();player_height_clock.reset();player_translation_clocks={};player_cooldown_rearm.reset();player_source_contact.reset();player_damage_counter.reset();player_surface_init.reset();player_surface_counter.reset();player_idle_period.reset();player_wait_damage_counter.reset();player_wait_damage_impulse.reset();player_turn_clock.reset();player_stop_clock.reset();zero_shot_before.reset();projectile_start_births={};
 }
 std::optional<Nanoseconds> native_gameplay_preview_render_time() {
@@ -4156,7 +4186,9 @@ void native_gameplay_preview_update(uint8_t* rdram,recomp_context* original,Nano
                 game_model_animation().begin_source_pool();object_call=true;dora3_s3_801E8BDC(rdram,&ctx);native_enemy_source_pool_end(rdram);object_call=false;
                 if(!current() || !active_simulation_slice())return;
             }
-            if(motion_allowed) {
+            // Original BB080 skips player C8B28 while B8ED0's D494
+            // fade is nonzero; the common object pool still runs.
+            if(motion_allowed&&word(rdram,0x8021D494)==0) {
                 if(slice.phase==0)player_source_positions=capture_shot_attachment(rdram);
                 motion_call=true;
                 ctx.r4=1; // Original controller index is one-based.

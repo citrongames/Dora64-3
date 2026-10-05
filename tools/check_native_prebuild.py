@@ -10,7 +10,7 @@ ROOT=Path(__file__).resolve().parents[1]
 CHECKS=('ui cutscene model_animation frame_time simulation camera_control camera_modes '
         'script_camera effects gravity input player_motion process_time frame_bridge '
         'frame_scheduler graphics_pump loop scene34_draw session present scene_transition '
-        'player_update scene_frame story_pickups enemy names overlay docs').split()
+        'player_update scene_frame story_pickups scene_objects enemy names overlay docs').split()
 NO_GENERATED={'session','present','docs'}
 ROM_CHECKS=set('ui cutscene camera_control camera_modes script_camera effects gravity player_motion process_time graphics_pump loop scene34_draw scene_transition player_update scene_frame story_pickups overlay'.split())
 REFERENCE_CHECKS=set('ui cutscene simulation camera_control camera_modes script_camera effects gravity player_motion process_time scene_transition player_update scene_frame story_pickups'.split())
@@ -24,6 +24,7 @@ def main():
     parser.add_argument('--enemy-reference',type=Path,default=ROOT/'build-local/startup-v356')
     parser.add_argument('--enemy-resume-evidence',type=Path)
     parser.add_argument('--jobs',type=int,choices=[1,2],default=2)
+    parser.add_argument('--scene-workers',type=int,choices=range(1,9),default=4,help='Isolated scene replay processes; exact scenario coverage is independent of shard count')
     parser.add_argument('--only',nargs='+',choices=CHECKS,help='Repeat only the explicitly affected checks in an existing run')
     a=parser.parse_args();g=a.generated.resolve();out=a.output_dir.resolve()
     assert out.is_relative_to(ROOT/'build-local'),'Logs and ROM paths must remain in ignored build-local'
@@ -44,13 +45,16 @@ def main():
         special={'names':'check_decomp_names.py','overlay':'check_overlay_load_state.py','docs':'update_decomp_docs.py','scene_frame':'check_native_player_update.py','player_update':'check_native_player_update_partitions.py'}
         cmd=[sys.executable,str(ROOT/'tools'/special.get(key,'check_native_'+key+'.py'))]
         if key not in NO_GENERATED:cmd+=['--generated',str(g)]
-        if key in ROM_CHECKS or key=='enemy':cmd+=['--rom',str(a.rom.resolve())]
-        if key in REFERENCE_CHECKS or key=='enemy':cmd+=['--reference',str((a.leaf_reference if key in LEAF_REFERENCE else a.reference).resolve())]
-        if key in {'scene_transition','player_update','scene_frame','story_pickups','enemy'}:cmd+=['--city-reference',str(a.city_reference.resolve())]
+        if key in ROM_CHECKS or key in {'enemy','scene_objects'}:cmd+=['--rom',str(a.rom.resolve())]
+        if key in REFERENCE_CHECKS or key in {'enemy','scene_objects'}:cmd+=['--reference',str((a.leaf_reference if key in LEAF_REFERENCE else a.reference).resolve())]
+        if key in {'scene_transition','player_update','scene_frame','story_pickups','enemy','scene_objects'}:cmd+=['--city-reference',str(a.city_reference.resolve())]
         if key in {'player_update','scene_frame','story_pickups'}:cmd+=['--optimization','O2']
         if key=='scene_frame':cmd+=['--scope','scene-frame']
         if key=='story_pickups':cmd+=['--scope','pickup-linked-batch']
         if key=='enemy':cmd+=['--enemy-reference',str(a.enemy_reference.resolve())]
+        if key=='scene_objects':cmd+=['--enemy-reference',str((ROOT/'build-local/startup-v362').resolve())]
+        if key=='scene_objects':cmd+=['--workers',str(a.scene_workers)]
+        if key=='scene_objects' and (ROOT/'build-local/native-scene-object-check/parser-abi-resume.json').exists():cmd+=['--resume-evidence',str(ROOT/'build-local/native-scene-object-check/parser-abi-resume.json')]
         if key=='enemy' and a.enemy_resume_evidence:cmd+=['--resume-evidence',str(a.enemy_resume_evidence.resolve())]
         if key=='docs':cmd+=['--check']
         return cmd
@@ -71,11 +75,11 @@ def main():
             save();print(record['status']+' '+key,flush=True)
     # The story check prepares through player-update's fixture. Keep those
     # preparations sequential; their executables and output directories differ.
-    connected={'player_update','scene_frame','story_pickups','scene_transition','enemy'}
+    connected={'player_update','scene_frame','story_pickups','scene_transition','enemy','scene_objects'}
     def run_connected():
         # Newly completed enemy block goes first. A failing connected check
         # leaves the expensive dependents queued until its cause is repaired.
-        order=(["enemy"] if "enemy" in selected else [])+[key for key in selected if key in connected and key!="enemy"]
+        order=(["scene_objects"] if "scene_objects" in selected else [])+(["enemy"] if "enemy" in selected else [])+[key for key in selected if key in connected and key not in {"enemy","scene_objects"}]
         for key in order:
             run(key)
             if manifest['checks'][key]['status']!='PASS':break

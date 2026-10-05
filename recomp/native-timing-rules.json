@@ -22942,6 +22942,2506 @@
       "expected_word": "0xE440001C",
       "operation": "native_enemy_equation",
       "evidence": "SharedEffects: reviewed frozen Source closure and exact ROM operands; whole block2 implementation, final validation pending"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023F730",
+      "function_name": "dora3_s47_remaining_8023F730",
+      "function_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "site": "0x8023F730",
+      "expected_word": "0x03E00008",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: pure no-op; Native common motion and model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EA4D4",
+      "function_name": "dora3_s3_core_801EA4D4",
+      "function_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "site": "0x801EA4D4",
+      "expected_word": "0x03E00008",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: pure no-op; Native common motion and model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023D840",
+      "function_name": "dora3_s19_penguin_8023D840",
+      "function_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "site": "0x8023D840",
+      "expected_word": "0x03E00008",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: pure no-op; Native common motion and model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023D8E4",
+      "function_name": "dora3_s19_penguin_8023D8E4",
+      "function_sha256": "6089250794fb025c33c013610c5be97fc9f7908725be232170caa9770c46ee9e",
+      "site": "0x8023D8E4",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: Source story-flag/opacity/latch command; Native model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".remaining_slot1_04",
+      "function": "0x8022EC00",
+      "function_name": "dora3_s42_remaining_8022EC00",
+      "function_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "site": "0x8022EC00",
+      "expected_word": "0x03E00008",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: pure no-op; Native common motion and model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".remaining_slot1_04",
+      "function": "0x8022F944",
+      "function_name": "dora3_s42_remaining_8022F944",
+      "function_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "site": "0x8022F944",
+      "expected_word": "0x03E00008",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: pure no-op; Native common motion and model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EAE54",
+      "function_name": "dora3_s3_core_801EAE54",
+      "function_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "site": "0x801EAE54",
+      "expected_word": "0x03E00008",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: pure no-op; Native common motion and model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".level1_slot2",
+      "function": "0x8023D844",
+      "function_name": "dora3_s9_level1_8023D844",
+      "function_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "site": "0x8023D844",
+      "expected_word": "0x03E00008",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: pure no-op; Native common motion and model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".remaining_slot2_09",
+      "function": "0x8023DBBC",
+      "function_name": "dora3_s48_remaining_8023DBBC",
+      "function_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "site": "0x8023DBBC",
+      "expected_word": "0x03E00008",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: pure no-op; Native common motion and model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".remaining_slot2_09",
+      "function": "0x8023E514",
+      "function_name": "dora3_s48_remaining_8023E514",
+      "function_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "site": "0x8023E514",
+      "expected_word": "0x03E00008",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: pure no-op; Native common motion and model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023F214",
+      "function_name": "dora3_s6_demo_8023F214",
+      "function_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "site": "0x8023F214",
+      "expected_word": "0x03E00008",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: pure no-op; Native common motion and model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023F3D0",
+      "function_name": "dora3_s6_demo_8023F3D0",
+      "function_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "site": "0x8023F3D0",
+      "expected_word": "0x03E00008",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: pure no-op; Native common motion and model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".level1_slot2",
+      "function": "0x8023DC78",
+      "function_name": "dora3_s9_level1_8023DC78",
+      "function_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "site": "0x8023DC78",
+      "expected_word": "0x03E00008",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed exact Source callback: pure no-op; Native common motion and model clock; live ctor/update/contact/ROM and model lifetime checked"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022DE28",
+      "function_name": "dora3_s18_penguin_8022DE28",
+      "function_sha256": "eb5936f7f4005781dd7be231b55e73236b454fc17cbe96d67e09967a7c6c5248",
+      "site": "0x8022DE28",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022E7B4",
+      "function_name": "dora3_s18_penguin_8022E7B4",
+      "function_sha256": "f2293fac28a2887e7f094dc524148100c337a99af82da6e7dfd472988ff51a2d",
+      "site": "0x8022E7B4",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022E9A8",
+      "function_name": "dora3_s18_penguin_8022E9A8",
+      "function_sha256": "c3a26e03e08b0da88d64415d2df2e89a4d497f412f46e2f96f552a6eaee65cc3",
+      "site": "0x8022E9A8",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022F2C8",
+      "function_name": "dora3_s18_penguin_8022F2C8",
+      "function_sha256": "33afe2459c25b1abce21ac81a5a4e8f727acb500a1a40a1cf475aab2dede5e07",
+      "site": "0x8022F2C8",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022FC90",
+      "function_name": "dora3_s18_penguin_8022FC90",
+      "function_sha256": "4402847550ae6d61a165c18d5f1515f57c9aee8583a0bc99839cd28e3d869cfe",
+      "site": "0x8022FC90",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80230494",
+      "function_name": "dora3_s18_penguin_80230494",
+      "function_sha256": "55e058cbff9c5cbc083804a47618c9ef5701e3e8ceec4171d66409efbb9622f0",
+      "site": "0x80230494",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80230B48",
+      "function_name": "dora3_s18_penguin_80230B48",
+      "function_sha256": "02d7bd562d928f51d84933f389bff8f1ddc827c2b6cc362ede1ee5382dd5c9b1",
+      "site": "0x80230B48",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80230D5C",
+      "function_name": "dora3_s18_penguin_80230D5C",
+      "function_sha256": "a857eef5b6d598f558ef02856b62f67d66a91ea8a9fc25bebef2e6aeda1c4875",
+      "site": "0x80230D5C",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80230F48",
+      "function_name": "dora3_s18_penguin_80230F48",
+      "function_sha256": "bb9d42c4c6472a24cb82cd22d884441821d870f60c211e4be34a908956e8ee6f",
+      "site": "0x80230F48",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80231A90",
+      "function_name": "dora3_s18_penguin_80231A90",
+      "function_sha256": "a1f71055e398dd0f70b19c54704d13b61ff55e07faf28588e747774079ae9a25",
+      "site": "0x80231A90",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x802311F8",
+      "function_name": "dora3_s44_remaining_802311F8",
+      "function_sha256": "1405a98e1ba5f4c230dad0c0e7b595c7093a790d84a36988b428aba2703a590f",
+      "site": "0x802311F8",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x802320D8",
+      "function_name": "dora3_s44_remaining_802320D8",
+      "function_sha256": "bf86d053951e832e9ecea64248431fcb2aaa62dd628dcb1223c63a8a222e2792",
+      "site": "0x802320D8",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x80232910",
+      "function_name": "dora3_s44_remaining_80232910",
+      "function_sha256": "7c618363b0201990fb39dba1d85e4f4af45eb469b521e2cfaa2f6107a6b4b473",
+      "site": "0x80232910",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023E7D0",
+      "function_name": "dora3_s19_penguin_8023E7D0",
+      "function_sha256": "f802c542a318d45a4a057cdd918425e810e674be491be4b2a0d80f45863af487",
+      "site": "0x8023E7D0",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023EC14",
+      "function_name": "dora3_s19_penguin_8023EC14",
+      "function_sha256": "0c7d0df9329ec3db93e6cc6f32fb92dc3fd50c7cbd7f522adf26fa08a728dd13",
+      "site": "0x8023EC14",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80232238",
+      "function_name": "dora3_s18_penguin_80232238",
+      "function_sha256": "697c5b233945f6da8c0a5d772c5d0dacb7e587d9a9f60d661fed2924a08ebbab",
+      "site": "0x80232238",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80232690",
+      "function_name": "dora3_s18_penguin_80232690",
+      "function_sha256": "a843ad5398ce8c469bb12f692b8cb0beb4e4b802cef713638c83fb7f19f9fe3f",
+      "site": "0x80232690",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80232C04",
+      "function_name": "dora3_s18_penguin_80232C04",
+      "function_sha256": "9ecd4015a1132a1d1e965547c7c8a524cd579ce621fd54c9d42dea94389f1f87",
+      "site": "0x80232C04",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".lake_slot2",
+      "function": "0x802401A0",
+      "function_name": "dora3_s17_lake_802401A0",
+      "function_sha256": "336b54bd25443d4ee13ac67f5b809bccb6f1de6fdc2644c8c73e7d138c23bfb9",
+      "site": "0x802401A0",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023DCE4",
+      "function_name": "dora3_s6_demo_8023DCE4",
+      "function_sha256": "ce67c09617ef2bc33b1f288ed955b3b3760023b293dacd93a2ade6e567114014",
+      "site": "0x8023DCE4",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Remaining NPC/world-actor FSM: Source dialogue/story/clip/RNG/contact commands; Native common motion/model clock and reviewed scalar equations; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022DB4C",
+      "function_name": "dora3_s18_penguin_8022DB4C",
+      "function_sha256": "c5f432a120bbf35f1f768169d7919993d59b30f00e998d631430e36fbe4ef65b",
+      "site": "0x8022DDA0",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022E474",
+      "function_name": "dora3_s18_penguin_8022E474",
+      "function_sha256": "c7756857548ad82bfb0ad6c2cb5db6e99bd43c152a277e9a2f396e14ab1370a0",
+      "site": "0x8022E6BC",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022EF4C",
+      "function_name": "dora3_s18_penguin_8022EF4C",
+      "function_sha256": "bfc81c62141e7ddf414cd27c3679b6df7b77440c2eeff37c978eb43ce90ca90e",
+      "site": "0x8022F1A0",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022F9C0",
+      "function_name": "dora3_s18_penguin_8022F9C0",
+      "function_sha256": "78874d0bc896de5a37f2028d315849bb7a9431b82e428816e0de5c726c2e451c",
+      "site": "0x8022FC08",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8023018C",
+      "function_name": "dora3_s18_penguin_8023018C",
+      "function_sha256": "b8161f3c5dd909dd1df29e6dc82b738e72e560e9b01d766ee1ba30c2e00a4d00",
+      "site": "0x80230400",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x802308B4",
+      "function_name": "dora3_s18_penguin_802308B4",
+      "function_sha256": "867e69815732c8aefa3541237c615d66647ec4b5be2b0e297896e008b3cd0a71",
+      "site": "0x80230AE0",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80230F48",
+      "function_name": "dora3_s18_penguin_80230F48",
+      "function_sha256": "bb9d42c4c6472a24cb82cd22d884441821d870f60c211e4be34a908956e8ee6f",
+      "site": "0x802310F0",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x802313E0",
+      "function_name": "dora3_s18_penguin_802313E0",
+      "function_sha256": "a1d7c15b8ae7042377ee3421338c81a262d23327d2773f6796f53cd39075ddc2",
+      "site": "0x80231688",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80231F18",
+      "function_name": "dora3_s18_penguin_80231F18",
+      "function_sha256": "ba9fdad5fd0fd6ad35c67637018a9bce2b81ac93ba96741980a1c4581fdb7e05",
+      "site": "0x8023215C",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022E35C",
+      "function_name": "dora3_s18_penguin_8022E35C",
+      "function_sha256": "7a3222dbf57c07c831a9ac027a6517d10b221d4c0684a20b6be4229d5e839bcf",
+      "site": "0x8022E430",
+      "expected_word": "0xE4600004",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, physics+4; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022F8A8",
+      "function_name": "dora3_s18_penguin_8022F8A8",
+      "function_sha256": "e161d7108494465e3f61a9e3eb781a00ccace3929e5491a7df8be531d5b94a51",
+      "site": "0x8022F97C",
+      "expected_word": "0xE4600004",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, physics+4; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80232558",
+      "function_name": "dora3_s18_penguin_80232558",
+      "function_sha256": "8649197459a144b18f4a0417e7c7bae9e4be699a89e53a07abe729c007e1898c",
+      "site": "0x802325F0",
+      "expected_word": "0xE4600004",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, physics+4; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022E35C",
+      "function_name": "dora3_s18_penguin_8022E35C",
+      "function_sha256": "7a3222dbf57c07c831a9ac027a6517d10b221d4c0684a20b6be4229d5e839bcf",
+      "site": "0x8022E434",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x8022F8A8",
+      "function_name": "dora3_s18_penguin_8022F8A8",
+      "function_sha256": "e161d7108494465e3f61a9e3eb781a00ccace3929e5491a7df8be531d5b94a51",
+      "site": "0x8022F980",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x80230F64",
+      "function_name": "dora3_s44_remaining_80230F64",
+      "function_sha256": "44de30eec45b23787a7c1df09d0a5714d60b6e0bb53d5102ed9258acfc80b296",
+      "site": "0x80231190",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x80231E44",
+      "function_name": "dora3_s44_remaining_80231E44",
+      "function_sha256": "6decc22c404d913f8391223ad5ad60f01db0270ec451cb09fc3ad05dbab77103",
+      "site": "0x80232070",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x80232698",
+      "function_name": "dora3_s44_remaining_80232698",
+      "function_sha256": "a8a80c72f54d0ea14db5e182e0653762302f331d3bc3251a1ffae3c42641c093",
+      "site": "0x802327FC",
+      "expected_word": "0xE4600004",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, physics+4; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x80232698",
+      "function_name": "dora3_s44_remaining_80232698",
+      "function_sha256": "a8a80c72f54d0ea14db5e182e0653762302f331d3bc3251a1ffae3c42641c093",
+      "site": "0x802328B8",
+      "expected_word": "0xE4600004",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, physics+4; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023E0F0",
+      "function_name": "dora3_s19_penguin_8023E0F0",
+      "function_sha256": "891f6e625890fd13615c9961b6f8fcb9490742f997697b44d027a7f7db094f76",
+      "site": "0x8023E18C",
+      "expected_word": "0xE4400004",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, physics+4; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023E4C8",
+      "function_name": "dora3_s19_penguin_8023E4C8",
+      "function_sha256": "af9b79c27ba6a5b001f575d9b76b7317e0e59c3fff2b4f7b826009063c909d6f",
+      "site": "0x8023E5C0",
+      "expected_word": "0xE4400004",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, physics+4; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023E394",
+      "function_name": "dora3_s19_penguin_8023E394",
+      "function_sha256": "6516d01c810bbca86971a2b1479a325b6c911e4145809f3f89582aa66a53831f",
+      "site": "0x8023E420",
+      "expected_word": "0xE4400000",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: linear, physics+0; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".lake_slot2",
+      "function": "0x8023FDC0",
+      "function_name": "dora3_s17_lake_8023FDC0",
+      "function_sha256": "6a8fac705f0e451ad0ad5213110e28684e32b617271c78bb39490dbb3a32fc48",
+      "site": "0x8023FEEC",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".lake_slot2",
+      "function": "0x8023FF44",
+      "function_name": "dora3_s17_lake_8023FF44",
+      "function_sha256": "94614d1bcdf5199466dc4803a2189f14b6c007710e095e372fc33eca06b51f9d",
+      "site": "0x80240144",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: angle, actor+10; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023E68C",
+      "function_name": "dora3_s19_penguin_8023E68C",
+      "function_sha256": "5b48618fe5243e8fc6fc93c47e4bec8f77ab5402e4b557c2c3820e33c72e1482",
+      "site": "0x8023E780",
+      "expected_word": "0xE4840018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: approach, actor+18; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023E68C",
+      "function_name": "dora3_s19_penguin_8023E68C",
+      "function_sha256": "5b48618fe5243e8fc6fc93c47e4bec8f77ab5402e4b557c2c3820e33c72e1482",
+      "site": "0x8023E784",
+      "expected_word": "0xE4840020",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: approach, actor+20; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023E68C",
+      "function_name": "dora3_s19_penguin_8023E68C",
+      "function_sha256": "5b48618fe5243e8fc6fc93c47e4bec8f77ab5402e4b557c2c3820e33c72e1482",
+      "site": "0x8023E788",
+      "expected_word": "0xE482001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: approach, actor+1C; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023EADC",
+      "function_name": "dora3_s19_penguin_8023EADC",
+      "function_sha256": "4e04fe03f994302e1f8e15b5250d93d2e373d83bb4a99856256f0e3e72fad0b3",
+      "site": "0x8023EBC4",
+      "expected_word": "0xE4840018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: approach, actor+18; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023EADC",
+      "function_name": "dora3_s19_penguin_8023EADC",
+      "function_sha256": "4e04fe03f994302e1f8e15b5250d93d2e373d83bb4a99856256f0e3e72fad0b3",
+      "site": "0x8023EBC8",
+      "expected_word": "0xE4840020",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: approach, actor+20; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023EADC",
+      "function_name": "dora3_s19_penguin_8023EADC",
+      "function_sha256": "4e04fe03f994302e1f8e15b5250d93d2e373d83bb4a99856256f0e3e72fad0b3",
+      "site": "0x8023EBCC",
+      "expected_word": "0xE482001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: approach, actor+1C; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023E68C",
+      "function_name": "dora3_s19_penguin_8023E68C",
+      "function_sha256": "5b48618fe5243e8fc6fc93c47e4bec8f77ab5402e4b557c2c3820e33c72e1482",
+      "site": "0x8023E7A8",
+      "expected_word": "0xE4400058",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: linear, physics+58; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023EADC",
+      "function_name": "dora3_s19_penguin_8023EADC",
+      "function_sha256": "4e04fe03f994302e1f8e15b5250d93d2e373d83bb4a99856256f0e3e72fad0b3",
+      "site": "0x8023EBEC",
+      "expected_word": "0xE4400058",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: linear, physics+58; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023D9B0",
+      "function_name": "dora3_s6_demo_8023D9B0",
+      "function_sha256": "be1b09723bd2a81afd87745058b43301ff4674c40787e73801dfba175a2faa8f",
+      "site": "0x8023DA50",
+      "expected_word": "0xE4400018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: linear, actor+18; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023D9B0",
+      "function_name": "dora3_s6_demo_8023D9B0",
+      "function_sha256": "be1b09723bd2a81afd87745058b43301ff4674c40787e73801dfba175a2faa8f",
+      "site": "0x8023DA58",
+      "expected_word": "0xE4400020",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: linear, actor+20; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023D9B0",
+      "function_name": "dora3_s6_demo_8023D9B0",
+      "function_sha256": "be1b09723bd2a81afd87745058b43301ff4674c40787e73801dfba175a2faa8f",
+      "site": "0x8023DA5C",
+      "expected_word": "0xE440001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: linear, actor+1C; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023D9B0",
+      "function_name": "dora3_s6_demo_8023D9B0",
+      "function_sha256": "be1b09723bd2a81afd87745058b43301ff4674c40787e73801dfba175a2faa8f",
+      "site": "0x8023DC60",
+      "expected_word": "0xE4800018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: linear, actor+18; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023D9B0",
+      "function_name": "dora3_s6_demo_8023D9B0",
+      "function_sha256": "be1b09723bd2a81afd87745058b43301ff4674c40787e73801dfba175a2faa8f",
+      "site": "0x8023DC68",
+      "expected_word": "0xE4800020",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: linear, actor+20; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023D9B0",
+      "function_name": "dora3_s6_demo_8023D9B0",
+      "function_sha256": "be1b09723bd2a81afd87745058b43301ff4674c40787e73801dfba175a2faa8f",
+      "site": "0x8023DC6C",
+      "expected_word": "0xE480001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed Source NPC scalar store: linear, actor+1C; initialization/restores and counters remain Source"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80230F48",
+      "function_name": "dora3_s18_penguin_80230F48",
+      "function_sha256": "bb9d42c4c6472a24cb82cd22d884441821d870f60c211e4be34a908956e8ee6f",
+      "site": "0x80231080",
+      "expected_word": "0xE602009C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact NPC Source sine/cosine phase or dependent radius geometry; retain command counters and use actual ROM operands"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80230F48",
+      "function_name": "dora3_s18_penguin_80230F48",
+      "function_sha256": "bb9d42c4c6472a24cb82cd22d884441821d870f60c211e4be34a908956e8ee6f",
+      "site": "0x802310C0",
+      "expected_word": "0xE60200A4",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact NPC Source sine/cosine phase or dependent radius geometry; retain command counters and use actual ROM operands"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80230F48",
+      "function_name": "dora3_s18_penguin_80230F48",
+      "function_sha256": "bb9d42c4c6472a24cb82cd22d884441821d870f60c211e4be34a908956e8ee6f",
+      "site": "0x80231168",
+      "expected_word": "0xE60200A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact NPC Source sine/cosine phase or dependent radius geometry; retain command counters and use actual ROM operands"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x802317BC",
+      "function_name": "dora3_s18_penguin_802317BC",
+      "function_sha256": "7cfb167e3909dafb3a92c20bb0dc69a922345008c48f641d8095a444debaf0c8",
+      "site": "0x80231974",
+      "expected_word": "0xE60000A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact NPC Source sine/cosine phase or dependent radius geometry; retain command counters and use actual ROM operands"
+    },
+    {
+      "section": ".lake_slot2",
+      "function": "0x802401A0",
+      "function_name": "dora3_s17_lake_802401A0",
+      "function_sha256": "336b54bd25443d4ee13ac67f5b809bccb6f1de6fdc2644c8c73e7d138c23bfb9",
+      "site": "0x802402D0",
+      "expected_word": "0xE60200A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact NPC Source sine/cosine phase or dependent radius geometry; retain command counters and use actual ROM operands"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023D9B0",
+      "function_name": "dora3_s6_demo_8023D9B0",
+      "function_sha256": "be1b09723bd2a81afd87745058b43301ff4674c40787e73801dfba175a2faa8f",
+      "site": "0x8023DA68",
+      "expected_word": "0xE4A20030",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact NPC Source sine/cosine phase or dependent radius geometry; retain command counters and use actual ROM operands"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023D9B0",
+      "function_name": "dora3_s6_demo_8023D9B0",
+      "function_sha256": "be1b09723bd2a81afd87745058b43301ff4674c40787e73801dfba175a2faa8f",
+      "site": "0x8023DC70",
+      "expected_word": "0xE4A20030",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact NPC Source sine/cosine phase or dependent radius geometry; retain command counters and use actual ROM operands"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E52D4",
+      "function_name": "dora3_s3_core_801E52D4",
+      "function_sha256": "d4198aec96f8e8d29ebacacdbc448cf7245f755a92ecf54cd71baa78dfcc91e9",
+      "site": "0x801E52D4",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Source transient effect clip/latch/retirement and player-state commands; Native model time, fire opacity profile and cold attachment geometry; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E58E0",
+      "function_name": "dora3_s3_core_801E58E0",
+      "function_sha256": "ae4512031e0724fa474bd9ed775b1f11c03ef738bb34e2424cc6679d23e51269",
+      "site": "0x801E58E0",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Source transient effect clip/latch/retirement and player-state commands; Native model time, fire opacity profile and cold attachment geometry; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E5A94",
+      "function_name": "dora3_s3_core_801E5A94",
+      "function_sha256": "d9fce54f31353633a6971718e983a6802a7113148a2f0381be4934510dcab0a0",
+      "site": "0x801E5A94",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Source transient effect clip/latch/retirement and player-state commands; Native model time, fire opacity profile and cold attachment geometry; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E5C2C",
+      "function_name": "dora3_s3_core_801E5C2C",
+      "function_sha256": "a20a5e0704b041ad7c89b18f317cfb047ca0d97b4f35518c6aad0f20c1194538",
+      "site": "0x801E5C2C",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Source transient effect clip/latch/retirement and player-state commands; Native model time, fire opacity profile and cold attachment geometry; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E58E0",
+      "function_name": "dora3_s3_core_801E58E0",
+      "function_sha256": "ae4512031e0724fa474bd9ed775b1f11c03ef738bb34e2424cc6679d23e51269",
+      "site": "0x801E596C",
+      "expected_word": "0x0C07A273",
+      "operation": "native_enemy_equation",
+      "evidence": "Fire effect Source alpha=(10-short34)/10 before real E89CC command; fractional affine profile, retirement/counter unchanged"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E9ECC",
+      "function_name": "dora3_s3_core_801E9ECC",
+      "function_sha256": "c1716b5027f25005cf1b7c0011903d3db64765d8397c9b869b864964b82fafa9",
+      "site": "0x801E9ECC",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E98E0",
+      "function_name": "dora3_s3_core_801E98E0",
+      "function_sha256": "6a971b030ab129690a78db2139e9fc7801504c438d5b66896ab73376192a59d0",
+      "site": "0x801E98E0",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E9664",
+      "function_name": "dora3_s3_core_801E9664",
+      "function_sha256": "1372295de16963aaa983dc43b92f86c947ac8a2c445dd9edd8eef13f6514125b",
+      "site": "0x801E9664",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E9428",
+      "function_name": "dora3_s3_core_801E9428",
+      "function_sha256": "e776edbe19620381aa306f4dd430ed0d48289b7302f2de6193512f5bb38e5e52",
+      "site": "0x801E9428",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EA000",
+      "function_name": "dora3_s3_core_801EA000",
+      "function_sha256": "a912ca453c5beadf2a1f23771cef186f49ce817609314c1669e7486498a53771",
+      "site": "0x801EA000",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023EF1C",
+      "function_name": "dora3_s47_remaining_8023EF1C",
+      "function_sha256": "41d74a5f2be66732e0dd8056730de5a3b3a606097ba0f585bebe9180724afc9d",
+      "site": "0x8023EF1C",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023F268",
+      "function_name": "dora3_s47_remaining_8023F268",
+      "function_sha256": "ad858c0ba34e66f559457207cd72cf36ad372f552d6f6396baa2adc38b31131f",
+      "site": "0x8023F268",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EB440",
+      "function_name": "dora3_s3_core_801EB440",
+      "function_sha256": "5b63c76e108c835888e0fe704fc6b0e66110eceb4377242701fba78b26f1f1ae",
+      "site": "0x801EB440",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EAC9C",
+      "function_name": "dora3_s3_core_801EAC9C",
+      "function_sha256": "c97db7b83fd1a6b309561067038a60ee82efcc814cd32c61929e4d4238028e49",
+      "site": "0x801EAC9C",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EAD74",
+      "function_name": "dora3_s3_core_801EAD74",
+      "function_sha256": "961934d39120c00ec3a32212cd5c376f3289d96d5e0bc9b69c764653783d6f3e",
+      "site": "0x801EAD74",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EB7BC",
+      "function_name": "dora3_s3_core_801EB7BC",
+      "function_sha256": "2b52f6f9aa1b5c8ac9816cd7e000adf2dd1d6c21855b653bf130db2e06fd772b",
+      "site": "0x801EB7BC",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023DBD0",
+      "function_name": "dora3_s47_remaining_8023DBD0",
+      "function_sha256": "eb11815253df793daa4b9497c60b6688dda2b8141d03717055d0284c905153c7",
+      "site": "0x8023DBD0",
+      "expected_word": "0x27BDFFE8",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023E798",
+      "function_name": "dora3_s12_cave_8023E798",
+      "function_sha256": "d581a16b62f9897cbbe0527ddc14993ce294b0ac7dc205281dd2f735079b0aaa",
+      "site": "0x8023E798",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023E6C0",
+      "function_name": "dora3_s6_demo_8023E6C0",
+      "function_sha256": "70ffe4bcc291d32ffd9625f5616b5f19ffe9886f7994907497082060709af4e8",
+      "site": "0x8023E6C0",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023E94C",
+      "function_name": "dora3_s6_demo_8023E94C",
+      "function_sha256": "3079d755cc2fc7bd59263c5553d7d53b92f5450eedbc076dcfc071d615e98c96",
+      "site": "0x8023E94C",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023EA4C",
+      "function_name": "dora3_s6_demo_8023EA4C",
+      "function_sha256": "073cec8b8066c39688af6b08df65b3998f84849f4888cae5f2ce946111da58d0",
+      "site": "0x8023EA4C",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".mountain_slot1",
+      "function": "0x8022EDE8",
+      "function_name": "dora3_s13_mountain_8022EDE8",
+      "function_sha256": "cbcbd613f5c11edb24e2c97a6c62225ed98040c275ed2732afb1640ea65e6970",
+      "site": "0x8022EDE8",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".mountain_slot1",
+      "function": "0x8022EF9C",
+      "function_name": "dora3_s13_mountain_8022EF9C",
+      "function_sha256": "8068c35bb1a4db3674fabc3b3f8317a47f505a89af1ff8e9eb33e4b0014a76d1",
+      "site": "0x8022EF9C",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".lake_slot2",
+      "function": "0x8023F93C",
+      "function_name": "dora3_s17_lake_8023F93C",
+      "function_sha256": "cf87f4ece83da4cac84b3fa4dfd21cf3f3424f496c12e5cd1b7238007612c8d7",
+      "site": "0x8023F93C",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023E0D8",
+      "function_name": "dora3_s6_demo_8023E0D8",
+      "function_sha256": "e2c612ff529e2045c9a352579e658fb08ea9eba4cefe0b9bb1f63d1f4bb9ecb5",
+      "site": "0x8023E0D8",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023DF60",
+      "function_name": "dora3_s12_cave_8023DF60",
+      "function_sha256": "91a48a5d87c72e838776840075d6c2667a21ac6b01fa2cf9dbe3eac7b3866d78",
+      "site": "0x8023DF60",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023E330",
+      "function_name": "dora3_s12_cave_8023E330",
+      "function_sha256": "a05dad58ac685dec1ff9ccb1b5c58aba4721c8c4cd4db7d7e3aae82b545c0169",
+      "site": "0x8023E330",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023E9A8",
+      "function_name": "dora3_s12_cave_8023E9A8",
+      "function_sha256": "f7af5d3641cebc955167ef54dc4d0038a3ff40d7f67056cc851daab65d122b38",
+      "site": "0x8023E9A8",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023EB18",
+      "function_name": "dora3_s12_cave_8023EB18",
+      "function_sha256": "0d62df21bbc0dad1946cc12c68b259a8a4fbaaf930a5a643527fa9af3262c97a",
+      "site": "0x8023EB18",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_04",
+      "function": "0x8023DA00",
+      "function_name": "dora3_s45_remaining_8023DA00",
+      "function_sha256": "71f81ce6ed04c64af89e2d9e05acaa2818ddd99db9569ff05fd201308f2d01de",
+      "site": "0x8023DA00",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_04",
+      "function": "0x8023DD4C",
+      "function_name": "dora3_s45_remaining_8023DD4C",
+      "function_sha256": "eed471f62df1abf4b8b8006e01ad09a38a02b9e5b8afdd507a90abc2cc0dd305",
+      "site": "0x8023DD4C",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_04",
+      "function": "0x8023E098",
+      "function_name": "dora3_s45_remaining_8023E098",
+      "function_sha256": "56f30dde386f671b140d89792de61fd87a0c3a1e2d0adf0ba51c120a49f30502",
+      "site": "0x8023E098",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_04",
+      "function": "0x8023E3F4",
+      "function_name": "dora3_s45_remaining_8023E3F4",
+      "function_sha256": "1329ec6099971a3da98f9522972ade539fc6e007a3c2f9e54149731ca4751c67",
+      "site": "0x8023E3F4",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023DCD8",
+      "function_name": "dora3_s19_penguin_8023DCD8",
+      "function_sha256": "370094b342faec5176487d2223a5dd31252d91b6fbd94a0f31285ef3042e3ff8",
+      "site": "0x8023DCD8",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_04",
+      "function": "0x8023E7A4",
+      "function_name": "dora3_s45_remaining_8023E7A4",
+      "function_sha256": "3251a93404bbae5bf24e30f59f68535626cc603775aefa1e837cc8bb09c2503b",
+      "site": "0x8023E7A4",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_04",
+      "function": "0x8023EB54",
+      "function_name": "dora3_s45_remaining_8023EB54",
+      "function_sha256": "0a1b3d2193032c4ead9ffac20f76c8f21d4eea52b2f3bc9869c5d7a811de3895",
+      "site": "0x8023EB54",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_04",
+      "function": "0x8023EEA0",
+      "function_name": "dora3_s45_remaining_8023EEA0",
+      "function_sha256": "d2f795677cf3f88ed6594ceaf220c166c7639fbe9fedb3d6255b837daabdb79a",
+      "site": "0x8023EEA0",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_02",
+      "function": "0x8022F7F0",
+      "function_name": "dora3_s41_remaining_8022F7F0",
+      "function_sha256": "83195b02a236f3a031896e66a2f821cbda1c974ad20b29886eccefa9a88fe5ff",
+      "site": "0x8022F7F0",
+      "expected_word": "0x3C048022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".lake_slot1",
+      "function": "0x8022DF54",
+      "function_name": "dora3_s16_lake_8022DF54",
+      "function_sha256": "24e1966e8218de6f1c12cb8bd8a0caa5ea9f3bfc86f7127c889dead08812ceb3",
+      "site": "0x8022DF54",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023DE34",
+      "function_name": "dora3_s6_demo_8023DE34",
+      "function_sha256": "dfa565c1453ad2992bd5c8a0d85317cd9cda6feaad55dc0f1ca5c48ad7bfdec9",
+      "site": "0x8023DE34",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E4C0",
+      "function_name": "dora3_s47_remaining_8023E4C0",
+      "function_sha256": "54d5083655ead13960121f7fe7d1766f865cf4d7a06c0df8ce88c1cce6b7b131",
+      "site": "0x8023E4C0",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E334",
+      "function_name": "dora3_s47_remaining_8023E334",
+      "function_sha256": "001ddabd5dd8bc8b36cef95918ee9505c409040b6278e8e065210249d9c1fd6b",
+      "site": "0x8023E334",
+      "expected_word": "0x27BDFFE8",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EA470",
+      "function_name": "dora3_s3_core_801EA470",
+      "function_sha256": "6b569c9f39228f85f0c6dcd3f44a5052373699515bf983970f7498890067d2d8",
+      "site": "0x801EA470",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023D830",
+      "function_name": "dora3_s6_demo_8023D830",
+      "function_sha256": "3f17714f2dde9e6d0caef09d5b5cd6fb70bd792a23b3e4d2cf1ee5ea61d1c936",
+      "site": "0x8023D830",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023DEA4",
+      "function_name": "dora3_s14_mountain_8023DEA4",
+      "function_sha256": "6e0b7de3f0c36979c0bc1adcbfb235a7684b3553a8f6a23124c6774cc7f8a0bd",
+      "site": "0x8023DEA4",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".level1_slot2",
+      "function": "0x8023D768",
+      "function_name": "dora3_s9_level1_8023D768",
+      "function_sha256": "d46a44db9db0300398225daf8c7c5b25dc0d3046acf3368ef152e8a3541e27e2",
+      "site": "0x8023D768",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_07",
+      "function": "0x8023D768",
+      "function_name": "dora3_s46_remaining_8023D768",
+      "function_sha256": "d46a44db9db0300398225daf8c7c5b25dc0d3046acf3368ef152e8a3541e27e2",
+      "site": "0x8023D768",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023D6E0",
+      "function_name": "dora3_s14_mountain_8023D6E0",
+      "function_sha256": "68f20f11971a5aa555a414d773d7fc04754b1667506f20abe6d374ae2c7b7a9c",
+      "site": "0x8023D6E0",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023D7D0",
+      "function_name": "dora3_s14_mountain_8023D7D0",
+      "function_sha256": "ad21fa665f00ad643b0d3674f02cc6c277c3e6d7034c3f7821a0b67bcd5ec894",
+      "site": "0x8023D7D0",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023DB44",
+      "function_name": "dora3_s14_mountain_8023DB44",
+      "function_sha256": "e0186440eaf5c3207a65cc710b72a5cbfc46048992e5ce4dd50c632e6fc9d4b4",
+      "site": "0x8023DB44",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_04",
+      "function": "0x8022EB44",
+      "function_name": "dora3_s42_remaining_8022EB44",
+      "function_sha256": "63460f384bd82a8f0798ea4fc20259a22e1954f5d9317bc12493753567ece7cc",
+      "site": "0x8022EB44",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_04",
+      "function": "0x8022EC18",
+      "function_name": "dora3_s42_remaining_8022EC18",
+      "function_sha256": "bf4e8140a9b0974369af45b98ce5ca79cc51f84f759099bbae6468d00428bddb",
+      "site": "0x8022EC18",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_04",
+      "function": "0x8022ED9C",
+      "function_name": "dora3_s42_remaining_8022ED9C",
+      "function_sha256": "8f3d4a1d0c433776a741407be3a236d22815d9f38463dd85d07f3fd18c66386d",
+      "site": "0x8022ED9C",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_04",
+      "function": "0x8022F15C",
+      "function_name": "dora3_s42_remaining_8022F15C",
+      "function_sha256": "4ca31659dd62e3f2dce73a12c6fff38a0861e488ce6e9b854e430c1ad1d5aefa",
+      "site": "0x8022F15C",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_04",
+      "function": "0x8022F680",
+      "function_name": "dora3_s42_remaining_8022F680",
+      "function_sha256": "b6225394914420046d7b9798e38e490c23a0db92fe887bc36fb714f019930af8",
+      "site": "0x8022F680",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_04",
+      "function": "0x8022F9EC",
+      "function_name": "dora3_s42_remaining_8022F9EC",
+      "function_sha256": "85e2948a0a4b4fca58f01e6e6f2fac1f0275bc3ba308ae717167a51d0e42944c",
+      "site": "0x8022F9EC",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EAE6C",
+      "function_name": "dora3_s3_core_801EAE6C",
+      "function_sha256": "2295a8f5117e7dbb335a5675bf957ca755005e14357cfaacc7b9360431eca98f",
+      "site": "0x801EAE6C",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E700",
+      "function_name": "dora3_s47_remaining_8023E700",
+      "function_sha256": "6673c1cdbd9f4872c4bb883990588aefbe79a9d82c339926e24140d5aaed69bb",
+      "site": "0x8023E700",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_02",
+      "function": "0x8022FA84",
+      "function_name": "dora3_s41_remaining_8022FA84",
+      "function_sha256": "31b95eec860ede0a63a9cd8a8b96d28da65d2c09bc2dbc885de3a49cac257e59",
+      "site": "0x8022FA84",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_02",
+      "function": "0x8022FCE8",
+      "function_name": "dora3_s41_remaining_8022FCE8",
+      "function_sha256": "664c64bb467c288ca62876119b0cdd3362ca7b192e199c8de6627b551836a2e8",
+      "site": "0x8022FCE8",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E96C",
+      "function_name": "dora3_s47_remaining_8023E96C",
+      "function_sha256": "ddec9964b8f5eae1260ccfc135f6029468e0f1a9ee913c064e5d1540ad1ee433",
+      "site": "0x8023E96C",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023EBD8",
+      "function_name": "dora3_s47_remaining_8023EBD8",
+      "function_sha256": "c5048cbea7afe421fdbea3c8ce799ca706f368783d9e0f530fe270d124454230",
+      "site": "0x8023EBD8",
+      "expected_word": "0x3C048022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".level1_slot2",
+      "function": "0x8023DB14",
+      "function_name": "dora3_s9_level1_8023DB14",
+      "function_sha256": "7c7ead3b4e1af0418c1e347f83cf8b86545a2932868cf8aa19568df915104173",
+      "site": "0x8023DB14",
+      "expected_word": "0x3C03801B",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EAF68",
+      "function_name": "dora3_s3_core_801EAF68",
+      "function_sha256": "5187a0dae7dde72cc91ee6b8ca127baa547dfc58099084101ed47d73b94a9fc6",
+      "site": "0x801EAF68",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".level1_slot2",
+      "function": "0x8023D854",
+      "function_name": "dora3_s9_level1_8023D854",
+      "function_sha256": "e0065d59cb8e6e5a85612d88a54be1f0cc2d770039e0ae9ba1b9f2e5b5cd069e",
+      "site": "0x8023D854",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EB0EC",
+      "function_name": "dora3_s3_core_801EB0EC",
+      "function_sha256": "4793bea1a5ae4b58f8329b41d8ca1e31ee9e674f7cb707509b36756811507add",
+      "site": "0x801EB0EC",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_07",
+      "function": "0x8023DD98",
+      "function_name": "dora3_s46_remaining_8023DD98",
+      "function_sha256": "15ba2e43dd4f2a89e9aae08a161bbe9a49e1b6119ea4cd2d925310267c9ec38c",
+      "site": "0x8023DD98",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_07",
+      "function": "0x8023DEA0",
+      "function_name": "dora3_s46_remaining_8023DEA0",
+      "function_sha256": "f058a9bdd8d96577119b666fbac8a3b212f184122d713644105be84a124adfe6",
+      "site": "0x8023DEA0",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_09",
+      "function": "0x8023D85C",
+      "function_name": "dora3_s48_remaining_8023D85C",
+      "function_sha256": "381d687d22f5d287309002f218be803be4df1b9df9ff9555a4497908f6e8281d",
+      "site": "0x8023D85C",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_09",
+      "function": "0x8023D938",
+      "function_name": "dora3_s48_remaining_8023D938",
+      "function_sha256": "015ce51e819147dd559bbe1a61d693fa1b11d6f05ba2ac5eebb095211f70d57b",
+      "site": "0x8023D938",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_09",
+      "function": "0x8023DCCC",
+      "function_name": "dora3_s48_remaining_8023DCCC",
+      "function_sha256": "fca2e3c2223cd1e6521f6e1a5396a6d27629ecd0800cfcab327b8d73dae002e5",
+      "site": "0x8023DCCC",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_09",
+      "function": "0x8023DF70",
+      "function_name": "dora3_s48_remaining_8023DF70",
+      "function_sha256": "a6d57b35e803b8fb9e67a9f3c1074d448c25c465d4c51ece8ea1f3741ce9eba2",
+      "site": "0x8023DF70",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_07",
+      "function": "0x8023DFF4",
+      "function_name": "dora3_s46_remaining_8023DFF4",
+      "function_sha256": "c4989f770fa86a10e8d6e3524c740e391d646ae2ace97f242b1872dcac2326ca",
+      "site": "0x8023DFF4",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_07",
+      "function": "0x8023E4A0",
+      "function_name": "dora3_s46_remaining_8023E4A0",
+      "function_sha256": "2c55f6a07c002aaca1aafb6674cee99499dd59f638c0381237af0fbdeb2ce150",
+      "site": "0x8023E4A0",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_07",
+      "function": "0x8023E7A4",
+      "function_name": "dora3_s46_remaining_8023E7A4",
+      "function_sha256": "d35c8e3196bd9d843dd6cee79eaf1ffb8726962d703921fa79162103473854a4",
+      "site": "0x8023E7A4",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023EDA4",
+      "function_name": "dora3_s12_cave_8023EDA4",
+      "function_sha256": "0605d7163ec0529d890b50e45bb3036855207fd23b6d7a515dc1e48129408dbe",
+      "site": "0x8023EDA4",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F1C8",
+      "function_name": "dora3_s12_cave_8023F1C8",
+      "function_sha256": "937c7183f5f745a2aaa67d9ddf44ca341493848d652e957eb3b802c44d0cadf7",
+      "site": "0x8023F1C8",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023ECD8",
+      "function_name": "dora3_s6_demo_8023ECD8",
+      "function_sha256": "df530e6604a1538be7d7bee44b242ce1d6fde5d3a72eb583afd04f0f59a26951",
+      "site": "0x8023ECD8",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023ED3C",
+      "function_name": "dora3_s6_demo_8023ED3C",
+      "function_sha256": "984d7888b5ab9052223584a92a8720984d5df2b5d278708086884ad3d2934ff1",
+      "site": "0x8023ED3C",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023DDF4",
+      "function_name": "dora3_s19_penguin_8023DDF4",
+      "function_sha256": "339b57a6a82effd5bcbff51de9caab8d673c0e280d7692a175cc51052d7ab74b",
+      "site": "0x8023DDF4",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023DEC4",
+      "function_name": "dora3_s19_penguin_8023DEC4",
+      "function_sha256": "27a41b531a264439e184feba4ad5ed6124314cb20d6ce7b0ece817ea10ec42ad",
+      "site": "0x8023DEC4",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023F5E4",
+      "function_name": "dora3_s47_remaining_8023F5E4",
+      "function_sha256": "4bd79c6620043218d3b29871fdcbe0d784014e5c894989038fd0b8c47279c4a7",
+      "site": "0x8023F5E4",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023F138",
+      "function_name": "dora3_s6_demo_8023F138",
+      "function_sha256": "3b990dbbe0b632cd793826daeb6ef9b92a497a8ff9c0286cc0591d3c2f5d53c4",
+      "site": "0x8023F138",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_09",
+      "function": "0x8023E178",
+      "function_name": "dora3_s48_remaining_8023E178",
+      "function_sha256": "c5a3b9698456ebc8d793ac022398e15113202bdd0243654428d229663affdef9",
+      "site": "0x8023E178",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_09",
+      "function": "0x8023E254",
+      "function_name": "dora3_s48_remaining_8023E254",
+      "function_sha256": "ba9f8be19c91e2d5fefb8af37fe6797440e7ecf4c2f3aeb7c6cfb7e3fc50c33a",
+      "site": "0x8023E254",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023F59C",
+      "function_name": "dora3_s6_demo_8023F59C",
+      "function_sha256": "2038c152eef0248ebef1842bbec88692451f652d27239029f38fbea5719d274f",
+      "site": "0x8023F59C",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023E1E8",
+      "function_name": "dora3_s14_mountain_8023E1E8",
+      "function_sha256": "24c90819b5a47c7500e43b8f768a2dfbac43b245dd47bf9afb948c9fe0660fb7",
+      "site": "0x8023E1E8",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".lake_slot2",
+      "function": "0x8023FB30",
+      "function_name": "dora3_s17_lake_8023FB30",
+      "function_sha256": "40ca4bd789c70d6ea637767fd0fde824337498dadc7036d648ae6d00f8c85ccc",
+      "site": "0x8023FB30",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_01",
+      "function": "0x8022F5BC",
+      "function_name": "dora3_s40_remaining_8022F5BC",
+      "function_sha256": "64f26d2f15d90ed3fffb5692ae4aa28fd3702424e53369710231a003b68bc7b0",
+      "site": "0x8022F5BC",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_02",
+      "function": "0x80231178",
+      "function_name": "dora3_s41_remaining_80231178",
+      "function_sha256": "f9c02d1dc68753d3bbc380028fdf4d5424abb8a9887ed2dc9c3b516f2030ee01",
+      "site": "0x80231178",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot1_02",
+      "function": "0x80231320",
+      "function_name": "dora3_s41_remaining_80231320",
+      "function_sha256": "20580872aaef9ba3369f9ba79464adfd95c66069aab61b6312b9e0d3eec719f2",
+      "site": "0x80231320",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F61C",
+      "function_name": "dora3_s12_cave_8023F61C",
+      "function_sha256": "fd0f9160e9eb59591ea56fb35bc0a9923d3d061c97c7bac1a1030e005be24296",
+      "site": "0x8023F61C",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F6AC",
+      "function_name": "dora3_s12_cave_8023F6AC",
+      "function_sha256": "4bc0999a98a1aca5d538c0cdb84122965f0a47f9cf3576c003ffdcdfb9a24b9e",
+      "site": "0x8023F6AC",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".lake_slot1",
+      "function": "0x802313E8",
+      "function_name": "dora3_s16_lake_802313E8",
+      "function_sha256": "6253f1aff65bdb924679c87f6de488a8ff3385f3cf9a206bea6ad8a646ce5a7d",
+      "site": "0x802313E8",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023E2D4",
+      "function_name": "dora3_s14_mountain_8023E2D4",
+      "function_sha256": "868accdc162697bd74ac45efe4ee236efeec4569e0372c7ae15b7d0cd6a905a0",
+      "site": "0x8023E2D4",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023FC40",
+      "function_name": "dora3_s47_remaining_8023FC40",
+      "function_sha256": "23fa9c06514e1e96346db2357b5a1edeab401aaa7f219a4e28b43e246ac1fbc1",
+      "site": "0x8023FC40",
+      "expected_word": "0x27BDFFE8",
+      "operation": "native_scene_object_callback",
+      "evidence": "Stage object FSM: actual Source counters/contact/story/clip/spawn/retire commands; Native motion/model time and explicitly reviewed geometry stores; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EAC9C",
+      "function_name": "dora3_s3_core_801EAC9C",
+      "function_sha256": "c97db7b83fd1a6b309561067038a60ee82efcc814cd32c61929e4d4238028e49",
+      "site": "0x801EACC8",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage angle store actor+10; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E95B8",
+      "function_name": "dora3_s3_core_801E95B8",
+      "function_sha256": "c5d7e9189ebe6a9fb8df967c6e14134c4aed2aa85cfd26dbff7fd6228cdfe708",
+      "site": "0x801E9654",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage angle store actor+10; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E9718",
+      "function_name": "dora3_s3_core_801E9718",
+      "function_sha256": "5bb271dd3df18e51fb31edd07089898f6e55db18bb4545c21dbf8fbe4e59eca1",
+      "site": "0x801E97F0",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage angle store actor+10; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".lake_slot1",
+      "function": "0x8022DA14",
+      "function_name": "dora3_s16_lake_8022DA14",
+      "function_sha256": "9770d6df4dfa5847f6aa0cc4340b392b1ce1658ec83d00ba6ccb533954e7e28c",
+      "site": "0x8022DD34",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage angle store actor+10; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".lake_slot1",
+      "function": "0x8022DA14",
+      "function_name": "dora3_s16_lake_8022DA14",
+      "function_sha256": "9770d6df4dfa5847f6aa0cc4340b392b1ce1658ec83d00ba6ccb533954e7e28c",
+      "site": "0x8022DEF0",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage angle store actor+10; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023DE34",
+      "function_name": "dora3_s6_demo_8023DE34",
+      "function_sha256": "dfa565c1453ad2992bd5c8a0d85317cd9cda6feaad55dc0f1ca5c48ad7bfdec9",
+      "site": "0x8023DE64",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage angle store actor+10; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023D7D0",
+      "function_name": "dora3_s14_mountain_8023D7D0",
+      "function_sha256": "ad21fa665f00ad643b0d3674f02cc6c277c3e6d7034c3f7821a0b67bcd5ec894",
+      "site": "0x8023D884",
+      "expected_word": "0xE4400014",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage angle store actor+14; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot1_04",
+      "function": "0x8022E85C",
+      "function_name": "dora3_s42_remaining_8022E85C",
+      "function_sha256": "a732a32479b00e3dc97829027b380f8a81bbec15d6822ebcd11feb89b31a7714",
+      "site": "0x8022EB1C",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage angle store actor+10; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".penguin_slot2",
+      "function": "0x8023DDF4",
+      "function_name": "dora3_s19_penguin_8023DDF4",
+      "function_sha256": "339b57a6a82effd5bcbff51de9caab8d673c0e280d7692a175cc51052d7ab74b",
+      "site": "0x8023DE30",
+      "expected_word": "0xE4400014",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage angle store actor+14; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F61C",
+      "function_name": "dora3_s12_cave_8023F61C",
+      "function_sha256": "fd0f9160e9eb59591ea56fb35bc0a9923d3d061c97c7bac1a1030e005be24296",
+      "site": "0x8023F658",
+      "expected_word": "0xE440000C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage angle store actor+C; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023EBD8",
+      "function_name": "dora3_s47_remaining_8023EBD8",
+      "function_sha256": "c5048cbea7afe421fdbea3c8ce799ca706f368783d9e0f530fe270d124454230",
+      "site": "0x8023EDA8",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage angle store actor+10; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EAB04",
+      "function_name": "dora3_s3_core_801EAB04",
+      "function_sha256": "3137987441d066d090af8496c5b730e0b86745ea78c6617481aafcff04d606dd",
+      "site": "0x801EAC2C",
+      "expected_word": "0xE4400018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+18; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EAB04",
+      "function_name": "dora3_s3_core_801EAB04",
+      "function_sha256": "3137987441d066d090af8496c5b730e0b86745ea78c6617481aafcff04d606dd",
+      "site": "0x801EAC30",
+      "expected_word": "0xE4400020",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+20; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023D7D0",
+      "function_name": "dora3_s14_mountain_8023D7D0",
+      "function_sha256": "ad21fa665f00ad643b0d3674f02cc6c277c3e6d7034c3f7821a0b67bcd5ec894",
+      "site": "0x8023D8C8",
+      "expected_word": "0xE4400018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+18; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023D7D0",
+      "function_name": "dora3_s14_mountain_8023D7D0",
+      "function_sha256": "ad21fa665f00ad643b0d3674f02cc6c277c3e6d7034c3f7821a0b67bcd5ec894",
+      "site": "0x8023D8CC",
+      "expected_word": "0xE4400020",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+20; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023D7D0",
+      "function_name": "dora3_s14_mountain_8023D7D0",
+      "function_sha256": "ad21fa665f00ad643b0d3674f02cc6c277c3e6d7034c3f7821a0b67bcd5ec894",
+      "site": "0x8023D8D4",
+      "expected_word": "0xE440001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+1C; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023DE88",
+      "function_name": "dora3_s47_remaining_8023DE88",
+      "function_sha256": "fe2a857cd725cd33b4cd655c9e480837e054e3424fbd28d0961c54cb0d2f30bb",
+      "site": "0x8023DFCC",
+      "expected_word": "0xE4800018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+18; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023DE88",
+      "function_name": "dora3_s47_remaining_8023DE88",
+      "function_sha256": "fe2a857cd725cd33b4cd655c9e480837e054e3424fbd28d0961c54cb0d2f30bb",
+      "site": "0x8023DFD0",
+      "expected_word": "0xE4800020",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+20; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023DE88",
+      "function_name": "dora3_s47_remaining_8023DE88",
+      "function_sha256": "fe2a857cd725cd33b4cd655c9e480837e054e3424fbd28d0961c54cb0d2f30bb",
+      "site": "0x8023DFD8",
+      "expected_word": "0xE480001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+1C; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E1C0",
+      "function_name": "dora3_s47_remaining_8023E1C0",
+      "function_sha256": "b6c2889faab8f5dbe1464769ffba5c817701b341896a54e015f3b93b30df8f42",
+      "site": "0x8023E230",
+      "expected_word": "0xE4400018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+18; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E1C0",
+      "function_name": "dora3_s47_remaining_8023E1C0",
+      "function_sha256": "b6c2889faab8f5dbe1464769ffba5c817701b341896a54e015f3b93b30df8f42",
+      "site": "0x8023E238",
+      "expected_word": "0xE4400020",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+20; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E1C0",
+      "function_name": "dora3_s47_remaining_8023E1C0",
+      "function_sha256": "b6c2889faab8f5dbe1464769ffba5c817701b341896a54e015f3b93b30df8f42",
+      "site": "0x8023E23C",
+      "expected_word": "0xE440001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+1C; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023F3C0",
+      "function_name": "dora3_s47_remaining_8023F3C0",
+      "function_sha256": "87926619285afeace1c8a62466227301d8f00e7e81429945c5a24bbd759f97da",
+      "site": "0x8023F544",
+      "expected_word": "0xE4400018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+18; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023F3C0",
+      "function_name": "dora3_s47_remaining_8023F3C0",
+      "function_sha256": "87926619285afeace1c8a62466227301d8f00e7e81429945c5a24bbd759f97da",
+      "site": "0x8023F548",
+      "expected_word": "0xE4400020",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+20; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023F3C0",
+      "function_name": "dora3_s47_remaining_8023F3C0",
+      "function_sha256": "87926619285afeace1c8a62466227301d8f00e7e81429945c5a24bbd759f97da",
+      "site": "0x8023F54C",
+      "expected_word": "0xE440001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store actor+1C; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".mountain_slot1",
+      "function": "0x8022ED28",
+      "function_name": "dora3_s13_mountain_8022ED28",
+      "function_sha256": "2fcdad8872750e200f0daa4858eb03d870ed9335e41c8e52dbad5602dfcedb74",
+      "site": "0x8022ED94",
+      "expected_word": "0xE4400058",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store physics+58; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".mountain_slot1",
+      "function": "0x8022EEDC",
+      "function_name": "dora3_s13_mountain_8022EEDC",
+      "function_sha256": "5f1ce7e148c7c34a5900eeb319c2c0c93d805774a68452b82afb9843b7ccc2b4",
+      "site": "0x8022EF48",
+      "expected_word": "0xE4400058",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store physics+58; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023DE04",
+      "function_name": "dora3_s14_mountain_8023DE04",
+      "function_sha256": "a1e3793dac3fb27e888015cab854e1243c0108a117006c480a67ef2f7537a2d4",
+      "site": "0x8023DE88",
+      "expected_word": "0xE4600058",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store physics+58; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot1_02",
+      "function": "0x8023126C",
+      "function_name": "dora3_s41_remaining_8023126C",
+      "function_sha256": "4054eeac1d995d0896b2f3a2a3def768ec5df052f8f9ec3961ad33b4572590fd",
+      "site": "0x802312CC",
+      "expected_word": "0xE4400058",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store physics+58; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F6AC",
+      "function_name": "dora3_s12_cave_8023F6AC",
+      "function_sha256": "4bc0999a98a1aca5d538c0cdb84122965f0a47f9cf3576c003ffdcdfb9a24b9e",
+      "site": "0x8023F98C",
+      "expected_word": "0xACE60058",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store physics+58; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E96C",
+      "function_name": "dora3_s47_remaining_8023E96C",
+      "function_sha256": "ddec9964b8f5eae1260ccfc135f6029468e0f1a9ee913c064e5d1540ad1ee433",
+      "site": "0x8023EA98",
+      "expected_word": "0xE4600058",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage linear store physics+58; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E97FC",
+      "function_name": "dora3_s3_core_801E97FC",
+      "function_sha256": "1d7bca0b94880fa8bb7efc0d0e7eb3af00e8a18ed421737647b0333731cff49b",
+      "site": "0x801E98A8",
+      "expected_word": "0xE4800018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage clamped store actor+18; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E97FC",
+      "function_name": "dora3_s3_core_801E97FC",
+      "function_sha256": "1d7bca0b94880fa8bb7efc0d0e7eb3af00e8a18ed421737647b0333731cff49b",
+      "site": "0x801E98BC",
+      "expected_word": "0xE4800018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage clamped store actor+18; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E97FC",
+      "function_name": "dora3_s3_core_801E97FC",
+      "function_sha256": "1d7bca0b94880fa8bb7efc0d0e7eb3af00e8a18ed421737647b0333731cff49b",
+      "site": "0x801E98CC",
+      "expected_word": "0xE4400020",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage clamped store actor+20; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E97FC",
+      "function_name": "dora3_s3_core_801E97FC",
+      "function_sha256": "1d7bca0b94880fa8bb7efc0d0e7eb3af00e8a18ed421737647b0333731cff49b",
+      "site": "0x801E98D0",
+      "expected_word": "0xE440001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage clamped store actor+1C; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E9DA0",
+      "function_name": "dora3_s3_core_801E9DA0",
+      "function_sha256": "3ed6e62d46f00791e10b1ae2c0c9f97780d0b2da3dc1428d74f7114a527477af",
+      "site": "0x801E9E90",
+      "expected_word": "0xE4800018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage clamped store actor+18; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E9DA0",
+      "function_name": "dora3_s3_core_801E9DA0",
+      "function_sha256": "3ed6e62d46f00791e10b1ae2c0c9f97780d0b2da3dc1428d74f7114a527477af",
+      "site": "0x801E9EA4",
+      "expected_word": "0xE4800018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage clamped store actor+18; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E9DA0",
+      "function_name": "dora3_s3_core_801E9DA0",
+      "function_sha256": "3ed6e62d46f00791e10b1ae2c0c9f97780d0b2da3dc1428d74f7114a527477af",
+      "site": "0x801E9EB4",
+      "expected_word": "0xE4400020",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage clamped store actor+20; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E9DA0",
+      "function_name": "dora3_s3_core_801E9DA0",
+      "function_sha256": "3ed6e62d46f00791e10b1ae2c0c9f97780d0b2da3dc1428d74f7114a527477af",
+      "site": "0x801E9EB8",
+      "expected_word": "0xE440001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage clamped store actor+1C; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot1_02",
+      "function": "0x8022FC38",
+      "function_name": "dora3_s41_remaining_8022FC38",
+      "function_sha256": "695b1f4d52da6785de33018114402cae0944228e820c09cedde6222ba301f10f",
+      "site": "0x8022FCD0",
+      "expected_word": "0xE4600018",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage approach store actor+18; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot1_02",
+      "function": "0x8022FC38",
+      "function_name": "dora3_s41_remaining_8022FC38",
+      "function_sha256": "695b1f4d52da6785de33018114402cae0944228e820c09cedde6222ba301f10f",
+      "site": "0x8022FCD4",
+      "expected_word": "0xE4600020",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage approach store actor+20; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".remaining_slot1_02",
+      "function": "0x8022FC38",
+      "function_name": "dora3_s41_remaining_8022FC38",
+      "function_sha256": "695b1f4d52da6785de33018114402cae0944228e820c09cedde6222ba301f10f",
+      "site": "0x8022FCD8",
+      "expected_word": "0xE460001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Reviewed stage approach store actor+1C; discrete initialization, contacts, counters and terminal setters remain Source"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EAD74",
+      "function_name": "dora3_s3_core_801EAD74",
+      "function_sha256": "961934d39120c00ec3a32212cd5c376f3289d96d5e0bc9b69c764653783d6f3e",
+      "site": "0x801EAE30",
+      "expected_word": "0xE600001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023E5A4",
+      "function_name": "dora3_s6_demo_8023E5A4",
+      "function_sha256": "19b40b9a02e2e8c502b90a69624146bfef6befbdd233bc43640e9f1e9c5e14a1",
+      "site": "0x8023E640",
+      "expected_word": "0xE60200A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023F490",
+      "function_name": "dora3_s6_demo_8023F490",
+      "function_sha256": "b12641e675d08e62b2e908b0f20bcbc5c29adaf2d1504ad5ace3774589d76a03",
+      "site": "0x8023F588",
+      "expected_word": "0xE60200A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023D6E0",
+      "function_name": "dora3_s14_mountain_8023D6E0",
+      "function_sha256": "68f20f11971a5aa555a414d773d7fc04754b1667506f20abe6d374ae2c7b7a9c",
+      "site": "0x8023D784",
+      "expected_word": "0xE60000A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "0x8023DCA4",
+      "function_name": "dora3_s14_mountain_8023DCA4",
+      "function_sha256": "d9bd14f109c812574a2e11a47d784c76bb181d273295e9a202b7192ab8d4a247",
+      "site": "0x8023DDDC",
+      "expected_word": "0xE6000058",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_07",
+      "function": "0x8023DFF4",
+      "function_name": "dora3_s46_remaining_8023DFF4",
+      "function_sha256": "c4989f770fa86a10e8d6e3524c740e391d646ae2ace97f242b1872dcac2326ca",
+      "site": "0x8023E184",
+      "expected_word": "0xE602009C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_07",
+      "function": "0x8023E5E8",
+      "function_name": "dora3_s46_remaining_8023E5E8",
+      "function_sha256": "c50f63a8848b60f6c22a7597b4db214402c6876f3571108d42e7d6383589cd97",
+      "site": "0x8023E74C",
+      "expected_word": "0xE602009C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_07",
+      "function": "0x8023E5E8",
+      "function_name": "dora3_s46_remaining_8023E5E8",
+      "function_sha256": "c50f63a8848b60f6c22a7597b4db214402c6876f3571108d42e7d6383589cd97",
+      "site": "0x8023E78C",
+      "expected_word": "0xE60200A4",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_09",
+      "function": "0x8023D788",
+      "function_name": "dora3_s48_remaining_8023D788",
+      "function_sha256": "5084388dbb388a3786e0bd6d9117301200d9b6794aab8b04a5ed7259d244ea79",
+      "site": "0x8023D848",
+      "expected_word": "0xE60200A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_09",
+      "function": "0x8023D938",
+      "function_name": "dora3_s48_remaining_8023D938",
+      "function_sha256": "015ce51e819147dd559bbe1a61d693fa1b11d6f05ba2ac5eebb095211f70d57b",
+      "site": "0x8023D9F8",
+      "expected_word": "0xE60200A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_09",
+      "function": "0x8023DCCC",
+      "function_name": "dora3_s48_remaining_8023DCCC",
+      "function_sha256": "fca2e3c2223cd1e6521f6e1a5396a6d27629ecd0800cfcab327b8d73dae002e5",
+      "site": "0x8023DD60",
+      "expected_word": "0xE60200A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_09",
+      "function": "0x8023E254",
+      "function_name": "dora3_s48_remaining_8023E254",
+      "function_sha256": "ba9f8be19c91e2d5fefb8af37fe6797440e7ecf4c2f3aeb7c6cfb7e3fc50c33a",
+      "site": "0x8023E314",
+      "expected_word": "0xE60200A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023EC68",
+      "function_name": "dora3_s12_cave_8023EC68",
+      "function_sha256": "127b259a6c2d5dd2f3632ff1ec2d6249f757098c085f27e0e3cc838e6c115fb4",
+      "site": "0x8023ED88",
+      "expected_word": "0xE44000A0",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F44C",
+      "function_name": "dora3_s12_cave_8023F44C",
+      "function_sha256": "59c2783e926a1df2bbe6e18f7b979200ff2aa3e262df6799d333e79649f6a0fc",
+      "site": "0x8023F520",
+      "expected_word": "0xE6000018",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F44C",
+      "function_name": "dora3_s12_cave_8023F44C",
+      "function_sha256": "59c2783e926a1df2bbe6e18f7b979200ff2aa3e262df6799d333e79649f6a0fc",
+      "site": "0x8023F528",
+      "expected_word": "0xE4400020",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F44C",
+      "function_name": "dora3_s12_cave_8023F44C",
+      "function_sha256": "59c2783e926a1df2bbe6e18f7b979200ff2aa3e262df6799d333e79649f6a0fc",
+      "site": "0x8023F52C",
+      "expected_word": "0xE440001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F44C",
+      "function_name": "dora3_s12_cave_8023F44C",
+      "function_sha256": "59c2783e926a1df2bbe6e18f7b979200ff2aa3e262df6799d333e79649f6a0fc",
+      "site": "0x8023F55C",
+      "expected_word": "0x0C07A273",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F6AC",
+      "function_name": "dora3_s12_cave_8023F6AC",
+      "function_sha256": "4bc0999a98a1aca5d538c0cdb84122965f0a47f9cf3576c003ffdcdfb9a24b9e",
+      "site": "0x8023F7D4",
+      "expected_word": "0xE600001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F6AC",
+      "function_name": "dora3_s12_cave_8023F6AC",
+      "function_sha256": "4bc0999a98a1aca5d538c0cdb84122965f0a47f9cf3576c003ffdcdfb9a24b9e",
+      "site": "0x8023F878",
+      "expected_word": "0xE6200018",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F6AC",
+      "function_name": "dora3_s12_cave_8023F6AC",
+      "function_sha256": "4bc0999a98a1aca5d538c0cdb84122965f0a47f9cf3576c003ffdcdfb9a24b9e",
+      "site": "0x8023F88C",
+      "expected_word": "0xE6020020",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".cave_slot2",
+      "function": "0x8023F6AC",
+      "function_name": "dora3_s12_cave_8023F6AC",
+      "function_sha256": "4bc0999a98a1aca5d538c0cdb84122965f0a47f9cf3576c003ffdcdfb9a24b9e",
+      "site": "0x8023F8BC",
+      "expected_word": "0xE602001C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023DE88",
+      "function_name": "dora3_s47_remaining_8023DE88",
+      "function_sha256": "fe2a857cd725cd33b4cd655c9e480837e054e3424fbd28d0961c54cb0d2f30bb",
+      "site": "0x8023DFF8",
+      "expected_word": "0xE4400030",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E1C0",
+      "function_name": "dora3_s47_remaining_8023E1C0",
+      "function_sha256": "b6c2889faab8f5dbe1464769ffba5c817701b341896a54e015f3b93b30df8f42",
+      "site": "0x8023E264",
+      "expected_word": "0xE4620030",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E1C0",
+      "function_name": "dora3_s47_remaining_8023E1C0",
+      "function_sha256": "b6c2889faab8f5dbe1464769ffba5c817701b341896a54e015f3b93b30df8f42",
+      "site": "0x8023E294",
+      "expected_word": "0xE4600058",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E700",
+      "function_name": "dora3_s47_remaining_8023E700",
+      "function_sha256": "6673c1cdbd9f4872c4bb883990588aefbe79a9d82c339926e24140d5aaed69bb",
+      "site": "0x8023E7B0",
+      "expected_word": "0xE6000058",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E700",
+      "function_name": "dora3_s47_remaining_8023E700",
+      "function_sha256": "6673c1cdbd9f4872c4bb883990588aefbe79a9d82c339926e24140d5aaed69bb",
+      "site": "0x8023E7D4",
+      "expected_word": "0xE480000C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023E96C",
+      "function_name": "dora3_s47_remaining_8023E96C",
+      "function_sha256": "ddec9964b8f5eae1260ccfc135f6029468e0f1a9ee913c064e5d1540ad1ee433",
+      "site": "0x8023EA70",
+      "expected_word": "0xE4800020",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "function": "0x8023F3C0",
+      "function_name": "dora3_s47_remaining_8023F3C0",
+      "function_sha256": "87926619285afeace1c8a62466227301d8f00e7e81429945c5a24bbd759f97da",
+      "site": "0x8023F518",
+      "expected_word": "0xE4640004",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact stage Source phase/scale/opacity/radius dependency; evaluate reviewed mathematical operands at Native age and preserve Source commands"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EA86C",
+      "function_name": "dora3_s3_core_801EA86C",
+      "function_sha256": "5954b9e0e062657c14abdd5dc51a98bc20c9a267edbe10b0c3d4b02a69dc6d5d",
+      "site": "0x801EA86C",
+      "expected_word": "0x3C028022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Reviewed tablet/door/light Source contact, event and model commands; door foreign-player alignment uses the real Source increments with independent target lifetime guards; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EA5D4",
+      "function_name": "dora3_s3_core_801EA5D4",
+      "function_sha256": "69040925b508d96ac7f704e78e0f9ca806d3d979c7fb4fb3cbd2868ce0930ad8",
+      "site": "0x801EA7DC",
+      "expected_word": "0xE460009C",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact EA5D4 additive foreign player store; Source four-count alignment, clip/visibility/light/event commands retained, target allocation identity guarded"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EA5D4",
+      "function_name": "dora3_s3_core_801EA5D4",
+      "function_sha256": "69040925b508d96ac7f704e78e0f9ca806d3d979c7fb4fb3cbd2868ce0930ad8",
+      "site": "0x801EA7F4",
+      "expected_word": "0xE46000A4",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact EA5D4 additive foreign player store; Source four-count alignment, clip/visibility/light/event commands retained, target allocation identity guarded"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801EA5D4",
+      "function_name": "dora3_s3_core_801EA5D4",
+      "function_sha256": "69040925b508d96ac7f704e78e0f9ca806d3d979c7fb4fb3cbd2868ce0930ad8",
+      "site": "0x801EA820",
+      "expected_word": "0xE4600010",
+      "operation": "native_enemy_equation",
+      "evidence": "Exact EA5D4 additive foreign player store; Source four-count alignment, clip/visibility/light/event commands retained, target allocation identity guarded"
+    },
+    {
+      "section": ".remaining_slot2_07",
+      "function": "0x8023D844",
+      "function_name": "dora3_s46_remaining_8023D844",
+      "function_sha256": "ffb64c8f276ff5cd032a41d3de01d8a9a2c94ab0142ddb1ffb54c908ce756845",
+      "site": "0x8023D844",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Exact per-ROM inactive dispatch or WaterDrop falling variant; bank selection is part of the constructor/update/contact identity; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".level1_slot2",
+      "function": "0x8023E0B8",
+      "function_name": "dora3_s9_level1_8023E0B8",
+      "function_sha256": "e5fe782162d9a4ec621974bb0eaa3c2480327a772b648659db8ab6470f243701",
+      "site": "0x8023E0B8",
+      "expected_word": "0x3C038022",
+      "operation": "native_scene_object_callback",
+      "evidence": "Real NobiheyaDrawer level1_slot2 Source descriptor and ROM FFF0 template; coincident Miire return-only VRAM body rejected; exact ROM callback, constructor/contact descriptor and model lifetime identity"
+    },
+    {
+      "section": ".level1_slot2",
+      "function": "0x8023E0B8",
+      "function_name": "dora3_s9_level1_8023E0B8",
+      "function_sha256": "e5fe782162d9a4ec621974bb0eaa3c2480327a772b648659db8ab6470f243701",
+      "site": "0x8023E138",
+      "expected_word": "0xE4400000",
+      "operation": "native_enemy_equation",
+      "evidence": "NobiheyaDrawer real speed-minus1 recurrence drives E7F54; zero, clip/story/screen commands and count34 remain Source"
     }
   ]
 }

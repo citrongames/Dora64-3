@@ -1,4 +1,5 @@
 #include "native_enemy.hpp"
+#include "native_scene_objects.hpp"
 #include "native_enemy_projection_math.hpp"
 #include "native_model_animation.hpp"
 #include "recomp_context_copy.hpp"
@@ -19,7 +20,7 @@ using namespace dora3::native_time;
 namespace {
 constexpr uint32_t pool=0x801734B8u;
 constexpr uint32_t stride=0xCCu;
-struct Definition {int kind;uint32_t rom,callback,contact;};
+using Definition=dora3::scene_objects::Definition;
 // Registered callback/contact closures have explicit ROM identity.
 // All218 reviewed enemy/AI owners are registered, including linked parts,
 // projectiles, seven boss families and their shared outbound effects.
@@ -243,8 +244,15 @@ constexpr std::array definitions{
     Definition{258,0x70A50,0x801E5598,0x801E5D7C},
     Definition{259,0x70A50,0x801E57C0,0x801E5D7C}
 };
-const Definition* definition(int kind) {
+const Definition* definition(int kind,uint8_t* rdram=nullptr) {
     for(const auto& v:definitions)if(v.kind==kind)return &v;
+    for(const auto& v:dora3::scene_objects::definitions) {
+        if(v.kind!=kind)continue;
+        if(!rdram)return &v;
+        if(dora3_overlay_loaded(v.rom)&&uint32_t(MEM_W(0,int32_t(0x80202064u+unsigned(kind)*84)))==v.callback&&
+           uint32_t(MEM_W(0,int32_t(0x80202068u+unsigned(kind)*84)))==v.contact&&
+           uint32_t(MEM_W(0,int32_t(0x80202060u+unsigned(kind)*84)))==v.constructor)return &v;
+    }
     return nullptr;
 }
 bool pointer(uint32_t p,unsigned size) {return !(p&3)&&p>=0x80000000u&&uint64_t(p)+size<=0x80400000ull;}
@@ -260,7 +268,7 @@ std::optional<Identity> identity(uint8_t* rdram,uint32_t actor) {
     if(!rdram||actor<pool||actor>=pool+200*stride||(actor-pool)%stride||!word(rdram,actor+0x94))return std::nullopt;
     const auto physical=uint32_t(word(rdram,actor+0x98)),model=uint32_t(word(rdram,actor+0x74));
     if(!pointer(physical,0xDC)||!pointer(model,0x84))return std::nullopt;
-    const auto kind=MEM_H(0x20,int32_t(physical));const auto* def=definition(kind);
+    const auto kind=MEM_H(0x20,int32_t(physical));const auto* def=definition(kind,rdram);
     if(!def||!dora3_overlay_loaded(def->rom)||uint32_t(word(rdram,0x80202064u+unsigned(def->kind)*84))!=def->callback||
        uint32_t(word(rdram,0x80202068u+unsigned(def->kind)*84))!=def->contact)return std::nullopt;
     const auto lifetime=game_model_animation().lifetime_token(model);if(!lifetime)return std::nullopt;
@@ -341,6 +349,14 @@ bool enemy_parent_attachment_active(uint8_t* rdram,const Identity& v) {
         (state==4&&MEM_H(0x34,int32_t(v.physical))==2);
     return (v.kind==415&&state==1)||v.kind==420||v.kind==421||v.kind==425||(v.kind==423&&state==5);
 }
+
+bool scene_parent_attachment_active(uint8_t* rdram,const Identity& v) {
+    if(v.kind==133&&v.rom==0x70A50)return word(rdram,v.actor+0x94)==1;
+    if((v.kind==527||v.kind==528)&&v.rom==0x126BA0)return true;
+    if(v.kind==564&&v.rom==0x14D4C0)return true;
+    return false;
+}
+
 // Model time advances independently. State/latch/counter/callback commands
 // invalidate a decision, while this module's own velocity/pose writes do not.
 std::vector<uint64_t> commands(uint8_t* rdram,const Identity& v) {
@@ -390,6 +406,24 @@ std::vector<uint64_t> commands(uint8_t* rdram,const Identity& v) {
             result.push_back(part?uint32_t(word(rdram,part->actor+0x94)):0);
             for(const unsigned offset:{0xD0u,0xD6u,0xD8u})result.push_back(part?uint16_t(MEM_H(int32_t(offset),int32_t(part->physical))):0);
         }
+    }
+    // NPC contacts and damage callbacks publish the common D0/D6/D8
+    // command words. A real contact can change the decision mid-period;
+    // Source-pool finalization prevents its own writes from replaying the FSM.
+    if((kind>=29&&kind<=70)||kind==78||kind==79)for(const unsigned offset:{0xD0u,0xD6u,0xD8u})
+        result.push_back(uint16_t(MEM_H(int32_t(offset),int32_t(v.physical))));
+    if(native_scene_object_kind(kind)) {
+        for(const unsigned offset:{0xD0u,0xD6u,0xD8u})result.push_back(uint16_t(MEM_H(int32_t(offset),int32_t(v.physical))));
+        for(const unsigned offset:{0x7Cu,0x80u,0x82u,0x84u,0x86u,0x88u,0x8Au,0x8Cu}) {
+            const int slot=MEM_H(int32_t(offset),int32_t(v.physical));result.push_back(uint64_t(int64_t(slot)));
+            const uint32_t linked=slot>=30&&slot<230?0x80171CD0u+unsigned(slot)*stride:0;
+            const uint32_t model=linked?uint32_t(word(rdram,linked+0x74)):0;
+            result.push_back(pointer(model,0x84)&&word(rdram,linked+0x94)?game_model_animation().lifetime_token(model):0);
+        }
+    }
+    if(kind==262) {
+        const uint32_t player=uint32_t(word(rdram,0x8021D49C));
+        result.push_back(pointer(player,0xCC)?uint32_t(word(rdram,player+0x94)):0);
     }
     if(kind==477)result.push_back(MEM_BU(0,int32_t(0x801B361Au)));
     if(kind==454) {
@@ -449,7 +483,7 @@ struct Turn {uint32_t actor=0,physical=0;float before=0,after=0;unsigned calls=0
 std::complex<double> harmonic_sum(double phase,double omega,double age,double speed,double acceleration);
 struct Period;
 std::pair<float,float> sample_period_motion(const Period& v,double age,unsigned axis);
-enum class EquationKind {frame_triangle,spatial_heading,spatial_pitch,split_sine,path_heading,folded_pitch,sine_ramp,alternating_offset,radial_axis,harmonic_accumulation,harmonic_drift_angle,approach_drift_angle,affine,positive_phase,source_abs_sine,historical_axis,linear,angle,sine,cosine,sine_angle,absolute_sine,sine_drift_angle,approach,wrapped_approach,clamped,nested_sine,nested_cosine,exponential,composed_return,forced_sine_velocity,geometric_angle,phase_sine,phase_cosine,alternating_drift};
+enum class EquationKind {cosine_angle,frame_triangle,spatial_heading,spatial_pitch,split_sine,path_heading,folded_pitch,sine_ramp,alternating_offset,radial_axis,harmonic_accumulation,harmonic_drift_angle,approach_drift_angle,affine,positive_phase,source_abs_sine,historical_axis,linear,angle,sine,cosine,sine_angle,absolute_sine,sine_drift_angle,approach,wrapped_approach,clamped,nested_sine,nested_cosine,exponential,composed_return,forced_sine_velocity,geometric_angle,phase_sine,phase_cosine,alternating_drift};
 struct Equation {
     uint32_t address;EquationKind kind;float before,after;
     double phase=0,step=0,amplitude=0,radians=0,base=0,retention=0,acceleration=0;
@@ -532,10 +566,10 @@ struct Equation {
             return float((wave<0?initial_position:base)-std::abs(wave));
         }
         if(kind==EquationKind::historical_axis)return sample_period_motion(*motion,age,motion_axis).first;
-        if(kind==EquationKind::sine||kind==EquationKind::cosine||kind==EquationKind::sine_angle) {
-            float value=float(base+amplitude*(kind==EquationKind::cosine?
+        if(kind==EquationKind::sine||kind==EquationKind::cosine||kind==EquationKind::sine_angle||kind==EquationKind::cosine_angle) {
+            float value=float(base+amplitude*((kind==EquationKind::cosine||kind==EquationKind::cosine_angle)?
                 std::cos((phase+step*age)*radians):std::sin((phase+step*age)*radians)));
-            if(kind==EquationKind::sine_angle){value=std::fmod(value,360.f);if(value<0)value+=360.f;}
+            if(kind==EquationKind::sine_angle||kind==EquationKind::cosine_angle){value=std::fmod(value,360.f);if(value<0)value+=360.f;}
             return value;
         }
         if(kind==EquationKind::sine_drift_angle) {
@@ -1153,6 +1187,20 @@ constexpr std::array additional_stores{
     Store{0xCEC60,0x80223D3C,4,true,EquationKind::angle,0},
     Store{0xCEC60,0x80224258,4,true,EquationKind::angle,0}
 };
+
+// EA5D4 writes another actor: an absolute pose equation would overwrite the
+// player's own movement. Keep only the reviewed additive Source increment.
+struct ForeignStep {
+    uint32_t actor,physical,model,offset;uint64_t lifetime;
+    float before,after,expected;double delta,applied=0,rebase=0;uint64_t start_phase=0,denominator=1;
+};
+bool foreign_identity(uint8_t* rdram,const ForeignStep& step) {
+    return uint32_t(word(rdram,0x8021D49C))==step.actor&&pointer(step.actor,0xCC)&&
+        uint32_t(word(rdram,step.actor+0x98))==step.physical&&
+        uint32_t(word(rdram,step.actor+0x74))==step.model&&word(rdram,step.actor+0x94)&&
+        game_model_animation().lifetime_token(step.model)==step.lifetime;
+}
+
 struct Period {
     Identity owner;uint64_t tick,denominator,start_phase,expected_phase,run;
     std::vector<uint64_t> command;
@@ -1169,6 +1217,8 @@ struct Period {
     // A delayed pose must retain the mathematical parent path from the time
     // of the real Source sample. Live attachment writes cannot move its origin.
     std::shared_ptr<const Period> attachment_motion{};
+    std::shared_ptr<const Period> scene_parent_motion{};
+    uint64_t scene_parent_start_phase=0;
     std::array<bool,3> attachment_axes{};
     std::array<float,3> attachment_offsets{};
     double attachment_start_age=0;
@@ -1176,6 +1226,7 @@ struct Period {
     int32_t acceleration=0;
     std::optional<Projection> projection{};
     std::optional<Equation> opacity{};
+    std::vector<ForeignStep> foreign_steps{};
     int32_t callback_opacity_flag=0;
 };
 std::array<std::optional<Period>,200> periods;
@@ -1187,12 +1238,16 @@ std::shared_ptr<const Period> immutable_motion(const Period& source) {
     motion->historical_attachment=bool(source.attachment_motion);
     if(source.parent)motion->initial_position=source.attachment_source_position;
     std::erase_if(motion->equations,[&](const auto& e){return e.address!=source.owner.actor+0x9C&&e.address!=source.owner.actor+0xA0&&e.address!=source.owner.actor+0xA4;});
-    motion->command.clear();motion->model_reads.clear();motion->opacity.reset();motion->parent.reset();motion->update=nullptr;
+    motion->scene_parent_motion.reset();motion->foreign_steps.clear();motion->command.clear();motion->model_reads.clear();motion->opacity.reset();motion->parent.reset();motion->update=nullptr;
     return motion;
 }
+struct ScenePhaseSample {Identity owner;uint64_t epoch;int32_t state;double phase;};
+std::map<std::pair<uint32_t,uint32_t>,ScenePhaseSample> scene_phase_samples;
+uint8_t scene_entry_latch=0;
 bool executing=false;
 bool attachment_only=false;
 std::vector<Equation> equations;
+std::vector<ForeignStep> foreign_steps;
 // Source scratch fields may overwrite the old visual angle with its target
 // delta. Capture that actual operand before the reviewed intermediate store.
 std::map<uint32_t,float> equation_operands;
@@ -1293,7 +1348,7 @@ class SourceParentView {
 public:
     SourceParentView(uint8_t* rdram,const Identity& child):ram(rdram) {
         const auto kind=MEM_H(0x20,int32_t(child.physical));
-        if(kind!=268&&kind!=361&&kind!=299&&kind!=273&&kind!=324&&kind!=285&&kind!=286&&kind!=292&&kind!=329&&kind!=333&&kind!=338&&kind!=349&&kind!=353&&kind!=401&&kind!=403&&kind!=405&&kind!=406&&!(child.rom==0xF8A40||child.rom==0x10DA30||child.rom==0x111E70||child.rom==0x11D570||(child.rom==0x108730&&child.kind==441)))return;
+        if(!scene_parent_attachment_active(rdram,child)&&kind!=268&&kind!=361&&kind!=299&&kind!=273&&kind!=324&&kind!=285&&kind!=286&&kind!=292&&kind!=329&&kind!=333&&kind!=338&&kind!=349&&kind!=353&&kind!=401&&kind!=403&&kind!=405&&kind!=406&&!(child.rom==0xF8A40||child.rom==0x10DA30||child.rom==0x111E70||child.rom==0x11D570||(child.rom==0x108730&&child.kind==441)))return;
         const int parent_slot=attachment_parent_slot(rdram,child);
         if(parent_slot<30||parent_slot>=230)return;
         owner=identity(rdram,0x80171CD0u+unsigned(parent_slot)*stride);
@@ -1309,7 +1364,7 @@ public:
             if(equation.address==owner->physical+0x78)publish(equation.address,equation.after);
         if(kind==349)for(unsigned axis=0;axis<3;++axis)
             publish(owner->physical+0x10+4*axis,parent.velocity[axis]);
-        if(child.rom==0xF8A40||child.rom==0x10DA30||child.rom==0x111E70||child.rom==0x11D570||(child.rom==0x108730&&child.kind==441))for(const unsigned offset:{0xCu,0x14u}) {
+        if(scene_parent_attachment_active(rdram,child)||child.rom==0xF8A40||child.rom==0x10DA30||child.rom==0x111E70||child.rom==0x11D570||(child.rom==0x108730&&child.kind==441))for(const unsigned offset:{0xCu,0x14u}) {
             publish(owner->actor+offset,parent.source_endpoint_angles[offset==0xC?0:2]);
         }
         for(unsigned axis=0;axis<2;++axis) {
@@ -1326,9 +1381,17 @@ public:
     }
 };
 }
-bool native_enemy_kind(int kind) {return definition(kind)!=nullptr;}
-bool native_enemy_owned(uint8_t* rdram,uint32_t actor) {return identity(rdram,actor).has_value();}
-void native_enemy_reset() {++epoch;periods={};delayed_heading_history={};soundorago_history.clear();vortex_trail_history.clear();boss2_ghost_history.clear();gravity.reset();turn.reset();projection.reset();equations.clear();equation_operands.clear();integer_motion_operands.clear();model_reads.clear();}
+bool native_enemy_kind(int kind) {
+    return std::any_of(definitions.begin(),definitions.end(),[&](const auto& v){return v.kind==kind;});
+}
+bool native_scene_object_kind(int kind) {
+    return std::any_of(dora3::scene_objects::definitions.begin(),dora3::scene_objects::definitions.end(),[&](const auto& v){return v.kind==kind;});
+}
+bool native_scene_object_owned(uint8_t* rdram,uint32_t actor) {
+    const auto owner=identity(rdram,actor);return owner&&native_scene_object_kind(owner->kind);
+}
+bool native_enemy_owned(uint8_t* rdram,uint32_t actor) {const auto owner=identity(rdram,actor);return owner&&native_enemy_kind(owner->kind);}
+void native_enemy_reset() {++epoch;scene_phase_samples.clear();foreign_steps.clear();periods={};delayed_heading_history={};soundorago_history.clear();vortex_trail_history.clear();boss2_ghost_history.clear();gravity.reset();turn.reset();projection.reset();equations.clear();equation_operands.clear();integer_motion_operands.clear();model_reads.clear();}
 extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,uint32_t callback,uint32_t rom,void (*update)(uint8_t*,recomp_context*)) {
     if(executing||attachment_only||!native_gameplay_preview_object_pass()||!active_simulation_slice())return 0;
     const auto actor=uint32_t(word(rdram,0x8021BDEC));const auto owner=identity(rdram,actor);
@@ -1388,9 +1451,9 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
     }
     struct CommandScope {
         bool prior=executing;uint32_t prior_model_actor;
-        CommandScope(uint32_t actor):prior_model_actor(game_model_animation().source_command_actor(actor)){executing=true;gravity.reset();turn.reset();projection.reset();equations.clear();equation_operands.clear();integer_motion_operands.clear();model_reads.clear();}
+        CommandScope(uint32_t actor,uint8_t* rdram):prior_model_actor(game_model_animation().source_command_actor(actor)){scene_entry_latch=MEM_BU(0x28,word(rdram,actor+0x98));executing=true;foreign_steps.clear();gravity.reset();turn.reset();projection.reset();equations.clear();equation_operands.clear();integer_motion_operands.clear();model_reads.clear();}
         ~CommandScope(){game_model_animation().source_command_actor(prior_model_actor);executing=prior;command_slice.reset();}
-    } command_scope(actor);
+    } command_scope(actor,rdram);
     command_slice=slice;
     // The complete real FSM runs once, preserving wait/RNG/clip/sound/spawn/
     // damage/retirement order. Recursion re-enters the untouched Original body.
@@ -1427,6 +1490,11 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
         value.initial_yaw[axis]=continuous?before_yaw[axis]:proposal;value.turn[axis]=continuous?step:0;value.proposal_yaw[axis]=proposal;
         value.expected_yaw[axis]=value.initial_yaw[axis];put(rdram,address,value.expected_yaw[axis]);
     }
+
+    for(const auto& step:foreign_steps)if(foreign_identity(rdram,step)&&
+        std::bit_cast<int32_t>(step.after)==word(rdram,step.actor+step.offset)) {
+        value.foreign_steps.push_back(step);value.foreign_steps.back().rebase=step.before;value.foreign_steps.back().start_phase=slice.phase;value.foreign_steps.back().denominator=slice.denominator;put(rdram,step.actor+step.offset,step.before);
+    }
     for(const auto& equation:equations)if(std::bit_cast<int32_t>(equation.after)==word(rdram,equation.address)) {
         // Direct floor/initialization writes have already run. Only the final
         // actual mathematical store receives its fractional continuation.
@@ -1449,6 +1517,15 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
             value.opacity->step=double(published)-previous->opacity->after;
         } else if((kind==403||kind==281||kind==311||kind==313||kind==361)&&std::bit_cast<int32_t>(published)==std::bit_cast<int32_t>(equation.before)) {
             value.opacity=Equation{after->model+0x78,EquationKind::linear,published,published};
+        }
+    }
+    if(kind==260||kind==582)for(const auto& equation:value.equations)if(equation.address==after->model+0x78) {
+        value.opacity=equation;
+    }
+    if(kind==66||kind==67||kind==493||kind==494||kind==515||kind==516||kind==517||kind==520||kind==540||kind==581||kind==583) {
+        for(const auto& equation:value.equations)if(equation.address==after->physical+0x58&&
+            std::bit_cast<int32_t>(equation.after)==word(rdram,after->model+0x78)) {
+            value.opacity=equation;value.opacity->address=after->model+0x78;
         }
     }
     if(kind==257||kind==258) {
@@ -1486,6 +1563,11 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
         const int parent_slot=attachment_parent_slot(rdram,*after);
         if(attachment_executed&&parent_slot>=30&&parent_slot<230)value.parent=identity(rdram,0x80171CD0u+unsigned(parent_slot)*stride);
     }
+
+    if(scene_parent_attachment_active(rdram,*after)) {
+        const int parent_slot=MEM_H(0x7C,int32_t(after->physical));
+        if(parent_slot>=30&&parent_slot<230)value.parent=identity(rdram,0x80171CD0u+unsigned(parent_slot)*stride);
+    }
     value.attachment_source_position=value.initial_position;
     for(unsigned axis=0;axis<3;++axis) {
         float initial=value.initial_position[axis];
@@ -1497,6 +1579,34 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
         float proposed=field==1?value.proposal_yaw[0]:field==3?value.proposal_yaw[1]:real(rdram,address);
         for(const auto& equation:value.equations)if(equation.address==address)proposed=equation.after;
         value.source_endpoint_angles[field]=proposed;
+    }
+
+    if(value.parent&&scene_parent_attachment_active(rdram,*after)) {
+        const auto& parent=periods[index(value.parent->actor)];
+        if(parent&&same(parent->owner,*value.parent)) {
+            // Earlier parents have this period's equation; later parents
+            // retain the preceding Source period, exactly as the pool reads.
+            // Preserve operands (including roll), never completed pose pairs.
+            auto motion=std::make_shared<Period>(*parent);
+            motion->command.clear();motion->model_reads.clear();motion->foreign_steps.clear();
+            motion->opacity.reset();motion->parent.reset();motion->update=nullptr;
+            value.scene_parent_motion=std::move(motion);
+        } else {
+            // The first Source visit of a child before its parent reads an
+            // unmoved pose. It cannot follow that parent's future first step.
+            auto motion=std::make_shared<Period>(Period{*value.parent,slice.tick,slice.denominator,slice.phase,slice.phase,0,{}});
+            for(unsigned axis=0;axis<3;++axis)motion->initial_position[axis]=real(rdram,value.parent->actor+0x9C+4*axis);
+            motion->initial_yaw=motion->proposal_yaw={real(rdram,value.parent->actor+0x10),real(rdram,value.parent->physical+4)};
+            motion->source_endpoint_angles={real(rdram,value.parent->actor+0xC),real(rdram,value.parent->actor+0x10),real(rdram,value.parent->actor+0x14),real(rdram,value.parent->physical+4)};
+            value.scene_parent_motion=std::move(motion);
+        }
+        value.scene_parent_start_phase=slice.phase;
+        if(kind==527) {
+            const bool earlier=value.parent->actor<actor;
+            const float source_y=earlier&&parent&&same(parent->owner,*value.parent)?
+                parent->source_endpoint_position[1]:real(rdram,value.parent->actor+0xA0);
+            value.attachment_offsets[1]=value.attachment_source_position[1]-source_y;
+        }
     }
     if(value.parent&&value.parent->actor<actor) {
         const auto state=word(rdram,actor+0x94);
@@ -1601,10 +1711,279 @@ extern "C" void dora3_native_enemy_projection(uint8_t* rdram,recomp_context* ctx
         value.pitch[axis],value.radians[axis],value.proposal[axis],xyz,value.scalar_equation[axis],
         value.heading_equation[axis],value.pitch_equation[axis]});
 }
+
+// NPC motion stores are separate from enemy AI. Every row corresponds to a
+// reviewed ROM instruction, never to an observed small numerical delta.
+struct SceneStore {
+    uint32_t rom,site,offset;bool physical;EquationKind kind;unsigned operand;
+    uint32_t coefficient=0;double target=0;uint32_t copy_from=0;
+};
+constexpr std::array scene_stores{
+    SceneStore{0x1456C0,0x8022DDA0,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1456C0,0x8022E6BC,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1456C0,0x8022F1A0,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1456C0,0x8022FC08,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1456C0,0x80230400,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1456C0,0x80230AE0,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1456C0,0x802310F0,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1456C0,0x80231688,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1456C0,0x8023215C,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1456C0,0x8022E430,0x4,true,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1456C0,0x8022F97C,0x4,true,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1456C0,0x802325F0,0x4,true,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1456C0,0x8022E434,0x10,false,EquationKind::angle,0,0x0,0,0x4},
+    SceneStore{0x1456C0,0x8022F980,0x10,false,EquationKind::angle,0,0x0,0,0x4},
+    SceneStore{0x1398A0,0x80231190,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1398A0,0x80232070,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1398A0,0x802327FC,0x4,true,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1398A0,0x802328B8,0x4,true,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x154A90,0x8023E18C,0x4,true,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x154A90,0x8023E5C0,0x4,true,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x154A90,0x8023E420,0x0,true,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x1561E0,0x8023FEEC,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x1561E0,0x80240144,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x154A90,0x8023E780,0x18,false,EquationKind::approach,4,0x8023EDE0,0.5,0x0},
+    SceneStore{0x154A90,0x8023E784,0x20,false,EquationKind::approach,4,0x8023EDE0,0.5,0x18},
+    SceneStore{0x154A90,0x8023E788,0x1C,false,EquationKind::approach,2,0x8023EDD8,3,0x0},
+    SceneStore{0x154A90,0x8023EBC4,0x18,false,EquationKind::approach,4,0x8023EE18,0.5,0x0},
+    SceneStore{0x154A90,0x8023EBC8,0x20,false,EquationKind::approach,4,0x8023EE18,0.5,0x18},
+    SceneStore{0x154A90,0x8023EBCC,0x1C,false,EquationKind::approach,2,0x8023EE10,3,0x0},
+    SceneStore{0x154A90,0x8023E7A8,0x58,true,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x154A90,0x8023EBEC,0x58,true,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x14D4C0,0x8023DA50,0x18,false,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x14D4C0,0x8023DA58,0x20,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x14D4C0,0x8023DA5C,0x1C,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x14D4C0,0x8023DC60,0x18,false,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x14D4C0,0x8023DC68,0x20,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x14D4C0,0x8023DC6C,0x1C,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x70A50,0x801EACC8,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x70A50,0x801E9654,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x70A50,0x801E97F0,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x129A30,0x8022DD34,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x129A30,0x8022DEF0,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x14D4C0,0x8023DE64,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x14FD20,0x8023D884,0x14,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x126BA0,0x8022EB1C,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x154A90,0x8023DE30,0x14,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x150C60,0x8023F658,0xC,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x15A960,0x8023EDA8,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    SceneStore{0x70A50,0x801EAC2C,0x18,false,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x70A50,0x801EAC30,0x20,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x14FD20,0x8023D8C8,0x18,false,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x14FD20,0x8023D8CC,0x20,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x14FD20,0x8023D8D4,0x1C,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x15A960,0x8023DFCC,0x18,false,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x15A960,0x8023DFD0,0x20,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x15A960,0x8023DFD8,0x1C,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x15A960,0x8023E230,0x18,false,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x15A960,0x8023E238,0x20,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x15A960,0x8023E23C,0x1C,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x15A960,0x8023F544,0x18,false,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x15A960,0x8023F548,0x20,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x15A960,0x8023F54C,0x1C,false,EquationKind::linear,0,0x0,0,0x18},
+    SceneStore{0x125180,0x8022ED94,0x58,true,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x125180,0x8022EF48,0x58,true,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x14FD20,0x8023DE88,0x58,true,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x121280,0x802312CC,0x58,true,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x150C60,0x8023F98C,0x58,true,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x15A960,0x8023EA98,0x58,true,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x15A960,0x8023E294,0x58,true,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x15E440,0x8023E138,0x0,true,EquationKind::linear,0,0x0,0,0x0},
+    SceneStore{0x70A50,0x801E98A8,0x18,false,EquationKind::clamped,0,0x0,.1,0x0},
+    SceneStore{0x70A50,0x801E98BC,0x18,false,EquationKind::clamped,0,0x0,.1,0x0},
+    SceneStore{0x70A50,0x801E98CC,0x20,false,EquationKind::clamped,0,0x0,.1,0x18},
+    SceneStore{0x70A50,0x801E98D0,0x1C,false,EquationKind::clamped,0,0x0,.1,0x18},
+    SceneStore{0x70A50,0x801E9E90,0x18,false,EquationKind::clamped,0,0x0,.1,0x0},
+    SceneStore{0x70A50,0x801E9EA4,0x18,false,EquationKind::clamped,0,0x0,.1,0x0},
+    SceneStore{0x70A50,0x801E9EB4,0x20,false,EquationKind::clamped,0,0x0,.1,0x18},
+    SceneStore{0x70A50,0x801E9EB8,0x1C,false,EquationKind::clamped,0,0x0,.1,0x18},
+    SceneStore{0x121280,0x8022FCD0,0x18,false,EquationKind::approach,0,0x802315B0,1.8,0x0},
+    SceneStore{0x121280,0x8022FCD4,0x20,false,EquationKind::approach,0,0x802315B0,1.8,0x18},
+    SceneStore{0x121280,0x8022FCD8,0x1C,false,EquationKind::approach,0,0x802315B0,1.8,0x18},
+};
+std::optional<Equation> scene_equation(uint8_t* rdram,recomp_context* ctx,const Identity& owner,uint32_t site) {
+    const auto actor=owner.actor,physical=owner.physical;
+    const auto captured=[&](uint32_t address,float proposal)->const Equation* {
+        const auto found=std::find_if(equations.rbegin(),equations.rend(),[&](const auto& e){
+            return e.address==address&&std::bit_cast<int32_t>(e.after)==std::bit_cast<int32_t>(proposal);
+        });
+        return found==equations.rend()?nullptr:&*found;
+    };
+    if(owner.rom==0x70A50&&owner.kind==260&&site==0x801E596C) {
+        const float proposal=std::bit_cast<float>(uint32_t(ctx->r6));
+        Equation value{owner.model+0x78,EquationKind::linear,std::min(proposal+.1f,1.f),proposal};
+        value.step=double(value.after)-value.before;return value;
+    }
+    if(owner.rom==0x1456C0&&site==0x802310F0) {
+        const float before=angle(float(MEM_H(0x34,int32_t(physical))-1+90));
+        Equation value{actor+0x10,EquationKind::angle,before,ctx->f0.fl};
+        value.step=1;return value;
+    }
+
+    const auto phase_step=[&](uint32_t key,double current,double stride)->double {
+        const auto identity_key=std::pair{actor,key};
+        const auto found=scene_phase_samples.find(identity_key);
+        double step=!scene_entry_latch&&current==stride?stride:0;
+        if(found!=scene_phase_samples.end()&&same(found->second.owner,owner)&&found->second.epoch==epoch&&
+           found->second.state==word(rdram,actor+0x94)&&scene_entry_latch) {
+            const double delta=std::remainder(current-found->second.phase,360.);
+            // A Source wait holds its phase. A reset/seek starts immediately,
+            // while the reviewed stride alone receives continuation.
+            step=delta==0?0:std::abs(delta-stride)<1e-8?stride:0;
+        } else if(!scene_entry_latch&&current==0)step=0;
+        scene_phase_samples.insert_or_assign(identity_key,ScenePhaseSample{owner,epoch,word(rdram,actor+0x94),current});
+        return step;
+    };
+    const auto wave=[&](uint32_t address,EquationKind kind,float proposal,unsigned phase_offset,double stride,
+                        double base,double amplitude,uint32_t radians,uint32_t key)->Equation {
+        const double current=MEM_H(int32_t(phase_offset),int32_t(physical));
+        Equation value{address,kind,0,proposal};value.step=phase_step(key,current,stride);
+        value.phase=current-value.step;value.base=base;value.amplitude=amplitude;value.radians=rom_double(rdram,radians);
+        value.before=value.evaluate(0);return value;
+    };
+    if(owner.rom==0x70A50&&site==0x801EAE30)
+        return wave(actor+0x1C,EquationKind::sine,ctx->f0.fl,0x34,5,0,1,0x80211688,site);
+    if(owner.rom==0x14D4C0&&site==0x8023E640)
+        return wave(actor+0xA0,EquationKind::cosine,ctx->f2.fl,0x34,3,725,-475,0x8023FF18,site);
+    if(owner.rom==0x14D4C0&&site==0x8023F588) {
+        const double radius=real(rdram,physical+0x58);
+        return wave(actor+0xA0,EquationKind::sine,ctx->f2.fl,0x34,4,
+            float(MEM_H(0xC0,int32_t(physical)))+float(radius),radius,0x8023FF28,site);
+    }
+    if(owner.rom==0x14FD20&&site==0x8023D784)
+        return wave(actor+0xA0,EquationKind::sine,ctx->f0.fl,0x34,3,real(rdram,physical+0x58),770,0x8023E5D0,site);
+    if(owner.rom==0x14FD20&&site==0x8023DDDC)
+        return wave(physical+0x58,EquationKind::absolute_sine,ctx->f0.fl,0x34,5,
+            rom_double(rdram,0x8023E5F0),rom_double(rdram,0x8023E5E8),0x8023E5E0,site);
+    if(owner.rom==0x159780&&site==0x8023E184) {
+        auto value=wave(actor+0x9C,EquationKind::harmonic_accumulation,ctx->f2.fl,0x34,10,
+            0,real(rdram,physical+0x58),0x8023E898,site);
+        value.before=real(rdram,actor+0x9C);return value;
+    }
+    if(owner.rom==0x159780&&(site==0x8023E74C||site==0x8023E78C)) {
+        const bool x=site==0x8023E74C;
+        return wave(actor+(x?0x9C:0xA4),EquationKind::sine,ctx->f2.fl,0x34,2,
+            real(rdram,physical+(x?0x60:0x64)),real(rdram,physical+(x?0x58:0x5C)),0x8023E8A8,site);
+    }
+    if(owner.rom==0x15D430&&(site==0x8023D848||site==0x8023D9F8||site==0x8023DD60||site==0x8023E314)) {
+        const bool pause=site==0x8023DD60,third=site==0x8023E314;
+        const uint32_t radians=site==0x8023D848?0x8023E6C0:site==0x8023D9F8?0x8023E6C8:pause?0x8023E6D0:0x8023E6D8;
+        return wave(actor+0xA0,EquationKind::sine,ctx->f2.fl,0x34,pause||third?3:5,
+            pause?-400:third?-650:-550,pause?350:third?400:150,radians,site);
+    }
+    if(owner.rom==0x150C60&&site==0x8023ED88) {
+        const auto anchor=MEM_H(0xC0,int32_t(physical));const double factor=rom_double(rdram,0x8023FBA0);
+        const float rounded_base=float(double(anchor)*factor+rom_double(rdram,0x8023FBA8));
+        return wave(actor+0xA0,EquationKind::sine,ctx->f0.fl,0x34,3,double(rounded_base)-50,
+            double(anchor+50)*factor,0x8023FBB0,site);
+    }
+    if(owner.rom==0x150C60&&(site==0x8023F520||site==0x8023F528||site==0x8023F52C||site==0x8023F55C)) {
+        if(site==0x8023F520)return wave(actor+0x18,EquationKind::sine,ctx->f0.fl,0x36,5,.5,.5,0x8023FBB8,site);
+        if(site==0x8023F55C)return wave(owner.model+0x78,EquationKind::cosine,
+            std::bit_cast<float>(uint32_t(ctx->r6)),0x36,5,0,1,0x8023FBB8,site);
+        if(const auto scale=captured(actor+0x18,ctx->f0.fl)){auto value=*scale;value.address=actor+(site==0x8023F528?0x20:0x1C);return value;}
+    }
+    if(owner.rom==0x150C60&&(site==0x8023F7D4||site==0x8023F878||site==0x8023F88C||site==0x8023F8BC)) {
+        if(site==0x8023F7D4)return wave(actor+0x1C,EquationKind::sine,ctx->f0.fl,0x36,10,0,
+            rom_double(rdram,0x8023FBC8),0x8023FBC0,site);
+        if(site==0x8023F878)return wave(actor+0x18,EquationKind::sine,ctx->f0.fl,0x36,5,0,2,0x8023FBD0,site);
+        if(site==0x8023F8BC)return wave(actor+0x1C,EquationKind::cosine,ctx->f2.fl,0x36,5,.5,1,0x8023FBD0,site);
+        if(const auto scale=captured(actor+0x18,ctx->f2.fl)){auto value=*scale;value.address=actor+0x20;return value;}
+    }
+    if(owner.rom==0x15A960&&(site==0x8023E7B0||site==0x8023E7D4))
+        return wave(site==0x8023E7B0?physical+0x58:actor+0xC,
+            site==0x8023E7B0?EquationKind::cosine:EquationKind::cosine_angle,ctx->f0.fl,0x36,9,
+            site==0x8023E7B0?0:315,site==0x8023E7B0?45:-45,0x8023FF58,site);
+    if(owner.rom==0x15A960&&site==0x8023F518) {
+        const double current=MEM_H(0x34,int32_t(physical));
+        Equation value{physical+4,EquationKind::sine_angle,0,ctx->f4.fl};value.step=phase_step(site,current,25);
+        value.phase=current-value.step;value.radians=rom_double(rdram,0x8023FF68);
+        value.base=real(rdram,physical+0x58);value.amplitude=40;value.before=value.evaluate(0);return value;
+    }
+    if(owner.rom==0x15A960&&site==0x8023EA70) {
+        const double decrease=rom_double(rdram,0x8023FF60),phase=MEM_H(0x38,int32_t(physical));
+        Equation value{actor+0x20,EquationKind::alternating_offset,real(rdram,actor+0x20),ctx->f0.fl};
+        value.phase=phase-1;value.base=1;value.amplitude=-(double(real(rdram,physical+0x58))+decrease);value.acceleration=decrease;
+        return value;
+    }
+    if(owner.rom==0x15A960&&(site==0x8023DFF8||site==0x8023E264)) {
+        const auto scale=std::find_if(equations.rbegin(),equations.rend(),[&](const auto& e){return e.address==actor+0x18;});
+        if(scale!=equations.rend()) {Equation value{physical+0x30,EquationKind::affine,0,ctx->f0.fl};
+            value.upstream=std::make_shared<Equation>(*scale);value.amplitude=2;value.before=value.evaluate(0);
+            value.after=site==0x8023E264?ctx->f2.fl:ctx->f0.fl;return value;}
+    }
+
+    const auto table=std::find_if(scene_stores.begin(),scene_stores.end(),[&](const auto& s){return s.rom==owner.rom&&s.site==site;});
+    if(table!=scene_stores.end()) {
+        const auto& s=*table;const uint32_t address=(s.physical?physical:actor)+s.offset;
+        const float proposal=s.operand==4?ctx->f4.fl:s.operand==2?ctx->f2.fl:ctx->f0.fl;
+        if(s.copy_from) {
+            const auto source=captured((s.kind==EquationKind::angle?physical:actor)+s.copy_from,proposal);
+            if(!source)return std::nullopt;
+            auto value=*source;value.address=address;return value;
+        }
+        Equation value{address,s.kind,real(rdram,address),proposal};
+        if(s.kind==EquationKind::clamped) {
+            const auto prior=std::find_if(equations.rbegin(),equations.rend(),[&](const auto& e){return e.address==address&&e.kind==EquationKind::clamped;});
+            if(prior!=equations.rend()) {value=*prior;value.after=proposal;return value;}
+            value.phase=value.before;value.step=double(proposal)-value.before;
+            value.clamp_min=s.target;value.clamp_max=std::max(double(value.before),s.target);return value;
+        }
+        if(s.kind==EquationKind::approach) {value.base=s.target;value.retention=1-rom_double(rdram,s.coefficient);}
+        else value.step=s.kind==EquationKind::angle?std::remainder(double(proposal)-value.before,360.):double(proposal)-value.before;
+        return value;
+    }
+    if(owner.rom==0x1456C0&&(site==0x80231080||site==0x802310C0||site==0x80231168||site==0x80231974)) {
+        // Fly resets XYZ to the spawn anchor before its radius800 orbit and
+        // independent amplitude30 bob. Fuyuu's takeoff uses absolute400*sin.
+        const bool x=site==0x80231080,z=site==0x802310C0,takeoff=site==0x80231974;
+        const unsigned axis=x?0:z?2:1;
+        Equation value{actor+0x9C+4*axis,z?EquationKind::cosine:EquationKind::sine,0,takeoff?ctx->f0.fl:ctx->f2.fl};
+        value.step=x||z?1:takeoff?3:15;
+        value.phase=double(MEM_H(x||z?0x34:0x36,int32_t(physical)))-value.step;
+        value.radians=rom_double(rdram,takeoff?0x80234E38:0x802347C8);
+        value.amplitude=x||z?800:takeoff?400:30;
+        value.base=takeoff?0:double(MEM_H(int32_t(0xBE + 2*axis),int32_t(physical)));
+        value.before=value.evaluate(0);return value;
+    }
+    if(owner.rom==0x1561E0&&site==0x802402D0) {
+        Equation value{actor+0xA0,EquationKind::sine,0,ctx->f2.fl};
+        value.phase=double(MEM_H(0x42,int32_t(physical)))-10;value.step=10;
+        value.base=MEM_H(0xC0,int32_t(physical));value.amplitude=10;value.radians=rom_double(rdram,0x80240C60);
+        value.before=value.evaluate(0);return value;
+    }
+    if(owner.rom==0x14D4C0&&(site==0x8023DA68||site==0x8023DC70)) {
+        if(const auto scale=captured(actor+0x18,ctx->f2.fl)) {
+            auto value=*scale;value.address=physical+0x30;return value;
+        }
+    }
+    return std::nullopt;
+}
+
 extern "C" void dora3_native_enemy_equation(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
     if(!executing)return;
     const auto actor=uint32_t(word(rdram,0x8021BDEC));const auto owner=identity(rdram,actor);if(!owner)return;
+
+    if(owner->rom==0x70A50&&owner->kind==109&&(site==0x801EA7DC||site==0x801EA7F4||site==0x801EA820)) {
+        const uint32_t player=uint32_t(word(rdram,0x8021D49C));
+        if(!pointer(player,0xCC)||!word(rdram,player+0x94))return;
+        const uint32_t physical=uint32_t(word(rdram,player+0x98)),model=uint32_t(word(rdram,player+0x74));
+        if(!pointer(physical,0xDC)||!pointer(model,0x84))return;
+        const auto lifetime=game_model_animation().lifetime_token(model);if(!lifetime)return;
+        const uint32_t offset=site==0x801EA7DC?0x9C:site==0x801EA7F4?0xA4:0x10;
+        const float before=real(rdram,player+offset),proposal=ctx->f0.fl;
+        if(!std::isfinite(before)||!std::isfinite(proposal))return;
+        foreign_steps.push_back({player,physical,model,offset,lifetime,before,proposal,before,double(proposal)-before});
+        return;
+    }
     const auto physical=owner->physical;Equation value{};
+    if(native_scene_object_kind(owner->kind)) {
+        if(const auto captured=scene_equation(rdram,ctx,*owner,site)) {
+            std::erase_if(equations,[&](const auto& old){return old.address==captured->address;});
+            equations.push_back(*captured);
+        }
+        return;
+    }
     if(owner->rom==0xDFC40&&(owner->kind==287||owner->kind==289)) {
         // Only these exact SH3E stores are arithmetic height operands. The
         // short stays Source-owned; Native evaluates its dependent Y geometry.
@@ -3744,7 +4123,23 @@ int native_enemy_axis(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
     if(!same(v.owner,*owner)||v.tick!=slice.tick||v.denominator!=slice.denominator)return 0;
     const unsigned axis=site==0x801E8E00?0:site==0x801E8E10?1:2;
     const double age=double(slice.phase+slice.numerator-v.start_phase)/double(slice.denominator);
+
     if(axis==0) {
+        for(auto& step:v.foreign_steps)if(foreign_identity(rdram,step)) {
+            const float actual=real(rdram,step.actor+step.offset);
+            if(!std::isfinite(actual))continue;
+            const bool uninterrupted=std::bit_cast<int32_t>(actual)==std::bit_cast<int32_t>(step.expected);
+            const double foreign_age=double(slice.phase+slice.numerator-step.start_phase)/step.denominator;
+            const float next=uninterrupted?(foreign_age==1?step.after:float(step.rebase+step.delta*foreign_age)):
+                float(double(actual)+step.delta*(foreign_age-step.applied));
+            if(!uninterrupted) {
+                // Rebase the remaining additive displacement after a genuine
+                // player physics/teleport write; do not restore a saved pose.
+                step.rebase=double(actual)-step.delta*step.applied;
+                step.after=float(step.rebase+step.delta);
+            }
+            put(rdram,step.actor+step.offset,next);step.expected=next;step.applied=foreign_age;
+        }
         for(const auto& equation:v.equations)put(rdram,equation.address,equation.evaluate(age));
         if(v.opacity) {
             const auto alpha=v.opacity->evaluate(age);put(rdram,owner->model+0x78,alpha);
@@ -3753,6 +4148,74 @@ int native_enemy_axis(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
             v.opacity->expected=alpha;
         }
         const auto kind=MEM_H(0x20,int32_t(owner->physical));
+        if(owner->rom==0x70A50&&kind==261) {
+            // E5A94 copies the player XYZ cached at the start of this pool
+            // pass. Re-publish only that geometry on Native parts; the real
+            // clip selection/end/destruction commands remain once per period.
+            constexpr std::array<uint32_t,3> cached_player{0x8021BDE8,0x8021BDF4,0x8021BCE0};
+            for(unsigned j=0;j<3;++j) {
+                v.initial_position[j]=real(rdram,cached_player[j]);
+                put(rdram,actor+0x9C+4*j,v.initial_position[j]);
+            }
+        }
+
+
+        // Native attachment consumes the same Source-order parent path.
+        // Restoring temporary fields is guarded against genuine guest writes.
+        struct SceneParentPose {
+            uint8_t* ram;std::optional<Identity> owner;
+            struct Field {uint32_t address;int32_t saved,published;};
+            std::vector<Field> fields;
+            void publish(uint32_t address,float value) {
+                uint8_t* rdram=ram;const auto bits=std::bit_cast<int32_t>(value);
+                fields.push_back({address,word(rdram,address),bits});MEM_W(0,int32_t(address))=bits;
+            }
+            SceneParentPose(uint8_t* rdram,const Period& child,double age):ram(rdram) {
+                if(!child.parent||!child.scene_parent_motion)return;
+                owner=identity(rdram,child.parent->actor);
+                if(!owner||!same(*owner,*child.parent)||!same(child.scene_parent_motion->owner,*owner)){owner.reset();return;}
+                const auto& path=*child.scene_parent_motion;
+                for(unsigned axis=0;axis<3;++axis)publish(owner->actor+0x9C+4*axis,sample_period_motion(path,age,axis).first);
+                for(unsigned field=0;field<4;++field) {
+                    const uint32_t address=field==3?owner->physical+4:owner->actor+0xC+4*field;
+                    float value=field==1?(age==1?path.proposal_yaw[0]:path.turn[0]==0?path.initial_yaw[0]:angle(float(double(path.initial_yaw[0])+path.turn[0]*age))):
+                        field==3?(age==1?path.proposal_yaw[1]:path.turn[1]==0?path.initial_yaw[1]:angle(float(double(path.initial_yaw[1])+path.turn[1]*age))):path.source_endpoint_angles[field];
+                    for(const auto& equation:path.equations)if(equation.address==address)value=equation.evaluate(age);
+                    publish(address,value);
+                }
+            }
+            ~SceneParentPose() {
+                if(!owner)return;
+                const auto current=identity(ram,owner->actor);
+                if(!current||!same(*current,*owner))return;
+                uint8_t* rdram=ram;
+                for(const auto& field:fields)if(word(rdram,field.address)==field.published)MEM_W(0,int32_t(field.address))=field.saved;
+            }
+        } scene_parent_pose(rdram,v,double(slice.phase+slice.numerator-v.scene_parent_start_phase)/slice.denominator);
+        if(v.parent&&scene_parent_attachment_active(rdram,*owner)&&
+           MEM_H(0x7C,int32_t(owner->physical))==int((v.parent->actor-0x80171CD0u)/stride))
+        if(const auto parent=identity(rdram,v.parent->actor);parent&&same(*parent,*v.parent)) {
+            if(kind==133) {
+                for(unsigned j=0;j<3;++j) {
+                    const float offset=j==1?(MEM_H(0x7E,int32_t(owner->physical))?300.f:150.f):0;
+                    v.initial_position[j]=float(real(rdram,parent->actor+0x9C+4*j)+offset);
+                    put(rdram,actor+0x9C+4*j,v.initial_position[j]);
+                }
+            } else if(kind==527) {
+                v.initial_position[1]=float(real(rdram,parent->actor+0xA0)+v.attachment_offsets[1]);
+                put(rdram,actor+0xA0,v.initial_position[1]);
+            } else if(kind==528) {
+                const float heading=real(rdram,parent->actor+0x10);
+                put(rdram,actor+0x10,heading);v.initial_yaw[0]=v.proposal_yaw[0]=heading;v.turn[0]=0;
+            } else if(kind==564) {
+                // ED3C after its initialized latch is pure Original roll +
+                // translation matrix geometry, with four real local anchors.
+                recomp_context pose;dora3::copy_recomp_context(pose,*ctx);
+                struct PoseOnly {PoseOnly(){attachment_only=true;}~PoseOnly(){attachment_only=false;}} pose_only;
+                {SimulationSuspension source;v.update(rdram,&pose);}
+                for(unsigned j=0;j<3;++j)v.initial_position[j]=real(rdram,actor+0x9C+4*j);
+            }
+        }
         if(v.parent&&((((kind==268||kind==299||kind==292||kind==333)&&MEM_H(0x36,int32_t(owner->physical))==0)||((kind==273||kind==324||kind==285||kind==286)&&word(rdram,actor+0x94)==1)||(kind==329&&word(rdram,actor+0x94)==1&&MEM_H(0x34,int32_t(owner->physical))==0))||((kind==361||kind==338||kind==349||kind==353||kind==405)&&word(rdram,actor+0x94)==1)||(kind==401&&word(rdram,actor+0x94)!=10)||(kind==403&&(word(rdram,actor+0x94)==1||
             (word(rdram,actor+0x94)==10&&MEM_H(0x34,int32_t(owner->physical))==0)))||enemy_parent_attachment_active(rdram,*owner))&&
            attachment_parent_slot(rdram,*owner)==int((v.parent->actor-0x80171CD0u)/stride))
@@ -3889,5 +4352,14 @@ void native_enemy_motion_end(uint8_t* rdram,uint32_t actor) {
 }
 extern "C" int dora3_native_enemy_blink_skip(uint8_t* rdram) {
     return native_gameplay_preview_object_pass()&&active_simulation_slice()&&!active_simulation_slice()->ends_tick()&&
-        native_enemy_owned(rdram,uint32_t(word(rdram,0x8021BDEC)));
+        (native_enemy_owned(rdram,uint32_t(word(rdram,0x8021BDEC)))||native_scene_object_owned(rdram,uint32_t(word(rdram,0x8021BDEC))));
+}
+
+// Objects share the proven once-per-Source-period command engine and its
+// lifetime/epoch guards. Their eligibility and ROM registry remain separate
+// from enemy AI; Original and unreviewed scene owners take their normal path.
+extern "C" int dora3_native_scene_object_callback(uint8_t* rdram,recomp_context* ctx,uint32_t callback,uint32_t rom,void (*update)(uint8_t*,recomp_context*)) {
+    const auto actor=uint32_t(word(rdram,0x8021BDEC));
+    if(!native_scene_object_owned(rdram,actor))return 0;
+    return dora3_native_enemy_callback(rdram,ctx,callback,rom,update);
 }

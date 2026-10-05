@@ -2756,7 +2756,349 @@
 | `created_minicar_r18` | `ctx->r18` | Результат E6968, живой actor MiniCar до восстановления s2 | 1 |
 | `created_npc_actor_r16` | `ctx->r16` | Allocated actor returned by descriptor construction, including the checked null-allocation path | 8 |
 | `created_npc_physics_r18` | `ctx->r18` | Physics record of the successfully created actor | 8 |
+| `current_actor_a0_801E5ACC` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_8022DA20` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_8022E130` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_8022EA10` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_8022FA18` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_802305F4` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_80230DC4` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_80231B70` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_80231D6C` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_802323CC` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_80232840` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_8023D848` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_8023D89C` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_8023E190` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_8023E5E4` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a0_8023E7C8` | `ctx->r4` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a1_801EA59C` | `ctx->r5` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a1_801EAACC` | `ctx->r5` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a1_8022FBD4` | `ctx->r5` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a1_8023DAB0` | `ctx->r5` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a1_8023DE60` | `ctx->r5` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_a1_8023EFFC` | `ctx->r5` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_801EAE20` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_8022F1E4` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_80231058` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_8023109C` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_80231140` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_8023D754` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_8023D998` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_8023DD04` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_8023E150` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_8023E2B4` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_8023E860` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_8023EC6C` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_8023F7A8` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_8023F868` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s0_80240274` | `ctx->r16` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_s1_8023F854` | `ctx->r17` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_801E590C` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_801E94AC` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_801E96E8` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_801EA0AC` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_801EA144` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_801EACC0` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022DAD8` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022E154` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022E210` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022E82C` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022ED48` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022ED78` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022EEE8` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022F220` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022F340` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022F650` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022F75C` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022F824` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022F900` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8022FD08` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_80230630` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_80230660` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_80230BC0` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_80231BAC` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_80231BF0` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_80231D90` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_80232150` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_80232458` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_80232864` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023D710` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023D7F4` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023D894` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023D9AC` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023DBE4` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023DE28` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023DF18` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023DFCC` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023DFF4` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023E0D4` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023E378` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023E39C` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023E9E0` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023EA14` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023EC10` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023ECEC` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023ED84` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023EDA4` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023EE10` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023EEA8` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023EF64` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023F650` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023F8D4` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v0_8023FC54` | `ctx->r2` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_801E92D0` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_801E99E0` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_801EA2A0` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8022EDC8` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8022F848` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8022F8C0` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023000C` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_80230C84` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_80230FC0` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023128C` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_80232330` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023D9FC` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023DE00` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023DEDC` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023DF3C` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023DFB4` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023E174` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023E354` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023E544` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023E798` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023E834` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023EC34` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023ECAC` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023F628` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_actor_v1_8023FCD8` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
 | `current_heading_f12` | `ctx->f12` | Входной current angle до перезаписи f12 целевым углом | 1 |
+| `current_physics_a0_801E92C8` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_801E99E8` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_801EA058` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_801EA2A8` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8022DAE0` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8022E218` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8022EEF0` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8022F764` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8022F7F4` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8022F890` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8022FA40` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8022FBE8` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_80230668` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_80230FB4` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_80231BF8` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_80232460` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023D828` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023DA04` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023DD5C` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023DEE4` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023DEF8` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023DF84` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023E17C` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023E54C` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023E83C` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023E9B4` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023EBDC` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023EC7C` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023EF7C` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a0_8023F7CC` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a1_8022ED04` | `ctx->r5` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a1_8022EDEC` | `ctx->r5` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a1_8022EE98` | `ctx->r5` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a1_8023E4F4` | `ctx->r5` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a3_8022ECC0` | `ctx->r7` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_a3_8023F710` | `ctx->r7` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_s0_8023E05C` | `ctx->r16` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_s0_8023E734` | `ctx->r16` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_801E592C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_801E99FC` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_801EA03C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_801EA0E0` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_801EA2B8` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_801EA594` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_801EAAC4` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_801EADB0` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_801EADBC` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_801EAE18` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_801EB4D4` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022DA54` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022E16C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022E7C4` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022E860` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022E9F8` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022EC3C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022EC70` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022EC98` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022ED8C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022EDA0` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022EDBC` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022EE28` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022EE68` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022EEC4` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022F66C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022F6A8` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022F6D8` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022F718` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022F738` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022F8C0` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022F940` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022F970` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022FA10` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022FA64` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8022FD3C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80230030` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023006C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_802300B0` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80230610` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80230BF4` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80230CA8` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80230CE0` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80230D44` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80230DA4` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80230DAC` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80230DC8` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80230FA4` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80231048` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80231138` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80231B8C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80231E28` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80231E58` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80231E88` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80231EA8` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80232184` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_80232344` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023D724` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023D7E4` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023D894` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023D8BC` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023D90C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023D954` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023D960` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 2 |
+| `current_physics_v0_8023D96C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023DCF4` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023DD30` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023DD9C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023DE74` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023DEE8` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023DF50` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E034` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E040` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E064` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E094` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E0B0` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E0DC` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E0F8` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 2 |
+| `current_physics_v0_8023E148` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E164` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E27C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E288` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E4C4` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E4E4` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E518` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E594` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E728` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E7AC` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E808` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E990` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023E9B8` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023ED2C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023ED5C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023ED68` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023ED74` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023EDF8` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023EFC0` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023F068` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023F198` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023F1C0` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023F28C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023F298` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023F380` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023F6E8` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023F708` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023F7A0` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023F84C` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v0_8023F994` | `ctx->r2` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801E52D8` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801E58E4` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801E5904` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801E59A0` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801E5A98` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801E5C30` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801E92E8` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801E94C8` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801E9704` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801EA004` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801EA118` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801EAD78` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_801EAE70` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8022E840` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8022E9AC` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8022EC1C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8022F330` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8022F9F0` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8022FA8C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_80230134` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_80230D60` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_80230F4C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_802310EC` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023D6E4` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023D708` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023D778` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023D7D4` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023D804` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023D848` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023D8FC` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023D934` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023D93C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023D990` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023D9C4` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023DAC4` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023DCD0` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023DD64` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023DDC0` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023DE60` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023DE88` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023DEC8` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023DF04` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023DF0C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023DF64` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023DFBC` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023DFF8` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E0BC` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E0CC` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E0DC` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E188` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E19C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E258` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E2AC` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E2D8` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E38C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E43C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E4C4` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E5CC` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E704` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E7D0` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E970` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023E9E4` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023EA04` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023EA18` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023EA50` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023EA6C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023EAC4` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023EB1C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023ED40` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023EE00` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023EF20` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023EF6C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023F26C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023F2E8` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023F3AC` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023F6B0` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023F8B8` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8023F91C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_80240238` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
+| `current_physics_v1_8024026C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
 | `derorin_actor_r16_8022FF44` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `derorin_actor_r16_8022FFAC` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `derorin_actor_r16_8022FFE4` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -4045,6 +4387,122 @@
 | `room_transition_mode_r3` | `ctx->r3` | Исходный request mode после загрузки; выбор ветки до calls, меняющих caller-saved регистры | 1 |
 | `room_transition_pending_phase_r16` | `ctx->r16` | Загруженная исходная стадия pending request; далее s0 переиспользуется для другой роли | 1 |
 | `room_transition_requested_id_r3` | `ctx->r3` | ID комнаты из descriptor для проверки диапазона и вычисления смещения таблицы | 1 |
+| `scene_alpha_or_amplitude_proposal_f0_8022ED94` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_alpha_or_amplitude_proposal_f0_8022EF48` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_alpha_or_amplitude_proposal_f0_802312CC` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_alpha_or_amplitude_proposal_f0_8023DDDC` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_alpha_or_amplitude_proposal_f0_8023DE88` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_alpha_or_amplitude_proposal_f0_8023E294` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_alpha_or_amplitude_proposal_f0_8023E7A8` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_alpha_or_amplitude_proposal_f0_8023E7B0` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_alpha_or_amplitude_proposal_f0_8023EA98` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_alpha_or_amplitude_proposal_f0_8023EBEC` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_heading_proposal_f0_8022E430` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_heading_proposal_f0_8022F97C` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_heading_proposal_f0_802325F0` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_heading_proposal_f0_802327FC` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_heading_proposal_f0_802328B8` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_heading_proposal_f0_8023E18C` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_heading_proposal_f0_8023E5C0` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_heading_proposal_f4_8023F518` | `ctx->f4` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_pitch_proposal_f0_8023E7D4` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_pitch_proposal_f0_8023F658` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_radius_proposal_f0_8023DFF8` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_radius_proposal_f2_8023DA68` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_radius_proposal_f2_8023DC70` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_radius_proposal_f2_8023E264` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_roll_or_velocity_proposal_f0_8023D884` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_roll_or_velocity_proposal_f0_8023DE30` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_801E98A8` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_801E98BC` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_801E9E90` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_801E9EA4` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_801EAC2C` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_8022FCD0` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_8023D8C8` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_8023DA50` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_8023DC60` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_8023DFCC` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_8023E230` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_8023F520` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_8023F544` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f0_8023F878` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f4_8023E780` | `ctx->f4` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_or_velocity_proposal_f4_8023EBC4` | `ctx->f4` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f0_801E98D0` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f0_801E9EB8` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f0_801EAE30` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f0_8022FCD8` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f0_8023D8D4` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f0_8023DA5C` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f0_8023DC6C` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f0_8023DFD8` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f0_8023E23C` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f0_8023F52C` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f0_8023F54C` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f0_8023F7D4` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f2_8023E788` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f2_8023EBCC` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_y_proposal_f2_8023F8BC` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f0_801E98CC` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f0_801E9EB4` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f0_801EAC30` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f0_8022FCD4` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f0_8023D8CC` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f0_8023DA58` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f0_8023DC68` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f0_8023DFD0` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f0_8023E238` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f0_8023EA70` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f0_8023F528` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f0_8023F548` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f2_8023F88C` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f4_8023E784` | `ctx->f4` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_scale_z_proposal_f4_8023EBC8` | `ctx->f4` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_speed_proposal_f0_8023E138` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_speed_proposal_f0_8023E420` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_x_proposal_f0_801EA7DC` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_x_proposal_f2_80231080` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_x_proposal_f2_8023E184` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_x_proposal_f2_8023E74C` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_y_proposal_f0_80231974` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_y_proposal_f0_8023D784` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_y_proposal_f0_8023ED88` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_y_proposal_f2_80231168` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_y_proposal_f2_8023D848` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_y_proposal_f2_8023D9F8` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_y_proposal_f2_8023DD60` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_y_proposal_f2_8023E314` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_y_proposal_f2_8023E640` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_y_proposal_f2_8023F588` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_y_proposal_f2_802402D0` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_z_proposal_f0_801EA7F4` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_z_proposal_f2_802310C0` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_world_z_proposal_f2_8023E78C` | `ctx->f2` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_801E9654` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_801E97F0` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_801EA820` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_801EACC8` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8022DD34` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8022DDA0` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8022DEF0` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8022E434` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8022E6BC` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8022EB1C` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8022F1A0` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8022F980` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8022FC08` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_80230400` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_80230AE0` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_802310F0` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_80231190` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_80231688` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_80232070` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8023215C` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8023DE64` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8023EDA8` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_8023FEEC` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
+| `scene_yaw_or_velocity_proposal_f0_80240144` | `ctx->f0` | Final Source arithmetic proposal at this exact ROM store. Discrete reset, contact, init and terminal setters keep their own Source semantics. | 1 |
 | `script_camera_control_r16` | `ctx->r16` | Текущий camera control stride1B8 до восстановления s0. | 1 |
 | `script_camera_output_r17` | `ctx->r17` | Output camera stride34 после смены роли индекса s1. | 1 |
 | `script_motion_control_r4` | `ctx->r4` | Control записи движения/камеры; точное storage исходного a0, без замены register ABI. | 11 |

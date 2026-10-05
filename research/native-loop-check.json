@@ -1,6 +1,6 @@
 {
   "scope": "Original game loop/update/dispatcher/full graphics build/draw/submit with real common coordinator; synthetic scheduler/VI/input/sound/present endpoints; no renderer",
-  "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 270 native white-fade builds with 240 distinct alpha values; 76 discrete updates, 1085 native builds, 3 Original builds, 232 VI events; no GPU",
+  "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 270 native white-fade builds with 238 distinct alpha values; 76 discrete updates, 1085 native builds, 3 Original builds, 232 VI events; no GPU",
   "sanitizers": "ASan/LSan",
   "source_sha256": {
     "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
@@ -11,8 +11,8 @@
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "src/native_model_animation.cpp": "913de72cc75acb46ece90e9fc9c668f279e5ada81bf41192866624b639b6a1d7",
     "src/native_game_loop.cpp": "aa027cf1706fa22facc21cba72913183f292f530c0a215428c591118b6e85d65",
-    "src/native_gameplay_preview.cpp": "f37fcb8708a3e65981af3fa4bca1bc31a213433a0b73b521f9bb62302bfb4312",
-    "src/native_enemy.cpp": "a762c309fb5f42d9761477e4445a6ab136376b5fa67527cd398157469bcfd7ab",
+    "src/native_gameplay_preview.cpp": "e25b8e14cc5cfbb92e5bfff7fd0d27532eaf6a11ef532a12c4988bd2aa38657a",
+    "src/native_enemy.cpp": "aac71b3e4be7b62a53e94c749fd89b0a86d1ac83f251734c2dfa409e344352f1",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_scene_policy.cpp": "15170625b065fcd9d3604173ddcfebecf4d7314b960c36c1f9f71c164038127d",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
@@ -27,10 +27,10 @@
     "src/native_scene_policy.hpp": "54fbae50b42fbaa5faf12f7cd9bd13aebabdbae495231a615e8c6fd670a3f70c",
     "src/native_frame_session.hpp": "fdc799da001be3c6653126beacb987ce3811ba6f1cc5eeac5922e539089f8e83",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
-    "tools/generate_startup.py": "98a7f482369446981292db1add1d01f9430838d9e080b5fc780d75cd1a10ad11",
+    "tools/generate_startup.py": "1c73c4b4fe91b8ced86d98df9dd9425d23a45c119aff61f09f451d218c73a8f0",
     "tools/check_native_loop.py": "897f28ab53de650edb8f69e67dd76e855aedb608cfb48f474b5e3e5fc91d207e"
   },
-  "generation_receipt_sha256": "262f1d8c8678c23d35453750671417bf12553d81ff1c6ece6d380ff925129c70",
+  "generation_receipt_sha256": "3f7da824a41c4f6a4f87811d703eb19f61ba9e1b93ad74fb34805ec0cb8229db",
   "original_functions": [
     "dora3_color_buffer_setup",
     "dora3_depth_buffer_clear",
