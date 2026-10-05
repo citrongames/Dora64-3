@@ -1,0 +1,15 @@
+{
+  "result": "PASS: cache hit, real included-header/seed/flag invalidation, concurrent-edit guard, settings mismatch, corrupt log/binary/record rejection, real subprocess failure and incomplete group rejection",
+  "elapsed_seconds": 1.451,
+  "no_game_oracle_executed": true,
+  "no_game_gpu": true,
+  "source_sha256": {
+    "tools/native_oracle_cache.py": "e551a0b1ee7871f3258426a8e23a09ad0c11cc11de4fc95f88e9a5934de7984c",
+    "tools/check_native_oracle_cache.py": "17a07696d52817328478d2fbbf443e88846a5c8992ec4cdb9d3fd615e8ee437d",
+    "tools/check_native_player_update_partitions.py": "4189a9e60709fb0a7ff281817b669607cdc13413e44ba77dffd8457faec028cf"
+  },
+  "diagnostic_directory": "build-local/oracle-cache-guards-r0capoxk",
+  "limitations": [
+    "Mini C++ fixture tests orchestration/cache safety only; gameplay proofs remain the actual completed043 reports"
+  ]
+}

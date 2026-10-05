@@ -4788,3 +4788,15 @@ Fixture после96 сравниваемых ticks вызывает насто�
 Прямого fake free нет, assertion полного возврата heap/models/refs сохранён.
 Этот дополнительный tail проверяет Source cleanup; не считается проверкой
 Native death animation. Остальные типы/сценарии не изменяются.
+
+
+## Сокращение повторного дорогого player/world прогона
+
+Перед043 полный player/world PASS занял5008.47 секунды; все28 checks PASS.
+Добавлен точный compiler/header/generated-code/seed/toolchain cache четырёх
+завершённых групп. Повторная проверка тех же входов и сохранённых результатов
+занимает около10 секунд без нового runtime replay. Ошибка/повреждение/изменение
+dependency запрещает reuse. Холодный прогон при новых player/world зависимостях
+остаётся дорогим; сокращение его длительности не заявлено. Runtime/fixture043
+не изменены, старые actual CPU/Windows proofs сохранены. Документ:
+docs/native-test-execution.md. Cache safety проверена короткой отдельной fixture.

@@ -1,0 +1,175 @@
+{
+  "result": "PASS: exact-input completed cache covers all24 settings; no compilation or oracle re-execution",
+  "inputs_sha256": "dff47145687d8067379591f9d4d9afdf92e4872df80301d494b570049b1069db",
+  "total_settings": 24,
+  "elapsed_seconds": 9.232,
+  "groups": [
+    {
+      "group": {
+        "id": 0,
+        "camera_mode": 12,
+        "source_divider": 2,
+        "native_fps": [
+          60,
+          73,
+          120,
+          144,
+          165,
+          360
+        ]
+      },
+      "inputs_sha256": "dff47145687d8067379591f9d4d9afdf92e4872df80301d494b570049b1069db",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 4126.21,
+      "completed_utc": "2026-10-05T03:11:18.570800+00:00",
+      "producer": {
+        "execution": "retained_completed_043",
+        "runner_sha256": "e5daee33931f4dedacd81d816f9d8d23ede570faa53d6627039c50a2410fd15f",
+        "generation_receipt_sha256": "45e04bee0660b4e5776e71a1d8283e72e9b69a0f2eba885e435018c36e2ff6c7",
+        "full_report_sha256": "41e790f2f8b84e6b8a91aeec191db95cbb9903b0bdba14359cf78df0e35384ba",
+        "full_prebuild_sha256": "ddf313982c0fc2b54f43857a8f0d5e4ec8cf251b0f27fc3a1bb18767ed9b5b75",
+        "source_commit": "38f53fb74dd9862a91931f23935cc92400665e51",
+        "completed_snapshot_sha256": "f1a3b6c12c7ed458b12ea3001df2c5d1c5d3e8d1c0c79f448074ab5f1c2f7200",
+        "cache_import": "Byte-identical existing generated inputs; all project dependencies match actual completed CPU proofs; pinned dependencies clean; system/compiler files predate the executed binary"
+      },
+      "artifacts_sha256": {
+        "check": "6d74fa568268c40d4d413d0ceba5e1a9613661109119e7937618b1e823b15f83",
+        "stdout.log": "d269170f6c64f89b95e306d28ab34d6eb5604f244f071bf4f6fb2d629491f198",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "inputs.json": "f4a315a69e17ed2acdf7aa52470e640178b35366cae7c8a42176de6aecf15498"
+      },
+      "reused": true,
+      "cache_record": "/home/vova/projects/DoraRecomp3/build-local/native-player-oracle-cache/dff47145687d8067379591f9d4d9afdf92e4872df80301d494b570049b1069db/group-0/attempt-e2eae1e29ee7492ca6cc4199b177deda/record.json"
+    },
+    {
+      "group": {
+        "id": 1,
+        "camera_mode": 12,
+        "source_divider": 3,
+        "native_fps": [
+          60,
+          73,
+          120,
+          144,
+          165,
+          360
+        ]
+      },
+      "inputs_sha256": "dff47145687d8067379591f9d4d9afdf92e4872df80301d494b570049b1069db",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 4707.67,
+      "completed_utc": "2026-10-05T03:11:18.716237+00:00",
+      "producer": {
+        "execution": "retained_completed_043",
+        "runner_sha256": "e5daee33931f4dedacd81d816f9d8d23ede570faa53d6627039c50a2410fd15f",
+        "generation_receipt_sha256": "45e04bee0660b4e5776e71a1d8283e72e9b69a0f2eba885e435018c36e2ff6c7",
+        "full_report_sha256": "41e790f2f8b84e6b8a91aeec191db95cbb9903b0bdba14359cf78df0e35384ba",
+        "full_prebuild_sha256": "ddf313982c0fc2b54f43857a8f0d5e4ec8cf251b0f27fc3a1bb18767ed9b5b75",
+        "source_commit": "38f53fb74dd9862a91931f23935cc92400665e51",
+        "completed_snapshot_sha256": "f1a3b6c12c7ed458b12ea3001df2c5d1c5d3e8d1c0c79f448074ab5f1c2f7200",
+        "cache_import": "Byte-identical existing generated inputs; all project dependencies match actual completed CPU proofs; pinned dependencies clean; system/compiler files predate the executed binary"
+      },
+      "artifacts_sha256": {
+        "check": "6d74fa568268c40d4d413d0ceba5e1a9613661109119e7937618b1e823b15f83",
+        "stdout.log": "9218bdcbc9be651be06f27bf69f841f4a0d75848922cbea92a525b619c300b52",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "inputs.json": "f4a315a69e17ed2acdf7aa52470e640178b35366cae7c8a42176de6aecf15498"
+      },
+      "reused": true,
+      "cache_record": "/home/vova/projects/DoraRecomp3/build-local/native-player-oracle-cache/dff47145687d8067379591f9d4d9afdf92e4872df80301d494b570049b1069db/group-1/attempt-e2c5d4d2fbb142a188da1f8387d1bea5/record.json"
+    },
+    {
+      "group": {
+        "id": 2,
+        "camera_mode": 2,
+        "source_divider": 2,
+        "native_fps": [
+          60,
+          73,
+          120,
+          144,
+          165,
+          360
+        ]
+      },
+      "inputs_sha256": "dff47145687d8067379591f9d4d9afdf92e4872df80301d494b570049b1069db",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 4096.51,
+      "completed_utc": "2026-10-05T03:11:18.868727+00:00",
+      "producer": {
+        "execution": "retained_completed_043",
+        "runner_sha256": "e5daee33931f4dedacd81d816f9d8d23ede570faa53d6627039c50a2410fd15f",
+        "generation_receipt_sha256": "45e04bee0660b4e5776e71a1d8283e72e9b69a0f2eba885e435018c36e2ff6c7",
+        "full_report_sha256": "41e790f2f8b84e6b8a91aeec191db95cbb9903b0bdba14359cf78df0e35384ba",
+        "full_prebuild_sha256": "ddf313982c0fc2b54f43857a8f0d5e4ec8cf251b0f27fc3a1bb18767ed9b5b75",
+        "source_commit": "38f53fb74dd9862a91931f23935cc92400665e51",
+        "completed_snapshot_sha256": "f1a3b6c12c7ed458b12ea3001df2c5d1c5d3e8d1c0c79f448074ab5f1c2f7200",
+        "cache_import": "Byte-identical existing generated inputs; all project dependencies match actual completed CPU proofs; pinned dependencies clean; system/compiler files predate the executed binary"
+      },
+      "artifacts_sha256": {
+        "check": "6d74fa568268c40d4d413d0ceba5e1a9613661109119e7937618b1e823b15f83",
+        "stdout.log": "d269170f6c64f89b95e306d28ab34d6eb5604f244f071bf4f6fb2d629491f198",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "inputs.json": "f4a315a69e17ed2acdf7aa52470e640178b35366cae7c8a42176de6aecf15498"
+      },
+      "reused": true,
+      "cache_record": "/home/vova/projects/DoraRecomp3/build-local/native-player-oracle-cache/dff47145687d8067379591f9d4d9afdf92e4872df80301d494b570049b1069db/group-2/attempt-e5b3162631324e6094a45d5f54aebb03/record.json"
+    },
+    {
+      "group": {
+        "id": 3,
+        "camera_mode": 2,
+        "source_divider": 3,
+        "native_fps": [
+          60,
+          73,
+          120,
+          144,
+          165,
+          360
+        ]
+      },
+      "inputs_sha256": "dff47145687d8067379591f9d4d9afdf92e4872df80301d494b570049b1069db",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 4762.7,
+      "completed_utc": "2026-10-05T03:11:19.022275+00:00",
+      "producer": {
+        "execution": "retained_completed_043",
+        "runner_sha256": "e5daee33931f4dedacd81d816f9d8d23ede570faa53d6627039c50a2410fd15f",
+        "generation_receipt_sha256": "45e04bee0660b4e5776e71a1d8283e72e9b69a0f2eba885e435018c36e2ff6c7",
+        "full_report_sha256": "41e790f2f8b84e6b8a91aeec191db95cbb9903b0bdba14359cf78df0e35384ba",
+        "full_prebuild_sha256": "ddf313982c0fc2b54f43857a8f0d5e4ec8cf251b0f27fc3a1bb18767ed9b5b75",
+        "source_commit": "38f53fb74dd9862a91931f23935cc92400665e51",
+        "completed_snapshot_sha256": "f1a3b6c12c7ed458b12ea3001df2c5d1c5d3e8d1c0c79f448074ab5f1c2f7200",
+        "cache_import": "Byte-identical existing generated inputs; all project dependencies match actual completed CPU proofs; pinned dependencies clean; system/compiler files predate the executed binary"
+      },
+      "artifacts_sha256": {
+        "check": "6d74fa568268c40d4d413d0ceba5e1a9613661109119e7937618b1e823b15f83",
+        "stdout.log": "9218bdcbc9be651be06f27bf69f841f4a0d75848922cbea92a525b619c300b52",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "inputs.json": "f4a315a69e17ed2acdf7aa52470e640178b35366cae7c8a42176de6aecf15498"
+      },
+      "reused": true,
+      "cache_record": "/home/vova/projects/DoraRecomp3/build-local/native-player-oracle-cache/dff47145687d8067379591f9d4d9afdf92e4872df80301d494b570049b1069db/group-3/attempt-48d1c6e5d73741a180ed85a3cf400d3c/record.json"
+    }
+  ],
+  "retained_summary": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 1008 actual slot09 constructors; 5088 slot09 Source schedules; 720 slot09 Native schedules; 576 slot09 rejections; 34464 slot09 frozen189 comparisons; 31624 slot09 intermediate yaw samples; 3192 common NPC B schedules; 1152 actual city constructor/profile/Original comparisons; 2304 story100 Source schedules; 1152 story100 Native edge schedules; 768 story100 ownership rejections; 15360 story100 Original full-RAM/context/heap/resource/command/model-count comparisons; 768 special200/201 Source schedules; 192 special200/201 Native edge schedules; 96 special200/201 ownership rejections; 5280 special200/201 Original full-RAM/context/heap/resource/command/model-count comparisons; 288 dense Original special counter samples; 4608 city dialogue actual contact-producer Original comparisons; 3072 city dialogue Source schedules; 2304 city dialogue Native edge schedules; 384 city dialogue overlay rejections; 19712 city dialogue intermediate yaw samples; 20736 city dialogue Original full-RAM/context/heap/resource/command comparisons; 48 linked actual descriptor construction/attachment/retirement schedules; 1008 linked Source schedules; 720 linked Native schedules; 288 linked ownership rejections; 308 linked intermediate yaw samples; 6768 linked Original full-RAM/context/heap/resource/command comparisons; 384 linked actual contact-producer Original comparisons; 1536 city patrol Source schedules; 1152 city patrol Native schedules; 192 city patrol overlay rejections; 1232 city intermediate position samples; 11904 city Original full-RAM/context/command comparisons; 864 dialogue75/76/77 Source outcome/bob/turn/contact/birth schedules; 144 dialogue Native pause/reentry/rebind/write schedules; 72 dialogue overlay rejection schedules; 1032 dialogue signed return/wrap intermediate yaw samples; 288 city7/9 Source projection/sprite/contact/dialogue/delay/event/retirement schedules; 96 city Native off-grid schedules; 48 city overlay-identity rejection schedules; 96 simple object Source schedules; 96 simple object Native off-grid schedules; 1152 orbital Source/contact/birth/moving-target/AI-resume schedules; 480 orbital Native pause/rebind/recreation/write/state schedules; 1376 orbital intermediate signed return/wrap yaw samples; 144 off-grid surface constructor/reentry/model-rebind/yaw/exit Native schedules; 216 full surface60..62 producer/spin/exit/kick/orientation Source schedules; 96 connected door59 pause/camera/fade/room-request Source schedules; 1392 connected lethal32..49/death50..56/respawn Source/body/fade/scene/real-model-retirement schedules; 144 six-character post-ready67/Ground/new-model reacquisition schedules; 192 healthy hover49/63 Source count/control/exit/landing schedules; 144 Native hover off-grid recovery schedules; 192 Native constructor/idle/complete special64/67 recovery schedules; 216 Source special64/67 character frame commands/clip/cancel/surface recovery schedules; 144 Native off-grid special command/stop/turn/write/rebind schedules; 264 Source special65/66 stop/turn/cancellation schedules; 48 recovery31 scalar stop/clip/return Source schedules; 48 waiting46/47 count/kick/yaw/recovery Source schedules; 96 hazard40..45 delay/kick/fall/collapse/rise/recovery Source schedules; 48 airborne ground damage kick/fall/collapse/rise/recovery Source schedules; 336 Native real damage/health/rumble/complete recovery partition schedules; 48 heavy damage kick/counter/fall/collapse/rise/recovery Source schedules; 48 ground damage kick/landing/recovery/cooldown Source schedules; 48 healthy flight damage speed/orientation/clip/return schedules; 24 Native off-grid flight A/stick partition schedules; 24 held-B four-shot flight repeat/release/lifetime schedules; 96 Native flight weapon press/release/birth/trajectory/retirement schedules; 192 flight weapon9/10 and charge11/12 full Source pool schedules; 96 whole-player flight Source speed/orientation/collision/animation/A-transition/RNG schedules; 24 full original ground/jump/fall/landing and 48 reversal/braking dispatcher/input/drive/contact/model-clip/pose schedules; 168 flight/pause/hit/real-newborn/lifetime schedules; 72 growth/spin/fade schedules against Original at every source tick; 72 ballistic/countdown/real five-link-chain schedules; 24 real four-phase/rebind/opacity/lifetime schedules; 24 bounce/real conversion/complete child lifetimes; 384 homing clocks/real impact/retirement schedules; 48 real charge/attachment/radius/opacity/conversion/retirement schedules; 48 live player-producer birth/initial commands/zero-time clock/lifetime schedules; 120 interaction free/capture/seek/spawn/drag/retirement schedules and Original quarter-interval capture geometry; 48 interaction live births including same-address captured NPC recreation; 192 real charge weapon action/B-entry/shot/complete lifetime schedules; 96 Native B-edge exact shot and birth-relative charge lifetime schedules; 48 held B four-shot repeat/release/full retirement schedules; 432 Native press/release moving-weapon trigger/initial-age/complete resource lifetimes; 864 moving weapon action/shot/full pool Source endpoint/complete child lifetime schedules; 216 terminal-effect lifetimes/retirements against unpatched Original and 912 full-RAM common-world Original comparisons; both source rates at 60/73/120/144/165/360 FPS; single held-button jump and landing, one transition per reversal state, free-bank pose restoration, source-time counters/sounds, legacy player suppression, coupled native props/source-owned AI command timestamps, opacity/blink/real flipbook cadence, contact-list preservation and context preservation; no game/GPU.",
+  "source_sha256": {
+    "tools/check_native_player_update_partitions.py": "4189a9e60709fb0a7ff281817b669607cdc13413e44ba77dffd8457faec028cf",
+    "tools/native_oracle_cache.py": "e551a0b1ee7871f3258426a8e23a09ad0c11cc11de4fc95f88e9a5934de7984c"
+  },
+  "original_full_report_unchanged": true,
+  "no_game_gpu": true,
+  "default_prebuild_entrypoint": {
+    "result": "PASS: ordinary default command retained four completed groups, zero new oracle executions, all24 settings and the exact existing full summary",
+    "elapsed_seconds": 9.363,
+    "diagnostic_report_path": "build-local/continuation-20260930/player043-completed-before-cache/default-cached-current-runner.json",
+    "diagnostic_report_sha256": "e756be9a30260c22290693ba7495e4aafc668fe65001734d3836b2d3313b1c8c",
+    "original_043_full_report_sha256": "41e790f2f8b84e6b8a91aeec191db95cbb9903b0bdba14359cf78df0e35384ba",
+    "original_043_report_restored_exactly": true
+  }
+}
