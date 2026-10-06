@@ -73,7 +73,9 @@ struct UiState {
     unsigned domains=0;
     std::vector<uint32_t> working;
     std::vector<Field> fields;
-    std::array<Guard,9> guards{};
+    std::array<Guard,11> guards{};
+    uint32_t bitmap_start=0,background_start=0;
+    int bitmap_dx=0,bitmap_dy=0;
     struct Drift {uint32_t address;float velocity,displacement;};
     std::vector<Drift> drifts;
     struct ActorDrawRestore {
@@ -207,15 +209,14 @@ void evaluate_stage_map(uint8_t* ram,double h) {
     const int a=word(ram,from),b=word(ram,to);
     for(unsigned j=0;j<4;++j)state.map_rectangle[j]=float(word(ram,std::array<uint32_t,4>{0x801C6370,0x801C6380,0x801C6364,0x801C6368}[j]));
     state.map_rectangle_valid=true;
-    if((state.domains&PakCursor)&&step<8&&a>=0&&a<3&&b>=0&&b<3) {
+    if((state.domains&PakCursor)&&step>0&&step<8&&a>=0&&a<3&&b>=0&&b<3) {
         for(unsigned j=0;j<2;++j) {
             const int start=MEM_H(int32_t(4*a+2*j),int32_t(0x801C3B24));
             const int end=MEM_H(int32_t(4*b+2*j),int32_t(0x801C3B24));
-            // Extend the ROM's authored scalar curve between its quantized
-            // pixel endpoints. A raw curve followed by Source truncation would
-            // otherwise jump backwards at each Source boundary.
+            // BAF64 decrements the counter. The next authored endpoint is
+            // step-1, including the exact current-area anchor at zero.
             const float ka=real(ram,0x801C3B30+4*unsigned(step));
-            const float kb=step==7?0.f:real(ram,0x801C3B30+4*unsigned(step+1));
+            const float kb=step==1?1.f:real(ram,0x801C3B30+4*unsigned(step-1));
             const int source=int(float(end)+float(start-end)*ka),next=int(float(end)+float(start-end)*kb);
             state.map_rectangle[j]=float(double(source)+(next-source)*h);
             publish(ram,j?0x801C6380:0x801C6370,int32_t(state.map_rectangle[j]));
@@ -223,9 +224,9 @@ void evaluate_stage_map(uint8_t* ram,double h) {
     }
     if(state.domains&PakSize) {
         const int phase=step-(a==b?3:9);
-        if(phase>=0&&phase<3) {
+        if(phase>0&&phase<=3) {
             const auto table=a==b?0x801C3B54u:0x801C3B64u;
-            const float ka=real(ram,table+4*unsigned(phase)),kb=real(ram,table+4*unsigned(phase+1));
+            const float ka=real(ram,table+4*unsigned(phase)),kb=phase==1?1.f:real(ram,table+4*unsigned(phase-1));
             for(unsigned j=0;j<2;++j) {
                 const int start=MEM_H(int32_t(4+2*j),int32_t(from)),end=MEM_H(int32_t(4+2*j),int32_t(to));
                 const int source=int(float(end)+float(start-end)*ka),next=int(float(end)+float(start-end)*kb);
@@ -332,6 +333,9 @@ void native_ui_begin(uint8_t* ram,Nanoseconds now,unsigned divider) {
     state.guards[6].pc=0x801B96F8;state.guards[6].address=0x801C6384;state.guards[6].size=4;
     state.guards[7].pc=0x801BA858;state.guards[7].address=0x801C6378;state.guards[7].size=4;
     state.guards[8].pc=0x801BA858;state.guards[8].address=0x801C6388;state.guards[8].size=4;
+    // Item side arrows advance their two byte oscillator in the draw callback.
+    state.guards[9].pc=0x801F0CB8;state.guards[9].address=0x8021BFCB;state.guards[9].size=1;
+    state.guards[10].pc=0x801F0CB8;state.guards[10].address=0x8021BE42;state.guards[10].size=1;
 }
 UiFrameScope::UiFrameScope(uint8_t* ram,recomp_context* ctx,Nanoseconds now):ram_(ram) {
     uint8_t* rdram=ram;
@@ -364,7 +368,7 @@ UiFrameScope::UiFrameScope(uint8_t* ram,recomp_context* ctx,Nanoseconds now):ram
 }
 UiFrameScope::~UiFrameScope(){if(!ram_)return;
     restore_menu_actors(ram_);
-    state.actors.clear();for(auto& g:state.guards)if(g.entered){if(g.restoring)std::memcpy(ram_+(g.address&0xFFFFFF),g.bytes.data(),g.size);g.entered=false;}for(auto i=state.fields.rbegin();i!=state.fields.rend();++i)word(ram_,i->address)=i->source;state.fields.clear();state.frame=false;}
+    state.actors.clear();for(auto& g:state.guards)if(g.entered){if(g.restoring)std::memcpy(ram_+((g.address&0xFFFFFF)^(g.size==1?3u:0u)),g.bytes.data(),g.size);g.entered=false;}for(auto i=state.fields.rbegin();i!=state.fields.rend();++i)word(ram_,i->address)=i->source;state.fields.clear();state.frame=false;}
 }
 extern "C" void dora3_native_ui_source_begin(uint8_t* ram,recomp_context* ctx) {
     if(ctx->r4!=0||state.frame)return;
@@ -392,12 +396,28 @@ extern "C" void dora3_native_ui_source(uint8_t* ram,recomp_context* ctx) {
 }
 extern "C" void dora3_native_ui_draw_boundary(uint8_t* ram,uint32_t pc,unsigned end) {
     if(!state.frame||state.ram!=ram)return;
+    if(pc==0x801BA0CC&&state.owner==Profile::StageMap&&state.map_rectangle_valid) {
+        if(!end)state.background_start=uint32_t(word(ram,0x801B1424));
+        else {
+            const auto finish=uint32_t(word(ram,0x801B1424));
+            const int dx=int(std::lround((state.map_rectangle[0]-word(ram,0x801C6370))*32.));
+            const int dy=int(std::lround((state.map_rectangle[1]-word(ram,0x801C6380))*32.));
+            if(guest_pointer(state.background_start,8)&&finish>=state.background_start&&
+               finish-state.background_start<=0x10000&&guest_pointer(finish,0))
+                for(auto at=state.background_start;at+8<=finish;at+=8)
+                    if(uint32_t(word(ram,at))==0xE1000000u) {
+                        const uint32_t uv=uint32_t(word(ram,at+4));
+                        word(ram,at+4)=int32_t((uint32_t(uint16_t(int16_t(uv>>16)+dx))<<16)|uint16_t(int16_t(uv)+dy));
+                    }
+            state.background_start=0;
+        }
+    }
     for(auto& g:state.guards)if(g.pc==pc) {
         if(!end) {
             if(g.entered)throw std::logic_error("Nested UI drawing");
             g.entered=true;
             g.restoring=!state.first_frame;g.epoch=state.epoch;
-            auto* data=ram+(g.address&0xFFFFFF);
+            auto* data=ram+((g.address&0xFFFFFF)^(g.size==1?3u:0u));
             if(g.restoring){
                 g.bytes.assign(data,data+g.size);
                 if(g.call<g.originals.size())std::memcpy(data,g.originals[g.call].data(),g.size);
@@ -405,7 +425,7 @@ extern "C" void dora3_native_ui_draw_boundary(uint8_t* ram,uint32_t pc,unsigned 
             ++g.call;
         } else {
             if(!g.entered)throw std::logic_error("Unbalanced UI drawing");
-            if(g.restoring)std::memcpy(ram+(g.address&0xFFFFFF),g.bytes.data(),g.size);
+            if(g.restoring)std::memcpy(ram+((g.address&0xFFFFFF)^(g.size==1?3u:0u)),g.bytes.data(),g.size);
             g.entered=false;
         }
     }
@@ -445,4 +465,37 @@ extern "C" int dora3_native_ui_map_cursor_rectangle(uint8_t* ram,recomp_context*
     ctx->f12.fl=state.map_rectangle[2]-state.map_rectangle[0]-16.f;
     ctx->f14.fl=float(state.map_rectangle[3]-state.map_rectangle[1]-16.+shown_bob);
     return 1;
+}
+
+// The old bitmap builder rounds/clips/chunks integer texels. Keep its input
+// integral, then translate the emitted rectangles as one rigid sprite. This
+// preserves chunk adjacency, load bounds, last-row height and texture origins.
+extern "C" int dora3_native_ui_map_bitmap_begin(uint8_t* ram,recomp_context* c,unsigned node) {
+    if(!state.frame||state.ram!=ram||state.owner!=Profile::StageMap||!state.map_rectangle_valid)return 0;
+    if(state.bitmap_start)throw std::logic_error("Nested stage-map bitmap");
+    if(node) {
+        c->f12.fl+=float(word(ram,0x801C6370))-state.map_rectangle[0];
+        c->f14.fl+=float(word(ram,0x801C6380))-state.map_rectangle[1];
+    }
+    const float x=c->f12.fl,y=c->f14.fl;
+    c->f12.fl=std::floor(x);c->f14.fl=std::floor(y);
+    state.bitmap_dx=int(std::lround((x-c->f12.fl)*4.));
+    state.bitmap_dy=int(std::lround((y-c->f14.fl)*4.));
+    state.bitmap_start=uint32_t(word(ram,0x801B1424));
+    return 1;
+}
+extern "C" void dora3_native_ui_map_bitmap_end(uint8_t* ram) {
+    if(!state.bitmap_start)return;
+    const auto finish=uint32_t(word(ram,0x801B1424));
+    if(guest_pointer(state.bitmap_start,8)&&finish>=state.bitmap_start&&
+       finish-state.bitmap_start<=0x10000&&guest_pointer(finish,0))
+        for(auto at=state.bitmap_start;at+8<=finish;at+=8)
+            if(uint32_t(word(ram,at))>>24==0xE4)
+                for(unsigned offset:{0u,4u}) {
+                    const uint32_t packed=uint32_t(word(ram,at+offset));
+                    const auto x=((packed>>12)&0xFFF)+state.bitmap_dx;
+                    const auto y=(packed&0xFFF)+state.bitmap_dy;
+                    word(ram,at+offset)=int32_t((packed&0xFF000000u)|((x&0xFFF)<<12)|(y&0xFFF));
+                }
+    state.bitmap_start=0;
 }

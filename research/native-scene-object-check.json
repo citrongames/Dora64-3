@@ -2,7 +2,7 @@
   "completed_replay_provenance": null,
   "result": "PASS: scene 3504 frozen/current Original and 10512 Native schedules across all292 ROM variants / 289 kinds; fresh replay=1 kinds/48 cases, retained unchanged=291 kinds; 2880 fresh pool endpoints, 25554 intervals, 25554 zero-dt checks, 32 genuine contacts; 289 scene/NPC kinds including platforms, doors, switches, traps, event actors and effects, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 0=1,2, 1=1,2, 2=1,2,3, 3=1,2,3, 4=1, 5=1, 6=1,2, 7=1,2, 8=1,2,3, 9=1,2,3, 10=1,2, 11=1,2, 12=1,2,3, 13=1, 14=1, 15=1, 16=1, 17=1,2, 18=1,2, 19=1,2, 20=1,2, 21=1,2, 22=1,2, 23=1,2, 24=1,2, 25=1,2, 26=1,2, 27=1,2,3, 28=1,2,3, 29=1,2,3, 30=1,2,3, 31=1,2,3, 32=1,2,3, 33=1,2,3, 34=1,2,3, 35=1,2,3, 36=1,2, 37=2,3, 38=1, 39=1,2, 40=1,2, 41=1,2, 42=1,3, 43=1, 44=1, 45=1,2, 46=1, 47=1, 48=1, 49=1, 50=1, 51=1, 52=1, 53=1, 54=1, 55=1, 56=1, 57=1, 58=1, 59=1, 60=1, 61=1, 62=1, 63=1, 64=1, 65=1, 66=1, 67=1, 68=1, 69=1, 70=1, 71=1, 72=1, 73=1, 74=1, 75=1, 76=1, 77=1, 78=1, 79=1, 80=1, 81=1, 82=1, 83=1, 84=1, 85=1, 86=1, 87=1, 88=1, 89=1, 90=1, 91=1, 92=1, 93=1, 94=1, 95=1, 96=1, 97=1, 98=1, 99=1, 100=1, 101=1, 102=1, 103=1, 104=1, 105=1, 106=1, 107=1, 108=1, 109=1, 110=1, 111=1, 112=1, 113=1, 114=1, 115=1, 116=1, 117=1, 118=1, 119=1, 120=1, 121=1, 122=1, 123=1, 124=1, 125=1, 126=1, 127=1, 128=1, 129=1, 130=1, 131=1, 132=1, 133=1, 134=1, 135=1, 136=1, 137=1, 138=1, 139=1, 140=1, 141=1, 142=1, 143=1, 144=1, 145=1, 146=1, 147=1, 148=1, 149=1, 150=1, 151=1, 152=1, 153=1, 154=1, 155=1, 156=1, 157=1, 158=1, 159=1, 160=1, 161=1, 162=1, 163=1, 164=1, 165=1, 166=1, 167=1, 168=1, 169=1, 170=1, 171=1, 172=1, 173=1, 174=, 175=1, 176=1, 177=1, 178=1, 179=1, 180=1, 181=1, 182=1, 183=1, 184=1, 185=1, 186=1, 187=1, 188=1, 189=1, 190=1, 191=1, 192=1, 193=1, 194=3, 195=3, 196=1, 197=1, 198=1, 199=1, 200=1, 201=1, 202=1, 203=1, 204=1, 205=1, 206=1, 207=1, 208=1, 209=1, 210=1, 211=1, 212=1, 213=1, 214=1, 215=1, 216=1, 217=1, 218=1, 219=1, 220=1, 221=1, 222=1, 223=1, 224=1, 225=1, 226=1, 227=1, 228=1, 229=1, 230=1, 231=1, 232=1, 233=1, 234=1, 235=1, 236=1, 237=1, 238=1, 239=1, 240=1, 241=1, 242=1, 243=1, 244=1, 245=1, 246=1, 247=1, 248=1, 249=1, 250=1, 251=1, 252=1, 253=1, 254=1, 255=1, 256=1, 257=1, 258=1, 259=1, 260=1, 261=1, 262=1, 263=1, 264=1, 265=1, 266=1, 267=1,10, 268=1, 269=1, 270=1, 271=1, 272=1, 273=1, 274=1, 275=1, 276=1, 277=1, 278=1, 279=1, 280=1, 281=1, 282=1, 283=1, 284=2, 285=1, 286=1, 287=1, 288=1, 289=1, 290=1, 291=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
   "retained_generation_provenance": {
-    "generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
+    "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
     "unchanged_compiled_dependencies_sha256": {
       "/home/vova/projects/DoraRecomp3/src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
       "/home/vova/projects/DoraRecomp3/src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
@@ -63,21 +63,54 @@
       "/home/vova/projects/DoraRecomp3/src/native_enemy.cpp": "8dc73ce30128b784e169e375aa095940f9495140dcb56bba3024688683369959",
       "/home/vova/projects/DoraRecomp3/src/native_enemy_projection_math.hpp": "b9a243b6898ed1e4ecdffe6fb43d64eb12ffe214d8812dfc94cf17e98de1ae7a",
       "/home/vova/projects/DoraRecomp3/src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
-      "/home/vova/projects/DoraRecomp3/src/native_texture_animation.cpp": "40fdd952040b2b2201a619a76fe4ba7da34a053f6854fb1ead231c8538ae8d80",
+      "/home/vova/projects/DoraRecomp3/src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
       "/home/vova/projects/DoraRecomp3/src/native_texture_animation.hpp": "7403bbf3f80ac2335669356f78d8caf8c4803d7d9060b205c6fd60ef5f874a41",
       "/home/vova/projects/DoraRecomp3/src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e"
     },
     "artifacts_sha256": {
-      "build-local/native-scene-object-check/replay-1791283746509658705/progress-0.log": "781b5f0b2eca8e214b64a32b992c7867e321e2a856a39d29e1748855b05b1954",
+      "build-local/native-scene-object-check/replay-1791257114222712591/progress-3.log": "636e5f1d0d7fbeffb4eb8e94e4f2592b844cc03e4c96305df9826c155476a603",
+      "build-local/native-scene-object-check/replay-1791257114222712591/progress-1.log": "358b02a28084197f762e8f93d04e5d98813074d933c0310244e43bd19771164c",
+      "build-local/native-scene-object-check/replay-1791257114222712591/progress-2.log": "4a184615ed059f4e8c43351d289959af64ac3a70eb80b825734456b8ced0f07e",
+      "build-local/native-scene-object-check/replay-1791257114222712591/progress-0.log": "781b5f0b2eca8e214b64a32b992c7867e321e2a856a39d29e1748855b05b1954",
+      "build-local/native-scene-object-check/replay-1791182763827806130/progress-1.log": "333b347755bac4ce74b7ce90ff25b4b5668e67878feba318cc30296b920903a4",
+      "build-local/native-scene-object-check/replay-1791182763827806130/progress-2.log": "7b3eaddf9ccbc4c477b9451dd34c6dfb70f0a1248bd5a7cc67c0a40fb88d01a8",
+      "build-local/native-scene-object-check/replay-1791182763827806130/progress-0.log": "da0c43dabb7c23283da10fb95330307f66fd9bfae36fb92e9fa8d6b4ed955c43",
+      "build-local/native-scene-object-check/replay-1791176423771582228/progress-3.log": "23dd1297ef62f105e5a2a0f56adf4e6c9c2d68e6999414048aa8b5b249ab1285",
+      "build-local/native-scene-object-check/replay-1791176423771582228/progress-1.log": "40d05201e96ab204c8b2b30e3de610059dfff1f2e2df012b680938822e6e185e",
+      "build-local/native-scene-object-check/replay-1791176423771582228/progress-2.log": "f56ce6fdf0fdc5b53eac2f5f892765cffc0f9940f8578fa11f3af25538646b73",
+      "build-local/native-scene-object-check/replay-1791176423771582228/progress-0.log": "80cea31b795214588e64d69aa46a8514fd978e64f0dff4ab75fb2b2ca1371d34",
+      "build-local/native-scene-object-check/replay-1791183425813031452/progress-0.log": "8fc51cae1ce1d151611cfec006d10c856c86bdc4edff0498ca2aceebd466e406",
+      "build-local/native-scene-object-check/replay-1791285713514346922/progress-0.log": "1d66431347bfe935b8ff39ceb150bf0340a809ca51e08c297c022cb952b071d8",
+      "build-local/native-scene-object-check/replay-1791177853251950884/progress-3.log": "72fa358894302a5a991f7aaf6eeabab6d58f157e292041e75666b1911f75b7d0",
+      "build-local/native-scene-object-check/replay-1791177853251950884/progress-1.log": "c4815a891f4dfb466c8dd96efa7370777272df78a02ece80a2cc762fe4235629",
+      "build-local/native-scene-object-check/replay-1791177853251950884/progress-2.log": "14e49e20f1d0f478db5df03cac5ad32ab5bcfc172fdaef6577410fc53a7272e1",
+      "build-local/native-scene-object-check/replay-1791177853251950884/progress-0.log": "2949d6a792ec94fc0398fab70dd26d8d9448cb59f4c4166aff1d485489fe433a",
+      "build-local/native-scene-object-check/replay-1791177337333653281/progress-3.log": "32ed296d18f17492aff58c5ea976f629553bfe9b0802fd9edf2c54eb9f47421c",
+      "build-local/native-scene-object-check/replay-1791177337333653281/progress-1.log": "3e50219ad825778816f2e7d51de5c800f1132cf7d1ad7a10ef69a30b1f4b7bda",
+      "build-local/native-scene-object-check/replay-1791177337333653281/progress-2.log": "2db6e8041a9118f92fdae403edbb0151460c4e55fc45fc940e424dd3eb33099f",
+      "build-local/native-scene-object-check/replay-1791177337333653281/progress-0.log": "93f225a4e7e604556e4a2a44c58f9dd9412708529526010e5e4ccd9278716600",
+      "build-local/native-scene-object-check/replay-1791182136646116989/progress-1.log": "6009746589a6f221d957cb58d6836926647236c562472b5a480ca4aa914dc68c",
+      "build-local/native-scene-object-check/replay-1791182136646116989/progress-2.log": "c996dac57ba9e50f88f358f4b94cf5ac3ee9cbe035a84eb3732fb5a2fe98a41c",
+      "build-local/native-scene-object-check/replay-1791182136646116989/progress-0.log": "7af68eb6e0f16d25215078ad5ff9f68d0df2a99e127dedb17d70b66c979f8c8d",
+      "build-local/native-scene-object-check/replay-1791287166122468310/progress-0.log": "1d66431347bfe935b8ff39ceb150bf0340a809ca51e08c297c022cb952b071d8",
+      "build-local/native-scene-object-check/replay-1791183887020754270/progress-0.log": "cbdb0af32078451693d669d5e7513cfb92728478d6bd9e4d16e684f2b05106ed",
+      "build-local/native-scene-object-check/replay-1791179285325014349/progress-3.log": "79eaea4bc933f18da2cb3f14ca6c820e3983be8e29745d17d155d998d4722c24",
+      "build-local/native-scene-object-check/replay-1791179285325014349/progress-1.log": "5225f7279d55e7341a792694f586daeb5180458925aec9f132c31522b7e74d59",
+      "build-local/native-scene-object-check/replay-1791179285325014349/progress-2.log": "4f80e4adb15211b35b4b7decbbe0b477ab68b544306f16ccb693230c746999fa",
+      "build-local/native-scene-object-check/replay-1791179285325014349/progress-0.log": "3c543fb2a1f14e6cccb4e8236ec5399be6102b1aa5ae0e545ea0772642db5332",
+      "build-local/native-scene-object-check/replay-1791217753620768712/progress-1.log": "20c20f5da4a895e8b3aed02d181608109ff5025c22cc6c3c0117d997fb9429bf",
+      "build-local/native-scene-object-check/replay-1791217753620768712/progress-2.log": "39809003676e34eec95aaa0c0751b1eac35ba41a674653e0f64b017ea31fe7ee",
+      "build-local/native-scene-object-check/replay-1791217753620768712/progress-0.log": "af6bfd4c104d31803cfd81cadf209f788f6a7edf4e1c6abeba58e2dc2710e8db",
+      "build-local/native-scene-object-check/replay-1791180384007284901/progress-3.log": "9b85b7dbc7eb15480d5e750c2d6f35be8dc04f046fcb4c8e4b09b5f0ff5bb5f9",
+      "build-local/native-scene-object-check/replay-1791180384007284901/progress-1.log": "fa7151bee497fb476844deb0157149e8357213dfc06f0a120ffcbf8304aff209",
+      "build-local/native-scene-object-check/replay-1791180384007284901/progress-2.log": "5588eea903b62ebf59b1b1212f53d7f8dfe23511e600f061985fc9a902e7b7c6",
+      "build-local/native-scene-object-check/replay-1791180384007284901/progress-0.log": "c2d0f1327a0c73d5b9ca8aa8b0f252795265ddee8a0d221be2531474e0b05af1",
+      "build-local/native-scene-object-check/replay-1791283746509658705/progress-3.log": "636e5f1d0d7fbeffb4eb8e94e4f2592b844cc03e4c96305df9826c155476a603",
       "build-local/native-scene-object-check/replay-1791283746509658705/progress-1.log": "358b02a28084197f762e8f93d04e5d98813074d933c0310244e43bd19771164c",
       "build-local/native-scene-object-check/replay-1791283746509658705/progress-2.log": "4a184615ed059f4e8c43351d289959af64ac3a70eb80b825734456b8ced0f07e",
-      "build-local/native-scene-object-check/replay-1791283746509658705/progress-3.log": "636e5f1d0d7fbeffb4eb8e94e4f2592b844cc03e4c96305df9826c155476a603",
-      "build-local/native-scene-object-check/replay-1791283746509658705/shard-0.log": "ba101f5d9b64ae3db5e83b8e14ba7820e9b3812d670efcdde616c0da82cc7cfc",
-      "build-local/native-scene-object-check/replay-1791283746509658705/shard-1.log": "02fe44843ce2c67f00a49566ef3933f95f0db1d35e1852d631e0736c8fcedfc7",
-      "build-local/native-scene-object-check/replay-1791283746509658705/shard-2.log": "2e1c67aa26011c11c83ee31c6de6d82b5629449b85f613b8ef3b326a14cb30c4",
-      "build-local/native-scene-object-check/replay-1791283746509658705/shard-3.log": "752352578ffce4928bb960ed7fcd65452859f7dce40a6453036d2594bd6e82fc"
+      "build-local/native-scene-object-check/replay-1791283746509658705/progress-0.log": "781b5f0b2eca8e214b64a32b992c7867e321e2a856a39d29e1748855b05b1954"
     },
-    "old_fixture": "build-local/continuation-20260930/regression047-scene-fixture-formats.inc",
+    "old_fixture": "build-local/continuation-20260930/regression048-scene-object-fixture.inc",
     "old_fixture_sha256": "c6b234f9bf02b686c654998cc4a66264624003f5c1009cdc2dd4b75dc1e452a0",
     "fixture_edits": [],
     "old_line": "#include \"native_scene_objects.hpp\"\n",
@@ -377,789 +410,45 @@
     ],
     "generic_parser_variants": [],
     "retained_states": {
-      "176": [
-        1
-      ],
-      "180": [
-        1
-      ],
-      "184": [
-        1
-      ],
-      "188": [
-        1
-      ],
-      "192": [
-        1
-      ],
-      "196": [
-        1
-      ],
-      "200": [
-        1
-      ],
-      "204": [
-        1
-      ],
-      "208": [
-        1
-      ],
-      "212": [
-        1
-      ],
-      "216": [
-        1
-      ],
-      "220": [
-        1
-      ],
-      "224": [
-        1
-      ],
-      "228": [
-        1
-      ],
-      "232": [
-        1
-      ],
-      "236": [
-        1
-      ],
-      "240": [
-        1
-      ],
-      "244": [
-        1
-      ],
-      "248": [
-        1
-      ],
-      "252": [
-        1
-      ],
-      "256": [
-        1
-      ],
-      "260": [
-        1
-      ],
-      "264": [
-        1
-      ],
-      "268": [
-        1
-      ],
-      "272": [
-        1
-      ],
-      "276": [
-        1
-      ],
-      "280": [
-        1
-      ],
-      "284": [
-        2
-      ],
-      "288": [
-        1
-      ],
-      "4": [
-        1
-      ],
-      "8": [
-        1,
-        2,
-        3
-      ],
-      "12": [
-        1,
-        2,
-        3
-      ],
-      "16": [
-        1
-      ],
-      "20": [
-        1,
-        2
-      ],
-      "24": [
-        1,
-        2
-      ],
-      "28": [
-        1,
-        2,
-        3
-      ],
-      "32": [
-        1,
-        2,
-        3
-      ],
-      "36": [
-        1,
-        2
-      ],
-      "40": [
-        1,
-        2
-      ],
-      "44": [
-        1
-      ],
-      "48": [
-        1
-      ],
-      "52": [
-        1
-      ],
-      "56": [
-        1
-      ],
-      "60": [
-        1
-      ],
-      "64": [
-        1
-      ],
-      "68": [
-        1
-      ],
-      "72": [
-        1
-      ],
-      "76": [
-        1
-      ],
-      "80": [
-        1
-      ],
-      "84": [
-        1
-      ],
-      "88": [
-        1
-      ],
-      "92": [
-        1
-      ],
-      "96": [
-        1
-      ],
-      "100": [
-        1
-      ],
-      "104": [
-        1
-      ],
-      "108": [
-        1
-      ],
-      "112": [
-        1
-      ],
-      "116": [
-        1
-      ],
-      "120": [
-        1
-      ],
-      "124": [
-        1
-      ],
-      "128": [
-        1
-      ],
-      "132": [
-        1
-      ],
-      "136": [
-        1
-      ],
-      "140": [
-        1
-      ],
-      "144": [
-        1
-      ],
-      "148": [
-        1
-      ],
-      "152": [
-        1
-      ],
-      "156": [
-        1
-      ],
-      "160": [
-        1
-      ],
-      "164": [
-        1
-      ],
-      "168": [
-        1
-      ],
-      "172": [
-        1
-      ],
-      "177": [
-        1
-      ],
-      "181": [
-        1
-      ],
-      "185": [
-        1
-      ],
-      "189": [
-        1
-      ],
-      "193": [
-        1
-      ],
-      "197": [
-        1
-      ],
-      "201": [
-        1
-      ],
-      "205": [
-        1
-      ],
-      "209": [
-        1
-      ],
-      "213": [
-        1
-      ],
-      "217": [
-        1
-      ],
-      "221": [
-        1
-      ],
-      "225": [
-        1
-      ],
-      "229": [
-        1
-      ],
-      "233": [
-        1
-      ],
-      "237": [
-        1
-      ],
-      "241": [
-        1
-      ],
-      "245": [
-        1
-      ],
-      "249": [
-        1
-      ],
-      "253": [
-        1
-      ],
-      "257": [
-        1
-      ],
-      "261": [
-        1
-      ],
-      "265": [
-        1
-      ],
-      "269": [
-        1
-      ],
-      "273": [
-        1
-      ],
-      "277": [
-        1
-      ],
-      "281": [
-        1
-      ],
-      "285": [
-        1
-      ],
-      "289": [
-        1
-      ],
       "1": [
         1,
         2
-      ],
-      "5": [
-        1
-      ],
-      "9": [
-        1,
-        2,
-        3
-      ],
-      "13": [
-        1
-      ],
-      "17": [
-        1,
-        2
-      ],
-      "21": [
-        1,
-        2
-      ],
-      "25": [
-        1,
-        2
-      ],
-      "29": [
-        1,
-        2,
-        3
-      ],
-      "33": [
-        1,
-        2,
-        3
-      ],
-      "37": [
-        2,
-        3
-      ],
-      "41": [
-        1,
-        2
-      ],
-      "45": [
-        1,
-        2
-      ],
-      "49": [
-        1
-      ],
-      "53": [
-        1
-      ],
-      "57": [
-        1
-      ],
-      "61": [
-        1
-      ],
-      "65": [
-        1
-      ],
-      "69": [
-        1
-      ],
-      "73": [
-        1
-      ],
-      "77": [
-        1
-      ],
-      "81": [
-        1
-      ],
-      "85": [
-        1
-      ],
-      "89": [
-        1
-      ],
-      "93": [
-        1
-      ],
-      "97": [
-        1
-      ],
-      "101": [
-        1
-      ],
-      "105": [
-        1
-      ],
-      "109": [
-        1
-      ],
-      "113": [
-        1
-      ],
-      "117": [
-        1
-      ],
-      "121": [
-        1
-      ],
-      "125": [
-        1
-      ],
-      "129": [
-        1
-      ],
-      "133": [
-        1
-      ],
-      "137": [
-        1
-      ],
-      "141": [
-        1
-      ],
-      "145": [
-        1
-      ],
-      "149": [
-        1
-      ],
-      "153": [
-        1
-      ],
-      "157": [
-        1
-      ],
-      "161": [
-        1
-      ],
-      "165": [
-        1
-      ],
-      "169": [
-        1
-      ],
-      "173": [
-        1
-      ],
-      "178": [
-        1
-      ],
-      "182": [
-        1
-      ],
-      "186": [
-        1
-      ],
-      "190": [
-        1
-      ],
-      "194": [
-        3
-      ],
-      "198": [
-        1
-      ],
-      "202": [
-        1
-      ],
-      "206": [
-        1
-      ],
-      "210": [
-        1
-      ],
-      "214": [
-        1
-      ],
-      "218": [
-        1
-      ],
-      "222": [
-        1
-      ],
-      "226": [
-        1
-      ],
-      "230": [
-        1
-      ],
-      "234": [
-        1
-      ],
-      "238": [
-        1
-      ],
-      "242": [
-        1
-      ],
-      "246": [
-        1
-      ],
-      "250": [
-        1
-      ],
-      "254": [
-        1
-      ],
-      "258": [
-        1
-      ],
-      "262": [
-        1
-      ],
-      "266": [
-        1
-      ],
-      "270": [
-        1
-      ],
-      "274": [
-        1
-      ],
-      "278": [
-        1
-      ],
-      "282": [
-        1
-      ],
-      "286": [
-        1
-      ],
-      "290": [
-        1
       ],
       "2": [
         1,
         2,
         3
       ],
-      "6": [
-        1,
-        2
-      ],
-      "10": [
-        1,
-        2
-      ],
-      "14": [
-        1
-      ],
-      "18": [
-        1,
-        2
-      ],
-      "22": [
-        1,
-        2
-      ],
-      "26": [
-        1,
-        2
-      ],
-      "30": [
-        1,
-        2,
-        3
-      ],
-      "34": [
-        1,
-        2,
-        3
-      ],
-      "38": [
-        1
-      ],
-      "42": [
-        1,
-        3
-      ],
-      "46": [
-        1
-      ],
-      "50": [
-        1
-      ],
-      "54": [
-        1
-      ],
-      "58": [
-        1
-      ],
-      "62": [
-        1
-      ],
-      "66": [
-        1
-      ],
-      "70": [
-        1
-      ],
-      "74": [
-        1
-      ],
-      "78": [
-        1
-      ],
-      "82": [
-        1
-      ],
-      "86": [
-        1
-      ],
-      "90": [
-        1
-      ],
-      "94": [
-        1
-      ],
-      "98": [
-        1
-      ],
-      "102": [
-        1
-      ],
-      "106": [
-        1
-      ],
-      "110": [
-        1
-      ],
-      "114": [
-        1
-      ],
-      "118": [
-        1
-      ],
-      "122": [
-        1
-      ],
-      "126": [
-        1
-      ],
-      "130": [
-        1
-      ],
-      "134": [
-        1
-      ],
-      "138": [
-        1
-      ],
-      "142": [
-        1
-      ],
-      "146": [
-        1
-      ],
-      "150": [
-        1
-      ],
-      "154": [
-        1
-      ],
-      "158": [
-        1
-      ],
-      "162": [
-        1
-      ],
-      "166": [
-        1
-      ],
-      "170": [
-        1
-      ],
-      "174": [],
-      "179": [
-        1
-      ],
-      "183": [
-        1
-      ],
-      "187": [
-        1
-      ],
-      "191": [
-        1
-      ],
-      "195": [
-        3
-      ],
-      "199": [
-        1
-      ],
-      "203": [
-        1
-      ],
-      "207": [
-        1
-      ],
-      "211": [
-        1
-      ],
-      "215": [
-        1
-      ],
-      "219": [
-        1
-      ],
-      "223": [
-        1
-      ],
-      "227": [
-        1
-      ],
-      "231": [
-        1
-      ],
-      "235": [
-        1
-      ],
-      "239": [
-        1
-      ],
-      "243": [
-        1
-      ],
-      "247": [
-        1
-      ],
-      "251": [
-        1
-      ],
-      "255": [
-        1
-      ],
-      "259": [
-        1
-      ],
-      "263": [
-        1
-      ],
-      "267": [
-        1,
-        10
-      ],
-      "271": [
-        1
-      ],
-      "275": [
-        1
-      ],
-      "279": [
-        1
-      ],
-      "283": [
-        1
-      ],
-      "287": [
-        1
-      ],
-      "291": [
-        1
-      ],
       "3": [
         1,
         2,
         3
       ],
+      "4": [
+        1
+      ],
+      "5": [
+        1
+      ],
+      "6": [
+        1,
+        2
+      ],
       "7": [
+        1,
+        2
+      ],
+      "8": [
+        1,
+        2,
+        3
+      ],
+      "9": [
+        1,
+        2,
+        3
+      ],
+      "10": [
         1,
         2
       ],
@@ -1167,10 +456,44 @@
         1,
         2
       ],
+      "12": [
+        1,
+        2,
+        3
+      ],
+      "13": [
+        1
+      ],
+      "14": [
+        1
+      ],
       "15": [
         1
       ],
+      "16": [
+        1
+      ],
+      "17": [
+        1,
+        2
+      ],
+      "18": [
+        1,
+        2
+      ],
       "19": [
+        1,
+        2
+      ],
+      "20": [
+        1,
+        2
+      ],
+      "21": [
+        1,
+        2
+      ],
+      "22": [
         1,
         2
       ],
@@ -1178,7 +501,34 @@
         1,
         2
       ],
+      "24": [
+        1,
+        2
+      ],
+      "25": [
+        1,
+        2
+      ],
+      "26": [
+        1,
+        2
+      ],
       "27": [
+        1,
+        2,
+        3
+      ],
+      "28": [
+        1,
+        2,
+        3
+      ],
+      "29": [
+        1,
+        2,
+        3
+      ],
+      "30": [
         1,
         2,
         3
@@ -1188,119 +538,817 @@
         2,
         3
       ],
+      "32": [
+        1,
+        2,
+        3
+      ],
+      "33": [
+        1,
+        2,
+        3
+      ],
+      "34": [
+        1,
+        2,
+        3
+      ],
       "35": [
         1,
         2,
         3
       ],
+      "36": [
+        1,
+        2
+      ],
+      "37": [
+        2,
+        3
+      ],
+      "38": [
+        1
+      ],
       "39": [
         1,
         2
       ],
+      "40": [
+        1,
+        2
+      ],
+      "41": [
+        1,
+        2
+      ],
+      "42": [
+        1,
+        3
+      ],
       "43": [
+        1
+      ],
+      "44": [
+        1
+      ],
+      "45": [
+        1,
+        2
+      ],
+      "46": [
         1
       ],
       "47": [
         1
       ],
+      "48": [
+        1
+      ],
+      "49": [
+        1
+      ],
+      "50": [
+        1
+      ],
       "51": [
+        1
+      ],
+      "52": [
+        1
+      ],
+      "53": [
+        1
+      ],
+      "54": [
         1
       ],
       "55": [
         1
       ],
+      "56": [
+        1
+      ],
+      "57": [
+        1
+      ],
+      "58": [
+        1
+      ],
       "59": [
+        1
+      ],
+      "60": [
+        1
+      ],
+      "61": [
+        1
+      ],
+      "62": [
         1
       ],
       "63": [
         1
       ],
+      "64": [
+        1
+      ],
+      "65": [
+        1
+      ],
+      "66": [
+        1
+      ],
       "67": [
+        1
+      ],
+      "68": [
+        1
+      ],
+      "69": [
+        1
+      ],
+      "70": [
         1
       ],
       "71": [
         1
       ],
+      "72": [
+        1
+      ],
+      "73": [
+        1
+      ],
+      "74": [
+        1
+      ],
       "75": [
+        1
+      ],
+      "76": [
+        1
+      ],
+      "77": [
+        1
+      ],
+      "78": [
         1
       ],
       "79": [
         1
       ],
+      "80": [
+        1
+      ],
+      "81": [
+        1
+      ],
+      "82": [
+        1
+      ],
       "83": [
+        1
+      ],
+      "84": [
+        1
+      ],
+      "85": [
+        1
+      ],
+      "86": [
         1
       ],
       "87": [
         1
       ],
+      "88": [
+        1
+      ],
+      "89": [
+        1
+      ],
+      "90": [
+        1
+      ],
       "91": [
+        1
+      ],
+      "92": [
+        1
+      ],
+      "93": [
+        1
+      ],
+      "94": [
         1
       ],
       "95": [
         1
       ],
+      "96": [
+        1
+      ],
+      "97": [
+        1
+      ],
+      "98": [
+        1
+      ],
       "99": [
+        1
+      ],
+      "100": [
+        1
+      ],
+      "101": [
+        1
+      ],
+      "102": [
         1
       ],
       "103": [
         1
       ],
+      "104": [
+        1
+      ],
+      "105": [
+        1
+      ],
+      "106": [
+        1
+      ],
       "107": [
+        1
+      ],
+      "108": [
+        1
+      ],
+      "109": [
+        1
+      ],
+      "110": [
         1
       ],
       "111": [
         1
       ],
+      "112": [
+        1
+      ],
+      "113": [
+        1
+      ],
+      "114": [
+        1
+      ],
       "115": [
+        1
+      ],
+      "116": [
+        1
+      ],
+      "117": [
+        1
+      ],
+      "118": [
         1
       ],
       "119": [
         1
       ],
+      "120": [
+        1
+      ],
+      "121": [
+        1
+      ],
+      "122": [
+        1
+      ],
       "123": [
+        1
+      ],
+      "124": [
+        1
+      ],
+      "125": [
+        1
+      ],
+      "126": [
         1
       ],
       "127": [
         1
       ],
+      "128": [
+        1
+      ],
+      "129": [
+        1
+      ],
+      "130": [
+        1
+      ],
       "131": [
+        1
+      ],
+      "132": [
+        1
+      ],
+      "133": [
+        1
+      ],
+      "134": [
         1
       ],
       "135": [
         1
       ],
+      "136": [
+        1
+      ],
+      "137": [
+        1
+      ],
+      "138": [
+        1
+      ],
       "139": [
+        1
+      ],
+      "140": [
+        1
+      ],
+      "141": [
+        1
+      ],
+      "142": [
         1
       ],
       "143": [
         1
       ],
+      "144": [
+        1
+      ],
+      "145": [
+        1
+      ],
+      "146": [
+        1
+      ],
       "147": [
+        1
+      ],
+      "148": [
+        1
+      ],
+      "149": [
+        1
+      ],
+      "150": [
         1
       ],
       "151": [
         1
       ],
+      "152": [
+        1
+      ],
+      "153": [
+        1
+      ],
+      "154": [
+        1
+      ],
       "155": [
+        1
+      ],
+      "156": [
+        1
+      ],
+      "157": [
+        1
+      ],
+      "158": [
         1
       ],
       "159": [
         1
       ],
+      "160": [
+        1
+      ],
+      "161": [
+        1
+      ],
+      "162": [
+        1
+      ],
       "163": [
+        1
+      ],
+      "164": [
+        1
+      ],
+      "165": [
+        1
+      ],
+      "166": [
         1
       ],
       "167": [
         1
       ],
+      "168": [
+        1
+      ],
+      "169": [
+        1
+      ],
+      "170": [
+        1
+      ],
       "171": [
         1
       ],
+      "172": [
+        1
+      ],
+      "173": [
+        1
+      ],
+      "174": [],
       "175": [
+        1
+      ],
+      "176": [
+        1
+      ],
+      "177": [
+        1
+      ],
+      "178": [
+        1
+      ],
+      "179": [
+        1
+      ],
+      "180": [
+        1
+      ],
+      "181": [
+        1
+      ],
+      "182": [
+        1
+      ],
+      "183": [
+        1
+      ],
+      "184": [
+        1
+      ],
+      "185": [
+        1
+      ],
+      "186": [
+        1
+      ],
+      "187": [
+        1
+      ],
+      "188": [
+        1
+      ],
+      "189": [
+        1
+      ],
+      "190": [
+        1
+      ],
+      "191": [
+        1
+      ],
+      "192": [
+        1
+      ],
+      "193": [
+        1
+      ],
+      "194": [
+        3
+      ],
+      "195": [
+        3
+      ],
+      "196": [
+        1
+      ],
+      "197": [
+        1
+      ],
+      "198": [
+        1
+      ],
+      "199": [
+        1
+      ],
+      "200": [
+        1
+      ],
+      "201": [
+        1
+      ],
+      "202": [
+        1
+      ],
+      "203": [
+        1
+      ],
+      "204": [
+        1
+      ],
+      "205": [
+        1
+      ],
+      "206": [
+        1
+      ],
+      "207": [
+        1
+      ],
+      "208": [
+        1
+      ],
+      "209": [
+        1
+      ],
+      "210": [
+        1
+      ],
+      "211": [
+        1
+      ],
+      "212": [
+        1
+      ],
+      "213": [
+        1
+      ],
+      "214": [
+        1
+      ],
+      "215": [
+        1
+      ],
+      "216": [
+        1
+      ],
+      "217": [
+        1
+      ],
+      "218": [
+        1
+      ],
+      "219": [
+        1
+      ],
+      "220": [
+        1
+      ],
+      "221": [
+        1
+      ],
+      "222": [
+        1
+      ],
+      "223": [
+        1
+      ],
+      "224": [
+        1
+      ],
+      "225": [
+        1
+      ],
+      "226": [
+        1
+      ],
+      "227": [
+        1
+      ],
+      "228": [
+        1
+      ],
+      "229": [
+        1
+      ],
+      "230": [
+        1
+      ],
+      "231": [
+        1
+      ],
+      "232": [
+        1
+      ],
+      "233": [
+        1
+      ],
+      "234": [
+        1
+      ],
+      "235": [
+        1
+      ],
+      "236": [
+        1
+      ],
+      "237": [
+        1
+      ],
+      "238": [
+        1
+      ],
+      "239": [
+        1
+      ],
+      "240": [
+        1
+      ],
+      "241": [
+        1
+      ],
+      "242": [
+        1
+      ],
+      "243": [
+        1
+      ],
+      "244": [
+        1
+      ],
+      "245": [
+        1
+      ],
+      "246": [
+        1
+      ],
+      "247": [
+        1
+      ],
+      "248": [
+        1
+      ],
+      "249": [
+        1
+      ],
+      "250": [
+        1
+      ],
+      "251": [
+        1
+      ],
+      "252": [
+        1
+      ],
+      "253": [
+        1
+      ],
+      "254": [
+        1
+      ],
+      "255": [
+        1
+      ],
+      "256": [
+        1
+      ],
+      "257": [
+        1
+      ],
+      "258": [
+        1
+      ],
+      "259": [
+        1
+      ],
+      "260": [
+        1
+      ],
+      "261": [
+        1
+      ],
+      "262": [
+        1
+      ],
+      "263": [
+        1
+      ],
+      "264": [
+        1
+      ],
+      "265": [
+        1
+      ],
+      "266": [
+        1
+      ],
+      "267": [
+        1,
+        10
+      ],
+      "268": [
+        1
+      ],
+      "269": [
+        1
+      ],
+      "270": [
+        1
+      ],
+      "271": [
+        1
+      ],
+      "272": [
+        1
+      ],
+      "273": [
+        1
+      ],
+      "274": [
+        1
+      ],
+      "275": [
+        1
+      ],
+      "276": [
+        1
+      ],
+      "277": [
+        1
+      ],
+      "278": [
+        1
+      ],
+      "279": [
+        1
+      ],
+      "280": [
+        1
+      ],
+      "281": [
+        1
+      ],
+      "282": [
+        1
+      ],
+      "283": [
+        1
+      ],
+      "284": [
+        2
+      ],
+      "285": [
+        1
+      ],
+      "286": [
+        1
+      ],
+      "287": [
+        1
+      ],
+      "288": [
+        1
+      ],
+      "289": [
+        1
+      ],
+      "290": [
+        1
+      ],
+      "291": [
         1
       ]
     },
     "input_equivalence": [
+      {
+        "path": "/home/vova/projects/DoraRecomp3/src/native_model_animation.cpp",
+        "old_file": "build-local/continuation-20260930/regression048-model-before-frame-stop.cpp",
+        "old_sha256": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
+        "new_sha256": "e86d0b6951ff4e446afb8373f1321d3ae6ea342d8bab1205ac82a8f1f96cbacc",
+        "edits": [
+          {
+            "old": "            const bool advancing=entry.observation && entry.observation->step==s.step &&\n                entry.observation->before.time>=0 && entry.observation->before.time<=entry.observation->before.duration;",
+            "new": "            // A paused/zero-rate Source call is an observation, not motion.\n            // Replaying its full pose would erase bone overrides installed\n            // after the SDK pose (including stopped minigame target models).\n            const bool advancing=entry.observation && entry.observation->step==s.step &&\n                !(entry.observation->before.flags&8) && entry.observation->before.increment!=0 &&\n                entry.observation->before.time>=0 && entry.observation->before.time<=entry.observation->before.duration;"
+          }
+        ],
+        "affected_kinds": [],
+        "affected_variants": [],
+        "evidence": "Only ModelAnimation::begin_frame moving-observation guard changed. Exact whole-file reversal verified. Source/model/collider fixtures and generated Original calls do not enter ModelFrameScope or begin_frame; unchanged Source methods preserve their behavior. Active render path has a separate fresh paused/zero-rate override test."
+      },
       {
         "path": "/home/vova/projects/DoraRecomp3/src/native_texture_animation.cpp",
         "old_file": "build-local/continuation-20260930/regression047-scene-texture-before-signed.cpp",
@@ -1316,7 +1364,12 @@
         "evidence": "Only bitmap decoding/signature/translation helpers were extended. They are called below unchanged !state.active guard. This Source/model/collider replay never constructs TextureFrameScope (game-loop is not linked), hence every retained case follows exactly the same inactive texture path. Active format paths are separately checked with actual SDK binding/material and ASan/UBSan."
       }
     ],
-    "reason": "Completed identical inactive-path Source cases retain actual execution logs; current-input complete variant0 validates new linkage without rerunning unchanged cross product."
+    "prior_resume_evidence": {
+      "path": "build-local/native-scene-object-check/regression048-prior-scene-cold-scope.json",
+      "sha256": "4eef83f7e08ad547ebc3622c056bb0162413bf436fe8d164e37a2f94295af192"
+    },
+    "previous_generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
+    "reason": "All changes are in an uncalled ModelFrameScope branch. Old Source proofs keep their actual compiler dependencies and execution logs; one complete current-input variant reruns."
   },
   "fresh_replay_variants": [
     {
@@ -1618,7 +1671,7 @@
     290,
     291
   ],
-  "generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
+  "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
   "enemy_reference_receipt_sha256": "45e04bee0660b4e5776e71a1d8283e72e9b69a0f2eba885e435018c36e2ff6c7",
   "source_sha256": {
     "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
@@ -1627,7 +1680,7 @@
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
-    "src/native_model_animation.cpp": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
+    "src/native_model_animation.cpp": "e86d0b6951ff4e446afb8373f1321d3ae6ea342d8bab1205ac82a8f1f96cbacc",
     "src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "research/native-gameplay-cutscene-fixture.cpp": "9d0f96ae66fa812b88f4cb3950452db2c26509e8bdfa0612fb1641b654c58cdb",
@@ -1657,8 +1710,8 @@
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755"
   },
   "optimization": "O2",
-  "replay_workers": 4,
-  "replay_summary_sha256": "844349f136fa05ef37ab02507e52f6ad44aba05e08367f46b5e33ccf70d8a8ab",
+  "replay_workers": 6,
+  "replay_summary_sha256": "6a9a03d0af9ea8b0e70e9d1d90eecda75c11cfc31467f66956146a9e86620f45",
   "source_body_proof": [
     "dora3_s0_menu_80039544",
     "dora3_s10_cave_8021D9F4",

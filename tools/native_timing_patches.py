@@ -3,6 +3,11 @@ import collections,hashlib,json,struct
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 APPROVED_UI_SITES={
+    ('ui_map_node_rectangle','.scene34',0x801BA3C8,0x801BA590,0x0C00AA11): {},
+    ('ui_draw_boundary','.scene34',0x801BA0CC,0x801BA0CC,0x27BDFFB0): {'end': 0},
+    ('ui_draw_boundary','.scene34',0x801BA0CC,0x801BA3AC,0x8FBF0048): {'end': 1},
+    ('ui_draw_boundary','.scene1',0x801F0CB8,0x801F0CB8,0x27BDFF90): {'end': 0},
+    ('ui_draw_boundary','.scene1',0x801F0CB8,0x801F13A0,0x8FBF0054): {'end': 1},
     ('ui_map_cursor_rectangle','.scene34',0x801BA858,0x801BAA14,0x0C00AA11): {},
     ('ui_source_end', '.startup', 2147647928, 2147648108, 2411659308): {},
  ('ui_draw_boundary', '.scene_common', 2149281308, 2149281308, 666763216): {'end': 0},
@@ -2623,7 +2628,16 @@ def timing_hooks(sections,compiled,rom):
                 label=f'dora3_after_timing_{site:08X}'
                 hooks[name,address].append('extern int dora3_native_ui_map_cursor_rectangle(uint8_t*,recomp_context*);')
                 target=compiled[0,0x8002A844][0]
-                text=f'if (dora3_native_ui_map_cursor_rectangle(rdram,ctx)) {{ {target}(rdram,ctx); goto {label}; }}'
+                hooks[name,address].append('extern int dora3_native_ui_map_bitmap_begin(uint8_t*,recomp_context*,unsigned); extern void dora3_native_ui_map_bitmap_end(uint8_t*);')
+                text=f'if (dora3_native_ui_map_cursor_rectangle(rdram,ctx)) {{ dora3_native_ui_map_bitmap_begin(rdram,ctx,0); {target}(rdram,ctx); dora3_native_ui_map_bitmap_end(rdram); goto {label}; }}'
+                hooks[name,site+8].insert(0,label+':;')
+            elif op=='ui_map_node_rectangle':
+                delay=struct.unpack_from('>I',rom,s['rom']+site+4-s['vram'])[0]
+                if delay!=0xAFA3001C:raise ValueError('Stage-map node stack argument changed')
+                label=f'dora3_after_timing_{site:08X}'
+                target=compiled[0,0x8002A844][0]
+                hooks[name,address].append('extern int dora3_native_ui_map_bitmap_begin(uint8_t*,recomp_context*,unsigned); extern void dora3_native_ui_map_bitmap_end(uint8_t*);')
+                text=f'if (dora3_native_ui_map_bitmap_begin(rdram,ctx,1)) {{ MEM_W(0x1C,ctx->r29)=ctx->r3; {target}(rdram,ctx); dora3_native_ui_map_bitmap_end(rdram); goto {label}; }}'
                 hooks[name,site+8].insert(0,label+':;')
             elif op=='ui_charge_rectangle':text='extern void dora3_native_ui_charge_rectangle(uint8_t*,recomp_context*); dora3_native_ui_charge_rectangle(rdram,ctx);'
             elif op=='ui_domain':text=f'dora3_native_ui_domain(rdram,{rule["domain"]});'

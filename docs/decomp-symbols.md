@@ -24,7 +24,7 @@ ROM инструкции, типы, float порядок, register storage и co
 address-map и ссылки на старые полные имена в остальных документах.
 `--check` проверяет, что документация соответствует каталогу.
 
-В каталоге: 2625 описаний функций, 2294 новых смысловых имён и 5777 ограниченных областей переменных.
+В каталоге: 2629 описаний функций, 2298 новых смысловых имён и 5777 ограниченных областей переменных.
 
 | Overlay / адрес | Читаемое имя | Прежнее ABI имя | Назначение |
 |---|---|---|---|
@@ -2598,7 +2598,7 @@ address-map и ссылки на старые полные имена в ост�
 | .minigame_2 / 0x801C510C | `dora3_minigame2_advance_intro_camera_801C510C` | `dora3_s22_mini_801C510C` | Накопительные camera distance и pitch в начале игры; floor distance300/pitch10. Pitch использует SDK angle-wrap; счётчик вступления остаётся Source. |
 | .minigame_2 / 0x801C51B0 | `dora3_minigame2_approach_camera_yaw_801C51B0` | `dora3_s22_mini_801C51B0` | Source выбирает цель камеры; yaw приближается к ней через wrapped angle increment с коэффициентом1/15 или1/30. Начальные distance/pitch и snap-to-target остаются Source. |
 | .minigame_2 / 0x801C654C | `dora3_minigame2_advance_participant_height_depth_801C654C` | `dora3_s22_mini_801C654C` | Вычисляет вертикальный/depth шаг из изменяющегося driver10 и Source phase. Contact/landing, звуки/rumble и фиксация положения сохраняют однократность; накопительное движение отделено от setters. |
-| .minigame_2 / 0x801C68AC | `dora3_minigame2_update_net_participant_pitch_801C68AC` | `dora3_s22_mini_801C68AC` | Два промежуточных разворота по180 переводят pitch в удобную систему и обратно. Они не являются самостоятельной анимацией; Native отслеживает только итоговое накопление±0.3 с Source bounds/direction switch. |
+| .minigame_2 / 0x801C68AC | `dora3_planes_update_centered_pitch_801C68AC` | `dora3_s22_mini_801C68AC` | Временно прибавляет180 градусов к pitch, колеблет его в диапазоне174..186, затем прибавляет180 обратно. Два временных полуоборота не означают вращение модели на360 в Native кадрах; звук освобождается однократно в Source. |
 | .minigame_1 / 0x801C4DD8 | `dora3_minigame1_advance_rising_effect_801C4DD8` | `dora3_s21_mini_801C4DD8` | Непрерывно меняет scaleXYZ и worldY эффекта; счётчик жизни и конечное выключение остаются Source. |
 | .minigame_1 / 0x801C51C0 | `dora3_minigame1_advance_falling_effect_801C51C0` | `dora3_s21_mini_801C51C0` | Накопительные scaleXYZ/worldY второй группы эффектов; завершение/ресурсы сохраняют Source cadence. |
 | .minigame_1 / 0x801C6944 | `dora3_minigame1_update_energy_and_heading_801C6944` | `dora3_s21_mini_801C6944` | Сохраняет Source input/ветви; обновляет speed/energy и wrapped направления участника. Переключения, обнуления и заданные импульсы остаются командами. |
@@ -2653,3 +2653,7 @@ address-map и ссылки на старые полные имена в ост�
 | .minigame_8 / 0x801C7570 | `dora3_minigame8_copy_participant_shadow_pose_801C7570` | `dora3_s28_mini_801C7570` | Для живого shadow actor pool65+i копирует localX и localZ участника через73C0/73EC и yaw через7418. Это производная видимая поза: Native сохраняет непрерывную связь с телом и wrap угла. Source active/clip/FSM команды не повторяются. |
 | .minigame_2 / 0x801C5E74 | `dora3_minigame2_copy_body_pose_to_visual_plane_801C5E74` | `dora3_s22_mini_801C5E74` | Каждый Source pass копирует worldXYZ участника1..4 в постоянный visual actor5..8, затем корректирует yaw и обновляет bitmap channel2. Native Derived copies используют ту же позу и после terrain query; timer/clips не повторяются. |
 | .minigame_2 / 0x801C56C8 | `dora3_minigame2_update_participant_follower_801C56C8` | `dora3_s22_mini_801C56C8` | В state0 копирует worldXYZ участника в actor21..24 каждый Source pass. State1 создаёт эффект с fixedY200 и commands; state2 управляет окончаниями/параметрами клипа. Только постоянная state0 связь стала Native Derived; одноразовые spawn/clip операции остаются Source. |
+| .scene34 / 0x801BA0CC | `dora3_stage_map_draw_background_strips_801BA0CC` | `dora3_s2_menu_801BA0CC` | Рисует карту полосами по2 пикселя: камера6370/6380 задаёт целочисленные границы загружаемых texels; E1 задаёт отдельное начало выборки. Дробная прокрутка меняет E1 после сборки, не границы текстуры. |
+| .scene34 / 0x801BA3C8 | `dora3_stage_map_draw_node_bitmaps_801BA3C8` | `dora3_s2_menu_801BA3C8` | Выбирает открытый/закрытый значок каждой точки карты и рисует bitmap относительно6370/6380. Native сохраняет целочисленную нарезку SDK и сдвигает готовые E4 прямоугольники вместе. |
+| .scene1 / 0x801F0CB8 | `dora3_item_menu_draw_frame_and_side_arrows_801F0CB8` | `dora3_s3_801F0CB8` | Рисует рамку меню предметов и боковые стрелки. Осциллятор BFCB/BE42 меняется в draw: его исходная частота сохраняется через frame guard, независимо от Manual FPS. |
+| .minigame_3 / 0x801C5F34 | `dora3_minigame3_pause_finished_target_clip_801C5F34` | `dora3_s23_mini_801C5F34` | Проверяет флаг окончания clip компонента0, ставит pause после окончания, затем вычисляет позу и продвигает время со скоростью3. Решение о pause выполняется на исходной частоте. |

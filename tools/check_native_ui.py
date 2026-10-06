@@ -15,8 +15,8 @@ def main():
   for n,v in receipt[group].items():assert sha(base/n)==v,('Stale UI generation',n)
  assert old['rom_sha256']==receipt['rom_sha256']
  for n,v in old['generated'].items():assert sha(ref/n)==v,n
- roots=['dora3_s3_801C9E50','dora3_s3_801C9EBC','dora3_s0_8002DA98','dora3_s3_801F1598','dora3_s3_801F4948','dora3_s3_801F6870']+['dora3_s2_menu_'+f'{x:08X}' for x in [0x801B9F10,0x801BA660,0x801B981C,0x801B96F8,0x801BA858,0x801BBCEC,0x801BBEB0,0x801BC17C,0x801BC4C0,0x801C0528,0x801C14B8,0x801C1A90,0x801C1CA0,0x801C22C4,0x801BDEFC,0x801BFC44]]+['dora3_lib_80057A80','dora3_s1_801B5B04','dora3_s1_801B6E1C','dora3_s1_801B7DCC','dora3_s1_801B7BB4','dora3_s1_801B63B8','dora3_s3_801BE5F0','dora3_s3_801BE72C','dora3_s3_801BE7EC']
- allowed={'dora3_color_buffer_setup','dora3_depth_buffer_clear','dora3_s0_800444C0','dora3_texture_info','dora3_common_text_draw','dora3_common_glyph_draw','dora3_scaled_texture_rect','dora3_s0_menu_8002841C','dora3_texture_rect_state'}
+ roots=['dora3_s2_menu_801BA0CC','dora3_s2_menu_801BA3C8','dora3_s3_801F0CB8','dora3_scaled_texture_rect','dora3_s3_801C9E50','dora3_s3_801C9EBC','dora3_s0_8002DA98','dora3_s3_801F1598','dora3_s3_801F4948','dora3_s3_801F6870']+['dora3_s2_menu_'+f'{x:08X}' for x in [0x801B9F10,0x801BA660,0x801B981C,0x801B96F8,0x801BA858,0x801BBCEC,0x801BBEB0,0x801BC17C,0x801BC4C0,0x801C0528,0x801C14B8,0x801C1A90,0x801C1CA0,0x801C22C4,0x801BDEFC,0x801BFC44]]+['dora3_lib_80057A80','dora3_s1_801B5B04','dora3_s1_801B6E1C','dora3_s1_801B7DCC','dora3_s1_801B7BB4','dora3_s1_801B63B8','dora3_s3_801BE5F0','dora3_s3_801BE72C','dora3_s3_801BE7EC']
+ allowed={'dora3_color_buffer_setup','dora3_depth_buffer_clear','dora3_s0_800444C0','dora3_texture_info','dora3_common_text_draw','dora3_common_glyph_draw','dora3_s0_menu_8002841C','dora3_texture_rect_state'}
  # Character input/scene/resource and model/sprite commands are explicit
  # boundaries; the actual carousel/spin/matrix arithmetic executes below.
  command_pcs={0x801C9B9C,0x801C9BE0,0x801F6DC4,0x801B8F9C,0x801EFE2C,0x8002A1B8,0x80028C74}

@@ -68,7 +68,7 @@ static void arm(Memory& m,unsigned index,unsigned divider) {
     m.F(camera+0x18,50);m.F(camera+0x1C,45);m.F(camera+0x30,2000);
 }
 static recomp_context context() {
-    recomp_context c{};c.f_odd=&c.f0.u32h;c.r29=std::int32_t(0x803F0000);return c;
+    recomp_context c{};c.f_odd=&c.f0.u32h;c.r29=std::int32_t(0x801AEAF8);return c;
 }
 using Function=void(*)(std::uint8_t*,recomp_context*);
 static unsigned cases=0,slices=0;
@@ -120,6 +120,40 @@ template<class Prepare> static void replay(Memory seed,unsigned index,Function f
         frame_active=false;assert(working.data==source);native_minigame_reset(working.ram());
         assert(command_count<=before_commands);++cases;
     }
+}
+static void composed_plane_pitch(const Memory& seed) {
+ for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,144u,360u})for(bool oscillating:{false,true}) {
+  native_minigame_reset();Memory m=seed;arm(m,1,divider);auto c=context();requested=fps;
+  constexpr auto flight=0x801C8990u;
+  m.W(flight+0x3C)=oscillating;m.W(flight+0x40)=1;m.W(flight+0x4C)=-1;
+  m.F(actor+0xC,2);c.r4=0;c.r5=int32_t(actor);
+  const auto& d=dora3::minigame::definitions[1];
+  dora3_native_minigame_source(m.ram(),&c,d.rom,d.update,0);
+  mini2_pitch(m.ram(),&c);dora3_native_minigame_source(m.ram(),&c,d.rom,d.update,1);
+  const auto source=m.data;const auto initial=m.R(actor+0xC);native_minigame_begin(m.ram(),clock_now,divider);
+  const auto origin=clock_now;
+  for(unsigned n=1;n<=fps*divider/60+1;++n) {
+   clock_now=origin+Nanoseconds(std::min<double>(double(second)*divider/60.,double(second)*n/fps));
+   native_minigame_update(m.ram(),&c,clock_now);
+   const double h=double(clock_now-origin)*60./(double(second)*divider);
+   close(m.R(actor+0xC),initial+(oscillating?.3*h:0));++slices;
+  }
+  native_minigame_reset(m.ram());assert(m.data==source);++cases;
+ }
+}
+static void full_bomb_intro(const Memory& seed) {
+ native_minigame_reset();Memory m=seed;arm(m,7,3);auto c=context();requested=144;
+ for(unsigned i=0;i<230;++i)m.W(0x80171CD0+i*0xCC+0x94)=0;
+ m.W(0x801C8AC0)=0;m.W(0x801C8AC4)=0;m.H(0x801C8940)=1;
+ const auto x=m.R(camera),y=m.R(camera+4);
+ mini8_root(m.ram(),&c);
+ close(m.R(camera),x+10);close(m.R(camera+4),y+10);
+ const auto source=m.data;native_minigame_begin(m.ram(),clock_now,3);const auto origin=clock_now;
+ for(unsigned n=1;n<=7;++n) {
+  clock_now=origin+second*n/144;native_minigame_update(m.ram(),&c,clock_now);
+  close(m.R(camera),x+10+10*double(clock_now-origin)*20./second);++slices;
+ }
+ native_minigame_reset(m.ram());assert(m.data==source);++cases;
 }
 static void terminal_and_intro(const Memory& seed) {
     for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,144u,360u}) {
@@ -274,7 +308,7 @@ static void equations() {
 int main(int argc,char** argv) {
     assert(argc==2);seed_directory=std::filesystem::path(argv[1]).parent_path();Memory seed;std::ifstream stream(argv[1],std::ios::binary);stream.read(reinterpret_cast<char*>(seed.data.data()),0x400000);assert(stream);
     equations();
-    terminal_and_intro(seed);
+    composed_plane_pitch(seed);full_bomb_intro(seed);terminal_and_intro(seed);
     participant_copies(seed);
     replay(seed,0,mini1_effect,[](Memory& m,recomp_context& c){c.r4=1;m.H(0x801CCE50+8+6)=10;},actor+0xA0,5);
     replay(seed,0,mini1_projected,[](Memory& m,recomp_context& c){c.r4=1;c.r5=std::int32_t(actor);const auto d=0x801CCAD0+0xA8;m.F(actor+0x9C,100);m.F(actor+0xA4,100);m.F(d+0x50,100);m.F(d+0x58,100);m.F(d+0x24,3);m.F(d+0x28,2);m.F(d+0x2C,0);m.F(d+0x30,0);},actor+0x9C,3);

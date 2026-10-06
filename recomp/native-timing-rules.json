@@ -25710,6 +25710,70 @@
       "role": "ordinary_camera_wall_distance_rate",
       "status": "Implementation after046; targeted validation pending",
       "evidence": "D7294 collision recovery caps camera distance against previous80218280 by +/-25 once per update when error exceeds30. Scale only that temporal rate for the anchored Native phase. The 2/5/10/20 increments inside camera collision searches remain spatial lengths, not time rates; Original and full Source endpoint remain exact."
+    },
+    {
+      "section": ".scene34",
+      "function": "0x801BA3C8",
+      "function_name": "dora3_s2_menu_801BA3C8",
+      "function_sha256": "a4f7d46e1b34f53bc0564a51b340149e79c13b2501ad9714d36d4ae48da07d4d",
+      "site": "0x801BA590",
+      "expected_word": "0x0C00AA11",
+      "operation": "ui_map_node_rectangle",
+      "status": "Implementation048; proof pending",
+      "role": "map_bitmap_or_source_draw_oscillator",
+      "evidence": "Exact ROM Source draw boundary. Keep authored integer clipping/chunks and byte oscillator cadence; Native only translates emitted rectangles or UV origins."
+    },
+    {
+      "section": ".scene34",
+      "function": "0x801BA0CC",
+      "function_name": "dora3_s2_menu_801BA0CC",
+      "function_sha256": "1a16fbc0d76eb8ea459134df510156cc7fac399d1f9179d94bb856c0b7df59e3",
+      "site": "0x801BA0CC",
+      "expected_word": "0x27BDFFB0",
+      "operation": "ui_draw_boundary",
+      "status": "Implementation048; proof pending",
+      "role": "map_bitmap_or_source_draw_oscillator",
+      "evidence": "Exact ROM Source draw boundary. Keep authored integer clipping/chunks and byte oscillator cadence; Native only translates emitted rectangles or UV origins.",
+      "end": 0
+    },
+    {
+      "section": ".scene34",
+      "function": "0x801BA0CC",
+      "function_name": "dora3_s2_menu_801BA0CC",
+      "function_sha256": "1a16fbc0d76eb8ea459134df510156cc7fac399d1f9179d94bb856c0b7df59e3",
+      "site": "0x801BA3AC",
+      "expected_word": "0x8FBF0048",
+      "operation": "ui_draw_boundary",
+      "status": "Implementation048; proof pending",
+      "role": "map_bitmap_or_source_draw_oscillator",
+      "evidence": "Exact ROM Source draw boundary. Keep authored integer clipping/chunks and byte oscillator cadence; Native only translates emitted rectangles or UV origins.",
+      "end": 1
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801F0CB8",
+      "function_name": "dora3_s3_801F0CB8",
+      "function_sha256": "567057df5b08f6169c9901d8a5806fae3fae3e3228f0df9cd22a543c9362c123",
+      "site": "0x801F0CB8",
+      "expected_word": "0x27BDFF90",
+      "operation": "ui_draw_boundary",
+      "status": "Implementation048; proof pending",
+      "role": "map_bitmap_or_source_draw_oscillator",
+      "evidence": "Exact ROM Source draw boundary. Keep authored integer clipping/chunks and byte oscillator cadence; Native only translates emitted rectangles or UV origins.",
+      "end": 0
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801F0CB8",
+      "function_name": "dora3_s3_801F0CB8",
+      "function_sha256": "567057df5b08f6169c9901d8a5806fae3fae3e3228f0df9cd22a543c9362c123",
+      "site": "0x801F13A0",
+      "expected_word": "0x8FBF0054",
+      "operation": "ui_draw_boundary",
+      "status": "Implementation048; proof pending",
+      "role": "map_bitmap_or_source_draw_oscillator",
+      "evidence": "Exact ROM Source draw boundary. Keep authored integer clipping/chunks and byte oscillator cadence; Native only translates emitted rectangles or UV origins.",
+      "end": 1
     }
   ]
 }

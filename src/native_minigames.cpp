@@ -106,7 +106,7 @@ struct Runtime {
     std::array<Tag,32> fp{},gpr{};
     std::unordered_map<std::uint32_t,Tag> stack;
     std::unordered_map<std::uint32_t,std::array<Tag,2>> paired_spills;
-    std::uint32_t source_stack_top=0;
+    std::uint32_t source_stack_top=0,source_stack_low=0;
     std::unordered_map<std::uint32_t,double> counter_rates;
     struct Parameter {std::uint32_t model=0,actor=0;Tag value;MinigameEquations::Lifetime owner;};
     std::vector<Parameter> parameters;
@@ -257,9 +257,12 @@ void refresh_view_origins(std::uint8_t* ram) {
     }
 }
 bool stack_address(std::uint32_t address,unsigned bytes=4) {
-    return runtime.source_stack_top>=0x80010000u &&
-        address>=runtime.source_stack_top-0x10000u &&
-        std::uint64_t(address)+bytes<=std::uint64_t(runtime.source_stack_top)+0x200u;
+    // The actual game SP is801AEAF8. A64KiB guessed stack interval also
+    // contains camera801A99F8 and resident animation/input globals, turning
+    // their loads into constants. Only reached Source frames are spills.
+    return runtime.source_stack_low>=0x80000000u &&
+        address>=runtime.source_stack_low &&
+        std::uint64_t(address)+bytes<=std::uint64_t(runtime.source_stack_top);
 }
 Expression read_fp(recomp_context* c,unsigned index,bool wide) {
     auto& t=runtime.fp[index];
@@ -395,13 +398,15 @@ extern "C" void dora3_native_minigame_source(std::uint8_t* rdram,recomp_context*
     if(!end) {
         if(!dora3_requested_native_fps())return;
         if(runtime.ram!=rdram||runtime.definition!=d){native_minigame_reset(rdram);runtime.ram=rdram;runtime.definition=d;}
-        restore_matrices(rdram);restore_camera_eyes(rdram);restore_ground(rdram);runtime.ground_owners.clear();runtime.fp={};runtime.gpr={};runtime.stack.clear();runtime.paired_spills.clear();runtime.parameters.clear();runtime.counter_rates.clear();runtime.indirect_depth=0;runtime.source_stack_top=std::uint32_t(c->r29);runtime.in_source=true;
+        restore_matrices(rdram);restore_camera_eyes(rdram);restore_ground(rdram);runtime.ground_owners.clear();runtime.fp={};runtime.gpr={};runtime.stack.clear();runtime.paired_spills.clear();runtime.parameters.clear();runtime.counter_rates.clear();runtime.indirect_depth=0;runtime.source_stack_low=runtime.source_stack_top=std::uint32_t(c->r29);runtime.in_source=true;
         runtime.equations.begin_source(rdram,rom,runtime.epoch,now,unsigned(word(rdram,0x801A39DC)));
     }
 }
 extern "C" void dora3_native_minigame_instruction(std::uint8_t* rdram,recomp_context* c,std::uint32_t rom,
                                                  std::uint32_t site,std::uint32_t instruction,unsigned role,std::uint32_t owner_hint) {
     if(!runtime.in_source||!runtime.definition||(runtime.definition->rom!=rom&&rom!=0x18BDF0))return;
+    const auto sp=std::uint32_t(c->r29);
+    if(pointer(sp)&&sp<=runtime.source_stack_top)runtime.source_stack_low=std::min(runtime.source_stack_low,sp);
     const unsigned op=instruction>>26,rs=(instruction>>21)&31,rt=(instruction>>16)&31;
     const auto address=std::uint32_t(reg(*c,rs)+std::int16_t(instruction));
     const auto tagged_gpr=[&](unsigned index)->Tag {

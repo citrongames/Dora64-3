@@ -54,7 +54,8 @@ void write_fade(uint8_t* rdram,FadeState state) {
 std::optional<Nanoseconds> render_time() {
     if(active_policy&&active_policy->update==native_cutscene_update)return native_cutscene_render_time();
     if(active_policy&&active_policy->update==native_minigame_update)return native_minigame_render_time();
-    return native_gameplay_preview_render_time();
+    if(active_policy&&active_policy->update==native_gameplay_preview_update)return native_gameplay_preview_render_time();
+    return std::nullopt;
 }
 unsigned applied_fps=0;
 const char* last_fallback=nullptr;

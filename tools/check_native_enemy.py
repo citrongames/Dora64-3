@@ -224,7 +224,7 @@ def main():
     resume=None;requested={d[0] for d in defs}
     if a.resume_evidence:
         resume=json.loads(a.resume_evidence.read_text())
-        if resume.get('kind')=='inactive-texture-scope':
+        if resume.get('kind') in {'inactive-texture-scope','inactive-model-frame-scope'}:
             assert resume['generation_receipt_sha256']==sha(g/'generation-receipt.json')
             retained=set(resume['retained_kinds']);requested=set(resume['rerun_kinds'])
             assert not retained&requested and retained|requested=={d[0] for d in defs}
@@ -236,12 +236,22 @@ def main():
             assert 'TextureFrameScope' not in (ROOT/'research/native-story-pickup-source-check.cpp').read_text()
             assert ROOT/'src/native_game_loop.cpp' not in sources
             equivalence=resume['input_equivalence']
-            assert len(equivalence)==1 and equivalence[0]['path']==str(ROOT/'src/native_texture_animation.cpp')
+            assert len(equivalence)==1 and equivalence[0]['path']==str(ROOT/('src/native_model_animation.cpp' if resume['kind']=='inactive-model-frame-scope' else 'src/native_texture_animation.cpp'))
             item=equivalence[0];current=Path(item['path']);prior=ROOT/item['old_file']
             assert sha(current)==item['new_sha256'] and sha(prior)==item['old_sha256']
             assert not retained&set(item['affected_kinds'])
             text=current.read_text()
-            assert 'if(!state.active||state.frame_ram!=rdram)return;' in text
+            if resume['kind']=='inactive-model-frame-scope':
+                for file in ('research/native-enemy-source-check.inc','research/native-gameplay-cutscene-fixture.cpp'):
+                    assert 'begin_frame(' not in (ROOT/file).read_text() and 'ModelFrameScope' not in (ROOT/file).read_text()
+                assert len(re.findall(r'\bposes\s*\(', (ROOT/'research/native-story-pickup-source-check.cpp').read_text()))==1
+                assert all(not re.search(r'\bposes\s*\(',file.read_text()) for file in (ROOT/'research').glob('*.inc'))
+                split='void ModelAnimation::begin_frame('
+                assert text[:text.index(split)]==prior.read_text()[:prior.read_text().index(split)]
+                expected='!(entry.observation->before.flags&8) && entry.observation->before.increment!=0'
+                assert expected in text and expected not in prior.read_text()
+            else:
+                assert 'if(!state.active||state.frame_ram!=rdram)return;' in text
             for edit in reversed(item['edits']):
                 assert text.count(edit['new'])==1;text=text.replace(edit['new'],edit['old'],1)
             assert text==prior.read_text()

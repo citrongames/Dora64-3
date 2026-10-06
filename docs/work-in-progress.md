@@ -1,3 +1,21 @@
+## Test-048: причины регрессий карты, камер и моделей
+
+Исправлены обратный countdown/easing stage map и единая дробная прокрутка
+фона/значков, нарезка cursor bitmap, два временных +180 planes pitch,
+классификация camera/global loads при реальном game SP801AEAF8, paused/zero-rate
+позы и Source частота byte oscillator боковых item arrows. UI-only policy
+выбирает текущий frame timestamp для фейда. Проверены аналогичные общие paths.
+
+31 connected CPU scope PASS; общий набор PARTIAL_USER_SKIP, full-player
+исключён по прямой просьбе.414 UI cases,332 Original endpoints,8682 samples;
+187 minigame cases/1425 slices при фактическом SP, полный bomb update;
+actual paused/zero-rate SDK pose/morph/override cases.291 scene и217 enemy
+групп сохраняют исходные completed execution logs и точную эквивалентность
+неисполняемой render ветви; один текущий полный вариант каждой области свежий.
+Полная связь конкретного voice/fruit симптома с paused pose ещё визуально
+не подтверждена. Игру/renderer/GPU локально не запускали. Подробности —
+native-regressions-test048.md. Windows048/package завершены; старые файлы сохранены. Commit/push main.
+
 ## Test-047: исправления после046 и аудит связанных путей
 
 Windows047 из startup-regressions-test047-v1 сохранён в общей testbuild папке.

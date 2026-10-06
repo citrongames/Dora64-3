@@ -323,18 +323,28 @@ struct MinigameEquations::State {
                 retention=arithmetic_node(Operation::Multiply,retention,operand);
                 forcing=arithmetic_node(Operation::Multiply,forcing,operand);
             } else forcing=arithmetic_node(node.op,forcing,operand);
-            if(degree(retention)==0&&at(retention,0)==1)
+            if(degree(retention)==0&&at(retention,0)==1) {
+                if(role==FieldRole::Angle)
+                    forcing=add({Kind::Arithmetic,Operation::AngleDelta,forcing,0,0,0});
                 return add({Kind::Advance,Operation::Add,forcing,0,address,previous});
+            }
             return add({Kind::AffineAdvance,Operation::Add,retention,forcing,address,previous});
         }
         Expression delta=0;
         if(matches(node.a)&&!dependent(node.b,address))delta=node.b;
         else if(node.op!=Operation::Subtract&&matches(node.b)&&!dependent(node.a,address))delta=node.a;
-        if(delta)return add({Kind::Advance,node.op,delta,0,address,previous});
+        if(delta) {
+            if(role==FieldRole::Angle)delta=add({Kind::Arithmetic,Operation::AngleDelta,delta,0,0,0});
+            return add({Kind::Advance,node.op,delta,0,address,previous});
+        }
         if(const auto coefficients=affine(arithmetic,address,role==FieldRole::Angle)) {
             if(degree(coefficients->first)==0) {
-                if(at(coefficients->first,0)==1&&!dependent(coefficients->second,address))
-                    return add({Kind::Advance,Operation::Add,coefficients->second,0,address,previous});
+                if(at(coefficients->first,0)==1&&!dependent(coefficients->second,address)) {
+                    auto forcing=coefficients->second;
+                    if(role==FieldRole::Angle)
+                        forcing=add({Kind::Arithmetic,Operation::AngleDelta,forcing,0,0,0});
+                    return add({Kind::Advance,Operation::Add,forcing,0,address,previous});
+                }
                 auto forcing=coefficients->second;
                 if(role==FieldRole::Angle&&at(coefficients->first,0)==1)
                     forcing=add({Kind::Arithmetic,Operation::AngleDelta,forcing,0,0,0});

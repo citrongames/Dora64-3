@@ -840,7 +840,11 @@ void ModelAnimation::begin_frame(uint8_t* rdram,recomp_context* ctx,Nanoseconds 
     try {
         for(auto& [model,entry]:s.models) {
             if(!entry.last_pose || !word(rdram,model+0x60))continue;
+            // A paused/zero-rate Source call is an observation, not motion.
+            // Replaying its full pose would erase bone overrides installed
+            // after the SDK pose (including stopped minigame target models).
             const bool advancing=entry.observation && entry.observation->step==s.step &&
+                !(entry.observation->before.flags&8) && entry.observation->before.increment!=0 &&
                 entry.observation->before.time>=0 && entry.observation->before.time<=entry.observation->before.duration;
             const bool native=entry.native_pose && entry.native_clock &&
                 word(rdram,model+0x64)==entry.native_clock->expected_time &&

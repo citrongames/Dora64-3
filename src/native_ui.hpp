@@ -35,3 +35,5 @@ extern "C" double dora3_native_ui_selection_y_f64(double,float,double);
 extern "C" void dora3_native_ui_charge_rectangle(uint8_t*,recomp_context*);
 
 extern "C" int dora3_native_ui_map_cursor_rectangle(uint8_t*,recomp_context*);
+extern "C" int dora3_native_ui_map_bitmap_begin(uint8_t*,recomp_context*,unsigned);
+extern "C" void dora3_native_ui_map_bitmap_end(uint8_t*);

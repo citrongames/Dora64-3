@@ -115,6 +115,21 @@ int main() {
             adapter.end_frame(rdram);assert(R(bone+0x14)==original_pose);++frames;
         }
     }
+    // Actual Source pause/zero-rate calls still record an observation. Native
+    // must preserve a later game-authored bone override while regenerating the
+    // actual type10 morph into each free bank. This is the stop-after-sound path.
+    for(bool pause:{false,true})for(unsigned divider:{2u,3u}) {
+        seek(4);B(model+0x7C)=pause?8:0;step(pause?3.f:0.f,divider);
+        F(bone+0x14,123.f);const auto clip_time=W(model+0x64);
+        for(unsigned bank:{0u,1u}) {
+            W(0x801A9544)=int(bank);const auto other=H(banks[bank^1]);
+            adapter.begin_frame(rdram,&ctx,now+second*divider/120,bank);
+            assert(R(bone+0x14)==123.f&&W(model+0x64)==clip_time&&H(banks[bank^1])==other);
+            assert(std::abs(int(H(banks[bank]))-40)<=1);
+            adapter.end_frame(rdram);assert(R(bone+0x14)==123.f);++frames;
+        }
+    }
+    B(model+0x7C)=0;
     unsigned simulation_cases=0;
     for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,144u,360u})for(float rate:{3.f,-2.f,25.f}) {
         seek(0);B(model+0x7C)=0;SimulationTimeline timeline(divider);Nanoseconds previous=0;

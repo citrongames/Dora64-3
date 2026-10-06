@@ -1,11 +1,11 @@
 {
   "result": "PASS: 49 actual common-loop integration schedules, actual activation clock origin after held Original read, six Manual rates and both Source dividers, fractional modes, two completion boundaries, rate/reload/callback cancellation, unsupported fallback and quiescent mailbox reset; synthetic scene-clock/queue endpoints; no game/GPU.",
-  "generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
+  "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
   "source_sha256": {
-    "src/native_game_loop.cpp": "6ff610ebed5bf30fac75dbebfc39e510e711524ab68dacc3e724ea8ec8d782a8",
+    "src/native_game_loop.cpp": "84d83f1d829587ae3ac0912a325b54e178a7d0ef8b1cbf9995f016114015c661",
     "src/native_scene_policy.cpp": "b88a4911eb1d8950d3e5d75068b90e193a0c665b98713f45b7cbdd9df0913721",
-    "src/native_model_animation.cpp": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
-    "src/native_ui.cpp": "c1097ebcd61fcdec7d3895c719ee1f21bb18192e378c2866e25f9e196f8b054c",
+    "src/native_model_animation.cpp": "e86d0b6951ff4e446afb8373f1321d3ae6ea342d8bab1205ac82a8f1f96cbacc",
+    "src/native_ui.cpp": "ebbbcd4c51e66685c8303f04c99ff0c488a1b51d814303ac7144fd906e2db6ae",
     "src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "src/native_frame_scheduler.cpp": "5aebb567341ad6853cc9eaa25ad093fe463a8614bfbae39d9b017140014cd118",

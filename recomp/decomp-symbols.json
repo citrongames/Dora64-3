@@ -88294,9 +88294,9 @@
       "vram": "0x801C68AC",
       "size": 288,
       "legacy_name": "dora3_s22_mini_801C68AC",
-      "name": "dora3_minigame2_update_net_participant_pitch_801C68AC",
-      "description": "Два промежуточных разворота по180 переводят pitch в удобную систему и обратно. Они не являются самостоятельной анимацией; Native отслеживает только итоговое накопление±0.3 с Source bounds/direction switch.",
-      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "name": "dora3_planes_update_centered_pitch_801C68AC",
+      "description": "Временно прибавляет180 градусов к pitch, колеблет его в диапазоне174..186, затем прибавляет180 обратно. Два временных полуоборота не означают вращение модели на360 в Native кадрах; звук освобождается однократно в Source.",
+      "evidence": "Exact ROM Source data flow, counters and display-list builder callers;048 targeted proof pending.",
       "rom_sha256": "bab9031d00c9f4a265a22a9f20d0c9c75be777ca5136e044d7d8a473eaffd858",
       "locals": []
     },
@@ -88928,6 +88928,50 @@
       "description": "В state0 копирует worldXYZ участника в actor21..24 каждый Source pass. State1 создаёт эффект с fixedY200 и commands; state2 управляет окончаниями/параметрами клипа. Только постоянная state0 связь стала Native Derived; одноразовые spawn/clip операции остаются Source.",
       "evidence": "ROM-qualified direct Source data flow and actor strides, bitmap/clip command branches after046; new connected CPU/visual proof pending.",
       "rom_sha256": "a283b67a61629682a4c2ac0b7fec5216431827833fb889522d919e15f6ddf48a"
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BA0CC",
+      "legacy_name": "dora3_s2_menu_801BA0CC",
+      "size": 764,
+      "locals": [],
+      "name": "dora3_stage_map_draw_background_strips_801BA0CC",
+      "description": "Рисует карту полосами по2 пикселя: камера6370/6380 задаёт целочисленные границы загружаемых texels; E1 задаёт отдельное начало выборки. Дробная прокрутка меняет E1 после сборки, не границы текстуры.",
+      "evidence": "Exact ROM Source data flow, counters and display-list builder callers;048 targeted proof pending.",
+      "rom_sha256": "1a16fbc0d76eb8ea459134df510156cc7fac399d1f9179d94bb856c0b7df59e3"
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BA3C8",
+      "legacy_name": "dora3_s2_menu_801BA3C8",
+      "size": 520,
+      "locals": [],
+      "name": "dora3_stage_map_draw_node_bitmaps_801BA3C8",
+      "description": "Выбирает открытый/закрытый значок каждой точки карты и рисует bitmap относительно6370/6380. Native сохраняет целочисленную нарезку SDK и сдвигает готовые E4 прямоугольники вместе.",
+      "evidence": "Exact ROM Source data flow, counters and display-list builder callers;048 targeted proof pending.",
+      "rom_sha256": "a4f7d46e1b34f53bc0564a51b340149e79c13b2501ad9714d36d4ae48da07d4d"
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801F0CB8",
+      "legacy_name": "dora3_s3_801F0CB8",
+      "size": 1812,
+      "locals": [],
+      "name": "dora3_item_menu_draw_frame_and_side_arrows_801F0CB8",
+      "description": "Рисует рамку меню предметов и боковые стрелки. Осциллятор BFCB/BE42 меняется в draw: его исходная частота сохраняется через frame guard, независимо от Manual FPS.",
+      "evidence": "Exact ROM Source data flow, counters and display-list builder callers;048 targeted proof pending.",
+      "rom_sha256": "567057df5b08f6169c9901d8a5806fae3fae3e3228f0df9cd22a543c9362c123"
+    },
+    {
+      "section": ".minigame_3",
+      "vram": "0x801C5F34",
+      "legacy_name": "dora3_s23_mini_801C5F34",
+      "size": 80,
+      "locals": [],
+      "name": "dora3_minigame3_pause_finished_target_clip_801C5F34",
+      "description": "Проверяет флаг окончания clip компонента0, ставит pause после окончания, затем вычисляет позу и продвигает время со скоростью3. Решение о pause выполняется на исходной частоте.",
+      "evidence": "Exact ROM Source data flow, counters and display-list builder callers;048 targeted proof pending.",
+      "rom_sha256": "e2cb46056937e91ac0978992aa782159738b69c786875ca3c3ca3205887dc08a"
     }
   ]
 }
