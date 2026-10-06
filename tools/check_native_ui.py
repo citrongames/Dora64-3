@@ -15,8 +15,13 @@ def main():
   for n,v in receipt[group].items():assert sha(base/n)==v,('Stale UI generation',n)
  assert old['rom_sha256']==receipt['rom_sha256']
  for n,v in old['generated'].items():assert sha(ref/n)==v,n
- roots=['dora3_s2_menu_'+f'{x:08X}' for x in [0x801B9F10,0x801BA660,0x801B981C,0x801B96F8,0x801BA858,0x801BBCEC,0x801BBEB0,0x801BC17C,0x801BC4C0,0x801C0528,0x801C14B8,0x801C1A90,0x801C1CA0,0x801C22C4,0x801BDEFC,0x801BFC44]]+['dora3_lib_80057A80','dora3_s1_801B5B04','dora3_s1_801B6E1C','dora3_s1_801B7DCC','dora3_s1_801B7BB4','dora3_s1_801B63B8','dora3_s3_801BE5F0','dora3_s3_801BE72C','dora3_s3_801BE7EC']
+ roots=['dora3_s3_801C9E50','dora3_s3_801C9EBC','dora3_s0_8002DA98','dora3_s3_801F1598','dora3_s3_801F4948','dora3_s3_801F6870']+['dora3_s2_menu_'+f'{x:08X}' for x in [0x801B9F10,0x801BA660,0x801B981C,0x801B96F8,0x801BA858,0x801BBCEC,0x801BBEB0,0x801BC17C,0x801BC4C0,0x801C0528,0x801C14B8,0x801C1A90,0x801C1CA0,0x801C22C4,0x801BDEFC,0x801BFC44]]+['dora3_lib_80057A80','dora3_s1_801B5B04','dora3_s1_801B6E1C','dora3_s1_801B7DCC','dora3_s1_801B7BB4','dora3_s1_801B63B8','dora3_s3_801BE5F0','dora3_s3_801BE72C','dora3_s3_801BE7EC']
  allowed={'dora3_color_buffer_setup','dora3_depth_buffer_clear','dora3_s0_800444C0','dora3_texture_info','dora3_common_text_draw','dora3_common_glyph_draw','dora3_scaled_texture_rect','dora3_s0_menu_8002841C','dora3_texture_rect_state'}
+ # Character input/scene/resource and model/sprite commands are explicit
+ # boundaries; the actual carousel/spin/matrix arithmetic executes below.
+ command_pcs={0x801C9B9C,0x801C9BE0,0x801F6DC4,0x801B8F9C,0x801EFE2C,0x8002A1B8,0x80028C74}
+ body_map=extract(g)
+ allowed.update(n for n,b in body_map.items() if int(re.search(r'// 0x([0-9A-Fa-f]+):',b)[1],16) in command_pcs)
  def closure(bodies):
   out={};todo=roots.copy()
   while todo:
@@ -41,13 +46,14 @@ def main():
    data=rom[s['rom']:s['rom']+s['size']];base=s['vram']&0xFFFFFF
    for i in range(0,len(data),4):seed[base+i:base+i+4]=data[i:i+4][::-1]
   (out/f'{tag}.bin').write_bytes(seed)
- runtime=ROOT/'build-deps/lib/N64ModernRuntime';flags=['-O1','-g','-fno-omit-frame-pointer','-fno-strict-aliasing',*['-I'+str(x) for x in [ROOT/'src',g,g/'RecompiledFuncs',runtime/'N64Recomp/include']]]
+ runtime=ROOT/'build-deps/lib/N64ModernRuntime';flags=['-DDORA3_UI_CHARGE_FRACTION_EXTERNAL','-O1','-g','-fno-omit-frame-pointer','-fno-strict-aliasing',*['-I'+str(x) for x in [ROOT/'src',g,g/'RecompiledFuncs',runtime/'N64Recomp/include']]]
  stamp=hashlib.sha256((sha(out/'functions.c')+sha(g/'startup_hooks.h')+sha(g/'RecompiledFuncs/funcs.h')+repr(flags)).encode()).hexdigest();cached=out/'functions.sha256'
  if not (out/'functions.o').exists() or not cached.exists() or cached.read_text()!=stamp:
   subprocess.run(['gcc','-std=c17','-fsanitize=address',*flags,'-c',str(out/'functions.c'),'-o',str(out/'functions.o')],check=True);cached.write_text(stamp)
  sources=[ROOT/'src/native_simulation_time.cpp',ROOT/'src/native_effects.cpp',ROOT/'src/native_ui.cpp',ROOT/'src/native_scene_policy.cpp',ROOT/'research/native-ui-check.cpp']
  sources.append(ROOT/'research/native-inactive-enemy-fixture.cpp')
  sources.append(ROOT/'research/native-inactive-minigame-fixture.cpp')
+ sources.extend([ROOT/'src/native_model_animation.cpp',ROOT/'src/native_frame_time.cpp',ROOT/'src/native_texture_animation.cpp',ROOT/'research/native-ui-model-inactive-fixture.cpp'])
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror','-fsanitize=address,undefined',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check'),str(out/'game.bin'),str(out/'menu.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')).strip()
  tracked=sources+[ROOT/'src/native_ui.hpp',ROOT/'src/native_scene_policy.cpp',ROOT/'src/native_game_loop.cpp',ROOT/'recomp/native-timing-rules.json',ROOT/'tools/native_timing_patches.py',ROOT/'tools/generate_startup.py',Path(__file__).resolve()]

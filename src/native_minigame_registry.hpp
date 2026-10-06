@@ -41,6 +41,9 @@ inline constexpr std::array motion_bounds{
     MotionBounds{0x1A4600,0x801C54BC,-unlimited,1,false},
     MotionBounds{0x1A4600,0x801C68E0,-250,250,true},
     MotionBounds{0x1A4600,0x801C7DC0,0,unlimited,true},
+    // C5E1C stops retreat after Source worldX drops below80; preserve its
+    // final Source overshoot while preventing another fractional retreat.
+    MotionBounds{0x1A4600,0x801C5EE4,80,unlimited,false},
     MotionBounds{0x1B4660,0x801C5F1C,-unlimited,200,false},
     MotionBounds{0x1B8AE0,0x801C4F68,300,unlimited,false},
     MotionBounds{0x1C16B0,0x801C5610,400,unlimited,false},

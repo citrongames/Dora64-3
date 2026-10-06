@@ -420,6 +420,11 @@ int main() {
     ctx.r4=int32_t(model);dora3_s0_8003997C(rdram,&ctx);
     assert(std::abs(R(bone+0x68)-15.625f)<0.001f); // Source matrix builder used the new pose.
     adapter.end_frame(rdram);
+    ctx.r4=int32_t(model);ctx.r5=0;dora3_s0_80038ABC(rdram,&ctx);
+    assert(uint32_t(ctx.r2)==bone);
+    assert(std::abs(R(uint32_t(ctx.r2)+0x68)-15.625f)<0.001f);
+    // 38ABC is the collider's actual last-render joint cache. Returning the
+    // pre-session matrix would freeze it while Native owns every draw bank.
     // End pulse is nondestructive and survives every extra pose evaluation.
     seek(9);step(3,3);assert(B(model+0x7C)&2);
     for(int i=0;i<10;++i) {

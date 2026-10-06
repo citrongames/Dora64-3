@@ -136,9 +136,9 @@ bool same_continuation(uint8_t* rdram,uint32_t model,const Model& entry) {
         c.source.duration==real(rdram,c.descriptors+4);
 }
 void restore(uint8_t* rdram,Model& entry) {
-    if(!entry.sampled)return;
-    for(const auto& bone:entry.bones)
-        for(unsigned k=0;k<9;++k)word(rdram,bone.address+0x14+4*k)=bone.transform[k];
+    for(const auto& bone:entry.bones) {
+        if(entry.sampled)for(unsigned k=0;k<9;++k)word(rdram,bone.address+0x14+4*k)=bone.transform[k];
+    }
     entry.sampled=false;
 }
 std::vector<Bone> find_bones(uint8_t* rdram,uint32_t model) {

@@ -2,6 +2,10 @@
 #include "native_simulation_time.hpp"
 #include "native_effects.hpp"
 #include "native_frame_bridge.hpp"
+#include "native_model_animation.hpp"
+#include "native_minigames.hpp"
+#include "native_texture_animation.hpp"
+#include "native_gameplay_preview.hpp"
 #include "recomp_context_copy.hpp"
 #include <algorithm>
 #include <array>
@@ -14,6 +18,7 @@
 #include <vector>
 
 extern "C" {
+void dora3_s0_8002DA98(uint8_t*,recomp_context*);
 int dora3_overlay_loaded(uint32_t);
 int dora3_native_loop_owns_fade();
 void dora3_s2_menu_801BBCEC(uint8_t*,recomp_context*);
@@ -29,7 +34,7 @@ constexpr uint32_t image_size=0x400000,processes=0x801A44F0,panels=0x801B8AE0;
 int32_t& word(uint8_t* rdram,uint32_t a){return MEM_W(0,int32_t(a));}
 float real(uint8_t* rdram,uint32_t a){return std::bit_cast<float>(word(rdram,a));}
 void real(uint8_t* rdram,uint32_t a,float f){word(rdram,a)=std::bit_cast<int32_t>(f);}
-enum class Profile { None,Game,Title,Files,Intro,Selection,Image,Pak };
+enum class Profile { None,Game,Title,Files,Intro,Selection,Image,StageMap };
 Profile profile(uint8_t* ram) {
     // Overlay-qualified callback pairs, not overlapping virtual addresses alone.
     if(word(ram,processes)!=2||word(ram,processes+20)!=2||word(ram,processes+12)!=0||word(ram,processes+32)!=1)return Profile::None;
@@ -37,7 +42,7 @@ Profile profile(uint8_t* ram) {
     for(unsigned i=2;i<8;++i)if(word(ram,processes+i*20)!=0&&word(ram,processes+i*20)!=5)return Profile::None;
     if(dora3_overlay_loaded(0x70A50)&&update==0x801BB730&&draw==0x801BB848)return Profile::Game;
     if(!dora3_overlay_loaded(0x635C0))return Profile::None;
-    if(update==0x801BB52C&&draw==0x801BB648)return Profile::Pak;
+    if(update==0x801BB52C&&draw==0x801BB648)return Profile::StageMap;
     if(update==0x801BCEF8&&draw==0x801BD078)return Profile::Title;
     if(update==0x801BFAA4&&draw==0x801BFC44)return Profile::Files;
     if(update==0x801C0BBC&&draw==0x801C0C88)return Profile::Intro;
@@ -54,7 +59,7 @@ struct Guard {
     std::vector<std::vector<uint8_t>> originals;
     unsigned call=0;
 };
-enum Domain : unsigned { Panels=1,Rectangle=2,Title=4,Intro=8,SelectionActor=16,SelectionRow=32,SelectionExit=64,PakCursor=128,PakSize=256,PakHint=512 };
+enum Domain : unsigned { Panels=1,Rectangle=2,Title=4,Intro=8,SelectionActor=16,SelectionRow=32,SelectionExit=64,PakCursor=128,PakSize=256,PakHint=512,GameMenuSpin=1024,GameMenuGhost=2048,GameMenuCarousel=4096 };
 struct Observation {uint8_t* ram=nullptr;Profile owner=Profile::None;unsigned mask=0;bool running=false;} observation;
 struct UiState {
     Profile owner=Profile::None;
@@ -71,8 +76,111 @@ struct UiState {
     std::array<Guard,9> guards{};
     struct Drift {uint32_t address;float velocity,displacement;};
     std::vector<Drift> drifts;
+    struct ActorDrawRestore {
+        uint32_t actor,active,model;
+        std::array<int32_t,19> fields;
+        uint8_t dirty;
+    };
+    std::vector<ActorDrawRestore> actors;
+    std::array<float,4> map_rectangle{};
+    bool map_rectangle_valid=false;
 } state;
 void publish(uint8_t* ram,uint32_t a,int32_t value){state.fields.push_back({a,word(ram,a)});word(ram,a)=value;}
+// Menu actors occupy the resident extended pool (slots612..648), outside
+// the230 world actors. Their draw-derived matrix/world coordinates must be
+// restored together with the borrowed local pose before the next Source update.
+bool guest_pointer(uint32_t p,unsigned bytes) {
+    return !(p&3)&&p>=0x80000000u&&uint64_t(p)+bytes<=0x80400000ull;
+}
+void lease_menu_actor(uint8_t* ram,uint32_t actor) {
+    if(std::any_of(state.actors.begin(),state.actors.end(),[&](const auto& v){return v.actor==actor;}))return;
+    uint8_t* rdram=ram;
+    UiState::ActorDrawRestore v{actor,uint32_t(word(ram,actor+0x94)),uint32_t(word(ram,actor+0x74)),{},MEM_BU(0x6A,int32_t(actor))};
+    for(unsigned i=0;i<16;++i)v.fields[i]=word(ram,actor+0x24+4*i);
+    for(unsigned i=0;i<3;++i)v.fields[16+i]=word(ram,actor+0x9C+4*i);
+    state.actors.push_back(v);
+}
+void restore_menu_actors(uint8_t* ram) {
+    uint8_t* rdram=ram;
+    for(const auto& actor:state.actors) {
+        if(uint32_t(word(ram,actor.actor+0x94))!=actor.active||uint32_t(word(ram,actor.actor+0x74))!=actor.model)continue;
+        for(unsigned i=0;i<16;++i)word(ram,actor.actor+0x24+4*i)=actor.fields[i];
+        for(unsigned i=0;i<3;++i)word(ram,actor.actor+0x9C+4*i)=actor.fields[16+i];
+        MEM_B(0x6A,int32_t(actor.actor))=int8_t(actor.dirty);
+    }
+}
+void build_menu_matrices(uint8_t* ram,recomp_context* ctx) {
+    if(state.actors.empty())return;
+    const auto stack=uint32_t(ctx->r29)-0x800;
+    if(!guest_pointer(stack,0xA00))throw std::logic_error("Invalid Native menu math stack");
+    struct StackLease {
+        uint8_t* ram;uint32_t stack;std::array<uint32_t,0xA00/4> saved;
+        StackLease(uint8_t* image,uint32_t address):ram(image),stack(address) {
+            std::memcpy(saved.data(),ram+(stack&0xFFFFFF),sizeof(saved));
+        }
+        ~StackLease(){std::memcpy(ram+(stack&0xFFFFFF),saved.data(),sizeof(saved));}
+    } scratch(ram,stack);
+    for(const auto& actor:state.actors) {
+        recomp_context math;dora3::copy_recomp_context(math,*ctx);math.r4=int32_t(actor.actor);
+        dora3_s0_8002DA98(ram,&math);
+    }
+}
+void publish_menu_float(uint8_t* ram,uint32_t actor,unsigned offset,float value) {
+    lease_menu_actor(ram,actor);publish(ram,actor+offset,std::bit_cast<int32_t>(value));
+}
+double rom_double(uint8_t* ram,uint32_t address) {
+    uint8_t* rdram=ram;return std::bit_cast<double>(uint64_t(LD(int32_t(address),0)));
+}
+double normalized_angle(double degrees) {
+    const double value=std::fmod(degrees,360.);return value<0?value+360.:value;
+}
+void evaluate_game_menus(uint8_t* ram,double h) {
+    uint8_t* rdram=ram;
+    const int menu=word(ram,0x8021D484);
+    if(menu==1||menu==2) {
+        // F1598/F4948 advance the highlighted item/weapon model's yaw by4/10.
+        constexpr uint32_t selected=0x80192130;
+        if((state.domains&GameMenuSpin)&&word(ram,selected+0x94))publish_menu_float(ram,selected,0x10,float(normalized_angle(real(ram,selected+0x10)+(menu==1?4.:10.)*h)));
+        // F1A38/F433C: preview copies rotate by1 and fade from Source count/20.
+        // The short timer, show/hide flag and clip commands remain Source-owned.
+        if(!(state.domains&GameMenuGhost))return;
+        for(unsigned i=0;i<unsigned(menu==1?18:14);++i) {
+            const uint32_t actor=0x801912D8+i*0xCC;
+            if(!word(ram,actor+0x94))continue;
+            publish_menu_float(ram,actor,0x10,float(normalized_angle(real(ram,actor+0x10)+h)));
+            const uint32_t driver=uint32_t(word(ram,actor+0x98)),model=uint32_t(word(ram,actor+0x74));
+            if(!guest_pointer(driver,0x36)||!guest_pointer(model,0x84)||!game_model_animation().lifetime_token(model))continue;
+            const int count=MEM_H(0x34,int32_t(driver));
+            if(count>0)publish(ram,model+0x78,std::bit_cast<int32_t>(float(std::max(0.,double(count)-h)/20.)));
+        }
+    } else if(menu==3&&(state.domains&GameMenuCarousel)) {
+        // F6870 stores trunc(shortBF70*ROM retention) before deriving the six
+        // character positions on both circles. Extend that exact scalar step;
+        // never blend stored XYZ poses or advance input/selection/short counters.
+        const int phase=MEM_H(0,int32_t(0x8021BF70));
+        const double retention=rom_double(ram,0x80216EF8);
+        if(!std::isfinite(retention)||retention<0||retention>1)return;
+        const int next=int(double(phase)*retention);
+        const double shown=phase&&next&&double(next)/phase>0?
+            double(phase)*std::pow(double(next)/phase,h):double(phase)*(1-h);
+        const int selected=MEM_B(0,int32_t(0x8021BFF4));
+        if(selected<0||selected>=6)return;
+        for(unsigned group=0;group<2;++group)for(unsigned i=0;i<6;++i) {
+            const uint32_t actor=(group?0x8018FFB8u:0x8018FAF0u)+i*0xCC;
+            const uint32_t driver=uint32_t(word(ram,actor+0x98));
+            if(!word(ram,actor+0x94)||!guest_pointer(driver,0x36))continue;
+            const double angle=normalized_angle(double(MEM_H(0x34,int32_t(driver)))-selected*60.+shown);
+            const double old_angle=normalized_angle(double(MEM_H(0x34,int32_t(driver)))-selected*60.+phase);
+            const double coefficient=rom_double(ram,group?0x80216F08:0x80216F00);
+            const float radians=float(double(float(angle))*coefficient);
+            const float old_radians=float(double(float(old_angle))*coefficient);
+            // Anchor the authored scalar equation at its actual Source result.
+            // h=0 preserves Source XYZ bit-for-bit despite SDK trig rounding.
+            publish_menu_float(ram,actor,0,float(double(real(ram,actor))+120.*(std::sin(radians)-std::sin(old_radians))));
+            publish_menu_float(ram,actor,8,float(double(real(ram,actor+8))+120.*(std::cos(radians)-std::cos(old_radians))));
+        }
+    }
+}
 void evaluate_panels(uint8_t* ram,double h) {
     uint8_t* rdram=ram;
     for(unsigned i=0;i<8;++i) {
@@ -90,36 +198,39 @@ void evaluate_panels(uint8_t* ram,double h) {
         }
     }
 }
-// The ROM stores easing coefficients, not successive poses. Evaluate that
-// authored scalar curve at Source step+h, retaining signed-short endpoints
-// and truncation to integer pixel coordinates. Device/FSM operations stay Source.
-float curve(uint8_t* ram,uint32_t table,unsigned step,double h,unsigned last) {
-    const float a=real(ram,table+4*step);
-    const float b=step==last?0.0f:real(ram,table+4*(step+1));
-    return h==0?a:h==1?b:float(double(a)+(double(b)-a)*h);
-}
-void evaluate_pak(uint8_t* ram,double h) {
+void evaluate_stage_map(uint8_t* ram,double h) {
     uint8_t* rdram=ram;
     const int old=word(ram,0x801B369C),next=word(ram,0x801C6390),step=word(ram,0x801C638C);
-    // The menu owns 32 descriptors. Reject foreign/uninitialized selectors.
+    // The stage map owns32 node descriptors (scene21), not a save-device UI.
     if(old<0||old>=32||next<0||next>=32||step<0)return;
     const uint32_t from=0x801C29C4+152*unsigned(old),to=0x801C29C4+152*unsigned(next);
     const int a=word(ram,from),b=word(ram,to);
+    for(unsigned j=0;j<4;++j)state.map_rectangle[j]=float(word(ram,std::array<uint32_t,4>{0x801C6370,0x801C6380,0x801C6364,0x801C6368}[j]));
+    state.map_rectangle_valid=true;
     if((state.domains&PakCursor)&&step<8&&a>=0&&a<3&&b>=0&&b<3) {
-        const float k=curve(ram,0x801C3B30,unsigned(step),h,7);
         for(unsigned j=0;j<2;++j) {
             const int start=MEM_H(int32_t(4*a+2*j),int32_t(0x801C3B24));
             const int end=MEM_H(int32_t(4*b+2*j),int32_t(0x801C3B24));
-            publish(ram,j?0x801C6380:0x801C6370,int32_t(float(end)+float(start-end)*k));
+            // Extend the ROM's authored scalar curve between its quantized
+            // pixel endpoints. A raw curve followed by Source truncation would
+            // otherwise jump backwards at each Source boundary.
+            const float ka=real(ram,0x801C3B30+4*unsigned(step));
+            const float kb=step==7?0.f:real(ram,0x801C3B30+4*unsigned(step+1));
+            const int source=int(float(end)+float(start-end)*ka),next=int(float(end)+float(start-end)*kb);
+            state.map_rectangle[j]=float(double(source)+(next-source)*h);
+            publish(ram,j?0x801C6380:0x801C6370,int32_t(state.map_rectangle[j]));
         }
     }
     if(state.domains&PakSize) {
         const int phase=step-(a==b?3:9);
         if(phase>=0&&phase<3) {
-            const float k=curve(ram,a==b?0x801C3B54:0x801C3B64,unsigned(phase),h,3);
+            const auto table=a==b?0x801C3B54u:0x801C3B64u;
+            const float ka=real(ram,table+4*unsigned(phase)),kb=real(ram,table+4*unsigned(phase+1));
             for(unsigned j=0;j<2;++j) {
                 const int start=MEM_H(int32_t(4+2*j),int32_t(from)),end=MEM_H(int32_t(4+2*j),int32_t(to));
-                publish(ram,j?0x801C6368:0x801C6364,int32_t(float(end)+float(start-end)*k));
+                const int source=int(float(end)+float(start-end)*ka),next=int(float(end)+float(start-end)*kb);
+                state.map_rectangle[2+j]=float(double(source)+(next-source)*h);
+                publish(ram,j?0x801C6368:0x801C6364,int32_t(state.map_rectangle[2+j]));
             }
         }
     }
@@ -158,7 +269,7 @@ void evaluate_selection(uint8_t* ram,recomp_context* ctx) {
     state.equations=false;
     // This reviewed menu actor lives in the resident fixed object array.
     // Its command flags and phase/counter writes remain private.
-    if(word(ram,0x8017255C))for(uint32_t a:{0x801724CCu,0x801724D0u})publish(ram,a,word(scratch,a));
+    if(word(ram,0x8017255C))for(uint32_t a:{0x801724CCu,0x801724D0u})publish_menu_float(ram,0x801724C8,a-0x801724C8,std::bit_cast<float>(word(scratch,a)));
     const int y=word(ram,0x801C69C4);
     if((state.domains&SelectionExit)&&y>=105)publish(ram,0x801C69C4,int32_t(double(y)-state.h));
     if(state.domains&SelectionRow) {
@@ -187,7 +298,18 @@ extern "C" float dora3_native_ui_displacement_f32(float value,uint32_t a) {
 namespace dora3::native_time {
 bool native_ui_menu_eligible(uint8_t* ram) {
     const auto p=profile(ram);const int divider=word(ram,0x801A39DC);
-    return p!=Profile::None&&p!=Profile::Game&&p!=Profile::Image&&(divider==2||divider==3)&&word(ram,0x801A9C88)==0;
+    const bool game_menu=p==Profile::Game&&word(ram,0x8021D484)>=1&&word(ram,0x8021D484)<=3&&
+        !word(ram,0x802170EC)&&!word(ram,0x802170F0);
+    uint8_t* rdram=ram;
+    const int fade_direction=MEM_B(0,int32_t(0x801A99A0));
+    // BB730 retains the same world draw/callbacks during count>1. The count1
+    // update replaces them through the reviewed resource barrier. Keep issuing
+    // complete frames for the continuous resident fade up to that boundary;
+    // do not grant a gameplay simulation owner to a frozen transition.
+    const bool game_fade=p==Profile::Game&&word(ram,0x8021D494)>1&&
+        (fade_direction==-1||fade_direction==1)&&!word(ram,0x802170EC);
+    return (game_menu||game_fade||(p!=Profile::None&&p!=Profile::Game&&p!=Profile::Image))&&
+        (divider==2||divider==3)&&word(ram,0x801A9C88)==0;
 }
 bool native_ui_game_eligible(uint8_t* ram){return profile(ram)==Profile::Game&&(word(ram,0x801A39DC)==2||word(ram,0x801A39DC)==3)&&word(ram,0x801A9C88)==0;}
 void native_ui_reset(){if(state.frame)throw std::logic_error("UI reset during frame");state=UiState{};observation={};}
@@ -215,12 +337,13 @@ UiFrameScope::UiFrameScope(uint8_t* ram,recomp_context* ctx,Nanoseconds now):ram
     uint8_t* rdram=ram;
     if(state.frame)throw std::logic_error("Nested UI frame");
     if(state.ram!=ram||state.owner==Profile::None||profile(ram)!=state.owner){ram_=nullptr;return;}
-    state.frame=true;state.fields.clear();
+    state.frame=true;state.fields.clear();state.actors.clear();state.map_rectangle_valid=false;
     state.first_frame=state.frame_epoch!=state.epoch;state.frame_epoch=state.epoch;
     for(auto& g:state.guards){g.call=0;if(state.first_frame)g.originals.clear();}
     state.h=std::clamp(double(std::max<Nanoseconds>(0,now-state.source_time))*60.0/(state.divider*1e9),0.0,1.0);
     try {
         if(state.owner==Profile::Game) {
+            evaluate_game_menus(ram,state.h);
             if(state.domains&Panels)evaluate_panels(ram,state.h);
             if((state.domains&Rectangle)&&state.h>0&&MEM_H(0,int32_t(0x8021811A))==1) {
                 auto* scratch=reinterpret_cast<uint8_t*>(state.working.data());std::memcpy(scratch,ram,image_size);
@@ -229,16 +352,19 @@ UiFrameScope::UiFrameScope(uint8_t* ram,recomp_context* ctx,Nanoseconds now):ram
                 dora3_native_rectangle_update(scratch,ctx);
                 for(uint32_t a:{0x8021811Cu,0x80217194u,0x802171E4u,0x80217198u})publish(ram,a,word(scratch,a));
             }
-        } else if(state.owner==Profile::Pak)evaluate_pak(ram,state.h);
+        } else if(state.owner==Profile::StageMap)evaluate_stage_map(ram,state.h);
         else if(state.owner==Profile::Title&&(state.domains&Title)&&state.h>0)evaluate_title(ram,ctx);
         else if(state.owner==Profile::Selection&&(state.domains&SelectionActor)&&state.h>0)evaluate_selection(ram,ctx);
         else if(state.owner==Profile::Intro&&(state.domains&Intro)) {
             const int mode=word(ram,0x801C68DC);const int alpha=word(ram,0x801C69A8);
             if(mode==0||mode==2)publish(ram,0x801C69A8,int32_t(std::clamp(double(alpha)+(mode==0?10:-10)*state.h,0.0,255.0)));
         }
-    } catch(...) {for(auto i=state.fields.rbegin();i!=state.fields.rend();++i)word(ram,i->address)=i->source;state.fields.clear();state.frame=false;throw;}
+        build_menu_matrices(ram,ctx);
+    } catch(...) {restore_menu_actors(ram);for(auto i=state.fields.rbegin();i!=state.fields.rend();++i)word(ram,i->address)=i->source;state.fields.clear();state.actors.clear();state.frame=false;throw;}
 }
-UiFrameScope::~UiFrameScope(){if(!ram_)return;for(auto& g:state.guards)if(g.entered){if(g.restoring)std::memcpy(ram_+(g.address&0xFFFFFF),g.bytes.data(),g.size);g.entered=false;}for(auto i=state.fields.rbegin();i!=state.fields.rend();++i)word(ram_,i->address)=i->source;state.fields.clear();state.frame=false;}
+UiFrameScope::~UiFrameScope(){if(!ram_)return;
+    restore_menu_actors(ram_);
+    state.actors.clear();for(auto& g:state.guards)if(g.entered){if(g.restoring)std::memcpy(ram_+(g.address&0xFFFFFF),g.bytes.data(),g.size);g.entered=false;}for(auto i=state.fields.rbegin();i!=state.fields.rend();++i)word(ram_,i->address)=i->source;state.fields.clear();state.frame=false;}
 }
 extern "C" void dora3_native_ui_source_begin(uint8_t* ram,recomp_context* ctx) {
     if(ctx->r4!=0||state.frame)return;
@@ -250,9 +376,18 @@ extern "C" void dora3_native_ui_domain(uint8_t* ram,unsigned domain) {
 extern "C" void dora3_native_ui_source(uint8_t* ram,recomp_context* ctx) {
     if(ctx->r21!=0)return;
     observation.running=false;
-    if(!dora3_native_loop_owns_fade()||state.ram!=ram)return;
+    if(!dora3_native_loop_owns_fade())return;
     if(state.frame)throw std::logic_error("Source update inside UI frame");
-    ++state.epoch;state.source_time=dora3::native_time::monotonic_time();
+    const auto completed=dora3::native_time::monotonic_time();
+    // SDK model observations previously started at phase0 entry, while menu
+    // and minigame equations started after their callbacks. Real callback CPU
+    // time then changed the relative body/model/camera phase every Source tick.
+    // Commit all borrowed visual owners at the same completed Source boundary.
+    game_model_animation().resume_frame_clock(ram,completed);
+    native_minigame_source_completed(ram,completed);
+    dora3::native_time::native_texture_source_completed(ram,completed);
+    if(state.ram!=ram)return;
+    ++state.epoch;state.source_time=completed;
     state.domains=observation.ram==ram&&observation.owner==state.owner?observation.mask:0;
 }
 extern "C" void dora3_native_ui_draw_boundary(uint8_t* ram,uint32_t pc,unsigned end) {
@@ -280,4 +415,34 @@ extern "C" int dora3_native_ui_command_once(uint32_t pc) {
     // Preserve the Original call count even if one Source frame draws several
     // views. Only additional Native builds suppress the repeated request.
     return state.first_frame;
+}
+
+extern "C" void dora3_native_ui_charge_rectangle(uint8_t* ram,recomp_context* ctx) {
+    if(!state.frame||state.ram!=ram||state.owner!=Profile::Game||word(ram,0x8021D484)!=0)return;
+    const auto fraction=native_gameplay_preview_source_fraction();
+    if(!fraction)return;
+    uint8_t* rdram=ram;
+    const int count=word(ram,0x8021D698),weapon=word(ram,0x801B36E0);
+    // C261C increments only a held B charge, caps50, and resets on release.
+    // Preserve its decisions/rumble/cue count; only the new rectangle borrows
+    // a fractional scalar, before integer pixel rounding in the old HUD.
+    if(count<=0||count>=50||!(MEM_HU(0,int32_t(0x8021D644))&0x4000)||weapon<0||weapon>=32||
+       MEM_BU(0,int32_t(0x801FA5D9+12*unsigned(weapon)))!=2)return;
+    const double progress=std::min(50.,double(count)+std::clamp(*fraction,0.,1.));
+    const uint32_t right=uint32_t((187.+66.*progress/50.)*4.);
+    const uint32_t source=uint32_t(ctx->r4);
+    ctx->r4=int32_t((source&~0x00FFF000u)|((right&0xFFFu)<<12));
+}
+
+extern "C" int dora3_native_ui_map_cursor_rectangle(uint8_t* ram,recomp_context* ctx) {
+    if(!state.frame||state.ram!=ram||state.owner!=Profile::StageMap||!state.map_rectangle_valid)return 0;
+    // BAA14's delay slot converts an integer Y a second time. Supply the
+    // authored fractional X/Y directly to the original scaled texture builder.
+    // Bob direction/turning points and sprite commands remain Source-owned.
+    const double bob=real(ram,0x801C6378);
+    const double rate=word(ram,0x801C6388)?rom_double(ram,0x801C5330):-rom_double(ram,0x801C5338);
+    const double shown_bob=std::clamp(bob+rate*state.h,-1.,1.);
+    ctx->f12.fl=state.map_rectangle[2]-state.map_rectangle[0]-16.f;
+    ctx->f14.fl=float(state.map_rectangle[3]-state.map_rectangle[1]-16.+shown_bob);
+    return 1;
 }

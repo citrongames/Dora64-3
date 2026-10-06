@@ -2,7 +2,9 @@
 import collections,hashlib,json,struct
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-APPROVED_UI_SITES={('ui_source_end', '.startup', 2147647928, 2147648108, 2411659308): {},
+APPROVED_UI_SITES={
+    ('ui_map_cursor_rectangle','.scene34',0x801BA858,0x801BAA14,0x0C00AA11): {},
+    ('ui_source_end', '.startup', 2147647928, 2147648108, 2411659308): {},
  ('ui_draw_boundary', '.scene_common', 2149281308, 2149281308, 666763216): {'end': 0},
  ('ui_draw_boundary', '.scene_common', 2149281308, 2149281796, 2411659304): {'end': 1},
  ('ui_draw_boundary', '.scene_common', 2149285324, 2149285324, 1006796828): {'end': 0},
@@ -1791,7 +1793,7 @@ APPROVED_SCENE_OBJECT_CALLBACKS={
     ('.level1_slot2',0x8023E0B8,0x8023E0B8,0x3C038022):0x15E440,
 }
 
-# Block6: exact Pak Source equation/draw boundary pins.
+# Block6: exact stage-map Source equation/draw boundary pins.
 APPROVED_UI_SITES[('ui_domain', '.scene34', 2149293840, 2149293840, 1007190044)]={'domain': 128}
 APPROVED_UI_SITES[('ui_domain', '.scene34', 2149295712, 2149295712, 1006796827)]={'domain': 256}
 APPROVED_UI_SITES[('ui_domain', '.scene34', 2149292060, 2149292060, 1006796828)]={'domain': 512}
@@ -1799,6 +1801,14 @@ APPROVED_UI_SITES[('ui_draw_boundary', '.scene34', 2149291768, 2149291768, 10068
 APPROVED_UI_SITES[('ui_draw_boundary', '.scene34', 2149291768, 2149292032, 65011720)]={'end': 1}
 APPROVED_UI_SITES[('ui_draw_boundary', '.scene34', 2149296216, 2149296216, 666763192)]={'end': 0}
 APPROVED_UI_SITES[('ui_draw_boundary', '.scene34', 2149296216, 2149296672, 65011720)]={'end': 1}
+
+APPROVED_UI_SITES[('ui_domain','.scene1',0x801F1598,0x801F1598,0x3C028019)]={'domain':1024}
+APPROVED_UI_SITES[('ui_domain','.scene1',0x801F4948,0x801F4948,0x3C018019)]={'domain':1024}
+APPROVED_UI_SITES[('ui_domain','.scene1',0x801F1A38,0x801F1A38,0x27BDFFB8)]={'domain':2048}
+APPROVED_UI_SITES[('ui_domain','.scene1',0x801F433C,0x801F433C,0x27BDFFB8)]={'domain':2048}
+APPROVED_UI_SITES[('ui_domain','.scene1',0x801F6870,0x801F6870,0x3C028022)]={'domain':4096}
+
+APPROVED_UI_SITES.update({('ui_charge_rectangle','.scene1',0x801C9EBC,0x801CA060,0xAC400004):{}})
 
 def timing_hooks(sections,compiled,rom):
     data=json.loads((ROOT/'recomp/native-timing-rules.json').read_text())
@@ -2589,11 +2599,33 @@ def timing_hooks(sections,compiled,rom):
             label=f'dora3_after_timing_{site:08X}'
             text=f'if (dora3_native_simulation_active()) {{ ctx->f0.fl += dora3_native_cutscene_axis_drift(rdram,(uint32_t)ctx->r4,(uint32_t)ctx->r5,(uint32_t)(ctx->r3-ctx->r4),ctx->f2.fl,(uint32_t)MEM_W(0x60,ctx->r3)); goto {label}; }}'
             hooks[name,site+4].insert(0,label+':;')
+        elif op=='texture_channel_binding':
+            if (rule['section'],address,site,word) not in (('.startup',0x80028D50,0x80028D50,0x27BDFFE0),('.scene1',0x801BBFF4,0x801BC040,0x02921021)):raise ValueError('Unreviewed texture channel binding')
+            hooks[name,address].append('extern void dora3_native_texture_bind(uint8_t*,recomp_context*,unsigned);')
+            text=f"dora3_native_texture_bind(rdram,ctx,{1 if rule['section']=='.scene1' else 0});"
+        elif op=='texture_builder_boundary':
+            if rule['section']!='.startup' or address!=0x8003A3B8 or (site,word,rule['end']) not in ((0x8003A3B8,0x27BDFFA8,0),(0x8003ABE0,0xAF220000,1)):raise ValueError('Unreviewed material builder boundary')
+            hooks[name,address].append('extern void dora3_native_texture_builder(uint8_t*,recomp_context*,unsigned);')
+            text=f"dora3_native_texture_builder(rdram,ctx,{rule['end']});"
+        elif op=='texture_submit_guard':
+            if address!=0x8002FF64 or site!=0x80030098 or word!=0x0C015550:raise ValueError('Unreviewed texture frame submission boundary')
+            hooks[name,address].append('extern void dora3_native_texture_submit_guard(uint8_t*,recomp_context*);')
+            text='dora3_native_texture_submit_guard(rdram,ctx);'
         elif op.startswith('ui_'):
             approved=APPROVED_UI_SITES.get((op,rule['section'],address,site,word))
             if approved is None or any(rule.get(k)!=v for k,v in approved.items()):raise ValueError('Unreviewed UI boundary/equation')
             if op=='ui_source_end':text='dora3_native_ui_source(rdram,ctx);'
             elif op=='ui_source_begin':text='dora3_native_ui_source_begin(rdram,ctx);'
+            elif op=='ui_map_cursor_rectangle':
+                if address!=0x801BA858 or site!=0x801BAA14 or word!=0x0C00AA11:raise ValueError('Unreviewed stage-map cursor rectangle')
+                delay=struct.unpack_from('>I',rom,s['rom']+site+4-s['vram'])[0]
+                if delay!=0x468073A0:raise ValueError('Stage-map integer Y conversion changed')
+                label=f'dora3_after_timing_{site:08X}'
+                hooks[name,address].append('extern int dora3_native_ui_map_cursor_rectangle(uint8_t*,recomp_context*);')
+                target=compiled[0,0x8002A844][0]
+                text=f'if (dora3_native_ui_map_cursor_rectangle(rdram,ctx)) {{ {target}(rdram,ctx); goto {label}; }}'
+                hooks[name,site+8].insert(0,label+':;')
+            elif op=='ui_charge_rectangle':text='extern void dora3_native_ui_charge_rectangle(uint8_t*,recomp_context*); dora3_native_ui_charge_rectangle(rdram,ctx);'
             elif op=='ui_domain':text=f'dora3_native_ui_domain(rdram,{rule["domain"]});'
             elif op=='ui_draw_boundary':text=f'dora3_native_ui_draw_boundary(rdram,0x{address:08X}u,{rule["end"]});'
             elif op=='ui_command_once':

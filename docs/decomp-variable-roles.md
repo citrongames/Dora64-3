@@ -543,6 +543,7 @@
 | `bironn_physics_r5_8022EBC8` | `ctx->r5` | Указатель physical из global8021BCDC; роль ограничена до следующей записи регистра/внешнего вызова | 1 |
 | `bironn_physics_r5_8022EE68` | `ctx->r5` | Указатель physical из global8021BCDC; роль ограничена до следующей записи регистра/внешнего вызова | 1 |
 | `bironn_physics_r7_8022F180` | `ctx->r7` | Указатель physical из global8021BCDC; роль ограничена до следующей записи регистра/внешнего вызова | 1 |
+| `bitmap_channel_actor_r4` | `ctx->r4` | Actor parameter remains a0 until the first bitmap SDK call delay replaces a0. | 1 |
 | `bobbing_actor_r16` | `ctx->r16` | Actor retained across the sine and angle normalization calls | 1 |
 | `boss1_actor_r16_8021DE54` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `boss1_actor_r16_8021DEE4` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -4776,6 +4777,7 @@
 | `sprite_record_r16` | `ctx->r16` | Выбранная sprite pool record после преобразования индекса в адрес | 1 |
 | `sprite_record_r4` | `ctx->r4` | Восьмибайтная запись sprite pool, переданная параметром | 1 |
 | `stage_actor_s0` | `ctx->r16` | Постоянный stage actor0x80174970 до восстановления s0; setup rotation является отдельной командой. | 1 |
+| `stage_texture_actor_r20` | `ctx->r20` | Actor retained in s4 while component slots and bitmap/palette calls are processed. | 1 |
 | `state2_update_count_r2` | `ctx->r2` | Счётчик обновлений state2 до превращения регистра в результат сравнения | 1 |
 | `story_completion_word_r4` | `ctx->r4` | Exact Original register storage in this proven instruction region only | 1 |
 | `story_constructor_variant_r18` | `ctx->r18` | Resolved variant0/1/2, retained until the constructor epilogue | 1 |
@@ -5077,6 +5079,7 @@
 | `tatsunoorgo_physics_r4_80223588` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `tatsunoorgo_physics_r4_80223954` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `tatsunoorgo_physics_r5_802231E0` | `ctx->r5` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
+| `texture_component_slot_r18` | `ctx->r18` | Component index1..7 in s2; it is not the selected animation frame or resource slot. | 1 |
 | `thunderdischarge_actor_r16_802205D4` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `thunderdischarge_actor_r16_802207E0` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `thunderdischarge_actor_r16_802209FC` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |

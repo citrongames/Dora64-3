@@ -7,7 +7,7 @@ from pathlib import Path
 import argparse, concurrent.futures, datetime, hashlib, json, subprocess, sys, threading, time
 
 ROOT=Path(__file__).resolve().parents[1]
-CHECKS=('integration minigames ui cutscene model_animation frame_time simulation camera_control camera_modes '
+CHECKS=('integration texture_animation minigames ui cutscene model_animation frame_time simulation camera_control camera_modes '
         'script_camera effects gravity input player_motion process_time frame_bridge '
         'frame_scheduler graphics_pump loop scene34_draw session present scene_transition '
         'player_update scene_frame story_pickups scene_objects enemy names overlay docs').split()
@@ -23,8 +23,11 @@ def main():
         parser.add_argument('--'+name,type=Path,required=True)
     parser.add_argument('--enemy-reference',type=Path,default=ROOT/'build-local/startup-v356')
     parser.add_argument('--enemy-resume-evidence',type=Path)
+    parser.add_argument('--scene-resume-evidence',type=Path)
     parser.add_argument('--jobs',type=int,choices=[1,2],default=2)
     parser.add_argument('--scene-workers',type=int,choices=range(1,9),default=4,help='Isolated scene replay processes; exact scenario coverage is independent of shard count')
+    parser.add_argument('--enemy-workers',type=int,choices=range(1,9),default=4)
+    parser.add_argument('--skip-player-proof',action='store_true',help='Explicit user exclusion of the hour-long full-player check; record USER_SKIP, never PASS')
     parser.add_argument('--only',nargs='+',choices=CHECKS,help='Repeat only the explicitly affected checks in an existing run')
     a=parser.parse_args();g=a.generated.resolve();out=a.output_dir.resolve()
     assert out.is_relative_to(ROOT/'build-local'),'Logs and ROM paths must remain in ignored build-local'
@@ -54,12 +57,13 @@ def main():
         if key=='scene_frame':cmd+=['--scope','scene-frame']
         if key=='story_pickups':cmd+=['--scope','pickup-linked-batch']
         if key=='enemy':cmd+=['--enemy-reference',str(a.enemy_reference.resolve())]
+        if key=='enemy':cmd+=['--workers',str(a.enemy_workers)]
         if key=='scene_objects':cmd+=['--enemy-reference',str((ROOT/'build-local/startup-v362').resolve())]
         if key=='scene_objects':cmd+=['--workers',str(a.scene_workers)]
         if key=='scene_objects' and (ROOT/'build-local/native-scene-object-check/block4-completed-replay.json').exists() and json.loads((ROOT/'build-local/native-scene-object-check/block4-completed-replay.json').read_text()).get('generation_receipt_sha256')==receipt:
             cmd+=['--completed-replay',str(ROOT/'build-local/native-scene-object-check/block4-completed-replay.json')]
         if key=='scene_objects':
-            retained=ROOT/'build-local/native-scene-object-check/parser-abi-resume.json'
+            retained=a.scene_resume_evidence or ROOT/'build-local/native-scene-object-check/parser-abi-resume.json'
             if retained.exists() and json.loads(retained.read_text()).get('generation_receipt_sha256')==receipt:
                 cmd+=['--resume-evidence',str(retained)]
         if key=='enemy' and a.enemy_resume_evidence:cmd+=['--resume-evidence',str(a.enemy_resume_evidence.resolve())]
@@ -69,6 +73,9 @@ def main():
     for key in selected:
         previous=manifest['checks'].get(key)
         manifest['checks'][key]=dict(command=command(key),status='QUEUED',attempts=previous.get('attempts',[])+[{k:v for k,v in previous.items() if k!='attempts'}] if previous else [])
+    if a.skip_player_proof and 'player_update' in selected:
+        manifest['checks']['player_update'].update(status='USER_SKIP',reason='Explicit user instruction after046: do not repeat the hour-long full-player proof; AGENTS.md current scope',executed=False)
+        selected=[key for key in selected if key!='player_update']
     save()
     def run(key):
         started=time.monotonic();record=manifest['checks'][key];cmd=record['command']
@@ -95,8 +102,9 @@ def main():
         futures += [executor.submit(run,key) for key in selected if key not in connected]
         for future in futures:future.result()
     assert sha(g/'generation-receipt.json')==receipt
-    manifest['status']='PASS' if all(v['status']=='PASS' for v in manifest['checks'].values()) else 'FAIL'
+    completed=all(v['status'] in {'PASS','USER_SKIP'} for v in manifest['checks'].values())
+    manifest['status']=('PARTIAL_USER_SKIP' if any(v['status']=='USER_SKIP' for v in manifest['checks'].values()) else 'PASS') if completed else 'FAIL'
     manifest['finished_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat();save()
     print('PREBUILD '+manifest['status'],flush=True)
-    return 0 if manifest['status']=='PASS' else 1
+    return 0 if completed else 1
 if __name__=='__main__':sys.exit(main())

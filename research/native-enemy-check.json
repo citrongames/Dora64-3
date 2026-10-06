@@ -1,27 +1,726 @@
 {
-  "result": "PASS: enemy 2616 frozen/current Original and 7848 Native schedules across all218 kinds; fresh replay=218 kinds/10464 cases, retained unchanged=0 kinds; 627840 fresh pool endpoints, 5570772 intervals, 5570772 zero-dt checks, 6464 genuine contacts; 218 kinds including all135 ordinary/all79 bosses and4 outbound owners, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 257=1, 258=1, 259=1, 264=1, 265=1, 266=2, 267=2,3, 268=1, 269=2, 270=2, 271=1,2, 272=2, 273=1, 274=2, 275=2,3, 276=1,10, 277=2, 278=1, 279=1,2,4, 280=1, 281=1,2,3,4, 282=1,2,3,5, 283=1,2,3,4, 284=1,2, 285=1, 286=1, 287=1,3, 288=2, 289=2,3,4, 290=1,2, 291=1,2, 292=1, 293=2,3, 294=1, 295=2,3, 296=1, 297=2,3, 298=2,3, 299=1,10, 300=2, 301=1, 302=1, 303=1, 304=1, 305=1, 306=1, 307=1, 308=1,2,3, 309=1,2,3, 310=1,2,3, 311=1, 312=2,3, 313=2, 314=2,3, 315=1,10, 316=1,10, 317=1, 318=1, 319=1,2, 320=1,2, 321=2, 322=1, 323=1, 324=1, 325=1, 326=2, 327=2, 328=1,10, 329=1, 330=2, 331=2, 332=2,3, 333=1,10, 334=2, 335=1,10, 336=2, 337=1,2,3, 338=1, 339=2, 340=1,10, 341=1,2,3, 342=1,2, 343=1,2, 344=1,2, 345=1, 346=3, 347=1,3,4,5, 348=1,2, 349=1, 350=1,3,10, 351=1,2, 352=1,10, 353=1, 354=1, 355=1, 356=1, 357=1, 358=1, 359=1,2,3, 360=2, 361=1, 362=3, 363=1,10, 364=2,3, 365=2,3, 366=2,3, 367=1, 368=1,3,4, 369=1, 370=1, 371=1,2, 372=1, 373=1,2, 374=1, 375=1, 376=1, 377=1,2, 378=1,2, 379=1, 380=1, 381=1, 382=1, 383=1, 384=1, 385=1, 386=1, 387=1,2, 388=2,4, 389=2, 390=3,4, 391=1, 392=1, 393=1, 394=1, 395=2, 396=1, 397=1,10, 398=1, 399=1,2,4, 400=1, 401=1,2, 402=1, 403=1,2, 404=1, 405=1, 406=1, 407=1, 408=1, 409=1, 410=4, 411=1, 412=1, 413=1, 414=1,10, 415=1,10, 416=1, 417=1, 418=1,10, 419=1, 420=1, 421=10, 422=1, 423=1,2,3, 424=1, 425=1, 426=1, 427=1, 428=1,3, 429=1,10, 430=1,10, 431=1, 432=1, 433=1, 434=1, 435=2, 436=1, 437=1, 438=1,10, 439=1, 440=1, 441=1, 442=1, 443=1,10, 444=1, 445=1, 446=1, 447=1, 448=1, 449=1, 450=1,10, 451=1,2, 452=1, 453=1, 454=1,2,4, 455=1, 456=1, 457=1,2,3,4, 458=1,10, 459=1,10, 460=1,2,3,4, 461=1,2,3,4, 462=1,2,3,4,10, 463=1, 464=1, 465=10, 466=1, 467=1,3,4, 468=1, 469=1, 470=1,2,3,4, 471=1,2,3,4, 472=1,3, 473=1, 474=1, 475=1, 476=1, 477=1, 478=1, rabbit landing transitions=24 ground hits=24 stable ground=1776 fractional samples=51108",
-  "retained_generation_provenance": null,
+  "result": "PASS: enemy 2616 frozen/current Original and 7848 Native schedules across all218 kinds; fresh replay=109 kinds/5232 cases, retained unchanged=109 kinds; 313920 fresh pool endpoints, 2785386 intervals, 2785386 zero-dt checks, 3296 genuine contacts; 218 kinds including all135 ordinary/all79 bosses and4 outbound owners, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 257=1, 258=1, 259=1, 264=1, 265=1, 266=2, 267=2,3, 268=1, 269=2, 270=2, 271=1,2, 272=2, 273=1, 274=2, 275=2,3, 276=1,10, 277=2, 278=1, 279=1,2,4, 280=1, 281=1,2,3,4, 282=1,2,3,5, 283=1,2,3,4, 284=1,2, 285=1, 286=1, 287=1,3, 288=2, 289=2,3,4, 290=1,2, 291=1,2, 292=1, 293=2,3, 294=1, 295=2,3, 296=1, 297=2,3, 298=2,3, 299=1,10, 300=2, 301=1, 302=1, 303=1, 304=1, 305=1, 306=1, 307=1, 308=1,2,3, 309=1,2,3, 310=1,2,3, 311=1, 312=2,3, 313=2, 314=2,3, 315=1,10, 316=1,10, 317=1, 318=1, 319=1,2, 320=1,2, 321=2, 322=1, 323=1, 324=1, 325=1, 326=2, 327=2, 328=1,10, 329=1, 330=2, 331=2, 332=2,3, 333=1,10, 334=2, 335=1,10, 336=2, 337=1,2,3, 338=1, 339=2, 340=1,10, 341=1,2,3, 342=1,2, 343=1,2, 344=1,2, 345=1, 346=3, 347=1,3,4,5, 348=1,2, 349=1, 350=1,3,10, 351=1,2, 352=1,10, 353=1, 354=1, 355=1, 356=1, 357=1, 358=1, 359=1,2,3, 360=2, 361=1, 362=3, 363=1,10, 364=2,3, 365=2,3, 366=2,3, 367=1, 368=1,3,4, 369=1, 370=1, 371=1,2, 372=1, 373=1,2, 374=1, 375=1, 376=1, 377=1,2, 378=1,2, 379=1, 380=1, 381=1, 382=1, 383=1, 384=1, 385=1, 386=1, 387=1,2, 388=2,4, 389=2, 390=3,4, 391=1, 392=1, 393=1, 394=1, 395=2, 396=1, 397=1,10, 398=1, 399=1,2,4, 400=1, 401=1,2, 402=1, 403=1,2, 404=1, 405=1, 406=1, 407=1, 408=1, 409=1, 410=4, 411=1, 412=1, 413=1, 414=1,10, 415=1,10, 416=1, 417=1, 418=1,10, 419=1, 420=1, 421=10, 422=1, 423=1,2,3, 424=1, 425=1, 426=1, 427=1, 428=1,3, 429=1,10, 430=1,10, 431=1, 432=1, 433=1, 434=1, 435=2, 436=1, 437=1, 438=1,10, 439=1, 440=1, 441=1, 442=1, 443=1,10, 444=1, 445=1, 446=1, 447=1, 448=1, 449=1, 450=1,10, 451=1,2, 452=1, 453=1, 454=1,2,4, 455=1, 456=1, 457=1,2,3,4, 458=1,10, 459=1,10, 460=1,2,3,4, 461=1,2,3,4, 462=1,2,3,4,10, 463=1, 464=1, 465=10, 466=1, 467=1,3,4, 468=1, 469=1, 470=1,2,3,4, 471=1,2,3,4, 472=1,3, 473=1, 474=1, 475=1, 476=1, 477=1, 478=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
+  "retained_generation_provenance": {
+    "kind": "inactive-texture-scope",
+    "generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
+    "retained_kinds": [
+      264,
+      265,
+      266,
+      267,
+      268,
+      269,
+      270,
+      271,
+      272,
+      277,
+      280,
+      297,
+      341,
+      342,
+      343,
+      344,
+      345,
+      346,
+      347,
+      359,
+      360,
+      361,
+      362,
+      363,
+      387,
+      388,
+      389,
+      390,
+      391,
+      399,
+      400,
+      401,
+      402,
+      403,
+      404,
+      405,
+      406,
+      407,
+      408,
+      409,
+      410,
+      411,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427,
+      428,
+      429,
+      430,
+      431,
+      432,
+      433,
+      434,
+      435,
+      436,
+      437,
+      438,
+      439,
+      440,
+      441,
+      442,
+      443,
+      444,
+      445,
+      446,
+      447,
+      448,
+      449,
+      450,
+      451,
+      452,
+      453,
+      454,
+      455,
+      456,
+      457,
+      458,
+      459,
+      460,
+      461,
+      462,
+      463,
+      464,
+      465,
+      466,
+      467,
+      468,
+      469,
+      470,
+      471,
+      472,
+      473,
+      474,
+      475,
+      476,
+      477,
+      478
+    ],
+    "rerun_kinds": [
+      257,
+      258,
+      259,
+      273,
+      274,
+      275,
+      276,
+      278,
+      279,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      298,
+      299,
+      300,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      311,
+      312,
+      313,
+      314,
+      315,
+      316,
+      317,
+      318,
+      319,
+      320,
+      321,
+      322,
+      323,
+      324,
+      325,
+      326,
+      327,
+      328,
+      329,
+      330,
+      331,
+      332,
+      333,
+      334,
+      335,
+      336,
+      337,
+      338,
+      339,
+      340,
+      348,
+      349,
+      350,
+      351,
+      352,
+      353,
+      354,
+      355,
+      356,
+      357,
+      358,
+      364,
+      365,
+      366,
+      367,
+      368,
+      369,
+      370,
+      371,
+      372,
+      373,
+      374,
+      375,
+      376,
+      377,
+      378,
+      379,
+      380,
+      381,
+      382,
+      383,
+      384,
+      385,
+      386,
+      392,
+      393,
+      394,
+      395,
+      396,
+      397,
+      398
+    ],
+    "retained_states": {
+      "264": [
+        1
+      ],
+      "265": [
+        1
+      ],
+      "266": [
+        2
+      ],
+      "267": [
+        2,
+        3
+      ],
+      "268": [
+        1
+      ],
+      "269": [
+        2
+      ],
+      "270": [
+        2
+      ],
+      "271": [
+        1,
+        2
+      ],
+      "272": [
+        2
+      ],
+      "277": [
+        2
+      ],
+      "280": [
+        1
+      ],
+      "297": [
+        2,
+        3
+      ],
+      "341": [
+        1,
+        2,
+        3
+      ],
+      "342": [
+        1,
+        2
+      ],
+      "343": [
+        1,
+        2
+      ],
+      "344": [
+        1,
+        2
+      ],
+      "345": [
+        1
+      ],
+      "346": [
+        3
+      ],
+      "347": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "359": [
+        1,
+        2,
+        3
+      ],
+      "360": [
+        2
+      ],
+      "361": [
+        1
+      ],
+      "362": [
+        3
+      ],
+      "363": [
+        1,
+        10
+      ],
+      "387": [
+        1,
+        2
+      ],
+      "388": [
+        2,
+        4
+      ],
+      "389": [
+        2
+      ],
+      "390": [
+        3,
+        4
+      ],
+      "391": [
+        1
+      ],
+      "399": [
+        1,
+        2,
+        4
+      ],
+      "400": [
+        1
+      ],
+      "401": [
+        1,
+        2
+      ],
+      "402": [
+        1
+      ],
+      "403": [
+        1,
+        2
+      ],
+      "404": [
+        1
+      ],
+      "405": [
+        1
+      ],
+      "406": [
+        1
+      ],
+      "407": [
+        1
+      ],
+      "408": [
+        1
+      ],
+      "409": [
+        1
+      ],
+      "410": [
+        4
+      ],
+      "411": [
+        1
+      ],
+      "412": [
+        1
+      ],
+      "413": [
+        1
+      ],
+      "414": [
+        1,
+        10
+      ],
+      "415": [
+        1,
+        10
+      ],
+      "416": [
+        1
+      ],
+      "417": [
+        1
+      ],
+      "418": [
+        1,
+        10
+      ],
+      "419": [
+        1
+      ],
+      "420": [
+        1
+      ],
+      "421": [
+        10
+      ],
+      "422": [
+        1
+      ],
+      "423": [
+        1,
+        2,
+        3
+      ],
+      "424": [
+        1
+      ],
+      "425": [
+        1
+      ],
+      "426": [
+        1
+      ],
+      "427": [
+        1
+      ],
+      "428": [
+        1,
+        3
+      ],
+      "429": [
+        1,
+        10
+      ],
+      "430": [
+        1,
+        10
+      ],
+      "431": [
+        1
+      ],
+      "432": [
+        1
+      ],
+      "433": [
+        1
+      ],
+      "434": [
+        1
+      ],
+      "435": [
+        2
+      ],
+      "436": [
+        1
+      ],
+      "437": [
+        1
+      ],
+      "438": [
+        1,
+        10
+      ],
+      "439": [
+        1
+      ],
+      "440": [
+        1
+      ],
+      "441": [
+        1
+      ],
+      "442": [
+        1
+      ],
+      "443": [
+        1,
+        10
+      ],
+      "444": [
+        1
+      ],
+      "445": [
+        1
+      ],
+      "446": [
+        1
+      ],
+      "447": [
+        1
+      ],
+      "448": [
+        1
+      ],
+      "449": [
+        1
+      ],
+      "450": [
+        1,
+        10
+      ],
+      "451": [
+        1,
+        2
+      ],
+      "452": [
+        1
+      ],
+      "453": [
+        1
+      ],
+      "454": [
+        1,
+        2,
+        4
+      ],
+      "455": [
+        1
+      ],
+      "456": [
+        1
+      ],
+      "457": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "458": [
+        1,
+        10
+      ],
+      "459": [
+        1,
+        10
+      ],
+      "460": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "461": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "462": [
+        1,
+        2,
+        3,
+        4,
+        10
+      ],
+      "463": [
+        1
+      ],
+      "464": [
+        1
+      ],
+      "465": [
+        10
+      ],
+      "466": [
+        1
+      ],
+      "467": [
+        1,
+        3,
+        4
+      ],
+      "468": [
+        1
+      ],
+      "469": [
+        1
+      ],
+      "470": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "471": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "472": [
+        1,
+        3
+      ],
+      "473": [
+        1
+      ],
+      "474": [
+        1
+      ],
+      "475": [
+        1
+      ],
+      "476": [
+        1
+      ],
+      "477": [
+        1
+      ],
+      "478": [
+        1
+      ]
+    },
+    "unchanged_compiled_dependencies_sha256": {
+      "/home/vova/projects/DoraRecomp3/src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
+      "/home/vova/projects/DoraRecomp3/src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
+      "/home/vova/projects/DoraRecomp3/build-deps/lib/N64ModernRuntime/N64Recomp/include/recomp.h": "190dd64184df17e3f24a78b761cda8bbfe639f9106d0d98ecc760ee84fe0616a",
+      "/home/vova/projects/DoraRecomp3/src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
+      "/home/vova/projects/DoraRecomp3/src/native_frame_bridge.hpp": "a405469b02b662d7ad973c5475f05465defe0d346b7add98717e9393794fe545",
+      "/home/vova/projects/DoraRecomp3/src/native_frame_scheduler.hpp": "ae108bfcf8c9bbd628f648a8781afd1a9a5ab8668aa676212a60ebf88329bfde",
+      "/home/vova/projects/DoraRecomp3/src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
+      "/home/vova/projects/DoraRecomp3/src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
+      "/home/vova/projects/DoraRecomp3/src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
+      "/home/vova/projects/DoraRecomp3/src/native_gameplay_preview.cpp": "f6dabcc72387c43a2805b3f8809a2bad22d4984b6d4288da4c9b088d7ada58a6",
+      "/home/vova/projects/DoraRecomp3/src/native_gameplay_preview.hpp": "2773c63fa042ebcc3efffe1c194f3d7e0c05ac5a205520ca59834100b34f05ea",
+      "/home/vova/projects/DoraRecomp3/src/native_enemy.hpp": "0f963a7886c55e3c19ce07202a53932dd194d67d11100297edd3ac9530b7147e",
+      "/home/vova/projects/DoraRecomp3/src/native_scene_objects.hpp": "cc51bfd8da7dc472c06f8cb6f52ee1a6515dd4f99a5bf5130416f216d54378ac",
+      "/home/vova/projects/DoraRecomp3/src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
+      "/home/vova/projects/DoraRecomp3/src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
+      "/home/vova/projects/DoraRecomp3/src/native_model_animation.hpp": "374044e91b204a922b5a43dc279e518cb87a0825797459f777a58ff82e0cf30b",
+      "/home/vova/projects/DoraRecomp3/src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
+      "/home/vova/projects/DoraRecomp3/src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
+      "/home/vova/projects/DoraRecomp3/src/native_model_animation.cpp": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
+      "/home/vova/projects/DoraRecomp3/research/native-story-pickup-source-check.cpp": "964a9ac09ff445f426ce18b8387729de3927efbad8a0de65590707681ac3af99",
+      "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/player-update-functions.h": "259eccf4a1ee5cacefab08270688563c53e0c8db30ae28d2efe600b6e5ef9dac",
+      "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/player-fixture.hpp": "3227f1b961743574b36fac62ea5b5e7e79697ad9e6807b0cacc725ae2073b5ec",
+      "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/enemy-fixture-data.hpp": "3802d9d82a5ac576118fc812f12c1c2e63900207d5e29ebbc6b075a5f06dfd85",
+      "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/player-update-dispatch.hpp": "5729791928212c32c0812f5e7673f42568f238c1f8727f5a0e03710be1df849b",
+      "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/terminal-effect-dispatch.hpp": "0467f7acad40c01711b8dd98774fcca459c3439a3fb8d820bccbaa1bbd57c388",
+      "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/flight-dispatch.hpp": "e880dd0358895d93ef6d949063e64def53aff843cb0e4fddbf6cf59b769edf05",
+      "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/growth-dispatch.hpp": "293ef721b43fe5b463bb3c6a0b7e79f1162569b6f43124a49702946dcf71da3f",
+      "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/ballistic-dispatch.hpp": "90ec5333df4cdfbfc873d2044ab9d00f6e290f64569804c2a340e7cc03c4bc21",
+      "/home/vova/projects/DoraRecomp3/research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
+      "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/slot09-overlay-fixture.hpp": "ddabcac8b2642984d81ff2b6f9980568f0b0000b41303abada160043fe408e86",
+      "/home/vova/projects/DoraRecomp3/research/native-flash-delay-check.inc": "649388f0cd651ca4a367a9f21e7cd23ba3bbd0b908a4d95c76a2f292c015650b",
+      "/home/vova/projects/DoraRecomp3/research/native-flash-motion-check.inc": "da708e4b650d6d3a6f2c97414654cfc5f9df0c5aad2334a15ab5b86746d40c76",
+      "/home/vova/projects/DoraRecomp3/research/native-flash-pool-check.inc": "654c6474c0a39c2b15f3c21ab7ecbd1b92b1a0c3d281e70243bbb858549134fd",
+      "/home/vova/projects/DoraRecomp3/research/native-periodic-effect-source-check.inc": "c28c1e7c4d4189249c28c227f9fc1458419d817a82a18ecf4920536d7a6b7940",
+      "/home/vova/projects/DoraRecomp3/research/native-periodic-effect-guard-check.inc": "0ae0fecd289d36d36297e71046fb57d5b90ac5f870ab24e3c85af16fa1998795",
+      "/home/vova/projects/DoraRecomp3/research/native-periodic-producer-check.inc": "c778c8103d470d0c7123d2b85eeaa4e099f50d04285f4af42eaa53665cdd8f61",
+      "/home/vova/projects/DoraRecomp3/research/native-periodic-producer-guard-check.inc": "aec8a15c0bdfb7cca6440351c559f119ad6861765f143bb10213a6bb5e5c14dd",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-uncollected-source-check.inc": "dc4c0b063c04a78de3fce3ffa0e588bbd5d06f9f86fbb04fba9b5d5e73da269e",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-spin-guard-check.inc": "3b7be439fe8104f84b6b6c372b86c2792b2f5f50c68fbd508f090ecdbe1af03c",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-arc-guard-check.inc": "e75d344b73021004ce226d89f2a26f8b204d399de82bce71941214698caf8aa7",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-reveal-source-check.inc": "b0696c935d3e578b2c5bc7556713add98b8830bef522e803d1bf9783087a51a3",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-settle-scatter-source-check.inc": "36197e05fb4b432d848cbd876589e927ed9355f4c35f4c3a04a6ecfd29bee2dc",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-moving-idle-source-check.inc": "454aabc4cb37a5e74c5ab199b6c83519eb0ec65e0dee727a91a4f78ba35150af",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-linked-basic-check.inc": "aa86d37a231fe751c0289223b75851329a18d0525af503f9a5c8f1d65e10128b",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-linked-guard-check.inc": "c923b27d73b0f6c80de4f29c59056123dbff9a5c60a1878458ab0a26396c098b",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-parent-source-check.inc": "d56d802284e293f88954600696fa821696ea3cb154ee5737a824e7c2bed5e2d1",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-settle-guard-check.inc": "cfa8f2ecd197c67efb0ae4d0e03583b9f6a57b1cbe4c3d790c464340b8d827d1",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-scatter-guard-check.inc": "37bc031d4cc2c85b25dba6313fd9e0ef355ee036df63e8278280beda03382cbb",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-scatter-geometry-check.inc": "6fca5eae3382a919049f2a26a41146d689139059253e29a1ba579e78988b5ef2",
+      "/home/vova/projects/DoraRecomp3/research/native-pickup-reveal-guard-check.inc": "4260f9e395701c21f6e897c9ede24ad9aa0db094374259596bd6247b2777d43d",
+      "/home/vova/projects/DoraRecomp3/research/native-enemy-source-check.inc": "f34c5c3354ac33ef55aae6f32189eab56f754578a225c9705b28c97f8774aeab",
+      "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/boundaries.cpp": "56740f0e891ddacb6533e51b4f55420377c90ff6c6ede75f85898bc858f394c5",
+      "/home/vova/projects/DoraRecomp3/src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
+      "/home/vova/projects/DoraRecomp3/src/native_cutscene.hpp": "d7c9362cc9c4f70191ebb7bad1c9ded08ea478811c477e269fc9bae630e1c1e4",
+      "/home/vova/projects/DoraRecomp3/research/native-gameplay-cutscene-fixture.cpp": "9d0f96ae66fa812b88f4cb3950452db2c26509e8bdfa0612fb1641b654c58cdb",
+      "/home/vova/projects/DoraRecomp3/src/native_minigames.hpp": "73821c8c48ed600088164b7c4604ab57a6d59f32b19384b9d40f85137e9855e7",
+      "/home/vova/projects/DoraRecomp3/src/native_enemy.cpp": "8dc73ce30128b784e169e375aa095940f9495140dcb56bba3024688683369959",
+      "/home/vova/projects/DoraRecomp3/src/native_enemy_projection_math.hpp": "b9a243b6898ed1e4ecdffe6fb43d64eb12ffe214d8812dfc94cf17e98de1ae7a",
+      "/home/vova/projects/DoraRecomp3/src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
+      "/home/vova/projects/DoraRecomp3/src/native_texture_animation.cpp": "27f987b2edb66e0c525e28ccc4138ee625c27cff76575fafe9e4db3bdf91887a",
+      "/home/vova/projects/DoraRecomp3/src/native_texture_animation.hpp": "7403bbf3f80ac2335669356f78d8caf8c4803d7d9060b205c6fd60ef5f874a41",
+      "/home/vova/projects/DoraRecomp3/src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e"
+    },
+    "artifacts_sha256": {
+      "build-local/native-enemy-check/replay-1791286135332927698/progress-0.log": "9b51d570f02843b345576aadc0ead1fd54de9f94dcd130cff32bf47f0ce1121b",
+      "build-local/native-enemy-check/replay-1791286135332927698/progress-1.log": "450d1ab3dbb2a9dcb1645389f06dc36c5199d22955bc7c535b462a83cef38f95",
+      "build-local/native-enemy-check/replay-1791286135332927698/progress-2.log": "2827fac68a0e40218ca8992bb791310aa52c378bdfb082025a0f45d4b058d0cc",
+      "build-local/native-enemy-check/replay-1791286135332927698/progress-3.log": "53f3578751deb27355454f17ab8a83a61f442b2a3749916fc449279d77c08350",
+      "build-local/native-enemy-check/replay-1791286135332927698/shard-0.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "build-local/native-enemy-check/replay-1791286135332927698/shard-1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "build-local/native-enemy-check/replay-1791286135332927698/shard-2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "build-local/native-enemy-check/replay-1791286135332927698/shard-3.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "old_fixture": "build-local/continuation-20260930/regression047-enemy-fixture-inactive.inc",
+    "old_fixture_sha256": "f34c5c3354ac33ef55aae6f32189eab56f754578a225c9705b28c97f8774aeab",
+    "old_checker_binary": {
+      "path": "build-local/continuation-20260930/regression047-enemy-binary-before-formats",
+      "sha256": "01ed01539dd551202f38141125cb65964c28bde3317cfeaef48f4bf864628ac2"
+    },
+    "input_equivalence": [
+      {
+        "path": "/home/vova/projects/DoraRecomp3/src/native_texture_animation.cpp",
+        "old_file": "build-local/continuation-20260930/regression047-texture-before-formats.cpp",
+        "old_sha256": "27f987b2edb66e0c525e28ccc4138ee625c27cff76575fafe9e4db3bdf91887a",
+        "new_sha256": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
+        "edits": [
+          {
+            "old": "#include \"native_texture_animation.hpp\"\n#include \"native_frame_bridge.hpp\"\n#include \"frame_lights.hpp\"\n#include <algorithm>\n#include <array>\n#include <cmath>\n#include <map>\n#include <optional>\n#include <set>\n#include <stdexcept>\n#include <vector>\n\nnamespace {\nusing namespace dora3::native_time;\nuint32_t word(uint8_t* rdram,uint32_t p){return uint32_t(MEM_W(0,int32_t(p)));}\nbool pointer(uint32_t p,uint64_t n){return p>=0x80000000u&&uint64_t(p)+n<=0x80400000ull;}\nstruct Bitmap {uint32_t header=0,pixels=0,palette=0;unsigned width=0,height=0,format=0,colors=0;};\nstd::optional<Bitmap> bitmap(uint8_t* rdram,uint32_t p) {\n    if(!pointer(p,16)||(p&7)||MEM_BU(0,int32_t(p))!='B'||MEM_BU(1,int32_t(p))!='M'||MEM_BU(2,int32_t(p))!='P')return {};\n    Bitmap b{p,0,p+16,word(rdram,p+8),word(rdram,p+12),MEM_BU(3,int32_t(p)),MEM_HU(6,int32_t(p))};\n    if(b.format!=5||b.colors!=16||!b.width||!b.height||b.width>64||b.height>64||(b.width&1))return {};\n    b.pixels=p+16+((2*b.colors+7)&~7u);\n    if(!pointer(b.pixels,uint64_t(b.width)*b.height/2))return {};\n    return b;\n}\nunsigned pixel(uint8_t* rdram,const Bitmap& b,unsigned x,unsigned y) {\n    const auto v=MEM_BU(int32_t((y*b.width+x)/2),int32_t(b.pixels));return x&1?v&15:v>>4;\n}\nstruct Shift {int x=0,y=0;bool translated=false;};\nstruct CachedShift {uint64_t first=0,second=0;Shift value;};\nuint64_t bitmap_signature(uint8_t* rdram,const Bitmap& b) {\n    uint64_t hash=1469598103934665603ull;\n    for(unsigned i=0;i<16;++i)hash=(hash^MEM_BU(int32_t(i),int32_t(b.header)))*1099511628211ull;\n    for(unsigned i=0;i<32;++i)hash=(hash^MEM_BU(int32_t(i),int32_t(b.palette)))*1099511628211ull;\n    for(unsigned i=0;i<b.width*b.height/2;++i)hash=(hash^MEM_BU(int32_t(i),int32_t(b.pixels)))*1099511628211ull;\n    return hash;\n}\nShift translated_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b) {\n    if(a.width!=b.width||a.height!=b.height||a.format!=b.format||a.colors!=b.colors)return {};\n    for(unsigned i=0;i<32;++i)if(MEM_BU(int32_t(i),int32_t(a.palette))!=MEM_BU(int32_t(i),int32_t(b.palette)))return {};\n    // This recognizes an authored toroidal scroll, never blends bitmap images.\n    // ROM water113..122 is precisely the same32x32 CI4 bitmap shifted by2px.\n    Shift result;unsigned best=~0u;\n    for(unsigned y=0;y<a.height;++y)for(unsigned x=0;x<a.width;++x) {\n        const int sx=x>a.width/2?int(x)-int(a.width):int(x),sy=y>a.height/2?int(y)-int(a.height):int(y);\n        const unsigned length=unsigned(sx*sx+sy*sy);if(length>=best)continue;\n        bool same=true;\n        for(unsigned row=0;row<a.height&&same;++row)for(unsigned col=0;col<a.width;++col)\n            if(pixel(rdram,b,col,row)!=pixel(rdram,a,(col+x)%a.width,(row+y)%a.height)){same=false;break;}\n        if(same){result={sx,sy,true};best=length;}\n    }\n    return result;\n}\nstruct Binding {uint32_t base=0,palette=0;unsigned width=0,height=0;double x=0,y=0;bool scroll=false;};\nstruct Parser {std::optional<Binding> image;std::array<uint32_t,8> tiles{};};\nstruct Copy {uint32_t address;Parser exit;};\nstruct FramePatch {uint32_t address,first,second,published_first,published_second;};\nstruct State {\n    uint8_t* source_ram=nullptr,*frame_ram=nullptr;\n    Nanoseconds source_time=0;\n    double h=0;\n    uint32_t bank=0,arena=0;\n    bool active=false;\n    std::array<Binding,16> segments{};\n    std::map<std::pair<uint32_t,uint32_t>,CachedShift> shifts;\n    std::vector<uint32_t> builders;\n    std::vector<FramePatch> patches;\n    std::map<std::pair<uint32_t,uint64_t>,Copy> copies;\n} state;\nuint32_t resolve(uint32_t p) {\n    if(p>=0x80000000u&&p<0x80400000u)return p;\n    if(p<0x400000u)return p|0x80000000u;\n    const auto segment=p>>24;\n    if(segment<16&&state.segments[segment].base) {\n        const uint64_t result=uint64_t(state.segments[segment].base)+(p&0xffffffu);\n        if(result<0x80400000ull)return uint32_t(result);\n    }\n    return 0;\n}\n// A cloned resource display list remains in the current ticket's bank until\n// both guest and host completion. CPU Source RAM/asset data are never changed.\n// Tail allocation keeps the original builder's local and global cursors intact.\nuint32_t allocate(uint8_t* rdram,const std::vector<uint32_t>& commands) {\n    const auto bytes=uint32_t(commands.size()*4);\n    const auto cursor=word(rdram,0x801B1424);\n    if(bytes>state.arena-state.bank||cursor<state.bank+dora3::frame::dl_offset||\n       uint64_t(cursor)+0x10000u+bytes>state.arena)return 0;\n    const auto at=(state.arena-bytes)&~7u;\n    for(unsigned i=0;i<commands.size();++i)MEM_W(0,int32_t(at+4*i))=int32_t(commands[i]);\n    state.arena=at;return at;\n}\nuint64_t binding_signature() {\n    uint64_t result=1469598103934665603ull;\n    for(const auto& b:state.segments)for(const auto v:{uint64_t(b.base),uint64_t(std::llround(b.x*4)),uint64_t(std::llround(b.y*4))})\n        result=(result^v)*1099511628211ull;\n    return result;\n}\nuint32_t clone_list(uint8_t*,uint32_t,unsigned,std::set<uint32_t>&,Parser&);\nbool rewrite_command(uint8_t* rdram,uint32_t& first,uint32_t& second,unsigned depth,std::set<uint32_t>& path,Parser& parser) {\n    auto& image=parser.image;bool changed=false;const auto op=first>>24;\n        if(op==0xFD) {\n            image.reset();const auto segment=second>>24;\n            if(segment<16&&!(second&0xffffffu)&&state.segments[segment].scroll)image=state.segments[segment];\n            else {const auto actual=resolve(second);for(const auto& b:state.segments)if(b.scroll&&b.base==actual){image=b;break;}}\n        } else if(op==0xF5)parser.tiles[(second>>24)&7]=second;\n        else if(op==0xF2&&image) {\n            const auto& b=*image;\n            // RDP tile origin subtracts from the vertex's S/T. A translated\n            // bitmap reads (S+shift), hence the negative fractional tile origin.\n            const int dx=int(std::llround(b.x*4)),dy=int(std::llround(b.y*4));\n            const auto tile=parser.tiles[(second>>24)&7];\n            const bool wrap_s=((tile>>8)&3)==0&&(tile&15)==0&&((1u<<((tile>>4)&15))==b.width);\n            const bool wrap_t=((tile>>18)&3)==0&&((tile>>10)&15)==0&&((1u<<((tile>>14)&15))==b.height);\n            const auto move=[&](unsigned shift,int delta,unsigned period,bool allowed) {\n                const int low=(first>>shift)&4095,high=(second>>shift)&4095;\n                if(!allowed||!delta||high<low)return;\n                // Keep UL/LR ordered and the same width. Encoding a negative UL\n                // as4095 would make a host decoder infer a negative tile width.\n                int next=(low-delta)%int(period);if(next<0)next+=int(period);\n                const int last=next+high-low;if(last>4095)return;\n                const uint32_t mask=4095u<<shift;\n                const uint32_t a=(first&~mask)|(uint32_t(next)<<shift),c=(second&~mask)|(uint32_t(last)<<shift);\n                changed|=a!=first||c!=second;first=a;second=c;\n            };\n            move(12,dx,b.width*4,wrap_s);move(0,dy,b.height*4,wrap_t);\n        } else if(op==0xDE) {\n            const auto copied=clone_list(rdram,second,depth+1,path,parser);\n            changed|=copied!=second;second=copied==second?second:(copied&0x1fffffff);\n\n        }\n    return changed;\n}\nuint32_t clone_list(uint8_t* rdram,uint32_t root,unsigned depth,std::set<uint32_t>& path,Parser& parser) {\n    const auto address=resolve(root);if(depth>8||!pointer(address,8)||(address&7)||!path.insert(address).second)return root;\n    const auto key=std::pair{address,binding_signature()};\n    // A parent can inherit the current texture image; only cache independent\n    // lists. This avoids conflating the same mesh under different material state.\n    const bool independent=!parser.image&&std::all_of(parser.tiles.begin(),parser.tiles.end(),[](auto tile){return tile==0;});\n    if(independent)if(auto at=state.copies.find(key);at!=state.copies.end()){parser=at->second.exit;path.erase(address);return at->second.address;}\n    std::vector<uint32_t> commands;bool changed=false,ended=false;\n    for(unsigned i=0;i<2048;++i) {\n        const auto p=address+8*i;if(!pointer(p,8))break;\n        auto first=word(rdram,p),second=word(rdram,p+4);const auto op=first>>24;\n        changed|=rewrite_command(rdram,first,second,depth,path,parser);\n        ended=op==0xDF||(op==0xDE&&(first&0x10000u));\n        commands.push_back(first);commands.push_back(second);if(ended)break;\n    }\n    path.erase(address);\n    if(!ended||!changed)return root;\n    const auto copied=allocate(rdram,commands);if(!copied)return root;\n    if(independent)state.copies.emplace(key,Copy{copied,parser});\n    return copied;\n}\n}\nnamespace dora3::native_time {\nvoid native_texture_source_completed(uint8_t* ram,Nanoseconds now){state.source_ram=ram;state.source_time=now;}\nvoid native_texture_reset(){if(state.active)throw std::logic_error(\"Texture reset inside frame\");state=State{};}\nTextureFrameScope::TextureFrameScope(uint8_t* ram,Nanoseconds now,unsigned bank):ram_(ram) {\n    const auto* binding=active_frame_binding();if(!binding||binding->ticket.bank!=bank||state.active)throw std::logic_error(\"Invalid texture frame ownership\");\n    state.active=true;state.frame_ram=ram;state.bank=dora3::frame::bank0+bank*dora3::frame::bank_stride;\n    state.arena=state.bank+dora3::frame::bank_stride-0x100;\n    state.h=state.source_ram==ram?std::clamp(double(now-state.source_time)*60./(word(ram,0x801A39DC)*1e9),0.,1.):0.;\n    state.segments={};state.copies.clear();state.builders.clear();state.patches.clear();\n}\nTextureFrameScope::~TextureFrameScope(){if(ram_){state.active=false;state.frame_ram=nullptr;state.segments={};state.copies.clear();state.builders.clear();state.patches.clear();}}\n}\nextern \"C\" void dora3_native_texture_bind(uint8_t* rdram,recomp_context* c,unsigned world) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    const auto actor=uint32_t(world?c->r20:c->r4),slot=unsigned(world?c->r18:c->r5);\n    if(slot>=8||!pointer(actor,0xcc)||MEM_BU(int32_t(0x6b+slot),int32_t(actor))!=5)return;\n    const auto handle=word(rdram,actor+0x74+4*slot);if(handle>=300)return;\n    const auto entry=0x801A9CB0+8*handle,sequence=word(rdram,entry);\n    if(!pointer(sequence,12))return;\n    const unsigned segment=MEM_BU(8,int32_t(sequence)),palette=MEM_BU(9,int32_t(sequence));\n    if(segment>=16||palette>=16)return;\n    state.segments[segment]={};state.segments[palette]={};\n    const auto indices=word(rdram,sequence),durations=word(rdram,sequence+4);\n    const unsigned index=MEM_BU(5,int32_t(entry));\n    if(!pointer(indices,uint64_t(index)+2)||!pointer(durations,uint64_t(index)+1))return;\n    const unsigned current=MEM_BU(int32_t(index),int32_t(indices)),raw_next=MEM_BU(int32_t(index+1),int32_t(indices));\n    const unsigned flags=MEM_BU(6,int32_t(entry));\n    const unsigned next=raw_next==255?(flags&2?current:MEM_BU(0,int32_t(indices))):raw_next;\n    if(current==255||next==255)return;\n    const auto table=world?0x80217120u:word(rdram,actor+0xb8);\n    if(!pointer(table,2*(std::max(current,next)+1)))return;\n    const auto resource=[&](unsigned n)->uint32_t{\n        const int id=MEM_H(int32_t(2*n),int32_t(table));return id>=0&&id<512?word(rdram,0x801AEC00+20*unsigned(id)):0;\n    };\n    const auto a=bitmap(rdram,resource(current)),b=bitmap(rdram,resource(next));if(!a||!b)return;\n    state.segments[segment]={a->pixels,a->palette,a->width,a->height,0,0,false};\n    state.segments[palette].base=a->palette;\n    if(!(flags&1))return; // Source controls active/loop/clamp; last clamped frame holds\n    const auto key=std::pair{a->header,b->header};const auto first=bitmap_signature(rdram,*a),second=bitmap_signature(rdram,*b);\n    auto at=state.shifts.find(key);\n    if(at==state.shifts.end()||at->second.first!=first||at->second.second!=second) {\n        // Resource slots may be freed/reused inside the same loaded scene.\n        if(state.shifts.size()>=512)state.shifts.clear();\n        at=state.shifts.insert_or_assign(key,CachedShift{first,second,translated_bitmap(rdram,*a,*b)}).first;\n    }\n    if(!at->second.value.translated)return;\n    const unsigned duration=MEM_BU(int32_t(index),int32_t(durations)),remaining=MEM_BU(4,int32_t(entry));\n    if(!duration||remaining>=duration)return;\n    const double h=(double(duration-1-remaining)+state.h)/duration;\n    auto& binding=state.segments[segment];binding.x=at->second.value.x*h;binding.y=at->second.value.y*h;binding.scroll=true;\n}\nextern \"C\" void dora3_native_texture_builder(uint8_t* rdram,recomp_context* c,unsigned end) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    if(!end) {\n        const auto cursor_pointer=uint32_t(c->r4);\n        state.builders.push_back(pointer(cursor_pointer,4)?word(rdram,cursor_pointer):0);return;\n    }\n    if(state.builders.empty())throw std::logic_error(\"Unmatched material builder boundary\");\n    const auto begin=state.builders.back(),last=uint32_t(c->r2);state.builders.pop_back();\n    if(begin<state.bank+dora3::frame::dl_offset||last<begin||last>state.arena||((begin|last)&7))\n        return; // Other Source-owned builders are outside this ticket's lease.\n    if(std::none_of(state.segments.begin(),state.segments.end(),[](const auto& b){return b.scroll;}))return;\n    // The actual SDK builds material setup before the mesh DE. Process that\n    // prefix too, carrying its image/tile state into every nested mesh list.\n    std::set<uint32_t> path;Parser parser;\n    for(uint32_t at=begin;at<last;at+=8) {\n        auto first=word(rdram,at),second=word(rdram,at+4);\n        const auto original_first=first,original_second=second;\n        if(rewrite_command(rdram,first,second,0,path,parser)) {\n            state.patches.push_back({at,original_first,original_second,first,second});\n            MEM_W(0,int32_t(at))=int32_t(first);MEM_W(0,int32_t(at+4))=int32_t(second);\n        }\n    }\n}\nextern \"C\" void dora3_native_texture_submit_guard(uint8_t* rdram,recomp_context*) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    if(word(rdram,0x801B1424)<=state.arena)return;\n    // A larger Source frame may use the reserved tail after material building.\n    // Drop every outer reference to clones before submit and retain its exact\n    // Source texture commands. An unusually large frame must not crash the game.\n    for(auto i=state.patches.rbegin();i!=state.patches.rend();++i) {\n        if(word(rdram,i->address)==i->published_first&&word(rdram,i->address+4)==i->published_second) {\n            MEM_W(0,int32_t(i->address))=int32_t(i->first);\n            MEM_W(0,int32_t(i->address+4))=int32_t(i->second);\n        }\n    }\n    state.patches.clear();\n}\n",
+            "new": "#include \"native_texture_animation.hpp\"\n#include \"native_frame_bridge.hpp\"\n#include \"frame_lights.hpp\"\n#include <algorithm>\n#include <array>\n#include <cmath>\n#include <map>\n#include <optional>\n#include <set>\n#include <stdexcept>\n#include <vector>\n\nnamespace {\nusing namespace dora3::native_time;\nuint32_t word(uint8_t* rdram,uint32_t p){return uint32_t(MEM_W(0,int32_t(p)));}\nbool pointer(uint32_t p,uint64_t n){return p>=0x80000000u&&uint64_t(p)+n<=0x80400000ull;}\nstruct Bitmap {uint32_t header=0,pixels=0,palette=0;unsigned width=0,height=0,format=0,colors=0,palette_bytes=0;};\nstd::optional<Bitmap> bitmap(uint8_t* rdram,uint32_t p) {\n    if(!pointer(p,16)||(p&7)||MEM_BU(0,int32_t(p))!='B'||MEM_BU(1,int32_t(p))!='M'||MEM_BU(2,int32_t(p))!='P')return {};\n    Bitmap b{p,0,p+16,word(rdram,p+8),word(rdram,p+12),MEM_BU(3,int32_t(p)),MEM_HU(6,int32_t(p))};\n    // SDK282EC places formats<5 directly after the16-byte header. The ROM\n    // format2 family0653..656 is byte-per-pixel, confirmed by every resource\n    // length (64*32+16). CI4 format5 can have fewer than16 palette entries:\n    // 09CE..9D4 uses3 colors and bitmap0521..528 uses6, not16.\n    if((b.format!=2&&b.format!=5)||!b.width||!b.height||b.width>64||b.height>64||(b.width&1))return {};\n    if(b.format==5&&(!b.colors||b.colors>16))return {};\n    b.palette_bytes=b.format==5?((2*b.colors+7)&~7u):0;\n    if(b.format<5)b.palette=0; // SDK28320 returns no palette for byte format2.\n    b.pixels=p+16+b.palette_bytes;\n    if(!pointer(b.pixels,uint64_t(b.width)*b.height/(b.format==5?2:1)))return {};\n    return b;\n}\nunsigned pixel(uint8_t* rdram,const Bitmap& b,unsigned x,unsigned y) {\n    const auto at=y*b.width+x;\n    const auto v=MEM_BU(int32_t(b.format==5?at/2:at),int32_t(b.pixels));\n    return b.format==5?(x&1?v&15:v>>4):v;\n}\nstruct Shift {int x=0,y=0;bool translated=false;};\nstruct CachedShift {uint64_t first=0,second=0;Shift value;};\nuint64_t bitmap_signature(uint8_t* rdram,const Bitmap& b) {\n    uint64_t hash=1469598103934665603ull;\n    for(unsigned i=0;i<16;++i)hash=(hash^MEM_BU(int32_t(i),int32_t(b.header)))*1099511628211ull;\n    for(unsigned i=0;i<b.palette_bytes;++i)hash=(hash^MEM_BU(int32_t(i),int32_t(b.palette)))*1099511628211ull;\n    for(unsigned i=0;i<b.width*b.height/(b.format==5?2:1);++i)hash=(hash^MEM_BU(int32_t(i),int32_t(b.pixels)))*1099511628211ull;\n    return hash;\n}\nShift translated_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b) {\n    if(a.width!=b.width||a.height!=b.height||a.format!=b.format||a.colors!=b.colors)return {};\n    if(word(rdram,a.header+4)!=word(rdram,b.header+4))return {}; // Same authored header/format flags too.\n    for(unsigned i=0;i<a.palette_bytes;++i)if(MEM_BU(int32_t(i),int32_t(a.palette))!=MEM_BU(int32_t(i),int32_t(b.palette)))return {};\n    // This recognizes an authored toroidal scroll, never blends bitmap images.\n    // ROM water113..122 is precisely the same32x32 CI4 bitmap shifted by2px.\n    Shift result;unsigned best=~0u;\n    for(unsigned y=0;y<a.height;++y)for(unsigned x=0;x<a.width;++x) {\n        const int sx=x>a.width/2?int(x)-int(a.width):int(x),sy=y>a.height/2?int(y)-int(a.height):int(y);\n        const unsigned length=unsigned(sx*sx+sy*sy);if(length>=best)continue;\n        bool same=true;\n        for(unsigned row=0;row<a.height&&same;++row)for(unsigned col=0;col<a.width;++col)\n            if(pixel(rdram,b,col,row)!=pixel(rdram,a,(col+x)%a.width,(row+y)%a.height)){same=false;break;}\n        if(same){result={sx,sy,true};best=length;}\n    }\n    return result;\n}\nstruct Binding {uint32_t base=0,palette=0;unsigned width=0,height=0;double x=0,y=0;bool scroll=false;};\nstruct Parser {std::optional<Binding> image;std::array<uint32_t,8> tiles{};};\nstruct Copy {uint32_t address;Parser exit;};\nstruct FramePatch {uint32_t address,first,second,published_first,published_second;};\nstruct State {\n    uint8_t* source_ram=nullptr,*frame_ram=nullptr;\n    Nanoseconds source_time=0;\n    double h=0;\n    uint32_t bank=0,arena=0;\n    bool active=false;\n    std::array<Binding,16> segments{};\n    std::map<std::pair<uint32_t,uint32_t>,CachedShift> shifts;\n    std::vector<uint32_t> builders;\n    std::vector<FramePatch> patches;\n    std::map<std::pair<uint32_t,uint64_t>,Copy> copies;\n} state;\nuint32_t resolve(uint32_t p) {\n    if(p>=0x80000000u&&p<0x80400000u)return p;\n    if(p<0x400000u)return p|0x80000000u;\n    const auto segment=p>>24;\n    if(segment<16&&state.segments[segment].base) {\n        const uint64_t result=uint64_t(state.segments[segment].base)+(p&0xffffffu);\n        if(result<0x80400000ull)return uint32_t(result);\n    }\n    return 0;\n}\n// A cloned resource display list remains in the current ticket's bank until\n// both guest and host completion. CPU Source RAM/asset data are never changed.\n// Tail allocation keeps the original builder's local and global cursors intact.\nuint32_t allocate(uint8_t* rdram,const std::vector<uint32_t>& commands) {\n    const auto bytes=uint32_t(commands.size()*4);\n    const auto cursor=word(rdram,0x801B1424);\n    if(bytes>state.arena-state.bank||cursor<state.bank+dora3::frame::dl_offset||\n       uint64_t(cursor)+0x10000u+bytes>state.arena)return 0;\n    const auto at=(state.arena-bytes)&~7u;\n    for(unsigned i=0;i<commands.size();++i)MEM_W(0,int32_t(at+4*i))=int32_t(commands[i]);\n    state.arena=at;return at;\n}\nuint64_t binding_signature() {\n    uint64_t result=1469598103934665603ull;\n    for(const auto& b:state.segments)for(const auto v:{uint64_t(b.base),uint64_t(std::llround(b.x*4)),uint64_t(std::llround(b.y*4))})\n        result=(result^v)*1099511628211ull;\n    return result;\n}\nuint32_t clone_list(uint8_t*,uint32_t,unsigned,std::set<uint32_t>&,Parser&);\nbool rewrite_command(uint8_t* rdram,uint32_t& first,uint32_t& second,unsigned depth,std::set<uint32_t>& path,Parser& parser) {\n    auto& image=parser.image;bool changed=false;const auto op=first>>24;\n        if(op==0xFD) {\n            image.reset();const auto segment=second>>24;\n            if(segment<16&&!(second&0xffffffu)&&state.segments[segment].scroll)image=state.segments[segment];\n            else {const auto actual=resolve(second);for(const auto& b:state.segments)if(b.scroll&&b.base==actual){image=b;break;}}\n        } else if(op==0xF5)parser.tiles[(second>>24)&7]=second;\n        else if(op==0xF2&&image) {\n            const auto& b=*image;\n            // RDP tile origin subtracts from the vertex's S/T. A translated\n            // bitmap reads (S+shift), hence the negative fractional tile origin.\n            const int dx=int(std::llround(b.x*4)),dy=int(std::llround(b.y*4));\n            const auto tile=parser.tiles[(second>>24)&7];\n            const bool wrap_s=((tile>>8)&3)==0&&(tile&15)==0&&((1u<<((tile>>4)&15))==b.width);\n            const bool wrap_t=((tile>>18)&3)==0&&((tile>>10)&15)==0&&((1u<<((tile>>14)&15))==b.height);\n            const auto move=[&](unsigned shift,int delta,unsigned period,bool allowed) {\n                const int low=(first>>shift)&4095,high=(second>>shift)&4095;\n                if(!allowed||!delta||high<low)return;\n                // Keep UL/LR ordered and the same width. Encoding a negative UL\n                // as4095 would make a host decoder infer a negative tile width.\n                int next=(low-delta)%int(period);if(next<0)next+=int(period);\n                const int last=next+high-low;if(last>4095)return;\n                const uint32_t mask=4095u<<shift;\n                const uint32_t a=(first&~mask)|(uint32_t(next)<<shift),c=(second&~mask)|(uint32_t(last)<<shift);\n                changed|=a!=first||c!=second;first=a;second=c;\n            };\n            move(12,dx,b.width*4,wrap_s);move(0,dy,b.height*4,wrap_t);\n        } else if(op==0xDE) {\n            const auto copied=clone_list(rdram,second,depth+1,path,parser);\n            changed|=copied!=second;second=copied==second?second:(copied&0x1fffffff);\n\n        }\n    return changed;\n}\nuint32_t clone_list(uint8_t* rdram,uint32_t root,unsigned depth,std::set<uint32_t>& path,Parser& parser) {\n    const auto address=resolve(root);if(depth>8||!pointer(address,8)||(address&7)||!path.insert(address).second)return root;\n    const auto key=std::pair{address,binding_signature()};\n    // A parent can inherit the current texture image; only cache independent\n    // lists. This avoids conflating the same mesh under different material state.\n    const bool independent=!parser.image&&std::all_of(parser.tiles.begin(),parser.tiles.end(),[](auto tile){return tile==0;});\n    if(independent)if(auto at=state.copies.find(key);at!=state.copies.end()){parser=at->second.exit;path.erase(address);return at->second.address;}\n    std::vector<uint32_t> commands;bool changed=false,ended=false;\n    for(unsigned i=0;i<2048;++i) {\n        const auto p=address+8*i;if(!pointer(p,8))break;\n        auto first=word(rdram,p),second=word(rdram,p+4);const auto op=first>>24;\n        changed|=rewrite_command(rdram,first,second,depth,path,parser);\n        ended=op==0xDF||(op==0xDE&&(first&0x10000u));\n        commands.push_back(first);commands.push_back(second);if(ended)break;\n    }\n    path.erase(address);\n    if(!ended||!changed)return root;\n    const auto copied=allocate(rdram,commands);if(!copied)return root;\n    if(independent)state.copies.emplace(key,Copy{copied,parser});\n    return copied;\n}\n}\nnamespace dora3::native_time {\nvoid native_texture_source_completed(uint8_t* ram,Nanoseconds now){state.source_ram=ram;state.source_time=now;}\nvoid native_texture_reset(){if(state.active)throw std::logic_error(\"Texture reset inside frame\");state=State{};}\nTextureFrameScope::TextureFrameScope(uint8_t* ram,Nanoseconds now,unsigned bank):ram_(ram) {\n    const auto* binding=active_frame_binding();if(!binding||binding->ticket.bank!=bank||state.active)throw std::logic_error(\"Invalid texture frame ownership\");\n    state.active=true;state.frame_ram=ram;state.bank=dora3::frame::bank0+bank*dora3::frame::bank_stride;\n    state.arena=state.bank+dora3::frame::bank_stride-0x100;\n    state.h=state.source_ram==ram?std::clamp(double(now-state.source_time)*60./(word(ram,0x801A39DC)*1e9),0.,1.):0.;\n    state.segments={};state.copies.clear();state.builders.clear();state.patches.clear();\n}\nTextureFrameScope::~TextureFrameScope(){if(ram_){state.active=false;state.frame_ram=nullptr;state.segments={};state.copies.clear();state.builders.clear();state.patches.clear();}}\n}\nextern \"C\" void dora3_native_texture_bind(uint8_t* rdram,recomp_context* c,unsigned world) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    const auto actor=uint32_t(world?c->r20:c->r4),slot=unsigned(world?c->r18:c->r5);\n    if(slot>=8||!pointer(actor,0xcc)||MEM_BU(int32_t(0x6b+slot),int32_t(actor))!=5)return;\n    const auto handle=word(rdram,actor+0x74+4*slot);if(handle>=300)return;\n    const auto entry=0x801A9CB0+8*handle,sequence=word(rdram,entry);\n    if(!pointer(sequence,12))return;\n    const unsigned segment=MEM_BU(8,int32_t(sequence)),palette=MEM_BU(9,int32_t(sequence));\n    if(segment>=16||palette>=16)return;\n    state.segments[segment]={};state.segments[palette]={};\n    const auto indices=word(rdram,sequence),durations=word(rdram,sequence+4);\n    const unsigned index=MEM_BU(5,int32_t(entry));\n    if(!pointer(indices,uint64_t(index)+2)||!pointer(durations,uint64_t(index)+1))return;\n    const unsigned current=MEM_BU(int32_t(index),int32_t(indices)),raw_next=MEM_BU(int32_t(index+1),int32_t(indices));\n    const unsigned flags=MEM_BU(6,int32_t(entry));\n    const unsigned next=raw_next==255?(flags&2?current:MEM_BU(0,int32_t(indices))):raw_next;\n    if(current==255||next==255)return;\n    const auto table=world?0x80217120u:word(rdram,actor+0xb8);\n    if(!pointer(table,2*(std::max(current,next)+1)))return;\n    const auto resource=[&](unsigned n)->uint32_t{\n        const int id=MEM_H(int32_t(2*n),int32_t(table));return id>=0&&id<512?word(rdram,0x801AEC00+20*unsigned(id)):0;\n    };\n    const auto a=bitmap(rdram,resource(current)),b=bitmap(rdram,resource(next));if(!a||!b)return;\n    state.segments[segment]={a->pixels,a->palette,a->width,a->height,0,0,false};\n    state.segments[palette].base=a->palette;\n    if(!(flags&1))return; // Source controls active/loop/clamp; last clamped frame holds\n    const auto key=std::pair{a->header,b->header};const auto first=bitmap_signature(rdram,*a),second=bitmap_signature(rdram,*b);\n    auto at=state.shifts.find(key);\n    if(at==state.shifts.end()||at->second.first!=first||at->second.second!=second) {\n        // Resource slots may be freed/reused inside the same loaded scene.\n        if(state.shifts.size()>=512)state.shifts.clear();\n        at=state.shifts.insert_or_assign(key,CachedShift{first,second,translated_bitmap(rdram,*a,*b)}).first;\n    }\n    if(!at->second.value.translated)return;\n    const unsigned duration=MEM_BU(int32_t(index),int32_t(durations)),remaining=MEM_BU(4,int32_t(entry));\n    if(!duration||remaining>=duration)return;\n    const double h=(double(duration-1-remaining)+state.h)/duration;\n    auto& binding=state.segments[segment];binding.x=at->second.value.x*h;binding.y=at->second.value.y*h;binding.scroll=true;\n}\nextern \"C\" void dora3_native_texture_builder(uint8_t* rdram,recomp_context* c,unsigned end) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    if(!end) {\n        const auto cursor_pointer=uint32_t(c->r4);\n        state.builders.push_back(pointer(cursor_pointer,4)?word(rdram,cursor_pointer):0);return;\n    }\n    if(state.builders.empty())throw std::logic_error(\"Unmatched material builder boundary\");\n    const auto begin=state.builders.back(),last=uint32_t(c->r2);state.builders.pop_back();\n    if(begin<state.bank+dora3::frame::dl_offset||last<begin||last>state.arena||((begin|last)&7))\n        return; // Other Source-owned builders are outside this ticket's lease.\n    if(std::none_of(state.segments.begin(),state.segments.end(),[](const auto& b){return b.scroll;}))return;\n    // The actual SDK builds material setup before the mesh DE. Process that\n    // prefix too, carrying its image/tile state into every nested mesh list.\n    std::set<uint32_t> path;Parser parser;\n    for(uint32_t at=begin;at<last;at+=8) {\n        auto first=word(rdram,at),second=word(rdram,at+4);\n        const auto original_first=first,original_second=second;\n        if(rewrite_command(rdram,first,second,0,path,parser)) {\n            state.patches.push_back({at,original_first,original_second,first,second});\n            MEM_W(0,int32_t(at))=int32_t(first);MEM_W(0,int32_t(at+4))=int32_t(second);\n        }\n    }\n}\nextern \"C\" void dora3_native_texture_submit_guard(uint8_t* rdram,recomp_context*) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    if(word(rdram,0x801B1424)<=state.arena)return;\n    // A larger Source frame may use the reserved tail after material building.\n    // Drop every outer reference to clones before submit and retain its exact\n    // Source texture commands. An unusually large frame must not crash the game.\n    for(auto i=state.patches.rbegin();i!=state.patches.rend();++i) {\n        if(word(rdram,i->address)==i->published_first&&word(rdram,i->address+4)==i->published_second) {\n            MEM_W(0,int32_t(i->address))=int32_t(i->first);\n            MEM_W(0,int32_t(i->address+4))=int32_t(i->second);\n        }\n    }\n    state.patches.clear();\n}\n"
+          }
+        ],
+        "affected_kinds": [],
+        "evidence": "Only bitmap decoding/signature/translation helpers changed. They execute below unchanged !state.active guard. Enemy replay never instantiates TextureFrameScope and does not link native_game_loop.cpp, so retained completed case scopes have identical behavior; active texture paths are validated separately."
+      }
+    ],
+    "reason": "Stale-input replay stopped; complete six-profile kind groups preserve actual PASS logs; every incomplete kind runs fresh on final inputs."
+  },
   "fresh_replay_kinds": [
     257,
     258,
     259,
-    264,
-    265,
-    266,
-    267,
-    268,
-    269,
-    270,
-    271,
-    272,
     273,
     274,
     275,
     276,
-    277,
     278,
     279,
-    280,
     281,
     282,
     283,
@@ -38,7 +737,6 @@
     294,
     295,
     296,
-    297,
     298,
     299,
     300,
@@ -82,13 +780,6 @@
     338,
     339,
     340,
-    341,
-    342,
-    343,
-    344,
-    345,
-    346,
-    347,
     348,
     349,
     350,
@@ -100,11 +791,6 @@
     356,
     357,
     358,
-    359,
-    360,
-    361,
-    362,
-    363,
     364,
     365,
     366,
@@ -128,18 +814,44 @@
     384,
     385,
     386,
-    387,
-    388,
-    389,
-    390,
-    391,
     392,
     393,
     394,
     395,
     396,
     397,
-    398,
+    398
+  ],
+  "retained_kinds": [
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    270,
+    271,
+    272,
+    277,
+    280,
+    297,
+    341,
+    342,
+    343,
+    344,
+    345,
+    346,
+    347,
+    359,
+    360,
+    361,
+    362,
+    363,
+    387,
+    388,
+    389,
+    390,
+    391,
     399,
     400,
     401,
@@ -221,26 +933,26 @@
     477,
     478
   ],
-  "retained_kinds": [],
-  "generation_receipt_sha256": "7c16ae33ac42ed5fec10dacde1da5021ad90400a904963b8f6af4849be4f0266",
+  "generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
   "enemy_reference_receipt_sha256": "78f34ed6a3a9d540530bd6dc7e57f2169f573f8d46134718affff8193d0b7a58",
   "source_sha256": {
     "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
     "src/native_enemy.cpp": "8dc73ce30128b784e169e375aa095940f9495140dcb56bba3024688683369959",
-    "src/native_gameplay_preview.cpp": "7b00e80369deac20a6b6da35b7f55009b8c95c21abf52671d4e0166617e5b623",
+    "src/native_gameplay_preview.cpp": "f6dabcc72387c43a2805b3f8809a2bad22d4984b6d4288da4c9b088d7ada58a6",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
-    "src/native_model_animation.cpp": "43dbb2dc27453d421fd4bd11699d9f2ebc3a392b64c74b193248508878569055",
+    "src/native_model_animation.cpp": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
+    "src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-    "research/native-gameplay-cutscene-fixture.cpp": "cfa64f8dc3eeda442c67db0f454704ed0bea01e36aa897cfdb1bbbad5a950fdf",
+    "research/native-gameplay-cutscene-fixture.cpp": "9d0f96ae66fa812b88f4cb3950452db2c26509e8bdfa0612fb1641b654c58cdb",
     "research/native-story-pickup-source-check.cpp": "964a9ac09ff445f426ce18b8387729de3927efbad8a0de65590707681ac3af99",
-    "tools/check_native_enemy.py": "1c1351e1b2a0df2b4efff982ec145497d69090131fc65f9c73b74dcdef3b8c22",
+    "tools/check_native_enemy.py": "cfcd59fffb23aeb3a8e6fa46e0f7b1f6c5b7ffa09adbae726fe644d847759a7d",
     "research/native-enemy-source-check.inc": "f34c5c3354ac33ef55aae6f32189eab56f754578a225c9705b28c97f8774aeab",
     "research/native-enemy-launch-contracts.json": "8b34d39c1003383492d9b623222fd3007f93d199ff4b67bfd9d44e38f3289f1d",
     "src/startup_runtime.cpp": "bee19aa55287e9d0d9edb7c42bf685233b935250f6ad057ea5093f3ab6bc25fb",
-    "tools/check_native_story_pickups.py": "19c87bafcbb2f60a8993df3353c44b50afba089a902f854ebe8d126aa6147b05",
-    "tools/check_native_player_update.py": "1a3faf95b7057b34f9cd7720a78df90c3208c4e7bc3de3616a027dc070ff1c81",
+    "tools/check_native_story_pickups.py": "6bc84b660a98376df59b62ed0589f8b79aca928cb43b20b6221b447d098fd3bf",
+    "tools/check_native_player_update.py": "1d5770667a91be194c2a60bb5a2dd020522f1026fd69b7b53c2fa0c2c5d23123",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
     "src/graphics_sync.hpp": "03fb24d4c08a7403d809cc8e1e9a594c1c029f51aa3e3f42a99a4a93aaacd655",
     "src/live_graphics.hpp": "e8e0a028de63be949ca494f29816b2a4118e56aabe141e74902ff89d92054e49",
@@ -257,12 +969,12 @@
     "src/native_frame_session.hpp": "fdc799da001be3c6653126beacb987ce3811ba6f1cc5eeac5922e539089f8e83",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
-    "src/native_gameplay_preview.hpp": "0ca9756c9bcf1ccef41d8a033643b2b07efc6046f63317e75770754500763224",
+    "src/native_gameplay_preview.hpp": "2773c63fa042ebcc3efffe1c194f3d7e0c05ac5a205520ca59834100b34f05ea",
     "src/native_graphics_pump.hpp": "3fdcb53d2f68a9b6d344beb44ea58a190c637bd2320cf3e77fbb8af2649bdcd3",
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-    "src/native_minigame_math.hpp": "0857fa854d40520643f5e5dbf5a4b0b21d9c37fcb9ba637cc0236c3dd13a5e6e",
-    "src/native_minigame_registry.hpp": "ecb8436565168dc627e12fb8c06c15bd5a84fef9cb8c6516eb8caa389f237e8c",
-    "src/native_minigames.hpp": "2f2242575196abffc0f7e780055b2de0255191630f0321c61db41b010a1ba240",
+    "src/native_minigame_math.hpp": "b6fcc8dd168dfbb0cdc4000d78108eef5e04a51496592fa6ad1942c825c1a791",
+    "src/native_minigame_registry.hpp": "0e0f1c767107be4fcf4c4235952747632951ea3982b5d97a7f27da4d8ce2d2d6",
+    "src/native_minigames.hpp": "73821c8c48ed600088164b7c4604ab57a6d59f32b19384b9d40f85137e9855e7",
     "src/native_model_animation.hpp": "374044e91b204a922b5a43dc279e518cb87a0825797459f777a58ff82e0cf30b",
     "src/native_present.hpp": "c17a60839de06f09c2c5245091a7389c7126a3146019b8477483bc86d03e9158",
     "src/native_presentation_gate.hpp": "f0fbc1799c6b1bb5a8196e6a6935254a8021cf9c098dafca6b7d9bbadcd3cb97",
@@ -271,7 +983,8 @@
     "src/native_scene_policy.hpp": "fbd2d92ec7c099bc711fb347af91655dec524d4d7a4d599c8c0578b780cf6e8f",
     "src/native_script_camera.hpp": "e7bb2e1ba4d036ca2ead349d884daf9a0f857b935d0f3d9359c8cfa12a4d2d94",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-    "src/native_ui.hpp": "91b96b2f41ef5701a0b6daebfd3f9dead2603b21c9fe9f4070b2c3fb676e4839",
+    "src/native_texture_animation.hpp": "7403bbf3f80ac2335669356f78d8caf8c4803d7d9060b205c6fd60ef5f874a41",
+    "src/native_ui.hpp": "034cd9291a74bdd75fcb03d29a4c22f28e76d5dc3a230c0bbc585597e75d0a5e",
     "src/native_vi_snapshot.hpp": "0fb280fcc557a64b1c6637653a57a231723a2cd642bd0f8a6163bc03413e2030",
     "src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
     "src/port_display.hpp": "60617c7b1edec4037e218ef06e5ba18964c6d347098df558e456714085d8bec7",
@@ -281,8 +994,8 @@
     "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f"
   },
   "optimization": "O2",
-  "replay_workers": 4,
-  "replay_summary_sha256": "55986b2b42d72bc3d06c97e213488940681935d82263ab67f4cdb87364d5ef48",
+  "replay_workers": 8,
+  "replay_summary_sha256": "1c8b633629c648a06cddf5bf666cfdff137f3da8a3f3e2ae64423aa7c446495b",
   "source_body_proof": [
     "dora3_s0_menu_80039544",
     "dora3_s10_cave_8021D6D0",

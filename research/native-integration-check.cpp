@@ -84,6 +84,8 @@ void native_minigame_begin(uint8_t*,Nanoseconds now,unsigned){begin(mini,now);}
 void native_minigame_update(uint8_t*,recomp_context*,Nanoseconds now){update(mini,now);}
 void native_minigame_reset(uint8_t*){reset(mini);}
 std::optional<Nanoseconds> native_minigame_render_time(){return mini.begins&&mini.last?std::optional{mini.last}:std::nullopt;}
+void native_minigame_source_completed(uint8_t*,Nanoseconds){}
+std::optional<double> native_gameplay_preview_source_fraction(){return std::nullopt;}
 namespace dora3::native_time {
 MinigameFrameScope::MinigameFrameScope(uint8_t*){}
 MinigameFrameScope::~MinigameFrameScope()=default;
@@ -104,7 +106,7 @@ extern "C" void osRecvMesg_recomp(uint8_t*,recomp_context*){std::abort();} // Qu
 extern "C" void dora3_s0_800393C4(uint8_t*,recomp_context*){std::abort();}
 extern "C" void dora3_s0_8003931C(uint8_t*,recomp_context*){std::abort();}
 #define BOUNDARY(name) extern "C" void name(uint8_t*,recomp_context*){std::abort();}
-BOUNDARY(dora3_s2_menu_801BBCEC) BOUNDARY(dora3_s2_menu_801BBEB0)
+BOUNDARY(dora3_s0_8002DA98) BOUNDARY(dora3_s2_menu_801BBCEC) BOUNDARY(dora3_s2_menu_801BBEB0)
 BOUNDARY(dora3_s2_menu_801BC17C) BOUNDARY(dora3_s2_menu_801BC4C0)
 BOUNDARY(dora3_s2_menu_801C14B8) BOUNDARY(dora3_lib_80057A80)
 extern "C" int dora3_native_rectangle_update(uint8_t*,recomp_context*){std::abort();}

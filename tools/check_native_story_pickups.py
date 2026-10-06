@@ -202,7 +202,7 @@ def main():
                     str(out/'functions.c'), '-o', str(out/'functions.o')], check=True)
     sources = [ROOT/'src/native_cutscene.cpp',ROOT/'research/native-gameplay-cutscene-fixture.cpp']+[ROOT/'src'/name for name in ['native_gameplay_preview.cpp','native_enemy.cpp',
         'native_input_timeline.cpp', 'native_simulation_time.cpp', 'native_camera_timeline.cpp',
-        'native_model_animation.cpp', 'native_frame_time.cpp']]
+        'native_model_animation.cpp','native_texture_animation.cpp', 'native_frame_time.cpp']]
     binary = out/'check'
     subprocess.run(['g++', '-std=c++20', '-Wall', '-Wextra', '-Werror',
                     '-Wno-unused-variable', '-Wno-unused-but-set-variable',

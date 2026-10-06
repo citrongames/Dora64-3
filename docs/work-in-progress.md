@@ -1,3 +1,43 @@
+## Test-047: исправления после046 и аудит связанных путей
+
+Windows047 из startup-regressions-test047-v1 сохранён в общей testbuild папке.
+31 завершённая connected CPU проверка PASS; full-player USER_SKIP по просьбе
+пользователя, общий набор PARTIAL_USER_SKIP. Игра/renderer/GPU не запускались.
+Старые completed scene/enemy cases сохраняют исходные logs и точную эквивалентность
+неактивной texture ветви, свежие области и active texture проверены отдельно.
+
+Native texture adapter плавно продолжает точные authored byte format2/CI4 scroll sequences
+через RDP10.2 tile origin, generated material prefix и nested display lists.
+Найдены11 семейств /94 кадра среди1475 BMP из трёх ROM таблиц;10 семейств имеют
+static ID owners, для последнего owner не доказан. Это анализ данных, а не
+утверждение о runtime reachability всех кадров. Палитры/bitmap/Source counters
+не меняются; cloned lists принадлежат текущему frame bank до его retirement.
+Проверены смена ресурса, clamp/loop/stopped, graph state и fallback при нехватке
+tail. Другие форматы/различающийся art не получают выдуманных промежуточных кадров.
+
+UI/fade eligibility охватывает стабильные world menus и активные переходы
+до loader boundary. Модели выбора получают real SDK local matrices; stage-map
+cursor rectangle сохраняет fractional координаты после integer Source math.
+Charge HUD получает дробный RDP right edge, не изменяя charge count/cues/input.
+Общий Source completion clock связывает видимые модели, меню, миниигры и texture.
+Дополнительно исправлены4 viewport origins mini1/2, Mini2 visual/follower copies
+после terrain query, Mini8 shadow getter copies, mini3 terminal retreat и
+temporal +/-25 wall-camera distance caps. Source effect births/reset/snap,
+commands/score/RNG/input сохраняют отдельные исходные решения.
+
+Joint matrices остаются cache последней отрисованной позы для DC450 collider;
+их откат к pre-session данным отвергнут после анализа consumers. Автоматическая
+проверка отклонила широкую замену файла из Git; точечное удаление добавленных
+matrix lease hunks сохранило остальные изменения и прошло проверку.
+
+Визуальный результат сообщений ещё не подтверждён. Соответствие voice/fruit
+конкретному модулю и actual wall-camera cause остаются непроверенными; точные
+terminal/cap дефекты исправлены. Четыре auxiliary control pairs и настоящие
+loading/graphics-off/framebuffer зависимости сохраняют Original handoff.
+Подробности и ограничения — native-regressions-test046-worklist.md.
+Понятные Source имена/адресные соответствия обновлены. Donor и32 dependency
+pins неизменны; прежние EXE/ROM/settings/saves/DLL сохранены. Commit/push main.
+
 ## Test-046: блок6 интеграции завершён
 
 Windows046 из startup-integration-block6-v1 сохранён в общей testbuild папке.

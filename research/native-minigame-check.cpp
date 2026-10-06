@@ -121,6 +121,106 @@ template<class Prepare> static void replay(Memory seed,unsigned index,Function f
         assert(command_count<=before_commands);++cases;
     }
 }
+static void terminal_and_intro(const Memory& seed) {
+    for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,144u,360u}) {
+        native_minigame_reset();Memory m=seed;arm(m,2,divider);auto c=context();
+        m.F(0x801C8ED0,5); // Runtime speed set by actual minigame3 initializer7F68.
+        const auto speed=m.R(0x801C8ED0);assert(speed>0);
+        m.F(actor+0x9C,80+speed/2);c.r4=0;c.r5=int32_t(actor);c.r6=int32_t(driver);
+        requested=0;Memory ref=m;auto original=context();dora3::copy_recomp_context(original,c);mini3_retreat(ref.ram(),&original);
+        requested=fps;const auto& d=dora3::minigame::definitions[2];
+        dora3_native_minigame_source(m.ram(),&c,d.rom,d.update,0);
+        mini3_retreat(m.ram(),&c);dora3_native_minigame_source(m.ram(),&c,d.rom,d.update,1);
+        assert(m.data==ref.data);const auto completed=m.data;assert(m.R(actor+0x9C)<80);
+        native_minigame_begin(m.ram(),clock_now,divider);const auto origin=clock_now;
+        for(unsigned n=1;n<=fps*divider/60+1;++n) {
+            clock_now=origin+Nanoseconds(std::min<double>(double(second)*divider/60.,double(second)*n/fps));
+            native_minigame_update(m.ram(),&c,clock_now);assert(m.R(actor+0x9C)==ref.R(actor+0x9C));++slices;
+        }
+        native_minigame_reset(m.ram());assert(m.data==completed);++cases;
+        arm(m,7,divider);c=context();c.r4=int32_t(camera);requested=0;ref=m;dora3::copy_recomp_context(original,c);
+        mini8_intro(ref.ram(),&original);requested=fps;
+        const auto& bomb=dora3::minigame::definitions[7];
+        dora3_native_minigame_source(m.ram(),&c,bomb.rom,bomb.update,0);
+        mini8_intro(m.ram(),&c);dora3_native_minigame_source(m.ram(),&c,bomb.rom,bomb.update,1);
+        assert(m.data==ref.data);const auto intro_source=m.data;const auto start=clock_now;
+        native_minigame_begin(m.ram(),start,divider);
+        // A delayed Source completion must rebase every visible equation; CPU
+        // work between callback return and resident update end is not game time.
+        clock_now+=7'000'000;native_minigame_source_completed(m.ram(),clock_now);
+        const auto completed_at=clock_now;
+        const auto command_count=commands;
+        for(unsigned n=1;n<=fps*divider/60+1;++n) {
+            clock_now=completed_at+Nanoseconds(std::min<double>(double(second)*divider/60.,double(second)*n/fps));
+            native_minigame_update(m.ram(),&c,clock_now);
+            const double h=double(clock_now-completed_at)*60./(double(second)*divider);
+            close(m.R(camera),ref.R(camera)+10*h);close(m.R(camera+4),ref.R(camera+4)+10*h);
+            close(m.R(camera+0x18),ref.R(camera+0x18)+1.5*h);close(m.R(camera+0x1C),ref.R(camera+0x1C)+1.5*h);
+            Memory eye=m;auto math=context();math.r4=int32_t(camera);dora3_s0_8002F064(eye.ram(),&math);
+            for(auto off:{0xCu,0x10u,0x14u,0x28u})close(m.R(camera+off),eye.R(camera+off));
+            assert(commands==command_count);++slices;
+        }
+        native_minigame_reset(m.ram());assert(m.data==intro_source);++cases;
+    }
+}
+static void participant_copies(const Memory& seed) {
+ for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,144u,360u}) {
+  native_minigame_reset();Memory m=seed;arm(m,1,divider);auto c=context();requested=fps;
+  const auto& d=dora3::minigame::definitions[1];m.W(0x801C881C)=0;
+  for(unsigned lane=0;lane<4;++lane){
+   const auto body=0x80171CD0+(lane+1)*0xCC;
+   for(unsigned axis=0;axis<3;++axis)m.F(body+0x9C+4*axis,float(30*lane+axis));
+   m.W(0x801C8990+lane*0x54+0x3C)=lane==3?1:0;
+  }
+  dora3_native_minigame_source(m.ram(),&c,d.rom,d.update,0);
+  for(unsigned lane=0;lane<4;++lane){c.r4=lane+1;mini2_visual(m.ram(),&c);c.r4=lane+1;mini2_follower(m.ram(),&c);}
+  dora3_native_minigame_source(m.ram(),&c,d.rom,d.update,1);
+  const auto source=m.data;native_minigame_begin(m.ram(),clock_now,divider);
+  // Model the output of the opaque terrain query: body Y changes after the
+  // Source-copy arithmetic. Persistent copies must follow it; effect births
+  // retain their actual one-time200-height spawn result.
+  for(unsigned lane=0;lane<4;++lane)m.F(0x80171CD0+(lane+1)*0xCC+0xA0,float(125+lane));
+  native_minigame_update(m.ram(),&c,clock_now+second*divider/120);
+  for(unsigned lane=0;lane<4;++lane){
+   const auto body=0x80171CD0+(lane+1)*0xCC,visual=0x80171CD0+(lane+5)*0xCC,follower=0x80171CD0+(lane+21)*0xCC;
+   close(m.R(visual+0xA0),m.R(body+0xA0));
+   close(m.R(follower+0xA0),lane==3?200:m.R(body+0xA0));++slices;
+  }
+  native_minigame_reset(m.ram());
+  for(unsigned lane=0;lane<4;++lane)for(unsigned slot:{lane+5,lane+21})for(unsigned axis=0;axis<3;++axis){
+   const auto at=0x80171CD0+slot*0xCC+0x9C+4*axis;assert(uint32_t(m.W(at))==source[(at&0xFFFFFF)/4]);
+  }
+  ++cases;
+  native_minigame_reset();m=seed;arm(m,7,divider);c=context();requested=fps;
+  const auto& bomb=dora3::minigame::definitions[7];
+  dora3_native_minigame_source(m.ram(),&c,bomb.rom,bomb.update,0);
+  for(unsigned lane=0;lane<4;++lane){
+   const auto body=0x80171CD0+lane*0xCC,velocity=driver+lane*0x100;
+   for(unsigned axis=0;axis<3;++axis){m.F(body+0x9C+4*axis,float(100+lane*30+axis));m.F(velocity+0x10+4*axis,float(lane+axis+1));}
+   c.r4=int32_t(body);c.r5=int32_t(velocity);mini8_physics(m.ram(),&c);
+   // Exact captured stores6E6C/70/78 from the reviewed body publish local XYZ
+   // before the actual shadow/getter helper. All695 Source streams are pinned.
+   c.r16=int32_t(body);
+   for(unsigned axis=0;axis<3;++axis){
+    c.f0.fl=m.R(body+0x9C+4*axis);
+    dora3_native_minigame_instruction(m.ram(),&c,bomb.rom,0x801C6E00+0x10*axis,0xC600009C+4*axis,0,0);
+    dora3_native_minigame_instruction(m.ram(),&c,bomb.rom,0x801C6E6C+4*axis,0xE6000000+4*axis,3,0);
+    m.F(body+4*axis,c.f0.fl);
+   }
+   c.r4=lane;mini8_shadow(m.ram(),&c);
+  }
+  dora3_native_minigame_source(m.ram(),&c,bomb.rom,bomb.update,1);
+  const auto completed=m.data;native_minigame_begin(m.ram(),clock_now,divider);const auto origin=clock_now;
+  for(unsigned n=1;n<=fps*divider/60;++n){
+   native_minigame_update(m.ram(),&c,origin+second*n/fps);
+   for(unsigned lane=0;lane<4;++lane){const auto body=0x80171CD0+lane*0xCC,shadow=0x8017509C+lane*0xCC;
+    close(m.R(shadow),m.R(body));close(m.R(shadow+8),m.R(body+8));
+    close(m.R(shadow+0x14),m.R(body+0x14));++slices;
+   }
+  }
+  native_minigame_reset(m.ram());assert(m.data==completed);++cases;
+ }
+}
 static void equations() {
     Memory m;MinigameEquations graph;MinigameEquations::Lifetime owner;owner.scene=4;
     using Op=MinigameEquations::Operation;using Role=MinigameEquations::FieldRole;
@@ -174,6 +274,8 @@ static void equations() {
 int main(int argc,char** argv) {
     assert(argc==2);seed_directory=std::filesystem::path(argv[1]).parent_path();Memory seed;std::ifstream stream(argv[1],std::ios::binary);stream.read(reinterpret_cast<char*>(seed.data.data()),0x400000);assert(stream);
     equations();
+    terminal_and_intro(seed);
+    participant_copies(seed);
     replay(seed,0,mini1_effect,[](Memory& m,recomp_context& c){c.r4=1;m.H(0x801CCE50+8+6)=10;},actor+0xA0,5);
     replay(seed,0,mini1_projected,[](Memory& m,recomp_context& c){c.r4=1;c.r5=std::int32_t(actor);const auto d=0x801CCAD0+0xA8;m.F(actor+0x9C,100);m.F(actor+0xA4,100);m.F(d+0x50,100);m.F(d+0x58,100);m.F(d+0x24,3);m.F(d+0x28,2);m.F(d+0x2C,0);m.F(d+0x30,0);},actor+0x9C,3);
     replay(seed,3,mini4_projected,[](Memory& m,recomp_context& c){c.r4=std::int32_t(actor);c.r5=std::int32_t(driver);m.F(actor+0x9C,100);m.F(actor+0xA4,100);m.F(driver,3);m.F(driver+4,2);},actor+0x9C,3);

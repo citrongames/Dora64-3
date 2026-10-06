@@ -1,0 +1,40 @@
+{
+  "result": "PASS: 35 actual Source bitmap/material and Native RDP scroll cases; generic/world binding, horizontal/vertical shifts, ordered tile bounds, immutable resources, both frame banks, reuse/stopped/clamped guards and pre-submit fallback; synthetic assets, no game/GPU",
+  "generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
+  "source_sha256": {
+    "src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
+    "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
+    "research/native-texture-animation-check.cpp": "b613b46a404f642ce1afeca9522215c13a029492a34268519e5eaed398a190bb",
+    "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
+    "research/native-inactive-minigame-fixture.cpp": "52a4a15d4e8cbd49d2dc7f993c0896832ba1bbd5082e5740b0c1aab085691900",
+    "src/native_texture_animation.hpp": "7403bbf3f80ac2335669356f78d8caf8c4803d7d9060b205c6fd60ef5f874a41",
+    "src/native_game_loop.cpp": "6ff610ebed5bf30fac75dbebfc39e510e711524ab68dacc3e724ea8ec8d782a8",
+    "src/native_ui.cpp": "c1097ebcd61fcdec7d3895c719ee1f21bb18192e378c2866e25f9e196f8b054c",
+    "tools/native_timing_patches.py": "7638c87db421684331d850287d2646820bcdcf275918e6ef08438faee5c12f18",
+    "recomp/native-timing-rules.json": "b805f32795b049e57e3faea86593ca31d33a62abeb65ea5a674db55ba0e6c278",
+    "tools/check_native_texture_animation.py": "8b15a11487b25fe529ce6ab96e4c036980c32351d0213c1c05564dea494a0e85"
+  },
+  "actual_functions": [
+    "dora3_s0_80028B4C",
+    "dora3_s0_80028C74",
+    "dora3_s0_80028D50",
+    "dora3_s0_80039B7C",
+    "dora3_s0_80039C40",
+    "dora3_s0_80039D04",
+    "dora3_s0_80039DC8",
+    "dora3_s0_80039E8C",
+    "dora3_s0_80039F3C",
+    "dora3_s0_80039FE4",
+    "dora3_s0_8003A1A0",
+    "dora3_s0_8003A3B8",
+    "dora3_s3_801BBFF4",
+    "dora3_texture_palette_ptr",
+    "dora3_texture_payload_ptr"
+  ],
+  "no_game_gpu": true,
+  "limitations": [
+    "Synthetic bitmap/material assets with actual Original Source channel/binding/material commands; no rendered water or full-game QA",
+    "ROM texture inventory exact translations is separate analysis, not all reached runtime paths",
+    "Synthetic frame tickets verify guest bank isolation and references, not actual GPU retirement"
+  ]
+}

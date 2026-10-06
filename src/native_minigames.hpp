@@ -31,3 +31,6 @@ extern "C" int dora3_native_minigame_drawing();
 extern "C" double dora3_native_minigame_visual(std::uint8_t*,std::uint32_t);
 
 extern "C" void dora3_native_minigame_ground(std::uint8_t*,recomp_context*,std::uint32_t,unsigned);
+
+// Common phase0 completion aligns Source-authored visuals with SDK model poses.
+void native_minigame_source_completed(std::uint8_t*,dora3::native_time::Nanoseconds);

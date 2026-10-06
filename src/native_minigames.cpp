@@ -224,6 +224,38 @@ void sample_ground(std::uint8_t* rdram,recomp_context* ctx) {
         runtime.ground_leases.push_back(lease);
     }
 }
+void refresh_terrain_followers(std::uint8_t* ram) {
+    if(!runtime.definition||runtime.definition->rom!=0x19F510)return;
+    // Actual 5E74/56C8 copies use world XYZ. An opaque terrain query can
+    // replace body Y after the expression graph has sampled its Source load.
+    // Refresh only the reached Derived copies; Source effect births are absent
+    // from that set and must keep their one-time spawn positions.
+    for(unsigned i=0;i<4;++i) {
+        const auto body=pool+(i+1)*actor_stride;
+        if(!word(ram,body+0x94))continue;
+        for(const auto follower:{pool+(i+5)*actor_stride,pool+(i+21)*actor_stride})
+            for(unsigned axis=0;axis<3;++axis)
+                runtime.equations.publish_derived_float(ram,follower+0x9C+4*axis,
+                    std::bit_cast<float>(word(ram,body+0x9C+4*axis)));
+    }
+}
+void refresh_view_origins(std::uint8_t* ram) {
+    if(!runtime.definition)return;
+    std::array<std::uint32_t,3> arrays{};
+    if(runtime.definition->rom==0x1961B0)arrays={0x801CC9E8,0x801CCAB0,0x801CD028};
+    else if(runtime.definition->rom==0x19F510)arrays={0x801C8908,0x801C8938,0x801C8AE8};
+    else return;
+    // Main Source callbacks copy each participant's world XYZ into four view
+    // origins. Terrain Y is supplied by an opaque SDK query, so the captured
+    // arithmetic cannot derive that copy from the newly sampled ground height.
+    // Publish the exact Native query's position for the same viewport/body.
+    for(unsigned i=0;i<4;++i) {
+        const auto actor=pool+(i+1)*actor_stride;
+        if(!word(ram,actor+0x94))continue;
+        for(unsigned j=0;j<3;++j)
+            runtime.equations.publish_derived_float(ram,arrays[j]+4*i,std::bit_cast<float>(word(ram,actor+0x9C+4*j)));
+    }
+}
 bool stack_address(std::uint32_t address,unsigned bytes=4) {
     return runtime.source_stack_top>=0x80010000u &&
         address>=runtime.source_stack_top-0x10000u &&
@@ -294,6 +326,8 @@ void native_minigame_update(std::uint8_t* rdram,recomp_context* ctx,Nanoseconds 
     BorrowedStack stack(rdram,*ctx);
     restore_matrices(rdram);restore_camera_eyes(rdram);restore_ground(rdram);runtime.equations.sample(rdram,now);
     sample_ground(rdram,ctx);
+    refresh_terrain_followers(rdram);
+    refresh_view_origins(rdram);
     const auto changed=runtime.equations.changed_fields();
     for(unsigned i=0;i<4;++i) {
         const auto address=cameras+i*0x34;
@@ -321,6 +355,12 @@ void native_minigame_update(std::uint8_t* rdram,recomp_context* ctx,Nanoseconds 
         lease.shown[16]=MEM_BU(0x6A,std::int32_t(actor));runtime.matrices.push_back(lease);
     }
     runtime.render_time=now;
+}
+void native_minigame_source_completed(std::uint8_t* ram,Nanoseconds now) {
+    if(runtime.in_source||runtime.drawing||runtime.ram!=ram||!runtime.source_time||
+       runtime.definition!=current(ram))return;
+    runtime.equations.resume_after_handoff(ram,now);
+    runtime.source_time=runtime.render_time=now;
 }
 void native_minigame_reset(std::uint8_t* rdram) {
     // A replacement callback/module/RDRAM owns its own fields, even if some

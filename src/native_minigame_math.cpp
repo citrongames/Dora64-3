@@ -471,6 +471,16 @@ void MinigameEquations::end_source(std::uint8_t* ram,Nanoseconds now) {
         node.kind=State::Kind::Reference;node.a=field->expression;
     }
 }
+bool MinigameEquations::publish_derived_float(std::uint8_t* ram,std::uint32_t address,float next) {
+    auto& s=*state_;if(s.open||s.ram!=ram||!std::isfinite(next))return false;
+    const auto at=std::find_if(s.fields.begin(),s.fields.end(),[&](const auto& f){return f.address==address;});
+    if(at==s.fields.end()||at->role!=FieldRole::Derived||!s.valid(*at,ram)||bits(ram,address)!=at->published)return false;
+    at->published=std::bit_cast<std::uint32_t>(next);
+    auto* rdram=ram;MEM_W(0,std::int32_t(address))=std::int32_t(at->published);
+    if(at->published!=at->source&&std::find(s.changed_addresses.begin(),s.changed_addresses.end(),address)==s.changed_addresses.end())
+        s.changed_addresses.push_back(address);
+    return true;
+}
 void MinigameEquations::sample(std::uint8_t* ram,Nanoseconds now) {
     auto& s=*state_;if(s.open||s.ram!=ram||now<s.source_time||now<=s.shown_time)return;
     auto* rdram=ram;

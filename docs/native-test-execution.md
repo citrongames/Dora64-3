@@ -81,3 +81,14 @@ SIGTERM и исходные logs сохранены; остановка не я�
 и выигрыш времени не подтверждены. Старый full-player report остаётся
 историческим доказательством прежних входов и не используется как PASS046.
 Команда пользователя разрешает передачу046 без этого долгого прогона.
+
+
+## Pre-build047 после исправлений046
+
+32 scopes:31 completed PASS и один player_update USER_SKIP по прямой просьбе.
+После texture addressing/format исправлений не повторены завершённые scene/enemy scopes:
+291 scene и109 enemy групп сохраняют исходные execution logs и compiler dependency hash;
+точное различие ограничено неактивными bitmap helpers, которые fixture не вызывает.
+Один scene вариант и109 незавершённых enemy групп выполнены свежим бинарным файлом.
+Новый active texture adapter отдельно прошёл ASan/UBSan.
+Общий набор не называется full-suite PASS; visual/full-game QA не выполнялась.

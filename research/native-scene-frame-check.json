@@ -4,13 +4,14 @@
   "scope": "FD current entered frame, exact rational endpoint: actual active103 and player-born103, request/control and 60/73 partition, Original20/30 and ordinary cameras12/2",
   "source_sha256": {
     "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
-    "research/native-gameplay-cutscene-fixture.cpp": "cfa64f8dc3eeda442c67db0f454704ed0bea01e36aa897cfdb1bbbad5a950fdf",
-    "src/native_gameplay_preview.cpp": "7b00e80369deac20a6b6da35b7f55009b8c95c21abf52671d4e0166617e5b623",
+    "research/native-gameplay-cutscene-fixture.cpp": "9d0f96ae66fa812b88f4cb3950452db2c26509e8bdfa0612fb1641b654c58cdb",
+    "src/native_gameplay_preview.cpp": "f6dabcc72387c43a2805b3f8809a2bad22d4984b6d4288da4c9b088d7ada58a6",
     "src/native_enemy.cpp": "8dc73ce30128b784e169e375aa095940f9495140dcb56bba3024688683369959",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
-    "src/native_model_animation.cpp": "43dbb2dc27453d421fd4bd11699d9f2ebc3a392b64c74b193248508878569055",
+    "src/native_model_animation.cpp": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
+    "src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "research/native-scene-frame-check.cpp": "6f28672fa406531cc20f1edb6cad57f397d1f5573754cb35e9a9e409d93f8d99",
     "src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
@@ -18,12 +19,12 @@
     "src/native_model_animation.hpp": "374044e91b204a922b5a43dc279e518cb87a0825797459f777a58ff82e0cf30b",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-    "src/native_gameplay_preview.hpp": "0ca9756c9bcf1ccef41d8a033643b2b07efc6046f63317e75770754500763224",
+    "src/native_gameplay_preview.hpp": "2773c63fa042ebcc3efffe1c194f3d7e0c05ac5a205520ca59834100b34f05ea",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-    "recomp/native-timing-rules.json": "5ae09016de2e21c58001711a4d08a018c3c12c6ce7f59fda9995c9b1e5a32997",
+    "recomp/native-timing-rules.json": "b805f32795b049e57e3faea86593ca31d33a62abeb65ea5a674db55ba0e6c278",
     "research/player-state-inventory.json": "6f1cd481b7ab3171a0b5a88eed90c68387c7f697f65b776e021d4ee7a0dbf4e7",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
-    "tools/check_native_player_update.py": "1a3faf95b7057b34f9cd7720a78df90c3208c4e7bc3de3616a027dc070ff1c81"
+    "tools/check_native_player_update.py": "1d5770667a91be194c2a60bb5a2dd020522f1026fd69b7b53c2fa0c2c5d23123"
   },
   "original_functions": [
     "actual_dora3_s3_801E6968",
@@ -858,7 +859,7 @@
     "dora3_s3_core_801B9284",
     "dora3_s3_core_801E5828"
   ],
-  "generation_receipt_sha256": "7c16ae33ac42ed5fec10dacde1da5021ad90400a904963b8f6af4849be4f0266",
+  "generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "city_reference_receipt_sha256": "4482f2b4745cd009143a1bff195d02f65d4d52b1f7016ccf137a0d9b071c3d70",
   "validated": {

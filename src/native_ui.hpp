@@ -30,3 +30,8 @@ extern "C" float dora3_native_ui_displacement_f32(float,uint32_t);
 extern "C" float dora3_native_ui_rate_f32(float);
 extern "C" double dora3_native_ui_rate_f64(double);
 extern "C" double dora3_native_ui_selection_y_f64(double,float,double);
+
+// C9EBC charge fill uses RDP10.2 coordinates; counter/input remain Source-owned.
+extern "C" void dora3_native_ui_charge_rectangle(uint8_t*,recomp_context*);
+
+extern "C" int dora3_native_ui_map_cursor_rectangle(uint8_t*,recomp_context*);

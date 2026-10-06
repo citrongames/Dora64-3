@@ -20,3 +20,5 @@ void native_minigame_begin(uint8_t*,dora3::native_time::Nanoseconds,unsigned){}
 void native_minigame_update(uint8_t*,recomp_context*,dora3::native_time::Nanoseconds){}
 void native_minigame_reset(uint8_t*){}
 std::optional<dora3::native_time::Nanoseconds> native_minigame_render_time(){return std::nullopt;}
+
+void native_minigame_source_completed(uint8_t*,dora3::native_time::Nanoseconds){}

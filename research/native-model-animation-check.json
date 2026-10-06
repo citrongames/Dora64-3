@@ -18,6 +18,7 @@
     "dora3_s0_8003813C",
     "dora3_s0_800389F0",
     "dora3_s0_80038A88",
+    "dora3_s0_80038ABC",
     "dora3_s0_80038C58",
     "dora3_s0_80038D58",
     "dora3_s0_80038FA8",
@@ -55,19 +56,20 @@
     "dora3_s3_core_801C1664"
   ],
   "source_sha256": {
-    "src/native_model_animation.cpp": "43dbb2dc27453d421fd4bd11699d9f2ebc3a392b64c74b193248508878569055",
+    "src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
+    "src/native_model_animation.cpp": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-    "research/native-model-animation-check.cpp": "0c317da5f395d88432be1e998b029f852f97dcf49b65c292771be0f45d26b75d",
+    "research/native-model-animation-check.cpp": "bdbd3863d6b2a8eb6467d24468c99d5cc639bdaec17f28da55628b537005093a",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
-    "research/native-inactive-minigame-fixture.cpp": "9ad7a6a6c829626b347b319c8344228dbca11caa56f545ae8f14231a877a223a",
+    "research/native-inactive-minigame-fixture.cpp": "52a4a15d4e8cbd49d2dc7f993c0896832ba1bbd5082e5740b0c1aab085691900",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/native_model_animation.hpp": "374044e91b204a922b5a43dc279e518cb87a0825797459f777a58ff82e0cf30b",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
-    "tools/check_native_model_animation.py": "3afc84d1fd93be9a1ea40a1662a72832e4f177a1f2a66db04c6482aaf28bb1df"
+    "tools/check_native_model_animation.py": "0125b4e533c9f52f2a3cb468e0f5f769eb6a9637a97e56f51ef2196f85ba94a3"
   },
-  "generation_receipt_sha256": "7c16ae33ac42ed5fec10dacde1da5021ad90400a904963b8f6af4849be4f0266",
+  "generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
   "remaining": [
     "Unreviewed phase1 commands, matrix consumers and full scene coverage still need integration audit",
     "This component does not convert movement, camera, collision, AI, scripts or all 2D systems"

@@ -17,3 +17,6 @@ extern "C" void dora3_native_object_scope_end();
 
 // True only inside the actual Native common-pool pass, never in Original AI.
 bool native_gameplay_preview_object_pass();
+
+// Fraction of the current authored gameplay period after the last Source input.
+std::optional<double> native_gameplay_preview_source_fraction();

@@ -247,7 +247,7 @@ def main():
     if not (out/'functions.o').exists() or not cache.exists() or cache.read_text()!=signature:
         subprocess.run(['gcc','-std=c17','-fsanitize=address',*flags,'-c',str(out/'functions.c'),'-o',str(out/'functions.o')],check=True)
         cache.write_text(signature)
-    sources=[ROOT/'src'/n for n in ['native_cutscene.cpp','native_enemy.cpp','native_gameplay_preview.cpp','native_input_timeline.cpp','native_simulation_time.cpp','native_camera_timeline.cpp','native_model_animation.cpp','native_frame_time.cpp']]+[ROOT/'research/native-gameplay-cutscene-fixture.cpp',fixture]
+    sources=[ROOT/'src'/n for n in ['native_cutscene.cpp','native_enemy.cpp','native_gameplay_preview.cpp','native_input_timeline.cpp','native_simulation_time.cpp','native_camera_timeline.cpp','native_model_animation.cpp','native_texture_animation.cpp','native_frame_time.cpp']]+[ROOT/'research/native-gameplay-cutscene-fixture.cpp',fixture]
     binary=out/'check'
     completed=json.loads(a.completed_replay.read_text()) if a.completed_replay else None
     if completed:

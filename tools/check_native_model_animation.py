@@ -13,7 +13,7 @@ def main():
     bodies={re.search(r'void (\w+)\(',b)[1]:b for f in (g/'RecompiledFuncs').glob('*.c')
             for b in re.findall(r'RECOMP_FUNC void \w+\([^\n]+\n.*?(?=RECOMP_FUNC void |\Z)',read_decompiled_source(f),re.S)}
     by_address={int(re.search(r'// 0x([0-9A-F]+):',b)[1],16):n for n,b in bodies.items() if re.search(r'// 0x([0-9A-F]+):',b) and 'dora3_trace(rdram, ctx,' in b and ', 0x1000);' in b}
-    roots=[0x8003B560,0x8003B6BC,0x8003B77C,0x800393C4,0x8003948C,0x80039544,0x80039564,0x80039578,0x800395BC,0x80038BC8,0x8003997C,0x8003B7D0,0x801C4650]
+    roots=[0x80038ABC,0x8003B560,0x8003B6BC,0x8003B77C,0x800393C4,0x8003948C,0x80039544,0x80039564,0x80039578,0x800395BC,0x80038BC8,0x8003997C,0x8003B7D0,0x801C4650]
     stop={by_address[a] for a in [0x80033B68,0x80033C50,0x80038B10]}
     stop.update({'dora3_s3_core_801C120C','dora3_s3_core_801C1664'})
     by_address[0x801C4650]='dora3_s3_core_801C4650'
@@ -30,7 +30,7 @@ def main():
     includes=['-I'+str(x) for x in [ROOT/'src',g,g/'RecompiledFuncs',out,rt]]
     flags=['-O1','-g','-fno-omit-frame-pointer','-fno-strict-aliasing',*includes]
     subprocess.run(['gcc','-std=c17',*flags,'-fsanitize=address','-c',str(out/'functions.c'),'-o',str(out/'functions.o')],check=True)
-    sources=[ROOT/'src/native_model_animation.cpp',ROOT/'src/native_simulation_time.cpp',ROOT/'src/native_frame_time.cpp',ROOT/'research/native-model-animation-check.cpp']
+    sources=[ROOT/'src/native_texture_animation.cpp',ROOT/'src/native_model_animation.cpp',ROOT/'src/native_simulation_time.cpp',ROOT/'src/native_frame_time.cpp',ROOT/'research/native-model-animation-check.cpp']
     sources.append(ROOT/'research/native-inactive-enemy-fixture.cpp')
     sources.append(ROOT/'research/native-inactive-minigame-fixture.cpp')
     subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,'-fsanitize=address,undefined',*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)

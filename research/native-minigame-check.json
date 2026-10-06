@@ -1,20 +1,21 @@
 {
-  "result": "PASS: all9 minigame modules and3 common callback pairs; 138 Source/Native cases, 946 fractional slices;20/30Hz and Manual60/73/120/144/165/360; command-once, linked Euler motion, contact impulses, angle wrapping, model/draw input ownership and exact restoration; synthetic resources, no game/GPU",
-  "generation_receipt_sha256": "7c16ae33ac42ed5fec10dacde1da5021ad90400a904963b8f6af4849be4f0266",
+  "result": "PASS: all9 minigame modules and3 common callback pairs; 170 Source/Native cases, 1300 fractional slices;20/30Hz and Manual60/73/120/144/165/360; command-once, linked Euler motion, contact impulses, angle wrapping, model/draw input ownership and exact restoration; synthetic resources, no game/GPU",
+  "generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
   "source_sha256": {
-    "src/native_minigames.cpp": "ba5b07ff97747b203185f0c21ff1bbc90aaa9ee92824e43c61f7afe0e89fb649",
-    "src/native_minigame_math.cpp": "58ef8fed6f97ba0e9e0702e59bec87a5ab54b7e4c4dd8b80c6f9af84f55c6477",
-    "src/native_model_animation.cpp": "43dbb2dc27453d421fd4bd11699d9f2ebc3a392b64c74b193248508878569055",
+    "src/native_minigames.cpp": "81f8474910efbed3607752273f7b051bdda3a288d9c2fd50b98883fb5ab48f38",
+    "src/native_minigame_math.cpp": "5ed0ddb9a7aa023933326d9e049813c8aab1c94008cb09ac863cb3c2e8f564f5",
+    "src/native_model_animation.cpp": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
+    "src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-    "research/native-minigame-check.cpp": "73c78380c820eb34e4f59f448bf1506021680a396d4864f80241b538ec6091e5",
+    "research/native-minigame-check.cpp": "b604fd9060345aac892de5ef52b78b488b0a67ee72a561ded3911a39fc452f7a",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
-    "src/native_minigames.hpp": "2f2242575196abffc0f7e780055b2de0255191630f0321c61db41b010a1ba240",
-    "src/native_minigame_math.hpp": "0857fa854d40520643f5e5dbf5a4b0b21d9c37fcb9ba637cc0236c3dd13a5e6e",
-    "src/native_minigame_registry.hpp": "ecb8436565168dc627e12fb8c06c15bd5a84fef9cb8c6516eb8caa389f237e8c",
+    "src/native_minigames.hpp": "73821c8c48ed600088164b7c4604ab57a6d59f32b19384b9d40f85137e9855e7",
+    "src/native_minigame_math.hpp": "b6fcc8dd168dfbb0cdc4000d78108eef5e04a51496592fa6ad1942c825c1a791",
+    "src/native_minigame_registry.hpp": "0e0f1c767107be4fcf4c4235952747632951ea3982b5d97a7f27da4d8ce2d2d6",
     "tools/native_minigame_patches.py": "c9027db03c9d8ee96970ebc30680aadcbcbc4cd97316fbd2fe316fc905dd4678",
-    "research/native-minigame-reviewed.json": "ac7478876413e6dbcea14a446395cf67bf7a4d5f4b5ed5dd5b60c8ebb500dba6",
-    "tools/check_native_minigames.py": "84c6531e601bf7759938578e273f023521e1f9a6f3c1078080ce4f4cc734b2fc"
+    "research/native-minigame-reviewed.json": "e6b299d4f84227ec1c83240ea833c8c2448fb6b2d88b50e8a0eef587662187ff",
+    "tools/check_native_minigames.py": "ecbb0827422f0bf61adeda2a383878c084aee0c398549ff63a29d4db0c7618d7"
   },
   "source_body_proof": [
     {

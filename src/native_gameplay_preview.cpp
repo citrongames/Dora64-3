@@ -1987,6 +1987,10 @@ void native_gameplay_preview_reset(uint8_t* ram) {
 std::optional<Nanoseconds> native_gameplay_preview_render_time() {
     return timeline?std::optional<Nanoseconds>{previous}:std::nullopt;
 }
+std::optional<double> native_gameplay_preview_source_fraction() {
+    if(!timeline)return std::nullopt;
+    return double(timeline->phase())/(double(timeline->divider())*double(second));
+}
 std::optional<SourceTimestamp> native_gameplay_preview_command_time() {
     // An actor's local age controls its movement, while commands retain
     // their actual position on the shared world timeline.

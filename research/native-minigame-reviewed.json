@@ -25652,7 +25652,8 @@
       "function_sha256": "a283b67a61629682a4c2ac0b7fec5216431827833fb889522d919e15f6ddf48a",
       "site": 2149340984,
       "word": 3860856988,
-      "role": 0
+      "role": 3,
+      "evidence": "Mini2 state0 persistent follower actor21..24 copies participant worldXYZ every Source pass. This differs from state1 effect birth at5778/577C/5790, which keeps Source-only spawn coordinates and commands."
     },
     {
       "section": ".minigame_2",
@@ -25672,7 +25673,8 @@
       "function_sha256": "a283b67a61629682a4c2ac0b7fec5216431827833fb889522d919e15f6ddf48a",
       "site": 2149340992,
       "word": 3860856992,
-      "role": 0
+      "role": 3,
+      "evidence": "Mini2 state0 persistent follower actor21..24 copies participant worldXYZ every Source pass. This differs from state1 effect birth at5778/577C/5790, which keeps Source-only spawn coordinates and commands."
     },
     {
       "section": ".minigame_2",
@@ -25692,7 +25694,8 @@
       "function_sha256": "a283b67a61629682a4c2ac0b7fec5216431827833fb889522d919e15f6ddf48a",
       "site": 2149341004,
       "word": 3860856996,
-      "role": 0
+      "role": 3,
+      "evidence": "Mini2 state0 persistent follower actor21..24 copies participant worldXYZ every Source pass. This differs from state1 effect birth at5778/577C/5790, which keeps Source-only spawn coordinates and commands."
     },
     {
       "section": ".minigame_2",
@@ -25872,7 +25875,8 @@
       "function_sha256": "ac6f18be6b3d6cbd48cfe3775bce56eee4664ae340bd07c9430d23a1915eeb3b",
       "site": 2149342904,
       "word": 3858759836,
-      "role": 0
+      "role": 3,
+      "evidence": "Mini2 persistent visual plane actor5..8 copies worldXYZ from moving participant actor1..4 on every Source pass. Derived pose must follow the same Native body; its sprite timer/clips remain Source."
     },
     {
       "section": ".minigame_2",
@@ -25892,7 +25896,8 @@
       "function_sha256": "ac6f18be6b3d6cbd48cfe3775bce56eee4664ae340bd07c9430d23a1915eeb3b",
       "site": 2149342920,
       "word": 3858759840,
-      "role": 0
+      "role": 3,
+      "evidence": "Mini2 persistent visual plane actor5..8 copies worldXYZ from moving participant actor1..4 on every Source pass. Derived pose must follow the same Native body; its sprite timer/clips remain Source."
     },
     {
       "section": ".minigame_2",
@@ -25932,7 +25937,8 @@
       "function_sha256": "ac6f18be6b3d6cbd48cfe3775bce56eee4664ae340bd07c9430d23a1915eeb3b",
       "site": 2149342968,
       "word": 3858759844,
-      "role": 0
+      "role": 3,
+      "evidence": "Mini2 persistent visual plane actor5..8 copies worldXYZ from moving participant actor1..4 on every Source pass. Derived pose must follow the same Native body; its sprite timer/clips remain Source."
     },
     {
       "section": ".minigame_2",
@@ -57766,7 +57772,8 @@
       "function_sha256": "6ed11ba8ef11640e135d811b0332a9d1526153d4621fd87c3ce500d6a4951156",
       "site": 2149348804,
       "word": 3858759680,
-      "role": 0
+      "role": 3,
+      "evidence": "Mini8 shadow pool65+i reads participant localX/localZ/local yaw through exact captured getters73C0/73EC/7418; continuous derived copy (yaw shortest wrap), no command/FSM/clip replay. Source active check and actor/component lifetime retained."
     },
     {
       "section": ".minigame_8",
@@ -57776,7 +57783,8 @@
       "function_sha256": "6ed11ba8ef11640e135d811b0332a9d1526153d4621fd87c3ce500d6a4951156",
       "site": 2149348816,
       "word": 3858759688,
-      "role": 0
+      "role": 3,
+      "evidence": "Mini8 shadow pool65+i reads participant localX/localZ/local yaw through exact captured getters73C0/73EC/7418; continuous derived copy (yaw shortest wrap), no command/FSM/clip replay. Source active check and actor/component lifetime retained."
     },
     {
       "section": ".minigame_8",
@@ -57786,7 +57794,8 @@
       "function_sha256": "6ed11ba8ef11640e135d811b0332a9d1526153d4621fd87c3ce500d6a4951156",
       "site": 2149348820,
       "word": 3858759700,
-      "role": 0
+      "role": 2,
+      "evidence": "Mini8 shadow pool65+i reads participant localX/localZ/local yaw through exact captured getters73C0/73EC/7418; continuous derived copy (yaw shortest wrap), no command/FSM/clip replay. Source active check and actor/component lifetime retained."
     },
     {
       "section": ".minigame_8",

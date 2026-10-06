@@ -2,6 +2,7 @@
 #include "native_simulation_time.hpp"
 #include "native_scene_policy.hpp"
 #include "recomp_context_copy.hpp"
+#include "native_gameplay_preview.hpp"
 #include <algorithm>
 #include <array>
 #include <bit>
@@ -18,6 +19,8 @@ using Function=void(*)(uint8_t*,recomp_context*);
 static Nanoseconds now=0;static uint32_t overlay=0;static bool owner=true;
 static unsigned cases=0,endpoints=0,samples=0,draws=0,guards=0,sounds=0;
 static std::vector<std::array<uint32_t,5>> commands;
+static std::optional<double> charge_fraction;
+std::optional<double> native_gameplay_preview_source_fraction(){return charge_fraction;}
 namespace dora3::native_time {Nanoseconds monotonic_time(){return now;}}
 // Previously checked world adapters are ineligible in this UI-only fixture.
 bool native_gameplay_preview_eligible(uint8_t*){return false;}
@@ -39,6 +42,8 @@ DECL(dora3_s2_menu_801BBCEC) DECL(dora3_s2_menu_801BBEB0) DECL(dora3_s2_menu_801
 DECL(dora3_s2_menu_801C0528) DECL(dora3_s2_menu_801C14B8) DECL(dora3_s2_menu_801C1A90) DECL(dora3_s2_menu_801C1CA0)
 DECL(dora3_s2_menu_801BFC44) DECL(dora3_s2_menu_801C22C4) DECL(dora3_s2_menu_801BDEFC) DECL(dora3_lib_80057A80)
 DECL(dora3_s1_801B5B04) DECL(dora3_s1_801B6E1C) DECL(dora3_s1_801B7DCC) DECL(dora3_s1_801B7BB4) DECL(dora3_s1_801B63B8)
+DECL(dora3_s3_801C9E50) DECL(dora3_s3_801C9EBC)
+DECL(dora3_s0_8002DA98) DECL(dora3_s3_801F1598) DECL(dora3_s3_801F4948) DECL(dora3_s3_801F6870)
 DECL(dora3_s3_801BE5F0) DECL(dora3_s3_801BE72C) DECL(dora3_s3_801BE7EC)
 void ui_fixture_boundary(uint8_t* rdram,recomp_context* c,const char* name){
  const std::string_view n(name);
@@ -52,6 +57,7 @@ void ui_fixture_boundary(uint8_t* rdram,recomp_context* c,const char* name){
   for(unsigned i=0;i<6;++i){assert(ptr[i]>=0x80000000&&ptr[i]<0x80400000);MEM_W(0,int32_t(ptr[i]))=values[i];}
   return;
  }
+ if(n=="dora3_s0_80028C74"||n=="dora3_s0_menu_8002A1B8"||n=="dora3_s0_8002A1B8")return;
  assert(n=="dora3_common_text_draw"||n=="dora3_common_glyph_draw"||n=="dora3_scaled_texture_rect");
  commands.push_back({uint32_t(n=="dora3_common_text_draw"?1:n=="dora3_common_glyph_draw"?2:3),uint32_t(c->r4),uint32_t(c->r5),uint32_t(c->r6),uint32_t(c->r7)});
 }
@@ -204,6 +210,70 @@ static void pak_math(const Image& seed){
   draw_pair(a,dora3_s2_menu_801BA858,reference_dora3_s2_menu_801BA858,0x801C6378,0x14,d,0x801BB52C,0x801BB648);
  }
 }
+static void world_menu_models(const Image& seed){
+ overlay=0x70A50;
+ for(unsigned divider:{2u,3u})for(unsigned menu:{1u,2u})for(unsigned fps:{60u,73u,144u,360u}){
+  Image source=seed;auto* r=bytes(source);pair(r,0x801BB730,0x801BB848,divider);
+  w(r,0x8021D484)=int(menu);w(r,0x802170EC)=w(r,0x802170F0)=0;
+  constexpr uint32_t selected=0x80192130;w(r,selected+0x94)=1;
+  for(unsigned off:{0x18u,0x1Cu,0x20u})f(r,selected+off,1);
+  f(r,selected+0x10,358);auto c=context();c.r4=int32_t(selected);call(dora3_s0_8002DA98,r,c);
+  assert(native_ui_menu_eligible(r));const auto* policy=select_native_scene_policy(r);assert(policy&&policy->update==nullptr);
+  begin(r,divider,1024);const auto saved=c;const auto baseline=source;
+  for(unsigned n=1;Nanoseconds(n)*second/fps<=interval(divider);++n){
+   const auto stamp=now+Nanoseconds(n)*second/fps;Image expected=source;auto* e=bytes(expected);auto math=context();
+   const double phase=std::clamp(double(stamp-now)*60./(divider*double(second)),0.,1.);
+   f(e,selected+0x10,float(std::fmod(358.+(menu==1?4:10)*phase,360.)));
+   math.r4=int32_t(selected);call(reference_dora3_s0_8002DA98,e,math);
+   {UiFrameScope frame(r,&c,stamp);
+    for(unsigned k=0;k<16;++k)assert(w(r,selected+0x24+4*k)==w(e,selected+0x24+4*k));
+    assert(f(r,selected+0x10)==f(e,selected+0x10));
+   }
+   assert(source==baseline);
+   context_equal(c,saved);++samples;
+  }
+  // Full step uses the actual Source spin helper as the endpoint oracle.
+  Image expected=source;auto original=context();call(menu==1?reference_dora3_s3_801F1598:reference_dora3_s3_801F4948,bytes(expected),original);
+  original.r4=int32_t(selected);call(reference_dora3_s0_8002DA98,bytes(expected),original);
+  {UiFrameScope frame(r,&c,now+interval(divider));
+   assert(f(r,selected+0x10)==f(bytes(expected),selected+0x10));
+   for(unsigned k=0;k<16;++k)assert(w(r,selected+0x24+4*k)==w(bytes(expected),selected+0x24+4*k));
+  }
+  native_ui_reset();++cases;++endpoints;
+ }
+}
+static void charge_rdp(const Image& seed){
+ overlay=0x70A50;
+ for(unsigned divider:{2u,3u})for(int count:{0,1,13,24,49,50})for(bool held:{false,true}){
+  native_ui_reset();Image a=seed;auto* r=bytes(a);auto* rdram=r;pair(r,0x801BB730,0x801BB848,divider);
+  w(r,0x8021D484)=0;w(r,0x801B36E0)=0;MEM_B(0,int32_t(0x801FA5D9))=2;
+  w(r,0x8021D698)=count;MEM_H(0,int32_t(0x8021D644))=held?0x4000:0;
+  MEM_H(0,int32_t(0x80218178))=0;w(r,0x801AEC00)=int32_t(0x80330000);
+  auto c=context();call(dora3_s3_801C9E50,r,c);Image initial=a,original=a;
+  w(bytes(original),0x801B1424)=int32_t(0x80360000);auto oracle=context();
+  call(reference_dora3_s3_801C9EBC,bytes(original),oracle);
+  const auto end=uint32_t(w(bytes(original),0x801B1424));assert(end>0x80360000);
+  const auto command=end-8;const auto expected=uint32_t(w(bytes(original),command));assert(expected>>24==0xF6);
+  begin(r,divider,0);
+  for(double fraction:{0.,.125,.5,.875,1.}){
+   charge_fraction=fraction;w(r,0x801B1424)=int32_t(0x80360000);c=context();
+   {UiFrameScope frame(r,&c,now+interval(divider)/2);call(dora3_s3_801C9EBC,r,c);}
+   const auto actual=uint32_t(w(r,command));assert(uint32_t(w(r,0x801B1424))==end);
+   for(uint32_t at=0x80360000;at<end;at+=4)if(at!=command)assert(w(r,at)==w(bytes(original),at));
+   assert((actual&~0x00FFF000u)==(expected&~0x00FFF000u));
+   if(held&&count>0&&count<50){
+    const double right=double((actual>>12)&0xFFF)/4.;
+    assert(right>=187.+66.*count/50.-.25&&right<=187.+66.*(count+1)/50.);
+    if(fraction==.5)assert(((actual>>12)&3)!=0||count==24);
+   }else assert(actual==expected);
+   assert(w(r,0x8021D698)==count&&MEM_HU(0,int32_t(0x8021D644))==(held?0x4000:0));++samples;
+  }
+  charge_fraction.reset();native_ui_reset();
+  // The Source counter and width have not been borrowed by the RDP hook.
+  for(auto at:{0x8021D698u,0x80218124u})assert(w(r,at)==w(bytes(initial),at));
+  ++cases;
+ }
+}
 static void ownership(const Image& seed){
  Image a=seed;auto* r=bytes(a);overlay=0x635C0;pair(r,0x801BCEF8,0x801BD078,3);assert(native_ui_menu_eligible(r));++guards;
  overlay=0;assert(!native_ui_menu_eligible(r));++guards;overlay=0x635C0;
@@ -217,6 +287,6 @@ static void ownership(const Image& seed){
  }
 }
 int main(int argc,char** argv){assert(argc==3);Image game(0x400000/4),menu(game.size());std::ifstream(argv[1],std::ios::binary).read(reinterpret_cast<char*>(game.data()),0x400000);std::ifstream(argv[2],std::ios::binary).read(reinterpret_cast<char*>(menu.data()),0x400000);
- title_math(menu);game_math(game);menu_math(menu);drawing(game,menu);complete_files_draw(menu);pak_math(menu);ownership(menu);native_ui_reset();
+ title_math(menu);game_math(game);world_menu_models(game);charge_rdp(game);menu_math(menu);drawing(game,menu);complete_files_draw(menu);pak_math(menu);ownership(menu);native_ui_reset();
  std::cout<<"PASS: "<<cases<<" connected UI cases; "<<endpoints<<" Original motion endpoints; "<<samples<<" Native math samples; "<<draws<<" repeated Original UI draw/command comparisons; "<<guards<<" ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.\n";
 }

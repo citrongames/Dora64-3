@@ -8,7 +8,7 @@ def main():
     receipt=json.loads((g/'generation-receipt.json').read_text())
     for root,key in [(ROOT,'inputs'),(g,'generated')]:
         for n,h in receipt[key].items():assert sha(root/n)==h,('Stale',n)
-    names=['native_game_loop.cpp','native_scene_policy.cpp','native_model_animation.cpp','native_ui.cpp','native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_present.cpp','native_simulation_time.cpp']
+    names=['native_game_loop.cpp','native_scene_policy.cpp','native_model_animation.cpp','native_ui.cpp','native_texture_animation.cpp','native_frame_time.cpp','native_frame_scheduler.cpp','native_frame_bridge.cpp','native_present.cpp','native_simulation_time.cpp']
     sources=[ROOT/'src'/n for n in names]+[ROOT/'research/native-integration-check.cpp']
     out=ROOT/'build-local/native-integration-check';out.mkdir(exist_ok=True)
     cmd=['g++','-std=c++20','-O1','-g','-Wall','-Wextra','-Werror','-pthread','-fsanitize=address,undefined','-fno-omit-frame-pointer','-fno-strict-aliasing',*['-I'+str(x) for x in (ROOT/'src',g/'RecompiledFuncs',ROOT/'build-deps/lib/N64ModernRuntime/N64Recomp/include')],*map(str,sources),'-o',str(out/'check')]

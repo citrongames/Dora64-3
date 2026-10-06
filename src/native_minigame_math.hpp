@@ -46,6 +46,9 @@ public:
     void command_write(std::uint32_t,unsigned bytes=4);
     std::vector<std::uint32_t> changed_local_actors() const;
     void end_source(std::uint8_t*,Nanoseconds);
+    // Refresh a Source-owned copy after a pure Native geometry query. The
+    // Source value/foreign-write guard remain exact across frame borrowing.
+    bool publish_derived_float(std::uint8_t*,std::uint32_t,float);
     void sample(std::uint8_t*,Nanoseconds);
     // Rebase a completed Source observation at actual session activation.
     // It retains the equation and lifetime; it never advances a command.

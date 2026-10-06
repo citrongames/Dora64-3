@@ -198,7 +198,7 @@ def main():
     if not (out/'functions.o').exists() or not cache.exists() or cache.read_text()!=signature:
         subprocess.run(['gcc','-std=c17','-fsanitize=address',*flags,'-c',str(out/'functions.c'),'-o',str(out/'functions.o')],check=True)
         cache.write_text(signature)
-    sources=[ROOT/'src'/n for n in ['native_cutscene.cpp','native_enemy.cpp','native_gameplay_preview.cpp','native_input_timeline.cpp','native_simulation_time.cpp','native_camera_timeline.cpp','native_model_animation.cpp','native_frame_time.cpp']]+[ROOT/'research/native-gameplay-cutscene-fixture.cpp',fixture]
+    sources=[ROOT/'src'/n for n in ['native_cutscene.cpp','native_enemy.cpp','native_gameplay_preview.cpp','native_input_timeline.cpp','native_simulation_time.cpp','native_camera_timeline.cpp','native_model_animation.cpp','native_texture_animation.cpp','native_frame_time.cpp']]+[ROOT/'research/native-gameplay-cutscene-fixture.cpp',fixture]
     binary=out/'check'
     compile_flags=['-std=c++20','-Wall','-Wextra','-Werror','-Wno-unused-variable','-Wno-unused-but-set-variable','-Wno-unused-function','-fsanitize=address,undefined',*flags]
     # Cache compilation only, never a scenario result. Exact source/header
@@ -224,24 +224,58 @@ def main():
     resume=None;requested={d[0] for d in defs}
     if a.resume_evidence:
         resume=json.loads(a.resume_evidence.read_text())
-        assert resume['generation_receipt_sha256']==sha(g/'generation-receipt.json')
-        eq=ROOT/'research/native-enemy-generation-equivalence-check.json'
-        assert sha(eq)==resume['generation_equivalence_report_sha256']
-        assert json.loads(eq.read_text())['previous_generation_receipt_sha256']==resume['previous_generation_receipt_sha256']
-        retained=set(resume['retained_kinds']);requested=set(resume['rerun_kinds'])
-        assert not retained&requested and retained|requested=={d[0] for d in defs}
-        assert {k for k,rom,*unused in defs if rom in resume['affected_roms']}<=requested
-        for n,h in resume['unchanged_runtime_compiled_inputs_sha256'].items():assert sha(ROOT/n)==h,n
-        for n,h in resume['old_progress_sha256'].items():assert sha(ROOT/n)==h,n
-        for key in ['old_suite_log','old_checker_binary','old_fixture']:
-            r=resume[key];assert sha(ROOT/r['path'])==r['sha256'],key
-        assert sha(ROOT/'research/native-enemy-source-check.inc')==resume['current_fixture_sha256']
-        case=(ROOT/'research/native-enemy-source-check.inc').read_text();start=case.index('        std::vector<EnemySnapshot> oracle;');end=case.index('        if(progress){progress<<"PASS kind="')
-        original_case=case[start:end].replace(resume.get('failure_only_diagnostic_block',''), '') if resume.get('failure_only_diagnostic_block') else case[start:end]
-        if resume.get('source_cleanup_only_soundorago_block'):
-            assert not retained&set(range(300,308))
-            original_case=original_case.replace(resume['source_cleanup_only_soundorago_block'],'')
-        assert hashlib.sha256(original_case.encode()).hexdigest()==resume['unchanged_eight_mode_case_body_sha256']
+        if resume.get('kind')=='inactive-texture-scope':
+            assert resume['generation_receipt_sha256']==sha(g/'generation-receipt.json')
+            retained=set(resume['retained_kinds']);requested=set(resume['rerun_kinds'])
+            assert not retained&requested and retained|requested=={d[0] for d in defs}
+            fixture_text=(ROOT/'research/native-enemy-source-check.inc').read_text()
+            old_fixture=ROOT/resume['old_fixture'];assert sha(old_fixture)==resume['old_fixture_sha256']
+            assert fixture_text==old_fixture.read_text()
+            # Source/model/collider fixture never enables texture frame ownership.
+            assert 'TextureFrameScope' not in fixture_text
+            assert 'TextureFrameScope' not in (ROOT/'research/native-story-pickup-source-check.cpp').read_text()
+            assert ROOT/'src/native_game_loop.cpp' not in sources
+            equivalence=resume['input_equivalence']
+            assert len(equivalence)==1 and equivalence[0]['path']==str(ROOT/'src/native_texture_animation.cpp')
+            item=equivalence[0];current=Path(item['path']);prior=ROOT/item['old_file']
+            assert sha(current)==item['new_sha256'] and sha(prior)==item['old_sha256']
+            assert not retained&set(item['affected_kinds'])
+            text=current.read_text()
+            assert 'if(!state.active||state.frame_ram!=rdram)return;' in text
+            for edit in reversed(item['edits']):
+                assert text.count(edit['new'])==1;text=text.replace(edit['new'],edit['old'],1)
+            assert text==prior.read_text()
+            for name,value in resume['unchanged_compiled_dependencies_sha256'].items():
+                actual=sha(Path(name))
+                assert actual==value or (name==item['path'] and value==item['old_sha256'] and actual==item['new_sha256']),name
+            for name,value in resume['artifacts_sha256'].items():assert sha(ROOT/name)==value,name
+            binary_record=resume['old_checker_binary'];assert sha(ROOT/binary_record['path'])==binary_record['sha256']
+            groups={}
+            for name in resume['artifacts_sha256']:
+                if Path(name).name.startswith('progress-'):
+                    for kind,divider,profile in re.findall(r'PASS kind=(\d+) divider=(\d+) profile=(\d+)',(ROOT/name).read_text()):
+                        groups.setdefault(int(kind),set()).add((int(divider),int(profile)))
+            complete={k for k,v in groups.items() if v=={(d,q) for d in (2,3) for q in (0,1,2)}}
+            assert retained<=complete,'Retained kind lacks a complete actual execution'
+        else:
+            assert resume['generation_receipt_sha256']==sha(g/'generation-receipt.json')
+            eq=ROOT/'research/native-enemy-generation-equivalence-check.json'
+            assert sha(eq)==resume['generation_equivalence_report_sha256']
+            assert json.loads(eq.read_text())['previous_generation_receipt_sha256']==resume['previous_generation_receipt_sha256']
+            retained=set(resume['retained_kinds']);requested=set(resume['rerun_kinds'])
+            assert not retained&requested and retained|requested=={d[0] for d in defs}
+            assert {k for k,rom,*unused in defs if rom in resume['affected_roms']}<=requested
+            for n,h in resume['unchanged_runtime_compiled_inputs_sha256'].items():assert sha(ROOT/n)==h,n
+            for n,h in resume['old_progress_sha256'].items():assert sha(ROOT/n)==h,n
+            for key in ['old_suite_log','old_checker_binary','old_fixture']:
+                r=resume[key];assert sha(ROOT/r['path'])==r['sha256'],key
+            assert sha(ROOT/'research/native-enemy-source-check.inc')==resume['current_fixture_sha256']
+            case=(ROOT/'research/native-enemy-source-check.inc').read_text();start=case.index('        std::vector<EnemySnapshot> oracle;');end=case.index('        if(progress){progress<<"PASS kind="')
+            original_case=case[start:end].replace(resume.get('failure_only_diagnostic_block',''), '') if resume.get('failure_only_diagnostic_block') else case[start:end]
+            if resume.get('source_cleanup_only_soundorago_block'):
+                assert not retained&set(range(300,308))
+                original_case=original_case.replace(resume['source_cleanup_only_soundorago_block'],'')
+            assert hashlib.sha256(original_case.encode()).hexdigest()==resume['unchanged_eight_mode_case_body_sha256']
     run_dir=out/('replay-'+str(time.time_ns()));run_dir.mkdir()
     def run_shard(index):
         log=run_dir/('shard-'+str(index)+'.log')

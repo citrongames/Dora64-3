@@ -47,7 +47,7 @@ def main():
             else:external.add(callee)
     external-=selected.keys()
     (out/'functions.c').write_text('#include "startup_hooks.h"\n#include "funcs.h"\n'+'\n'.join(selected.values()))
-    cases=[('mini1_effect','dora3_s21_mini_801C4DD8'),('mini1_projected','dora3_s21_mini_801C9728'),('mini4_projected','dora3_s24_mini_801C50A0'),('mini2_oscillation','dora3_s22_mini_801C45D0'),('mini3_camera','dora3_s23_mini_801C4BB4'),('mini4_camera','dora3_s24_mini_801C3FCC'),('mini5_control','dora3_s25_mini_801C59E8'),('mini6_rotation','dora3_s26_mini_801C41F0'),('mini7_result','dora3_s27_mini_801C4E58'),('mini8_physics','dora3_s28_mini_801C4300'),('mini9_result','dora3_s29_mini_801C5514')]
+    cases=[('mini3_retreat','dora3_s23_mini_801C5E1C'),('mini8_intro','dora3_s28_mini_801C763C'),('mini8_body','dora3_s28_mini_801C6CEC'),('mini8_shadow','dora3_s28_mini_801C7570'),('mini2_visual','dora3_s22_mini_801C5E74'),('mini2_follower','dora3_s22_mini_801C56C8'),('mini1_effect','dora3_s21_mini_801C4DD8'),('mini1_projected','dora3_s21_mini_801C9728'),('mini4_projected','dora3_s24_mini_801C50A0'),('mini2_oscillation','dora3_s22_mini_801C45D0'),('mini3_camera','dora3_s23_mini_801C4BB4'),('mini4_camera','dora3_s24_mini_801C3FCC'),('mini5_control','dora3_s25_mini_801C59E8'),('mini6_rotation','dora3_s26_mini_801C41F0'),('mini7_result','dora3_s27_mini_801C4E58'),('mini8_physics','dora3_s28_mini_801C4300'),('mini9_result','dora3_s29_mini_801C5514')]
     header='extern "C" {\n'+'\n'.join(f'void {n}(uint8_t*,recomp_context*);' for n in selected)+'\n}\n'
     header+='\n'.join(f'inline constexpr auto {alias}={name};' for alias,name in cases)
     header+='\ninline auto fixture_common(unsigned i){const std::array<recomp_func_t*,3> functions{dora3_s20_mini_801BD5B8,dora3_s20_mini_801BE430,dora3_s20_mini_801BF8CC};return functions.at(i);}\n'
@@ -81,7 +81,7 @@ def main():
         overlay_sections.append({'rom':callback['rom'],'path':str(path)})
     (out/'modules.json').write_text(json.dumps(overlay_sections))
     # Stub declarations are generated only for recorded external boundaries.
-    command_addresses={0x8002A1B8,0x80028C74,0x8002A51C,0x80042A9C,0x800300C4,0x80042B90,0x80030FA8,0x800444C0,0x800445E0}
+    command_addresses={0x8002A47C,0x8002A4A4,0x8002A1B8,0x80028C74,0x8002A51C,0x80042A9C,0x800300C4,0x80042B90,0x80030FA8,0x800444C0,0x800445E0}
     command_names={bypc[pc] for pc in command_addresses}
     stub='#include "recomp.h"\n#include <stdexcept>\nvoid fixture_command();\nextern "C" {\n'
     # Hook symbols are provided by the real runtime or inactive enemy adapter.
@@ -101,7 +101,7 @@ def main():
         subprocess.run(command,check=True)
         cache.write_text(json.dumps({'input':fingerprint,'object':sha(out/'functions.o')}))
 
-    sources=[ROOT/'src'/n for n in ('native_minigames.cpp','native_minigame_math.cpp','native_model_animation.cpp','native_simulation_time.cpp','native_frame_time.cpp')]+[ROOT/'research/native-minigame-check.cpp',ROOT/'research/native-inactive-enemy-fixture.cpp',out/'boundaries.cpp']
+    sources=[ROOT/'src'/n for n in ('native_minigames.cpp','native_minigame_math.cpp','native_model_animation.cpp','native_texture_animation.cpp','native_simulation_time.cpp','native_frame_time.cpp')]+[ROOT/'research/native-minigame-check.cpp',ROOT/'research/native-inactive-enemy-fixture.cpp',out/'boundaries.cpp']
     toolchain=subprocess.check_output(['g++','--version'],text=True)
     objects=[]
     for i,source in enumerate(sources):

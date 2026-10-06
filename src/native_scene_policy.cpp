@@ -70,7 +70,8 @@ const ScenePolicy* select_native_scene_policy(uint8_t* rdram) {
 }
 SceneIdentity native_scene_identity(uint8_t* ram,const ScenePolicy& policy) {
     const uint32_t module=policy.update==native_minigame_update?native_minigame_module(ram):
-        (policy.update==native_gameplay_preview_update||policy.update==native_cutscene_update?0x70A50u:0x635C0u);
+        (policy.update==native_gameplay_preview_update||policy.update==native_cutscene_update||
+          (uint32_t(word(ram,0x801A4500))==0x801BB730u&&uint32_t(word(ram,0x801A4514))==0x801BB848u)?0x70A50u:0x635C0u);
     return {uint32_t(word(ram,0x801A4500)),uint32_t(word(ram,0x801A4514)),module,
             policy.divider,dora3_overlay_generation(module)};
 }

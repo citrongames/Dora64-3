@@ -4,6 +4,7 @@
 #include "native_gameplay_preview.hpp"
 #include "native_cutscene.hpp"
 #include "native_ui.hpp"
+#include "native_texture_animation.hpp"
 #include "native_minigames.hpp"
 #include "native_present.hpp"
 #include "recomp_context_copy.hpp"
@@ -70,7 +71,7 @@ void finish_session(uint8_t* ram,Phase before,Phase after) {
         std::fprintf(stderr,"NATIVE LOOP drained frames=%llu; Original resumes\n",static_cast<unsigned long long>(frames));
         active_policy=nullptr;active_identity.reset();fade.reset();applied_fps=0;
         dora3_native_camera_dispatch_reset();native_gameplay_preview_reset(ram);
-        native_cutscene_reset(ram);native_minigame_reset(ram);native_ui_reset();
+        native_cutscene_reset(ram);native_minigame_reset(ram);native_ui_reset();native_texture_reset();
         if(timelines_started)game_model_animation().handoff_to_original(ram);
         timelines_started=false;
     }
@@ -138,6 +139,7 @@ void build_frame(uint8_t* rdram,recomp_context* ctx,const FrameTicket& ticket,Fr
     if(!owner.publish(ticket))throw std::logic_error("Native frame publication failed");
     ctx->r4=int32_t(dora3::frame::bank0+ticket.bank*dora3::frame::bank_stride);
     {
+        TextureFrameScope textures(rdram,frame_time,ticket.bank);
         ModelFrameScope models(rdram,ctx,frame_time,ticket.bank);
         UiFrameScope ui(rdram,ctx,frame_time);
         MinigameFrameScope minigames(rdram);
@@ -239,7 +241,7 @@ extern "C" void dora3_native_loop_retire(uint8_t* rdram,recomp_context* ctx) {
     if(auto bank=task_bank(uint32_t(ctx->r16))) { std::lock_guard lock(task_mutex);pending[*bank]=false; }
 }
 void dora3_native_loop_reset() {
-    dora3_native_process_time_reset();dora3_native_camera_dispatch_reset();native_gameplay_preview_reset();native_cutscene_reset();native_minigame_reset();native_ui_reset();
+    dora3_native_process_time_reset();dora3_native_camera_dispatch_reset();native_gameplay_preview_reset();native_cutscene_reset();native_minigame_reset();native_ui_reset();native_texture_reset();
     std::lock_guard lock(task_mutex);pending={};invalidate_native_scene_policy();active_policy=nullptr;entry_policy=nullptr;
     active_identity.reset();entry_identity.reset();timelines_started=false;last_fallback=nullptr;fade.reset();applied_fps=0;frames=0;deferred_messages.clear();game_model_animation().reset();
 }
