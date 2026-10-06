@@ -80,6 +80,7 @@ static void resource_barrier_check(uint8_t* rdram,recomp_context* c) {
     dora3_reset_native_frame_delivery();
 }
 unsigned dora3_requested_native_fps() {return requested;}
+extern "C" uint64_t dora3_overlay_generation(uint32_t rom) {return rom==0x635C0?1:0;}
 extern "C" void do_break(uint32_t) {std::abort();}
 extern "C" void dora3_trace(uint8_t* rdram,recomp_context*,uint32_t pc,uint32_t) {
     if(pc==0x801C0088)++updates;

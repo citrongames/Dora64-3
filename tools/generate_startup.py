@@ -76,6 +76,7 @@ def main():
     declarations.append('int dora3_native_model_advance(uint8_t*, recomp_context*);')
     declarations.append('int dora3_native_preview_hook(uint8_t*,recomp_context*,uint32_t);')
     declarations.append('void dora3_native_input_sample(uint8_t*,recomp_context*);')
+    declarations.append('int dora3_native_model_handoff_active(uint8_t*,uint32_t);')
     declarations.append('int dora3_native_model_event(uint8_t*,uint32_t,float,float,uint64_t);')
     declarations.append('int dora3_native_model_start_event(uint8_t*,uint32_t,float,float,uint64_t);')
     declarations.append('int dora3_native_defer_player_shot();')

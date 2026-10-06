@@ -26,11 +26,16 @@ def main():
     source=fixture.read_text()
     argc='assert(argc==2);'
     loop='for(unsigned camera_mode:{12u,2u})for(unsigned divider:{2u,3u}) {'
-    end='assert(check_npc_action_contacts(image)==3192);'
+    end='const unsigned npc_contact_cases=check_npc_action_contacts(image);assert(npc_contact_cases==3192);'
     assert source.count(argc)==source.count(loop)==source.count(end)==1
     derived='#include <cstdlib>\n'+source.replace(argc,'assert(argc==2||argc==3);const int partition=argc==3?std::atoi(argv[2]):-1;assert(partition>=-1&&partition<4);')
     derived=derived.replace(loop,loop+'\n        if(partition>=0&&partition!=int((camera_mode==12?0:2)+(divider==2?0:1)))continue;')
-    derived=derived.replace(end,'assert(partition<0?cases==24:cases==6);'+end)
+    # The contact oracle resets its own RDRAM/model lifetimes and already
+    # enumerates both Source dividers and all six FPS values. It is independent
+    # of camera-group selection: run the complete3192 matrix once in group0.
+    # Every camera group still executes its six-setting/full-world assertions.
+    shared='const unsigned npc_contact_cases=(partition<0||partition==0)?check_npc_action_contacts(image):0;assert(npc_contact_cases==(partition<0||partition==0?3192u:0u));'
+    derived=derived.replace(end,'assert(partition<0?cases==24:cases==6);'+shared)
     out=ROOT/'build-local/native-player-update-partitions';out.mkdir(exist_ok=True)
     partition_fixture=out/'partitioned.cpp';partition_fixture.write_text(derived)
     prefix=original[:original.index('    result=subprocess.check_output')]
@@ -70,7 +75,7 @@ def main():
     producer=dict(runner_sha256=sha(Path(__file__).resolve()),generation_receipt_sha256=sha(args.generated/'generation-receipt.json'),
                   inputs_sha256=digest(inputs),execution='fresh')
     assert sha(partition_fixture)==hashlib.sha256(derived.encode()).hexdigest()
-    groups=[dict(id=i,camera_mode=12 if i<2 else 2,source_divider=2 if i%2==0 else 3,native_fps=[60,73,120,144,165,360]) for i in range(4)]
+    groups=[dict(id=i,camera_mode=12 if i<2 else 2,source_divider=2 if i%2==0 else 3,native_fps=[60,73,120,144,165,360],shared_npc_oracle=(i==0)) for i in range(4)]
     env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')
     retained={} if args.force_run else {group['id']:read_group(cache,inputs,group) for group in groups}
     missing=[group for group in groups if not retained.get(group['id'])]
@@ -110,31 +115,35 @@ def main():
             tokens.append(('number',part));pattern+=r'(\d+)';dynamic+=1
     matches=[]
     for lines,record in completed:
-        assert len(lines)>=2 and all(line.startswith('PASS:') for line in lines)
+        assert len(lines)>=1 and all(line.startswith('PASS:') for line in lines)
         match=re.fullmatch(pattern,lines[-1]);assert match,('Unexpected summary',record['group']['id'],lines[-1])
         values=list(map(int,match.groups()));assert len(values)==dynamic
         assert values[[v for k,v in tokens if k=='number'].index('cases')]==6
         matches.append(values)
-    assert all(lines[:-1]==completed[0][0][:-1] for lines,_ in completed),'Common NPC oracle summaries differ'
+    common=[lines[:-1] for lines,record in completed if record['group']['id']==0]
+    assert len(common)==1 and len(common[0])==1 and common[0][0].startswith('PASS: 3192 real common NPC collision/B priority')
+    assert all(not lines[:-1] for lines,record in completed if record['group']['id']!=0),'NPC matrix repeated in an unrelated camera group'
+    shared_lines=common[0]
     totals=[sum(values[i] for values in matches) for i in range(dynamic)]
     index=0;merged=''
     for kind,value in tokens:
         if kind=='literal':merged+=value
         else:merged+=str(totals[index]);index+=1
     assert totals[[v for k,v in tokens if k=='number'].index('cases')]==24
+    assert totals[[v for k,v in tokens if k=='number'].index('npc_contact_cases')]==3192
     # Reuse the existing full report schema with summed counters, not copied
     # historical claims. Every retained/fresh result comes from a completed
     # execution of all existing C++ final assertions.
     if args.verify_cache_only:
         verification=dict(result='PASS: exact-input completed cache covers all24 settings; no compilation or oracle re-execution',
             inputs_sha256=digest(inputs),total_settings=24,elapsed_seconds=round(time.monotonic()-overall_started,3),groups=[record for _,record in completed],
-            retained_summary='\n'.join(completed[0][0][:-1])+'\n'+merged.strip(),
+            retained_summary='\n'.join(shared_lines)+'\n'+merged.strip(),
             source_sha256={name:sha(ROOT/name) for name in ('tools/check_native_player_update_partitions.py','tools/native_oracle_cache.py')},
             original_full_report_unchanged=True,no_game_gpu=True)
         atomic_json(ROOT/'research/native-player-update-cache-check.json',verification)
         print(verification['result'],flush=True)
         return
-    namespace['result']='\n'.join(completed[0][0][:-1])+ '\n'+merged.strip()
+    namespace['result']='\n'.join(shared_lines)+ '\n'+merged.strip()
     namespace['sources']=[fixture if path==partition_fixture else path for path in namespace['sources']]
     tail=original[original.index('    tracked='):original.rindex("if __name__=='__main__'")]
     exec(compile('def emit_report():\n'+tail+'\nemit_report()\n',str(checker),'exec'),namespace)
@@ -145,10 +154,10 @@ def main():
     report['partitioned_execution']=dict(groups=[record for _,record in completed],total_settings=24,parallel_jobs=args.jobs,
         cache_inputs_sha256=digest(inputs),fresh_groups=len(missing),retained_groups=4-len(missing),
         original_fixture_sha256=sha(fixture),derived_fixture_sha256=sha(partition_fixture),preparation_checker_sha256=sha(checker),
-        unchanged_original_oracles=True,all_final_cpp_assertions=True,retained_as_an_uar_ubsan_lsan=True,
+        unchanged_original_oracles=True,all_final_cpp_assertions=True,shared_npc_contact_oracle=dict(group_id=0,cases=3192,executions=1,scope='Both Source dividers, all six FPS, twelve NPC kinds and all existing rejection/priority/held-B scenarios; independent seeded RDRAM/model lifetimes'),retained_as_an_uar_ubsan_lsan=True,
         diagnostic_generated_sha256={name:sha(out/name) for name in ['functions.c','player-update-functions.h','boundaries.cpp']})
-    report['limitations'].append('Diagnostic fixture adds only an independent camera/source-rate selector and six-setting count guard; Source/Native oracles unchanged. Groups reset original image/resources per setting; each retains all six FPS baselines. Common3192 NPC oracle runs in each isolated process and is not summed as new distinct cases.')
+    report['limitations'].append('Diagnostic fixture selects four camera/source-rate groups with six-setting guards; all24 settings and Source/Native oracles retained. The independently seeded3192 NPC contact matrix covers both dividers/all six FPS in group0 once; groups1..3 omit duplicate execution. Aggregation requires exactly3192 contacts and exactly one complete contact summary; no scenario coverage removed.')
     report['limitations'].append('Cached groups retain actual execution provenance and artifacts; exact compiler/header/generated-code/seed/sanitizer inputs checked before reuse. A retained PASS is not a new run. --force-run ignores reuse; --verify-cache-only cannot compile or execute the oracle.')
     report_path.write_text(json.dumps(report,indent=2)+'\n')
-    print('PASS: complete full player coverage,24 settings; fresh groups='+str(len(missing))+'; retained completed groups='+str(4-len(missing))+'; same Original oracles and sanitizers; no game/GPU.',flush=True)
+    print('PASS: complete full player coverage,24 settings; fresh groups='+str(len(missing))+'; retained completed groups='+str(4-len(missing))+'; same Original oracles, one complete independent3192 NPC matrix and sanitizers; no game/GPU.',flush=True)
 if __name__=='__main__':main()

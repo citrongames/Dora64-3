@@ -26,6 +26,7 @@ def main():
     runtime=ROOT/'src/startup_runtime.cpp';source=runtime.read_text()
     anchors=['bool overlay_dependencies_active(uint32_t rom)', 'void unload_scene_code()',
              'extern "C" int dora3_overlay_loaded(uint32_t section_rom)',
+             'extern "C" uint64_t dora3_overlay_generation(uint32_t section_rom)',
              'extern "C" void dora3_verify_dma(uint8_t* rdram)']
     functions=[block(source,x) for x in anchors]
     dma=block(source,'if(address==0x8002730C)')
@@ -35,7 +36,9 @@ def main():
     pending='struct PendingDma { uint32_t rom, ram, size; bool active; };'
     assert source.count(state)==source.count(pending)==1
     out=ROOT/'build-local/overlay-load-state-check';out.mkdir(exist_ok=True)
-    extracted='\n'.join([state,pending,'thread_local PendingDma pending_dma{};\nthread_local bool stream_dma_call=false;',*functions,
+    generation='std::array<std::atomic<uint64_t>,std::size(dora3_overlay_regions)> overlay_generation{};\nstd::atomic<uint64_t> next_overlay_generation{1};'
+    assert source.count(generation)==1
+    extracted='\n'.join([state,generation,pending,'thread_local PendingDma pending_dma{};\nthread_local bool stream_dma_call=false;',*functions,
         'static void runtime_begin_dma(uint8_t* rdram,recomp_context* ctx) {\n'+dma+'\n}',
         'static void runtime_overlay_gate(uint32_t address,uint32_t section_rom) {\nfor(size_t i=0;i<overlay_active.size();++i) {const auto& region=dora3_overlay_regions[i];\n'+gate+'\n}\n}',
         'static void runtime_boot_reset() {\n'+boot+'\n}'])

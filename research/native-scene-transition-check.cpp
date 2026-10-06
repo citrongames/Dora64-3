@@ -1134,8 +1134,8 @@ default:std::abort();}if(gap)MEM_W(0x94,int32_t(prop))=0;links();assert(MEM_W(0x
             std::copy(saved_slot09_image.begin(),saved_slot09_image.end(),memory.begin()+slot09_overlay_vram_offset/4);
             assert(!slot09_loaded);
             for(auto model:object_models) {c.r4=int32_t(model);dora3_s0_8003B77C(rdram,&c);}
-            // An unreviewed action cancels ownership before a subsequent step.
-            MEM_W(0x94,int32_t(player))=19;assert(!native_gameplay_preview_eligible(rdram));
+            // Source character initialization cancels ownership before a subsequent step.
+            MEM_W(0x94,int32_t(player))=0;assert(!native_gameplay_preview_eligible(rdram));
             native_gameplay_preview_reset(rdram);preview_live=false;
             dora3_controller_latch(rdram,&c);assert(MEM_HU(0,int32_t(0x801A48EC))==0);
             for(auto model:owners) {c.r4=int32_t(model);dora3_s0_8003B77C(rdram,&c);}
@@ -1157,3 +1157,9 @@ namespace dora3::native_time {
 MinigameFrameScope::MinigameFrameScope(uint8_t*){}
 MinigameFrameScope::~MinigameFrameScope()=default;
 }
+
+// Synthetic loaded-module epoch; actual reload behavior is checked separately.
+extern "C" uint64_t dora3_overlay_generation(uint32_t rom){return dora3_overlay_loaded(rom)?1:0;}
+
+// This world/room fixture never owns a minigame module.
+uint32_t native_minigame_module(uint8_t*){return 0;}

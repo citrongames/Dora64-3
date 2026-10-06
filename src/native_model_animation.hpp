@@ -64,6 +64,15 @@ public:
     void motion_end(uint8_t*,uint32_t,uint32_t);
     void bind_actor(uint8_t*,uint32_t,uint32_t,uint32_t);
     bool bound_actor_valid(uint8_t*,uint32_t,uint32_t,uint32_t) const;
+    // Called at actual Native activation, after legacy frames/reads drain.
+    // Keep the recorded Source pose but exclude acquisition wait from its clock.
+    void resume_frame_clock(uint8_t*,Nanoseconds);
+    // Retain fractional clip time while Source resumes whole-step decisions.
+    void handoff_to_original(uint8_t*);
+    bool handoff_active(uint8_t*,uint32_t) const;
+    bool handoff_source_event(uint8_t*,uint32_t,float,float) const;
+    std::optional<uint8_t> handoff_source_flags(uint8_t*,uint32_t) const;
+    void remember_source_clock(uint32_t,const SourceModelCommandSample&);
     void begin_frame(uint8_t*, recomp_context*, Nanoseconds now, unsigned bank);
     void end_frame(uint8_t*);
     void reset(); // Only at a quiescent runtime boundary.
@@ -106,6 +115,7 @@ extern "C" void dora3_native_model_hook(uint8_t*, recomp_context*, uint32_t);
 
 extern "C" int dora3_native_model_advance(uint8_t*,recomp_context*);
 
+extern "C" int dora3_native_model_handoff_active(uint8_t*,uint32_t);
 extern "C" int dora3_native_model_event(uint8_t*,uint32_t,float,float,uint64_t);
 extern "C" int dora3_native_model_start_event(uint8_t*,uint32_t,float,float,uint64_t);
 extern "C" int dora3_native_model_scalar_positive(uint8_t*,uint32_t,uint32_t,float);

@@ -1,6 +1,6 @@
 {
   "scope": "Connected UI panels/rectangle/title/intro/selection equations, actual widgets/dialogue/files/arrow/final-panel Source draw cadence and Original commands",
-  "result": "PASS: 116 connected UI cases; 64 Original motion endpoints; 153 Native math samples; 234 repeated Original UI draw/command comparisons; 37 ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.",
+  "result": "PASS: 354 connected UI cases; 298 Original motion endpoints; 8460 Native math samples; 252 repeated Original UI draw/command comparisons; 41 ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.",
   "actual_functions": [
     "dora3_common_glyph_lookup",
     "dora3_common_panel_draw",
@@ -21,6 +21,11 @@
     "dora3_s1_801B7A38",
     "dora3_s1_801B7BB4",
     "dora3_s1_801B7DCC",
+    "dora3_s2_menu_801B96F8",
+    "dora3_s2_menu_801B981C",
+    "dora3_s2_menu_801B9F10",
+    "dora3_s2_menu_801BA660",
+    "dora3_s2_menu_801BA858",
     "dora3_s2_menu_801BBCEC",
     "dora3_s2_menu_801BBEB0",
     "dora3_s2_menu_801BC17C",
@@ -44,8 +49,7 @@
     "dora3_s3_801BE72C",
     "dora3_s3_801BE7EC",
     "dora3_texture_palette_ptr",
-    "dora3_texture_payload_ptr",
-    "dora3_texture_rect_state"
+    "dora3_texture_payload_ptr"
   ],
   "allowed_counted_boundaries": [
     "dora3_color_buffer_setup",
@@ -53,25 +57,27 @@
     "dora3_common_text_draw",
     "dora3_depth_buffer_clear",
     "dora3_s0_800444C0",
+    "dora3_s0_menu_8002841C",
     "dora3_scaled_texture_rect",
-    "dora3_texture_info"
+    "dora3_texture_info",
+    "dora3_texture_rect_state"
   ],
   "source_sha256": {
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_effects.cpp": "5a2dd315a623e5cf80ccd6b51af56c4f0f1e5bc750c871b4e0231d675f9f3b19",
-    "src/native_ui.cpp": "926660c872b31ea3598e593f7efc852abf6879177c62546f50416814c99c674e",
-    "src/native_scene_policy.cpp": "0e936417ad80fb481d592e2d6c6727d9bbc48f6f44fb7c7f3a8ffd4124985a01",
-    "research/native-ui-check.cpp": "224e2ce566d8313386a71f7d7dcd012dd300989aa737263087a3ca409e8c76e2",
+    "src/native_ui.cpp": "e27a28112ed7a9393280c0fbd6b6985ac459e00054159f427cb0c2f30bd78830",
+    "src/native_scene_policy.cpp": "670fd5b064fbf7fac18cebb435aac9367ee8d8678d7035d61e08e70b88f6dda3",
+    "research/native-ui-check.cpp": "d41a27a2f077e9b2fafe10142d877abdf33f5b9a1feb156de2029ebd0e1a34a7",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
-    "research/native-inactive-minigame-fixture.cpp": "dafaccdff31181ed0e62dec4a4ec04bfe1eb6c6fd377201f2e81e4f75dbbe4bb",
+    "research/native-inactive-minigame-fixture.cpp": "9ad7a6a6c829626b347b319c8344228dbca11caa56f545ae8f14231a877a223a",
     "src/native_ui.hpp": "91b96b2f41ef5701a0b6daebfd3f9dead2603b21c9fe9f4070b2c3fb676e4839",
-    "src/native_game_loop.cpp": "6c6009b63ce0b95f4b9a356b1cfe523351e42b7cbca83633c2e268ed1c02cfa4",
-    "recomp/native-timing-rules.json": "c2c332ec813d3875029208501206c31f66444623c0ecfbbd3f290454529f5ef0",
-    "tools/native_timing_patches.py": "4b015e2e76618cb11d71f671f08faed36287d24c28ec2efee0025aa719fb5829",
-    "tools/generate_startup.py": "65d1bbba590dcac60809575aadfc8455d8ef1225a5b23c4aa7a5816732fc2407",
-    "tools/check_native_ui.py": "29e3c2617c0b5b48c47ca4f1bc2e4646f8a7de238b58ce9ac97c05d012ce9f64"
+    "src/native_game_loop.cpp": "e2e7829e094dd4981c787347292c725ed5de2de5ee7a11aa6bc4289d1a960420",
+    "recomp/native-timing-rules.json": "5ae09016de2e21c58001711a4d08a018c3c12c6ce7f59fda9995c9b1e5a32997",
+    "tools/native_timing_patches.py": "e24746258897a64084e4dde166ebf0ffef1c1173e3c83c9d5ae30f70bffcac97",
+    "tools/generate_startup.py": "e64b7e9b45435ee3a4fe9f3046376efb705942828a89e20ae195178f0d7e3d1c",
+    "tools/check_native_ui.py": "3a16b8fc1d3d6fcd8258c32c846d66e3f5eb46602c807305601592457b319712"
   },
-  "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
+  "generation_receipt_sha256": "7c16ae33ac42ed5fec10dacde1da5021ad90400a904963b8f6af4849be4f0266",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "limitations": [
     "Synthetic UI/controller/font/texture inputs with Original ROM math and Original UI bodies; no game/renderer/GPU",

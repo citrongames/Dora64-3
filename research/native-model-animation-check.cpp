@@ -450,6 +450,62 @@ int main() {
     assert(R(model+0x64)==10 && R(bone+0x14)==100 && (B(model+0x7C)&3)==3);
     adapter.end_frame(rdram);
     ctx.r4=int32_t(model);ctx.r5=0;dora3_s0_800395BC(rdram,&ctx);
+    // A host-read handoff can be delayed without advancing the authored pose.
+    seek(0);B(model+0x7C)=0;F(uint32_t(W(model+0x18))+4,10);step(3,3);
+    adapter.begin_frame(rdram,&ctx,now+25'000'000,0);const auto phase_pose=R(bone+0x14);adapter.end_frame(rdram);
+    const auto handoff_begin=now+5*second;adapter.resume_frame_clock(rdram,handoff_begin);
+    adapter.begin_frame(rdram,&ctx,handoff_begin,0);assert(R(bone+0x14)==0&&R(model+0x64)==3);adapter.end_frame(rdram);
+    adapter.begin_frame(rdram,&ctx,handoff_begin+25'000'000,0);assert(R(bone+0x14)==phase_pose&&R(model+0x64)==3);adapter.end_frame(rdram);
+    unsigned original_handoffs=0;
+    for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,120u,144u,165u,360u}) {
+        seek(0);B(model+0x7C)=0;F(uint32_t(W(model+0x18))+4,100);
+        SimulationTimeline clock(divider);Nanoseconds previous=0;
+        // First continuous cue was delivered while Native, second lies after exit.
+        for(unsigned frame_index=1;frame_index<=3;++frame_index) {
+            const auto stamp=second*frame_index/fps;
+            clock.advance(stamp-previous,[&](const SimulationSlice& slice){
+                SimulationScope explicit_time(slice);step(3,divider);
+                (void)adapter.frame_event(rdram,model,R(model+0x64),1,0xABC);
+            },[](uint64_t){});previous=stamp;
+        }
+        const auto fractional=R(model+0x64),rate=3.f;
+        adapter.handoff_to_original(rdram);assert(adapter.handoff_active(rdram,model));
+        assert(R(model+0x64)==fractional); // No rounding or reset of the actual clip.
+        step(rate,divider);assert(R(model+0x64)==fractional+rate);
+        const float pending=fractional+1;
+        assert(adapter.frame_event(rdram,model,R(model+0x64),pending,0xDEF));
+        assert(!adapter.frame_event(rdram,model,R(model+0x64),pending,0xDEF));
+        step(rate,divider);assert(!adapter.frame_event(rdram,model,R(model+0x64),pending,0xDEF));
+        // A real pause/run change preserves continuation until a seek/rebind.
+        ctx.r4=int32_t(model);ctx.r5=1;dora3_s0_80039578(rdram,&ctx);assert(adapter.handoff_active(rdram,model));
+        const auto paused_time=R(model+0x64);step(rate,divider);assert(R(model+0x64)==paused_time);
+        ctx.r4=int32_t(model);ctx.r5=0;dora3_s0_80039578(rdram,&ctx);assert(adapter.handoff_active(rdram,model));
+        step(rate,divider);assert(R(model+0x64)==paused_time+rate);
+        seek(0);assert(!adapter.handoff_active(rdram,model));
+        // Fresh Original retains equality, including a deliberately skipped cue.
+        seek(18);step(3,divider);assert(R(model+0x64)==21);
+        assert(!adapter.frame_event(rdram,model,21,20,0x123));
+        assert(adapter.frame_event(rdram,model,21,21,0x123));++original_handoffs;
+    }
+    // Enemy decisions already consumed the Source21 sample while physical time
+    // was fractional. Returning to Original advances that view21→24; crossing20
+    // must never invent an attack that original18→21 equality skipped.
+    seek(18);B(model+0x7C)=0;F(uint32_t(W(model+0x18))+4,100);
+    {SimulationScope explicit_time({750000000ull,3000000000ull,0,0});step(3,3);}
+    const auto discrete=adapter.source_command_sample(rdram,model,{750000000ull,3000000000ull,0,0});
+    assert(discrete.checkpoint.time==21);adapter.remember_source_clock(model,discrete);
+    adapter.handoff_to_original(rdram);assert(adapter.handoff_active(rdram,model));
+    assert(!adapter.handoff_source_event(rdram,model,R(model+0x64),20));
+    assert(adapter.handoff_source_event(rdram,model,R(model+0x64),21));
+    step(3,3);assert(R(model+0x64)==21.75f);
+    assert(adapter.handoff_source_event(rdram,model,R(model+0x64),24));
+    assert(!adapter.handoff_source_event(rdram,model,R(model+0x64),21));
+    assert(!adapter.handoff_source_event(rdram,model,18,24)); // Saved pre-seek value remains its own comparison.
+    // Renderer bookkeeping does not delete a live continuation.
+    adapter.hook(rdram,&ctx,0x8003B7D0,now);assert(adapter.handoff_active(rdram,model));
+    seek(2);assert(!adapter.handoff_active(rdram,model));
+    F(uint32_t(W(model+0x18))+4,10);seek(0);
+    std::cout<<"PASS: "<<original_handoffs<<" fractional Native→Original model/cue continuations, activation rebase without pose/time mutation, authored Source equality18→21 skip and21→24 continuation, pending/delivered cue once, pause/resume/run/seek/renderer reset; actual original SDK counter; no game/GPU.\n";
     // Logic updates while native owns the banks must not touch either vertex output.
     seek(1);owns_banks=true;
     const auto bank0_before=H(banks[0]),bank1_before=H(banks[1]);step(3,3);

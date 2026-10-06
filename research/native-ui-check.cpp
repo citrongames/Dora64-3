@@ -25,6 +25,8 @@ bool native_cutscene_eligible(uint8_t*){return false;}
 void native_gameplay_preview_update(uint8_t*,recomp_context*,Nanoseconds){std::abort();}
 void native_cutscene_update(uint8_t*,recomp_context*,Nanoseconds){std::abort();}
 extern "C" {
+int dora3_overlay_loaded(uint32_t);
+uint64_t dora3_overlay_generation(uint32_t rom){return dora3_overlay_loaded(rom)?1:0;}
 int dora3_overlay_loaded(uint32_t rom){return rom==overlay||rom==0x5E400;}
 int dora3_native_loop_owns_fade(){return owner;}
 void dora3_trace(uint8_t*,recomp_context*,uint32_t,uint32_t){}
@@ -32,6 +34,7 @@ void do_break(uint32_t){std::abort();}
 void switch_error(const char*,uint32_t,uint32_t){std::abort();}
 recomp_func_t* get_function(int32_t){std::abort();}
 #define DECL(name) void name(uint8_t*,recomp_context*);void reference_##name(uint8_t*,recomp_context*);
+DECL(dora3_s2_menu_801B9F10) DECL(dora3_s2_menu_801BA660) DECL(dora3_s2_menu_801B981C) DECL(dora3_s2_menu_801B96F8) DECL(dora3_s2_menu_801BA858)
 DECL(dora3_s2_menu_801BBCEC) DECL(dora3_s2_menu_801BBEB0) DECL(dora3_s2_menu_801BC17C) DECL(dora3_s2_menu_801BC4C0)
 DECL(dora3_s2_menu_801C0528) DECL(dora3_s2_menu_801C14B8) DECL(dora3_s2_menu_801C1A90) DECL(dora3_s2_menu_801C1CA0)
 DECL(dora3_s2_menu_801BFC44) DECL(dora3_s2_menu_801C22C4) DECL(dora3_s2_menu_801BDEFC) DECL(dora3_lib_80057A80)
@@ -41,6 +44,8 @@ void ui_fixture_boundary(uint8_t* rdram,recomp_context* c,const char* name){
  const std::string_view n(name);
  if(n=="dora3_color_buffer_setup"||n=="dora3_depth_buffer_clear"){commands.push_back({4,uint32_t(c->r4),0,0,0});return;}
  if(n=="dora3_s0_800444C0"){++sounds;return;}
+ if(n=="dora3_s0_menu_8002841C"){c->r2=c->r4;return;}
+ if(n=="dora3_texture_rect_state")return;
  if(n=="dora3_texture_info") {
   const std::array<uint32_t,6> ptr{uint32_t(c->r5),uint32_t(c->r6),uint32_t(c->r7),uint32_t(MEM_W(16,c->r29)),uint32_t(MEM_W(20,c->r29)),uint32_t(MEM_W(24,c->r29))};
   const std::array<int32_t,6> values{int32_t(0x80330000),int32_t(0x80330100),16,16,0,4};
@@ -171,19 +176,47 @@ static void complete_files_draw(const Image& menu){
   draw_pair(a,dora3_s2_menu_801BFC44,reference_dora3_s2_menu_801BFC44,0x801C6700,0x1C8,d,0x801BFAA4,0x801BFC44);
  }
 }
+static void pak_math(const Image& seed){
+ overlay=0x635C0;
+ for(unsigned d:{2u,3u})for(int old:{0,7,13})for(int next:{1,8,14})for(int step=0;step<13;++step){
+  Image a=seed;auto* r=bytes(a);pair(r,0x801BB52C,0x801BB648,d);
+  w(r,0x801B369C)=old;w(r,0x801C6390)=next;w(r,0x801C638C)=step;
+  w(r,0x801C636C)=0;w(r,0x801C6398)=0;w(r,0x801C63A8)=2;auto c=context();
+  call(dora3_s2_menu_801B9F10,r,c);call(dora3_s2_menu_801BA660,r,c);
+  const Image source=a;Image b=a;auto cb=context();w(bytes(b),0x801C638C)=step+1;
+  call(reference_dora3_s2_menu_801B9F10,bytes(b),cb);call(reference_dora3_s2_menu_801BA660,bytes(b),cb);
+  begin(r,d,128|256|512);assert(native_ui_menu_eligible(r));
+  const int oldpos=w(r,0x801C29C4+152*old),newpos=w(r,0x801C29C4+152*next),phase=step-(oldpos==newpos?3:9);
+  {UiFrameScope frame(r,&c,now+interval(d));
+   if(step<8)visible_equal(r,bytes(b),{0x801C6370,0x801C6380});
+   if(phase>=0&&phase<3)visible_equal(r,bytes(b),{0x801C6364,0x801C6368});
+   assert(w(r,0x801C63A8)==3);
+  }assert(a==source);++endpoints;
+  for(unsigned target:{60u,73u,120u,144u,165u,360u})for(unsigned j=1;Nanoseconds(j)*second/target<interval(d);++j){
+   {UiFrameScope frame(r,&c,now+Nanoseconds(j)*second/target);assert(w(r,0x801C638C)==step&&w(r,0x801B369C)==old&&w(r,0x801C6390)==next);}
+   assert(a==source);++samples;
+  }native_ui_reset();++cases;
+ }
+ for(unsigned d:{2u,3u}){
+  Image a=seed;auto* r=bytes(a);w(r,0x801C6384)=2;
+  draw_pair(a,dora3_s2_menu_801B96F8,reference_dora3_s2_menu_801B96F8,0x801C6384,4,d,0x801BB52C,0x801BB648);
+  a=seed;r=bytes(a);w(r,0x801B369C)=0;w(r,0x801C6388)=1;f(r,0x801C6378,0);w(r,0x801AEC00)=int32_t(0x80330000);
+  draw_pair(a,dora3_s2_menu_801BA858,reference_dora3_s2_menu_801BA858,0x801C6378,0x14,d,0x801BB52C,0x801BB648);
+ }
+}
 static void ownership(const Image& seed){
  Image a=seed;auto* r=bytes(a);overlay=0x635C0;pair(r,0x801BCEF8,0x801BD078,3);assert(native_ui_menu_eligible(r));++guards;
  overlay=0;assert(!native_ui_menu_eligible(r));++guards;overlay=0x635C0;
  for(auto p:{0x801A4500u,0x801A4514u,0x801A39DCu,0x801A9C88u,0x801A4518u}){const auto value=w(r,p);w(r,p)=1;assert(!native_ui_menu_eligible(r));w(r,p)=value;++guards;}
  begin(r,3,4);Image source=a;auto c=context();w(r,0x801A4500)=0;source=a;{UiFrameScope frame(r,&c,now+interval(3));assert(a==source);}++guards;native_ui_reset();
  pair(r,0x801BB730,0x801BB848,2);overlay=0x70A50;assert(native_ui_game_eligible(r));++guards;
- for(unsigned d:{2u,3u})for(auto callbacks:std::array<std::array<uint32_t,2>,5>{{{0x801BCEF8,0x801BD078},{0x801BFAA4,0x801BFC44},{0x801C0BBC,0x801C0C88},{0x801C24A4,0x801C267C},{0x801BB730,0x801BB848}}}){
+ for(unsigned d:{2u,3u})for(auto callbacks:std::array<std::array<uint32_t,2>,6>{{{0x801BB52C,0x801BB648},{0x801BCEF8,0x801BD078},{0x801BFAA4,0x801BFC44},{0x801C0BBC,0x801C0C88},{0x801C24A4,0x801C267C},{0x801BB730,0x801BB848}}}){
   overlay=callbacks[0]==0x801BB730?0x70A50:0x635C0;pair(r,callbacks[0],callbacks[1],d);
   const auto* policy=select_native_scene_policy(r);if(callbacks[0]==0x801BB730)assert(policy==nullptr);else assert(policy&&policy->divider==d&&policy->update==nullptr);++guards;
   w(r,0x801A9C88)=1;assert(select_native_scene_policy(r)==nullptr);w(r,0x801A9C88)=0;++guards;
  }
 }
 int main(int argc,char** argv){assert(argc==3);Image game(0x400000/4),menu(game.size());std::ifstream(argv[1],std::ios::binary).read(reinterpret_cast<char*>(game.data()),0x400000);std::ifstream(argv[2],std::ios::binary).read(reinterpret_cast<char*>(menu.data()),0x400000);
- title_math(menu);game_math(game);menu_math(menu);drawing(game,menu);complete_files_draw(menu);ownership(menu);native_ui_reset();
+ title_math(menu);game_math(game);menu_math(menu);drawing(game,menu);complete_files_draw(menu);pak_math(menu);ownership(menu);native_ui_reset();
  std::cout<<"PASS: "<<cases<<" connected UI cases; "<<endpoints<<" Original motion endpoints; "<<samples<<" Native math samples; "<<draws<<" repeated Original UI draw/command comparisons; "<<guards<<" ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.\n";
 }

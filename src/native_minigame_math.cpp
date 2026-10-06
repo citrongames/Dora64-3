@@ -6,6 +6,7 @@
 #include <cmath>
 #include <limits>
 #include <optional>
+#include <stdexcept>
 #include <unordered_map>
 #include <vector>
 
@@ -494,6 +495,13 @@ void MinigameEquations::sample(std::uint8_t* ram,Nanoseconds now) {
             s.changed_actors.push_back(f.owner.actor);
     }
     s.shown_time=now;
+}
+void MinigameEquations::resume_after_handoff(std::uint8_t* ram,Nanoseconds now) {
+    auto& s=*state_;
+    if(s.ram!=ram)return;
+    if(s.open||now<s.source_time)throw std::logic_error("Minigame handoff outside completed Source boundary");
+    s.restore(ram);s.source_time=s.shown_time=now;
+    s.changed_actors.clear();s.changed_addresses.clear();
 }
 void MinigameEquations::restore_source(std::uint8_t* ram){state_->restore(ram);}
 void MinigameEquations::reset(std::uint8_t* ram) {

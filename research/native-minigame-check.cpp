@@ -160,8 +160,15 @@ static void equations() {
     graph.store_float(actor+0x9C,expression,55,Role::Motion,owner);m.F(actor+0x9C,55);
     graph.end_source(m.ram(),clock_now);graph.sample(m.ram(),clock_now+50000000);
     close(m.R(actor+0x9C),33.5);graph.restore_source(m.ram());
+    // Delayed session activation starts at its actual handoff, preserving the
+    // completed Source equation without counting the old host-read wait.
+    const auto activated=clock_now+5*second;
+    graph.resume_after_handoff(m.ram(),activated);
+    graph.sample(m.ram(),activated);close(m.R(actor+0x9C),55);
+    graph.sample(m.ram(),activated+50000000);close(m.R(actor+0x9C),33.5);
+    graph.restore_source(m.ram());close(m.R(actor+0x9C),55);
     // External command wins and lifetime replacement cancels old publication.
-    m.F(actor+0x9C,900);graph.sample(m.ram(),clock_now+40000000);close(m.R(actor+0x9C),900);
+    m.F(actor+0x9C,900);graph.sample(m.ram(),activated+60000000);close(m.R(actor+0x9C),900);
     graph.reset();
 }
 int main(int argc,char** argv) {

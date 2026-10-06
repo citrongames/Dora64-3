@@ -10,3 +10,6 @@ extern "C" void dora3_lib_80057A80(uint8_t*,recomp_context*){std::abort();}
 namespace dora3::native_time {
 Nanoseconds monotonic_time(){std::abort();}
 }
+
+// Synthetic loaded-module epoch; actual reload behavior is checked separately.
+extern "C" uint64_t dora3_overlay_generation(uint32_t rom){return dora3_overlay_loaded(rom)?1:0;}

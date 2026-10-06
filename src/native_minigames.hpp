@@ -5,6 +5,8 @@
 #include <optional>
 
 bool native_minigame_eligible(std::uint8_t*);
+// Exact loaded ROM module, including the shared selection/results module.
+std::uint32_t native_minigame_module(std::uint8_t*);
 void native_minigame_begin(std::uint8_t*,dora3::native_time::Nanoseconds,unsigned);
 void native_minigame_update(std::uint8_t*,recomp_context*,dora3::native_time::Nanoseconds);
 void native_minigame_reset(std::uint8_t* =nullptr);

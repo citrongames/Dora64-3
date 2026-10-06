@@ -75,6 +75,17 @@ std::array<int32_t,11> motion_fields(uint8_t* rdram,uint32_t actor,uint32_t phys
             word(rdram,physical+0xC),word(rdram,physical+0x58),
             MEM_H(0x34,int32_t(physical)),MEM_H(0x36,int32_t(physical)),MEM_BU(0xC9,int32_t(physical))};
 }
+struct OriginalClipContinuation {
+    uint8_t* ram=nullptr;
+    uint64_t run=0;
+    int32_t expected_time=0;
+    uint32_t channels=0,descriptors=0;
+    uint8_t expected_flags=0;
+    AnimationState source{};
+    ModelEventCheckpoint start{};
+    float rate=0;
+    bool discrete=false;
+};
 struct Model {
     uint64_t time_command=0;
     uint64_t lifetime=0,run=0;
@@ -86,6 +97,9 @@ struct Model {
     bool native_born=false;
     bool acquired_start=false;
     std::optional<NativeAnimationClock> native_clock;
+    std::optional<OriginalClipContinuation> original_continuation;
+    std::optional<SourceModelCommandSample> source_clock_anchor;
+    std::map<std::pair<uint64_t,uint32_t>,ModelEventCheckpoint> delivered_cues;
     std::optional<SimulationSlice> source_step{},source_command_hold{};
     uint64_t source_pool=0;
     uint64_t event_sequence=0,end_sequence=0;
@@ -111,6 +125,15 @@ NativeScalarClock& scalar_clock(uint8_t* rdram,Model& entry,uint32_t address,flo
             slice.tick,slice.denominator,slice.phase,slice.phase,current,bits}).first;
     }
     return i->second;
+}
+bool same_continuation(uint8_t* rdram,uint32_t model,const Model& entry) {
+    if(!entry.original_continuation)return false;
+    const auto& c=*entry.original_continuation;
+    return c.ram==rdram&&c.run==entry.run&&c.expected_time==word(rdram,model+0x64)&&
+        c.channels==uint32_t(word(rdram,model+0x60))&&c.channels&&
+        c.descriptors==uint32_t(word(rdram,model+0x18))&&
+        (c.expected_flags&~2u)==(MEM_BU(0x7C,int32_t(model))&~2u)&&
+        c.source.duration==real(rdram,c.descriptors+4);
 }
 void restore(uint8_t* rdram,Model& entry) {
     if(!entry.sampled)return;
@@ -260,7 +283,7 @@ void ModelAnimation::hook(uint8_t* rdram,recomp_context* ctx,uint32_t address,Na
     case 0x8003B7D0:
         // Original resets renderer/retirement bookkeeping, not the heap or
         // bone allocations. Invalidate clocks without forgetting live owners.
-        for(auto& [owner,entry]:s.models) {(void)owner;entry.observation.reset();entry.last_pose.reset();entry.native_clock.reset();entry.events.clear();entry.event_sequence=0;entry.scalars.clear();entry.angles.clear();entry.motions.clear();entry.bindings.clear();}
+        for(auto& [owner,entry]:s.models) {(void)owner;entry.observation.reset();entry.last_pose.reset();entry.native_clock.reset(); /* Original continuation keeps live clip/cue identity across renderer reset. */ entry.events.clear();entry.event_sequence=0;entry.scalars.clear();entry.angles.clear();entry.motions.clear();entry.bindings.clear();}
         return;
     case 0x80033A14: { // Region reset can coexist with other live heaps/models.
         const uint64_t end=uint64_t(model)+uint32_t(ctx->r5);
@@ -327,8 +350,20 @@ void ModelAnimation::hook(uint8_t* rdram,recomp_context* ctx,uint32_t address,Na
                 }
                 entry.source_command_hold=entry.source_step;
             }
+            const bool flag_command=address==0x80039578||address==0x800395BC;
+            auto continuation=flag_command&&same_continuation(rdram,model,entry)?entry.original_continuation:std::nullopt;
             restore(rdram,i->second);i->second.observation.reset();i->second.native_clock.reset();i->second.events.clear();i->second.event_sequence=0;i->second.acquired_start=false;
+            i->second.original_continuation.reset();i->second.source_clock_anchor.reset();i->second.delivered_cues.clear();
             i->second.run=++s.next_run;
+            if(continuation&&uint32_t(ctx->r5)<=1) {
+                const uint8_t bit=address==0x80039578?8:1;
+                auto flags=[&](uint8_t value){return uint8_t(ctx->r5?(value|bit):(value&~bit));};
+                continuation->run=entry.run;
+                continuation->expected_flags=flags(continuation->expected_flags);
+                continuation->source.flags=flags(continuation->source.flags);
+                continuation->start=command_event_checkpoint(rdram,model);
+                entry.original_continuation=continuation;
+            }
             if(address==0x80039564||address==0x8003B6BC||address==0x8003B744)i->second.time_command=i->second.run;
             if(address==0x8003B6BC || address==0x8003B744)i->second.last_pose.reset();
         }
@@ -360,6 +395,30 @@ void ModelAnimation::hook(uint8_t* rdram,recomp_context* ctx,uint32_t address,Na
         else if(after>=duration)after=(flags&1)?duration:after-duration;
     }
     entry.observation=Observation{{time,duration,rate,flags,true},std::bit_cast<int32_t>(after),s.step,s.divider,s.origin,uint32_t(word(rdram,model+0x60)),descriptors};
+    if(entry.original_continuation) {
+        if(!same_continuation(rdram,model,entry)) {entry.original_continuation.reset();return;}
+        auto& c=*entry.original_continuation;
+        const auto before=time;
+        // Actual SDK arithmetic is unchanged. Only its formerly Native cue
+        // ledger and the discrete Source command view continue across modes.
+        const bool moving=!(flags&8);
+        const long double finish=moving?static_cast<long double>(before)+rate:before;
+        const long double physical_finish=(flags&1)&&rate>=0?std::min(finish,static_cast<long double>(duration)):finish;
+        const long double delta=physical_finish-before;
+        if(delta!=0){entry.event_distance+=delta;++entry.event_sequence;}
+        c.rate=rate;c.expected_time=std::bit_cast<int32_t>(after);
+        c.expected_flags=flags;
+        if(moving) {
+            bool ended=false;
+            float next=c.source.time+rate;
+            if(next<0){next+=duration;ended=true;}
+            else if(next>=duration){next=(flags&1)?duration:next-duration;ended=true;}
+            c.source.time=next;c.source.increment=rate;
+            c.source.flags=uint8_t((flags&~2u)|(ended?2u:0u));
+            c.expected_flags=uint8_t((flags&~2u)|((finish<0||finish>=duration)?2u:0u));
+            if(finish<0||finish>=duration)++entry.end_sequence;
+        }
+    }
 }
 void ModelAnimation::acquire_simulation(uint8_t* rdram,const AdvancePlan& plan,bool replace_timeline) {
     auto& s=*state_;
@@ -368,7 +427,7 @@ void ModelAnimation::acquire_simulation(uint8_t* rdram,const AdvancePlan& plan,b
         // The new shared timeline can reuse tick/phase while an actor is
         // paused. Excluded models must not retain the old scalar baseline.
         const auto rate=plan(model);
-        if(replace_timeline){entry.acquired_start=false;entry.source_step.reset();entry.source_command_hold.reset();}
+        if(replace_timeline){entry.acquired_start=false;entry.source_step.reset();entry.source_command_hold.reset();entry.original_continuation.reset();entry.source_clock_anchor.reset();entry.delivered_cues.clear();}
         if(replace_timeline && entry.native_clock)entry.native_clock->end_tick.reset();
         if(replace_timeline || rate) {entry.scalars.clear();entry.angles.clear();entry.motions.clear();entry.bindings.clear();}
         if(!rate || !entry.observation || entry.native_clock || !entry.last_pose)continue;
@@ -448,7 +507,7 @@ void ModelAnimation::advance_simulation(uint8_t* rdram,recomp_context* ctx) {
     const auto model=uint32_t(ctx->r4);region(model,0x84);
     auto found=state_->models.find(model);
     if(found==state_->models.end())throw std::logic_error("Unregistered model in native simulation");
-    auto& entry=found->second;entry.observation.reset();
+    auto& entry=found->second;entry.observation.reset();entry.original_continuation.reset();
     word(rdram,0x80082724)=int32_t(model); // Original shared model selector.
     entry.source_pool=state_->source_pool;
     if(entry.source_command_hold) {
@@ -641,7 +700,29 @@ void ModelAnimation::motion_end(uint8_t* rdram,uint32_t model,uint32_t actor) {
 }
 bool ModelAnimation::frame_event(uint8_t* rdram,uint32_t model,float observed,float target,uint64_t site,bool source_start_consumed) {
     const auto* slice=active_simulation_slice();
-    if(!slice)return observed==target;
+    if(!slice) {
+        const auto found=state_->models.find(model);
+        if(state_->frame||found==state_->models.end()||!same_continuation(rdram,model,found->second)||
+           std::bit_cast<int32_t>(observed)!=word(rdram,model+0x64))return observed==target;
+        auto& entry=found->second;const auto& c=*entry.original_continuation;
+        if(!std::isfinite(target)||target<0||target>c.source.duration)return false;
+        const auto key=std::make_pair(site,std::bit_cast<uint32_t>(target));
+        auto start=c.start;
+        if(const auto old=entry.delivered_cues.find(key);old!=entry.delivered_cues.end()&&old->second.run==entry.run) {
+            const auto direction=c.rate<0?-1.L:1.L;
+            if(direction*(old->second.distance-start.distance)>0)start=old->second;
+        }
+        const long double delta=entry.event_distance-start.distance;
+        const long double begin=start.time,end=begin+delta,duration=c.source.duration;
+        bool hit=false;
+        if((c.source.flags&1)&&c.rate>=0)hit=begin<target&&end>=target;
+        else if(target<duration) {
+            if(end>begin)hit=std::floor((end-target)/duration)>std::floor((begin-target)/duration);
+            else if(end<begin)hit=std::ceil((end-target)/duration)>std::ceil((begin-target)/duration);
+        }
+        entry.delivered_cues.insert_or_assign(key,command_event_checkpoint(rdram,model));
+        return hit;
+    }
     auto found=state_->models.find(model);
     if(found==state_->models.end())throw std::logic_error("Unregistered animation event owner");
     auto& entry=found->second;
@@ -670,6 +751,7 @@ bool ModelAnimation::frame_event(uint8_t* rdram,uint32_t model,float observed,fl
         }
     }
     entry.events.insert_or_assign(event_key,EventCursor{entry.event_sequence,slice->tick,slice->phase,slice->numerator,slice->denominator,result});
+    if(result)entry.delivered_cues.insert_or_assign(event_key,command_event_checkpoint(rdram,model));
     return result;
 }
 std::optional<std::pair<AnimationState,unsigned>> ModelAnimation::original_clock_sample(uint8_t* rdram,std::uint32_t model) const {
@@ -684,6 +766,70 @@ std::optional<std::pair<AnimationState,unsigned>> ModelAnimation::original_clock
        (MEM_BU(0x7C,std::int32_t(model))&~2u)!=(observation.before.flags&~2u)||
        word(rdram,observation.descriptors+4)!=std::bit_cast<std::int32_t>(observation.before.duration))return std::nullopt;
     return std::pair{observation.before,observation.divider};
+}
+void ModelAnimation::remember_source_clock(uint32_t model,const SourceModelCommandSample& sample) {
+    const auto found=state_->models.find(model);
+    if(found!=state_->models.end()&&found->second.run==sample.checkpoint.run)found->second.source_clock_anchor=sample;
+}
+void ModelAnimation::handoff_to_original(uint8_t* rdram) {
+    if(state_->frame||active_simulation_slice())throw std::logic_error("Original model handoff before owner drain");
+    for(auto& [model,entry]:state_->models) {
+        if(!entry.native_clock)continue;
+        const auto clock=*entry.native_clock;
+        if(clock.expected_time!=word(rdram,model+0x64)||clock.expected_flags!=MEM_BU(0x7C,int32_t(model))||
+           clock.channels!=uint32_t(word(rdram,model+0x60))||!clock.channels||
+           clock.descriptors!=uint32_t(word(rdram,model+0x18))||clock.duration!=real(rdram,clock.descriptors+4)) {
+            // A real foreign write owns the new state. Drop old clocks without
+            // restoring their RAM or carrying an invalid cue into Original.
+            entry.native_clock.reset();entry.native_pose=false;entry.original_continuation.reset();
+            entry.source_clock_anchor.reset();entry.delivered_cues.clear();continue;
+        }
+        auto start=command_event_checkpoint(rdram,model);
+        if(clock.last_slice&&clock.denominator) {
+            const auto phase=clock.last_slice->phase+clock.last_slice->numerator;
+            const long double current=clock.origin+static_cast<long double>(clock.rate)*clock.elapsed/clock.denominator;
+            const long double initial=clock.origin+static_cast<long double>(clock.rate)*(static_cast<long double>(clock.elapsed)-phase)/clock.denominator;
+            const bool clamp=(clock.expected_flags&1)&&clock.rate>=0;
+            start.distance-=clamp?std::min(current,static_cast<long double>(clock.duration))-std::min(initial,static_cast<long double>(clock.duration)):current-initial;
+            long double time=std::fmod(initial,clock.duration);if(time<0)time+=clock.duration;
+            if(clamp&&initial>=clock.duration)time=clock.duration;
+            start.time=float(time);
+        }
+        AnimationState source{start.time,clock.duration,clock.rate,clock.expected_flags,true};
+        const bool discrete=entry.source_clock_anchor&&entry.source_clock_anchor->checkpoint.run==entry.run;
+        if(discrete){source.time=entry.source_clock_anchor->checkpoint.time;source.flags=entry.source_clock_anchor->flags;}
+        entry.original_continuation=OriginalClipContinuation{rdram,entry.run,clock.expected_time,clock.channels,clock.descriptors,clock.expected_flags,source,start,clock.rate,discrete};
+        entry.native_clock.reset();entry.native_pose=false;entry.source_step.reset();entry.source_command_hold.reset();
+        entry.scalars.clear();entry.angles.clear();entry.motions.clear();entry.bindings.clear();
+    }
+}
+bool ModelAnimation::handoff_active(uint8_t* ram,uint32_t model) const {
+    const auto found=state_->models.find(model);
+    return !state_->frame&&!active_simulation_slice()&&found!=state_->models.end()&&same_continuation(ram,model,found->second);
+}
+bool ModelAnimation::handoff_source_event(uint8_t* ram,uint32_t model,float observed,float target) const {
+    const auto found=state_->models.find(model);
+    if(found==state_->models.end()||!handoff_active(ram,model)||std::bit_cast<int32_t>(observed)!=word(ram,model+0x64))return observed==target;
+    const auto& c=*found->second.original_continuation;
+    return c.discrete?c.source.time==target:observed==target;
+}
+std::optional<uint8_t> ModelAnimation::handoff_source_flags(uint8_t* ram,uint32_t model) const {
+    const auto found=state_->models.find(model);
+    if(found==state_->models.end()||!handoff_active(ram,model)||!found->second.original_continuation->discrete)return std::nullopt;
+    return found->second.original_continuation->source.flags;
+}
+void ModelAnimation::resume_frame_clock(uint8_t* rdram,Nanoseconds now) {
+    auto& s=*state_;
+    if(s.frame||now<0)throw std::logic_error("Model handoff inside frame or invalid clock");
+    for(auto& [model,entry]:s.models) {
+        if(!entry.observation)continue;
+        auto& o=*entry.observation;
+        if(o.step!=s.step||o.expected_time!=word(rdram,model+0x64)||
+           o.channels!=uint32_t(word(rdram,model+0x60))||
+           o.descriptors!=uint32_t(word(rdram,model+0x18)))continue;
+        if(now<o.origin)throw std::logic_error("Model handoff clock moved backwards");
+        o.origin=now;
+    }
 }
 void ModelAnimation::begin_frame(uint8_t* rdram,recomp_context* ctx,Nanoseconds now,unsigned bank) {
     auto& s=*state_;
@@ -783,6 +929,9 @@ extern "C" int dora3_native_model_advance(uint8_t* rdram,recomp_context* ctx) {
     dora3::native_time::game_model_animation().advance_simulation(rdram,ctx);return 1;
 }
 
+extern "C" int dora3_native_model_handoff_active(uint8_t* ram,uint32_t model) {
+    return dora3::native_time::game_model_animation().handoff_active(ram,model);
+}
 extern "C" int dora3_native_model_event(uint8_t* ram,uint32_t model,float observed,float target,uint64_t site) {
     return dora3::native_time::game_model_animation().frame_event(ram,model,observed,target,site);
 }

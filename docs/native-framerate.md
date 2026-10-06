@@ -1,3 +1,29 @@
+## Test-046: блок6 интеграции завершён
+
+Windows046 из startup-integration-block6-v1 сохранён в общей testbuild папке.
+30 завершённых CPU checks PASS, включая49 сценариев реального общего цикла.
+Долгий full-player прерван по прямой команде пользователя; текущего PASS
+полного персонажа/NPC matrix нет. Общий pre-build завершён частично.
+Native часы запускаются после завершения старого host read;
+сессия закреплена за callbacks/ROM/divider/verified reload generation.
+Один timestamp связывает движение, камеры, модельные позы, UI и fade.
+При выходе сохраняются дробная фаза моделей и исходные дискретные Source
+решения/cues без повторного исполнения команд. Удержание двух банков,
+stale wakes, смена частоты/модуля, pause/seek/rebind/reset проверены CPU.
+Резервные player states19/23/26/30 больше не прерывают Native мир.
+Pak/file UI получил Native easing курсора/панелей и hint offset;
+device/FSM/I/O и authored blink/sprite остаются Source once.
+
+Имена и ROM-backed описания закреплены в каталоге и документах; старые ABI
+и canonical C сохранены. Exact-input proofs сохраняют исходное execution
+provenance. Игра/renderer/GPU локально не запускались; синтетические CPU
+inputs не заменяют полное прохождение или визуальную проверку.
+Четыре auxiliary startup/resource/model control пары и unsafe/unknown/
+loading/framebuffer границы оставлены на явном Original fallback;
+их Native движение не заявляется. Подробности — native-framerate.md.
+Прежние EXE, ROM, settings, saves и DLL сохранены; donor и32 dependency
+pins неизменны. Результат сохраняется commit/push в private main.
+
 ## Test-045: весь блок4 — миниигры и специальные режимы
 
 Завершены девять миниигр и три общих режима: выбор, участники/настройка,
@@ -2788,3 +2814,41 @@ Source dispatcher отмечает фактически вызванные UI do
 а не только звук. Дополнительные Native кадры повторяют geometry/commands;
 только JAL444C0 пропускается, blink/sound flags получают Original pre-draw
 состояние и затем Source результат восстанавливается. Каталог/документы исправлены.
+
+
+## Блок6 — интеграция, готовый код перед общим CPU прогоном
+
+Native часы world/scripted/minigames/UI/models запускаются после фактического
+Acquiring→Native, когда завершилось чтение Original кадра. Сессия принадлежит
+точной паре update/draw, ROM, Source divider и монотонной verified load generation,
+включая перезагрузку родительского overlay. Старый wake не получает новый owner.
+Один frame timestamp используется движением, камерой, моделями, UI и fade.
+
+Manual→Original сохраняет физическую дробную фазу клипа. Отдельное продолжение
+Source-view сохраняет исходные дискретные equality/clip-end решения врагов:
+18→21 не изобретает frame20. Неполученные непрерывные cues доставляются один раз;
+pause/run смена сохраняет owner, seek/rebind/free прекращают старое продолжение.
+Renderer bookkeeping reset не удаляет живую анимацию. Foreign RAM writes и
+replacement minigame modules не получают старые borrowed поля.
+
+Резервные player states19/23/26/30 — восемь точных8-byte jr-ra/nop handlers.
+Они не требуют fallback всего мира; state0 остаётся Source character/resource
+initialization. Pak/file UI BB52C/BB648 ROM635C0 подключён к Native UI: authored
+scalar easing таблицы курсора/размеров, integer pixel truncation, hint offset,
+isolated sprite/bob draw cadence; device polling/FSM/I/O выполняются Source once.
+
+Callback inventory включает все ordinary process-pair installs. Четыре
+auxiliary пары остаются явными Source boundaries: ROM59E80 4FE4/5064
+(startup/device state machine с командами в draw),59D8/5A70 (actor/camera
+control),6FD0/70A8 (resource/model selector), ROM70A50 F9B58/F9C88
+(отдельный actor/model control initializer с heap80385000). Это не игровые
+миниигры и не normal world pair. Их Native движение не заявляется;
+строки fallback называют точную причину. Неизвестные callbacks, loader,
+framebuffer copy, дополнительные процессы и resource/pause границы также
+сохраняют Original. Callback scan — candidates; реальные ROM тела и load
+guards являются основанием решения. Это не доказательство полного прохождения.
+
+Подготовлен общий connected CPU набор31 checks, включая actual session/loop
+integration, delayed activation, двухбанковую передачу, stale wakes/reloads,
+models/cues и все прежние блоки. Проверки/Windows046 запускаются только после
+этого целого кода/имён/документов. Игра/renderer/GPU локально не запускаются.

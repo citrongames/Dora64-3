@@ -47,6 +47,9 @@ public:
     std::vector<std::uint32_t> changed_local_actors() const;
     void end_source(std::uint8_t*,Nanoseconds);
     void sample(std::uint8_t*,Nanoseconds);
+    // Rebase a completed Source observation at actual session activation.
+    // It retains the equation and lifetime; it never advances a command.
+    void resume_after_handoff(std::uint8_t*,Nanoseconds);
     void restore_source(std::uint8_t*);
     void reset(std::uint8_t* =nullptr);
     bool recording() const;

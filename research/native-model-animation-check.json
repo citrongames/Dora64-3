@@ -1,6 +1,6 @@
 {
   "scope": "Actual original constructors, bind/seek/pause/clamp, linear/Hermite pose, morph and destruction; synthetic assets and allocator; no renderer or scene activation",
-  "result": "PASS: 20 crossing timelines / actual player frame-18 event; 24 native simulation model timelines with nondestructive events and no render double-advance; 12 fractional short-angle wrap schedules; 12 latched angular-command schedules; 12 preceding opacity-command schedules; 12 exact-float scalar/retirement timelines with pause/write/acquisition/lifetime invalidation; 74 original linear/morph native pose samples at 60/73/120/144/165/360 Hz and both dividers; Hermite curve through original matrix builder, bank isolation, guest context/time/event preservation, pause/seek/clamp/rebind/stale updates, unknown-write rollback, deferred logic morph, draw-time deletion and same-address recreation; no game/GPU.",
+  "result": "PASS: 12 fractional Native\u2192Original model/cue continuations, activation rebase without pose/time mutation, authored Source equality18\u219221 skip and21\u219224 continuation, pending/delivered cue once, pause/resume/run/seek/renderer reset; actual original SDK counter; no game/GPU.\nPASS: 20 crossing timelines / actual player frame-18 event; 24 native simulation model timelines with nondestructive events and no render double-advance; 12 fractional short-angle wrap schedules; 12 latched angular-command schedules; 12 preceding opacity-command schedules; 12 exact-float scalar/retirement timelines with pause/write/acquisition/lifetime invalidation; 74 original linear/morph native pose samples at 60/73/120/144/165/360 Hz and both dividers; Hermite curve through original matrix builder, bank isolation, guest context/time/event preservation, pause/seek/clamp/rebind/stale updates, unknown-write rollback, deferred logic morph, draw-time deletion and same-address recreation; no game/GPU.",
   "sanitizers": "ASan/LSan original and new code; UBSan new C++ only",
   "original_functions": [
     "dora3_lib_80055BD0",
@@ -55,19 +55,19 @@
     "dora3_s3_core_801C1664"
   ],
   "source_sha256": {
-    "src/native_model_animation.cpp": "6a8c6ff61b105ccaa385893ea650ae811b80cb0463bace4ca2bc3383c26e04cf",
+    "src/native_model_animation.cpp": "43dbb2dc27453d421fd4bd11699d9f2ebc3a392b64c74b193248508878569055",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-    "research/native-model-animation-check.cpp": "80937651a56a133aca4c459566085e8f809cacf31b4d952d7251fa198a80d96e",
+    "research/native-model-animation-check.cpp": "0c317da5f395d88432be1e998b029f852f97dcf49b65c292771be0f45d26b75d",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
-    "research/native-inactive-minigame-fixture.cpp": "dafaccdff31181ed0e62dec4a4ec04bfe1eb6c6fd377201f2e81e4f75dbbe4bb",
+    "research/native-inactive-minigame-fixture.cpp": "9ad7a6a6c829626b347b319c8344228dbca11caa56f545ae8f14231a877a223a",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
-    "src/native_model_animation.hpp": "cf0ac6506c490cf4ea5182a5e91e43897180b476b2fc4ba1791aac590f7e5505",
+    "src/native_model_animation.hpp": "374044e91b204a922b5a43dc279e518cb87a0825797459f777a58ff82e0cf30b",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "tools/check_native_model_animation.py": "3afc84d1fd93be9a1ea40a1662a72832e4f177a1f2a66db04c6482aaf28bb1df"
   },
-  "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
+  "generation_receipt_sha256": "7c16ae33ac42ed5fec10dacde1da5021ad90400a904963b8f6af4849be4f0266",
   "remaining": [
     "Unreviewed phase1 commands, matrix consumers and full scene coverage still need integration audit",
     "This component does not convert movement, camera, collision, AI, scripts or all 2D systems"

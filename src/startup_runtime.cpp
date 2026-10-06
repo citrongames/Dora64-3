@@ -5,6 +5,7 @@
 // the optional live RT64 mode continues through SDL input/audio.
 // The live mode has SDL input/audio; no validated gameplay loop yet.
 #include <atomic>
+#include <algorithm>
 #include <chrono>
 #include <cstdio>
 #include <cstdlib>
@@ -32,6 +33,8 @@ RspExitReason dora3_aspMain(uint8_t*, uint32_t);
 void dora3_configure_hardware(const recomp::Configuration&);
 namespace {
 std::array<std::atomic<bool>,std::size(dora3_overlay_regions)> overlay_active{};
+std::array<std::atomic<uint64_t>,std::size(dora3_overlay_regions)> overlay_generation{};
+std::atomic<uint64_t> next_overlay_generation{1};
 std::filesystem::path diagnostic_path;
 bool overlay_dependencies_active(uint32_t rom){
     for(const auto& dependency:dora3_overlay_dependencies)
@@ -124,6 +127,20 @@ extern "C" int dora3_overlay_loaded(uint32_t section_rom) {
     return 0;
 }
 
+// Every verified load has a new identity, including byte-identical reloads.
+// The parent's newest load changes the child's effective identity as well.
+extern "C" uint64_t dora3_overlay_generation(uint32_t section_rom) {
+    if(!dora3_overlay_loaded(section_rom))return 0;
+    uint64_t value=0;
+    for(size_t i=0;i<overlay_active.size();++i)
+        if(dora3_overlay_regions[i].rom==section_rom)value=overlay_generation[i].load();
+    for(const auto& dependency:dora3_overlay_dependencies)if(dependency.rom==section_rom) {
+        const auto parent=dora3_overlay_generation(dora3_overlay_regions[dependency.required_index].rom);
+        if(!parent)return 0;
+        value=std::max(value,parent);
+    }
+    return value;
+}
 extern "C" void dora3_pending(uint32_t address) {
     std::fprintf(stderr,"PENDING original function %08X; execution stopped, no success stub\n",address);
     stop_diagnostic(77);
@@ -208,7 +225,10 @@ extern "C" void dora3_verify_dma(uint8_t* rdram) {
             if(!overlay_dependencies_active(region.rom)){
                 std::fprintf(stderr,"OVERLAY LOAD WITHOUT REQUIRED OVERLAY rom=%08X\n",region.rom);std::_Exit(85);
             }
-            load_overlays(region.rom,(int32_t)region.ram,region.size);overlay_active[i]=true;
+            const auto generation=next_overlay_generation.fetch_add(1);
+            if(!generation){std::fprintf(stderr,"OVERLAY generation exhausted\n");std::_Exit(85);}
+            load_overlays(region.rom,(int32_t)region.ram,region.size);
+            overlay_generation[i]=generation;overlay_active[i]=true;
             std::fprintf(stderr,"OVERLAY REGISTERED rom=%08X ram=%08X bytes=%X\n",region.rom,region.ram,region.size);
         }
     }

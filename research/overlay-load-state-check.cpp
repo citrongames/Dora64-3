@@ -1,6 +1,7 @@
 #include "recomp.h"
 #include "overlay_regions.hpp"
 #include <array>
+#include <algorithm>
 #include <atomic>
 #include <cassert>
 #include <cstdio>
@@ -40,10 +41,11 @@ static void load(uint8_t* rdram,unsigned index,bool parents=true) {
     if(parents)for(const auto& dependency:dora3_overlay_dependencies)
         if(dependency.rom==region.rom&&!dora3_overlay_loaded(dora3_overlay_regions[dependency.required_index].rom))
             load(rdram,dependency.required_index);
+    const auto previous=dora3_overlay_generation(region.rom);
     begin(rdram,region.rom,region.ram,region.size);
-    assert(!dora3_overlay_loaded(region.rom));
+    assert(!dora3_overlay_loaded(region.rom)&&!dora3_overlay_generation(region.rom));
     copy(rdram,region.rom,region.ram,region.size);dora3_verify_dma(rdram);
-    assert(!pending_dma.active&&dora3_overlay_loaded(region.rom));
+    assert(!pending_dma.active&&dora3_overlay_loaded(region.rom)&&dora3_overlay_generation(region.rom)>previous);
     runtime_overlay_gate(region.ram,region.rom);
 }
 int main(int argc,char** argv) {
@@ -71,11 +73,12 @@ int main(int argc,char** argv) {
             assert(bool(dora3_overlay_loaded(dora3_overlay_regions[j].rom))==(overlay_active[j].load()&&overlay_dependencies_active(dora3_overlay_regions[j].rom)));
     }
     unload_scene_code();load(rdram,city);const auto registered_before=registered;
+    const auto first_generation=dora3_overlay_generation(0x132F80);assert(first_generation);
     // A reload invalidates the currently executable range before its DMA.
     const auto& region=dora3_overlay_regions[city];
     begin(rdram,region.rom,region.ram,region.size);assert(!dora3_overlay_loaded(0x132F80));
     copy(rdram,region.rom,region.ram,region.size);dora3_verify_dma(rdram);
-    assert(dora3_overlay_loaded(0x132F80)&&registered==registered_before+1);
+    assert(dora3_overlay_loaded(0x132F80)&&registered==registered_before+1&&dora3_overlay_generation(0x132F80)>first_generation);
     // A different level overlays the exact same VRAM; city ownership must end.
     load(rdram,region_index(0x1398A0));assert(!dora3_overlay_loaded(0x132F80));
     load(rdram,city);begin(rdram,region.rom+4,region.ram+4,4);
@@ -83,6 +86,8 @@ int main(int argc,char** argv) {
     assert(!dora3_overlay_loaded(0x132F80)); // Partial matching bytes cannot register code.
     load(rdram,city);overlay_active[common]=false;assert(!dora3_overlay_loaded(0x132F80));
     overlay_active[common]=true;assert(dora3_overlay_loaded(0x132F80));
+    const auto child_generation=dora3_overlay_generation(0x132F80);
+    load(rdram,common);assert(dora3_overlay_generation(0x132F80)>child_generation);
     unload_scene_code();for(const auto& entry:dora3_overlay_regions)assert(!dora3_overlay_loaded(entry.rom));
     load(rdram,city);runtime_boot_reset();for(const auto& entry:dora3_overlay_regions)assert(!dora3_overlay_loaded(entry.rom));
     assert(registered>49&&unloaded>49);

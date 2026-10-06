@@ -15,6 +15,7 @@ double dora3_native_minigame_visual(uint8_t*,uint32_t){return 0;}
 
 #include "native_minigames.hpp"
 bool native_minigame_eligible(uint8_t*){return false;}
+uint32_t native_minigame_module(uint8_t*) {return 0;}
 void native_minigame_begin(uint8_t*,dora3::native_time::Nanoseconds,unsigned){}
 void native_minigame_update(uint8_t*,recomp_context*,dora3::native_time::Nanoseconds){}
 void native_minigame_reset(uint8_t*){}

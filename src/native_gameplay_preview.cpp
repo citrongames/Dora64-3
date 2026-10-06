@@ -1710,7 +1710,7 @@ static bool native_gameplay_preview_conditions(uint8_t* rdram,bool allow_room_re
     const bool death_owner=state>=50 && state<=56 &&
         (MEM_BU(0x2C,int32_t(control))==0 || (state==56 && MEM_BU(0x28,int32_t(control))==0 && MEM_BU(0x2C,int32_t(control))==1));
     return MEM_BU(0,int32_t(control))==0 && (death_owner || live_hover || (MEM_BU(0x2C,int32_t(control))==0 &&
-        ((((state>=1&&state<=18)||state==21||state==22||state==24||state==25||state==28||state==29||state==31||state==59||state==60||state==61||state==62||state==64||state==65||state==66||state==67||live_ground_damage) && MEM_BU(0x28,int32_t(control))==0)
+        ((((state>=1&&state<=18)||state==19||state==21||state==22||state==23||state==24||state==25||state==26||state==28||state==29||state==30||state==31||state==59||state==60||state==61||state==62||state==64||state==65||state==66||state==67||live_ground_damage) && MEM_BU(0x28,int32_t(control))==0)
          || player_flight_state(rdram))));
 }
 bool native_gameplay_preview_eligible(uint8_t* ram) {

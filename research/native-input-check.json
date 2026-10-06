@@ -8,10 +8,10 @@
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "research/native-input-check.cpp": "ea42a1347957173d2aae86f6315aed85ed11bdb6bacd7fe73b752a312637f025",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
-    "research/native-inactive-minigame-fixture.cpp": "dafaccdff31181ed0e62dec4a4ec04bfe1eb6c6fd377201f2e81e4f75dbbe4bb",
+    "research/native-inactive-minigame-fixture.cpp": "9ad7a6a6c829626b347b319c8344228dbca11caa56f545ae8f14231a877a223a",
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
     "tools/check_native_input.py": "1291597abe0db3dd1e1b09f3b3a24135fd6ce5deee32ab50f96b35c1e9a44e46"
   },
-  "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
+  "generation_receipt_sha256": "7c16ae33ac42ed5fec10dacde1da5021ad90400a904963b8f6af4849be4f0266",
   "sanitizers": "ASan/LSan; UBSan new C++"
 }

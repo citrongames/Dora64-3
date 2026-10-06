@@ -4,6 +4,8 @@
 #include "native_cutscene.hpp"
 #include "native_ui.hpp"
 #include "native_minigames.hpp"
+extern "C" int dora3_overlay_loaded(uint32_t);
+extern "C" uint64_t dora3_overlay_generation(uint32_t);
 namespace {
 int32_t word(uint8_t* rdram,uint32_t address) {return MEM_W(0,int32_t(address));}
 bool scene34_armed=false;
@@ -33,12 +35,12 @@ bool image_eligible(uint8_t* rdram) {
 }
 bool cutscene20_eligible(uint8_t* ram) {return word(ram,0x801A39DC)==3&&native_cutscene_eligible(ram);}
 bool cutscene30_eligible(uint8_t* ram) {return word(ram,0x801A39DC)==2&&native_cutscene_eligible(ram);}
-const ScenePolicy cutscene20_policy{"scene1-scripted",cutscene20_eligible,3,native_cutscene_update};
-const ScenePolicy cutscene30_policy{"scene1-scripted-30",cutscene30_eligible,2,native_cutscene_update};
-bool gameplay20_eligible(uint8_t* ram) {return word(ram,0x801A39DC)==3&&native_gameplay_preview_eligible(ram);}
-bool gameplay30_eligible(uint8_t* ram) {return word(ram,0x801A39DC)==2&&native_gameplay_preview_eligible(ram);}
-const ScenePolicy gameplay20_policy{"scene1-ground-preview",gameplay20_eligible,3,native_gameplay_preview_update};
-const ScenePolicy gameplay30_policy{"scene1-ground-preview-30",gameplay30_eligible,2,native_gameplay_preview_update};
+const ScenePolicy cutscene20_policy{"world-scripted-20",cutscene20_eligible,3,native_cutscene_update};
+const ScenePolicy cutscene30_policy{"world-scripted-30",cutscene30_eligible,2,native_cutscene_update};
+bool gameplay20_eligible(uint8_t* ram) {return dora3_overlay_loaded(0x70A50)&&word(ram,0x801A39DC)==3&&native_gameplay_preview_eligible(ram);}
+bool gameplay30_eligible(uint8_t* ram) {return dora3_overlay_loaded(0x70A50)&&word(ram,0x801A39DC)==2&&native_gameplay_preview_eligible(ram);}
+const ScenePolicy gameplay20_policy{"world-gameplay-20",gameplay20_eligible,3,native_gameplay_preview_update};
+const ScenePolicy gameplay30_policy{"world-gameplay-30",gameplay30_eligible,2,native_gameplay_preview_update};
 const ScenePolicy image_policy{"scene34-image",image_eligible,3};
 bool ui20_eligible(uint8_t* ram){return word(ram,0x801A39DC)==3&&dora3::native_time::native_ui_menu_eligible(ram);}
 bool ui30_eligible(uint8_t* ram){return word(ram,0x801A39DC)==2&&dora3::native_time::native_ui_menu_eligible(ram);}
@@ -65,6 +67,34 @@ const ScenePolicy* select_native_scene_policy(uint8_t* rdram) {
     if(ui20_policy.eligible(rdram))return &ui20_policy;
     if(ui30_policy.eligible(rdram))return &ui30_policy;
     return nullptr;
+}
+SceneIdentity native_scene_identity(uint8_t* ram,const ScenePolicy& policy) {
+    const uint32_t module=policy.update==native_minigame_update?native_minigame_module(ram):
+        (policy.update==native_gameplay_preview_update||policy.update==native_cutscene_update?0x70A50u:0x635C0u);
+    return {uint32_t(word(ram,0x801A4500)),uint32_t(word(ram,0x801A4514)),module,
+            policy.divider,dora3_overlay_generation(module)};
+}
+const char* native_scene_fallback_reason(uint8_t* ram) {
+    const auto divider=word(ram,0x801A39DC);
+    if(divider!=2&&divider!=3)return "unreviewed Source divider";
+    if(word(ram,0x801A9C88))return "framebuffer copy/transition";
+    if(!word(ram,0x801AA648)||!word(ram,0x801A9500))return "graphics disabled";
+    for(unsigned i=2;i<8;++i)if(word(ram,0x801A44F0+i*20)!=0&&word(ram,0x801A44F0+i*20)!=5)
+        return "additional Source process";
+    const auto update=uint32_t(word(ram,0x801A4500)),draw=uint32_t(word(ram,0x801A4514));
+    if(update==0x801BB730&&draw==0x801BB848) {
+        if(!dora3_overlay_loaded(0x70A50))return "world module not loaded";
+        return "world setup/pause/script/resource boundary";
+    }
+    if(dora3_overlay_loaded(0x59E80)) {
+        if(update==0x801B4FE4&&draw==0x801B5064)return "auxiliary startup/device command screen: Source";
+        if(update==0x801B59D8&&draw==0x801B5A70)return "auxiliary actor/camera control screen: Source";
+        if(update==0x801B6FD0&&draw==0x801B70A8)return "auxiliary resource/model selector: Source";
+    }
+    if(dora3_overlay_loaded(0x70A50)&&update==0x801F9B58&&draw==0x801F9C88)
+        return "auxiliary world actor/model control screen: Source";
+    if(update==0x800433D8&&!draw)return "Source loader/scene replacement";
+    return "Source initialization/transition or unreviewed callback pair";
 }
 void native_scene34_ready() {scene34_armed=true;}
 void invalidate_native_scene_policy() {scene34_armed=false;}

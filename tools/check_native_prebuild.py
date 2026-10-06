@@ -7,7 +7,7 @@ from pathlib import Path
 import argparse, concurrent.futures, datetime, hashlib, json, subprocess, sys, threading, time
 
 ROOT=Path(__file__).resolve().parents[1]
-CHECKS=('minigames ui cutscene model_animation frame_time simulation camera_control camera_modes '
+CHECKS=('integration minigames ui cutscene model_animation frame_time simulation camera_control camera_modes '
         'script_camera effects gravity input player_motion process_time frame_bridge '
         'frame_scheduler graphics_pump loop scene34_draw session present scene_transition '
         'player_update scene_frame story_pickups scene_objects enemy names overlay docs').split()
@@ -56,7 +56,7 @@ def main():
         if key=='enemy':cmd+=['--enemy-reference',str(a.enemy_reference.resolve())]
         if key=='scene_objects':cmd+=['--enemy-reference',str((ROOT/'build-local/startup-v362').resolve())]
         if key=='scene_objects':cmd+=['--workers',str(a.scene_workers)]
-        if key=='scene_objects' and (ROOT/'build-local/native-scene-object-check/block4-completed-replay.json').exists():
+        if key=='scene_objects' and (ROOT/'build-local/native-scene-object-check/block4-completed-replay.json').exists() and json.loads((ROOT/'build-local/native-scene-object-check/block4-completed-replay.json').read_text()).get('generation_receipt_sha256')==receipt:
             cmd+=['--completed-replay',str(ROOT/'build-local/native-scene-object-check/block4-completed-replay.json')]
         if key=='scene_objects':
             retained=ROOT/'build-local/native-scene-object-check/parser-abi-resume.json'

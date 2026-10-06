@@ -11,7 +11,7 @@
     "src/native_frame_producer.cpp": "362e5dd959e067a90ee4df1600d4893707b4a04361df957d7d922dd2635026e2",
     "research/native-session-check.cpp": "f7139aa68d4036c4663ad861ef00031584a517b71da7197eeb516565c55f3fc0",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
-    "research/native-inactive-minigame-fixture.cpp": "dafaccdff31181ed0e62dec4a4ec04bfe1eb6c6fd377201f2e81e4f75dbbe4bb",
+    "research/native-inactive-minigame-fixture.cpp": "9ad7a6a6c829626b347b319c8344228dbca11caa56f545ae8f14231a877a223a",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/native_frame_session.hpp": "fdc799da001be3c6653126beacb987ce3811ba6f1cc5eeac5922e539089f8e83",
     "src/native_frame_producer.hpp": "4df446b4e0456927e3242838687391f68d374149a8aac7a805f4f07d91fbb2a6",

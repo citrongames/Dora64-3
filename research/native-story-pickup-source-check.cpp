@@ -1125,3 +1125,6 @@ int main(int argc,char** argv) {
 #endif
 #endif
 }
+
+// Synthetic loaded-module epoch; actual reload behavior is checked separately.
+extern "C" uint64_t dora3_overlay_generation(uint32_t rom){return dora3_overlay_loaded(rom)?1:0;}

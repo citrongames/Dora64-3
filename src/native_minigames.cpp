@@ -275,10 +275,18 @@ bool native_minigame_eligible(std::uint8_t* rdram) {
     const auto divider=word(rdram,0x801A39DC);
     return (divider==2||divider==3)&&word(rdram,0x801AA648)&&word(rdram,0x801A9500)&&current(rdram);
 }
+std::uint32_t native_minigame_module(std::uint8_t* ram) {
+    const auto* definition=ram?current(ram):nullptr;
+    return definition?definition->rom:0;
+}
 void native_minigame_begin(std::uint8_t* rdram,Nanoseconds now,unsigned) {
     runtime.enabled=true;runtime.render_time=now;
     if(runtime.ram!=rdram||runtime.definition!=current(rdram))native_minigame_reset(rdram);
     runtime.enabled=true;runtime.ram=rdram;runtime.definition=current(rdram);runtime.render_time=now;
+    // Source was frozen while Acquiring awaited the old host read. That wait
+    // must not become a minigame movement/opacity/rotation interval.
+    runtime.equations.resume_after_handoff(rdram,now);
+    if(runtime.source_time)runtime.source_time=now;
 }
 void native_minigame_update(std::uint8_t* rdram,recomp_context* ctx,Nanoseconds now) {
     if(!native_minigame_eligible(rdram)||runtime.in_source)return;
@@ -315,7 +323,11 @@ void native_minigame_update(std::uint8_t* rdram,recomp_context* ctx,Nanoseconds 
     runtime.render_time=now;
 }
 void native_minigame_reset(std::uint8_t* rdram) {
-    if(rdram){restore_matrices(rdram);restore_camera_eyes(rdram);restore_ground(rdram);runtime.equations.restore_source(rdram);}
+    // A replacement callback/module/RDRAM owns its own fields, even if some
+    // addresses or values match the retired scene. Restore only the old owner.
+    if(rdram&&rdram==runtime.ram&&runtime.definition==current(rdram)) {
+        restore_matrices(rdram);restore_camera_eyes(rdram);restore_ground(rdram);runtime.equations.restore_source(rdram);
+    }
     runtime.equations.reset();runtime.fp={};runtime.gpr={};runtime.stack.clear();runtime.paired_spills.clear();runtime.parameters.clear();runtime.counter_rates.clear();runtime.indirect_depth=0;runtime.matrices.clear();runtime.camera_eyes.clear();runtime.ground_owners.clear();runtime.ground_leases.clear();
     runtime.definition=nullptr;runtime.ram=nullptr;runtime.source_time.reset();runtime.render_time.reset();
     runtime.in_source=runtime.enabled=false;++runtime.epoch;

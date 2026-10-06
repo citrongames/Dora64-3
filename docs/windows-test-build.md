@@ -1,20 +1,22 @@
-# Test-045: миниигры и специальные режимы
+# Test-046: итоговая интеграция FPS
 
-Windows EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-045.exe,
-generation startup-minigame-block4-v1.
-SHA256: c04e031b63bc6bef2b4dd2227e2688cabfe5ed189245b4e0a6f26813b5619c3d.
+Windows EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-046.exe,
+generation startup-integration-block6-v1.
+SHA256: 2dfdf6492037426c1f54c4312cae1e844e6b8124ef07a7a8abb6d16e360e5526.
 
-Весь выбранный блок4: девять миниигр, выбор, участники/настройка и результаты.
-Manual60..360 даёт дробные движение/повороты/масштаб, камеры, модельные позы,
-эффекты и2D оформление с исходной скоростью. Original20/30 сохранён.
-Счёт, раунды, waits, input/RNG, sound, clip/resource/spawn/free — Source once.
+Весь выбранный блок6: часы после реального входа в Native, точная принадлежность
+сессии callbacks/ROM/divider/load-generation, общий frame timestamp, безопасное
+дренирование обоих банков и stale wakes. Возврат в Original сохраняет дробную
+фазу моделей и исходные Source решения/cues без потерь и дублей; pause/seek,
+reload/reset и foreign writes имеют отдельные границы. Резервные player states
+сохраняют Native мир; Pak UI получил Native движение курсора/размеров/подсказок,
+device I/O и authored blink/sprite cadence остаются Source once.
 
-30 connected CPU checks PASS, включая все9 модулей/3 common pairs, шесть
-Manual частот, Source restoration и695 Original instruction streams frozen044.
-Проверены связи с прежними объектами/NPC/врагами/оружием/камерой/UI/моделями
-и владением кадров. CPU states/resources синтетические; реальные миниигры и
-визуальное качество проверяет пользователь. Игра/renderer/GPU не запускались.
-
-Функции и переменные имеют закреплённые ROM-qualified имена и описания,
-адресные соответствия/документы обновлены. Прежние EXE/ROM/settings/saves/DLL
-сохраняются при упаковке. Следующий на выбор — блок6 общей интеграции.
+30 завершённых CPU checks PASS, включая новый actual common loop integration.
+Долгий full-player прерван по прямой команде пользователя; PASS ему не присвоен.
+Общий pre-build не завершён полностью. Синтетические CPU inputs не заменяют
+прохождение/визуал.
+Вспомогательные actor/resource/model экраны и unsafe/unknown/loading/framebuffer
+границы остаются явными Original fallback; их Native движение не заявляется.
+Игра/renderer/GPU локально не запускались. Прежние файлы, ROM/settings/saves/DLL
+сохраняются при упаковке. Donor и dependency pins не менялись.

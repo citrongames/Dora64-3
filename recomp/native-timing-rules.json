@@ -25442,6 +25442,97 @@
       "expected_word": "0xE4400000",
       "operation": "native_enemy_equation",
       "evidence": "NobiheyaDrawer real speed-minus1 recurrence drives E7F54; zero, clip/story/screen commands and count34 remain Source"
+    },
+    {
+      "section": ".scene34",
+      "function": "0x801B9F10",
+      "function_name": "dora3_s2_menu_801B9F10",
+      "function_sha256": "ca3a1fb3126d49e417314de538ba82da17b3646322ba8a698438f3d4376269d9",
+      "site": "0x801B9F10",
+      "expected_word": "0x3C08801C",
+      "operation": "ui_domain",
+      "role": "pak_ui_source_curve_and_draw_cadence",
+      "evidence": "Exact ROM635C0 equations/cursor table and three isolated draw-mutated fields; Source device/FSM calls retained once; block6 connected proof pending",
+      "status": "Native Pak UI only; Original unchanged",
+      "domain": 128
+    },
+    {
+      "section": ".scene34",
+      "function": "0x801BA660",
+      "function_name": "dora3_s2_menu_801BA660",
+      "function_sha256": "ed6c41fb60e7b046b6827e0fe3a9d6d48abd348791c0fc560d2512fed0c5fbba",
+      "site": "0x801BA660",
+      "expected_word": "0x3C02801B",
+      "operation": "ui_domain",
+      "role": "pak_ui_source_curve_and_draw_cadence",
+      "evidence": "Exact ROM635C0 equations/cursor table and three isolated draw-mutated fields; Source device/FSM calls retained once; block6 connected proof pending",
+      "status": "Native Pak UI only; Original unchanged",
+      "domain": 256
+    },
+    {
+      "section": ".scene34",
+      "function": "0x801B981C",
+      "function_name": "dora3_s2_menu_801B981C",
+      "function_sha256": "d1dae56748e9cb6ad6e624bd8e2975c120329c726b6121492ec007bcb68900af",
+      "site": "0x801B981C",
+      "expected_word": "0x3C02801C",
+      "operation": "ui_domain",
+      "role": "pak_ui_source_curve_and_draw_cadence",
+      "evidence": "Exact ROM635C0 equations/cursor table and three isolated draw-mutated fields; Source device/FSM calls retained once; block6 connected proof pending",
+      "status": "Native Pak UI only; Original unchanged",
+      "domain": 512
+    },
+    {
+      "section": ".scene34",
+      "function": "0x801B96F8",
+      "function_name": "dora3_s2_menu_801B96F8",
+      "function_sha256": "bc8d98c6a9462ca49cefb13234fc13dd4b963c09ca6ff3e97f8ed770f44e6982",
+      "site": "0x801B96F8",
+      "expected_word": "0x3C03801C",
+      "operation": "ui_draw_boundary",
+      "role": "pak_ui_source_curve_and_draw_cadence",
+      "evidence": "Exact ROM635C0 equations/cursor table and three isolated draw-mutated fields; Source device/FSM calls retained once; block6 connected proof pending",
+      "status": "Native Pak UI only; Original unchanged",
+      "end": 0
+    },
+    {
+      "section": ".scene34",
+      "function": "0x801B96F8",
+      "function_name": "dora3_s2_menu_801B96F8",
+      "function_sha256": "bc8d98c6a9462ca49cefb13234fc13dd4b963c09ca6ff3e97f8ed770f44e6982",
+      "site": "0x801B9800",
+      "expected_word": "0x03E00008",
+      "operation": "ui_draw_boundary",
+      "role": "pak_ui_source_curve_and_draw_cadence",
+      "evidence": "Exact ROM635C0 equations/cursor table and three isolated draw-mutated fields; Source device/FSM calls retained once; block6 connected proof pending",
+      "status": "Native Pak UI only; Original unchanged",
+      "end": 1
+    },
+    {
+      "section": ".scene34",
+      "function": "0x801BA858",
+      "function_name": "dora3_s2_menu_801BA858",
+      "function_sha256": "6563178e107860271aed8eda3b1c8415c0648299e02697578a808be010f3801e",
+      "site": "0x801BA858",
+      "expected_word": "0x27BDFFB8",
+      "operation": "ui_draw_boundary",
+      "role": "pak_ui_source_curve_and_draw_cadence",
+      "evidence": "Exact ROM635C0 equations/cursor table and three isolated draw-mutated fields; Source device/FSM calls retained once; block6 connected proof pending",
+      "status": "Native Pak UI only; Original unchanged",
+      "end": 0
+    },
+    {
+      "section": ".scene34",
+      "function": "0x801BA858",
+      "function_name": "dora3_s2_menu_801BA858",
+      "function_sha256": "6563178e107860271aed8eda3b1c8415c0648299e02697578a808be010f3801e",
+      "site": "0x801BAA20",
+      "expected_word": "0x03E00008",
+      "operation": "ui_draw_boundary",
+      "role": "pak_ui_source_curve_and_draw_cadence",
+      "evidence": "Exact ROM635C0 equations/cursor table and three isolated draw-mutated fields; Source device/FSM calls retained once; block6 connected proof pending",
+      "status": "Native Pak UI only; Original unchanged",
+      "end": 1
     }
   ]
 }

@@ -1,0 +1,29 @@
+{
+  "result": "PASS: 49 actual common-loop integration schedules, actual activation clock origin after held Original read, six Manual rates and both Source dividers, fractional modes, two completion boundaries, rate/reload/callback cancellation, unsupported fallback and quiescent mailbox reset; synthetic scene-clock/queue endpoints; no game/GPU.",
+  "generation_receipt_sha256": "7c16ae33ac42ed5fec10dacde1da5021ad90400a904963b8f6af4849be4f0266",
+  "source_sha256": {
+    "src/native_game_loop.cpp": "e2e7829e094dd4981c787347292c725ed5de2de5ee7a11aa6bc4289d1a960420",
+    "src/native_scene_policy.cpp": "670fd5b064fbf7fac18cebb435aac9367ee8d8678d7035d61e08e70b88f6dda3",
+    "src/native_model_animation.cpp": "43dbb2dc27453d421fd4bd11699d9f2ebc3a392b64c74b193248508878569055",
+    "src/native_ui.cpp": "e27a28112ed7a9393280c0fbd6b6985ac459e00054159f427cb0c2f30bd78830",
+    "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
+    "src/native_frame_scheduler.cpp": "5aebb567341ad6853cc9eaa25ad093fe463a8614bfbae39d9b017140014cd118",
+    "src/native_frame_bridge.cpp": "c1c7ae5fb4ab80e03b178a744a13ac90973b32d787b6fec432afb2e27182b995",
+    "src/native_present.cpp": "9ff1ff3be5d4c16b57f5668a394a3e3fa4bafc303c32f52be63833ab33df2f5d",
+    "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
+    "research/native-integration-check.cpp": "221e5fb2d30c7ee8321c2876e89e32e53d9b963002ea38297a1bd4f20a88cfce",
+    "src/native_frame_session.hpp": "fdc799da001be3c6653126beacb987ce3811ba6f1cc5eeac5922e539089f8e83",
+    "src/native_scene_policy.hpp": "fbd2d92ec7c099bc711fb347af91655dec524d4d7a4d599c8c0578b780cf6e8f",
+    "src/native_model_animation.hpp": "374044e91b204a922b5a43dc279e518cb87a0825797459f777a58ff82e0cf30b",
+    "src/native_minigames.hpp": "2f2242575196abffc0f7e780055b2de0255191630f0321c61db41b010a1ba240",
+    "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
+    "src/native_presentation_gate.hpp": "f0fbc1799c6b1bb5a8196e6a6935254a8021cf9c098dafca6b7d9bbadcd3cb97",
+    "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
+    "tools/check_native_integration.py": "5d9796aa8bbe6312f03c73ccc0b0b71d810359452e08d820a5f77d2252c1b74e"
+  },
+  "no_game_gpu": true,
+  "scope": "Real shared loop/policy/model/UI/session/bridge/scheduler/gate and ledger; synthetic scene clock probes/guest completions, actual family behavior covered by separate full checks",
+  "limitations": [
+    "No real game/renderer/GPU or actual DMA/level transition in this component; scene callbacks are explicit time probes."
+  ]
+}

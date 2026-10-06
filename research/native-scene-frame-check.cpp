@@ -1086,8 +1086,8 @@ default:std::abort();}if(gap)MEM_W(0x94,int32_t(prop))=0;links();assert(MEM_W(0x
             std::copy(saved_slot09_image.begin(),saved_slot09_image.end(),memory.begin()+slot09_overlay_vram_offset/4);
             assert(!slot09_loaded);
             for(auto model:object_models) {c.r4=int32_t(model);dora3_s0_8003B77C(rdram,&c);}
-            // An unreviewed action cancels ownership before a subsequent step.
-            MEM_W(0x94,int32_t(player))=19;assert(!native_gameplay_preview_eligible(rdram));
+            // Source character initialization cancels ownership before a subsequent step.
+            MEM_W(0x94,int32_t(player))=0;assert(!native_gameplay_preview_eligible(rdram));
             native_gameplay_preview_reset(rdram);preview_live=false;
             dora3_controller_latch(rdram,&c);assert(MEM_HU(0,int32_t(0x801A48EC))==0);
             for(auto model:owners) {c.r4=int32_t(model);dora3_s0_8003B77C(rdram,&c);}
@@ -1103,3 +1103,6 @@ default:std::abort();}if(gap)MEM_W(0x94,int32_t(prop))=0;links();assert(MEM_W(0x
     assert(slot09_source_cases==0&&slot09_native_cases==cases*4&&slot09_rejections==0&&slot09_original_cases==0);
     std::cout<<"PASS: "<<slot09_constructor_cases<<" actual slot09 constructors; "<<slot09_source_cases<<" slot09 Source schedules; "<<slot09_native_cases<<" slot09 Native edge schedules; "<<slot09_rejections<<" slot09 rejections; "<<slot09_original_cases<<" slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; "<<slot09_yaw_samples<<" slot09 intermediate yaw samples; settings="<<cases<<"; ASan/UBSan/LSan; no game/GPU.\n";
 }
+
+// Synthetic loaded-module epoch; actual reload behavior is checked separately.
+extern "C" uint64_t dora3_overlay_generation(uint32_t rom){return dora3_overlay_loaded(rom)?1:0;}

@@ -29,7 +29,7 @@ constexpr uint32_t image_size=0x400000,processes=0x801A44F0,panels=0x801B8AE0;
 int32_t& word(uint8_t* rdram,uint32_t a){return MEM_W(0,int32_t(a));}
 float real(uint8_t* rdram,uint32_t a){return std::bit_cast<float>(word(rdram,a));}
 void real(uint8_t* rdram,uint32_t a,float f){word(rdram,a)=std::bit_cast<int32_t>(f);}
-enum class Profile { None,Game,Title,Files,Intro,Selection,Image };
+enum class Profile { None,Game,Title,Files,Intro,Selection,Image,Pak };
 Profile profile(uint8_t* ram) {
     // Overlay-qualified callback pairs, not overlapping virtual addresses alone.
     if(word(ram,processes)!=2||word(ram,processes+20)!=2||word(ram,processes+12)!=0||word(ram,processes+32)!=1)return Profile::None;
@@ -37,6 +37,7 @@ Profile profile(uint8_t* ram) {
     for(unsigned i=2;i<8;++i)if(word(ram,processes+i*20)!=0&&word(ram,processes+i*20)!=5)return Profile::None;
     if(dora3_overlay_loaded(0x70A50)&&update==0x801BB730&&draw==0x801BB848)return Profile::Game;
     if(!dora3_overlay_loaded(0x635C0))return Profile::None;
+    if(update==0x801BB52C&&draw==0x801BB648)return Profile::Pak;
     if(update==0x801BCEF8&&draw==0x801BD078)return Profile::Title;
     if(update==0x801BFAA4&&draw==0x801BFC44)return Profile::Files;
     if(update==0x801C0BBC&&draw==0x801C0C88)return Profile::Intro;
@@ -53,7 +54,7 @@ struct Guard {
     std::vector<std::vector<uint8_t>> originals;
     unsigned call=0;
 };
-enum Domain : unsigned { Panels=1,Rectangle=2,Title=4,Intro=8,SelectionActor=16,SelectionRow=32,SelectionExit=64 };
+enum Domain : unsigned { Panels=1,Rectangle=2,Title=4,Intro=8,SelectionActor=16,SelectionRow=32,SelectionExit=64,PakCursor=128,PakSize=256,PakHint=512 };
 struct Observation {uint8_t* ram=nullptr;Profile owner=Profile::None;unsigned mask=0;bool running=false;} observation;
 struct UiState {
     Profile owner=Profile::None;
@@ -67,7 +68,7 @@ struct UiState {
     unsigned domains=0;
     std::vector<uint32_t> working;
     std::vector<Field> fields;
-    std::array<Guard,6> guards{};
+    std::array<Guard,9> guards{};
     struct Drift {uint32_t address;float velocity,displacement;};
     std::vector<Drift> drifts;
 } state;
@@ -87,6 +88,45 @@ void evaluate_panels(uint8_t* ram,double h) {
             const double value=double(start)+double(rate)*(double(elapsed)+h);
             publish(ram,p+0x2C+j*4,int32_t(std::clamp(value,double(INT32_MIN),double(INT32_MAX))));
         }
+    }
+}
+// The ROM stores easing coefficients, not successive poses. Evaluate that
+// authored scalar curve at Source step+h, retaining signed-short endpoints
+// and truncation to integer pixel coordinates. Device/FSM operations stay Source.
+float curve(uint8_t* ram,uint32_t table,unsigned step,double h,unsigned last) {
+    const float a=real(ram,table+4*step);
+    const float b=step==last?0.0f:real(ram,table+4*(step+1));
+    return h==0?a:h==1?b:float(double(a)+(double(b)-a)*h);
+}
+void evaluate_pak(uint8_t* ram,double h) {
+    uint8_t* rdram=ram;
+    const int old=word(ram,0x801B369C),next=word(ram,0x801C6390),step=word(ram,0x801C638C);
+    // The menu owns 32 descriptors. Reject foreign/uninitialized selectors.
+    if(old<0||old>=32||next<0||next>=32||step<0)return;
+    const uint32_t from=0x801C29C4+152*unsigned(old),to=0x801C29C4+152*unsigned(next);
+    const int a=word(ram,from),b=word(ram,to);
+    if((state.domains&PakCursor)&&step<8&&a>=0&&a<3&&b>=0&&b<3) {
+        const float k=curve(ram,0x801C3B30,unsigned(step),h,7);
+        for(unsigned j=0;j<2;++j) {
+            const int start=MEM_H(int32_t(4*a+2*j),int32_t(0x801C3B24));
+            const int end=MEM_H(int32_t(4*b+2*j),int32_t(0x801C3B24));
+            publish(ram,j?0x801C6380:0x801C6370,int32_t(float(end)+float(start-end)*k));
+        }
+    }
+    if(state.domains&PakSize) {
+        const int phase=step-(a==b?3:9);
+        if(phase>=0&&phase<3) {
+            const float k=curve(ram,a==b?0x801C3B54:0x801C3B64,unsigned(phase),h,3);
+            for(unsigned j=0;j<2;++j) {
+                const int start=MEM_H(int32_t(4+2*j),int32_t(from)),end=MEM_H(int32_t(4+2*j),int32_t(to));
+                publish(ram,j?0x801C6368:0x801C6364,int32_t(float(end)+float(start-end)*k));
+            }
+        }
+    }
+    if((state.domains&PakHint)&&word(ram,0x801C636C)==0) {
+        const int v=word(ram,0x801C63A8);
+        if(!word(ram,0x801C6398)&&v<6)publish(ram,0x801C63A8,int32_t(double(v)+h));
+        else if(word(ram,0x801C6398)&&v>=0)publish(ram,0x801C63A8,int32_t(double(v)-h));
     }
 }
 void evaluate_title(uint8_t* ram,recomp_context* ctx) {
@@ -164,6 +204,12 @@ void native_ui_begin(uint8_t* ram,Nanoseconds now,unsigned divider) {
     // Files root also advances decoration6840, prompt6700, arrow68C0 and
     // highlight681C outside the row helper. Preserve its complete draw state.
     state.guards[5].pc=0x801BFC44;state.guards[5].address=0x801C6700;state.guards[5].size=0x1C8;
+    // Only the three fields mutated by Pak drawing. Cursor/size equations and
+    // save/device state never enter these snapshots; two disjoint fields share
+    // A858's entry/exit, so the boundary visits every matching guard.
+    state.guards[6].pc=0x801B96F8;state.guards[6].address=0x801C6384;state.guards[6].size=4;
+    state.guards[7].pc=0x801BA858;state.guards[7].address=0x801C6378;state.guards[7].size=4;
+    state.guards[8].pc=0x801BA858;state.guards[8].address=0x801C6388;state.guards[8].size=4;
 }
 UiFrameScope::UiFrameScope(uint8_t* ram,recomp_context* ctx,Nanoseconds now):ram_(ram) {
     uint8_t* rdram=ram;
@@ -183,7 +229,8 @@ UiFrameScope::UiFrameScope(uint8_t* ram,recomp_context* ctx,Nanoseconds now):ram
                 dora3_native_rectangle_update(scratch,ctx);
                 for(uint32_t a:{0x8021811Cu,0x80217194u,0x802171E4u,0x80217198u})publish(ram,a,word(scratch,a));
             }
-        } else if(state.owner==Profile::Title&&(state.domains&Title)&&state.h>0)evaluate_title(ram,ctx);
+        } else if(state.owner==Profile::Pak)evaluate_pak(ram,state.h);
+        else if(state.owner==Profile::Title&&(state.domains&Title)&&state.h>0)evaluate_title(ram,ctx);
         else if(state.owner==Profile::Selection&&(state.domains&SelectionActor)&&state.h>0)evaluate_selection(ram,ctx);
         else if(state.owner==Profile::Intro&&(state.domains&Intro)) {
             const int mode=word(ram,0x801C68DC);const int alpha=word(ram,0x801C69A8);
@@ -226,7 +273,6 @@ extern "C" void dora3_native_ui_draw_boundary(uint8_t* ram,uint32_t pc,unsigned 
             if(g.restoring)std::memcpy(ram+(g.address&0xFFFFFF),g.bytes.data(),g.size);
             g.entered=false;
         }
-        return;
     }
 }
 extern "C" int dora3_native_ui_command_once(uint32_t pc) {

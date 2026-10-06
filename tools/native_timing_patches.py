@@ -1791,6 +1791,15 @@ APPROVED_SCENE_OBJECT_CALLBACKS={
     ('.level1_slot2',0x8023E0B8,0x8023E0B8,0x3C038022):0x15E440,
 }
 
+# Block6: exact Pak Source equation/draw boundary pins.
+APPROVED_UI_SITES[('ui_domain', '.scene34', 2149293840, 2149293840, 1007190044)]={'domain': 128}
+APPROVED_UI_SITES[('ui_domain', '.scene34', 2149295712, 2149295712, 1006796827)]={'domain': 256}
+APPROVED_UI_SITES[('ui_domain', '.scene34', 2149292060, 2149292060, 1006796828)]={'domain': 512}
+APPROVED_UI_SITES[('ui_draw_boundary', '.scene34', 2149291768, 2149291768, 1006862364)]={'end': 0}
+APPROVED_UI_SITES[('ui_draw_boundary', '.scene34', 2149291768, 2149292032, 65011720)]={'end': 1}
+APPROVED_UI_SITES[('ui_draw_boundary', '.scene34', 2149296216, 2149296216, 666763192)]={'end': 0}
+APPROVED_UI_SITES[('ui_draw_boundary', '.scene34', 2149296216, 2149296672, 65011720)]={'end': 1}
+
 def timing_hooks(sections,compiled,rom):
     data=json.loads((ROOT/'recomp/native-timing-rules.json').read_text())
     if data['version']!=1 or hashlib.sha256(rom).hexdigest()!=data['rom_sha256']:
@@ -2066,11 +2075,15 @@ def timing_hooks(sections,compiled,rom):
                 hooks[name,address].append(f'uint32_t {var}_model=0; float {var}_time=0.0f;')
                 hooks[name,read+8].insert(0,f'{var}_model=(uint32_t)ctx->r4; {var}_time=ctx->f0.fl;')
             label=f'dora3_after_timing_{site:08X}'
-            text=f'if (dora3_native_simulation_active()) {{ c1cs=dora3_native_model_event(rdram,{var}_model,{var}_time,ctx->f{other}.fl*{scale}.0f,0x{i:02X}{site:08X}ull); goto {label}; }}'
+            handoff=f'dora3_native_model_handoff_active(rdram,{var}_model)'
+            # Discrete enemy decisions retain exact Source equality. A returned
+            # continuous clip retains its previous Native crossing ledger.
+            gate='dora3_native_simulation_active()' if rule.get('enemy_source_commands') else f'(dora3_native_simulation_active() || {handoff})'
+            text=f'if ({gate}) {{ c1cs=dora3_native_model_event(rdram,{var}_model,{var}_time,ctx->f{other}.fl*{scale}.0f,0x{i:02X}{site:08X}ull); goto {label}; }}'
             if rule.get('enemy_source_commands'):
                 if (rule['section'],address,site,word) not in APPROVED_ENEMY_EVENTS:raise ValueError('Unreviewed enemy clip cue')
                 hooks[name,read+8].append(f'dora3_native_enemy_model_read(rdram,{var}_model);')
-                text+=f' if (dora3_native_enemy_commands_active()) {{ c1cs=dora3_native_enemy_model_event(rdram,{var}_model,{var}_time,ctx->f{other}.fl*{scale}.0f,0x{i:02X}{site:08X}ull); goto {label}; }}'
+                text+=f' if (dora3_native_enemy_commands_active() || {handoff}) {{ c1cs=dora3_native_enemy_model_event(rdram,{var}_model,{var}_time,ctx->f{other}.fl*{scale}.0f,0x{i:02X}{site:08X}ull); goto {label}; }}'
             if rule.get('source_start_consumed'):
                 if rule['section']!='.scene1' or (address,site) not in {(0x801C4F7C,0x801C4F9C),(0x801C533C,0x801C535C)}:
                     raise ValueError('Unreviewed acquired initial shot event')

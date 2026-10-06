@@ -17,15 +17,15 @@
     "src/native_present_hooks.cpp": "e659ba490ecea74c75fd50de47f0ea95ad9c32c6c30c6352e2123d7150914701",
     "research/native-graphics-pump-check.cpp": "7eb191d431fd47790e208ddaacd924a35efc2d6d58c447006c8ed2ad90877118",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
-    "research/native-inactive-minigame-fixture.cpp": "dafaccdff31181ed0e62dec4a4ec04bfe1eb6c6fd377201f2e81e4f75dbbe4bb",
+    "research/native-inactive-minigame-fixture.cpp": "9ad7a6a6c829626b347b319c8344228dbca11caa56f545ae8f14231a877a223a",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
     "src/native_graphics_pump.hpp": "3fdcb53d2f68a9b6d344beb44ea58a190c637bd2320cf3e77fbb8af2649bdcd3",
     "src/native_frame_bridge.hpp": "a405469b02b662d7ad973c5475f05465defe0d346b7add98717e9393794fe545",
-    "tools/generate_startup.py": "65d1bbba590dcac60809575aadfc8455d8ef1225a5b23c4aa7a5816732fc2407",
+    "tools/generate_startup.py": "e64b7e9b45435ee3a4fe9f3046376efb705942828a89e20ae195178f0d7e3d1c",
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556",
     "tools/check_native_graphics_pump.py": "171ec99008e2be029ae6b2acdc00ebd2836f3f042c4b59f886d2e9fc4737203d"
   },
-  "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
+  "generation_receipt_sha256": "7c16ae33ac42ed5fec10dacde1da5021ad90400a904963b8f6af4849be4f0266",
   "original_functions": [
     "dora3_scheduler_thread",
     "dora3_scheduler_retrace",

@@ -1552,7 +1552,9 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
     value.acceleration=word(rdram,after->physical+0x1C);
     value.callback_opacity_flag=MEM_BU(0x2A,int32_t(after->physical));
     value.projection=projection;
-    value.model_events=game_model_animation().source_command_sample(rdram,after->model,slice).checkpoint;
+    const auto source_clock=game_model_animation().source_command_sample(rdram,after->model,slice);
+    value.model_events=source_clock.checkpoint;
+    game_model_animation().remember_source_clock(after->model,source_clock);
     value.model_reads=model_reads;
     if((((kind==268||kind==299||kind==292||kind==333)&&MEM_H(0x36,int32_t(after->physical))==0)||((kind==273||kind==324||kind==285||kind==286)&&word(rdram,actor+0x94)==1)||(kind==329&&word(rdram,actor+0x94)==1&&MEM_H(0x34,int32_t(after->physical))==0))||((kind==361||kind==338||kind==349||kind==353||kind==405)&&word(rdram,actor+0x94)==1)||(kind==401&&word(rdram,actor+0x94)!=10)||(kind==403&&(word(rdram,actor+0x94)==1||
         (word(rdram,actor+0x94)==10&&MEM_H(0x34,int32_t(after->physical))==0)))||enemy_parent_attachment_active(rdram,*after)) {
@@ -1636,8 +1638,11 @@ void native_enemy_source_pool_end(uint8_t* rdram) {
 extern "C" int dora3_native_enemy_attachment_only() {return attachment_only;}
 extern "C" int dora3_native_enemy_commands_active() {return executing;}
 extern "C" void dora3_native_enemy_clip_end(uint8_t* rdram,recomp_context* ctx) {
-    if(!executing)return;
     const auto model=uint32_t(ctx->r4);
+    if(!executing) {
+        if(const auto flags=game_model_animation().handoff_source_flags(rdram,model))ctx->r2=(ctx->r2&~2ull)|(*flags&2u);
+        return;
+    }
     ctx->r2=(ctx->r2&~2ull)|(model_command_sample(rdram,model).flags&2u);
     for(const auto& period:periods)if(period&&period->owner.model==model&&
         identity(rdram,period->owner.actor)&&same(*identity(rdram,period->owner.actor),period->owner)&&
@@ -1654,7 +1659,8 @@ extern "C" int dora3_native_enemy_model_event(uint8_t* rdram,uint32_t model,floa
     // (e.g. frames18->21 never equals20), so crossing detection here would
     // invent an attack/sound. Continuous Native consumers use ModelAnimation's
     // separate crossing interface outside this Source-command scope.
-    (void)rdram;(void)model;(void)site;
+    (void)site;
+    if(!executing)return game_model_animation().handoff_source_event(rdram,model,observed,target);
     return observed==target;
 }
 extern "C" void dora3_native_enemy_model_read(uint8_t* rdram,uint32_t model) {

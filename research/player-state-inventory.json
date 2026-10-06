@@ -16,8 +16,8 @@
         "dora3_s3_core_801C30E8",
         "dora3_s3_core_801C30F0"
       ],
-      "timing_conversion": "not_implemented",
-      "gameplay_role": "not_classified"
+      "timing_conversion": "Source once character/model initialization; Native acquires at the completed valid owner boundary",
+      "gameplay_role": "Character initialization from control+2, clears local pitch/roll"
     },
     {
       "state": "0x01",
@@ -244,8 +244,8 @@
         "dora3_s3_core_801C488C",
         "dora3_s3_core_801C4894"
       ],
-      "timing_conversion": "not_implemented",
-      "gameplay_role": "not_classified"
+      "timing_conversion": "No timed operations: Source no-op retained; common world/model/camera Native coverage enabled in block6",
+      "gameplay_role": "Reserved no-op dispatcher state, exact ROM-backed pair"
     },
     {
       "state": "0x14",
@@ -292,8 +292,8 @@
         "dora3_s3_core_801C4D98",
         "dora3_s3_core_801C4DA0"
       ],
-      "timing_conversion": "not_implemented",
-      "gameplay_role": "not_classified"
+      "timing_conversion": "No timed operations: Source no-op retained; common world/model/camera Native coverage enabled in block6",
+      "gameplay_role": "Reserved no-op dispatcher state, exact ROM-backed pair"
     },
     {
       "state": "0x18",
@@ -328,8 +328,8 @@
         "dora3_s3_core_801C5244",
         "dora3_s3_core_801C524C"
       ],
-      "timing_conversion": "not_implemented",
-      "gameplay_role": "not_classified"
+      "timing_conversion": "No timed operations: Source no-op retained; common world/model/camera Native coverage enabled in block6",
+      "gameplay_role": "Reserved no-op dispatcher state, exact ROM-backed pair"
     },
     {
       "state": "0x1B",
@@ -376,8 +376,8 @@
         "dora3_s3_core_801C58B8",
         "dora3_s3_core_801C58C0"
       ],
-      "timing_conversion": "not_implemented",
-      "gameplay_role": "not_classified"
+      "timing_conversion": "No timed operations: Source no-op retained; common world/model/camera Native coverage enabled in block6",
+      "gameplay_role": "Reserved no-op dispatcher state, exact ROM-backed pair"
     },
     {
       "state": "0x1F",

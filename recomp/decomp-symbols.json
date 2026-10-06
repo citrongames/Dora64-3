@@ -88541,6 +88541,193 @@
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "b2f8e1fe2ad9f4cb6989db917082fda49300bc0d9d5bf0b95c1ae03c8bf81aa9",
       "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801C488C",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801C488C",
+      "name": "dora3_player_reserved_state19_phase0_noop_801C488C",
+      "description": "Резервный обработчик игрока state19, фаза0: только jr ra и nop. Не меняет память/регистры и не имеет таймеров. Native сохраняет этот вызов и продолжает общий мир/камеры/модели при прежних control gates.",
+      "evidence": "Exact .scene1 ROM70A50 words03E00008/00000000, verified8-byte bodies and player state table; block6 implementation, connected pre-build pending.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801C4894",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801C4894",
+      "name": "dora3_player_reserved_state19_phase1_noop_801C4894",
+      "description": "Резервный обработчик игрока state19, фаза1: только jr ra и nop. Не меняет память/регистры и не имеет таймеров. Native сохраняет этот вызов и продолжает общий мир/камеры/модели при прежних control gates.",
+      "evidence": "Exact .scene1 ROM70A50 words03E00008/00000000, verified8-byte bodies and player state table; block6 implementation, connected pre-build pending.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801C4D98",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801C4D98",
+      "name": "dora3_player_reserved_state23_phase0_noop_801C4D98",
+      "description": "Резервный обработчик игрока state23, фаза0: только jr ra и nop. Не меняет память/регистры и не имеет таймеров. Native сохраняет этот вызов и продолжает общий мир/камеры/модели при прежних control gates.",
+      "evidence": "Exact .scene1 ROM70A50 words03E00008/00000000, verified8-byte bodies and player state table; block6 implementation, connected pre-build pending.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801C4DA0",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801C4DA0",
+      "name": "dora3_player_reserved_state23_phase1_noop_801C4DA0",
+      "description": "Резервный обработчик игрока state23, фаза1: только jr ra и nop. Не меняет память/регистры и не имеет таймеров. Native сохраняет этот вызов и продолжает общий мир/камеры/модели при прежних control gates.",
+      "evidence": "Exact .scene1 ROM70A50 words03E00008/00000000, verified8-byte bodies and player state table; block6 implementation, connected pre-build pending.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801C5244",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801C5244",
+      "name": "dora3_player_reserved_state26_phase0_noop_801C5244",
+      "description": "Резервный обработчик игрока state26, фаза0: только jr ra и nop. Не меняет память/регистры и не имеет таймеров. Native сохраняет этот вызов и продолжает общий мир/камеры/модели при прежних control gates.",
+      "evidence": "Exact .scene1 ROM70A50 words03E00008/00000000, verified8-byte bodies and player state table; block6 implementation, connected pre-build pending.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801C524C",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801C524C",
+      "name": "dora3_player_reserved_state26_phase1_noop_801C524C",
+      "description": "Резервный обработчик игрока state26, фаза1: только jr ra и nop. Не меняет память/регистры и не имеет таймеров. Native сохраняет этот вызов и продолжает общий мир/камеры/модели при прежних control gates.",
+      "evidence": "Exact .scene1 ROM70A50 words03E00008/00000000, verified8-byte bodies and player state table; block6 implementation, connected pre-build pending.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801C58B8",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801C58B8",
+      "name": "dora3_player_reserved_state30_phase0_noop_801C58B8",
+      "description": "Резервный обработчик игрока state30, фаза0: только jr ra и nop. Не меняет память/регистры и не имеет таймеров. Native сохраняет этот вызов и продолжает общий мир/камеры/модели при прежних control gates.",
+      "evidence": "Exact .scene1 ROM70A50 words03E00008/00000000, verified8-byte bodies and player state table; block6 implementation, connected pre-build pending.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801C58C0",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801C58C0",
+      "name": "dora3_player_reserved_state30_phase1_noop_801C58C0",
+      "description": "Резервный обработчик игрока state30, фаза1: только jr ra и nop. Не меняет память/регистры и не имеет таймеров. Native сохраняет этот вызов и продолжает общий мир/камеры/модели при прежних control gates.",
+      "evidence": "Exact .scene1 ROM70A50 words03E00008/00000000, verified8-byte bodies and player state table; block6 implementation, connected pre-build pending.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801C30E8",
+      "size": 8,
+      "legacy_name": "dora3_s3_core_801C30E8",
+      "name": "dora3_player_character_init_first_noop_801C30E8",
+      "description": "Первая фаза state0: пустой возврат jr ra/nop; персонаж инициализируется второй фазой.",
+      "evidence": "Exact .scene1 ROM70A50 instructions and state0 table pair; block6 audit; Native does not repeat initialization.",
+      "rom_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801C30F0",
+      "size": 52,
+      "legacy_name": "dora3_s3_core_801C30F0",
+      "name": "dora3_player_character_init_from_control_801C30F0",
+      "description": "Вторая фаза state0 читает character ID из control8021D6C0+2, вызывает C1664 и очищает локальные pitch/roll игрока8021D49C+0C/+14. Это инициализация/команды ресурсов Source once; Native входит после её завершения.",
+      "evidence": "Exact .scene1 ROM70A50 instructions and state0 table pair; block6 audit; Native does not repeat initialization.",
+      "rom_sha256": "e96a02a273fc4c7b29bec1f39652e9c84f1d15dba34ce38c831cc1bb16acd27e",
+      "locals": []
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BB52C",
+      "size": 284,
+      "legacy_name": "dora3_s2_menu_801BB52C",
+      "rom_sha256": "5bb07994c10230fa455326933b5870e92fec5f0a3e21eb2c051389de8a8fd2de",
+      "locals": [],
+      "name": "dora3_pak_menu_source_update_801BB52C",
+      "description": "Управление Pak/file экраном: input/device polling, семь Source состояний, переход, размеры/курсор/подсказки и камера. Device I/O и смена состояния выполняются с исходной частотой; Native кадры заимствуют только UI уравнения.",
+      "evidence": "Exact ROM635C0 body/descriptor/curve and callback-pair evidence; block6; generated Source ABI retained"
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BB648",
+      "size": 188,
+      "legacy_name": "dora3_s2_menu_801BB648",
+      "rom_sha256": "71ad99714d35309b2e69e31bad378b41a15d4cbf109f56c3f5145b5e8a25cbbc",
+      "locals": [],
+      "name": "dora3_pak_menu_draw_801BB648",
+      "description": "Рисует Pak/file экран и его панели, текст, акторов и подсказки. Native сохраняет исходную кратность смены sprite6384 и bob6378/направления6388; не повторяет device операции.",
+      "evidence": "Exact ROM635C0 body/descriptor/curve and callback-pair evidence; block6; generated Source ABI retained"
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801B9F10",
+      "size": 444,
+      "legacy_name": "dora3_s2_menu_801B9F10",
+      "rom_sha256": "ca3a1fb3126d49e417314de538ba82da17b3646322ba8a698438f3d4376269d9",
+      "locals": [],
+      "name": "dora3_pak_cursor_easing_801B9F10",
+      "description": "Выбирает signed-short координаты по descriptor row/позиции; old-target разность умножает на ROM коэффициент3B30[638C], добавляет target и trunc.w.s в6370/6380. Стадии0 и8+ используют точную позицию.",
+      "evidence": "Exact ROM635C0 body/descriptor/curve and callback-pair evidence; block6; generated Source ABI retained"
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BA660",
+      "size": 504,
+      "legacy_name": "dora3_s2_menu_801BA660",
+      "rom_sha256": "ed6c41fb60e7b046b6827e0fe3a9d6d48abd348791c0fc560d2512fed0c5fbba",
+      "locals": [],
+      "name": "dora3_pak_panel_size_easing_801BA660",
+      "description": "Размеры signed-short29C8/29CA: таблица3B54 при одинаковой позиции,3B64 при разной. Локальная стадия638C−3/−9, уравнение target+(old−target)*coefficient, trunc в6364/6368.",
+      "evidence": "Exact ROM635C0 body/descriptor/curve and callback-pair evidence; block6; generated Source ABI retained"
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801B981C",
+      "size": 116,
+      "legacy_name": "dora3_s2_menu_801B981C",
+      "rom_sha256": "d1dae56748e9cb6ad6e624bd8e2975c120329c726b6121492ec007bcb68900af",
+      "locals": [],
+      "name": "dora3_pak_hint_offset_tick_801B981C",
+      "description": "Только в mode0 изменяет63A8 на±1, меняет направление6398 на границах6 и−1. Native вычисляет пиксельный offset между Source обновлениями, флаг остаётся Source.",
+      "evidence": "Exact ROM635C0 body/descriptor/curve and callback-pair evidence; block6; generated Source ABI retained"
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801B96F8",
+      "size": 272,
+      "legacy_name": "dora3_s2_menu_801B96F8",
+      "rom_sha256": "bc8d98c6a9462ca49cefb13234fc13dd4b963c09ca6ff3e97f8ed770f44e6982",
+      "locals": [],
+      "name": "dora3_pak_prompt_sprite_draw_801B96F8",
+      "description": "Рисует sprite из authored sequence3AFC по6384; счётчик меняется один раз на исходный draw, сохраняется на дополнительных Native кадрах.",
+      "evidence": "Exact ROM635C0 body/descriptor/curve and callback-pair evidence; block6; generated Source ABI retained"
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801BA858",
+      "size": 464,
+      "legacy_name": "dora3_s2_menu_801BA858",
+      "rom_sha256": "6563178e107860271aed8eda3b1c8415c0648299e02697578a808be010f3801e",
+      "locals": [],
+      "name": "dora3_pak_cursor_bob_draw_801BA858",
+      "description": "Рисует курсор в размерах6364/6368 и координатах6370/6380; bob6378 с направлением6388 меняется на Source draw cadence, остальные поля не принадлежат draw guard.",
+      "evidence": "Exact ROM635C0 body/descriptor/curve and callback-pair evidence; block6; generated Source ABI retained"
     }
   ]
 }

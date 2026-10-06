@@ -1,16 +1,17 @@
 {
   "result": "PASS: 49 actual ROM overlay ranges, verified DMA/reload, identical VRAM replacement, partial overwrite, parent invalidation, scene unload and boot reset; ASan/UBSan/LSan; no game/GPU.",
-  "generation_receipt_sha256": "a3db13e643514144fb163ed937c6f0865c57ea0ea04334959a30298944cbc3b8",
+  "generation_receipt_sha256": "7c16ae33ac42ed5fec10dacde1da5021ad90400a904963b8f6af4849be4f0266",
   "source_sha256": {
-    "src/startup_runtime.cpp": "82748ef8ce079755b3a91564cbbb2d5cceab2bb86d8b4bb53805b75f8b6bf5d9",
-    "research/overlay-load-state-check.cpp": "e637e658340adedb016e09d258c99348ccb0e4768de7bcc71aaba1051e68aba5",
-    "tools/check_overlay_load_state.py": "1a4934ececa9e8ab732ad36f4e1189601a59e64a56c86554cca370fec68f8864"
+    "src/startup_runtime.cpp": "bee19aa55287e9d0d9edb7c42bf685233b935250f6ad057ea5093f3ab6bc25fb",
+    "research/overlay-load-state-check.cpp": "b8729f596f1846fbf0f99e5ab4792de62de63220f009b757ff31a53075e5b4f0",
+    "tools/check_overlay_load_state.py": "32ef827b01bd01836b2a6666905b8f7c69d709fba99523c546ed3bc38ae3e311"
   },
-  "extracted_fragments_sha256": "72718f0bc9e1e1ce4e39a7686c7f3a4532656b030626b8b53cf42cc119af1e7e",
+  "extracted_fragments_sha256": "8fdfc15036c42c6a5b87e85feac79cfcef70ffdcd2d15bda9100880f663324aa",
   "executed_runtime_fragments": [
     "bool overlay_dependencies_active(uint32_t rom)",
     "void unload_scene_code()",
     "extern \"C\" int dora3_overlay_loaded(uint32_t section_rom)",
+    "extern \"C\" uint64_t dora3_overlay_generation(uint32_t section_rom)",
     "extern \"C\" void dora3_verify_dma(uint8_t* rdram)",
     "actual pre-DMA invalidation block",
     "actual call-before-load gate",
