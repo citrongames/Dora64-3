@@ -10,7 +10,7 @@
 Журнал: D:/Games/DoraRecomp3/testbuild/logs/1791384974142/runtime.log.
 EXE053 SHA256 b6d32cf7f8421d331e9fbe3682c3e4750817ad7122d048cc43262a8a1064a235.
 LLDB прочитал дамп offline, игра не запускалась. Access violation C0000005,
-RVA62970A, dora3_s47_remaining_8023D730+13A, чтение byte по неверному адресу.
+RVA62970A, dora3_sound_color_sequence_append_8023D730+13A, чтение byte по неверному адресу.
 Caller chain:8023E020 ->8023E334 (SoundLightBlue/Red/Yellow update), через
 native scene/enemy callback и native gameplay update. Это не FadeTimeline.
 
@@ -64,5 +64,5 @@ RSP audio-rsp-v1 прежний. MSVC RelWithDebInfo сборка успешна
 EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-054.exe.
 SHA256: 21987e5020ddabd648cdff8a8f6c1ef425aa8f4f83eaa8af7a736a8e4f617f5b.
 Все174 прежних файлов вне logs сохранили хэши; PDB053 сохранён в symbols-test053.
-Игровое подтверждение ожидается. GitHub возвращает Internal Server Error при push;
+Пользователь подтвердил исчезновение вылета в054. GitHub возвращает Internal Server Error при push;
 локальные коммиты сохранены, но отправка ещё не подтверждена.

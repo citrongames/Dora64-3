@@ -90533,6 +90533,28 @@
       "evidence": "ROM body and table; user dump053 PID11472 fault at guest8023D7B8, host RVA62970A; MSVC /O2 emits wrong table address for valid index1. No runtime tests.",
       "rom_sha256": "4c22dc09208a87d613f1469cb6bb8e72614ba17a22ccba01958c85b0c542044d",
       "locals": []
+    },
+    {
+      "section": ".startup",
+      "vram": "0x800442B0",
+      "size": 128,
+      "legacy_name": "dora3_s0_800442B0",
+      "name": "dora3_music_request_bank_800442B0",
+      "description": "Общий запрос фоновой музыки: disabled801AA680==1 запрещает; ID<4 останавливает; иначе при свободном handle800DAD28 загружает банк в8008C230 и запускает sequence. Занятый канал раньше терял запрос; host handoff сохраняет последний до штатного collect.",
+      "evidence": "Exact resident ROM body and all-scene callers; missing music after054 with working SFX; static analysis of request/stop/voice retirement/collector ordering. Runtime handoff not tested.",
+      "rom_sha256": "4f52edb3094a75ad60fc3daad56f0f12582344b7cd63e839d3abdba400ec524a",
+      "locals": []
+    },
+    {
+      "section": ".startup",
+      "vram": "0x80044330",
+      "size": 44,
+      "legacy_name": "dora3_s0_80044330",
+      "name": "dora3_music_stop_with_fade_80044330",
+      "description": "Передаёт текущий handle800DAD28 и длительность в80048184. Завершение асинхронное: slot очищает446C0 после освобождения voices. Новая stop-команда отменяет отложенный запрос музыки.",
+      "evidence": "Exact resident ROM body and all-scene callers; missing music after054 with working SFX; static analysis of request/stop/voice retirement/collector ordering. Runtime handoff not tested.",
+      "rom_sha256": "e66326ca5705f4fcaf0e936f981aa7fe66a754811fdd7209d456beef4ef7a69e",
+      "locals": []
     }
   ]
 }

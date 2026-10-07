@@ -24,7 +24,7 @@ ROM инструкции, типы, float порядок, register storage и co
 address-map и ссылки на старые полные имена в остальных документах.
 `--check` проверяет, что документация соответствует каталогу.
 
-В каталоге: 2691 описаний функций, 2360 новых смысловых имён и 5853 ограниченных областей переменных.
+В каталоге: 2693 описаний функций, 2362 новых смысловых имён и 5853 ограниченных областей переменных.
 
 | Overlay / адрес | Читаемое имя | Прежнее ABI имя | Назначение |
 |---|---|---|---|
@@ -2719,3 +2719,5 @@ address-map и ссылки на старые полные имена в ост�
 | .scene1 / 0x801F96E0 | `dora3_auxiliary_update_manual_camera_801F96E0` | `dora3_s3_core_801F96E0` | Source служебной scene1 камеры: current-controller held9AD0 задаёт независимые yaw/pitch±4 и distance±20 floor20. SDK300C4 копирует held9504+i*2 в9AD0; это не pressed edge. Native UI профиль70A50 выполняет те же rates на дробном времени без повторения actor/model control callback. |
 | .minigame_1 / 0x801C5730 | `dora3_race_camera_advance_intro_801C5730` | `dora3_s21_mini_801C5730` | Source intro races: продолжает distance и pitch по исходным шагам; Native Motion/Angle roles удерживают duration и дают дробную камеру всех четырёх участников. SDKeye пересчитывается из той же yaw/pitch/distance. |
 | .remaining_slot2_08 / 0x8023D730 | `dora3_sound_color_sequence_append_8023D730` | `dora3_s47_remaining_8023D730` | Добавляет цвет0/1/2 в буфер802401A1, сбрасывает timeout802401A8. На третьем касании сравнивает три цвета с одной из шести строк ROM-таблицы8023FCA0 по индексу802401A5; result802401A6=1 или-1. MSVC optimization workaround сохраняет исходные MIPS инструкции. |
+| .startup / 0x800442B0 | `dora3_music_request_bank_800442B0` | `dora3_s0_800442B0` | Общий запрос фоновой музыки: disabled801AA680==1 запрещает; ID<4 останавливает; иначе при свободном handle800DAD28 загружает банк в8008C230 и запускает sequence. Занятый канал раньше терял запрос; host handoff сохраняет последний до штатного collect. |
+| .startup / 0x80044330 | `dora3_music_stop_with_fade_80044330` | `dora3_s0_80044330` | Передаёт текущий handle800DAD28 и длительность в80048184. Завершение асинхронное: slot очищает446C0 после освобождения voices. Новая stop-команда отменяет отложенный запрос музыки. |

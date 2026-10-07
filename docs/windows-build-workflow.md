@@ -2,8 +2,9 @@
 
 Основной репозиторий: /home/vova/projects/DoraRecomp3, main.
 Текущий EXE054 собран из кода5b1bf19. Старые проверки не запускать.
-Актуальная CPU generation startup-color-ball-test054-v1, RSP audio-rsp-v1 прежний.
-Использовать эту generation для следующих C++-only инкрементальных сборок.
+После054 готова новая CPU generation startup-music-handoff-v1 для общей правки музыки.
+Следующему билду использовать её, RSP audio-rsp-v1 прежний; добавить новый
+src/audio_music_handoff.cpp через обновлённый research/runtime/CMakeLists.txt.
 В новой generation только helper8023D730 получает scoped MSVC optimize off/on.
 
 Готовый Windows staging и cache находятся здесь (это вспомогательная копия,
