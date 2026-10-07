@@ -6,6 +6,7 @@ from overlay_layout import prepare_layout, pending_name
 from local_jump_tables import reviewed_local_jumps, verify_generated_local_jumps
 from native_timing_patches import timing_hooks
 from audio_queue_patches import audio_queue_hooks
+from msvc_codegen_workarounds import apply_msvc_codegen_workarounds
 from decomp_annotations import annotate_generated_sources
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -245,9 +246,10 @@ def main():
     if sha(binary)!=receipt['executables']['N64Recomp']['sha256']:raise ValueError('Tool binary mismatch')
     with (out/'generation.log').open('w') as log:subprocess.run([str(binary),str(out/'startup.toml')],stdout=log,stderr=subprocess.STDOUT,check=True)
     verify_generated_local_jumps(out/'RecompiledFuncs',local_jumps)
+    apply_msvc_codegen_workarounds(out/'RecompiledFuncs',sections,compiled,rom)
     annotate_generated_sources(out/'RecompiledFuncs',sections,compiled,rom,ROOT/'recomp/decomp-symbols.json')
     verify_generated_local_jumps(out/'RecompiledFuncs',local_jumps)
-    inputs=['tools/audio_queue_patches.py','tools/native_minigame_patches.py','research/native-minigame-reviewed.json','tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
+    inputs=['tools/msvc_codegen_workarounds.py','tools/audio_queue_patches.py','tools/native_minigame_patches.py','research/native-minigame-reviewed.json','tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
     tracked=[f for f in out.rglob('*') if f.is_file() and f.name!='generation.log']
     report={'scope':'reviewed resident/overlay functions; explicit stop on unreviewed calls',
             'rom_sha256':hashlib.sha256(rom).hexdigest(),'tool_sha256':sha(binary),'inputs':{x:sha(ROOT/x) for x in inputs},

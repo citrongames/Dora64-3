@@ -90522,6 +90522,17 @@
       "description": "Source intro races: продолжает distance и pitch по исходным шагам; Native Motion/Angle roles удерживают duration и дают дробную камеру всех четырёх участников. SDKeye пересчитывается из той же yaw/pitch/distance.",
       "rom_sha256": "e8f7bbf2b4385b12c83457799715f03ed466d9fa2ba96430fe14c68c7d301e97",
       "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".remaining_slot2_08",
+      "vram": "0x8023D730",
+      "size": 200,
+      "legacy_name": "dora3_s47_remaining_8023D730",
+      "name": "dora3_sound_color_sequence_append_8023D730",
+      "description": "Добавляет цвет0/1/2 в буфер802401A1, сбрасывает timeout802401A8. На третьем касании сравнивает три цвета с одной из шести строк ROM-таблицы8023FCA0 по индексу802401A5; result802401A6=1 или-1. MSVC optimization workaround сохраняет исходные MIPS инструкции.",
+      "evidence": "ROM body and table; user dump053 PID11472 fault at guest8023D7B8, host RVA62970A; MSVC /O2 emits wrong table address for valid index1. No runtime tests.",
+      "rom_sha256": "4c22dc09208a87d613f1469cb6bb8e72614ba17a22ccba01958c85b0c542044d",
+      "locals": []
     }
   ]
 }

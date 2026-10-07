@@ -24,7 +24,7 @@ ROM инструкции, типы, float порядок, register storage и co
 address-map и ссылки на старые полные имена в остальных документах.
 `--check` проверяет, что документация соответствует каталогу.
 
-В каталоге: 2690 описаний функций, 2359 новых смысловых имён и 5853 ограниченных областей переменных.
+В каталоге: 2691 описаний функций, 2360 новых смысловых имён и 5853 ограниченных областей переменных.
 
 | Overlay / адрес | Читаемое имя | Прежнее ABI имя | Назначение |
 |---|---|---|---|
@@ -2718,3 +2718,4 @@ address-map и ссылки на старые полные имена в ост�
 | .startup_scene / 0x801B5788 | `dora3_auxiliary_update_four_camera_views_801B5788` | `dora3_s49_remaining_801B5788` | Source служебного экрана: camera0 held yaw/pitch±2, distance±50 floor50 (increase имеет приоритет); camera1 yaw+8, camera2 yaw-8, camera3 distance+10 и Source cut >2000->50. Пересчитывает все четыре eye/up. Native UI профиль59E80 продолжает rates по времени и заимствует geometry; cut/input/resources/counters остаются Source. |
 | .scene1 / 0x801F96E0 | `dora3_auxiliary_update_manual_camera_801F96E0` | `dora3_s3_core_801F96E0` | Source служебной scene1 камеры: current-controller held9AD0 задаёт независимые yaw/pitch±4 и distance±20 floor20. SDK300C4 копирует held9504+i*2 в9AD0; это не pressed edge. Native UI профиль70A50 выполняет те же rates на дробном времени без повторения actor/model control callback. |
 | .minigame_1 / 0x801C5730 | `dora3_race_camera_advance_intro_801C5730` | `dora3_s21_mini_801C5730` | Source intro races: продолжает distance и pitch по исходным шагам; Native Motion/Angle roles удерживают duration и дают дробную камеру всех четырёх участников. SDKeye пересчитывается из той же yaw/pitch/distance. |
+| .remaining_slot2_08 / 0x8023D730 | `dora3_sound_color_sequence_append_8023D730` | `dora3_s47_remaining_8023D730` | Добавляет цвет0/1/2 в буфер802401A1, сбрасывает timeout802401A8. На третьем касании сравнивает три цвета с одной из шести строк ROM-таблицы8023FCA0 по индексу802401A5; result802401A6=1 или-1. MSVC optimization workaround сохраняет исходные MIPS инструкции. |
