@@ -97,7 +97,17 @@ if(DORA3_LIVE_RT64)
     if(NOT TARGET rt64)
         set(RT64_STATIC TRUE)
         set(RT64_SDL_WINDOW_VULKAN TRUE)
-        add_subdirectory("${RT64_ROOT}" rt64)
+        # Adapt raster source at configure time; dependency checkout/pins stay untouched.
+        set(sprite_rt64 "${CMAKE_CURRENT_BINARY_DIR}/rt64-sprite-edges")
+        execute_process(COMMAND "${Python3_EXECUTABLE}" "${ROOT}/tools/prepare_rt64_sprite_edges.py"
+            "${sprite_rt64}" COMMAND_ERROR_IS_FATAL ANY)
+        set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
+            "${ROOT}/tools/prepare_rt64_sprite_edges.py"
+            "${ROOT}/src/shaders/world_sprite_edges.hlsli"
+            "${RT64_ROOT}/CMakeLists.txt"
+            "${RT64_ROOT}/src/shaders/RasterPS.hlsl"
+            "${RT64_ROOT}/src/shaders/TextureSampler.hlsli")
+        add_subdirectory("${sprite_rt64}" rt64)
     endif()
     # Only Dora64-3 uses this build-local queue copy; pinned libraries and Dora64 stay untouched.
     set(adapted_rt64 "${CMAKE_CURRENT_BINARY_DIR}/rt64-framerate")

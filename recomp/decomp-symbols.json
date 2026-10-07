@@ -88929,7 +88929,7 @@
       "legacy_name": "dora3_s0_8003A3B8",
       "locals": [],
       "name": "dora3_build_model_material_commands_8003A3B8",
-      "description": "Строит материал из model descriptor: geometry/render/combiner/color setup, затем DE для каждой mesh list. Начальный DL cursor приходит через a0, окончательный публикуется перед возвратом. Generated prefix и вложенные static DE имеют общую RDP image/tile state; Native copies сохраняют ownership frame ticket.",
+      "description": "Строит материал из model descriptor: geometry/render/combiner/color setup, затем DE для каждой mesh list. Начальный DL cursor приходит через a0, окончательный публикуется перед возвратом. Generated prefix и вложенные static DE имеют общую RDP image/tile state; Native copies сохраняют ownership frame ticket. Material kind13 задаёт TEX_EDGE через общие depth/fog emitters; этот режим используют нос/кулак0000 и растительные спрайты bank33. Фильтрация краёв исправляется в build-local RT64 sampler, без изменения Original команд.",
       "evidence": "ROM-qualified Original function/body and inspected control/data flow after test046. Source identity and legacy ABI are unchanged. Native047 implementation is pending connected CPU and user visual validation.",
       "rom_sha256": "ab22824b84f99ba5fc62e8d8e1ef82e299266c4b7d343087691c9b0d8550ea9a"
     },
@@ -90554,6 +90554,50 @@
       "description": "Передаёт текущий handle800DAD28 и длительность в80048184. Завершение асинхронное: slot очищает446C0 после освобождения voices. Новая stop-команда отменяет отложенный запрос музыки.",
       "evidence": "Exact resident ROM body and all-scene callers; missing music after054 with working SFX; static analysis of request/stop/voice retirement/collector ordering. Runtime handoff not tested.",
       "rom_sha256": "e66326ca5705f4fcaf0e936f981aa7fe66a754811fdd7209d456beef4ef7a69e",
+      "locals": []
+    },
+    {
+      "section": ".startup",
+      "vram": "0x80039B7C",
+      "size": 196,
+      "legacy_name": "dora3_s0_80039B7C",
+      "name": "dora3_emit_model_depth_render_mode_80039B7C",
+      "description": "По global draw pass800EAECC и material+4 выбирает depth render mode:11 opaque2078,12 translucent49D8,13 TEX_EDGE3078; pass3 использует49D8. TEX_EDGE включает CVG_X_ALPHA и ALPHA_CVG_SEL, но не FORCE_BL.",
+      "evidence": "Статический разбор Original ROM instructions и всех1870 GIMO descriptors. Шейдеры компилируются отдельно; игровые/CPU/renderer проверки не выполнялись.",
+      "rom_sha256": "1e391e76aeaccab56cdaad5546be29023056ec6f3b30ac23049f9a0d17012e98",
+      "locals": []
+    },
+    {
+      "section": ".startup",
+      "vram": "0x80039C40",
+      "size": 196,
+      "legacy_name": "dora3_s0_80039C40",
+      "name": "dora3_emit_model_depth_fog_render_mode_80039C40",
+      "description": "Та же таблица material11/12/13 с depth и fog blender первого цикла: C8112078/C81049D8/C8113078. TEX_EDGE сохраняет alpha-derived coverage.",
+      "evidence": "Статический разбор Original ROM instructions и всех1870 GIMO descriptors. Шейдеры компилируются отдельно; игровые/CPU/renderer проверки не выполнялись.",
+      "rom_sha256": "13ec81bb0450ba56c421f013b0daee0d713bc1baec2385cbfcf48b021c89f187",
+      "locals": []
+    },
+    {
+      "section": ".startup",
+      "vram": "0x80039D04",
+      "size": 196,
+      "legacy_name": "dora3_s0_80039D04",
+      "name": "dora3_emit_model_no_depth_render_mode_80039D04",
+      "description": "Вариант material11/12/13 без Z_CMP/Z_UPD:2048/41C8/3048, global pass3 выбирает41C8. TEX_EDGE используется и без depth flags, поэтому исправление фильтрации нельзя ограничивать только Z-tested материалами.",
+      "evidence": "Статический разбор Original ROM instructions и всех1870 GIMO descriptors. Шейдеры компилируются отдельно; игровые/CPU/renderer проверки не выполнялись.",
+      "rom_sha256": "2c9e45617166470446b46abe226127f682eb0736c8f80753642deb0fc5131de1",
+      "locals": []
+    },
+    {
+      "section": ".startup",
+      "vram": "0x80039DC8",
+      "size": 196,
+      "legacy_name": "dora3_s0_80039DC8",
+      "name": "dora3_emit_model_no_depth_fog_render_mode_80039DC8",
+      "description": "Вариант без Z_CMP/Z_UPD, с fog blender первого цикла: C8112048/C81041C8/C8113048. Читает исходный pass и material kind; RGB палитры и альфа не модифицирует.",
+      "evidence": "Статический разбор Original ROM instructions и всех1870 GIMO descriptors. Шейдеры компилируются отдельно; игровые/CPU/renderer проверки не выполнялись.",
+      "rom_sha256": "3e2b856a2648973115d77b8ed761fa0896300cac6a2de9fc308196d66010f286",
       "locals": []
     }
   ]
