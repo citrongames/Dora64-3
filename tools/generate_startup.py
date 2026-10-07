@@ -5,6 +5,7 @@ from inspect_rom import ROOT, read_rom
 from overlay_layout import prepare_layout, pending_name
 from local_jump_tables import reviewed_local_jumps, verify_generated_local_jumps
 from native_timing_patches import timing_hooks
+from audio_queue_patches import audio_queue_hooks
 from decomp_annotations import annotate_generated_sources
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -129,6 +130,10 @@ def main():
     config+='recomp_include = '+json.dumps('#include "startup_hooks.h"')+'\n[patches]\n'
     config+='ignored = '+json.dumps([pending_name(index,addr) for index,addr in sorted(frontier)]+native_names)+'\n'
     time_hooks={(name,site):text for name,site,text in timing_hooks(sections,compiled,rom)}
+    for name, site, text in audio_queue_hooks(sections, compiled, rom):
+        if (name, site) in time_hooks:
+            raise ValueError('Conflicting audio queue hook')
+        time_hooks[name, site] = text
     config+='hook = [\n'
     for (index,addr),(name,size,evidence) in compiled.items():
         hook=f'dora3_trace(rdram, ctx, 0x{addr:08X}, 0x{sections[index]["rom"]:X});'
@@ -242,7 +247,7 @@ def main():
     verify_generated_local_jumps(out/'RecompiledFuncs',local_jumps)
     annotate_generated_sources(out/'RecompiledFuncs',sections,compiled,rom,ROOT/'recomp/decomp-symbols.json')
     verify_generated_local_jumps(out/'RecompiledFuncs',local_jumps)
-    inputs=['tools/native_minigame_patches.py','research/native-minigame-reviewed.json','tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
+    inputs=['tools/audio_queue_patches.py','tools/native_minigame_patches.py','research/native-minigame-reviewed.json','tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
     tracked=[f for f in out.rglob('*') if f.is_file() and f.name!='generation.log']
     report={'scope':'reviewed resident/overlay functions; explicit stop on unreviewed calls',
             'rom_sha256':hashlib.sha256(rom).hexdigest(),'tool_sha256':sha(binary),'inputs':{x:sha(ROOT/x) for x in inputs},

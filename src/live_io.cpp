@@ -18,7 +18,6 @@ int applied_background=-1;
 SDL_GameController* controller=nullptr; // SDL main thread only.
 SDL_AudioDeviceID audio_device=0;
 uint32_t audio_rate=0;
-size_t maximum_buffer_frames=0;
 bool audio_enabled=true;
 [[noreturn]] void audio_error(){std::fprintf(stderr,"LIVE AUDIO ERROR %s\n",SDL_GetError());std::_Exit(87);}
 float axis(Sint16 value,float deadzone){
@@ -119,7 +118,7 @@ void dora3_audio_frequency(uint32_t frequency){
     if(obtained.freq!=int(frequency) || obtained.format!=AUDIO_S16SYS || obtained.channels!=2){
         SDL_SetError("Unexpected audio format");audio_error();
     }
-    audio_rate=frequency;maximum_buffer_frames=0;SDL_PauseAudioDevice(audio_device,0);
+    audio_rate=frequency;SDL_PauseAudioDevice(audio_device,0);
     std::fprintf(stderr,"LIVE AUDIO OPEN rate=%u channels=2 format=S16 driver=%s\n",frequency,SDL_GetCurrentAudioDriver());
 }
 
@@ -127,7 +126,6 @@ void dora3_audio_queue(const int16_t* samples,size_t count){
     if(!audio_enabled)return;
     std::lock_guard lock(audio_mutex);
     if(!audio_device || count%2 || count>0x20000){SDL_SetError("Invalid PCM buffer/device");audio_error();}
-    maximum_buffer_frames=std::max(maximum_buffer_frames,count/2);
     // Word-swapped N64 RAM stores each stereo pair as R,L on this host.
     std::vector<int16_t> ordered(count);
     const int volume=dora3::port::settings().volume;
@@ -139,9 +137,11 @@ void dora3_audio_queue(const int16_t* samples,size_t count){
 
 size_t dora3_audio_remaining(){
     std::lock_guard lock(audio_mutex);
-    // AI_LEN describes one playing DMA, not every future buffer queued by SDL.
-    // Dora3 8004E674 subtracts it with unsigned arithmetic before its lower bound.
-    return audio_device ? std::min(maximum_buffer_frames,size_t(SDL_GetQueuedAudioSize(audio_device)/(2*sizeof(int16_t)))) : 0;
+    // Report all pending stereo frames so synthesis can correct queue growth.
+    // The runtime applies its existing half-VI reserve after this callback.
+    // audio_queue_patches.py saturates the guest subtraction before alignment;
+    // clipping here to one DMA hides accumulated latency from that feedback.
+    return audio_device ? size_t(SDL_GetQueuedAudioSize(audio_device)/(2*sizeof(int16_t))) : 0;
 }
 
 void dora3_shutdown_live_io(){

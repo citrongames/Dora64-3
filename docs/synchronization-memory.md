@@ -66,7 +66,7 @@ runtime/RT64 scheduler в стенде не исполнялся; интегра
 | Первичный ROM-буфер | В main 16-МиБ vector использовался для хэша и заголовка, затем удерживался всё время `recomp::start`. После регистрации игры освобождается; runtime сам читает ROM по сохранённому пути и владеет рабочим буфером (`read_file`, `set_rom_contents`) |
 | Свет | Два фиксированных host-слота и одна копия consumer по40 байт; контейнер не растёт с кадрами |
 | Trace/overlay учёт | Фиксированный массив известных overlay-регионов; thread-local set только известных адресов и ROM-идентичностей. Это удержание диагностических записей, не per-frame append |
-| PCM | Временный vector освобождается после SDL_QueueAudio; устройство закрывается при смене частоты и shutdown. Текущая проверка stalled audio queue прежняя, не изменена |
+| PCM | Временный vector освобождается после SDL_QueueAudio; устройство закрывается при смене частоты и shutdown. После050 очередь возвращает полный остаток; minimum/saturating subtraction исправлены в ROM generator (см. audio-queue-drift-after050.md). Fail-stop при двух секундах backlog сохранён; новая реализация не тестировалась |
 | Игровой heap | `80033A14` init, `80033A88` best-fit, `80033BA4` free/coalesce. 2000 циклов ×64 allocations/free вернули всю область128КиБ к одному свободному блоку; аллокатор не изменён |
 | Runtime threads | Cleaner делает host_thread.join + delete контекста; штатный stop ждёт game/events/cleaner/saving, затем освобождает RDRAM |
 | RT64 queues | Workload и Present — массивы по4 элемента. Их внутренние vectors могут сохранять capacity по максимуму; это не доказанная утечка |

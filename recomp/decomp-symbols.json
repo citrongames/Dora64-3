@@ -13062,10 +13062,22 @@
       "size": 276,
       "legacy_name": "dora3_audio_buffer_sizes",
       "name": "dora3_audio_buffer_sizes",
-      "description": "Computes sample buffer counts from output rate/retrace rate; stores80080140..14C",
-      "evidence": "Существующие именованные ROM функции в recomp/startup.json; покрытие исполнения см. прежние отчёты.",
+      "description": "Computes aligned audio frame target80080140, minimum80080144 and 30-percent reserve8008014C; port lowers the minimum by one16-frame block so22050Hz/60VI can recover queue drift (368->352), without changing allocation or target.",
+      "evidence": "Static ROM analysis after050: E57C..E5DC ceil(rate*retraces/VI) then next16 boundary; E5E8/E5F0 minimum store; E5FC..E638 percent reserve. Exact body hash pinned in tools/audio_queue_patches.py. No new tests or in-game confirmation.",
       "rom_sha256": "0bcb8bc3f3f062b16fd93be63ef2d1e273f6ba426b1a691b5a1c79838c230869",
-      "locals": []
+      "locals": [
+        {
+          "name": "audio_minimum_frames_r3",
+          "expression": "ctx->r3",
+          "start": "0x8004E5E8",
+          "end": "0x8004E5F4",
+          "description": "Aligned minimum stereo frames; host queue feedback lowers this by one block before the80080144 store.",
+          "instructions": {
+            "0x8004E5E8": "0x2443FFF0",
+            "0x8004E5F0": "0xAC230144"
+          }
+        }
+      ]
     },
     {
       "section": ".startup",
@@ -13073,10 +13085,22 @@
       "size": 140,
       "legacy_name": "dora3_audio_frame_samples",
       "name": "dora3_audio_frame_samples",
-      "description": "Computes aligned sample count from AI queued length and configured targets",
-      "evidence": "Существующие именованные ROM функции в recomp/startup.json; покрытие исполнения см. прежние отчёты.",
+      "description": "Returns max(aligned(target+reserve+16-remaining), minimum) stereo frames. Port saturates remaining at target+reserve+16 before unsigned subtraction to prevent long SDL queues wrapping into oversized synthesis requests.",
+      "evidence": "Static ROM after050: audio_thread8004E0CC reads AI bytes; E0D4 converts to stereo frames; E164 calls this helper. E69C/E6A0 subtract remaining-16, E6A8 aligns16, E6BC uses unsigned minimum. Exact140-byte body pinned in tools/audio_queue_patches.py. No new tests or in-game confirmation.",
       "rom_sha256": "52413c646e2cee411cf4a93f90d883cda8d1c628cd3eb9ec6cfe6a09555bd8b3",
-      "locals": []
+      "locals": [
+        {
+          "name": "audio_remaining_frames_r4",
+          "expression": "ctx->r4",
+          "start": "0x8004E698",
+          "end": "0x8004E6A0",
+          "description": "Queued stereo frames loaded from argument; saturated before subtracting the16-frame rounding allowance.",
+          "instructions": {
+            "0x8004E698": "0x8FC40008",
+            "0x8004E69C": "0x2483FFF0"
+          }
+        }
+      ]
     },
     {
       "section": ".startup",

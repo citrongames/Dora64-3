@@ -108,6 +108,8 @@
 | `arizinogu_physics_r5_8022EAD0` | `ctx->r5` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `attack_actor_r17` | `ctx->r17` | Actor argument a1; Source end query and component0 clip bind | 1 |
 | `attack_control_r16` | `ctx->r16` | Control argument a2; current clip14, desired18, attack20 | 1 |
+| `audio_minimum_frames_r3` | `ctx->r3` | Aligned minimum stereo frames; host queue feedback lowers this by one block before the80080144 store. | 1 |
+| `audio_remaining_frames_r4` | `ctx->r4` | Queued stereo frames loaded from argument; saturated before subtracting the16-frame rounding allowance. | 1 |
 | `axis_rotation_angle_float_bits_r5` | `ctx->r5` | Float-биты угла до переноса в f20; затем a1 становится указателем компоненты оси | 1 |
 | `axis_rotation_output_matrix_r16` | `ctx->r16` | Выходная матрица между сохранением a0 в s0 и восстановлением старого s0 | 1 |
 | `axis_rotation_x_float_bits_r6` | `ctx->r6` | Float-биты осиX до сохранения в scratch-аргумент нормализации | 1 |

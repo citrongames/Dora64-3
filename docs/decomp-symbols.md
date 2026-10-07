@@ -24,7 +24,7 @@ ROM инструкции, типы, float порядок, register storage и co
 address-map и ссылки на старые полные имена в остальных документах.
 `--check` проверяет, что документация соответствует каталогу.
 
-В каталоге: 2690 описаний функций, 2359 новых смысловых имён и 5851 ограниченных областей переменных.
+В каталоге: 2690 описаний функций, 2359 новых смысловых имён и 5853 ограниченных областей переменных.
 
 | Overlay / адрес | Читаемое имя | Прежнее ABI имя | Назначение |
 |---|---|---|---|
@@ -670,8 +670,8 @@ address-map и ссылки на старые полные имена в ост�
 | .startup / 0x8004E39C | `dora3_audio_heap_get` | `dora3_audio_heap_get` | Returns original ALHeap80080130 |
 | .startup / 0x8004E3CC | `dora3_audio_byte_fill` | `dora3_audio_byte_fill` | Original byte fill; no external calls |
 | .startup / 0x8004E444 | `dora3_lib_8004E444` | `dora3_lib_8004E444` | Original CPU-library closure for scene1; candidate extent, no CP0/uncached hardware LUI; original arithmetic/format/audio code retained, not SDK substitution; runtime coverage pending |
-| .startup / 0x8004E560 | `dora3_audio_buffer_sizes` | `dora3_audio_buffer_sizes` | Computes sample buffer counts from output rate/retrace rate; stores80080140..14C |
-| .startup / 0x8004E674 | `dora3_audio_frame_samples` | `dora3_audio_frame_samples` | Computes aligned sample count from AI queued length and configured targets |
+| .startup / 0x8004E560 | `dora3_audio_buffer_sizes` | `dora3_audio_buffer_sizes` | Computes aligned audio frame target80080140, minimum80080144 and 30-percent reserve8008014C; port lowers the minimum by one16-frame block so22050Hz/60VI can recover queue drift (368->352), without changing allocation or target. |
+| .startup / 0x8004E674 | `dora3_audio_frame_samples` | `dora3_audio_frame_samples` | Returns max(aligned(target+reserve+16-remaining), minimum) stereo frames. Port saturates remaining at target+reserve+16 before unsigned subtraction to prevent long SDL queues wrapping into oversized synthesis requests. |
 | .startup / 0x800513A0 | `dora3_audio_lowpass_init` | `dora3_audio_lowpass_init` | Original integer/double coefficient construction; no external calls |
 | .startup / 0x800518DC | `dora3_audio_envelope_filter_init` | `dora3_audio_envelope_filter_init` | Filter type4; alloc80; envelope state and gains initialization |
 | .startup / 0x80051994 | `dora3_audio_decoder_filter_init` | `dora3_audio_decoder_filter_init` | Filter type0; two32-byte states; invokes DMA factory passed in a1 |
