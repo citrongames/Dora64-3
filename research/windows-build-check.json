@@ -1,14 +1,14 @@
 {
-  "date_utc": "2026-10-07T14:09:56.502700+00:00",
-  "base_commit": "65758d17bc6d4851b6b95f0c5a54ae31c18c5e7f",
+  "date_utc": "2026-10-07T14:37:07.923061+00:00",
+  "base_commit": "4be12e2061dfa9a3dca96f13fd19286a75773110",
   "dirty": true,
-  "build_id": "test-051",
+  "build_id": "test-052",
   "cpu_generation": "startup-audio-test051-v1",
   "audio_generation": "audio-rsp-v1",
-  "scope": "Audio queue drift: full SDL backlog feedback, aligned recovery minimum and saturating unsigned sample calculation; Original and Native",
+  "scope": "Fix pre-existing Shizuka/NPC fade crash by retaining world command time during suspended Original callbacks; includes051 audio fix",
   "compiled": true,
   "locally_launched": false,
-  "executable_sha256": "3b7b1dbd7d751aca43c44fbdcbe95073b056c72643e657f3e18490239f2c5091",
+  "executable_sha256": "fa270a9cb60b3bfedaa38f0de2abc0e82cf4c52492a7777a8f97353666aad21e",
   "source_sha256": {
     ".gitattributes": "829e06e5ec81a44884afaa73ea5310944a0fa6d202e0bcaac500da0311fa12ad",
     ".gitignore": "5411bc2cca629be3c2c6dc64332ad19140e2229fac4959487761b41d854fe294",
@@ -26,7 +26,7 @@
     "docs/graphics-replay.md": "7150ca030442ad7837310988e1e39b9b748b500d53483f8f7aabcae921d3d145",
     "docs/hardware-interface.md": "77e132b8813c52ac646d0d2bb931884270fdf7924442f41080946ba13d095f2c",
     "docs/initial-investigation.md": "92a561123d01640edc0e5ed7fecdaacfd04f5c0739f57adc41dfdc8f6d372fd8",
-    "docs/investigation-log.md": "efe7aa044f91f5d85d18a354833c51fb77ea0361d4c734de0f797e00639c7d1a",
+    "docs/investigation-log.md": "aac0747fb54e0fc0314a2212d313fb18b1d273f8f1b137b0740d472a4177a42f",
     "docs/live-startup.md": "cf303f6bd23ae88d41342182418354c89e522bbe7726b43791ea977fceb790e3",
     "docs/model-animation.md": "9c5abfc12379724671436aa4882d142cc5d4f850f40ced2aaace7813b4abcc8a",
     "docs/native-camera-audit-after049.md": "97fe62c6efa5cdb027524d1d2eeea2eb8f8e92bd83e347d1ca5053c326644e3b",
@@ -78,7 +78,7 @@
     "docs/native-frame-bridge.md": "beb32f7a8d0a2f9ee3b377b4e98666d0f0c88d1d2e6f7c972bc876f61b29c884",
     "docs/native-frame-scheduler.md": "e337763341398840461c32d7fbcedbd59b413184a4c9dad35e30d6b25b082016",
     "docs/native-frame-session.md": "a1f7bfb8cff810959d8700b991cd29af6a49717ff69a6c301df79da0d483e4d2",
-    "docs/native-framerate.md": "d0ba86d7c3f0432efb21bc2d2f03efd8f6c6721cba917b0dd42284d19dbe3f8e",
+    "docs/native-framerate.md": "0e8f0b0d38392f93c727644b287e0905f7d688020db2e8482f6d74b5e06f557e",
     "docs/native-game-loop.md": "2820cdb2e9e76d532f76547df612236178e1bd51688e625bf601b3668f7cef10",
     "docs/native-graphics-pump.md": "e0ace447a8a9931e4b3f506f0eff8c3a0b4c46e0c42f39c8d20370861f02e6cb",
     "docs/native-integration-block6-worklist.md": "a9caf384d819a5bd7f1f3f58bc7e5a5cac8e1e9f8e9bad9e89324bf37d424b69",
@@ -111,8 +111,8 @@
     "docs/synchronization-memory.md": "1b2481328b47e36270e08e22231ac6eb8cd48ef9965b465c602c76533223574b",
     "docs/timing-inventory.md": "94b4e0af3061013226442215fdc01da52ad31e7a4e8204dc95d4300e71d8f800",
     "docs/vi-resource-lifetime.md": "23c2488f9142e90817deed683ec8c9c0b19125c0a5916f248665720b136a4554",
-    "docs/windows-test-build.md": "7b5a66228388462fafc3c8538fabee52029f45a8ce276217b5c9a34c56319aec",
-    "docs/work-in-progress.md": "7a440b81537c1331d09890fa6bf9ad4bb2f319ddffb1cda46954fe78f7a8562b",
+    "docs/windows-test-build.md": "6115ac82fec2e05d6e0c52756eea0698bb01f38939b0590c3bfb28f5655df9b0",
+    "docs/work-in-progress.md": "d171de0a67422f071c493e41f90536dd01c28669ea26b5309d9a6555fd1ecc93",
     "recomp/audio-rsp.json": "8c35c699b6a7e78c527b14e76bbf18d01766422332eedadc6ae74f67db74cc3e",
     "recomp/boot.syms.toml": "cb89d430fcd3af650e6f36de4f9386167ea49d921d4817570f9cdf0490ad5aa1",
     "recomp/decoder.syms.toml": "3c381a4210155b1f2a3279228e3234d20587fa59207b4d4dfee5b4c4c8427ace",
@@ -417,7 +417,7 @@
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "src/native_game_loop.cpp": "84d83f1d829587ae3ac0912a325b54e178a7d0ef8b1cbf9995f016114015c661",
     "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
-    "src/native_gameplay_preview.cpp": "f6dabcc72387c43a2805b3f8809a2bad22d4984b6d4288da4c9b088d7ada58a6",
+    "src/native_gameplay_preview.cpp": "7a786424f072e3b8eb7694f0e0f1d259f8270c24465cd1fcbdc438282c5e82f7",
     "src/native_gameplay_preview.hpp": "2773c63fa042ebcc3efffe1c194f3d7e0c05ac5a205520ca59834100b34f05ea",
     "src/native_graphics_pump.cpp": "4170bf4b463147cfe1e50dff3653a0b3749685ec4563137f39be190a4150c5d0",
     "src/native_graphics_pump.hpp": "3fdcb53d2f68a9b6d344beb44ea58a190c637bd2320cf3e77fbb8af2649bdcd3",
@@ -553,23 +553,23 @@
     "tools/verify_decoder.py": "b29af1acaa5288f19873bc73959047d7251868203d76f3499efd7127f13379e0",
     "tools/verify_generation.py": "4e65edf87e148a5601143cf657909d6e1df83b4a15ea0c3f63b6dc0b38fc8d0d"
   },
-  "previous_user_test": "User reported growing audio lag on all FPS modes after a few minutes in050;051 not yet run by user",
-  "validation_policy": "Compilation and package integrity only. No automatic tests per explicit user instruction. Historical PASS results not reused as validation.",
+  "previous_user_test": "User crash051 at Shizuka; offline dump confirmed FadeTimeline backwards clock. User says issue predates051. Fix not yet confirmed in game.",
+  "validation_policy": "Compilation and package integrity only; no automated tests per user instruction; no historical PASS reused",
   "completed_cpu_checks": 0,
   "full_cpu_suite_complete": false,
   "tests_executed": false,
   "user_requested_skip": true,
   "limitations": [
-    "No local game, emulator, renderer or GPU execution",
-    "Audio behaviour and long-session latency remain unconfirmed in game"
+    "No local game/emulator/renderer/GPU execution",
+    "User must confirm NPC cutscene and long-session audio behaviour"
   ],
   "windows_build_execution": {
     "exit_code": 0,
-    "completed_log_sha256": "2b6504cbe3f3b57ec0e8aaecb614abaea618ee1b00aaf4d00f2c358365f0426e",
-    "execution": "MSVC RelWithDebInfo via tools/build_windows.ps1;139 build steps, successful link; compiler C4297 warnings in existing extern-C simulation paths; no tests or application launched"
+    "completed_log_sha256": "14a97de746992ba4ee7420989bc9b37171310e84142fa172f514183e9f5159c3",
+    "execution": "Incremental MSVC RelWithDebInfo; successful link; existing generated CPU/RSP inputs unchanged; no tests or EXE run"
   },
   "package_preservation": {
-    "existing_files_checked": 165,
+    "existing_files_checked": 168,
     "changed_existing_files": [],
     "logs_excluded": true
   }

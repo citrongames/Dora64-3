@@ -1,7 +1,7 @@
 # Windows build без тестов после050
 
 Основной репозиторий: /home/vova/projects/DoraRecomp3, main.
-Текущий EXE051 собран из кода65758d1. Старые проверки не запускать.
+Текущий EXE052 собран из кода4be12e2. Старые проверки не запускать.
 
 Готовый Windows staging и cache находятся здесь (это вспомогательная копия,
 не основной Git и не справочное зеркало sources):
@@ -12,7 +12,10 @@ Python Windows:
 Visual Studio: `C:/Program Files/Microsoft Visual Studio/2022/Community`.
 CRT051: `VC/Redist/MSVC/14.44.35112/x64/Microsoft.VC143.CRT` внутри Visual Studio.
 
-1. Сверить main/status/последний EXE. Создать новую generation в WSL через
+1. Сверить main/status/последний EXE. Если изменился только C++ и хэши
+   inputs существующих generation receipts совпадают, переиспользовать generation
+   и готовый Windows cache (как в052); полная генерация не нужна. Иначе создать
+   новую generation в WSL через
    tools/generate_startup.py --rom с ROM из testbuild и новым --output-dir
    под build-local.051 использует startup-audio-test051-v1 и audio-rsp-v1.
    Встроенные ROM/generation integrity guards — часть генерации; standalone

@@ -59,7 +59,10 @@ actor/projectile. Original режим без gameplay timeline остаётся 
 
 ## Статус
 
-Только offline-разбор существующих runtime/Event/dump/EXE/PDB и статический
-анализ кода. Никаких новых тестов, CPU прогонов, игры, renderer/GPU или сборки.
-EXE051 остаётся последним; новая правка ещё не скомпилирована и не подтверждена
-в игре. Сборка — после нового «нет» либо прямой команды пользователя.
+Правка4be12e2 включена в Windows052 по прямой команде пользователя.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-052.exe.
+SHA256: fa270a9cb60b3bfedaa38f0de2abc0e82cf4c52492a7777a8f97353666aad21e.
+Компиляция MSVC RelWithDebInfo успешна;168 прежних файлов вне logs не изменились.
+CPU/RSP generation051 сохранена с неизменными входами; изменённый C++ пересобран.
+Тесты, игра, эмулятор, renderer/GPU не запускались. Игровой результат не подтверждён.
+PDB051 сохранён в Windows staging/build-local/symbols-test051 для будущего анализа.
