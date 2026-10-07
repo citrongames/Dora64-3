@@ -35,6 +35,9 @@ public:
     // Reviewed Source branches pause/seek or change one-shot clips after end.
     // Suppress only their fractional render wrap; guest clock/flags stay intact.
     void terminal_pose(uint8_t*,uint32_t actor,unsigned component);
+    // Exact object-end getter return: a0 is the queried component's model.
+    // Works for native actors and Source-only models; does not change time/flags.
+    void terminal_model_pose(uint8_t*,uint32_t model);
     // Split continuous updates at a real clip boundary. A dependent action
     // then observes the end pulse before integrating the remaining interval.
     // The optional plan identifies only models actually advanced by this
@@ -117,6 +120,7 @@ private:
 }
 extern "C" void dora3_native_model_hook(uint8_t*, recomp_context*, uint32_t);
 extern "C" void dora3_native_model_terminal_pose(uint8_t*,recomp_context*,unsigned);
+extern "C" void dora3_native_model_terminal_sample(uint8_t*,recomp_context*);
 
 extern "C" int dora3_native_model_advance(uint8_t*,recomp_context*);
 

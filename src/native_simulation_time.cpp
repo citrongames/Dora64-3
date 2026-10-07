@@ -8,6 +8,10 @@
 namespace dora3::native_time {
 namespace {
 thread_local const SimulationSlice* active = nullptr;
+// Source commands may suspend motion while still belonging to this actor's
+// interval. This read-only view never enables scaling or another simulation.
+thread_local const SimulationSlice* suspended_command = nullptr;
+thread_local uint64_t suspended_command_serial = 0;
 thread_local uint64_t cancellation_serial = 0, active_serial = 0;
 thread_local std::vector<GravitySample>* active_gravity = nullptr;
 thread_local std::vector<GravitySample>* active_drive = nullptr;
@@ -73,14 +77,21 @@ SimulationScope::SimulationScope(const SimulationSlice& slice):slice_(slice),pre
     active_gravity=&gravity_;active_drive=&drive_;
 }
 SimulationScope::~SimulationScope() { active=previous_;active_gravity=nullptr;active_drive=nullptr; }
-SimulationSuspension::SimulationSuspension():slice_(active),gravity_(active_gravity),drive_(active_drive),serial_(active_serial) {
+SimulationSuspension::SimulationSuspension():slice_(active),gravity_(active_gravity),drive_(active_drive),serial_(active_serial),
+    command_slice_(suspended_command),command_serial_(suspended_command_serial) {
     if(!active_simulation_slice())throw std::logic_error("Subsystem suspension outside simulation");
+    suspended_command=slice_;suspended_command_serial=serial_;
     active=nullptr;active_gravity=nullptr;active_drive=nullptr;
 }
 SimulationSuspension::~SimulationSuspension() {
+    suspended_command=command_slice_;suspended_command_serial=command_serial_;
     active=slice_;active_serial=serial_;active_gravity=gravity_;active_drive=drive_;
 }
 const SimulationSlice* active_simulation_slice() { return active_serial==cancellation_serial ? active : nullptr; }
+const SimulationSlice* command_simulation_slice() {
+    if(active)return active_simulation_slice();
+    return suspended_command_serial==cancellation_serial ? suspended_command : nullptr;
+}
 void cancel_active_simulation() { if(active)++cancellation_serial; }
 double simulation_ticks() { const auto* slice=active_simulation_slice();return slice ? slice->ticks() : 1.0; }
 void publish_simulation_motion(std::uint32_t address,const KinematicStep& step) {

@@ -69,8 +69,13 @@ private:
     std::vector<GravitySample>* gravity_;
     std::vector<GravitySample>* drive_;
     std::uint64_t serial_;
+    const SimulationSlice* command_slice_;
+    std::uint64_t command_serial_;
 };
 const SimulationSlice* active_simulation_slice();
+// Read-only animation-command ownership, including a suspended Source callback.
+// This is an actor-local interval, not the world timestamp for sound/fade commands.
+const SimulationSlice* command_simulation_slice();
 // Resource replacement revokes the current scope before guest code resumes.
 // Its RAII owner still performs cleanup; a new scene cannot inherit old dt.
 void cancel_active_simulation();

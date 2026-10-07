@@ -3,6 +3,16 @@
 > с временными local TRS: в Native нет очередных Original draw, поэтому
 > pre-session matrix freeze нарушил бы столкновения. CPU047 ещё не запускался.
 
+## Актуальная правка после057
+
+Общий Source/Native terminal pose применяется к325 ROM-qualified end transitions
+в253 owner functions, включая компоненты кроме0 и reverse playback. Остальные
+37 phase/loop queries сохраняют прежний путь. Нужна CPU generation
+startup-model-terminal-after057-v2; новый EXE пока не собран. Статический разбор
+и точные ограничения — [model-terminal-transitions-after057.md](model-terminal-transitions-after057.md).
+Ниже сохранена историческая основа API и интеграции; её старые PASS не относятся
+к этой новой правке. Новых тестов/игровых прогонов нет.
+
 # Общая модельная анимация: подтверждённый контракт и интеграция
 
 2026-09-29. Анализ закреплённого ROM, а не перенос структуры Dora64.

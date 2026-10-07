@@ -17,6 +17,29 @@
 Законченные изменения сохранять коммитами в существующей main и отправлять
 в origin; чужие изменения, прежние EXE/ROM/settings/saves/DLL сохранять.
 
+## После057: общий конец позы при смене клипов (2026-10-07)
+
+Пользователь сообщил краткое появление другой позы после shell appearance;
+разобран общий механизм во всех4778 Original functions/50 sections.362 object
+end queries:325 terminal policies/253 owners,37 preserved phase/loop queries;
+SDK delegate отдельно. Включены Yadokaringer/Tutaru, другие враги/боссы, NPC,
+персонажи, эффекты и прежние mini transitions. Точная визуальная identity врага
+по описанию места не объявляется установленной.
+
+Старый049 intent применялся лишь в Source-render ветви. Добавлен Native render
+hold duration/zero до следующего rational actor tick; current run/channels/
+descriptors и direction guards. Post-getter a0 даёт actual component model,
+а read-only suspended command view сохраняет его локальный interval. Guest
+clock/end/commands и ordinary loops сохранены; Original20/30/Manual прежние.
+[Причина, статический охват и границы](model-terminal-transitions-after057.md).
+
+GCC C++20 -O2 objects compiled; окончательная generation
+startup-model-terminal-after057-v2 завершена,48 затронутых C units/325 hooks
+скомпилированы GCC C17 syntax-only. Old music generation для нового EXE не
+подходит. Это компиляция, не CPU/runtime PASS. Тесты/игра/GPU не запускались, новый EXE
+не собран, игровое подтверждение отсутствует. Пачка открыта до следующего «нет»
+либо прямой команды собрать; законченные правки сохраняются commit/push main.
+
 ## Test055: общий запуск музыки после переходов (2026-10-07)
 
 По прямой команде «билд» собран Windows055 изc8d6d32 с правкой6cd905f.

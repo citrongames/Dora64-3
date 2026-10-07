@@ -7,6 +7,7 @@ from local_jump_tables import reviewed_local_jumps, verify_generated_local_jumps
 from native_timing_patches import timing_hooks
 from audio_queue_patches import audio_queue_hooks
 from audio_music_patches import audio_music_hooks
+from model_transition_patches import model_terminal_hooks
 from msvc_codegen_workarounds import apply_msvc_codegen_workarounds
 from decomp_annotations import annotate_generated_sources
 
@@ -76,6 +77,7 @@ def main():
     declarations.append('int dora3_native_process_lifecycle_allowed(uint8_t*, recomp_context*);')
     declarations.append('int dora3_native_model_morph_allowed(uint8_t*, recomp_context*);')
     declarations.append('void dora3_native_model_hook(uint8_t*, recomp_context*, uint32_t);')
+    declarations.append('void dora3_native_model_terminal_sample(uint8_t*,recomp_context*);')
     declarations.append('int dora3_native_model_advance(uint8_t*, recomp_context*);')
     declarations.append('int dora3_native_preview_hook(uint8_t*,recomp_context*,uint32_t);')
     declarations.extend(f'void dora3_music_{name}(uint8_t*,recomp_context*);' for name in ['reset','request','busy','stop','after_collect'])
@@ -141,6 +143,9 @@ def main():
         if (name, site) in time_hooks:
             raise ValueError('Conflicting music handoff hook')
         time_hooks[name, site] = text
+    for name, site, text in model_terminal_hooks(sections, compiled, rom):
+        # Capture a0 before other post-call adapters restore Source operands.
+        time_hooks[name, site] = text + ' ' + time_hooks.get((name, site), '')
     config+='hook = [\n'
     for (index,addr),(name,size,evidence) in compiled.items():
         hook=f'dora3_trace(rdram, ctx, 0x{addr:08X}, 0x{sections[index]["rom"]:X});'
@@ -255,7 +260,7 @@ def main():
     apply_msvc_codegen_workarounds(out/'RecompiledFuncs',sections,compiled,rom)
     annotate_generated_sources(out/'RecompiledFuncs',sections,compiled,rom,ROOT/'recomp/decomp-symbols.json')
     verify_generated_local_jumps(out/'RecompiledFuncs',local_jumps)
-    inputs=['tools/audio_music_patches.py','tools/msvc_codegen_workarounds.py','tools/audio_queue_patches.py','tools/native_minigame_patches.py','research/native-minigame-reviewed.json','tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
+    inputs=['tools/model_transition_patches.py','recomp/model-terminal-poses.json','tools/audio_music_patches.py','tools/msvc_codegen_workarounds.py','tools/audio_queue_patches.py','tools/native_minigame_patches.py','research/native-minigame-reviewed.json','tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
     tracked=[f for f in out.rglob('*') if f.is_file() and f.name!='generation.log']
     report={'scope':'reviewed resident/overlay functions; explicit stop on unreviewed calls',
             'rom_sha256':hashlib.sha256(rom).hexdigest(),'tool_sha256':sha(binary),'inputs':{x:sha(ROOT/x) for x in inputs},

@@ -1,9 +1,13 @@
 # Windows build без тестов после050
 
 Основной репозиторий: /home/vova/projects/DoraRecomp3, main.
-Текущий EXE055 собран изc8d6d32 с правкой6cd905f. Старые проверки не запускать.
-Актуальная CPU generation startup-music-handoff-v1, RSP audio-rsp-v1 прежний.
-Использовать готовую generation и Windows cache для следующих C++-only сборок.
+Последний EXE057 собран из83cd224; текущая открытая пачка после057 — terminal
+poses моделей. Старые проверки не запускать. Для следующего EXE использовать
+окончательную CPU generation startup-model-terminal-after057-v2, RSP audio-rsp-v1
+прежний. Старые startup-music-handoff-v1 и draft model-terminal v1 не содержат
+окончательную policy table/325 hooks; их старые receipts не переиспользовать.
+Новый Windows build — только после следующего «нет» либо прямой команды собрать.
+Windows cache сохранён; перед compilation заменить CPU source/generation manifest.
 src/audio_music_handoff.cpp включён в research/runtime/CMakeLists.txt.
 В новой generation только helper8023D730 получает scoped MSVC optimize off/on.
 

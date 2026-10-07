@@ -38,12 +38,14 @@ struct Observation {
     Nanoseconds origin;
     uint32_t channels,descriptors;
 };
-// Only a reviewed Source end-query owner can request a terminal render pose.
-// The intent expires with its Source step or animation run; it is not a clip flag.
+// Only a reviewed end-query transition requests a terminal render pose.
+// Source observations expire by step; Native ones by the actor's rational tick.
+// Both expire on clip/seek/flag commands or allocation reuse, never a guest flag.
 struct TerminalPoseIntent {
     uint64_t run,step;
     uint32_t channels,descriptors;
     float duration;
+    std::optional<SimulationSlice> native_slice{};
 };
 struct NativeAnimationClock {
     long double time;
@@ -56,6 +58,7 @@ struct NativeAnimationClock {
     uint8_t expected_flags;
     std::optional<uint64_t> normalization_tick{};
     std::optional<uint64_t> end_tick{};
+    int end_direction=0;
     std::optional<SimulationSlice> last_slice{};
 };
 struct EventCursor {
@@ -120,6 +123,14 @@ struct Model {
     struct ActorBinding {uint32_t actor,physical,model;uint64_t lifetime;};
     std::unordered_map<uint32_t,ActorBinding> bindings;
 };
+const TerminalPoseIntent* matching_terminal_pose(uint8_t* rdram,uint32_t model,const Model& entry) {
+    if(!entry.terminal_pose)return nullptr;
+    const auto& intent=*entry.terminal_pose;
+    if(intent.run!=entry.run || intent.channels!=uint32_t(word(rdram,model+0x60)) ||
+       intent.descriptors!=uint32_t(word(rdram,model+0x18)) ||
+       intent.duration!=real(rdram,intent.descriptors+4))return nullptr;
+    return &intent;
+}
 NativeScalarClock& scalar_clock(uint8_t* rdram,Model& entry,uint32_t address,float current,const SimulationSlice& slice) {
     region(address,4);
     const auto bits=std::bit_cast<int32_t>(current);
@@ -381,7 +392,11 @@ void ModelAnimation::terminal_pose(uint8_t* rdram,uint32_t actor,unsigned compon
     // Never acquire this render-only policy from a draw or Native simulation.
     if(s.frame || active_simulation_slice() || component!=0)return;
     region(actor,0x78);
-    const auto model=uint32_t(word(rdram,actor+0x74));
+    terminal_model_pose(rdram,uint32_t(word(rdram,actor+0x74)));
+}
+void ModelAnimation::terminal_model_pose(uint8_t* rdram,uint32_t model) {
+    auto& s=*state_;
+    if(s.frame)return;
     const auto found=s.models.find(model);
     if(found==s.models.end())return;
     const auto channels=uint32_t(word(rdram,model+0x60));
@@ -391,7 +406,12 @@ void ModelAnimation::terminal_pose(uint8_t* rdram,uint32_t actor,unsigned compon
     const auto duration=real(rdram,descriptors+4);
     if(!std::isfinite(duration)||duration<=0)return;
     auto& entry=found->second;
-    entry.terminal_pose=TerminalPoseIntent{entry.run,s.step,channels,descriptors,duration};
+    // The post-getter hook receives the actual selected model, so it also
+    // covers secondary components and delay slots that prepare a0/a1. Retain
+    // the local tick even while the genuine Source FSM suspends motion.
+    const auto* slice=command_simulation_slice();
+    entry.terminal_pose=TerminalPoseIntent{entry.run,s.step,channels,descriptors,duration,
+        slice?std::optional<SimulationSlice>{*slice}:std::nullopt};
 }
 void ModelAnimation::reset() {
     if(state_->frame)throw std::logic_error("Model reset during active frame");
@@ -692,7 +712,7 @@ void ModelAnimation::advance_simulation(uint8_t* rdram,recomp_context* ctx) {
     long double next=std::fmod(absolute,duration);
     if(next<0)next+=duration;
     if((flags&1) && rate>=0 && absolute>=duration) {next=duration;ended=true;}
-    if(ended){clock->end_tick=slice->tick;++entry.end_sequence;}
+    if(ended){clock->end_tick=slice->tick;clock->end_direction=rate<0?-1:1;++entry.end_sequence;}
     const bool clamped=(flags&1) && rate>=0;
     const auto event_from=clamped ? std::min(before,static_cast<long double>(duration)) : before;
     const auto event_to=clamped ? std::min(absolute,static_cast<long double>(duration)) : absolute;
@@ -992,6 +1012,19 @@ void ModelAnimation::begin_frame(uint8_t* rdram,recomp_context* ctx,Nanoseconds 
                 // that pose would lag by one *variable* step. Evaluate the actual
                 // native clip time in the free bank, then restore game-owned bones.
                 time=real(rdram,model+0x64);
+                if(const auto* terminal=matching_terminal_pose(rdram,model,entry)) {
+                    const auto& clock=*entry.native_clock;
+                    if(terminal->native_slice && clock.last_slice &&
+                       terminal->native_slice->tick==clock.last_slice->tick &&
+                       terminal->native_slice->denominator==clock.last_slice->denominator &&
+                       clock.end_tick==clock.last_slice->tick &&
+                       ((clock.rate>0 && clock.end_direction==1) || (clock.rate<0 && clock.end_direction==-1))) {
+                        // Counter/event progression stays real. Only the free-bank
+                        // pose waits at the endpoint until the next Source decision,
+                        // instead of flashing a wrapped start of the previous clip.
+                        time=clock.end_direction<0?0:terminal->duration;
+                    }
+                }
                 for(auto& bone:entry.bones)
                     for(unsigned k=0;k<9;++k)bone.transform[k]=word(rdram,bone.address+0x14+4*k);
                 entry.sampled=true;
@@ -1005,22 +1038,20 @@ void ModelAnimation::begin_frame(uint8_t* rdram,recomp_context* ctx,Nanoseconds 
                 entry.sampled=true;
                 Animation animation(o.before,o.divider);
                 time=animation.advance(now-o.origin).time;
-                const auto& terminal=entry.terminal_pose;
-                if(terminal && terminal->run==entry.run && terminal->step==o.step &&
+                const auto* terminal=matching_terminal_pose(rdram,model,entry);
+                if(terminal && terminal->step==o.step &&
                    terminal->channels==o.channels && terminal->descriptors==o.descriptors &&
-                   terminal->channels==uint32_t(word(rdram,model+0x60)) &&
-                   terminal->descriptors==uint32_t(word(rdram,model+0x18)) &&
-                   terminal->duration==o.before.duration &&
-                   terminal->duration==real(rdram,terminal->descriptors+4) && o.before.increment>0) {
-                    // Source poses at T, then advances by +3. Its end flag may
-                    // already wrap the counter; pause/seek or a new clip follows.
+                   terminal->duration==o.before.duration) {
+                    // Source poses at T, then advances its signed clip rate.
+                    // The end flag may wrap the counter before pause/seek/rebind.
                     // Render the terminal pose in that gap instead of the clip
                     // beginning. Ordinary looping clips retain Animation::advance.
                     SceneClock clock(o.divider);
                     const auto progress=clock.advance(now-o.origin);
                     const double units=double(progress.whole)+progress.fractional();
                     const double position=double(o.before.time)+units*o.before.increment;
-                    if(position>=o.before.duration)time=o.before.duration;
+                    if(o.before.increment>0 && position>=o.before.duration)time=o.before.duration;
+                    else if(o.before.increment<0 && position<=0)time=0;
                 }
             }
             temporary_model=model;saved_time=word(rdram,model+0x64);
@@ -1075,6 +1106,10 @@ extern "C" void dora3_native_model_hook(uint8_t* ram,recomp_context* ctx,uint32_
 
 extern "C" void dora3_native_model_terminal_pose(uint8_t* ram,recomp_context* ctx,unsigned component) {
     dora3::native_time::game_model_animation().terminal_pose(ram,uint32_t(ctx->r4),component);
+}
+
+extern "C" void dora3_native_model_terminal_sample(uint8_t* ram,recomp_context* ctx) {
+    dora3::native_time::game_model_animation().terminal_model_pose(ram,uint32_t(ctx->r4));
 }
 
 extern "C" int dora3_native_model_morph_allowed(uint8_t* rdram,recomp_context*) {
