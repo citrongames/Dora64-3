@@ -17,6 +17,23 @@
 Законченные изменения сохранять коммитами в существующей main и отправлять
 в origin; чужие изменения, прежние EXE/ROM/settings/saves/DLL сохранять.
 
+## Test058: переходы анимаций моделей (2026-10-07)
+
+По прямой команде «билд» собран Windows058 из96935fc. Общий terminal pose fix
+включён для325 ROM-qualified transitions/253 owners, Source/Native rendering,
+reverse clips и actual model components;37 phase/loop queries сохранены.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-058.exe.
+SHA256: 91974f06cd9d0a1ea95892a11509d301f868541d6a92a7a8d8555c51ed12a65c.
+Окончательная CPU generation startup-model-terminal-after057-v2 и прежняя
+RSP audio-rsp-v1; их входы совпали. MSVC RelWithDebInfo configure/compile/link
+завершились exit0. Все186 прежних файлов вне logs сохранили хэши, включая
+EXE/ROM/settings/saves/shared DLL. PDB/EXE057 и предыдущее Windows staging
+сохранены; старый057 compile receipt — в research/history/.
+Тесты/игра/эмулятор/renderer/GPU не запускались. Это успешная компиляция и
+упаковка, не gameplay/runtime PASS; визуальный результат058 не подтверждён.
+[Причина и статический охват](model-terminal-transitions-after057.md).
+Пачка собрана по прямой команде; дальнейшие баги — новый запрос.
+
 ## После057: общий конец позы при смене клипов (2026-10-07)
 
 Пользователь сообщил краткое появление другой позы после shell appearance;

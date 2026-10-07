@@ -98,6 +98,19 @@ RSP audio-rsp-v1 не менялся. Переиспользовать стар�
 Генерируемый C вручную не правился; ROM/assets и dependencies сохранены.
 
 Новых fixtures/tests/CPU/component/regression/prebuild не было; старые PASS
-не перенесены. Windows EXE после057 ещё не собран, игровой результат не подтверждён.
-Пачка остаётся открытой: один новый EXE после следующего ответа пользователя
-«нет» либо прямой команды собрать. Исправление и документы сохраняются в main/origin.
+не перенесены. По следующей прямой команде «билд» собран и упакован Windows058
+из96935fc: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-058.exe.
+SHA256: 91974f06cd9d0a1ea95892a11509d301f868541d6a92a7a8d8555c51ed12a65c.
+MSVC RelWithDebInfo configure/compile/link завершились exit0.325 hooks включены
+через окончательную v2, RSP audio-rsp-v1 сохранён. Все186 прежних файлов вне logs
+сохранили хэши; PDB/EXE057 сохранены в staging/build-local/symbols-test057,
+старые исходники — в model-terminal-test058-build/sources-before-test058.zip.
+Старый057 receipt сохранён в research/history/. Игровой результат058 пока не
+подтверждён; завершённая упаковка не заменяет пользовательскую визуальную проверку.
+
+Первый configure wrapper остановился до компиляции: PowerShell stderr redirection
+превратил miniz deprecation warning в NativeCommandError. OS-level log capture
+позволил штатному build script завершиться, gameplay/dependency code не менялся.
+Первая упаковка через legacy powershell.exe не нашла Get-FileHash в доступных
+модулях и остановилась до копирования. Повтор через bundled PowerShell Core
+с доступным cmdlet завершился. Оба исходных журнала сохранены; это не CPU tests.

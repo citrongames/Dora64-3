@@ -1,13 +1,18 @@
 # Windows build без тестов после050
 
 Основной репозиторий: /home/vova/projects/DoraRecomp3, main.
-Последний EXE057 собран из83cd224; текущая открытая пачка после057 — terminal
-poses моделей. Старые проверки не запускать. Для следующего EXE использовать
-окончательную CPU generation startup-model-terminal-after057-v2, RSP audio-rsp-v1
-прежний. Старые startup-music-handoff-v1 и draft model-terminal v1 не содержат
-окончательную policy table/325 hooks; их старые receipts не переиспользовать.
-Новый Windows build — только после следующего «нет» либо прямой команды собрать.
-Windows cache сохранён; перед compilation заменить CPU source/generation manifest.
+Последний EXE058 собран из96935fc: terminal poses моделей в Source/Native.
+CPU generation startup-model-terminal-after057-v2, RSP audio-rsp-v1 прежний.
+Для следующих C++-only сборок переиспользовать эту generation и Windows cache,
+только если её входы совпадают. Старые startup-music-handoff-v1 и draft model
+terminal v1 не содержат окончательную policy table/325 hooks; их receipts не
+переиспользовать.058 собран по прямой команде; следующий build после нового
+«нет» либо прямой команды собрать. Старые проверки не запускать.
+Windows cache/manifest обновлены, PDB/EXE057 и исходники перед058 сохранены.
+Для внешнего запуска package script использовать bundled PowerShell Core
+из C:/Users/black/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe:
+в legacy powershell.exe с унаследованным module path недоступен Get-FileHash.
+Build logs захватывать на уровне OS subprocess, без PS stderr-to-error pipeline.
 src/audio_music_handoff.cpp включён в research/runtime/CMakeLists.txt.
 В новой generation только helper8023D730 получает scoped MSVC optimize off/on.
 

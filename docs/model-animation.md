@@ -8,7 +8,7 @@
 Общий Source/Native terminal pose применяется к325 ROM-qualified end transitions
 в253 owner functions, включая компоненты кроме0 и reverse playback. Остальные
 37 phase/loop queries сохраняют прежний путь. Нужна CPU generation
-startup-model-terminal-after057-v2; новый EXE пока не собран. Статический разбор
+startup-model-terminal-after057-v2; правка включена в Windows058. Статический разбор
 и точные ограничения — [model-terminal-transitions-after057.md](model-terminal-transitions-after057.md).
 Ниже сохранена историческая основа API и интеграции; её старые PASS не относятся
 к этой новой правке. Новых тестов/игровых прогонов нет.
