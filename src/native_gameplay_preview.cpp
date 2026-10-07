@@ -1992,9 +1992,13 @@ std::optional<double> native_gameplay_preview_source_fraction() {
     return double(timeline->phase())/(double(timeline->divider())*double(second));
 }
 std::optional<SourceTimestamp> native_gameplay_preview_command_time() {
-    // An actor's local age controls its movement, while commands retain
-    // their actual position on the shared world timeline.
-    const auto* slice=object_scope&&gameplay_slice?&*gameplay_slice:active_simulation_slice();
+    // Commands belong to the shared world slice, including while Original
+    // contact/geometry callbacks suspend continuous motion. In particular,
+    // dispatch_native_npc_action suspends simulation before DD8FC may start
+    // a fade. Losing this stamp falls back to wall time inside the callback,
+    // which is later than the frame being updated and breaks fade handoff.
+    // Actor/projectile local age must not replace the world command clock.
+    const auto* slice=gameplay_slice?&*gameplay_slice:active_simulation_slice();
     if(!timeline || !slice || !(motion_call || object_call || projectile_call)) {
         // State commands after a resource barrier still belong to the same
         // first callback. Only its movement/model continuation is cancelled.
