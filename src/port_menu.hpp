@@ -19,7 +19,8 @@ void begin_capture(Action action,bool gamepad);
 void cancel_capture();
 std::string capture_label();
 // Called on the SDL thread before translating input for the N64.
-bool process_port_input(const PhysicalInput& input);
+// Optional game sample masks only controls still held across menu/focus changes.
+bool process_port_input(const PhysicalInput& input,PhysicalInput* game_input=nullptr);
 void overlay_input();
 void draw_overlay();
 void record_output_frame();

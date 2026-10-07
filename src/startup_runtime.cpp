@@ -31,6 +31,7 @@
 
 RspExitReason dora3_aspMain(uint8_t*, uint32_t);
 void dora3_configure_hardware(const recomp::Configuration&);
+extern "C" void dora3_controller_status(uint8_t*,recomp_context*);
 namespace {
 std::array<std::atomic<bool>,std::size(dora3_overlay_regions)> overlay_active{};
 std::array<std::atomic<uint64_t>,std::size(dora3_overlay_regions)> overlay_generation{};
@@ -152,6 +153,18 @@ extern "C" void dora3_trace(uint8_t* rdram,recomp_context* ctx,uint32_t address,
         unload_overlays((int32_t)0x8007EA80,0xA7180);
         for(auto& active:overlay_active)active=false;
         std::fprintf(stderr,"OVERLAY BOOT aliases removed; resident only\n");
+    }
+    if(section_rom==0x1000&&address==0x80030324 &&
+       !(MEM_BU(0,int32_t(0x801A48B4))&1)) {
+        // Original 80030324 skips all pad reads when port 0 was absent at
+        // startup. Its only later status refresh depends on peripheral code
+        // which 8003D110 can disable (800DAD20), leaving input dead forever.
+        // Retry the real status query before the read gate, independently of
+        // peripherals. Do not invent a connected port or bypass OS pad errors.
+        // This is an entry hook before the read function's stack prologue;
+        // the query may use the same free stack area, but not its registers.
+        auto query_context=*ctx;
+        dora3_controller_status(rdram,&query_context);
     }
     dora3::retirement::trace(rdram,ctx,address);
     if(address==0x80043390)unload_scene_code();

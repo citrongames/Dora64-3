@@ -10,6 +10,9 @@ PhysicalInput latest,previous;
 std::atomic_bool open=false,exit_requested=false;
 int capture=-1;
 bool capture_pad=false,armed=false,game_release=false,ui_release=false;
+bool keyboard_focus_return=false;
+std::array<bool,SDL_NUM_SCANCODES> held_keys{};
+std::array<bool,SDL_CONTROLLER_BUTTON_MAX+SDL_CONTROLLER_AXIS_MAX*2> held_pad{};
 bool neutral(const PhysicalInput& p,bool pad,float threshold=0.01f) {
     if(pad)return std::none_of(p.pad.begin(),p.pad.end(),[threshold](float v){return v>threshold;});
     return std::none_of(p.keys.begin(),p.keys.end(),[](unsigned char v){return v!=0;});
@@ -31,7 +34,7 @@ std::string capture_label(){
     return std::string(armed?"Press a new ":"Release all controls, then press a ")+
         (capture_pad?"gamepad button / move a stick":"key")+" for "+action_names[capture]+". Esc / Back cancels.";
 }
-bool process_port_input(const PhysicalInput& p) {
+bool process_port_input(const PhysicalInput& p,PhysicalInput* game_input) {
     std::lock_guard lock(mutex);latest=p;
     const bool available=p.focused||p.background_gamepad;
     const bool toggle=(p.focused&&p.keys[SDL_SCANCODE_ESCAPE]&&!previous.keys[SDL_SCANCODE_ESCAPE]) ||
@@ -39,8 +42,18 @@ bool process_port_input(const PhysicalInput& p) {
     if(!available){game_release=true;ui_release=true;capture=-1;}
     else if(toggle){if(capture>=0){capture=-1;ui_release=true;}else open_locked(!open.load());}
     if(!p.focused&&capture>=0&&!capture_pad){capture=-1;ui_release=true;}
-    const bool keys_neutral=!p.focused||neutral(p,false),pad_neutral=neutral(p,true);
-    if(available&&keys_neutral&&pad_neutral)game_release=false;
+    const bool keys_neutral=!p.focused||neutral(p,false);
+    // Quarantine each held control independently. Waiting for every axis and
+    // key to become neutral lets an unrelated drifting stick block even Start
+    // on the keyboard forever. New presses must remain usable immediately.
+    const bool reset_keys=game_release||open.load()||keyboard_focus_return||!p.focused;
+    const bool reset_pad=game_release||open.load()||!available;
+    for(size_t i=0;i<held_keys.size();++i)
+        held_keys[i]=p.keys[i]&&(reset_keys||held_keys[i]);
+    for(size_t i=0;i<held_pad.size();++i)
+        held_pad[i]=p.pad[i]>0.01f&&(reset_pad||held_pad[i]);
+    keyboard_focus_return=!p.focused;
+    game_release=false;
     // Small drift must not lock the menu and prevent increasing the dead zone.
     if(available&&keys_neutral&&neutral(p,true,0.35f))ui_release=false;
     if(available&&capture>=0&&!toggle) {
@@ -57,7 +70,12 @@ bool process_port_input(const PhysicalInput& p) {
             if(code>=0&&capture>=0){bind(Action(capture),capture_pad,code);capture=-1;ui_release=true;}
         }
     }
+    if(game_input) {
+        *game_input=p;
+        for(size_t i=0;i<held_keys.size();++i)if(held_keys[i]||!p.focused)game_input->keys[i]=0;
+        for(size_t i=0;i<held_pad.size();++i)if(held_pad[i])game_input->pad[i]=0;
+    }
     previous=p;
-    return open.load()||game_release||!available;
+    return open.load()||!available;
 }
 }

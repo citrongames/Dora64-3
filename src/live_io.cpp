@@ -13,7 +13,6 @@ struct Input { uint16_t buttons=0; float x=0,y=0; };
 std::mutex input_mutex, audio_mutex;
 Input input;
 bool input_enabled=true;
-bool keyboard_release=false;
 int applied_background=-1;
 SDL_GameController* controller=nullptr; // SDL main thread only.
 SDL_AudioDeviceID audio_device=0;
@@ -72,9 +71,7 @@ void dora3_poll_live_input(SDL_Window* window){
     physical.focused=(SDL_GetWindowFlags(window)&SDL_WINDOW_INPUT_FOCUS)!=0;
     physical.connected=controller!=nullptr;
     const auto* keys=SDL_GetKeyboardState(nullptr);
-    if(!physical.focused)keyboard_release=true;
-    if(physical.focused&&std::none_of(keys,keys+SDL_NUM_SCANCODES,[](Uint8 v){return v!=0;}))keyboard_release=false;
-    if(physical.focused&&!keyboard_release)std::copy_n(keys,SDL_NUM_SCANCODES,physical.keys.begin());
+    if(physical.focused)std::copy_n(keys,SDL_NUM_SCANCODES,physical.keys.begin());
     if(controller){
         const char* name=SDL_GameControllerName(controller);physical.controller_name=name?name:"Gamepad";
         if(physical.focused||config.background_gamepad_input){
@@ -87,14 +84,15 @@ void dora3_poll_live_input(SDL_Window* window){
     }
     }
     Input next{};
-    const bool blocked=process_port_input(physical);
+    PhysicalInput gameplay;
+    const bool blocked=process_port_input(physical,&gameplay);
     if(input_enabled&&!blocked){
         constexpr uint16_t masks[]={0x8000,0x4000,0x2000,0x1000,0x20,0x10,0x800,0x400,0x200,0x100,8,4,2,1};
         const auto amount=[&](int action){
             const int key=config.keys[action],binding=config.pad[action];
-            const float keyboard=key>0&&physical.keys[key]?1.0f:0.0f;
+            const float keyboard=key>0&&gameplay.keys[key]?1.0f:0.0f;
             const int index=binding<100?binding:SDL_CONTROLLER_BUTTON_MAX+binding-100;
-            const float gamepad=index>=0&&index<int(physical.pad.size())?physical.pad[index]:0.0f;
+            const float gamepad=index>=0&&index<int(gameplay.pad.size())?gameplay.pad[index]:0.0f;
             return std::max(keyboard,gamepad);
         };
         for(int i=0;i<StickUp;i++)if(amount(i)>(i>=CUp?0.32f:0.01f))next.buttons|=masks[i];
