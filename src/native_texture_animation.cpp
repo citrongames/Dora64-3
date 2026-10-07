@@ -374,7 +374,13 @@ TextureFrameScope::TextureFrameScope(uint8_t* ram,Nanoseconds now,unsigned bank)
 TextureFrameScope::~TextureFrameScope(){if(ram_){state.active=false;state.frame_ram=nullptr;state.segments={};state.copies.clear();state.samples.clear();state.cycles.clear();state.bitmaps.clear();state.signatures.clear();state.builders.clear();state.patches.clear();}}
 }
 extern "C" void dora3_native_texture_channel_clock(uint8_t* rdram,recomp_context* c,unsigned boundary) {
-    if(state.active||dora3::native_time::active_simulation_slice())return;
+    // Native simulation executes the real bitmap tick too; only the extra
+    // render pass must be excluded. The generated entry guard already skips
+    // partial slices before either clock boundary is entered. Ignoring Native
+    // ticks leaves a previously observed Source age frozen after a fade/mode
+    // handoff: the scroll offset then cancels every advancing bitmap frame.
+    // Constructors inside simulation must also reset reused channel handles.
+    if(state.active)return;
     if(boundary==2) {
         // Constructor28BC8 retains actor/slot in s2/s1 through28C58.
         const auto actor=uint32_t(c->r18),slot=unsigned(c->r17);
