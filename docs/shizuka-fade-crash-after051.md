@@ -64,5 +64,5 @@ EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-052.exe.
 SHA256: fa270a9cb60b3bfedaa38f0de2abc0e82cf4c52492a7777a8f97353666aad21e.
 Компиляция MSVC RelWithDebInfo успешна;168 прежних файлов вне logs не изменились.
 CPU/RSP generation051 сохранена с неизменными входами; изменённый C++ пересобран.
-Тесты, игра, эмулятор, renderer/GPU не запускались. Игровой результат не подтверждён.
+Тесты, игра, эмулятор, renderer/GPU не запускались. Пользователь подтвердил исправление катсцены в052.
 PDB051 сохранён в Windows staging/build-local/symbols-test051 для будущего анализа.

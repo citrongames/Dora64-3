@@ -93,4 +93,4 @@ simulation/enemy путях не стали ошибками сборки. Уп�
 
 Честный новый compile receipt: research/windows-build-check.json (0 CPU checks,
 tests_executed=false). Прежний050 receipt сохранён в research/history/.
-Долгая игровая сессия и отсутствие audio lag остаются проверкой пользователя.
+2026-10-07 пользователь подтвердил исправление запоздания звука после052.

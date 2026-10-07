@@ -106,7 +106,10 @@ void synchronize(uint8_t* rdram,Nanoseconds now) {
     const unsigned fps=dora3_requested_native_fps();
     if(before==Phase::Acquiring || before==Phase::Native) {
         if(!fps || !common_eligible(rdram) || !same_domain(rdram,active_policy,active_identity)) {
-            if(before==Phase::Native && fade)write_fade(rdram,fade->sample(read_fade(rdram),render_time().value_or(now)));
+            // A Source callback may issue a fade command after the last native
+            // pose, then invalidate this scene. Handoff belongs to the current
+            // event, not render_time(): that pose can predate the command.
+            if(before==Phase::Native && fade)write_fade(rdram,fade->sample(read_fade(rdram),now));
             std::fprintf(stderr,"NATIVE LOOP leave (mode/pause/scene boundary)\n");session.leave(now);
         } else if(fps!=applied_fps) { session.change_rate(fps,now);applied_fps=fps; }
     }
