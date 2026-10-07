@@ -53,3 +53,11 @@ generation startup-music-handoff-v1 пригодна без повторной �
 Компиляция изменённого host файла успешна: g++ -std=c++20 -O2, object
 build-local/texture-fade-after055.o. Только компиляция, без link/исполнения;
 это не Windows build и не runtime подтверждение. git diff --check без ошибок.
+
+По прямой команде пользователя собран Windows056 из bfe7096.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-056.exe.
+SHA256: 47bf16f6af528b87b05d6ab28d68f1893290ddd5292a31bb26d57652140be2cf.
+MSVC RelWithDebInfo завершён успешно; incremental build с прежними CPU/RSP
+generations, без повторной генерации. Все 180 прежних файлов вне logs
+сохранили хэши. PDB055 сохранён в staging/build-local/symbols-test055.
+Тесты и игра не запускались; визуальное поведение056 ещё не подтверждено.

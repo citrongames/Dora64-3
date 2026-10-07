@@ -17,6 +17,16 @@
 Законченные изменения сохранять коммитами в существующей main и отправлять
 в origin; чужие изменения, прежние EXE/ROM/settings/saves/DLL сохранять.
 
+## Test056: анимация после белого фейда (2026-10-07)
+
+По прямой команде пользователя собран Windows056 из bfe7096.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-056.exe.
+SHA256: 47bf16f6af528b87b05d6ab28d68f1893290ddd5292a31bb26d57652140be2cf.
+MSVC RelWithDebInfo завершён успешно; incremental build с прежними CPU/RSP
+generations, без повторной генерации. Все 180 прежних файлов вне logs
+сохранили хэши. PDB055 сохранён в staging/build-local/symbols-test055.
+Тесты и игра не запускались; визуальное поведение056 ещё не подтверждено.
+
 ## После055: белый фейд и застывающие bitmap channels (2026-10-07)
 
 Найден конфликт общего texture observer с настоящими Native simulation ticks:
