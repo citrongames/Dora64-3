@@ -2561,11 +2561,24 @@
       "vram": "0x801B8FB4",
       "size": 36,
       "legacy_name": "dora3_s3_801B8FB4",
-      "name": "dora3_scene1_advance_transition_hold_801B8FB4",
-      "description": "Уменьшает исходную задержку перехода; во время hold нельзя подключать Native игрока.",
-      "evidence": "Разбор Original функций; docs/native-simulation.md и connected CPU checks v175.",
+      "name": "dora3_world_decrement_update_hold_801B8FB4",
+      "description": "Если world hold802170F0 не0, уменьшает его на1 и возвращает новое значение. BB730 при положительном результате пропускает world callbacks. Таймер Source; общий fade должен продолжать рисоваться независимо от него.",
+      "evidence": "Static exact Source ROM/overlay and resource/hold/fade data flow; batch2 validation pending until user says no more bugs.",
       "rom_sha256": "532751c5b4bd52a69d8450cfd52d9a71a9d2b2fbd6a280c7819ef419276913da",
-      "locals": []
+      "locals": [
+        {
+          "name": "remaining_world_hold_r2",
+          "expression": "ctx->r2",
+          "start": "0x801B8FBC",
+          "end": "0x801B8FCC",
+          "description": "Загруженный Source hold; decrement/store до повторного построения адреса.",
+          "instructions": {
+            "0x801B8FB8": "0x8C4270F0",
+            "0x801B8FC0": "0x2442FFFF",
+            "0x801B8FC8": "0xAC2270F0"
+          }
+        }
+      ]
     },
     {
       "section": ".scene1",
@@ -9795,7 +9808,7 @@
       "size": 160,
       "legacy_name": "dora3_scene34_transition",
       "name": "dora3_scene34_transition",
-      "description": "Белая fade со step16, timer16; state1 выбирает scene90/state1, state2 вызывает common54C8 и scene1/state2; другой state толькоfade",
+      "description": "Задаёт общий RGB255/step16, запускает fade и count68CC=16. State1 выбирает scene90/state1; state2 однократно сбрасывает progress и выбирает scene1/state2. Scene selection не загружает ресурсы; actual loader install происходит позже в C0088 на count1. Native поддерживает обе ветки, не только scene90.",
       "evidence": "Существующие именованные ROM функции в recomp/startup.json; покрытие исполнения см. прежние отчёты.",
       "rom_sha256": "8c12624e5612de7d4772b39921eed3759094c279ef1af221bb6750a7967716e2",
       "locals": []
@@ -9872,7 +9885,7 @@
       "size": 164,
       "legacy_name": "dora3_scene34_update",
       "name": "dora3_scene34_update",
-      "description": "Selects controller, advances scene tick and timers, conditionally requests transition or callsFDE0",
+      "description": "Source update обслуживает deferred transition68CC и hold68D0. Count>1 только уменьшается; count1 устанавливает loader через280DC. Destination/state не меняют этот quiet window. Белый fade и последние дробные кадры продолжаются до actual process install, где обе banks завершаются до замены ресурсов.",
       "evidence": "Существующие именованные ROM функции в recomp/startup.json; покрытие исполнения см. прежние отчёты.",
       "rom_sha256": "d2ba0d1d9307db72ed14d018c1b526d088034ecb8d31b3a968a4f2fd51d5d0b6",
       "locals": []
@@ -10677,7 +10690,7 @@
       "size": 148,
       "legacy_name": "dora3_fade_draw_dispatch",
       "name": "dora3_fade_draw_dispatch",
-      "description": "Checks signed fade state then calls28688 with saved RGBA/rectangle state",
+      "description": "При direction-1/1/2 читает actual alpha801AA660 и RGB/bounds, затем вызывает RGBA rectangle28688. Alpha читается при каждом graphics build, включая Native frames; это общий белый/чёрный full-screen fade для мира, меню и миниигр, без отдельного20Hz renderer cache.",
       "evidence": "Существующие именованные ROM функции в recomp/startup.json; покрытие исполнения см. прежние отчёты.",
       "rom_sha256": "fc7c72fcb6652dfc2a4fe179868aa40bb75109a30ddaa7ac61968156759480b8",
       "locals": []
@@ -16083,7 +16096,7 @@
       "rom_sha256": "1827e50e6bb910037bdbd822932d59fdce5518726d89819c7b0c4e86ad5c6d45",
       "locals": [],
       "name": "dora3_ui_dialogue_draw_tokens_and_choice_arrow_801B7DCC",
-      "description": "Строит оригинальную панель и glyph commands из подготовленных tokens. Маркер продолжения изменяет два исходных bob fields8D38/8D40 при рисовании; Native сохраняет эту фазу один раз на Source epoch. Звук text draw тоже разрешён один раз за epoch через63B8.",
+      "description": "Строит оригинальную панель и glyph commands из подготовленных tokens. Token-96 двигает отдельный bob8D38/8D40; token-94 рисует выбор и двигает горизонтальный offset8D88/direction8D08, с пределами-1/+1. Native сохраняет обе пары один раз на Source epoch, включая несколько настоящих вызовов в одном кадре. Выбранный ответ, input и разбор tokens сохраняют Original cadence. Звук text draw разрешён один раз за epoch через63B8.",
       "evidence": "Exact overlay-qualified Original ROM body and callers from canonical354. Connected UI Source/frame/math ownership implementation355; targeted CPU pre-build validation pending; actual renderer/user visual verification remains external."
     },
     {
@@ -16425,11 +16438,51 @@
           "instructions": {
             "0x8022D944": "0x8E10BDEC"
           }
+        },
+        {
+          "name": "kinopper_physical_before_roam_turn_r4",
+          "expression": "ctx->r4",
+          "start": "0x8022D84C",
+          "end": "0x8022D870",
+          "description": "Physical record from global8021BCDC, read by patrol timer and heading normalizer before register reuse",
+          "instructions": {
+            "0x8022D848": "0x8C84BCDC"
+          }
+        },
+        {
+          "name": "kinopper_physical_after_roam_turn_r3",
+          "expression": "ctx->r3",
+          "start": "0x8022D878",
+          "end": "0x8022D890",
+          "description": "Physical record receiving wrapped heading and Source timer reset7",
+          "instructions": {
+            "0x8022D874": "0x8C63BCDC"
+          }
+        },
+        {
+          "name": "kinopper_actor_after_roam_turn_r2",
+          "expression": "ctx->r2",
+          "start": "0x8022D880",
+          "end": "0x8022D888",
+          "description": "Actor receiving the same computed heading as visual yaw10",
+          "instructions": {
+            "0x8022D87C": "0x8C42BDEC"
+          }
+        },
+        {
+          "name": "kinopper_roam_wait_before_r3",
+          "expression": "ctx->r3",
+          "start": "0x8022D850",
+          "end": "0x8022D85C",
+          "description": "Unsigned value of Source short timer34 before decrement; zero selects the periodic10-degree turn",
+          "instructions": {
+            "0x8022D84C": "0x94830034"
+          }
         }
       ],
       "name": "dora3_kinopper_t1_roam_8022D7B4",
-      "description": "KinopperT1/state1: однократная настройка через latch28, исходные ожидания и проверки расстояния; поворот и проекция X/Z, отражение от препятствий, переход в преследование.",
-      "evidence": "Exact Original ROM body/overlay-qualified descriptor/callers from frozen356; full state closure reviewed for block2 implementation357. Native connected CPU validation pending; no renderer/game execution."
+      "description": "KinopperT1 patrol/state1: latch28 устанавливает speed7/clip1. Short counter34 отсчитывает7..0; при prior0 направление4 увеличивается на10°, результат сразу копируется в model yaw10 и timer получает7. Native продлевает оба угла одной equation и передаёт её общей XZ projection; счётчик/clip/переходы идут с исходной частотой. Wall reflection и probe avoidance меняют направление мгновенно. Проверка distance300 переводит в chase2. Таблица точек этим helper не читается.",
+      "evidence": "Exact ROM counter34 branch8022D84C..D88C, heading normalizerD868 and paired storesD880/D884; shared projectionD8D8. Reviewed after048 batch4; connected Native and visual validation pending."
     },
     {
       "section": ".demo_slot1",
@@ -88075,7 +88128,7 @@
       "size": 1204,
       "legacy_name": "dora3_s21_mini_801CACAC",
       "name": "dora3_minigame1_update_801CACAC",
-      "description": "Основной Source update миниигры1, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801CB160 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "description": "Основной Source update races1: input/AI/physics, четыре view origins и camera dispatchers, phase/finish/score/commands. Native движется по Source equations без повторного dispatcher; после048 исправлены circle follow/finish cameras всех участников и вариантов трассы, статическая реализация пока без новых CPU/визуальных checks.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "d94dbc57cd314b1c4071a335cdea5fb7638e0a33dacc40da47ffcd81a8a32ab5",
       "locals": []
@@ -88086,7 +88139,7 @@
       "size": 860,
       "legacy_name": "dora3_s22_mini_801C7CBC",
       "name": "dora3_minigame2_update_801C7CBC",
-      "description": "Основной Source update миниигры2, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C73F4 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "description": "Основной Source update planes2: participants, постоянные visuals/followers, четыре view origins, intro/follow/finish camera dispatch и commands. Native обновляет motion/derived poses и eye geometry отдельно; circle camera error больше не перескакивает на0/360. Новые проверки после048 отложены.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "07e3e79bc79c2bd2631584b9d1a34ffb9e6a5194cb0801b8c3dcb61e99a86a8c",
       "locals": []
@@ -88152,7 +88205,7 @@
       "size": 892,
       "legacy_name": "dora3_s28_mini_801C7EF4",
       "name": "dora3_minigame8_update_801C7EF4",
-      "description": "Основной Source update миниигры8, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C8270 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "description": "Source root миниигры8: input/timers, затем7304 explosion hits, четыре participant6CEC/shadow7570/HUD3D88, object dispatcher4E24, round FSM3AAC и камера. Damage/health/owner/invulnerability/clip/score/spawn остаются однократными. Native Source completion сохраняет draw-authored contactXZ slots10..59; дробные кадры продолжают world motion, body/shadow local pose и пересчитывают матрицы. Проверки после048 batch5 отложены.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "4c4440d290e2b018c015310f26a0812a86b1417bc5adfc91a6d3ebeedf069f89",
       "locals": []
@@ -88273,10 +88326,21 @@
       "size": 380,
       "legacy_name": "dora3_s22_mini_801C51B0",
       "name": "dora3_minigame2_approach_camera_yaw_801C51B0",
-      "description": "Source выбирает цель камеры; yaw приближается к ней через wrapped angle increment с коэффициентом1/15 или1/30. Начальные distance/pitch и snap-to-target остаются Source.",
-      "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
+      "description": "Plane follow camera target=body(1+i).yaw10+180, pitch10/distance300. Source error branch>180 и threshold90 выбирают signed step с divisor15/30. Native явная circular approach удерживает выбранную ветку и непрерывную цель; вложенный normalized error не используется как новая fractional branch.",
+      "evidence": "Exact Original ROM/helper body, four circular stores and per-view dispatcher reviewed after048 batch6. Winter route identity clarified by user. Native runtime saved, validation deferred until no.",
       "rom_sha256": "67fe931c57ec545156de8a60776637c8596200dca83a2e35b47661e2496325af",
-      "locals": []
+      "locals": [
+        {
+          "name": "viewport_camera_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C51BC",
+          "end": "0x801C5310",
+          "description": "Source camera pointer argument a0, used for pitch18/yaw1C/distance30 until epilogue restores s0",
+          "instructions": {
+            "0x801C51B8": "0x00808021"
+          }
+        }
+      ]
     },
     {
       "section": ".minigame_2",
@@ -88437,8 +88501,8 @@
       "vram": "0x801C5350",
       "size": 516,
       "legacy_name": "dora3_s28_mini_801C5350",
-      "name": "dora3_minigame8_advance_driver_approach_801C5350",
-      "description": "Накопительно приближает driver компоненты к исходным целям; конечные snap/reset остаются Source.",
+      "name": "dora3_minigame8_clamp_participant_lane_velocity_801C5350",
+      "description": "Проверяет candidate localX+vX и localZ+vZ: допустимые абсолютные координаты74..301; вне них обнуляет соответствующую velocity10/18. На точных границах выводит correction из текущей local позиции и ROM coefficients. Это lane boundary helper, не driver approach; input/control и исходные ветвления сохраняются.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "3c8ff37027b2d483aa771a2a8a1572eeaa1b3a389f7bcdfa7f74b68fd94c5690",
       "locals": []
@@ -88460,7 +88524,7 @@
       "size": 896,
       "legacy_name": "dora3_s28_mini_801C6CEC",
       "name": "dora3_minigame8_publish_actor_motion_801C6CEC",
-      "description": "Складывает worldXYZ с driver velocity, сохраняет Source terminal clamps и переносит положения в local XYZ для отрисовки.",
+      "description": "Живой participant0..3: Original invulnerability blink, input/state, XZ projection, gravity и lane bounds; world+=velocity, floorY0 clamp и копия worldXYZ→localXYZ. Native закрепляет три exact copy sites6E6C/70/78 за собственными world equations, затем refresh обновляет достигнутые body/shadow Derived fields и их matrix dirty list. Animation/throw cue15 и health/FSM остаются Source. Mode7 end query6EB8 chooses a character-specific fixed pose via seek. Common terminal render hold covers the preceding still-advancing interval; ordinary walking/throw clips keep looping behavior.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "66248636b29ce1a03d4cc397b0ee828ee60d6e650447ea5c933b6d8d8485f743",
       "locals": []
@@ -88680,10 +88744,23 @@
       "size": 444,
       "legacy_name": "dora3_s2_menu_801B9F10",
       "rom_sha256": "ca3a1fb3126d49e417314de538ba82da17b3646322ba8a698438f3d4376269d9",
-      "locals": [],
-      "name": "dora3_stage_map_cursor_easing_801B9F10",
-      "description": "Выбирает signed-short координаты по descriptor row/позиции; old-target разность умножает на ROM коэффициент3B30[638C], добавляет target и trunc.w.s в6370/6380. Стадии0 и8+ используют точную позицию.",
-      "evidence": "Exact ROM635C0 body/descriptor/curve and callback-pair evidence; block6; generated Source ABI retained Correction after046: BAF64 node progress, B8ED0 scene request and C29C4 room descriptors prove stage-map ownership; earlier Pak screen role was incorrect. No runtime validation for047 yet."
+      "locals": [
+        {
+          "name": "map_scroll_counter_r8",
+          "expression": "ctx->r8",
+          "start": "0x801B9F18",
+          "end": "0x801BA09C",
+          "description": "Оставшиеся Source этапы camera easing; не input repeat и не bitmap size.",
+          "instructions": {
+            "0x801B9F14": "0x8D08638C",
+            "0x801B9F90": "0x00081880",
+            "0x801BA038": "0x1500000D"
+          }
+        }
+      ],
+      "name": "dora3_stage_map_camera_easing_801B9F10",
+      "description": "Камера карты: area word в каждой из24 descriptor rows2940+152*i+84 выбирает одну из ЧЕТЫРЁХ short-пар3B24. При counter638C=1..7 применяет float easing3B30[counter] и trunc в6370/6380. Индекс0 easing не читается:3B30 также хранит четвёртый anchor(0,240). Counter0 берёт current369C,8+ —target6390. Native extends каждый Source scalar interval для всех четырёх areas.",
+      "evidence": "Static exact locked ROM/overlay,24 descriptor rows/four camera anchors and pinned RT64 sampling source; batch3 after048 implemented, execution/visual validation pending."
     },
     {
       "section": ".scene34",
@@ -88724,10 +88801,23 @@
       "size": 464,
       "legacy_name": "dora3_s2_menu_801BA858",
       "rom_sha256": "6563178e107860271aed8eda3b1c8415c0648299e02697578a808be010f3801e",
-      "locals": [],
+      "locals": [
+        {
+          "name": "cursor_bitmap_handle_r3",
+          "expression": "ctx->r3",
+          "start": "0x801BA890",
+          "end": "0x801BA8A8",
+          "description": "Handle курсора из slots0/1, преобразуемый в pointer resource table stride20.",
+          "instructions": {
+            "0x801BA884": "0x846363B0",
+            "0x801BA88C": "0x846363B2",
+            "0x801BA898": "0x00021080"
+          }
+        }
+      ],
       "name": "dora3_stage_map_cursor_bob_draw_801BA858",
-      "description": "Рисует курсор в размерах6364/6368 и координатах6370/6380; bob6378 с направлением6388 меняется на Source draw cadence, остальные поля не принадлежат draw guard.",
-      "evidence": "Exact ROM635C0 body/descriptor/curve and callback-pair evidence; block6; generated Source ABI retained Correction after046: BAF64 node progress, B8ED0 scene request and C29C4 room descriptors prove stage-map ownership; earlier Pak screen role was incorrect. No runtime validation for047 yet."
+      "description": "Рисует32x32 cursor BA2/BA3 по marker6364/6368 минус camera6370/6380 и16. Меняет bob6378/direction6388 только на Source draw cadence. Source дважды обрезает Y до integer; Native передаёт дробные координаты общему bitmap adapter, который сохраняет loads, нормализует последнюю полосу, ограничивает реальные texels и отменяет fractional-top UV bias.",
+      "evidence": "Static exact locked ROM/overlay,24 descriptor rows/four camera anchors and pinned RT64 sampling source; batch3 after048 implemented, execution/visual validation pending."
     },
     {
       "section": ".startup",
@@ -88868,10 +88958,61 @@
       "vram": "0x801F6870",
       "size": 1084,
       "legacy_name": "dora3_s3_801F6870",
-      "locals": [],
+      "locals": [
+        {
+          "name": "character_carousel_input_gate_phase_r2",
+          "expression": "ctx->r2",
+          "start": "0x801F6878",
+          "end": "0x801F689C",
+          "description": "Signed phaseBF70 used to block another input until the previous circular transition finishes",
+          "instructions": {
+            "0x801F6874": "0x8442BF70"
+          }
+        },
+        {
+          "name": "character_carousel_phase_before_halving_r2",
+          "expression": "ctx->r2",
+          "start": "0x801F6A54",
+          "end": "0x801F6A70",
+          "description": "Signed angular phase before the Original ROM0.5 retention and truncation",
+          "instructions": {
+            "0x801F6A50": "0x8442BF70"
+          }
+        },
+        {
+          "name": "character_carousel_phase_after_halving_r2",
+          "expression": "ctx->r2",
+          "start": "0x801F6A74",
+          "end": "0x801F6A7C",
+          "description": "Truncated angular phase copied from f2 and written to Source shortBF70",
+          "instructions": {
+            "0x801F6A70": "0x44021000"
+          }
+        },
+        {
+          "name": "character_carousel_first_ring_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801F6AAC",
+          "end": "0x801F6B7C",
+          "description": "Current actor of first ring; loop advances by the real0xCC actor stride",
+          "instructions": {
+            "0x801F6AA8": "0x2610FAF0"
+          }
+        },
+        {
+          "name": "character_carousel_second_ring_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801F6BAC",
+          "end": "0x801F6C74",
+          "description": "Current actor of second ring; its selected model is scaled to1.8 after circle placement",
+          "instructions": {
+            "0x801F6BA8": "0x02428021"
+          }
+        }
+      ],
       "name": "dora3_character_menu_advance_carousel_801F6870",
-      "description": "В выборе персонажа уменьшает short phase8021BF70 с ROM retention0.5 и расставляет два кольца по6 моделей радиусом120, используя выбранный index8021BFF4 и ROM radians. Native продлевает scalar recurrence и вычисляет ту же окружность; счётчики/выбор остаются Source.",
-      "evidence": "ROM-qualified Original function/body and inspected control/data flow after test046. Source identity and legacy ABI are unchanged. Native047 implementation is pending connected CPU and user visual validation.",
+      "description": "Source выбор персонажа: пока short phase8021BF70 ненулевой, новое направление не принимается. При phase0 кнопки100/200 через реальный EFE2C выбирают доступный index0..5; phase=60*(new-old) с кратчайшим wrap, затем trunc(phase*0.5). Типичный соседний шаг даёт30,15,7,3,1,0 за6 Source updates. Два кольца по6 моделей имеют radius120 и ROM radians. Native вычисляет промежуточные позиции и возвращает временные поля; phase/index/input не меняются дополнительными кадрами. Статически ускорение переключений после048 не подтверждено; проверка фактической cadence подготовлена отдельно.",
+      "evidence": "Exact Source F6870 input gate/phase recurrence plus callers F6DF8/BB688/BB730 and Native menu policy update=nullptr. Static batch4 audit; actual Source timing comparison and user visual result pending.",
       "rom_sha256": "8da83b541f02f157d8c111c0a5ca4d33e0f9c2cff9e205401f4521842a2a99a3"
     },
     {
@@ -88925,7 +89066,7 @@
       "size": 444,
       "locals": [],
       "name": "dora3_minigame2_update_participant_follower_801C56C8",
-      "description": "В state0 копирует worldXYZ участника в actor21..24 каждый Source pass. State1 создаёт эффект с fixedY200 и commands; state2 управляет окончаниями/параметрами клипа. Только постоянная state0 связь стала Native Derived; одноразовые spawn/clip операции остаются Source.",
+      "description": "В state0 копирует worldXYZ участника в actor21..24 каждый Source pass. State1 создаёт эффект с fixedY200 и commands; state2 управляет окончаниями/параметрами клипа. Только постоянная state0 связь стала Native Derived; одноразовые spawn/clip операции остаются Source. State2 end query57C8 also marks the current model run/Source step for terminal render hold before pause; common clip clock/end flags remain unchanged.",
       "evidence": "ROM-qualified direct Source data flow and actor strides, bitmap/clip command branches after046; new connected CPU/visual proof pending.",
       "rom_sha256": "a283b67a61629682a4c2ac0b7fec5216431827833fb889522d919e15f6ddf48a"
     },
@@ -88945,10 +89086,23 @@
       "vram": "0x801BA3C8",
       "legacy_name": "dora3_s2_menu_801BA3C8",
       "size": 520,
-      "locals": [],
+      "locals": [
+        {
+          "name": "map_node_index_r19",
+          "expression": "ctx->r19",
+          "start": "0x801BA3FC",
+          "end": "0x801BA5B0",
+          "description": "Номер строки для special node23; sentinel после24 descriptors.",
+          "instructions": {
+            "0x801BA3F8": "0x00009821",
+            "0x801BA410": "0x16620005",
+            "0x801BA5AC": "0x26730001"
+          }
+        }
+      ],
       "name": "dora3_stage_map_draw_node_bitmaps_801BA3C8",
-      "description": "Выбирает открытый/закрытый значок каждой точки карты и рисует bitmap относительно6370/6380. Native сохраняет целочисленную нарезку SDK и сдвигает готовые E4 прямоугольники вместе.",
-      "evidence": "Exact ROM Source data flow, counters and display-list builder callers;048 targeted proof pending.",
+      "description": "Обходит24 descriptor rows2940 до sentinel-1, выбирает открытый/закрытый bitmap по progress flags и рисует scale1 относительно camera6370/6380. Общий Native bitmap adapter сохраняет integer loaders/chunks, сдвигает E4 и предотвращает лишние texel rows/columns и UV bias на дробном Y.",
+      "evidence": "Static exact locked ROM/overlay,24 descriptor rows/four camera anchors and pinned RT64 sampling source; batch3 after048 implemented, execution/visual validation pending.",
       "rom_sha256": "a4f7d46e1b34f53bc0564a51b340149e79c13b2501ad9714d36d4ae48da07d4d"
     },
     {
@@ -88967,11 +89121,840 @@
       "vram": "0x801C5F34",
       "legacy_name": "dora3_s23_mini_801C5F34",
       "size": 80,
-      "locals": [],
+      "locals": [
+        {
+          "name": "target_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C5F40",
+          "end": "0x801C5F78",
+          "description": "Target actor argument a1 passed to end/pause/pose SDK component0",
+          "instructions": {
+            "0x801C5F3C": "0x00A08021"
+          }
+        }
+      ],
       "name": "dora3_minigame3_pause_finished_target_clip_801C5F34",
-      "description": "Проверяет флаг окончания clip компонента0, ставит pause после окончания, затем вычисляет позу и продвигает время со скоростью3. Решение о pause выполняется на исходной частоте.",
-      "evidence": "Exact ROM Source data flow, counters and display-list builder callers;048 targeted proof pending.",
+      "description": "Проверяет end clip компонента0, ставит pause после окончания, затем вызывает Source pose/advance+3. Native terminal hold охватывает предыдущий ещё advancing интервал, который не исправлялся048 paused-pose guard. Исходное время, end pulse и pause остаются Source; stopped bone overrides продолжают сохраняться.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no.",
       "rom_sha256": "e2cb46056937e91ac0978992aa782159738b69c786875ca3c3ca3205887dc08a"
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801EFF00",
+      "legacy_name": "dora3_s3_801EFF00",
+      "size": 324,
+      "locals": [
+        {
+          "name": "menu_background_actor_r17",
+          "expression": "ctx->r17",
+          "start": "0x801EFF18",
+          "end": "0x801F0034",
+          "description": "Actor650: фон меню, resources/matrix/scale commands.",
+          "instructions": {
+            "0x801EFF14": "0x263122C8",
+            "0x801EFF18": "0x02202021",
+            "0x801F002C": "0xE6200008"
+          }
+        },
+        {
+          "name": "background_style_r16",
+          "expression": "ctx->r16",
+          "start": "0x801EFF10",
+          "end": "0x801EFF58",
+          "description": "Source режим0/1 выбора ресурсов и масштаба фоновой модели.",
+          "instructions": {
+            "0x801EFF08": "0x00808021",
+            "0x801EFF3C": "0x12000006",
+            "0x801EFF48": "0x12020015"
+          }
+        }
+      ],
+      "name": "dora3_game_menu_bind_animated_background_801EFF00",
+      "description": "Меняет ресурсы фоновой модели650: режим0 model0A45/clip0A46 со scale2; режим1 model0A47/clip0A48 со scale1.45. Общий фон предметов/оружия/персонажа; bind модели/clip через SDK2A2E8/2A328. Resource/input commands сохраняют Source cadence.",
+      "evidence": "Static exact ROM/data-flow and resource analysis; batch049 tests/build await user completion of bug batches.",
+      "rom_sha256": "2805f901fff38a0d093be2a599603078da5ad5ad6821cb0efd64c029e41e5e86"
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801F0068",
+      "legacy_name": "dora3_s3_801F0068",
+      "size": 52,
+      "locals": [
+        {
+          "name": "clip_step_bits_r6",
+          "expression": "ctx->r6",
+          "start": "0x801F007C",
+          "end": "0x801F0080",
+          "description": "Float3 как третий аргумент SDK pose/advance.",
+          "instructions": {
+            "0x801F007C": "0x3C064040"
+          }
+        },
+        {
+          "name": "background_actor_argument_r4",
+          "expression": "ctx->r4",
+          "start": "0x801F0084",
+          "end": "0x801F0088",
+          "description": "Передаёт actor650 в SDK pose/advance.",
+          "instructions": {
+            "0x801F0084": "0x248422C8"
+          }
+        }
+      ],
+      "name": "dora3_game_menu_update_background_clip_801F0068",
+      "description": "Вычисляет позу модели650, затем продвигает clip на3 через SDK2A1B8. В clip0A46 короткий числовой сброс360->1.50311 между480/482 скрыт шагом Original3 и требует циклического углового продолжения при Native sampling.",
+      "evidence": "Static exact ROM/data-flow and resource analysis; batch049 tests/build await user completion of bug batches.",
+      "rom_sha256": "9d9676ea6db6c2cc8591e5d9ff03bf3561c42051187adc9cd8ed2548b115cb88"
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801F009C",
+      "legacy_name": "dora3_s3_801F009C",
+      "size": 152,
+      "locals": [
+        {
+          "name": "menu_background_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801F00B4",
+          "end": "0x801F0128",
+          "description": "Actor650 для matrix/resource/bone/display-list draw.",
+          "instructions": {
+            "0x801F00B0": "0x261022C8",
+            "0x801F00FC": "0x02002021",
+            "0x801F0118": "0x02002021"
+          }
+        }
+      ],
+      "name": "dora3_game_menu_draw_background_model_801F009C",
+      "description": "Рисует общую фоновую модель650 после выбора Source render mode. Строит actor matrix через2DA98, устанавливает resource segments, bone matrices и display lists. Счётчиков анимации в draw нет.",
+      "evidence": "Static exact ROM/data-flow and resource analysis; batch049 tests/build await user completion of bug batches.",
+      "rom_sha256": "c308964ead06b4d6ba0cf12b7df72de976a7d7714baf8b6cae1c15b038d5d41b"
+    },
+    {
+      "section": ".startup",
+      "vram": "0x80038FA8",
+      "legacy_name": "dora3_s0_80038FA8",
+      "size": 208,
+      "locals": [
+        {
+          "name": "linear_curve_descriptor_r5",
+          "expression": "ctx->r5",
+          "start": "0x80038FB0",
+          "end": "0x80039074",
+          "description": "16-byte curve descriptor: keys count/relative offset.",
+          "instructions": {
+            "0x80038FB0": "0x8CA3000C",
+            "0x80038FD4": "0x8CA60008",
+            "0x80039020": "0x8CA20008"
+          }
+        }
+      ],
+      "name": "dora3_model_sample_linear_key_curve_80038FA8",
+      "description": "Сэмплирует линейные scalar keys текущего model80082724: key count/offset из curve descriptor, время model+64. Используется bone translation/rotation/scale и morph weight. Source интерполирует числовое значение без знания углового периода; Native завершённая поза отдельно исправляет доказанный type5 numeric reset.",
+      "evidence": "Static exact ROM/data-flow and resource analysis; batch049 tests/build await user completion of bug batches.",
+      "rom_sha256": "e4201b7238a0c1948bf8028b53f4a0920204b515194e18a63dfe232daf05afc3"
+    },
+    {
+      "section": ".startup",
+      "vram": "0x800389F0",
+      "legacy_name": "dora3_s0_800389F0",
+      "size": 152,
+      "locals": [
+        {
+          "name": "current_bone_r17",
+          "expression": "ctx->r17",
+          "start": "0x800389FC",
+          "end": "0x80038A70",
+          "description": "Текущий узел дерева; ID+4, children+C/count+10.",
+          "instructions": {
+            "0x800389F8": "0x00808821",
+            "0x80038A0C": "0x8E220004",
+            "0x80038A28": "0x8E220010"
+          }
+        },
+        {
+          "name": "wanted_bone_id_r18",
+          "expression": "ctx->r18",
+          "start": "0x80038A14",
+          "end": "0x80038A6C",
+          "description": "Искомый signed bone ID для текущего узла и рекурсивного вызова.",
+          "instructions": {
+            "0x80038A10": "0x00A09021",
+            "0x80038A14": "0x14520004",
+            "0x80038A48": "0x0C00E27C"
+          }
+        },
+        {
+          "name": "found_bone_output_r19",
+          "expression": "ctx->r19",
+          "start": "0x80038A1C",
+          "end": "0x80038A6C",
+          "description": "Адрес выходного указателя найденного bone.",
+          "instructions": {
+            "0x80038A18": "0x00C09821",
+            "0x80038A1C": "0xAE710000",
+            "0x80038A4C": "0x02603021"
+          }
+        }
+      ],
+      "name": "dora3_model_find_bone_by_id_recursive_800389F0",
+      "description": "Рекурсивно ищет bone по signed ID в word+4; child count+10, array pointer+C. При совпадении записывает actual bone pointer в out argument и возвращает1. Native angle correction использует те же IDs сохранённого дерева.",
+      "evidence": "Static exact ROM/data-flow and resource analysis; batch049 tests/build await user completion of bug batches.",
+      "rom_sha256": "677e1837bdbeb625d5e91c9dc99344880bfcb4fdf534fe69c3b73c4c90fb2fab"
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801B8FA8",
+      "legacy_name": "dora3_s3_801B8FA8",
+      "size": 12,
+      "locals": [],
+      "name": "dora3_world_get_update_hold_801B8FA8",
+      "description": "Возвращает remaining hold802170F0. Пока он положителен, BB848 рисует только clear frame; common fade добавляет resident graphics builder после world draw.",
+      "evidence": "Static exact Source ROM/overlay and resource/hold/fade data flow; batch2 validation pending until user says no more bugs.",
+      "rom_sha256": "73839b085abbf12b0667ed1a3d8b9514aac836a8298a1b204cd34039d21d4f8b"
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801BA2B8",
+      "legacy_name": "dora3_s3_801BA2B8",
+      "size": 36,
+      "locals": [],
+      "name": "dora3_interior_release_actors_and_resources_801BA2B8",
+      "description": "BA310 stage1: B96CC освобождает actors, BDA44 освобождает связанные ресурсы. Перед фактической очисткой Native resource barrier дожидается guest/host завершения обеих banks; сам запрос фейда не отключает частое рисование.",
+      "evidence": "Static exact Source ROM/overlay and resource/hold/fade data flow; batch2 validation pending until user says no more bugs.",
+      "rom_sha256": "ce8a3f0f7fc52efae593e0284fded02f25f50f204bcefa7b1d45bbfd13ccef0c"
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801BA254",
+      "legacy_name": "dora3_s3_801BA254",
+      "size": 100,
+      "locals": [
+        {
+          "name": "next_room_descriptor_r2",
+          "expression": "ctx->r2",
+          "start": "0x801BA25C",
+          "end": "0x801BA270",
+          "description": "Descriptor802170F8 публикуется в current8021D654 до загрузки.",
+          "instructions": {
+            "0x801BA258": "0x8C4270F8",
+            "0x801BA26C": "0xAC22D654"
+          }
+        }
+      ],
+      "name": "dora3_interior_load_room_descriptor_and_actors_801BA254",
+      "description": "BA310 stage2 берёт descriptor802170F8, записывает current8021D654, затем через B9700/B9870/B952C/BD938 загружает actors/resources. Native barrier до первой записи/загрузки сохраняет завершение всех прежних fade frames.",
+      "evidence": "Static exact Source ROM/overlay and resource/hold/fade data flow; batch2 validation pending until user says no more bugs.",
+      "rom_sha256": "7022659135fe85d7baa86cece10436eab02337182975acfd32fb7597ea0f72b3"
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DDC9C",
+      "legacy_name": "dora3_s3_801DDC9C",
+      "size": 212,
+      "locals": [
+        {
+          "name": "fade_direction_argument_r16",
+          "expression": "ctx->r16",
+          "start": "0x801DDCC4",
+          "end": "0x801DDD64",
+          "description": "Второй script halfword:0/не0 выбирает начало/конец белого fade либо iris mode.",
+          "instructions": {
+            "0x801DDCC0": "0x84700004",
+            "0x801DDCF4": "0x16000007",
+            "0x801DDD2C": "0x16000006"
+          }
+        }
+      ],
+      "name": "dora3_script_command_white_fade_or_iris_801DDC9C",
+      "description": "Читает два halfword аргумента script и продвигает cursor. Selector1: RGB255/step16, аргумент0 сбрасывает alpha0 и запускает fade-in-to-white, другой задаёт alpha255 и fade-from-white. Selector2 запускает отдельный expanding/closing iris через BE5C8/BE5A0/BE568. Команды и script cursor Source; общий белый alpha рисуется на Native cadence.",
+      "evidence": "Static exact Source ROM/overlay and resource/hold/fade data flow; batch2 validation pending until user says no more bugs.",
+      "rom_sha256": "9978524a1b6fb2a99910f066d6d40fa528fab63b82eb67a796e4b385f1002f0c"
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801B9118",
+      "size": 144,
+      "legacy_name": "dora3_s2_menu_801B9118",
+      "locals": [
+        {
+          "name": "bitmap_handle_slots_r19",
+          "expression": "ctx->r19",
+          "start": "0x801B9148",
+          "end": "0x801B9188",
+          "description": "База63B0 для short handles; slotIndex из второй word пары.",
+          "instructions": {
+            "0x801B9144": "0x267363B0",
+            "0x801B9178": "0x00731821"
+          }
+        }
+      ],
+      "name": "dora3_stage_map_load_bitmap_handles_801B9118",
+      "description": "Загружает bitmap resources из пар3818(resourceId,slotIndex) до sentinel-1. Сохраняет signed-short handles в63B0+2*slot. Slots0/1 — два32x32 курсора BA2/BA3, slot2 —640x480 фон BA4; остальные — значки карты.",
+      "evidence": "Static exact locked ROM/overlay,24 descriptor rows/four camera anchors and pinned RT64 sampling source; batch3 after048 implemented, execution/visual validation pending.",
+      "rom_sha256": "5e67cc36af13b0c652262dd3a7eaa4b7e36c7844200352db140d18ac6f7e039d"
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C4940",
+      "size": 440,
+      "legacy_name": "dora3_s28_mini_801C4940",
+      "rom_sha256": "eb0e6d7eb19b915bd8319ca9a0298c0b9543f29572b036167724675526503922",
+      "locals": [],
+      "name": "dora3_minigame8_spawn_explosion_801C4940",
+      "description": "Создаёт explosion в свободном actor slot10..59: type20=1, damage latchD8=1, ownerDB, ресурсы214/215/216 и worldXYZ. LocalXZ оригинал публикует позднее в draw4EC8; Native теперь сохраняет эту точную копию один раз на завершённом Source update. Allocation failure и commands однократны.",
+      "evidence": "Exact ROM1BC460 body/callers and draw4EC8 -> next Source7304/713C data flow, static after048 batch5. Runtime fixes saved; CPU and visual validation deferred until user no."
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C4EC8",
+      "size": 192,
+      "legacy_name": "dora3_s28_mini_801C4EC8",
+      "rom_sha256": "225096e46fc121d8773bd47886ccc6f2b1a5f440e769261c91183f094f01d23f",
+      "locals": [
+        {
+          "name": "bomb_draw_actor_r17",
+          "expression": "ctx->r17",
+          "start": "0x801C4EE8",
+          "end": "0x801C4F68",
+          "description": "Actor pool cursor starting at slot10, advanced by0xCC until slot60",
+          "instructions": {
+            "0x801C4EE4": "0x263124C8"
+          }
+        },
+        {
+          "name": "bomb_draw_actor_plus_y_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C4EF8",
+          "end": "0x801C4F68",
+          "description": "Actor cursor plus4: world accesses98/9C/A0 mean actual9C/A0/A4; local0/4 here mean actorY/Z",
+          "instructions": {
+            "0x801C4EF4": "0x26300004"
+          }
+        }
+      ],
+      "name": "dora3_minigame8_draw_active_objects_801C4EC8",
+      "description": "Каждый draw копирует worldXYZ в localXYZ активных slots10..59, затем рисует два passes через3700. Для type2 localY заменяется на5/30 по lane bounds. LocalXZ — не только временная graphics поза: следующий Source713C читает её для damage. Native Source publication сохраняет эти XZ перед откатом дополнительных draw frames; type2 Y logic сохранена.",
+      "evidence": "Exact ROM1BC460 body/callers and draw4EC8 -> next Source7304/713C data flow, static after048 batch5. Runtime fixes saved; CPU and visual validation deferred until user no."
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C70DC",
+      "size": 60,
+      "legacy_name": "dora3_s28_mini_801C70DC",
+      "rom_sha256": "0471feafd127f001dcbcbae99db6559f24f3ac1c58633f9a50c034efeaea9700",
+      "locals": [],
+      "name": "dora3_minigame8_explosion_can_hit_801C70DC",
+      "description": "Допускает активный explosion только при driver type20=1 и latchD8=1. Это исходный дискретный hit gate; Native не повторяет damage checks между Source updates.",
+      "evidence": "Exact ROM1BC460 body/callers and draw4EC8 -> next Source7304/713C data flow, static after048 batch5. Runtime fixes saved; CPU and visual validation deferred until user no."
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C7118",
+      "size": 36,
+      "legacy_name": "dora3_s28_mini_801C7118",
+      "rom_sha256": "f0d8d10a593106ba6abc0295abece4352683403e982685f355b3cc545afd0f2d",
+      "locals": [],
+      "name": "dora3_minigame8_participant_can_be_hit_801C7118",
+      "description": "Активный participant уязвим ровно при shortD8=1. D8=30 после попадания отсчитывает Original update; blink не ускоряется кадрами Manual.",
+      "evidence": "Exact ROM1BC460 body/callers and draw4EC8 -> next Source7304/713C data flow, static after048 batch5. Runtime fixes saved; CPU and visual validation deferred until user no."
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C713C",
+      "size": 456,
+      "legacy_name": "dora3_s28_mini_801C713C",
+      "rom_sha256": "fe605c728bfaf252687c1fd1b97a880b3653da7b34cc3ff9850445ff682bc74d",
+      "locals": [
+        {
+          "name": "bomb_target_actor_r18",
+          "expression": "ctx->r18",
+          "start": "0x801C7164",
+          "end": "0x801C72E0",
+          "description": "Participant actor argument a1, used for Source distance and state change",
+          "instructions": {
+            "0x801C7160": "0x00A09021"
+          }
+        },
+        {
+          "name": "bomb_target_participant_index_r17",
+          "expression": "ctx->r17",
+          "start": "0x801C716C",
+          "end": "0x801C72E0",
+          "description": "Participant index a2, compared with explosion ownerDB and used for result/feedback",
+          "instructions": {
+            "0x801C7168": "0x00C08821"
+          }
+        },
+        {
+          "name": "bomb_target_driver_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C7170",
+          "end": "0x801C72E0",
+          "description": "Target driver98 holding healthD0, invulnerabilityD8 and knockback/state fields",
+          "instructions": {
+            "0x801C716C": "0x8E500098"
+          }
+        }
+      ],
+      "name": "dora3_minigame8_apply_explosion_damage_801C713C",
+      "description": "Сравнивает localXZ explosion и participant, исключает ownerDB и требует горизонтальную distance<75. При D8=1 ставит invulnerability30, уменьшает healthD0 на1, задаёт knockback speed10/heading opposite180/vY20/gravity4 и state3. Death/result fields и feedback однократны с Original cadence.",
+      "evidence": "Exact ROM1BC460 body/callers and draw4EC8 -> next Source7304/713C data flow, static after048 batch5. Runtime fixes saved; CPU and visual validation deferred until user no."
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C7304",
+      "size": 188,
+      "legacy_name": "dora3_s28_mini_801C7304",
+      "rom_sha256": "389afa2ad2b0eb0bb38044f76619e5a19642d3d8021070731b887bc921701f7e",
+      "locals": [
+        {
+          "name": "bomb_hit_explosion_slot_r19",
+          "expression": "ctx->r19",
+          "start": "0x801C7310",
+          "end": "0x801C73A0",
+          "description": "Source hit loop index10..58; original bound59 is distinct from draw/dispatch bound60",
+          "instructions": {
+            "0x801C730C": "0x2413000A"
+          }
+        }
+      ],
+      "name": "dora3_minigame8_check_explosion_hits_801C7304",
+      "description": "До движения участников Source проверяет slots10..58 (именно bound59) против четырёх participants0..3. Explosion/participant gates и Source713C вызываются один раз; локальные XZ должны содержать publication предыдущего Source draw. Slot59 draw/dispatch есть, но исходный hit loop его не включает.",
+      "evidence": "Exact ROM1BC460 body/callers and draw4EC8 -> next Source7304/713C data flow, static after048 batch5. Runtime fixes saved; CPU and visual validation deferred until user no."
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C52E0",
+      "size": 112,
+      "legacy_name": "dora3_s28_mini_801C52E0",
+      "rom_sha256": "eb991a91f354a2b674fa957ef224977a60eecb30c858d0b3e85703b5a4456e2d",
+      "locals": [],
+      "name": "dora3_minigame8_project_participant_velocity_801C52E0",
+      "description": "Преобразует driver speed0/heading4 в vX10/vZ18 через исходные ROM radians и sin/cos. Эти скорости входят в worldXYZ motion, затем явную post-physics local copy; input/heading commands сохраняют Source cadence.",
+      "evidence": "Exact ROM1BC460 body/callers and draw4EC8 -> next Source7304/713C data flow, static after048 batch5. Runtime fixes saved; CPU and visual validation deferred until user no."
+    },
+    {
+      "section": ".minigame_1",
+      "vram": "0x801C578C",
+      "size": 380,
+      "legacy_name": "dora3_s21_mini_801C578C",
+      "rom_sha256": "b65955f025d50bb7f674f3e4e57f578e6334762e2b74b172a2e4ab57edf48b82",
+      "locals": [
+        {
+          "name": "viewport_camera_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C5798",
+          "end": "0x801C58F0",
+          "description": "Source camera pointer argument a0, used for pitch18/yaw1C/distance30 until epilogue restores s0",
+          "instructions": {
+            "0x801C5794": "0x00808021"
+          }
+        }
+      ],
+      "name": "dora3_race_camera_follow_heading_801C578C",
+      "description": "Race camera для participant0..3: target=body(1+i).yaw10+180, Source pitch10/distance350. Выбирает shortest angular error и divisor15 при error<=90 либо30 выше90; итог нормализуется в1C. Native circular target привязан к Source origin, затем движется непрерывно через0/360; Source branch/gain и view selection не повторяются. Общий путь всех трасс, включая зимний вариант.",
+      "evidence": "Exact Original ROM/helper body, four circular stores and per-view dispatcher reviewed after048 batch6. Winter route identity clarified by user. Native runtime saved, validation deferred until no."
+    },
+    {
+      "section": ".minigame_1",
+      "vram": "0x801C5908",
+      "size": 408,
+      "legacy_name": "dora3_s21_mini_801C5908",
+      "rom_sha256": "a62698bccff544de9251a07e73ffbba729b949535744e814d16a9fe833d92c80",
+      "locals": [
+        {
+          "name": "viewport_camera_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C5914",
+          "end": "0x801C5A88",
+          "description": "Source camera pointer argument a0, used for pitch18/yaw1C/distance30 until epilogue restores s0",
+          "instructions": {
+            "0x801C5910": "0x00808021"
+          }
+        }
+      ],
+      "name": "dora3_race_camera_turn_to_finished_participant_801C5908",
+      "description": "После finish flag camera разворачивается к body heading без180 offset, с тем же shortest-error/divisor15/30. Source distance-5 floor250/pitch10 сохранены. Native круговое приближение исключает повторный выбор знака на дробных кадрах; eye пересчитывается из текущей yaw и target.",
+      "evidence": "Exact Original ROM/helper body, four circular stores and per-view dispatcher reviewed after048 batch6. Winter route identity clarified by user. Native runtime saved, validation deferred until no."
+    },
+    {
+      "section": ".minigame_2",
+      "vram": "0x801C532C",
+      "size": 404,
+      "legacy_name": "dora3_s22_mini_801C532C",
+      "rom_sha256": "0d47d835b1d3ed5e39654ae7800e61e7e63d70a55722c9079f2fd88cd9893d66",
+      "locals": [
+        {
+          "name": "viewport_camera_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C5338",
+          "end": "0x801C54A8",
+          "description": "Source camera pointer argument a0, used for pitch18/yaw1C/distance30 until epilogue restores s0",
+          "instructions": {
+            "0x801C5334": "0x00808021"
+          }
+        }
+      ],
+      "name": "dora3_planes_camera_turn_to_finished_participant_801C532C",
+      "description": "Plane finish camera target=body(1+i).yaw10, без follow offset180; Source shortest-error/divisor15/30, pitch10 и distance-5 floor300. Native продолжает circular approach, сохраняя Source finish flag, gain и commands; камера не меняет знак из-за0/360 seam в подкадрах.",
+      "evidence": "Exact Original ROM/helper body, four circular stores and per-view dispatcher reviewed after048 batch6. Winter route identity clarified by user. Native runtime saved, validation deferred until no."
+    },
+    {
+      "section": ".minigame_1",
+      "vram": "0x801C5B64",
+      "size": 208,
+      "legacy_name": "dora3_s21_mini_801C5B64",
+      "rom_sha256": "bc5e21b5b9d9dcee17a9bfd6c2c0c61e001b25369b973a068126b5523e99f7c9",
+      "locals": [],
+      "name": "dora3_race_camera_dispatch_intro_follow_or_finish_801C5B64",
+      "description": "Для viewport i выбирает camera801A99F8+i*34. Source phase и driver finish flag7A выбирают intro5730, follow578C либо finish5908. Один и тот же dispatcher используется всеми четырьмя участниками и вариантами трассы; Native не повторяет выбор режима.",
+      "evidence": "Exact Original ROM/helper body, four circular stores and per-view dispatcher reviewed after048 batch6. Winter route identity clarified by user. Native runtime saved, validation deferred until no."
+    },
+    {
+      "section": ".minigame_2",
+      "vram": "0x801C54C0",
+      "size": 208,
+      "legacy_name": "dora3_s22_mini_801C54C0",
+      "rom_sha256": "e06cc6b0ac86caf38c4e394cf9621670e8fff6c09c9b3e8b700cc2b79f7a6233",
+      "locals": [],
+      "name": "dora3_planes_camera_dispatch_intro_follow_or_finish_801C54C0",
+      "description": "Для viewport i выбирает camera801A99F8+i*34. Source phase/driver flag30 выбирает intro510C, follow51B0 либо finish532C. Native камера продолжает только достигнутую equation; finish/scene commands остаются Source.",
+      "evidence": "Exact Original ROM/helper body, four circular stores and per-view dispatcher reviewed after048 batch6. Winter route identity clarified by user. Native runtime saved, validation deferred until no."
+    },
+    {
+      "section": ".minigame_7",
+      "vram": "0x801C45E4",
+      "size": 156,
+      "legacy_name": "dora3_s27_mini_801C45E4",
+      "rom_sha256": "efd257ea5661c3f0a4ff3d01c1135da36372aabfcc6833fa78ede740eeef984b",
+      "locals": [
+        {
+          "name": "terminal_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C45F0",
+          "end": "0x801C4674",
+          "description": "Actor argument a0; terminal component0 owner",
+          "instructions": {
+            "0x801C45EC": "0x00808021"
+          }
+        },
+        {
+          "name": "terminal_policy_r17",
+          "expression": "ctx->r17",
+          "start": "0x801C45F8",
+          "end": "0x801C4670",
+          "description": "Policy argument a1; signed short+4 selects duration or explicit frame",
+          "instructions": {
+            "0x801C45F4": "0x00A08821"
+          }
+        }
+      ],
+      "name": "dora3_minigame7_apply_terminal_pose_policy_801C45E4",
+      "description": "Source end-policy для actor component0 и записи a1: short+4=-1 ставит pause и seek к trunc(duration); другое значение задаёт explicit pose frame. Проверка end и команды сохраняют Source cadence. Native помечает только текущий run/step для terminal render hold до реального Source решения, без изменения guest end pulse.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".minigame_9",
+      "vram": "0x801C4C74",
+      "size": 156,
+      "legacy_name": "dora3_s29_mini_801C4C74",
+      "rom_sha256": "772060e362bbf531bc63df560c9e0ac4e0a6afb2c442bf6c5d0495ec0a642b5e",
+      "locals": [
+        {
+          "name": "terminal_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C4C80",
+          "end": "0x801C4D04",
+          "description": "Actor argument a0; terminal component0 owner",
+          "instructions": {
+            "0x801C4C7C": "0x00808021"
+          }
+        },
+        {
+          "name": "terminal_policy_r17",
+          "expression": "ctx->r17",
+          "start": "0x801C4C88",
+          "end": "0x801C4D00",
+          "description": "Policy argument a1; signed short+4 selects duration or explicit frame",
+          "instructions": {
+            "0x801C4C84": "0x00A08821"
+          }
+        }
+      ],
+      "name": "dora3_minigame9_apply_terminal_pose_policy_801C4C74",
+      "description": "Source end-policy для actor component0: policy short+4=-1 ставит pause и seek к trunc(duration), иначе seek к указанному frame. Общий Native terminal hold не позволяет незафиксированному клипу показать начало в дробном интервале перед этим решением. Команды pause/seek и Source event не ускоряются.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".minigame_3",
+      "vram": "0x801C675C",
+      "size": 264,
+      "legacy_name": "dora3_s23_mini_801C675C",
+      "rom_sha256": "e951682c42cb9149495fe00412a7096204a6ae2fd4d439471db3f18a974f56f6",
+      "locals": [
+        {
+          "name": "attack_control_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C6768",
+          "end": "0x801C6858",
+          "description": "Control argument a2; current clip14, desired18, attack20",
+          "instructions": {
+            "0x801C6764": "0x00C08021"
+          }
+        },
+        {
+          "name": "attack_actor_r17",
+          "expression": "ctx->r17",
+          "start": "0x801C677C",
+          "end": "0x801C6854",
+          "description": "Actor argument a1; Source end query and component0 clip bind",
+          "instructions": {
+            "0x801C6778": "0x00A08821"
+          }
+        }
+      ],
+      "name": "dora3_minigame3_return_attack_clip_to_idle_801C675C",
+      "description": "Source выбирает desired clip0/2 из stick и attack flag control+20. Для attack clip3 проверяет current==desired==3 и end компонента0; после end сбрасывает desired clip/attack flag в0 и bind выполняется только при отличии current+14/desired+18. Native terminal hold исключает дробное повторное начало clip3 до этой смены. Все ветки/commands сохраняют Source cadence.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".minigame_3",
+      "vram": "0x801C69CC",
+      "size": 2100,
+      "legacy_name": "dora3_s23_mini_801C69CC",
+      "rom_sha256": "a882ce142f5de724fac7f068323dc9c6352349c469a760ee47dae42df22ea7b8",
+      "locals": [
+        {
+          "name": "result_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C69E8",
+          "end": "0x801C71F4",
+          "description": "Result actor argument a1; six-character terminal component0 owner",
+          "instructions": {
+            "0x801C69E4": "0x00A08021"
+          }
+        },
+        {
+          "name": "result_control_r17",
+          "expression": "ctx->r17",
+          "start": "0x801C69F4",
+          "end": "0x801C71F0",
+          "description": "Control801C9228; character0, current clip14 and desired clip18",
+          "instructions": {
+            "0x801C69F0": "0x26319228"
+          }
+        }
+      ],
+      "name": "dora3_minigame3_hold_character_result_pose_801C69CC",
+      "description": "Result phases8/9 выбирают две таблицы по character id0..5. В12 Source end branches персонаж ставится на trunc(duration) с pause либо explicit fixed frame; event sounds сохраняют исходные пороги/однократность. Current+14/desired+18 bind выполняется в конце Source handler. Native terminal marker предотвращает начало старого clip между end и pause/seek, для всех шести веток обеих таблиц.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C4678",
+      "size": 184,
+      "legacy_name": "dora3_s24_mini_801C4678",
+      "rom_sha256": "2ea67b6d5f5b39539c028ccc3be1b04daa3bc15e4c19867a4026ce61993560b0",
+      "locals": [],
+      "name": "dora3_minigame4_advance_then_stop_object_clip_801C4678",
+      "description": "Для живого actor slot a0 и active table801CA4B0+slot*4 выполняет pose/advance+3. Если end, очищает table entry, seek0, включает clamp и pause. Native terminal policy ограничена этим Source query; реальное исчезновение/останова и запись frame0 не переносятся в draw.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C5768",
+      "size": 184,
+      "legacy_name": "dora3_s24_mini_801C5768",
+      "rom_sha256": "28d730adca19799264fe8872df5145833cd03f44db21829948b70577a591a80e",
+      "locals": [],
+      "name": "dora3_minigame4_advance_then_stop_secondary_clip_801C5768",
+      "description": "Для actor slot a0 и active table801CA288+slot*4 выполняет pose/advance+3. На end очищает active entry и делает seek0/clamp/pause. Native terminal marker сохраняет границу текущей Source анимации; paused bone overrides/morph bank restoration остаются общими.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C7570",
+      "size": 108,
+      "legacy_name": "dora3_s24_mini_801C7570",
+      "rom_sha256": "04f1b66e0203ecb0061774c21ef16f0de7c156e547c634d004002c8377c4f233",
+      "locals": [
+        {
+          "name": "pose_control_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C757C",
+          "end": "0x801C75D0",
+          "description": "Control argument a1; desired clip5C and substate68",
+          "instructions": {
+            "0x801C7578": "0x00A08021"
+          }
+        }
+      ],
+      "name": "dora3_minigame4_finish_clip_and_reset_pose_state_801C7570",
+      "description": "Source уменьшает driver scalar14 на2 с floor0 и обнуляет scalar1C. После end actor component0 сбрасывает desired clip5C и substate68 в0. Native удерживает окончание one-shot только до этого Source решения; scalar/state commands не повторяются на дробных кадрах.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C75DC",
+      "size": 448,
+      "legacy_name": "dora3_s24_mini_801C75DC",
+      "rom_sha256": "62dfa894a47cbbac981e3bb62e2e1a92c6d1f7a1bd136ab81f4100cb5a85df1f",
+      "locals": [
+        {
+          "name": "pose_control_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C75E8",
+          "end": "0x801C7790",
+          "description": "Control argument a1; scalar14/1C, desired5C, state64 and substate68",
+          "instructions": {
+            "0x801C75E4": "0x00A08021"
+          }
+        }
+      ],
+      "name": "dora3_minigame4_update_three_phase_pose_state_801C75DC",
+      "description": "Source substate68:1 уменьшает scalar14,2 разворачивает actor до ROM target heading,3 ждёт конца clip12. После end обнуляет desired5C/substate68 и записывает state64=5. Native terminal hold привязан только к query третьей фазы; повороты и смена состояний сохраняют Source ветви.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C779C",
+      "size": 240,
+      "legacy_name": "dora3_s24_mini_801C779C",
+      "rom_sha256": "3fcbd219fa672850b6602bea14d9f9cd9b664fb83e3acef29bcaf495d3cde8c4",
+      "locals": [
+        {
+          "name": "pose_control_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C77A8",
+          "end": "0x801C7880",
+          "description": "Control argument a1; Source pose chain5C and substate68",
+          "instructions": {
+            "0x801C77A4": "0x00A08021"
+          }
+        },
+        {
+          "name": "pose_actor_r17",
+          "expression": "ctx->r17",
+          "start": "0x801C77BC",
+          "end": "0x801C787C",
+          "description": "Actor argument a0 passed to end query/control command",
+          "instructions": {
+            "0x801C77B8": "0x00808821"
+          }
+        }
+      ],
+      "name": "dora3_minigame4_update_pose_chain_801C779C",
+      "description": "Source цепочка desired5C: end clip7 выбирает10; end10 выбирает11 и сбрасывает substate68; clip11 имеет отдельный command19 transition к15. Остальные ветви используют Source control/sound commands. Native terminal marker только у end query исключает начало предыдущего клипа до bind следующего, не меняя саму цепочку.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C788C",
+      "size": 228,
+      "legacy_name": "dora3_s24_mini_801C788C",
+      "rom_sha256": "d6a0bfaca97931550cde8b68bea3088f26b0e2d195f3eef0b54baf2abbada4dd",
+      "locals": [
+        {
+          "name": "pose_actor_r17",
+          "expression": "ctx->r17",
+          "start": "0x801C7898",
+          "end": "0x801C7960",
+          "description": "Actor argument a0 passed to end query/control command",
+          "instructions": {
+            "0x801C7894": "0x00808821"
+          }
+        },
+        {
+          "name": "pose_control_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C78A0",
+          "end": "0x801C7964",
+          "description": "Control argument a1; desired5C and Source countdown54",
+          "instructions": {
+            "0x801C789C": "0x00A08021"
+          }
+        }
+      ],
+      "name": "dora3_minigame4_leave_pose16_on_clip_end_801C788C",
+      "description": "Source command/driver handler: пока desired5C==16 ждёт конца actor clip и затем выбирает2. Другая ветвь управляет scalar54/countdown и global command801CA588. Native terminal hold относится только к one-shot16, без ускорения countdown/command.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C7970",
+      "size": 452,
+      "legacy_name": "dora3_s24_mini_801C7970",
+      "rom_sha256": "250b77d19a1a8bea34cf7d25903b04043458b1efefe08b359fb4dfc97b5ce901",
+      "locals": [
+        {
+          "name": "pose_actor_r17",
+          "expression": "ctx->r17",
+          "start": "0x801C797C",
+          "end": "0x801C7B24",
+          "description": "Actor argument a0 passed to end query/control command",
+          "instructions": {
+            "0x801C7978": "0x00808821"
+          }
+        },
+        {
+          "name": "pose_control_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C7984",
+          "end": "0x801C7B28",
+          "description": "Control argument a1; desired5C and substate68",
+          "instructions": {
+            "0x801C7980": "0x00A08021"
+          }
+        }
+      ],
+      "name": "dora3_minigame4_finish_pose15_and_reset_state_801C7970",
+      "description": "Source substate68 уменьшает scalar14 и разворачивает actor к ROM target, затем выбирает clip15. End15 обнуляет desired5C/substate68. Native terminal hold охватывает только этот Source end query; другие animation/control/sound branches остаются исходными.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".minigame_4",
+      "vram": "0x801C8164",
+      "size": 1016,
+      "legacy_name": "dora3_s24_mini_801C8164",
+      "rom_sha256": "8abae1844c5c471d64ee6ed4017aac8945a52b460e0072882f73757f749e8a4c",
+      "locals": [
+        {
+          "name": "result_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C8188",
+          "end": "0x801C8550",
+          "description": "Result actor argument a1; end/pause/seek component0 owner",
+          "instructions": {
+            "0x801C8184": "0x00A08021"
+          }
+        }
+      ],
+      "name": "dora3_minigame4_hold_character_result_pose_801C8164",
+      "description": "Source result handler выбирает character id0..5 и одну из двух таблиц поз;12 end branches ставят pause/seek к trunc(duration) или explicit fixed frame. Затем helper7E74 применяет current/desired clip policy. Native terminal intent сохраняет последний render sample до Source фиксации для каждой character branch; звуки и команды остаются Source.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".minigame_8",
+      "vram": "0x801C592C",
+      "size": 232,
+      "legacy_name": "dora3_s28_mini_801C592C",
+      "rom_sha256": "fe1fe8a5d7edece645e2d784684b391f09e8bf58202320a03f8be53f995df8f4",
+      "locals": [
+        {
+          "name": "action_actor_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C5940",
+          "end": "0x801C5A04",
+          "description": "Actor argument a1; end query and Source next-mode helper owner",
+          "instructions": {
+            "0x801C593C": "0x00A08021"
+          }
+        }
+      ],
+      "name": "dora3_minigame8_complete_action_clip_801C592C",
+      "description": "Для Source action modes2/3 проверяет end компонента0. После конца mode0 выбирается при healthD0!=0, иначе очищается invulnerabilityD8 и выбирается mode4 через helper5720 с реальным clip bind. Native terminal hold не показывает начало предыдущего one-shot до Source смены. Time cue и остальные branches не ускоряются.",
+      "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
     }
   ]
 }

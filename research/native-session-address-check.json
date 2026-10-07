@@ -3,7 +3,7 @@
   "result": "PASS: in-progress Original read delays native entry; late reads denied; exit waits both completions; cancellation/stale reservation/pause/reset; actual sleeping producer wakes on deadline, mailbox receive, bank release and rate change; stops/joins with pending wake and restarts idle",
   "sanitizer": "address",
   "source_sha256": {
-    "research/native-loop-stubs.cpp": "9a7fb7796516f951c6bc8d7db29dcc1d08d60290f02f6f4364f032fdd87e37f9",
+    "research/native-loop-stubs.cpp": "3154a3d2788e0493ea3e04670eeb87f21635eac98d906cca82ec954d906eb241",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "src/native_frame_scheduler.cpp": "5aebb567341ad6853cc9eaa25ad093fe463a8614bfbae39d9b017140014cd118",
     "src/native_frame_bridge.cpp": "c1c7ae5fb4ab80e03b178a744a13ac90973b32d787b6fec432afb2e27182b995",

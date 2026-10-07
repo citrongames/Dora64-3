@@ -42,6 +42,7 @@ DECL(dora3_s2_menu_801BBCEC) DECL(dora3_s2_menu_801BBEB0) DECL(dora3_s2_menu_801
 DECL(dora3_s2_menu_801C0528) DECL(dora3_s2_menu_801C14B8) DECL(dora3_s2_menu_801C1A90) DECL(dora3_s2_menu_801C1CA0)
 DECL(dora3_s2_menu_801BFC44) DECL(dora3_s2_menu_801C22C4) DECL(dora3_s2_menu_801BDEFC) DECL(dora3_lib_80057A80)
 DECL(dora3_s1_801B5B04) DECL(dora3_s1_801B6E1C) DECL(dora3_s1_801B7DCC) DECL(dora3_s1_801B7BB4) DECL(dora3_s1_801B63B8)
+DECL(dora3_s3_801BB848) DECL(dora3_fade_draw_dispatch) DECL(dora3_fade_tick)
 DECL(dora3_s3_801C9E50) DECL(dora3_s3_801C9EBC)
 DECL(dora3_scaled_texture_rect) DECL(dora3_s2_menu_801BA0CC) DECL(dora3_s3_801F0CB8)
 DECL(dora3_s0_8002DA98) DECL(dora3_s3_801F1598) DECL(dora3_s3_801F4948) DECL(dora3_s3_801F6870)
@@ -146,6 +147,8 @@ static void text_seed(uint8_t* rdram){
  // Active dialogue with the Original continue-arrow path; token draw empty.
  MEM_B(0,int32_t(0x801B8EB8))=1;w(rdram,0x801B8D2C)=1;MEM_H(0x22,int32_t(0x801B8D50))=0;
 }
+static void map_compare_commands(uint8_t*,uint8_t*,uint32_t);
+static unsigned map_sampling_commands(uint8_t*,uint32_t,uint32_t=0);
 static void draw_pair(Image a,Function fn,Function ref,uint32_t address,unsigned size,unsigned divider,uint32_t update,uint32_t draw){
  auto* r=bytes(a);pair(r,update,draw,divider);w(r,0x801B1424)=int32_t(0x80360000);Image b=a;auto c=context(),cb=context();
  commands.clear();sounds=0;call(ref,bytes(b),cb);call(ref,bytes(b),cb);const auto expected=commands;const auto sound_count=sounds;const auto command_end=w(bytes(b),0x801B1424);assert(command_end>=int32_t(0x80360000)&&command_end<int32_t(0x80380000));
@@ -157,18 +160,8 @@ static void draw_pair(Image a,Function fn,Function ref,uint32_t address,unsigned
   {UiFrameScope frame(r,&c,now+Nanoseconds(j)*second/target);call(fn,r,c);call(fn,r,c);}
   assert(commands==expected);assert(sounds==before_sound);assert(std::memcmp(r+(address&0xFFFFFF),bytes(b)+(address&0xFFFFFF),size)==0);assert(w(r,0x801B1424)==command_end);
   if(fn==dora3_s2_menu_801BA858) {
-    // Cursor Native frames intentionally translate screen coordinates. Its
-    // actual loads/UV/stripe extent must still match the Original builder.
-    for(uint32_t pos=0x80360000;pos<uint32_t(command_end);pos+=8) {
-     const auto prior=uint32_t(w(bytes(b),pos)),actual=uint32_t(w(r,pos));
-     if(prior>>24==0xE4) {
-      assert((prior&0xFFFFF000u)==(actual&0xFFFFF000u));
-      const int dy=int(actual&0xFFF)-int(prior&0xFFF);assert(dy>=-4&&dy<=4);
-      const auto bottom=uint32_t(w(bytes(b),pos+4)),shown=uint32_t(w(r,pos+4));
-      assert((bottom&0xFFFFF000u)==(shown&0xFFFFF000u));
-      assert(int(shown&0xFFF)-int(bottom&0xFFF)==dy);
-     } else {assert(actual==prior);assert(w(r,pos+4)==w(bytes(b),pos+4));}
-    }
+    map_compare_commands(r,bytes(b),uint32_t(command_end));
+    assert(map_sampling_commands(r,uint32_t(command_end))>0);
    } else assert(std::memcmp(r+0x360000,bytes(b)+0x360000,unsigned(command_end-int32_t(0x80360000)))==0);++draws;
  }
  // A new Source epoch advances exactly the next Original draw, not repeats.
@@ -180,7 +173,14 @@ static void drawing(const Image& game,const Image& menu){
  for(unsigned d:{2u,3u}){
   overlay=0x70A50;Image a=game;text_seed(bytes(a));draw_pair(a,dora3_s1_801B6E1C,reference_dora3_s1_801B6E1C,0x801B8D98,8*0x24,d,0x801BB730,0x801BB848);
   a=game;text_seed(bytes(a));draw_pair(a,dora3_s1_801B7DCC,reference_dora3_s1_801B7DCC,0x801B8D10,0x34,d,0x801BB730,0x801BB848);
-  a=game;text_seed(bytes(a));draw_pair(a,dora3_s1_801B63B8,reference_dora3_s1_801B63B8,0x801B8D10,0x30,d,0x801BB730,0x801BB848);
+  // Choice token-94 uses 8D08/8D88, unlike the continue-arrow fixture above.
+   for(int selected:{0,1})for(int direction:{0,1})for(int offset:{-1,0,1}) {
+    a=game;auto* r=bytes(a);auto* rdram=r;text_seed(r);w(r,0x801B8D2C)=0;w(r,0x801B8948)=0;
+    w(r,0x801B8950)=-94;MEM_H(0x22,int32_t(0x801B8D50))=1;MEM_H(0x2C,int32_t(0x801B8D50))=int16_t(selected);
+    w(r,0x801B8D08)=direction;w(r,0x801B8D88)=offset;
+    draw_pair(a,dora3_s1_801B7DCC,reference_dora3_s1_801B7DCC,0x801B8D08,0x90,d,0x801BB730,0x801BB848);
+   }
+   a=game;text_seed(bytes(a));draw_pair(a,dora3_s1_801B63B8,reference_dora3_s1_801B63B8,0x801B8D10,0x30,d,0x801BB730,0x801BB848);
   overlay=0x635C0;a=menu;w(bytes(a),0x801C69D4)=115;w(bytes(a),0x801C69EC)=24;draw_pair(a,dora3_s2_menu_801C22C4,reference_dora3_s2_menu_801C22C4,0x801C69EC,4,d,0x801C24A4,0x801C267C);
   for(unsigned mode:{0u,2u,6u,8u}){a=menu;auto* r=bytes(a);clear(r,0x801C673C,0x18C);w(r,0x801C673C)=mode;w(r,0x801C6820)=3;w(r,0x801C682C)=4;w(r,0x801C683C)=5;draw_pair(a,dora3_s2_menu_801BDEFC,reference_dora3_s2_menu_801BDEFC,0x801C673C,0x18C,d,0x801BFAA4,0x801BFC44);}
  }
@@ -196,14 +196,14 @@ static void complete_files_draw(const Image& menu){
   draw_pair(a,dora3_s2_menu_801BFC44,reference_dora3_s2_menu_801BFC44,0x801C6700,0x1C8,d,0x801BFAA4,0x801BFC44);
  }
 }
-static void pak_math(const Image& seed){
+static void map_math(const Image& seed){
  overlay=0x635C0;
- for(unsigned d:{2u,3u})for(int old:{0,7,13})for(int next:{1,8,14})for(int step=0;step<13;++step){
+ for(unsigned d:{2u,3u})for(int old:{0,7,13,19,23})for(int next:{1,8,14,20,23})for(int step=0;step<13;++step){
   Image a=seed;auto* r=bytes(a);pair(r,0x801BB52C,0x801BB648,d);
   w(r,0x801B369C)=old;w(r,0x801C6390)=next;w(r,0x801C638C)=step;
   w(r,0x801C636C)=0;w(r,0x801C6398)=0;w(r,0x801C63A8)=2;auto c=context();
   call(dora3_s2_menu_801B9F10,r,c);call(dora3_s2_menu_801BA660,r,c);
-  const Image source=a;Image b=a;auto cb=context();w(bytes(b),0x801C638C)=std::max(0,step-1);
+   Image source=a,b=a;auto cb=context();w(bytes(b),0x801C638C)=std::max(0,step-1);
   call(reference_dora3_s2_menu_801B9F10,bytes(b),cb);call(reference_dora3_s2_menu_801BA660,bytes(b),cb);
   begin(r,d,128|256|512);assert(native_ui_menu_eligible(r));
   const int oldpos=w(r,0x801C29C4+152*old),newpos=w(r,0x801C29C4+152*next),phase=step-(oldpos==newpos?3:9);
@@ -212,8 +212,16 @@ static void pak_math(const Image& seed){
    if(phase>0&&phase<=3)visible_equal(r,bytes(b),{0x801C6364,0x801C6368});
    assert(w(r,0x801C63A8)==3);
   }assert(a==source);++endpoints;
-  for(unsigned target:{60u,73u,120u,144u,165u,360u})for(unsigned j=1;Nanoseconds(j)*second/target<interval(d);++j){
-   {UiFrameScope frame(r,&c,now+Nanoseconds(j)*second/target);assert(w(r,0x801C638C)==step&&w(r,0x801B369C)==old&&w(r,0x801C6390)==next);}
+   for(unsigned target:{60u,73u,120u,144u,165u,360u})for(unsigned j=1;Nanoseconds(j)*second/target<interval(d);++j){
+    const auto stamp=now+Nanoseconds(j)*second/target;
+    const double h=double(stamp-now)*60./(d*double(second));
+    {UiFrameScope frame(r,&c,stamp);
+     assert(w(r,0x801C638C)==step&&w(r,0x801B369C)==old&&w(r,0x801C6390)==next);
+     if(step>0&&step<8)for(uint32_t address:{0x801C6370u,0x801C6380u}) {
+      const auto expected=int(float(double(w(bytes(source),address))+(w(bytes(b),address)-w(bytes(source),address))*h));
+      assert(w(r,address)==expected);
+     }
+    }
    assert(a==source);++samples;
   }native_ui_reset();++cases;
  }
@@ -256,6 +264,71 @@ static void world_menu_models(const Image& seed){
   native_ui_reset();++cases;++endpoints;
  }
 }
+// Actual Original input gate, unlock search and integer phase recurrence.
+// Extra Native frames must neither accept another choice nor consume its wait.
+static void character_carousel_cadence(const Image& seed) {
+ overlay=0x70A50;
+ for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,120u,144u,165u,360u})
+ for(unsigned initial:{0u,2u,5u})for(int direction:{-1,1})for(bool skip_locked:{false,true}) {
+  Image a=seed,original;auto* rdram=bytes(a);pair(rdram,0x801BB730,0x801BB848,divider);
+  w(rdram,0x8021D484)=3;w(rdram,0x802170EC)=w(rdram,0x802170F0)=0;
+  MEM_B(0,int32_t(0x8021BFF4))=int8_t(initial);MEM_H(0,int32_t(0x8021BF70))=0;
+  MEM_H(0,int32_t(0x801AC69C))=0;MEM_H(0,int32_t(0x801B3670))=direction<0?0x100:0x200;
+  for(unsigned i=0;i<6;++i) {
+   MEM_B(0,int32_t(0x801B361B+2*i))=1;MEM_B(0,int32_t(0x801B361C+2*i))=1;
+   for(unsigned group=0;group<2;++group) {
+    const uint32_t actor=(group?0x8018FFB8u:0x8018FAF0u)+i*0xCC,driver=0x80310000u+(group*6+i)*0x80;
+    clear(rdram,actor,0xCC);clear(rdram,driver,0x80);
+    w(rdram,actor+0x94)=1;w(rdram,actor+0x98)=int32_t(driver);MEM_H(0x34,int32_t(driver))=int16_t(60*i);
+    for(unsigned offset:{0x18u,0x1Cu,0x20u})f(rdram,actor+offset,1);
+   }
+  }
+  if(skip_locked)MEM_B(0,int32_t(0x801B361B+2*((int(initial)+direction+6)%6)))=0;
+  original=a;auto c=context(),ref=context();const auto start=now;
+  std::optional<Nanoseconds> first_selection,first_unlocked;
+  for(unsigned tick=0;tick<16;++tick) {
+   now=start+Nanoseconds((uint64_t(second)*divider*tick+59)/60);
+   const int prior_phase=MEM_H(0,int32_t(0x8021BF70)),prior_selected=MEM_B(0,int32_t(0x8021BFF4));
+   const auto sounds_before=sounds;call(dora3_s3_801F6870,rdram,c);const auto source_sounds=sounds-sounds_before;
+   const auto ref_sounds_before=sounds;call(reference_dora3_s3_801F6870,bytes(original),ref);
+   assert(source_sounds==sounds-ref_sounds_before);context_equal(c,ref);assert(a==original);
+   const int phase=MEM_H(0,int32_t(0x8021BF70)),selected=MEM_B(0,int32_t(0x8021BFF4));
+   if(prior_phase){assert(selected==prior_selected&&phase==prior_phase/2);assert(source_sounds==0);}
+   if(!first_selection&&selected!=int(initial))first_selection=now;
+   if(first_selection&&!phase&&!first_unlocked)first_unlocked=now;
+   assert(native_ui_menu_eligible(rdram));const auto* policy=select_native_scene_policy(rdram);assert(policy&&policy->update==nullptr);
+   begin(rdram,divider,4096);const Image saved=a;const auto saved_context=c;const auto saved_sounds=sounds;
+   Image next=a;auto math=context();call(reference_dora3_s3_801F6870,bytes(next),math);sounds=saved_sounds;
+   // Stop before the following Source update. A phase0 menu may accept new
+   // input there, so its next-frame choice is not a visual endpoint oracle.
+   for(unsigned n=0;Nanoseconds(n)*second/fps<interval(divider);++n) {
+    const auto stamp=now+Nanoseconds(n)*second/fps;
+    {UiFrameScope frame(rdram,&c,stamp);
+     assert(MEM_H(0,int32_t(0x8021BF70))==phase&&MEM_B(0,int32_t(0x8021BFF4))==selected);
+     assert(MEM_HU(0,int32_t(0x801B3670))==unsigned(direction<0?0x100:0x200));
+     assert(sounds==saved_sounds);context_equal(c,saved_context);
+    }
+    assert(a==saved);++samples;
+   }
+   if(phase) {
+    {UiFrameScope frame(rdram,&c,now+interval(divider));
+     for(unsigned group=0;group<2;++group)for(unsigned i=0;i<6;++i) {
+      const uint32_t actor=(group?0x8018FFB8u:0x8018FAF0u)+i*0xCC;
+      for(unsigned offset:{0u,8u})assert(std::abs(f(rdram,actor+offset)-f(bytes(next),actor+offset))<.03f);
+     }
+    }
+    assert(a==saved);++endpoints;
+   }
+   native_ui_reset();++cases;
+  }
+  assert(first_selection&&first_unlocked);
+  // Adjacent selections take six authored updates including the input tick;
+  // skipping one locked slot takes seven. Check duration in20/30Hz time.
+  const unsigned waits=skip_locked?6:5;
+  assert(std::abs(double(*first_unlocked-*first_selection)-double(second)*divider*waits/60.)<=1.);
+  now=start;
+ }
+}
 static void charge_rdp(const Image& seed){
  overlay=0x70A50;
  for(unsigned divider:{2u,3u})for(int count:{0,1,13,24,49,50})for(bool held:{false,true}){
@@ -288,38 +361,94 @@ static void charge_rdp(const Image& seed){
   ++cases;
  }
 }
+// Minimal CPU decoder follows the pinned RT64 drawRect/FixedRect and sampler
+// formulae. It checks actual emitted commands; this is not a renderer/GPU proof.
+static unsigned map_sampling_commands(uint8_t* rdram,uint32_t end,uint32_t asset) {
+ unsigned rectangles=0;uint32_t tile=0,bounds=0;
+ for(uint32_t pos=0x80360000;pos<end;pos+=8) {
+  const auto cmd=uint32_t(w(rdram,pos));
+  if(cmd>>24==0xF5&&((uint32_t(w(rdram,pos+4))>>24)&7)==0)tile=uint32_t(w(rdram,pos+4));
+  if(cmd==0xF2000000u)bounds=uint32_t(w(rdram,pos+4));
+  if(cmd>>24!=0xE4)continue;
+  assert((tile&0x00080200u)==0x00080200u); // S/T clamp from actual render tile.
+  const auto upper=uint32_t(w(rdram,pos+4));
+  const int left=(upper>>12)&0xFFF,top=upper&0xFFF,right=(cmd>>12)&0xFFF,bottom=cmd&0xFFF;
+  const int max_s=((bounds>>12)&0xFFF)/4,max_t=(bounds&0xFFF)/4;
+  assert(right-left==4*(max_s+1)&&bottom-top==4*(max_t+1));
+  const int span_x=((right+3)>>2)-((left+3)>>2),span_y=((bottom+3)>>2)-((top+3)>>2);
+  assert(span_x==max_s+1&&span_y==max_t+1); // Ceil geometry cannot change UV rate.
+  assert(uint32_t(w(rdram,pos+8))==0xE1000000u&&uint32_t(w(rdram,pos+16))==0xF1000000u);
+  const auto uv=uint32_t(w(rdram,pos+12)),delta=uint32_t(w(rdram,pos+20));
+  const int ds=int16_t(delta>>16),dt=int16_t(delta);assert(ds==1024&&dt==1024);
+  const double u=int16_t(uv>>16)/32.,v=int16_t(uv)/32.+(top&3?(dt>>5)/32.:0.);
+  assert(u==0.&&v==0.); // Same first texel at every fractional screen position.
+  for(double phase:{0.,.125,.5,.875,1.}) {
+   const auto sx=std::clamp(int(std::floor(u+span_x*phase)),0,max_s);
+   const auto sy=std::clamp(int(std::floor(v+span_y*phase)),0,max_t);
+   assert(sx>=0&&sx<=max_s&&sy>=0&&sy<=max_t);
+   if(asset&&phase==1.) {
+    const unsigned colors=MEM_HU(6,int32_t(asset));
+    const int width=MEM_W(8,int32_t(asset)),height=MEM_W(12,int32_t(asset));
+    assert(width==32&&height==32&&colors==16&&sx==31&&sy==31);
+    const uint32_t pixel=unsigned(sy*width+sx);const auto packed=MEM_BU(int32_t(pixel/2),int32_t(asset+16+2*colors));
+    const unsigned index=pixel&1?packed&15:packed>>4;
+    assert(!(MEM_HU(int32_t(2*index),int32_t(asset+16))&1)); // Real ROM bottom/right edge is transparent.
+   }
+   ++samples;
+  }
+  ++rectangles;
+ }
+ return rectangles;
+}
+static void map_compare_commands(uint8_t* r,uint8_t* original,uint32_t end) {
+ for(uint32_t pos=0x80360000;pos<end;pos+=8) {
+  const auto prior=uint32_t(w(original,pos)),actual=uint32_t(w(r,pos));
+  const auto prior1=uint32_t(w(original,pos+4)),actual1=uint32_t(w(r,pos+4));
+  if(prior>>24==0xE4) {
+   assert((actual&0xFF000000u)==(prior&0xFF000000u)&&(actual1&0xFF000000u)==(prior1&0xFF000000u));
+   const int dx=int((actual1>>12)&0xFFF)-int((prior1>>12)&0xFFF),dy=int(actual1&0xFFF)-int(prior1&0xFFF);
+   assert(int((actual>>12)&0xFFF)-int((prior>>12)&0xFFF)==dx);
+   const int bottom_shift=int(actual&0xFFF)-int(prior&0xFFF);assert(bottom_shift==dy||bottom_shift==dy+1);
+  }else if(prior>>24==0xF5) {
+   assert(actual==prior);assert(actual1==prior1||actual1==(prior1|0x00080200u));
+  }else if(prior==0xF2000000u&&pos+8<end&&uint32_t(w(original,pos+8))>>24==0xE4) {
+   assert(actual==prior&&((actual1>>12)&0xFFF)==((prior1>>12)&0xFFF)-4&&(actual1&0xFFF)==(prior1&0xFFF)-4);
+  }else if(prior==0xE1000000u) {
+   assert(actual==prior&&(actual1&0xFFFF0000u)==(prior1&0xFFFF0000u));
+   const auto top=uint32_t(w(r,pos-4))&0xFFF;assert(int16_t(actual1)==int16_t(prior1)-(top&3?32:0));
+  }else {assert(actual==prior&&actual1==prior1);}
+ }
+}
 static void map_chunk_rectangles(const Image& seed) {
  overlay=0x635C0;
- for(unsigned divider:{2u,3u})for(float x:{20.125f,20.5f,20.875f})for(float y:{30.125f,30.5f,30.875f}) {
+ for(unsigned divider:{2u,3u})for(float x:{20.f,20.125f,20.5f,20.875f})for(float y:{30.f,30.125f,30.25f,30.5f,30.875f})for(unsigned sprite:{0u,1u,2u}) {
   Image a=seed;auto* r=bytes(a);pair(r,0x801BB52C,0x801BB648,divider);
   w(r,0x801B369C)=w(r,0x801C6390)=w(r,0x801C638C)=0;
   begin(r,divider,128|256);auto c=context();auto* rdram=r;
+  const uint32_t asset=sprite?0x80340000+0x400*(sprite-1):0;
+  const unsigned width=asset?unsigned(w(r,asset+8)):16,height=asset?unsigned(w(r,asset+12)):128;
   auto setup=[&](recomp_context& target,float px,float py){
-   target.f12.fl=px;target.f14.fl=py;target.r6=16;target.r7=128;
+   target.f12.fl=px;target.f14.fl=py;target.r6=width;target.r7=height;
    MEM_W(0x10,target.r29)=MEM_W(0x14,target.r29)=std::bit_cast<int32_t>(1.f);
-   MEM_W(0x18,target.r29)=int32_t(0x80330000);MEM_W(0x1C,target.r29)=int32_t(0x80330100);MEM_W(0x20,target.r29)=0;
+   MEM_W(0x18,target.r29)=int32_t(asset?asset+48:0x80330000);
+   MEM_W(0x1C,target.r29)=int32_t(asset?asset+16:0x80330100);MEM_W(0x20,target.r29)=0;
   };
   w(r,0x801B1424)=int32_t(0x80360000);setup(c,std::floor(x),std::floor(y));
   call(reference_dora3_scaled_texture_rect,r,c);const auto end=uint32_t(w(r,0x801B1424));
-  const Image original=a;const int dx=int(std::lround((x-std::floor(x))*4)),dy=int(std::lround((y-std::floor(y))*4));
+  Image original=a;
   w(r,0x801B1424)=int32_t(0x80360000);c=context();setup(c,x,y);
   {UiFrameScope frame(r,&c,now+interval(divider)/2);
    assert(dora3_native_ui_map_bitmap_begin(r,&c,0));assert(c.f12.fl==std::floor(x)&&c.f14.fl==std::floor(y));
    call(dora3_scaled_texture_rect,r,c);dora3_native_ui_map_bitmap_end(r);
   }
-  assert(uint32_t(w(r,0x801B1424))==end);unsigned rectangles=0;
-  for(uint32_t pos=0x80360000;pos<end;pos+=8) {
-   const auto command=original[(pos&0xFFFFFF)/4];
-   for(unsigned offset:{0u,4u}) {
-    const uint32_t prior=original[((pos+offset)&0xFFFFFF)/4],actual=uint32_t(w(r,pos+offset));
-    if(command>>24==0xE4) {
-     assert((actual&0xFF000000u)==(prior&0xFF000000u));
-     assert(((actual>>12)&0xFFF)==(((prior>>12)&0xFFF)+dx));assert((actual&0xFFF)==((prior&0xFFF)+dy));
-    }else assert(actual==prior);
-   }
-   if(command>>24==0xE4)++rectangles;
+  assert(uint32_t(w(r,0x801B1424))==end);map_compare_commands(r,bytes(original),end);
+  const auto rectangles=map_sampling_commands(r,end,asset);assert(asset?rectangles==1:rectangles>=2);
+  uint32_t previous_bottom=0;
+  for(uint32_t pos=0x80360000;pos<end;pos+=8)if(uint32_t(w(r,pos))>>24==0xE4) {
+   const auto top=uint32_t(w(r,pos+4))&0xFFF;if(previous_bottom)assert(top==previous_bottom);
+   previous_bottom=uint32_t(w(r,pos))&0xFFF;
   }
-  assert(rectangles>=2);native_ui_reset();++cases;++endpoints;
+  native_ui_reset();++cases;++endpoints;
  }
 }
 static void item_side_arrows(const Image& seed) {
@@ -336,6 +465,44 @@ MEM_B(0,int32_t(0x8021BFCB))=2;MEM_B(0,int32_t(0x8021BE42))=0;
   draw_pair(a,dora3_s3_801F0CB8,reference_dora3_s3_801F0CB8,0x8021BE00,0x200,d,0x801BB730,0x801BB848);
  }
 }
+// Actual world hold draw + common fade RDP commands: original alpha endpoint,
+// fractional alpha across schedules and unchanged Source hold/request counters.
+static void held_world_fades(const Image& seed) {
+ overlay=0x70A50;
+ for(unsigned divider:{2u,3u})for(int direction:{-1,1})for(int hold:{1,10}) {
+  Image a=seed;auto* rdram=bytes(a);pair(rdram,0x801BB730,0x801BB848,divider);
+  w(rdram,0x801AA648)=w(rdram,0x801A9500)=1;w(rdram,0x801A9C88)=0;w(rdram,0x8021D484)=0;
+  w(rdram,0x8021D494)=1;w(rdram,0x802170F0)=hold;w(rdram,0x802170EC)=2;
+  MEM_B(0,int32_t(0x80217118))=2;
+  MEM_B(0,int32_t(0x801A99A0))=int8_t(direction);MEM_B(0,int32_t(0x80171580))=16;
+  MEM_H(0,int32_t(0x801AA660))=direction>0?0:255;
+  for(uint32_t address:{0x801B1404u,0x80171CB8u,0x801A99B4u})MEM_B(0,int32_t(address))=-1;
+  assert(select_native_scene_policy(rdram)&&select_native_scene_policy(rdram)->update==nullptr);
+  Image reference=a;auto c=context();call(reference_dora3_fade_tick,bytes(reference),c);
+  const auto reference_alpha=[&] {auto* rdram=bytes(reference);return int(MEM_H(0,int32_t(0x801AA660)));};
+  const FadeState initial{MEM_H(0,int32_t(0x801AA660)),int8_t(direction),16};
+  begin(rdram,divider,0);const auto start=now;
+  for(unsigned fps:{60u,360u}) {
+   FadeTimeline fade(initial,divider,start);
+   MEM_H(0,int32_t(0x801AA660))=initial.alpha;MEM_B(0,int32_t(0x801A99A0))=initial.direction;
+   for(unsigned frame=1;Nanoseconds(frame)*second/fps<interval(divider);++frame) {
+    const auto stamp=start+Nanoseconds(frame)*second/fps;
+    const FadeState observed{MEM_H(0,int32_t(0x801AA660)),MEM_B(0,int32_t(0x801A99A0)),16};
+    const auto alpha=fade.sample(observed,stamp);MEM_H(0,int32_t(0x801AA660))=int16_t(alpha.alpha);MEM_B(0,int32_t(0x801A99A0))=int8_t(alpha.direction);
+    w(rdram,0x801B1424)=int32_t(0x80360000);c=context();commands.clear();
+    {UiFrameScope ui(rdram,&c,stamp);call(dora3_s3_801BB848,rdram,c);call(dora3_fade_draw_dispatch,rdram,c);}
+    const auto end=uint32_t(w(rdram,0x801B1424));bool found=false;
+    for(uint32_t at=0x80360000;at+8<=end;at+=8)if(uint32_t(w(rdram,at))>>24==0xFA){assert(uint32_t(w(rdram,at+4))==(0xFFFFFF00u|uint32_t(alpha.alpha)));found=true;}
+    assert(found&&w(rdram,0x802170F0)==hold&&w(rdram,0x802170EC)==2&&w(rdram,0x8021D494)==1);
+    assert(MEM_B(0,int32_t(0x80217118))==2);++samples;
+   }
+   const FadeState observed{MEM_H(0,int32_t(0x801AA660)),MEM_B(0,int32_t(0x801A99A0)),16};
+   const auto endpoint=fade.sample(observed,start+interval(divider));
+   assert(endpoint.alpha==reference_alpha());++endpoints;
+  }
+  native_ui_reset();++cases;
+ }
+}
 static void ownership(const Image& seed){
  Image a=seed;auto* r=bytes(a);overlay=0x635C0;pair(r,0x801BCEF8,0x801BD078,3);assert(native_ui_menu_eligible(r));++guards;
  overlay=0;assert(!native_ui_menu_eligible(r));++guards;overlay=0x635C0;
@@ -349,6 +516,6 @@ static void ownership(const Image& seed){
  }
 }
 int main(int argc,char** argv){assert(argc==3);Image game(0x400000/4),menu(game.size());std::ifstream(argv[1],std::ios::binary).read(reinterpret_cast<char*>(game.data()),0x400000);std::ifstream(argv[2],std::ios::binary).read(reinterpret_cast<char*>(menu.data()),0x400000);
- title_math(menu);game_math(game);world_menu_models(game);charge_rdp(game);menu_math(menu);drawing(game,menu);complete_files_draw(menu);pak_math(menu);map_chunk_rectangles(menu);item_side_arrows(game);ownership(menu);native_ui_reset();
+ title_math(menu);game_math(game);world_menu_models(game);character_carousel_cadence(game);charge_rdp(game);menu_math(menu);drawing(game,menu);complete_files_draw(menu);map_math(menu);map_chunk_rectangles(menu);item_side_arrows(game);held_world_fades(game);ownership(menu);native_ui_reset();
  std::cout<<"PASS: "<<cases<<" connected UI cases; "<<endpoints<<" Original motion endpoints; "<<samples<<" Native math samples; "<<draws<<" repeated Original UI draw/command comparisons; "<<guards<<" ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.\n";
 }

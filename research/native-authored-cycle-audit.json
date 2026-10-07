@@ -1,0 +1,217 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "scope": "Static resource/curve analysis only; no executable tests, rendering or generation.",
+  "matching_angle_wraps": [
+    {
+      "resource": "0x0489",
+      "channel": 5,
+      "axis": 2,
+      "bone": 3,
+      "keys": [
+        [
+          84.0,
+          315.0
+        ],
+        [
+          96.0,
+          360.0
+        ],
+        [
+          98.0,
+          7.5
+        ],
+        [
+          108.0,
+          45.0
+        ]
+      ],
+      "direct_delta": -352.5,
+      "wrapped_delta": 7.5,
+      "resource_sha256": "d9c070e3341f6711d608f93b3bb4ecd8f66aac779280c46e498659af35ead788"
+    },
+    {
+      "resource": "0x0A46",
+      "channel": 1,
+      "axis": 2,
+      "bone": 2,
+      "keys": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          480.0,
+          360.0
+        ],
+        [
+          482.0,
+          1.5031100511550903
+        ],
+        [
+          960.0,
+          360.0
+        ]
+      ],
+      "direct_delta": -358.4968899488449,
+      "wrapped_delta": 1.5031100511550903,
+      "resource_sha256": "9afc42c7e71d56ef4d3b4dd82260beccc13cb0e933d2eb81f0c61f3e12838157"
+    }
+  ],
+  "bitmap_records_considered": 1475,
+  "palette_equivalent_scroll_families": [
+    {
+      "bank": "bitmap",
+      "width": 64,
+      "height": 64,
+      "members": [
+        {
+          "index": 223,
+          "shift": [
+            0,
+            0
+          ],
+          "palette_sha256": "d189da44b7295fc6778f323b2881c0ab1b94db61c8e3e236833256f402511fde",
+          "resource_sha256": "c7e88ebb50c3640982a53e92b203c4b89ca2e5790ac7eee326b1bbe7df47dc72"
+        },
+        {
+          "index": 224,
+          "shift": [
+            0,
+            -4
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "fcacda27bf211b7d10b8b96e98991d62adc089f63c3e922a9133d94b08865ec8"
+        },
+        {
+          "index": 225,
+          "shift": [
+            0,
+            -8
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "865522a656e82aa5f4ad2bdb0777f54493cdaa4433b329bfbcae7f724ace726b"
+        },
+        {
+          "index": 226,
+          "shift": [
+            0,
+            -12
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "5a155059b809c218bb2c1f233e76a758c1f03a41d58dc5096fe0320eeda02555"
+        },
+        {
+          "index": 227,
+          "shift": [
+            0,
+            -16
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "6d5fea8d7e262e3e325f948156b03771ec8a8bf070e829a32846e2f9098b9467"
+        },
+        {
+          "index": 228,
+          "shift": [
+            0,
+            -20
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "4cdffe36665bc18d1d7179607159369ba195952c8affaf8d9eaf3668674dd104"
+        },
+        {
+          "index": 229,
+          "shift": [
+            0,
+            -24
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "e8e94f26f63e1c6b1b98904c1c173343dc88a3ec22ec3e31488ebc9af229e352"
+        },
+        {
+          "index": 230,
+          "shift": [
+            0,
+            -28
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "ea9966cbbe6209e5c5537507f7dad53437a2b88c68a6791d6ac342cec7d8fb52"
+        },
+        {
+          "index": 231,
+          "shift": [
+            0,
+            32
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "a4ef751d57587f5a4318d95e69a101207f6bb0fcd8cd70f25a4fa1fc52936f13"
+        },
+        {
+          "index": 232,
+          "shift": [
+            0,
+            28
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "53772b3286d51a5fedbd522e996954a93fb79e5361e38a9978656f861d272087"
+        },
+        {
+          "index": 233,
+          "shift": [
+            0,
+            24
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "129a867c644980b4dbb9833b847689886b81ac6e7fb748566f87c34c549f4e96"
+        },
+        {
+          "index": 234,
+          "shift": [
+            0,
+            20
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "49d6469fecdac973563c76674a4edc588ab08d9e2a8d3dd43ce2d6cf2e32c38e"
+        },
+        {
+          "index": 235,
+          "shift": [
+            0,
+            16
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "308eac88d392f0ba5acbceda34dce10991cb49ddcfb6f5e39a4b1a02ca614db4"
+        },
+        {
+          "index": 236,
+          "shift": [
+            0,
+            12
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "318bdff3e0acdfd5bd692bf5a85db4cda1d169956e1da6b9e92e7c9b766fb9dd"
+        },
+        {
+          "index": 237,
+          "shift": [
+            0,
+            8
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "b2261a17e4e10a0952d8539f6130a30e6e7101601d462c87b1ecaf74a376c1e6"
+        },
+        {
+          "index": 238,
+          "shift": [
+            0,
+            4
+          ],
+          "palette_sha256": "43af157642637565903f3e2d8d019ba74cd372051371855445440a9a0ef2a7f1",
+          "resource_sha256": "4bfa1ac386fd252a369422b4d70fb9f0533b4f6b5b3fcf86d207103edc175b18"
+        }
+      ],
+      "palette_order_changes": true
+    }
+  ],
+  "displayed_color_scroll_family_count": 10,
+  "bitmap_scope": "Static decoded RGBA5551 texel equality across all known ROM BMP records (1475); supported CI4 dimensions/colors only. No runtime reachability or executable/visual tests."
+}

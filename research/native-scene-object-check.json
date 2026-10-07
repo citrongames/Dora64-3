@@ -1,1687 +1,1481 @@
 {
   "completed_replay_provenance": null,
-  "result": "PASS: scene 3504 frozen/current Original and 10512 Native schedules across all292 ROM variants / 289 kinds; fresh replay=1 kinds/48 cases, retained unchanged=291 kinds; 2880 fresh pool endpoints, 25554 intervals, 25554 zero-dt checks, 32 genuine contacts; 289 scene/NPC kinds including platforms, doors, switches, traps, event actors and effects, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 0=1,2, 1=1,2, 2=1,2,3, 3=1,2,3, 4=1, 5=1, 6=1,2, 7=1,2, 8=1,2,3, 9=1,2,3, 10=1,2, 11=1,2, 12=1,2,3, 13=1, 14=1, 15=1, 16=1, 17=1,2, 18=1,2, 19=1,2, 20=1,2, 21=1,2, 22=1,2, 23=1,2, 24=1,2, 25=1,2, 26=1,2, 27=1,2,3, 28=1,2,3, 29=1,2,3, 30=1,2,3, 31=1,2,3, 32=1,2,3, 33=1,2,3, 34=1,2,3, 35=1,2,3, 36=1,2, 37=2,3, 38=1, 39=1,2, 40=1,2, 41=1,2, 42=1,3, 43=1, 44=1, 45=1,2, 46=1, 47=1, 48=1, 49=1, 50=1, 51=1, 52=1, 53=1, 54=1, 55=1, 56=1, 57=1, 58=1, 59=1, 60=1, 61=1, 62=1, 63=1, 64=1, 65=1, 66=1, 67=1, 68=1, 69=1, 70=1, 71=1, 72=1, 73=1, 74=1, 75=1, 76=1, 77=1, 78=1, 79=1, 80=1, 81=1, 82=1, 83=1, 84=1, 85=1, 86=1, 87=1, 88=1, 89=1, 90=1, 91=1, 92=1, 93=1, 94=1, 95=1, 96=1, 97=1, 98=1, 99=1, 100=1, 101=1, 102=1, 103=1, 104=1, 105=1, 106=1, 107=1, 108=1, 109=1, 110=1, 111=1, 112=1, 113=1, 114=1, 115=1, 116=1, 117=1, 118=1, 119=1, 120=1, 121=1, 122=1, 123=1, 124=1, 125=1, 126=1, 127=1, 128=1, 129=1, 130=1, 131=1, 132=1, 133=1, 134=1, 135=1, 136=1, 137=1, 138=1, 139=1, 140=1, 141=1, 142=1, 143=1, 144=1, 145=1, 146=1, 147=1, 148=1, 149=1, 150=1, 151=1, 152=1, 153=1, 154=1, 155=1, 156=1, 157=1, 158=1, 159=1, 160=1, 161=1, 162=1, 163=1, 164=1, 165=1, 166=1, 167=1, 168=1, 169=1, 170=1, 171=1, 172=1, 173=1, 174=, 175=1, 176=1, 177=1, 178=1, 179=1, 180=1, 181=1, 182=1, 183=1, 184=1, 185=1, 186=1, 187=1, 188=1, 189=1, 190=1, 191=1, 192=1, 193=1, 194=3, 195=3, 196=1, 197=1, 198=1, 199=1, 200=1, 201=1, 202=1, 203=1, 204=1, 205=1, 206=1, 207=1, 208=1, 209=1, 210=1, 211=1, 212=1, 213=1, 214=1, 215=1, 216=1, 217=1, 218=1, 219=1, 220=1, 221=1, 222=1, 223=1, 224=1, 225=1, 226=1, 227=1, 228=1, 229=1, 230=1, 231=1, 232=1, 233=1, 234=1, 235=1, 236=1, 237=1, 238=1, 239=1, 240=1, 241=1, 242=1, 243=1, 244=1, 245=1, 246=1, 247=1, 248=1, 249=1, 250=1, 251=1, 252=1, 253=1, 254=1, 255=1, 256=1, 257=1, 258=1, 259=1, 260=1, 261=1, 262=1, 263=1, 264=1, 265=1, 266=1, 267=1,10, 268=1, 269=1, 270=1, 271=1, 272=1, 273=1, 274=1, 275=1, 276=1, 277=1, 278=1, 279=1, 280=1, 281=1, 282=1, 283=1, 284=2, 285=1, 286=1, 287=1, 288=1, 289=1, 290=1, 291=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
-  "retained_generation_provenance": {
-    "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
-    "unchanged_compiled_dependencies_sha256": {
-      "/home/vova/projects/DoraRecomp3/src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
-      "/home/vova/projects/DoraRecomp3/src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-      "/home/vova/projects/DoraRecomp3/build-deps/lib/N64ModernRuntime/N64Recomp/include/recomp.h": "190dd64184df17e3f24a78b761cda8bbfe639f9106d0d98ecc760ee84fe0616a",
-      "/home/vova/projects/DoraRecomp3/src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
-      "/home/vova/projects/DoraRecomp3/src/native_frame_bridge.hpp": "a405469b02b662d7ad973c5475f05465defe0d346b7add98717e9393794fe545",
-      "/home/vova/projects/DoraRecomp3/src/native_frame_scheduler.hpp": "ae108bfcf8c9bbd628f648a8781afd1a9a5ab8668aa676212a60ebf88329bfde",
-      "/home/vova/projects/DoraRecomp3/src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
-      "/home/vova/projects/DoraRecomp3/src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
-      "/home/vova/projects/DoraRecomp3/src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-      "/home/vova/projects/DoraRecomp3/src/native_gameplay_preview.cpp": "f6dabcc72387c43a2805b3f8809a2bad22d4984b6d4288da4c9b088d7ada58a6",
-      "/home/vova/projects/DoraRecomp3/src/native_gameplay_preview.hpp": "2773c63fa042ebcc3efffe1c194f3d7e0c05ac5a205520ca59834100b34f05ea",
-      "/home/vova/projects/DoraRecomp3/src/native_enemy.hpp": "0f963a7886c55e3c19ce07202a53932dd194d67d11100297edd3ac9530b7147e",
-      "/home/vova/projects/DoraRecomp3/src/native_scene_objects.hpp": "cc51bfd8da7dc472c06f8cb6f52ee1a6515dd4f99a5bf5130416f216d54378ac",
-      "/home/vova/projects/DoraRecomp3/src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
-      "/home/vova/projects/DoraRecomp3/src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
-      "/home/vova/projects/DoraRecomp3/src/native_model_animation.hpp": "374044e91b204a922b5a43dc279e518cb87a0825797459f777a58ff82e0cf30b",
-      "/home/vova/projects/DoraRecomp3/src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
-      "/home/vova/projects/DoraRecomp3/src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-      "/home/vova/projects/DoraRecomp3/src/native_model_animation.cpp": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
-      "/home/vova/projects/DoraRecomp3/research/native-story-pickup-source-check.cpp": "964a9ac09ff445f426ce18b8387729de3927efbad8a0de65590707681ac3af99",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/player-update-functions.h": "6e9cfd9abf8ce13ea685c13eb64295f31b4a9c32a5ee70b122f240f78a9db83f",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/player-fixture.hpp": "3227f1b961743574b36fac62ea5b5e7e79697ad9e6807b0cacc725ae2073b5ec",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/enemy-fixture-data.hpp": "936555725988858f0bc3e8d1e9e2b7e72b159b10e7808a0cd544a7fda2fdb333",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/player-update-dispatch.hpp": "5729791928212c32c0812f5e7673f42568f238c1f8727f5a0e03710be1df849b",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/terminal-effect-dispatch.hpp": "0467f7acad40c01711b8dd98774fcca459c3439a3fb8d820bccbaa1bbd57c388",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/flight-dispatch.hpp": "e880dd0358895d93ef6d949063e64def53aff843cb0e4fddbf6cf59b769edf05",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/growth-dispatch.hpp": "293ef721b43fe5b463bb3c6a0b7e79f1162569b6f43124a49702946dcf71da3f",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/ballistic-dispatch.hpp": "90ec5333df4cdfbfc873d2044ab9d00f6e290f64569804c2a340e7cc03c4bc21",
-      "/home/vova/projects/DoraRecomp3/research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/slot09-overlay-fixture.hpp": "ddabcac8b2642984d81ff2b6f9980568f0b0000b41303abada160043fe408e86",
-      "/home/vova/projects/DoraRecomp3/research/native-flash-delay-check.inc": "649388f0cd651ca4a367a9f21e7cd23ba3bbd0b908a4d95c76a2f292c015650b",
-      "/home/vova/projects/DoraRecomp3/research/native-flash-motion-check.inc": "da708e4b650d6d3a6f2c97414654cfc5f9df0c5aad2334a15ab5b86746d40c76",
-      "/home/vova/projects/DoraRecomp3/research/native-flash-pool-check.inc": "654c6474c0a39c2b15f3c21ab7ecbd1b92b1a0c3d281e70243bbb858549134fd",
-      "/home/vova/projects/DoraRecomp3/research/native-periodic-effect-source-check.inc": "c28c1e7c4d4189249c28c227f9fc1458419d817a82a18ecf4920536d7a6b7940",
-      "/home/vova/projects/DoraRecomp3/research/native-periodic-effect-guard-check.inc": "0ae0fecd289d36d36297e71046fb57d5b90ac5f870ab24e3c85af16fa1998795",
-      "/home/vova/projects/DoraRecomp3/research/native-periodic-producer-check.inc": "c778c8103d470d0c7123d2b85eeaa4e099f50d04285f4af42eaa53665cdd8f61",
-      "/home/vova/projects/DoraRecomp3/research/native-periodic-producer-guard-check.inc": "aec8a15c0bdfb7cca6440351c559f119ad6861765f143bb10213a6bb5e5c14dd",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-uncollected-source-check.inc": "dc4c0b063c04a78de3fce3ffa0e588bbd5d06f9f86fbb04fba9b5d5e73da269e",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-spin-guard-check.inc": "3b7be439fe8104f84b6b6c372b86c2792b2f5f50c68fbd508f090ecdbe1af03c",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-arc-guard-check.inc": "e75d344b73021004ce226d89f2a26f8b204d399de82bce71941214698caf8aa7",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-reveal-source-check.inc": "b0696c935d3e578b2c5bc7556713add98b8830bef522e803d1bf9783087a51a3",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-settle-scatter-source-check.inc": "36197e05fb4b432d848cbd876589e927ed9355f4c35f4c3a04a6ecfd29bee2dc",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-moving-idle-source-check.inc": "454aabc4cb37a5e74c5ab199b6c83519eb0ec65e0dee727a91a4f78ba35150af",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-linked-basic-check.inc": "aa86d37a231fe751c0289223b75851329a18d0525af503f9a5c8f1d65e10128b",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-linked-guard-check.inc": "c923b27d73b0f6c80de4f29c59056123dbff9a5c60a1878458ab0a26396c098b",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-parent-source-check.inc": "d56d802284e293f88954600696fa821696ea3cb154ee5737a824e7c2bed5e2d1",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-settle-guard-check.inc": "cfa8f2ecd197c67efb0ae4d0e03583b9f6a57b1cbe4c3d790c464340b8d827d1",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-scatter-guard-check.inc": "37bc031d4cc2c85b25dba6313fd9e0ef355ee036df63e8278280beda03382cbb",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-scatter-geometry-check.inc": "6fca5eae3382a919049f2a26a41146d689139059253e29a1ba579e78988b5ef2",
-      "/home/vova/projects/DoraRecomp3/research/native-pickup-reveal-guard-check.inc": "4260f9e395701c21f6e897c9ede24ad9aa0db094374259596bd6247b2777d43d",
-      "/home/vova/projects/DoraRecomp3/research/native-scene-object-source-check.inc": "c6b234f9bf02b686c654998cc4a66264624003f5c1009cdc2dd4b75dc1e452a0",
-      "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/boundaries.cpp": "321ac92d9b6e6520c723b40676d9504171074bf5ac56df15e2104930110b0324",
-      "/home/vova/projects/DoraRecomp3/src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
-      "/home/vova/projects/DoraRecomp3/src/native_cutscene.hpp": "d7c9362cc9c4f70191ebb7bad1c9ded08ea478811c477e269fc9bae630e1c1e4",
-      "/home/vova/projects/DoraRecomp3/research/native-gameplay-cutscene-fixture.cpp": "9d0f96ae66fa812b88f4cb3950452db2c26509e8bdfa0612fb1641b654c58cdb",
-      "/home/vova/projects/DoraRecomp3/src/native_minigames.hpp": "73821c8c48ed600088164b7c4604ab57a6d59f32b19384b9d40f85137e9855e7",
-      "/home/vova/projects/DoraRecomp3/src/native_enemy.cpp": "8dc73ce30128b784e169e375aa095940f9495140dcb56bba3024688683369959",
-      "/home/vova/projects/DoraRecomp3/src/native_enemy_projection_math.hpp": "b9a243b6898ed1e4ecdffe6fb43d64eb12ffe214d8812dfc94cf17e98de1ae7a",
-      "/home/vova/projects/DoraRecomp3/src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
-      "/home/vova/projects/DoraRecomp3/src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
-      "/home/vova/projects/DoraRecomp3/src/native_texture_animation.hpp": "7403bbf3f80ac2335669356f78d8caf8c4803d7d9060b205c6fd60ef5f874a41",
-      "/home/vova/projects/DoraRecomp3/src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e"
-    },
-    "artifacts_sha256": {
-      "build-local/native-scene-object-check/replay-1791257114222712591/progress-3.log": "636e5f1d0d7fbeffb4eb8e94e4f2592b844cc03e4c96305df9826c155476a603",
-      "build-local/native-scene-object-check/replay-1791257114222712591/progress-1.log": "358b02a28084197f762e8f93d04e5d98813074d933c0310244e43bd19771164c",
-      "build-local/native-scene-object-check/replay-1791257114222712591/progress-2.log": "4a184615ed059f4e8c43351d289959af64ac3a70eb80b825734456b8ced0f07e",
-      "build-local/native-scene-object-check/replay-1791257114222712591/progress-0.log": "781b5f0b2eca8e214b64a32b992c7867e321e2a856a39d29e1748855b05b1954",
-      "build-local/native-scene-object-check/replay-1791182763827806130/progress-1.log": "333b347755bac4ce74b7ce90ff25b4b5668e67878feba318cc30296b920903a4",
-      "build-local/native-scene-object-check/replay-1791182763827806130/progress-2.log": "7b3eaddf9ccbc4c477b9451dd34c6dfb70f0a1248bd5a7cc67c0a40fb88d01a8",
-      "build-local/native-scene-object-check/replay-1791182763827806130/progress-0.log": "da0c43dabb7c23283da10fb95330307f66fd9bfae36fb92e9fa8d6b4ed955c43",
-      "build-local/native-scene-object-check/replay-1791176423771582228/progress-3.log": "23dd1297ef62f105e5a2a0f56adf4e6c9c2d68e6999414048aa8b5b249ab1285",
-      "build-local/native-scene-object-check/replay-1791176423771582228/progress-1.log": "40d05201e96ab204c8b2b30e3de610059dfff1f2e2df012b680938822e6e185e",
-      "build-local/native-scene-object-check/replay-1791176423771582228/progress-2.log": "f56ce6fdf0fdc5b53eac2f5f892765cffc0f9940f8578fa11f3af25538646b73",
-      "build-local/native-scene-object-check/replay-1791176423771582228/progress-0.log": "80cea31b795214588e64d69aa46a8514fd978e64f0dff4ab75fb2b2ca1371d34",
-      "build-local/native-scene-object-check/replay-1791183425813031452/progress-0.log": "8fc51cae1ce1d151611cfec006d10c856c86bdc4edff0498ca2aceebd466e406",
-      "build-local/native-scene-object-check/replay-1791285713514346922/progress-0.log": "1d66431347bfe935b8ff39ceb150bf0340a809ca51e08c297c022cb952b071d8",
-      "build-local/native-scene-object-check/replay-1791177853251950884/progress-3.log": "72fa358894302a5a991f7aaf6eeabab6d58f157e292041e75666b1911f75b7d0",
-      "build-local/native-scene-object-check/replay-1791177853251950884/progress-1.log": "c4815a891f4dfb466c8dd96efa7370777272df78a02ece80a2cc762fe4235629",
-      "build-local/native-scene-object-check/replay-1791177853251950884/progress-2.log": "14e49e20f1d0f478db5df03cac5ad32ab5bcfc172fdaef6577410fc53a7272e1",
-      "build-local/native-scene-object-check/replay-1791177853251950884/progress-0.log": "2949d6a792ec94fc0398fab70dd26d8d9448cb59f4c4166aff1d485489fe433a",
-      "build-local/native-scene-object-check/replay-1791177337333653281/progress-3.log": "32ed296d18f17492aff58c5ea976f629553bfe9b0802fd9edf2c54eb9f47421c",
-      "build-local/native-scene-object-check/replay-1791177337333653281/progress-1.log": "3e50219ad825778816f2e7d51de5c800f1132cf7d1ad7a10ef69a30b1f4b7bda",
-      "build-local/native-scene-object-check/replay-1791177337333653281/progress-2.log": "2db6e8041a9118f92fdae403edbb0151460c4e55fc45fc940e424dd3eb33099f",
-      "build-local/native-scene-object-check/replay-1791177337333653281/progress-0.log": "93f225a4e7e604556e4a2a44c58f9dd9412708529526010e5e4ccd9278716600",
-      "build-local/native-scene-object-check/replay-1791182136646116989/progress-1.log": "6009746589a6f221d957cb58d6836926647236c562472b5a480ca4aa914dc68c",
-      "build-local/native-scene-object-check/replay-1791182136646116989/progress-2.log": "c996dac57ba9e50f88f358f4b94cf5ac3ee9cbe035a84eb3732fb5a2fe98a41c",
-      "build-local/native-scene-object-check/replay-1791182136646116989/progress-0.log": "7af68eb6e0f16d25215078ad5ff9f68d0df2a99e127dedb17d70b66c979f8c8d",
-      "build-local/native-scene-object-check/replay-1791287166122468310/progress-0.log": "1d66431347bfe935b8ff39ceb150bf0340a809ca51e08c297c022cb952b071d8",
-      "build-local/native-scene-object-check/replay-1791183887020754270/progress-0.log": "cbdb0af32078451693d669d5e7513cfb92728478d6bd9e4d16e684f2b05106ed",
-      "build-local/native-scene-object-check/replay-1791179285325014349/progress-3.log": "79eaea4bc933f18da2cb3f14ca6c820e3983be8e29745d17d155d998d4722c24",
-      "build-local/native-scene-object-check/replay-1791179285325014349/progress-1.log": "5225f7279d55e7341a792694f586daeb5180458925aec9f132c31522b7e74d59",
-      "build-local/native-scene-object-check/replay-1791179285325014349/progress-2.log": "4f80e4adb15211b35b4b7decbbe0b477ab68b544306f16ccb693230c746999fa",
-      "build-local/native-scene-object-check/replay-1791179285325014349/progress-0.log": "3c543fb2a1f14e6cccb4e8236ec5399be6102b1aa5ae0e545ea0772642db5332",
-      "build-local/native-scene-object-check/replay-1791217753620768712/progress-1.log": "20c20f5da4a895e8b3aed02d181608109ff5025c22cc6c3c0117d997fb9429bf",
-      "build-local/native-scene-object-check/replay-1791217753620768712/progress-2.log": "39809003676e34eec95aaa0c0751b1eac35ba41a674653e0f64b017ea31fe7ee",
-      "build-local/native-scene-object-check/replay-1791217753620768712/progress-0.log": "af6bfd4c104d31803cfd81cadf209f788f6a7edf4e1c6abeba58e2dc2710e8db",
-      "build-local/native-scene-object-check/replay-1791180384007284901/progress-3.log": "9b85b7dbc7eb15480d5e750c2d6f35be8dc04f046fcb4c8e4b09b5f0ff5bb5f9",
-      "build-local/native-scene-object-check/replay-1791180384007284901/progress-1.log": "fa7151bee497fb476844deb0157149e8357213dfc06f0a120ffcbf8304aff209",
-      "build-local/native-scene-object-check/replay-1791180384007284901/progress-2.log": "5588eea903b62ebf59b1b1212f53d7f8dfe23511e600f061985fc9a902e7b7c6",
-      "build-local/native-scene-object-check/replay-1791180384007284901/progress-0.log": "c2d0f1327a0c73d5b9ca8aa8b0f252795265ddee8a0d221be2531474e0b05af1",
-      "build-local/native-scene-object-check/replay-1791283746509658705/progress-3.log": "636e5f1d0d7fbeffb4eb8e94e4f2592b844cc03e4c96305df9826c155476a603",
-      "build-local/native-scene-object-check/replay-1791283746509658705/progress-1.log": "358b02a28084197f762e8f93d04e5d98813074d933c0310244e43bd19771164c",
-      "build-local/native-scene-object-check/replay-1791283746509658705/progress-2.log": "4a184615ed059f4e8c43351d289959af64ac3a70eb80b825734456b8ced0f07e",
-      "build-local/native-scene-object-check/replay-1791283746509658705/progress-0.log": "781b5f0b2eca8e214b64a32b992c7867e321e2a856a39d29e1748855b05b1954"
-    },
-    "old_fixture": "build-local/continuation-20260930/regression048-scene-object-fixture.inc",
-    "old_fixture_sha256": "c6b234f9bf02b686c654998cc4a66264624003f5c1009cdc2dd4b75dc1e452a0",
-    "fixture_edits": [],
-    "old_line": "#include \"native_scene_objects.hpp\"\n",
-    "new_line": "#include \"native_scene_objects.hpp\"\n",
-    "retained_variants": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26,
-      27,
-      28,
-      29,
-      30,
-      31,
-      32,
-      33,
-      34,
-      35,
-      36,
-      37,
-      38,
-      39,
-      40,
-      41,
-      42,
-      43,
-      44,
-      45,
-      46,
-      47,
-      48,
-      49,
-      50,
-      51,
-      52,
-      53,
-      54,
-      55,
-      56,
-      57,
-      58,
-      59,
-      60,
-      61,
-      62,
-      63,
-      64,
-      65,
-      66,
-      67,
-      68,
-      69,
-      70,
-      71,
-      72,
-      73,
-      74,
-      75,
-      76,
-      77,
-      78,
-      79,
-      80,
-      81,
-      82,
-      83,
-      84,
-      85,
-      86,
-      87,
-      88,
-      89,
-      90,
-      91,
-      92,
-      93,
-      94,
-      95,
-      96,
-      97,
-      98,
-      99,
-      100,
-      101,
-      102,
-      103,
-      104,
-      105,
-      106,
-      107,
-      108,
-      109,
-      110,
-      111,
-      112,
-      113,
-      114,
-      115,
-      116,
-      117,
-      118,
-      119,
-      120,
-      121,
-      122,
-      123,
-      124,
-      125,
-      126,
-      127,
-      128,
-      129,
-      130,
-      131,
-      132,
-      133,
-      134,
-      135,
-      136,
-      137,
-      138,
-      139,
-      140,
-      141,
-      142,
-      143,
-      144,
-      145,
-      146,
-      147,
-      148,
-      149,
-      150,
-      151,
-      152,
-      153,
-      154,
-      155,
-      156,
-      157,
-      158,
-      159,
-      160,
-      161,
-      162,
-      163,
-      164,
-      165,
-      166,
-      167,
-      168,
-      169,
-      170,
-      171,
-      172,
-      173,
-      174,
-      175,
-      176,
-      177,
-      178,
-      179,
-      180,
-      181,
-      182,
-      183,
-      184,
-      185,
-      186,
-      187,
-      188,
-      189,
-      190,
-      191,
-      192,
-      193,
-      194,
-      195,
-      196,
-      197,
-      198,
-      199,
-      200,
-      201,
-      202,
-      203,
-      204,
-      205,
-      206,
-      207,
-      208,
-      209,
-      210,
-      211,
-      212,
-      213,
-      214,
-      215,
-      216,
-      217,
-      218,
-      219,
-      220,
-      221,
-      222,
-      223,
-      224,
-      225,
-      226,
-      227,
-      228,
-      229,
-      230,
-      231,
-      232,
-      233,
-      234,
-      235,
-      236,
-      237,
-      238,
-      239,
-      240,
-      241,
-      242,
-      243,
-      244,
-      245,
-      246,
-      247,
-      248,
-      249,
-      250,
-      251,
-      252,
-      253,
-      254,
-      255,
-      256,
-      257,
-      258,
-      259,
-      260,
-      261,
-      262,
-      263,
-      264,
-      265,
-      266,
-      267,
-      268,
-      269,
-      270,
-      271,
-      272,
-      273,
-      274,
-      275,
-      276,
-      277,
-      278,
-      279,
-      280,
-      281,
-      282,
-      283,
-      284,
-      285,
-      286,
-      287,
-      288,
-      289,
-      290,
-      291
-    ],
-    "generic_parser_variants": [],
-    "retained_states": {
-      "1": [
-        1,
-        2
-      ],
-      "2": [
-        1,
-        2,
-        3
-      ],
-      "3": [
-        1,
-        2,
-        3
-      ],
-      "4": [
-        1
-      ],
-      "5": [
-        1
-      ],
-      "6": [
-        1,
-        2
-      ],
-      "7": [
-        1,
-        2
-      ],
-      "8": [
-        1,
-        2,
-        3
-      ],
-      "9": [
-        1,
-        2,
-        3
-      ],
-      "10": [
-        1,
-        2
-      ],
-      "11": [
-        1,
-        2
-      ],
-      "12": [
-        1,
-        2,
-        3
-      ],
-      "13": [
-        1
-      ],
-      "14": [
-        1
-      ],
-      "15": [
-        1
-      ],
-      "16": [
-        1
-      ],
-      "17": [
-        1,
-        2
-      ],
-      "18": [
-        1,
-        2
-      ],
-      "19": [
-        1,
-        2
-      ],
-      "20": [
-        1,
-        2
-      ],
-      "21": [
-        1,
-        2
-      ],
-      "22": [
-        1,
-        2
-      ],
-      "23": [
-        1,
-        2
-      ],
-      "24": [
-        1,
-        2
-      ],
-      "25": [
-        1,
-        2
-      ],
-      "26": [
-        1,
-        2
-      ],
-      "27": [
-        1,
-        2,
-        3
-      ],
-      "28": [
-        1,
-        2,
-        3
-      ],
-      "29": [
-        1,
-        2,
-        3
-      ],
-      "30": [
-        1,
-        2,
-        3
-      ],
-      "31": [
-        1,
-        2,
-        3
-      ],
-      "32": [
-        1,
-        2,
-        3
-      ],
-      "33": [
-        1,
-        2,
-        3
-      ],
-      "34": [
-        1,
-        2,
-        3
-      ],
-      "35": [
-        1,
-        2,
-        3
-      ],
-      "36": [
-        1,
-        2
-      ],
-      "37": [
-        2,
-        3
-      ],
-      "38": [
-        1
-      ],
-      "39": [
-        1,
-        2
-      ],
-      "40": [
-        1,
-        2
-      ],
-      "41": [
-        1,
-        2
-      ],
-      "42": [
-        1,
-        3
-      ],
-      "43": [
-        1
-      ],
-      "44": [
-        1
-      ],
-      "45": [
-        1,
-        2
-      ],
-      "46": [
-        1
-      ],
-      "47": [
-        1
-      ],
-      "48": [
-        1
-      ],
-      "49": [
-        1
-      ],
-      "50": [
-        1
-      ],
-      "51": [
-        1
-      ],
-      "52": [
-        1
-      ],
-      "53": [
-        1
-      ],
-      "54": [
-        1
-      ],
-      "55": [
-        1
-      ],
-      "56": [
-        1
-      ],
-      "57": [
-        1
-      ],
-      "58": [
-        1
-      ],
-      "59": [
-        1
-      ],
-      "60": [
-        1
-      ],
-      "61": [
-        1
-      ],
-      "62": [
-        1
-      ],
-      "63": [
-        1
-      ],
-      "64": [
-        1
-      ],
-      "65": [
-        1
-      ],
-      "66": [
-        1
-      ],
-      "67": [
-        1
-      ],
-      "68": [
-        1
-      ],
-      "69": [
-        1
-      ],
-      "70": [
-        1
-      ],
-      "71": [
-        1
-      ],
-      "72": [
-        1
-      ],
-      "73": [
-        1
-      ],
-      "74": [
-        1
-      ],
-      "75": [
-        1
-      ],
-      "76": [
-        1
-      ],
-      "77": [
-        1
-      ],
-      "78": [
-        1
-      ],
-      "79": [
-        1
-      ],
-      "80": [
-        1
-      ],
-      "81": [
-        1
-      ],
-      "82": [
-        1
-      ],
-      "83": [
-        1
-      ],
-      "84": [
-        1
-      ],
-      "85": [
-        1
-      ],
-      "86": [
-        1
-      ],
-      "87": [
-        1
-      ],
-      "88": [
-        1
-      ],
-      "89": [
-        1
-      ],
-      "90": [
-        1
-      ],
-      "91": [
-        1
-      ],
-      "92": [
-        1
-      ],
-      "93": [
-        1
-      ],
-      "94": [
-        1
-      ],
-      "95": [
-        1
-      ],
-      "96": [
-        1
-      ],
-      "97": [
-        1
-      ],
-      "98": [
-        1
-      ],
-      "99": [
-        1
-      ],
-      "100": [
-        1
-      ],
-      "101": [
-        1
-      ],
-      "102": [
-        1
-      ],
-      "103": [
-        1
-      ],
-      "104": [
-        1
-      ],
-      "105": [
-        1
-      ],
-      "106": [
-        1
-      ],
-      "107": [
-        1
-      ],
-      "108": [
-        1
-      ],
-      "109": [
-        1
-      ],
-      "110": [
-        1
-      ],
-      "111": [
-        1
-      ],
-      "112": [
-        1
-      ],
-      "113": [
-        1
-      ],
-      "114": [
-        1
-      ],
-      "115": [
-        1
-      ],
-      "116": [
-        1
-      ],
-      "117": [
-        1
-      ],
-      "118": [
-        1
-      ],
-      "119": [
-        1
-      ],
-      "120": [
-        1
-      ],
-      "121": [
-        1
-      ],
-      "122": [
-        1
-      ],
-      "123": [
-        1
-      ],
-      "124": [
-        1
-      ],
-      "125": [
-        1
-      ],
-      "126": [
-        1
-      ],
-      "127": [
-        1
-      ],
-      "128": [
-        1
-      ],
-      "129": [
-        1
-      ],
-      "130": [
-        1
-      ],
-      "131": [
-        1
-      ],
-      "132": [
-        1
-      ],
-      "133": [
-        1
-      ],
-      "134": [
-        1
-      ],
-      "135": [
-        1
-      ],
-      "136": [
-        1
-      ],
-      "137": [
-        1
-      ],
-      "138": [
-        1
-      ],
-      "139": [
-        1
-      ],
-      "140": [
-        1
-      ],
-      "141": [
-        1
-      ],
-      "142": [
-        1
-      ],
-      "143": [
-        1
-      ],
-      "144": [
-        1
-      ],
-      "145": [
-        1
-      ],
-      "146": [
-        1
-      ],
-      "147": [
-        1
-      ],
-      "148": [
-        1
-      ],
-      "149": [
-        1
-      ],
-      "150": [
-        1
-      ],
-      "151": [
-        1
-      ],
-      "152": [
-        1
-      ],
-      "153": [
-        1
-      ],
-      "154": [
-        1
-      ],
-      "155": [
-        1
-      ],
-      "156": [
-        1
-      ],
-      "157": [
-        1
-      ],
-      "158": [
-        1
-      ],
-      "159": [
-        1
-      ],
-      "160": [
-        1
-      ],
-      "161": [
-        1
-      ],
-      "162": [
-        1
-      ],
-      "163": [
-        1
-      ],
-      "164": [
-        1
-      ],
-      "165": [
-        1
-      ],
-      "166": [
-        1
-      ],
-      "167": [
-        1
-      ],
-      "168": [
-        1
-      ],
-      "169": [
-        1
-      ],
-      "170": [
-        1
-      ],
-      "171": [
-        1
-      ],
-      "172": [
-        1
-      ],
-      "173": [
-        1
-      ],
-      "174": [],
-      "175": [
-        1
-      ],
-      "176": [
-        1
-      ],
-      "177": [
-        1
-      ],
-      "178": [
-        1
-      ],
-      "179": [
-        1
-      ],
-      "180": [
-        1
-      ],
-      "181": [
-        1
-      ],
-      "182": [
-        1
-      ],
-      "183": [
-        1
-      ],
-      "184": [
-        1
-      ],
-      "185": [
-        1
-      ],
-      "186": [
-        1
-      ],
-      "187": [
-        1
-      ],
-      "188": [
-        1
-      ],
-      "189": [
-        1
-      ],
-      "190": [
-        1
-      ],
-      "191": [
-        1
-      ],
-      "192": [
-        1
-      ],
-      "193": [
-        1
-      ],
-      "194": [
-        3
-      ],
-      "195": [
-        3
-      ],
-      "196": [
-        1
-      ],
-      "197": [
-        1
-      ],
-      "198": [
-        1
-      ],
-      "199": [
-        1
-      ],
-      "200": [
-        1
-      ],
-      "201": [
-        1
-      ],
-      "202": [
-        1
-      ],
-      "203": [
-        1
-      ],
-      "204": [
-        1
-      ],
-      "205": [
-        1
-      ],
-      "206": [
-        1
-      ],
-      "207": [
-        1
-      ],
-      "208": [
-        1
-      ],
-      "209": [
-        1
-      ],
-      "210": [
-        1
-      ],
-      "211": [
-        1
-      ],
-      "212": [
-        1
-      ],
-      "213": [
-        1
-      ],
-      "214": [
-        1
-      ],
-      "215": [
-        1
-      ],
-      "216": [
-        1
-      ],
-      "217": [
-        1
-      ],
-      "218": [
-        1
-      ],
-      "219": [
-        1
-      ],
-      "220": [
-        1
-      ],
-      "221": [
-        1
-      ],
-      "222": [
-        1
-      ],
-      "223": [
-        1
-      ],
-      "224": [
-        1
-      ],
-      "225": [
-        1
-      ],
-      "226": [
-        1
-      ],
-      "227": [
-        1
-      ],
-      "228": [
-        1
-      ],
-      "229": [
-        1
-      ],
-      "230": [
-        1
-      ],
-      "231": [
-        1
-      ],
-      "232": [
-        1
-      ],
-      "233": [
-        1
-      ],
-      "234": [
-        1
-      ],
-      "235": [
-        1
-      ],
-      "236": [
-        1
-      ],
-      "237": [
-        1
-      ],
-      "238": [
-        1
-      ],
-      "239": [
-        1
-      ],
-      "240": [
-        1
-      ],
-      "241": [
-        1
-      ],
-      "242": [
-        1
-      ],
-      "243": [
-        1
-      ],
-      "244": [
-        1
-      ],
-      "245": [
-        1
-      ],
-      "246": [
-        1
-      ],
-      "247": [
-        1
-      ],
-      "248": [
-        1
-      ],
-      "249": [
-        1
-      ],
-      "250": [
-        1
-      ],
-      "251": [
-        1
-      ],
-      "252": [
-        1
-      ],
-      "253": [
-        1
-      ],
-      "254": [
-        1
-      ],
-      "255": [
-        1
-      ],
-      "256": [
-        1
-      ],
-      "257": [
-        1
-      ],
-      "258": [
-        1
-      ],
-      "259": [
-        1
-      ],
-      "260": [
-        1
-      ],
-      "261": [
-        1
-      ],
-      "262": [
-        1
-      ],
-      "263": [
-        1
-      ],
-      "264": [
-        1
-      ],
-      "265": [
-        1
-      ],
-      "266": [
-        1
-      ],
-      "267": [
-        1,
-        10
-      ],
-      "268": [
-        1
-      ],
-      "269": [
-        1
-      ],
-      "270": [
-        1
-      ],
-      "271": [
-        1
-      ],
-      "272": [
-        1
-      ],
-      "273": [
-        1
-      ],
-      "274": [
-        1
-      ],
-      "275": [
-        1
-      ],
-      "276": [
-        1
-      ],
-      "277": [
-        1
-      ],
-      "278": [
-        1
-      ],
-      "279": [
-        1
-      ],
-      "280": [
-        1
-      ],
-      "281": [
-        1
-      ],
-      "282": [
-        1
-      ],
-      "283": [
-        1
-      ],
-      "284": [
-        2
-      ],
-      "285": [
-        1
-      ],
-      "286": [
-        1
-      ],
-      "287": [
-        1
-      ],
-      "288": [
-        1
-      ],
-      "289": [
-        1
-      ],
-      "290": [
-        1
-      ],
-      "291": [
-        1
-      ]
-    },
-    "input_equivalence": [
-      {
-        "path": "/home/vova/projects/DoraRecomp3/src/native_model_animation.cpp",
-        "old_file": "build-local/continuation-20260930/regression048-model-before-frame-stop.cpp",
-        "old_sha256": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
-        "new_sha256": "e86d0b6951ff4e446afb8373f1321d3ae6ea342d8bab1205ac82a8f1f96cbacc",
-        "edits": [
-          {
-            "old": "            const bool advancing=entry.observation && entry.observation->step==s.step &&\n                entry.observation->before.time>=0 && entry.observation->before.time<=entry.observation->before.duration;",
-            "new": "            // A paused/zero-rate Source call is an observation, not motion.\n            // Replaying its full pose would erase bone overrides installed\n            // after the SDK pose (including stopped minigame target models).\n            const bool advancing=entry.observation && entry.observation->step==s.step &&\n                !(entry.observation->before.flags&8) && entry.observation->before.increment!=0 &&\n                entry.observation->before.time>=0 && entry.observation->before.time<=entry.observation->before.duration;"
-          }
-        ],
-        "affected_kinds": [],
-        "affected_variants": [],
-        "evidence": "Only ModelAnimation::begin_frame moving-observation guard changed. Exact whole-file reversal verified. Source/model/collider fixtures and generated Original calls do not enter ModelFrameScope or begin_frame; unchanged Source methods preserve their behavior. Active render path has a separate fresh paused/zero-rate override test."
-      },
-      {
-        "path": "/home/vova/projects/DoraRecomp3/src/native_texture_animation.cpp",
-        "old_file": "build-local/continuation-20260930/regression047-scene-texture-before-signed.cpp",
-        "old_sha256": "40fdd952040b2b2201a619a76fe4ba7da34a053f6854fb1ead231c8538ae8d80",
-        "new_sha256": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
-        "edits": [
-          {
-            "old": "#include \"native_texture_animation.hpp\"\n#include \"native_frame_bridge.hpp\"\n#include \"frame_lights.hpp\"\n#include <algorithm>\n#include <array>\n#include <cmath>\n#include <map>\n#include <optional>\n#include <set>\n#include <stdexcept>\n#include <vector>\n\nnamespace {\nusing namespace dora3::native_time;\nuint32_t word(uint8_t* rdram,uint32_t p){return uint32_t(MEM_W(0,int32_t(p)));}\nbool pointer(uint32_t p,uint64_t n){return p>=0x80000000u&&uint64_t(p)+n<=0x80400000ull;}\nstruct Bitmap {uint32_t header=0,pixels=0,palette=0;unsigned width=0,height=0,format=0,colors=0;};\nstd::optional<Bitmap> bitmap(uint8_t* rdram,uint32_t p) {\n    if(!pointer(p,16)||(p&7)||MEM_BU(0,int32_t(p))!='B'||MEM_BU(1,int32_t(p))!='M'||MEM_BU(2,int32_t(p))!='P')return {};\n    Bitmap b{p,0,p+16,word(rdram,p+8),word(rdram,p+12),MEM_BU(3,int32_t(p)),MEM_HU(6,int32_t(p))};\n    if(b.format!=5||b.colors!=16||!b.width||!b.height||b.width>64||b.height>64||(b.width&1))return {};\n    b.pixels=p+16+((2*b.colors+7)&~7u);\n    if(!pointer(b.pixels,uint64_t(b.width)*b.height/2))return {};\n    return b;\n}\nunsigned pixel(uint8_t* rdram,const Bitmap& b,unsigned x,unsigned y) {\n    const auto v=MEM_BU(int32_t((y*b.width+x)/2),int32_t(b.pixels));return x&1?v&15:v>>4;\n}\nstruct Shift {int x=0,y=0;bool translated=false;};\nstruct CachedShift {uint64_t first=0,second=0;Shift value;};\nuint64_t bitmap_signature(uint8_t* rdram,const Bitmap& b) {\n    uint64_t hash=1469598103934665603ull;\n    for(unsigned i=0;i<16;++i)hash=(hash^MEM_BU(i,int32_t(b.header)))*1099511628211ull;\n    for(unsigned i=0;i<32;++i)hash=(hash^MEM_BU(i,int32_t(b.palette)))*1099511628211ull;\n    for(unsigned i=0;i<b.width*b.height/2;++i)hash=(hash^MEM_BU(i,int32_t(b.pixels)))*1099511628211ull;\n    return hash;\n}\nShift translated_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b) {\n    if(a.width!=b.width||a.height!=b.height||a.format!=b.format||a.colors!=b.colors)return {};\n    for(unsigned i=0;i<32;++i)if(MEM_BU(i,int32_t(a.palette))!=MEM_BU(i,int32_t(b.palette)))return {};\n    // This recognizes an authored toroidal scroll, never blends bitmap images.\n    // ROM water113..122 is precisely the same32x32 CI4 bitmap shifted by2px.\n    Shift result;unsigned best=~0u;\n    for(unsigned y=0;y<a.height;++y)for(unsigned x=0;x<a.width;++x) {\n        const int sx=x>a.width/2?int(x)-int(a.width):int(x),sy=y>a.height/2?int(y)-int(a.height):int(y);\n        const unsigned length=unsigned(sx*sx+sy*sy);if(length>=best)continue;\n        bool same=true;\n        for(unsigned row=0;row<a.height&&same;++row)for(unsigned col=0;col<a.width;++col)\n            if(pixel(rdram,b,col,row)!=pixel(rdram,a,(col+x)%a.width,(row+y)%a.height)){same=false;break;}\n        if(same){result={sx,sy,true};best=length;}\n    }\n    return result;\n}\nstruct Binding {uint32_t base=0,palette=0;unsigned width=0,height=0;double x=0,y=0;bool scroll=false;};\nstruct Parser {std::optional<Binding> image;std::array<uint32_t,8> tiles{};};\nstruct Copy {uint32_t address;Parser exit;};\nstruct FramePatch {uint32_t address,first,second,published_first,published_second;};\nstruct State {\n    uint8_t* source_ram=nullptr,*frame_ram=nullptr;\n    Nanoseconds source_time=0;\n    double h=0;\n    uint32_t bank=0,arena=0;\n    bool active=false;\n    std::array<Binding,16> segments{};\n    std::map<std::pair<uint32_t,uint32_t>,CachedShift> shifts;\n    std::vector<uint32_t> builders;\n    std::vector<FramePatch> patches;\n    std::map<std::pair<uint32_t,uint64_t>,Copy> copies;\n} state;\nuint32_t resolve(uint32_t p) {\n    if(p>=0x80000000u&&p<0x80400000u)return p;\n    if(p<0x400000u)return p|0x80000000u;\n    const auto segment=p>>24;\n    if(segment<16&&state.segments[segment].base) {\n        const uint64_t result=uint64_t(state.segments[segment].base)+(p&0xffffffu);\n        if(result<0x80400000ull)return uint32_t(result);\n    }\n    return 0;\n}\n// A cloned resource display list remains in the current ticket's bank until\n// both guest and host completion. CPU Source RAM/asset data are never changed.\n// Tail allocation keeps the original builder's local and global cursors intact.\nuint32_t allocate(uint8_t* rdram,const std::vector<uint32_t>& commands) {\n    const auto bytes=uint32_t(commands.size()*4);\n    const auto cursor=word(rdram,0x801B1424);\n    if(bytes>state.arena-state.bank||cursor<state.bank+dora3::frame::dl_offset||\n       uint64_t(cursor)+0x10000u+bytes>state.arena)return 0;\n    const auto at=(state.arena-bytes)&~7u;\n    for(unsigned i=0;i<commands.size();++i)MEM_W(0,int32_t(at+4*i))=int32_t(commands[i]);\n    state.arena=at;return at;\n}\nuint64_t binding_signature() {\n    uint64_t result=1469598103934665603ull;\n    for(const auto& b:state.segments)for(const auto v:{uint64_t(b.base),uint64_t(std::llround(b.x*4)),uint64_t(std::llround(b.y*4))})\n        result=(result^v)*1099511628211ull;\n    return result;\n}\nuint32_t clone_list(uint8_t*,uint32_t,unsigned,std::set<uint32_t>&,Parser&);\nbool rewrite_command(uint8_t* rdram,uint32_t& first,uint32_t& second,unsigned depth,std::set<uint32_t>& path,Parser& parser) {\n    auto& image=parser.image;bool changed=false;const auto op=first>>24;\n        if(op==0xFD) {\n            image.reset();const auto segment=second>>24;\n            if(segment<16&&!(second&0xffffffu)&&state.segments[segment].scroll)image=state.segments[segment];\n            else {const auto actual=resolve(second);for(const auto& b:state.segments)if(b.scroll&&b.base==actual){image=b;break;}}\n        } else if(op==0xF5)parser.tiles[(second>>24)&7]=second;\n        else if(op==0xF2&&image) {\n            const auto& b=*image;\n            // RDP tile origin subtracts from the vertex's S/T. A translated\n            // bitmap reads (S+shift), hence the negative fractional tile origin.\n            const int dx=int(std::llround(b.x*4)),dy=int(std::llround(b.y*4));\n            const auto tile=parser.tiles[(second>>24)&7];\n            const bool wrap_s=((tile>>8)&3)==0&&(tile&15)==0&&((1u<<((tile>>4)&15))==b.width);\n            const bool wrap_t=((tile>>18)&3)==0&&((tile>>10)&15)==0&&((1u<<((tile>>14)&15))==b.height);\n            const auto move=[&](unsigned shift,int delta,unsigned period,bool allowed) {\n                const int low=(first>>shift)&4095,high=(second>>shift)&4095;\n                if(!allowed||!delta||high<low)return;\n                // Keep UL/LR ordered and the same width. Encoding a negative UL\n                // as4095 would make a host decoder infer a negative tile width.\n                int next=(low-delta)%int(period);if(next<0)next+=int(period);\n                const int last=next+high-low;if(last>4095)return;\n                const uint32_t mask=4095u<<shift;\n                const uint32_t a=(first&~mask)|(uint32_t(next)<<shift),c=(second&~mask)|(uint32_t(last)<<shift);\n                changed|=a!=first||c!=second;first=a;second=c;\n            };\n            move(12,dx,b.width*4,wrap_s);move(0,dy,b.height*4,wrap_t);\n        } else if(op==0xDE) {\n            const auto copied=clone_list(rdram,second,depth+1,path,parser);\n            changed|=copied!=second;second=copied==second?second:(copied&0x1fffffff);\n\n        }\n    return changed;\n}\nuint32_t clone_list(uint8_t* rdram,uint32_t root,unsigned depth,std::set<uint32_t>& path,Parser& parser) {\n    const auto address=resolve(root);if(depth>8||!pointer(address,8)||(address&7)||!path.insert(address).second)return root;\n    const auto key=std::pair{address,binding_signature()};\n    // A parent can inherit the current texture image; only cache independent\n    // lists. This avoids conflating the same mesh under different material state.\n    const bool independent=!parser.image&&std::all_of(parser.tiles.begin(),parser.tiles.end(),[](auto tile){return tile==0;});\n    if(independent)if(auto at=state.copies.find(key);at!=state.copies.end()){parser=at->second.exit;path.erase(address);return at->second.address;}\n    std::vector<uint32_t> commands;bool changed=false,ended=false;\n    for(unsigned i=0;i<2048;++i) {\n        const auto p=address+8*i;if(!pointer(p,8))break;\n        auto first=word(rdram,p),second=word(rdram,p+4);const auto op=first>>24;\n        changed|=rewrite_command(rdram,first,second,depth,path,parser);\n        ended=op==0xDF||(op==0xDE&&(first&0x10000u));\n        commands.push_back(first);commands.push_back(second);if(ended)break;\n    }\n    path.erase(address);\n    if(!ended||!changed)return root;\n    const auto copied=allocate(rdram,commands);if(!copied)return root;\n    if(independent)state.copies.emplace(key,Copy{copied,parser});\n    return copied;\n}\n}\nnamespace dora3::native_time {\nvoid native_texture_source_completed(uint8_t* ram,Nanoseconds now){state.source_ram=ram;state.source_time=now;}\nvoid native_texture_reset(){if(state.active)throw std::logic_error(\"Texture reset inside frame\");state=State{};}\nTextureFrameScope::TextureFrameScope(uint8_t* ram,Nanoseconds now,unsigned bank):ram_(ram) {\n    const auto* binding=active_frame_binding();if(!binding||binding->ticket.bank!=bank||state.active)throw std::logic_error(\"Invalid texture frame ownership\");\n    state.active=true;state.frame_ram=ram;state.bank=dora3::frame::bank0+bank*dora3::frame::bank_stride;\n    state.arena=state.bank+dora3::frame::bank_stride-0x100;\n    state.h=state.source_ram==ram?std::clamp(double(now-state.source_time)*60./(word(ram,0x801A39DC)*1e9),0.,1.):0.;\n    state.segments={};state.copies.clear();state.builders.clear();state.patches.clear();\n}\nTextureFrameScope::~TextureFrameScope(){if(ram_){state.active=false;state.frame_ram=nullptr;state.segments={};state.copies.clear();state.builders.clear();state.patches.clear();}}\n}\nextern \"C\" void dora3_native_texture_bind(uint8_t* rdram,recomp_context* c,unsigned world) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    const auto actor=uint32_t(world?c->r20:c->r4),slot=unsigned(world?c->r18:c->r5);\n    if(slot>=8||!pointer(actor,0xcc)||MEM_BU(int32_t(0x6b+slot),int32_t(actor))!=5)return;\n    const auto handle=word(rdram,actor+0x74+4*slot);if(handle>=300)return;\n    const auto entry=0x801A9CB0+8*handle,sequence=word(rdram,entry);\n    if(!pointer(sequence,12))return;\n    const unsigned segment=MEM_BU(8,int32_t(sequence)),palette=MEM_BU(9,int32_t(sequence));\n    if(segment>=16||palette>=16)return;\n    state.segments[segment]={};state.segments[palette]={};\n    const auto indices=word(rdram,sequence),durations=word(rdram,sequence+4);\n    const unsigned index=MEM_BU(5,int32_t(entry));\n    if(!pointer(indices,uint64_t(index)+2)||!pointer(durations,uint64_t(index)+1))return;\n    const unsigned current=MEM_BU(index,int32_t(indices)),raw_next=MEM_BU(index+1,int32_t(indices));\n    const unsigned flags=MEM_BU(6,int32_t(entry));\n    const unsigned next=raw_next==255?(flags&2?current:MEM_BU(0,int32_t(indices))):raw_next;\n    if(current==255||next==255)return;\n    const auto table=world?0x80217120u:word(rdram,actor+0xb8);\n    if(!pointer(table,2*(std::max(current,next)+1)))return;\n    const auto resource=[&](unsigned n)->uint32_t{\n        const int id=MEM_H(int32_t(2*n),int32_t(table));return id>=0&&id<512?word(rdram,0x801AEC00+20*unsigned(id)):0;\n    };\n    const auto a=bitmap(rdram,resource(current)),b=bitmap(rdram,resource(next));if(!a||!b)return;\n    state.segments[segment]={a->pixels,a->palette,a->width,a->height,0,0,false};\n    state.segments[palette].base=a->palette;\n    if(!(flags&1))return; // Source controls active/loop/clamp; last clamped frame holds\n    const auto key=std::pair{a->header,b->header};const auto first=bitmap_signature(rdram,*a),second=bitmap_signature(rdram,*b);\n    auto at=state.shifts.find(key);\n    if(at==state.shifts.end()||at->second.first!=first||at->second.second!=second) {\n        // Resource slots may be freed/reused inside the same loaded scene.\n        if(state.shifts.size()>=512)state.shifts.clear();\n        at=state.shifts.insert_or_assign(key,CachedShift{first,second,translated_bitmap(rdram,*a,*b)}).first;\n    }\n    if(!at->second.value.translated)return;\n    const unsigned duration=MEM_BU(index,int32_t(durations)),remaining=MEM_BU(4,int32_t(entry));\n    if(!duration||remaining>=duration)return;\n    const double h=(double(duration-1-remaining)+state.h)/duration;\n    auto& binding=state.segments[segment];binding.x=at->second.value.x*h;binding.y=at->second.value.y*h;binding.scroll=true;\n}\nextern \"C\" void dora3_native_texture_builder(uint8_t* rdram,recomp_context* c,unsigned end) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    if(!end) {\n        const auto cursor_pointer=uint32_t(c->r4);\n        state.builders.push_back(pointer(cursor_pointer,4)?word(rdram,cursor_pointer):0);return;\n    }\n    if(state.builders.empty())throw std::logic_error(\"Unmatched material builder boundary\");\n    const auto begin=state.builders.back(),last=uint32_t(c->r2);state.builders.pop_back();\n    if(begin<state.bank+dora3::frame::dl_offset||last<begin||last>state.arena||((begin|last)&7))\n        return; // Other Source-owned builders are outside this ticket's lease.\n    if(std::none_of(state.segments.begin(),state.segments.end(),[](const auto& b){return b.scroll;}))return;\n    // The actual SDK builds material setup before the mesh DE. Process that\n    // prefix too, carrying its image/tile state into every nested mesh list.\n    std::set<uint32_t> path;Parser parser;\n    for(uint32_t at=begin;at<last;at+=8) {\n        auto first=word(rdram,at),second=word(rdram,at+4);\n        const auto original_first=first,original_second=second;\n        if(rewrite_command(rdram,first,second,0,path,parser)) {\n            state.patches.push_back({at,original_first,original_second,first,second});\n            MEM_W(0,int32_t(at))=int32_t(first);MEM_W(0,int32_t(at+4))=int32_t(second);\n        }\n    }\n}\nextern \"C\" void dora3_native_texture_submit_guard(uint8_t* rdram,recomp_context*) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    if(word(rdram,0x801B1424)<=state.arena)return;\n    // A larger Source frame may use the reserved tail after material building.\n    // Drop every outer reference to clones before submit and retain its exact\n    // Source texture commands. An unusually large frame must not crash the game.\n    for(auto i=state.patches.rbegin();i!=state.patches.rend();++i) {\n        if(word(rdram,i->address)==i->published_first&&word(rdram,i->address+4)==i->published_second) {\n            MEM_W(0,int32_t(i->address))=int32_t(i->first);\n            MEM_W(0,int32_t(i->address+4))=int32_t(i->second);\n        }\n    }\n    state.patches.clear();\n}\n",
-            "new": "#include \"native_texture_animation.hpp\"\n#include \"native_frame_bridge.hpp\"\n#include \"frame_lights.hpp\"\n#include <algorithm>\n#include <array>\n#include <cmath>\n#include <map>\n#include <optional>\n#include <set>\n#include <stdexcept>\n#include <vector>\n\nnamespace {\nusing namespace dora3::native_time;\nuint32_t word(uint8_t* rdram,uint32_t p){return uint32_t(MEM_W(0,int32_t(p)));}\nbool pointer(uint32_t p,uint64_t n){return p>=0x80000000u&&uint64_t(p)+n<=0x80400000ull;}\nstruct Bitmap {uint32_t header=0,pixels=0,palette=0;unsigned width=0,height=0,format=0,colors=0,palette_bytes=0;};\nstd::optional<Bitmap> bitmap(uint8_t* rdram,uint32_t p) {\n    if(!pointer(p,16)||(p&7)||MEM_BU(0,int32_t(p))!='B'||MEM_BU(1,int32_t(p))!='M'||MEM_BU(2,int32_t(p))!='P')return {};\n    Bitmap b{p,0,p+16,word(rdram,p+8),word(rdram,p+12),MEM_BU(3,int32_t(p)),MEM_HU(6,int32_t(p))};\n    // SDK282EC places formats<5 directly after the16-byte header. The ROM\n    // format2 family0653..656 is byte-per-pixel, confirmed by every resource\n    // length (64*32+16). CI4 format5 can have fewer than16 palette entries:\n    // 09CE..9D4 uses3 colors and bitmap0521..528 uses6, not16.\n    if((b.format!=2&&b.format!=5)||!b.width||!b.height||b.width>64||b.height>64||(b.width&1))return {};\n    if(b.format==5&&(!b.colors||b.colors>16))return {};\n    b.palette_bytes=b.format==5?((2*b.colors+7)&~7u):0;\n    if(b.format<5)b.palette=0; // SDK28320 returns no palette for byte format2.\n    b.pixels=p+16+b.palette_bytes;\n    if(!pointer(b.pixels,uint64_t(b.width)*b.height/(b.format==5?2:1)))return {};\n    return b;\n}\nunsigned pixel(uint8_t* rdram,const Bitmap& b,unsigned x,unsigned y) {\n    const auto at=y*b.width+x;\n    const auto v=MEM_BU(int32_t(b.format==5?at/2:at),int32_t(b.pixels));\n    return b.format==5?(x&1?v&15:v>>4):v;\n}\nstruct Shift {int x=0,y=0;bool translated=false;};\nstruct CachedShift {uint64_t first=0,second=0;Shift value;};\nuint64_t bitmap_signature(uint8_t* rdram,const Bitmap& b) {\n    uint64_t hash=1469598103934665603ull;\n    for(unsigned i=0;i<16;++i)hash=(hash^MEM_BU(int32_t(i),int32_t(b.header)))*1099511628211ull;\n    for(unsigned i=0;i<b.palette_bytes;++i)hash=(hash^MEM_BU(int32_t(i),int32_t(b.palette)))*1099511628211ull;\n    for(unsigned i=0;i<b.width*b.height/(b.format==5?2:1);++i)hash=(hash^MEM_BU(int32_t(i),int32_t(b.pixels)))*1099511628211ull;\n    return hash;\n}\nShift translated_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b) {\n    if(a.width!=b.width||a.height!=b.height||a.format!=b.format||a.colors!=b.colors)return {};\n    if(word(rdram,a.header+4)!=word(rdram,b.header+4))return {}; // Same authored header/format flags too.\n    for(unsigned i=0;i<a.palette_bytes;++i)if(MEM_BU(int32_t(i),int32_t(a.palette))!=MEM_BU(int32_t(i),int32_t(b.palette)))return {};\n    // This recognizes an authored toroidal scroll, never blends bitmap images.\n    // ROM water113..122 is precisely the same32x32 CI4 bitmap shifted by2px.\n    Shift result;unsigned best=~0u;\n    for(unsigned y=0;y<a.height;++y)for(unsigned x=0;x<a.width;++x) {\n        const int sx=x>a.width/2?int(x)-int(a.width):int(x),sy=y>a.height/2?int(y)-int(a.height):int(y);\n        const unsigned length=unsigned(sx*sx+sy*sy);if(length>=best)continue;\n        bool same=true;\n        for(unsigned row=0;row<a.height&&same;++row)for(unsigned col=0;col<a.width;++col)\n            if(pixel(rdram,b,col,row)!=pixel(rdram,a,(col+x)%a.width,(row+y)%a.height)){same=false;break;}\n        if(same){result={sx,sy,true};best=length;}\n    }\n    return result;\n}\nstruct Binding {uint32_t base=0,palette=0;unsigned width=0,height=0;double x=0,y=0;bool scroll=false;};\nstruct Parser {std::optional<Binding> image;std::array<uint32_t,8> tiles{};};\nstruct Copy {uint32_t address;Parser exit;};\nstruct FramePatch {uint32_t address,first,second,published_first,published_second;};\nstruct State {\n    uint8_t* source_ram=nullptr,*frame_ram=nullptr;\n    Nanoseconds source_time=0;\n    double h=0;\n    uint32_t bank=0,arena=0;\n    bool active=false;\n    std::array<Binding,16> segments{};\n    std::map<std::pair<uint32_t,uint32_t>,CachedShift> shifts;\n    std::vector<uint32_t> builders;\n    std::vector<FramePatch> patches;\n    std::map<std::pair<uint32_t,uint64_t>,Copy> copies;\n} state;\nuint32_t resolve(uint32_t p) {\n    if(p>=0x80000000u&&p<0x80400000u)return p;\n    if(p<0x400000u)return p|0x80000000u;\n    const auto segment=p>>24;\n    if(segment<16&&state.segments[segment].base) {\n        const uint64_t result=uint64_t(state.segments[segment].base)+(p&0xffffffu);\n        if(result<0x80400000ull)return uint32_t(result);\n    }\n    return 0;\n}\n// A cloned resource display list remains in the current ticket's bank until\n// both guest and host completion. CPU Source RAM/asset data are never changed.\n// Tail allocation keeps the original builder's local and global cursors intact.\nuint32_t allocate(uint8_t* rdram,const std::vector<uint32_t>& commands) {\n    const auto bytes=uint32_t(commands.size()*4);\n    const auto cursor=word(rdram,0x801B1424);\n    if(bytes>state.arena-state.bank||cursor<state.bank+dora3::frame::dl_offset||\n       uint64_t(cursor)+0x10000u+bytes>state.arena)return 0;\n    const auto at=(state.arena-bytes)&~7u;\n    for(unsigned i=0;i<commands.size();++i)MEM_W(0,int32_t(at+4*i))=int32_t(commands[i]);\n    state.arena=at;return at;\n}\nuint64_t binding_signature() {\n    uint64_t result=1469598103934665603ull;\n    for(const auto& b:state.segments)for(const auto v:{uint64_t(b.base),uint64_t(std::llround(b.x*4)),uint64_t(std::llround(b.y*4))})\n        result=(result^v)*1099511628211ull;\n    return result;\n}\nuint32_t clone_list(uint8_t*,uint32_t,unsigned,std::set<uint32_t>&,Parser&);\nbool rewrite_command(uint8_t* rdram,uint32_t& first,uint32_t& second,unsigned depth,std::set<uint32_t>& path,Parser& parser) {\n    auto& image=parser.image;bool changed=false;const auto op=first>>24;\n        if(op==0xFD) {\n            image.reset();const auto segment=second>>24;\n            if(segment<16&&!(second&0xffffffu)&&state.segments[segment].scroll)image=state.segments[segment];\n            else {const auto actual=resolve(second);for(const auto& b:state.segments)if(b.scroll&&b.base==actual){image=b;break;}}\n        } else if(op==0xF5)parser.tiles[(second>>24)&7]=second;\n        else if(op==0xF2&&image) {\n            const auto& b=*image;\n            // RDP tile origin subtracts from the vertex's S/T. A translated\n            // bitmap reads (S+shift), hence the negative fractional tile origin.\n            const int dx=int(std::llround(b.x*4)),dy=int(std::llround(b.y*4));\n            const auto tile=parser.tiles[(second>>24)&7];\n            const bool wrap_s=((tile>>8)&3)==0&&(tile&15)==0&&((1u<<((tile>>4)&15))==b.width);\n            const bool wrap_t=((tile>>18)&3)==0&&((tile>>10)&15)==0&&((1u<<((tile>>14)&15))==b.height);\n            const auto move=[&](unsigned shift,int delta,unsigned period,bool allowed) {\n                const int low=(first>>shift)&4095,high=(second>>shift)&4095;\n                if(!allowed||!delta||high<low)return;\n                // Keep UL/LR ordered and the same width. Encoding a negative UL\n                // as4095 would make a host decoder infer a negative tile width.\n                int next=(low-delta)%int(period);if(next<0)next+=int(period);\n                const int last=next+high-low;if(last>4095)return;\n                const uint32_t mask=4095u<<shift;\n                const uint32_t a=(first&~mask)|(uint32_t(next)<<shift),c=(second&~mask)|(uint32_t(last)<<shift);\n                changed|=a!=first||c!=second;first=a;second=c;\n            };\n            move(12,dx,b.width*4,wrap_s);move(0,dy,b.height*4,wrap_t);\n        } else if(op==0xDE) {\n            const auto copied=clone_list(rdram,second,depth+1,path,parser);\n            changed|=copied!=second;second=copied==second?second:(copied&0x1fffffff);\n\n        }\n    return changed;\n}\nuint32_t clone_list(uint8_t* rdram,uint32_t root,unsigned depth,std::set<uint32_t>& path,Parser& parser) {\n    const auto address=resolve(root);if(depth>8||!pointer(address,8)||(address&7)||!path.insert(address).second)return root;\n    const auto key=std::pair{address,binding_signature()};\n    // A parent can inherit the current texture image; only cache independent\n    // lists. This avoids conflating the same mesh under different material state.\n    const bool independent=!parser.image&&std::all_of(parser.tiles.begin(),parser.tiles.end(),[](auto tile){return tile==0;});\n    if(independent)if(auto at=state.copies.find(key);at!=state.copies.end()){parser=at->second.exit;path.erase(address);return at->second.address;}\n    std::vector<uint32_t> commands;bool changed=false,ended=false;\n    for(unsigned i=0;i<2048;++i) {\n        const auto p=address+8*i;if(!pointer(p,8))break;\n        auto first=word(rdram,p),second=word(rdram,p+4);const auto op=first>>24;\n        changed|=rewrite_command(rdram,first,second,depth,path,parser);\n        ended=op==0xDF||(op==0xDE&&(first&0x10000u));\n        commands.push_back(first);commands.push_back(second);if(ended)break;\n    }\n    path.erase(address);\n    if(!ended||!changed)return root;\n    const auto copied=allocate(rdram,commands);if(!copied)return root;\n    if(independent)state.copies.emplace(key,Copy{copied,parser});\n    return copied;\n}\n}\nnamespace dora3::native_time {\nvoid native_texture_source_completed(uint8_t* ram,Nanoseconds now){state.source_ram=ram;state.source_time=now;}\nvoid native_texture_reset(){if(state.active)throw std::logic_error(\"Texture reset inside frame\");state=State{};}\nTextureFrameScope::TextureFrameScope(uint8_t* ram,Nanoseconds now,unsigned bank):ram_(ram) {\n    const auto* binding=active_frame_binding();if(!binding||binding->ticket.bank!=bank||state.active)throw std::logic_error(\"Invalid texture frame ownership\");\n    state.active=true;state.frame_ram=ram;state.bank=dora3::frame::bank0+bank*dora3::frame::bank_stride;\n    state.arena=state.bank+dora3::frame::bank_stride-0x100;\n    state.h=state.source_ram==ram?std::clamp(double(now-state.source_time)*60./(word(ram,0x801A39DC)*1e9),0.,1.):0.;\n    state.segments={};state.copies.clear();state.builders.clear();state.patches.clear();\n}\nTextureFrameScope::~TextureFrameScope(){if(ram_){state.active=false;state.frame_ram=nullptr;state.segments={};state.copies.clear();state.builders.clear();state.patches.clear();}}\n}\nextern \"C\" void dora3_native_texture_bind(uint8_t* rdram,recomp_context* c,unsigned world) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    const auto actor=uint32_t(world?c->r20:c->r4),slot=unsigned(world?c->r18:c->r5);\n    if(slot>=8||!pointer(actor,0xcc)||MEM_BU(int32_t(0x6b+slot),int32_t(actor))!=5)return;\n    const auto handle=word(rdram,actor+0x74+4*slot);if(handle>=300)return;\n    const auto entry=0x801A9CB0+8*handle,sequence=word(rdram,entry);\n    if(!pointer(sequence,12))return;\n    const unsigned segment=MEM_BU(8,int32_t(sequence)),palette=MEM_BU(9,int32_t(sequence));\n    if(segment>=16||palette>=16)return;\n    state.segments[segment]={};state.segments[palette]={};\n    const auto indices=word(rdram,sequence),durations=word(rdram,sequence+4);\n    const unsigned index=MEM_BU(5,int32_t(entry));\n    if(!pointer(indices,uint64_t(index)+2)||!pointer(durations,uint64_t(index)+1))return;\n    const unsigned current=MEM_BU(int32_t(index),int32_t(indices)),raw_next=MEM_BU(int32_t(index+1),int32_t(indices));\n    const unsigned flags=MEM_BU(6,int32_t(entry));\n    const unsigned next=raw_next==255?(flags&2?current:MEM_BU(0,int32_t(indices))):raw_next;\n    if(current==255||next==255)return;\n    const auto table=world?0x80217120u:word(rdram,actor+0xb8);\n    if(!pointer(table,2*(std::max(current,next)+1)))return;\n    const auto resource=[&](unsigned n)->uint32_t{\n        const int id=MEM_H(int32_t(2*n),int32_t(table));return id>=0&&id<512?word(rdram,0x801AEC00+20*unsigned(id)):0;\n    };\n    const auto a=bitmap(rdram,resource(current)),b=bitmap(rdram,resource(next));if(!a||!b)return;\n    state.segments[segment]={a->pixels,a->palette,a->width,a->height,0,0,false};\n    state.segments[palette].base=a->palette;\n    if(!(flags&1))return; // Source controls active/loop/clamp; last clamped frame holds\n    const auto key=std::pair{a->header,b->header};const auto first=bitmap_signature(rdram,*a),second=bitmap_signature(rdram,*b);\n    auto at=state.shifts.find(key);\n    if(at==state.shifts.end()||at->second.first!=first||at->second.second!=second) {\n        // Resource slots may be freed/reused inside the same loaded scene.\n        if(state.shifts.size()>=512)state.shifts.clear();\n        at=state.shifts.insert_or_assign(key,CachedShift{first,second,translated_bitmap(rdram,*a,*b)}).first;\n    }\n    if(!at->second.value.translated)return;\n    const unsigned duration=MEM_BU(int32_t(index),int32_t(durations)),remaining=MEM_BU(4,int32_t(entry));\n    if(!duration||remaining>=duration)return;\n    const double h=(double(duration-1-remaining)+state.h)/duration;\n    auto& binding=state.segments[segment];binding.x=at->second.value.x*h;binding.y=at->second.value.y*h;binding.scroll=true;\n}\nextern \"C\" void dora3_native_texture_builder(uint8_t* rdram,recomp_context* c,unsigned end) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    if(!end) {\n        const auto cursor_pointer=uint32_t(c->r4);\n        state.builders.push_back(pointer(cursor_pointer,4)?word(rdram,cursor_pointer):0);return;\n    }\n    if(state.builders.empty())throw std::logic_error(\"Unmatched material builder boundary\");\n    const auto begin=state.builders.back(),last=uint32_t(c->r2);state.builders.pop_back();\n    if(begin<state.bank+dora3::frame::dl_offset||last<begin||last>state.arena||((begin|last)&7))\n        return; // Other Source-owned builders are outside this ticket's lease.\n    if(std::none_of(state.segments.begin(),state.segments.end(),[](const auto& b){return b.scroll;}))return;\n    // The actual SDK builds material setup before the mesh DE. Process that\n    // prefix too, carrying its image/tile state into every nested mesh list.\n    std::set<uint32_t> path;Parser parser;\n    for(uint32_t at=begin;at<last;at+=8) {\n        auto first=word(rdram,at),second=word(rdram,at+4);\n        const auto original_first=first,original_second=second;\n        if(rewrite_command(rdram,first,second,0,path,parser)) {\n            state.patches.push_back({at,original_first,original_second,first,second});\n            MEM_W(0,int32_t(at))=int32_t(first);MEM_W(0,int32_t(at+4))=int32_t(second);\n        }\n    }\n}\nextern \"C\" void dora3_native_texture_submit_guard(uint8_t* rdram,recomp_context*) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    if(word(rdram,0x801B1424)<=state.arena)return;\n    // A larger Source frame may use the reserved tail after material building.\n    // Drop every outer reference to clones before submit and retain its exact\n    // Source texture commands. An unusually large frame must not crash the game.\n    for(auto i=state.patches.rbegin();i!=state.patches.rend();++i) {\n        if(word(rdram,i->address)==i->published_first&&word(rdram,i->address+4)==i->published_second) {\n            MEM_W(0,int32_t(i->address))=int32_t(i->first);\n            MEM_W(0,int32_t(i->address+4))=int32_t(i->second);\n        }\n    }\n    state.patches.clear();\n}\n"
-          }
-        ],
-        "affected_variants": [],
-        "evidence": "Only bitmap decoding/signature/translation helpers were extended. They are called below unchanged !state.active guard. This Source/model/collider replay never constructs TextureFrameScope (game-loop is not linked), hence every retained case follows exactly the same inactive texture path. Active format paths are separately checked with actual SDK binding/material and ASan/UBSan."
-      }
-    ],
-    "prior_resume_evidence": {
-      "path": "build-local/native-scene-object-check/regression048-prior-scene-cold-scope.json",
-      "sha256": "4eef83f7e08ad547ebc3622c056bb0162413bf436fe8d164e37a2f94295af192"
-    },
-    "previous_generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
-    "reason": "All changes are in an uncalled ModelFrameScope branch. Old Source proofs keep their actual compiler dependencies and execution logs; one complete current-input variant reruns."
-  },
+  "result": "PASS: scene 3504 frozen/current Original and 10512 Native schedules across all292 ROM variants / 289 kinds; fresh replay=292 kinds/14016 cases, retained unchanged=0 kinds; 840960 fresh pool endpoints, 7461768 intervals, 7461768 zero-dt checks, 9184 genuine contacts; 289 scene/NPC kinds including platforms, doors, switches, traps, event actors and effects, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 0=1,2, 1=1,2, 2=1,2,3, 3=1,2,3, 4=1, 5=1, 6=1,2, 7=1,2, 8=1,2,3, 9=1,2,3, 10=1,2, 11=1,2, 12=1,2,3, 13=1, 14=1, 15=1, 16=1, 17=1,2, 18=1,2, 19=1,2, 20=1,2, 21=1,2, 22=1,2, 23=1,2, 24=1,2, 25=1,2, 26=1,2, 27=1,2,3, 28=1,2,3, 29=1,2,3, 30=1,2,3, 31=1,2,3, 32=1,2,3, 33=1,2,3, 34=1,2,3, 35=1,2,3, 36=1,2, 37=2,3, 38=1, 39=1,2, 40=1,2, 41=1,2, 42=1,3, 43=1, 44=1, 45=1,2, 46=1, 47=1, 48=1, 49=1, 50=1, 51=1, 52=1, 53=1, 54=1, 55=1, 56=1, 57=1, 58=1, 59=1, 60=1, 61=1, 62=1, 63=1, 64=1, 65=1, 66=1, 67=1, 68=1, 69=1, 70=1, 71=1, 72=1, 73=1, 74=1, 75=1, 76=1, 77=1, 78=1, 79=1, 80=1, 81=1, 82=1, 83=1, 84=1, 85=1, 86=1, 87=1, 88=1, 89=1, 90=1, 91=1, 92=1, 93=1, 94=1, 95=1, 96=1, 97=1, 98=1, 99=1, 100=1, 101=1, 102=1, 103=1, 104=1, 105=1, 106=1, 107=1, 108=1, 109=1, 110=1, 111=1, 112=1, 113=1, 114=1, 115=1, 116=1, 117=1, 118=1, 119=1, 120=1, 121=1, 122=1, 123=1, 124=1, 125=1, 126=1, 127=1, 128=1, 129=1, 130=1, 131=1, 132=1, 133=1, 134=1, 135=1, 136=1, 137=1, 138=1, 139=1, 140=1, 141=1, 142=1, 143=1, 144=1, 145=1, 146=1, 147=1, 148=1, 149=1, 150=1, 151=1, 152=1, 153=1, 154=1, 155=1, 156=1, 157=1, 158=1, 159=1, 160=1, 161=1, 162=1, 163=1, 164=1, 165=1, 166=1, 167=1, 168=1, 169=1, 170=1, 171=1, 172=1, 173=1, 174=, 175=1, 176=1, 177=1, 178=1, 179=1, 180=1, 181=1, 182=1, 183=1, 184=1, 185=1, 186=1, 187=1, 188=1, 189=1, 190=1, 191=1, 192=1, 193=1, 194=3, 195=3, 196=1, 197=1, 198=1, 199=1, 200=1, 201=1, 202=1, 203=1, 204=1, 205=1, 206=1, 207=1, 208=1, 209=1, 210=1, 211=1, 212=1, 213=1, 214=1, 215=1, 216=1, 217=1, 218=1, 219=1, 220=1, 221=1, 222=1, 223=1, 224=1, 225=1, 226=1, 227=1, 228=1, 229=1, 230=1, 231=1, 232=1, 233=1, 234=1, 235=1, 236=1, 237=1, 238=1, 239=1, 240=1, 241=1, 242=1, 243=1, 244=1, 245=1, 246=1, 247=1, 248=1, 249=1, 250=1, 251=1, 252=1, 253=1, 254=1, 255=1, 256=1, 257=1, 258=1, 259=1, 260=1, 261=1, 262=1, 263=1, 264=1, 265=1, 266=1, 267=1,10, 268=1, 269=1, 270=1, 271=1, 272=1, 273=1, 274=1, 275=1, 276=1, 277=1, 278=1, 279=1, 280=1, 281=1, 282=1, 283=1, 284=2, 285=1, 286=1, 287=1, 288=1, 289=1, 290=1, 291=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
+  "retained_generation_provenance": null,
   "fresh_replay_variants": [
     {
       "case_id": 0,
       "kind": 29,
       "rom": 1332928
+    },
+    {
+      "case_id": 1,
+      "kind": 30,
+      "rom": 1332928
+    },
+    {
+      "case_id": 2,
+      "kind": 31,
+      "rom": 1332928
+    },
+    {
+      "case_id": 3,
+      "kind": 32,
+      "rom": 1332928
+    },
+    {
+      "case_id": 4,
+      "kind": 33,
+      "rom": 1332928
+    },
+    {
+      "case_id": 5,
+      "kind": 34,
+      "rom": 1332928
+    },
+    {
+      "case_id": 6,
+      "kind": 35,
+      "rom": 1332928
+    },
+    {
+      "case_id": 7,
+      "kind": 36,
+      "rom": 1332928
+    },
+    {
+      "case_id": 8,
+      "kind": 37,
+      "rom": 1332928
+    },
+    {
+      "case_id": 9,
+      "kind": 38,
+      "rom": 1332928
+    },
+    {
+      "case_id": 10,
+      "kind": 39,
+      "rom": 1332928
+    },
+    {
+      "case_id": 11,
+      "kind": 40,
+      "rom": 1332928
+    },
+    {
+      "case_id": 12,
+      "kind": 41,
+      "rom": 1332928
+    },
+    {
+      "case_id": 13,
+      "kind": 42,
+      "rom": 1332928
+    },
+    {
+      "case_id": 14,
+      "kind": 43,
+      "rom": 1332928
+    },
+    {
+      "case_id": 15,
+      "kind": 44,
+      "rom": 1332928
+    },
+    {
+      "case_id": 16,
+      "kind": 45,
+      "rom": 1332928
+    },
+    {
+      "case_id": 17,
+      "kind": 46,
+      "rom": 1332928
+    },
+    {
+      "case_id": 18,
+      "kind": 47,
+      "rom": 1284256
+    },
+    {
+      "case_id": 19,
+      "kind": 48,
+      "rom": 1284256
+    },
+    {
+      "case_id": 20,
+      "kind": 49,
+      "rom": 1284256
+    },
+    {
+      "case_id": 21,
+      "kind": 50,
+      "rom": 1284256
+    },
+    {
+      "case_id": 22,
+      "kind": 51,
+      "rom": 1284256
+    },
+    {
+      "case_id": 23,
+      "kind": 52,
+      "rom": 1284256
+    },
+    {
+      "case_id": 24,
+      "kind": 53,
+      "rom": 1284256
+    },
+    {
+      "case_id": 25,
+      "kind": 54,
+      "rom": 1284256
+    },
+    {
+      "case_id": 26,
+      "kind": 55,
+      "rom": 1284256
+    },
+    {
+      "case_id": 27,
+      "kind": 56,
+      "rom": 1284256
+    },
+    {
+      "case_id": 28,
+      "kind": 57,
+      "rom": 1284256
+    },
+    {
+      "case_id": 29,
+      "kind": 58,
+      "rom": 1284256
+    },
+    {
+      "case_id": 30,
+      "kind": 59,
+      "rom": 1284256
+    },
+    {
+      "case_id": 31,
+      "kind": 60,
+      "rom": 1284256
+    },
+    {
+      "case_id": 32,
+      "kind": 61,
+      "rom": 1284256
+    },
+    {
+      "case_id": 33,
+      "kind": 62,
+      "rom": 1284256
+    },
+    {
+      "case_id": 34,
+      "kind": 63,
+      "rom": 1284256
+    },
+    {
+      "case_id": 35,
+      "kind": 64,
+      "rom": 1284256
+    },
+    {
+      "case_id": 36,
+      "kind": 65,
+      "rom": 1284256
+    },
+    {
+      "case_id": 37,
+      "kind": 66,
+      "rom": 1395344
+    },
+    {
+      "case_id": 38,
+      "kind": 67,
+      "rom": 1395344
+    },
+    {
+      "case_id": 39,
+      "kind": 68,
+      "rom": 1332928
+    },
+    {
+      "case_id": 40,
+      "kind": 69,
+      "rom": 1332928
+    },
+    {
+      "case_id": 41,
+      "kind": 70,
+      "rom": 1332928
+    },
+    {
+      "case_id": 42,
+      "kind": 78,
+      "rom": 1401312
+    },
+    {
+      "case_id": 43,
+      "kind": 79,
+      "rom": 1365184
+    },
+    {
+      "case_id": 44,
+      "kind": 81,
+      "rom": 1419616
+    },
+    {
+      "case_id": 45,
+      "kind": 109,
+      "rom": 461392
+    },
+    {
+      "case_id": 46,
+      "kind": 110,
+      "rom": 461392
+    },
+    {
+      "case_id": 47,
+      "kind": 132,
+      "rom": 461392
+    },
+    {
+      "case_id": 48,
+      "kind": 133,
+      "rom": 461392
+    },
+    {
+      "case_id": 49,
+      "kind": 134,
+      "rom": 461392
+    },
+    {
+      "case_id": 50,
+      "kind": 135,
+      "rom": 461392
+    },
+    {
+      "case_id": 51,
+      "kind": 136,
+      "rom": 461392
+    },
+    {
+      "case_id": 52,
+      "kind": 137,
+      "rom": 461392
+    },
+    {
+      "case_id": 53,
+      "kind": 138,
+      "rom": 461392
+    },
+    {
+      "case_id": 54,
+      "kind": 139,
+      "rom": 461392
+    },
+    {
+      "case_id": 55,
+      "kind": 140,
+      "rom": 461392
+    },
+    {
+      "case_id": 56,
+      "kind": 141,
+      "rom": 461392
+    },
+    {
+      "case_id": 57,
+      "kind": 142,
+      "rom": 461392
+    },
+    {
+      "case_id": 58,
+      "kind": 143,
+      "rom": 461392
+    },
+    {
+      "case_id": 59,
+      "kind": 144,
+      "rom": 461392
+    },
+    {
+      "case_id": 60,
+      "kind": 145,
+      "rom": 461392
+    },
+    {
+      "case_id": 61,
+      "kind": 146,
+      "rom": 461392
+    },
+    {
+      "case_id": 62,
+      "kind": 147,
+      "rom": 461392
+    },
+    {
+      "case_id": 63,
+      "kind": 148,
+      "rom": 461392
+    },
+    {
+      "case_id": 64,
+      "kind": 149,
+      "rom": 461392
+    },
+    {
+      "case_id": 65,
+      "kind": 150,
+      "rom": 461392
+    },
+    {
+      "case_id": 66,
+      "kind": 151,
+      "rom": 461392
+    },
+    {
+      "case_id": 67,
+      "kind": 152,
+      "rom": 461392
+    },
+    {
+      "case_id": 68,
+      "kind": 153,
+      "rom": 461392
+    },
+    {
+      "case_id": 69,
+      "kind": 154,
+      "rom": 461392
+    },
+    {
+      "case_id": 70,
+      "kind": 155,
+      "rom": 461392
+    },
+    {
+      "case_id": 71,
+      "kind": 156,
+      "rom": 461392
+    },
+    {
+      "case_id": 72,
+      "kind": 157,
+      "rom": 461392
+    },
+    {
+      "case_id": 73,
+      "kind": 158,
+      "rom": 461392
+    },
+    {
+      "case_id": 74,
+      "kind": 159,
+      "rom": 461392
+    },
+    {
+      "case_id": 75,
+      "kind": 160,
+      "rom": 461392
+    },
+    {
+      "case_id": 76,
+      "kind": 161,
+      "rom": 461392
+    },
+    {
+      "case_id": 77,
+      "kind": 162,
+      "rom": 461392
+    },
+    {
+      "case_id": 78,
+      "kind": 163,
+      "rom": 461392
+    },
+    {
+      "case_id": 79,
+      "kind": 164,
+      "rom": 461392
+    },
+    {
+      "case_id": 80,
+      "kind": 165,
+      "rom": 461392
+    },
+    {
+      "case_id": 81,
+      "kind": 166,
+      "rom": 461392
+    },
+    {
+      "case_id": 82,
+      "kind": 167,
+      "rom": 461392
+    },
+    {
+      "case_id": 83,
+      "kind": 168,
+      "rom": 461392
+    },
+    {
+      "case_id": 84,
+      "kind": 169,
+      "rom": 461392
+    },
+    {
+      "case_id": 85,
+      "kind": 170,
+      "rom": 461392
+    },
+    {
+      "case_id": 86,
+      "kind": 171,
+      "rom": 461392
+    },
+    {
+      "case_id": 87,
+      "kind": 172,
+      "rom": 461392
+    },
+    {
+      "case_id": 88,
+      "kind": 173,
+      "rom": 461392
+    },
+    {
+      "case_id": 89,
+      "kind": 174,
+      "rom": 461392
+    },
+    {
+      "case_id": 90,
+      "kind": 175,
+      "rom": 461392
+    },
+    {
+      "case_id": 91,
+      "kind": 176,
+      "rom": 461392
+    },
+    {
+      "case_id": 92,
+      "kind": 177,
+      "rom": 461392
+    },
+    {
+      "case_id": 93,
+      "kind": 178,
+      "rom": 461392
+    },
+    {
+      "case_id": 94,
+      "kind": 179,
+      "rom": 461392
+    },
+    {
+      "case_id": 95,
+      "kind": 180,
+      "rom": 461392
+    },
+    {
+      "case_id": 96,
+      "kind": 181,
+      "rom": 461392
+    },
+    {
+      "case_id": 97,
+      "kind": 182,
+      "rom": 461392
+    },
+    {
+      "case_id": 98,
+      "kind": 183,
+      "rom": 461392
+    },
+    {
+      "case_id": 99,
+      "kind": 184,
+      "rom": 461392
+    },
+    {
+      "case_id": 100,
+      "kind": 185,
+      "rom": 461392
+    },
+    {
+      "case_id": 101,
+      "kind": 186,
+      "rom": 461392
+    },
+    {
+      "case_id": 102,
+      "kind": 187,
+      "rom": 461392
+    },
+    {
+      "case_id": 103,
+      "kind": 188,
+      "rom": 461392
+    },
+    {
+      "case_id": 104,
+      "kind": 189,
+      "rom": 461392
+    },
+    {
+      "case_id": 105,
+      "kind": 190,
+      "rom": 461392
+    },
+    {
+      "case_id": 106,
+      "kind": 191,
+      "rom": 461392
+    },
+    {
+      "case_id": 107,
+      "kind": 192,
+      "rom": 461392
+    },
+    {
+      "case_id": 108,
+      "kind": 193,
+      "rom": 461392
+    },
+    {
+      "case_id": 109,
+      "kind": 194,
+      "rom": 461392
+    },
+    {
+      "case_id": 110,
+      "kind": 195,
+      "rom": 461392
+    },
+    {
+      "case_id": 111,
+      "kind": 196,
+      "rom": 461392
+    },
+    {
+      "case_id": 112,
+      "kind": 197,
+      "rom": 461392
+    },
+    {
+      "case_id": 113,
+      "kind": 198,
+      "rom": 461392
+    },
+    {
+      "case_id": 114,
+      "kind": 199,
+      "rom": 461392
+    },
+    {
+      "case_id": 115,
+      "kind": 200,
+      "rom": 461392
+    },
+    {
+      "case_id": 116,
+      "kind": 201,
+      "rom": 461392
+    },
+    {
+      "case_id": 117,
+      "kind": 202,
+      "rom": 461392
+    },
+    {
+      "case_id": 118,
+      "kind": 203,
+      "rom": 461392
+    },
+    {
+      "case_id": 119,
+      "kind": 204,
+      "rom": 461392
+    },
+    {
+      "case_id": 120,
+      "kind": 205,
+      "rom": 461392
+    },
+    {
+      "case_id": 121,
+      "kind": 206,
+      "rom": 461392
+    },
+    {
+      "case_id": 122,
+      "kind": 207,
+      "rom": 461392
+    },
+    {
+      "case_id": 123,
+      "kind": 208,
+      "rom": 461392
+    },
+    {
+      "case_id": 124,
+      "kind": 209,
+      "rom": 461392
+    },
+    {
+      "case_id": 125,
+      "kind": 210,
+      "rom": 461392
+    },
+    {
+      "case_id": 126,
+      "kind": 211,
+      "rom": 461392
+    },
+    {
+      "case_id": 127,
+      "kind": 212,
+      "rom": 461392
+    },
+    {
+      "case_id": 128,
+      "kind": 213,
+      "rom": 461392
+    },
+    {
+      "case_id": 129,
+      "kind": 214,
+      "rom": 461392
+    },
+    {
+      "case_id": 130,
+      "kind": 215,
+      "rom": 461392
+    },
+    {
+      "case_id": 131,
+      "kind": 216,
+      "rom": 461392
+    },
+    {
+      "case_id": 132,
+      "kind": 217,
+      "rom": 461392
+    },
+    {
+      "case_id": 133,
+      "kind": 218,
+      "rom": 461392
+    },
+    {
+      "case_id": 134,
+      "kind": 219,
+      "rom": 461392
+    },
+    {
+      "case_id": 135,
+      "kind": 220,
+      "rom": 461392
+    },
+    {
+      "case_id": 136,
+      "kind": 221,
+      "rom": 461392
+    },
+    {
+      "case_id": 137,
+      "kind": 222,
+      "rom": 461392
+    },
+    {
+      "case_id": 138,
+      "kind": 223,
+      "rom": 461392
+    },
+    {
+      "case_id": 139,
+      "kind": 224,
+      "rom": 461392
+    },
+    {
+      "case_id": 140,
+      "kind": 225,
+      "rom": 461392
+    },
+    {
+      "case_id": 141,
+      "kind": 226,
+      "rom": 461392
+    },
+    {
+      "case_id": 142,
+      "kind": 227,
+      "rom": 461392
+    },
+    {
+      "case_id": 143,
+      "kind": 228,
+      "rom": 461392
+    },
+    {
+      "case_id": 144,
+      "kind": 229,
+      "rom": 461392
+    },
+    {
+      "case_id": 145,
+      "kind": 230,
+      "rom": 461392
+    },
+    {
+      "case_id": 146,
+      "kind": 231,
+      "rom": 461392
+    },
+    {
+      "case_id": 147,
+      "kind": 232,
+      "rom": 461392
+    },
+    {
+      "case_id": 148,
+      "kind": 233,
+      "rom": 461392
+    },
+    {
+      "case_id": 149,
+      "kind": 234,
+      "rom": 461392
+    },
+    {
+      "case_id": 150,
+      "kind": 235,
+      "rom": 461392
+    },
+    {
+      "case_id": 151,
+      "kind": 236,
+      "rom": 461392
+    },
+    {
+      "case_id": 152,
+      "kind": 237,
+      "rom": 461392
+    },
+    {
+      "case_id": 153,
+      "kind": 238,
+      "rom": 461392
+    },
+    {
+      "case_id": 154,
+      "kind": 239,
+      "rom": 461392
+    },
+    {
+      "case_id": 155,
+      "kind": 240,
+      "rom": 461392
+    },
+    {
+      "case_id": 156,
+      "kind": 241,
+      "rom": 461392
+    },
+    {
+      "case_id": 157,
+      "kind": 242,
+      "rom": 461392
+    },
+    {
+      "case_id": 158,
+      "kind": 243,
+      "rom": 461392
+    },
+    {
+      "case_id": 159,
+      "kind": 244,
+      "rom": 461392
+    },
+    {
+      "case_id": 160,
+      "kind": 245,
+      "rom": 461392
+    },
+    {
+      "case_id": 161,
+      "kind": 246,
+      "rom": 461392
+    },
+    {
+      "case_id": 162,
+      "kind": 247,
+      "rom": 461392
+    },
+    {
+      "case_id": 163,
+      "kind": 248,
+      "rom": 461392
+    },
+    {
+      "case_id": 164,
+      "kind": 249,
+      "rom": 461392
+    },
+    {
+      "case_id": 165,
+      "kind": 250,
+      "rom": 461392
+    },
+    {
+      "case_id": 166,
+      "kind": 251,
+      "rom": 461392
+    },
+    {
+      "case_id": 167,
+      "kind": 252,
+      "rom": 461392
+    },
+    {
+      "case_id": 168,
+      "kind": 253,
+      "rom": 461392
+    },
+    {
+      "case_id": 169,
+      "kind": 254,
+      "rom": 461392
+    },
+    {
+      "case_id": 170,
+      "kind": 255,
+      "rom": 461392
+    },
+    {
+      "case_id": 171,
+      "kind": 256,
+      "rom": 461392
+    },
+    {
+      "case_id": 172,
+      "kind": 260,
+      "rom": 461392
+    },
+    {
+      "case_id": 173,
+      "kind": 261,
+      "rom": 461392
+    },
+    {
+      "case_id": 174,
+      "kind": 262,
+      "rom": 461392
+    },
+    {
+      "case_id": 175,
+      "kind": 263,
+      "rom": 461392
+    },
+    {
+      "case_id": 176,
+      "kind": 479,
+      "rom": 1419616
+    },
+    {
+      "case_id": 177,
+      "kind": 480,
+      "rom": 1419616
+    },
+    {
+      "case_id": 178,
+      "kind": 481,
+      "rom": 461392
+    },
+    {
+      "case_id": 179,
+      "kind": 482,
+      "rom": 461392
+    },
+    {
+      "case_id": 180,
+      "kind": 483,
+      "rom": 461392
+    },
+    {
+      "case_id": 181,
+      "kind": 484,
+      "rom": 461392
+    },
+    {
+      "case_id": 182,
+      "kind": 485,
+      "rom": 461392
+    },
+    {
+      "case_id": 183,
+      "kind": 486,
+      "rom": 461392
+    },
+    {
+      "case_id": 184,
+      "kind": 487,
+      "rom": 461392
+    },
+    {
+      "case_id": 185,
+      "kind": 488,
+      "rom": 1419616
+    },
+    {
+      "case_id": 186,
+      "kind": 489,
+      "rom": 1379424
+    },
+    {
+      "case_id": 187,
+      "kind": 490,
+      "rom": 1365184
+    },
+    {
+      "case_id": 188,
+      "kind": 491,
+      "rom": 1365184
+    },
+    {
+      "case_id": 189,
+      "kind": 492,
+      "rom": 1365184
+    },
+    {
+      "case_id": 190,
+      "kind": 493,
+      "rom": 1200512
+    },
+    {
+      "case_id": 191,
+      "kind": 494,
+      "rom": 1200512
+    },
+    {
+      "case_id": 192,
+      "kind": 495,
+      "rom": 1401312
+    },
+    {
+      "case_id": 193,
+      "kind": 496,
+      "rom": 1365184
+    },
+    {
+      "case_id": 194,
+      "kind": 497,
+      "rom": 1379424
+    },
+    {
+      "case_id": 195,
+      "kind": 498,
+      "rom": 1379424
+    },
+    {
+      "case_id": 196,
+      "kind": 499,
+      "rom": 1379424
+    },
+    {
+      "case_id": 197,
+      "kind": 500,
+      "rom": 1379424
+    },
+    {
+      "case_id": 198,
+      "kind": 501,
+      "rom": 1388928
+    },
+    {
+      "case_id": 199,
+      "kind": 502,
+      "rom": 1388928
+    },
+    {
+      "case_id": 200,
+      "kind": 503,
+      "rom": 1388928
+    },
+    {
+      "case_id": 201,
+      "kind": 504,
+      "rom": 1388928
+    },
+    {
+      "case_id": 202,
+      "kind": 505,
+      "rom": 1395344
+    },
+    {
+      "case_id": 203,
+      "kind": 506,
+      "rom": 1395344
+    },
+    {
+      "case_id": 204,
+      "kind": 507,
+      "rom": 1395344
+    },
+    {
+      "case_id": 205,
+      "kind": 508,
+      "rom": 1388928
+    },
+    {
+      "case_id": 206,
+      "kind": 509,
+      "rom": 1388928
+    },
+    {
+      "case_id": 207,
+      "kind": 510,
+      "rom": 1388928
+    },
+    {
+      "case_id": 208,
+      "kind": 511,
+      "rom": 1184384
+    },
+    {
+      "case_id": 209,
+      "kind": 512,
+      "rom": 1219120
+    },
+    {
+      "case_id": 210,
+      "kind": 513,
+      "rom": 1365184
+    },
+    {
+      "case_id": 211,
+      "kind": 514,
+      "rom": 1419616
+    },
+    {
+      "case_id": 212,
+      "kind": 515,
+      "rom": 1419616
+    },
+    {
+      "case_id": 213,
+      "kind": 516,
+      "rom": 1419616
+    },
+    {
+      "case_id": 214,
+      "kind": 517,
+      "rom": 1419616
+    },
+    {
+      "case_id": 215,
+      "kind": 518,
+      "rom": 461392
+    },
+    {
+      "case_id": 216,
+      "kind": 519,
+      "rom": 1365184
+    },
+    {
+      "case_id": 217,
+      "kind": 520,
+      "rom": 1375520
+    },
+    {
+      "case_id": 218,
+      "kind": 521,
+      "rom": 1415040
+    },
+    {
+      "case_id": 219,
+      "kind": 521,
+      "rom": 1434688
+    },
+    {
+      "case_id": 220,
+      "kind": 522,
+      "rom": 1375520
+    },
+    {
+      "case_id": 221,
+      "kind": 523,
+      "rom": 1375520
+    },
+    {
+      "case_id": 222,
+      "kind": 524,
+      "rom": 1375520
+    },
+    {
+      "case_id": 223,
+      "kind": 525,
+      "rom": 1207200
+    },
+    {
+      "case_id": 224,
+      "kind": 526,
+      "rom": 1207200
+    },
+    {
+      "case_id": 225,
+      "kind": 527,
+      "rom": 1207200
+    },
+    {
+      "case_id": 226,
+      "kind": 528,
+      "rom": 1207200
+    },
+    {
+      "case_id": 227,
+      "kind": 529,
+      "rom": 1207200
+    },
+    {
+      "case_id": 228,
+      "kind": 530,
+      "rom": 1207200
+    },
+    {
+      "case_id": 229,
+      "kind": 531,
+      "rom": 1207200
+    },
+    {
+      "case_id": 230,
+      "kind": 532,
+      "rom": 1207200
+    },
+    {
+      "case_id": 231,
+      "kind": 533,
+      "rom": 1207200
+    },
+    {
+      "case_id": 232,
+      "kind": 534,
+      "rom": 1207200
+    },
+    {
+      "case_id": 233,
+      "kind": 535,
+      "rom": 461392
+    },
+    {
+      "case_id": 234,
+      "kind": 536,
+      "rom": 461392
+    },
+    {
+      "case_id": 235,
+      "kind": 537,
+      "rom": 1419616
+    },
+    {
+      "case_id": 236,
+      "kind": 538,
+      "rom": 1184384
+    },
+    {
+      "case_id": 237,
+      "kind": 539,
+      "rom": 1184384
+    },
+    {
+      "case_id": 238,
+      "kind": 540,
+      "rom": 1419616
+    },
+    {
+      "case_id": 239,
+      "kind": 541,
+      "rom": 1415040
+    },
+    {
+      "case_id": 240,
+      "kind": 541,
+      "rom": 1434688
+    },
+    {
+      "case_id": 241,
+      "kind": 542,
+      "rom": 1419616
+    },
+    {
+      "case_id": 242,
+      "kind": 543,
+      "rom": 1434688
+    },
+    {
+      "case_id": 243,
+      "kind": 544,
+      "rom": 461392
+    },
+    {
+      "case_id": 244,
+      "kind": 545,
+      "rom": 1415040
+    },
+    {
+      "case_id": 245,
+      "kind": 545,
+      "rom": 1434688
+    },
+    {
+      "case_id": 246,
+      "kind": 546,
+      "rom": 1434688
+    },
+    {
+      "case_id": 247,
+      "kind": 547,
+      "rom": 461392
+    },
+    {
+      "case_id": 248,
+      "kind": 548,
+      "rom": 1415040
+    },
+    {
+      "case_id": 249,
+      "kind": 549,
+      "rom": 1415040
+    },
+    {
+      "case_id": 250,
+      "kind": 550,
+      "rom": 1430576
+    },
+    {
+      "case_id": 251,
+      "kind": 551,
+      "rom": 1430576
+    },
+    {
+      "case_id": 252,
+      "kind": 552,
+      "rom": 1430576
+    },
+    {
+      "case_id": 253,
+      "kind": 553,
+      "rom": 1430576
+    },
+    {
+      "case_id": 254,
+      "kind": 554,
+      "rom": 1430576
+    },
+    {
+      "case_id": 255,
+      "kind": 555,
+      "rom": 1430576
+    },
+    {
+      "case_id": 256,
+      "kind": 556,
+      "rom": 1415040
+    },
+    {
+      "case_id": 257,
+      "kind": 557,
+      "rom": 1415040
+    },
+    {
+      "case_id": 258,
+      "kind": 558,
+      "rom": 1415040
+    },
+    {
+      "case_id": 259,
+      "kind": 559,
+      "rom": 1379424
+    },
+    {
+      "case_id": 260,
+      "kind": 560,
+      "rom": 1379424
+    },
+    {
+      "case_id": 261,
+      "kind": 561,
+      "rom": 1379424
+    },
+    {
+      "case_id": 262,
+      "kind": 562,
+      "rom": 1365184
+    },
+    {
+      "case_id": 263,
+      "kind": 563,
+      "rom": 1365184
+    },
+    {
+      "case_id": 264,
+      "kind": 564,
+      "rom": 1365184
+    },
+    {
+      "case_id": 265,
+      "kind": 565,
+      "rom": 1395344
+    },
+    {
+      "case_id": 266,
+      "kind": 566,
+      "rom": 1395344
+    },
+    {
+      "case_id": 267,
+      "kind": 567,
+      "rom": 1419616
+    },
+    {
+      "case_id": 268,
+      "kind": 568,
+      "rom": 1365184
+    },
+    {
+      "case_id": 269,
+      "kind": 569,
+      "rom": 1430576
+    },
+    {
+      "case_id": 270,
+      "kind": 570,
+      "rom": 1430576
+    },
+    {
+      "case_id": 271,
+      "kind": 571,
+      "rom": 1430576
+    },
+    {
+      "case_id": 272,
+      "kind": 572,
+      "rom": 1430576
+    },
+    {
+      "case_id": 273,
+      "kind": 573,
+      "rom": 1430576
+    },
+    {
+      "case_id": 274,
+      "kind": 574,
+      "rom": 1365184
+    },
+    {
+      "case_id": 275,
+      "kind": 575,
+      "rom": 1365184
+    },
+    {
+      "case_id": 276,
+      "kind": 576,
+      "rom": 1365184
+    },
+    {
+      "case_id": 277,
+      "kind": 577,
+      "rom": 1375520
+    },
+    {
+      "case_id": 278,
+      "kind": 578,
+      "rom": 1401312
+    },
+    {
+      "case_id": 279,
+      "kind": 579,
+      "rom": 1176000
+    },
+    {
+      "case_id": 280,
+      "kind": 580,
+      "rom": 1184384
+    },
+    {
+      "case_id": 281,
+      "kind": 581,
+      "rom": 1184384
+    },
+    {
+      "case_id": 282,
+      "kind": 582,
+      "rom": 1379424
+    },
+    {
+      "case_id": 283,
+      "kind": 583,
+      "rom": 1379424
+    },
+    {
+      "case_id": 284,
+      "kind": 584,
+      "rom": 1219120
+    },
+    {
+      "case_id": 285,
+      "kind": 585,
+      "rom": 1375520
+    },
+    {
+      "case_id": 286,
+      "kind": 586,
+      "rom": 461392
+    },
+    {
+      "case_id": 287,
+      "kind": 587,
+      "rom": 1434688
+    },
+    {
+      "case_id": 288,
+      "kind": 588,
+      "rom": 1419616
+    },
+    {
+      "case_id": 289,
+      "kind": 589,
+      "rom": 461392
+    },
+    {
+      "case_id": 290,
+      "kind": 590,
+      "rom": 1434688
+    },
+    {
+      "case_id": 291,
+      "kind": 591,
+      "rom": 461392
     }
   ],
-  "retained_kinds": [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
-    25,
-    26,
-    27,
-    28,
-    29,
-    30,
-    31,
-    32,
-    33,
-    34,
-    35,
-    36,
-    37,
-    38,
-    39,
-    40,
-    41,
-    42,
-    43,
-    44,
-    45,
-    46,
-    47,
-    48,
-    49,
-    50,
-    51,
-    52,
-    53,
-    54,
-    55,
-    56,
-    57,
-    58,
-    59,
-    60,
-    61,
-    62,
-    63,
-    64,
-    65,
-    66,
-    67,
-    68,
-    69,
-    70,
-    71,
-    72,
-    73,
-    74,
-    75,
-    76,
-    77,
-    78,
-    79,
-    80,
-    81,
-    82,
-    83,
-    84,
-    85,
-    86,
-    87,
-    88,
-    89,
-    90,
-    91,
-    92,
-    93,
-    94,
-    95,
-    96,
-    97,
-    98,
-    99,
-    100,
-    101,
-    102,
-    103,
-    104,
-    105,
-    106,
-    107,
-    108,
-    109,
-    110,
-    111,
-    112,
-    113,
-    114,
-    115,
-    116,
-    117,
-    118,
-    119,
-    120,
-    121,
-    122,
-    123,
-    124,
-    125,
-    126,
-    127,
-    128,
-    129,
-    130,
-    131,
-    132,
-    133,
-    134,
-    135,
-    136,
-    137,
-    138,
-    139,
-    140,
-    141,
-    142,
-    143,
-    144,
-    145,
-    146,
-    147,
-    148,
-    149,
-    150,
-    151,
-    152,
-    153,
-    154,
-    155,
-    156,
-    157,
-    158,
-    159,
-    160,
-    161,
-    162,
-    163,
-    164,
-    165,
-    166,
-    167,
-    168,
-    169,
-    170,
-    171,
-    172,
-    173,
-    174,
-    175,
-    176,
-    177,
-    178,
-    179,
-    180,
-    181,
-    182,
-    183,
-    184,
-    185,
-    186,
-    187,
-    188,
-    189,
-    190,
-    191,
-    192,
-    193,
-    194,
-    195,
-    196,
-    197,
-    198,
-    199,
-    200,
-    201,
-    202,
-    203,
-    204,
-    205,
-    206,
-    207,
-    208,
-    209,
-    210,
-    211,
-    212,
-    213,
-    214,
-    215,
-    216,
-    217,
-    218,
-    219,
-    220,
-    221,
-    222,
-    223,
-    224,
-    225,
-    226,
-    227,
-    228,
-    229,
-    230,
-    231,
-    232,
-    233,
-    234,
-    235,
-    236,
-    237,
-    238,
-    239,
-    240,
-    241,
-    242,
-    243,
-    244,
-    245,
-    246,
-    247,
-    248,
-    249,
-    250,
-    251,
-    252,
-    253,
-    254,
-    255,
-    256,
-    257,
-    258,
-    259,
-    260,
-    261,
-    262,
-    263,
-    264,
-    265,
-    266,
-    267,
-    268,
-    269,
-    270,
-    271,
-    272,
-    273,
-    274,
-    275,
-    276,
-    277,
-    278,
-    279,
-    280,
-    281,
-    282,
-    283,
-    284,
-    285,
-    286,
-    287,
-    288,
-    289,
-    290,
-    291
-  ],
-  "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+  "retained_kinds": [],
+  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
   "enemy_reference_receipt_sha256": "45e04bee0660b4e5776e71a1d8283e72e9b69a0f2eba885e435018c36e2ff6c7",
   "source_sha256": {
     "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
-    "src/native_enemy.cpp": "8dc73ce30128b784e169e375aa095940f9495140dcb56bba3024688683369959",
+    "src/native_enemy.cpp": "059b8976cb8c348beb5c95c01d413d28fed0f4393b4a6cabe49cca97f3f854a3",
     "src/native_gameplay_preview.cpp": "f6dabcc72387c43a2805b3f8809a2bad22d4984b6d4288da4c9b088d7ada58a6",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
-    "src/native_model_animation.cpp": "e86d0b6951ff4e446afb8373f1321d3ae6ea342d8bab1205ac82a8f1f96cbacc",
-    "src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
+    "src/native_model_animation.cpp": "8357d1f2c6b9eace9ad7b73aaa19fe8e21e56f1495a6810590175be2969be515",
+    "src/native_texture_animation.cpp": "67d297ac995e4cb96f11f998afe74fa2e430fb929ddd5f9dd19ea78723e75802",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "research/native-gameplay-cutscene-fixture.cpp": "9d0f96ae66fa812b88f4cb3950452db2c26509e8bdfa0612fb1641b654c58cdb",
     "research/native-story-pickup-source-check.cpp": "964a9ac09ff445f426ce18b8387729de3927efbad8a0de65590707681ac3af99",
@@ -1702,8 +1496,8 @@
     "src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
     "src/native_gameplay_preview.hpp": "2773c63fa042ebcc3efffe1c194f3d7e0c05ac5a205520ca59834100b34f05ea",
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-    "src/native_minigames.hpp": "73821c8c48ed600088164b7c4604ab57a6d59f32b19384b9d40f85137e9855e7",
-    "src/native_model_animation.hpp": "374044e91b204a922b5a43dc279e518cb87a0825797459f777a58ff82e0cf30b",
+    "src/native_minigames.hpp": "d300b1c20c5f063976341018969e90efe64ecc1e9e0ca63d5e07bd40c0dcba90",
+    "src/native_model_animation.hpp": "0390dfbc9a1798c46dcf3b52af97899afd78c65380c1b6f78c319fa9a0744d90",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
     "src/native_texture_animation.hpp": "7403bbf3f80ac2335669356f78d8caf8c4803d7d9060b205c6fd60ef5f874a41",
     "src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
@@ -1711,7 +1505,7 @@
   },
   "optimization": "O2",
   "replay_workers": 6,
-  "replay_summary_sha256": "6a9a03d0af9ea8b0e70e9d1d90eecda75c11cfc31467f66956146a9e86620f45",
+  "replay_summary_sha256": "86cace7e532f511fb5ac9fed73466c3c9d2a9d6f82b66903e537ffcbe9d19282",
   "source_body_proof": [
     "dora3_s0_menu_80039544",
     "dora3_s10_cave_8021D9F4",
@@ -2745,6 +2539,7 @@
     "dora3_s4_demo_80223C98",
     "dora3_s4_demo_802241D0",
     "dora3_s4_demo_8022438C",
+    "dora3_s5_demo_8022D7B4",
     "dora3_s5_demo_8022D9C0",
     "dora3_s5_demo_8022DBF4",
     "dora3_s5_demo_8022DC90",

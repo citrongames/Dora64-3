@@ -1,0 +1,158 @@
+{
+  "scope": "Static ROM/body/caller and registered angular-store audit; no executed checks.",
+  "confirmed_camera_stores": [
+    {
+      "section": ".minigame_1",
+      "rom": 1663408,
+      "function_address": 2149341068,
+      "function": "dora3_s21_mini_801C578C",
+      "function_sha256": "b65955f025d50bb7f674f3e4e57f578e6334762e2b74b172a2e4ab57edf48b82",
+      "site": 2149341416,
+      "word": 3860201500,
+      "opposite": true,
+      "evidence": "Exact Source actor yaw load80171DAC+a1*CC; wrapped shortest-error branch>180 and gain denominator15/30 at90. Source retained a1 and camera s0; Native continuation uses a circular target lifted at completed Source origin."
+    },
+    {
+      "section": ".minigame_1",
+      "rom": 1663408,
+      "function_address": 2149341448,
+      "function": "dora3_s21_mini_801C5908",
+      "function_sha256": "a62698bccff544de9251a07e73ffbba729b949535744e814d16a9fe833d92c80",
+      "site": 2149341828,
+      "word": 3860070428,
+      "opposite": false,
+      "evidence": "Exact Source actor yaw load80171DAC+a1*CC; wrapped shortest-error branch>180 and gain denominator15/30 at90. Source retained a1 and camera s0; Native continuation uses a circular target lifted at completed Source origin."
+    },
+    {
+      "section": ".minigame_2",
+      "rom": 1701136,
+      "function_address": 2149339568,
+      "function": "dora3_s22_mini_801C51B0",
+      "function_sha256": "67fe931c57ec545156de8a60776637c8596200dca83a2e35b47661e2496325af",
+      "site": 2149339916,
+      "word": 3860201500,
+      "opposite": true,
+      "evidence": "Exact Source actor yaw load80171DAC+a1*CC; wrapped shortest-error branch>180 and gain denominator15/30 at90. Source retained a1 and camera s0; Native continuation uses a circular target lifted at completed Source origin."
+    },
+    {
+      "section": ".minigame_2",
+      "rom": 1701136,
+      "function_address": 2149339948,
+      "function": "dora3_s22_mini_801C532C",
+      "function_sha256": "0d47d835b1d3ed5e39654ae7800e61e7e63d70a55722c9079f2fd88cd9893d66",
+      "site": 2149340308,
+      "word": 3860070428,
+      "opposite": false,
+      "evidence": "Exact Source actor yaw load80171DAC+a1*CC; wrapped shortest-error branch>180 and gain denominator15/30 at90. Source retained a1 and camera s0; Native continuation uses a circular target lifted at completed Source origin."
+    }
+  ],
+  "angle_division_candidates": [
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C51B0",
+      "site": "0x801C530C",
+      "reviewed_camera": true
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C532C",
+      "site": "0x801C5494",
+      "reviewed_camera": true
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C578C",
+      "site": "0x801C58E8",
+      "reviewed_camera": true
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C5908",
+      "site": "0x801C5A84",
+      "reviewed_camera": true
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C6944",
+      "site": "0x801C6E74",
+      "reviewed_camera": false
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C6944",
+      "site": "0x801C6EA0",
+      "reviewed_camera": false
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C6944",
+      "site": "0x801C6EF4",
+      "reviewed_camera": false
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C6944",
+      "site": "0x801C6F20",
+      "reviewed_camera": false
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C6944",
+      "site": "0x801C6F68",
+      "reviewed_camera": false
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C6944",
+      "site": "0x801C6F94",
+      "reviewed_camera": false
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C6944",
+      "site": "0x801C6FF8",
+      "reviewed_camera": false
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C6944",
+      "site": "0x801C7024",
+      "reviewed_camera": false
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C6944",
+      "site": "0x801C706C",
+      "reviewed_camera": false
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C6944",
+      "site": "0x801C7098",
+      "reviewed_camera": false
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C6944",
+      "site": "0x801C70FC",
+      "reviewed_camera": false
+    }
+  ],
+  "root_cause": "Generic angle recurrence only strips the outer wrap. Nested wrapped error contains a load of the same camera yaw; affine extraction fails, leaving a branch-dependent circular expression. A moving target crossing0/360 changes that expression by a whole turn in a branch chosen by Source.",
+  "implementation": "Explicit C_next=C+g*shortest(T-C) circular target + affine continuation. T is participant heading (plus180 in follow), g is exact Source15/30 denominator branch. Same Source baseline and continuous target drift used by all fractional samples, with fresh eye geometry.",
+  "winter_course": "User confirmed winter race is a variant of the same four-participant minigame; Source overlay/helper identities are common.",
+  "status": "Runtime/source metadata and documentation changes pending CPU/user visual validation after all batches.",
+  "limitations": [
+    "Existing Source instructions/command cadence unchanged; no new test fixture generated.",
+    "Future tests must use actual follow/finish helpers, all four camera/participant indices, clockwise/counterclockwise seams, 90/180 boundaries and Source result transitions; prior isolated camera/integer endpoint checks did not cover nested wrapped error."
+  ],
+  "analogue_exclusions": "Eleven candidates in race6944 update driver1C by captured Source direction integer s2 times ROM angular rate (or speed-dependent rate). They normalize only the resulting sum; they are not circular target-minus-own-yaw damping. Existing additive angle continuation remains.",
+  "future_validation": [
+    "Actual race578C/5908 and plane51B0/532C with view indices0..3, Source20/30, Manual60/73/120/144/165/360.",
+    "359->0 and0->359 in both camera/participant, opposite180 follow offset and exact180 Source negative tie.",
+    "Source90 threshold/divisor branch, finish flag handoff, distance floors250/300, explicit Source setters and module reload.",
+    "Monotonic signed camera motion for fixed target, continuous moving target, linked eye geometry, Source RAM/commands after frame restoration. No current execution proof."
+  ],
+  "handoff049": "Fresh actual-helper next-update comparison exposed91-degree Source gain30->15 seam (2.93222-degree jump). CircularGain now selects the pure next-step threshold using completed Source camera and target equation at1, constant per interval, without rerunning any SDK/Source commands. Fresh dependent checks required.",
+  "direction_handoff049": "Actual-helper moving-target comparison exposed12-degree snap when future error crossed180. CircularTarget now lifts its target with the same next whole-step shortest branch as CircularGain; Source negative180 tie retained, one winding for the whole fractional interval, no repeated commands."
+}

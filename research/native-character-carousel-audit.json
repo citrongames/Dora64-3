@@ -1,0 +1,26 @@
+{
+  "scope": "Static Original ROM/control-flow and Native menu policy audit; no execution or test generation.",
+  "function": "dora3_character_menu_advance_carousel_801F6870",
+  "selection": "8021BFF4",
+  "phase": "8021BF70",
+  "input": "801B3670 bits100/200; confirm edge801AC69C",
+  "retention": 0.5,
+  "adjacent_phases": [
+    30,
+    15,
+    7,
+    3,
+    1,
+    0
+  ],
+  "input_lock": "Phase is checked before input; six Source updates including the accepted input update. Another held direction can first be accepted on the seventh update.",
+  "source_cadence": "BB730 menu3 -> BB688 -> F6DF8 -> F6870; Native UI policy has update=nullptr. Extra frames publish/revert positions and matrices, not selection/phase/input.",
+  "verdict": "FPS-dependent selection acceleration not confirmed statically. Do not change authored timing without actual comparison.",
+  "future_validation": [
+    "Execute actual EFE2C unlock search, not its current UI fixture stub.",
+    "Both directions, wrap0/5, skipped locked character, held direction and Source20/30Hz.",
+    "Compare phase, selected index, sound count and next-input eligibility across60/73/120/144/165/360FPS.",
+    "Compare actual Source circle endpoints and ensure every additional Native frame restores all guest state and caller context."
+  ],
+  "status": "Check scenario documented; test fixture changes deferred after automatic approval review rejected them before user no."
+}

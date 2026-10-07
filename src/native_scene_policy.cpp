@@ -10,18 +10,19 @@ namespace {
 int32_t word(uint8_t* rdram,uint32_t address) {return MEM_W(0,int32_t(address));}
 bool scene34_armed=false;
 bool image_eligible(uint8_t* rdram) {
-    if(!scene34_armed || word(rdram,0x801C68C4)!=0)return false;
-    const auto transition=word(rdram,0x801C68CC);
-    // White fade changes only the scene-selection request and its countdown.
-    // Actual callback/resource replacement occurs on the update with count==1.
-    const auto hold=word(rdram,0x801C68D0);
-    const auto selected=uint32_t(word(rdram,0x801A950C));
-    if(transition==0) {
-        if(hold<=0)return false;
-        // Only state1's simple next-scene request has been reviewed here.
-        // State2 also resets progress: retain the previous drain-before-command.
-        if(hold==1 && (selected>255 || MEM_BU(int32_t(selected),int32_t(0x80171C50))!=1))return false;
-    } else if(transition<=1 || transition>16 || selected!=0x5A || MEM_BU(0x5A,int32_t(0x80171C50))!=1)return false;
+    if(!scene34_armed || !dora3_overlay_loaded(0x635C0))return false;
+    const auto transition=word(rdram,0x801C68CC),hold=word(rdram,0x801C68D0);
+    const int direction=MEM_B(0,int32_t(0x801A99A0));
+    const bool moving_fade=direction==-1||direction==1;
+    if(transition<0||transition>16||hold<0)return false;
+    // C0088 only decrements the deferred request. The selected destination and
+    // its state do not affect this resident draw. Count1 still needs fractional
+    // fade frames: actual 280DC drains the banks BEFORE installing the loader.
+    // Likewise, Source progress reset at hold1 is not resource replacement.
+    if(!moving_fade&&transition==0&&hold==0)return false;
+    // C012C's controller-message branch is a static resident text panel. Only
+    // its active fade needs extra frames; input/controller decisions stay Source.
+    if(word(rdram,0x801C68C4)!=0&&!moving_fade)return false;
     if(word(rdram,0x801A39DC)!=3 || word(rdram,0x801AA648)==0 || word(rdram,0x801A9500)==0)return false;
     for(unsigned i=0;i<8;++i) {
         const uint32_t slot=0x801A44F0+i*20;

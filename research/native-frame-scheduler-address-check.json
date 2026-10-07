@@ -3,7 +3,7 @@
   "result": "PASS: one queued wake; immutable token behind 32-bit message; two banks; publication and independent guest/host completion; stale scene/rate tokens; enqueue rejection; elapsed-time conservation under backpressure; Original bypass; concurrent completion order; original ROM VI gate and completion-before-swap order; native 60/73/144/165/360 scheduling builds original 2D fade display lists with extra alpha phases and unchanged duration. No game/window/GPU.",
   "sanitizer": "address",
   "source_sha256": {
-    "research/native-loop-stubs.cpp": "9a7fb7796516f951c6bc8d7db29dcc1d08d60290f02f6f4364f032fdd87e37f9",
+    "research/native-loop-stubs.cpp": "3154a3d2788e0493ea3e04670eeb87f21635eac98d906cca82ec954d906eb241",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "src/native_frame_scheduler.cpp": "5aebb567341ad6853cc9eaa25ad093fe463a8614bfbae39d9b017140014cd118",
     "research/native-frame-scheduler-check.cpp": "542f67dafc9159f7cc1ac4a8c4b28fab4b9b7204ba540d6d30b2c998d21162a8",
@@ -13,7 +13,7 @@
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "tools/check_native_frame_scheduler.py": "a8757ca8c7953be03d731be3af7659d5f1c6dd84631417e68b71b7068599f77d"
   },
-  "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
   "original_functions": [
     "dora3_scheduler_framebuffer_ready",
     "dora3_scheduler_task_complete",

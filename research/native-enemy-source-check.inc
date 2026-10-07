@@ -94,6 +94,7 @@ static void check_enemy_sources(const std::vector<uint32_t>& image) {
     unsigned original_cases=0,native_cases=0,endpoints=0,intermediate=0,zero_dt=0,births=0,moving_samples=0,contacts=0;
     std::map<unsigned,std::set<int32_t>> reached;
     unsigned rabbit_landings=0,rabbit_substeps=0,rabbit_ground_hits=0,rabbit_stable_ground=0;
+    unsigned kinopper_roam_samples=0,kinopper_wrap_samples=0;
     // Evaluate the previously unexercised boss tail first, preserving every
     // complete case on a fresh image, all modes and exact comparisons.
     std::vector<EnemyFixtureDefinition> case_order(std::begin(enemy_fixture_definitions),std::end(enemy_fixture_definitions));
@@ -216,6 +217,16 @@ static void check_enemy_sources(const std::vector<uint32_t>& image) {
             const auto ph=uint32_t(MEM_W(0x98,int32_t(target_actor))),model=uint32_t(MEM_W(0x74,int32_t(target_actor)));
             assert(MEM_H(0x20,int32_t(ph))==int16_t(definition.kind));
             if(native){assert(native_enemy_owned(rdram,target_actor));assert(game_model_animation().native_birth(model));++births;}
+            // A reachable initialized Kinopper patrol, far from the player.
+            // Existing endpoint comparisons cannot detect an omitted angular
+            // equation: the old implementation still arrives at the same yaw.
+            // Use the real constructor/pool/probes, including a355->5 wrap.
+            const bool kinopper_roam=definition.kind==264&&profile==0;
+            if(kinopper_roam) {
+                wf(rdram,player+0x9C,3000);wf(rdram,target_actor+0x10,355);
+                wf(rdram,ph+4,355);wf(rdram,ph,7);MEM_B(0x28,int32_t(ph))=1;
+                MEM_H(0x34,int32_t(ph))=0;MEM_W(0x94,int32_t(target_actor))=1;
+            }
             // Linked producers own attachment/release state and parent slots.
             // Preserve their actual initialization through the Source launch.
             if(native) {
@@ -232,11 +243,31 @@ static void check_enemy_sources(const std::vector<uint32_t>& image) {
                 const auto units=uint64_t(second)*divider*tick;const auto boundary=Nanoseconds((units+59)/60);
                 c=caller;c.f_odd=&c.f0.u32h;
                 if(native) {
+                    std::optional<unsigned> kinopper_clip_count;
                     auto native_to=[&](Nanoseconds stamp) {
                         const auto saved=c;const auto position=MEM_W(0x9C,int32_t(target_actor)),yaw=MEM_W(0x10,int32_t(target_actor));input_now=stamp;
                         const int32_t rabbit_state=MEM_W(0x94,int32_t(target_actor)),rabbit_phase=MEM_H(0x34,int32_t(ph));
                         const float rabbit_y=rf(rdram,target_actor+0xA0);
                         native_gameplay_preview_update(rdram,&c,stamp);assert(std::memcmp(&saved,&c,sizeof(c))==0);
+                        const double patrol_age=double(stamp)*60./(divider*double(second))-double(tick-1);
+                        if(kinopper_roam&&patrol_age>1e-7&&patrol_age<1.-1e-7) {
+                            const unsigned wait=(tick-1)%8;
+                            const double heading=std::fmod(355.+10.*(double((tick-1)/8)+(wait?1.:patrol_age)),360.);
+                            assert(MEM_W(0x94,int32_t(target_actor))==1);
+                            assert(MEM_H(0x34,int32_t(ph))==int(7-wait));
+                            if(std::abs(std::remainder(rf(rdram,ph+4)-heading,360.))>=2e-4) {
+                                std::cerr<<"Patrol heading fps="<<fps<<" divider="<<divider<<" tick="<<tick<<" h="<<patrol_age<<" expected="<<heading<<" physical="<<rf(rdram,ph+4)<<" actor="<<rf(rdram,target_actor+0x10)<<" state="<<int(MEM_BU(0x28,int32_t(ph)))<<" wait="<<MEM_H(0x34,int32_t(ph))<<'\n';std::abort();
+                            }
+                            assert(std::abs(std::remainder(rf(rdram,target_actor+0x10)-heading,360.))<2e-4);
+                            // Projection must read the same gradual heading,
+                            // rather than moving along the final5-degree ray.
+                            const double radians=heading*std::acos(-1.)/180.;
+                            assert(std::abs(rf(rdram,ph+0x10)-7.*std::sin(radians))<.02);
+                            assert(std::abs(rf(rdram,ph+0x18)-7.*std::cos(radians))<.02);
+                            const unsigned clip_count=unsigned(std::count_if(enemy_fixture_commands.begin(),enemy_fixture_commands.end(),[&](const auto& command){return uint32_t(command[0])==0x8002A328u&&uint32_t(command[1])==target_actor;}));
+                            if(kinopper_clip_count)assert(clip_count==*kinopper_clip_count);else kinopper_clip_count=clip_count;
+                            ++kinopper_roam_samples;if(tick==1)++kinopper_wrap_samples;
+                        }
                         if(definition.kind==267&&profile==0&&rabbit_state==2&&MEM_W(0x94,int32_t(target_actor))==2&&
                            (rabbit_phase==1||rabbit_phase==2)&&(MEM_H(0x34,int32_t(ph))==1||MEM_H(0x34,int32_t(ph))==2)) {
                             // FEAC phase1 descends; E810C floor result1 sets
@@ -341,6 +372,7 @@ static void check_enemy_sources(const std::vector<uint32_t>& image) {
         if(progress){progress<<"PASS kind="<<definition.kind<<" divider="<<divider<<" profile="<<profile<<" states=";for(auto state:reached[definition.kind])progress<<state<<',';progress<<std::endl;}
     }
     if(selected_kinds.count(267))assert(rabbit_landings&&rabbit_ground_hits&&rabbit_stable_ground);
+    if(selected_kinds.count(264))assert(kinopper_roam_samples&&kinopper_wrap_samples);
     if(diagnostic_kind){assert(native_cases&&original_cases);std::cout<<"DIAGNOSTIC ONLY: kind "<<diagnostic_kind<<" cases="<<original_cases+native_cases<<"; not the complete block proof. Rabbit landing transitions="<<rabbit_landings<<" ground hits="<<rabbit_ground_hits<<" stable ground="<<rabbit_stable_ground<<".\n";return;}
     if(shard_count_text) {
         // Every worker starts each unchanged kind/divider/profile/mode from
@@ -352,6 +384,7 @@ static void check_enemy_sources(const std::vector<uint32_t>& image) {
                  <<",\"original\":"<<original_cases<<",\"native\":"<<native_cases<<",\"births\":"<<births
                  <<",\"endpoints\":"<<endpoints<<",\"intermediate\":"<<intermediate<<",\"zero_dt\":"<<zero_dt
                  <<",\"moving\":"<<moving_samples<<",\"contacts\":"<<contacts
+                  <<",\"kinopper_roam\":"<<kinopper_roam_samples<<",\"kinopper_wrap\":"<<kinopper_wrap_samples
                  <<",\"rabbit_floor\":"<<rabbit_landings<<",\"rabbit_substeps\":"<<rabbit_substeps
                  <<",\"rabbit_ground_hits\":"<<rabbit_ground_hits<<",\"rabbit_stable_ground\":"<<rabbit_stable_ground<<",\"kinds\":[";
         bool first=true;for(unsigned kind:selected_kinds){if(!first)std::cout<<',';first=false;std::cout<<kind;}

@@ -3,7 +3,7 @@
   "result": "PASS: registered type2 drains during pause while unregistered type2 remains Original; real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context and all odd FPRs preserved in FR=0/FR=1; stale scene/rate wakes; quiescent reset; update before bank reservation, scene/rate cancellation; 2000 concurrent deliveries",
   "sanitizer": "address",
   "source_sha256": {
-    "research/native-loop-stubs.cpp": "9a7fb7796516f951c6bc8d7db29dcc1d08d60290f02f6f4364f032fdd87e37f9",
+    "research/native-loop-stubs.cpp": "3154a3d2788e0493ea3e04670eeb87f21635eac98d906cca82ec954d906eb241",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "src/native_frame_scheduler.cpp": "5aebb567341ad6853cc9eaa25ad093fe463a8614bfbae39d9b017140014cd118",
     "src/native_frame_bridge.cpp": "c1c7ae5fb4ab80e03b178a744a13ac90973b32d787b6fec432afb2e27182b995",
@@ -18,7 +18,7 @@
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556",
     "tools/check_native_frame_bridge.py": "d0cbca595e7a3a578ba1352286ecdb65bd39845d506005cafdb6935442798844"
   },
-  "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
   "adapted_queue_sha256": "9bad8075f25fac5787a24acaf863c26dacc112d3cb1bfb2fea8b8452cec14930",
   "limitations": [
     "Thread scheduler endpoints and scene callbacks are stubs; no renderer",

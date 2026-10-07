@@ -168,14 +168,14 @@
     "research/native-inactive-minigame-fixture.cpp": "52a4a15d4e8cbd49d2dc7f993c0896832ba1bbd5082e5740b0c1aab085691900",
     "src/native_cutscene.hpp": "d7c9362cc9c4f70191ebb7bad1c9ded08ea478811c477e269fc9bae630e1c1e4",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-    "src/native_scene_policy.cpp": "b88a4911eb1d8950d3e5d75068b90e193a0c665b98713f45b7cbdd9df0913721",
+    "src/native_scene_policy.cpp": "5a39e94fc92d65bc3765d9663b37c8e17c8e87630563eac12f609b8ebdda4559",
     "src/native_game_loop.cpp": "84d83f1d829587ae3ac0912a325b54e178a7d0ef8b1cbf9995f016114015c661",
-    "recomp/native-timing-rules.json": "206bcac2b20671f5b741a3cff0782b768cd2289286748ab2d21d474955d4912a",
-    "tools/native_timing_patches.py": "d1cfdb7b0d6f02ef656824ec809124da1e3c0ae6f094bb1b8e48713cac96d5ce",
+    "recomp/native-timing-rules.json": "b918263db23d3bd1f0b5a76c7e6ccf715af263f6077356cbb2ffd7ad438c097b",
+    "tools/native_timing_patches.py": "5c8a5045474596bd9eb4864bdd95e8b8029d9ca58e712524d78d5b07808e8be4",
     "tools/generate_startup.py": "e64b7e9b45435ee3a4fe9f3046376efb705942828a89e20ae195178f0d7e3d1c",
     "tools/check_native_cutscene.py": "fc100b5bd43f3dcfc4a5729e95b8d839bcc1e97d480cea236a7672d0bc35e812"
   },
-  "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "limitations": [
     "Synthetic controllers and original ROM math/constants; no real level/renderer or GPU",

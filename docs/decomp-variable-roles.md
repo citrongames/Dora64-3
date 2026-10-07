@@ -18,6 +18,7 @@
 
 | Имя | Исходный доступ | Подтверждённая роль | Число областей |
 |---|---|---|---|
+| `action_actor_r16` | `ctx->r16` | Actor argument a1; end query and Source next-mode helper owner | 1 |
 | `actor_opacity_physics_r16` | `ctx->r16` | Saved actor physics pointer through the model opacity call and byte2A update | 1 |
 | `actor_physics_r9` | `ctx->r9` | Physics record retained while unlinking peer lists | 1 |
 | `actor_pool_index_r5` | `ctx->r5` | Текущий индекс диапазона пула; инкрементируется после каждой записи pause flag | 1 |
@@ -105,10 +106,14 @@
 | `arizinogu_physics_r4_8022EA2C` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `arizinogu_physics_r4_8022EDAC` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `arizinogu_physics_r5_8022EAD0` | `ctx->r5` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
+| `attack_actor_r17` | `ctx->r17` | Actor argument a1; Source end query and component0 clip bind | 1 |
+| `attack_control_r16` | `ctx->r16` | Control argument a2; current clip14, desired18, attack20 | 1 |
 | `axis_rotation_angle_float_bits_r5` | `ctx->r5` | Float-биты угла до переноса в f20; затем a1 становится указателем компоненты оси | 1 |
 | `axis_rotation_output_matrix_r16` | `ctx->r16` | Выходная матрица между сохранением a0 в s0 и восстановлением старого s0 | 1 |
 | `axis_rotation_x_float_bits_r6` | `ctx->r6` | Float-биты осиX до сохранения в scratch-аргумент нормализации | 1 |
 | `axis_rotation_y_float_bits_r7` | `ctx->r7` | Float-биты осиY до delay-slot сохранения перед нормализацией | 1 |
+| `background_actor_argument_r4` | `ctx->r4` | Передаёт actor650 в SDK pose/advance. | 1 |
+| `background_style_r16` | `ctx->r16` | Source режим0/1 выбора ресурсов и масштаба фоновой модели. | 1 |
 | `baguram2_actor_r2_8021E754` | `ctx->r2` | Указатель actor из global8021BDEC; роль ограничена до следующей записи регистра/внешнего вызова | 1 |
 | `baguram2_actor_r2_8021ED94` | `ctx->r2` | Указатель actor из global8021BDEC; роль ограничена до следующей записи регистра/внешнего вызова | 1 |
 | `baguram2_actor_r2_8021F378` | `ctx->r2` | Указатель actor из global8021BDEC; роль ограничена до следующей записи регистра/внешнего вызова | 1 |
@@ -544,7 +549,14 @@
 | `bironn_physics_r5_8022EE68` | `ctx->r5` | Указатель physical из global8021BCDC; роль ограничена до следующей записи регистра/внешнего вызова | 1 |
 | `bironn_physics_r7_8022F180` | `ctx->r7` | Указатель physical из global8021BCDC; роль ограничена до следующей записи регистра/внешнего вызова | 1 |
 | `bitmap_channel_actor_r4` | `ctx->r4` | Actor parameter remains a0 until the first bitmap SDK call delay replaces a0. | 1 |
+| `bitmap_handle_slots_r19` | `ctx->r19` | База63B0 для short handles; slotIndex из второй word пары. | 1 |
 | `bobbing_actor_r16` | `ctx->r16` | Actor retained across the sine and angle normalization calls | 1 |
+| `bomb_draw_actor_plus_y_r16` | `ctx->r16` | Actor cursor plus4: world accesses98/9C/A0 mean actual9C/A0/A4; local0/4 here mean actorY/Z | 1 |
+| `bomb_draw_actor_r17` | `ctx->r17` | Actor pool cursor starting at slot10, advanced by0xCC until slot60 | 1 |
+| `bomb_hit_explosion_slot_r19` | `ctx->r19` | Source hit loop index10..58; original bound59 is distinct from draw/dispatch bound60 | 1 |
+| `bomb_target_actor_r18` | `ctx->r18` | Participant actor argument a1, used for Source distance and state change | 1 |
+| `bomb_target_driver_r16` | `ctx->r16` | Target driver98 holding healthD0, invulnerabilityD8 and knockback/state fields | 1 |
+| `bomb_target_participant_index_r17` | `ctx->r17` | Participant index a2, compared with explosion ownerDB and used for result/feedback | 1 |
 | `boss1_actor_r16_8021DE54` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `boss1_actor_r16_8021DEE4` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `boss1_actor_r16_8021F968` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -2657,6 +2669,11 @@
 | `brobodc08_physics_r6_8021FB10` | `ctx->r6` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `candidate_contact_physics_r4` | `ctx->r4` | Candidate physics after the actor argument is replaced by its physics pointer | 1 |
 | `cat_contact_mode_r3` | `ctx->r3` | Shared contact mode before the checked sound command | 1 |
+| `character_carousel_first_ring_actor_r16` | `ctx->r16` | Current actor of first ring; loop advances by the real0xCC actor stride | 1 |
+| `character_carousel_input_gate_phase_r2` | `ctx->r2` | Signed phaseBF70 used to block another input until the previous circular transition finishes | 1 |
+| `character_carousel_phase_after_halving_r2` | `ctx->r2` | Truncated angular phase copied from f2 and written to Source shortBF70 | 1 |
+| `character_carousel_phase_before_halving_r2` | `ctx->r2` | Signed angular phase before the Original ROM0.5 retention and truncation | 1 |
+| `character_carousel_second_ring_actor_r16` | `ctx->r16` | Current actor of second ring; its selected model is scaled to1.8 after circle placement | 1 |
 | `character_status_r3` | `ctx->r3` | Байтовая запись здоровья текущего персонажа из8021D4A8 | 1 |
 | `character_status_r4` | `ctx->r4` | Байтовая запись здоровья текущего персонажа из8021D4A8 | 1 |
 | `churattobanyatto_actor_r16_8022DB58` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -2738,6 +2755,7 @@
 | `churattobanyatto_physics_r7_8022D934` | `ctx->r7` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `churattobanyatto_physics_r7_8022DA64` | `ctx->r7` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `city_wait_count_r3` | `ctx->r3` | Private signed wait counter after its lhu read, increment/store and sign extension; before v1 becomes actor pointer | 8 |
+| `clip_step_bits_r6` | `ctx->r6` | Float3 как третий аргумент SDK pose/advance. | 1 |
 | `constructed_common_actor_r17` | `ctx->r17` | Actor выбранного common slot: его новый physics уже опубликован, далее передаётся parser и сбросу transform | 1 |
 | `constructed_common_physics_r16` | `ctx->r16` | Новый allocation F4 именно этой итерации, сохранённый в actor98 перед вызовом parser | 1 |
 | `constructed_parent_actor_r16` | `ctx->r16` | New parent actor, possibly null, retained through sprite/child initialization | 1 |
@@ -2873,6 +2891,7 @@
 | `current_actor_v1_8023ECAC` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
 | `current_actor_v1_8023F628` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
 | `current_actor_v1_8023FCD8` | `ctx->r3` | ROM global current actor pointer, only until the register is assigned/clobbered again | 1 |
+| `current_bone_r17` | `ctx->r17` | Текущий узел дерева; ID+4, children+C/count+10. | 1 |
 | `current_heading_f12` | `ctx->f12` | Входной current angle до перезаписи f12 целевым углом | 1 |
 | `current_physics_a0_801E92C8` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
 | `current_physics_a0_801E99E8` | `ctx->r4` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
@@ -3102,6 +3121,7 @@
 | `current_physics_v1_8024026C` | `ctx->r3` | ROM global current physics pointer, only until the register is assigned/clobbered again | 1 |
 | `current_piece_actor_s1` | `ctx->r17` | Текущий actor из группы9, stride0xCC; индекс/адрес меняются внутри цикла, роль указателя сохраняется. | 1 |
 | `current_piece_z_field_s0` | `ctx->r16` | Указатель на localZ текущего piece actor; относительные -4/+4/+8 — localY/Euler pitch/yaw. | 1 |
+| `cursor_bitmap_handle_r3` | `ctx->r3` | Handle курсора из slots0/1, преобразуемый в pointer resource table stride20. | 1 |
 | `derorin_actor_r16_8022FF44` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `derorin_actor_r16_8022FFAC` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `derorin_actor_r16_8022FFE4` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -3391,6 +3411,7 @@
 | `enemy_shared_actor_arg_801E8AAC` | `ctx->r4` | Входной ABI аргумент actor; только до первого изменения a0/вызова, ctx storage сохраняется | 1 |
 | `enemy_state_r3` | `ctx->r3` | Actor94 state до первого private callback; r3 после jal может иметь другую роль | 10 |
 | `enemy_state_r3` | `ctx->r3` | Actor94 state до первого private callback; после jal регистр меняет роль | 16 |
+| `fade_direction_argument_r16` | `ctx->r16` | Второй script halfword:0/не0 выбирает начало/конец белого fade либо iris mode. | 1 |
 | `first_shape_index_output_r16` | `ctx->r16` | Output pointer for the first colliding shape index | 1 |
 | `fisher_actor_r2_8021DA0C` | `ctx->r2` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `fisher_actor_r2_8021DBFC` | `ctx->r2` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -3465,6 +3486,7 @@
 | `flash_motion_initial_physics_r3` | `ctx->r3` | Physics эффекта до вызова вертикального impulse: selector44, opacity58 и radius5C | 1 |
 | `flash_signed_delay_r3` | `ctx->r3` | Signed selector44; количество задержки равно его модулю, отрицательные варианты считаются отдельной ветвью | 1 |
 | `flash_transition_actor_r3` | `ctx->r3` | Actor эффекта при публикации uniform scale1 и state10; здесь регистр уже не physics и не selector | 1 |
+| `found_bone_output_r19` | `ctx->r19` | Адрес выходного указателя найденного bone. | 1 |
 | `game_counter_delta_r5` | `ctx->r5` | Signed input delta consumed by the original byte addition | 1 |
 | `game_counter_index_r4` | `ctx->r4` | Input counter index retained without register reuse | 2 |
 | `gokireon_actor_r16_80221B04` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -3812,6 +3834,11 @@
 | `kaen_physics_r5_80230BB8` | `ctx->r5` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `kaen_physics_r5_80230C8C` | `ctx->r5` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `kaen_physics_r6_802309E0` | `ctx->r6` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
+| `kinopper_actor_after_roam_turn_r2` | `ctx->r2` | Actor receiving the same computed heading as visual yaw10 | 1 |
+| `kinopper_physical_after_roam_turn_r3` | `ctx->r3` | Physical record receiving wrapped heading and Source timer reset7 | 1 |
+| `kinopper_physical_before_roam_turn_r4` | `ctx->r4` | Physical record from global8021BCDC, read by patrol timer and heading normalizer before register reuse | 1 |
+| `kinopper_roam_wait_before_r3` | `ctx->r3` | Unsigned value of Source short timer34 before decrement; zero selects the periodic10-degree turn | 1 |
+| `linear_curve_descriptor_r5` | `ctx->r5` | 16-byte curve descriptor: keys count/relative offset. | 1 |
 | `linked_cached_center_physics` | `ctx->r4` | Физика эффекта для parent7C и однократного сохранения XYZ родителя в float58/5C/60. | 1 |
 | `linked_delay_count` | `ctx->r3` | Count34 после lhu, увеличения и приведения к signed16 для сравнения с delay36; последующий boolean не переименовывается. | 1 |
 | `linked_delay_limit` | `ctx->r2` | Signed delay36 для сравнения с обновлённым signed count34. | 1 |
@@ -3831,9 +3858,13 @@
 | `linked_teleport_x_actor` | `ctx->r2` | Настоящий actor эффекта для Source teleport X9C в delay slot следующего RNG вызова. | 1 |
 | `linked_teleport_y_actor` | `ctx->r2` | Настоящий actor эффекта для Source teleport YA0 в delay slot следующего RNG вызова. | 1 |
 | `linked_teleport_z_actor` | `ctx->r2` | Настоящий actor эффекта для Source teleport ZA4 после последнего RNG вызова. | 1 |
+| `map_node_index_r19` | `ctx->r19` | Номер строки для special node23; sentinel после24 descriptors. | 1 |
+| `map_scroll_counter_r8` | `ctx->r8` | Оставшиеся Source этапы camera easing; не input repeat и не bitmap size. | 1 |
 | `matrix_left_row_cursor_r4` | `ctx->r4` | Курсор строки левой матрицы; после обхода больше не используется как входной указатель | 1 |
 | `matrix_product_output_r6` | `ctx->r6` | Выходная матрица, включая прямую запись последнего элемента и копирование остальных | 1 |
 | `matrix_right_input_r5` | `ctx->r5` | Начало правой матрицы; до загрузки временного результата в этот регистр | 1 |
+| `menu_background_actor_r16` | `ctx->r16` | Actor650 для matrix/resource/bone/display-list draw. | 1 |
+| `menu_background_actor_r17` | `ctx->r17` | Actor650: фон меню, resources/matrix/scale commands. | 1 |
 | `metabogabugon_actor_r16_8022DEB4` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `metabogabugon_actor_r2_8022DAEC` | `ctx->r2` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `metabogabugon_actor_r2_8022DE30` | `ctx->r2` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -3885,6 +3916,7 @@
 | `minicar_physics_r17` | `ctx->r17` | Physics98 созданного MiniCar, route settings/counters | 1 |
 | `minicar_route_points_r17` | `ctx->r17` | Таблица signed-short X/Z waypoint pairs из physics48 | 1 |
 | `model_opacity_f2` | `ctx->f2` | Float opacity loaded from a1 bits, retained through the exact1 comparison and final store | 1 |
+| `next_room_descriptor_r2` | `ctx->r2` | Descriptor802170F8 публикуется в current8021D654 до загрузки. | 1 |
 | `npc_contact_mode_r3` | `ctx->r3` | Contact mode through the complete mode switch, before v1 is reused for state guard arithmetic | 8 |
 | `npc_entry_physics_r3` | `ctx->r3` | Physics record only across the initial latch28 read/write; v1 is reused afterward | 10 |
 | `object_actor_r4` | `ctx->r4` | Actor, из которого читаются X/Z перед вычислением направления на игрока | 1 |
@@ -4037,6 +4069,12 @@
 | `pool_search_actor_r3` | `ctx->r3` | Actor record cursor while testing occupied states | 1 |
 | `pool_search_index_r4` | `ctx->r4` | Parent lower bound and advancing free-slot search index | 1 |
 | `pool_skip_private_update_byte29` | `ctx->r2` | Значение byte29; ненулевой флаг пропускает private update объекта. | 1 |
+| `pose_actor_r17` | `ctx->r17` | Actor argument a0 passed to end query/control command | 3 |
+| `pose_control_r16` | `ctx->r16` | Control argument a1; Source pose chain5C and substate68 | 1 |
+| `pose_control_r16` | `ctx->r16` | Control argument a1; desired clip5C and substate68 | 1 |
+| `pose_control_r16` | `ctx->r16` | Control argument a1; desired5C and Source countdown54 | 1 |
+| `pose_control_r16` | `ctx->r16` | Control argument a1; desired5C and substate68 | 1 |
+| `pose_control_r16` | `ctx->r16` | Control argument a1; scalar14/1C, desired5C, state64 and substate68 | 1 |
 | `powan_actor_r16_802211A8` | `ctx->r16` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
 | `powan_actor_r16_80221FB0` | `ctx->r16` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
 | `powan_actor_r16_80222044` | `ctx->r16` | Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова | 1 |
@@ -4277,8 +4315,12 @@
 | `radicon_physics_r4_8022E000` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `radicon_physics_r4_8022E11C` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `radicon_physics_r4_8022E184` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
+| `remaining_world_hold_r2` | `ctx->r2` | Загруженный Source hold; decrement/store до повторного построения адреса. | 1 |
 | `reset_scene_actor_r16` | `ctx->r16` | Actor argument для всех очищаемых полей и исходных axis/event callbacks | 1 |
 | `resolved_contact_parent_r6` | `ctx->r6` | Contact owner after resolving the optional attachment parent | 1 |
+| `result_actor_r16` | `ctx->r16` | Result actor argument a1; end/pause/seek component0 owner | 1 |
+| `result_actor_r16` | `ctx->r16` | Result actor argument a1; six-character terminal component0 owner | 1 |
+| `result_control_r17` | `ctx->r17` | Control801C9228; character0, current clip14 and desired clip18 | 1 |
 | `retiring_actor_r17` | `ctx->r17` | Actor retained through peer cleanup, optional effects and final destructor | 1 |
 | `retiring_physics_r19` | `ctx->r19` | Physics record retained until the final EA4C destruction | 1 |
 | `rikurage_actor_r2_802213B0` | `ctx->r2` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -5025,6 +5067,7 @@
 | `tamabonga_physics_r4_80222770` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `tamabonga_physics_r4_80222814` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `tamabonga_physics_r4_80222BA8` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
+| `target_actor_r16` | `ctx->r16` | Target actor argument a1 passed to end/pause/pose SDK component0 | 1 |
 | `target_actor_r5` | `ctx->r5` | Input actor whose physics update permission changes | 1 |
 | `target_heading_f14` | `ctx->f14` | Входной target angle до аргумента нормализации разницы | 1 |
 | `tatsunoorgo_actor_r2_80222E8C` | `ctx->r2` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -5079,6 +5122,8 @@
 | `tatsunoorgo_physics_r4_80223588` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `tatsunoorgo_physics_r4_80223954` | `ctx->r4` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `tatsunoorgo_physics_r5_802231E0` | `ctx->r5` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
+| `terminal_actor_r16` | `ctx->r16` | Actor argument a0; terminal component0 owner | 2 |
+| `terminal_policy_r17` | `ctx->r17` | Policy argument a1; signed short+4 selects duration or explicit frame | 2 |
 | `texture_component_slot_r18` | `ctx->r18` | Component index1..7 in s2; it is not the selected animation frame or resource slot. | 1 |
 | `thunderdischarge_actor_r16_802205D4` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `thunderdischarge_actor_r16_802207E0` | `ctx->r16` | Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
@@ -5248,6 +5293,8 @@
 | `vertical_collision_actor_r17` | `ctx->r17` | Exact Original register storage for this proven instruction region only | 1 |
 | `vertical_collision_physics_r16` | `ctx->r16` | Exact Original register storage for this proven instruction region only | 1 |
 | `vertical_parameters_physics_r2` | `ctx->r2` | Exact Original register storage for this proven instruction region only | 1 |
+| `viewport_camera_r16` | `ctx->r16` | Source camera pointer argument a0, used for pitch18/yaw1C/distance30 until epilogue restores s0 | 4 |
+| `wanted_bone_id_r18` | `ctx->r18` | Искомый signed bone ID для текущего узла и рекурсивного вызова. | 1 |
 | `widget_draw_slot_r18` | `ctx->r18` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |
 | `widget_record_r16` | `ctx->r16` | Reviewed UI slot/record role restricted to the exact Original instruction interval | 1 |
 | `world_actor_r3` | `ctx->r3` | Текущий обновляемый объект мира из8021BDEC | 1 |

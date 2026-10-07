@@ -1,17 +1,17 @@
 {
-  "result": "PASS: 35 actual Source bitmap/material and Native RDP scroll cases; generic/world binding, horizontal/vertical shifts, ordered tile bounds, immutable resources, both frame banks, reuse/stopped/clamped guards and pre-submit fallback; synthetic assets, no game/GPU",
-  "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+  "result": "PASS: 47 actual Source bitmap/material and Native RDP scroll cases; generic/world binding, horizontal/vertical shifts, ordered tile bounds, immutable resources, both frame banks, reuse/stopped/clamped guards and pre-submit fallback; synthetic assets, no game/GPU",
+  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
   "source_sha256": {
-    "src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
+    "src/native_texture_animation.cpp": "67d297ac995e4cb96f11f998afe74fa2e430fb929ddd5f9dd19ea78723e75802",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
-    "research/native-texture-animation-check.cpp": "b613b46a404f642ce1afeca9522215c13a029492a34268519e5eaed398a190bb",
+    "research/native-texture-animation-check.cpp": "13ccbadd20cff9a592c90ddb49696c523ef19b87e83222f0cff339b7ca02e19d",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
     "research/native-inactive-minigame-fixture.cpp": "52a4a15d4e8cbd49d2dc7f993c0896832ba1bbd5082e5740b0c1aab085691900",
     "src/native_texture_animation.hpp": "7403bbf3f80ac2335669356f78d8caf8c4803d7d9060b205c6fd60ef5f874a41",
     "src/native_game_loop.cpp": "84d83f1d829587ae3ac0912a325b54e178a7d0ef8b1cbf9995f016114015c661",
-    "src/native_ui.cpp": "ebbbcd4c51e66685c8303f04c99ff0c488a1b51d814303ac7144fd906e2db6ae",
-    "tools/native_timing_patches.py": "d1cfdb7b0d6f02ef656824ec809124da1e3c0ae6f094bb1b8e48713cac96d5ce",
-    "recomp/native-timing-rules.json": "206bcac2b20671f5b741a3cff0782b768cd2289286748ab2d21d474955d4912a",
+    "src/native_ui.cpp": "fe35a142ac9911a729fbd45295ad1b5b34ad4509cea298b03317e1cb735d70b4",
+    "tools/native_timing_patches.py": "5c8a5045474596bd9eb4864bdd95e8b8029d9ca58e712524d78d5b07808e8be4",
+    "recomp/native-timing-rules.json": "b918263db23d3bd1f0b5a76c7e6ccf715af263f6077356cbb2ffd7ad438c097b",
     "tools/check_native_texture_animation.py": "8b15a11487b25fe529ce6ab96e4c036980c32351d0213c1c05564dea494a0e85"
   },
   "actual_functions": [

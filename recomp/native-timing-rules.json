@@ -25774,6 +25774,61 @@
       "role": "map_bitmap_or_source_draw_oscillator",
       "evidence": "Exact ROM Source draw boundary. Keep authored integer clipping/chunks and byte oscillator cadence; Native only translates emitted rectangles or UV origins.",
       "end": 1
+    },
+    {
+      "section": ".startup",
+      "function": "0x800393C4",
+      "function_name": "dora3_s0_800393C4",
+      "function_sha256": "0332a6fa3f7cbc2399562cd86653b705b8485d6960f6e668525f38fe0fabcf20",
+      "site": "0x80039474",
+      "expected_word": "0x8FBF0024",
+      "operation": "model_pose_completed",
+      "status": "reviewed",
+      "evidence": "SDK393C4 completes all type4/5/6/10 channels before this epilogue. Native-only type5 correction uses exact linear keys, bone IDs and matching neighbor slopes; ROM0A46/0489 numeric resets. Original sampling/commands unchanged; post-batch CPU validation pending."
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801BA2B8",
+      "function_name": "dora3_s3_801BA2B8",
+      "function_sha256": "ce8a3f0f7fc52efae593e0284fded02f25f50f204bcefa7b1d45bbfd13ccef0c",
+      "site": "0x801BA2B8",
+      "expected_word": "0x27BDFFE8",
+      "operation": "fade_resource_barrier",
+      "role": "resident_fade_until_actual_resource_replacement",
+      "evidence": "BA310 first stage releases interior actors and resources through B96CC/BDA44. Active fade frames continue until this actual cleanup entry, then drain before freeing.",
+      "status": "Batch2 after048 implementation; tests/build await user completion of bug batches."
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801BA254",
+      "function_name": "dora3_s3_801BA254",
+      "function_sha256": "7022659135fe85d7baa86cece10436eab02337182975acfd32fb7597ea0f72b3",
+      "site": "0x801BA254",
+      "expected_word": "0x3C028021",
+      "operation": "fade_resource_barrier",
+      "role": "resident_fade_until_actual_resource_replacement",
+      "evidence": "BA310 second stage changes room descriptor and loads actors/resources through B9700/B9870/B952C/BD938. Drain active fade frames before these replacements, including the last hold interval.",
+      "status": "Batch2 after048 implementation; tests/build await user completion of bug batches."
+    },
+    {
+      "section": ".demo_slot1",
+      "function": "0x8022D7B4",
+      "function_name": "dora3_s5_demo_8022D7B4",
+      "function_sha256": "fe2ddc304ff2e00a4eeac80b4572ae4ff0e27289436db2dfea9b5f7752aba8c6",
+      "site": "0x8022D880",
+      "expected_word": "0xE4600004",
+      "operation": "native_enemy_equation",
+      "evidence": "Counter34 prior zero: normalize physical heading+10 and reset timer7; periodic motion equation, not obstacle reflection. Exact ROM static review; connected validation pending batch completion."
+    },
+    {
+      "section": ".demo_slot1",
+      "function": "0x8022D7B4",
+      "function_name": "dora3_s5_demo_8022D7B4",
+      "function_sha256": "fe2ddc304ff2e00a4eeac80b4572ae4ff0e27289436db2dfea9b5f7752aba8c6",
+      "site": "0x8022D884",
+      "expected_word": "0xE4400010",
+      "operation": "native_enemy_equation",
+      "evidence": "Literal copy of the preceding physical heading result to actor yaw10; both must use the same angular equation. Exact ROM static review; connected validation pending batch completion."
     }
   ]
 }

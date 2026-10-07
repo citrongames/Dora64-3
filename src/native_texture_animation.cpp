@@ -28,12 +28,21 @@ std::optional<Bitmap> bitmap(uint8_t* rdram,uint32_t p) {
     if(b.format<5)b.palette=0; // SDK28320 returns no palette for byte format2.
     b.pixels=p+16+b.palette_bytes;
     if(!pointer(b.pixels,uint64_t(b.width)*b.height/(b.format==5?2:1)))return {};
+    if(b.format==5)for(unsigned i=0;i<b.width*b.height/2;++i) {
+        const auto packed=MEM_BU(int32_t(i),int32_t(b.pixels));
+        if((packed>>4)>=b.colors||(packed&15)>=b.colors)return {};
+    }
     return b;
 }
 unsigned pixel(uint8_t* rdram,const Bitmap& b,unsigned x,unsigned y) {
     const auto at=y*b.width+x;
     const auto v=MEM_BU(int32_t(b.format==5?at/2:at),int32_t(b.pixels));
-    return b.format==5?(x&1?v&15:v>>4):v;
+    const auto index=b.format==5?(x&1?v&15:v>>4):v;
+    // CI4 indices are local to each bitmap's palette. ROM water00DF and
+    // 00E0..00EE reorder equal colors, including duplicate entries. Compare
+    // the actual RGBA5551 texel so a palette permutation cannot break the
+    // scroll at the loop seam. Format2 has no palette (SDK28320).
+    return b.format==5?MEM_HU(int32_t(2*index),int32_t(b.palette)):index;
 }
 struct Shift {int x=0,y=0;bool translated=false;};
 struct CachedShift {uint64_t first=0,second=0;Shift value;};
@@ -47,9 +56,9 @@ uint64_t bitmap_signature(uint8_t* rdram,const Bitmap& b) {
 Shift translated_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b) {
     if(a.width!=b.width||a.height!=b.height||a.format!=b.format||a.colors!=b.colors)return {};
     if(word(rdram,a.header+4)!=word(rdram,b.header+4))return {}; // Same authored header/format flags too.
-    for(unsigned i=0;i<a.palette_bytes;++i)if(MEM_BU(int32_t(i),int32_t(a.palette))!=MEM_BU(int32_t(i),int32_t(b.palette)))return {};
     // This recognizes an authored toroidal scroll, never blends bitmap images.
     // ROM water113..122 is precisely the same32x32 CI4 bitmap shifted by2px.
+    // Palette storage/order may differ, but every displayed texel must match.
     Shift result;unsigned best=~0u;
     for(unsigned y=0;y<a.height;++y)for(unsigned x=0;x<a.width;++x) {
         const int sx=x>a.width/2?int(x)-int(a.width):int(x),sy=y>a.height/2?int(y)-int(a.height):int(y);

@@ -31,7 +31,7 @@ def main():
     assert len(proofs)==695,len(proofs)
     selected={};external=set()
     mini={n for n in current if re.match(r'dora3_s(?:20|21|22|23|24|25|26|27|28|29)_mini_',n)}
-    pure={0x8002DA98,0x8002F064,0x80040104,0x800327A4,0x80031A0C,0x80031884,0x80031AA4,0x80031A58,0x800393C4,0x8003931C,0x80055BD0,0x80057A80,0x80055BC0}
+    pure={0x8002A3B0,0x8002A3D4,0x8002A3F8,0x8002A41C,0x8002A4A4,0x8002DA98,0x8002F064,0x80040104,0x800327A4,0x80031A0C,0x80031884,0x80031AA4,0x80031A58,0x800393C4,0x8003931C,0x80055BD0,0x80057A80,0x80055BC0}
     bypc={int(re.search(r'// 0x([0-9A-Fa-f]+):',b)[1],16):n for n,b in current.items() if re.search(r'// 0x([0-9A-Fa-f]+):',b) and n not in mini}
     roots=list(mini)+[bypc[pc] for pc in pure]
     # Follow pure SDK math; command routines in mini bodies are explicit
@@ -81,7 +81,7 @@ def main():
         overlay_sections.append({'rom':callback['rom'],'path':str(path)})
     (out/'modules.json').write_text(json.dumps(overlay_sections))
     # Stub declarations are generated only for recorded external boundaries.
-    command_addresses={0x8002A47C,0x8002A4A4,0x8002A1B8,0x80028C74,0x8002A51C,0x80042A9C,0x800300C4,0x80042B90,0x80030FA8,0x800444C0,0x800445E0}
+    command_addresses={0x80028BC8,0x8002A328,0x8003CCA4,0x8002A47C,0x8002A4A4,0x8002A1B8,0x80028C74,0x8002A51C,0x80042A9C,0x800300C4,0x80042B90,0x80030FA8,0x800444C0,0x800445E0}
     command_names={bypc[pc] for pc in command_addresses}
     stub='#include "recomp.h"\n#include <stdexcept>\nvoid fixture_command();\nextern "C" {\n'
     # Hook symbols are provided by the real runtime or inactive enemy adapter.
@@ -121,7 +121,7 @@ def main():
     subprocess.run(['g++','-fsanitize=address,undefined',*map(str,objects),str(out/'functions.o'),'-o',str(out/'check')],check=True)
 
     result=subprocess.check_output([str(out/'check'),str(out/'seed.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')).strip()
-    tracked=[f for f in sources if f.is_relative_to(ROOT) and not f.is_relative_to(ROOT/'build-local')]+[ROOT/'src/native_minigames.hpp',ROOT/'src/native_minigame_math.hpp',ROOT/'src/native_minigame_registry.hpp',ROOT/'tools/native_minigame_patches.py',ROOT/'research/native-minigame-reviewed.json',Path(__file__).resolve()]
+    tracked=[f for f in sources if f.is_relative_to(ROOT) and not f.is_relative_to(ROOT/'build-local')]+[ROOT/'src/native_minigames.hpp',ROOT/'src/native_minigame_math.hpp',ROOT/'src/native_minigame_registry.hpp',ROOT/'tools/native_minigame_patches.py',ROOT/'research/native-minigame-reviewed.json',ROOT/'research/native-after048-minigame-check.inc',Path(__file__).resolve()]
     report=dict(result=result,generation_receipt_sha256=sha(g/'generation-receipt.json'),source_sha256={f.relative_to(ROOT).as_posix():sha(f) for f in tracked},source_body_proof=proofs,callbacks=data['callbacks'],original_functions=sorted(selected),stub_boundaries=sorted(external),no_game_gpu=True,limitations=['Synthetic CPU state/resources and reached branches; visual/full-game QA remains user-owned.'])
     (ROOT/'research/native-minigame-check.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(result)
 if __name__=='__main__':main()

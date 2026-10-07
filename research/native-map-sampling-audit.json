@@ -1,0 +1,288 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "scope": "Static ROM and pinned renderer source inspection only; no execution tests or game rendering.",
+  "camera_anchors": [
+    [
+      0,
+      0
+    ],
+    [
+      320,
+      0
+    ],
+    [
+      320,
+      240
+    ],
+    [
+      0,
+      240
+    ]
+  ],
+  "node_count": 24,
+  "descriptor_sentinel": "0x801C3780: FFFFFFFF after24 rows at801C2940 stride152; area/marker at row+84.",
+  "nodes": [
+    {
+      "index": 0,
+      "area": 0,
+      "marker": [
+        108,
+        170
+      ],
+      "descriptor": "0x801C29C4"
+    },
+    {
+      "index": 1,
+      "area": 0,
+      "marker": [
+        130,
+        128
+      ],
+      "descriptor": "0x801C2A5C"
+    },
+    {
+      "index": 2,
+      "area": 0,
+      "marker": [
+        162,
+        92
+      ],
+      "descriptor": "0x801C2AF4"
+    },
+    {
+      "index": 3,
+      "area": 0,
+      "marker": [
+        205,
+        180
+      ],
+      "descriptor": "0x801C2B8C"
+    },
+    {
+      "index": 4,
+      "area": 0,
+      "marker": [
+        230,
+        118
+      ],
+      "descriptor": "0x801C2C24"
+    },
+    {
+      "index": 5,
+      "area": 0,
+      "marker": [
+        275,
+        195
+      ],
+      "descriptor": "0x801C2CBC"
+    },
+    {
+      "index": 6,
+      "area": 0,
+      "marker": [
+        280,
+        135
+      ],
+      "descriptor": "0x801C2D54"
+    },
+    {
+      "index": 7,
+      "area": 1,
+      "marker": [
+        385,
+        125
+      ],
+      "descriptor": "0x801C2DEC"
+    },
+    {
+      "index": 8,
+      "area": 1,
+      "marker": [
+        460,
+        125
+      ],
+      "descriptor": "0x801C2E84"
+    },
+    {
+      "index": 9,
+      "area": 1,
+      "marker": [
+        550,
+        105
+      ],
+      "descriptor": "0x801C2F1C"
+    },
+    {
+      "index": 10,
+      "area": 1,
+      "marker": [
+        454,
+        177
+      ],
+      "descriptor": "0x801C2FB4"
+    },
+    {
+      "index": 11,
+      "area": 1,
+      "marker": [
+        538,
+        180
+      ],
+      "descriptor": "0x801C304C"
+    },
+    {
+      "index": 12,
+      "area": 1,
+      "marker": [
+        582,
+        185
+      ],
+      "descriptor": "0x801C30E4"
+    },
+    {
+      "index": 13,
+      "area": 2,
+      "marker": [
+        456,
+        284
+      ],
+      "descriptor": "0x801C317C"
+    },
+    {
+      "index": 14,
+      "area": 2,
+      "marker": [
+        378,
+        318
+      ],
+      "descriptor": "0x801C3214"
+    },
+    {
+      "index": 15,
+      "area": 2,
+      "marker": [
+        458,
+        376
+      ],
+      "descriptor": "0x801C32AC"
+    },
+    {
+      "index": 16,
+      "area": 2,
+      "marker": [
+        525,
+        410
+      ],
+      "descriptor": "0x801C3344"
+    },
+    {
+      "index": 17,
+      "area": 2,
+      "marker": [
+        525,
+        300
+      ],
+      "descriptor": "0x801C33DC"
+    },
+    {
+      "index": 18,
+      "area": 2,
+      "marker": [
+        548,
+        352
+      ],
+      "descriptor": "0x801C3474"
+    },
+    {
+      "index": 19,
+      "area": 3,
+      "marker": [
+        54,
+        308
+      ],
+      "descriptor": "0x801C350C"
+    },
+    {
+      "index": 20,
+      "area": 3,
+      "marker": [
+        180,
+        315
+      ],
+      "descriptor": "0x801C35A4"
+    },
+    {
+      "index": 21,
+      "area": 3,
+      "marker": [
+        256,
+        400
+      ],
+      "descriptor": "0x801C363C"
+    },
+    {
+      "index": 22,
+      "area": 3,
+      "marker": [
+        165,
+        412
+      ],
+      "descriptor": "0x801C36D4"
+    },
+    {
+      "index": 23,
+      "area": 3,
+      "marker": [
+        114,
+        378
+      ],
+      "descriptor": "0x801C376C"
+    }
+  ],
+  "cursors": [
+    {
+      "resource": "0x0BA2",
+      "format": 5,
+      "width": 32,
+      "height": 32,
+      "colors": 16,
+      "sha256": "5f48062b8dbed969c31fedf3a42d65f4c84c06f4118b7df18b1bc92946f0e889",
+      "transparent_rows": [
+        0,
+        1,
+        29,
+        30,
+        31
+      ],
+      "transparent_columns": [
+        0,
+        31
+      ]
+    },
+    {
+      "resource": "0x0BA3",
+      "format": 5,
+      "width": 32,
+      "height": 32,
+      "colors": 16,
+      "sha256": "c768d6fb5c0435b3f71a3c8ac36b71bd51bb9a1bee470d00c7a0309def893cfe",
+      "transparent_rows": [
+        31
+      ],
+      "transparent_columns": [
+        0,
+        1,
+        2,
+        29,
+        30,
+        31
+      ]
+    }
+  ],
+  "renderer": {
+    "path": "build-deps/lib/rt64/src/hle/rt64_rdp.cpp",
+    "fractional_top_adds_one_texel": "drawRect vFractionOffset: (uly & 3) ? (dtdy >> 5) / 32.0f : 0",
+    "texture_span_uses_integer_ceil": "FixedRect::width/height(true,true)",
+    "source_bitmap_end": "8002B180 removes one quarter pixel from the last strip; F2 bounds include width/rows instead of width-1/rows-1; render tile has no clamp"
+  }
+}

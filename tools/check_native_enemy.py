@@ -224,7 +224,32 @@ def main():
     resume=None;requested={d[0] for d in defs}
     if a.resume_evidence:
         resume=json.loads(a.resume_evidence.read_text())
-        if resume.get('kind') in {'inactive-texture-scope','inactive-model-frame-scope'}:
+        if resume.get('kind')=='same-runtime-kind-scoped-fixture':
+            assert resume['generation_receipt_sha256']==sha(g/'generation-receipt.json')
+            retained=set(resume['retained_kinds']);requested=set(resume['rerun_kinds'])
+            assert not retained&requested and retained|requested=={d[0] for d in defs}
+            assert resume['affected_kinds']==[264] and 264 in requested
+            old_fixture=ROOT/resume['old_fixture'];assert sha(old_fixture)==resume['old_fixture_sha256']
+            text=(ROOT/'research/native-enemy-source-check.inc').read_text()
+            assert 'const bool kinopper_roam=definition.kind==264&&profile==0;' in text
+            gate=text.index('if(kinopper_roam&&patrol_age>')
+            end=text.index('if(definition.kind==267',gate)
+            for edit in reversed(resume['fixture_edits']):
+                assert text.count(edit['new'])==1
+                assert edit['new'] in text[gate:end]
+                text=text.replace(edit['new'],edit['old'],1)
+                end=text.index('if(definition.kind==267',gate)
+            assert text==old_fixture.read_text(), 'Only the264 assertion/expectation may change'
+            for name,value in resume['compiled_dependencies_sha256'].items():assert sha(Path(name))==value,name
+            for name,value in resume['artifacts_sha256'].items():assert sha(ROOT/name)==value,name
+            record=resume['old_checker_binary'];assert sha(ROOT/record['path'])==record['sha256']
+            groups={}
+            for name in resume['artifacts_sha256']:
+                for kind,divider,profile in re.findall(r'PASS kind=(\d+) divider=(\d+) profile=(\d+)',(ROOT/name).read_text()):
+                    groups.setdefault(int(kind),set()).add((int(divider),int(profile)))
+            complete={k for k,v in groups.items() if v=={(d,q) for d in (2,3) for q in (0,1,2)}}
+            assert retained<=complete and set(map(int,resume['retained_states']))==retained
+        elif resume.get('kind') in {'inactive-texture-scope','inactive-model-frame-scope'}:
             assert resume['generation_receipt_sha256']==sha(g/'generation-receipt.json')
             retained=set(resume['retained_kinds']);requested=set(resume['rerun_kinds'])
             assert not retained&requested and retained|requested=={d[0] for d in defs}

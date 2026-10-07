@@ -1,0 +1,1225 @@
+{
+  "scope": "Static Original direct-call closure and draw publication/Source read inventory across nine minigames.",
+  "modules": [
+    {
+      "module": ".minigame_1",
+      "draw_local_world_copy_candidates": [
+        {
+          "function": "dora3_s21_mini_801C4EE8",
+          "site": "0x801C4F60",
+          "context": [
+            "801C4F48: lwc1        $f0, -0x1788($at)",
+            "801C4F4C: lwc1        $f2, 0xA4($s0)",
+            "801C4F50: sub.s       $f4, $f4, $f0",
+            "801C4F54: lui         $at, 0x800E",
+            "801C4F58: lwc1        $f0, -0x2C10($at)",
+            "801C4F5C: sub.s       $f2, $f2, $f0",
+            "801C4F60: swc1        $f6, 0x0($s0)",
+            "801C4F64: swc1        $f4, 0x4($s0)",
+            "801C4F68: jal         0x8003B1B8"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C4EE8",
+          "site": "0x801C4F64",
+          "context": [
+            "801C4F4C: lwc1        $f2, 0xA4($s0)",
+            "801C4F50: sub.s       $f4, $f4, $f0",
+            "801C4F54: lui         $at, 0x800E",
+            "801C4F58: lwc1        $f0, -0x2C10($at)",
+            "801C4F5C: sub.s       $f2, $f2, $f0",
+            "801C4F60: swc1        $f6, 0x0($s0)",
+            "801C4F64: swc1        $f4, 0x4($s0)",
+            "801C4F68: jal         0x8003B1B8",
+            "801C4F6C: swc1        $f2, 0x8($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C52D0",
+          "site": "0x801C5348",
+          "context": [
+            "801C5330: lwc1        $f0, -0x1788($at)",
+            "801C5334: lwc1        $f2, 0xA4($s0)",
+            "801C5338: sub.s       $f4, $f4, $f0",
+            "801C533C: lui         $at, 0x800E",
+            "801C5340: lwc1        $f0, -0x2C10($at)",
+            "801C5344: sub.s       $f2, $f2, $f0",
+            "801C5348: swc1        $f6, 0x0($s0)",
+            "801C534C: swc1        $f4, 0x4($s0)",
+            "801C5350: jal         0x8003B1B8"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C52D0",
+          "site": "0x801C534C",
+          "context": [
+            "801C5334: lwc1        $f2, 0xA4($s0)",
+            "801C5338: sub.s       $f4, $f4, $f0",
+            "801C533C: lui         $at, 0x800E",
+            "801C5340: lwc1        $f0, -0x2C10($at)",
+            "801C5344: sub.s       $f2, $f2, $f0",
+            "801C5348: swc1        $f6, 0x0($s0)",
+            "801C534C: swc1        $f4, 0x4($s0)",
+            "801C5350: jal         0x8003B1B8",
+            "801C5354: swc1        $f2, 0x8($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C5CDC",
+          "site": "0x801C5DF4",
+          "context": [
+            "801C5DDC: jal         0x800327A4",
+            "801C5DE0: sw          $v0, 0x1C($sp)",
+            "801C5DE4: lwc1        $f0, 0x9C($s1)",
+            "801C5DE8: lui         $at, 0x800E",
+            "801C5DEC: lwc1        $f2, -0x51AC($at)",
+            "801C5DF0: sub.s       $f0, $f0, $f2",
+            "801C5DF4: swc1        $f0, 0x0($s0)",
+            "801C5DF8: lwc1        $f2, 0x0($s2)",
+            "801C5DFC: add.s       $f2, $f2, $f22"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C9024",
+          "site": "0x801C9074",
+          "context": [
+            "801C905C: lui         $at, 0x800E",
+            "801C9060: lwc1        $f2, -0x51AC($at)",
+            "801C9064: lui         $at, 0x8010",
+            "801C9068: lwc1        $f4, -0x1788($at)",
+            "801C906C: sub.s       $f0, $f0, $f2",
+            "801C9070: lwc1        $f2, 0xA0($s0)",
+            "801C9074: swc1        $f0, 0x0($s0)",
+            "801C9078: lwc1        $f0, 0x0($s0)",
+            "801C907C: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C9024",
+          "site": "0x801C9084",
+          "context": [
+            "801C906C: sub.s       $f0, $f0, $f2",
+            "801C9070: lwc1        $f2, 0xA0($s0)",
+            "801C9074: swc1        $f0, 0x0($s0)",
+            "801C9078: lwc1        $f0, 0x0($s0)",
+            "801C907C: sub.s       $f2, $f2, $f4",
+            "801C9080: mul.s       $f0, $f0, $f0",
+            "801C9084: swc1        $f2, 0x4($s0)",
+            "801C9088: lwc1        $f2, 0x4($s0)",
+            "801C908C: lui         $at, 0x800E"
+          ]
+        }
+      ],
+      "source_local_load_functions": [
+        {
+          "function": "dora3_s21_mini_801C6944",
+          "loads": [
+            "801C69BC: lwc1        $f0, 0x8($s0)",
+            "801C69C8: lwc1        $f0, 0x8($s0)",
+            "801C69E8: lwc1        $f2, 0x8($s0)",
+            "801C6A54: lwc1        $f0, 0x8($s0)",
+            "801C6BFC: lwc1        $f2, 0x4($s0)",
+            "801C70B8: lwc1        $f0, 0x8($s0)",
+            "801C70CC: lwc1        $f0, 0x8($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C7170",
+          "loads": [
+            "801C72B4: lwc1        $f0, 0x8($s0)",
+            "801C742C: lwc1        $f4, 0x8($s0)",
+            "801C74C8: lwc1        $f0, 0x4($s0)",
+            "801C74EC: lwc1        $f0, 0x8($s0)",
+            "801C7500: lwc1        $f0, 0x4($s0)",
+            "801C752C: lwc1        $f0, 0x8($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C7564",
+          "loads": [
+            "801C76A4: lwc1        $f0, 0x8($s0)",
+            "801C76D0: lwc1        $f0, 0x8($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C76F8",
+          "loads": [
+            "801C7750: lwc1        $f0, 0x4($v1)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C77F4",
+          "loads": [
+            "801C78C4: lwc1        $f12, 0x4($v1)",
+            "801C78C8: lwc1        $f14, 0x8($v1)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C7C9C",
+          "loads": [
+            "801C7D24: lwc1        $f2, 0x8($s1)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C7D78",
+          "loads": [
+            "801C7E00: lwc1        $f2, 0x8($s1)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C7E54",
+          "loads": [
+            "801C7EDC: lwc1        $f2, 0x8($s1)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C7F30",
+          "loads": [
+            "801C7FB8: lwc1        $f2, 0x8($s1)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C800C",
+          "loads": [
+            "801C893C: lwc1        $f2, 0x8($s1)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C8C74",
+          "loads": [
+            "801C8D70: lwc1        $f0, 0x8($s3)",
+            "801C8FE0: lwc1        $f0, 0x4($s3)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C93F4",
+          "loads": [
+            "801C946C: lwc1        $f0, 0x0($v0)"
+          ]
+        },
+        {
+          "function": "dora3_s21_mini_801C97FC",
+          "loads": [
+            "801C99BC: lwc1        $f2, 0x8($s1)"
+          ]
+        }
+      ],
+      "limitations": "Register/base alias requires manual review; simple small-offset loads include driver fields and constants. Not runtime execution."
+    },
+    {
+      "module": ".minigame_2",
+      "draw_local_world_copy_candidates": [
+        {
+          "function": "dora3_s22_mini_801C5A5C",
+          "site": "0x801C5BC4",
+          "context": [
+            "801C5BAC: jal         0x800327A4",
+            "801C5BB0: sw          $v0, 0x1C($sp)",
+            "801C5BB4: lwc1        $f0, 0x9C($s1)",
+            "801C5BB8: lui         $at, 0x800E",
+            "801C5BBC: lwc1        $f2, -0x51AC($at)",
+            "801C5BC0: sub.s       $f0, $f0, $f2",
+            "801C5BC4: swc1        $f0, 0x0($s0)",
+            "801C5BC8: lwc1        $f2, 0xA4($s1)",
+            "801C5BCC: lui         $at, 0x45CE"
+          ]
+        },
+        {
+          "function": "dora3_s22_mini_801C5F3C",
+          "site": "0x801C5F8C",
+          "context": [
+            "801C5F74: lui         $at, 0x800E",
+            "801C5F78: lwc1        $f2, -0x51AC($at)",
+            "801C5F7C: lui         $at, 0x8010",
+            "801C5F80: lwc1        $f4, -0x1788($at)",
+            "801C5F84: sub.s       $f0, $f0, $f2",
+            "801C5F88: lwc1        $f2, 0xA0($s0)",
+            "801C5F8C: swc1        $f0, 0x0($s0)",
+            "801C5F90: lwc1        $f0, 0x0($s0)",
+            "801C5F94: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s22_mini_801C5F3C",
+          "site": "0x801C5F9C",
+          "context": [
+            "801C5F84: sub.s       $f0, $f0, $f2",
+            "801C5F88: lwc1        $f2, 0xA0($s0)",
+            "801C5F8C: swc1        $f0, 0x0($s0)",
+            "801C5F90: lwc1        $f0, 0x0($s0)",
+            "801C5F94: sub.s       $f2, $f2, $f4",
+            "801C5F98: mul.s       $f0, $f0, $f0",
+            "801C5F9C: swc1        $f2, 0x4($s0)",
+            "801C5FA0: lwc1        $f2, 0x4($s0)",
+            "801C5FA4: lui         $at, 0x800E"
+          ]
+        },
+        {
+          "function": "dora3_s22_mini_801C7068",
+          "site": "0x801C70B8",
+          "context": [
+            "801C70A0: lui         $at, 0x800E",
+            "801C70A4: lwc1        $f2, -0x51AC($at)",
+            "801C70A8: lui         $at, 0x8010",
+            "801C70AC: lwc1        $f4, -0x1788($at)",
+            "801C70B0: sub.s       $f0, $f0, $f2",
+            "801C70B4: lwc1        $f2, 0xA0($s0)",
+            "801C70B8: swc1        $f0, 0x0($s0)",
+            "801C70BC: lwc1        $f0, 0x0($s0)",
+            "801C70C0: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s22_mini_801C7068",
+          "site": "0x801C70C8",
+          "context": [
+            "801C70B0: sub.s       $f0, $f0, $f2",
+            "801C70B4: lwc1        $f2, 0xA0($s0)",
+            "801C70B8: swc1        $f0, 0x0($s0)",
+            "801C70BC: lwc1        $f0, 0x0($s0)",
+            "801C70C0: sub.s       $f2, $f2, $f4",
+            "801C70C4: mul.s       $f0, $f0, $f0",
+            "801C70C8: swc1        $f2, 0x4($s0)",
+            "801C70CC: lwc1        $f2, 0x4($s0)",
+            "801C70D0: lui         $at, 0x800E"
+          ]
+        }
+      ],
+      "source_local_load_functions": [
+        {
+          "function": "dora3_s22_mini_801C56C8",
+          "loads": [
+            "801C583C: lwc1        $f0, 0x0($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s22_mini_801C654C",
+          "loads": [
+            "801C66C0: lwc1        $f0, 0x8($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s22_mini_801C7B48",
+          "loads": [
+            "801C7BD4: lwc1        $f0, 0x0($a3)"
+          ]
+        }
+      ],
+      "limitations": "Register/base alias requires manual review; simple small-offset loads include driver fields and constants. Not runtime execution."
+    },
+    {
+      "module": ".minigame_3",
+      "draw_local_world_copy_candidates": [
+        {
+          "function": "dora3_s23_mini_801C4308",
+          "site": "0x801C451C",
+          "context": [
+            "801C4504: lwc1        $f0, 0x9C($s0)",
+            "801C4508: lui         $at, 0x800E",
+            "801C450C: lwc1        $f2, -0x51AC($at)",
+            "801C4510: sub.s       $f0, $f0, $f2",
+            "801C4514: lui         $at, 0x8010",
+            "801C4518: lwc1        $f4, -0x1788($at)",
+            "801C451C: swc1        $f0, 0x0($s0)",
+            "801C4520: lwc1        $f0, 0xA0($s0)",
+            "801C4524: lwc1        $f2, 0x0($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C4308",
+          "site": "0x801C4530",
+          "context": [
+            "801C4518: lwc1        $f4, -0x1788($at)",
+            "801C451C: swc1        $f0, 0x0($s0)",
+            "801C4520: lwc1        $f0, 0xA0($s0)",
+            "801C4524: lwc1        $f2, 0x0($s0)",
+            "801C4528: sub.s       $f0, $f0, $f4",
+            "801C452C: mul.s       $f2, $f2, $f2",
+            "801C4530: swc1        $f0, 0x4($s0)",
+            "801C4534: lwc1        $f0, 0x4($s0)",
+            "801C4538: lui         $at, 0x800E"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C47AC",
+          "site": "0x801C4944",
+          "context": [
+            "801C492C: lwc1        $f0, 0x9C($s0)",
+            "801C4930: lui         $at, 0x800E",
+            "801C4934: lwc1        $f2, -0x51AC($at)",
+            "801C4938: sub.s       $f0, $f0, $f2",
+            "801C493C: lui         $at, 0x8010",
+            "801C4940: lwc1        $f4, -0x1788($at)",
+            "801C4944: swc1        $f0, 0x0($s0)",
+            "801C4948: lwc1        $f0, 0xA0($s0)",
+            "801C494C: lwc1        $f2, 0x0($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C47AC",
+          "site": "0x801C4958",
+          "context": [
+            "801C4940: lwc1        $f4, -0x1788($at)",
+            "801C4944: swc1        $f0, 0x0($s0)",
+            "801C4948: lwc1        $f0, 0xA0($s0)",
+            "801C494C: lwc1        $f2, 0x0($s0)",
+            "801C4950: sub.s       $f0, $f0, $f4",
+            "801C4954: mul.s       $f2, $f2, $f2",
+            "801C4958: swc1        $f0, 0x4($s0)",
+            "801C495C: lwc1        $f0, 0x4($s0)",
+            "801C4960: lui         $at, 0x800E"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C4ECC",
+          "site": "0x801C4F28",
+          "context": [
+            "801C4F10: lui         $at, 0x800E",
+            "801C4F14: lwc1        $f2, -0x51AC($at)",
+            "801C4F18: lui         $at, 0x8010",
+            "801C4F1C: lwc1        $f4, -0x1788($at)",
+            "801C4F20: sub.s       $f0, $f0, $f2",
+            "801C4F24: lwc1        $f2, 0xA0($s0)",
+            "801C4F28: swc1        $f0, 0x0($s0)",
+            "801C4F2C: lwc1        $f0, 0x0($s0)",
+            "801C4F30: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C4ECC",
+          "site": "0x801C4F38",
+          "context": [
+            "801C4F20: sub.s       $f0, $f0, $f2",
+            "801C4F24: lwc1        $f2, 0xA0($s0)",
+            "801C4F28: swc1        $f0, 0x0($s0)",
+            "801C4F2C: lwc1        $f0, 0x0($s0)",
+            "801C4F30: sub.s       $f2, $f2, $f4",
+            "801C4F34: mul.s       $f0, $f0, $f0",
+            "801C4F38: swc1        $f2, 0x4($s0)",
+            "801C4F3C: lwc1        $f2, 0x4($s0)",
+            "801C4F40: lui         $at, 0x800E"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C512C",
+          "site": "0x801C51E8",
+          "context": [
+            "801C51D0: lwc1        $f2, -0x2C10($at)",
+            "801C51D4: swc1        $f0, 0x4($s0)",
+            "801C51D8: lwc1        $f0, 0xA4($a0)",
+            "801C51DC: sub.s       $f0, $f0, $f2",
+            "801C51E0: lui         $a2, 0x3F66",
+            "801C51E4: ori         $a2, $a2, 0x6666",
+            "801C51E8: swc1        $f0, 0x8($s0)",
+            "801C51EC: lwc1        $f0, 0x18($a0)",
+            "801C51F0: swc1        $f0, 0x18($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C5564",
+          "site": "0x801C55C0",
+          "context": [
+            "801C55A8: lui         $at, 0x800E",
+            "801C55AC: lwc1        $f2, -0x51AC($at)",
+            "801C55B0: lui         $at, 0x8010",
+            "801C55B4: lwc1        $f4, -0x1788($at)",
+            "801C55B8: sub.s       $f0, $f0, $f2",
+            "801C55BC: lwc1        $f2, 0xA0($s0)",
+            "801C55C0: swc1        $f0, 0x0($s0)",
+            "801C55C4: lwc1        $f0, 0x0($s0)",
+            "801C55C8: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C5564",
+          "site": "0x801C55D0",
+          "context": [
+            "801C55B8: sub.s       $f0, $f0, $f2",
+            "801C55BC: lwc1        $f2, 0xA0($s0)",
+            "801C55C0: swc1        $f0, 0x0($s0)",
+            "801C55C4: lwc1        $f0, 0x0($s0)",
+            "801C55C8: sub.s       $f2, $f2, $f4",
+            "801C55CC: mul.s       $f0, $f0, $f0",
+            "801C55D0: swc1        $f2, 0x4($s0)",
+            "801C55D4: lwc1        $f2, 0x4($s0)",
+            "801C55D8: lui         $at, 0x800E"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C5820",
+          "site": "0x801C587C",
+          "context": [
+            "801C5864: lui         $at, 0x800E",
+            "801C5868: lwc1        $f2, -0x51AC($at)",
+            "801C586C: lui         $at, 0x8010",
+            "801C5870: lwc1        $f4, -0x1788($at)",
+            "801C5874: sub.s       $f0, $f0, $f2",
+            "801C5878: lwc1        $f2, 0xA0($s0)",
+            "801C587C: swc1        $f0, 0x0($s0)",
+            "801C5880: lwc1        $f0, 0x0($s0)",
+            "801C5884: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C5820",
+          "site": "0x801C588C",
+          "context": [
+            "801C5874: sub.s       $f0, $f0, $f2",
+            "801C5878: lwc1        $f2, 0xA0($s0)",
+            "801C587C: swc1        $f0, 0x0($s0)",
+            "801C5880: lwc1        $f0, 0x0($s0)",
+            "801C5884: sub.s       $f2, $f2, $f4",
+            "801C5888: mul.s       $f0, $f0, $f0",
+            "801C588C: swc1        $f2, 0x4($s0)",
+            "801C5890: lwc1        $f2, 0x4($s0)",
+            "801C5894: lui         $at, 0x800E"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C60B8",
+          "site": "0x801C6134",
+          "context": [
+            "801C611C: lui         $at, 0x800E",
+            "801C6120: lwc1        $f2, -0x51AC($at)",
+            "801C6124: lui         $at, 0x8010",
+            "801C6128: lwc1        $f4, -0x1788($at)",
+            "801C612C: sub.s       $f0, $f0, $f2",
+            "801C6130: lwc1        $f2, 0xA0($s0)",
+            "801C6134: swc1        $f0, 0x0($s0)",
+            "801C6138: lwc1        $f0, 0x0($s0)",
+            "801C613C: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C60B8",
+          "site": "0x801C6144",
+          "context": [
+            "801C612C: sub.s       $f0, $f0, $f2",
+            "801C6130: lwc1        $f2, 0xA0($s0)",
+            "801C6134: swc1        $f0, 0x0($s0)",
+            "801C6138: lwc1        $f0, 0x0($s0)",
+            "801C613C: sub.s       $f2, $f2, $f4",
+            "801C6140: mul.s       $f0, $f0, $f0",
+            "801C6144: swc1        $f2, 0x4($s0)",
+            "801C6148: lwc1        $f2, 0x4($s0)",
+            "801C614C: lui         $at, 0x800E"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C6258",
+          "site": "0x801C62C8",
+          "context": [
+            "801C62B0: lwc1        $f0, 0x9C($v1)",
+            "801C62B4: lui         $at, 0x800E",
+            "801C62B8: lwc1        $f2, -0x51AC($at)",
+            "801C62BC: sub.s       $f0, $f0, $f2",
+            "801C62C0: lui         $at, 0x8010",
+            "801C62C4: lwc1        $f2, -0x1788($at)",
+            "801C62C8: swc1        $f0, 0x0($s1)",
+            "801C62CC: lwc1        $f0, 0xA0($v1)",
+            "801C62D0: sub.s       $f0, $f0, $f2"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C72CC",
+          "site": "0x801C731C",
+          "context": [
+            "801C7304: lui         $at, 0x800E",
+            "801C7308: lwc1        $f2, -0x51AC($at)",
+            "801C730C: lui         $at, 0x8010",
+            "801C7310: lwc1        $f4, -0x1788($at)",
+            "801C7314: sub.s       $f0, $f0, $f2",
+            "801C7318: lwc1        $f2, 0xA0($s0)",
+            "801C731C: swc1        $f0, 0x0($s0)",
+            "801C7320: lwc1        $f0, 0x0($s0)",
+            "801C7324: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s23_mini_801C72CC",
+          "site": "0x801C732C",
+          "context": [
+            "801C7314: sub.s       $f0, $f0, $f2",
+            "801C7318: lwc1        $f2, 0xA0($s0)",
+            "801C731C: swc1        $f0, 0x0($s0)",
+            "801C7320: lwc1        $f0, 0x0($s0)",
+            "801C7324: sub.s       $f2, $f2, $f4",
+            "801C7328: mul.s       $f0, $f0, $f0",
+            "801C732C: swc1        $f2, 0x4($s0)",
+            "801C7330: lwc1        $f2, 0x4($s0)",
+            "801C7334: lui         $at, 0x800E"
+          ]
+        }
+      ],
+      "source_local_load_functions": [],
+      "limitations": "Register/base alias requires manual review; simple small-offset loads include driver fields and constants. Not runtime execution."
+    },
+    {
+      "module": ".minigame_4",
+      "draw_local_world_copy_candidates": [
+        {
+          "function": "dora3_s24_mini_801C433C",
+          "site": "0x801C4398",
+          "context": [
+            "801C4380: lui         $at, 0x800E",
+            "801C4384: lwc1        $f2, -0x51AC($at)",
+            "801C4388: lui         $at, 0x8010",
+            "801C438C: lwc1        $f4, -0x1788($at)",
+            "801C4390: sub.s       $f0, $f0, $f2",
+            "801C4394: lwc1        $f2, 0xA0($s0)",
+            "801C4398: swc1        $f0, 0x0($s0)",
+            "801C439C: lwc1        $f0, 0x0($s0)",
+            "801C43A0: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C433C",
+          "site": "0x801C43A8",
+          "context": [
+            "801C4390: sub.s       $f0, $f0, $f2",
+            "801C4394: lwc1        $f2, 0xA0($s0)",
+            "801C4398: swc1        $f0, 0x0($s0)",
+            "801C439C: lwc1        $f0, 0x0($s0)",
+            "801C43A0: sub.s       $f2, $f2, $f4",
+            "801C43A4: mul.s       $f0, $f0, $f0",
+            "801C43A8: swc1        $f2, 0x4($s0)",
+            "801C43AC: lwc1        $f2, 0x4($s0)",
+            "801C43B0: lui         $at, 0x800E"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C4730",
+          "site": "0x801C47A0",
+          "context": [
+            "801C4788: lui         $at, 0x800E",
+            "801C478C: lwc1        $f2, -0x51AC($at)",
+            "801C4790: lui         $at, 0x8010",
+            "801C4794: lwc1        $f4, -0x1788($at)",
+            "801C4798: sub.s       $f0, $f0, $f2",
+            "801C479C: lwc1        $f2, 0xA0($s0)",
+            "801C47A0: swc1        $f0, 0x0($s0)",
+            "801C47A4: lwc1        $f0, 0x0($s0)",
+            "801C47A8: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C4730",
+          "site": "0x801C47B0",
+          "context": [
+            "801C4798: sub.s       $f0, $f0, $f2",
+            "801C479C: lwc1        $f2, 0xA0($s0)",
+            "801C47A0: swc1        $f0, 0x0($s0)",
+            "801C47A4: lwc1        $f0, 0x0($s0)",
+            "801C47A8: sub.s       $f2, $f2, $f4",
+            "801C47AC: mul.s       $f0, $f0, $f0",
+            "801C47B0: swc1        $f2, 0x4($s0)",
+            "801C47B4: lwc1        $f2, 0x4($s0)",
+            "801C47B8: lui         $at, 0x800E"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C4954",
+          "site": "0x801C4A54",
+          "context": [
+            "801C4A3C: jal         0x800327A4",
+            "801C4A40: sw          $v0, 0x1C($sp)",
+            "801C4A44: lwc1        $f0, 0x9C($s1)",
+            "801C4A48: lui         $at, 0x800E",
+            "801C4A4C: lwc1        $f2, -0x51AC($at)",
+            "801C4A50: sub.s       $f0, $f0, $f2",
+            "801C4A54: swc1        $f0, 0x0($s0)",
+            "801C4A58: lwc1        $f0, 0x0($s2)",
+            "801C4A5C: add.s       $f0, $f0, $f20"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C5438",
+          "site": "0x801C5494",
+          "context": [
+            "801C547C: lui         $at, 0x800E",
+            "801C5480: lwc1        $f2, -0x51AC($at)",
+            "801C5484: lui         $at, 0x8010",
+            "801C5488: lwc1        $f4, -0x1788($at)",
+            "801C548C: sub.s       $f0, $f0, $f2",
+            "801C5490: lwc1        $f2, 0xA0($s0)",
+            "801C5494: swc1        $f0, 0x0($s0)",
+            "801C5498: lwc1        $f0, 0x0($s0)",
+            "801C549C: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C5438",
+          "site": "0x801C54A4",
+          "context": [
+            "801C548C: sub.s       $f0, $f0, $f2",
+            "801C5490: lwc1        $f2, 0xA0($s0)",
+            "801C5494: swc1        $f0, 0x0($s0)",
+            "801C5498: lwc1        $f0, 0x0($s0)",
+            "801C549C: sub.s       $f2, $f2, $f4",
+            "801C54A0: mul.s       $f0, $f0, $f0",
+            "801C54A4: swc1        $f2, 0x4($s0)",
+            "801C54A8: lwc1        $f2, 0x4($s0)",
+            "801C54AC: lui         $at, 0x800E"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C5820",
+          "site": "0x801C5890",
+          "context": [
+            "801C5878: lui         $at, 0x800E",
+            "801C587C: lwc1        $f2, -0x51AC($at)",
+            "801C5880: lui         $at, 0x8010",
+            "801C5884: lwc1        $f4, -0x1788($at)",
+            "801C5888: sub.s       $f0, $f0, $f2",
+            "801C588C: lwc1        $f2, 0xA0($s0)",
+            "801C5890: swc1        $f0, 0x0($s0)",
+            "801C5894: lwc1        $f0, 0x0($s0)",
+            "801C5898: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C5820",
+          "site": "0x801C58A0",
+          "context": [
+            "801C5888: sub.s       $f0, $f0, $f2",
+            "801C588C: lwc1        $f2, 0xA0($s0)",
+            "801C5890: swc1        $f0, 0x0($s0)",
+            "801C5894: lwc1        $f0, 0x0($s0)",
+            "801C5898: sub.s       $f2, $f2, $f4",
+            "801C589C: mul.s       $f0, $f0, $f0",
+            "801C58A0: swc1        $f2, 0x4($s0)",
+            "801C58A4: lwc1        $f2, 0x4($s0)",
+            "801C58A8: lui         $at, 0x800E"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C59C8",
+          "site": "0x801C5ABC",
+          "context": [
+            "801C5AA4: jal         0x800327A4",
+            "801C5AA8: sw          $v0, 0x1C($sp)",
+            "801C5AAC: lwc1        $f0, 0x9C($s1)",
+            "801C5AB0: lui         $at, 0x800E",
+            "801C5AB4: lwc1        $f2, -0x51AC($at)",
+            "801C5AB8: sub.s       $f0, $f0, $f2",
+            "801C5ABC: swc1        $f0, 0x0($s0)",
+            "801C5AC0: lwc1        $f0, 0x0($s2)",
+            "801C5AC4: add.s       $f0, $f0, $f20"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C65D8",
+          "site": "0x801C6634",
+          "context": [
+            "801C661C: lui         $at, 0x800E",
+            "801C6620: lwc1        $f2, -0x51AC($at)",
+            "801C6624: lui         $at, 0x8010",
+            "801C6628: lwc1        $f4, -0x1788($at)",
+            "801C662C: sub.s       $f0, $f0, $f2",
+            "801C6630: lwc1        $f2, 0xA0($s0)",
+            "801C6634: swc1        $f0, 0x0($s0)",
+            "801C6638: lwc1        $f0, 0x0($s0)",
+            "801C663C: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C65D8",
+          "site": "0x801C6644",
+          "context": [
+            "801C662C: sub.s       $f0, $f0, $f2",
+            "801C6630: lwc1        $f2, 0xA0($s0)",
+            "801C6634: swc1        $f0, 0x0($s0)",
+            "801C6638: lwc1        $f0, 0x0($s0)",
+            "801C663C: sub.s       $f2, $f2, $f4",
+            "801C6640: mul.s       $f0, $f0, $f0",
+            "801C6644: swc1        $f2, 0x4($s0)",
+            "801C6648: lwc1        $f2, 0x4($s0)",
+            "801C664C: lui         $at, 0x800E"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C8CCC",
+          "site": "0x801C8D1C",
+          "context": [
+            "801C8D04: lui         $at, 0x800E",
+            "801C8D08: lwc1        $f2, -0x51AC($at)",
+            "801C8D0C: lui         $at, 0x8010",
+            "801C8D10: lwc1        $f4, -0x1788($at)",
+            "801C8D14: sub.s       $f0, $f0, $f2",
+            "801C8D18: lwc1        $f2, 0xA0($s0)",
+            "801C8D1C: swc1        $f0, 0x0($s0)",
+            "801C8D20: lwc1        $f0, 0x0($s0)",
+            "801C8D24: sub.s       $f2, $f2, $f4"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C8CCC",
+          "site": "0x801C8D2C",
+          "context": [
+            "801C8D14: sub.s       $f0, $f0, $f2",
+            "801C8D18: lwc1        $f2, 0xA0($s0)",
+            "801C8D1C: swc1        $f0, 0x0($s0)",
+            "801C8D20: lwc1        $f0, 0x0($s0)",
+            "801C8D24: sub.s       $f2, $f2, $f4",
+            "801C8D28: mul.s       $f0, $f0, $f0",
+            "801C8D2C: swc1        $f2, 0x4($s0)",
+            "801C8D30: lwc1        $f2, 0x4($s0)",
+            "801C8D34: lui         $at, 0x800E"
+          ]
+        }
+      ],
+      "source_local_load_functions": [
+        {
+          "function": "dora3_s24_mini_801C3FCC",
+          "loads": [
+            "801C4074: lwc1        $f0, 0x4($v0)"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C4DD4",
+          "loads": [
+            "801C4DD4: lwc1        $f10, 0x8($a1)",
+            "801C4E20: lwc1        $f0, 0x0($v0)"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C50A0",
+          "loads": [
+            "801C50BC: lwc1        $f2, 0x0($s0)",
+            "801C50C4: lwc1        $f2, 0x4($s0)",
+            "801C50DC: lwc1        $f0, 0x8($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s24_mini_801C855C",
+          "loads": [
+            "801C859C: lwc1        $f0, 0x0($v0)"
+          ]
+        }
+      ],
+      "limitations": "Register/base alias requires manual review; simple small-offset loads include driver fields and constants. Not runtime execution."
+    },
+    {
+      "module": ".minigame_5",
+      "draw_local_world_copy_candidates": [],
+      "source_local_load_functions": [
+        {
+          "function": "dora3_s25_mini_801C50C0",
+          "loads": [
+            "801C5238: lwc1        $f2, 0x0($s1)",
+            "801C52EC: lwc1        $f2, 0x0($s1)",
+            "801C53AC: lwc1        $f12, 0x4($s0)",
+            "801C53B0: lwc1        $f12, 0x8($s0)",
+            "801C53C4: lwc1        $f0, 0x0($s1)",
+            "801C53D8: lwc1        $f0, 0x0($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s25_mini_801C59E8",
+          "loads": [
+            "801C5E64: lwc1        $f0, 0x0($s4)",
+            "801C5E80: lwc1        $f0, 0x4($s4)"
+          ]
+        }
+      ],
+      "limitations": "Register/base alias requires manual review; simple small-offset loads include driver fields and constants. Not runtime execution."
+    },
+    {
+      "module": ".minigame_6",
+      "draw_local_world_copy_candidates": [],
+      "source_local_load_functions": [
+        {
+          "function": "dora3_s26_mini_801C55E8",
+          "loads": [
+            "801C56B0: lwc1        $f0, 0x0($a3)"
+          ]
+        },
+        {
+          "function": "dora3_s26_mini_801C5DC0",
+          "loads": [
+            "801C5EBC: lwc1        $f0, 0x8($s0)",
+            "801C5EF4: lwc1        $f2, 0x8($s0)"
+          ]
+        }
+      ],
+      "limitations": "Register/base alias requires manual review; simple small-offset loads include driver fields and constants. Not runtime execution."
+    },
+    {
+      "module": ".minigame_7",
+      "draw_local_world_copy_candidates": [],
+      "source_local_load_functions": [
+        {
+          "function": "dora3_s27_mini_801C38F8",
+          "loads": [
+            "801C3954: lwc1        $f2, 0x0($v0)",
+            "801C398C: lwc1        $f2, 0x4($v0)"
+          ]
+        },
+        {
+          "function": "dora3_s27_mini_801C3BB4",
+          "loads": [
+            "801C3BF0: lwc1        $f0, 0x0($v1)"
+          ]
+        },
+        {
+          "function": "dora3_s27_mini_801C3C20",
+          "loads": [
+            "801C3C70: lwc1        $f0, 0x0($a2)"
+          ]
+        },
+        {
+          "function": "dora3_s27_mini_801C3CD8",
+          "loads": [
+            "801C3DD8: lwc1        $f0, 0x4($s2)"
+          ]
+        },
+        {
+          "function": "dora3_s27_mini_801C499C",
+          "loads": [
+            "801C4A74: lwc1        $f2, 0x8($s1)",
+            "801C4C80: lwc1        $f0, 0x8($s1)"
+          ]
+        },
+        {
+          "function": "dora3_s27_mini_801C4E58",
+          "loads": [
+            "801C4ECC: lwc1        $f2, 0x8($a1)",
+            "801C4F60: lwc1        $f0, 0x8($a1)"
+          ]
+        },
+        {
+          "function": "dora3_s27_mini_801C5314",
+          "loads": [
+            "801C5454: lwc1        $f0, 0x8($s0)",
+            "801C54B8: lwc1        $f0, 0x8($s0)",
+            "801C54D8: lwc1        $f0, 0x8($s0)",
+            "801C54F8: lwc1        $f0, 0x8($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s27_mini_801C5818",
+          "loads": [
+            "801C587C: lwc1        $f2, 0x8($s1)",
+            "801C59B8: lwc1        $f12, 0x4($s0)",
+            "801C59C4: lwc1        $f20, 0x0($s0)",
+            "801C59F4: lwc1        $f12, 0x4($s0)",
+            "801C5A00: lwc1        $f22, 0x0($s0)",
+            "801C5A24: lwc1        $f20, 0x0($s0)",
+            "801C5A48: lwc1        $f0, 0x0($s1)",
+            "801C5A54: lwc1        $f0, 0x8($s1)",
+            "801C5A64: lwc1        $f0, 0x4($s1)"
+          ]
+        },
+        {
+          "function": "dora3_s27_mini_801C5C14",
+          "loads": [
+            "801C5DDC: lwc1        $f0, 0x0($s4)",
+            "801C5E84: lwc1        $f0, 0x4($s4)",
+            "801C5F24: lwc1        $f0, 0x0($s4)",
+            "801C5F40: lwc1        $f0, 0x4($s4)"
+          ]
+        },
+        {
+          "function": "dora3_s27_mini_801C619C",
+          "loads": [
+            "801C6208: lwc1        $f2, 0x0($a2)",
+            "801C6210: lwc1        $f4, 0x0($a1)",
+            "801C6244: lwc1        $f2, 0x4($a2)",
+            "801C624C: lwc1        $f4, 0x4($a1)",
+            "801C6294: lwc1        $f2, 0x0($a1)",
+            "801C6298: lwc1        $f0, 0x0($a2)"
+          ]
+        }
+      ],
+      "limitations": "Register/base alias requires manual review; simple small-offset loads include driver fields and constants. Not runtime execution."
+    },
+    {
+      "module": ".minigame_8",
+      "draw_local_world_copy_candidates": [
+        {
+          "function": "dora3_s28_mini_801C4EC8",
+          "site": "0x801C4F1C",
+          "context": [
+            "801C4F04: addiu       $s2, $s2, 0x1",
+            "801C4F08: lwc1        $f0, 0x98($s0)",
+            "801C4F0C: lw          $v0, 0x94($s0)",
+            "801C4F10: swc1        $f0, 0x0($s1)",
+            "801C4F14: lwc1        $f0, 0x9C($s0)",
+            "801C4F18: lwc1        $f2, 0xA0($s0)",
+            "801C4F1C: swc1        $f0, 0x0($s0)",
+            "801C4F20: swc1        $f2, 0x4($s0)",
+            "801C4F24: lh          $v0, 0x20($v0)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C4EC8",
+          "site": "0x801C4F20",
+          "context": [
+            "801C4F08: lwc1        $f0, 0x98($s0)",
+            "801C4F0C: lw          $v0, 0x94($s0)",
+            "801C4F10: swc1        $f0, 0x0($s1)",
+            "801C4F14: lwc1        $f0, 0x9C($s0)",
+            "801C4F18: lwc1        $f2, 0xA0($s0)",
+            "801C4F1C: swc1        $f0, 0x0($s0)",
+            "801C4F20: swc1        $f2, 0x4($s0)",
+            "801C4F24: lh          $v0, 0x20($v0)",
+            "801C4F28: bne         $v0, $s4, L_801C4F4C"
+          ]
+        }
+      ],
+      "source_local_load_functions": [
+        {
+          "function": "dora3_s28_mini_801C45AC",
+          "loads": [
+            "801C466C: lwc1        $f0, 0x4($s2)",
+            "801C4674: lwc1        $f0, 0x0($s2)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C52E0",
+          "loads": [
+            "801C52F4: lwc1        $f12, 0x4($s0)",
+            "801C5310: lwc1        $f2, 0x0($s0)",
+            "801C5318: lwc1        $f12, 0x4($s0)",
+            "801C5330: lwc1        $f2, 0x0($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C5350",
+          "loads": [
+            "801C5354: lwc1        $f6, 0x0($a0)",
+            "801C53FC: lwc1        $f2, 0x0($a1)",
+            "801C5430: lwc1        $f2, 0x4($a1)",
+            "801C5454: lwc1        $f6, 0x8($a0)",
+            "801C54F4: lwc1        $f2, 0x8($a1)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C5554",
+          "loads": [
+            "801C55A0: lwc1        $f0, 0x4($v0)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C5D74",
+          "loads": [
+            "801C5D7C: lwc1        $f2, 0x4($a0)",
+            "801C5D84: lwc1        $f0, 0x8($a0)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C5E88",
+          "loads": [
+            "801C5F10: lwc1        $f2, 0x0($s3)",
+            "801C5F14: lwc1        $f0, 0x0($s2)",
+            "801C5F1C: lwc1        $f4, 0x0($s1)",
+            "801C5F20: lwc1        $f0, 0x8($s3)",
+            "801C5F78: lwc1        $f0, 0x0($s3)",
+            "801C5F7C: lwc1        $f12, 0x0($s2)",
+            "801C5F80: lwc1        $f14, 0x0($s1)",
+            "801C5F88: lwc1        $f0, 0x8($s3)",
+            "801C5FD4: lwc1        $f0, 0x0($s3)",
+            "801C5FD8: lwc1        $f12, 0x0($s2)",
+            "801C5FDC: lwc1        $f14, 0x0($s1)",
+            "801C5FE4: lwc1        $f0, 0x8($s3)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C6094",
+          "loads": [
+            "801C613C: lwc1        $f4, 0x4($s0)",
+            "801C6148: lwc1        $f2, 0x8($s0)",
+            "801C6164: lwc1        $f0, 0x4($s0)",
+            "801C617C: lwc1        $f0, 0x4($s0)",
+            "801C6190: lwc1        $f2, 0x8($s0)",
+            "801C61A4: lwc1        $f4, 0x4($s0)",
+            "801C61B0: lwc1        $f2, 0x8($s0)",
+            "801C623C: lwc1        $f0, 0x4($s0)",
+            "801C6254: lwc1        $f0, 0x4($s0)",
+            "801C6288: lwc1        $f0, 0x8($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C62D4",
+          "loads": [
+            "801C6438: lwc1        $f12, 0x4($s1)",
+            "801C6460: lwc1        $f12, 0x4($s1)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C64E8",
+          "loads": [
+            "801C65A0: lwc1        $f4, 0x4($s0)",
+            "801C65F4: lwc1        $f4, 0x8($s0)",
+            "801C6660: lwc1        $f14, 0x8($s0)",
+            "801C6664: lwc1        $f12, 0x4($s0)",
+            "801C66A0: lwc1        $f0, 0x4($s1)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C713C",
+          "loads": [
+            "801C7178: lwc1        $f2, 0x0($a0)",
+            "801C717C: lwc1        $f0, 0x0($s2)",
+            "801C7184: lwc1        $f2, 0x8($a0)",
+            "801C7188: lwc1        $f0, 0x8($s2)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C763C",
+          "loads": [
+            "801C7654: lwc1        $f0, 0x4($s0)",
+            "801C767C: lwc1        $f2, 0x0($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C76B4",
+          "loads": [
+            "801C76B4: lwc1        $f0, 0x0($a0)",
+            "801C76C8: lwc1        $f0, 0x4($a0)",
+            "801C76D4: lwc1        $f0, 0x8($a0)",
+            "801C7904: lwc1        $f0, 0x0($v0)",
+            "801C7960: lwc1        $f0, 0x0($v1)",
+            "801C7964: lwc1        $f2, 0x0($a0)"
+          ]
+        },
+        {
+          "function": "dora3_s28_mini_801C7994",
+          "loads": [
+            "801C7994: lwc1        $f0, 0x0($a0)",
+            "801C79A8: lwc1        $f0, 0x4($a0)",
+            "801C79BC: lwc1        $f0, 0x8($a0)"
+          ]
+        }
+      ],
+      "limitations": "Register/base alias requires manual review; simple small-offset loads include driver fields and constants. Not runtime execution."
+    },
+    {
+      "module": ".minigame_9",
+      "draw_local_world_copy_candidates": [],
+      "source_local_load_functions": [
+        {
+          "function": "dora3_s29_mini_801C41FC",
+          "loads": [
+            "801C4238: lwc1        $f0, 0x0($v1)"
+          ]
+        },
+        {
+          "function": "dora3_s29_mini_801C4268",
+          "loads": [
+            "801C42C0: lwc1        $f0, 0x0($a2)"
+          ]
+        },
+        {
+          "function": "dora3_s29_mini_801C4328",
+          "loads": [
+            "801C4430: lwc1        $f0, 0x4($s2)"
+          ]
+        },
+        {
+          "function": "dora3_s29_mini_801C4464",
+          "loads": [
+            "801C44A0: lwc1        $f2, 0x0($v0)",
+            "801C44D8: lwc1        $f2, 0x4($v0)"
+          ]
+        },
+        {
+          "function": "dora3_s29_mini_801C5068",
+          "loads": [
+            "801C512C: lwc1        $f2, 0x8($s0)",
+            "801C5334: lwc1        $f0, 0x8($s0)"
+          ]
+        },
+        {
+          "function": "dora3_s29_mini_801C5514",
+          "loads": [
+            "801C556C: lwc1        $f2, 0x8($a1)",
+            "801C5608: lwc1        $f0, 0x8($a1)"
+          ]
+        },
+        {
+          "function": "dora3_s29_mini_801C5D84",
+          "loads": [
+            "801C5DF0: lwc1        $f2, 0x8($s1)",
+            "801C5EFC: lwc1        $f12, 0x4($s0)",
+            "801C5F08: lwc1        $f20, 0x0($s0)",
+            "801C5F38: lwc1        $f12, 0x4($s0)",
+            "801C5F44: lwc1        $f22, 0x0($s0)",
+            "801C5F68: lwc1        $f20, 0x0($s0)",
+            "801C5F8C: lwc1        $f0, 0x0($s1)",
+            "801C5F98: lwc1        $f0, 0x8($s1)",
+            "801C5FA8: lwc1        $f0, 0x4($s1)"
+          ]
+        },
+        {
+          "function": "dora3_s29_mini_801C6360",
+          "loads": [
+            "801C652C: lwc1        $f2, 0x0($s3)",
+            "801C65C8: lwc1        $f2, 0x4($s3)",
+            "801C665C: lwc1        $f0, 0x0($s3)",
+            "801C6678: lwc1        $f0, 0x4($s3)"
+          ]
+        }
+      ],
+      "limitations": "Register/base alias requires manual review; simple small-offset loads include driver fields and constants. Not runtime execution."
+    }
+  ],
+  "confirmed_draw_to_source_dependency": {
+    "module": ".minigame_8",
+    "producer": "dora3_minigame8_draw_active_objects_801C4EC8:4F10/4F20 worldX/Z -> local0/8",
+    "consumer": "dora3_minigame8_apply_explosion_damage_801C713C:7178/7184 localX/Z of explosion, next Source update",
+    "failure": "MinigameFrameScope snapshots/reverts local0..20 on every Native build. Spawn4940 writes worldXYZ only, so Source never retains the draw copy and damage is evaluated at stale/zero XZ.",
+    "fix": "Source completion records/copies exact XZ for active slots10..59; no duplicate collision, health, invulnerability, throw or spawn updates."
+  },
+  "participant_motion_fix": {
+    "module": ".minigame_8",
+    "copy_sites": [
+      "0x801C6E6C",
+      "0x801C6E70",
+      "0x801C6E78"
+    ],
+    "fix": "Explicit Source world/local binding; reached Derived body XYZ/shadowXZ refreshed after Native world sampling, before matrix construction.",
+    "common_fix": "publish_derived_float now adds changed local actors to changed_actors, matching sample; pure geometry/follower consumers get fresh matrices.",
+    "status": "Implementation saved. Actual reported20FPS movement is not yet CPU/visually validated; full walking/hit scenario must be exercised after user no."
+  },
+  "analogue_review": [
+    {
+      "modules": [
+        1
+      ],
+      "result": "Direct Source small loads reviewed as participant driver tables at801CCAD0/801CCA28 and collision-grid values, rather than the draw-only low actor pose. Copy-like draw candidates alone do not imply a damage dependency."
+    },
+    {
+      "modules": [
+        2
+      ],
+      "result": "Source56C8:583C reads the opacity array801C88E0 after reassigning s0, not the earlier actor pointer. Source654C uses driver table801C8990; 7BD4 reads a ROM threshold table. Existing Native terrain/follower paths also receive common changed-actor invalidation."
+    },
+    {
+      "modules": [
+        3
+      ],
+      "result": "No local0/4/8 floating reads in the direct Source callback closure; draw copies remain borrowed."
+    },
+    {
+      "modules": [
+        4
+      ],
+      "result": "Source4DD4/855C read board grid801C9B4C and drivers,50A0 reads driver X/Z velocities. No confirmed Source read of the draw-copy actor localXZ."
+    },
+    {
+      "modules": [
+        5,
+        6,
+        7,
+        9
+      ],
+      "result": "No world-to-local small-offset draw copy candidates in direct draw closures. Shared matrix invalidation applies only to already reached Derived actor fields."
+    }
+  ],
+  "limitations": [
+    "Static direct-call ROM audit; indirect handlers in8 were reviewed separately. No executed check/game/GPU.",
+    "No blanket removal of draw restoration. Render-only terrain/view poses and type2 localY remain authored.",
+    "Future comparisons must execute actual contact gate/distance/health and participant movement with draw interleaving; old intro-all-actors-disabled and isolated physics proofs do not cover this regression."
+  ]
+}

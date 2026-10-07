@@ -1,3 +1,38 @@
+## Test-049: семь пачек исправлений после048
+
+Пользователь закрыл список багов ответом «нет»2026-10-07. Исправлены стык воды/
+спирали, диалоговая стрелка, white fades, все четыре области stage map и cursor
+sampling, Kinopper patrol turn, Mini8 explosion contacts и body/shadow/matrix
+связи, race/plane follow/finish circular camera и one-shot/result clip boundary.
+Круг выбора персонажей сохраняет проверенный исходный input/phase cadence.
+
+31 connected CPU scopes PASS; общий статус PARTIAL_USER_SKIP. Часовой player
+proof исключён по прямой просьбе. Исходные commands/input/RNG/resource cadence
+не повторяются в дробных кадрах. Обе исходные частоты и Manual60..360 проверены.
+Исторические PASS не подменяют новую проверку. Игра/renderer/GPU локально не
+запускались; визуальный результат и конкретная character art остаются проверкой
+пользователя. Детали и точный охват — native-regressions-test049.md.
+Windows049/package завершены; старые файлы сохранены. Commit/push main.
+
+## Текущие пачки после048 — проверки ещё не запускались
+
+2026-10-07: сохранены правки циклической воды/спирали, диалоговой стрелки,
+белых fades, четырёх областей карты/bitmap sampling и periodic turn KinopperT1.
+Добавлены Mini8 Source contactXZ publication для урона и связь дробной body/shadow
+позиции с пересчётом матриц; runtime подтверждение ещё отложено.
+Circular camera recurrence гонок/самолётов исправлена для follow/finish всех4
+views, включая подтверждённый зимний вариант; проверки ещё отложены.
+Terminal pose boundary после атак/результатов сохранён для38 exact Source end
+queries, включая attack3->idle0 и все6 character result variants; тесты отложены.
+Ускорение круга персонажей статически не подтвердилось; Source тайминг сохранён,
+actual comparison остаётся перед билдом. Аналогичные turn contexts разобраны.
+Подробности, ограничения и оставшиеся проверки —
+[native-regressions-after048-batches.md](native-regressions-after048-batches.md).
+Это незапущенные/непроверенные изменения поверх048, не новый PASS или EXE.
+Новые тестовые фикстуры пачки4 отложены после отказа автоматической проверки
+разрешений. Тесты, генерация, один Windows build и commit/push main — после
+явного «нет» пользователя. Часовой полный player proof остаётся исключён.
+
 ## Test-048: причины регрессий карты, камер и моделей
 
 Исправлены обратный countdown/easing stage map и единая дробная прокрутка
@@ -5144,3 +5179,25 @@ generation/tests/build. Typed time operand теперь допускается �
 Original observation. Добавлены module2 camera/driver/movement и module3
 camera/scale/position/scroll/fade roles; phase/contacts остаются Source.
 Registry implementation-ready guard закрыт: весь блок4 пока не завершён.
+
+
+Пачка1 после048: реализованы palette-equivalent water scroll, общий type5
+numeric angle reset (menu background0A46 и clip0489), Source cadence выбора
+в диалоге. Код/семантические имена/документы готовы, проверки и EXE НЕ запускались:
+пользователь сначала передаёт все пачки, затем явно говорит «нет».
+Подробности и границы: docs/native-regressions-after048-batches.md.
+
+
+Пачка2 после048: исправлены пропуски common белого fade в scene34 destinations/
+states, world holds/paused scripts/room transitions и последнем count1 интервале.
+Interior actual cleanup/load получили ROM-pinned resource barriers; реальные
+Source decisions сохраняются. Подробности: docs/native-regressions-after048-batches.md.
+Тесты/генерация/EXE не запускались: ждём окончания всех пачек и явного «нет».
+
+
+2026-10-06, пачка3 после048: исправлен пропуск четвёртой area карты и границы
+descriptor table24. Общий bitmap adapter курсора/значков компенсирует RT64
+fractional-top UV bias, ограничивает valid texels и нормализует last-strip extent.
+Статический ROM/renderer разбор — research/native-map-sampling-audit.json;
+подробности/неисполненные будущие cases — docs/native-regressions-after048-batches.md.
+Новые тесты/генерация/EXE пока НЕ запускались: ждём завершения всех пачек от пользователя.

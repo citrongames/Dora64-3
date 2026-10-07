@@ -17,7 +17,9 @@
 using namespace dora3::native_time;
 static unsigned requested=60,updates=0,native_builds=0,original_builds=0,vi_count=0,pauses=0,stage=0,resume_vi=0;
 static bool initialized=false,legacy_tail_pending=true;
-static unsigned white_builds=0;
+static unsigned white_builds=0,white_last_interval_builds=0,fade_dl_builds=0;
+static bool state2_run=false;
+static unsigned progress_resets=0;
 static std::set<int> white_alpha;
 static Nanoseconds next_vi=0,started=0;
 static std::deque<uint32_t> messages,submitted;
@@ -87,7 +89,7 @@ extern "C" void dora3_trace(uint8_t* rdram,recomp_context*,uint32_t pc,uint32_t)
     if(pc==0x8002FF64) {
         if(dora3_native_frame_build_active()) {
             ++native_builds;
-            if(MEM_W(0,int32_t(0x801C68CC))>1) {++white_builds;white_alpha.insert(MEM_H(0,int32_t(0x801AA660)));}
+            if(MEM_W(0,int32_t(0x801C68CC))>0) {++white_builds;white_alpha.insert(MEM_H(0,int32_t(0x801AA660)));if(MEM_W(0,int32_t(0x801C68CC))==1)++white_last_interval_builds;}
         } else ++original_builds;
     }
 }
@@ -100,6 +102,16 @@ extern "C" void dora3_capture_frame_lights(uint8_t* rdram,uint32_t bank) {
     assert(bank==dora3::frame::bank0 || bank==dora3::frame::bank0+dora3::frame::bank_stride);
     const auto end=uint32_t(MEM_W(0,int32_t(0x801B1424)));
     assert(end>bank+dora3::frame::dl_offset && end<bank+dora3::frame::bank_stride);
+    const int direction=MEM_B(0,int32_t(0x801A99A0));
+    if(direction==-1||direction==1||direction==2) {
+        uint32_t last_color=0;bool found=false;
+        for(auto p=bank+dora3::frame::dl_offset;p+8<=end;p+=8)
+            if(uint32_t(MEM_W(0,int32_t(p)))>>24==0xFA){last_color=uint32_t(MEM_W(4,int32_t(p)));found=true;}
+        const uint32_t expected=(uint32_t(MEM_BU(0,int32_t(0x801B1404)))<<24)|
+            (uint32_t(MEM_BU(0,int32_t(0x80171CB8)))<<16)|(uint32_t(MEM_BU(0,int32_t(0x801A99B4)))<<8)|
+            uint32_t(MEM_HU(0,int32_t(0x801AA660)));
+        assert(found&&last_color==expected);++fade_dl_builds;
+    }
 }
 bool dora3_enqueue_native_frame_wake() {messages.push_back(WakeMailbox::message_value);return true;}
 bool dora3_enqueue_native_graphics_wake() {return true;}
@@ -120,12 +132,14 @@ EMPTY(dora3_frame_timestamp) EMPTY(dora3_update_timestamp) EMPTY(dora3_update_el
 extern "C" void dora3_s0_80047EF4(uint8_t*,recomp_context*) {++pauses;}
 extern "C" void dora3_scene_transition_framebuffer_copy(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_scene34_controller_message(uint8_t*,recomp_context*) {std::abort();}
-extern "C" void dora3_common_progress_reset(uint8_t*,recomp_context*) {std::abort();} // Not reached: scene state1 branch.
+extern "C" void dora3_common_progress_reset(uint8_t*,recomp_context*) {assert(state2_run);++progress_resets;} // Counted Source command boundary; progress contents are outside this loop fixture.
 extern "C" void dora3_process_pair_install(uint8_t* rdram,recomp_context* c) {
     dora3_native_loop_transition(rdram,c);
     assert(game_frame_session().phase()==FrameSession::Phase::Original && game_frame_bridge().drained());
     assert(MEM_W(0,int32_t(0x801AA618))==0 && updates==76 && native_builds>100 && stage==5);
-    assert(MEM_W(0,int32_t(0x801A950C))==0x5A); // Original transition selected the next scene.
+    assert(MEM_W(0,int32_t(0x801A950C))==(state2_run?1:0x5A));
+    assert(progress_resets==(state2_run?1u:0u)); // Actual transition branch invoked once.
+    assert(white_last_interval_builds>0&&fade_dl_builds>white_builds);
     assert(MEM_BU(0,int32_t(0x801B1404))==255 && MEM_BU(0,int32_t(0x80171CB8))==255);
     assert(white_builds>30 && white_alpha.size()>16);
     assert(MEM_H(0,int32_t(0x801AA660))>=230); // Final legacy tick completes fade after drain.
@@ -151,11 +165,12 @@ static void setup(uint8_t* rdram,recomp_context* c) {
     recomp_context old{};old.r8=int32_t(dora3::frame::bank0+dora3::frame::bank_stride);
     dora3_native_loop_submit(rdram,&old);
     dora3_native_loop_scene_ready(rdram,c);
-    // State2 may reset progress. It must leave before its transition update.
+    // Request state2 and the last count1 interval are resident until actual
+    // process installation; they must retain fractional fade presentation.
     MEM_W(0,int32_t(0x801C68D0))=1;MEM_B(34,int32_t(0x80171C50))=2;
-    assert(select_native_scene_policy(rdram)==nullptr);
-    MEM_B(34,int32_t(0x80171C50))=1;assert(select_native_scene_policy(rdram)!=nullptr);
-    MEM_W(0,int32_t(0x801C68CC))=1;assert(select_native_scene_policy(rdram)==nullptr);
+    assert(select_native_scene_policy(rdram)!=nullptr);
+    MEM_B(34,int32_t(0x80171C50))=state2_run?2:1;assert(select_native_scene_policy(rdram)!=nullptr);
+    MEM_W(0,int32_t(0x801C68CC))=1;assert(select_native_scene_policy(rdram)!=nullptr);
     MEM_W(0,int32_t(0x801C68CC))=0;MEM_W(0,int32_t(0x801C68D0))=60;
     started=next_vi=monotonic_time();initialized=true;
 }
@@ -195,7 +210,7 @@ extern "C" void osRecvMesg_recomp(uint8_t* rdram,recomp_context* c) {
     }
 }
 int main(int argc,char** argv) {
-    assert(argc==2);std::vector<uint32_t> memory(0x400000/4);auto* rdram=reinterpret_cast<uint8_t*>(memory.data());
+    assert(argc==2||argc==3);state2_run=argc==3;std::vector<uint32_t> memory(0x400000/4);auto* rdram=reinterpret_cast<uint8_t*>(memory.data());
     std::ifstream in(argv[1],std::ios::binary);in.read(reinterpret_cast<char*>(rdram+0x7CD80),128);assert(in.gcount()==128);
     recomp_context c{};c.r29=int32_t(0x80300000);
     try {dora3_game_message_loop(rdram,&c);assert(false);}catch(const Finished&) {}
@@ -204,7 +219,7 @@ int main(int argc,char** argv) {
     dora3_reset_native_frame_delivery();assert(!dora3_native_loop_after_vi(rdram,&c));
     resource_barrier_check(rdram,&c);
     std::cout<<"PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; "
-        <<white_builds<<" native white-fade builds with "<<white_alpha.size()<<" distinct alpha values; "<<updates<<" discrete updates, "<<native_builds<<" native builds, "<<original_builds<<" Original builds, "<<vi_count<<" VI events; no GPU\n";
+        <<white_builds<<" native white-fade builds with "<<white_alpha.size()<<" distinct alpha values; "<<white_last_interval_builds<<" last-interval builds; "<<fade_dl_builds<<" actual RDP fade-alpha comparisons; request state"<<(state2_run?2:1)<<"; "<<updates<<" discrete updates, "<<native_builds<<" native builds, "<<original_builds<<" Original builds, "<<vi_count<<" VI events; no GPU\n";
 }
 
 // Gameplay remains deliberately disabled in the image-loop fixture.
@@ -234,7 +249,7 @@ extern "C" void dora3_s3_801C8B28(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s3_801E8BDC(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s3_demo_801E88C4(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s3_demo_801E8838(uint8_t*,recomp_context*) {std::abort();}
-extern "C" int dora3_overlay_loaded(uint32_t) {return 0;}
+extern "C" int dora3_overlay_loaded(uint32_t rom) {return rom==0x635C0;}
 extern "C" void dora3_s3_801D10D8(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s0_menu_8002A3B0(uint8_t*,recomp_context*) {std::abort();}
 extern "C" void dora3_s0_8002EA4C(uint8_t*,recomp_context*) {std::abort();}

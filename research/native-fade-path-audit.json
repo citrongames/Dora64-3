@@ -1,0 +1,1148 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "scope": "Static Original common fade begin/hold call-site inventory and quiet-window/resource-boundary analysis. No runtime tests, generation or game/GPU.",
+  "call_sites": [
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801B8ED0",
+      "site": "0x801B90E8",
+      "command": "0x800288EC",
+      "family": "scene34 UI/image",
+      "context": [
+        "801B90CC: lui         $at, 0x801B",
+        "801B90D0: sb          $zero, 0x36EC($at)",
+        "801B90D4: addiu       $a0, $zero, 0xFF",
+        "801B90D8: addiu       $a1, $zero, 0xFF",
+        "801B90DC: addiu       $a2, $zero, 0xFF",
+        "801B90E0: jal         0x80028878",
+        "801B90E4: addiu       $a3, $zero, 0x10",
+        "801B90E8: jal         0x800288EC",
+        "801B90EC: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BB704",
+      "site": "0x801BB788",
+      "command": "0x800288C0",
+      "family": "scene34 UI/image",
+      "context": [
+        "801BB76C: addiu       $a0, $zero, 0xFF",
+        "801BB770: addiu       $a1, $zero, 0xFF",
+        "801BB774: addiu       $a2, $zero, 0xFF",
+        "801BB778: jal         0x80028878",
+        "801BB77C: addiu       $a3, $zero, 0x10",
+        "801BB780: jal         0x80028914",
+        "801BB784: nop",
+        "801BB788: jal         0x800288C0",
+        "801BB78C: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BB9E0",
+      "site": "0x801BBA1C",
+      "command": "0x800288EC",
+      "family": "scene34 UI/image",
+      "context": [
+        "801BBA00: addiu       $v1, $zero, 0x1",
+        "801BBA04: bne         $v0, $v1, L_801BBA38",
+        "801BBA08: addu        $a0, $zero, $zero",
+        "801BBA0C: addu        $a1, $zero, $zero",
+        "801BBA10: addu        $a2, $zero, $zero",
+        "801BBA14: jal         0x80028878",
+        "801BBA18: addiu       $a3, $zero, 0x10",
+        "801BBA1C: jal         0x800288EC",
+        "801BBA20: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BB9E0",
+      "site": "0x801BBA54",
+      "command": "0x800288EC",
+      "family": "scene34 UI/image",
+      "context": [
+        "801BBA38: bne         $s0, $zero, L_801BBA70",
+        "801BBA3C: addiu       $a0, $zero, 0xFF",
+        "801BBA40: addu        $a0, $zero, $zero",
+        "801BBA44: addu        $a1, $zero, $zero",
+        "801BBA48: addu        $a2, $zero, $zero",
+        "801BBA4C: jal         0x80028878",
+        "801BBA50: addiu       $a3, $zero, 0x10",
+        "801BBA54: jal         0x800288EC",
+        "801BBA58: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BB9E0",
+      "site": "0x801BBA80",
+      "command": "0x800288EC",
+      "family": "scene34 UI/image",
+      "context": [
+        "801BBA64: addiu       $a1, $zero, 0x3",
+        "801BBA68: j           L_801BBA9C",
+        "801BBA6C: nop",
+        "801BBA70: addiu       $a1, $zero, 0xFF",
+        "801BBA74: addiu       $a2, $zero, 0xFF",
+        "801BBA78: jal         0x80028878",
+        "801BBA7C: addiu       $a3, $zero, 0x10",
+        "801BBA80: jal         0x800288EC",
+        "801BBA84: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BD0D4",
+      "site": "0x801BD158",
+      "command": "0x800288C0",
+      "family": "scene34 UI/image",
+      "context": [
+        "801BD13C: addiu       $a0, $zero, 0xFF",
+        "801BD140: addiu       $a1, $zero, 0xFF",
+        "801BD144: addiu       $a2, $zero, 0xFF",
+        "801BD148: jal         0x80028878",
+        "801BD14C: addiu       $a3, $zero, 0x10",
+        "801BD150: jal         0x80028914",
+        "801BD154: nop",
+        "801BD158: jal         0x800288C0",
+        "801BD15C: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BD344",
+      "site": "0x801BD3AC",
+      "command": "0x800288EC",
+      "family": "scene34 UI/image",
+      "context": [
+        "801BD390: jal         0x8002889C",
+        "801BD394: addiu       $a3, $zero, 0xF0",
+        "801BD398: addiu       $a0, $zero, 0xFF",
+        "801BD39C: addiu       $a1, $zero, 0xFF",
+        "801BD3A0: addiu       $a2, $zero, 0xFF",
+        "801BD3A4: jal         0x80028878",
+        "801BD3A8: addiu       $a3, $zero, 0x10",
+        "801BD3AC: jal         0x800288EC",
+        "801BD3B0: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BD344",
+      "site": "0x801BD414",
+      "command": "0x800288EC",
+      "family": "scene34 UI/image",
+      "context": [
+        "801BD3F8: jal         0x8002889C",
+        "801BD3FC: addiu       $a3, $zero, 0xF0",
+        "801BD400: addiu       $a0, $zero, 0xFF",
+        "801BD404: addiu       $a1, $zero, 0xFF",
+        "801BD408: addiu       $a2, $zero, 0xFF",
+        "801BD40C: jal         0x80028878",
+        "801BD410: addiu       $a3, $zero, 0x10",
+        "801BD414: jal         0x800288EC",
+        "801BD418: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BD344",
+      "site": "0x801BD47C",
+      "command": "0x800288EC",
+      "family": "scene34 UI/image",
+      "context": [
+        "801BD460: jal         0x8002889C",
+        "801BD464: addiu       $a3, $zero, 0xF0",
+        "801BD468: addu        $a0, $zero, $zero",
+        "801BD46C: addu        $a1, $zero, $zero",
+        "801BD470: addu        $a2, $zero, $zero",
+        "801BD474: jal         0x80028878",
+        "801BD478: addiu       $a3, $zero, 0x10",
+        "801BD47C: jal         0x800288EC",
+        "801BD480: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BD344",
+      "site": "0x801BD4B4",
+      "command": "0x800288EC",
+      "family": "scene34 UI/image",
+      "context": [
+        "801BD498: jal         0x8002889C",
+        "801BD49C: addiu       $a3, $zero, 0xF0",
+        "801BD4A0: addu        $a0, $zero, $zero",
+        "801BD4A4: addu        $a1, $zero, $zero",
+        "801BD4A8: addu        $a2, $zero, $zero",
+        "801BD4AC: jal         0x80028878",
+        "801BD4B0: addiu       $a3, $zero, 0x10",
+        "801BD4B4: jal         0x800288EC",
+        "801BD4B8: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BFCB8",
+      "site": "0x801BFD3C",
+      "command": "0x800288C0",
+      "family": "scene34 UI/image",
+      "context": [
+        "801BFD20: addu        $a0, $zero, $zero",
+        "801BFD24: addu        $a1, $zero, $zero",
+        "801BFD28: addu        $a2, $zero, $zero",
+        "801BFD2C: jal         0x80028878",
+        "801BFD30: addiu       $a3, $zero, 0x10",
+        "801BFD34: jal         0x80028914",
+        "801BFD38: nop",
+        "801BFD3C: jal         0x800288C0",
+        "801BFD40: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_scene34_transition",
+      "site": "0x801BFDFC",
+      "command": "0x800288EC",
+      "family": "scene34 UI/image",
+      "context": [
+        "801BFDE0: addiu       $sp, $sp, -0x18",
+        "801BFDE4: addiu       $a0, $zero, 0xFF",
+        "801BFDE8: addiu       $a1, $zero, 0xFF",
+        "801BFDEC: addiu       $a2, $zero, 0xFF",
+        "801BFDF0: sw          $ra, 0x10($sp)",
+        "801BFDF4: jal         0x80028878",
+        "801BFDF8: addiu       $a3, $zero, 0x10",
+        "801BFDFC: jal         0x800288EC",
+        "801BFE00: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_scene34_init",
+      "site": "0x801C0200",
+      "command": "0x800288C0",
+      "family": "scene34 UI/image",
+      "context": [
+        "801C01E4: addu        $a0, $zero, $zero",
+        "801C01E8: addu        $a1, $zero, $zero",
+        "801C01EC: addu        $a2, $zero, $zero",
+        "801C01F0: jal         0x80028878",
+        "801C01F4: addiu       $a3, $zero, 0x10",
+        "801C01F8: jal         0x80028914",
+        "801C01FC: nop",
+        "801C0200: jal         0x800288C0",
+        "801C0204: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C02C0",
+      "site": "0x801C0334",
+      "command": "0x800288EC",
+      "family": "scene34 UI/image",
+      "context": [
+        "801C0318: jal         0x800314B4",
+        "801C031C: addiu       $a1, $zero, 0x2",
+        "801C0320: addu        $a0, $zero, $zero",
+        "801C0324: addu        $a1, $zero, $zero",
+        "801C0328: addu        $a2, $zero, $zero",
+        "801C032C: jal         0x80028878",
+        "801C0330: addiu       $a3, $zero, 0x10",
+        "801C0334: jal         0x800288EC",
+        "801C0338: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C02C0",
+      "site": "0x801C040C",
+      "command": "0x800288EC",
+      "family": "scene34 UI/image",
+      "context": [
+        "801C03F0: jal         0x800314B4",
+        "801C03F4: nop",
+        "801C03F8: addiu       $a0, $zero, 0xFF",
+        "801C03FC: addiu       $a1, $zero, 0xFF",
+        "801C0400: addiu       $a2, $zero, 0xFF",
+        "801C0404: jal         0x80028878",
+        "801C0408: addiu       $a3, $zero, 0x10",
+        "801C040C: jal         0x800288EC",
+        "801C0410: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C0CC0",
+      "site": "0x801C0DDC",
+      "command": "0x800288C0",
+      "family": "scene34 UI/image",
+      "context": [
+        "801C0DC0: addiu       $a2, $zero, 0xFF",
+        "801C0DC4: addu        $a1, $zero, $zero",
+        "801C0DC8: addu        $a2, $zero, $zero",
+        "801C0DCC: jal         0x80028878",
+        "801C0DD0: addiu       $a3, $zero, 0x10",
+        "801C0DD4: jal         0x80028914",
+        "801C0DD8: nop",
+        "801C0DDC: jal         0x800288C0",
+        "801C0DE0: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C0E84",
+      "site": "0x801C0EA0",
+      "command": "0x800288EC",
+      "family": "scene34 UI/image",
+      "context": [
+        "801C0E84: addiu       $sp, $sp, -0x18",
+        "801C0E88: addu        $a0, $zero, $zero",
+        "801C0E8C: addu        $a1, $zero, $zero",
+        "801C0E90: addu        $a2, $zero, $zero",
+        "801C0E94: sw          $ra, 0x10($sp)",
+        "801C0E98: jal         0x80028878",
+        "801C0E9C: addiu       $a3, $zero, 0x8",
+        "801C0EA0: jal         0x800288EC",
+        "801C0EA4: nop"
+      ]
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C27E0",
+      "site": "0x801C2860",
+      "command": "0x800288C0",
+      "family": "scene34 UI/image",
+      "context": [
+        "801C2844: addu        $a0, $zero, $zero",
+        "801C2848: addu        $a1, $zero, $zero",
+        "801C284C: addu        $a2, $zero, $zero",
+        "801C2850: jal         0x80028878",
+        "801C2854: addiu       $a3, $zero, 0x10",
+        "801C2858: jal         0x80028914",
+        "801C285C: nop",
+        "801C2860: jal         0x800288C0",
+        "801C2864: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801B8ED0",
+      "site": "0x801B8EF4",
+      "command": "0x800288EC",
+      "family": "world/game UI/script",
+      "context": [
+        "801B8ED8: addu        $s0, $a0, $zero",
+        "801B8EDC: addiu       $a0, $zero, 0xFF",
+        "801B8EE0: addiu       $a1, $zero, 0xFF",
+        "801B8EE4: addiu       $a2, $zero, 0xFF",
+        "801B8EE8: sw          $ra, 0x14($sp)",
+        "801B8EEC: jal         0x80028878",
+        "801B8EF0: addiu       $a3, $zero, 0x10",
+        "801B8EF4: jal         0x800288EC",
+        "801B8EF8: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BA0F4",
+      "site": "0x801BA234",
+      "command": "0x800288C0",
+      "family": "world/game UI/script",
+      "context": [
+        "801BA218: addu        $v0, $zero, $zero",
+        "801BA21C: addu        $a1, $zero, $zero",
+        "801BA220: addu        $a2, $zero, $zero",
+        "801BA224: jal         0x80028878",
+        "801BA228: addiu       $a3, $zero, 0x10",
+        "801BA22C: jal         0x80028914",
+        "801BA230: nop",
+        "801BA234: jal         0x800288C0",
+        "801BA238: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BA310",
+      "site": "0x801BA40C",
+      "command": "0x800288C0",
+      "family": "world/game UI/script",
+      "context": [
+        "801BA3F0: addu        $v0, $zero, $zero",
+        "801BA3F4: addu        $a1, $zero, $zero",
+        "801BA3F8: addu        $a2, $zero, $zero",
+        "801BA3FC: jal         0x80028878",
+        "801BA400: addiu       $a3, $zero, 0x10",
+        "801BA404: jal         0x80028914",
+        "801BA408: nop",
+        "801BA40C: jal         0x800288C0",
+        "801BA410: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_scene1_init",
+      "site": "0x801BBA7C",
+      "command": "0x800288C0",
+      "family": "world/game UI/script",
+      "context": [
+        "801BBA60: addiu       $a0, $zero, 0xFF",
+        "801BBA64: addiu       $a1, $zero, 0xFF",
+        "801BBA68: addiu       $a2, $zero, 0xFF",
+        "801BBA6C: jal         0x80028878",
+        "801BBA70: addiu       $a3, $zero, 0x10",
+        "801BBA74: jal         0x80028914",
+        "801BBA78: nop",
+        "801BBA7C: jal         0x800288C0",
+        "801BBA80: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801C6FCC",
+      "site": "0x801C707C",
+      "command": "0x800288EC",
+      "family": "world/game UI/script",
+      "context": [
+        "801C7060: lw          $v0, -0x2B50($v0)",
+        "801C7064: addu        $a1, $zero, $zero",
+        "801C7068: addiu       $v1, $zero, 0x2",
+        "801C706C: addu        $a2, $zero, $zero",
+        "801C7070: addiu       $a3, $zero, 0x10",
+        "801C7074: jal         0x80028878",
+        "801C7078: sh          $v1, 0x44($v0)",
+        "801C707C: jal         0x800288EC",
+        "801C7080: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801C7160",
+      "site": "0x801C7218",
+      "command": "0x800288EC",
+      "family": "world/game UI/script",
+      "context": [
+        "801C71FC: lui         $v0, 0x8022",
+        "801C7200: lw          $v0, -0x2B50($v0)",
+        "801C7204: addiu       $a3, $zero, 0x10",
+        "801C7208: addiu       $v1, $zero, 0x1",
+        "801C720C: sh          $v1, 0x44($v0)",
+        "801C7210: jal         0x80028878",
+        "801C7214: nop",
+        "801C7218: jal         0x800288EC",
+        "801C721C: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801C7338",
+      "site": "0x801C73A4",
+      "command": "0x800288EC",
+      "family": "world/game UI/script",
+      "context": [
+        "801C7388: lw          $v0, -0x2B50($v0)",
+        "801C738C: addu        $a1, $zero, $zero",
+        "801C7390: addiu       $v1, $zero, 0x1",
+        "801C7394: addu        $a2, $zero, $zero",
+        "801C7398: addiu       $a3, $zero, 0x10",
+        "801C739C: jal         0x80028878",
+        "801C73A0: sh          $v1, 0x44($v0)",
+        "801C73A4: jal         0x800288EC",
+        "801C73A8: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801C7AB8",
+      "site": "0x801C7B94",
+      "command": "0x800288EC",
+      "family": "world/game UI/script",
+      "context": [
+        "801C7B78: bne         $v1, $zero, L_801C7BA4",
+        "801C7B7C: addiu       $v0, $zero, 0x10",
+        "801C7B80: addiu       $a0, $zero, 0xFF",
+        "801C7B84: addiu       $a1, $zero, 0xFF",
+        "801C7B88: addiu       $a2, $zero, 0xFF",
+        "801C7B8C: jal         0x80028878",
+        "801C7B90: addiu       $a3, $zero, 0x10",
+        "801C7B94: jal         0x800288EC",
+        "801C7B98: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801DDC9C",
+      "site": "0x801DDD04",
+      "command": "0x800288EC",
+      "family": "world/game UI/script",
+      "context": [
+        "801DDCE8: addiu       $a2, $zero, 0xFF",
+        "801DDCEC: jal         0x80028878",
+        "801DDCF0: addiu       $a3, $zero, 0x10",
+        "801DDCF4: bne         $s0, $zero, L_801DDD14",
+        "801DDCF8: nop",
+        "801DDCFC: jal         0x80028930",
+        "801DDD00: nop",
+        "801DDD04: jal         0x800288EC",
+        "801DDD08: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801DDC9C",
+      "site": "0x801DDD1C",
+      "command": "0x800288C0",
+      "family": "world/game UI/script",
+      "context": [
+        "801DDD00: nop",
+        "801DDD04: jal         0x800288EC",
+        "801DDD08: nop",
+        "801DDD0C: j           L_801DDD60",
+        "801DDD10: nop",
+        "801DDD14: jal         0x80028914",
+        "801DDD18: nop",
+        "801DDD1C: jal         0x800288C0",
+        "801DDD20: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801EF640",
+      "site": "0x801EF67C",
+      "command": "0x800288C0",
+      "family": "world/game UI/script",
+      "context": [
+        "801EF660: addu        $a0, $zero, $zero",
+        "801EF664: addu        $a1, $zero, $zero",
+        "801EF668: addu        $a2, $zero, $zero",
+        "801EF66C: jal         0x80028878",
+        "801EF670: addiu       $a3, $zero, 0x10",
+        "801EF674: jal         0x80028914",
+        "801EF678: nop",
+        "801EF67C: jal         0x800288C0",
+        "801EF680: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F31F4",
+      "site": "0x801F3270",
+      "command": "0x800288C0",
+      "family": "world/game UI/script",
+      "context": [
+        "801F3254: addu        $a0, $zero, $zero",
+        "801F3258: addu        $a1, $zero, $zero",
+        "801F325C: addu        $a2, $zero, $zero",
+        "801F3260: jal         0x80028878",
+        "801F3264: addiu       $a3, $zero, 0x10",
+        "801F3268: jal         0x80028914",
+        "801F326C: nop",
+        "801F3270: jal         0x800288C0",
+        "801F3274: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F5AC8",
+      "site": "0x801F5B44",
+      "command": "0x800288C0",
+      "family": "world/game UI/script",
+      "context": [
+        "801F5B28: addu        $a0, $zero, $zero",
+        "801F5B2C: addu        $a1, $zero, $zero",
+        "801F5B30: addu        $a2, $zero, $zero",
+        "801F5B34: jal         0x80028878",
+        "801F5B38: addiu       $a3, $zero, 0x10",
+        "801F5B3C: jal         0x80028914",
+        "801F5B40: nop",
+        "801F5B44: jal         0x800288C0",
+        "801F5B48: nop"
+      ]
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F6DF8",
+      "site": "0x801F6E74",
+      "command": "0x800288C0",
+      "family": "world/game UI/script",
+      "context": [
+        "801F6E58: addu        $a0, $zero, $zero",
+        "801F6E5C: addu        $a1, $zero, $zero",
+        "801F6E60: addu        $a2, $zero, $zero",
+        "801F6E64: jal         0x80028878",
+        "801F6E68: addiu       $a3, $zero, 0x10",
+        "801F6E6C: jal         0x80028914",
+        "801F6E70: nop",
+        "801F6E74: jal         0x800288C0",
+        "801F6E78: nop"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "dora3_s8_level1_8022DA68",
+      "site": "0x8022DAC8",
+      "command": "0x800288EC",
+      "family": "world/game UI/script",
+      "context": [
+        "8022DAAC: jal         0x801BBD40",
+        "8022DAB0: addiu       $a0, $zero, 0x1",
+        "8022DAB4: addiu       $a0, $zero, 0xFF",
+        "8022DAB8: addiu       $a1, $zero, 0xFF",
+        "8022DABC: addiu       $a2, $zero, 0xFF",
+        "8022DAC0: jal         0x80028878",
+        "8022DAC4: addiu       $a3, $zero, 0x10",
+        "8022DAC8: jal         0x800288EC",
+        "8022DACC: nop"
+      ]
+    },
+    {
+      "section": ".level1_slot2",
+      "function": "dora3_s9_level1_8023E0B8",
+      "site": "0x8023E16C",
+      "command": "0x800288EC",
+      "family": "world/game UI/script",
+      "context": [
+        "8023E150: addu        $a0, $zero, $zero",
+        "8023E154: addu        $a1, $zero, $zero",
+        "8023E158: addu        $a2, $zero, $zero",
+        "8023E15C: jal         0x80028878",
+        "8023E160: addiu       $a3, $zero, 0x10",
+        "8023E164: jal         0x80028930",
+        "8023E168: nop",
+        "8023E16C: jal         0x800288EC",
+        "8023E170: nop"
+      ]
+    },
+    {
+      "section": ".mountain_slot2",
+      "function": "dora3_s14_mountain_8023E2D4",
+      "site": "0x8023E360",
+      "command": "0x800288EC",
+      "family": "world/game UI/script",
+      "context": [
+        "8023E344: addu        $a0, $zero, $zero",
+        "8023E348: addu        $a1, $zero, $zero",
+        "8023E34C: addu        $a2, $zero, $zero",
+        "8023E350: jal         0x80028878",
+        "8023E354: addiu       $a3, $zero, 0x10",
+        "8023E358: jal         0x80028930",
+        "8023E35C: nop",
+        "8023E360: jal         0x800288EC",
+        "8023E364: nop"
+      ]
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BD250",
+      "site": "0x801BD294",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801BD278: jal         0x8002889C",
+        "801BD27C: addiu       $a3, $zero, 0xF0",
+        "801BD280: addu        $a0, $zero, $zero",
+        "801BD284: addu        $a1, $zero, $zero",
+        "801BD288: addu        $a2, $zero, $zero",
+        "801BD28C: jal         0x80028878",
+        "801BD290: addiu       $a3, $zero, 0x10",
+        "801BD294: jal         0x800288EC",
+        "801BD298: nop"
+      ]
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BD250",
+      "site": "0x801BD304",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801BD2E8: jal         0x8002889C",
+        "801BD2EC: addiu       $a3, $zero, 0xF0",
+        "801BD2F0: addu        $a0, $zero, $zero",
+        "801BD2F4: addu        $a1, $zero, $zero",
+        "801BD2F8: addu        $a2, $zero, $zero",
+        "801BD2FC: jal         0x80028878",
+        "801BD300: addiu       $a3, $zero, 0x10",
+        "801BD304: jal         0x800288EC",
+        "801BD308: nop"
+      ]
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BDCD0",
+      "site": "0x801BDDCC",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801BDDB0: addu        $a0, $zero, $zero",
+        "801BDDB4: addu        $a1, $zero, $zero",
+        "801BDDB8: addu        $a2, $zero, $zero",
+        "801BDDBC: jal         0x80028878",
+        "801BDDC0: addiu       $a3, $zero, 0x10",
+        "801BDDC4: jal         0x80028914",
+        "801BDDC8: nop",
+        "801BDDCC: jal         0x800288C0",
+        "801BDDD0: nop"
+      ]
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BDE60",
+      "site": "0x801BDEBC",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801BDEA0: jal         0x8002889C",
+        "801BDEA4: addiu       $a3, $zero, 0xF0",
+        "801BDEA8: addu        $a0, $zero, $zero",
+        "801BDEAC: addu        $a1, $zero, $zero",
+        "801BDEB0: addu        $a2, $zero, $zero",
+        "801BDEB4: jal         0x80028878",
+        "801BDEB8: addiu       $a3, $zero, 0x10",
+        "801BDEBC: jal         0x800288EC",
+        "801BDEC0: nop"
+      ]
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BEF70",
+      "site": "0x801BEFB4",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801BEF98: jal         0x8002889C",
+        "801BEF9C: addiu       $a3, $zero, 0xF0",
+        "801BEFA0: addu        $a0, $zero, $zero",
+        "801BEFA4: addu        $a1, $zero, $zero",
+        "801BEFA8: addu        $a2, $zero, $zero",
+        "801BEFAC: jal         0x80028878",
+        "801BEFB0: addiu       $a3, $zero, 0x10",
+        "801BEFB4: jal         0x800288EC",
+        "801BEFB8: nop"
+      ]
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BEF70",
+      "site": "0x801BF0A8",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801BF08C: jal         0x8002889C",
+        "801BF090: addiu       $a3, $zero, 0xF0",
+        "801BF094: addiu       $a0, $zero, 0xFF",
+        "801BF098: addiu       $a1, $zero, 0xFF",
+        "801BF09C: addiu       $a2, $zero, 0xFF",
+        "801BF0A0: jal         0x80028878",
+        "801BF0A4: addiu       $a3, $zero, 0x10",
+        "801BF0A8: jal         0x800288EC",
+        "801BF0AC: nop"
+      ]
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C1CD0",
+      "site": "0x801C1DCC",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C1DB0: addiu       $a0, $zero, 0xFF",
+        "801C1DB4: addiu       $a1, $zero, 0xFF",
+        "801C1DB8: addiu       $a2, $zero, 0xFF",
+        "801C1DBC: jal         0x80028878",
+        "801C1DC0: addiu       $a3, $zero, 0x10",
+        "801C1DC4: jal         0x80028914",
+        "801C1DC8: nop",
+        "801C1DCC: jal         0x800288C0",
+        "801C1DD0: nop"
+      ]
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C3680",
+      "site": "0x801C36B0",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C3694: jal         0x8002889C",
+        "801C3698: addiu       $a3, $zero, 0xF0",
+        "801C369C: addiu       $a0, $zero, 0xFF",
+        "801C36A0: addiu       $a1, $zero, 0xFF",
+        "801C36A4: addiu       $a2, $zero, 0xFF",
+        "801C36A8: jal         0x80028878",
+        "801C36AC: addiu       $a3, $zero, 0x10",
+        "801C36B0: jal         0x800288EC",
+        "801C36B4: nop"
+      ]
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801CB4C0",
+      "site": "0x801CB548",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801CB52C: addiu       $a0, $zero, 0xFF",
+        "801CB530: addiu       $a1, $zero, 0xFF",
+        "801CB534: addiu       $a2, $zero, 0xFF",
+        "801CB538: jal         0x80028878",
+        "801CB53C: addiu       $a3, $zero, 0x10",
+        "801CB540: jal         0x80028914",
+        "801CB544: nop",
+        "801CB548: jal         0x800288C0",
+        "801CB54C: nop"
+      ]
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C3680",
+      "site": "0x801C36B0",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C3694: jal         0x8002889C",
+        "801C3698: addiu       $a3, $zero, 0xF0",
+        "801C369C: addiu       $a0, $zero, 0xFF",
+        "801C36A0: addiu       $a1, $zero, 0xFF",
+        "801C36A4: addiu       $a2, $zero, 0xFF",
+        "801C36A8: jal         0x80028878",
+        "801C36AC: addiu       $a3, $zero, 0x10",
+        "801C36B0: jal         0x800288EC",
+        "801C36B4: nop"
+      ]
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C8148",
+      "site": "0x801C81D4",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C81B8: addiu       $a0, $zero, 0xFF",
+        "801C81BC: addiu       $a1, $zero, 0xFF",
+        "801C81C0: addiu       $a2, $zero, 0xFF",
+        "801C81C4: jal         0x80028878",
+        "801C81C8: addiu       $a3, $zero, 0x10",
+        "801C81CC: jal         0x80028914",
+        "801C81D0: nop",
+        "801C81D4: jal         0x800288C0",
+        "801C81D8: nop"
+      ]
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C3FC0",
+      "site": "0x801C3FF0",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C3FD4: jal         0x8002889C",
+        "801C3FD8: addiu       $a3, $zero, 0xF0",
+        "801C3FDC: addiu       $a0, $zero, 0xFF",
+        "801C3FE0: addiu       $a1, $zero, 0xFF",
+        "801C3FE4: addiu       $a2, $zero, 0xFF",
+        "801C3FE8: jal         0x80028878",
+        "801C3FEC: addiu       $a3, $zero, 0x10",
+        "801C3FF0: jal         0x800288EC",
+        "801C3FF4: nop"
+      ]
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C80E4",
+      "site": "0x801C8168",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C814C: addiu       $a0, $zero, 0xFF",
+        "801C8150: addiu       $a1, $zero, 0xFF",
+        "801C8154: addiu       $a2, $zero, 0xFF",
+        "801C8158: jal         0x80028878",
+        "801C815C: addiu       $a3, $zero, 0x10",
+        "801C8160: jal         0x80028914",
+        "801C8164: nop",
+        "801C8168: jal         0x800288C0",
+        "801C816C: nop"
+      ]
+    },
+    {
+      "section": ".minigame_4",
+      "function": "dora3_s24_mini_801C3680",
+      "site": "0x801C36B0",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C3694: jal         0x8002889C",
+        "801C3698: addiu       $a3, $zero, 0xF0",
+        "801C369C: addiu       $a0, $zero, 0xFF",
+        "801C36A0: addiu       $a1, $zero, 0xFF",
+        "801C36A4: addiu       $a2, $zero, 0xFF",
+        "801C36A8: jal         0x80028878",
+        "801C36AC: addiu       $a3, $zero, 0x10",
+        "801C36B0: jal         0x800288EC",
+        "801C36B4: nop"
+      ]
+    },
+    {
+      "section": ".minigame_4",
+      "function": "dora3_s24_mini_801C9800",
+      "site": "0x801C9884",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C9868: addiu       $a0, $zero, 0xFF",
+        "801C986C: addiu       $a1, $zero, 0xFF",
+        "801C9870: addiu       $a2, $zero, 0xFF",
+        "801C9874: jal         0x80028878",
+        "801C9878: addiu       $a3, $zero, 0x10",
+        "801C987C: jal         0x80028914",
+        "801C9880: nop",
+        "801C9884: jal         0x800288C0",
+        "801C9888: nop"
+      ]
+    },
+    {
+      "section": ".minigame_5",
+      "function": "dora3_s25_mini_801C3680",
+      "site": "0x801C36B0",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C3694: jal         0x8002889C",
+        "801C3698: addiu       $a3, $zero, 0xF0",
+        "801C369C: addiu       $a0, $zero, 0xFF",
+        "801C36A0: addiu       $a1, $zero, 0xFF",
+        "801C36A4: addiu       $a2, $zero, 0xFF",
+        "801C36A8: jal         0x80028878",
+        "801C36AC: addiu       $a3, $zero, 0x10",
+        "801C36B0: jal         0x800288EC",
+        "801C36B4: nop"
+      ]
+    },
+    {
+      "section": ".minigame_5",
+      "function": "dora3_s25_mini_801C6C74",
+      "site": "0x801C6CF0",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C6CD4: addiu       $a0, $zero, 0xFF",
+        "801C6CD8: addiu       $a1, $zero, 0xFF",
+        "801C6CDC: addiu       $a2, $zero, 0xFF",
+        "801C6CE0: jal         0x80028878",
+        "801C6CE4: addiu       $a3, $zero, 0x10",
+        "801C6CE8: jal         0x80028914",
+        "801C6CEC: nop",
+        "801C6CF0: jal         0x800288C0",
+        "801C6CF4: nop"
+      ]
+    },
+    {
+      "section": ".minigame_6",
+      "function": "dora3_s26_mini_801C3680",
+      "site": "0x801C36B0",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C3694: jal         0x8002889C",
+        "801C3698: addiu       $a3, $zero, 0xF0",
+        "801C369C: addiu       $a0, $zero, 0xFF",
+        "801C36A0: addiu       $a1, $zero, 0xFF",
+        "801C36A4: addiu       $a2, $zero, 0xFF",
+        "801C36A8: jal         0x80028878",
+        "801C36AC: addiu       $a3, $zero, 0x10",
+        "801C36B0: jal         0x800288EC",
+        "801C36B4: nop"
+      ]
+    },
+    {
+      "section": ".minigame_6",
+      "function": "dora3_s26_mini_801C72B8",
+      "site": "0x801C7334",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C7318: addiu       $a0, $zero, 0xFF",
+        "801C731C: addiu       $a1, $zero, 0xFF",
+        "801C7320: addiu       $a2, $zero, 0xFF",
+        "801C7324: jal         0x80028878",
+        "801C7328: addiu       $a3, $zero, 0x10",
+        "801C732C: jal         0x80028914",
+        "801C7330: nop",
+        "801C7334: jal         0x800288C0",
+        "801C7338: nop"
+      ]
+    },
+    {
+      "section": ".minigame_7",
+      "function": "dora3_s27_mini_801C3680",
+      "site": "0x801C36B0",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C3694: jal         0x8002889C",
+        "801C3698: addiu       $a3, $zero, 0xF0",
+        "801C369C: addiu       $a0, $zero, 0xFF",
+        "801C36A0: addiu       $a1, $zero, 0xFF",
+        "801C36A4: addiu       $a2, $zero, 0xFF",
+        "801C36A8: jal         0x80028878",
+        "801C36AC: addiu       $a3, $zero, 0x10",
+        "801C36B0: jal         0x800288EC",
+        "801C36B4: nop"
+      ]
+    },
+    {
+      "section": ".minigame_7",
+      "function": "dora3_s27_mini_801C6CC4",
+      "site": "0x801C6D40",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C6D24: addiu       $a0, $zero, 0xFF",
+        "801C6D28: addiu       $a1, $zero, 0xFF",
+        "801C6D2C: addiu       $a2, $zero, 0xFF",
+        "801C6D30: jal         0x80028878",
+        "801C6D34: addiu       $a3, $zero, 0x10",
+        "801C6D38: jal         0x80028914",
+        "801C6D3C: nop",
+        "801C6D40: jal         0x800288C0",
+        "801C6D44: nop"
+      ]
+    },
+    {
+      "section": ".minigame_8",
+      "function": "dora3_s28_mini_801C3680",
+      "site": "0x801C36B0",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C3694: jal         0x8002889C",
+        "801C3698: addiu       $a3, $zero, 0xF0",
+        "801C369C: addiu       $a0, $zero, 0xFF",
+        "801C36A0: addiu       $a1, $zero, 0xFF",
+        "801C36A4: addiu       $a2, $zero, 0xFF",
+        "801C36A8: jal         0x80028878",
+        "801C36AC: addiu       $a3, $zero, 0x10",
+        "801C36B0: jal         0x800288EC",
+        "801C36B4: nop"
+      ]
+    },
+    {
+      "section": ".minigame_8",
+      "function": "dora3_s28_mini_801C83AC",
+      "site": "0x801C8428",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C840C: addiu       $a0, $zero, 0xFF",
+        "801C8410: addiu       $a1, $zero, 0xFF",
+        "801C8414: addiu       $a2, $zero, 0xFF",
+        "801C8418: jal         0x80028878",
+        "801C841C: addiu       $a3, $zero, 0x10",
+        "801C8420: jal         0x80028914",
+        "801C8424: nop",
+        "801C8428: jal         0x800288C0",
+        "801C842C: nop"
+      ]
+    },
+    {
+      "section": ".minigame_9",
+      "function": "dora3_s29_mini_801C3680",
+      "site": "0x801C36B0",
+      "command": "0x800288EC",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C3694: jal         0x8002889C",
+        "801C3698: addiu       $a3, $zero, 0xF0",
+        "801C369C: addiu       $a0, $zero, 0xFF",
+        "801C36A0: addiu       $a1, $zero, 0xFF",
+        "801C36A4: addiu       $a2, $zero, 0xFF",
+        "801C36A8: jal         0x80028878",
+        "801C36AC: addiu       $a3, $zero, 0x10",
+        "801C36B0: jal         0x800288EC",
+        "801C36B4: nop"
+      ]
+    },
+    {
+      "section": ".minigame_9",
+      "function": "dora3_s29_mini_801C79D4",
+      "site": "0x801C7A50",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801C7A34: addiu       $a0, $zero, 0xFF",
+        "801C7A38: addiu       $a1, $zero, 0xFF",
+        "801C7A3C: addiu       $a2, $zero, 0xFF",
+        "801C7A40: jal         0x80028878",
+        "801C7A44: addiu       $a3, $zero, 0x10",
+        "801C7A48: jal         0x80028914",
+        "801C7A4C: nop",
+        "801C7A50: jal         0x800288C0",
+        "801C7A54: nop"
+      ]
+    },
+    {
+      "section": ".remaining_slot0_14",
+      "function": "dora3_s36_remaining_80221B40",
+      "site": "0x80221D58",
+      "command": "0x800288EC",
+      "family": "world/game UI/script",
+      "context": [
+        "80221D3C: nop",
+        "80221D40: cvt.s.w     $f2, $f2",
+        "80221D44: c.eq.s      $f2, $f0",
+        "80221D48: nop",
+        "80221D4C: nop",
+        "80221D50: bc1f        L_80221D80",
+        "80221D54: sh          $v1, 0x34($a0)",
+        "80221D58: jal         0x800288EC",
+        "80221D5C: nop"
+      ]
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B50F0",
+      "site": "0x801B5164",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801B5148: addu        $a0, $zero, $zero",
+        "801B514C: addu        $a1, $zero, $zero",
+        "801B5150: addu        $a2, $zero, $zero",
+        "801B5154: jal         0x80028878",
+        "801B5158: addiu       $a3, $zero, 0x10",
+        "801B515C: jal         0x80028914",
+        "801B5160: nop",
+        "801B5164: jal         0x800288C0",
+        "801B5168: nop"
+      ]
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B71C8",
+      "site": "0x801B723C",
+      "command": "0x800288C0",
+      "family": "reviewed minigame/common UI",
+      "context": [
+        "801B7220: addu        $a0, $zero, $zero",
+        "801B7224: addu        $a1, $zero, $zero",
+        "801B7228: addu        $a2, $zero, $zero",
+        "801B722C: jal         0x80028878",
+        "801B7230: addiu       $a3, $zero, 0x10",
+        "801B7234: jal         0x80028914",
+        "801B7238: nop",
+        "801B723C: jal         0x800288C0",
+        "801B7240: nop"
+      ]
+    }
+  ],
+  "alpha_path": "800289D8 reads801AA660 each build;8002FF64 calls it after resident phase1 and before frame submit.",
+  "fixed_exclusions": [
+    "scene34 destinations/states other than90/1",
+    "scene34 count1 and hold1/state2",
+    "world holds and paused/script fade with no scene-exit countdown",
+    "world final count1 fade interval",
+    "interior actual cleanup/load now drains banks"
+  ]
+}

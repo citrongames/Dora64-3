@@ -18,6 +18,8 @@ extern "C" void dora3_native_minigame_call_return(std::uint8_t*,recomp_context*,
 namespace dora3::native_time {
 // SDK draw helpers recompute actor matrices/world coordinates. Their temporary
 // derivatives belong to this frame; input/physics must see the Source values.
+// Mini8's draw-authored contact XZ is committed at Source completion before
+// these leases; subsequent Native builds must not erase that publication.
 class MinigameFrameScope {
 public:
     explicit MinigameFrameScope(std::uint8_t*);

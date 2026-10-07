@@ -1,21 +1,21 @@
 {
-  "result": "PARTIAL_USER_SKIP:31 completed connected CPU scopes PASS for048 regression fixes; full-player explicitly excluded",
-  "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
-  "base_commit": "7746b331e756de6631d81bfc9e702c7e73f194b2",
+  "result": "PARTIAL_USER_SKIP:31 completed connected CPU scopes PASS for seven post048 regression batches; full-player explicitly excluded",
+  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+  "base_commit": "e2099b112cb11b886f0e8bdeef7354500989039a",
   "checks": {
     "integration": {
       "path": "research/native-integration-check.json",
-      "sha256": "7856bbfbbf52864b03e838a787b6e034919bcb60f0e69628c9e7b969fd7368d9",
+      "sha256": "d002ee56a39a3d1809fb2b925710ddb437728f4cc348a96199efeb556439548f",
       "result": "PASS: 49 actual common-loop integration schedules, actual activation clock origin after held Original read, six Manual rates and both Source dividers, fractional modes, two completion boundaries, rate/reload/callback cancellation, unsupported fallback and quiescent mailbox reset; synthetic scene-clock/queue endpoints; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_integration.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
         ],
-        "elapsed_seconds": 38.87,
+        "elapsed_seconds": 41.11,
         "log": "integration-attempt1.log",
         "log_sha256": "71740cadf652b71ed1a59873bd7c834a7da6e665c79c0f15bdf897c0a66fe6f5",
         "attempts": []
@@ -23,83 +23,119 @@
     },
     "texture_animation": {
       "path": "research/native-texture-animation-check.json",
-      "sha256": "4defb2e2bddc7c4c790e0e9ed237b54b1faf9c730f5303f73feddf4ca4cddca8",
-      "result": "PASS: 35 actual Source bitmap/material and Native RDP scroll cases; generic/world binding, horizontal/vertical shifts, ordered tile bounds, immutable resources, both frame banks, reuse/stopped/clamped guards and pre-submit fallback; synthetic assets, no game/GPU",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "sha256": "5d6d8156b1ad505d22d5d377b711f63be1acef1d21e0763995089a71ac253c1d",
+      "result": "PASS: 47 actual Source bitmap/material and Native RDP scroll cases; generic/world binding, horizontal/vertical shifts, ordered tile bounds, immutable resources, both frame banks, reuse/stopped/clamped guards and pre-submit fallback; synthetic assets, no game/GPU",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_texture_animation.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
         ],
-        "elapsed_seconds": 13.68,
+        "elapsed_seconds": 15.34,
         "log": "texture_animation-attempt1.log",
-        "log_sha256": "54d06b6dcd5f55d2687bf099436d75cc46942bfee14df5248139f22e57bf46fb",
+        "log_sha256": "254c7f35e3fb9728d5126b71d87a37b19a86411efbea640a24e6b623d843e079",
         "attempts": []
       }
     },
     "minigames": {
       "path": "research/native-minigame-check.json",
-      "sha256": "1e0a06c244b32814c66ad68de22260359cbf34f98b26d51984f9d9d524abee0e",
-      "result": "PASS: all9 minigame modules and3 common callback pairs; 187 Source/Native cases, 1425 fractional slices;20/30Hz and Manual60/73/120/144/165/360; command-once, linked Euler motion, contact impulses, angle wrapping, model/draw input ownership and exact restoration; synthetic resources, no game/GPU",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "sha256": "bb3c72c1157463dfb946dd7fb9a859e1fdffcb9765ba49c4cc0ab2934931782d",
+      "result": "PASS: all9 minigame modules and3 common callback pairs; 1757 Source/Native cases, 10205 fractional slices;20/30Hz and Manual60/73/120/144/165/360; command-once, linked Euler motion, contact impulses, angle wrapping, model/draw input ownership and exact restoration; synthetic resources, no game/GPU",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_minigames.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-scene-block1-v4"
         ],
-        "elapsed_seconds": 69.82,
-        "log": "minigames-attempt1.log",
-        "log_sha256": "831cd832b5cb0dc332966db5bb8a6b48c5e95835217bab0f9d4019d28e6ac390",
-        "attempts": []
+        "elapsed_seconds": 195.77,
+        "log": "direct-minigames-1791361474057848423.log",
+        "log_sha256": "29ee0ac8af73856521ffd641121fcea0e37c6c533c19edf6eafcb1b9a591c859",
+        "attempts": [
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_minigames.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+              "--reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-scene-block1-v4"
+            ],
+            "status": "FAIL",
+            "log": "minigames-attempt1.log",
+            "exit_code": 1,
+            "elapsed_seconds": 93.12,
+            "log_sha256": "fd93fe21abd4845e5334a767d92c47e9b271c1dbbeb21e8a7d063945d6bf7bdd"
+          }
+        ]
       }
     },
     "ui": {
       "path": "research/native-ui-check.json",
-      "sha256": "02fd313b0b9dcdea98cca2585e12eef146dfdf78c5bf1bd7a8ac83db24e669bc",
-      "result": "PASS: 414 connected UI cases; 332 Original motion endpoints; 8682 Native math samples; 261 repeated Original UI draw/command comparisons; 41 ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "sha256": "d1c99c9d9722d3ab4722f413ea42410fbc76ea2917d42872e9eaa65493ed6476",
+      "result": "PASS: 3268 connected UI cases; 2882 Original motion endpoints; 40408 Native math samples; 369 repeated Original UI draw/command comparisons; 41 ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_ui.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
         ],
-        "elapsed_seconds": 62.58,
-        "log": "ui-attempt1.log",
-        "log_sha256": "8d9b546ac81476b353903baee4fd06f5e12466d1ceb5de521616a4eafae8283d",
-        "attempts": []
+        "elapsed_seconds": 200.13,
+        "log": "direct-ui-1791358936864115251.log",
+        "log_sha256": "cef6356b116e4af723423b8f2aeda46948bd37033e0c02cf2e918bb6b47b7442",
+        "attempts": [
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_ui.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+              "--reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
+            ],
+            "status": "FAIL",
+            "log": "ui-attempt1.log",
+            "exit_code": 1,
+            "elapsed_seconds": 48.17,
+            "log_sha256": "245aa6c0f5af0b2da27c52e2206ec4e01c951072a0a5d3b46830df94a006f887"
+          }
+        ]
       }
     },
     "cutscene": {
       "path": "research/native-cutscene-check.json",
-      "sha256": "fc4fb112f92186573382083ab5dd917fd72de010729402f3a52b3184b15c03c8",
+      "sha256": "72f239cae4ddeefe36be6ca55c8477ebcead9c49b2dbc66d15e7a3c324b1bdeb",
       "result": "PASS: 154 connected cutscene cases, 506 exact Source endpoints, 1431 Native intervals, 18 ownership/policy guards; 52 actual motion functions, all four linked cameras, XYZ/rotation/scale/polar/jump/alpha, Original20/30 at60/73FPS, actual interpreter wait/cut/finish, Source restoration and full-RAM/context duplicate-time checks; ASan/UBSan; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_cutscene.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
         ],
-        "elapsed_seconds": 40.39,
+        "elapsed_seconds": 39.22,
         "log": "cutscene-attempt1.log",
         "log_sha256": "47bbc6c60a35b8f9d1edad952cfd4aac8ebf928fe19988be2061cafcd5e72988",
         "attempts": []
@@ -107,35 +143,49 @@
     },
     "model_animation": {
       "path": "research/native-model-animation-check.json",
-      "sha256": "92edef8df55dbf114667a571b263a1b49daae73f4db8ed4e95772a7d21123598",
-      "result": "PASS: 12 fractional Native→Original model/cue continuations, activation rebase without pose/time mutation, authored Source equality18→21 skip and21→24 continuation, pending/delivered cue once, pause/resume/run/seek/renderer reset; actual original SDK counter; no game/GPU.\nPASS: 20 crossing timelines / actual player frame-18 event; 24 native simulation model timelines with nondestructive events and no render double-advance; 12 fractional short-angle wrap schedules; 12 latched angular-command schedules; 12 preceding opacity-command schedules; 12 exact-float scalar/retirement timelines with pause/write/acquisition/lifetime invalidation; 82 original linear/morph native pose samples at 60/73/120/144/165/360 Hz and both dividers; Hermite curve through original matrix builder, bank isolation, guest context/time/event preservation, pause/seek/clamp/rebind/stale updates, unknown-write rollback, deferred logic morph, draw-time deletion and same-address recreation; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "sha256": "40edd96507ce8cc0aff800aae8d7356d6d2329a168af8f14a3147845238a88b2",
+      "result": "PASS: 430 one-shot terminal pose/morph samples, ordinary loops, component/run/step guards, reverse control, Source flags/time/context and bank restoration.\nPASS: 12 fractional Native→Original model/cue continuations, activation rebase without pose/time mutation, authored Source equality18→21 skip and21→24 continuation, pending/delivered cue once, pause/resume/run/seek/renderer reset; actual original SDK counter; no game/GPU.\nPASS: 20 crossing timelines / actual player frame-18 event; 24 native simulation model timelines with nondestructive events and no render double-advance; 12 fractional short-angle wrap schedules; 12 latched angular-command schedules; 12 preceding opacity-command schedules; 12 exact-float scalar/retirement timelines with pause/write/acquisition/lifetime invalidation; 86 original linear/morph native pose samples at 60/73/120/144/165/360 Hz and both dividers; Hermite curve through original matrix builder, bank isolation, guest context/time/event preservation, pause/seek/clamp/rebind/stale updates, unknown-write rollback, deferred logic morph, draw-time deletion and same-address recreation; no game/GPU.",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_model_animation.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
         ],
-        "elapsed_seconds": 38.04,
-        "log": "model_animation-attempt1.log",
-        "log_sha256": "e900c7d4bd90de2ef6a8cbd1b957db93016e1a88ec5c335765ecb14c327dff82",
-        "attempts": []
+        "elapsed_seconds": 90.4,
+        "log": "direct-model_animation-1791359393493600492.log",
+        "log_sha256": "5d62fea84bd339f71087f9e5b80282d06ab9923f7c8921d6d66535c2da5a4848",
+        "attempts": [
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_model_animation.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
+            ],
+            "status": "FAIL",
+            "log": "model_animation-attempt1.log",
+            "exit_code": 1,
+            "elapsed_seconds": 60.59,
+            "log_sha256": "d315622531d477086ac5dcbb688afe93f08901cac3e1e419aea3770ef7a6706f"
+          }
+        ]
       }
     },
     "frame_time": {
       "path": "research/native-frame-time-check.json",
-      "sha256": "3da92dedc61611208608eed476e4859f5c713898db9f50e14c2073838b9078f2",
+      "sha256": "fd61580d92c21f9effaa40e473efb040612a33ef63b57e5037583266a090237d",
       "result": "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. All five original fade commands, inter-frame timestamp, no-op fractional retention, same-time commands and unknown-write rejection; rational Source command origins/reversal at12 FPS/divider settings with nonzero origin. No game/window/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_frame_time.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
         ],
-        "elapsed_seconds": 14.36,
+        "elapsed_seconds": 20.73,
         "log": "frame_time-attempt1.log",
         "log_sha256": "b7a060eedf7a6c699d4123a2818cf0c21238948ab575cfeb7b16f2317f469504",
         "attempts": []
@@ -143,19 +193,19 @@
     },
     "simulation": {
       "path": "research/native-simulation-check.json",
-      "sha256": "8648ea16773a808c2517d21decd9c624621484228a5b67bb3eafa007414139e8",
+      "sha256": "5a154b481c45a2316e9d8864414b874ebb534f912302696c153e07a5d686e2ce",
       "result": "PASS: 280 differential executions of seven original MIPS motion/camera helpers; Original and whole ticks unchanged; 12 20/30 Hz schedules at 60/73/120/144/165/360 FPS, 2036 real motion slices, exact discrete boundaries, constant-force kick/drift trajectory, approach/decay, long gaps, scene-reset cancellation and scope cleanup; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_simulation.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
         ],
-        "elapsed_seconds": 8.29,
+        "elapsed_seconds": 12.91,
         "log": "simulation-attempt1.log",
         "log_sha256": "cd346601c5b4b62f8109198735ddf93145603e64e190386703a2817a0a5c3ca1",
         "attempts": []
@@ -163,21 +213,21 @@
     },
     "camera_control": {
       "path": "research/native-camera-control-check.json",
-      "sha256": "06705607299407fdc9f0be616397134f5c66f8bc922710a1c6bfa2feb8f6cc3b",
+      "sha256": "0e1e3da76bc069734d1194c9721607540e7893768e0cefbf2eebdb71eaa3f864",
       "result": "PASS: 970 camera control/transition/coefficient cases; actual original angle helper, Original and full-step RAM equivalence; 60/73/120/144/165/360FPS, 20/30Hz; minimum distance20 unchanged; pitch dead-zone tolerance0.11 degrees; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_camera_control.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v69"
         ],
-        "elapsed_seconds": 8.54,
+        "elapsed_seconds": 13.99,
         "log": "camera_control-attempt1.log",
         "log_sha256": "b718ac57be459d9e2b20cd4bf3d562acf959e19c275a08d28ce3d64ea04b66ee",
         "attempts": []
@@ -185,21 +235,21 @@
     },
     "camera_modes": {
       "path": "research/native-camera-modes-check.json",
-      "sha256": "7d5a4c02816e7e824eca380a13fc9147eab3e8ac0dbae9a9f336a3c822e0df72",
+      "sha256": "30cf67d648a917a49c27b04cdd2558c2bc9fa04fbbdd55925f609e520df2da44",
       "result": "801D5864 diagnostic_max_rate_spread=0 field=0 variant=0\n801D7294 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8578 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8A24 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8FF0 diagnostic_max_rate_spread=0 field=0 variant=0\n801DB720 diagnostic_max_rate_spread=0 field=0 variant=0\n801D9B00 diagnostic_max_rate_spread=0 field=0 variant=0\n801D9C94 diagnostic_max_rate_spread=0 field=0 variant=0\n801DA06C diagnostic_max_rate_spread=0 field=0 variant=0\n801DAB58 diagnostic_max_rate_spread=0 field=0 variant=0\n801DA588 diagnostic_max_rate_spread=0 field=0 variant=0\n801DAF50 diagnostic_max_rate_spread=0 field=0 variant=0\n801DB3D0 diagnostic_max_rate_spread=0 field=0 variant=0\nPASS: 10975 Original/full-tick memory comparisons across thirteen ordinary camera roots. Native equations also match at shared fractional timestamps; Source-end real shake commands at three final cuts and two dividers, external writes/reset preserved; synthetic room triangles through original collision query, no real level/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_camera_modes.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
         ],
-        "elapsed_seconds": 35.52,
+        "elapsed_seconds": 57.66,
         "log": "camera_modes-attempt1.log",
         "log_sha256": "e80bca6d3d3fc5099481ee37feb2874e658c23ff18e0415eecd54fdce18a345e",
         "attempts": []
@@ -207,21 +257,21 @@
     },
     "script_camera": {
       "path": "research/native-script-camera-check.json",
-      "sha256": "e042aace04d483192f111cb54cc2d58375eee1fc552937c1bb129077c6610429",
+      "sha256": "f33af1b4706dcc295384e6b6759cb52556aa2817803d8107e2c57a1692650495",
       "result": "PASS: 3920 script-camera cases; four cameras, all four modes, six orbit channels, local channels and combined rotations; Original/whole-step RAM differential, durations 0/1/2/7/40, 20/30 Hz timing at 60/73/120/144/165/360 FPS, original trigonometry and eye geometry; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_script_camera.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v69"
         ],
-        "elapsed_seconds": 15.47,
+        "elapsed_seconds": 26.37,
         "log": "script_camera-attempt1.log",
         "log_sha256": "316e1048a0fd348c41ec8d4cbed50b29e1d3ee42d48c14347992eeca83fc2a0f",
         "attempts": []
@@ -229,21 +279,21 @@
     },
     "effects": {
       "path": "research/native-effects-check.json",
-      "sha256": "c9392362e9c5d83c0398f6956db28701995cd9cfad238045ce3318842904d890",
+      "sha256": "f815f550c5e703f57555aea780e0b4a83e81a8a001e933b86b872dc0fe0fec9a",
       "result": "PASS: 200 rectangle/zoom/sprite cases; all four rectangle modes, loop/clamp sprite events, durations0/1/2/7/40; original whole-step equivalence and per-tick state/event comparison at60/73/144/360FPS and20/30Hz; real fractional zoom changes; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_effects.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v69"
         ],
-        "elapsed_seconds": 31.35,
+        "elapsed_seconds": 62.51,
         "log": "effects-attempt1.log",
         "log_sha256": "16f0baa33a428a87264d785fa3f2e4036ead2e5b7a6d40a52185ad202b76fd7d",
         "attempts": []
@@ -251,21 +301,21 @@
     },
     "gravity": {
       "path": "research/native-gravity-check.json",
-      "sha256": "2a348112fa6a6dc8cc4556ff43127fa53841e9443d2fe0da9f7a4267834e54e3",
+      "sha256": "41f6b30728bf4e0f7f02f7a3eaab563a1db765c1fa5fe13703be253476687cdc",
       "result": "PASS: 786 original/gravity trajectory cases; 60/73/120/144/165/360FPS, 20/30Hz, both terminal caps, player special branches, contacts and scoped actor isolation; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_gravity.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v69"
         ],
-        "elapsed_seconds": 8.52,
+        "elapsed_seconds": 14.6,
         "log": "gravity-attempt1.log",
         "log_sha256": "9eb33fbb0b90ea6030dcf5f039b0e30fdb9ef751aab4d5f4284627c7aabd410a",
         "attempts": []
@@ -273,17 +323,17 @@
     },
     "input": {
       "path": "research/native-input-check.json",
-      "sha256": "11014611e83e9372afc73b3c70309e5bf161c687d1d25b0ff32f86df17ac2ecd",
+      "sha256": "f690988c0d9b99d57d37313abcfe7b041473534c08854d184f99f27cd520e8d7",
       "result": "PASS: 12 real VI accumulator/latch schedules at 60/73/120/144/165/360 FPS, four-port ownership, short presses, analog thresholds, Original handoff, disconnect/reconnect and scene reset; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_input.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
         ],
-        "elapsed_seconds": 12.96,
+        "elapsed_seconds": 21.08,
         "log": "input-attempt1.log",
         "log_sha256": "c524dbfb5d2eb8d4131032e3fc549c5dcbeb06e3d1ae42714b5df1ee37d4f794",
         "attempts": []
@@ -291,21 +341,21 @@
     },
     "player_motion": {
       "path": "research/native-player-motion-check.json",
-      "sha256": "734991ae67bf27974c02825b962d39f5961478da9a1bebb1ee19a3a577e4f9cd",
+      "sha256": "60d710b0bf37c09d9cf45b512629f919e1db963a8b3529828e5d460429098ef6",
       "result": "PASS: 168 drive partitions; 24 joint player/vector/gravity/contact/camera trajectories at 60/73/144/360FPS; Original equivalence; movement cache preserved across camera boundary; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_player_motion.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
         ],
-        "elapsed_seconds": 24.58,
+        "elapsed_seconds": 45.86,
         "log": "player_motion-attempt1.log",
         "log_sha256": "0b4bcdac07c9f6897c6ff0d05887879d8c4a9fbd3e1e259765f37f8224e6f797",
         "attempts": []
@@ -313,21 +363,21 @@
     },
     "process_time": {
       "path": "research/native-process-time-check.json",
-      "sha256": "c20b40e166ff6cf12e3a5275c28ea57e1b8be43fc84a811fd82cdc9cd01072b1",
+      "sha256": "5f6c0f8dad7788dd9258c386c5d3181a90a9e72ba52c104c63eb371a970344cc",
       "result": "PASS: 2053 process dispatcher checks; all eight slots, states0..5, waits0/1/3, Original memory equivalence, repeated draw/simulation dispatch, delayed first activation; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_process_time.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v69"
         ],
-        "elapsed_seconds": 31.45,
+        "elapsed_seconds": 63.37,
         "log": "process_time-attempt1.log",
         "log_sha256": "fd7a94371c6e38f52df9157168ea90b7dea5410ad830e65f8a2ad17a3d311fe1",
         "attempts": []
@@ -335,17 +385,17 @@
     },
     "frame_bridge": {
       "path": "research/native-frame-bridge-address-check.json",
-      "sha256": "438c308ffb589ce2cd9c932b4cfd12398c2949c3301d9a68a905dab97a479e72",
+      "sha256": "e02384756bfc9f44f40a5d36bac365b2a2d18dbac2d6a052bbfb6bd1c6ea970b",
       "result": "PASS: registered type2 drains during pause while unregistered type2 remains Original; real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context and all odd FPRs preserved in FR=0/FR=1; stale scene/rate wakes; quiescent reset; update before bank reservation, scene/rate cancellation; 2000 concurrent deliveries",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_frame_bridge.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
         ],
-        "elapsed_seconds": 15.7,
+        "elapsed_seconds": 30.68,
         "log": "frame_bridge-attempt1.log",
         "log_sha256": "99f1b90a2e0467aa09934ba463f4c7626a0e55c164a25176bdc975ab415112e8",
         "attempts": []
@@ -353,17 +403,17 @@
     },
     "frame_scheduler": {
       "path": "research/native-frame-scheduler-address-check.json",
-      "sha256": "f72499ebb6aa214436289e5f38f3146ae3a457b916e822f725bc9b2b7b22e540",
+      "sha256": "51c35b51386e5de887bfa078bc962658238d3b82d284541fd05b197ee9835e89",
       "result": "PASS: one queued wake; immutable token behind 32-bit message; two banks; publication and independent guest/host completion; stale scene/rate tokens; enqueue rejection; elapsed-time conservation under backpressure; Original bypass; concurrent completion order; original ROM VI gate and completion-before-swap order; native 60/73/144/165/360 scheduling builds original 2D fade display lists with extra alpha phases and unchanged duration. No game/window/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_frame_scheduler.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
         ],
-        "elapsed_seconds": 11.77,
+        "elapsed_seconds": 20.55,
         "log": "frame_scheduler-attempt1.log",
         "log_sha256": "145cbdce4004034b29dd22d94bbfb8be5634424f05e4b812a5b7e286afd4b6af",
         "attempts": []
@@ -371,19 +421,19 @@
     },
     "graphics_pump": {
       "path": "research/native-graphics-pump-check.json",
-      "sha256": "84350a040c8070e790282e186573a559cc4cd0fc957241f53362973ccb5170f3",
+      "sha256": "23600cf2f6ba41ed64730779255c1b6c623fbbf94469bc6fbcbacd9d97b84366",
       "result": "PASS: immediate game+host completion and bank reuse after both SP/DP caller tails (SP-first and DP-first); registered native framebuffer bypass, present after swap, type2 consumption and delayed host acknowledgement; original submit -> native-only wake -> original scheduler including full event queue; no synthetic VI/client broadcast; audio priority/yield, SP/DP completion, framebuffer gate, pause, late Original wake and context/thread-local isolation preserved",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_graphics_pump.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64"
         ],
-        "elapsed_seconds": 45.34,
+        "elapsed_seconds": 76.23,
         "log": "graphics_pump-attempt1.log",
         "log_sha256": "081f137dd4ec10613ae163a3ab49c42697997a6394e4e41dcaa48ea43e0690c5",
         "attempts": []
@@ -391,39 +441,55 @@
     },
     "loop": {
       "path": "research/native-loop-check.json",
-      "sha256": "f57343c6827007952ddeb98b0edb3944129a31358ad983e762e0c5a2a6a44cb9",
-      "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 270 native white-fade builds with 240 distinct alpha values; 76 discrete updates, 1084 native builds, 3 Original builds, 232 VI events; no GPU",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "sha256": "52d3fd9c6af2ee4e04ae08deaa13953b83f8d07c07e02756b53d9f23350e2b82",
+      "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 288 native white-fade builds with 255 distinct alpha values; 18 last-interval builds; 348 actual RDP fade-alpha comparisons; request state1; 76 discrete updates, 1102 native builds, 2 Original builds, 232 VI events; no GPU\nPASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 287 native white-fade builds with 254 distinct alpha values; 18 last-interval builds; 347 actual RDP fade-alpha comparisons; request state2; 76 discrete updates, 1102 native builds, 2 Original builds, 232 VI events; no GPU",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_loop.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64"
         ],
-        "elapsed_seconds": 104.31,
-        "log": "loop-attempt1.log",
-        "log_sha256": "840b4229bd7435beeb6f741aeb47fbb32953f42b2664edf32ce43b3c47e7f812",
-        "attempts": []
+        "elapsed_seconds": 209.54,
+        "log": "direct-loop-1791361474903291563.log",
+        "log_sha256": "a1ca75925906edccee9c19d1d1a001ba2faa2967248bd16eab4b38b597f1cb41",
+        "attempts": [
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_loop.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64"
+            ],
+            "status": "PASS",
+            "log": "loop-attempt1.log",
+            "exit_code": 0,
+            "elapsed_seconds": 235.28,
+            "log_sha256": "7f7eefa7d0787293c5f7ac8b3e533001d7432cd785a2409c32f368c93e7cb991"
+          }
+        ]
       }
     },
     "scene34_draw": {
       "path": "research/native-scene34-draw-check.json",
-      "sha256": "a6af9e3da9357446d7a8872e6d40bc0838161e78c2f0429d5c9cb820eed6a122",
+      "sha256": "6da4991a8838a149ab22638d0c477e5644070f741c65d03e960976c16376b9e6",
       "result": "PASS: scene34 image branch original draw closure; CI4/CI8 headers, 3 sizes, 2 banks, alpha 0/128/255; 802 actual 2D command lists at 60/73/144/165/360 with native fade; all guest RAM outside DL/cursor/stack unchanged; no renderer or live scene activation",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_scene34_draw.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64"
         ],
-        "elapsed_seconds": 8.94,
+        "elapsed_seconds": 14.64,
         "log": "scene34_draw-attempt1.log",
         "log_sha256": "629368af6929ca7ed69008540f13451b9f8e19e376521c2acad3449223d62c29",
         "attempts": []
@@ -431,7 +497,7 @@
     },
     "session": {
       "path": "research/native-session-address-check.json",
-      "sha256": "24b9724ab0d0ff8faedb967e411a248ee692723088d9814afa854b9f1011e791",
+      "sha256": "6b1b278b4a3f380d954ce0fddbd14c4f8ab26dea8041bae5bdc0bb3ddfb89978",
       "result": "PASS: in-progress Original read delays native entry; late reads denied; exit waits both completions; cancellation/stale reservation/pause/reset; actual sleeping producer wakes on deadline, mailbox receive, bank release and rate change; stops/joins with pending wake and restarts idle",
       "generation_receipt_sha256": null,
       "execution": {
@@ -439,7 +505,7 @@
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_session.py"
         ],
-        "elapsed_seconds": 10.54,
+        "elapsed_seconds": 19.86,
         "log": "session-attempt1.log",
         "log_sha256": "378c5ed9810c78bd8f1fef0858a8e508468c1759bc59303e79f7dd195c199b3c",
         "attempts": []
@@ -447,7 +513,7 @@
     },
     "present": {
       "path": "research/native-present-address-check.json",
-      "sha256": "d32265ca684bcab03d162779474dadb5f1d712ba651c2299b58c540ef9721e00",
+      "sha256": "c50eabe968ee1806d5a0fcb882f9d1cee6b95dc6174becc8ebe0e541fd77a942",
       "result": "PASS: all six completion orderings, early/duplicate/stale callbacks, two-bank backpressure, concurrent host/game completion; exact runtime VI oracle (16 combinations), copied framebuffer/mode, no VI state advance, enqueue rejection, real worker acknowledges after reads and drops late periodic actions",
       "generation_receipt_sha256": null,
       "execution": {
@@ -455,7 +521,7 @@
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_present.py"
         ],
-        "elapsed_seconds": 10.04,
+        "elapsed_seconds": 18.51,
         "log": "present-attempt1.log",
         "log_sha256": "97173e6be0897b93f6c5efa7d11133855641ee34f9a2c92360f4c8e427149c67",
         "attempts": []
@@ -463,15 +529,15 @@
     },
     "scene_transition": {
       "path": "research/native-scene-transition-check.json",
-      "sha256": "74f2a91fbdf41222027d84db72bcc9e95195b36c45ff93cc30933a373d1b31c8",
+      "sha256": "e974d1e8943c03d14933139c2ee098528c6b1e43bcf024db0317bc7c8f8542f0",
       "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 336 actual slot09 constructors; 0 slot09 Source schedules; 32 slot09 Native edge schedules; 0 slot09 rejections; 0 slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; 0 slot09 intermediate yaw samples; settings=8; ASan/UBSan/LSan; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_scene_transition.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
@@ -479,8 +545,8 @@
           "--city-reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v189"
         ],
-        "elapsed_seconds": 135.91,
-        "log": "scene_transition-attempt4.log",
+        "elapsed_seconds": 135.0,
+        "log": "scene_transition-attempt2.log",
         "log_sha256": "5b9bdc0b9b0dcf73c36e2258f875d192afc0f9658c39683c8c677bdbb550cc27",
         "attempts": [
           {
@@ -488,37 +554,7 @@
               "/usr/bin/python3",
               "/home/vova/projects/DoraRecomp3/tools/check_native_scene_transition.py",
               "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189"
-            ],
-            "status": "QUEUED"
-          },
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_scene_transition.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189"
-            ],
-            "status": "QUEUED"
-          },
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_scene_transition.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
               "--rom",
               "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
               "--reference",
@@ -533,15 +569,15 @@
     },
     "scene_frame": {
       "path": "research/native-scene-frame-check.json",
-      "sha256": "b29227894d6e39ab67fb773f1f5c9366a4a6c693685cf63666a86dba3b7bb6cd",
+      "sha256": "b37b6f9648bb3ed3e8a6ed91ad6426acdaafa30385d006b1062cb2846a6f3b88",
       "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 672 actual slot09 constructors; 0 slot09 Source schedules; 64 slot09 Native edge schedules; 0 slot09 rejections; 0 slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; 0 slot09 intermediate yaw samples; settings=16; ASan/UBSan/LSan; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_player_update.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
@@ -553,8 +589,8 @@
           "--scope",
           "scene-frame"
         ],
-        "elapsed_seconds": 233.54,
-        "log": "scene_frame-attempt4.log",
+        "elapsed_seconds": 222.25,
+        "log": "scene_frame-attempt2.log",
         "log_sha256": "60f6b044893cb51824d497144b08e5d3e2b2dcec51944f021e78d49f08da3311",
         "attempts": [
           {
@@ -562,45 +598,7 @@
               "/usr/bin/python3",
               "/home/vova/projects/DoraRecomp3/tools/check_native_player_update.py",
               "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-              "--optimization",
-              "O2",
-              "--scope",
-              "scene-frame"
-            ],
-            "status": "QUEUED"
-          },
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_player_update.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-              "--optimization",
-              "O2",
-              "--scope",
-              "scene-frame"
-            ],
-            "status": "QUEUED"
-          },
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_player_update.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
               "--rom",
               "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
               "--reference",
@@ -619,15 +617,15 @@
     },
     "story_pickups": {
       "path": "research/native-pickup-linked-batch-check.json",
-      "sha256": "1239eaed48338d189aef1c12c449cb482e45229e83bbe11ffd295fa112a2dfa1",
+      "sha256": "1174b79b686b8d62cf473846ea23cd3f8924120d57d5387a78f8471d980e428d",
       "result": "PASS: 72 Original and72 mixed Native/Source actual Native linked129 animation and standard pickup lifetimes;8 actual private producers with three129 children, three heights/XYZ velocity profiles, actual parent contact/quest/collection/six-flash130 and129 unlink/automatic retirement; 73656 Native intervals preserve every Source-only129 actor/physics word and unclaimed model/parent field; 19440 intermediate129 model-time changes and 73656 exact whole-snapshot duplicate-time checks; 18432 exact full live actor/physics/model/heap/resources/commands/quest/RNG/collision-result endpoints. Actual Source RNG timers/teleports/clip commands and complete resources on synthetic assets; Native129 owns only common model time/completion pulse after actual Source initialization and live reciprocal links; no actual selecting script/real-level renderer claim; no game/GPU.\nPASS: 117 Original and117 mixed Native/Source guarded linked129 animation lifetimes;13 command profiles at before/after/mid Native intervals, three root velocity profiles, actual private producer118 with three129 children, three heights/XYZ velocity profiles, actual parent contact/quest/collection/six-flash130 and129 unlink/automatic retirement; 129675 Native intervals preserve every Source-only129 actor/physics word and unclaimed model/parent field; 34830 intermediate129 model-time changes and 129675 exact whole-snapshot duplicate-time checks; 29952 exact full live actor/physics/model/heap/resources/commands/quest/RNG/collision-result endpoints. Actual Source RNG timers/teleports/clip commands and complete resources on synthetic assets; Native129 owns only common model time/completion pulse after actual Source initialization and live reciprocal links; no actual selecting script/real-level renderer claim; no game/GPU.\nPASS: linked Native animation batch;189 paired complete lifetimes/48384 exact Original endpoints; private commands and resources retain Source order; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_story_pickups.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
@@ -639,8 +637,8 @@
           "--scope",
           "pickup-linked-batch"
         ],
-        "elapsed_seconds": 383.87,
-        "log": "story_pickups-attempt4.log",
+        "elapsed_seconds": 382.24,
+        "log": "story_pickups-attempt2.log",
         "log_sha256": "ba3c5ab2d9b528f2340e90891a7fe51a72789d421b25e208843c9945b66c03b8",
         "attempts": [
           {
@@ -648,45 +646,7 @@
               "/usr/bin/python3",
               "/home/vova/projects/DoraRecomp3/tools/check_native_story_pickups.py",
               "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-              "--optimization",
-              "O2",
-              "--scope",
-              "pickup-linked-batch"
-            ],
-            "status": "QUEUED"
-          },
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_story_pickups.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-              "--optimization",
-              "O2",
-              "--scope",
-              "pickup-linked-batch"
-            ],
-            "status": "QUEUED"
-          },
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_story_pickups.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
               "--rom",
               "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
               "--reference",
@@ -705,15 +665,15 @@
     },
     "scene_objects": {
       "path": "research/native-scene-object-check.json",
-      "sha256": "e368cc4bbaedc5fcba3ff273185b9b938de3f1a2453d521943ba9da991ba5e40",
-      "result": "PASS: scene 3504 frozen/current Original and 10512 Native schedules across all292 ROM variants / 289 kinds; fresh replay=1 kinds/48 cases, retained unchanged=291 kinds; 2880 fresh pool endpoints, 25554 intervals, 25554 zero-dt checks, 32 genuine contacts; 289 scene/NPC kinds including platforms, doors, switches, traps, event actors and effects, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 0=1,2, 1=1,2, 2=1,2,3, 3=1,2,3, 4=1, 5=1, 6=1,2, 7=1,2, 8=1,2,3, 9=1,2,3, 10=1,2, 11=1,2, 12=1,2,3, 13=1, 14=1, 15=1, 16=1, 17=1,2, 18=1,2, 19=1,2, 20=1,2, 21=1,2, 22=1,2, 23=1,2, 24=1,2, 25=1,2, 26=1,2, 27=1,2,3, 28=1,2,3, 29=1,2,3, 30=1,2,3, 31=1,2,3, 32=1,2,3, 33=1,2,3, 34=1,2,3, 35=1,2,3, 36=1,2, 37=2,3, 38=1, 39=1,2, 40=1,2, 41=1,2, 42=1,3, 43=1, 44=1, 45=1,2, 46=1, 47=1, 48=1, 49=1, 50=1, 51=1, 52=1, 53=1, 54=1, 55=1, 56=1, 57=1, 58=1, 59=1, 60=1, 61=1, 62=1, 63=1, 64=1, 65=1, 66=1, 67=1, 68=1, 69=1, 70=1, 71=1, 72=1, 73=1, 74=1, 75=1, 76=1, 77=1, 78=1, 79=1, 80=1, 81=1, 82=1, 83=1, 84=1, 85=1, 86=1, 87=1, 88=1, 89=1, 90=1, 91=1, 92=1, 93=1, 94=1, 95=1, 96=1, 97=1, 98=1, 99=1, 100=1, 101=1, 102=1, 103=1, 104=1, 105=1, 106=1, 107=1, 108=1, 109=1, 110=1, 111=1, 112=1, 113=1, 114=1, 115=1, 116=1, 117=1, 118=1, 119=1, 120=1, 121=1, 122=1, 123=1, 124=1, 125=1, 126=1, 127=1, 128=1, 129=1, 130=1, 131=1, 132=1, 133=1, 134=1, 135=1, 136=1, 137=1, 138=1, 139=1, 140=1, 141=1, 142=1, 143=1, 144=1, 145=1, 146=1, 147=1, 148=1, 149=1, 150=1, 151=1, 152=1, 153=1, 154=1, 155=1, 156=1, 157=1, 158=1, 159=1, 160=1, 161=1, 162=1, 163=1, 164=1, 165=1, 166=1, 167=1, 168=1, 169=1, 170=1, 171=1, 172=1, 173=1, 174=, 175=1, 176=1, 177=1, 178=1, 179=1, 180=1, 181=1, 182=1, 183=1, 184=1, 185=1, 186=1, 187=1, 188=1, 189=1, 190=1, 191=1, 192=1, 193=1, 194=3, 195=3, 196=1, 197=1, 198=1, 199=1, 200=1, 201=1, 202=1, 203=1, 204=1, 205=1, 206=1, 207=1, 208=1, 209=1, 210=1, 211=1, 212=1, 213=1, 214=1, 215=1, 216=1, 217=1, 218=1, 219=1, 220=1, 221=1, 222=1, 223=1, 224=1, 225=1, 226=1, 227=1, 228=1, 229=1, 230=1, 231=1, 232=1, 233=1, 234=1, 235=1, 236=1, 237=1, 238=1, 239=1, 240=1, 241=1, 242=1, 243=1, 244=1, 245=1, 246=1, 247=1, 248=1, 249=1, 250=1, 251=1, 252=1, 253=1, 254=1, 255=1, 256=1, 257=1, 258=1, 259=1, 260=1, 261=1, 262=1, 263=1, 264=1, 265=1, 266=1, 267=1,10, 268=1, 269=1, 270=1, 271=1, 272=1, 273=1, 274=1, 275=1, 276=1, 277=1, 278=1, 279=1, 280=1, 281=1, 282=1, 283=1, 284=2, 285=1, 286=1, 287=1, 288=1, 289=1, 290=1, 291=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "sha256": "05a47dfb4928270d9a1726db0aa3fdc8144b8a846eedfd4c0ddd7fe706228e3b",
+      "result": "PASS: scene 3504 frozen/current Original and 10512 Native schedules across all292 ROM variants / 289 kinds; fresh replay=292 kinds/14016 cases, retained unchanged=0 kinds; 840960 fresh pool endpoints, 7461768 intervals, 7461768 zero-dt checks, 9184 genuine contacts; 289 scene/NPC kinds including platforms, doors, switches, traps, event actors and effects, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 0=1,2, 1=1,2, 2=1,2,3, 3=1,2,3, 4=1, 5=1, 6=1,2, 7=1,2, 8=1,2,3, 9=1,2,3, 10=1,2, 11=1,2, 12=1,2,3, 13=1, 14=1, 15=1, 16=1, 17=1,2, 18=1,2, 19=1,2, 20=1,2, 21=1,2, 22=1,2, 23=1,2, 24=1,2, 25=1,2, 26=1,2, 27=1,2,3, 28=1,2,3, 29=1,2,3, 30=1,2,3, 31=1,2,3, 32=1,2,3, 33=1,2,3, 34=1,2,3, 35=1,2,3, 36=1,2, 37=2,3, 38=1, 39=1,2, 40=1,2, 41=1,2, 42=1,3, 43=1, 44=1, 45=1,2, 46=1, 47=1, 48=1, 49=1, 50=1, 51=1, 52=1, 53=1, 54=1, 55=1, 56=1, 57=1, 58=1, 59=1, 60=1, 61=1, 62=1, 63=1, 64=1, 65=1, 66=1, 67=1, 68=1, 69=1, 70=1, 71=1, 72=1, 73=1, 74=1, 75=1, 76=1, 77=1, 78=1, 79=1, 80=1, 81=1, 82=1, 83=1, 84=1, 85=1, 86=1, 87=1, 88=1, 89=1, 90=1, 91=1, 92=1, 93=1, 94=1, 95=1, 96=1, 97=1, 98=1, 99=1, 100=1, 101=1, 102=1, 103=1, 104=1, 105=1, 106=1, 107=1, 108=1, 109=1, 110=1, 111=1, 112=1, 113=1, 114=1, 115=1, 116=1, 117=1, 118=1, 119=1, 120=1, 121=1, 122=1, 123=1, 124=1, 125=1, 126=1, 127=1, 128=1, 129=1, 130=1, 131=1, 132=1, 133=1, 134=1, 135=1, 136=1, 137=1, 138=1, 139=1, 140=1, 141=1, 142=1, 143=1, 144=1, 145=1, 146=1, 147=1, 148=1, 149=1, 150=1, 151=1, 152=1, 153=1, 154=1, 155=1, 156=1, 157=1, 158=1, 159=1, 160=1, 161=1, 162=1, 163=1, 164=1, 165=1, 166=1, 167=1, 168=1, 169=1, 170=1, 171=1, 172=1, 173=1, 174=, 175=1, 176=1, 177=1, 178=1, 179=1, 180=1, 181=1, 182=1, 183=1, 184=1, 185=1, 186=1, 187=1, 188=1, 189=1, 190=1, 191=1, 192=1, 193=1, 194=3, 195=3, 196=1, 197=1, 198=1, 199=1, 200=1, 201=1, 202=1, 203=1, 204=1, 205=1, 206=1, 207=1, 208=1, 209=1, 210=1, 211=1, 212=1, 213=1, 214=1, 215=1, 216=1, 217=1, 218=1, 219=1, 220=1, 221=1, 222=1, 223=1, 224=1, 225=1, 226=1, 227=1, 228=1, 229=1, 230=1, 231=1, 232=1, 233=1, 234=1, 235=1, 236=1, 237=1, 238=1, 239=1, 240=1, 241=1, 242=1, 243=1, 244=1, 245=1, 246=1, 247=1, 248=1, 249=1, 250=1, 251=1, 252=1, 253=1, 254=1, 255=1, 256=1, 257=1, 258=1, 259=1, 260=1, 261=1, 262=1, 263=1, 264=1, 265=1, 266=1, 267=1,10, 268=1, 269=1, 270=1, 271=1, 272=1, 273=1, 274=1, 275=1, 276=1, 277=1, 278=1, 279=1, 280=1, 281=1, 282=1, 283=1, 284=2, 285=1, 286=1, 287=1, 288=1, 289=1, 290=1, 291=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_scene_objects.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
@@ -723,78 +683,25 @@
           "--enemy-reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v362",
           "--workers",
-          "6",
-          "--resume-evidence",
-          "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/regression048-scene-object-resume.json"
+          "6"
         ],
-        "elapsed_seconds": 37.52,
-        "log": "scene_objects-attempt3.log",
-        "log_sha256": "3cb659ba3ba16029ba38e74f314f86e92020093c5bddb5bb6e190f7a1aef60e4",
-        "attempts": [
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_scene_objects.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-              "--enemy-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v362",
-              "--workers",
-              "6",
-              "--resume-evidence",
-              "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/regression048-scene-object-resume.json"
-            ],
-            "status": "FAIL",
-            "log": "scene_objects-attempt1.log",
-            "exit_code": 1,
-            "elapsed_seconds": 262.82,
-            "log_sha256": "2485c2da1610a432984b1d6c8239aff2cd777f8ae3a9396f6f3c3b48505ec032"
-          },
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_scene_objects.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-              "--enemy-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v362",
-              "--workers",
-              "6",
-              "--resume-evidence",
-              "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/regression048-scene-object-resume.json"
-            ],
-            "status": "FAIL",
-            "log": "scene_objects-attempt2.log",
-            "exit_code": 1,
-            "elapsed_seconds": 35.99,
-            "log_sha256": "503f3c2709ccc475b083bc8c2cf113ebe04a1bb22f896f465cf796e234781a5d"
-          }
-        ]
+        "elapsed_seconds": 1712.53,
+        "log": "scene_objects-attempt1.log",
+        "log_sha256": "aece7a3e2a740d1526fd480d6a5aadf5c966d999a836e348f7e5c7933dff5db8",
+        "attempts": []
       }
     },
     "enemy": {
       "path": "research/native-enemy-check.json",
-      "sha256": "9ebc2103c864e67800c3a67129a7088670c95c6f62ebb0e2e2b8dd07c0e05796",
-      "result": "PASS: enemy 2616 frozen/current Original and 7848 Native schedules across all218 kinds; fresh replay=1 kinds/48 cases, retained unchanged=217 kinds; 2880 fresh pool endpoints, 25554 intervals, 25554 zero-dt checks, 32 genuine contacts; 218 kinds including all135 ordinary/all79 bosses and4 outbound owners, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 257=1, 258=1, 259=1, 264=1, 265=1, 266=2, 267=2,3, 268=1, 269=2, 270=2, 271=1,2, 272=2, 273=1, 274=2, 275=2,3, 276=1,10, 277=2, 278=1, 279=1,2,4, 280=1, 281=1,2,3,4, 282=1,2,3,5, 283=1,2,3,4, 284=1,2, 285=1, 286=1, 287=1,3, 288=2, 289=2,3,4, 290=1,2, 291=1,2, 292=1, 293=2,3, 294=1, 295=2,3, 296=1, 297=2,3, 298=2,3, 299=1,10, 300=2, 301=1, 302=1, 303=1, 304=1, 305=1, 306=1, 307=1, 308=1,2,3, 309=1,2,3, 310=1,2,3, 311=1, 312=2,3, 313=2, 314=2,3, 315=1,10, 316=1,10, 317=1, 318=1, 319=1,2, 320=1,2, 321=2, 322=1, 323=1, 324=1, 325=1, 326=2, 327=2, 328=1,10, 329=1, 330=2, 331=2, 332=2,3, 333=1,10, 334=2, 335=1,10, 336=2, 337=1,2,3, 338=1, 339=2, 340=1,10, 341=1,2,3, 342=1,2, 343=1,2, 344=1,2, 345=1, 346=3, 347=1,3,4,5, 348=1,2, 349=1, 350=1,3,10, 351=1,2, 352=1,10, 353=1, 354=1, 355=1, 356=1, 357=1, 358=1, 359=1,2,3, 360=2, 361=1, 362=3, 363=1,10, 364=2,3, 365=2,3, 366=2,3, 367=1, 368=1,3,4, 369=1, 370=1, 371=1,2, 372=1, 373=1,2, 374=1, 375=1, 376=1, 377=1,2, 378=1,2, 379=1, 380=1, 381=1, 382=1, 383=1, 384=1, 385=1, 386=1, 387=1,2, 388=2,4, 389=2, 390=3,4, 391=1, 392=1, 393=1, 394=1, 395=2, 396=1, 397=1,10, 398=1, 399=1,2,4, 400=1, 401=1,2, 402=1, 403=1,2, 404=1, 405=1, 406=1, 407=1, 408=1, 409=1, 410=4, 411=1, 412=1, 413=1, 414=1,10, 415=1,10, 416=1, 417=1, 418=1,10, 419=1, 420=1, 421=10, 422=1, 423=1,2,3, 424=1, 425=1, 426=1, 427=1, 428=1,3, 429=1,10, 430=1,10, 431=1, 432=1, 433=1, 434=1, 435=2, 436=1, 437=1, 438=1,10, 439=1, 440=1, 441=1, 442=1, 443=1,10, 444=1, 445=1, 446=1, 447=1, 448=1, 449=1, 450=1,10, 451=1,2, 452=1, 453=1, 454=1,2,4, 455=1, 456=1, 457=1,2,3,4, 458=1,10, 459=1,10, 460=1,2,3,4, 461=1,2,3,4, 462=1,2,3,4,10, 463=1, 464=1, 465=10, 466=1, 467=1,3,4, 468=1, 469=1, 470=1,2,3,4, 471=1,2,3,4, 472=1,3, 473=1, 474=1, 475=1, 476=1, 477=1, 478=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "sha256": "5690434eef8f77481aa611d64e94f32468b3e7bd98e8e62a7e5d06c65286233a",
+      "result": "PASS: enemy 2616 frozen/current Original and 7848 Native schedules across all218 kinds; fresh replay=24 kinds/1152 cases, retained unchanged=194 kinds; 69120 fresh pool endpoints, 613296 intervals, 613296 zero-dt checks, 704 genuine contacts; 218 kinds including all135 ordinary/all79 bosses and4 outbound owners, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 257=1, 258=1, 259=1, 264=1, 265=1, 266=2, 267=2,3, 268=1, 269=2, 270=2, 271=1,2, 272=2, 273=1, 274=2, 275=2,3, 276=1,10, 277=2, 278=1, 279=1,2,4, 280=1, 281=1,2,3,4, 282=1,2,3,5, 283=1,2,3,4, 284=1,2, 285=1, 286=1, 287=1,3, 288=2, 289=2,3,4, 290=1,2, 291=1,2, 292=1, 293=2,3, 294=1, 295=2,3, 296=1, 297=2,3, 298=2,3, 299=1,10, 300=2, 301=1, 302=1, 303=1, 304=1, 305=1, 306=1, 307=1, 308=1,2,3, 309=1,2,3, 310=1,2,3, 311=1, 312=2,3, 313=2, 314=2,3, 315=1,10, 316=1,10, 317=1, 318=1, 319=1,2, 320=1,2, 321=2, 322=1, 323=1, 324=1, 325=1, 326=2, 327=2, 328=1,10, 329=1, 330=2, 331=2, 332=2,3, 333=1,10, 334=2, 335=1,10, 336=2, 337=1,2,3, 338=1, 339=2, 340=1,10, 341=1,2,3, 342=1,2, 343=1,2, 344=1,2, 345=1, 346=3, 347=1,3,4,5, 348=1,2, 349=1, 350=1,3,10, 351=1,2, 352=1,10, 353=1, 354=1, 355=1, 356=1, 357=1, 358=1, 359=1,2,3, 360=2, 361=1, 362=3, 363=1,10, 364=2,3, 365=2,3, 366=2,3, 367=1, 368=1,3,4, 369=1, 370=1, 371=1,2, 372=1, 373=1,2, 374=1, 375=1, 376=1, 377=1,2, 378=1,2, 379=1, 380=1, 381=1, 382=1, 383=1, 384=1, 385=1, 386=1, 387=1,2, 388=2,4, 389=2, 390=3,4, 391=1, 392=1, 393=1, 394=1, 395=2, 396=1, 397=1,10, 398=1, 399=1,2,4, 400=1, 401=1,2, 402=1, 403=1,2, 404=1, 405=1, 406=1, 407=1, 408=1, 409=1, 410=4, 411=1, 412=1, 413=1, 414=1,10, 415=1,10, 416=1, 417=1, 418=1,10, 419=1, 420=1, 421=10, 422=1, 423=1,2,3, 424=1, 425=1, 426=1, 427=1, 428=1,3, 429=1,10, 430=1,10, 431=1, 432=1, 433=1, 434=1, 435=2, 436=1, 437=1, 438=1,10, 439=1, 440=1, 441=1, 442=1, 443=1,10, 444=1, 445=1, 446=1, 447=1, 448=1, 449=1, 450=1,10, 451=1,2, 452=1, 453=1, 454=1,2,4, 455=1, 456=1, 457=1,2,3,4, 458=1,10, 459=1,10, 460=1,2,3,4, 461=1,2,3,4, 462=1,2,3,4,10, 463=1, 464=1, 465=10, 466=1, 467=1,3,4, 468=1, 469=1, 470=1,2,3,4, 471=1,2,3,4, 472=1,3, 473=1, 474=1, 475=1, 476=1, 477=1, 478=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_enemy.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
@@ -804,20 +711,20 @@
           "--enemy-reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v356",
           "--workers",
-          "1",
+          "5",
           "--resume-evidence",
-          "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/regression048-enemy-resume.json"
+          "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/test049-enemy-completed-resume.json"
         ],
-        "elapsed_seconds": 37.63,
-        "log": "enemy-attempt4.log",
-        "log_sha256": "52e015b9e45c29aa39910703cf6c06b4b2021e32a7d6de89a588836a4e33c758",
+        "elapsed_seconds": 278.8,
+        "log": "enemy-attempt2.log",
+        "log_sha256": "e7b6ba18e97b27bb7c2ad31c1873263538e413a634d25a9068597950cc95c608",
         "attempts": [
           {
             "command": [
               "/usr/bin/python3",
               "/home/vova/projects/DoraRecomp3/tools/check_native_enemy.py",
               "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
               "--rom",
               "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
               "--reference",
@@ -827,94 +734,50 @@
               "--enemy-reference",
               "/home/vova/projects/DoraRecomp3/build-local/startup-v356",
               "--workers",
-              "6",
-              "--resume-evidence",
-              "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/regression048-enemy-resume.json"
-            ],
-            "status": "QUEUED"
-          },
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_enemy.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-              "--enemy-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v356",
-              "--workers",
-              "6",
-              "--resume-evidence",
-              "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/regression048-enemy-resume.json"
-            ],
-            "status": "QUEUED"
-          },
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_enemy.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-              "--enemy-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v356",
-              "--workers",
-              "6",
-              "--resume-evidence",
-              "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/regression048-enemy-resume.json"
+              "6"
             ],
             "status": "FAIL",
-            "log": "enemy-attempt3.log",
+            "log": "enemy-attempt1.log",
             "exit_code": 1,
-            "elapsed_seconds": 393.34,
-            "log_sha256": "a598c4ffb4484c74cf38721f6d3d1538d7130d0d7a0d520ed87c73f0b5e65ac5"
+            "elapsed_seconds": 1859.26,
+            "log_sha256": "553186b08be717a39aa06e3c21300013a333171c6edb24454f1cdc8338f95fc5"
           }
         ]
       }
     },
     "names": {
       "path": "research/decomp-names-check.json",
-      "sha256": "f912d229d8ce9bbe0c4672bafe90c7d604ee1dbcb217e724d1043c0d0935d942",
-      "result": "PASS: 2629 descriptions; 2298 semantic function names; 5777 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "sha256": "0a7c7a97e2fbc87de22b9b6ef165478d84cd6cdaeece60b9a9c2d532a57e434a",
+      "result": "PASS: 2664 descriptions; 2333 semantic function names; 5831 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_decomp_names.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
         ],
-        "elapsed_seconds": 16.87,
+        "elapsed_seconds": 25.42,
         "log": "names-attempt1.log",
-        "log_sha256": "f95cb1bc01911d93fcfb9b7f04f1922d8dcc34fef5193b5f571087c43eb83a48",
+        "log_sha256": "82ee0e4699e30bf4724170de5ff22f49894117029e2a7cf4cbf389ec1495c7b7",
         "attempts": []
       }
     },
     "overlay": {
       "path": "research/overlay-load-state-check.json",
-      "sha256": "405a0fedb7a72a433259148e8893e54480b1400f352d04cb2a8f41978238da4a",
+      "sha256": "a7d18fc78ee3ba97562de577f7525898e6952846ab1498ee1c59ece738e84dbe",
       "result": "PASS: 49 actual ROM overlay ranges, verified DMA/reload, identical VRAM replacement, partial overwrite, parent invalidation, scene unload and boot reset; ASan/UBSan/LSan; no game/GPU.",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_overlay_load_state.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64"
         ],
-        "elapsed_seconds": 33.28,
+        "elapsed_seconds": 48.02,
         "log": "overlay-attempt1.log",
         "log_sha256": "80d025eeab2194fabac7039b7d85aa15d0d14d7b2edadcb0a43ca6426eb8d9f7",
         "attempts": []
@@ -922,19 +785,21 @@
     }
   },
   "source_sha256": {
-    "recomp/decomp-symbols.json": "b39ca32f15f4bc126979367cb59cad7572554e4ab45a90c366c840afc6ac149f",
-    "recomp/native-timing-rules.json": "206bcac2b20671f5b741a3cff0782b768cd2289286748ab2d21d474955d4912a",
+    "recomp/decomp-symbols.json": "0bb973df6a2cf841d3a5fc563ba4fcd4e07cec0de44d273508b427cecc01bcab",
+    "recomp/native-timing-rules.json": "b918263db23d3bd1f0b5a76c7e6ccf715af263f6077356cbb2ffd7ad438c097b",
     "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
+    "research/native-after048-minigame-check.inc": "e25a7131acd7702bf00fe74ecf9541c5668532eba059c83cd5c9458bcc61e839",
+    "research/native-after048-model-check.inc": "676704d192602c72c951212431bfe5b6a46fd5dc2ed93c3c8a148fb1eb46e437",
     "research/native-camera-control-check.cpp": "1c906070f434aace292a3e51cdce9b888e388bfeaf9fd948e835a9031b9d89d0",
     "research/native-camera-modes-check.cpp": "53c68efd4e29283ab4e9944f206b833ba9ee826a4050b02bc435224ca36d6bf7",
     "research/native-cutscene-check.cpp": "518540c9b532d003fc1d100904f5d6c386d29b6d6d2ccf44d0bab0aac51249cd",
     "research/native-effects-check.cpp": "06f1ea314a4a480fd62b8399a1157e91690517dc17db4b56c7f8678adb43f292",
     "research/native-enemy-launch-contracts.json": "8b34d39c1003383492d9b623222fd3007f93d199ff4b67bfd9d44e38f3289f1d",
-    "research/native-enemy-source-check.inc": "f34c5c3354ac33ef55aae6f32189eab56f754578a225c9705b28c97f8774aeab",
+    "research/native-enemy-source-check.inc": "b1ae10cab27bfa355583b88e6bcf3a7ef0735de7860b2eb4fec13e97c54caaf1",
     "research/native-flash-pool-check.inc": "654c6474c0a39c2b15f3c21ab7ecbd1b92b1a0c3d281e70243bbb858549134fd",
     "research/native-frame-bridge-check.cpp": "660a6027b22660be528c0108d981222d4bfe349d59f3f017856f344c237c4376",
     "research/native-frame-scheduler-check.cpp": "542f67dafc9159f7cc1ac4a8c4b28fab4b9b7204ba540d6d30b2c998d21162a8",
-    "research/native-frame-time-check.cpp": "e56c1b90a4346117cb88b3a022b6a806a307b1955c4d5934e7669d4b9210a76b",
+    "research/native-frame-time-check.cpp": "74d584301a18479879976614350d2d257bd221a9dd0c4cdf9a8c9903cffc145b",
     "research/native-gameplay-cutscene-fixture.cpp": "9d0f96ae66fa812b88f4cb3950452db2c26509e8bdfa0612fb1641b654c58cdb",
     "research/native-graphics-pump-check.cpp": "7eb191d431fd47790e208ddaacd924a35efc2d6d58c447006c8ed2ad90877118",
     "research/native-gravity-check.cpp": "95ce36b649cb0fa5205d17e05ba90aa333d43c26323b43ffce2244e736b0eb19",
@@ -943,11 +808,11 @@
     "research/native-inactive-minigame-fixture.cpp": "52a4a15d4e8cbd49d2dc7f993c0896832ba1bbd5082e5740b0c1aab085691900",
     "research/native-input-check.cpp": "ea42a1347957173d2aae86f6315aed85ed11bdb6bacd7fe73b752a312637f025",
     "research/native-integration-check.cpp": "b8d045a698d75150b95acb5a21df7eb437a596decf4ab672c6b1799cd9fe51d4",
-    "research/native-loop-check.cpp": "17164eeae09af2b0188321bd82cbefa93e2f458a4e050041a1c00456113a40e9",
-    "research/native-loop-stubs.cpp": "9a7fb7796516f951c6bc8d7db29dcc1d08d60290f02f6f4364f032fdd87e37f9",
-    "research/native-minigame-check.cpp": "f277d0062ad2519e238147c67172004bfaa47d4e904abb79633b57f6da62c0cc",
-    "research/native-minigame-reviewed.json": "e6b299d4f84227ec1c83240ea833c8c2448fb6b2d88b50e8a0eef587662187ff",
-    "research/native-model-animation-check.cpp": "d0ac035ca37a3094dcf5e5e137ae29d080cdcc5d88574ff088c43ea5cbe602db",
+    "research/native-loop-check.cpp": "0ce8174929b3ccea01dbe0ca36ffb8c94d5d9300f369877d9afdf2a5735acd3f",
+    "research/native-loop-stubs.cpp": "3154a3d2788e0493ea3e04670eeb87f21635eac98d906cca82ec954d906eb241",
+    "research/native-minigame-check.cpp": "2371406ceba960e8cde61905f6e9cf9ff5e5d63117757e9aa82b5ff172d53fa4",
+    "research/native-minigame-reviewed.json": "e0c0fc68820b53a4b610ffb243eddbc11ebf4c168215e9fb6a3ead79c7fb7150",
+    "research/native-model-animation-check.cpp": "73720168353b39c91169edf144d5d9ab904d28aef7598251ae683bec1a5b0e22",
     "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
     "research/native-periodic-effect-source-check.inc": "c28c1e7c4d4189249c28c227f9fc1458419d817a82a18ecf4920536d7a6b7940",
     "research/native-periodic-producer-check.inc": "c778c8103d470d0c7123d2b85eeaa4e099f50d04285f4af42eaa53665cdd8f61",
@@ -967,8 +832,8 @@
     "research/native-session-check.cpp": "f7139aa68d4036c4663ad861ef00031584a517b71da7197eeb516565c55f3fc0",
     "research/native-simulation-check.cpp": "bdd6a55e7ed77a6fbeadceefe6a6f7bf264ac11dcbe5e2b5384535d7822c2ac3",
     "research/native-story-pickup-source-check.cpp": "964a9ac09ff445f426ce18b8387729de3927efbad8a0de65590707681ac3af99",
-    "research/native-texture-animation-check.cpp": "b613b46a404f642ce1afeca9522215c13a029492a34268519e5eaed398a190bb",
-    "research/native-ui-check.cpp": "0b9a1b8efd0a83037cc981b25977bf33b2bc9b79eeb437bcf54070d7b9c73c27",
+    "research/native-texture-animation-check.cpp": "13ccbadd20cff9a592c90ddb49696c523ef19b87e83222f0cff339b7ca02e19d",
+    "research/native-ui-check.cpp": "f352da75b3a2024d2d8fc44a8ad64318f525c3597d08dda02300d32a6e8f8eca",
     "research/native-ui-inactive-fixture.cpp": "c4ed8a4a395ccc6f0ddfa9b928b1c929820a6e0fe6035b8ded80a3ab6a9db31b",
     "research/native-ui-menu-fatal-fixture.cpp": "949fa3b36ca1442ca88cea33cc50595af73d2f1e526a710eb3945e479506ae7b",
     "research/native-ui-model-inactive-fixture.cpp": "8ff6ed706b632364bc8a228b41b24c03fd8de02bed58a4d943f9f47c505ceb62",
@@ -985,7 +850,7 @@
     "src/native_cutscene.hpp": "d7c9362cc9c4f70191ebb7bad1c9ded08ea478811c477e269fc9bae630e1c1e4",
     "src/native_effects.cpp": "5a2dd315a623e5cf80ccd6b51af56c4f0f1e5bc750c871b4e0231d675f9f3b19",
     "src/native_effects.hpp": "ddd57439bc9435e2c91791a3a1f3dc28a1cce7057bbf6d84a58e0f4a39e34805",
-    "src/native_enemy.cpp": "8dc73ce30128b784e169e375aa095940f9495140dcb56bba3024688683369959",
+    "src/native_enemy.cpp": "059b8976cb8c348beb5c95c01d413d28fed0f4393b4a6cabe49cca97f3f854a3",
     "src/native_enemy.hpp": "0f963a7886c55e3c19ce07202a53932dd194d67d11100297edd3ac9530b7147e",
     "src/native_enemy_projection_math.hpp": "b9a243b6898ed1e4ecdffe6fb43d64eb12ffe214d8812dfc94cf17e98de1ae7a",
     "src/native_frame_bridge.cpp": "c1c7ae5fb4ab80e03b178a744a13ac90973b32d787b6fec432afb2e27182b995",
@@ -1005,13 +870,13 @@
     "src/native_graphics_pump.hpp": "3fdcb53d2f68a9b6d344beb44ea58a190c637bd2320cf3e77fbb8af2649bdcd3",
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-    "src/native_minigame_math.cpp": "68b8c0fa9cd26f1b4173f062e83585b5a82a6226f37c7cac0de9ec642b8f534c",
-    "src/native_minigame_math.hpp": "b6fcc8dd168dfbb0cdc4000d78108eef5e04a51496592fa6ad1942c825c1a791",
+    "src/native_minigame_math.cpp": "7b9013f828b64bde7b8e2043e4bf5b1ebe74c54ba944f06f634482cb2dfc7b2f",
+    "src/native_minigame_math.hpp": "9fdabaf162d0638a6ee497972da0a0b94e405f72e1dab847d2cc35e980e72e12",
     "src/native_minigame_registry.hpp": "0e0f1c767107be4fcf4c4235952747632951ea3982b5d97a7f27da4d8ce2d2d6",
-    "src/native_minigames.cpp": "d8937cad595b8969f3abc7da94ebbf244b7c30150fde26be9e9c070dd7a82268",
-    "src/native_minigames.hpp": "73821c8c48ed600088164b7c4604ab57a6d59f32b19384b9d40f85137e9855e7",
-    "src/native_model_animation.cpp": "e86d0b6951ff4e446afb8373f1321d3ae6ea342d8bab1205ac82a8f1f96cbacc",
-    "src/native_model_animation.hpp": "374044e91b204a922b5a43dc279e518cb87a0825797459f777a58ff82e0cf30b",
+    "src/native_minigames.cpp": "b00f5c59c3885ca07b3e84124563e892c06d488dcdb5d54e2ca90e57add83318",
+    "src/native_minigames.hpp": "d300b1c20c5f063976341018969e90efe64ecc1e9e0ca63d5e07bd40c0dcba90",
+    "src/native_model_animation.cpp": "8357d1f2c6b9eace9ad7b73aaa19fe8e21e56f1495a6810590175be2969be515",
+    "src/native_model_animation.hpp": "0390dfbc9a1798c46dcf3b52af97899afd78c65380c1b6f78c319fa9a0744d90",
     "src/native_present.cpp": "9ff1ff3be5d4c16b57f5668a394a3e3fa4bafc303c32f52be63833ab33df2f5d",
     "src/native_present.hpp": "c17a60839de06f09c2c5245091a7389c7126a3146019b8477483bc86d03e9158",
     "src/native_present_hooks.cpp": "e659ba490ecea74c75fd50de47f0ea95ad9c32c6c30c6352e2123d7150914701",
@@ -1019,15 +884,15 @@
     "src/native_process_time.cpp": "b7025893d91cf6851de180e5c90c34c72a0f6f3977a2a51236f6369615562c59",
     "src/native_process_time.hpp": "610e46d91cf59a3581ef2f001e64975e2002e60f01dd165e7acb2b283abf01f7",
     "src/native_scene_objects.hpp": "cc51bfd8da7dc472c06f8cb6f52ee1a6515dd4f99a5bf5130416f216d54378ac",
-    "src/native_scene_policy.cpp": "b88a4911eb1d8950d3e5d75068b90e193a0c665b98713f45b7cbdd9df0913721",
+    "src/native_scene_policy.cpp": "5a39e94fc92d65bc3765d9663b37c8e17c8e87630563eac12f609b8ebdda4559",
     "src/native_scene_policy.hpp": "fbd2d92ec7c099bc711fb347af91655dec524d4d7a4d599c8c0578b780cf6e8f",
     "src/native_script_camera.cpp": "6e78545af75c7a50b2d6994bd54b634c1cf9fbe03a6a0ca42eb5cf0d15d95b69",
     "src/native_script_camera.hpp": "e7bb2e1ba4d036ca2ead349d884daf9a0f857b935d0f3d9359c8cfa12a4d2d94",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-    "src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
+    "src/native_texture_animation.cpp": "67d297ac995e4cb96f11f998afe74fa2e430fb929ddd5f9dd19ea78723e75802",
     "src/native_texture_animation.hpp": "7403bbf3f80ac2335669356f78d8caf8c4803d7d9060b205c6fd60ef5f874a41",
-    "src/native_ui.cpp": "ebbbcd4c51e66685c8303f04c99ff0c488a1b51d814303ac7144fd906e2db6ae",
+    "src/native_ui.cpp": "fe35a142ac9911a729fbd45295ad1b5b34ad4509cea298b03317e1cb735d70b4",
     "src/native_ui.hpp": "984257f6cffa951e335610aefa7a3a83a1e324ee1c71a394246d3ee740247ac4",
     "src/native_vi_snapshot.hpp": "0fb280fcc557a64b1c6637653a57a231723a2cd642bd0f8a6163bc03413e2030",
     "src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
@@ -1042,7 +907,7 @@
     "tools/check_native_camera_modes.py": "026613abe6ec8fac62a7b6da9e7c92d2c6be3057e6612d0f00915548f23be8b2",
     "tools/check_native_cutscene.py": "fc100b5bd43f3dcfc4a5729e95b8d839bcc1e97d480cea236a7672d0bc35e812",
     "tools/check_native_effects.py": "d6db7a6e9b6365045b1d24892d83230d960848d55a7286391ee967cfe9552a44",
-    "tools/check_native_enemy.py": "32a442ccf784b3d650e8ecff30008d338b071700b127d0f1452fe26d0c269ee3",
+    "tools/check_native_enemy.py": "6fddddc4053512ff7e878242a91ad35071617953c90bd32dbf1d067f2a95e568",
     "tools/check_native_frame_bridge.py": "d0cbca595e7a3a578ba1352286ecdb65bd39845d506005cafdb6935442798844",
     "tools/check_native_frame_scheduler.py": "a8757ca8c7953be03d731be3af7659d5f1c6dd84631417e68b71b7068599f77d",
     "tools/check_native_frame_time.py": "9e357ff69be17a36836dbb799868435038c5dc1a0a061634eb6410144645bf9f",
@@ -1050,9 +915,9 @@
     "tools/check_native_gravity.py": "9a53fc107c6435931f5f9ffdb676e7487a296d2039e2710b0c468fc6eb6cf7e4",
     "tools/check_native_input.py": "1291597abe0db3dd1e1b09f3b3a24135fd6ce5deee32ab50f96b35c1e9a44e46",
     "tools/check_native_integration.py": "ebecbab83c8fc9c599a5248ce78839110ade99a0040d80ca681318344f07c48c",
-    "tools/check_native_loop.py": "6e7b4f9d5fdd65955e0dbd46af905c47c15df8e971bf8a1b976075aa35c1424a",
-    "tools/check_native_minigames.py": "61da81a5ff665d5d3788c060edc07d63b516e2a01b774ab9ae0f7d79dbf48fd0",
-    "tools/check_native_model_animation.py": "0125b4e533c9f52f2a3cb468e0f5f769eb6a9637a97e56f51ef2196f85ba94a3",
+    "tools/check_native_loop.py": "4e112bf164a8c1e42dfe0e68575699c25b73b2c057ff71717d21fe9501981960",
+    "tools/check_native_minigames.py": "f91eaef661471c4442ed3fd09b9e15803a6027d56c71ace8ed25073dad0977db",
+    "tools/check_native_model_animation.py": "1f7ebc6cfd4770aaaa7a415dcd0965458b3f31f46d59dc9998f17b262b9432fb",
     "tools/check_native_player_motion.py": "0450b10ea9655e0eb8d4af7b16bf95bd273bb40c9333e0f58a24715a2f492999",
     "tools/check_native_player_update.py": "1d5770667a91be194c2a60bb5a2dd020522f1026fd69b7b53c2fa0c2c5d23123",
     "tools/check_native_prebuild.py": "2858ac0689ba36dce70ea0bd02e63b5c9c63571f8e42f5a0d824ea5861ac4666",
@@ -1066,15 +931,15 @@
     "tools/check_native_simulation.py": "71e5d9d48c68ca74b2828feb622a6947f4ac2e911512b2db8263f33e96e2cdd6",
     "tools/check_native_story_pickups.py": "6bc84b660a98376df59b62ed0589f8b79aca928cb43b20b6221b447d098fd3bf",
     "tools/check_native_texture_animation.py": "8b15a11487b25fe529ce6ab96e4c036980c32351d0213c1c05564dea494a0e85",
-    "tools/check_native_ui.py": "5e8724fcd4bb6911293bba77f690c01111c06b8bfe68c4e400ea4c82ae701037",
+    "tools/check_native_ui.py": "494f3e7664136fecd5766cb15bd604bfa8cfe8d1b9ec1f491044ba07c29cc5e8",
     "tools/check_overlay_load_state.py": "32ef827b01bd01836b2a6666905b8f7c69d709fba99523c546ed3bc38ae3e311",
     "tools/decomp_annotations.py": "cc18b42a710a9998b9b33cbfe2c79009451496078b2136cdceb603d047c4b16b",
     "tools/generate_startup.py": "e64b7e9b45435ee3a4fe9f3046376efb705942828a89e20ae195178f0d7e3d1c",
-    "tools/native_minigame_patches.py": "c9027db03c9d8ee96970ebc30680aadcbcbc4cd97316fbd2fe316fc905dd4678",
-    "tools/native_timing_patches.py": "d1cfdb7b0d6f02ef656824ec809124da1e3c0ae6f094bb1b8e48713cac96d5ce",
+    "tools/native_minigame_patches.py": "eb2c263ed9d7f820fc85f74eb218964491f1805210621014c93f52172053544d",
+    "tools/native_timing_patches.py": "5c8a5045474596bd9eb4864bdd95e8b8029d9ca58e712524d78d5b07808e8be4",
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556"
   },
-  "local_execution_manifest_sha256": "834f55bcc0702107db55c02d34632c782eb31566b6aed84773c7899ed612e05a",
+  "local_execution_manifest_sha256": "9e6a3ecc47e575d7797ff63ca34ae9726b724153429e19db592a352a04e6f710",
   "no_game_gpu": true,
   "full_variable_fps_complete": false,
   "user_requested_skip": true,
@@ -1085,12 +950,13 @@
   ],
   "user_skip": {
     "request": "Часовой full-player повторно не запускать после046",
+    "closed_bug_list": "нет (2026-10-07)",
     "record": {
       "command": [
         "/usr/bin/python3",
         "/home/vova/projects/DoraRecomp3/tools/check_native_player_update_partitions.py",
         "--generated",
-        "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test048-v1",
+        "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
         "--rom",
         "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
         "--reference",
@@ -1110,2551 +976,11 @@
   "full_scene_object_block_complete": true,
   "full_minigame_block_complete": true,
   "full_integration_block_complete": true,
-  "regression048_scope_implemented": true,
+  "regression049_scope_implemented": true,
   "limitations": [
-    "Full-player explicitly excluded after046; no fresh full-player or full-suite PASS claimed.",
-    "Synthetic CPU state/assets; no local game/renderer/GPU or full playthrough.",
-    "Old scene/enemy Source executions are retained with exact reversal of an uncalled ModelFrameScope guard and original completed logs, not described as newly run.",
-    "The paused/zero-rate pose defect is proven generically; exact voice/fruit symptom correspondence needs user visual confirmation.",
-    "Actual map bitmap load/UV and rigid E4 translation are CPU-checked; final filtering/art appearance remains user visual QA."
-  ],
-  "scene_retained_execution": {
-    "retained": 291,
-    "fresh": 1,
-    "provenance": {
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
-      "unchanged_compiled_dependencies_sha256": {
-        "/home/vova/projects/DoraRecomp3/src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
-        "/home/vova/projects/DoraRecomp3/src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-        "/home/vova/projects/DoraRecomp3/build-deps/lib/N64ModernRuntime/N64Recomp/include/recomp.h": "190dd64184df17e3f24a78b761cda8bbfe639f9106d0d98ecc760ee84fe0616a",
-        "/home/vova/projects/DoraRecomp3/src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
-        "/home/vova/projects/DoraRecomp3/src/native_frame_bridge.hpp": "a405469b02b662d7ad973c5475f05465defe0d346b7add98717e9393794fe545",
-        "/home/vova/projects/DoraRecomp3/src/native_frame_scheduler.hpp": "ae108bfcf8c9bbd628f648a8781afd1a9a5ab8668aa676212a60ebf88329bfde",
-        "/home/vova/projects/DoraRecomp3/src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
-        "/home/vova/projects/DoraRecomp3/src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
-        "/home/vova/projects/DoraRecomp3/src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-        "/home/vova/projects/DoraRecomp3/src/native_gameplay_preview.cpp": "f6dabcc72387c43a2805b3f8809a2bad22d4984b6d4288da4c9b088d7ada58a6",
-        "/home/vova/projects/DoraRecomp3/src/native_gameplay_preview.hpp": "2773c63fa042ebcc3efffe1c194f3d7e0c05ac5a205520ca59834100b34f05ea",
-        "/home/vova/projects/DoraRecomp3/src/native_enemy.hpp": "0f963a7886c55e3c19ce07202a53932dd194d67d11100297edd3ac9530b7147e",
-        "/home/vova/projects/DoraRecomp3/src/native_scene_objects.hpp": "cc51bfd8da7dc472c06f8cb6f52ee1a6515dd4f99a5bf5130416f216d54378ac",
-        "/home/vova/projects/DoraRecomp3/src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
-        "/home/vova/projects/DoraRecomp3/src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
-        "/home/vova/projects/DoraRecomp3/src/native_model_animation.hpp": "374044e91b204a922b5a43dc279e518cb87a0825797459f777a58ff82e0cf30b",
-        "/home/vova/projects/DoraRecomp3/src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
-        "/home/vova/projects/DoraRecomp3/src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-        "/home/vova/projects/DoraRecomp3/src/native_model_animation.cpp": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
-        "/home/vova/projects/DoraRecomp3/research/native-story-pickup-source-check.cpp": "964a9ac09ff445f426ce18b8387729de3927efbad8a0de65590707681ac3af99",
-        "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/player-update-functions.h": "6e9cfd9abf8ce13ea685c13eb64295f31b4a9c32a5ee70b122f240f78a9db83f",
-        "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/player-fixture.hpp": "3227f1b961743574b36fac62ea5b5e7e79697ad9e6807b0cacc725ae2073b5ec",
-        "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/enemy-fixture-data.hpp": "936555725988858f0bc3e8d1e9e2b7e72b159b10e7808a0cd544a7fda2fdb333",
-        "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/player-update-dispatch.hpp": "5729791928212c32c0812f5e7673f42568f238c1f8727f5a0e03710be1df849b",
-        "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/terminal-effect-dispatch.hpp": "0467f7acad40c01711b8dd98774fcca459c3439a3fb8d820bccbaa1bbd57c388",
-        "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/flight-dispatch.hpp": "e880dd0358895d93ef6d949063e64def53aff843cb0e4fddbf6cf59b769edf05",
-        "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/growth-dispatch.hpp": "293ef721b43fe5b463bb3c6a0b7e79f1162569b6f43124a49702946dcf71da3f",
-        "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/ballistic-dispatch.hpp": "90ec5333df4cdfbfc873d2044ab9d00f6e290f64569804c2a340e7cc03c4bc21",
-        "/home/vova/projects/DoraRecomp3/research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
-        "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/slot09-overlay-fixture.hpp": "ddabcac8b2642984d81ff2b6f9980568f0b0000b41303abada160043fe408e86",
-        "/home/vova/projects/DoraRecomp3/research/native-flash-delay-check.inc": "649388f0cd651ca4a367a9f21e7cd23ba3bbd0b908a4d95c76a2f292c015650b",
-        "/home/vova/projects/DoraRecomp3/research/native-flash-motion-check.inc": "da708e4b650d6d3a6f2c97414654cfc5f9df0c5aad2334a15ab5b86746d40c76",
-        "/home/vova/projects/DoraRecomp3/research/native-flash-pool-check.inc": "654c6474c0a39c2b15f3c21ab7ecbd1b92b1a0c3d281e70243bbb858549134fd",
-        "/home/vova/projects/DoraRecomp3/research/native-periodic-effect-source-check.inc": "c28c1e7c4d4189249c28c227f9fc1458419d817a82a18ecf4920536d7a6b7940",
-        "/home/vova/projects/DoraRecomp3/research/native-periodic-effect-guard-check.inc": "0ae0fecd289d36d36297e71046fb57d5b90ac5f870ab24e3c85af16fa1998795",
-        "/home/vova/projects/DoraRecomp3/research/native-periodic-producer-check.inc": "c778c8103d470d0c7123d2b85eeaa4e099f50d04285f4af42eaa53665cdd8f61",
-        "/home/vova/projects/DoraRecomp3/research/native-periodic-producer-guard-check.inc": "aec8a15c0bdfb7cca6440351c559f119ad6861765f143bb10213a6bb5e5c14dd",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-uncollected-source-check.inc": "dc4c0b063c04a78de3fce3ffa0e588bbd5d06f9f86fbb04fba9b5d5e73da269e",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-spin-guard-check.inc": "3b7be439fe8104f84b6b6c372b86c2792b2f5f50c68fbd508f090ecdbe1af03c",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-arc-guard-check.inc": "e75d344b73021004ce226d89f2a26f8b204d399de82bce71941214698caf8aa7",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-reveal-source-check.inc": "b0696c935d3e578b2c5bc7556713add98b8830bef522e803d1bf9783087a51a3",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-settle-scatter-source-check.inc": "36197e05fb4b432d848cbd876589e927ed9355f4c35f4c3a04a6ecfd29bee2dc",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-moving-idle-source-check.inc": "454aabc4cb37a5e74c5ab199b6c83519eb0ec65e0dee727a91a4f78ba35150af",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-linked-basic-check.inc": "aa86d37a231fe751c0289223b75851329a18d0525af503f9a5c8f1d65e10128b",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-linked-guard-check.inc": "c923b27d73b0f6c80de4f29c59056123dbff9a5c60a1878458ab0a26396c098b",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-parent-source-check.inc": "d56d802284e293f88954600696fa821696ea3cb154ee5737a824e7c2bed5e2d1",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-settle-guard-check.inc": "cfa8f2ecd197c67efb0ae4d0e03583b9f6a57b1cbe4c3d790c464340b8d827d1",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-scatter-guard-check.inc": "37bc031d4cc2c85b25dba6313fd9e0ef355ee036df63e8278280beda03382cbb",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-scatter-geometry-check.inc": "6fca5eae3382a919049f2a26a41146d689139059253e29a1ba579e78988b5ef2",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-reveal-guard-check.inc": "4260f9e395701c21f6e897c9ede24ad9aa0db094374259596bd6247b2777d43d",
-        "/home/vova/projects/DoraRecomp3/research/native-scene-object-source-check.inc": "c6b234f9bf02b686c654998cc4a66264624003f5c1009cdc2dd4b75dc1e452a0",
-        "/home/vova/projects/DoraRecomp3/build-local/native-scene-object-check/boundaries.cpp": "321ac92d9b6e6520c723b40676d9504171074bf5ac56df15e2104930110b0324",
-        "/home/vova/projects/DoraRecomp3/src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
-        "/home/vova/projects/DoraRecomp3/src/native_cutscene.hpp": "d7c9362cc9c4f70191ebb7bad1c9ded08ea478811c477e269fc9bae630e1c1e4",
-        "/home/vova/projects/DoraRecomp3/research/native-gameplay-cutscene-fixture.cpp": "9d0f96ae66fa812b88f4cb3950452db2c26509e8bdfa0612fb1641b654c58cdb",
-        "/home/vova/projects/DoraRecomp3/src/native_minigames.hpp": "73821c8c48ed600088164b7c4604ab57a6d59f32b19384b9d40f85137e9855e7",
-        "/home/vova/projects/DoraRecomp3/src/native_enemy.cpp": "8dc73ce30128b784e169e375aa095940f9495140dcb56bba3024688683369959",
-        "/home/vova/projects/DoraRecomp3/src/native_enemy_projection_math.hpp": "b9a243b6898ed1e4ecdffe6fb43d64eb12ffe214d8812dfc94cf17e98de1ae7a",
-        "/home/vova/projects/DoraRecomp3/src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
-        "/home/vova/projects/DoraRecomp3/src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
-        "/home/vova/projects/DoraRecomp3/src/native_texture_animation.hpp": "7403bbf3f80ac2335669356f78d8caf8c4803d7d9060b205c6fd60ef5f874a41",
-        "/home/vova/projects/DoraRecomp3/src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e"
-      },
-      "artifacts_sha256": {
-        "build-local/native-scene-object-check/replay-1791257114222712591/progress-3.log": "636e5f1d0d7fbeffb4eb8e94e4f2592b844cc03e4c96305df9826c155476a603",
-        "build-local/native-scene-object-check/replay-1791257114222712591/progress-1.log": "358b02a28084197f762e8f93d04e5d98813074d933c0310244e43bd19771164c",
-        "build-local/native-scene-object-check/replay-1791257114222712591/progress-2.log": "4a184615ed059f4e8c43351d289959af64ac3a70eb80b825734456b8ced0f07e",
-        "build-local/native-scene-object-check/replay-1791257114222712591/progress-0.log": "781b5f0b2eca8e214b64a32b992c7867e321e2a856a39d29e1748855b05b1954",
-        "build-local/native-scene-object-check/replay-1791182763827806130/progress-1.log": "333b347755bac4ce74b7ce90ff25b4b5668e67878feba318cc30296b920903a4",
-        "build-local/native-scene-object-check/replay-1791182763827806130/progress-2.log": "7b3eaddf9ccbc4c477b9451dd34c6dfb70f0a1248bd5a7cc67c0a40fb88d01a8",
-        "build-local/native-scene-object-check/replay-1791182763827806130/progress-0.log": "da0c43dabb7c23283da10fb95330307f66fd9bfae36fb92e9fa8d6b4ed955c43",
-        "build-local/native-scene-object-check/replay-1791176423771582228/progress-3.log": "23dd1297ef62f105e5a2a0f56adf4e6c9c2d68e6999414048aa8b5b249ab1285",
-        "build-local/native-scene-object-check/replay-1791176423771582228/progress-1.log": "40d05201e96ab204c8b2b30e3de610059dfff1f2e2df012b680938822e6e185e",
-        "build-local/native-scene-object-check/replay-1791176423771582228/progress-2.log": "f56ce6fdf0fdc5b53eac2f5f892765cffc0f9940f8578fa11f3af25538646b73",
-        "build-local/native-scene-object-check/replay-1791176423771582228/progress-0.log": "80cea31b795214588e64d69aa46a8514fd978e64f0dff4ab75fb2b2ca1371d34",
-        "build-local/native-scene-object-check/replay-1791183425813031452/progress-0.log": "8fc51cae1ce1d151611cfec006d10c856c86bdc4edff0498ca2aceebd466e406",
-        "build-local/native-scene-object-check/replay-1791285713514346922/progress-0.log": "1d66431347bfe935b8ff39ceb150bf0340a809ca51e08c297c022cb952b071d8",
-        "build-local/native-scene-object-check/replay-1791177853251950884/progress-3.log": "72fa358894302a5a991f7aaf6eeabab6d58f157e292041e75666b1911f75b7d0",
-        "build-local/native-scene-object-check/replay-1791177853251950884/progress-1.log": "c4815a891f4dfb466c8dd96efa7370777272df78a02ece80a2cc762fe4235629",
-        "build-local/native-scene-object-check/replay-1791177853251950884/progress-2.log": "14e49e20f1d0f478db5df03cac5ad32ab5bcfc172fdaef6577410fc53a7272e1",
-        "build-local/native-scene-object-check/replay-1791177853251950884/progress-0.log": "2949d6a792ec94fc0398fab70dd26d8d9448cb59f4c4166aff1d485489fe433a",
-        "build-local/native-scene-object-check/replay-1791177337333653281/progress-3.log": "32ed296d18f17492aff58c5ea976f629553bfe9b0802fd9edf2c54eb9f47421c",
-        "build-local/native-scene-object-check/replay-1791177337333653281/progress-1.log": "3e50219ad825778816f2e7d51de5c800f1132cf7d1ad7a10ef69a30b1f4b7bda",
-        "build-local/native-scene-object-check/replay-1791177337333653281/progress-2.log": "2db6e8041a9118f92fdae403edbb0151460c4e55fc45fc940e424dd3eb33099f",
-        "build-local/native-scene-object-check/replay-1791177337333653281/progress-0.log": "93f225a4e7e604556e4a2a44c58f9dd9412708529526010e5e4ccd9278716600",
-        "build-local/native-scene-object-check/replay-1791182136646116989/progress-1.log": "6009746589a6f221d957cb58d6836926647236c562472b5a480ca4aa914dc68c",
-        "build-local/native-scene-object-check/replay-1791182136646116989/progress-2.log": "c996dac57ba9e50f88f358f4b94cf5ac3ee9cbe035a84eb3732fb5a2fe98a41c",
-        "build-local/native-scene-object-check/replay-1791182136646116989/progress-0.log": "7af68eb6e0f16d25215078ad5ff9f68d0df2a99e127dedb17d70b66c979f8c8d",
-        "build-local/native-scene-object-check/replay-1791287166122468310/progress-0.log": "1d66431347bfe935b8ff39ceb150bf0340a809ca51e08c297c022cb952b071d8",
-        "build-local/native-scene-object-check/replay-1791183887020754270/progress-0.log": "cbdb0af32078451693d669d5e7513cfb92728478d6bd9e4d16e684f2b05106ed",
-        "build-local/native-scene-object-check/replay-1791179285325014349/progress-3.log": "79eaea4bc933f18da2cb3f14ca6c820e3983be8e29745d17d155d998d4722c24",
-        "build-local/native-scene-object-check/replay-1791179285325014349/progress-1.log": "5225f7279d55e7341a792694f586daeb5180458925aec9f132c31522b7e74d59",
-        "build-local/native-scene-object-check/replay-1791179285325014349/progress-2.log": "4f80e4adb15211b35b4b7decbbe0b477ab68b544306f16ccb693230c746999fa",
-        "build-local/native-scene-object-check/replay-1791179285325014349/progress-0.log": "3c543fb2a1f14e6cccb4e8236ec5399be6102b1aa5ae0e545ea0772642db5332",
-        "build-local/native-scene-object-check/replay-1791217753620768712/progress-1.log": "20c20f5da4a895e8b3aed02d181608109ff5025c22cc6c3c0117d997fb9429bf",
-        "build-local/native-scene-object-check/replay-1791217753620768712/progress-2.log": "39809003676e34eec95aaa0c0751b1eac35ba41a674653e0f64b017ea31fe7ee",
-        "build-local/native-scene-object-check/replay-1791217753620768712/progress-0.log": "af6bfd4c104d31803cfd81cadf209f788f6a7edf4e1c6abeba58e2dc2710e8db",
-        "build-local/native-scene-object-check/replay-1791180384007284901/progress-3.log": "9b85b7dbc7eb15480d5e750c2d6f35be8dc04f046fcb4c8e4b09b5f0ff5bb5f9",
-        "build-local/native-scene-object-check/replay-1791180384007284901/progress-1.log": "fa7151bee497fb476844deb0157149e8357213dfc06f0a120ffcbf8304aff209",
-        "build-local/native-scene-object-check/replay-1791180384007284901/progress-2.log": "5588eea903b62ebf59b1b1212f53d7f8dfe23511e600f061985fc9a902e7b7c6",
-        "build-local/native-scene-object-check/replay-1791180384007284901/progress-0.log": "c2d0f1327a0c73d5b9ca8aa8b0f252795265ddee8a0d221be2531474e0b05af1",
-        "build-local/native-scene-object-check/replay-1791283746509658705/progress-3.log": "636e5f1d0d7fbeffb4eb8e94e4f2592b844cc03e4c96305df9826c155476a603",
-        "build-local/native-scene-object-check/replay-1791283746509658705/progress-1.log": "358b02a28084197f762e8f93d04e5d98813074d933c0310244e43bd19771164c",
-        "build-local/native-scene-object-check/replay-1791283746509658705/progress-2.log": "4a184615ed059f4e8c43351d289959af64ac3a70eb80b825734456b8ced0f07e",
-        "build-local/native-scene-object-check/replay-1791283746509658705/progress-0.log": "781b5f0b2eca8e214b64a32b992c7867e321e2a856a39d29e1748855b05b1954"
-      },
-      "old_fixture": "build-local/continuation-20260930/regression048-scene-object-fixture.inc",
-      "old_fixture_sha256": "c6b234f9bf02b686c654998cc4a66264624003f5c1009cdc2dd4b75dc1e452a0",
-      "fixture_edits": [],
-      "old_line": "#include \"native_scene_objects.hpp\"\n",
-      "new_line": "#include \"native_scene_objects.hpp\"\n",
-      "retained_variants": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30,
-        31,
-        32,
-        33,
-        34,
-        35,
-        36,
-        37,
-        38,
-        39,
-        40,
-        41,
-        42,
-        43,
-        44,
-        45,
-        46,
-        47,
-        48,
-        49,
-        50,
-        51,
-        52,
-        53,
-        54,
-        55,
-        56,
-        57,
-        58,
-        59,
-        60,
-        61,
-        62,
-        63,
-        64,
-        65,
-        66,
-        67,
-        68,
-        69,
-        70,
-        71,
-        72,
-        73,
-        74,
-        75,
-        76,
-        77,
-        78,
-        79,
-        80,
-        81,
-        82,
-        83,
-        84,
-        85,
-        86,
-        87,
-        88,
-        89,
-        90,
-        91,
-        92,
-        93,
-        94,
-        95,
-        96,
-        97,
-        98,
-        99,
-        100,
-        101,
-        102,
-        103,
-        104,
-        105,
-        106,
-        107,
-        108,
-        109,
-        110,
-        111,
-        112,
-        113,
-        114,
-        115,
-        116,
-        117,
-        118,
-        119,
-        120,
-        121,
-        122,
-        123,
-        124,
-        125,
-        126,
-        127,
-        128,
-        129,
-        130,
-        131,
-        132,
-        133,
-        134,
-        135,
-        136,
-        137,
-        138,
-        139,
-        140,
-        141,
-        142,
-        143,
-        144,
-        145,
-        146,
-        147,
-        148,
-        149,
-        150,
-        151,
-        152,
-        153,
-        154,
-        155,
-        156,
-        157,
-        158,
-        159,
-        160,
-        161,
-        162,
-        163,
-        164,
-        165,
-        166,
-        167,
-        168,
-        169,
-        170,
-        171,
-        172,
-        173,
-        174,
-        175,
-        176,
-        177,
-        178,
-        179,
-        180,
-        181,
-        182,
-        183,
-        184,
-        185,
-        186,
-        187,
-        188,
-        189,
-        190,
-        191,
-        192,
-        193,
-        194,
-        195,
-        196,
-        197,
-        198,
-        199,
-        200,
-        201,
-        202,
-        203,
-        204,
-        205,
-        206,
-        207,
-        208,
-        209,
-        210,
-        211,
-        212,
-        213,
-        214,
-        215,
-        216,
-        217,
-        218,
-        219,
-        220,
-        221,
-        222,
-        223,
-        224,
-        225,
-        226,
-        227,
-        228,
-        229,
-        230,
-        231,
-        232,
-        233,
-        234,
-        235,
-        236,
-        237,
-        238,
-        239,
-        240,
-        241,
-        242,
-        243,
-        244,
-        245,
-        246,
-        247,
-        248,
-        249,
-        250,
-        251,
-        252,
-        253,
-        254,
-        255,
-        256,
-        257,
-        258,
-        259,
-        260,
-        261,
-        262,
-        263,
-        264,
-        265,
-        266,
-        267,
-        268,
-        269,
-        270,
-        271,
-        272,
-        273,
-        274,
-        275,
-        276,
-        277,
-        278,
-        279,
-        280,
-        281,
-        282,
-        283,
-        284,
-        285,
-        286,
-        287,
-        288,
-        289,
-        290,
-        291
-      ],
-      "generic_parser_variants": [],
-      "retained_states": {
-        "1": [
-          1,
-          2
-        ],
-        "2": [
-          1,
-          2,
-          3
-        ],
-        "3": [
-          1,
-          2,
-          3
-        ],
-        "4": [
-          1
-        ],
-        "5": [
-          1
-        ],
-        "6": [
-          1,
-          2
-        ],
-        "7": [
-          1,
-          2
-        ],
-        "8": [
-          1,
-          2,
-          3
-        ],
-        "9": [
-          1,
-          2,
-          3
-        ],
-        "10": [
-          1,
-          2
-        ],
-        "11": [
-          1,
-          2
-        ],
-        "12": [
-          1,
-          2,
-          3
-        ],
-        "13": [
-          1
-        ],
-        "14": [
-          1
-        ],
-        "15": [
-          1
-        ],
-        "16": [
-          1
-        ],
-        "17": [
-          1,
-          2
-        ],
-        "18": [
-          1,
-          2
-        ],
-        "19": [
-          1,
-          2
-        ],
-        "20": [
-          1,
-          2
-        ],
-        "21": [
-          1,
-          2
-        ],
-        "22": [
-          1,
-          2
-        ],
-        "23": [
-          1,
-          2
-        ],
-        "24": [
-          1,
-          2
-        ],
-        "25": [
-          1,
-          2
-        ],
-        "26": [
-          1,
-          2
-        ],
-        "27": [
-          1,
-          2,
-          3
-        ],
-        "28": [
-          1,
-          2,
-          3
-        ],
-        "29": [
-          1,
-          2,
-          3
-        ],
-        "30": [
-          1,
-          2,
-          3
-        ],
-        "31": [
-          1,
-          2,
-          3
-        ],
-        "32": [
-          1,
-          2,
-          3
-        ],
-        "33": [
-          1,
-          2,
-          3
-        ],
-        "34": [
-          1,
-          2,
-          3
-        ],
-        "35": [
-          1,
-          2,
-          3
-        ],
-        "36": [
-          1,
-          2
-        ],
-        "37": [
-          2,
-          3
-        ],
-        "38": [
-          1
-        ],
-        "39": [
-          1,
-          2
-        ],
-        "40": [
-          1,
-          2
-        ],
-        "41": [
-          1,
-          2
-        ],
-        "42": [
-          1,
-          3
-        ],
-        "43": [
-          1
-        ],
-        "44": [
-          1
-        ],
-        "45": [
-          1,
-          2
-        ],
-        "46": [
-          1
-        ],
-        "47": [
-          1
-        ],
-        "48": [
-          1
-        ],
-        "49": [
-          1
-        ],
-        "50": [
-          1
-        ],
-        "51": [
-          1
-        ],
-        "52": [
-          1
-        ],
-        "53": [
-          1
-        ],
-        "54": [
-          1
-        ],
-        "55": [
-          1
-        ],
-        "56": [
-          1
-        ],
-        "57": [
-          1
-        ],
-        "58": [
-          1
-        ],
-        "59": [
-          1
-        ],
-        "60": [
-          1
-        ],
-        "61": [
-          1
-        ],
-        "62": [
-          1
-        ],
-        "63": [
-          1
-        ],
-        "64": [
-          1
-        ],
-        "65": [
-          1
-        ],
-        "66": [
-          1
-        ],
-        "67": [
-          1
-        ],
-        "68": [
-          1
-        ],
-        "69": [
-          1
-        ],
-        "70": [
-          1
-        ],
-        "71": [
-          1
-        ],
-        "72": [
-          1
-        ],
-        "73": [
-          1
-        ],
-        "74": [
-          1
-        ],
-        "75": [
-          1
-        ],
-        "76": [
-          1
-        ],
-        "77": [
-          1
-        ],
-        "78": [
-          1
-        ],
-        "79": [
-          1
-        ],
-        "80": [
-          1
-        ],
-        "81": [
-          1
-        ],
-        "82": [
-          1
-        ],
-        "83": [
-          1
-        ],
-        "84": [
-          1
-        ],
-        "85": [
-          1
-        ],
-        "86": [
-          1
-        ],
-        "87": [
-          1
-        ],
-        "88": [
-          1
-        ],
-        "89": [
-          1
-        ],
-        "90": [
-          1
-        ],
-        "91": [
-          1
-        ],
-        "92": [
-          1
-        ],
-        "93": [
-          1
-        ],
-        "94": [
-          1
-        ],
-        "95": [
-          1
-        ],
-        "96": [
-          1
-        ],
-        "97": [
-          1
-        ],
-        "98": [
-          1
-        ],
-        "99": [
-          1
-        ],
-        "100": [
-          1
-        ],
-        "101": [
-          1
-        ],
-        "102": [
-          1
-        ],
-        "103": [
-          1
-        ],
-        "104": [
-          1
-        ],
-        "105": [
-          1
-        ],
-        "106": [
-          1
-        ],
-        "107": [
-          1
-        ],
-        "108": [
-          1
-        ],
-        "109": [
-          1
-        ],
-        "110": [
-          1
-        ],
-        "111": [
-          1
-        ],
-        "112": [
-          1
-        ],
-        "113": [
-          1
-        ],
-        "114": [
-          1
-        ],
-        "115": [
-          1
-        ],
-        "116": [
-          1
-        ],
-        "117": [
-          1
-        ],
-        "118": [
-          1
-        ],
-        "119": [
-          1
-        ],
-        "120": [
-          1
-        ],
-        "121": [
-          1
-        ],
-        "122": [
-          1
-        ],
-        "123": [
-          1
-        ],
-        "124": [
-          1
-        ],
-        "125": [
-          1
-        ],
-        "126": [
-          1
-        ],
-        "127": [
-          1
-        ],
-        "128": [
-          1
-        ],
-        "129": [
-          1
-        ],
-        "130": [
-          1
-        ],
-        "131": [
-          1
-        ],
-        "132": [
-          1
-        ],
-        "133": [
-          1
-        ],
-        "134": [
-          1
-        ],
-        "135": [
-          1
-        ],
-        "136": [
-          1
-        ],
-        "137": [
-          1
-        ],
-        "138": [
-          1
-        ],
-        "139": [
-          1
-        ],
-        "140": [
-          1
-        ],
-        "141": [
-          1
-        ],
-        "142": [
-          1
-        ],
-        "143": [
-          1
-        ],
-        "144": [
-          1
-        ],
-        "145": [
-          1
-        ],
-        "146": [
-          1
-        ],
-        "147": [
-          1
-        ],
-        "148": [
-          1
-        ],
-        "149": [
-          1
-        ],
-        "150": [
-          1
-        ],
-        "151": [
-          1
-        ],
-        "152": [
-          1
-        ],
-        "153": [
-          1
-        ],
-        "154": [
-          1
-        ],
-        "155": [
-          1
-        ],
-        "156": [
-          1
-        ],
-        "157": [
-          1
-        ],
-        "158": [
-          1
-        ],
-        "159": [
-          1
-        ],
-        "160": [
-          1
-        ],
-        "161": [
-          1
-        ],
-        "162": [
-          1
-        ],
-        "163": [
-          1
-        ],
-        "164": [
-          1
-        ],
-        "165": [
-          1
-        ],
-        "166": [
-          1
-        ],
-        "167": [
-          1
-        ],
-        "168": [
-          1
-        ],
-        "169": [
-          1
-        ],
-        "170": [
-          1
-        ],
-        "171": [
-          1
-        ],
-        "172": [
-          1
-        ],
-        "173": [
-          1
-        ],
-        "174": [],
-        "175": [
-          1
-        ],
-        "176": [
-          1
-        ],
-        "177": [
-          1
-        ],
-        "178": [
-          1
-        ],
-        "179": [
-          1
-        ],
-        "180": [
-          1
-        ],
-        "181": [
-          1
-        ],
-        "182": [
-          1
-        ],
-        "183": [
-          1
-        ],
-        "184": [
-          1
-        ],
-        "185": [
-          1
-        ],
-        "186": [
-          1
-        ],
-        "187": [
-          1
-        ],
-        "188": [
-          1
-        ],
-        "189": [
-          1
-        ],
-        "190": [
-          1
-        ],
-        "191": [
-          1
-        ],
-        "192": [
-          1
-        ],
-        "193": [
-          1
-        ],
-        "194": [
-          3
-        ],
-        "195": [
-          3
-        ],
-        "196": [
-          1
-        ],
-        "197": [
-          1
-        ],
-        "198": [
-          1
-        ],
-        "199": [
-          1
-        ],
-        "200": [
-          1
-        ],
-        "201": [
-          1
-        ],
-        "202": [
-          1
-        ],
-        "203": [
-          1
-        ],
-        "204": [
-          1
-        ],
-        "205": [
-          1
-        ],
-        "206": [
-          1
-        ],
-        "207": [
-          1
-        ],
-        "208": [
-          1
-        ],
-        "209": [
-          1
-        ],
-        "210": [
-          1
-        ],
-        "211": [
-          1
-        ],
-        "212": [
-          1
-        ],
-        "213": [
-          1
-        ],
-        "214": [
-          1
-        ],
-        "215": [
-          1
-        ],
-        "216": [
-          1
-        ],
-        "217": [
-          1
-        ],
-        "218": [
-          1
-        ],
-        "219": [
-          1
-        ],
-        "220": [
-          1
-        ],
-        "221": [
-          1
-        ],
-        "222": [
-          1
-        ],
-        "223": [
-          1
-        ],
-        "224": [
-          1
-        ],
-        "225": [
-          1
-        ],
-        "226": [
-          1
-        ],
-        "227": [
-          1
-        ],
-        "228": [
-          1
-        ],
-        "229": [
-          1
-        ],
-        "230": [
-          1
-        ],
-        "231": [
-          1
-        ],
-        "232": [
-          1
-        ],
-        "233": [
-          1
-        ],
-        "234": [
-          1
-        ],
-        "235": [
-          1
-        ],
-        "236": [
-          1
-        ],
-        "237": [
-          1
-        ],
-        "238": [
-          1
-        ],
-        "239": [
-          1
-        ],
-        "240": [
-          1
-        ],
-        "241": [
-          1
-        ],
-        "242": [
-          1
-        ],
-        "243": [
-          1
-        ],
-        "244": [
-          1
-        ],
-        "245": [
-          1
-        ],
-        "246": [
-          1
-        ],
-        "247": [
-          1
-        ],
-        "248": [
-          1
-        ],
-        "249": [
-          1
-        ],
-        "250": [
-          1
-        ],
-        "251": [
-          1
-        ],
-        "252": [
-          1
-        ],
-        "253": [
-          1
-        ],
-        "254": [
-          1
-        ],
-        "255": [
-          1
-        ],
-        "256": [
-          1
-        ],
-        "257": [
-          1
-        ],
-        "258": [
-          1
-        ],
-        "259": [
-          1
-        ],
-        "260": [
-          1
-        ],
-        "261": [
-          1
-        ],
-        "262": [
-          1
-        ],
-        "263": [
-          1
-        ],
-        "264": [
-          1
-        ],
-        "265": [
-          1
-        ],
-        "266": [
-          1
-        ],
-        "267": [
-          1,
-          10
-        ],
-        "268": [
-          1
-        ],
-        "269": [
-          1
-        ],
-        "270": [
-          1
-        ],
-        "271": [
-          1
-        ],
-        "272": [
-          1
-        ],
-        "273": [
-          1
-        ],
-        "274": [
-          1
-        ],
-        "275": [
-          1
-        ],
-        "276": [
-          1
-        ],
-        "277": [
-          1
-        ],
-        "278": [
-          1
-        ],
-        "279": [
-          1
-        ],
-        "280": [
-          1
-        ],
-        "281": [
-          1
-        ],
-        "282": [
-          1
-        ],
-        "283": [
-          1
-        ],
-        "284": [
-          2
-        ],
-        "285": [
-          1
-        ],
-        "286": [
-          1
-        ],
-        "287": [
-          1
-        ],
-        "288": [
-          1
-        ],
-        "289": [
-          1
-        ],
-        "290": [
-          1
-        ],
-        "291": [
-          1
-        ]
-      },
-      "input_equivalence": [
-        {
-          "path": "/home/vova/projects/DoraRecomp3/src/native_model_animation.cpp",
-          "old_file": "build-local/continuation-20260930/regression048-model-before-frame-stop.cpp",
-          "old_sha256": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
-          "new_sha256": "e86d0b6951ff4e446afb8373f1321d3ae6ea342d8bab1205ac82a8f1f96cbacc",
-          "edits": [
-            {
-              "old": "            const bool advancing=entry.observation && entry.observation->step==s.step &&\n                entry.observation->before.time>=0 && entry.observation->before.time<=entry.observation->before.duration;",
-              "new": "            // A paused/zero-rate Source call is an observation, not motion.\n            // Replaying its full pose would erase bone overrides installed\n            // after the SDK pose (including stopped minigame target models).\n            const bool advancing=entry.observation && entry.observation->step==s.step &&\n                !(entry.observation->before.flags&8) && entry.observation->before.increment!=0 &&\n                entry.observation->before.time>=0 && entry.observation->before.time<=entry.observation->before.duration;"
-            }
-          ],
-          "affected_kinds": [],
-          "affected_variants": [],
-          "evidence": "Only ModelAnimation::begin_frame moving-observation guard changed. Exact whole-file reversal verified. Source/model/collider fixtures and generated Original calls do not enter ModelFrameScope or begin_frame; unchanged Source methods preserve their behavior. Active render path has a separate fresh paused/zero-rate override test."
-        },
-        {
-          "path": "/home/vova/projects/DoraRecomp3/src/native_texture_animation.cpp",
-          "old_file": "build-local/continuation-20260930/regression047-scene-texture-before-signed.cpp",
-          "old_sha256": "40fdd952040b2b2201a619a76fe4ba7da34a053f6854fb1ead231c8538ae8d80",
-          "new_sha256": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
-          "edits": [
-            {
-              "old": "#include \"native_texture_animation.hpp\"\n#include \"native_frame_bridge.hpp\"\n#include \"frame_lights.hpp\"\n#include <algorithm>\n#include <array>\n#include <cmath>\n#include <map>\n#include <optional>\n#include <set>\n#include <stdexcept>\n#include <vector>\n\nnamespace {\nusing namespace dora3::native_time;\nuint32_t word(uint8_t* rdram,uint32_t p){return uint32_t(MEM_W(0,int32_t(p)));}\nbool pointer(uint32_t p,uint64_t n){return p>=0x80000000u&&uint64_t(p)+n<=0x80400000ull;}\nstruct Bitmap {uint32_t header=0,pixels=0,palette=0;unsigned width=0,height=0,format=0,colors=0;};\nstd::optional<Bitmap> bitmap(uint8_t* rdram,uint32_t p) {\n    if(!pointer(p,16)||(p&7)||MEM_BU(0,int32_t(p))!='B'||MEM_BU(1,int32_t(p))!='M'||MEM_BU(2,int32_t(p))!='P')return {};\n    Bitmap b{p,0,p+16,word(rdram,p+8),word(rdram,p+12),MEM_BU(3,int32_t(p)),MEM_HU(6,int32_t(p))};\n    if(b.format!=5||b.colors!=16||!b.width||!b.height||b.width>64||b.height>64||(b.width&1))return {};\n    b.pixels=p+16+((2*b.colors+7)&~7u);\n    if(!pointer(b.pixels,uint64_t(b.width)*b.height/2))return {};\n    return b;\n}\nunsigned pixel(uint8_t* rdram,const Bitmap& b,unsigned x,unsigned y) {\n    const auto v=MEM_BU(int32_t((y*b.width+x)/2),int32_t(b.pixels));return x&1?v&15:v>>4;\n}\nstruct Shift {int x=0,y=0;bool translated=false;};\nstruct CachedShift {uint64_t first=0,second=0;Shift value;};\nuint64_t bitmap_signature(uint8_t* rdram,const Bitmap& b) {\n    uint64_t hash=1469598103934665603ull;\n    for(unsigned i=0;i<16;++i)hash=(hash^MEM_BU(i,int32_t(b.header)))*1099511628211ull;\n    for(unsigned i=0;i<32;++i)hash=(hash^MEM_BU(i,int32_t(b.palette)))*1099511628211ull;\n    for(unsigned i=0;i<b.width*b.height/2;++i)hash=(hash^MEM_BU(i,int32_t(b.pixels)))*1099511628211ull;\n    return hash;\n}\nShift translated_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b) {\n    if(a.width!=b.width||a.height!=b.height||a.format!=b.format||a.colors!=b.colors)return {};\n    for(unsigned i=0;i<32;++i)if(MEM_BU(i,int32_t(a.palette))!=MEM_BU(i,int32_t(b.palette)))return {};\n    // This recognizes an authored toroidal scroll, never blends bitmap images.\n    // ROM water113..122 is precisely the same32x32 CI4 bitmap shifted by2px.\n    Shift result;unsigned best=~0u;\n    for(unsigned y=0;y<a.height;++y)for(unsigned x=0;x<a.width;++x) {\n        const int sx=x>a.width/2?int(x)-int(a.width):int(x),sy=y>a.height/2?int(y)-int(a.height):int(y);\n        const unsigned length=unsigned(sx*sx+sy*sy);if(length>=best)continue;\n        bool same=true;\n        for(unsigned row=0;row<a.height&&same;++row)for(unsigned col=0;col<a.width;++col)\n            if(pixel(rdram,b,col,row)!=pixel(rdram,a,(col+x)%a.width,(row+y)%a.height)){same=false;break;}\n        if(same){result={sx,sy,true};best=length;}\n    }\n    return result;\n}\nstruct Binding {uint32_t base=0,palette=0;unsigned width=0,height=0;double x=0,y=0;bool scroll=false;};\nstruct Parser {std::optional<Binding> image;std::array<uint32_t,8> tiles{};};\nstruct Copy {uint32_t address;Parser exit;};\nstruct FramePatch {uint32_t address,first,second,published_first,published_second;};\nstruct State {\n    uint8_t* source_ram=nullptr,*frame_ram=nullptr;\n    Nanoseconds source_time=0;\n    double h=0;\n    uint32_t bank=0,arena=0;\n    bool active=false;\n    std::array<Binding,16> segments{};\n    std::map<std::pair<uint32_t,uint32_t>,CachedShift> shifts;\n    std::vector<uint32_t> builders;\n    std::vector<FramePatch> patches;\n    std::map<std::pair<uint32_t,uint64_t>,Copy> copies;\n} state;\nuint32_t resolve(uint32_t p) {\n    if(p>=0x80000000u&&p<0x80400000u)return p;\n    if(p<0x400000u)return p|0x80000000u;\n    const auto segment=p>>24;\n    if(segment<16&&state.segments[segment].base) {\n        const uint64_t result=uint64_t(state.segments[segment].base)+(p&0xffffffu);\n        if(result<0x80400000ull)return uint32_t(result);\n    }\n    return 0;\n}\n// A cloned resource display list remains in the current ticket's bank until\n// both guest and host completion. CPU Source RAM/asset data are never changed.\n// Tail allocation keeps the original builder's local and global cursors intact.\nuint32_t allocate(uint8_t* rdram,const std::vector<uint32_t>& commands) {\n    const auto bytes=uint32_t(commands.size()*4);\n    const auto cursor=word(rdram,0x801B1424);\n    if(bytes>state.arena-state.bank||cursor<state.bank+dora3::frame::dl_offset||\n       uint64_t(cursor)+0x10000u+bytes>state.arena)return 0;\n    const auto at=(state.arena-bytes)&~7u;\n    for(unsigned i=0;i<commands.size();++i)MEM_W(0,int32_t(at+4*i))=int32_t(commands[i]);\n    state.arena=at;return at;\n}\nuint64_t binding_signature() {\n    uint64_t result=1469598103934665603ull;\n    for(const auto& b:state.segments)for(const auto v:{uint64_t(b.base),uint64_t(std::llround(b.x*4)),uint64_t(std::llround(b.y*4))})\n        result=(result^v)*1099511628211ull;\n    return result;\n}\nuint32_t clone_list(uint8_t*,uint32_t,unsigned,std::set<uint32_t>&,Parser&);\nbool rewrite_command(uint8_t* rdram,uint32_t& first,uint32_t& second,unsigned depth,std::set<uint32_t>& path,Parser& parser) {\n    auto& image=parser.image;bool changed=false;const auto op=first>>24;\n        if(op==0xFD) {\n            image.reset();const auto segment=second>>24;\n            if(segment<16&&!(second&0xffffffu)&&state.segments[segment].scroll)image=state.segments[segment];\n            else {const auto actual=resolve(second);for(const auto& b:state.segments)if(b.scroll&&b.base==actual){image=b;break;}}\n        } else if(op==0xF5)parser.tiles[(second>>24)&7]=second;\n        else if(op==0xF2&&image) {\n            const auto& b=*image;\n            // RDP tile origin subtracts from the vertex's S/T. A translated\n            // bitmap reads (S+shift), hence the negative fractional tile origin.\n            const int dx=int(std::llround(b.x*4)),dy=int(std::llround(b.y*4));\n            const auto tile=parser.tiles[(second>>24)&7];\n            const bool wrap_s=((tile>>8)&3)==0&&(tile&15)==0&&((1u<<((tile>>4)&15))==b.width);\n            const bool wrap_t=((tile>>18)&3)==0&&((tile>>10)&15)==0&&((1u<<((tile>>14)&15))==b.height);\n            const auto move=[&](unsigned shift,int delta,unsigned period,bool allowed) {\n                const int low=(first>>shift)&4095,high=(second>>shift)&4095;\n                if(!allowed||!delta||high<low)return;\n                // Keep UL/LR ordered and the same width. Encoding a negative UL\n                // as4095 would make a host decoder infer a negative tile width.\n                int next=(low-delta)%int(period);if(next<0)next+=int(period);\n                const int last=next+high-low;if(last>4095)return;\n                const uint32_t mask=4095u<<shift;\n                const uint32_t a=(first&~mask)|(uint32_t(next)<<shift),c=(second&~mask)|(uint32_t(last)<<shift);\n                changed|=a!=first||c!=second;first=a;second=c;\n            };\n            move(12,dx,b.width*4,wrap_s);move(0,dy,b.height*4,wrap_t);\n        } else if(op==0xDE) {\n            const auto copied=clone_list(rdram,second,depth+1,path,parser);\n            changed|=copied!=second;second=copied==second?second:(copied&0x1fffffff);\n\n        }\n    return changed;\n}\nuint32_t clone_list(uint8_t* rdram,uint32_t root,unsigned depth,std::set<uint32_t>& path,Parser& parser) {\n    const auto address=resolve(root);if(depth>8||!pointer(address,8)||(address&7)||!path.insert(address).second)return root;\n    const auto key=std::pair{address,binding_signature()};\n    // A parent can inherit the current texture image; only cache independent\n    // lists. This avoids conflating the same mesh under different material state.\n    const bool independent=!parser.image&&std::all_of(parser.tiles.begin(),parser.tiles.end(),[](auto tile){return tile==0;});\n    if(independent)if(auto at=state.copies.find(key);at!=state.copies.end()){parser=at->second.exit;path.erase(address);return at->second.address;}\n    std::vector<uint32_t> commands;bool changed=false,ended=false;\n    for(unsigned i=0;i<2048;++i) {\n        const auto p=address+8*i;if(!pointer(p,8))break;\n        auto first=word(rdram,p),second=word(rdram,p+4);const auto op=first>>24;\n        changed|=rewrite_command(rdram,first,second,depth,path,parser);\n        ended=op==0xDF||(op==0xDE&&(first&0x10000u));\n        commands.push_back(first);commands.push_back(second);if(ended)break;\n    }\n    path.erase(address);\n    if(!ended||!changed)return root;\n    const auto copied=allocate(rdram,commands);if(!copied)return root;\n    if(independent)state.copies.emplace(key,Copy{copied,parser});\n    return copied;\n}\n}\nnamespace dora3::native_time {\nvoid native_texture_source_completed(uint8_t* ram,Nanoseconds now){state.source_ram=ram;state.source_time=now;}\nvoid native_texture_reset(){if(state.active)throw std::logic_error(\"Texture reset inside frame\");state=State{};}\nTextureFrameScope::TextureFrameScope(uint8_t* ram,Nanoseconds now,unsigned bank):ram_(ram) {\n    const auto* binding=active_frame_binding();if(!binding||binding->ticket.bank!=bank||state.active)throw std::logic_error(\"Invalid texture frame ownership\");\n    state.active=true;state.frame_ram=ram;state.bank=dora3::frame::bank0+bank*dora3::frame::bank_stride;\n    state.arena=state.bank+dora3::frame::bank_stride-0x100;\n    state.h=state.source_ram==ram?std::clamp(double(now-state.source_time)*60./(word(ram,0x801A39DC)*1e9),0.,1.):0.;\n    state.segments={};state.copies.clear();state.builders.clear();state.patches.clear();\n}\nTextureFrameScope::~TextureFrameScope(){if(ram_){state.active=false;state.frame_ram=nullptr;state.segments={};state.copies.clear();state.builders.clear();state.patches.clear();}}\n}\nextern \"C\" void dora3_native_texture_bind(uint8_t* rdram,recomp_context* c,unsigned world) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    const auto actor=uint32_t(world?c->r20:c->r4),slot=unsigned(world?c->r18:c->r5);\n    if(slot>=8||!pointer(actor,0xcc)||MEM_BU(int32_t(0x6b+slot),int32_t(actor))!=5)return;\n    const auto handle=word(rdram,actor+0x74+4*slot);if(handle>=300)return;\n    const auto entry=0x801A9CB0+8*handle,sequence=word(rdram,entry);\n    if(!pointer(sequence,12))return;\n    const unsigned segment=MEM_BU(8,int32_t(sequence)),palette=MEM_BU(9,int32_t(sequence));\n    if(segment>=16||palette>=16)return;\n    state.segments[segment]={};state.segments[palette]={};\n    const auto indices=word(rdram,sequence),durations=word(rdram,sequence+4);\n    const unsigned index=MEM_BU(5,int32_t(entry));\n    if(!pointer(indices,uint64_t(index)+2)||!pointer(durations,uint64_t(index)+1))return;\n    const unsigned current=MEM_BU(index,int32_t(indices)),raw_next=MEM_BU(index+1,int32_t(indices));\n    const unsigned flags=MEM_BU(6,int32_t(entry));\n    const unsigned next=raw_next==255?(flags&2?current:MEM_BU(0,int32_t(indices))):raw_next;\n    if(current==255||next==255)return;\n    const auto table=world?0x80217120u:word(rdram,actor+0xb8);\n    if(!pointer(table,2*(std::max(current,next)+1)))return;\n    const auto resource=[&](unsigned n)->uint32_t{\n        const int id=MEM_H(int32_t(2*n),int32_t(table));return id>=0&&id<512?word(rdram,0x801AEC00+20*unsigned(id)):0;\n    };\n    const auto a=bitmap(rdram,resource(current)),b=bitmap(rdram,resource(next));if(!a||!b)return;\n    state.segments[segment]={a->pixels,a->palette,a->width,a->height,0,0,false};\n    state.segments[palette].base=a->palette;\n    if(!(flags&1))return; // Source controls active/loop/clamp; last clamped frame holds\n    const auto key=std::pair{a->header,b->header};const auto first=bitmap_signature(rdram,*a),second=bitmap_signature(rdram,*b);\n    auto at=state.shifts.find(key);\n    if(at==state.shifts.end()||at->second.first!=first||at->second.second!=second) {\n        // Resource slots may be freed/reused inside the same loaded scene.\n        if(state.shifts.size()>=512)state.shifts.clear();\n        at=state.shifts.insert_or_assign(key,CachedShift{first,second,translated_bitmap(rdram,*a,*b)}).first;\n    }\n    if(!at->second.value.translated)return;\n    const unsigned duration=MEM_BU(index,int32_t(durations)),remaining=MEM_BU(4,int32_t(entry));\n    if(!duration||remaining>=duration)return;\n    const double h=(double(duration-1-remaining)+state.h)/duration;\n    auto& binding=state.segments[segment];binding.x=at->second.value.x*h;binding.y=at->second.value.y*h;binding.scroll=true;\n}\nextern \"C\" void dora3_native_texture_builder(uint8_t* rdram,recomp_context* c,unsigned end) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    if(!end) {\n        const auto cursor_pointer=uint32_t(c->r4);\n        state.builders.push_back(pointer(cursor_pointer,4)?word(rdram,cursor_pointer):0);return;\n    }\n    if(state.builders.empty())throw std::logic_error(\"Unmatched material builder boundary\");\n    const auto begin=state.builders.back(),last=uint32_t(c->r2);state.builders.pop_back();\n    if(begin<state.bank+dora3::frame::dl_offset||last<begin||last>state.arena||((begin|last)&7))\n        return; // Other Source-owned builders are outside this ticket's lease.\n    if(std::none_of(state.segments.begin(),state.segments.end(),[](const auto& b){return b.scroll;}))return;\n    // The actual SDK builds material setup before the mesh DE. Process that\n    // prefix too, carrying its image/tile state into every nested mesh list.\n    std::set<uint32_t> path;Parser parser;\n    for(uint32_t at=begin;at<last;at+=8) {\n        auto first=word(rdram,at),second=word(rdram,at+4);\n        const auto original_first=first,original_second=second;\n        if(rewrite_command(rdram,first,second,0,path,parser)) {\n            state.patches.push_back({at,original_first,original_second,first,second});\n            MEM_W(0,int32_t(at))=int32_t(first);MEM_W(0,int32_t(at+4))=int32_t(second);\n        }\n    }\n}\nextern \"C\" void dora3_native_texture_submit_guard(uint8_t* rdram,recomp_context*) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    if(word(rdram,0x801B1424)<=state.arena)return;\n    // A larger Source frame may use the reserved tail after material building.\n    // Drop every outer reference to clones before submit and retain its exact\n    // Source texture commands. An unusually large frame must not crash the game.\n    for(auto i=state.patches.rbegin();i!=state.patches.rend();++i) {\n        if(word(rdram,i->address)==i->published_first&&word(rdram,i->address+4)==i->published_second) {\n            MEM_W(0,int32_t(i->address))=int32_t(i->first);\n            MEM_W(0,int32_t(i->address+4))=int32_t(i->second);\n        }\n    }\n    state.patches.clear();\n}\n",
-              "new": "#include \"native_texture_animation.hpp\"\n#include \"native_frame_bridge.hpp\"\n#include \"frame_lights.hpp\"\n#include <algorithm>\n#include <array>\n#include <cmath>\n#include <map>\n#include <optional>\n#include <set>\n#include <stdexcept>\n#include <vector>\n\nnamespace {\nusing namespace dora3::native_time;\nuint32_t word(uint8_t* rdram,uint32_t p){return uint32_t(MEM_W(0,int32_t(p)));}\nbool pointer(uint32_t p,uint64_t n){return p>=0x80000000u&&uint64_t(p)+n<=0x80400000ull;}\nstruct Bitmap {uint32_t header=0,pixels=0,palette=0;unsigned width=0,height=0,format=0,colors=0,palette_bytes=0;};\nstd::optional<Bitmap> bitmap(uint8_t* rdram,uint32_t p) {\n    if(!pointer(p,16)||(p&7)||MEM_BU(0,int32_t(p))!='B'||MEM_BU(1,int32_t(p))!='M'||MEM_BU(2,int32_t(p))!='P')return {};\n    Bitmap b{p,0,p+16,word(rdram,p+8),word(rdram,p+12),MEM_BU(3,int32_t(p)),MEM_HU(6,int32_t(p))};\n    // SDK282EC places formats<5 directly after the16-byte header. The ROM\n    // format2 family0653..656 is byte-per-pixel, confirmed by every resource\n    // length (64*32+16). CI4 format5 can have fewer than16 palette entries:\n    // 09CE..9D4 uses3 colors and bitmap0521..528 uses6, not16.\n    if((b.format!=2&&b.format!=5)||!b.width||!b.height||b.width>64||b.height>64||(b.width&1))return {};\n    if(b.format==5&&(!b.colors||b.colors>16))return {};\n    b.palette_bytes=b.format==5?((2*b.colors+7)&~7u):0;\n    if(b.format<5)b.palette=0; // SDK28320 returns no palette for byte format2.\n    b.pixels=p+16+b.palette_bytes;\n    if(!pointer(b.pixels,uint64_t(b.width)*b.height/(b.format==5?2:1)))return {};\n    return b;\n}\nunsigned pixel(uint8_t* rdram,const Bitmap& b,unsigned x,unsigned y) {\n    const auto at=y*b.width+x;\n    const auto v=MEM_BU(int32_t(b.format==5?at/2:at),int32_t(b.pixels));\n    return b.format==5?(x&1?v&15:v>>4):v;\n}\nstruct Shift {int x=0,y=0;bool translated=false;};\nstruct CachedShift {uint64_t first=0,second=0;Shift value;};\nuint64_t bitmap_signature(uint8_t* rdram,const Bitmap& b) {\n    uint64_t hash=1469598103934665603ull;\n    for(unsigned i=0;i<16;++i)hash=(hash^MEM_BU(int32_t(i),int32_t(b.header)))*1099511628211ull;\n    for(unsigned i=0;i<b.palette_bytes;++i)hash=(hash^MEM_BU(int32_t(i),int32_t(b.palette)))*1099511628211ull;\n    for(unsigned i=0;i<b.width*b.height/(b.format==5?2:1);++i)hash=(hash^MEM_BU(int32_t(i),int32_t(b.pixels)))*1099511628211ull;\n    return hash;\n}\nShift translated_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b) {\n    if(a.width!=b.width||a.height!=b.height||a.format!=b.format||a.colors!=b.colors)return {};\n    if(word(rdram,a.header+4)!=word(rdram,b.header+4))return {}; // Same authored header/format flags too.\n    for(unsigned i=0;i<a.palette_bytes;++i)if(MEM_BU(int32_t(i),int32_t(a.palette))!=MEM_BU(int32_t(i),int32_t(b.palette)))return {};\n    // This recognizes an authored toroidal scroll, never blends bitmap images.\n    // ROM water113..122 is precisely the same32x32 CI4 bitmap shifted by2px.\n    Shift result;unsigned best=~0u;\n    for(unsigned y=0;y<a.height;++y)for(unsigned x=0;x<a.width;++x) {\n        const int sx=x>a.width/2?int(x)-int(a.width):int(x),sy=y>a.height/2?int(y)-int(a.height):int(y);\n        const unsigned length=unsigned(sx*sx+sy*sy);if(length>=best)continue;\n        bool same=true;\n        for(unsigned row=0;row<a.height&&same;++row)for(unsigned col=0;col<a.width;++col)\n            if(pixel(rdram,b,col,row)!=pixel(rdram,a,(col+x)%a.width,(row+y)%a.height)){same=false;break;}\n        if(same){result={sx,sy,true};best=length;}\n    }\n    return result;\n}\nstruct Binding {uint32_t base=0,palette=0;unsigned width=0,height=0;double x=0,y=0;bool scroll=false;};\nstruct Parser {std::optional<Binding> image;std::array<uint32_t,8> tiles{};};\nstruct Copy {uint32_t address;Parser exit;};\nstruct FramePatch {uint32_t address,first,second,published_first,published_second;};\nstruct State {\n    uint8_t* source_ram=nullptr,*frame_ram=nullptr;\n    Nanoseconds source_time=0;\n    double h=0;\n    uint32_t bank=0,arena=0;\n    bool active=false;\n    std::array<Binding,16> segments{};\n    std::map<std::pair<uint32_t,uint32_t>,CachedShift> shifts;\n    std::vector<uint32_t> builders;\n    std::vector<FramePatch> patches;\n    std::map<std::pair<uint32_t,uint64_t>,Copy> copies;\n} state;\nuint32_t resolve(uint32_t p) {\n    if(p>=0x80000000u&&p<0x80400000u)return p;\n    if(p<0x400000u)return p|0x80000000u;\n    const auto segment=p>>24;\n    if(segment<16&&state.segments[segment].base) {\n        const uint64_t result=uint64_t(state.segments[segment].base)+(p&0xffffffu);\n        if(result<0x80400000ull)return uint32_t(result);\n    }\n    return 0;\n}\n// A cloned resource display list remains in the current ticket's bank until\n// both guest and host completion. CPU Source RAM/asset data are never changed.\n// Tail allocation keeps the original builder's local and global cursors intact.\nuint32_t allocate(uint8_t* rdram,const std::vector<uint32_t>& commands) {\n    const auto bytes=uint32_t(commands.size()*4);\n    const auto cursor=word(rdram,0x801B1424);\n    if(bytes>state.arena-state.bank||cursor<state.bank+dora3::frame::dl_offset||\n       uint64_t(cursor)+0x10000u+bytes>state.arena)return 0;\n    const auto at=(state.arena-bytes)&~7u;\n    for(unsigned i=0;i<commands.size();++i)MEM_W(0,int32_t(at+4*i))=int32_t(commands[i]);\n    state.arena=at;return at;\n}\nuint64_t binding_signature() {\n    uint64_t result=1469598103934665603ull;\n    for(const auto& b:state.segments)for(const auto v:{uint64_t(b.base),uint64_t(std::llround(b.x*4)),uint64_t(std::llround(b.y*4))})\n        result=(result^v)*1099511628211ull;\n    return result;\n}\nuint32_t clone_list(uint8_t*,uint32_t,unsigned,std::set<uint32_t>&,Parser&);\nbool rewrite_command(uint8_t* rdram,uint32_t& first,uint32_t& second,unsigned depth,std::set<uint32_t>& path,Parser& parser) {\n    auto& image=parser.image;bool changed=false;const auto op=first>>24;\n        if(op==0xFD) {\n            image.reset();const auto segment=second>>24;\n            if(segment<16&&!(second&0xffffffu)&&state.segments[segment].scroll)image=state.segments[segment];\n            else {const auto actual=resolve(second);for(const auto& b:state.segments)if(b.scroll&&b.base==actual){image=b;break;}}\n        } else if(op==0xF5)parser.tiles[(second>>24)&7]=second;\n        else if(op==0xF2&&image) {\n            const auto& b=*image;\n            // RDP tile origin subtracts from the vertex's S/T. A translated\n            // bitmap reads (S+shift), hence the negative fractional tile origin.\n            const int dx=int(std::llround(b.x*4)),dy=int(std::llround(b.y*4));\n            const auto tile=parser.tiles[(second>>24)&7];\n            const bool wrap_s=((tile>>8)&3)==0&&(tile&15)==0&&((1u<<((tile>>4)&15))==b.width);\n            const bool wrap_t=((tile>>18)&3)==0&&((tile>>10)&15)==0&&((1u<<((tile>>14)&15))==b.height);\n            const auto move=[&](unsigned shift,int delta,unsigned period,bool allowed) {\n                const int low=(first>>shift)&4095,high=(second>>shift)&4095;\n                if(!allowed||!delta||high<low)return;\n                // Keep UL/LR ordered and the same width. Encoding a negative UL\n                // as4095 would make a host decoder infer a negative tile width.\n                int next=(low-delta)%int(period);if(next<0)next+=int(period);\n                const int last=next+high-low;if(last>4095)return;\n                const uint32_t mask=4095u<<shift;\n                const uint32_t a=(first&~mask)|(uint32_t(next)<<shift),c=(second&~mask)|(uint32_t(last)<<shift);\n                changed|=a!=first||c!=second;first=a;second=c;\n            };\n            move(12,dx,b.width*4,wrap_s);move(0,dy,b.height*4,wrap_t);\n        } else if(op==0xDE) {\n            const auto copied=clone_list(rdram,second,depth+1,path,parser);\n            changed|=copied!=second;second=copied==second?second:(copied&0x1fffffff);\n\n        }\n    return changed;\n}\nuint32_t clone_list(uint8_t* rdram,uint32_t root,unsigned depth,std::set<uint32_t>& path,Parser& parser) {\n    const auto address=resolve(root);if(depth>8||!pointer(address,8)||(address&7)||!path.insert(address).second)return root;\n    const auto key=std::pair{address,binding_signature()};\n    // A parent can inherit the current texture image; only cache independent\n    // lists. This avoids conflating the same mesh under different material state.\n    const bool independent=!parser.image&&std::all_of(parser.tiles.begin(),parser.tiles.end(),[](auto tile){return tile==0;});\n    if(independent)if(auto at=state.copies.find(key);at!=state.copies.end()){parser=at->second.exit;path.erase(address);return at->second.address;}\n    std::vector<uint32_t> commands;bool changed=false,ended=false;\n    for(unsigned i=0;i<2048;++i) {\n        const auto p=address+8*i;if(!pointer(p,8))break;\n        auto first=word(rdram,p),second=word(rdram,p+4);const auto op=first>>24;\n        changed|=rewrite_command(rdram,first,second,depth,path,parser);\n        ended=op==0xDF||(op==0xDE&&(first&0x10000u));\n        commands.push_back(first);commands.push_back(second);if(ended)break;\n    }\n    path.erase(address);\n    if(!ended||!changed)return root;\n    const auto copied=allocate(rdram,commands);if(!copied)return root;\n    if(independent)state.copies.emplace(key,Copy{copied,parser});\n    return copied;\n}\n}\nnamespace dora3::native_time {\nvoid native_texture_source_completed(uint8_t* ram,Nanoseconds now){state.source_ram=ram;state.source_time=now;}\nvoid native_texture_reset(){if(state.active)throw std::logic_error(\"Texture reset inside frame\");state=State{};}\nTextureFrameScope::TextureFrameScope(uint8_t* ram,Nanoseconds now,unsigned bank):ram_(ram) {\n    const auto* binding=active_frame_binding();if(!binding||binding->ticket.bank!=bank||state.active)throw std::logic_error(\"Invalid texture frame ownership\");\n    state.active=true;state.frame_ram=ram;state.bank=dora3::frame::bank0+bank*dora3::frame::bank_stride;\n    state.arena=state.bank+dora3::frame::bank_stride-0x100;\n    state.h=state.source_ram==ram?std::clamp(double(now-state.source_time)*60./(word(ram,0x801A39DC)*1e9),0.,1.):0.;\n    state.segments={};state.copies.clear();state.builders.clear();state.patches.clear();\n}\nTextureFrameScope::~TextureFrameScope(){if(ram_){state.active=false;state.frame_ram=nullptr;state.segments={};state.copies.clear();state.builders.clear();state.patches.clear();}}\n}\nextern \"C\" void dora3_native_texture_bind(uint8_t* rdram,recomp_context* c,unsigned world) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    const auto actor=uint32_t(world?c->r20:c->r4),slot=unsigned(world?c->r18:c->r5);\n    if(slot>=8||!pointer(actor,0xcc)||MEM_BU(int32_t(0x6b+slot),int32_t(actor))!=5)return;\n    const auto handle=word(rdram,actor+0x74+4*slot);if(handle>=300)return;\n    const auto entry=0x801A9CB0+8*handle,sequence=word(rdram,entry);\n    if(!pointer(sequence,12))return;\n    const unsigned segment=MEM_BU(8,int32_t(sequence)),palette=MEM_BU(9,int32_t(sequence));\n    if(segment>=16||palette>=16)return;\n    state.segments[segment]={};state.segments[palette]={};\n    const auto indices=word(rdram,sequence),durations=word(rdram,sequence+4);\n    const unsigned index=MEM_BU(5,int32_t(entry));\n    if(!pointer(indices,uint64_t(index)+2)||!pointer(durations,uint64_t(index)+1))return;\n    const unsigned current=MEM_BU(int32_t(index),int32_t(indices)),raw_next=MEM_BU(int32_t(index+1),int32_t(indices));\n    const unsigned flags=MEM_BU(6,int32_t(entry));\n    const unsigned next=raw_next==255?(flags&2?current:MEM_BU(0,int32_t(indices))):raw_next;\n    if(current==255||next==255)return;\n    const auto table=world?0x80217120u:word(rdram,actor+0xb8);\n    if(!pointer(table,2*(std::max(current,next)+1)))return;\n    const auto resource=[&](unsigned n)->uint32_t{\n        const int id=MEM_H(int32_t(2*n),int32_t(table));return id>=0&&id<512?word(rdram,0x801AEC00+20*unsigned(id)):0;\n    };\n    const auto a=bitmap(rdram,resource(current)),b=bitmap(rdram,resource(next));if(!a||!b)return;\n    state.segments[segment]={a->pixels,a->palette,a->width,a->height,0,0,false};\n    state.segments[palette].base=a->palette;\n    if(!(flags&1))return; // Source controls active/loop/clamp; last clamped frame holds\n    const auto key=std::pair{a->header,b->header};const auto first=bitmap_signature(rdram,*a),second=bitmap_signature(rdram,*b);\n    auto at=state.shifts.find(key);\n    if(at==state.shifts.end()||at->second.first!=first||at->second.second!=second) {\n        // Resource slots may be freed/reused inside the same loaded scene.\n        if(state.shifts.size()>=512)state.shifts.clear();\n        at=state.shifts.insert_or_assign(key,CachedShift{first,second,translated_bitmap(rdram,*a,*b)}).first;\n    }\n    if(!at->second.value.translated)return;\n    const unsigned duration=MEM_BU(int32_t(index),int32_t(durations)),remaining=MEM_BU(4,int32_t(entry));\n    if(!duration||remaining>=duration)return;\n    const double h=(double(duration-1-remaining)+state.h)/duration;\n    auto& binding=state.segments[segment];binding.x=at->second.value.x*h;binding.y=at->second.value.y*h;binding.scroll=true;\n}\nextern \"C\" void dora3_native_texture_builder(uint8_t* rdram,recomp_context* c,unsigned end) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    if(!end) {\n        const auto cursor_pointer=uint32_t(c->r4);\n        state.builders.push_back(pointer(cursor_pointer,4)?word(rdram,cursor_pointer):0);return;\n    }\n    if(state.builders.empty())throw std::logic_error(\"Unmatched material builder boundary\");\n    const auto begin=state.builders.back(),last=uint32_t(c->r2);state.builders.pop_back();\n    if(begin<state.bank+dora3::frame::dl_offset||last<begin||last>state.arena||((begin|last)&7))\n        return; // Other Source-owned builders are outside this ticket's lease.\n    if(std::none_of(state.segments.begin(),state.segments.end(),[](const auto& b){return b.scroll;}))return;\n    // The actual SDK builds material setup before the mesh DE. Process that\n    // prefix too, carrying its image/tile state into every nested mesh list.\n    std::set<uint32_t> path;Parser parser;\n    for(uint32_t at=begin;at<last;at+=8) {\n        auto first=word(rdram,at),second=word(rdram,at+4);\n        const auto original_first=first,original_second=second;\n        if(rewrite_command(rdram,first,second,0,path,parser)) {\n            state.patches.push_back({at,original_first,original_second,first,second});\n            MEM_W(0,int32_t(at))=int32_t(first);MEM_W(0,int32_t(at+4))=int32_t(second);\n        }\n    }\n}\nextern \"C\" void dora3_native_texture_submit_guard(uint8_t* rdram,recomp_context*) {\n    if(!state.active||state.frame_ram!=rdram)return;\n    if(word(rdram,0x801B1424)<=state.arena)return;\n    // A larger Source frame may use the reserved tail after material building.\n    // Drop every outer reference to clones before submit and retain its exact\n    // Source texture commands. An unusually large frame must not crash the game.\n    for(auto i=state.patches.rbegin();i!=state.patches.rend();++i) {\n        if(word(rdram,i->address)==i->published_first&&word(rdram,i->address+4)==i->published_second) {\n            MEM_W(0,int32_t(i->address))=int32_t(i->first);\n            MEM_W(0,int32_t(i->address+4))=int32_t(i->second);\n        }\n    }\n    state.patches.clear();\n}\n"
-            }
-          ],
-          "affected_variants": [],
-          "evidence": "Only bitmap decoding/signature/translation helpers were extended. They are called below unchanged !state.active guard. This Source/model/collider replay never constructs TextureFrameScope (game-loop is not linked), hence every retained case follows exactly the same inactive texture path. Active format paths are separately checked with actual SDK binding/material and ASan/UBSan."
-        }
-      ],
-      "prior_resume_evidence": {
-        "path": "build-local/native-scene-object-check/regression048-prior-scene-cold-scope.json",
-        "sha256": "4eef83f7e08ad547ebc3622c056bb0162413bf436fe8d164e37a2f94295af192"
-      },
-      "previous_generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
-      "reason": "All changes are in an uncalled ModelFrameScope branch. Old Source proofs keep their actual compiler dependencies and execution logs; one complete current-input variant reruns."
-    }
-  },
-  "enemy_retained_execution": {
-    "retained": 217,
-    "fresh": 1,
-    "provenance": {
-      "kind": "inactive-model-frame-scope",
-      "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
-      "retained_kinds": [
-        257,
-        258,
-        259,
-        265,
-        266,
-        267,
-        268,
-        269,
-        270,
-        271,
-        272,
-        273,
-        274,
-        275,
-        276,
-        277,
-        278,
-        279,
-        280,
-        281,
-        282,
-        283,
-        284,
-        285,
-        286,
-        287,
-        288,
-        289,
-        290,
-        291,
-        292,
-        293,
-        294,
-        295,
-        296,
-        297,
-        298,
-        299,
-        300,
-        301,
-        302,
-        303,
-        304,
-        305,
-        306,
-        307,
-        308,
-        309,
-        310,
-        311,
-        312,
-        313,
-        314,
-        315,
-        316,
-        317,
-        318,
-        319,
-        320,
-        321,
-        322,
-        323,
-        324,
-        325,
-        326,
-        327,
-        328,
-        329,
-        330,
-        331,
-        332,
-        333,
-        334,
-        335,
-        336,
-        337,
-        338,
-        339,
-        340,
-        341,
-        342,
-        343,
-        344,
-        345,
-        346,
-        347,
-        348,
-        349,
-        350,
-        351,
-        352,
-        353,
-        354,
-        355,
-        356,
-        357,
-        358,
-        359,
-        360,
-        361,
-        362,
-        363,
-        364,
-        365,
-        366,
-        367,
-        368,
-        369,
-        370,
-        371,
-        372,
-        373,
-        374,
-        375,
-        376,
-        377,
-        378,
-        379,
-        380,
-        381,
-        382,
-        383,
-        384,
-        385,
-        386,
-        387,
-        388,
-        389,
-        390,
-        391,
-        392,
-        393,
-        394,
-        395,
-        396,
-        397,
-        398,
-        399,
-        400,
-        401,
-        402,
-        403,
-        404,
-        405,
-        406,
-        407,
-        408,
-        409,
-        410,
-        411,
-        412,
-        413,
-        414,
-        415,
-        416,
-        417,
-        418,
-        419,
-        420,
-        421,
-        422,
-        423,
-        424,
-        425,
-        426,
-        427,
-        428,
-        429,
-        430,
-        431,
-        432,
-        433,
-        434,
-        435,
-        436,
-        437,
-        438,
-        439,
-        440,
-        441,
-        442,
-        443,
-        444,
-        445,
-        446,
-        447,
-        448,
-        449,
-        450,
-        451,
-        452,
-        453,
-        454,
-        455,
-        456,
-        457,
-        458,
-        459,
-        460,
-        461,
-        462,
-        463,
-        464,
-        465,
-        466,
-        467,
-        468,
-        469,
-        470,
-        471,
-        472,
-        473,
-        474,
-        475,
-        476,
-        477,
-        478
-      ],
-      "rerun_kinds": [
-        264
-      ],
-      "retained_states": {
-        "258": [
-          1
-        ],
-        "259": [
-          1
-        ],
-        "264": [
-          1
-        ],
-        "265": [
-          1
-        ],
-        "266": [
-          2
-        ],
-        "267": [
-          2,
-          3
-        ],
-        "268": [
-          1
-        ],
-        "269": [
-          2
-        ],
-        "270": [
-          2
-        ],
-        "271": [
-          1,
-          2
-        ],
-        "272": [
-          2
-        ],
-        "273": [
-          1
-        ],
-        "274": [
-          2
-        ],
-        "275": [
-          2,
-          3
-        ],
-        "276": [
-          1,
-          10
-        ],
-        "277": [
-          2
-        ],
-        "278": [
-          1
-        ],
-        "279": [
-          1,
-          2,
-          4
-        ],
-        "280": [
-          1
-        ],
-        "281": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "282": [
-          1,
-          2,
-          3,
-          5
-        ],
-        "283": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "284": [
-          1,
-          2
-        ],
-        "285": [
-          1
-        ],
-        "286": [
-          1
-        ],
-        "287": [
-          1,
-          3
-        ],
-        "288": [
-          2
-        ],
-        "289": [
-          2,
-          3,
-          4
-        ],
-        "290": [
-          1,
-          2
-        ],
-        "291": [
-          1,
-          2
-        ],
-        "292": [
-          1
-        ],
-        "293": [
-          2,
-          3
-        ],
-        "294": [
-          1
-        ],
-        "295": [
-          2,
-          3
-        ],
-        "296": [
-          1
-        ],
-        "297": [
-          2,
-          3
-        ],
-        "298": [
-          2,
-          3
-        ],
-        "299": [
-          1,
-          10
-        ],
-        "300": [
-          2
-        ],
-        "301": [
-          1
-        ],
-        "302": [
-          1
-        ],
-        "303": [
-          1
-        ],
-        "304": [
-          1
-        ],
-        "305": [
-          1
-        ],
-        "306": [
-          1
-        ],
-        "307": [
-          1
-        ],
-        "308": [
-          1,
-          2,
-          3
-        ],
-        "309": [
-          1,
-          2,
-          3
-        ],
-        "310": [
-          1,
-          2,
-          3
-        ],
-        "311": [
-          1
-        ],
-        "312": [
-          2,
-          3
-        ],
-        "313": [
-          2
-        ],
-        "314": [
-          2,
-          3
-        ],
-        "315": [
-          1,
-          10
-        ],
-        "316": [
-          1,
-          10
-        ],
-        "317": [
-          1
-        ],
-        "318": [
-          1
-        ],
-        "319": [
-          1,
-          2
-        ],
-        "320": [
-          1,
-          2
-        ],
-        "321": [
-          2
-        ],
-        "322": [
-          1
-        ],
-        "323": [
-          1
-        ],
-        "324": [
-          1
-        ],
-        "325": [
-          1
-        ],
-        "326": [
-          2
-        ],
-        "327": [
-          2
-        ],
-        "328": [
-          1,
-          10
-        ],
-        "329": [
-          1
-        ],
-        "330": [
-          2
-        ],
-        "331": [
-          2
-        ],
-        "332": [
-          2,
-          3
-        ],
-        "333": [
-          1,
-          10
-        ],
-        "334": [
-          2
-        ],
-        "335": [
-          1,
-          10
-        ],
-        "336": [
-          2
-        ],
-        "337": [
-          1,
-          2,
-          3
-        ],
-        "338": [
-          1
-        ],
-        "339": [
-          2
-        ],
-        "340": [
-          1,
-          10
-        ],
-        "341": [
-          1,
-          2,
-          3
-        ],
-        "342": [
-          1,
-          2
-        ],
-        "343": [
-          1,
-          2
-        ],
-        "344": [
-          1,
-          2
-        ],
-        "345": [
-          1
-        ],
-        "346": [
-          3
-        ],
-        "347": [
-          1,
-          3,
-          4,
-          5
-        ],
-        "348": [
-          1,
-          2
-        ],
-        "349": [
-          1
-        ],
-        "350": [
-          1,
-          3,
-          10
-        ],
-        "351": [
-          1,
-          2
-        ],
-        "352": [
-          1,
-          10
-        ],
-        "353": [
-          1
-        ],
-        "354": [
-          1
-        ],
-        "355": [
-          1
-        ],
-        "356": [
-          1
-        ],
-        "357": [
-          1
-        ],
-        "358": [
-          1
-        ],
-        "359": [
-          1,
-          2,
-          3
-        ],
-        "360": [
-          2
-        ],
-        "361": [
-          1
-        ],
-        "362": [
-          3
-        ],
-        "363": [
-          1,
-          10
-        ],
-        "364": [
-          2,
-          3
-        ],
-        "365": [
-          2,
-          3
-        ],
-        "366": [
-          2,
-          3
-        ],
-        "367": [
-          1
-        ],
-        "368": [
-          1,
-          3,
-          4
-        ],
-        "369": [
-          1
-        ],
-        "370": [
-          1
-        ],
-        "371": [
-          1,
-          2
-        ],
-        "372": [
-          1
-        ],
-        "373": [
-          1,
-          2
-        ],
-        "374": [
-          1
-        ],
-        "375": [
-          1
-        ],
-        "376": [
-          1
-        ],
-        "377": [
-          1,
-          2
-        ],
-        "378": [
-          1,
-          2
-        ],
-        "379": [
-          1
-        ],
-        "380": [
-          1
-        ],
-        "381": [
-          1
-        ],
-        "382": [
-          1
-        ],
-        "383": [
-          1
-        ],
-        "384": [
-          1
-        ],
-        "385": [
-          1
-        ],
-        "386": [
-          1
-        ],
-        "387": [
-          1,
-          2
-        ],
-        "388": [
-          2,
-          4
-        ],
-        "389": [
-          2
-        ],
-        "390": [
-          3,
-          4
-        ],
-        "391": [
-          1
-        ],
-        "392": [
-          1
-        ],
-        "393": [
-          1
-        ],
-        "394": [
-          1
-        ],
-        "395": [
-          2
-        ],
-        "396": [
-          1
-        ],
-        "397": [
-          1,
-          10
-        ],
-        "398": [
-          1
-        ],
-        "399": [
-          1,
-          2,
-          4
-        ],
-        "400": [
-          1
-        ],
-        "401": [
-          1,
-          2
-        ],
-        "402": [
-          1
-        ],
-        "403": [
-          1,
-          2
-        ],
-        "404": [
-          1
-        ],
-        "405": [
-          1
-        ],
-        "406": [
-          1
-        ],
-        "407": [
-          1
-        ],
-        "408": [
-          1
-        ],
-        "409": [
-          1
-        ],
-        "410": [
-          4
-        ],
-        "411": [
-          1
-        ],
-        "412": [
-          1
-        ],
-        "413": [
-          1
-        ],
-        "414": [
-          1,
-          10
-        ],
-        "415": [
-          1,
-          10
-        ],
-        "416": [
-          1
-        ],
-        "417": [
-          1
-        ],
-        "418": [
-          1,
-          10
-        ],
-        "419": [
-          1
-        ],
-        "420": [
-          1
-        ],
-        "421": [
-          10
-        ],
-        "422": [
-          1
-        ],
-        "423": [
-          1,
-          2,
-          3
-        ],
-        "424": [
-          1
-        ],
-        "425": [
-          1
-        ],
-        "426": [
-          1
-        ],
-        "427": [
-          1
-        ],
-        "428": [
-          1,
-          3
-        ],
-        "429": [
-          1,
-          10
-        ],
-        "430": [
-          1,
-          10
-        ],
-        "431": [
-          1
-        ],
-        "432": [
-          1
-        ],
-        "433": [
-          1
-        ],
-        "434": [
-          1
-        ],
-        "435": [
-          2
-        ],
-        "436": [
-          1
-        ],
-        "437": [
-          1
-        ],
-        "438": [
-          1,
-          10
-        ],
-        "439": [
-          1
-        ],
-        "440": [
-          1
-        ],
-        "441": [
-          1
-        ],
-        "442": [
-          1
-        ],
-        "443": [
-          1,
-          10
-        ],
-        "444": [
-          1
-        ],
-        "445": [
-          1
-        ],
-        "446": [
-          1
-        ],
-        "447": [
-          1
-        ],
-        "448": [
-          1
-        ],
-        "449": [
-          1
-        ],
-        "450": [
-          1,
-          10
-        ],
-        "451": [
-          1,
-          2
-        ],
-        "452": [
-          1
-        ],
-        "453": [
-          1
-        ],
-        "454": [
-          1,
-          2,
-          4
-        ],
-        "455": [
-          1
-        ],
-        "456": [
-          1
-        ],
-        "457": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "458": [
-          1,
-          10
-        ],
-        "459": [
-          1,
-          10
-        ],
-        "460": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "461": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "462": [
-          1,
-          2,
-          3,
-          4,
-          10
-        ],
-        "463": [
-          1
-        ],
-        "464": [
-          1
-        ],
-        "465": [
-          10
-        ],
-        "466": [
-          1
-        ],
-        "467": [
-          1,
-          3,
-          4
-        ],
-        "468": [
-          1
-        ],
-        "469": [
-          1
-        ],
-        "470": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "471": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "472": [
-          1,
-          3
-        ],
-        "473": [
-          1
-        ],
-        "474": [
-          1
-        ],
-        "475": [
-          1
-        ],
-        "476": [
-          1
-        ],
-        "477": [
-          1
-        ],
-        "478": [
-          1
-        ],
-        "257": [
-          1
-        ]
-      },
-      "unchanged_compiled_dependencies_sha256": {
-        "/home/vova/projects/DoraRecomp3/src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
-        "/home/vova/projects/DoraRecomp3/src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
-        "/home/vova/projects/DoraRecomp3/build-deps/lib/N64ModernRuntime/N64Recomp/include/recomp.h": "190dd64184df17e3f24a78b761cda8bbfe639f9106d0d98ecc760ee84fe0616a",
-        "/home/vova/projects/DoraRecomp3/src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
-        "/home/vova/projects/DoraRecomp3/src/native_frame_bridge.hpp": "a405469b02b662d7ad973c5475f05465defe0d346b7add98717e9393794fe545",
-        "/home/vova/projects/DoraRecomp3/src/native_frame_scheduler.hpp": "ae108bfcf8c9bbd628f648a8781afd1a9a5ab8668aa676212a60ebf88329bfde",
-        "/home/vova/projects/DoraRecomp3/src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
-        "/home/vova/projects/DoraRecomp3/src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
-        "/home/vova/projects/DoraRecomp3/src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-        "/home/vova/projects/DoraRecomp3/src/native_gameplay_preview.cpp": "f6dabcc72387c43a2805b3f8809a2bad22d4984b6d4288da4c9b088d7ada58a6",
-        "/home/vova/projects/DoraRecomp3/src/native_gameplay_preview.hpp": "2773c63fa042ebcc3efffe1c194f3d7e0c05ac5a205520ca59834100b34f05ea",
-        "/home/vova/projects/DoraRecomp3/src/native_enemy.hpp": "0f963a7886c55e3c19ce07202a53932dd194d67d11100297edd3ac9530b7147e",
-        "/home/vova/projects/DoraRecomp3/src/native_scene_objects.hpp": "cc51bfd8da7dc472c06f8cb6f52ee1a6515dd4f99a5bf5130416f216d54378ac",
-        "/home/vova/projects/DoraRecomp3/src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
-        "/home/vova/projects/DoraRecomp3/src/native_game_loop.hpp": "e75b76b3598ce18da5895fb2005a4357952d7c83ae2efc685719d542485b2833",
-        "/home/vova/projects/DoraRecomp3/src/native_model_animation.hpp": "374044e91b204a922b5a43dc279e518cb87a0825797459f777a58ff82e0cf30b",
-        "/home/vova/projects/DoraRecomp3/src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
-        "/home/vova/projects/DoraRecomp3/src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-        "/home/vova/projects/DoraRecomp3/src/native_model_animation.cpp": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
-        "/home/vova/projects/DoraRecomp3/research/native-story-pickup-source-check.cpp": "964a9ac09ff445f426ce18b8387729de3927efbad8a0de65590707681ac3af99",
-        "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/player-update-functions.h": "259eccf4a1ee5cacefab08270688563c53e0c8db30ae28d2efe600b6e5ef9dac",
-        "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/player-fixture.hpp": "3227f1b961743574b36fac62ea5b5e7e79697ad9e6807b0cacc725ae2073b5ec",
-        "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/enemy-fixture-data.hpp": "3802d9d82a5ac576118fc812f12c1c2e63900207d5e29ebbc6b075a5f06dfd85",
-        "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/player-update-dispatch.hpp": "5729791928212c32c0812f5e7673f42568f238c1f8727f5a0e03710be1df849b",
-        "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/terminal-effect-dispatch.hpp": "0467f7acad40c01711b8dd98774fcca459c3439a3fb8d820bccbaa1bbd57c388",
-        "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/flight-dispatch.hpp": "e880dd0358895d93ef6d949063e64def53aff843cb0e4fddbf6cf59b769edf05",
-        "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/growth-dispatch.hpp": "293ef721b43fe5b463bb3c6a0b7e79f1162569b6f43124a49702946dcf71da3f",
-        "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/ballistic-dispatch.hpp": "90ec5333df4cdfbfc873d2044ab9d00f6e290f64569804c2a340e7cc03c4bc21",
-        "/home/vova/projects/DoraRecomp3/research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
-        "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/slot09-overlay-fixture.hpp": "ddabcac8b2642984d81ff2b6f9980568f0b0000b41303abada160043fe408e86",
-        "/home/vova/projects/DoraRecomp3/research/native-flash-delay-check.inc": "649388f0cd651ca4a367a9f21e7cd23ba3bbd0b908a4d95c76a2f292c015650b",
-        "/home/vova/projects/DoraRecomp3/research/native-flash-motion-check.inc": "da708e4b650d6d3a6f2c97414654cfc5f9df0c5aad2334a15ab5b86746d40c76",
-        "/home/vova/projects/DoraRecomp3/research/native-flash-pool-check.inc": "654c6474c0a39c2b15f3c21ab7ecbd1b92b1a0c3d281e70243bbb858549134fd",
-        "/home/vova/projects/DoraRecomp3/research/native-periodic-effect-source-check.inc": "c28c1e7c4d4189249c28c227f9fc1458419d817a82a18ecf4920536d7a6b7940",
-        "/home/vova/projects/DoraRecomp3/research/native-periodic-effect-guard-check.inc": "0ae0fecd289d36d36297e71046fb57d5b90ac5f870ab24e3c85af16fa1998795",
-        "/home/vova/projects/DoraRecomp3/research/native-periodic-producer-check.inc": "c778c8103d470d0c7123d2b85eeaa4e099f50d04285f4af42eaa53665cdd8f61",
-        "/home/vova/projects/DoraRecomp3/research/native-periodic-producer-guard-check.inc": "aec8a15c0bdfb7cca6440351c559f119ad6861765f143bb10213a6bb5e5c14dd",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-uncollected-source-check.inc": "dc4c0b063c04a78de3fce3ffa0e588bbd5d06f9f86fbb04fba9b5d5e73da269e",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-spin-guard-check.inc": "3b7be439fe8104f84b6b6c372b86c2792b2f5f50c68fbd508f090ecdbe1af03c",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-arc-guard-check.inc": "e75d344b73021004ce226d89f2a26f8b204d399de82bce71941214698caf8aa7",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-reveal-source-check.inc": "b0696c935d3e578b2c5bc7556713add98b8830bef522e803d1bf9783087a51a3",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-settle-scatter-source-check.inc": "36197e05fb4b432d848cbd876589e927ed9355f4c35f4c3a04a6ecfd29bee2dc",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-moving-idle-source-check.inc": "454aabc4cb37a5e74c5ab199b6c83519eb0ec65e0dee727a91a4f78ba35150af",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-linked-basic-check.inc": "aa86d37a231fe751c0289223b75851329a18d0525af503f9a5c8f1d65e10128b",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-linked-guard-check.inc": "c923b27d73b0f6c80de4f29c59056123dbff9a5c60a1878458ab0a26396c098b",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-parent-source-check.inc": "d56d802284e293f88954600696fa821696ea3cb154ee5737a824e7c2bed5e2d1",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-settle-guard-check.inc": "cfa8f2ecd197c67efb0ae4d0e03583b9f6a57b1cbe4c3d790c464340b8d827d1",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-scatter-guard-check.inc": "37bc031d4cc2c85b25dba6313fd9e0ef355ee036df63e8278280beda03382cbb",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-scatter-geometry-check.inc": "6fca5eae3382a919049f2a26a41146d689139059253e29a1ba579e78988b5ef2",
-        "/home/vova/projects/DoraRecomp3/research/native-pickup-reveal-guard-check.inc": "4260f9e395701c21f6e897c9ede24ad9aa0db094374259596bd6247b2777d43d",
-        "/home/vova/projects/DoraRecomp3/research/native-enemy-source-check.inc": "f34c5c3354ac33ef55aae6f32189eab56f754578a225c9705b28c97f8774aeab",
-        "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/boundaries.cpp": "56740f0e891ddacb6533e51b4f55420377c90ff6c6ede75f85898bc858f394c5",
-        "/home/vova/projects/DoraRecomp3/src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
-        "/home/vova/projects/DoraRecomp3/src/native_cutscene.hpp": "d7c9362cc9c4f70191ebb7bad1c9ded08ea478811c477e269fc9bae630e1c1e4",
-        "/home/vova/projects/DoraRecomp3/research/native-gameplay-cutscene-fixture.cpp": "9d0f96ae66fa812b88f4cb3950452db2c26509e8bdfa0612fb1641b654c58cdb",
-        "/home/vova/projects/DoraRecomp3/src/native_minigames.hpp": "73821c8c48ed600088164b7c4604ab57a6d59f32b19384b9d40f85137e9855e7",
-        "/home/vova/projects/DoraRecomp3/src/native_enemy.cpp": "8dc73ce30128b784e169e375aa095940f9495140dcb56bba3024688683369959",
-        "/home/vova/projects/DoraRecomp3/src/native_enemy_projection_math.hpp": "b9a243b6898ed1e4ecdffe6fb43d64eb12ffe214d8812dfc94cf17e98de1ae7a",
-        "/home/vova/projects/DoraRecomp3/src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
-        "/home/vova/projects/DoraRecomp3/src/native_texture_animation.cpp": "c904a4894810f2a2f28d307111e81f88112b5114744a13cdb72a865eac553cb7",
-        "/home/vova/projects/DoraRecomp3/src/native_texture_animation.hpp": "7403bbf3f80ac2335669356f78d8caf8c4803d7d9060b205c6fd60ef5f874a41",
-        "/home/vova/projects/DoraRecomp3/src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e"
-      },
-      "artifacts_sha256": {
-        "build-local/native-enemy-check/replay-1791286135332927698/progress-0.log": "9b51d570f02843b345576aadc0ead1fd54de9f94dcd130cff32bf47f0ce1121b",
-        "build-local/native-enemy-check/replay-1791286135332927698/progress-1.log": "450d1ab3dbb2a9dcb1645389f06dc36c5199d22955bc7c535b462a83cef38f95",
-        "build-local/native-enemy-check/replay-1791286135332927698/progress-2.log": "2827fac68a0e40218ca8992bb791310aa52c378bdfb082025a0f45d4b058d0cc",
-        "build-local/native-enemy-check/replay-1791286135332927698/progress-3.log": "53f3578751deb27355454f17ab8a83a61f442b2a3749916fc449279d77c08350",
-        "build-local/native-enemy-check/replay-1791286135332927698/shard-0.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "build-local/native-enemy-check/replay-1791286135332927698/shard-1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "build-local/native-enemy-check/replay-1791286135332927698/shard-2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "build-local/native-enemy-check/replay-1791286135332927698/shard-3.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "build-local/native-enemy-check/replay-1791149284337458327/progress-3.log": "a3f61abee2729d249c3f3c8608faa626e3b867c906b1ad1b9e86d5a19184c1f4",
-        "build-local/native-enemy-check/replay-1791149284337458327/progress-1.log": "4321b01076fc57c09cdc0e1166c4593775bbdcbd86fd96f41b746efca2669fd6",
-        "build-local/native-enemy-check/replay-1791149284337458327/progress-2.log": "de05210959324aa0dc58f81b4bd2cc91aa18ade7e40000d8dd4966b377069879",
-        "build-local/native-enemy-check/replay-1791149284337458327/progress-0.log": "c63d7135616d30cb0523b66987ee521af69b96366490a192187a480720431019",
-        "build-local/native-enemy-check/replay-1791150880729432669/progress-3.log": "97d0473eab3674bfd7036bca6257d706d6d8ef1461f7d984be9f31cfa53d2cd0",
-        "build-local/native-enemy-check/replay-1791150880729432669/progress-1.log": "34ff223985d9907d1c4d846a19f99fdfd8c3904e7cb3a62b87d4ea1822426c4b",
-        "build-local/native-enemy-check/replay-1791150880729432669/progress-2.log": "896842fbc1bc6fef78cac1f56b74a62ab05d16835e3e0f4d7aa9a60ef9678311",
-        "build-local/native-enemy-check/replay-1791150880729432669/progress-0.log": "8ebc45a40fcd931ddce8ed6fcac58199ba6a884046a32f93ec0d9860e1338c7d",
-        "build-local/native-enemy-check/replay-1791151396288016099/progress-3.log": "e2c32a6a8a0632c0cb7cba3ef60a6d0f6241aaff605358f971161edd816b74c4",
-        "build-local/native-enemy-check/replay-1791151396288016099/progress-1.log": "34ff223985d9907d1c4d846a19f99fdfd8c3904e7cb3a62b87d4ea1822426c4b",
-        "build-local/native-enemy-check/replay-1791151396288016099/progress-2.log": "8638d6c36a883743da61c8d7a5d0d20bdeffb7bd8196cdfa801a8a76cee21a08",
-        "build-local/native-enemy-check/replay-1791151396288016099/progress-0.log": "3c9663d60051e7ace978aa92a0df75c0b1a953e24aff6fa1f2490a7fe3d9f3ff",
-        "build-local/native-enemy-check/replay-1791153394190405743/progress-3.log": "cf8b5e5cfe2c5337433582c40c96c4632e20feb5b7fcacdcf2294f7f5e712409",
-        "build-local/native-enemy-check/replay-1791153394190405743/progress-1.log": "50a5e1d1d77199cb4607531bbc93dfba84785a76446c83c90c7876cfe4dca0f1",
-        "build-local/native-enemy-check/replay-1791153394190405743/progress-2.log": "4576fca0715757edd3c327391a8aae11e5148c53be9853a8d3c2154f6a04b7ed",
-        "build-local/native-enemy-check/replay-1791153394190405743/progress-0.log": "0c111f95b0004173e18ad8ce8c5b1a6bcf57558572efd179b3fc0dbbe11dcc67",
-        "build-local/native-enemy-check/replay-1791154014404042400/progress-3.log": "db8c3bb9e4637f37d105ea5e5f41604f1a7ab57d065029b2b0b32d01b3953af3",
-        "build-local/native-enemy-check/replay-1791154014404042400/progress-1.log": "11694fcf1494da5a23d224b2bc78ad14432593ac26a52f56be53babc1c82f0a5",
-        "build-local/native-enemy-check/replay-1791154014404042400/progress-2.log": "8638d6c36a883743da61c8d7a5d0d20bdeffb7bd8196cdfa801a8a76cee21a08",
-        "build-local/native-enemy-check/replay-1791154014404042400/progress-0.log": "d957356016d75f3be4300679bb4e151d3c701b7179d7165972473f1a21d802d9",
-        "build-local/native-enemy-check/replay-1791155536436165833/progress-3.log": "d54758ec873f33d1652d16766e5158aa4a8b63e73fd99fa1da3c2a3a483ec3a4",
-        "build-local/native-enemy-check/replay-1791155536436165833/progress-1.log": "e7072d868b91e916fa459724e0efdbf430f9b502aaa13423a3f5e7274896718b",
-        "build-local/native-enemy-check/replay-1791155536436165833/progress-2.log": "4576fca0715757edd3c327391a8aae11e5148c53be9853a8d3c2154f6a04b7ed",
-        "build-local/native-enemy-check/replay-1791155536436165833/progress-0.log": "08dbcfbf2fd7a9c49aa37aeeeecadc37bd6f036a45a829ea02b8794563135223",
-        "build-local/native-enemy-check/replay-1791156134755609127/progress-3.log": "a2ff4c7fe5750b57ff281043dd5e71f21491fceedd4573f7f1027b88b7a120f8",
-        "build-local/native-enemy-check/replay-1791156134755609127/progress-1.log": "89b945970b8719b641107f037d1a56cf1a2b5ca1c8a09cb73ac2bf9fb8ba8c59",
-        "build-local/native-enemy-check/replay-1791156134755609127/progress-2.log": "a12257493125c6ca6e099792a04636faaa4ce0d212c54faaf8907f53b44c3e74",
-        "build-local/native-enemy-check/replay-1791156134755609127/progress-0.log": "12accff6630c06059d31cdfa4c04c9c6793950d0809076c1995c59a91c0326df",
-        "build-local/native-enemy-check/replay-1791157920452632373/progress-3.log": "65ba9a1c3c00f7401e1253d6c0747b70ad236bcdfb1a5167e7cecb9c6cd079cf",
-        "build-local/native-enemy-check/replay-1791157920452632373/progress-1.log": "0ac45116bf5282f441bdc94972d09cfd1d32bb23a1dfd7f9754536020730fe05",
-        "build-local/native-enemy-check/replay-1791157920452632373/progress-2.log": "daa78f12e3b75e3efae38fe7772007e901ab6f4c5fe6fd0f13d30b8bcf6f1fef",
-        "build-local/native-enemy-check/replay-1791157920452632373/progress-0.log": "df8b056e28e55a0736418f5aa4ed47a496631a4f1226cdf8b7f01444f3920238",
-        "build-local/native-enemy-check/replay-1791158732848522242/progress-3.log": "d90d9b31b382786b993e3a5a16ff6166d74c4595846254548e24b4844fdf1324",
-        "build-local/native-enemy-check/replay-1791158732848522242/progress-1.log": "3c9718932eaf9aa855992cd232a94d23b41f6cb00a69bc4e2bc7621ee14cb115",
-        "build-local/native-enemy-check/replay-1791158732848522242/progress-2.log": "6f625a09f8e0e388aae666b77ecb99fc6ae482e454ba69421d79f3a825b64e00",
-        "build-local/native-enemy-check/replay-1791158732848522242/progress-0.log": "9e43ba26a1715c8fd691fac6df9b2d839ed3e156b15777037818f68d063ce31e",
-        "build-local/native-enemy-check/replay-1791161202674993154/progress-3.log": "760e41089991c81b86b4c40c3fd8a3c23904b78c64f54f530f7d4c1d6355057a",
-        "build-local/native-enemy-check/replay-1791161202674993154/progress-1.log": "3e5bfd49c483de3748e257ec457361552cd14604e9d24df1ba893c584a8329dd",
-        "build-local/native-enemy-check/replay-1791161202674993154/progress-2.log": "b4f642630a71a5496773d630be7ff7b1fd0eec45e44c346d2e75128371c31637",
-        "build-local/native-enemy-check/replay-1791161202674993154/progress-0.log": "f9afcc7a1c021c74509771822c998425525ab4081085319691ce86f814227aa6",
-        "build-local/native-enemy-check/replay-1791162291981706952/progress-3.log": "6f78ccbf95c7df0fa5df9e09a288b057d27e8eca48e4d1664369365238665073",
-        "build-local/native-enemy-check/replay-1791162291981706952/progress-1.log": "bd6d128fcd988a6f07e64963378d16308edb1eecac846b851b51d845bb1d4031",
-        "build-local/native-enemy-check/replay-1791162291981706952/progress-2.log": "74cb90ba78c4378879ae2fe5b4656f8b961c6992efd9ff7d7a996bad7a5d320e",
-        "build-local/native-enemy-check/replay-1791162291981706952/progress-0.log": "ff6f48b1438ec8e67f538a47bff45e5aa323088e9850f2dcdb98fca89a02deee",
-        "build-local/native-enemy-check/replay-1791184292812506803/progress-3.log": "94733aaf7aae51650bfef2db226aa618aaaa39f6b7c3fc91c93b6ead5cfa7818",
-        "build-local/native-enemy-check/replay-1791184292812506803/progress-1.log": "d72926342971308d3980a52f772f53b9edea316e222b25bacb969d2dfbbb844e",
-        "build-local/native-enemy-check/replay-1791184292812506803/progress-2.log": "90cb4d6dce8b062e24607e01c00b97d29ca4ab80730da933d4f3a6defb927ed5",
-        "build-local/native-enemy-check/replay-1791184292812506803/progress-0.log": "bfbdd03c86908eada01e623a5700c1bcd2079d799a0cf3dc4b57d3732035201d",
-        "build-local/native-enemy-check/replay-1791220906465172224/progress-3.log": "94733aaf7aae51650bfef2db226aa618aaaa39f6b7c3fc91c93b6ead5cfa7818",
-        "build-local/native-enemy-check/replay-1791220906465172224/progress-1.log": "d72926342971308d3980a52f772f53b9edea316e222b25bacb969d2dfbbb844e",
-        "build-local/native-enemy-check/replay-1791220906465172224/progress-2.log": "90cb4d6dce8b062e24607e01c00b97d29ca4ab80730da933d4f3a6defb927ed5",
-        "build-local/native-enemy-check/replay-1791220906465172224/progress-0.log": "bfbdd03c86908eada01e623a5700c1bcd2079d799a0cf3dc4b57d3732035201d",
-        "build-local/native-enemy-check/replay-1791259205322535617/progress-3.log": "94733aaf7aae51650bfef2db226aa618aaaa39f6b7c3fc91c93b6ead5cfa7818",
-        "build-local/native-enemy-check/replay-1791259205322535617/progress-1.log": "d72926342971308d3980a52f772f53b9edea316e222b25bacb969d2dfbbb844e",
-        "build-local/native-enemy-check/replay-1791259205322535617/progress-2.log": "90cb4d6dce8b062e24607e01c00b97d29ca4ab80730da933d4f3a6defb927ed5",
-        "build-local/native-enemy-check/replay-1791259205322535617/progress-0.log": "bfbdd03c86908eada01e623a5700c1bcd2079d799a0cf3dc4b57d3732035201d",
-        "build-local/native-enemy-check/replay-1791287213448114016/progress-3.log": "8df21afad4e9c2fcb922e0bc2b2e409df95ca89fff4c90a1ded1d50d5b1929bc",
-        "build-local/native-enemy-check/replay-1791287213448114016/progress-7.log": "37ef98b9707ae7a7ceb505429dfe0942b42749e372c27b1a5ede0ca98ab5b958",
-        "build-local/native-enemy-check/replay-1791287213448114016/progress-4.log": "d793f57796bbfbe03444cf6b77e08591fad9bf79bd8c1410068185f35d3d258e",
-        "build-local/native-enemy-check/replay-1791287213448114016/progress-1.log": "8b8e1c266398f181df55b213e1adc404ba331947fe5fd0217c278a3591a21c11",
-        "build-local/native-enemy-check/replay-1791287213448114016/progress-2.log": "9e2c94ca7fb3a2303232a9579ba2fd22e32294cbf0e1d79c9781be4915c75a91",
-        "build-local/native-enemy-check/replay-1791287213448114016/progress-0.log": "45f1e1a5a5cff5bd222117e3e416c2a3a7e24e20ba779a67dd56c519ba7f0807",
-        "build-local/native-enemy-check/replay-1791287213448114016/progress-5.log": "60a86603991ccec765b19827860337071ac46f52ac37852920a2d4f644bb73f1",
-        "build-local/native-enemy-check/replay-1791287213448114016/progress-6.log": "f8f82fc341cf86125ee454b4ecf9cfd3e68a14f065d87ae85cce31f0a07ad346"
-      },
-      "old_fixture": "build-local/continuation-20260930/regression048-enemy-fixture.inc",
-      "old_fixture_sha256": "f34c5c3354ac33ef55aae6f32189eab56f754578a225c9705b28c97f8774aeab",
-      "old_checker_binary": {
-        "path": "build-local/continuation-20260930/regression048-enemy-old-binary",
-        "sha256": "d532ff2846a6ae03893b6dbf51947dd621ce89d8115ddc911df8f8a93644ec5d"
-      },
-      "input_equivalence": [
-        {
-          "path": "/home/vova/projects/DoraRecomp3/src/native_model_animation.cpp",
-          "old_file": "build-local/continuation-20260930/regression048-model-before-frame-stop.cpp",
-          "old_sha256": "6b29974daff45433cefb59cfd4d07ed792c9a1d13f759320fe65880f344e2bfb",
-          "new_sha256": "e86d0b6951ff4e446afb8373f1321d3ae6ea342d8bab1205ac82a8f1f96cbacc",
-          "edits": [
-            {
-              "old": "            const bool advancing=entry.observation && entry.observation->step==s.step &&\n                entry.observation->before.time>=0 && entry.observation->before.time<=entry.observation->before.duration;",
-              "new": "            // A paused/zero-rate Source call is an observation, not motion.\n            // Replaying its full pose would erase bone overrides installed\n            // after the SDK pose (including stopped minigame target models).\n            const bool advancing=entry.observation && entry.observation->step==s.step &&\n                !(entry.observation->before.flags&8) && entry.observation->before.increment!=0 &&\n                entry.observation->before.time>=0 && entry.observation->before.time<=entry.observation->before.duration;"
-            }
-          ],
-          "affected_kinds": [],
-          "affected_variants": [],
-          "evidence": "Only ModelAnimation::begin_frame moving-observation guard changed. Exact whole-file reversal verified. Source/model/collider fixtures and generated Original calls do not enter ModelFrameScope or begin_frame; unchanged Source methods preserve their behavior. Active render path has a separate fresh paused/zero-rate override test."
-        }
-      ],
-      "previous_generation_receipt_sha256": "5438b2e31019f25fae548f4f881b0bd62c9a08db6957dfbe2428fd871136553a",
-      "reason": "Retained exact completed Source paths with actual old execution logs; begin_frame is not called. One complete current-input kind reruns. This is retained provenance, not a new cross-product execution."
-    }
-  }
+    "Hour-long full-player explicitly excluded at user request; no full-player or full-suite PASS claimed.",
+    "Synthetic CPU states/resources and reached Original branches; no local game/renderer/GPU or full playthrough.",
+    "Six-character result policies use actual Source handlers with synthetic clip data. Bind/resource/sound/feedback commands are documented opaque fixture boundaries; real character art/visual appearance remains user verification.",
+    "CPU RDP addressing/bank ownership does not substitute for final filtering/art appearance."
+  ]
 }

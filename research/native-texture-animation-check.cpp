@@ -112,7 +112,27 @@ int main(){
   for(uint32_t at:{0x80310000u,0x80312000u})for(unsigned i=0;i<0x1800/4;++i)assert(m.values[(at&0xFFFFFF)/4+i]==assets[(at&0xFFFFFF)/4+i]);
   ++cases;
  }
- // Same header addresses reused for a different image must invalidate the
+   // Reordered CI4 palettes at a cycle seam (ROM00DF..00EE): both directions
+  // must still scroll. A changed displayed color must invalidate that match.
+  for(bool world:{false,true})for(int direction:{-2,2}) {
+   native_texture_reset();Memory m;setup(m,32,32,direction,0);
+   constexpr uint32_t next=0x80312000;
+   std::array<int16_t,16> palette{};for(unsigned i=0;i<16;++i)palette[i]=m.H(next+16+2*i);
+   for(unsigned i=0;i<16;++i)m.H(next+16+2*((i+1)%16))=palette[i];
+   for(unsigned i=0;i<512;++i){const auto packed=uint8_t(m.B(next+48+i));m.B(next+48+i)=int8_t((((packed>>4)+1)%16<<4)|((packed+1)%16));}
+   const auto assets=m.values;FrameBinding frame{{{},0,{}},nullptr};binding=&frame;
+   for(unsigned index:{0u,1u}) {
+    m.B(channel+5)=int8_t(index);native_texture_source_completed(m.ram(),0);
+    {TextureFrameScope lease(m.ram(),25'000'000,0);const auto copied=resolved(draw(m,0,world));assert(copied!=mesh);
+     const int delta=index?-direction:direction;const auto ul=uint32_t(m.W(copied+16));
+     assert(int((ul>>12)&4095)==(-delta%128+128)%128);
+    }++cases;
+   }
+   for(unsigned i=0;i<560/4;++i)assert(m.W(next+4*i)==int32_t(assets[(next&0xFFFFFF)/4+i]));
+   m.B(channel+5)=0;m.H(next+16)^=0x40;
+   {TextureFrameScope lease(m.ram(),25'000'000,0);assert(resolved(draw(m,0,world))==mesh);}++cases;
+  }
+  // Same header addresses reused for a different image must invalidate the
  // translation cache. A stopped or final clamped channel must hold its frame.
  for(unsigned variant=0;variant<4;++variant){
   native_texture_reset();Memory m;setup(m,32,32,2,0);native_texture_source_completed(m.ram(),0);

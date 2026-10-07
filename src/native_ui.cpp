@@ -59,7 +59,7 @@ struct Guard {
     std::vector<std::vector<uint8_t>> originals;
     unsigned call=0;
 };
-enum Domain : unsigned { Panels=1,Rectangle=2,Title=4,Intro=8,SelectionActor=16,SelectionRow=32,SelectionExit=64,PakCursor=128,PakSize=256,PakHint=512,GameMenuSpin=1024,GameMenuGhost=2048,GameMenuCarousel=4096 };
+enum Domain : unsigned { Panels=1,Rectangle=2,Title=4,Intro=8,SelectionActor=16,SelectionRow=32,SelectionExit=64,MapCamera=128,MapMarker=256,MapHint=512,GameMenuSpin=1024,GameMenuGhost=2048,GameMenuCarousel=4096 };
 struct Observation {uint8_t* ram=nullptr;Profile owner=Profile::None;unsigned mask=0;bool running=false;} observation;
 struct UiState {
     Profile owner=Profile::None;
@@ -73,7 +73,7 @@ struct UiState {
     unsigned domains=0;
     std::vector<uint32_t> working;
     std::vector<Field> fields;
-    std::array<Guard,11> guards{};
+    std::array<Guard,13> guards{};
     uint32_t bitmap_start=0,background_start=0;
     int bitmap_dx=0,bitmap_dy=0;
     struct Drift {uint32_t address;float velocity,displacement;};
@@ -203,14 +203,18 @@ void evaluate_panels(uint8_t* ram,double h) {
 void evaluate_stage_map(uint8_t* ram,double h) {
     uint8_t* rdram=ram;
     const int old=word(ram,0x801B369C),next=word(ram,0x801C6390),step=word(ram,0x801C638C);
-    // The stage map owns32 node descriptors (scene21), not a save-device UI.
-    if(old<0||old>=32||next<0||next>=32||step<0)return;
+    // Source has24 rows at2940, stride152; the area/marker fields are at+84.
+    // The -1 sentinel at3780 precedes the unrelated bitmap resource table.
+    if(old<0||old>=24||next<0||next>=24||step<0)return;
     const uint32_t from=0x801C29C4+152*unsigned(old),to=0x801C29C4+152*unsigned(next);
     const int a=word(ram,from),b=word(ram,to);
     for(unsigned j=0;j<4;++j)state.map_rectangle[j]=float(word(ram,std::array<uint32_t,4>{0x801C6370,0x801C6380,0x801C6364,0x801C6368}[j]));
     state.map_rectangle_valid=true;
-    if((state.domains&PakCursor)&&step>0&&step<8&&a>=0&&a<3&&b>=0&&b<3) {
+    if((state.domains&MapCamera)&&step>0&&step<8&&a>=0&&a<4&&b>=0&&b<4) {
         for(unsigned j=0;j<2;++j) {
+            // Four short pairs at3B24 include (0,240) for the fourth area.
+            // 3B30 also names the easing table, but its used indices are1..7:
+            // index0 overlaps that fourth anchor and is never a float coefficient.
             const int start=MEM_H(int32_t(4*a+2*j),int32_t(0x801C3B24));
             const int end=MEM_H(int32_t(4*b+2*j),int32_t(0x801C3B24));
             // BAF64 decrements the counter. The next authored endpoint is
@@ -222,7 +226,7 @@ void evaluate_stage_map(uint8_t* ram,double h) {
             publish(ram,j?0x801C6380:0x801C6370,int32_t(state.map_rectangle[j]));
         }
     }
-    if(state.domains&PakSize) {
+    if(state.domains&MapMarker) {
         const int phase=step-(a==b?3:9);
         if(phase>0&&phase<=3) {
             const auto table=a==b?0x801C3B54u:0x801C3B64u;
@@ -235,7 +239,7 @@ void evaluate_stage_map(uint8_t* ram,double h) {
             }
         }
     }
-    if((state.domains&PakHint)&&word(ram,0x801C636C)==0) {
+    if((state.domains&MapHint)&&word(ram,0x801C636C)==0) {
         const int v=word(ram,0x801C63A8);
         if(!word(ram,0x801C6398)&&v<6)publish(ram,0x801C63A8,int32_t(double(v)+h));
         else if(word(ram,0x801C6398)&&v>=0)publish(ram,0x801C63A8,int32_t(double(v)-h));
@@ -303,12 +307,13 @@ bool native_ui_menu_eligible(uint8_t* ram) {
         !word(ram,0x802170EC)&&!word(ram,0x802170F0);
     uint8_t* rdram=ram;
     const int fade_direction=MEM_B(0,int32_t(0x801A99A0));
-    // BB730 retains the same world draw/callbacks during count>1. The count1
-    // update replaces them through the reviewed resource barrier. Keep issuing
-    // complete frames for the continuous resident fade up to that boundary;
-    // do not grant a gameplay simulation owner to a frozen transition.
-    const bool game_fade=p==Profile::Game&&word(ram,0x8021D494)>1&&
-        (fade_direction==-1||fade_direction==1)&&!word(ram,0x802170EC);
+    // A fade is independent of the scene-exit timer. Room/interior holds,
+    // paused story actions and the last count1 interval still draw this resident
+    // callback pair. Keep its fade moving until ACTUAL cleanup/process install
+    // drains the banks (B9FDC, BA2B8/BA254, 280DC), not at request time.
+    // Eligible gameplay/cutscene policies retain priority; this fallback grants
+    // presentation of the fade, never a new gameplay simulation owner.
+    const bool game_fade=p==Profile::Game&&(fade_direction==-1||fade_direction==1);
     return (game_menu||game_fade||(p!=Profile::None&&p!=Profile::Game&&p!=Profile::Image))&&
         (divider==2||divider==3)&&word(ram,0x801A9C88)==0;
 }
@@ -327,8 +332,8 @@ void native_ui_begin(uint8_t* ram,Nanoseconds now,unsigned divider) {
     // Files root also advances decoration6840, prompt6700, arrow68C0 and
     // highlight681C outside the row helper. Preserve its complete draw state.
     state.guards[5].pc=0x801BFC44;state.guards[5].address=0x801C6700;state.guards[5].size=0x1C8;
-    // Only the three fields mutated by Pak drawing. Cursor/size equations and
-    // save/device state never enter these snapshots; two disjoint fields share
+    // Only the three fields mutated by stage-map drawing. Camera/marker
+    // equations and selection/input never enter these snapshots; two fields share
     // A858's entry/exit, so the boundary visits every matching guard.
     state.guards[6].pc=0x801B96F8;state.guards[6].address=0x801C6384;state.guards[6].size=4;
     state.guards[7].pc=0x801BA858;state.guards[7].address=0x801C6378;state.guards[7].size=4;
@@ -336,6 +341,12 @@ void native_ui_begin(uint8_t* ram,Nanoseconds now,unsigned divider) {
     // Item side arrows advance their two byte oscillator in the draw callback.
     state.guards[9].pc=0x801F0CB8;state.guards[9].address=0x8021BFCB;state.guards[9].size=1;
     state.guards[10].pc=0x801F0CB8;state.guards[10].address=0x8021BE42;state.guards[10].size=1;
+    // The -94 choice token has a separate horizontal oscillator. The old
+    // 8D38..8D40 guard covers only the -96 token, not this choice arrow.
+    // Snapshot both disjoint words so additional builds cannot advance its
+    // offset or reverse its direction; input/selected answer stays Source-owned.
+    state.guards[11].pc=0x801B7DCC;state.guards[11].address=0x801B8D08;state.guards[11].size=4;
+    state.guards[12].pc=0x801B7DCC;state.guards[12].address=0x801B8D88;state.guards[12].size=4;
 }
 UiFrameScope::UiFrameScope(uint8_t* ram,recomp_context* ctx,Nanoseconds now):ram_(ram) {
     uint8_t* rdram=ram;
@@ -469,7 +480,9 @@ extern "C" int dora3_native_ui_map_cursor_rectangle(uint8_t* ram,recomp_context*
 
 // The old bitmap builder rounds/clips/chunks integer texels. Keep its input
 // integral, then translate the emitted rectangles as one rigid sprite. This
-// preserves chunk adjacency, load bounds, last-row height and texture origins.
+// preserves chunk adjacency and load bounds. At end, make each render tile
+// exclusive of the extra loaded row/column and cancel RT64's fractional-top
+// texel bias. The Source builder alone was safe only at integral positions.
 extern "C" int dora3_native_ui_map_bitmap_begin(uint8_t* ram,recomp_context* c,unsigned node) {
     if(!state.frame||state.ram!=ram||state.owner!=Profile::StageMap||!state.map_rectangle_valid)return 0;
     if(state.bitmap_start)throw std::logic_error("Nested stage-map bitmap");
@@ -488,14 +501,47 @@ extern "C" void dora3_native_ui_map_bitmap_end(uint8_t* ram) {
     if(!state.bitmap_start)return;
     const auto finish=uint32_t(word(ram,0x801B1424));
     if(guest_pointer(state.bitmap_start,8)&&finish>=state.bitmap_start&&
-       finish-state.bitmap_start<=0x10000&&guest_pointer(finish,0))
-        for(auto at=state.bitmap_start;at+8<=finish;at+=8)
-            if(uint32_t(word(ram,at))>>24==0xE4)
-                for(unsigned offset:{0u,4u}) {
-                    const uint32_t packed=uint32_t(word(ram,at+offset));
-                    const auto x=((packed>>12)&0xFFF)+state.bitmap_dx;
-                    const auto y=(packed&0xFFF)+state.bitmap_dy;
-                    word(ram,at+offset)=int32_t((packed&0xFF000000u)|((x&0xFFF)<<12)|(y&0xFFF));
-                }
+       finish-state.bitmap_start<=0x10000&&guest_pointer(finish,0)) {
+        uint32_t render_tile=0,render_bounds=0;
+        for(auto at=state.bitmap_start;at+8<=finish;at+=8) {
+            const auto command=uint32_t(word(ram,at));
+            if(command>>24==0xF5&&((uint32_t(word(ram,at+4))>>24)&7)==0)render_tile=at;
+            if(command==0xF2000000u)render_bounds=at;
+            if(command>>24!=0xE4)continue;
+            for(unsigned offset:{0u,4u}) {
+                const uint32_t packed=uint32_t(word(ram,at+offset));
+                const auto x=((packed>>12)&0xFFF)+state.bitmap_dx;
+                const auto y=(packed&0xFFF)+state.bitmap_dy;
+                word(ram,at+offset)=int32_t((packed&0xFF000000u)|((x&0xFFF)<<12)|(y&0xFFF));
+            }
+            // Both reviewed map callers set scaleX=scaleY=1. Each SDK chunk
+            // ends in F2 local bounds, E4, E1, F1(1,1). Do not rewrite loaders
+            // or guess the footprint of an unrelated/scaled command sequence.
+            if(!render_tile||!render_bounds||at+24>finish||
+               uint32_t(word(ram,at+8))!=0xE1000000u||
+               uint32_t(word(ram,at+16))!=0xF1000000u||
+               uint32_t(word(ram,at+20))!=0x04000400u)continue;
+            const auto bounds=uint32_t(word(ram,render_bounds+4));
+            const unsigned width=(bounds>>12)&0xFFF,rows=bounds&0xFFF;
+            const auto lower=uint32_t(word(ram,at)),upper=uint32_t(word(ram,at+4));
+            const unsigned top=upper&0xFFF,bottom=lower&0xFFF;
+            if(width<4||rows<4||(width&3)||(rows&3)||bottom<top||
+               (bottom-top!=rows&&bottom-top+1!=rows))continue;
+            // F4's inclusive extra row can contain bytes outside the BMP.
+            // Clamp the render tile to actual texels, including filter taps;
+            // this is a sampling bound, not a crop of the sprite geometry.
+            word(ram,render_tile+4)=int32_t(uint32_t(word(ram,render_tile+4))|0x00080200u);
+            word(ram,render_bounds+4)=int32_t((bounds&0xFF000000u)|((width-4)<<12)|(rows-4));
+            // SDK subtracts one quarter pixel from its final strip. With a
+            // fractional top, ceil-based texture span can lose a whole texel.
+            // An exact rows-pixel extent keeps the UV slope at1 for every phase.
+            word(ram,at)=int32_t((lower&0xFFFFF000u)|((top+rows)&0xFFF));
+            // Pinned RT64 drawRect adds (dtdy>>5)/32 when uly has any fraction.
+            // E1 uses signed10.5: cancel that whole-texel bias for rigid motion.
+            const auto uv=uint32_t(word(ram,at+12));
+            const int t=int16_t(uv)-(top&3?32:0);
+            word(ram,at+12)=int32_t((uv&0xFFFF0000u)|uint16_t(t));
+        }
+    }
     state.bitmap_start=0;
 }

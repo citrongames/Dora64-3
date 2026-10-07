@@ -27,7 +27,7 @@ double wrapped(double v) {
 }
 }
 struct MinigameEquations::State {
-    enum class Kind : std::uint8_t {Constant,Load,Arithmetic,Advance,AffineAdvance,TimeOperand,Anchored,Reference};
+    enum class Kind : std::uint8_t {Constant,Load,Arithmetic,Advance,AffineAdvance,TimeOperand,Anchored,Reference,CircularTarget,CircularGain};
     struct Node {
         Kind kind=Kind::Constant;
         Operation op=Operation::Add;
@@ -80,7 +80,7 @@ struct MinigameEquations::State {
         if(!root||root>=nodes.size())return false;
         const auto& n=nodes[root];
         if(n.kind==Kind::Load)return n.address==address;
-        if(n.kind==Kind::Anchored)return n.address==address||dependent(n.a,address);
+        if(n.kind==Kind::Anchored||n.kind==Kind::CircularTarget||n.kind==Kind::CircularGain)return n.address==address||dependent(n.a,address);
         if(n.kind==Kind::Reference)return dependent(n.a,address);
         if(n.kind==Kind::Advance||n.kind==Kind::AffineAdvance)
             return n.address==address||dependent(n.a,address)||dependent(n.b,address);
@@ -96,6 +96,8 @@ struct MinigameEquations::State {
         const auto& n=nodes[id];
         if(n.kind==Kind::Constant||n.kind==Kind::Load)return 0;
         if(n.kind==Kind::TimeOperand)return -1;
+        if(n.kind==Kind::CircularGain)return 0; // Pure next-step branch, constant in this interval.
+        if(n.kind==Kind::CircularTarget)return degree(n.a,depth+1)==0?0:-1;
         if(n.kind==Kind::Advance) {
             if(n.op==Operation::Multiply)return -1;
             const int d=degree(n.a,depth+1);return d<0?-1:d+1;
@@ -194,7 +196,35 @@ struct MinigameEquations::State {
         cache[id]=std::numeric_limits<double>::infinity();
         const auto& n=nodes[id];double result=n.number;
         if(n.kind==Kind::Reference)result=evaluate(n.a,h,cache);
-        else if(n.kind==Kind::Anchored) {
+        else if(n.kind==Kind::CircularGain) {
+            const auto found=source_values.find(n.address);
+            const double camera=found==source_values.end()?0:found->second;
+            const double future_target=at(n.a,1);
+            // Frames continue from the COMPLETED Source camera. Reusing the
+            // previous Source gain misses its next90-degree branch and snaps
+            // when the actual next update arrives. Only this pure coefficient
+            // is evaluated prospectively; no SDK/dispatcher/command is replayed.
+            if(found!=source_values.end()&&std::isfinite(future_target)) {
+                const float delta=float(future_target)-float(camera);
+                const float error=float(wrapped(delta));
+                const float distance=error>180.f?360.f-error:error;
+                result=distance>90.f?1./30:1./15;
+            }
+        } else if(n.kind==Kind::CircularTarget) {
+            const auto found=source_values.find(n.address);
+            const double camera=found==source_values.end()?n.number:found->second;
+            const double initial_target=at(n.a,0);
+            // Lift the target using the SAME next whole-step branch as the
+            // pure coefficient. A moving heading may cross180 degrees after
+            // Source completion: lifting only its old direction creates a
+            // twelve-degree snap at the next update. Negative180 tie is Source.
+            const double future_target=at(n.a,1);
+            const double future_drift=std::remainder(future_target-initial_target,360.);
+            const double future_error=wrapped(future_target-camera+180.)-180.;
+            const double initial_error=future_error-future_drift;
+            const double target_drift=std::remainder(evaluate(n.a,h,cache)-initial_target,360.);
+            result=camera+initial_error+target_drift;
+        } else if(n.kind==Kind::Anchored) {
             const auto found=source_values.find(n.address);
             const double base=found==source_values.end()?n.number:found->second;
             const double from=at(n.a,0),to=evaluate(n.a,h,cache);
@@ -360,7 +390,7 @@ struct MinigameEquations::State {
             if(id==target)return true;
             if(!id||id>=nodes.size()||seen[id])continue;
             seen[id]=true;const auto& n=nodes[id];
-            if(n.kind==Kind::Arithmetic||n.kind==Kind::Anchored||n.kind==Kind::Reference||n.kind==Kind::Advance||n.kind==Kind::AffineAdvance) {
+            if(n.kind==Kind::Arithmetic||n.kind==Kind::Anchored||n.kind==Kind::Reference||n.kind==Kind::Advance||n.kind==Kind::AffineAdvance||n.kind==Kind::CircularTarget||n.kind==Kind::CircularGain) {
                 todo.push_back(n.a);todo.push_back(n.b);
             }
         }
@@ -371,7 +401,7 @@ struct MinigameEquations::State {
         const auto n=nodes[id];
         if(n.kind==Kind::Load)return n.address==address;
         if(n.kind==Kind::Arithmetic||n.kind==Kind::Anchored||n.kind==Kind::Reference||
-           n.kind==Kind::Advance||n.kind==Kind::AffineAdvance)
+           n.kind==Kind::Advance||n.kind==Kind::AffineAdvance||n.kind==Kind::CircularTarget||n.kind==Kind::CircularGain)
             return reads(n.a,address,depth+1)||reads(n.b,address,depth+1);
         return false;
     }
@@ -446,6 +476,22 @@ void MinigameEquations::store_float(std::uint32_t address,Expression expression,
     State::Field field{address,std::bit_cast<std::uint32_t>(number),std::bit_cast<std::uint32_t>(number),lifted,role,owner};
     if(at==s.fields.end())s.fields.push_back(field);else *at=field;
 }
+void MinigameEquations::store_circular_approach(std::uint32_t address,Expression target,
+                                              float source_result,double gain,const Lifetime& owner) {
+    auto& s=*state_;
+    if(!s.open||!target||target>=s.nodes.size()||!field_pointer(address)||
+       !std::isfinite(gain)||gain<=0||gain>=1)return;
+    const double before=value(s.ram,address);
+    const auto lifted_target=s.add({State::Kind::CircularTarget,Operation::Add,target,0,address,before});
+    const auto coefficient=(gain==1./15||gain==1./30)?
+        s.add({State::Kind::CircularGain,Operation::Add,target,0,address,gain}):
+        s.add({State::Kind::Constant,Operation::Add,0,0,0,gain});
+    const auto one=s.add({State::Kind::Constant,Operation::Add,0,0,0,1});
+    const auto retention=s.add({State::Kind::Arithmetic,Operation::Subtract,one,coefficient,0,0});
+    const auto forcing=s.add({State::Kind::Arithmetic,Operation::Multiply,lifted_target,coefficient,0,0});
+    const auto recurrence=s.add({State::Kind::AffineAdvance,Operation::Add,retention,forcing,address,before});
+    store_float(address,recurrence,source_result,FieldRole::Angle,owner);
+}
 void MinigameEquations::constrain_float(std::uint32_t address,double minimum,double maximum,bool clamp) {
     auto& s=*state_;if(!s.open||minimum>maximum)return;
     for(auto& field:s.fields)if(field.address==address) {
@@ -487,8 +533,16 @@ bool MinigameEquations::publish_derived_float(std::uint8_t* ram,std::uint32_t ad
     if(at==s.fields.end()||at->role!=FieldRole::Derived||!s.valid(*at,ram)||bits(ram,address)!=at->published)return false;
     at->published=std::bit_cast<std::uint32_t>(next);
     auto* rdram=ram;MEM_W(0,std::int32_t(address))=std::int32_t(at->published);
-    if(at->published!=at->source&&std::find(s.changed_addresses.begin(),s.changed_addresses.end(),address)==s.changed_addresses.end())
-        s.changed_addresses.push_back(address);
+    if(at->published!=at->source) {
+        if(std::find(s.changed_addresses.begin(),s.changed_addresses.end(),address)==s.changed_addresses.end())
+            s.changed_addresses.push_back(address);
+        // A refreshed body/follower local pose needs its Native matrix rebuilt
+        // just like a pose produced directly by sample(). Otherwise the field
+        // moves while a consumer of the cached matrix keeps the Source pose.
+        if(at->owner.actor&&address-at->owner.actor<=0x20&&
+           std::find(s.changed_actors.begin(),s.changed_actors.end(),at->owner.actor)==s.changed_actors.end())
+            s.changed_actors.push_back(at->owner.actor);
+    }
     return true;
 }
 void MinigameEquations::sample(std::uint8_t* ram,Nanoseconds now) {

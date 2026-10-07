@@ -4,13 +4,13 @@
   "sanitizers": "ASan/LSan on component and original functions; UBSan on new C++ component/harness",
   "source_sha256": {
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-    "research/native-frame-time-check.cpp": "e56c1b90a4346117cb88b3a022b6a806a307b1955c4d5934e7669d4b9210a76b",
+    "research/native-frame-time-check.cpp": "74d584301a18479879976614350d2d257bd221a9dd0c4cdf9a8c9903cffc145b",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
     "research/native-inactive-minigame-fixture.cpp": "52a4a15d4e8cbd49d2dc7f993c0896832ba1bbd5082e5740b0c1aab085691900",
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "tools/check_native_frame_time.py": "9e357ff69be17a36836dbb799868435038c5dc1a0a061634eb6410144645bf9f"
   },
-  "generation_receipt_sha256": "5395653e13e34a0fc70f69adc8d58ddd0c24190a3c3700ec7cd0eefd1a40d917",
+  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
   "original_functions": [
     "dora3_fade_tick",
     "dora3_s0_8003948C",

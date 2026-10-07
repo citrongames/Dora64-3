@@ -64,6 +64,12 @@ static void arm(Memory& m,unsigned index,unsigned divider) {
     for(unsigned i=0;i<230;++i) {
         const auto p=0x80171CD0+i*0xCC;m.W(p+0x94)=1;m.W(p+0x98)=driver+i*0x100;
         m.F(p+0x18,1);m.F(p+0x1C,1);m.F(p+0x20,1);
+        // The end/pause/seek SDK wrappers now execute their real bodies.
+        // Every synthetic active actor needs a valid clip header, including
+        // pre-existing retreat/follower cases that formerly counted commands.
+        const uint32_t model=0x80300000+i*0x200,descriptors=model+0x100;
+        m.W(p+0x74)=int32_t(model);m.W(model+0x18)=int32_t(descriptors);
+        m.W(model+0x60)=int32_t(descriptors+0x20);m.F(descriptors+4,1000);
     }
     m.F(camera+0x18,50);m.F(camera+0x1C,45);m.F(camera+0x30,2000);
 }
@@ -305,6 +311,7 @@ static void equations() {
     m.F(actor+0x9C,900);graph.sample(m.ram(),activated+60000000);close(m.R(actor+0x9C),900);
     graph.reset();
 }
+#include "native-after048-minigame-check.inc"
 int main(int argc,char** argv) {
     assert(argc==2);seed_directory=std::filesystem::path(argv[1]).parent_path();Memory seed;std::ifstream stream(argv[1],std::ios::binary);stream.read(reinterpret_cast<char*>(seed.data.data()),0x400000);assert(stream);
     equations();
@@ -337,5 +344,6 @@ int main(int argc,char** argv) {
         }
         frame_active=false;native_minigame_reset(m.ram());assert(m.data==completed);++cases;
     }
+    circular_cameras(seed);circular_moving_targets(seed);bomb_contact_publication(seed);source_terminal_policies(seed);source_voice_return(seed);bomb_actual_walk(seed);
     std::cout<<"PASS: all9 minigame modules and3 common callback pairs; "<<cases<<" Source/Native cases, "<<slices<<" fractional slices;20/30Hz and Manual60/73/120/144/165/360; command-once, linked Euler motion, contact impulses, angle wrapping, model/draw input ownership and exact restoration; synthetic resources, no game/GPU\n";
 }

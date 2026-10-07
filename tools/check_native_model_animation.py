@@ -35,7 +35,7 @@ def main():
     sources.append(ROOT/'research/native-inactive-minigame-fixture.cpp')
     subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,'-fsanitize=address,undefined',*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
     result=subprocess.check_output([str(out/'check')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')).strip()
-    tracked=sources+[ROOT/'src/recomp_context_copy.hpp',ROOT/'src/native_model_animation.hpp',ROOT/'src/native_simulation_time.hpp',ROOT/'src/native_frame_time.hpp',Path(__file__).resolve()]
+    tracked=sources+[ROOT/'research/native-after048-model-check.inc',ROOT/'src/recomp_context_copy.hpp',ROOT/'src/native_model_animation.hpp',ROOT/'src/native_simulation_time.hpp',ROOT/'src/native_frame_time.hpp',Path(__file__).resolve()]
     report={'scope':'Actual original constructors, bind/seek/pause/clamp, linear/Hermite pose, morph and destruction; synthetic assets and allocator; no renderer or scene activation',
         'result':result,'sanitizers':'ASan/LSan original and new code; UBSan new C++ only','original_functions':sorted(selected),'stub_boundaries':sorted(external),
         'source_sha256':{str(f.relative_to(ROOT)):sha(f) for f in tracked},'generation_receipt_sha256':sha(g/'generation-receipt.json'),

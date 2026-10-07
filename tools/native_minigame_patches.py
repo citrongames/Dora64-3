@@ -14,6 +14,7 @@ extern void dora3_native_minigame_ground(uint8_t*,recomp_context*,uint32_t,unsig
 extern void dora3_native_minigame_indirect(uint8_t*,recomp_context*,uint32_t,unsigned);
 extern void dora3_native_minigame_counter(uint8_t*,recomp_context*,uint32_t,double);
 extern void dora3_native_minigame_parameter(uint8_t*,recomp_context*);
+extern void dora3_native_model_terminal_pose(uint8_t*,recomp_context*,unsigned);
 extern int dora3_native_minigame_drawing(void);
 extern double dora3_native_minigame_visual(uint8_t*,uint32_t);'''
 
@@ -65,6 +66,62 @@ def minigame_hooks(sections,compiled,rom):
             captured=row.get('captured_target',False)
             if not isinstance(captured,bool):raise ValueError('Unreviewed minigame callee capture')
             hooks[name,site+8].insert(0,f'dora3_native_minigame_call_return(rdram,ctx,0x{s["rom"]:X},0x{target:X},{int(captured)});')
+    # Existing Source capture sites implement these exact circular camera
+    # recurrences in native_minigames.cpp. Pin their role/body/store identity;
+    # no additional instruction/dispatcher execution is generated here.
+    circular={('.minigame_1',0x801C578C,0x801C58E8,0xE616001C,True),
+              ('.minigame_1',0x801C5908,0x801C5A84,0xE614001C,False),
+              ('.minigame_2',0x801C51B0,0x801C530C,0xE616001C,True),
+              ('.minigame_2',0x801C532C,0x801C5494,0xE614001C,False)}
+    seen_circular=set()
+    for row in data.get('circular_camera_sites',[]):
+        name,s,pc,size=body(row)
+        key=(row['section'],pc,row['site'],row['word'],row['opposite'])
+        if key not in circular or key in seen_circular or not any(
+            r['function']==name and r['site']==row['site'] and r['word']==row['word'] and r['role']==2
+            for r in data['motion_sites']):
+            raise ValueError('Unreviewed circular minigame camera recurrence')
+        if struct.unpack_from('>I',rom,s['rom']+row['site']-s['vram'])[0]!=row['word']:
+            raise ValueError('Circular camera store changed')
+        seen_circular.add(key)
+    if seen_circular!=circular:raise ValueError('Missing circular minigame camera review')
+    # Source end-query branches that pause/seek, retain a fixed pose or switch
+    # one-shot clips. Pin every call/component0 delay; not a global end hook.
+    terminal_owners={
+        ('.minigame_3',0x801C5F34):(0x801C5F48,),
+        ('.minigame_3',0x801C675C):(0x801C681C,),
+        ('.minigame_3',0x801C69CC):(0x801C6AA8,0x801C6B58,0x801C6BD4,0x801C6C80,
+            0x801C6D30,0x801C6DDC,0x801C6E9C,0x801C6F18,0x801C6FC8,0x801C7044,
+            0x801C70F4,0x801C71A4),
+        ('.minigame_7',0x801C45E4):(0x801C45FC,),
+        ('.minigame_9',0x801C4C74):(0x801C4C8C,),
+        ('.minigame_2',0x801C56C8):(0x801C57C8,),
+        ('.minigame_4',0x801C4678):(0x801C46DC,),
+        ('.minigame_4',0x801C5768):(0x801C57CC,),
+        ('.minigame_4',0x801C7570):(0x801C75B4,),
+        ('.minigame_4',0x801C75DC):(0x801C7770,),
+        ('.minigame_4',0x801C779C):(0x801C780C,),
+        ('.minigame_4',0x801C788C):(0x801C78C4,),
+        ('.minigame_4',0x801C7970):(0x801C7B08,),
+        ('.minigame_4',0x801C8164):(0x801C81F8,0x801C824C,0x801C826C,0x801C82C0,
+            0x801C8314,0x801C8368,0x801C83D0,0x801C83F0,0x801C8444,0x801C8464,
+            0x801C84B8,0x801C850C),
+        ('.minigame_8',0x801C592C):(0x801C5980,),
+        ('.minigame_8',0x801C6CEC):(0x801C6EB8,),
+    }
+    terminal={(section,pc,site) for (section,pc),sites in terminal_owners.items() for site in sites}
+    seen_terminal=set()
+    for row in data.get('terminal_pose_sites',[]):
+        name,s,pc,size=body(row);site=row['site'];key=(row['section'],pc,site)
+        expected=0x0C000000|((0x8002A3B0>>2)&0x03FFFFFF)
+        offset=s['rom']+site-s['vram']
+        if key not in terminal or key in seen_terminal or not pc<=site<site+4<pc+size or row['component']!=0 or row['word']!=expected or row['delay_word']!=0x00002821:
+            raise ValueError('Unreviewed terminal minigame pose owner')
+        if struct.unpack_from('>II',rom,offset)!=(expected,0x00002821):
+            raise ValueError('Terminal minigame end query/component changed')
+        seen_terminal.add(key)
+        hooks[name,site].append('dora3_native_model_terminal_pose(rdram,ctx,0);')
+    if seen_terminal!=terminal:raise ValueError('Missing terminal minigame pose review')
     for row in data.get('counter_operand_sites',[]):
         name,s,pc,size=body(row);site=row['site'];word=row['word']
         if not pc<=site<pc+size or struct.unpack_from('>I',rom,s['rom']+site-s['vram'])[0]!=word or row['rate']!=-1:

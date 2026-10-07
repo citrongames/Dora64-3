@@ -1583,6 +1583,9 @@ APPROVED_ENEMY_EQUATIONS[('.lake_slot2',0x802401A0,0x802402D0,0xE60200A0)]=True
 APPROVED_ENEMY_EQUATIONS[('.demo_slot2',0x8023D9B0,0x8023DA68,0xE4A20030)]=True
 APPROVED_ENEMY_EQUATIONS[('.demo_slot2',0x8023D9B0,0x8023DC70,0xE4A20030)]=True
 
+# KinopperT1 timed roam turn and the same result copied to visual yaw.
+APPROVED_ENEMY_EQUATIONS[('.demo_slot1',0x8022D7B4,0x8022D880,0xE4600004)]=True
+APPROVED_ENEMY_EQUATIONS[('.demo_slot1',0x8022D7B4,0x8022D884,0xE4400010)]=True
 APPROVED_ENEMY_EQUATIONS[('.scene1',0x801E58E0,0x801E596C,0x0C07A273)]=True
 
 APPROVED_ENEMY_EQUATIONS[('.scene1',0x801EAC9C,0x801EACC8,0xE4400010)]=True
@@ -2212,6 +2215,10 @@ def timing_hooks(sections,compiled,rom):
             if rule['section']!='.scene1' or (address,site,word) not in targets:
                 raise ValueError('Unreviewed heavy damage counter/impulse phase')
             text=f'if (dora3_native_preview_hook(rdram,ctx,0x{site:08X}u)) goto {targets[address,site,word]};'
+        elif op=='fade_resource_barrier':
+            if rule['section']!='.scene1' or (address,site,word) not in {(0x801BA2B8,0x801BA2B8,0x27BDFFE8),(0x801BA254,0x801BA254,0x3C028021)}:
+                raise ValueError('Unreviewed interior fade resource replacement')
+            text='dora3_native_loop_resource_barrier(rdram, ctx);'
         elif op=='death_resource_barrier':
             if rule['section']!='.scene1' or (address,site,word) not in {(0x801EF5B0,0x801EF5B0,0x27BDFFE0),(0x801C9BE0,0x801C9BE0,0x27BDFFE8),(0x801B9FDC,0x801B9FDC,0x27BDFFE8)}:
                 raise ValueError('Unreviewed death resource replacement boundary')
@@ -2604,6 +2611,10 @@ def timing_hooks(sections,compiled,rom):
             label=f'dora3_after_timing_{site:08X}'
             text=f'if (dora3_native_simulation_active()) {{ ctx->f0.fl += dora3_native_cutscene_axis_drift(rdram,(uint32_t)ctx->r4,(uint32_t)ctx->r5,(uint32_t)(ctx->r3-ctx->r4),ctx->f2.fl,(uint32_t)MEM_W(0x60,ctx->r3)); goto {label}; }}'
             hooks[name,site+4].insert(0,label+':;')
+        elif op=='model_pose_completed':
+            if (rule['section'],address,site,word)!=('.startup',0x800393C4,0x80039474,0x8FBF0024):raise ValueError('Unreviewed model pose completion')
+            hooks[name,address].append('extern void dora3_native_model_pose_completed(uint8_t*,recomp_context*);')
+            text='dora3_native_model_pose_completed(rdram,ctx);'
         elif op=='texture_channel_binding':
             if (rule['section'],address,site,word) not in (('.startup',0x80028D50,0x80028D50,0x27BDFFE0),('.scene1',0x801BBFF4,0x801BC040,0x02921021)):raise ValueError('Unreviewed texture channel binding')
             hooks[name,address].append('extern void dora3_native_texture_bind(uint8_t*,recomp_context*,unsigned);')

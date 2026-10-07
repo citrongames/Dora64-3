@@ -130,6 +130,32 @@ int main() {
         }
     }
     B(model+0x7C)=0;
+    #include "native-after048-model-check.inc"
+    // ROM0A46 numeric reset: Source samples remain numeric; Native angles
+    // cross 360 continuously. A whole 0->360 spin is never shortened to zero.
+    {
+     std::array<int32_t,7> old_channel{};for(unsigned i=0;i<7;++i)old_channel[i]=W(ch+4*i);
+     std::array<int32_t,4> old_curve{};for(unsigned i=0;i<4;++i)old_curve[i]=W(key+4*i);
+     std::array<int32_t,8> old_keys{};for(unsigned i=0;i<8;++i)old_keys[i]=W(clip+0x400+4*i);
+     const auto old_angle=W(bone+0x28);
+     W(ch)=5;F(ch+4,960);W(ch+0x10)=2;W(ch+0x14)=0;W(ch+0x18)=0;W(key+8)=4;
+     for(unsigned i=0;i<4;++i){F(clip+0x400+8*i,std::array<float,4>{0,480,482,960}[i]);F(clip+0x404+8*i,std::array<float,4>{0,360,1.5031100511550903f,360}[i]);}
+     seek(481);ctx.r4=int32_t(model);dora3_s0_800393C4(rdram,&ctx);
+     assert(std::abs(R(bone+0x28)-180.751555f)<.001f);
+     {SimulationScope simulation({1000000000ull,3000000000ull,0,0});ctx.r4=int32_t(model);dora3_s0_800393C4(rdram,&ctx);assert(std::abs(R(bone+0x28)-360.751555f)<.001f);}
+     for(unsigned divider:{2u,3u})for(unsigned bank:{0u,1u}) {
+      seek(480);B(model+0x7C)=0;step(3,divider);const auto source_angle=W(bone+0x28),source_time=W(model+0x64);
+      W(0x801A9544)=int(bank);adapter.begin_frame(rdram,&ctx,now+second*divider/180,bank);
+      assert(std::abs(R(bone+0x28)-360.751555f)<.001f&&W(model+0x64)==source_time);
+      adapter.end_frame(rdram);assert(W(bone+0x28)==source_angle);++frames;
+     }
+     W(key+8)=2;F(clip+0x408,960);F(clip+0x40C,360);seek(480);
+     {SimulationScope simulation({1000000000ull,3000000000ull,0,0});ctx.r4=int32_t(model);dora3_s0_800393C4(rdram,&ctx);assert(std::abs(R(bone+0x28)-180.f)<.001f);}
+     for(unsigned i=0;i<7;++i)W(ch+4*i)=old_channel[i];
+     for(unsigned i=0;i<4;++i)W(key+4*i)=old_curve[i];
+     for(unsigned i=0;i<8;++i)W(clip+0x400+4*i)=old_keys[i];
+     W(bone+0x28)=old_angle;
+    }
     unsigned simulation_cases=0;
     for(unsigned divider:{2u,3u})for(unsigned fps:{60u,73u,144u,360u})for(float rate:{3.f,-2.f,25.f}) {
         seek(0);B(model+0x7C)=0;SimulationTimeline timeline(divider);Nanoseconds previous=0;

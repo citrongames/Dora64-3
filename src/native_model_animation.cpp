@@ -38,6 +38,13 @@ struct Observation {
     Nanoseconds origin;
     uint32_t channels,descriptors;
 };
+// Only a reviewed Source end-query owner can request a terminal render pose.
+// The intent expires with its Source step or animation run; it is not a clip flag.
+struct TerminalPoseIntent {
+    uint64_t run,step;
+    uint32_t channels,descriptors;
+    float duration;
+};
 struct NativeAnimationClock {
     long double time;
     long double origin=0;
@@ -91,6 +98,7 @@ struct Model {
     uint64_t lifetime=0,run=0;
     std::vector<Bone> bones;
     std::optional<Observation> observation;
+    std::optional<TerminalPoseIntent> terminal_pose;
     std::optional<float> last_pose;
     bool sampled=false;
     bool native_pose=false;
@@ -140,6 +148,63 @@ void restore(uint8_t* rdram,Model& entry) {
         if(entry.sampled)for(unsigned k=0;k<9;++k)word(rdram,bone.address+0x14+4*k)=bone.transform[k];
     }
     entry.sampled=false;
+}
+// A short numeric reset between angle keys can encode a continuous turn.
+// In ROM clip0A46: (480,360)->(482,1.50311) sits between two +0.75 degree
+// ramps. Original +3 samples skip its middle; Native samples exposed a rapid
+// backwards turn. Only unwrap a type5 linear angle when BOTH adjacent slopes
+// confirm the same wrapped rate. Long authored 0->360 spins remain intact.
+void repair_authored_angle_resets(uint8_t* rdram,uint32_t model,const Model& owner) {
+    const auto count=word(rdram,model+0x2C);
+    const uint32_t indices=word(rdram,model+0x60),descriptors=word(rdram,model+0x18);
+    const uint32_t curves=word(rdram,model+0x1C),keys_base=word(rdram,model+0x04);
+    const float time=real(rdram,model+0x64);
+    if(count<=0||!indices||!std::isfinite(time))return;
+    region(indices,uint64_t(count)*4);region(descriptors,uint64_t(count)*28);
+    std::vector<std::pair<int,int>> assigned_axes;
+    // The last authored channel for an axis wins, just as in SDK393C4.
+    for(int channel=count-1;channel>=0;--channel) {
+        const int index=word(rdram,indices+4*unsigned(channel));
+        if(index<0||index>=count)continue;
+        const uint32_t descriptor=descriptors+28*unsigned(index);
+        if(word(rdram,descriptor)!=5)continue;
+        const int axis=word(rdram,descriptor+0x10),target=word(rdram,descriptor+0x14);
+        if(axis<0||axis>2)continue;
+        const auto assignment=std::pair{target,axis};
+        if(std::find(assigned_axes.begin(),assigned_axes.end(),assignment)!=assigned_axes.end())continue;
+        assigned_axes.push_back(assignment);
+        const int curve_index=word(rdram,descriptor+0x18);
+        if(curve_index<0)continue;
+        const uint64_t curve_address=uint64_t(curves)+16*unsigned(curve_index);
+        if(curve_address>0x803FFFF0ull)continue;
+        const auto curve=uint32_t(curve_address);region(curve,16);
+        if(word(rdram,curve)!=0)continue; // Hermite curves keep their authored tangents.
+        const int key_count=word(rdram,curve+8),offset=word(rdram,curve+12);
+        if(key_count<4||offset<0)continue;
+        const uint64_t keys_address=uint64_t(keys_base)+unsigned(offset);
+        if(keys_address>=0x80400000ull)continue;
+        const auto keys=uint32_t(keys_address);region(keys,uint64_t(key_count)*8);
+        for(int j=2;j+1<key_count;++j) {
+            const uint32_t before=keys+8*unsigned(j-1),after=before+8;
+            const float begin=real(rdram,before),end=real(rdram,after);
+            if(!(time>begin&&time<end))continue;
+            const float first=real(rdram,before+4),last=real(rdram,after+4),delta=last-first;
+            if(!std::isfinite(delta)||std::abs(delta)<=180)break;
+            const float earlier=real(rdram,before-8),later=real(rdram,after+8);
+            if(!(begin>earlier&&later>end))break;
+            const float previous=(first-real(rdram,before-4))/(begin-earlier);
+            const float following=(real(rdram,after+12)-last)/(later-end);
+            const float wrapped=std::remainder(delta,360.f),rate=wrapped/(end-begin);
+            if(!std::isfinite(previous)||!std::isfinite(following)||
+               !(rate*previous>0&&rate*following>0))break;
+            const float tolerance=std::max({std::abs(previous),std::abs(following),std::abs(rate)})*.02f+1e-5f;
+            if(std::abs(rate-previous)>tolerance||std::abs(rate-following)>tolerance)break;
+            const auto bone=std::find_if(owner.bones.begin(),owner.bones.end(),
+                [&](const auto& b){return word(rdram,b.address+4)==target;});
+            if(bone!=owner.bones.end())real(rdram,bone->address+0x20+4*unsigned(axis),first+rate*(time-begin));
+            break;
+        }
+    }
 }
 std::vector<Bone> find_bones(uint8_t* rdram,uint32_t model) {
     std::vector<Bone> result;
@@ -256,6 +321,33 @@ bool ModelAnimation::command_frame_event(uint8_t* rdram,uint32_t model,const Mod
     if(end<start)return std::ceil((start-target)/duration)>std::ceil((end-target)/duration);
     return false;
 }
+void ModelAnimation::pose_completed(uint8_t* rdram) {
+    // Original Source sampling stays unchanged. Apply the common correction
+    // to actual Native simulation poses and borrowed Native render poses only.
+    if(!state_->frame&&!active_simulation_slice())return;
+    const uint32_t model=word(rdram,0x80082724);
+    const auto owner=state_->models.find(model);
+    if(owner==state_->models.end())return;
+    repair_authored_angle_resets(rdram,model,owner->second);
+}
+void ModelAnimation::terminal_pose(uint8_t* rdram,uint32_t actor,unsigned component) {
+    auto& s=*state_;
+    // These minigame owners use component0 and Original SDK advancement.
+    // Never acquire this render-only policy from a draw or Native simulation.
+    if(s.frame || active_simulation_slice() || component!=0)return;
+    region(actor,0x78);
+    const auto model=uint32_t(word(rdram,actor+0x74));
+    const auto found=s.models.find(model);
+    if(found==s.models.end())return;
+    const auto channels=uint32_t(word(rdram,model+0x60));
+    if(!channels)return;
+    const auto descriptors=uint32_t(word(rdram,model+0x18));
+    region(descriptors,8);
+    const auto duration=real(rdram,descriptors+4);
+    if(!std::isfinite(duration)||duration<=0)return;
+    auto& entry=found->second;
+    entry.terminal_pose=TerminalPoseIntent{entry.run,s.step,channels,descriptors,duration};
+}
 void ModelAnimation::reset() {
     if(state_->frame)throw std::logic_error("Model reset during active frame");
     *state_=State{};
@@ -283,7 +375,7 @@ void ModelAnimation::hook(uint8_t* rdram,recomp_context* ctx,uint32_t address,Na
     case 0x8003B7D0:
         // Original resets renderer/retirement bookkeeping, not the heap or
         // bone allocations. Invalidate clocks without forgetting live owners.
-        for(auto& [owner,entry]:s.models) {(void)owner;entry.observation.reset();entry.last_pose.reset();entry.native_clock.reset(); /* Original continuation keeps live clip/cue identity across renderer reset. */ entry.events.clear();entry.event_sequence=0;entry.scalars.clear();entry.angles.clear();entry.motions.clear();entry.bindings.clear();}
+        for(auto& [owner,entry]:s.models) {(void)owner;entry.observation.reset();entry.terminal_pose.reset();entry.last_pose.reset();entry.native_clock.reset(); /* Original continuation keeps live clip/cue identity across renderer reset. */ entry.events.clear();entry.event_sequence=0;entry.scalars.clear();entry.angles.clear();entry.motions.clear();entry.bindings.clear();}
         return;
     case 0x80033A14: { // Region reset can coexist with other live heaps/models.
         const uint64_t end=uint64_t(model)+uint32_t(ctx->r5);
@@ -352,7 +444,7 @@ void ModelAnimation::hook(uint8_t* rdram,recomp_context* ctx,uint32_t address,Na
             }
             const bool flag_command=address==0x80039578||address==0x800395BC;
             auto continuation=flag_command&&same_continuation(rdram,model,entry)?entry.original_continuation:std::nullopt;
-            restore(rdram,i->second);i->second.observation.reset();i->second.native_clock.reset();i->second.events.clear();i->second.event_sequence=0;i->second.acquired_start=false;
+            restore(rdram,i->second);i->second.observation.reset();i->second.terminal_pose.reset();i->second.native_clock.reset();i->second.events.clear();i->second.event_sequence=0;i->second.acquired_start=false;
             i->second.original_continuation.reset();i->second.source_clock_anchor.reset();i->second.delivered_cues.clear();
             i->second.run=++s.next_run;
             if(continuation&&uint32_t(ctx->r5)<=1) {
@@ -868,6 +960,23 @@ void ModelAnimation::begin_frame(uint8_t* rdram,recomp_context* ctx,Nanoseconds 
                 entry.sampled=true;
                 Animation animation(o.before,o.divider);
                 time=animation.advance(now-o.origin).time;
+                const auto& terminal=entry.terminal_pose;
+                if(terminal && terminal->run==entry.run && terminal->step==o.step &&
+                   terminal->channels==o.channels && terminal->descriptors==o.descriptors &&
+                   terminal->channels==uint32_t(word(rdram,model+0x60)) &&
+                   terminal->descriptors==uint32_t(word(rdram,model+0x18)) &&
+                   terminal->duration==o.before.duration &&
+                   terminal->duration==real(rdram,terminal->descriptors+4) && o.before.increment>0) {
+                    // Source poses at T, then advances by +3. Its end flag may
+                    // already wrap the counter; pause/seek or a new clip follows.
+                    // Render the terminal pose in that gap instead of the clip
+                    // beginning. Ordinary looping clips retain Animation::advance.
+                    SceneClock clock(o.divider);
+                    const auto progress=clock.advance(now-o.origin);
+                    const double units=double(progress.whole)+progress.fractional();
+                    const double position=double(o.before.time)+units*o.before.increment;
+                    if(position>=o.before.duration)time=o.before.duration;
+                }
             }
             temporary_model=model;saved_time=word(rdram,model+0x64);
             real(rdram,model+0x64,time);
@@ -919,6 +1028,10 @@ extern "C" void dora3_native_model_hook(uint8_t* ram,recomp_context* ctx,uint32_
     dora3::native_time::game_model_animation().hook(ram,ctx,address,dora3::native_time::monotonic_time());
 }
 
+extern "C" void dora3_native_model_terminal_pose(uint8_t* ram,recomp_context* ctx,unsigned component) {
+    dora3::native_time::game_model_animation().terminal_pose(ram,uint32_t(ctx->r4),component);
+}
+
 extern "C" int dora3_native_model_morph_allowed(uint8_t* rdram,recomp_context*) {
     if(!dora3_native_loop_owns_frame_banks())return 1;
     const auto* frame=dora3::native_time::active_frame_binding();
@@ -956,4 +1069,8 @@ extern "C" float dora3_native_model_scalar_previous(uint8_t* ram,uint32_t model,
 }
 extern "C" float dora3_native_model_latched_turn(uint8_t* ram,uint32_t model,uint32_t address,float current,float delta) {
     return dora3::native_time::game_model_animation().scalar_latched_turn(ram,model,address,current,delta);
+}
+
+extern "C" void dora3_native_model_pose_completed(uint8_t* ram,recomp_context*) {
+    dora3::native_time::game_model_animation().pose_completed(ram);
 }

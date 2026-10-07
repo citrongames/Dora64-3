@@ -31,6 +31,13 @@ using Operation=MinigameEquations::Operation;
 using Role=MinigameEquations::FieldRole;
 constexpr std::uint32_t pool=0x80171CD0,cameras=0x801A99F8;
 constexpr unsigned actor_count=230,actor_stride=0xCC;
+struct CircularCameraStore {std::uint32_t rom,site;bool opposite;};
+constexpr std::array circular_camera_stores{
+    CircularCameraStore{0x1961B0,0x801C58E8,true},
+    CircularCameraStore{0x1961B0,0x801C5A84,false},
+    CircularCameraStore{0x19F510,0x801C530C,true},
+    CircularCameraStore{0x19F510,0x801C5494,false},
+};
 bool pointer(std::uint32_t p,unsigned size=4) {
     return !(p&3)&&p>=0x80000000u&&std::uint64_t(p)+size<=0x80400000ull;
 }
@@ -239,6 +246,25 @@ void refresh_terrain_followers(std::uint8_t* ram) {
                     std::bit_cast<float>(word(ram,body+0x9C+4*axis)));
     }
 }
+void refresh_bomb_participant_poses(std::uint8_t* ram) {
+    if(!runtime.definition||runtime.definition->rom!=0x1BC460)return;
+    // 6E6C/70/78 publish the body after physics; 7570 then copies its XZ to
+    // the shadow. Render matrices consume local XYZ, not world XYZ. Preserve
+    // those reached Derived copies after sampling the actual motion equations.
+    // This does not advance input, velocity, animation, contacts or the FSM.
+    for(unsigned participant=0;participant<4;++participant) {
+        const auto body=pool+participant*actor_stride;
+        if(!word(ram,body+0x94))continue;
+        for(unsigned axis=0;axis<3;++axis)
+            runtime.equations.publish_derived_float(ram,body+4*axis,
+                std::bit_cast<float>(word(ram,body+0x9C+4*axis)));
+        const auto shadow=pool+(65+participant)*actor_stride;
+        if(!word(ram,shadow+0x94))continue;
+        for(unsigned axis:{0u,2u})
+            runtime.equations.publish_derived_float(ram,shadow+4*axis,
+                std::bit_cast<float>(word(ram,body+4*axis)));
+    }
+}
 void refresh_view_origins(std::uint8_t* ram) {
     if(!runtime.definition)return;
     std::array<std::uint32_t,3> arrays{};
@@ -304,6 +330,25 @@ MinigameEquations::Lifetime lifetime(std::uint8_t* rdram,std::uint32_t address,s
     }
     return out;
 }
+void capture_bomb_object_contact_positions(std::uint8_t* rdram) {
+    if(!runtime.definition||runtime.definition->rom!=0x1BC460)return;
+    // Original4EC8 copies world X/Z to local0/8 before drawing slots10..59.
+    // Source7304/713C subsequently reads local0/8 for the75-unit hit radius.
+    // A Native draw borrows/reverts local fields, so that first authoritative
+    // publication must happen once at Source completion, after spawn/motion.
+    // Keep Y alone: falling type2 has its separate authored draw height5/30.
+    for(unsigned slot=10;slot<60;++slot) {
+        const auto actor=pool+slot*actor_stride;
+        if(!word(rdram,actor+0x94))continue;
+        for(unsigned axis:{0u,2u}) {
+            const auto source=actor+0x9C+4*axis,destination=actor+4*axis;
+            const auto actual=std::bit_cast<float>(word(rdram,source));
+            const auto expression=runtime.equations.load_float(source,actual);
+            runtime.equations.store_float(destination,expression,actual,Role::Derived,lifetime(rdram,destination));
+            MEM_W(0,std::int32_t(destination))=std::int32_t(word(rdram,source));
+        }
+    }
+}
 }
 bool native_minigame_eligible(std::uint8_t* rdram) {
     if(!rdram||!dora3::minigame::implementation_ready)return false;
@@ -330,6 +375,7 @@ void native_minigame_update(std::uint8_t* rdram,recomp_context* ctx,Nanoseconds 
     restore_matrices(rdram);restore_camera_eyes(rdram);restore_ground(rdram);runtime.equations.sample(rdram,now);
     sample_ground(rdram,ctx);
     refresh_terrain_followers(rdram);
+    refresh_bomb_participant_poses(rdram);
     refresh_view_origins(rdram);
     const auto changed=runtime.equations.changed_fields();
     for(unsigned i=0;i<4;++i) {
@@ -387,6 +433,7 @@ extern "C" void dora3_native_minigame_source(std::uint8_t* rdram,recomp_context*
             if(std::bit_cast<std::uint32_t>(actual)!=parameter.value.expected)continue;
             runtime.equations.store_float(parameter.model+0x78,parameter.value.expression,actual,Role::Derived,parameter.owner);
         }
+        capture_bomb_object_contact_positions(rdram);
         runtime.equations.end_source(rdram,now);runtime.source_time=runtime.render_time=now;runtime.in_source=false;
         if(rom==0x18BDF0&&root==0x801BF8CC)
             runtime.pulse_source={word(rdram,0x801C3650),word(rdram,0x801C3670),word(rdram,0x801C3674)};
@@ -487,8 +534,18 @@ extern "C" void dora3_native_minigame_instruction(std::uint8_t* rdram,recomp_con
     if((op==57||op==61)&&pointer(address,op==61?8:4)) {
         const bool wide=op==61;
         const std::array<Tag,2> pair{runtime.fp[rt],rt+1<32?runtime.fp[rt+1]:Tag{}};
-        const auto expression=read_fp(c,rt,wide);
+        auto expression=read_fp(c,rt,wide);
         const double actual=wide?double_value(*c,rt):double(float_value(*c,rt));
+        if(!wide&&rom==0x1BC460&&(site==0x801C6E6C||site==0x801C6E70||site==0x801C6E78)) {
+            // Exact post-physics world->local copies. Tie them to their owned
+            // world fields explicitly instead of relying on a volatile FPR tag
+            // surviving every branch/helper in the participant update.
+            if(const auto actor=actor_for(address);actor&&address-*actor<=8) {
+                const auto source=*actor+0x9C+(address-*actor);
+                if(word(rdram,source)==float_bits(*c,rt))
+                    expression=runtime.equations.load_float(source,float(actual));
+            }
+        }
         if(stack_address(address,wide?8:4)) {
             runtime.stack[address]={expression,wide?std::bit_cast<std::uint64_t>(actual):std::uint64_t(float_bits(*c,rt)),wide};
             if(wide&&!c->mips3_float_mode)runtime.paired_spills[address]=pair;
@@ -505,7 +562,31 @@ extern "C" void dora3_native_minigame_instruction(std::uint8_t* rdram,recomp_con
                     if(rom==0x1961B0)runtime.equations.bind_snapshot(expression,
                         std::uint32_t(c->r16)+(site==0x801C97DC?0x50:0x58),address);
                 }
-            runtime.equations.store_float(address,expression,float(actual),owner_hint&&!owner.actor?Role::Scratch:Role(role),owner);
+            bool circular_camera=false;
+            const auto camera_store=std::find_if(circular_camera_stores.begin(),circular_camera_stores.end(),
+                [&](const auto& store){return store.rom==rom&&store.site==site;});
+            if(camera_store!=circular_camera_stores.end()&&role==unsigned(Role::Angle)&&
+               address>=cameras+0x1C&&address<cameras+4*0x34&&
+               (address-cameras)%0x34==0x1C&&std::uint32_t(c->r5)<4) {
+                // All four exact Original helpers retain a1=participant index;
+                // their target load is80171DAC+a1*CC, body(1+a1).yaw10.
+                const auto heading_address=pool+(1+std::uint32_t(c->r5))*actor_stride+0x10;
+                const float heading=std::bit_cast<float>(word(rdram,heading_address));
+                const float before=std::bit_cast<float>(word(rdram,address));
+                const auto source_wrap=[](float v){return v>=360.f?v-360.f:v<0?v+360.f:v;};
+                float delta=source_wrap((360.f-heading)+(camera_store->opposite?180.f:0.f));
+                delta=source_wrap(delta+before);
+                if(delta>180.f)delta=source_wrap(360.f-delta);
+                // This is the exact Source90-degree branch. Keep that chosen
+                // gain while the target's registered heading equation moves.
+                const double gain=1./(delta>90.f?30.:15.);
+                auto target=runtime.equations.load_float(heading_address,heading);
+                if(camera_store->opposite)target=runtime.equations.operation(Operation::Add,target,runtime.equations.constant(180.));
+                runtime.equations.store_circular_approach(address,target,float(actual),gain,owner);
+                circular_camera=true;
+            }
+            if(!circular_camera)
+                runtime.equations.store_float(address,expression,float(actual),owner_hint&&!owner.actor?Role::Scratch:Role(role),owner);
             for(const auto& bounds:dora3::minigame::motion_bounds)
                 if(bounds.rom==rom&&bounds.site==site)
                     runtime.equations.constrain_float(address,bounds.minimum,bounds.maximum,bounds.clamp);
@@ -630,7 +711,9 @@ MinigameFrameScope::~MinigameFrameScope() {
     for(const auto& lease:runtime.draw_leases) {
         if(actor_identity(rdram,lease.actor)!=lease.identity)continue;
         // The draw phase owns these reviewed SDK derivatives exclusively.
-        // Allocation, component identities, commands and local XYZ are not leased.
+        // Local/world poses and matrices are borrowed; allocations, component
+        // identities and commands are not. Mini8 contact XZ has already been
+        // committed once at Source completion, so this restores that baseline.
         for(unsigned i=0;i<16;++i)MEM_W(0,std::int32_t(lease.actor+0x24+4*i))=std::int32_t(lease.derivatives[i]);
         for(unsigned i=0;i<3;++i)MEM_W(0,std::int32_t(lease.actor+0x9C+4*i))=std::int32_t(lease.derivatives[16+i]);
         for(unsigned i=0;i<9;++i)MEM_W(0,std::int32_t(lease.actor+4*i))=std::int32_t(lease.derivatives[19+i]);

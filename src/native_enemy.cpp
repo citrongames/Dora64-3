@@ -1003,6 +1003,11 @@ constexpr std::array additional_stores{
     Store{0xD9910,0x80222D18,0x4,true,EquationKind::angle,0},
     Store{0xD9910,0x8022367C,0xA0,false,EquationKind::linear,0},
     Store{0xD9910,0x8022368C,0x10,false,EquationKind::angle,0},
+    // Kinopper's roam timer adds ten degrees every eight Source periods.
+    // Continue that heading and its literal model-yaw copy together; the
+    // shared projection then consumes the same gradual heading. Wall/probe
+    // reflection setters are separate instantaneous commands.
+    Store{0x12FD90,0x8022D880,0x4,true,EquationKind::angle,0},
     Store{0x142670,0x8022D92C,0x10,false,EquationKind::angle,0},
     Store{0x142670,0x8022DA38,0x4,true,EquationKind::angle,0},
     Store{0x142670,0x8022DE40,0xC,false,EquationKind::angle,0},
@@ -3568,8 +3573,9 @@ soundorago_other_store:
         (site==0x8021EEEC||site==0x8021F2CC);
     const bool oppi_yaw_copy=owner->rom==0x12FD90&&
         (site==0x8022F874||site==0x8022FCF4||site==0x8022FDD0||site==0x80230280||site==0x80230324);
+    const bool kinopper_roam_yaw_copy=owner->rom==0x12FD90&&site==0x8022D884;
     const bool batti_yaw_copy=owner->rom==0xDFC40&&site==0x8021E5CC;
-    const bool yaw_copy=batti_yaw_copy||oppi_yaw_copy||supaizan_yaw_copy||doragonrock_yaw_copy||(owner->rom==0xEDDB0&&
+    const bool yaw_copy=kinopper_roam_yaw_copy||batti_yaw_copy||oppi_yaw_copy||supaizan_yaw_copy||doragonrock_yaw_copy||(owner->rom==0xEDDB0&&
         (site==0x80220C24||site==0x80221498||site==0x8022177C||site==0x8022234C||
          site==0x802225F0||site==0x80223210||site==0x802235A0||site==0x8022372C))||
         (owner->rom==0xCEC60&&(site==0x80223058||site==0x802231DC||site==0x802235CC||

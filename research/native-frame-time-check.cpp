@@ -274,4 +274,5 @@ int main() {
 }
 
 extern "C" void dora3_native_model_hook(uint8_t*,recomp_context*,uint32_t) {}
+extern "C" void dora3_native_model_pose_completed(uint8_t*,recomp_context*) {}
 extern "C" int dora3_native_model_advance(uint8_t*,recomp_context*) {return 0;}

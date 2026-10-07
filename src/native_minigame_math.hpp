@@ -38,6 +38,12 @@ public:
     Expression operation(Operation,Expression,Expression=0);
     void bind_snapshot(Expression,std::uint32_t snapshot,std::uint32_t field);
     void store_float(std::uint32_t,Expression,float,FieldRole,const Lifetime&);
+    // C'=C+gain*shortest(target-C). The four reviewed camera helpers choose
+    // the next pure90-degree gain branch from completed C/target equations;
+    // that coefficient stays fixed for the interval. The target is lifted once;
+    // moving target equations stay continuous across their0/360 seam.
+    void store_circular_approach(std::uint32_t,Expression target,float source_result,
+                                 double gain,const Lifetime&);
     // A raw setter/zero store cancels a previously recorded recurrence.
     // Bounds mirror reviewed pre/post arithmetic conditions. Preconditions
     // stop a completed step without suppressing Source's intentional overshoot.

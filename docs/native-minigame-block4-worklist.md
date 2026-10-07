@@ -1,3 +1,18 @@
+## После048: Mini8 damage/motion и race/plane cameras — правки ещё не проверены
+
+Terminal pose boundary:38 Source sites для one-shot return/результатов и
+аналогичных pause/seek, включая6 character variants; без новой проверки.
+
+Race/plane circular follow/finish подключены во всех4 viewports; зимняя гонка
+использует тот же Source helper. Runtime result пока не проверен.
+
+Сохранены Source contactXZ publication, body/shadow world-local coupling и общая
+matrix invalidation для reached Derived actor poses. Source draw копирует позиции,
+которые затем читает damage713C; прежний Native draw rollback их стирал.
+Actual damage/walking/draw interleaving не покрыты старыми isolated/intro cases.
+Тесты и новый EXE отложены до «нет» пользователя. Подробности и future cases:
+[native-regressions-after048-batches.md](native-regressions-after048-batches.md#пачка5-миниигра8--взрыв-без-урона-и-перемещение-с-source-cadence).
+
 ## Test-045: весь блок4 — миниигры и специальные режимы
 
 Завершены девять миниигр и три общих режима: выбор, участники/настройка,
