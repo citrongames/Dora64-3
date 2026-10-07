@@ -1,9 +1,9 @@
 # Windows build без тестов после050
 
 Основной репозиторий: /home/vova/projects/DoraRecomp3, main.
-Текущий EXE053 собран из кода33c1e74. Старые проверки не запускать.
-После053 изменён generator для цветных шариков: следующему билду нужна новая
-CPU generation (например startup-color-ball-test054-v1), RSP audio-rsp-v1 прежний.
+Текущий EXE054 собран из кода5b1bf19. Старые проверки не запускать.
+Актуальная CPU generation startup-color-ball-test054-v1, RSP audio-rsp-v1 прежний.
+Использовать эту generation для следующих C++-only инкрементальных сборок.
 В новой generation только helper8023D730 получает scoped MSVC optimize off/on.
 
 Готовый Windows staging и cache находятся здесь (это вспомогательная копия,

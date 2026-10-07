@@ -58,6 +58,11 @@ funcs_93.c. Весь этот translation unit успешно скомпилир
 Материалы: build-local/color-ball-crash053/{compile.log,sequence-function.asm}.
 Это только компиляция и статический разбор, не runtime PASS.
 
-Тесты, игра, эмулятор, renderer/GPU не запускались. Новый Windows EXE не собирался;
-053 содержит старую функцию. Следующему билду нужна новая CPU generation,
-поскольку изменились generator inputs; RSP прежний. Игровое подтверждение ожидается.
+Тесты, игра, эмулятор, renderer/GPU не запускались. По прямой команде пользователя
+правка5b1bf19 включена в Windows054; новая CPU generation startup-color-ball-test054-v1,
+RSP audio-rsp-v1 прежний. MSVC RelWithDebInfo сборка успешна.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-054.exe.
+SHA256: 21987e5020ddabd648cdff8a8f6c1ef425aa8f4f83eaa8af7a736a8e4f617f5b.
+Все174 прежних файлов вне logs сохранили хэши; PDB053 сохранён в symbols-test053.
+Игровое подтверждение ожидается. GitHub возвращает Internal Server Error при push;
+локальные коммиты сохранены, но отправка ещё не подтверждена.
