@@ -65,3 +65,11 @@ Hook подключён через уже существующий общий do
 
 Изменённые port_input/live_io/startup_runtime скомпилированы GCC C++20 -O2
 в отдельные объекты; без link и исполнения.
+
+## Windows057
+
+По следующей прямой команде пользователя собран и упакован test-057.
+MSVC RelWithDebInfo compile/link завершён; все183 прежних файла вне logs
+сохранены. EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-057.exe.
+SHA256: e612afe42bb72aaf64160b5c5d9c5e277d2e4a31a101980c23c18ba486dae195.
+Игра и тесты не запускались; пользовательская проверка057 пока отсутствует.
