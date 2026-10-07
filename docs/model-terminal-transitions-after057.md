@@ -105,8 +105,17 @@ MSVC RelWithDebInfo configure/compile/link завершились exit0.325 hook
 через окончательную v2, RSP audio-rsp-v1 сохранён. Все186 прежних файлов вне logs
 сохранили хэши; PDB/EXE057 сохранены в staging/build-local/symbols-test057,
 старые исходники — в model-terminal-test058-build/sources-before-test058.zip.
-Старый057 receipt сохранён в research/history/. Игровой результат058 пока не
-подтверждён; завершённая упаковка не заменяет пользовательскую визуальную проверку.
+Старый057 receipt сохранён в research/history/.
+
+## Пользовательское подтверждение058
+
+После запуска058 пользователь сообщил: «сработало, всех я конечно не смог
+проверить но на крабе точно пофикшено». Для сообщённого врага в ракушке в башне
+босса первого мира исчезновение краткого скачка позы после появления подтверждено
+его игровой проверкой. Это подтверждение конкретного симптома/места, не всех
+325 transitions или всех моделей. Точный ROM descriptor и FPS этим сообщением
+не определяются. Код, compile receipt и сохранённые EXE/README/build-info не
+менялись; агент игру/renderer/GPU и автоматические тесты не запускал.
 
 Первый configure wrapper остановился до компиляции: PowerShell stderr redirection
 превратил miniz deprecation warning в NativeCommandError. OS-level log capture
