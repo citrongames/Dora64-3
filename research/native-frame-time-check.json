@@ -10,7 +10,7 @@
     "src/native_frame_time.hpp": "9ceab99e00b5944ec1bd4a8b8b385c0453783bc261902433890581844f46b33c",
     "tools/check_native_frame_time.py": "9e357ff69be17a36836dbb799868435038c5dc1a0a061634eb6410144645bf9f"
   },
-  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+  "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
   "original_functions": [
     "dora3_fade_tick",
     "dora3_s0_8003948C",

@@ -5,7 +5,9 @@
 
 namespace dora3::native_time {
 // UI equations borrow a frame. Guest command state remains at Source cadence;
-// temporary panel/menu coordinates cannot escape into the next input update.
+// temporary panel/menu coordinates and camera geometry cannot escape into the
+// next Source update. Reached camera equations can own a stable world frame
+// independently of blocked player control, without repeating its callback.
 bool native_ui_menu_eligible(uint8_t*);
 bool native_ui_game_eligible(uint8_t*);
 void native_ui_begin(uint8_t*,Nanoseconds,unsigned);

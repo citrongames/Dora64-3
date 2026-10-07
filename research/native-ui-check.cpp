@@ -16,7 +16,7 @@
 using namespace dora3::native_time;
 using Image=std::vector<uint32_t>;
 using Function=void(*)(uint8_t*,recomp_context*);
-static Nanoseconds now=0;static uint32_t overlay=0;static bool owner=true;
+static Nanoseconds now=0;static uint32_t overlay=0;static bool owner=true,gameplay_owner=false;
 static unsigned cases=0,endpoints=0,samples=0,draws=0,guards=0,sounds=0;
 static std::vector<std::array<uint32_t,5>> commands;
 static std::optional<double> charge_fraction;
@@ -32,6 +32,8 @@ int dora3_overlay_loaded(uint32_t);
 uint64_t dora3_overlay_generation(uint32_t rom){return dora3_overlay_loaded(rom)?1:0;}
 int dora3_overlay_loaded(uint32_t rom){return rom==overlay||rom==0x5E400;}
 int dora3_native_loop_owns_fade(){return owner;}
+int dora3_native_loop_gameplay_active(){return gameplay_owner;}
+int dora3_native_preview_hook(uint8_t*,recomp_context*,uint32_t){return 0;}
 void dora3_trace(uint8_t*,recomp_context*,uint32_t,uint32_t){}
 void do_break(uint32_t){std::abort();}
 void switch_error(const char*,uint32_t,uint32_t){std::abort();}
@@ -515,7 +517,8 @@ static void ownership(const Image& seed){
   w(r,0x801A9C88)=1;assert(select_native_scene_policy(r)==nullptr);w(r,0x801A9C88)=0;++guards;
  }
 }
+#include "native-after049-camera-ui-check.inc"
 int main(int argc,char** argv){assert(argc==3);Image game(0x400000/4),menu(game.size());std::ifstream(argv[1],std::ios::binary).read(reinterpret_cast<char*>(game.data()),0x400000);std::ifstream(argv[2],std::ios::binary).read(reinterpret_cast<char*>(menu.data()),0x400000);
- title_math(menu);game_math(game);world_menu_models(game);character_carousel_cadence(game);charge_rdp(game);menu_math(menu);drawing(game,menu);complete_files_draw(menu);map_math(menu);map_chunk_rectangles(menu);item_side_arrows(game);held_world_fades(game);ownership(menu);native_ui_reset();
+ camera_ui_regressions(game);title_math(menu);game_math(game);world_menu_models(game);character_carousel_cadence(game);charge_rdp(game);menu_math(menu);drawing(game,menu);complete_files_draw(menu);map_math(menu);map_chunk_rectangles(menu);item_side_arrows(game);held_world_fades(game);ownership(menu);native_ui_reset();
  std::cout<<"PASS: "<<cases<<" connected UI cases; "<<endpoints<<" Original motion endpoints; "<<samples<<" Native math samples; "<<draws<<" repeated Original UI draw/command comparisons; "<<guards<<" ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.\n";
 }

@@ -1,10 +1,25 @@
-# Test-049: итог семи пачек багов после048
+# Test-050: материалы и камеры после049
 
-Windows EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-049.exe,
-generation startup-regressions-test049-v1.
-SHA256: 29825000078db73adbf0f51c58eb5a8c16235e544c5b7d45c8a905c3878148da.
+Windows EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-050.exe,
+generation startup-regressions-test050-v3.
+SHA256: 1a945cd64b0a291f2fc25194f3dbeaa6cfd392b5c59f2a6b69d68ca4e3c6efb1.
 
-Исправления и точный охват — native-regressions-test049.md и
-native-regressions-after048-batches.md.31 CPU scopes PASS; full-player USER_SKIP.
-Без локального game/renderer/GPU. Прежние EXE/ROM/settings/saves/DLL сохраняются.
-Визуальную проверку выполнит пользователь. Commit/push — existing private main.
+Исправлены скачки циклов воды и спирали в выборе предметов. Добавлены
+промежуточные кадры песка второго мира и других связанных CI4/IA8 материалов.
+Камера обновляется независимо от доступности управления персонажем;
+переведены два найденных вспомогательных режима камеры.
+
+Скорость игровых команд и таймеров сохранена. Original использует исходные
+20/30 FPS, Native использует существующий Manual. Отдельного регулятора нет.
+
+Проверки изменённых материалов, спирали и камеры прошли. Всего сохранено
+26 актуальных CPU scopes PASS. Общий статус PARTIAL_USER_SKIP: оставшиеся
+общие проверки остановлены по прямой команде пользователя, full-player
+исключён ранее. Полный набор не объявляется PASS. Игра, renderer и GPU
+локально не запускались; визуальная плавность и качество цветов ещё требуют
+проверки в игре.
+
+ROM остаётся внешним файлом рядом с EXE. Прежние билды, настройки,
+сохранения и DLL сохранены. Разработка ведётся в private main.
+Доказательства и ограничения в документации проекта: native-regressions-test050.md,
+native-regressions-after049-materials.md и native-camera-audit-after049.md.

@@ -1,0 +1,2359 @@
+{
+  "date": "2026-10-07",
+  "scope": "Whole compiled Original game camera references plus Native integration, all scene overlays and SDK look-at callers",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "compiled_functions": 4778,
+  "compiled_instructions": 314342,
+  "candidate_functions": 141,
+  "camera_store_candidates": 607,
+  "ordinary_dispatch_modes": [
+    {
+      "mode": 0,
+      "vram": "0x801DB7C8"
+    },
+    {
+      "mode": 1,
+      "vram": "0x801DB7C8"
+    },
+    {
+      "mode": 2,
+      "vram": "0x801D6EAC"
+    },
+    {
+      "mode": 3,
+      "vram": "0x801D8FF0"
+    },
+    {
+      "mode": 4,
+      "vram": "0x801D7294"
+    },
+    {
+      "mode": 5,
+      "vram": "0x801D5864"
+    },
+    {
+      "mode": 6,
+      "vram": "0x801D8578"
+    },
+    {
+      "mode": 7,
+      "vram": "0x801DB720"
+    },
+    {
+      "mode": 8,
+      "vram": "0x801D9B00"
+    },
+    {
+      "mode": 9,
+      "vram": "0x801D8A24"
+    },
+    {
+      "mode": 10,
+      "vram": "0x801D9C94"
+    },
+    {
+      "mode": 11,
+      "vram": "0x801DA06C"
+    },
+    {
+      "mode": 12,
+      "vram": "0x801DAB58"
+    },
+    {
+      "mode": 13,
+      "vram": "0x801DA588"
+    },
+    {
+      "mode": 14,
+      "vram": "0x801DAF50"
+    },
+    {
+      "mode": 15,
+      "vram": "0x801DB3D0"
+    }
+  ],
+  "new_source_observations": 17,
+  "findings": [
+    "World camera eligibility previously depended on player domain; implemented Source-reached camera-only frame equations for stable rooms.",
+    "Two auxiliary camera paths remained Source-only; connected all four control views and scene1 manual view with Source cuts and commands preserved."
+  ],
+  "coverage_notes": [
+    "Static candidate scans are not executable or visual proofs; linear propagation is supplemented by Source switch/parameter/caller review.",
+    "All SDK56DB4/57408 look-at builders are called only by SDK2F2C8. All SDK2F064/2F2C8 callers inspected, including9 minigames/4 view rows, item/weapon/character/selection menus and auxiliary screens.",
+    "Stage-map 2D camera uses its separate Native UI scalar/rectangle path; four area anchors and fractional rectangles remain connected.",
+    "World ordinary dispatcher has16 entries and15 distinct roots;13 timed roots plus2 instantaneous current-pose/fixed-room roots.",
+    "Initialization/reset/activation/mode/resource/pause barriers remain Source; static poses are not omitted time-dependent motion.",
+    "No tests, fixture generation, prebuild, Windows build or game/GPU execution in this open batch."
+  ],
+  "deferred_validation": [
+    "Actual Source camera reachability when player control is blocked; no Source callback repetition and no camera double-step under gameplay policy.",
+    "All16 mode mappings and observer pins; Original branches/token/name equivalence; borrowed camera restore and interrupted scene/module lifetimes.",
+    "Two auxiliary profiles20/30/Manual with held combinations, distance floors, camera3 Source cut,4view eye/up and correct overlay identity.",
+    "Full connected prebuild with standing full-player skip only after explicit new user нет.",
+    "Standalone UI check links now require actual15 ordinary camera roots and SDKeye dependencies. Extend only after batch closure; former049 UI fixture does not validate the new code."
+  ],
+  "classification_counts": {
+    "Source fixed initialization or reset; no repeated rate": 34,
+    "camera reader, pointer caller, current geometry/projection/draw; no camera store": 67,
+    "SDK instantaneous eye/up geometry": 1,
+    "Source-parity shake with fractional amplitude; ordinary camera owner": 1,
+    "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback": 15,
+    "scripted timed motion/composition; private cutscene equations": 9,
+    "scripted mode dispatch and one-time up-vector command": 1,
+    "Source script release command": 1,
+    "omitted auxiliary rates; implemented in new UI camera profiles": 2,
+    "typed Native minigame Motion/Angle/bounds, followed by SDKeye": 10
+  },
+  "functions": [
+    {
+      "section": ".scene34",
+      "legacy_name": "dora3_s2_menu_801BB390",
+      "name": "dora3_s2_menu_801BB390",
+      "vram": "0x801BB390",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x18": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene34",
+      "legacy_name": "dora3_s2_menu_801BB52C",
+      "name": "dora3_stage_map_menu_source_update_801BB52C",
+      "vram": "0x801BB52C",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene34",
+      "legacy_name": "dora3_s2_menu_801BB648",
+      "name": "dora3_stage_map_menu_draw_801BB648",
+      "vram": "0x801BB648",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene34",
+      "legacy_name": "dora3_s2_menu_801C10A0",
+      "name": "dora3_selection_initialize_fixed_camera_801C10A0",
+      "vram": "0x801C10A0",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x18": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene34",
+      "legacy_name": "dora3_s2_menu_801C24A4",
+      "name": "dora3_ui_selection_update_source_owner_801C24A4",
+      "vram": "0x801C24A4",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene34",
+      "legacy_name": "dora3_s2_menu_801C267C",
+      "name": "dora3_ui_selection_draw_801C267C",
+      "vram": "0x801C267C",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801BB080",
+      "name": "dora3_scene1_world_update_801BB080",
+      "vram": "0x801BB080",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {
+        "ground_preview_boundary": 1,
+        "cutscene_source_end": 1
+      },
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801BB334",
+      "name": "dora3_s3_801BB334",
+      "vram": "0x801BB334",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801BB554",
+      "name": "dora3_s3_801BB554",
+      "vram": "0x801BB554",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801BB5FC",
+      "name": "dora3_s3_801BB5FC",
+      "vram": "0x801BB5FC",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801BB6A4",
+      "name": "dora3_s3_801BB6A4",
+      "vram": "0x801BB6A4",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801BC4EC",
+      "name": "dora3_s3_801BC4EC",
+      "vram": "0x801BC4EC",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".startup",
+      "legacy_name": "dora3_view_states_init",
+      "name": "dora3_view_states_init",
+      "vram": "0x8002EFF4",
+      "stores": 13,
+      "store_fields": {
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1,
+        "0x0C": 1,
+        "0x10": 1,
+        "0x14": 1,
+        "0x18": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x24": 1,
+        "0x28": 1,
+        "0x2C": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 13
+      }
+    },
+    {
+      "section": ".startup",
+      "legacy_name": "dora3_s0_8002F064",
+      "name": "dora3_camera_derive_eye_and_up_8002F064",
+      "vram": "0x8002F064",
+      "stores": 5,
+      "store_fields": {
+        "0x0C": 1,
+        "0x10": 1,
+        "0x14": 1,
+        "0x28": 2
+      },
+      "classification": "SDK instantaneous eye/up geometry",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 5
+      }
+    },
+    {
+      "section": ".startup",
+      "legacy_name": "dora3_s0_8002F2C8",
+      "name": "dora3_camera_build_view_and_lookat_commands_8002F2C8",
+      "vram": "0x8002F2C8",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801C8B28",
+      "name": "dora3_player_update_801C8B28",
+      "vram": "0x801C8B28",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {
+        "ground_preview_boundary": 4,
+        "tick_counter_store": 3,
+        "player_command_boundary": 1,
+        "player_idle_phase": 1
+      },
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801CAF80",
+      "name": "dora3_s3_801CAF80",
+      "vram": "0x801CAF80",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801CB438",
+      "name": "dora3_s3_801CB438",
+      "vram": "0x801CB438",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".startup",
+      "legacy_name": "dora3_s0_80031884",
+      "name": "dora3_s0_80031884",
+      "vram": "0x80031884",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".startup",
+      "legacy_name": "dora3_s0_80031AA4",
+      "name": "dora3_heading_from_xz_displacement_80031AA4",
+      "vram": "0x80031AA4",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D5378",
+      "name": "dora3_s3_801D5378",
+      "vram": "0x801D5378",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D55EC",
+      "name": "dora3_camera_apply_source_parity_shake_801D55EC",
+      "vram": "0x801D55EC",
+      "stores": 1,
+      "store_fields": {
+        "0x04": 1
+      },
+      "classification": "Source-parity shake with fractional amplitude; ordinary camera owner",
+      "timing_operations": {
+        "scale_f32_source": 2,
+        "camera_shake_decay_gate": 1,
+        "tick_addiu": 1
+      },
+      "mini_roles": {
+        "None": 1
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D5768",
+      "name": "dora3_s3_801D5768",
+      "vram": "0x801D5768",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x04": 1,
+        "0x18": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D5864",
+      "name": "dora3_camera_update_scene_mode05_801D5864",
+      "vram": "0x801D5864",
+      "stores": 55,
+      "store_fields": {
+        "0x00": 5,
+        "0x04": 7,
+        "0x08": 4,
+        "0x30": 27,
+        "0x1C": 6,
+        "0x18": 6
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "approach_f64_source": 4,
+        "retention_f64_source": 1,
+        "scale_f64_source": 1,
+        "tick_addiu": 3,
+        "scale_f32_source": 2
+      },
+      "mini_roles": {
+        "None": 55
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D6B80",
+      "name": "dora3_s3_801D6B80",
+      "vram": "0x801D6B80",
+      "stores": 3,
+      "store_fields": {
+        "0x30": 1,
+        "0x18": 1,
+        "0x04": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 3
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D6C34",
+      "name": "dora3_s3_801D6C34",
+      "vram": "0x801D6C34",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D6EAC",
+      "name": "dora3_camera_update_ten_tick_transition_801D6EAC",
+      "vram": "0x801D6EAC",
+      "stores": 9,
+      "store_fields": {
+        "0x30": 1,
+        "0x1C": 2,
+        "0x18": 3,
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "approach_f64_source": 1,
+        "scale_f64_source": 1,
+        "scale_f32_source": 6,
+        "tick_addiu": 1
+      },
+      "mini_roles": {
+        "None": 9
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D7134",
+      "name": "dora3_s3_801D7134",
+      "vram": "0x801D7134",
+      "stores": 8,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x04": 1,
+        "0x18": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x30": 2
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 8
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D7294",
+      "name": "dora3_camera_update_scene_mode04_801D7294",
+      "vram": "0x801D7294",
+      "stores": 41,
+      "store_fields": {
+        "0x00": 5,
+        "0x04": 5,
+        "0x08": 4,
+        "0x30": 20,
+        "0x1C": 5,
+        "0x18": 2
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "approach_f64_source": 4,
+        "retention_f64_source": 1,
+        "scale_f64_source": 1,
+        "tick_addiu": 2,
+        "scale_f32_source": 3
+      },
+      "mini_roles": {
+        "None": 41
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D826C",
+      "name": "dora3_s3_801D826C",
+      "vram": "0x801D826C",
+      "stores": 3,
+      "store_fields": {
+        "0x30": 1,
+        "0x18": 1,
+        "0x04": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 3
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D8320",
+      "name": "dora3_s3_801D8320",
+      "vram": "0x801D8320",
+      "stores": 11,
+      "store_fields": {
+        "0x1C": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x18": 1,
+        "0x30": 2,
+        "0x08": 2,
+        "0x00": 3
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 11
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D8578",
+      "name": "dora3_camera_update_scene_mode06_801D8578",
+      "vram": "0x801D8578",
+      "stores": 13,
+      "store_fields": {
+        "0x1C": 1,
+        "0x18": 1,
+        "0x30": 2,
+        "0x08": 3,
+        "0x00": 4,
+        "0x04": 2
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "approach_f64_source": 1,
+        "camera_follow_gain": 2,
+        "camera_preserve_z_fraction": 1
+      },
+      "mini_roles": {
+        "None": 13
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D89AC",
+      "name": "dora3_s3_801D89AC",
+      "vram": "0x801D89AC",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x18": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D8A24",
+      "name": "dora3_camera_update_scene_mode09_801D8A24",
+      "vram": "0x801D8A24",
+      "stores": 25,
+      "store_fields": {
+        "0x00": 2,
+        "0x04": 7,
+        "0x08": 2,
+        "0x30": 7,
+        "0x18": 5,
+        "0x1C": 2
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "approach_f64_source": 3
+      },
+      "mini_roles": {
+        "None": 25
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D8F48",
+      "name": "dora3_s3_801D8F48",
+      "vram": "0x801D8F48",
+      "stores": 2,
+      "store_fields": {
+        "0x18": 1,
+        "0x04": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 2
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D8F64",
+      "name": "dora3_s3_801D8F64",
+      "vram": "0x801D8F64",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x18": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D8FF0",
+      "name": "dora3_camera_update_scene_mode03_801D8FF0",
+      "vram": "0x801D8FF0",
+      "stores": 28,
+      "store_fields": {
+        "0x1C": 12,
+        "0x18": 8,
+        "0x30": 6,
+        "0x04": 2
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "tick_addiu": 1,
+        "capped_approach_multiply_f64": 1,
+        "timed_angle_load_call": 1,
+        "approach_f64_source": 1
+      },
+      "mini_roles": {
+        "None": 28
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D9A28",
+      "name": "dora3_s3_801D9A28",
+      "vram": "0x801D9A28",
+      "stores": 3,
+      "store_fields": {
+        "0x18": 1,
+        "0x30": 1,
+        "0x04": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 3
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D9A6C",
+      "name": "dora3_s3_801D9A6C",
+      "vram": "0x801D9A6C",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x18": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x30": 1,
+        "0x04": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D9B00",
+      "name": "dora3_camera_update_player_relative_geometry_801D9B00",
+      "vram": "0x801D9B00",
+      "stores": 5,
+      "store_fields": {
+        "0x04": 1,
+        "0x1C": 2,
+        "0x30": 1,
+        "0x18": 1
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 5
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D9C0C",
+      "name": "dora3_s3_801D9C0C",
+      "vram": "0x801D9C0C",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x18": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D9C94",
+      "name": "dora3_camera_update_scene_mode10_801D9C94",
+      "vram": "0x801D9C94",
+      "stores": 9,
+      "store_fields": {
+        "0x30": 2,
+        "0x04": 3,
+        "0x18": 2,
+        "0x1C": 2
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "approach_f64_source": 4
+      },
+      "mini_roles": {
+        "None": 9
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801D9FD8",
+      "name": "dora3_s3_801D9FD8",
+      "vram": "0x801D9FD8",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x18": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DA06C",
+      "name": "dora3_camera_update_scene_mode11_801DA06C",
+      "vram": "0x801DA06C",
+      "stores": 17,
+      "store_fields": {
+        "0x30": 3,
+        "0x04": 3,
+        "0x18": 2,
+        "0x00": 1,
+        "0x08": 2,
+        "0x1C": 6
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "approach_f64_source": 3
+      },
+      "mini_roles": {
+        "None": 17
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DA504",
+      "name": "dora3_s3_801DA504",
+      "vram": "0x801DA504",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x18": 1,
+        "0x1C": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DA588",
+      "name": "dora3_camera_update_scene_mode13_801DA588",
+      "vram": "0x801DA588",
+      "stores": 12,
+      "store_fields": {
+        "0x04": 1,
+        "0x18": 2,
+        "0x1C": 3,
+        "0x30": 6
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "capped_approach_multiply_f64": 1,
+        "approach_f64_source": 2
+      },
+      "mini_roles": {
+        "None": 12
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DAAE0",
+      "name": "dora3_s3_801DAAE0",
+      "vram": "0x801DAAE0",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x18": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DAB58",
+      "name": "dora3_camera_update_scene_mode12_801DAB58",
+      "vram": "0x801DAB58",
+      "stores": 10,
+      "store_fields": {
+        "0x30": 2,
+        "0x04": 3,
+        "0x18": 2,
+        "0x1C": 3
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "approach_f64_source": 2,
+        "capped_approach_multiply_f64": 1
+      },
+      "mini_roles": {
+        "None": 10
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DAED8",
+      "name": "dora3_s3_801DAED8",
+      "vram": "0x801DAED8",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x18": 1,
+        "0x1C": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DAF50",
+      "name": "dora3_camera_update_scene_mode14_801DAF50",
+      "vram": "0x801DAF50",
+      "stores": 11,
+      "store_fields": {
+        "0x04": 3,
+        "0x18": 2,
+        "0x1C": 3,
+        "0x30": 3
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "approach_f64_source": 2,
+        "capped_approach_multiply_f64": 1
+      },
+      "mini_roles": {
+        "None": 11
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DB32C",
+      "name": "dora3_s3_801DB32C",
+      "vram": "0x801DB32C",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x18": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x30": 1,
+        "0x04": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DB3D0",
+      "name": "dora3_camera_update_scene_mode15_801DB3D0",
+      "vram": "0x801DB3D0",
+      "stores": 7,
+      "store_fields": {
+        "0x04": 1,
+        "0x1C": 4,
+        "0x30": 1,
+        "0x18": 1
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "capped_approach_multiply_f64": 1
+      },
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DB67C",
+      "name": "dora3_s3_801DB67C",
+      "vram": "0x801DB67C",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1,
+        "0x18": 1,
+        "0x20": 1,
+        "0x1C": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DB720",
+      "name": "dora3_camera_update_fixed_room_descriptor_801DB720",
+      "vram": "0x801DB720",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1,
+        "0x18": 1,
+        "0x20": 1,
+        "0x1C": 1,
+        "0x30": 1
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DB7C8",
+      "name": "dora3_camera_update_manual_held_input_801DB7C8",
+      "vram": "0x801DB7C8",
+      "stores": 7,
+      "store_fields": {
+        "0x1C": 2,
+        "0x18": 2,
+        "0x30": 3
+      },
+      "classification": "ordinary motion or current-pose equation; connected camera timeline and new camera-only fallback",
+      "timing_operations": {
+        "scale_f32_source": 4,
+        "rate_arithmetic_f32": 2
+      },
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DB8F8",
+      "name": "dora3_s3_801DB8F8",
+      "vram": "0x801DB8F8",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x18": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DBAA0",
+      "name": "dora3_s3_801DBAA0",
+      "vram": "0x801DBAA0",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_core_801DBC48",
+      "name": "dora3_s3_core_801DBC48",
+      "vram": "0x801DBC48",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DBD58",
+      "name": "dora3_camera_dispatch_mode_801DBD58",
+      "vram": "0x801DBD58",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {
+        "ordinary_camera_dispatch": 15,
+        "ground_preview_boundary": 2
+      },
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DE424",
+      "name": "dora3_cutscene_command_activate_camera_801DE424",
+      "vram": "0x801DE424",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DF400",
+      "name": "dora3_s3_801DF400",
+      "vram": "0x801DF400",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DF498",
+      "name": "dora3_s3_801DF498",
+      "vram": "0x801DF498",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DF614",
+      "name": "dora3_s3_801DF614",
+      "vram": "0x801DF614",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DFAAC",
+      "name": "dora3_camera_step_scripted_absolute_target_801DFAAC",
+      "vram": "0x801DFAAC",
+      "stores": 3,
+      "store_fields": {
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1
+      },
+      "classification": "scripted timed motion/composition; private cutscene equations",
+      "timing_operations": {
+        "scale_f32_source": 1,
+        "add_displacement_f32": 1
+      },
+      "mini_roles": {
+        "None": 3
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DFB00",
+      "name": "dora3_camera_step_scripted_participant_follow_801DFB00",
+      "vram": "0x801DFB00",
+      "stores": 3,
+      "store_fields": {
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1
+      },
+      "classification": "scripted timed motion/composition; private cutscene equations",
+      "timing_operations": {
+        "scale_f32_source": 1
+      },
+      "mini_roles": {
+        "None": 3
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DFBA4",
+      "name": "dora3_camera_step_scripted_angles_801DFBA4",
+      "vram": "0x801DFBA4",
+      "stores": 3,
+      "store_fields": {
+        "0x18": 1,
+        "0x1C": 1,
+        "0x20": 1
+      },
+      "classification": "scripted timed motion/composition; private cutscene equations",
+      "timing_operations": {
+        "scale_f32_source": 1,
+        "timed_angle_call": 1
+      },
+      "mini_roles": {
+        "None": 3
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DFC3C",
+      "name": "dora3_camera_step_scripted_distance_801DFC3C",
+      "vram": "0x801DFC3C",
+      "stores": 1,
+      "store_fields": {
+        "0x30": 1
+      },
+      "classification": "scripted timed motion/composition; private cutscene equations",
+      "timing_operations": {
+        "scale_f32_source": 1,
+        "add_displacement_f32": 1
+      },
+      "mini_roles": {
+        "None": 1
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DFC60",
+      "name": "dora3_camera_step_scripted_eye_801DFC60",
+      "vram": "0x801DFC60",
+      "stores": 3,
+      "store_fields": {
+        "0x0C": 1,
+        "0x10": 1,
+        "0x14": 1
+      },
+      "classification": "scripted timed motion/composition; private cutscene equations",
+      "timing_operations": {
+        "scale_f32_source": 1,
+        "add_displacement_f32": 1
+      },
+      "mini_roles": {
+        "None": 3
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DFCD8",
+      "name": "dora3_camera_compose_scripted_target_orbits_801DFCD8",
+      "vram": "0x801DFCD8",
+      "stores": 3,
+      "store_fields": {
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1
+      },
+      "classification": "scripted timed motion/composition; private cutscene equations",
+      "timing_operations": {
+        "scale_f32_source": 3,
+        "displacement_f32_source": 3
+      },
+      "mini_roles": {
+        "None": 3
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801DFFEC",
+      "name": "dora3_camera_compose_scripted_eye_orbits_801DFFEC",
+      "vram": "0x801DFFEC",
+      "stores": 3,
+      "store_fields": {
+        "0x0C": 1,
+        "0x10": 1,
+        "0x14": 1
+      },
+      "classification": "scripted timed motion/composition; private cutscene equations",
+      "timing_operations": {
+        "scale_f32_source": 3,
+        "displacement_f32_source": 3,
+        "cutscene_follow_eye_basis": 3
+      },
+      "mini_roles": {
+        "None": 3
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801E0324",
+      "name": "dora3_camera_step_scripted_local_target_801E0324",
+      "vram": "0x801E0324",
+      "stores": 4,
+      "store_fields": {
+        "0x00": 2,
+        "0x04": 1,
+        "0x08": 1
+      },
+      "classification": "scripted timed motion/composition; private cutscene equations",
+      "timing_operations": {
+        "scale_f32_source": 2,
+        "displacement_f32_source": 4
+      },
+      "mini_roles": {
+        "None": 4
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801E0518",
+      "name": "dora3_camera_step_scripted_local_eye_801E0518",
+      "vram": "0x801E0518",
+      "stores": 3,
+      "store_fields": {
+        "0x0C": 1,
+        "0x10": 1,
+        "0x14": 1
+      },
+      "classification": "scripted timed motion/composition; private cutscene equations",
+      "timing_operations": {
+        "scale_f32_source": 2,
+        "displacement_f32_source": 4
+      },
+      "mini_roles": {
+        "None": 3
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801E0760",
+      "name": "dora3_camera_dispatch_scripted_mode_801E0760",
+      "vram": "0x801E0760",
+      "stores": 3,
+      "store_fields": {
+        "0x24": 1,
+        "0x28": 1,
+        "0x2C": 1
+      },
+      "classification": "scripted mode dispatch and one-time up-vector command",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 3
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801E3E04",
+      "name": "dora3_cutscene_release_script_camera_block_801E3E04",
+      "vram": "0x801E3E04",
+      "stores": 3,
+      "store_fields": {
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1
+      },
+      "classification": "Source script release command",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 3
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801E8ECC",
+      "name": "dora3_s3_801E8ECC",
+      "vram": "0x801E8ECC",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801EF4E0",
+      "name": "dora3_s3_801EF4E0",
+      "vram": "0x801EF4E0",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801EF548",
+      "name": "dora3_s3_801EF548",
+      "vram": "0x801EF548",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1,
+        "0x18": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801F0B6C",
+      "name": "dora3_s3_801F0B6C",
+      "vram": "0x801F0B6C",
+      "stores": 14,
+      "store_fields": {
+        "0x00": 2,
+        "0x04": 2,
+        "0x08": 2,
+        "0x18": 2,
+        "0x1C": 2,
+        "0x20": 2,
+        "0x30": 2
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 14
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801F31F4",
+      "name": "dora3_s3_801F31F4",
+      "vram": "0x801F31F4",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801F3358",
+      "name": "dora3_s3_801F3358",
+      "vram": "0x801F3358",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801F3654",
+      "name": "dora3_s3_801F3654",
+      "vram": "0x801F3654",
+      "stores": 14,
+      "store_fields": {
+        "0x00": 2,
+        "0x04": 2,
+        "0x08": 2,
+        "0x18": 2,
+        "0x1C": 2,
+        "0x20": 2,
+        "0x30": 2
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 14
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801F5AC8",
+      "name": "dora3_s3_801F5AC8",
+      "vram": "0x801F5AC8",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801F5C2C",
+      "name": "dora3_s3_801F5C2C",
+      "vram": "0x801F5C2C",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801F5D88",
+      "name": "dora3_s3_801F5D88",
+      "vram": "0x801F5D88",
+      "stores": 14,
+      "store_fields": {
+        "0x00": 2,
+        "0x08": 2,
+        "0x1C": 2,
+        "0x20": 2,
+        "0x04": 2,
+        "0x18": 2,
+        "0x30": 2
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 14
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801F6DF8",
+      "name": "dora3_s3_801F6DF8",
+      "vram": "0x801F6DF8",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_801F6F44",
+      "name": "dora3_s3_801F6F44",
+      "vram": "0x801F6F44",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_core_801F96E0",
+      "name": "dora3_auxiliary_update_manual_camera_801F96E0",
+      "vram": "0x801F96E0",
+      "stores": 7,
+      "store_fields": {
+        "0x1C": 2,
+        "0x18": 2,
+        "0x30": 3
+      },
+      "classification": "omitted auxiliary rates; implemented in new UI camera profiles",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_core_801F9818",
+      "name": "dora3_s3_core_801F9818",
+      "vram": "0x801F9818",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x18": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_core_801F986C",
+      "name": "dora3_s3_core_801F986C",
+      "vram": "0x801F986C",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_core_801F9B58",
+      "name": "dora3_s3_core_801F9B58",
+      "vram": "0x801F9B58",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".scene1",
+      "legacy_name": "dora3_s3_core_801F9C88",
+      "name": "dora3_s3_core_801F9C88",
+      "vram": "0x801F9C88",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_common",
+      "legacy_name": "dora3_s20_mini_801B9360",
+      "name": "dora3_s20_mini_801B9360",
+      "vram": "0x801B9360",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_1",
+      "legacy_name": "dora3_s21_mini_801C5730",
+      "name": "dora3_race_camera_advance_intro_801C5730",
+      "vram": "0x801C5730",
+      "stores": 2,
+      "store_fields": {
+        "0x30": 1,
+        "0x18": 1
+      },
+      "classification": "typed Native minigame Motion/Angle/bounds, followed by SDKeye",
+      "timing_operations": {},
+      "mini_roles": {
+        "1": 1,
+        "2": 1
+      }
+    },
+    {
+      "section": ".minigame_1",
+      "legacy_name": "dora3_s21_mini_801C578C",
+      "name": "dora3_race_camera_follow_heading_801C578C",
+      "vram": "0x801C578C",
+      "stores": 5,
+      "store_fields": {
+        "0x30": 1,
+        "0x18": 1,
+        "0x1C": 3
+      },
+      "classification": "typed Native minigame Motion/Angle/bounds, followed by SDKeye",
+      "timing_operations": {},
+      "mini_roles": {
+        "0": 4,
+        "2": 1
+      }
+    },
+    {
+      "section": ".minigame_1",
+      "legacy_name": "dora3_s21_mini_801C5908",
+      "name": "dora3_race_camera_turn_to_finished_participant_801C5908",
+      "vram": "0x801C5908",
+      "stores": 4,
+      "store_fields": {
+        "0x18": 1,
+        "0x30": 2,
+        "0x1C": 1
+      },
+      "classification": "typed Native minigame Motion/Angle/bounds, followed by SDKeye",
+      "timing_operations": {},
+      "mini_roles": {
+        "0": 2,
+        "1": 1,
+        "2": 1
+      }
+    },
+    {
+      "section": ".minigame_1",
+      "legacy_name": "dora3_s21_mini_801C5AA0",
+      "name": "dora3_s21_mini_801C5AA0",
+      "vram": "0x801C5AA0",
+      "stores": 8,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x18": 1,
+        "0x30": 1,
+        "0x1C": 2
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 8
+      }
+    },
+    {
+      "section": ".minigame_1",
+      "legacy_name": "dora3_s21_mini_801C5B64",
+      "name": "dora3_race_camera_dispatch_intro_follow_or_finish_801C5B64",
+      "vram": "0x801C5B64",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_1",
+      "legacy_name": "dora3_s21_mini_801C8C74",
+      "name": "dora3_s21_mini_801C8C74",
+      "vram": "0x801C8C74",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_1",
+      "legacy_name": "dora3_s21_mini_801CACAC",
+      "name": "dora3_minigame1_update_801CACAC",
+      "vram": "0x801CACAC",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_1",
+      "legacy_name": "dora3_s21_mini_801CB160",
+      "name": "dora3_s21_mini_801CB160",
+      "vram": "0x801CB160",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_2",
+      "legacy_name": "dora3_s22_mini_801C4F5C",
+      "name": "dora3_s22_mini_801C4F5C",
+      "vram": "0x801C4F5C",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x08": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x18": 1,
+        "0x30": 1,
+        "0x04": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".minigame_2",
+      "legacy_name": "dora3_s22_mini_801C510C",
+      "name": "dora3_minigame2_advance_intro_camera_801C510C",
+      "vram": "0x801C510C",
+      "stores": 4,
+      "store_fields": {
+        "0x30": 2,
+        "0x18": 2
+      },
+      "classification": "typed Native minigame Motion/Angle/bounds, followed by SDKeye",
+      "timing_operations": {},
+      "mini_roles": {
+        "1": 1,
+        "2": 1,
+        "0": 2
+      }
+    },
+    {
+      "section": ".minigame_2",
+      "legacy_name": "dora3_s22_mini_801C51B0",
+      "name": "dora3_minigame2_approach_camera_yaw_801C51B0",
+      "vram": "0x801C51B0",
+      "stores": 5,
+      "store_fields": {
+        "0x30": 1,
+        "0x18": 1,
+        "0x1C": 3
+      },
+      "classification": "typed Native minigame Motion/Angle/bounds, followed by SDKeye",
+      "timing_operations": {},
+      "mini_roles": {
+        "0": 4,
+        "2": 1
+      }
+    },
+    {
+      "section": ".minigame_2",
+      "legacy_name": "dora3_s22_mini_801C532C",
+      "name": "dora3_planes_camera_turn_to_finished_participant_801C532C",
+      "vram": "0x801C532C",
+      "stores": 4,
+      "store_fields": {
+        "0x18": 1,
+        "0x1C": 1,
+        "0x30": 2
+      },
+      "classification": "typed Native minigame Motion/Angle/bounds, followed by SDKeye",
+      "timing_operations": {},
+      "mini_roles": {
+        "0": 2,
+        "2": 1,
+        "1": 1
+      }
+    },
+    {
+      "section": ".minigame_2",
+      "legacy_name": "dora3_s22_mini_801C54C0",
+      "name": "dora3_planes_camera_dispatch_intro_follow_or_finish_801C54C0",
+      "vram": "0x801C54C0",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_2",
+      "legacy_name": "dora3_s22_mini_801C6D40",
+      "name": "dora3_s22_mini_801C6D40",
+      "vram": "0x801C6D40",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_2",
+      "legacy_name": "dora3_s22_mini_801C73F4",
+      "name": "dora3_s22_mini_801C73F4",
+      "vram": "0x801C73F4",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_2",
+      "legacy_name": "dora3_s22_mini_801C7CBC",
+      "name": "dora3_minigame2_update_801C7CBC",
+      "vram": "0x801C7CBC",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_3",
+      "legacy_name": "dora3_s23_mini_801C4A28",
+      "name": "dora3_s23_mini_801C4A28",
+      "vram": "0x801C4A28",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x18": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".minigame_3",
+      "legacy_name": "dora3_s23_mini_801C4BB4",
+      "name": "dora3_minigame3_advance_result_camera_801C4BB4",
+      "vram": "0x801C4BB4",
+      "stores": 4,
+      "store_fields": {
+        "0x30": 2,
+        "0x18": 2
+      },
+      "classification": "typed Native minigame Motion/Angle/bounds, followed by SDKeye",
+      "timing_operations": {},
+      "mini_roles": {
+        "1": 2,
+        "0": 2
+      }
+    },
+    {
+      "section": ".minigame_3",
+      "legacy_name": "dora3_s23_mini_801C764C",
+      "name": "dora3_s23_mini_801C764C",
+      "vram": "0x801C764C",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_3",
+      "legacy_name": "dora3_s23_mini_801C7CA4",
+      "name": "dora3_minigame3_update_801C7CA4",
+      "vram": "0x801C7CA4",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_4",
+      "legacy_name": "dora3_s24_mini_801C3E44",
+      "name": "dora3_s24_mini_801C3E44",
+      "vram": "0x801C3E44",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x18": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".minigame_4",
+      "legacy_name": "dora3_s24_mini_801C3FCC",
+      "name": "dora3_minigame4_advance_result_camera_801C3FCC",
+      "vram": "0x801C3FCC",
+      "stores": 6,
+      "store_fields": {
+        "0x18": 2,
+        "0x30": 2,
+        "0x04": 2
+      },
+      "classification": "typed Native minigame Motion/Angle/bounds, followed by SDKeye",
+      "timing_operations": {},
+      "mini_roles": {
+        "0": 3,
+        "1": 3
+      }
+    },
+    {
+      "section": ".minigame_4",
+      "legacy_name": "dora3_s24_mini_801C90C4",
+      "name": "dora3_s24_mini_801C90C4",
+      "vram": "0x801C90C4",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_4",
+      "legacy_name": "dora3_s24_mini_801C94D0",
+      "name": "dora3_minigame4_update_801C94D0",
+      "vram": "0x801C94D0",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_5",
+      "legacy_name": "dora3_s25_mini_801C67A4",
+      "name": "dora3_minigame5_update_801C67A4",
+      "vram": "0x801C67A4",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_5",
+      "legacy_name": "dora3_s25_mini_801C6A30",
+      "name": "dora3_s25_mini_801C6A30",
+      "vram": "0x801C6A30",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_6",
+      "legacy_name": "dora3_s26_mini_801C69F8",
+      "name": "dora3_minigame6_update_801C69F8",
+      "vram": "0x801C69F8",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_6",
+      "legacy_name": "dora3_s26_mini_801C7048",
+      "name": "dora3_s26_mini_801C7048",
+      "vram": "0x801C7048",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_7",
+      "legacy_name": "dora3_s27_mini_801C66F0",
+      "name": "dora3_s27_mini_801C66F0",
+      "vram": "0x801C66F0",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x08": 1,
+        "0x18": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".minigame_7",
+      "legacy_name": "dora3_s27_mini_801C6844",
+      "name": "dora3_minigame7_update_801C6844",
+      "vram": "0x801C6844",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_7",
+      "legacy_name": "dora3_s27_mini_801C6B90",
+      "name": "dora3_s27_mini_801C6B90",
+      "vram": "0x801C6B90",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_8",
+      "legacy_name": "dora3_s28_mini_801C763C",
+      "name": "dora3_minigame8_advance_intro_camera_801C763C",
+      "vram": "0x801C763C",
+      "stores": 4,
+      "store_fields": {
+        "0x04": 1,
+        "0x18": 1,
+        "0x00": 1,
+        "0x1C": 1
+      },
+      "classification": "typed Native minigame Motion/Angle/bounds, followed by SDKeye",
+      "timing_operations": {},
+      "mini_roles": {
+        "1": 2,
+        "2": 2
+      }
+    },
+    {
+      "section": ".minigame_8",
+      "legacy_name": "dora3_s28_mini_801C76B4",
+      "name": "dora3_minigame8_prepare_camera_transition_801C76B4",
+      "vram": "0x801C76B4",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_8",
+      "legacy_name": "dora3_s28_mini_801C7994",
+      "name": "dora3_minigame8_apply_camera_transition_step_801C7994",
+      "vram": "0x801C7994",
+      "stores": 10,
+      "store_fields": {
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1,
+        "0x0C": 1,
+        "0x10": 1,
+        "0x14": 1,
+        "0x18": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x30": 1
+      },
+      "classification": "typed Native minigame Motion/Angle/bounds, followed by SDKeye",
+      "timing_operations": {
+        "scale_f32_source": 10
+      },
+      "mini_roles": {
+        "1": 10
+      }
+    },
+    {
+      "section": ".minigame_8",
+      "legacy_name": "dora3_s28_mini_801C7D5C",
+      "name": "dora3_s28_mini_801C7D5C",
+      "vram": "0x801C7D5C",
+      "stores": 7,
+      "store_fields": {
+        "0x20": 1,
+        "0x00": 1,
+        "0x04": 1,
+        "0x08": 1,
+        "0x18": 1,
+        "0x1C": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".minigame_8",
+      "legacy_name": "dora3_s28_mini_801C7EF4",
+      "name": "dora3_minigame8_update_801C7EF4",
+      "vram": "0x801C7EF4",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_8",
+      "legacy_name": "dora3_s28_mini_801C8270",
+      "name": "dora3_s28_mini_801C8270",
+      "vram": "0x801C8270",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_9",
+      "legacy_name": "dora3_s29_mini_801C73B8",
+      "name": "dora3_s29_mini_801C73B8",
+      "vram": "0x801C73B8",
+      "stores": 7,
+      "store_fields": {
+        "0x00": 1,
+        "0x1C": 1,
+        "0x20": 1,
+        "0x04": 1,
+        "0x08": 1,
+        "0x18": 1,
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 7
+      }
+    },
+    {
+      "section": ".minigame_9",
+      "legacy_name": "dora3_s29_mini_801C7508",
+      "name": "dora3_minigame9_update_801C7508",
+      "vram": "0x801C7508",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".minigame_9",
+      "legacy_name": "dora3_s29_mini_801C7864",
+      "name": "dora3_s29_mini_801C7864",
+      "vram": "0x801C7864",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".remaining_slot1_02",
+      "legacy_name": "dora3_s41_remaining_80230968",
+      "name": "dora3_kaenhousha_segment_grow_chain_and_fade_80230968",
+      "vram": "0x80230968",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {
+        "native_enemy_equation": 9,
+        "native_enemy_attachment_end": 1
+      },
+      "mini_roles": {}
+    },
+    {
+      "section": ".startup_scene",
+      "legacy_name": "dora3_s49_remaining_801B4FE4",
+      "name": "dora3_s49_remaining_801B4FE4",
+      "vram": "0x801B4FE4",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".startup_scene",
+      "legacy_name": "dora3_s49_remaining_801B5064",
+      "name": "dora3_s49_remaining_801B5064",
+      "vram": "0x801B5064",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".startup_scene",
+      "legacy_name": "dora3_s49_remaining_801B50F0",
+      "name": "dora3_s49_remaining_801B50F0",
+      "vram": "0x801B50F0",
+      "stores": 1,
+      "store_fields": {
+        "0x30": 1
+      },
+      "classification": "Source fixed initialization or reset; no repeated rate",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 1
+      }
+    },
+    {
+      "section": ".startup_scene",
+      "legacy_name": "dora3_s49_remaining_801B5788",
+      "name": "dora3_auxiliary_update_four_camera_views_801B5788",
+      "vram": "0x801B5788",
+      "stores": 10,
+      "store_fields": {
+        "0x1C": 4,
+        "0x18": 2,
+        "0x30": 4
+      },
+      "classification": "omitted auxiliary rates; implemented in new UI camera profiles",
+      "timing_operations": {},
+      "mini_roles": {
+        "None": 10
+      }
+    },
+    {
+      "section": ".startup_scene",
+      "legacy_name": "dora3_s49_remaining_801B5A70",
+      "name": "dora3_s49_remaining_801B5A70",
+      "vram": "0x801B5A70",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".startup_scene",
+      "legacy_name": "dora3_s49_remaining_801B5B2C",
+      "name": "dora3_s49_remaining_801B5B2C",
+      "vram": "0x801B5B2C",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".startup_scene",
+      "legacy_name": "dora3_s49_remaining_801B6FD0",
+      "name": "dora3_s49_remaining_801B6FD0",
+      "vram": "0x801B6FD0",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    },
+    {
+      "section": ".startup_scene",
+      "legacy_name": "dora3_s49_remaining_801B70A8",
+      "name": "dora3_s49_remaining_801B70A8",
+      "vram": "0x801B70A8",
+      "stores": 0,
+      "store_fields": {},
+      "classification": "camera reader, pointer caller, current geometry/projection/draw; no camera store",
+      "timing_operations": {},
+      "mini_roles": {}
+    }
+  ]
+}

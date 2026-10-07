@@ -12,7 +12,7 @@ CHECKS=('integration texture_animation minigames ui cutscene model_animation fra
         'frame_scheduler graphics_pump loop scene34_draw session present scene_transition '
         'player_update scene_frame story_pickups scene_objects enemy names overlay docs').split()
 NO_GENERATED={'session','present','docs'}
-ROM_CHECKS=set('ui cutscene camera_control camera_modes script_camera effects gravity player_motion process_time graphics_pump loop scene34_draw scene_transition player_update scene_frame story_pickups overlay'.split())
+ROM_CHECKS=set('model_animation texture_animation ui cutscene camera_control camera_modes script_camera effects gravity player_motion process_time graphics_pump loop scene34_draw scene_transition player_update scene_frame story_pickups overlay'.split())
 REFERENCE_CHECKS=set('ui cutscene simulation camera_control camera_modes script_camera effects gravity player_motion process_time scene_transition player_update scene_frame story_pickups'.split())
 LEAF_REFERENCE=set('camera_control script_camera effects gravity process_time'.split())
 

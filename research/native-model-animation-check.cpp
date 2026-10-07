@@ -7,6 +7,8 @@
 #include <cmath>
 #include <cstring>
 #include <iostream>
+#include <fstream>
+#include <iterator>
 #include <set>
 #include <stdexcept>
 #include <vector>
@@ -24,7 +26,7 @@ const FrameBinding* active_frame_binding(){return binding;}
 }
 extern "C" void dora3_trace(uint8_t*,recomp_context*,uint32_t,uint32_t) {}
 extern "C" void dora3_game_heap_alloc(uint8_t*,recomp_context* c) {
-    const uint32_t size=uint32_t(c->r4);assert(size && size<4096);
+    const uint32_t size=uint32_t(c->r4);assert(size && size<65536);
     c->r2=int32_t(next_address);assert(allocations.insert(next_address).second);
     next_address+=(size+15)&~15u;
 }
@@ -34,7 +36,8 @@ extern "C" void switch_error(const char*,uint32_t,uint32_t) {throw std::logic_er
 static unsigned player_impulses=0;
 extern "C" void dora3_s3_core_801C120C(uint8_t*,recomp_context*) {++player_impulses;}
 extern "C" void dora3_s3_core_801C1664(uint8_t*,recomp_context*) {}
-int main() {
+int main(int argc,char** argv) {
+    assert(argc==3);
     std::vector<uint32_t> memory(0x400000/4);auto* rdram=reinterpret_cast<uint8_t*>(memory.data());
     auto W=[&](uint32_t a)->int32_t& {return MEM_W(0,int32_t(a));};
     auto F=[&](uint32_t a,float f) {W(a)=std::bit_cast<int32_t>(f);};
@@ -131,6 +134,7 @@ int main() {
     }
     B(model+0x7C)=0;
     #include "native-after048-model-check.inc"
+    #include "native-after049-spiral-check.inc"
     // ROM0A46 numeric reset: Source samples remain numeric; Native angles
     // cross 360 continuously. A whole 0->360 spin is never shortened to zero.
     {

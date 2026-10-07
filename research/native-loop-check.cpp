@@ -310,3 +310,21 @@ extern "C" void dora3_s33_remaining_8021FED8(uint8_t*,recomp_context*) {std::abo
 extern "C" void dora3_s0_80040104(uint8_t*,recomp_context*){std::abort();}
 extern "C" void dora3_s0_800327A4(uint8_t*,recomp_context*){std::abort();}
 extern "C" void dora3_s0_8002DA98(uint8_t*,recomp_context*){std::abort();}
+
+// Loop lifecycle uses image/menu synthetic callbacks, not world camera math.
+// Full camera bodies/pins are exercised by connected UI and camera checks.
+extern "C" void dora3_s3_801DB7C8(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801D6EAC(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801D8FF0(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801D7294(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801D5864(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801D8578(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801DB720(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801D9B00(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801D8A24(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801D9C94(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801DA06C(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801DAB58(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801DA588(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801DAF50(uint8_t*,recomp_context*){std::abort();}
+extern "C" void dora3_s3_801DB3D0(uint8_t*,recomp_context*){std::abort();}

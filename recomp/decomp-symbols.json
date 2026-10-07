@@ -10768,8 +10768,8 @@
       "size": 172,
       "legacy_name": "dora3_s0_80028BC8",
       "name": "dora3_sprite_bind_actor_slot_80028BC8",
-      "description": "Связывает descriptor со sprite slot: заменяет существующий type5 через освобождение записи либо использует пустой слот. Ставит type5, сохраняет индекс записи, descriptor, frame0, исходную задержку кадра и active flag. Занятый слот другого типа оставляет без изменений.",
-      "evidence": "Точные Original ROM инструкции, таблица80202064+84*kind и .level1_slot1 identity; преобразование движения/Source commands и связанные CPU-проверки готовятся.",
+      "description": "Связывает descriptor со sprite slot: заменяет существующий type5 через освобождение записи либо использует пустой слот. Ставит type5, сохраняет индекс записи, descriptor, frame0, исходную задержку кадра и active flag. Занятый слот другого типа оставляет без изменений. Это также binding анимированных3D материалов. Native clock lifetime сбрасывается только после успешного type5 bind; Source allocation и первая полная delay сохраняются.",
+      "evidence": "ROM-qualified Source instructions/data flow and actual stage descriptor/bitmap/material connections after049. Native changes implemented; executable/visual validation pending user batch closure.",
       "rom_sha256": "3a88ce433d7fc59a2bebb640b46be754386cc6d4044be490f75b67ad0779087d",
       "locals": [
         {
@@ -10783,6 +10783,28 @@
             "0x80028C30": "0x02002021",
             "0x80028C40": "0xAE130000",
             "0x80028C4C": "0xA2020004"
+          }
+        },
+        {
+          "name": "bitmap_bind_actor_r18",
+          "expression": "ctx->r18",
+          "start": "0x80028BD4",
+          "end": "0x80028C60",
+          "description": "Actor сохраняется в s2 до публикации type5/handle; Source ctor boundary28C58 читает этот же owner.",
+          "instructions": {
+            "0x80028BDC": "0x02511021",
+            "0x80028C38": "0x00721821"
+          }
+        },
+        {
+          "name": "bitmap_bind_component_r17",
+          "expression": "ctx->r17",
+          "start": "0x80028BDC",
+          "end": "0x80028C64",
+          "description": "s1 содержит номер component slot, не frame index и не resource id.",
+          "instructions": {
+            "0x80028BDC": "0x02511021",
+            "0x80028C34": "0x00111880"
           }
         }
       ]
@@ -88128,7 +88150,7 @@
       "size": 1204,
       "legacy_name": "dora3_s21_mini_801CACAC",
       "name": "dora3_minigame1_update_801CACAC",
-      "description": "Основной Source update races1: input/AI/physics, четыре view origins и camera dispatchers, phase/finish/score/commands. Native движется по Source equations без повторного dispatcher; после048 исправлены circle follow/finish cameras всех участников и вариантов трассы, статическая реализация пока без новых CPU/визуальных checks.",
+      "description": "Основной Source update races1: input/AI/physics, четыре view origins и camera dispatchers, phase/finish/score/commands. Native движется по Source equations без повторного dispatcher; после048 исправлены circle follow/finish cameras всех участников и вариантов трассы, CPU baseline049 сохранён с прежним provenance; новые camera integration правки ожидают batch closure.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "d94dbc57cd314b1c4071a335cdea5fb7638e0a33dacc40da47ffcd81a8a32ab5",
       "locals": []
@@ -88139,7 +88161,7 @@
       "size": 860,
       "legacy_name": "dora3_s22_mini_801C7CBC",
       "name": "dora3_minigame2_update_801C7CBC",
-      "description": "Основной Source update planes2: participants, постоянные visuals/followers, четыре view origins, intro/follow/finish camera dispatch и commands. Native обновляет motion/derived poses и eye geometry отдельно; circle camera error больше не перескакивает на0/360. Новые проверки после048 отложены.",
+      "description": "Основной Source update planes2: participants, постоянные visuals/followers, четыре view origins, intro/follow/finish camera dispatch и commands. Native обновляет motion/derived poses и eye geometry отдельно; circle camera error больше не перескакивает на0/360. CPU baseline049 сохранён; новая интеграция камеры после049 ещё не проверена.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "07e3e79bc79c2bd2631584b9d1a34ffb9e6a5194cb0801b8c3dcb61e99a86a8c",
       "locals": []
@@ -88150,7 +88172,7 @@
       "size": 680,
       "legacy_name": "dora3_s23_mini_801C7CA4",
       "name": "dora3_minigame3_update_801C7CA4",
-      "description": "Основной Source update миниигры3, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C764C занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "description": "Основной Source update миниигры3, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C764C занимает второй process slot. Source callback сохраняет input/commands; connected Native motion/derived fields/model poses/camera geometry уже подключены. Повтор всего dispatcher с частотой Manual запрещён.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "c317868467f12576339314ca1e79874b55170638e9c0437ec9dcd92bad83189d",
       "locals": []
@@ -88161,7 +88183,7 @@
       "size": 608,
       "legacy_name": "dora3_s24_mini_801C94D0",
       "name": "dora3_minigame4_update_801C94D0",
-      "description": "Основной Source update миниигры4, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C90C4 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "description": "Основной Source update миниигры4, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C90C4 занимает второй process slot. Source callback сохраняет input/commands; connected Native motion/derived fields/model poses/camera geometry уже подключены. Повтор всего dispatcher с частотой Manual запрещён.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "bea7d66e8ac7b91206160fde5e46b22a5c090654898b4e112b0fdfa40f67f4aa",
       "locals": []
@@ -88172,7 +88194,7 @@
       "size": 652,
       "legacy_name": "dora3_s25_mini_801C67A4",
       "name": "dora3_minigame5_update_801C67A4",
-      "description": "Основной Source update миниигры5, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C6A30 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "description": "Основной Source update миниигры5, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C6A30 занимает второй process slot. Source callback сохраняет input/commands; connected Native motion/derived fields/model poses/camera geometry уже подключены. Повтор всего dispatcher с частотой Manual запрещён.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "a2c7f075971e2754b51eacbd85288ddcd229bffec9c5c3f0217394426bb7fbcd",
       "locals": []
@@ -88183,7 +88205,7 @@
       "size": 1616,
       "legacy_name": "dora3_s26_mini_801C69F8",
       "name": "dora3_minigame6_update_801C69F8",
-      "description": "Основной Source update миниигры6, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C7048 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "description": "Основной Source update миниигры6, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C7048 занимает второй process slot. Source callback сохраняет input/commands; connected Native motion/derived fields/model poses/camera geometry уже подключены. Повтор всего dispatcher с частотой Manual запрещён.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "16bf5aa5a1b81ae9057cd40449a010cbfc2b6ea22dc6842fdeed879a4acb5fbd",
       "locals": []
@@ -88194,7 +88216,7 @@
       "size": 844,
       "legacy_name": "dora3_s27_mini_801C6844",
       "name": "dora3_minigame7_update_801C6844",
-      "description": "Основной Source update миниигры7, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C6B90 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "description": "Основной Source update миниигры7, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C6B90 занимает второй process slot. Source callback сохраняет input/commands; connected Native motion/derived fields/model poses/camera geometry уже подключены. Повтор всего dispatcher с частотой Manual запрещён.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "932ecdc506f24d046d691ce7b3b4ff88cb5892b0388c7ef4368c481a2eb12ce1",
       "locals": []
@@ -88216,7 +88238,7 @@
       "size": 860,
       "legacy_name": "dora3_s29_mini_801C7508",
       "name": "dora3_minigame9_update_801C7508",
-      "description": "Основной Source update миниигры9, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C7864 занимает второй process slot. Native блок4 пока разрабатывается; повтор всего dispatcher с частотой Manual запрещён.",
+      "description": "Основной Source update миниигры9, точный ROM overlay. Обновляет участников, фазу/счёт/ожидания, команды и камеры; paired draw0x801C7864 занимает второй process slot. Source callback сохраняет input/commands; connected Native motion/derived fields/model poses/camera geometry уже подключены. Повтор всего dispatcher с частотой Manual запрещён.",
       "evidence": "Exact ROM body and reviewed Source branches; Native block4 implementation in progress, CPU replay/build not run.",
       "rom_sha256": "e84f4573537d599a8c8a3f0a76bdc8db29063cf00f8b0307d0b1f7e2e6911d9e",
       "locals": []
@@ -88872,7 +88894,7 @@
         }
       ],
       "name": "dora3_bind_stage_bitmap_animation_segments_801BBFF4",
-      "description": "Перебирает component slots1..7 статического actor; для type5 берёт текущий channel frame и ресурс из общей таблицы80217120. Публикует texture/palette segments. Общий путь воды и других сценовых bitmap sequences, независимо от gameplay pool230.",
+      "description": "Перебирает component slots1..7 статического actor; для type5 берёт текущий channel frame и ресурс из общей таблицы80217120. Публикует texture/palette segments. Общий путь воды и других сценовых bitmap sequences, независимо от gameplay pool230. Native: полная фаза translating cycles, sampled CI4/IA8 деформации и отдельная palette association для каждого component; Source ctor/update clock задаёт реальный age и паузы.",
       "evidence": "ROM-qualified Original function/body and inspected control/data flow after test046. Source identity and legacy ABI are unchanged. Native047 implementation is pending connected CPU and user visual validation.",
       "rom_sha256": "d71f2000939993024fe7b5c2aa4649b17574516881f21ecc0f3a8b2dfa4525d6"
     },
@@ -89202,7 +89224,7 @@
         }
       ],
       "name": "dora3_game_menu_update_background_clip_801F0068",
-      "description": "Вычисляет позу модели650, затем продвигает clip на3 через SDK2A1B8. В clip0A46 короткий числовой сброс360->1.50311 между480/482 скрыт шагом Original3 и требует циклического углового продолжения при Native sampling.",
+      "description": "Вычисляет позу фоновой модели650 и продвигает clip на3 через SDK2A1B8. Clip0A46 имеет совместный recycle: angle360->1.50311 и scaleX/Y.375->.188283 в480/482. Native исправляет angle и продолжает уже recycled scale branch в коротком промежутке; исправление одного угла оставляло backwards zoom. Все bind/input/Source commands сохраняются.",
       "evidence": "Static exact ROM/data-flow and resource analysis; batch049 tests/build await user completion of bug batches.",
       "rom_sha256": "9d9676ea6db6c2cc8591e5d9ff03bf3561c42051187adc9cd8ed2548b115cb88"
     },
@@ -89955,6 +89977,527 @@
       "name": "dora3_minigame8_complete_action_clip_801C592C",
       "description": "Для Source action modes2/3 проверяет end компонента0. После конца mode0 выбирается при healthD0!=0, иначе очищается invulnerabilityD8 и выбирается mode4 через helper5720 с реальным clip bind. Native terminal hold не показывает начало предыдущего one-shot до Source смены. Time cue и остальные branches не ускоряются.",
       "evidence": "Exact Original ROM end-query/control/clip commands reviewed after048 batch7. Common runtime terminal-boundary hold saved; no new generated C, tests or visual proof before user no."
+    },
+    {
+      "section": ".startup",
+      "vram": "0x80028C74",
+      "size": 220,
+      "legacy_name": "dora3_s0_80028C74",
+      "locals": [
+        {
+          "name": "bitmap_sequence_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x80028CAC",
+          "end": "0x80028D44",
+          "description": "s0 удерживает восьмибайтную запись bitmap sequence: descriptor0, remaining4, frame5, flags6. Не actor/model pointer.",
+          "instructions": {
+            "0x80028CAC": "0x92020006",
+            "0x80028CC0": "0x92020004",
+            "0x80028CCC": "0x92030005",
+            "0x80028D3C": "0xA2020004"
+          }
+        }
+      ],
+      "name": "dora3_bitmap_sequence_update_source_tick_80028C74",
+      "description": "Для component type5 выбирает запись801A9CB0 по handle actor74. Если active bit1: очищает changed/end bits4/8, уменьшает delay4; при delay0 увеличивает frame index5, обрабатывает255 sentinel (loop либо bit2 clamp/stop), загружает новую delay и вычитает1. Один вызов остаётся одним Source tick. Native observer сохраняет возраст/инициализацию канала для непрерывного toroidal scroll и hold невызванного/paused материала; Original bytes/ветвления не меняет.",
+      "evidence": "ROM-qualified Source instructions/data flow and actual stage descriptor/bitmap/material connections after049. Native changes implemented; executable/visual validation pending user batch closure.",
+      "rom_sha256": "3330bbaf3e9e02230cad7d40c7a3baaf84a90223af520ccbd6c17a06f084500c"
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801BBE94",
+      "size": 160,
+      "legacy_name": "dora3_s3_801BBE94",
+      "locals": [],
+      "name": "dora3_stage_load_bitmap_sequence_handles_801BBE94",
+      "description": "Очищает50 halfword handles80217120 в-1, затем читает counted bitmap list: countH0 и bank33 resource idsH2.. Через resource_by_id загружает каждый bitmap и сохраняет runtime handle. Вызывается при room/stage init; общий binder801BBFF4 использует эту таблицу. Frame textures и mesh/map ids принадлежат разным ROM банкам.",
+      "evidence": "ROM-qualified Source instructions/data flow and actual stage descriptor/bitmap/material connections after049. Native changes implemented; executable/visual validation pending user batch closure.",
+      "rom_sha256": "3dcb8e9e44aacf5efc6fb3af62e49030429ad7377bae3a5c17d40278f144aa4a"
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801BC140",
+      "size": 352,
+      "legacy_name": "dora3_s3_801BC140",
+      "locals": [],
+      "name": "dora3_stage_create_static_actors_and_bitmap_channels_801BC140",
+      "description": "Обходит40-byte rows загруженного scene-model map до id-1. Для каждого статического actor загружает GIMO из bank33, связывает component0 и до7 bitmap channels из12-byte descriptors переданного template. Публикует world/source local transforms и group flags. Это реальное подключение desert0239..247 и остальных room material sequences, а не совпадение assets.",
+      "evidence": "ROM-qualified Source instructions/data flow and actual stage descriptor/bitmap/material connections after049. Native changes implemented; executable/visual validation pending user batch closure.",
+      "rom_sha256": "7f4128e36a1c09a7e12cd4710c9b237e3e3185af568ea7b4057d95c5fe31cd33"
+    },
+    {
+      "section": ".startup",
+      "vram": "0x8002A684",
+      "size": 160,
+      "legacy_name": "dora3_s0_8002A684",
+      "locals": [],
+      "name": "dora3_actor_draw_static_gimo_materials_8002A684",
+      "description": "Для component выбирает загруженный GIMO, выпускает DB06 object segment+44->resource base и vertex segment+4C->resource+2C, затем строит материалы через3A3B8. Эти два segment bindings предшествуют builder; Native graph должен учитывать их при nested DE и сохранять привязку каждого bitmap/TLUT component.",
+      "evidence": "ROM-qualified Source instructions/data flow and actual stage descriptor/bitmap/material connections after049. Native changes implemented; executable/visual validation pending user batch closure.",
+      "rom_sha256": "d9cef337ea23cba9a8fb25fed6f3edc79cf4f9ac8e9c8913eec2698c2bd422b1"
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DB7C8",
+      "size": 304,
+      "legacy_name": "dora3_s3_801DB7C8",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801DB7EC",
+          "end": "0x801DB8EC",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801DB7EC": "0x00808021",
+            "0x801DB804": "0xE600001C",
+            "0x801DB82C": "0xE600001C"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_manual_held_input_801DB7C8",
+      "description": "Режимы0/1: held9504 задаёт yaw/pitch±4 и distance±20 с floor20; четыре angle rates и два distance arithmetic hooks получают дробное время. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "7442f50cbbf3a213ef2373f2f7d4e294594d8a5617c8d90972cceb078c0313fe",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801D6EAC",
+      "size": 648,
+      "legacy_name": "dora3_s3_801D6EAC",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801D6EBC",
+          "end": "0x801D7128",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801D6EBC": "0x00808021",
+            "0x801D6EE8": "0xE6000030",
+            "0x801D6EFC": "0xE600001C"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_ten_tick_transition_801D6EAC",
+      "description": "Режим2: переход из камеры игрока с исходным десятикратным счётчиком и дробными pitch/yaw/target/distance; timer остаётся Source. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "404fbb953a0257b14f29d42935ca199dc08f655f13aae2f54b92f585facf7e3a",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801D8FF0",
+      "size": 2616,
+      "legacy_name": "dora3_s3_801D8FF0",
+      "locals": [
+        {
+          "name": "camera_record_r17",
+          "expression": "ctx->r17",
+          "start": "0x801D9028",
+          "end": "0x801D9A08",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801D9028": "0x00808821",
+            "0x801D9278": "0xE620001C",
+            "0x801D9304": "0xE620001C"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_scene_mode03_801D8FF0",
+      "description": "Режим3 из таблицы16 entry80210F98: camera target/pitch/yaw/distance и собственные controls; временные gains/rates отделены от мгновенных пространственных ограничений и collision probes. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "227a10f207ee8f76d3ff2dbbfb408ea406c773f4b27f6970e946327c7ad9a315",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801D7294",
+      "size": 4056,
+      "legacy_name": "dora3_s3_801D7294",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801D72FC",
+          "end": "0x801D8248",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801D72FC": "0x00808021",
+            "0x801D76B8": "0xE6160000",
+            "0x801D76D8": "0xE6020004"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_scene_mode04_801D7294",
+      "description": "Режим4 из таблицы16 entry80210F98: camera target/pitch/yaw/distance и собственные controls; временные gains/rates отделены от мгновенных пространственных ограничений и collision probes. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "2d6729da6bd6121d5e779491c2b11101cff9b7f70280dc14a6e7abc5e9d182f9",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801D5864",
+      "size": 4892,
+      "legacy_name": "dora3_s3_801D5864",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801D58CC",
+          "end": "0x801D6B5C",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801D58CC": "0x00808021",
+            "0x801D5C88": "0xE6160000",
+            "0x801D5CA8": "0xE6020004"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_scene_mode05_801D5864",
+      "description": "Режим5 из таблицы16 entry80210F98: camera target/pitch/yaw/distance и собственные controls; временные gains/rates отделены от мгновенных пространственных ограничений и collision probes. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "88923b251d74eeb244e32c67a3037d61b30d919fadc167887195726ea7b2dc44",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801D8578",
+      "size": 1076,
+      "legacy_name": "dora3_s3_801D8578",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801D85AC",
+          "end": "0x801D898C",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801D85AC": "0x00808021",
+            "0x801D85D0": "0xE6040018",
+            "0x801D8650": "0xE6000000"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_scene_mode06_801D8578",
+      "description": "Режим6 из таблицы16 entry80210F98: camera target/pitch/yaw/distance и собственные controls; временные gains/rates отделены от мгновенных пространственных ограничений и collision probes. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "674dee3c4b8c94fe4e592ddfc022dcf3d113d4e0a92e84c1b43b2f5c5f4e8b94",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DB720",
+      "size": 168,
+      "legacy_name": "dora3_s3_801DB720",
+      "locals": [],
+      "name": "dora3_camera_update_fixed_room_descriptor_801DB720",
+      "description": "Режим7: копирует шесть short descriptor fields24..2E в camera target/pitch/yaw/distance и задаёт world origin. Это текущая геометрия фиксированной комнаты, без временного increment. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "18f1be73a2caee08efd393b967d89f4bf74f8dc3194b95f77c2d1ca973287eae",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801D9B00",
+      "size": 268,
+      "legacy_name": "dora3_s3_801D9B00",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801D9B18",
+          "end": "0x801D9BF4",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801D9B18": "0x00808021",
+            "0x801D9B2C": "0xE6000004",
+            "0x801D9B7C": "0xE60C001C"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_player_relative_geometry_801D9B00",
+      "description": "Режим8: вычисляет yaw/pitch/distance из текущего worldXYZ игрока и сохранённого room vector, с targetY100. Вычитание180 является пространственным offset, а не угловой скоростью. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "456e8aabe8b14c75d365de6c1beb8eb34b9ba5d9fea293f20950f9fa7782416c",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801D8A24",
+      "size": 1316,
+      "legacy_name": "dora3_s3_801D8A24",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801D8A2C",
+          "end": "0x801D8F28",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801D8A2C": "0x00808021",
+            "0x801D8A80": "0xE6000000",
+            "0x801D8A9C": "0xE6020004"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_scene_mode09_801D8A24",
+      "description": "Режим9 из таблицы16 entry80210F98: camera target/pitch/yaw/distance и собственные controls; временные gains/rates отделены от мгновенных пространственных ограничений и collision probes. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "14b17c264e2548912d68943c11bbf5562b50f75cf53af529154a15b274c38e26",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801D9C94",
+      "size": 836,
+      "legacy_name": "dora3_s3_801D9C94",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801D9CD0",
+          "end": "0x801D9FC4",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801D9CD0": "0x00808021",
+            "0x801D9CD4": "0xE6020030",
+            "0x801D9CD8": "0xE6000030"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_scene_mode10_801D9C94",
+      "description": "Режим10 из таблицы16 entry80210F98: camera target/pitch/yaw/distance и собственные controls; временные gains/rates отделены от мгновенных пространственных ограничений и collision probes. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "8adcf44aa173283abe4182f48f940a5e32c5ceda8a6873c762edadd85f6ca1d1",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DA06C",
+      "size": 1176,
+      "legacy_name": "dora3_s3_801DA06C",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801DA098",
+          "end": "0x801DA4F4",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801DA098": "0x00808021",
+            "0x801DA09C": "0xE6080030",
+            "0x801DA0E0": "0xE6020030"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_scene_mode11_801DA06C",
+      "description": "Режим11 из таблицы16 entry80210F98: camera target/pitch/yaw/distance и собственные controls; временные gains/rates отделены от мгновенных пространственных ограничений и collision probes. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "fb8ac286d9f6c7e0da91cdf489b86125d7578c7df7a40d1d8c2d38fd0a2a819e",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DAB58",
+      "size": 896,
+      "legacy_name": "dora3_s3_801DAB58",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801DAB90",
+          "end": "0x801DAEC8",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801DAB90": "0x00808021",
+            "0x801DAB94": "0xE6020030",
+            "0x801DAB98": "0xE6000030"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_scene_mode12_801DAB58",
+      "description": "Режим12 из таблицы16 entry80210F98: camera target/pitch/yaw/distance и собственные controls; временные gains/rates отделены от мгновенных пространственных ограничений и collision probes. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "694715b4d9f98ed0ecba9088865888f2f9ad93fbd93820165ff104ca3da75ea5",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DA588",
+      "size": 1368,
+      "legacy_name": "dora3_s3_801DA588",
+      "locals": [
+        {
+          "name": "camera_record_r17",
+          "expression": "ctx->r17",
+          "start": "0x801DA5A0",
+          "end": "0x801DAAC8",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801DA5A0": "0x00808821",
+            "0x801DA5BC": "0xE6200004",
+            "0x801DA5D4": "0xE6200018"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_scene_mode13_801DA588",
+      "description": "Режим13 из таблицы16 entry80210F98: camera target/pitch/yaw/distance и собственные controls; временные gains/rates отделены от мгновенных пространственных ограничений и collision probes. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "cd3f86a99e94b7e76a3ff9986dd159f512b6c7fff076edfa8e838cf81d172fc1",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DAF50",
+      "size": 988,
+      "legacy_name": "dora3_s3_801DAF50",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801DAF80",
+          "end": "0x801DB31C",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801DAF80": "0x00808021",
+            "0x801DAFE8": "0xE6020004",
+            "0x801DB08C": "0xE6000018"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_scene_mode14_801DAF50",
+      "description": "Режим14 из таблицы16 entry80210F98: camera target/pitch/yaw/distance и собственные controls; временные gains/rates отделены от мгновенных пространственных ограничений и collision probes. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "2141b6888839fbfef84abd9b00d194249cc676d4f009984c360ac3f8a479af15",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801DB3D0",
+      "size": 684,
+      "legacy_name": "dora3_s3_801DB3D0",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801DB3E0",
+          "end": "0x801DB664",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801DB3E0": "0x00808021",
+            "0x801DB444": "0xE600001C",
+            "0x801DB4DC": "0xE600001C"
+          }
+        }
+      ],
+      "name": "dora3_camera_update_scene_mode15_801DB3D0",
+      "description": "Режим15 из таблицы16 entry80210F98: camera target/pitch/yaw/distance и собственные controls; временные gains/rates отделены от мгновенных пространственных ограничений и collision probes. В обычном Native gameplay выполняется из camera timeline по текущей world pose. Если player domain заблокирован, но Source реально достиг этого обработчика, отдельная frame equation публикует только camera geometry; input/mode prefix и controls/counters не повторяются.",
+      "rom_sha256": "7ace6a736e083131a89904ff83446e80ad454bf5527b4e95adfa2a3513994e28",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801D55EC",
+      "size": 176,
+      "legacy_name": "dora3_s3_801D55EC",
+      "locals": [],
+      "name": "dora3_camera_apply_source_parity_shake_801D55EC",
+      "description": "Общий effect: Source remaining parity выбирает знак смещения targetY; mode0 уменьшает amplitude, remaining уменьшается и завершение очищает пять control fields. Native дробный kick применяется из camera anchor; parity/decay/count завершения остаются Source.",
+      "rom_sha256": "555e0ce429b68fde8fbe4428b6667a39cb517325b00ed2f15bd8270e3cea6739",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".startup",
+      "vram": "0x8002F064",
+      "size": 424,
+      "legacy_name": "dora3_s0_8002F064",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x8002F06C",
+          "end": "0x8002F1E8",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x8002F06C": "0x00808021",
+            "0x8002F144": "0xE600000C",
+            "0x8002F160": "0xE6000010"
+          }
+        }
+      ],
+      "name": "dora3_camera_derive_eye_and_up_8002F064",
+      "description": "Чистая геометрия: targetXYZ плюс pitch/yaw/distance дают eyeC..14; pitch90..270 выбирает знак upY28. Две особые pitch90/270 Original корректирует на-1. Временных шагов нет; вызывается после текущей дробной камеры, включая все четыре minigame views.",
+      "rom_sha256": "4f9042a49814e3206a2a4c2ef6f06ffb862df91742f046254e79fe8ebd5163d7",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".startup",
+      "vram": "0x8002F2C8",
+      "size": 536,
+      "legacy_name": "dora3_s0_8002F2C8",
+      "locals": [],
+      "name": "dora3_camera_build_view_and_lookat_commands_8002F2C8",
+      "description": "Берёт camera eye/target/up текущего кадра; режимы1/2 строят SDK look-at/reflection matrices и display-list команды. Ни source timer, ни rate здесь нет. Все Original вызовы SDK56DB4/57408 находятся в этой функции; собственная камера не скрыта в другом renderer.",
+      "rom_sha256": "71d81761559bb8c41bf56cc2badf64880d858f75a8082c1055dfc10a8b7245d6",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene34",
+      "vram": "0x801C10A0",
+      "size": 80,
+      "legacy_name": "dora3_s2_menu_801C10A0",
+      "locals": [],
+      "name": "dora3_selection_initialize_fixed_camera_801C10A0",
+      "description": "Устанавливает camera row по index: target0, yaw/roll0, pitch10,distance800. Последующий selection callback только пересчитывает eye черезSDK2F064; sin bob применяется к actor, камера не следует за ним.",
+      "rom_sha256": "68b7175236f22166b330a9430d3d9e1769ae0410d8d4488a9bd6e4fc7f0b44b0",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".startup_scene",
+      "vram": "0x801B5788",
+      "size": 524,
+      "legacy_name": "dora3_s49_remaining_801B5788",
+      "locals": [],
+      "name": "dora3_auxiliary_update_four_camera_views_801B5788",
+      "description": "Source служебного экрана: camera0 held yaw/pitch±2, distance±50 floor50 (increase имеет приоритет); camera1 yaw+8, camera2 yaw-8, camera3 distance+10 и Source cut >2000->50. Пересчитывает все четыре eye/up. Native UI профиль59E80 продолжает rates по времени и заимствует geometry; cut/input/resources/counters остаются Source.",
+      "rom_sha256": "2721f5a9175b2e7c13ea2b8fbcfeea72d7f29a6b2e3cf18b9a37570e17f0973d",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801F96E0",
+      "size": 312,
+      "legacy_name": "dora3_s3_core_801F96E0",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801F96F0",
+          "end": "0x801F980C",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801F96F0": "0x00808021",
+            "0x801F9714": "0xE600001C",
+            "0x801F9740": "0xE600001C"
+          }
+        }
+      ],
+      "name": "dora3_auxiliary_update_manual_camera_801F96E0",
+      "description": "Source служебной scene1 камеры: current-controller held9AD0 задаёт независимые yaw/pitch±4 и distance±20 floor20. SDK300C4 копирует held9504+i*2 в9AD0; это не pressed edge. Native UI профиль70A50 выполняет те же rates на дробном времени без повторения actor/model control callback.",
+      "rom_sha256": "eb394aaee92cb6756f1efed8d8ed3544e245ed8360967b085b5efd1c70506e3b",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
+    },
+    {
+      "section": ".minigame_1",
+      "vram": "0x801C5730",
+      "size": 92,
+      "legacy_name": "dora3_s21_mini_801C5730",
+      "locals": [
+        {
+          "name": "camera_record_r16",
+          "expression": "ctx->r16",
+          "start": "0x801C5740",
+          "end": "0x801C5780",
+          "description": "Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается.",
+          "instructions": {
+            "0x801C5740": "0x00808021",
+            "0x801C5774": "0xE6000030",
+            "0x801C5778": "0xE6000018"
+          }
+        }
+      ],
+      "name": "dora3_race_camera_advance_intro_801C5730",
+      "description": "Source intro races: продолжает distance и pitch по исходным шагам; Native Motion/Angle roles удерживают duration и дают дробную камеру всех четырёх участников. SDKeye пересчитывается из той же yaw/pitch/distance.",
+      "rom_sha256": "e8f7bbf2b4385b12c83457799715f03ed466d9fa2ba96430fe14c68c7d301e97",
+      "evidence": "Whole camera audit after049: exact Original function body, camera array34-byte layout, overlay-qualified Source caller/dispatcher and connected Native owner. New fallback/auxiliary code is untested until user batch closure."
     }
   ]
 }

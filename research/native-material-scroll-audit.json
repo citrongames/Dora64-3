@@ -1,0 +1,8755 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "scope": "Source/ROM analysis; no executable tests, generation, game or GPU. Actual room descriptor/sequence wiring, not only pixel inventory.",
+  "world_descriptors": 67,
+  "unique_bitmap_tables": 25,
+  "world_material_sequences": [
+    {
+      "first_stage": 1,
+      "stages": [
+        1,
+        173
+      ],
+      "descriptor": "0x801fe4f0",
+      "bitmap_table": "0x801fd2e8",
+      "sequence": "0x801fd2d0",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "025D",
+          "next": "025E",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "025E",
+          "next": "025F",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "025F",
+          "next": "0260",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0260",
+          "next": "025D",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 2,
+      "stages": [
+        2,
+        165
+      ],
+      "descriptor": "0x801fe520",
+      "bitmap_table": "0x801fd314",
+      "sequence": "0x801fd2fc",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "00A1",
+          "next": "00A1",
+          "duration": 255,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": [
+        0,
+        0
+      ],
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 3,
+      "stages": [
+        3,
+        162
+      ],
+      "descriptor": "0x801fe550",
+      "bitmap_table": "0x801fd354",
+      "sequence": "0x801fd33c",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "00DF",
+          "next": "00E0",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00E0",
+          "next": "00E2",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00E2",
+          "next": "00E3",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00E3",
+          "next": "00E4",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00E4",
+          "next": "00E5",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00E5",
+          "next": "00E6",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00E6",
+          "next": "00E7",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00E7",
+          "next": "00E8",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00E8",
+          "next": "00E9",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00E9",
+          "next": "00EA",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00EA",
+          "next": "00EB",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00EB",
+          "next": "00EC",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00EC",
+          "next": "00ED",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00ED",
+          "next": "00EE",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "00EE",
+          "next": "00DF",
+          "duration": 2,
+          "translation": [
+            0,
+            -4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": true,
+      "cycle_shift": [
+        0,
+        -64
+      ],
+      "nonuniform_authored_steps": true,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 4,
+      "stages": [
+        4,
+        169
+      ],
+      "descriptor": "0x801fe580",
+      "bitmap_table": "0x801fd3b0",
+      "sequence": "0x801fd398",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0113",
+          "next": "0114",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0114",
+          "next": "0116",
+          "duration": 2,
+          "translation": [
+            4,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0116",
+          "next": "0117",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0117",
+          "next": "0118",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0118",
+          "next": "0119",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0119",
+          "next": "011A",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "011A",
+          "next": "011B",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "011B",
+          "next": "011C",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "011C",
+          "next": "011D",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "011D",
+          "next": "011E",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "011E",
+          "next": "011F",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "011F",
+          "next": "0120",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0120",
+          "next": "0121",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0121",
+          "next": "0122",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0122",
+          "next": "0113",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": true,
+      "cycle_shift": [
+        32,
+        0
+      ],
+      "nonuniform_authored_steps": true,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 5,
+      "stages": [
+        5,
+        10,
+        212,
+        267
+      ],
+      "descriptor": "0x801fe5b0",
+      "bitmap_table": "0x801fd428",
+      "sequence": "0x801fd404",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "01FE",
+          "next": "01FF",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "01FF",
+          "next": "0200",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0200",
+          "next": "0201",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0201",
+          "next": "0202",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0202",
+          "next": "0203",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0203",
+          "next": "0204",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0204",
+          "next": "0205",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0205",
+          "next": "0206",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0206",
+          "next": "0207",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            14
+          ]
+        },
+        {
+          "current": "0207",
+          "next": "0208",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            14,
+            16
+          ]
+        },
+        {
+          "current": "0208",
+          "next": "0209",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            14
+          ]
+        },
+        {
+          "current": "0209",
+          "next": "020A",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            14,
+            16
+          ]
+        },
+        {
+          "current": "020A",
+          "next": "020B",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "020B",
+          "next": "020C",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "020C",
+          "next": "020D",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "020D",
+          "next": "01FE",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 5,
+      "stages": [
+        5,
+        10,
+        212,
+        267
+      ],
+      "descriptor": "0x801fe5b0",
+      "bitmap_table": "0x801fd428",
+      "sequence": "0x801fd410",
+      "segments": [
+        6,
+        7
+      ],
+      "pairs": [
+        {
+          "current": "01FC",
+          "next": "01FD",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "01FD",
+          "next": "01FC",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 11,
+      "stages": [
+        11,
+        200
+      ],
+      "descriptor": "0x801fe6d0",
+      "bitmap_table": "0x801fd49c",
+      "sequence": "0x801fd478",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0239",
+          "next": "023A",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "023A",
+          "next": "023B",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "023B",
+          "next": "023C",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "023C",
+          "next": "023D",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "023D",
+          "next": "023E",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "023E",
+          "next": "023F",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "023F",
+          "next": "0239",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 11,
+      "stages": [
+        11,
+        200
+      ],
+      "descriptor": "0x801fe6d0",
+      "bitmap_table": "0x801fd49c",
+      "sequence": "0x801fd484",
+      "segments": [
+        6,
+        7
+      ],
+      "pairs": [
+        {
+          "current": "0240",
+          "next": "0241",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0241",
+          "next": "0242",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0242",
+          "next": "0243",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0243",
+          "next": "0244",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0244",
+          "next": "0245",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0245",
+          "next": "0246",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0246",
+          "next": "0247",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0247",
+          "next": "0240",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 12,
+      "stages": [
+        12,
+        250
+      ],
+      "descriptor": "0x801fe700",
+      "bitmap_table": "0x801fd4e4",
+      "sequence": "0x801fd4cc",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0259",
+          "next": "025A",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "025A",
+          "next": "025B",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "025B",
+          "next": "025C",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "025C",
+          "next": "0259",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 16,
+      "stages": [
+        16,
+        205
+      ],
+      "descriptor": "0x801fe7c0",
+      "bitmap_table": "0x801fd564",
+      "sequence": "0x801fd54c",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "02AA",
+          "next": "02AA",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AA",
+          "next": "02AA",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AA",
+          "next": "02AB",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AB",
+          "next": "02AB",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AB",
+          "next": "02AC",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AC",
+          "next": "02AD",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AD",
+          "next": "02AE",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AE",
+          "next": "02AE",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AE",
+          "next": "02AF",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AF",
+          "next": "02AF",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AF",
+          "next": "02AF",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AF",
+          "next": "02AE",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AE",
+          "next": "02AE",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AE",
+          "next": "02AD",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AD",
+          "next": "02AC",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AC",
+          "next": "02AB",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AB",
+          "next": "02AB",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AB",
+          "next": "02AA",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 17,
+      "stages": [
+        17,
+        22,
+        94,
+        206,
+        271,
+        274
+      ],
+      "descriptor": "0x801fe7f0",
+      "bitmap_table": "0x801fd5e8",
+      "sequence": "0x801fd5c4",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "02AA",
+          "next": "02AA",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AA",
+          "next": "02AA",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AA",
+          "next": "02AB",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AB",
+          "next": "02AB",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AB",
+          "next": "02AC",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AC",
+          "next": "02AD",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AD",
+          "next": "02AE",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AE",
+          "next": "02AE",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AE",
+          "next": "02AF",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AF",
+          "next": "02AF",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AF",
+          "next": "02AF",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AF",
+          "next": "02AE",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AE",
+          "next": "02AE",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AE",
+          "next": "02AD",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AD",
+          "next": "02AC",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AC",
+          "next": "02AB",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AB",
+          "next": "02AB",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AB",
+          "next": "02AA",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 17,
+      "stages": [
+        17,
+        22,
+        94,
+        206,
+        271,
+        274
+      ],
+      "descriptor": "0x801fe7f0",
+      "bitmap_table": "0x801fd5e8",
+      "sequence": "0x801fd5d0",
+      "segments": [
+        6,
+        7
+      ],
+      "pairs": [
+        {
+          "current": "02B0",
+          "next": "02B0",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B0",
+          "next": "02B0",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B0",
+          "next": "02B1",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B1",
+          "next": "02B1",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B1",
+          "next": "02B2",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B2",
+          "next": "02B3",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B3",
+          "next": "02B4",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B4",
+          "next": "02B4",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B4",
+          "next": "02B5",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B5",
+          "next": "02B5",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B5",
+          "next": "02B5",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B5",
+          "next": "02B4",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B4",
+          "next": "02B4",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B4",
+          "next": "02B3",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B3",
+          "next": "02B2",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B2",
+          "next": "02B1",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B1",
+          "next": "02B1",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02B1",
+          "next": "02B0",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 18,
+      "stages": [
+        18,
+        256
+      ],
+      "descriptor": "0x801fe820",
+      "bitmap_table": "0x801fd658",
+      "sequence": "0x801fd634",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "02D4",
+          "next": "02D5",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02D5",
+          "next": "02D6",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02D6",
+          "next": "02D7",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02D7",
+          "next": "02D8",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02D8",
+          "next": "02D9",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02D9",
+          "next": "02DA",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02DA",
+          "next": "02DB",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02DB",
+          "next": "02DC",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02DC",
+          "next": "02DD",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02DD",
+          "next": "02DE",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02DE",
+          "next": "02DF",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02DF",
+          "next": "02E0",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02E0",
+          "next": "02E1",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02E1",
+          "next": "02E2",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02E2",
+          "next": "02E3",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "02E3",
+          "next": "02D4",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 18,
+      "stages": [
+        18,
+        256
+      ],
+      "descriptor": "0x801fe820",
+      "bitmap_table": "0x801fd658",
+      "sequence": "0x801fd640",
+      "segments": [
+        6,
+        7
+      ],
+      "pairs": [
+        {
+          "current": "02E4",
+          "next": "02E5",
+          "duration": 10,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02E5",
+          "next": "02E4",
+          "duration": 10,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 30,
+      "stages": [
+        30
+      ],
+      "descriptor": "0x801fea60",
+      "bitmap_table": "0x801fd6b8",
+      "sequence": "0x801fd6a0",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0123",
+          "next": "0124",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0124",
+          "next": "0126",
+          "duration": 2,
+          "translation": [
+            4,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0126",
+          "next": "0127",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0127",
+          "next": "0128",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0128",
+          "next": "0129",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0129",
+          "next": "012A",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "012A",
+          "next": "012B",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "012B",
+          "next": "012C",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "012C",
+          "next": "012D",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "012D",
+          "next": "012E",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "012E",
+          "next": "012F",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "012F",
+          "next": "0130",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0130",
+          "next": "0131",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0131",
+          "next": "0132",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0132",
+          "next": "0123",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": true,
+      "cycle_shift": [
+        32,
+        0
+      ],
+      "nonuniform_authored_steps": true,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 34,
+      "stages": [
+        34,
+        35,
+        281
+      ],
+      "descriptor": "0x801feb20",
+      "bitmap_table": "0x801fd704",
+      "sequence": "0x801fd6ec",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0390",
+          "next": "0391",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0391",
+          "next": "0392",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0392",
+          "next": "0393",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0393",
+          "next": "0390",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 36,
+      "stages": [
+        36
+      ],
+      "descriptor": "0x801feb80",
+      "bitmap_table": "0x801fd750",
+      "sequence": "0x801fd738",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0364",
+          "next": "0365",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0365",
+          "next": "0366",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0366",
+          "next": "0367",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0367",
+          "next": "0368",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0368",
+          "next": "0369",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0369",
+          "next": "036A",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "036A",
+          "next": "036B",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "036B",
+          "next": "036C",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "036C",
+          "next": "036D",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "036D",
+          "next": "036E",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "036E",
+          "next": "036F",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "036F",
+          "next": "0370",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0370",
+          "next": "0371",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0371",
+          "next": "0372",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0372",
+          "next": "0373",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0373",
+          "next": "0364",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 39,
+      "stages": [
+        39,
+        251
+      ],
+      "descriptor": "0x801febe0",
+      "bitmap_table": "0x801fd7ac",
+      "sequence": "0x801fd794",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0123",
+          "next": "0124",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0124",
+          "next": "0126",
+          "duration": 2,
+          "translation": [
+            4,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0126",
+          "next": "0127",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0127",
+          "next": "0128",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0128",
+          "next": "0129",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0129",
+          "next": "012A",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "012A",
+          "next": "012B",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "012B",
+          "next": "012C",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "012C",
+          "next": "012D",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "012D",
+          "next": "012E",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "012E",
+          "next": "012F",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "012F",
+          "next": "0130",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0130",
+          "next": "0131",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0131",
+          "next": "0132",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0132",
+          "next": "0123",
+          "duration": 2,
+          "translation": [
+            2,
+            0
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": true,
+      "cycle_shift": [
+        32,
+        0
+      ],
+      "nonuniform_authored_steps": true,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 42,
+      "stages": [
+        42,
+        80,
+        114,
+        253,
+        258,
+        311,
+        354,
+        358,
+        373,
+        377
+      ],
+      "descriptor": "0x801fec70",
+      "bitmap_table": "0x801fd83c",
+      "sequence": "0x801fd818",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "03CD",
+          "next": "03CE",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03CE",
+          "next": "03CF",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03CF",
+          "next": "03D0",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03D0",
+          "next": "03D1",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03D1",
+          "next": "03D2",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03D2",
+          "next": "03D3",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03D3",
+          "next": "03D4",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03D4",
+          "next": "03D5",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03D5",
+          "next": "03D6",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03D6",
+          "next": "03D7",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03D7",
+          "next": "03D8",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03D8",
+          "next": "03D9",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03D9",
+          "next": "03DA",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03DA",
+          "next": "03DB",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03DB",
+          "next": "03DC",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03DC",
+          "next": "03CD",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 42,
+      "stages": [
+        42,
+        80,
+        114,
+        253,
+        258,
+        311,
+        354,
+        358,
+        373,
+        377
+      ],
+      "descriptor": "0x801fec70",
+      "bitmap_table": "0x801fd83c",
+      "sequence": "0x801fd824",
+      "segments": [
+        6,
+        7
+      ],
+      "pairs": [
+        {
+          "current": "03DD",
+          "next": "03DE",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03DE",
+          "next": "03DF",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03DF",
+          "next": "03DE",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03DE",
+          "next": "03DD",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03DD",
+          "next": "03DE",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03DE",
+          "next": "03DF",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03DF",
+          "next": "03E0",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03E0",
+          "next": "03E1",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03E1",
+          "next": "03E0",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03E0",
+          "next": "03DF",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03DF",
+          "next": "03DE",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "03DE",
+          "next": "03DD",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 50,
+      "stages": [
+        50,
+        254,
+        361
+      ],
+      "descriptor": "0x801fedf0",
+      "bitmap_table": "0x801fd8a8",
+      "sequence": "0x801fd890",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0427",
+          "next": "0428",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0428",
+          "next": "0429",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0429",
+          "next": "042A",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "042A",
+          "next": "042B",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "042B",
+          "next": "042C",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "042C",
+          "next": "042D",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "042D",
+          "next": "042E",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "042E",
+          "next": "042F",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "042F",
+          "next": "0430",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0430",
+          "next": "0431",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0431",
+          "next": "0432",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0432",
+          "next": "0433",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0433",
+          "next": "0434",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0434",
+          "next": "0435",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0435",
+          "next": "0436",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0436",
+          "next": "0427",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 51,
+      "stages": [
+        51,
+        185
+      ],
+      "descriptor": "0x801fee20",
+      "bitmap_table": "0x801fd918",
+      "sequence": "0x801fd8f4",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "043F",
+          "next": "0440",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0440",
+          "next": "0441",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0441",
+          "next": "0442",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0442",
+          "next": "0443",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0443",
+          "next": "0444",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0444",
+          "next": "0445",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0445",
+          "next": "0446",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0446",
+          "next": "043F",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 51,
+      "stages": [
+        51,
+        185
+      ],
+      "descriptor": "0x801fee20",
+      "bitmap_table": "0x801fd918",
+      "sequence": "0x801fd900",
+      "segments": [
+        6,
+        7
+      ],
+      "pairs": [
+        {
+          "current": "0447",
+          "next": "0448",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0448",
+          "next": "0449",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0449",
+          "next": "044A",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "044A",
+          "next": "0447",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": true,
+      "cycle_shift": [
+        0,
+        -32
+      ],
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 52,
+      "stages": [
+        52,
+        186
+      ],
+      "descriptor": "0x801fee50",
+      "bitmap_table": "0x801fd9b4",
+      "sequence": "0x801fd984",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "043F",
+          "next": "0440",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0440",
+          "next": "0441",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0441",
+          "next": "0442",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0442",
+          "next": "0443",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0443",
+          "next": "0444",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0444",
+          "next": "0445",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0445",
+          "next": "0446",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0446",
+          "next": "043F",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 52,
+      "stages": [
+        52,
+        186
+      ],
+      "descriptor": "0x801fee50",
+      "bitmap_table": "0x801fd9b4",
+      "sequence": "0x801fd990",
+      "segments": [
+        6,
+        7
+      ],
+      "pairs": [
+        {
+          "current": "0447",
+          "next": "0448",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0448",
+          "next": "0449",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0449",
+          "next": "044A",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "044A",
+          "next": "0447",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": true,
+      "cycle_shift": [
+        0,
+        -32
+      ],
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 52,
+      "stages": [
+        52,
+        186
+      ],
+      "descriptor": "0x801fee50",
+      "bitmap_table": "0x801fd9b4",
+      "sequence": "0x801fd99c",
+      "segments": [
+        8,
+        9
+      ],
+      "pairs": [
+        {
+          "current": "0364",
+          "next": "0365",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0365",
+          "next": "0366",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0366",
+          "next": "0367",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0367",
+          "next": "0368",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0368",
+          "next": "0369",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0369",
+          "next": "036A",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "036A",
+          "next": "036B",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "036B",
+          "next": "036C",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "036C",
+          "next": "036D",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "036D",
+          "next": "036E",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "036E",
+          "next": "036F",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "036F",
+          "next": "0370",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0370",
+          "next": "0371",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0371",
+          "next": "0372",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0372",
+          "next": "0373",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0373",
+          "next": "0364",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 53,
+      "stages": [
+        53,
+        187
+      ],
+      "descriptor": "0x801fee80",
+      "bitmap_table": "0x801fda3c",
+      "sequence": "0x801fda18",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "043F",
+          "next": "0440",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0440",
+          "next": "0441",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0441",
+          "next": "0442",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0442",
+          "next": "0443",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0443",
+          "next": "0444",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0444",
+          "next": "0445",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0445",
+          "next": "0446",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0446",
+          "next": "043F",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 53,
+      "stages": [
+        53,
+        187
+      ],
+      "descriptor": "0x801fee80",
+      "bitmap_table": "0x801fda3c",
+      "sequence": "0x801fda24",
+      "segments": [
+        6,
+        7
+      ],
+      "pairs": [
+        {
+          "current": "0447",
+          "next": "0448",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0448",
+          "next": "0449",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0449",
+          "next": "044A",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "044A",
+          "next": "0447",
+          "duration": 2,
+          "translation": [
+            0,
+            -8
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": true,
+      "cycle_shift": [
+        0,
+        -32
+      ],
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 55,
+      "stages": [
+        55,
+        305,
+        364,
+        369
+      ],
+      "descriptor": "0x801feee0",
+      "bitmap_table": "0x801fda88",
+      "sequence": "0x801fda70",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0462",
+          "next": "0463",
+          "duration": 1,
+          "translation": [
+            0,
+            -2
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0463",
+          "next": "0464",
+          "duration": 1,
+          "translation": [
+            0,
+            -2
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0464",
+          "next": "0465",
+          "duration": 1,
+          "translation": [
+            0,
+            -2
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0465",
+          "next": "0466",
+          "duration": 1,
+          "translation": [
+            0,
+            -2
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0466",
+          "next": "0467",
+          "duration": 1,
+          "translation": [
+            0,
+            -2
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0467",
+          "next": "0468",
+          "duration": 1,
+          "translation": [
+            0,
+            -2
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0468",
+          "next": "0469",
+          "duration": 1,
+          "translation": [
+            0,
+            -2
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0469",
+          "next": "0462",
+          "duration": 1,
+          "translation": [
+            0,
+            14
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": [
+        0,
+        0
+      ],
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": true,
+      "native_recycle_shift": [
+        0,
+        -16
+      ]
+    },
+    {
+      "first_stage": 59,
+      "stages": [
+        59,
+        309,
+        363,
+        368
+      ],
+      "descriptor": "0x801fefa0",
+      "bitmap_table": "0x801fdacc",
+      "sequence": "0x801fdab4",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0476",
+          "next": "0477",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0477",
+          "next": "0478",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0478",
+          "next": "0479",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0479",
+          "next": "047A",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "047A",
+          "next": "047B",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "047B",
+          "next": "047A",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "047A",
+          "next": "0479",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0479",
+          "next": "0478",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0478",
+          "next": "0477",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "0477",
+          "next": "0476",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 63,
+      "stages": [
+        63,
+        276
+      ],
+      "descriptor": "0x801ff060",
+      "bitmap_table": "0x801fdb04",
+      "sequence": "0x801fdaec",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0259",
+          "next": "025A",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "025A",
+          "next": "025B",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "025B",
+          "next": "025C",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "025C",
+          "next": "0259",
+          "duration": 4,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 66,
+      "stages": [
+        66,
+        299
+      ],
+      "descriptor": "0x801ff0f0",
+      "bitmap_table": "0x801fdb74",
+      "sequence": "0x801fdb5c",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "02AA",
+          "next": "02AB",
+          "duration": 3,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AB",
+          "next": "02AC",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AC",
+          "next": "02AD",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AD",
+          "next": "02AE",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AE",
+          "next": "02AF",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AF",
+          "next": "02AE",
+          "duration": 3,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AE",
+          "next": "02AD",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AD",
+          "next": "02AC",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AC",
+          "next": "02AB",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        },
+        {
+          "current": "02AB",
+          "next": "02AA",
+          "duration": 2,
+          "translation": null,
+          "native_policy": "CI4-material-sample",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            16,
+            16
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 99,
+      "stages": [
+        99,
+        209
+      ],
+      "descriptor": "0x801ff720",
+      "bitmap_table": "0x801fdba4",
+      "sequence": "0x801fdb8c",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0521",
+          "next": "0521",
+          "duration": 1,
+          "translation": [
+            0,
+            0
+          ],
+          "native_policy": "authored-identical-hold",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            6,
+            6
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": [
+        0,
+        0
+      ],
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 100,
+      "stages": [
+        100
+      ],
+      "descriptor": "0x801ff750",
+      "bitmap_table": "0x801fdc0c",
+      "sequence": "0x801fdbe8",
+      "segments": [
+        4,
+        5
+      ],
+      "pairs": [
+        {
+          "current": "0521",
+          "next": "0522",
+          "duration": 1,
+          "translation": [
+            0,
+            4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            6,
+            6
+          ]
+        },
+        {
+          "current": "0522",
+          "next": "0523",
+          "duration": 1,
+          "translation": [
+            0,
+            4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            6,
+            6
+          ]
+        },
+        {
+          "current": "0523",
+          "next": "0524",
+          "duration": 1,
+          "translation": [
+            0,
+            4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            6,
+            6
+          ]
+        },
+        {
+          "current": "0524",
+          "next": "0525",
+          "duration": 1,
+          "translation": [
+            0,
+            4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            6,
+            6
+          ]
+        },
+        {
+          "current": "0525",
+          "next": "0526",
+          "duration": 1,
+          "translation": [
+            0,
+            4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            6,
+            6
+          ]
+        },
+        {
+          "current": "0526",
+          "next": "0527",
+          "duration": 1,
+          "translation": [
+            0,
+            4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            6,
+            6
+          ]
+        },
+        {
+          "current": "0527",
+          "next": "0528",
+          "duration": 1,
+          "translation": [
+            0,
+            4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            6,
+            6
+          ]
+        },
+        {
+          "current": "0528",
+          "next": "0521",
+          "duration": 1,
+          "translation": [
+            0,
+            4
+          ],
+          "native_policy": "exact-scroll",
+          "formats": [
+            5,
+            5
+          ],
+          "palette_counts": [
+            6,
+            6
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": true,
+      "cycle_shift": [
+        0,
+        32
+      ],
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    },
+    {
+      "first_stage": 100,
+      "stages": [
+        100
+      ],
+      "descriptor": "0x801ff750",
+      "bitmap_table": "0x801fdc0c",
+      "sequence": "0x801fdbf4",
+      "segments": [
+        6,
+        7
+      ],
+      "pairs": [
+        {
+          "current": "0529",
+          "next": "052A",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "052A",
+          "next": "052B",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "052B",
+          "next": "052C",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "052C",
+          "next": "052D",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "052D",
+          "next": "052E",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "052E",
+          "next": "052F",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "052F",
+          "next": "0530",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        },
+        {
+          "current": "0530",
+          "next": "0529",
+          "duration": 1,
+          "translation": null,
+          "native_policy": "IA8-nibble-sample",
+          "formats": [
+            2,
+            2
+          ],
+          "palette_counts": [
+            8,
+            8
+          ]
+        }
+      ],
+      "whole_unidirectional_cycle": false,
+      "cycle_shift": null,
+      "nonuniform_authored_steps": false,
+      "truncated_tile_recycle": false,
+      "native_recycle_shift": null
+    }
+  ],
+  "source_callers": {
+    "0x80028D50": [
+      {
+        "legacy": "dora3_s2_menu_801C1A00",
+        "pc": "0x801C1A6C"
+      },
+      {
+        "legacy": "dora3_s0_remaining_8002B828",
+        "pc": "0x8002B904"
+      },
+      {
+        "legacy": "dora3_s3_801C91A8",
+        "pc": "0x801C9264"
+      },
+      {
+        "legacy": "dora3_s3_801C91A8",
+        "pc": "0x801C9274"
+      },
+      {
+        "legacy": "dora3_s3_801D11BC",
+        "pc": "0x801D128C"
+      },
+      {
+        "legacy": "dora3_s3_801D12CC",
+        "pc": "0x801D1348"
+      },
+      {
+        "legacy": "dora3_s3_801E8F24",
+        "pc": "0x801E9028"
+      },
+      {
+        "legacy": "dora3_s3_801E90D4",
+        "pc": "0x801E9180"
+      },
+      {
+        "legacy": "dora3_s3_801F3E80",
+        "pc": "0x801F3ED4"
+      },
+      {
+        "legacy": "dora3_s3_801F6CAC",
+        "pc": "0x801F6CFC"
+      },
+      {
+        "legacy": "dora3_s3_core_801F7BDC",
+        "pc": "0x801F7C98"
+      },
+      {
+        "legacy": "dora3_s3_core_801F9130",
+        "pc": "0x801F91D4"
+      },
+      {
+        "legacy": "dora3_s21_mini_801C9024",
+        "pc": "0x801C90F8"
+      },
+      {
+        "legacy": "dora3_s22_mini_801C5F3C",
+        "pc": "0x801C6010"
+      },
+      {
+        "legacy": "dora3_s22_mini_801C7068",
+        "pc": "0x801C713C"
+      },
+      {
+        "legacy": "dora3_s23_mini_801C4ECC",
+        "pc": "0x801C4FB4"
+      },
+      {
+        "legacy": "dora3_s23_mini_801C72CC",
+        "pc": "0x801C73A0"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C433C",
+        "pc": "0x801C4424"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C65D8",
+        "pc": "0x801C66BC"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C8CCC",
+        "pc": "0x801C8DA0"
+      },
+      {
+        "legacy": "dora3_s25_mini_801C5490",
+        "pc": "0x801C54E8"
+      },
+      {
+        "legacy": "dora3_s25_mini_801C5490",
+        "pc": "0x801C54F4"
+      },
+      {
+        "legacy": "dora3_s25_mini_801C589C",
+        "pc": "0x801C58F4"
+      },
+      {
+        "legacy": "dora3_s25_mini_801C589C",
+        "pc": "0x801C5900"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C4E68",
+        "pc": "0x801C4EC0"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C4E68",
+        "pc": "0x801C4ECC"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C4E68",
+        "pc": "0x801C4ED8"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C4E68",
+        "pc": "0x801C4EE4"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C4E68",
+        "pc": "0x801C4EF0"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C4E68",
+        "pc": "0x801C4EFC"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5F78",
+        "pc": "0x801C5FB4"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5F78",
+        "pc": "0x801C5FC0"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5F78",
+        "pc": "0x801C5FCC"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5F78",
+        "pc": "0x801C5FD8"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5F78",
+        "pc": "0x801C5FE4"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5F78",
+        "pc": "0x801C5FF0"
+      },
+      {
+        "legacy": "dora3_s27_mini_801C4CB0",
+        "pc": "0x801C4CF8"
+      },
+      {
+        "legacy": "dora3_s28_mini_801C706C",
+        "pc": "0x801C70B4"
+      },
+      {
+        "legacy": "dora3_s29_mini_801C5364",
+        "pc": "0x801C53AC"
+      }
+    ],
+    "0x80028C74": [
+      {
+        "legacy": "dora3_s2_menu_801C1874",
+        "pc": "0x801C19E0"
+      },
+      {
+        "legacy": "dora3_s3_801BBF90",
+        "pc": "0x801BBFC4"
+      },
+      {
+        "legacy": "dora3_s3_801C8B28",
+        "pc": "0x801C90F0"
+      },
+      {
+        "legacy": "dora3_s3_801C8B28",
+        "pc": "0x801C9100"
+      },
+      {
+        "legacy": "dora3_s3_801D10D8",
+        "pc": "0x801D1180"
+      },
+      {
+        "legacy": "dora3_s3_801E8BDC",
+        "pc": "0x801E8E68"
+      },
+      {
+        "legacy": "dora3_s3_801F3E34",
+        "pc": "0x801F3E68"
+      },
+      {
+        "legacy": "dora3_s3_801F6870",
+        "pc": "0x801F6B64"
+      },
+      {
+        "legacy": "dora3_s3_core_801F7AFC",
+        "pc": "0x801F7B90"
+      },
+      {
+        "legacy": "dora3_s3_core_801F8BD4",
+        "pc": "0x801F90F4"
+      },
+      {
+        "legacy": "dora3_s21_mini_801C8AB4",
+        "pc": "0x801C8C50"
+      },
+      {
+        "legacy": "dora3_s22_mini_801C5E74",
+        "pc": "0x801C5F24"
+      },
+      {
+        "legacy": "dora3_s22_mini_801C6D40",
+        "pc": "0x801C7040"
+      },
+      {
+        "legacy": "dora3_s23_mini_801C4E50",
+        "pc": "0x801C4E98"
+      },
+      {
+        "legacy": "dora3_s23_mini_801C7200",
+        "pc": "0x801C72B4"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C42C0",
+        "pc": "0x801C4308"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C8BA8",
+        "pc": "0x801C8CA4"
+      },
+      {
+        "legacy": "dora3_s25_mini_801C50C0",
+        "pc": "0x801C53EC"
+      },
+      {
+        "legacy": "dora3_s25_mini_801C50C0",
+        "pc": "0x801C53F8"
+      },
+      {
+        "legacy": "dora3_s25_mini_801C575C",
+        "pc": "0x801C57C4"
+      },
+      {
+        "legacy": "dora3_s25_mini_801C575C",
+        "pc": "0x801C57D0"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C41F0",
+        "pc": "0x801C42E0"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C41F0",
+        "pc": "0x801C42EC"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C41F0",
+        "pc": "0x801C42F8"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C41F0",
+        "pc": "0x801C4304"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C41F0",
+        "pc": "0x801C4310"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C41F0",
+        "pc": "0x801C431C"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5DC0",
+        "pc": "0x801C5F20"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5DC0",
+        "pc": "0x801C5F2C"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5DC0",
+        "pc": "0x801C5F38"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5DC0",
+        "pc": "0x801C5F44"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5DC0",
+        "pc": "0x801C5F50"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5DC0",
+        "pc": "0x801C5F5C"
+      },
+      {
+        "legacy": "dora3_s27_mini_801C499C",
+        "pc": "0x801C4A0C"
+      },
+      {
+        "legacy": "dora3_s28_mini_801C4E24",
+        "pc": "0x801C4E94"
+      },
+      {
+        "legacy": "dora3_s29_mini_801C5068",
+        "pc": "0x801C50E0"
+      }
+    ],
+    "0x80028BC8": [
+      {
+        "legacy": "dora3_s2_menu_801C16B8",
+        "pc": "0x801C1810"
+      },
+      {
+        "legacy": "dora3_s2_menu_801C1874",
+        "pc": "0x801C1930"
+      },
+      {
+        "legacy": "dora3_s2_menu_801C1874",
+        "pc": "0x801C1988"
+      },
+      {
+        "legacy": "dora3_s3_801BC140",
+        "pc": "0x801BC1FC"
+      },
+      {
+        "legacy": "dora3_s3_core_801C02A8",
+        "pc": "0x801C0380"
+      },
+      {
+        "legacy": "dora3_s3_801C0848",
+        "pc": "0x801C0870"
+      },
+      {
+        "legacy": "dora3_s3_core_801CCE4C",
+        "pc": "0x801CD170"
+      },
+      {
+        "legacy": "dora3_s3_core_801CDDA8",
+        "pc": "0x801CDFF4"
+      },
+      {
+        "legacy": "dora3_s3_core_801CE658",
+        "pc": "0x801CE898"
+      },
+      {
+        "legacy": "dora3_s3_core_801CEE80",
+        "pc": "0x801CF170"
+      },
+      {
+        "legacy": "dora3_s3_core_801CF228",
+        "pc": "0x801CF464"
+      },
+      {
+        "legacy": "dora3_s3_core_801CF7E4",
+        "pc": "0x801CF974"
+      },
+      {
+        "legacy": "dora3_s3_core_801CFDEC",
+        "pc": "0x801CFF7C"
+      },
+      {
+        "legacy": "dora3_s3_core_801D0964",
+        "pc": "0x801D0B48"
+      },
+      {
+        "legacy": "dora3_s3_core_801D0BF8",
+        "pc": "0x801D0E8C"
+      },
+      {
+        "legacy": "dora3_s3_801E1D70",
+        "pc": "0x801E1E40"
+      },
+      {
+        "legacy": "dora3_s3_801E50C0",
+        "pc": "0x801E523C"
+      },
+      {
+        "legacy": "dora3_s3_core_801E5328",
+        "pc": "0x801E5378"
+      },
+      {
+        "legacy": "dora3_s3_core_801E54D4",
+        "pc": "0x801E5524"
+      },
+      {
+        "legacy": "dora3_s3_core_801E5894",
+        "pc": "0x801E58CC"
+      },
+      {
+        "legacy": "dora3_s3_core_801E5A24",
+        "pc": "0x801E5A6C"
+      },
+      {
+        "legacy": "dora3_s3_core_801E9AD0",
+        "pc": "0x801E9C88"
+      },
+      {
+        "legacy": "dora3_s3_core_801EB1C4",
+        "pc": "0x801EB284"
+      },
+      {
+        "legacy": "dora3_s3_core_801EB2D8",
+        "pc": "0x801EB398"
+      },
+      {
+        "legacy": "dora3_s3_core_801EB4E8",
+        "pc": "0x801EB5FC"
+      },
+      {
+        "legacy": "dora3_s3_801F07BC",
+        "pc": "0x801F0970"
+      },
+      {
+        "legacy": "dora3_s3_801F6504",
+        "pc": "0x801F66EC"
+      },
+      {
+        "legacy": "dora3_s3_core_801F728C",
+        "pc": "0x801F739C"
+      },
+      {
+        "legacy": "dora3_s4_demo_8021F0F4",
+        "pc": "0x8021F180"
+      },
+      {
+        "legacy": "dora3_s4_demo_8021FB64",
+        "pc": "0x8021FBE8"
+      },
+      {
+        "legacy": "dora3_s4_demo_80220D24",
+        "pc": "0x80220DB0"
+      },
+      {
+        "legacy": "dora3_s4_demo_802216B4",
+        "pc": "0x80221758"
+      },
+      {
+        "legacy": "dora3_s4_demo_80221A20",
+        "pc": "0x80221AAC"
+      },
+      {
+        "legacy": "dora3_s4_demo_80222200",
+        "pc": "0x802222A4"
+      },
+      {
+        "legacy": "dora3_s5_demo_8022E5AC",
+        "pc": "0x8022E674"
+      },
+      {
+        "legacy": "dora3_s5_demo_8022FF00",
+        "pc": "0x8022FF38"
+      },
+      {
+        "legacy": "dora3_s5_demo_80230104",
+        "pc": "0x80230194"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023DEB0",
+        "pc": "0x8023DF44"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023DF60",
+        "pc": "0x8023DFC0"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023E1E4",
+        "pc": "0x8023E290"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023E1E4",
+        "pc": "0x8023E320"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023E440",
+        "pc": "0x8023E480"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023EA4C",
+        "pc": "0x8023EAA4"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023EFB0",
+        "pc": "0x8023EFE8"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023EFB0",
+        "pc": "0x8023EFFC"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023EFB0",
+        "pc": "0x8023F010"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023EFB0",
+        "pc": "0x8023F024"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023EFB0",
+        "pc": "0x8023F038"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023F050",
+        "pc": "0x8023F088"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023F050",
+        "pc": "0x8023F09C"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023F050",
+        "pc": "0x8023F0B0"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023F050",
+        "pc": "0x8023F0C4"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023F050",
+        "pc": "0x8023F0D8"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023F21C",
+        "pc": "0x8023F2B0"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023F21C",
+        "pc": "0x8023F2F8"
+      },
+      {
+        "legacy": "dora3_s6_demo_8023F324",
+        "pc": "0x8023F38C"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021D6D0",
+        "pc": "0x8021D794"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021D6D0",
+        "pc": "0x8021D7A4"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021D6D0",
+        "pc": "0x8021D7B4"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021D6D0",
+        "pc": "0x8021D7D8"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021DB58",
+        "pc": "0x8021DEE4"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021DB58",
+        "pc": "0x8021DF10"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021DB58",
+        "pc": "0x8021E0D0"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021DB58",
+        "pc": "0x8021E190"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021DB58",
+        "pc": "0x8021E1A4"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021E1C4",
+        "pc": "0x8021E218"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021E1C4",
+        "pc": "0x8021E388"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021E7F8",
+        "pc": "0x8021E840"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021E7F8",
+        "pc": "0x8021E854"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021E7F8",
+        "pc": "0x8021E868"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021E7F8",
+        "pc": "0x8021E87C"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021E948",
+        "pc": "0x8021EC78"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021E948",
+        "pc": "0x8021ECA4"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021E948",
+        "pc": "0x8021EDAC"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021E948",
+        "pc": "0x8021EEE8"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021E948",
+        "pc": "0x8021EEFC"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021F67C",
+        "pc": "0x8021F70C"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021F67C",
+        "pc": "0x8021F720"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021F8D8",
+        "pc": "0x8021F938"
+      },
+      {
+        "legacy": "dora3_s7_level1_8021FD4C",
+        "pc": "0x8021FDC4"
+      },
+      {
+        "legacy": "dora3_s7_level1_80220990",
+        "pc": "0x802209D4"
+      },
+      {
+        "legacy": "dora3_s7_level1_80220990",
+        "pc": "0x80220A54"
+      },
+      {
+        "legacy": "dora3_s7_level1_80220C40",
+        "pc": "0x80220D00"
+      },
+      {
+        "legacy": "dora3_s7_level1_80220C40",
+        "pc": "0x80220DBC"
+      },
+      {
+        "legacy": "dora3_s7_level1_80221028",
+        "pc": "0x8022106C"
+      },
+      {
+        "legacy": "dora3_s7_level1_80221080",
+        "pc": "0x802210D0"
+      },
+      {
+        "legacy": "dora3_s7_level1_802214B4",
+        "pc": "0x802215C0"
+      },
+      {
+        "legacy": "dora3_s7_level1_802214B4",
+        "pc": "0x80221718"
+      },
+      {
+        "legacy": "dora3_s7_level1_80221794",
+        "pc": "0x802217D8"
+      },
+      {
+        "legacy": "dora3_s7_level1_802218A8",
+        "pc": "0x802218F8"
+      },
+      {
+        "legacy": "dora3_s7_level1_80221C08",
+        "pc": "0x80221C64"
+      },
+      {
+        "legacy": "dora3_s7_level1_80221DDC",
+        "pc": "0x80221E40"
+      },
+      {
+        "legacy": "dora3_s7_level1_80222364",
+        "pc": "0x80222454"
+      },
+      {
+        "legacy": "dora3_s7_level1_80222364",
+        "pc": "0x8022258C"
+      },
+      {
+        "legacy": "dora3_s7_level1_80222608",
+        "pc": "0x80222658"
+      },
+      {
+        "legacy": "dora3_s7_level1_80222900",
+        "pc": "0x80222938"
+      },
+      {
+        "legacy": "dora3_s7_level1_80222D50",
+        "pc": "0x80222D94"
+      },
+      {
+        "legacy": "dora3_s7_level1_80223744",
+        "pc": "0x80223794"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022D6D0",
+        "pc": "0x8022D794"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022D8B0",
+        "pc": "0x8022D8E0"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022D8B0",
+        "pc": "0x8022D908"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022D98C",
+        "pc": "0x8022DA50"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022DC04",
+        "pc": "0x8022DCF0"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022DC04",
+        "pc": "0x8022DD1C"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022DC04",
+        "pc": "0x8022DD60"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022E0A8",
+        "pc": "0x8022E114"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022E0A8",
+        "pc": "0x8022E1DC"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022E0A8",
+        "pc": "0x8022E274"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022E0A8",
+        "pc": "0x8022E3A8"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022E564",
+        "pc": "0x8022E650"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022E564",
+        "pc": "0x8022E67C"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022E564",
+        "pc": "0x8022E6C0"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022EA08",
+        "pc": "0x8022EB04"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022EA08",
+        "pc": "0x8022EB9C"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022EE5C",
+        "pc": "0x8022EF48"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022EE5C",
+        "pc": "0x8022EF74"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022EE5C",
+        "pc": "0x8022EF90"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022F2D8",
+        "pc": "0x8022F3D4"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022F2D8",
+        "pc": "0x8022F46C"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022F72C",
+        "pc": "0x8022F818"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022F72C",
+        "pc": "0x8022F83C"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022F72C",
+        "pc": "0x8022F880"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022FBC0",
+        "pc": "0x8022FCAC"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022FBC0",
+        "pc": "0x8022FD38"
+      },
+      {
+        "legacy": "dora3_s8_level1_8022FBC0",
+        "pc": "0x8022FE6C"
+      },
+      {
+        "legacy": "dora3_s8_level1_80230028",
+        "pc": "0x80230114"
+      },
+      {
+        "legacy": "dora3_s8_level1_80230028",
+        "pc": "0x80230140"
+      },
+      {
+        "legacy": "dora3_s8_level1_80230028",
+        "pc": "0x8023015C"
+      },
+      {
+        "legacy": "dora3_s8_level1_802304A4",
+        "pc": "0x802305A0"
+      },
+      {
+        "legacy": "dora3_s8_level1_802304A4",
+        "pc": "0x80230638"
+      },
+      {
+        "legacy": "dora3_s8_level1_802309C0",
+        "pc": "0x80230AB0"
+      },
+      {
+        "legacy": "dora3_s8_level1_802309C0",
+        "pc": "0x80230B14"
+      },
+      {
+        "legacy": "dora3_s8_level1_802309C0",
+        "pc": "0x80230B78"
+      },
+      {
+        "legacy": "dora3_s8_level1_80230C7C",
+        "pc": "0x80230D78"
+      },
+      {
+        "legacy": "dora3_s8_level1_80230C7C",
+        "pc": "0x80230E08"
+      },
+      {
+        "legacy": "dora3_s8_level1_8023103C",
+        "pc": "0x80231128"
+      },
+      {
+        "legacy": "dora3_s8_level1_8023103C",
+        "pc": "0x8023114C"
+      },
+      {
+        "legacy": "dora3_s8_level1_8023103C",
+        "pc": "0x80231168"
+      },
+      {
+        "legacy": "dora3_s8_level1_8023147C",
+        "pc": "0x80231564"
+      },
+      {
+        "legacy": "dora3_s8_level1_8023147C",
+        "pc": "0x802315F0"
+      },
+      {
+        "legacy": "dora3_s8_level1_802318B0",
+        "pc": "0x8023199C"
+      },
+      {
+        "legacy": "dora3_s8_level1_802318B0",
+        "pc": "0x802319C0"
+      },
+      {
+        "legacy": "dora3_s8_level1_802318B0",
+        "pc": "0x802319DC"
+      },
+      {
+        "legacy": "dora3_s8_level1_80231D54",
+        "pc": "0x80231E24"
+      },
+      {
+        "legacy": "dora3_s8_level1_80231D54",
+        "pc": "0x80231E94"
+      },
+      {
+        "legacy": "dora3_s8_level1_802320B0",
+        "pc": "0x802321A0"
+      },
+      {
+        "legacy": "dora3_s8_level1_802320B0",
+        "pc": "0x802321EC"
+      },
+      {
+        "legacy": "dora3_s8_level1_80232414",
+        "pc": "0x80232500"
+      },
+      {
+        "legacy": "dora3_s8_level1_80232414",
+        "pc": "0x80232528"
+      },
+      {
+        "legacy": "dora3_s8_level1_80232414",
+        "pc": "0x80232544"
+      },
+      {
+        "legacy": "dora3_s8_level1_80232860",
+        "pc": "0x8023295C"
+      },
+      {
+        "legacy": "dora3_s8_level1_80232860",
+        "pc": "0x802329F4"
+      },
+      {
+        "legacy": "dora3_s10_cave_8021D9F4",
+        "pc": "0x8021DAB8"
+      },
+      {
+        "legacy": "dora3_s10_cave_8021D9F4",
+        "pc": "0x8021DB88"
+      },
+      {
+        "legacy": "dora3_s10_cave_8021EAD0",
+        "pc": "0x8021EB60"
+      },
+      {
+        "legacy": "dora3_s10_cave_8021EAD0",
+        "pc": "0x8021ECB8"
+      },
+      {
+        "legacy": "dora3_s11_cave_8022EB04",
+        "pc": "0x8022EBB8"
+      },
+      {
+        "legacy": "dora3_s11_cave_8022EB04",
+        "pc": "0x8022EBC8"
+      },
+      {
+        "legacy": "dora3_s11_cave_8022EC2C",
+        "pc": "0x8022ED24"
+      },
+      {
+        "legacy": "dora3_s11_cave_8022F28C",
+        "pc": "0x8022F35C"
+      },
+      {
+        "legacy": "dora3_s11_cave_8022F28C",
+        "pc": "0x8022F3E4"
+      },
+      {
+        "legacy": "dora3_s11_cave_8022F75C",
+        "pc": "0x8022F854"
+      },
+      {
+        "legacy": "dora3_s11_cave_8022F8B8",
+        "pc": "0x8022F938"
+      },
+      {
+        "legacy": "dora3_s11_cave_8022F8B8",
+        "pc": "0x8022F94C"
+      },
+      {
+        "legacy": "dora3_s11_cave_8022FD04",
+        "pc": "0x8022FD98"
+      },
+      {
+        "legacy": "dora3_s11_cave_8022FD04",
+        "pc": "0x8022FDA8"
+      },
+      {
+        "legacy": "dora3_s11_cave_8023025C",
+        "pc": "0x802302AC"
+      },
+      {
+        "legacy": "dora3_s11_cave_8023025C",
+        "pc": "0x802302C0"
+      },
+      {
+        "legacy": "dora3_s12_cave_8023D6E0",
+        "pc": "0x8023D728"
+      },
+      {
+        "legacy": "dora3_s12_cave_8023D90C",
+        "pc": "0x8023D9B4"
+      },
+      {
+        "legacy": "dora3_s12_cave_8023D90C",
+        "pc": "0x8023DA44"
+      },
+      {
+        "legacy": "dora3_s12_cave_8023DBE0",
+        "pc": "0x8023DC20"
+      },
+      {
+        "legacy": "dora3_s14_mountain_8023E3AC",
+        "pc": "0x8023E458"
+      },
+      {
+        "legacy": "dora3_s15_lake_8021D6D0",
+        "pc": "0x8021D76C"
+      },
+      {
+        "legacy": "dora3_s15_lake_8021D80C",
+        "pc": "0x8021DBDC"
+      },
+      {
+        "legacy": "dora3_s15_lake_8021DC24",
+        "pc": "0x8021DCCC"
+      },
+      {
+        "legacy": "dora3_s15_lake_8021E300",
+        "pc": "0x8021E38C"
+      },
+      {
+        "legacy": "dora3_s15_lake_8021E42C",
+        "pc": "0x8021E514"
+      },
+      {
+        "legacy": "dora3_s15_lake_8021E558",
+        "pc": "0x8021E87C"
+      },
+      {
+        "legacy": "dora3_s15_lake_80222B48",
+        "pc": "0x80222B90"
+      },
+      {
+        "legacy": "dora3_s15_lake_80222CC8",
+        "pc": "0x80222D54"
+      },
+      {
+        "legacy": "dora3_s15_lake_80222FA4",
+        "pc": "0x80223000"
+      },
+      {
+        "legacy": "dora3_s15_lake_80222FA4",
+        "pc": "0x80223188"
+      },
+      {
+        "legacy": "dora3_s16_lake_8022D758",
+        "pc": "0x8022D7E4"
+      },
+      {
+        "legacy": "dora3_s16_lake_8022DA14",
+        "pc": "0x8022DB2C"
+      },
+      {
+        "legacy": "dora3_s16_lake_8022DA14",
+        "pc": "0x8022DE5C"
+      },
+      {
+        "legacy": "dora3_s16_lake_802300D4",
+        "pc": "0x802301EC"
+      },
+      {
+        "legacy": "dora3_s16_lake_802302A8",
+        "pc": "0x80230360"
+      },
+      {
+        "legacy": "dora3_s16_lake_802302A8",
+        "pc": "0x8023038C"
+      },
+      {
+        "legacy": "dora3_s16_lake_80230A5C",
+        "pc": "0x80230B40"
+      },
+      {
+        "legacy": "dora3_s16_lake_80231064",
+        "pc": "0x802310F8"
+      },
+      {
+        "legacy": "dora3_s16_lake_80231064",
+        "pc": "0x802311C4"
+      },
+      {
+        "legacy": "dora3_s16_lake_80231468",
+        "pc": "0x802314FC"
+      },
+      {
+        "legacy": "dora3_s16_lake_80231468",
+        "pc": "0x8023150C"
+      },
+      {
+        "legacy": "dora3_s16_lake_80231468",
+        "pc": "0x8023151C"
+      },
+      {
+        "legacy": "dora3_s17_lake_8023E32C",
+        "pc": "0x8023E37C"
+      },
+      {
+        "legacy": "dora3_s17_lake_8023E438",
+        "pc": "0x8023E488"
+      },
+      {
+        "legacy": "dora3_s17_lake_8023F004",
+        "pc": "0x8023F0B4"
+      },
+      {
+        "legacy": "dora3_s17_lake_8023F0DC",
+        "pc": "0x8023F190"
+      },
+      {
+        "legacy": "dora3_s17_lake_8023F0DC",
+        "pc": "0x8023F1A0"
+      },
+      {
+        "legacy": "dora3_s17_lake_802402E8",
+        "pc": "0x80240384"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022D6D0",
+        "pc": "0x8022D818"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022D6D0",
+        "pc": "0x8022D830"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022D854",
+        "pc": "0x8022D99C"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022D854",
+        "pc": "0x8022D9B4"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022DB4C",
+        "pc": "0x8022DCA0"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022DB4C",
+        "pc": "0x8022DDDC"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022DE7C",
+        "pc": "0x8022DFE0"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022DE7C",
+        "pc": "0x8022DFF8"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022E01C",
+        "pc": "0x8022E0DC"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022E474",
+        "pc": "0x8022E5BC"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022E474",
+        "pc": "0x8022E6F8"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022E9A8",
+        "pc": "0x8022E9D8"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022EA68",
+        "pc": "0x8022EB80"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022EA68",
+        "pc": "0x8022EB98"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022EBBC",
+        "pc": "0x8022ECD4"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022EBBC",
+        "pc": "0x8022ECEC"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022EF4C",
+        "pc": "0x8022F0A0"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022EF4C",
+        "pc": "0x8022F1DC"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022F2C8",
+        "pc": "0x8022F324"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022F388",
+        "pc": "0x8022F490"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022F388",
+        "pc": "0x8022F4A8"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022F4D0",
+        "pc": "0x8022F5D8"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022F4D0",
+        "pc": "0x8022F5F0"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022F9C0",
+        "pc": "0x8022FB08"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022F9C0",
+        "pc": "0x8022FC44"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022FD5C",
+        "pc": "0x8022FE80"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8022FE98",
+        "pc": "0x8022FFBC"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8023018C",
+        "pc": "0x80230298"
+      },
+      {
+        "legacy": "dora3_s18_penguin_8023018C",
+        "pc": "0x80230448"
+      },
+      {
+        "legacy": "dora3_s18_penguin_802304E8",
+        "pc": "0x802305A8"
+      },
+      {
+        "legacy": "dora3_s18_penguin_802308B4",
+        "pc": "0x80230984"
+      },
+      {
+        "legacy": "dora3_s18_penguin_802308B4",
+        "pc": "0x80230AFC"
+      },
+      {
+        "legacy": "dora3_s18_penguin_80230D5C",
+        "pc": "0x80230D8C"
+      },
+      {
+        "legacy": "dora3_s18_penguin_80230F48",
+        "pc": "0x80230F84"
+      },
+      {
+        "legacy": "dora3_s18_penguin_80231184",
+        "pc": "0x8023123C"
+      },
+      {
+        "legacy": "dora3_s18_penguin_802313E0",
+        "pc": "0x80231520"
+      },
+      {
+        "legacy": "dora3_s18_penguin_802313E0",
+        "pc": "0x802316D0"
+      },
+      {
+        "legacy": "dora3_s18_penguin_80231B10",
+        "pc": "0x80231CFC"
+      },
+      {
+        "legacy": "dora3_s18_penguin_80231B10",
+        "pc": "0x80231D10"
+      },
+      {
+        "legacy": "dora3_s18_penguin_802321B0",
+        "pc": "0x80232224"
+      },
+      {
+        "legacy": "dora3_s18_penguin_802322B8",
+        "pc": "0x80232368"
+      },
+      {
+        "legacy": "dora3_s18_penguin_802322B8",
+        "pc": "0x80232378"
+      },
+      {
+        "legacy": "dora3_s18_penguin_80232710",
+        "pc": "0x802327D4"
+      },
+      {
+        "legacy": "dora3_s18_penguin_80232710",
+        "pc": "0x802327E4"
+      },
+      {
+        "legacy": "dora3_s18_penguin_80232A3C",
+        "pc": "0x80232AA0"
+      },
+      {
+        "legacy": "dora3_s19_penguin_8023DF8C",
+        "pc": "0x8023E05C"
+      },
+      {
+        "legacy": "dora3_s19_penguin_8023DF8C",
+        "pc": "0x8023E06C"
+      },
+      {
+        "legacy": "dora3_s19_penguin_8023E8B0",
+        "pc": "0x8023E964"
+      },
+      {
+        "legacy": "dora3_s19_penguin_8023E8B0",
+        "pc": "0x8023E974"
+      },
+      {
+        "legacy": "dora3_s21_mini_801C60BC",
+        "pc": "0x801C6530"
+      },
+      {
+        "legacy": "dora3_s22_mini_801C6178",
+        "pc": "0x801C62E8"
+      },
+      {
+        "legacy": "dora3_s23_mini_801C4C58",
+        "pc": "0x801C4DB4"
+      },
+      {
+        "legacy": "dora3_s23_mini_801C63E8",
+        "pc": "0x801C65D0"
+      },
+      {
+        "legacy": "dora3_s23_mini_801C69CC",
+        "pc": "0x801C6A1C"
+      },
+      {
+        "legacy": "dora3_s23_mini_801C69CC",
+        "pc": "0x801C6E14"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C40B4",
+        "pc": "0x801C4218"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C6BAC",
+        "pc": "0x801C6DD8"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C73A8",
+        "pc": "0x801C73C0"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C779C",
+        "pc": "0x801C7844"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C779C",
+        "pc": "0x801C786C"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C788C",
+        "pc": "0x801C78AC"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C7970",
+        "pc": "0x801C7990"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C7FFC",
+        "pc": "0x801C8058"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C7FFC",
+        "pc": "0x801C8084"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C8164",
+        "pc": "0x801C81C8"
+      },
+      {
+        "legacy": "dora3_s24_mini_801C8164",
+        "pc": "0x801C83A0"
+      },
+      {
+        "legacy": "dora3_s25_mini_801C4EE0",
+        "pc": "0x801C502C"
+      },
+      {
+        "legacy": "dora3_s25_mini_801C4EE0",
+        "pc": "0x801C503C"
+      },
+      {
+        "legacy": "dora3_s25_mini_801C553C",
+        "pc": "0x801C56B0"
+      },
+      {
+        "legacy": "dora3_s25_mini_801C553C",
+        "pc": "0x801C56C4"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C3FB0",
+        "pc": "0x801C4118"
+      },
+      {
+        "legacy": "dora3_s26_mini_801C5C4C",
+        "pc": "0x801C5D6C"
+      },
+      {
+        "legacy": "dora3_s27_mini_801C4680",
+        "pc": "0x801C48DC"
+      },
+      {
+        "legacy": "dora3_s28_mini_801C5720",
+        "pc": "0x801C5870"
+      },
+      {
+        "legacy": "dora3_s28_mini_801C5720",
+        "pc": "0x801C588C"
+      },
+      {
+        "legacy": "dora3_s28_mini_801C5720",
+        "pc": "0x801C58A8"
+      },
+      {
+        "legacy": "dora3_s28_mini_801C6818",
+        "pc": "0x801C6ACC"
+      },
+      {
+        "legacy": "dora3_s29_mini_801C4D10",
+        "pc": "0x801C4FAC"
+      },
+      {
+        "legacy": "dora3_s30_remaining_8021E238",
+        "pc": "0x8021E2C8"
+      },
+      {
+        "legacy": "dora3_s30_remaining_8021E238",
+        "pc": "0x8021E2DC"
+      },
+      {
+        "legacy": "dora3_s30_remaining_8021E834",
+        "pc": "0x8021E8C8"
+      },
+      {
+        "legacy": "dora3_s30_remaining_8021E834",
+        "pc": "0x8021E8D8"
+      },
+      {
+        "legacy": "dora3_s30_remaining_8021F610",
+        "pc": "0x8021F6A4"
+      },
+      {
+        "legacy": "dora3_s30_remaining_8021F610",
+        "pc": "0x8021F6B4"
+      },
+      {
+        "legacy": "dora3_s30_remaining_8022080C",
+        "pc": "0x80220890"
+      },
+      {
+        "legacy": "dora3_s30_remaining_80220A10",
+        "pc": "0x80220C1C"
+      },
+      {
+        "legacy": "dora3_s30_remaining_80220A10",
+        "pc": "0x80220C9C"
+      },
+      {
+        "legacy": "dora3_s31_remaining_8021F808",
+        "pc": "0x8021F88C"
+      },
+      {
+        "legacy": "dora3_s31_remaining_8021FACC",
+        "pc": "0x8021FB3C"
+      },
+      {
+        "legacy": "dora3_s32_remaining_80220304",
+        "pc": "0x802203EC"
+      },
+      {
+        "legacy": "dora3_s32_remaining_80220ABC",
+        "pc": "0x80220C00"
+      },
+      {
+        "legacy": "dora3_s32_remaining_80220ABC",
+        "pc": "0x80220C4C"
+      },
+      {
+        "legacy": "dora3_s32_remaining_80220F68",
+        "pc": "0x80220FCC"
+      },
+      {
+        "legacy": "dora3_s32_remaining_802210E4",
+        "pc": "0x80221228"
+      },
+      {
+        "legacy": "dora3_s32_remaining_802214B8",
+        "pc": "0x80221510"
+      },
+      {
+        "legacy": "dora3_s32_remaining_80222AB4",
+        "pc": "0x80222B18"
+      },
+      {
+        "legacy": "dora3_s32_remaining_80222AB4",
+        "pc": "0x80222B2C"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021D6D0",
+        "pc": "0x8021D774"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021D6D0",
+        "pc": "0x8021D784"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021D6D0",
+        "pc": "0x8021D794"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021D6D0",
+        "pc": "0x8021D7A4"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021D7EC",
+        "pc": "0x8021D910"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021D7EC",
+        "pc": "0x8021D95C"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021D7EC",
+        "pc": "0x8021D994"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021D7EC",
+        "pc": "0x8021D9B4"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021DA24",
+        "pc": "0x8021DB44"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021DC14",
+        "pc": "0x8021DF90"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021DC14",
+        "pc": "0x8021E020"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021E110",
+        "pc": "0x8021E24C"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021E524",
+        "pc": "0x8021E6F8"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021E9B4",
+        "pc": "0x8021EADC"
+      },
+      {
+        "legacy": "dora3_s33_remaining_8021EB4C",
+        "pc": "0x8021EBD0"
+      },
+      {
+        "legacy": "dora3_s33_remaining_80220AD0",
+        "pc": "0x80220B00"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021D714",
+        "pc": "0x8021D750"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021D714",
+        "pc": "0x8021D764"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021D714",
+        "pc": "0x8021D778"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021D714",
+        "pc": "0x8021D78C"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021D714",
+        "pc": "0x8021D7A0"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021D714",
+        "pc": "0x8021D8A4"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021D714",
+        "pc": "0x8021D8B8"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021D714",
+        "pc": "0x8021D8CC"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021D714",
+        "pc": "0x8021D8E0"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021D714",
+        "pc": "0x8021D8F4"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021E8D0",
+        "pc": "0x8021E90C"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021E8D0",
+        "pc": "0x8021E920"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021E8D0",
+        "pc": "0x8021E934"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021E8D0",
+        "pc": "0x8021E948"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021E8D0",
+        "pc": "0x8021EA4C"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021E8D0",
+        "pc": "0x8021EA60"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021E8D0",
+        "pc": "0x8021EA74"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021E8D0",
+        "pc": "0x8021EA88"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021FF44",
+        "pc": "0x8021FFB0"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021FF44",
+        "pc": "0x8021FFC4"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021FF44",
+        "pc": "0x8021FFD8"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021FF44",
+        "pc": "0x8021FFEC"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8021FF44",
+        "pc": "0x80220000"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8022116C",
+        "pc": "0x8022119C"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802222A0",
+        "pc": "0x80222300"
+      },
+      {
+        "legacy": "dora3_s34_remaining_80222674",
+        "pc": "0x802226D0"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802227F8",
+        "pc": "0x802228BC"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802227F8",
+        "pc": "0x802228CC"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802227F8",
+        "pc": "0x802228DC"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802227F8",
+        "pc": "0x802228EC"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8022396C",
+        "pc": "0x80223A5C"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8022396C",
+        "pc": "0x80223A70"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8022396C",
+        "pc": "0x80223A84"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8022396C",
+        "pc": "0x80223A98"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8022396C",
+        "pc": "0x80223CDC"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8022396C",
+        "pc": "0x80223CF0"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8022396C",
+        "pc": "0x80223D04"
+      },
+      {
+        "legacy": "dora3_s34_remaining_8022396C",
+        "pc": "0x80223D18"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802270A4",
+        "pc": "0x80227438"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802270A4",
+        "pc": "0x8022744C"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802270A4",
+        "pc": "0x80227460"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802270A4",
+        "pc": "0x80227474"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802270A4",
+        "pc": "0x8022797C"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802270A4",
+        "pc": "0x80227990"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802270A4",
+        "pc": "0x802279A4"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802270A4",
+        "pc": "0x802279B8"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802286C0",
+        "pc": "0x80228788"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802286C0",
+        "pc": "0x8022879C"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802286C0",
+        "pc": "0x802287B0"
+      },
+      {
+        "legacy": "dora3_s34_remaining_802286C0",
+        "pc": "0x802287C4"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021DB98",
+        "pc": "0x8021DBDC"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021E534",
+        "pc": "0x8021E590"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021E6D8",
+        "pc": "0x8021E780"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021E6D8",
+        "pc": "0x8021E790"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021E6D8",
+        "pc": "0x8021E7A0"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021E868",
+        "pc": "0x8021EC64"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021E868",
+        "pc": "0x8021EC94"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021E868",
+        "pc": "0x8021ECC4"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021F378",
+        "pc": "0x8021F3F4"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021F378",
+        "pc": "0x8021F780"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021FD28",
+        "pc": "0x8021FE0C"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021FD28",
+        "pc": "0x8021FE20"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021FD28",
+        "pc": "0x8021FE34"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021FD28",
+        "pc": "0x802202B4"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021FD28",
+        "pc": "0x802202E4"
+      },
+      {
+        "legacy": "dora3_s35_remaining_8021FD28",
+        "pc": "0x80220314"
+      },
+      {
+        "legacy": "dora3_s35_remaining_80220C5C",
+        "pc": "0x80220CB4"
+      },
+      {
+        "legacy": "dora3_s36_remaining_8021EE54",
+        "pc": "0x8021EE8C"
+      },
+      {
+        "legacy": "dora3_s36_remaining_8021EE54",
+        "pc": "0x8021EEA0"
+      },
+      {
+        "legacy": "dora3_s36_remaining_8021EE54",
+        "pc": "0x8021EEB4"
+      },
+      {
+        "legacy": "dora3_s36_remaining_8021EFD0",
+        "pc": "0x8021F004"
+      },
+      {
+        "legacy": "dora3_s36_remaining_8021F634",
+        "pc": "0x8021F678"
+      },
+      {
+        "legacy": "dora3_s36_remaining_8021F7CC",
+        "pc": "0x8021F8C4"
+      },
+      {
+        "legacy": "dora3_s36_remaining_8021FA10",
+        "pc": "0x8021FA58"
+      },
+      {
+        "legacy": "dora3_s36_remaining_80221B40",
+        "pc": "0x80221C30"
+      },
+      {
+        "legacy": "dora3_s36_remaining_80221B40",
+        "pc": "0x80221C40"
+      },
+      {
+        "legacy": "dora3_s36_remaining_80221B40",
+        "pc": "0x80221C50"
+      },
+      {
+        "legacy": "dora3_s36_remaining_80221B40",
+        "pc": "0x80221F28"
+      },
+      {
+        "legacy": "dora3_s36_remaining_80221B40",
+        "pc": "0x80221F38"
+      },
+      {
+        "legacy": "dora3_s36_remaining_80221B40",
+        "pc": "0x80221F48"
+      },
+      {
+        "legacy": "dora3_s36_remaining_8022243C",
+        "pc": "0x8022248C"
+      },
+      {
+        "legacy": "dora3_s37_remaining_8021DAF8",
+        "pc": "0x8021DB28"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021D714",
+        "pc": "0x8021D750"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021D714",
+        "pc": "0x8021D764"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021D714",
+        "pc": "0x8021D778"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021D714",
+        "pc": "0x8021D78C"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021D714",
+        "pc": "0x8021D7A0"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021D714",
+        "pc": "0x8021D87C"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021D714",
+        "pc": "0x8021D890"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021D714",
+        "pc": "0x8021D8A4"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021D714",
+        "pc": "0x8021D8B8"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021D714",
+        "pc": "0x8021D8CC"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021E7F4",
+        "pc": "0x8021E830"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021E7F4",
+        "pc": "0x8021E844"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021E7F4",
+        "pc": "0x8021E858"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021E7F4",
+        "pc": "0x8021E86C"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021E7F4",
+        "pc": "0x8021E948"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021E7F4",
+        "pc": "0x8021E95C"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021E7F4",
+        "pc": "0x8021E970"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021E7F4",
+        "pc": "0x8021E984"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021FA4C",
+        "pc": "0x8021FAB8"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021FA4C",
+        "pc": "0x8021FACC"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021FA4C",
+        "pc": "0x8021FAE0"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021FA4C",
+        "pc": "0x8021FAF4"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8021FA4C",
+        "pc": "0x8021FB08"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80220C74",
+        "pc": "0x80220CA4"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80221CB8",
+        "pc": "0x80221D18"
+      },
+      {
+        "legacy": "dora3_s38_remaining_8022208C",
+        "pc": "0x802220E8"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80222224",
+        "pc": "0x802222F4"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80222224",
+        "pc": "0x80222304"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80222224",
+        "pc": "0x80222314"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80222224",
+        "pc": "0x80222324"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80223514",
+        "pc": "0x80223604"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80223514",
+        "pc": "0x80223618"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80223514",
+        "pc": "0x8022362C"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80223514",
+        "pc": "0x80223640"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80223514",
+        "pc": "0x80223884"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80223514",
+        "pc": "0x80223898"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80223514",
+        "pc": "0x802238AC"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80223514",
+        "pc": "0x802238C0"
+      },
+      {
+        "legacy": "dora3_s38_remaining_802267AC",
+        "pc": "0x80226B40"
+      },
+      {
+        "legacy": "dora3_s38_remaining_802267AC",
+        "pc": "0x80226B54"
+      },
+      {
+        "legacy": "dora3_s38_remaining_802267AC",
+        "pc": "0x80226B68"
+      },
+      {
+        "legacy": "dora3_s38_remaining_802267AC",
+        "pc": "0x80226B7C"
+      },
+      {
+        "legacy": "dora3_s38_remaining_802267AC",
+        "pc": "0x80227084"
+      },
+      {
+        "legacy": "dora3_s38_remaining_802267AC",
+        "pc": "0x80227098"
+      },
+      {
+        "legacy": "dora3_s38_remaining_802267AC",
+        "pc": "0x802270AC"
+      },
+      {
+        "legacy": "dora3_s38_remaining_802267AC",
+        "pc": "0x802270C0"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80227DC4",
+        "pc": "0x80227E8C"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80227DC4",
+        "pc": "0x80227EA0"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80227DC4",
+        "pc": "0x80227EB4"
+      },
+      {
+        "legacy": "dora3_s38_remaining_80227DC4",
+        "pc": "0x80227EC8"
+      },
+      {
+        "legacy": "dora3_s39_remaining_8021DAD8",
+        "pc": "0x8021DB34"
+      },
+      {
+        "legacy": "dora3_s39_remaining_8021DC08",
+        "pc": "0x8021DCAC"
+      },
+      {
+        "legacy": "dora3_s39_remaining_8021DC08",
+        "pc": "0x8021DCBC"
+      },
+      {
+        "legacy": "dora3_s39_remaining_8021DD6C",
+        "pc": "0x8021DE58"
+      },
+      {
+        "legacy": "dora3_s40_remaining_8022EE74",
+        "pc": "0x8022EF08"
+      },
+      {
+        "legacy": "dora3_s40_remaining_8022EE74",
+        "pc": "0x8022EF18"
+      },
+      {
+        "legacy": "dora3_s40_remaining_8022EE74",
+        "pc": "0x8022EF28"
+      },
+      {
+        "legacy": "dora3_s40_remaining_8022EF5C",
+        "pc": "0x8022F0A8"
+      },
+      {
+        "legacy": "dora3_s40_remaining_8022EF5C",
+        "pc": "0x8022F0BC"
+      },
+      {
+        "legacy": "dora3_s40_remaining_8022EF5C",
+        "pc": "0x8022F0D0"
+      },
+      {
+        "legacy": "dora3_s40_remaining_8022F124",
+        "pc": "0x8022F188"
+      },
+      {
+        "legacy": "dora3_s40_remaining_8022F124",
+        "pc": "0x8022F19C"
+      },
+      {
+        "legacy": "dora3_s40_remaining_8022F124",
+        "pc": "0x8022F1B0"
+      },
+      {
+        "legacy": "dora3_s41_remaining_8022F420",
+        "pc": "0x8022F454"
+      },
+      {
+        "legacy": "dora3_s41_remaining_8022FAD8",
+        "pc": "0x8022FB64"
+      },
+      {
+        "legacy": "dora3_s41_remaining_802300D4",
+        "pc": "0x802302C0"
+      },
+      {
+        "legacy": "dora3_s42_remaining_8022EC18",
+        "pc": "0x8022EC64"
+      },
+      {
+        "legacy": "dora3_s42_remaining_8022EC18",
+        "pc": "0x8022ECF8"
+      },
+      {
+        "legacy": "dora3_s42_remaining_8022F700",
+        "pc": "0x8022F7B0"
+      },
+      {
+        "legacy": "dora3_s42_remaining_8022F7DC",
+        "pc": "0x8022F88C"
+      },
+      {
+        "legacy": "dora3_s42_remaining_8022F8A4",
+        "pc": "0x8022F930"
+      },
+      {
+        "legacy": "dora3_s42_remaining_8022FDE0",
+        "pc": "0x8022FF24"
+      },
+      {
+        "legacy": "dora3_s43_remaining_8022D6D0",
+        "pc": "0x8022D754"
+      },
+      {
+        "legacy": "dora3_s43_remaining_8022DC64",
+        "pc": "0x8022DCF0"
+      },
+      {
+        "legacy": "dora3_s43_remaining_8022DF18",
+        "pc": "0x8022E1D4"
+      },
+      {
+        "legacy": "dora3_s43_remaining_8022E4B4",
+        "pc": "0x8022E504"
+      },
+      {
+        "legacy": "dora3_s43_remaining_8022E814",
+        "pc": "0x8022E8F0"
+      },
+      {
+        "legacy": "dora3_s43_remaining_8022E974",
+        "pc": "0x8022E9F4"
+      },
+      {
+        "legacy": "dora3_s43_remaining_8022EA24",
+        "pc": "0x8022EBDC"
+      },
+      {
+        "legacy": "dora3_s43_remaining_8022EA24",
+        "pc": "0x8022EC58"
+      },
+      {
+        "legacy": "dora3_s44_remaining_8022EC90",
+        "pc": "0x8022EDC4"
+      },
+      {
+        "legacy": "dora3_s44_remaining_8022F254",
+        "pc": "0x8022F324"
+      },
+      {
+        "legacy": "dora3_s44_remaining_8022F254",
+        "pc": "0x8022F4DC"
+      },
+      {
+        "legacy": "dora3_s44_remaining_8022F758",
+        "pc": "0x8022F7E4"
+      },
+      {
+        "legacy": "dora3_s44_remaining_8022F920",
+        "pc": "0x8022FA20"
+      },
+      {
+        "legacy": "dora3_s44_remaining_8022F920",
+        "pc": "0x8022FB4C"
+      },
+      {
+        "legacy": "dora3_s44_remaining_8022FBAC",
+        "pc": "0x8022FCB8"
+      },
+      {
+        "legacy": "dora3_s44_remaining_8022FBAC",
+        "pc": "0x8022FDE4"
+      },
+      {
+        "legacy": "dora3_s44_remaining_8022FF08",
+        "pc": "0x8022FFBC"
+      },
+      {
+        "legacy": "dora3_s44_remaining_802300C0",
+        "pc": "0x80230184"
+      },
+      {
+        "legacy": "dora3_s44_remaining_802300C0",
+        "pc": "0x80230330"
+      },
+      {
+        "legacy": "dora3_s44_remaining_802304C8",
+        "pc": "0x80230564"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80230578",
+        "pc": "0x80230614"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80230628",
+        "pc": "0x802306C4"
+      },
+      {
+        "legacy": "dora3_s44_remaining_802306D8",
+        "pc": "0x80230774"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80230788",
+        "pc": "0x80230854"
+      },
+      {
+        "legacy": "dora3_s44_remaining_8023086C",
+        "pc": "0x80230938"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80230950",
+        "pc": "0x80230A1C"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80230A34",
+        "pc": "0x80230B28"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80230B40",
+        "pc": "0x80230C34"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80230F64",
+        "pc": "0x80231034"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80230F64",
+        "pc": "0x802311AC"
+      },
+      {
+        "legacy": "dora3_s44_remaining_8023124C",
+        "pc": "0x802312E0"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80231324",
+        "pc": "0x802313B8"
+      },
+      {
+        "legacy": "dora3_s44_remaining_802313FC",
+        "pc": "0x80231490"
+      },
+      {
+        "legacy": "dora3_s44_remaining_802314D4",
+        "pc": "0x80231568"
+      },
+      {
+        "legacy": "dora3_s44_remaining_802315AC",
+        "pc": "0x80231670"
+      },
+      {
+        "legacy": "dora3_s44_remaining_802316B8",
+        "pc": "0x8023177C"
+      },
+      {
+        "legacy": "dora3_s44_remaining_802317C4",
+        "pc": "0x80231888"
+      },
+      {
+        "legacy": "dora3_s44_remaining_802318D0",
+        "pc": "0x802319BC"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80231A04",
+        "pc": "0x80231AF0"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80231E44",
+        "pc": "0x80231F14"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80231E44",
+        "pc": "0x8023208C"
+      },
+      {
+        "legacy": "dora3_s44_remaining_802321A4",
+        "pc": "0x80232244"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80232408",
+        "pc": "0x802324D4"
+      },
+      {
+        "legacy": "dora3_s44_remaining_80232408",
+        "pc": "0x8023264C"
+      },
+      {
+        "legacy": "dora3_s47_remaining_8023DE88",
+        "pc": "0x8023DF44"
+      },
+      {
+        "legacy": "dora3_s47_remaining_8023DE88",
+        "pc": "0x8023DF58"
+      },
+      {
+        "legacy": "dora3_s47_remaining_8023E020",
+        "pc": "0x8023E078"
+      },
+      {
+        "legacy": "dora3_s47_remaining_8023E020",
+        "pc": "0x8023E140"
+      },
+      {
+        "legacy": "dora3_s47_remaining_8023E404",
+        "pc": "0x8023E4A4"
+      },
+      {
+        "legacy": "dora3_s47_remaining_8023E4C0",
+        "pc": "0x8023E554"
+      },
+      {
+        "legacy": "dora3_s47_remaining_8023EF1C",
+        "pc": "0x8023EF58"
+      },
+      {
+        "legacy": "dora3_s47_remaining_8023EF1C",
+        "pc": "0x8023EFB0"
+      },
+      {
+        "legacy": "dora3_s47_remaining_8023F3C0",
+        "pc": "0x8023F408"
+      },
+      {
+        "legacy": "dora3_s48_remaining_8023DA0C",
+        "pc": "0x8023DAA0"
+      },
+      {
+        "legacy": "dora3_s48_remaining_8023DA0C",
+        "pc": "0x8023DAE8"
+      },
+      {
+        "legacy": "dora3_s48_remaining_8023DB14",
+        "pc": "0x8023DB70"
+      },
+      {
+        "legacy": "dora3_s48_remaining_8023DDE4",
+        "pc": "0x8023DEA0"
+      },
+      {
+        "legacy": "dora3_s48_remaining_8023E328",
+        "pc": "0x8023E3E4"
+      },
+      {
+        "legacy": "dora3_s48_remaining_8023E420",
+        "pc": "0x8023E488"
+      }
+    ],
+    "0x801BBFF4": [
+      {
+        "legacy": "dora3_s3_801BC4EC",
+        "pc": "0x801BC788"
+      }
+    ],
+    "0x8003A3B8": [
+      {
+        "legacy": "dora3_s0_8002A684",
+        "pc": "0x8002A710"
+      },
+      {
+        "legacy": "dora3_s0_8003AC14",
+        "pc": "0x8003AEF8"
+      }
+    ]
+  },
+  "notes": [
+    "Source factory801BC140 binds all seven components from descriptor+0C; Source world binder801BBFF4 uses handle table80217120 loaded by801BBE94 from descriptor+08 with bank33.",
+    "Only translating image pairs used to receive Native motion. Static matched-family scans omitted animated deformations, including actual desert0239..247.",
+    "Bitmap0564..567 is a static exact-scroll asset family with no confirmed animated Source table; it is not evidence for the reported desert path. Keep it distinct from actual desert source wiring.",
+    "Native CI4 material sampling keeps4bpp/16-color TMEM shape; intermediate palette reduction can affect color precision. Visual result remains pending.",
+    "Original commands/cadence/assets are unchanged. Native world material samples and DL copies belong to the current free frame bank.",
+    "Actual IA8 stage flows are sampled by separate intensity/alpha nibbles. Palette-count14/16 water transitions retain their common32-byte TLUT storage.",
+    "Source epoch/update age and constructor lifetime continue half-tile loops even if display frames are skipped; untouched materials do not consume a new visual phase.",
+    "Native material graph preserves exact segment identity per component and restores nested DB06 exit mappings from cloned-list caches.",
+    "All35 connected Source world sequence pairs fall within exact-scroll/identical-hold/CI4 material/IA8 sample policies; this is static eligibility evidence, not runtime or visual success.",
+    "Whole ROM linear angle reset inventory contains two matches; only0A46 has the four-key matching same-bone scale recycling pattern, in axes0/1.0A48 has one ordinary angle ramp.0489 scale channels do not match this guard."
+  ],
+  "policy_counts": {
+    "CI4-material-sample": 173,
+    "authored-identical-hold": 26,
+    "exact-scroll": 88,
+    "IA8-nibble-sample": 52
+  },
+  "new_source_clock_sites": [
+    "0x80028C74/27BDFFE8",
+    "0x80028D40/8FBF0014",
+    "0x80028C58/8FBF0020"
+  ],
+  "room_table_extent": {
+    "start": "0x80201A74",
+    "end_exclusive": "0x80202060",
+    "entries": 379,
+    "evidence": "All379 contiguous room nodes point to initialized descriptor records. The following words801E5D74/84/7C are code pointers, not room nodes. Nonempty counted bitmap lists appear in67 room references."
+  },
+  "coupled_scale_recycles": [
+    {
+      "resource": "0x0A46",
+      "bone": 2,
+      "axis": 0,
+      "keys": [
+        [
+          0.0,
+          0.1875
+        ],
+        [
+          480.0,
+          0.375
+        ],
+        [
+          482.0,
+          0.18828299641609192
+        ],
+        [
+          960.0,
+          0.375
+        ]
+      ],
+      "midpoint": 481.0,
+      "old_middle": 0.28164149820804596,
+      "native_recycled_middle": 0.18789237506968207
+    },
+    {
+      "resource": "0x0A46",
+      "bone": 2,
+      "axis": 1,
+      "keys": [
+        [
+          0.0,
+          0.1875
+        ],
+        [
+          480.0,
+          0.375
+        ],
+        [
+          482.0,
+          0.18828299641609192
+        ],
+        [
+          960.0,
+          0.375
+        ]
+      ],
+      "midpoint": 481.0,
+      "old_middle": 0.28164149820804596,
+      "native_recycled_middle": 0.18789237506968207
+    }
+  ],
+  "deferred_validation_dependencies": [
+    "Standalone texture CPU scope must link native_simulation_time.cpp for the new Source/simulation guard; add actual initializer/update/material paths and full-loop cases after user batch closure.",
+    "Fresh exact-ROM fixtures/generation and connected CPU pre-build are deferred; no new tests or Windows050 yet."
+  ]
+}

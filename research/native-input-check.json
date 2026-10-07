@@ -12,6 +12,6 @@
     "src/native_input_timeline.hpp": "c7a94b4673b39e397394cccaea7cb47a05c4a5919fe148f1db8a5c630166bc01",
     "tools/check_native_input.py": "1291597abe0db3dd1e1b09f3b3a24135fd6ce5deee32ab50f96b35c1e9a44e46"
   },
-  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+  "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
   "sanitizers": "ASan/LSan; UBSan new C++"
 }

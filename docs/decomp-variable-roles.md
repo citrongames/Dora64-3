@@ -548,8 +548,11 @@
 | `bironn_physics_r5_8022EBC8` | `ctx->r5` | Указатель physical из global8021BCDC; роль ограничена до следующей записи регистра/внешнего вызова | 1 |
 | `bironn_physics_r5_8022EE68` | `ctx->r5` | Указатель physical из global8021BCDC; роль ограничена до следующей записи регистра/внешнего вызова | 1 |
 | `bironn_physics_r7_8022F180` | `ctx->r7` | Указатель physical из global8021BCDC; роль ограничена до следующей записи регистра/внешнего вызова | 1 |
+| `bitmap_bind_actor_r18` | `ctx->r18` | Actor сохраняется в s2 до публикации type5/handle; Source ctor boundary28C58 читает этот же owner. | 1 |
+| `bitmap_bind_component_r17` | `ctx->r17` | s1 содержит номер component slot, не frame index и не resource id. | 1 |
 | `bitmap_channel_actor_r4` | `ctx->r4` | Actor parameter remains a0 until the first bitmap SDK call delay replaces a0. | 1 |
 | `bitmap_handle_slots_r19` | `ctx->r19` | База63B0 для short handles; slotIndex из второй word пары. | 1 |
+| `bitmap_sequence_record_r16` | `ctx->r16` | s0 удерживает восьмибайтную запись bitmap sequence: descriptor0, remaining4, frame5, flags6. Не actor/model pointer. | 1 |
 | `bobbing_actor_r16` | `ctx->r16` | Actor retained across the sine and angle normalization calls | 1 |
 | `bomb_draw_actor_plus_y_r16` | `ctx->r16` | Actor cursor plus4: world accesses98/9C/A0 mean actual9C/A0/A4; local0/4 here mean actorY/Z | 1 |
 | `bomb_draw_actor_r17` | `ctx->r17` | Actor pool cursor starting at slot10, advanced by0xCC until slot60 | 1 |
@@ -2667,6 +2670,8 @@
 | `brobodc08_physics_r5_8021DA24` | `ctx->r5` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `brobodc08_physics_r5_8021DCF8` | `ctx->r5` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
 | `brobodc08_physics_r6_8021FB10` | `ctx->r6` | Source указатель physics из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова | 1 |
+| `camera_record_r16` | `ctx->r16` | Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается. | 15 |
+| `camera_record_r17` | `ctx->r17` | Удерживает resident camera record: targetXYZ0..8, eyeC..14, pitch18/yaw1C/roll20, up24..2C и distance30. После восстановления saved register эта роль заканчивается. | 2 |
 | `candidate_contact_physics_r4` | `ctx->r4` | Candidate physics after the actor argument is replaced by its physics pointer | 1 |
 | `cat_contact_mode_r3` | `ctx->r3` | Shared contact mode before the checked sound command | 1 |
 | `character_carousel_first_ring_actor_r16` | `ctx->r16` | Current actor of first ring; loop advances by the real0xCC actor stride | 1 |

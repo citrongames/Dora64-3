@@ -70,9 +70,13 @@ const ScenePolicy* select_native_scene_policy(uint8_t* rdram) {
     return nullptr;
 }
 SceneIdentity native_scene_identity(uint8_t* ram,const ScenePolicy& policy) {
+    const auto update=uint32_t(word(ram,0x801A4500)),draw=uint32_t(word(ram,0x801A4514));
+    const bool auxiliary_views=update==0x801B59D8u&&draw==0x801B5A70u&&dora3_overlay_loaded(0x59E80);
+    const bool auxiliary_world=update==0x801F9B58u&&draw==0x801F9C88u&&dora3_overlay_loaded(0x70A50);
     const uint32_t module=policy.update==native_minigame_update?native_minigame_module(ram):
-        (policy.update==native_gameplay_preview_update||policy.update==native_cutscene_update||
-          (uint32_t(word(ram,0x801A4500))==0x801BB730u&&uint32_t(word(ram,0x801A4514))==0x801BB848u)?0x70A50u:0x635C0u);
+        auxiliary_views?0x59E80u:
+        (policy.update==native_gameplay_preview_update||policy.update==native_cutscene_update||auxiliary_world||
+          (update==0x801BB730u&&draw==0x801BB848u)?0x70A50u:0x635C0u);
     return {uint32_t(word(ram,0x801A4500)),uint32_t(word(ram,0x801A4514)),module,
             policy.divider,dora3_overlay_generation(module)};
 }
@@ -90,11 +94,11 @@ const char* native_scene_fallback_reason(uint8_t* ram) {
     }
     if(dora3_overlay_loaded(0x59E80)) {
         if(update==0x801B4FE4&&draw==0x801B5064)return "auxiliary startup/device command screen: Source";
-        if(update==0x801B59D8&&draw==0x801B5A70)return "auxiliary actor/camera control screen: Source";
+        if(update==0x801B59D8&&draw==0x801B5A70)return "auxiliary camera screen setup/boundary";
         if(update==0x801B6FD0&&draw==0x801B70A8)return "auxiliary resource/model selector: Source";
     }
     if(dora3_overlay_loaded(0x70A50)&&update==0x801F9B58&&draw==0x801F9C88)
-        return "auxiliary world actor/model control screen: Source";
+        return "auxiliary world camera setup/boundary";
     if(update==0x800433D8&&!draw)return "Source loader/scene replacement";
     return "Source initialization/transition or unreviewed callback pair";
 }

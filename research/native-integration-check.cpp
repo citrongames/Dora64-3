@@ -109,6 +109,24 @@ extern "C" void dora3_s0_8003931C(uint8_t*,recomp_context*){std::abort();}
 BOUNDARY(dora3_s0_8002DA98) BOUNDARY(dora3_s2_menu_801BBCEC) BOUNDARY(dora3_s2_menu_801BBEB0)
 BOUNDARY(dora3_s2_menu_801BC17C) BOUNDARY(dora3_s2_menu_801BC4C0)
 BOUNDARY(dora3_s2_menu_801C14B8) BOUNDARY(dora3_lib_80057A80)
+// Lifecycle-only probes must never execute actual camera math; connected UI
+// proof runs its full Original closure separately. These boundaries abort.
+BOUNDARY(dora3_s0_8002F064)
+BOUNDARY(dora3_s3_801DB7C8)
+BOUNDARY(dora3_s3_801D6EAC)
+BOUNDARY(dora3_s3_801D8FF0)
+BOUNDARY(dora3_s3_801D7294)
+BOUNDARY(dora3_s3_801D5864)
+BOUNDARY(dora3_s3_801D8578)
+BOUNDARY(dora3_s3_801DB720)
+BOUNDARY(dora3_s3_801D9B00)
+BOUNDARY(dora3_s3_801D8A24)
+BOUNDARY(dora3_s3_801D9C94)
+BOUNDARY(dora3_s3_801DA06C)
+BOUNDARY(dora3_s3_801DAB58)
+BOUNDARY(dora3_s3_801DA588)
+BOUNDARY(dora3_s3_801DAF50)
+BOUNDARY(dora3_s3_801DB3D0)
 extern "C" int dora3_native_rectangle_update(uint8_t*,recomp_context*){std::abort();}
 int main(){
     std::vector<uint32_t> memory(0x400000/4);auto* ram=reinterpret_cast<uint8_t*>(memory.data());

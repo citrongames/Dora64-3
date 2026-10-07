@@ -24,6 +24,10 @@ def main():
  # world/menu render branches are strict fixture boundaries and are not run.
  command_pcs={0x801BB334,0x801BB554,0x801BB5FC,0x801BB6A4,0x801C9B9C,0x801C9BE0,0x801F6DC4,0x801B8F9C,0x8002A1B8,0x80028C74}
  body_map=extract(g)
+ camera_roots=[0x801D5864,0x801D6EAC,0x801D7294,0x801D8578,0x801D8A24,0x801D8FF0,0x801D9B00,0x801D9C94,0x801DA06C,0x801DA588,0x801DAB58,0x801DAF50,0x801DB3D0,0x801DB720,0x801DB7C8,0x801DBD58]
+ roots.extend('dora3_s3_'+f'{pc:08X}' for pc in camera_roots)
+ roots.extend(['dora3_s0_8002F064','dora3_s49_remaining_801B5788','dora3_s3_core_801F96E0'])
+ allowed.update(n for n,b in body_map.items() if int(re.search(r'// 0x([0-9A-Fa-f]+):',b)[1],16) in {0x8002A47C})
  allowed.update(n for n,b in body_map.items() if int(re.search(r'// 0x([0-9A-Fa-f]+):',b)[1],16) in command_pcs)
  def closure(bodies):
   out={};todo=roots.copy()
@@ -33,9 +37,13 @@ def main():
    if n not in bodies:raise ValueError('Unexpected UI external call '+n)
    out[n]=bodies[n];todo.extend(x for x in re.findall(r'\b(\w+)\(rdram, ctx\)',bodies[n]) if x!='dora3_trace' and not x.startswith('dora3_native_'))
   return out
- patched=closure(extract(g));original=closure(extract(ref));assert patched.keys()==original.keys()
+ fallback=ROOT/'build-local/startup-v356';fallback_receipt=json.loads((fallback/'generation-receipt.json').read_text())
+ assert fallback_receipt['rom_sha256']==receipt['rom_sha256']
+ for n,h in fallback_receipt['generated'].items():assert sha(fallback/n)==h,n
+ originals=extract(fallback);originals.update(extract(ref))
+ patched=closure(body_map);original=closure(originals);assert patched.keys()==original.keys()
  assert all('dora3_native_' not in b for b in original.values())
- assert [n for n,b in patched.items() if 'LOOKUP_FUNC' in b]==['dora3_s2_menu_801BDEFC']
+ assert set(n for n,b in patched.items() if 'LOOKUP_FUNC' in b)=={'dora3_s2_menu_801BDEFC'}
  out=ROOT/'build-local/native-ui-check';out.mkdir(exist_ok=True)
  names=sorted(set(patched)|allowed,key=len,reverse=True);source='\n'.join(original.values())
  for n in names:source=re.sub(r'\b'+n+r'\b','reference_'+n,source)
@@ -64,13 +72,13 @@ def main():
  stamp=hashlib.sha256((sha(out/'functions.c')+sha(g/'startup_hooks.h')+sha(g/'RecompiledFuncs/funcs.h')+repr(flags)).encode()).hexdigest();cached=out/'functions.sha256'
  if not (out/'functions.o').exists() or not cached.exists() or cached.read_text()!=stamp:
   subprocess.run(['gcc','-std=c17','-fsanitize=address',*flags,'-c',str(out/'functions.c'),'-o',str(out/'functions.o')],check=True);cached.write_text(stamp)
- sources=[ROOT/'src/native_simulation_time.cpp',ROOT/'src/native_effects.cpp',ROOT/'src/native_ui.cpp',ROOT/'src/native_scene_policy.cpp',ROOT/'research/native-ui-check.cpp']
+ sources=[ROOT/'src/native_camera_timeline.cpp',ROOT/'src/native_simulation_time.cpp',ROOT/'src/native_effects.cpp',ROOT/'src/native_ui.cpp',ROOT/'src/native_scene_policy.cpp',ROOT/'research/native-ui-check.cpp']
  sources.append(ROOT/'research/native-inactive-enemy-fixture.cpp')
  sources.append(ROOT/'research/native-inactive-minigame-fixture.cpp')
  sources.extend([ROOT/'src/native_model_animation.cpp',ROOT/'src/native_frame_time.cpp',ROOT/'src/native_texture_animation.cpp',ROOT/'research/native-ui-model-inactive-fixture.cpp'])
  subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror','-fsanitize=address,undefined',*flags,*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
  result=subprocess.check_output([str(out/'check'),str(out/'game.bin'),str(out/'menu.bin')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')).strip()
- tracked=sources+[ROOT/'src/native_ui.hpp',ROOT/'src/native_scene_policy.cpp',ROOT/'src/native_game_loop.cpp',ROOT/'recomp/native-timing-rules.json',ROOT/'tools/native_timing_patches.py',ROOT/'tools/generate_startup.py',Path(__file__).resolve()]
- report=dict(scope='Connected UI panels/rectangle/title/intro/selection equations, actual widgets/dialogue/files/arrow/final-panel Source draw cadence and Original commands',result=result,actual_functions=sorted(patched),allowed_counted_boundaries=sorted(allowed),source_sha256={str(x.relative_to(ROOT)):sha(x) for x in tracked},generation_receipt_sha256=sha(g/'generation-receipt.json'),reference_receipt_sha256=sha(ref/'generation-receipt.json'),limitations=['Synthetic UI/controller/font inputs and Original ROM math/UI bodies; real BA2/BA3 cursor bitmaps plus pinned RT64 CPU sampling formula; no game/renderer/GPU','Asset texture-info, textured glyph/rectangle/string draw and sound request are counted fixture boundaries; raw panel/HUD/arrow display-list writes are actual Original commands','Resident dispatcher Source begin/end, draw epilogues and menu policy are statically pinned to exact ROM sites; unrelated world/player/NPC callbacks not rerun','Real menu appearance, glyph assets, gameplay dialogue and save devices require user visual test; full variable FPS still requires blocks1/2/4/6'])
+ tracked=sources+[ROOT/'research/native-after049-camera-ui-check.inc',ROOT/'src/native_ui.hpp',ROOT/'src/native_scene_policy.cpp',ROOT/'src/native_game_loop.cpp',ROOT/'recomp/native-timing-rules.json',ROOT/'tools/native_timing_patches.py',ROOT/'tools/generate_startup.py',Path(__file__).resolve()]
+ report=dict(scope='Connected UI panels/rectangle/title/intro/selection equations, actual widgets/dialogue/files/arrow/final-panel Source draw cadence and Original commands',result=result,actual_functions=sorted(patched),allowed_counted_boundaries=sorted(allowed),source_sha256={str(x.relative_to(ROOT)):sha(x) for x in tracked},generation_receipt_sha256=sha(g/'generation-receipt.json'),reference_receipt_sha256=sha(ref/'generation-receipt.json'),auxiliary_reference_receipt_sha256=sha(fallback/'generation-receipt.json'),limitations=['Synthetic UI/controller/font inputs and Original ROM math/UI bodies; real BA2/BA3 cursor bitmaps plus pinned RT64 CPU sampling formula; no game/renderer/GPU','Asset texture-info, textured glyph/rectangle/string draw and sound request are counted fixture boundaries; raw panel/HUD/arrow display-list writes are actual Original commands','Resident dispatcher Source begin/end, draw epilogues and menu policy are statically pinned to exact ROM sites; unrelated world/player/NPC callbacks not rerun','Real menu appearance, glyph assets, gameplay dialogue and save devices require user visual test; full variable FPS still requires blocks1/2/4/6'])
  (ROOT/'research/native-ui-check.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(result)
 if __name__=='__main__':main()

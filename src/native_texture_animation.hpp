@@ -15,3 +15,4 @@ public:
 extern "C" void dora3_native_texture_bind(uint8_t*,recomp_context*,unsigned);
 extern "C" void dora3_native_texture_builder(uint8_t*,recomp_context*,unsigned);
 extern "C" void dora3_native_texture_submit_guard(uint8_t*,recomp_context*);
+extern "C" void dora3_native_texture_channel_clock(uint8_t*,recomp_context*,unsigned);

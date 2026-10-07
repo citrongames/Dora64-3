@@ -1,11 +1,11 @@
 {
   "result": "PASS: all9 minigame modules and3 common callback pairs; 1757 Source/Native cases, 10205 fractional slices;20/30Hz and Manual60/73/120/144/165/360; command-once, linked Euler motion, contact impulses, angle wrapping, model/draw input ownership and exact restoration; synthetic resources, no game/GPU",
-  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+  "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
   "source_sha256": {
     "src/native_minigames.cpp": "b00f5c59c3885ca07b3e84124563e892c06d488dcdb5d54e2ca90e57add83318",
     "src/native_minigame_math.cpp": "7b9013f828b64bde7b8e2043e4bf5b1ebe74c54ba944f06f634482cb2dfc7b2f",
-    "src/native_model_animation.cpp": "8357d1f2c6b9eace9ad7b73aaa19fe8e21e56f1495a6810590175be2969be515",
-    "src/native_texture_animation.cpp": "67d297ac995e4cb96f11f998afe74fa2e430fb929ddd5f9dd19ea78723e75802",
+    "src/native_model_animation.cpp": "cc0a2c7eec1f99b60df4772d77739ac908112e3c3e8d402d0395ce54004aa648",
+    "src/native_texture_animation.cpp": "dada9247475952e041e54b602baac4550c0afe9b46d3c3fb7635fc7d1c1c4b05",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
     "research/native-minigame-check.cpp": "2371406ceba960e8cde61905f6e9cf9ff5e5d63117757e9aa82b5ff172d53fa4",

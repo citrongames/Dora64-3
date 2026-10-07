@@ -957,16 +957,6 @@
     },
     {
       "section": ".startup",
-      "function": "0x80028C74",
-      "site": "0x80028C74",
-      "function_name": "dora3_s0_80028C74",
-      "function_sha256": "3330bbaf3e9e02230cad7d40c7a3baaf84a90223af520ccbd6c17a06f084500c",
-      "expected_word": "0x27BDFFE8",
-      "operation": "tick_end_entry",
-      "evidence": "Resident sprite sequence byte countdown and end pulses are discrete texture changes, not continuous displacement."
-    },
-    {
-      "section": ".startup",
       "function": "0x800281B8",
       "function_name": "dora3_process_dispatch",
       "function_sha256": "8a532295957d2d55a6512deefc3383eec69312ebfb1906ff7aecfe84d2b640db",
@@ -25829,6 +25819,71 @@
       "expected_word": "0xE4400010",
       "operation": "native_enemy_equation",
       "evidence": "Literal copy of the preceding physical heading result to actor yaw10; both must use the same angular equation. Exact ROM static review; connected validation pending batch completion."
+    },
+    {
+      "section": ".startup",
+      "function": "0x80028C74",
+      "site": "0x80028C74",
+      "operation": "texture_channel_clock",
+      "boundary": 0,
+      "function_name": "dora3_s0_80028C74",
+      "function_sha256": "3330bbaf3e9e02230cad7d40c7a3baaf84a90223af520ccbd6c17a06f084500c",
+      "expected_word": "0x27BDFFE8",
+      "role": "native_material_source_age",
+      "evidence": "Observe actual Source bitmap update age and constructor lifetime; continue truncated toroidal cycles and hold untouched/paused materials without changing Original RAM/cadence.",
+      "status": "Implementation after049; tests deferred until user closes bug batch"
+    },
+    {
+      "section": ".startup",
+      "function": "0x80028C74",
+      "site": "0x80028D40",
+      "operation": "texture_channel_clock",
+      "boundary": 1,
+      "function_name": "dora3_s0_80028C74",
+      "function_sha256": "3330bbaf3e9e02230cad7d40c7a3baaf84a90223af520ccbd6c17a06f084500c",
+      "expected_word": "0x8FBF0014",
+      "role": "native_material_source_age",
+      "evidence": "Observe actual Source bitmap update age and constructor lifetime; continue truncated toroidal cycles and hold untouched/paused materials without changing Original RAM/cadence.",
+      "status": "Implementation after049; tests deferred until user closes bug batch"
+    },
+    {
+      "section": ".startup",
+      "function": "0x80028BC8",
+      "site": "0x80028C58",
+      "operation": "texture_channel_clock",
+      "boundary": 2,
+      "function_name": "dora3_s0_80028BC8",
+      "function_sha256": "3a88ce433d7fc59a2bebb640b46be754386cc6d4044be490f75b67ad0779087d",
+      "expected_word": "0x8FBF0020",
+      "role": "native_material_source_age",
+      "evidence": "Observe actual Source bitmap update age and constructor lifetime; continue truncated toroidal cycles and hold untouched/paused materials without changing Original RAM/cadence.",
+      "status": "Implementation after049; tests deferred until user closes bug batch"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "0x801B5788",
+      "function_name": "dora3_s49_remaining_801B5788",
+      "function_sha256": "2721f5a9175b2e7c13ea2b8fbcfeea72d7f29a6b2e3cf18b9a37570e17f0973d",
+      "site": "0x801B5788",
+      "expected_word": "0x27BDFFE8",
+      "operation": "ui_domain",
+      "domain": 8192,
+      "role": "camera_equation_source_owner",
+      "status": "Implementation after049; CPU/visual validation deferred until batch closure",
+      "evidence": "Exact Original camera-only call path; observe reached Source equation once. Native frame borrows camera geometry, preserving commands/inputs/counters and Source bytes."
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801F96E0",
+      "function_name": "dora3_s3_core_801F96E0",
+      "function_sha256": "eb394aaee92cb6756f1efed8d8ed3544e245ed8360967b085b5efd1c70506e3b",
+      "site": "0x801F96E0",
+      "expected_word": "0x3C02801B",
+      "operation": "ui_domain",
+      "domain": 8192,
+      "role": "camera_equation_source_owner",
+      "status": "Implementation after049; CPU/visual validation deferred until batch closure",
+      "evidence": "Exact Original camera-only call path; observe reached Source equation once. Native frame borrows camera geometry, preserving commands/inputs/counters and Source bytes."
     }
   ]
 }

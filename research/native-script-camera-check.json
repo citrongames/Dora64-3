@@ -34,12 +34,12 @@
     "research/native-inactive-minigame-fixture.cpp": "52a4a15d4e8cbd49d2dc7f993c0896832ba1bbd5082e5740b0c1aab085691900",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
     "src/native_script_camera.hpp": "e7bb2e1ba4d036ca2ead349d884daf9a0f857b935d0f3d9359c8cfa12a4d2d94",
-    "recomp/native-timing-rules.json": "b918263db23d3bd1f0b5a76c7e6ccf715af263f6077356cbb2ffd7ad438c097b",
-    "tools/native_timing_patches.py": "5c8a5045474596bd9eb4864bdd95e8b8029d9ca58e712524d78d5b07808e8be4",
+    "recomp/native-timing-rules.json": "5d87b2fb8b899ec909d32efb50a64b45953675ed818f9b89680e7f78627c7881",
+    "tools/native_timing_patches.py": "9153c74345f050fa35d3183b232ac593352eba4a996809836848a4816e9f8529",
     "tools/generate_startup.py": "e64b7e9b45435ee3a4fe9f3046376efb705942828a89e20ae195178f0d7e3d1c",
     "tools/check_native_script_camera.py": "7e71500775d55a88f4805ddea1f0c2a5edd1c4532bb87bad0d49e3624a6d1de6"
   },
-  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+  "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
   "reference_receipt_sha256": "11ea4b964ee1b470162b7373d5d7524b8acf9dde7eb2e8756ca3a24f031ae6b7",
   "limitations": [
     "Synthetic state and original ROM constants, no GPU; replay constants remain ignored locally",

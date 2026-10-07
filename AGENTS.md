@@ -268,3 +268,50 @@ Retained Source replay означает старые actual logs и провер
 и правки; короткая диагностика не должна служить обходом запрета на тесты.
 Полный pre-build без часового player proof, package preservation и commit/push
 main выполняются после завершения всех пачек. Старые PASS сохраняют происхождение.
+
+
+## Новая пачка после049: все похожие animated materials (2026-10-07)
+
+После завершённого049 пользователь подтвердил water/spiral loop jumps и
+Source-FPS sand второго мира. Исправлять actual connected materials и все
+аналогичные случаи; прежняя matched-BMP inventory не заменяет подключения.
+Новая пачка остаётся открытой: Source/ROM analysis, код/имена/документы сейчас,
+fixtures/tests/pre-build/Windows050 только после нового явного «нет».
+Статические conclusions и свежие049 PASS не выдавать за проверку нового кода.
+
+
+## Полный аудит камеры в той же открытой пачке (2026-10-07)
+
+Пользователь попросил пройти весь camera code, включая похожие пропуски FPS.
+Разобраны4778 Original compiled functions, camera/view callers всех overlays,
+16 ordinary entries/15 roots, scripted4views,9 minigames,2D map и menus/auxiliary.
+Статические кандидаты не являются CPU/visual PASS. После049 добавлены Source-
+reached camera-only frame equations при недоступном player domain и два auxiliary
+UI camera profiles с правильным overlay identity. Source commands/cuts/controls
+не публикуются из приватной camera image. Подробности в docs/native-camera-audit-after049.md.
+Пачка по-прежнему открыта: новые fixtures/check links/generation/prebuild/build
+только после нового явного «нет». Для проверки UI теперь нужны actual ordinary
+camera roots/SDKgeometry или отдельные строго ограниченные auxiliary-only scopes;
+старый standalone UI link не покрывает эти новые camera dependencies.
+
+
+## Пачка050 закрыта пользователем (2026-10-07)
+
+Последний ответ пользователя: «нет». Разрешены подготовка новых exact-ROM
+fixtures/generation, проверки новых material/camera/spiral paths, общий connected
+CPU prebuild без часового player proof, один Windows050, сохранность и commit/push
+существующей private main. Не останавливаться до билда и Git. Локальный запуск
+игры/renderer/GPU по-прежнему запрещён. Прежние PASS не считать новым выполнением.
+
+
+## Последнее правило проверок: только изменённые части (2026-10-07)
+
+Пользователь прямо остановил оставшийся общий прогон: «всё баста проверки
+только изменённых частей эти уже не надо». Это отменяет прежнее требование
+полного connected pre-build по умолчанию. После целого связанного блока
+проверять изменённые части и действительно затронутые зависимости, затем
+собирать один EXE. Не повторять неизменённые enemy/player/scene матрицы.
+В050 actual material/spiral/camera/UI проверки уже завершены; остановлены
+оставшиеся общие проверки. Пройденные логи сохраняются с исходными входами,
+остановленные/исключённые области не объявляются PASS. Продолжить Windows050,
+сохранность файлов и commit/push private main. Игра/GPU локально не запускаются.

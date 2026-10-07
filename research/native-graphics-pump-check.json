@@ -25,7 +25,7 @@
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556",
     "tools/check_native_graphics_pump.py": "171ec99008e2be029ae6b2acdc00ebd2836f3f042c4b59f886d2e9fc4737203d"
   },
-  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+  "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
   "original_functions": [
     "dora3_scheduler_thread",
     "dora3_scheduler_retrace",

@@ -19,6 +19,8 @@
 
 extern "C" {
 void dora3_s0_8002DA98(uint8_t*,recomp_context*);
+void dora3_s0_8002F064(uint8_t*,recomp_context*);
+int dora3_native_loop_gameplay_active();
 int dora3_overlay_loaded(uint32_t);
 int dora3_native_loop_owns_fade();
 void dora3_s2_menu_801BBCEC(uint8_t*,recomp_context*);
@@ -27,6 +29,21 @@ void dora3_s2_menu_801BC17C(uint8_t*,recomp_context*);
 void dora3_s2_menu_801BC4C0(uint8_t*,recomp_context*);
 void dora3_s2_menu_801C14B8(uint8_t*,recomp_context*);
 void dora3_lib_80057A80(uint8_t*,recomp_context*);
+void dora3_s3_801DB7C8(uint8_t*,recomp_context*);
+void dora3_s3_801D6EAC(uint8_t*,recomp_context*);
+void dora3_s3_801D8FF0(uint8_t*,recomp_context*);
+void dora3_s3_801D7294(uint8_t*,recomp_context*);
+void dora3_s3_801D5864(uint8_t*,recomp_context*);
+void dora3_s3_801D8578(uint8_t*,recomp_context*);
+void dora3_s3_801DB720(uint8_t*,recomp_context*);
+void dora3_s3_801D9B00(uint8_t*,recomp_context*);
+void dora3_s3_801D8A24(uint8_t*,recomp_context*);
+void dora3_s3_801D9C94(uint8_t*,recomp_context*);
+void dora3_s3_801DA06C(uint8_t*,recomp_context*);
+void dora3_s3_801DAB58(uint8_t*,recomp_context*);
+void dora3_s3_801DA588(uint8_t*,recomp_context*);
+void dora3_s3_801DAF50(uint8_t*,recomp_context*);
+void dora3_s3_801DB3D0(uint8_t*,recomp_context*);
 }
 namespace {
 using namespace dora3::native_time;
@@ -34,13 +51,15 @@ constexpr uint32_t image_size=0x400000,processes=0x801A44F0,panels=0x801B8AE0;
 int32_t& word(uint8_t* rdram,uint32_t a){return MEM_W(0,int32_t(a));}
 float real(uint8_t* rdram,uint32_t a){return std::bit_cast<float>(word(rdram,a));}
 void real(uint8_t* rdram,uint32_t a,float f){word(rdram,a)=std::bit_cast<int32_t>(f);}
-enum class Profile { None,Game,Title,Files,Intro,Selection,Image,StageMap };
+enum class Profile { None,Game,Title,Files,Intro,Selection,Image,StageMap,AuxiliaryViews,AuxiliaryWorldView };
 Profile profile(uint8_t* ram) {
     // Overlay-qualified callback pairs, not overlapping virtual addresses alone.
     if(word(ram,processes)!=2||word(ram,processes+20)!=2||word(ram,processes+12)!=0||word(ram,processes+32)!=1)return Profile::None;
     const uint32_t update=uint32_t(word(ram,processes+16)),draw=uint32_t(word(ram,processes+36));
     for(unsigned i=2;i<8;++i)if(word(ram,processes+i*20)!=0&&word(ram,processes+i*20)!=5)return Profile::None;
     if(dora3_overlay_loaded(0x70A50)&&update==0x801BB730&&draw==0x801BB848)return Profile::Game;
+    if(dora3_overlay_loaded(0x59E80)&&update==0x801B59D8&&draw==0x801B5A70)return Profile::AuxiliaryViews;
+    if(dora3_overlay_loaded(0x70A50)&&update==0x801F9B58&&draw==0x801F9C88)return Profile::AuxiliaryWorldView;
     if(!dora3_overlay_loaded(0x635C0))return Profile::None;
     if(update==0x801BB52C&&draw==0x801BB648)return Profile::StageMap;
     if(update==0x801BCEF8&&draw==0x801BD078)return Profile::Title;
@@ -59,7 +78,7 @@ struct Guard {
     std::vector<std::vector<uint8_t>> originals;
     unsigned call=0;
 };
-enum Domain : unsigned { Panels=1,Rectangle=2,Title=4,Intro=8,SelectionActor=16,SelectionRow=32,SelectionExit=64,MapCamera=128,MapMarker=256,MapHint=512,GameMenuSpin=1024,GameMenuGhost=2048,GameMenuCarousel=4096 };
+enum Domain : unsigned { Panels=1,Rectangle=2,Title=4,Intro=8,SelectionActor=16,SelectionRow=32,SelectionExit=64,MapCamera=128,MapMarker=256,MapHint=512,GameMenuSpin=1024,GameMenuGhost=2048,GameMenuCarousel=4096,AuxiliaryCamera=8192,OrdinaryCamera=16384 };
 struct Observation {uint8_t* ram=nullptr;Profile owner=Profile::None;unsigned mask=0;bool running=false;} observation;
 struct UiState {
     Profile owner=Profile::None;
@@ -182,6 +201,69 @@ void evaluate_game_menus(uint8_t* ram,double h) {
             publish_menu_float(ram,actor,8,float(double(real(ram,actor+8))+120.*(std::cos(radians)-std::cos(old_radians))));
         }
     }
+}
+// Geometry is borrowed for this frame, just like menu actor poses. Source
+// continues to own held-input selection, scene commands and every timer.
+void publish_camera_geometry(uint8_t* ram,recomp_context* ctx,uint8_t* scratch,unsigned count) {
+    for(unsigned i=0;i<count;++i) {
+        const auto camera=0x801A99F8u+i*0x34;
+        recomp_context math;dora3::copy_recomp_context(math,*ctx);math.r4=int32_t(camera);
+        math.r29=int32_t(0x803FD000);dora3_s0_8002F064(scratch,&math);
+        for(unsigned offset=0;offset<0x34;offset+=4)publish(ram,camera+offset,word(scratch,camera+offset));
+    }
+}
+void evaluate_auxiliary_cameras(uint8_t* ram,recomp_context* ctx) {
+    auto* scratch=reinterpret_cast<uint8_t*>(state.working.data());std::memcpy(scratch,ram,image_size);
+    uint8_t* rdram=ram;
+    const bool four=state.owner==Profile::AuxiliaryViews;
+    const uint16_t held=MEM_H(0,int32_t(four?0x801A9504u:0x801A9AD0u));
+    const auto camera=0x801A99F8u;
+    const double angle_step=(four?2.:4.)*state.h;
+    auto turn=[&](uint32_t at,double delta){real(scratch,at,float(normalized_angle(double(real(scratch,at))+delta)));};
+    // 5788's two yaw and pitch branches are independent, including both held
+    // directions.96E0 uses the selected-controller held snapshot copied by300C4.
+    if(held&(four?2:1))turn(camera+0x1C,angle_step);
+    if(held&(four?1:2))turn(camera+0x1C,-angle_step);
+    if(held&8)turn(camera+0x18,angle_step);
+    if(held&4)turn(camera+0x18,-angle_step);
+    const float floor=four?50.f:20.f;
+    if(held&0x400)real(scratch,camera+0x30,float(double(real(scratch,camera+0x30))+floor*state.h));
+    if((held&0x800)&&(!four||!(held&0x400)))real(scratch,camera+0x30,std::max(floor,float(double(real(scratch,camera+0x30))-floor*state.h)));
+    if(four) {
+        turn(camera+0x34+0x1C,8.*state.h);turn(camera+0x68+0x1C,-8.*state.h);
+        const auto distance=camera+0x9C+0x30;
+        const float current=real(scratch,distance);
+        // >2000 ->50 is a Source cut, not a velocity. It must occur once in
+        // the real callback, without predicting that reset in extra frames.
+        if(current<=2000.f)real(scratch,distance,float(double(current)+10.*state.h));
+    }
+    publish_camera_geometry(ram,ctx,scratch,four?4:1);
+}
+bool ordinary_camera_observed(uint8_t* ram) {
+    return (state.ram==ram&&state.owner==Profile::Game&&(state.domains&OrdinaryCamera))||
+        (!observation.running&&observation.ram==ram&&observation.owner==Profile::Game&&(observation.mask&OrdinaryCamera));
+}
+bool ordinary_camera_scene_stable(uint8_t* ram) {
+    uint8_t* rdram=ram;
+    return word(ram,0x80218AD8)==0&&word(ram,0x8021D484)==0&&
+        word(ram,0x802170EC)==0&&word(ram,0x802170F0)==0&&MEM_BU(0,int32_t(0x80217118))==0&&
+        word(ram,0x801AA648)&&word(ram,0x801A9500)&&ordinary_camera_observed(ram);
+}
+void evaluate_ordinary_camera_frame(uint8_t* ram,recomp_context* ctx) {
+    uint8_t* rdram=ram;const unsigned mode=MEM_BU(0,int32_t(0x801B361A));
+    using Function=void (*)(uint8_t*,recomp_context*);
+    constexpr std::array<Function,16> updates{dora3_s3_801DB7C8,dora3_s3_801DB7C8,dora3_s3_801D6EAC,dora3_s3_801D8FF0,dora3_s3_801D7294,dora3_s3_801D5864,dora3_s3_801D8578,dora3_s3_801DB720,dora3_s3_801D9B00,dora3_s3_801D8A24,dora3_s3_801D9C94,dora3_s3_801DA06C,dora3_s3_801DAB58,dora3_s3_801DA588,dora3_s3_801DAF50,dora3_s3_801DB3D0};
+    if(mode>=updates.size())return;
+    auto* scratch=reinterpret_cast<uint8_t*>(state.working.data());std::memcpy(scratch,ram,image_size);
+    recomp_context local;dora3::copy_recomp_context(local,*ctx);
+    local.r29=int32_t(0x803FD000);local.r4=int32_t(0x801A99F8);
+    constexpr uint64_t denominator=3000000000ull;
+    // Only the reached camera equation runs in the private image. DBD58's
+    // input/mode-change prefix, world/player dispatch and resource commands are
+    // absent. The real Source handler remains authoritative at the next tick.
+    SimulationScope time({uint64_t(state.h*denominator),denominator,state.epoch,0});
+    updates[mode](scratch,&local);
+    publish_camera_geometry(ram,ctx,scratch,2);
 }
 void evaluate_panels(uint8_t* ram,double h) {
     uint8_t* rdram=ram;
@@ -314,7 +396,11 @@ bool native_ui_menu_eligible(uint8_t* ram) {
     // Eligible gameplay/cutscene policies retain priority; this fallback grants
     // presentation of the fade, never a new gameplay simulation owner.
     const bool game_fade=p==Profile::Game&&(fade_direction==-1||fade_direction==1);
-    return (game_menu||game_fade||(p!=Profile::None&&p!=Profile::Game&&p!=Profile::Image))&&
+    // Player control/physics eligibility does not own the camera. A stable
+    // world whose actual Source callback reached one of the15 ordinary roots
+    // can continue its camera equation even while the player domain is blocked.
+    const bool game_camera=p==Profile::Game&&ordinary_camera_scene_stable(ram);
+    return (game_menu||game_fade||game_camera||(p!=Profile::None&&p!=Profile::Game&&p!=Profile::Image))&&
         (divider==2||divider==3)&&word(ram,0x801A9C88)==0;
 }
 bool native_ui_game_eligible(uint8_t* ram){return profile(ram)==Profile::Game&&(word(ram,0x801A39DC)==2||word(ram,0x801A39DC)==3)&&word(ram,0x801A9C88)==0;}
@@ -359,6 +445,7 @@ UiFrameScope::UiFrameScope(uint8_t* ram,recomp_context* ctx,Nanoseconds now):ram
     try {
         if(state.owner==Profile::Game) {
             evaluate_game_menus(ram,state.h);
+            if(state.h>0&&!dora3_native_loop_gameplay_active()&&ordinary_camera_scene_stable(ram))evaluate_ordinary_camera_frame(ram,ctx);
             if(state.domains&Panels)evaluate_panels(ram,state.h);
             if((state.domains&Rectangle)&&state.h>0&&MEM_H(0,int32_t(0x8021811A))==1) {
                 auto* scratch=reinterpret_cast<uint8_t*>(state.working.data());std::memcpy(scratch,ram,image_size);
@@ -367,7 +454,9 @@ UiFrameScope::UiFrameScope(uint8_t* ram,recomp_context* ctx,Nanoseconds now):ram
                 dora3_native_rectangle_update(scratch,ctx);
                 for(uint32_t a:{0x8021811Cu,0x80217194u,0x802171E4u,0x80217198u})publish(ram,a,word(scratch,a));
             }
-        } else if(state.owner==Profile::StageMap)evaluate_stage_map(ram,state.h);
+        } else if((state.owner==Profile::AuxiliaryViews||state.owner==Profile::AuxiliaryWorldView)&&
+                  (state.domains&AuxiliaryCamera)&&state.h>0)evaluate_auxiliary_cameras(ram,ctx);
+        else if(state.owner==Profile::StageMap)evaluate_stage_map(ram,state.h);
         else if(state.owner==Profile::Title&&(state.domains&Title)&&state.h>0)evaluate_title(ram,ctx);
         else if(state.owner==Profile::Selection&&(state.domains&SelectionActor)&&state.h>0)evaluate_selection(ram,ctx);
         else if(state.owner==Profile::Intro&&(state.domains&Intro)) {

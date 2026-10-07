@@ -1818,6 +1818,11 @@ APPROVED_UI_SITES[('ui_domain','.scene1',0x801F6870,0x801F6870,0x3C028022)]={'do
 
 APPROVED_UI_SITES.update({('ui_charge_rectangle','.scene1',0x801C9EBC,0x801CA060,0xAC400004):{}})
 
+# Camera audit after049: Source reachability for frame-owned camera equations.
+APPROVED_UI_SITES[('ui_domain','.startup_scene',0x801B5788,0x801B5788,0x27BDFFE8)]={'domain':8192}
+APPROVED_UI_SITES[('ui_domain','.scene1',0x801F96E0,0x801F96E0,0x3C02801B)]={'domain':8192}
+
+
 def timing_hooks(sections,compiled,rom):
     data=json.loads((ROOT/'recomp/native-timing-rules.json').read_text())
     if data['version']!=1 or hashlib.sha256(rom).hexdigest()!=data['rom_sha256']:
@@ -2079,7 +2084,7 @@ def timing_hooks(sections,compiled,rom):
             if address!=0x801DBD58 or word>>26!=3 or delay!=0x02002021:raise ValueError('Unreviewed ordinary camera dispatcher call')
             name_target=compiled[i,target][0]
             label=f'dora3_after_timing_{site:08X}'
-            text=f'if (dora3_native_simulation_active()) {{ ctx->r4=ctx->r16; dora3_native_camera_dispatch(rdram,ctx,0x{target:08X}u,{name_target}); goto {label}; }}'
+            text=f'if (!dora3_native_simulation_active()) dora3_native_ui_domain(rdram,16384); if (dora3_native_simulation_active()) {{ ctx->r4=ctx->r16; dora3_native_camera_dispatch(rdram,ctx,0x{target:08X}u,{name_target}); goto {label}; }}'
             hooks[name,site+8].insert(0,label+':;')
         elif op=='model_frame_event':
             read=int(rule['read_site'],16);reg=rule['register'];other=rule['other_register'];scale=rule['threshold_scale']
@@ -2615,6 +2620,11 @@ def timing_hooks(sections,compiled,rom):
             if (rule['section'],address,site,word)!=('.startup',0x800393C4,0x80039474,0x8FBF0024):raise ValueError('Unreviewed model pose completion')
             hooks[name,address].append('extern void dora3_native_model_pose_completed(uint8_t*,recomp_context*);')
             text='dora3_native_model_pose_completed(rdram,ctx);'
+        elif op=='texture_channel_clock':
+            approved=((0x80028C74,0x80028C74,0x27BDFFE8,0),(0x80028C74,0x80028D40,0x8FBF0014,1),(0x80028BC8,0x80028C58,0x8FBF0020,2))
+            if rule['section']!='.startup' or (address,site,word,rule['boundary']) not in approved:raise ValueError('Unreviewed bitmap Source clock boundary')
+            hooks[name,address].append('extern void dora3_native_texture_channel_clock(uint8_t*,recomp_context*,unsigned);')
+            text=('if (!dora3_native_simulation_tick_end()) return; ' if rule['boundary']==0 else '')+f"dora3_native_texture_channel_clock(rdram,ctx,{rule['boundary']});"
         elif op=='texture_channel_binding':
             if (rule['section'],address,site,word) not in (('.startup',0x80028D50,0x80028D50,0x27BDFFE0),('.scene1',0x801BBFF4,0x801BC040,0x02921021)):raise ValueError('Unreviewed texture channel binding')
             hooks[name,address].append('extern void dora3_native_texture_bind(uint8_t*,recomp_context*,unsigned);')

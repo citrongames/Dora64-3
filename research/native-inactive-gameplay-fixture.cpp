@@ -14,3 +14,6 @@ extern "C" float dora3_native_projectile_gravity_f32(uint8_t*,recomp_context* ct
 #ifdef DORA3_FIXTURE_INACTIVE_FLIGHT
 extern "C" int dora3_native_player_flight_hook(uint8_t*,recomp_context*,uint32_t){return 0;}
 #endif
+
+// No UI observation owner in this scalar/player-motion leaf fixture.
+extern "C" void dora3_native_ui_domain(uint8_t*,unsigned domain){if(domain!=16384u)std::abort();}

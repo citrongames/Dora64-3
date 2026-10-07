@@ -149,6 +149,48 @@ void restore(uint8_t* rdram,Model& entry) {
     }
     entry.sampled=false;
 }
+// The menu's zoom spiral recycles a logarithmic ring at480/482. Its
+// linear angle reset is coupled to two scale resets: .375 -> .188283.
+// Sampling those scales halfway produces a brief backwards zoom even after
+// fixing the angle. Only a four-key periodic scale ramp on that SAME bone,
+// with matching endpoint ranges and rates, may continue the recycled branch.
+// Ordinary scale/morph animation and the real Source samples stay unchanged.
+void repair_coupled_scale_recycle(uint8_t* rdram,uint32_t model,uint32_t bone,
+                                  int target,float begin,float end,float time) {
+    const auto count=word(rdram,model+0x2C);
+    const uint32_t indices=word(rdram,model+0x60),descriptors=word(rdram,model+0x18);
+    const uint32_t curves=word(rdram,model+0x1C),keys_base=word(rdram,model+0x04);
+    std::array<bool,3> assigned{};
+    for(int channel=count-1;channel>=0;--channel) {
+        const int index=word(rdram,indices+4*unsigned(channel));if(index<0||index>=count)continue;
+        const auto descriptor=descriptors+28*unsigned(index);
+        if(word(rdram,descriptor)!=6||word(rdram,descriptor+0x14)!=target)continue;
+        const int axis=word(rdram,descriptor+0x10);if(axis<0||axis>2||assigned[axis])continue;
+        assigned[axis]=true;
+        const int curve_index=word(rdram,descriptor+0x18);if(curve_index<0)continue;
+        const uint64_t curve_address=uint64_t(curves)+16*unsigned(curve_index);
+        if(curve_address>0x803FFFF0ull)continue;
+        const auto curve=uint32_t(curve_address);region(curve,16);
+        if(word(rdram,curve)!=0||word(rdram,curve+8)!=4)continue;
+        const int offset=word(rdram,curve+12);if(offset<0)continue;
+        const uint64_t keys_address=uint64_t(keys_base)+unsigned(offset);
+        if(keys_address>0x803FFFE0ull)continue;
+        const auto keys=uint32_t(keys_address);region(keys,32);
+        const float earlier=real(rdram,keys),later=real(rdram,keys+24);
+        if(real(rdram,keys+8)!=begin||real(rdram,keys+16)!=end||!(earlier<begin&&end<later))continue;
+        const float first=real(rdram,keys+4),before=real(rdram,keys+12);
+        const float after=real(rdram,keys+20),last=real(rdram,keys+28);
+        const float previous=(before-first)/(begin-earlier),following=(last-after)/(later-end);
+        if(!std::isfinite(previous)||!std::isfinite(following)||!std::isfinite(first)||
+           !(first>0&&before>first&&after>0&&last>after))continue;
+        const float tolerance=std::max(std::abs(previous),std::abs(following))*.02f+1e-6f;
+        // The reset reuses the same [first,before] range. Extrapolate from its
+        // next ordinary key, rather than interpolating across the numeric reset.
+        if(std::abs(previous-following)>tolerance||std::abs(last-before)>std::abs(before)*.001f||
+           std::abs(after-following*(end-begin)-first)>std::abs(first)*.001f)continue;
+        real(rdram,bone+0x2C+4*unsigned(axis),after+following*(time-end));
+    }
+}
 // A short numeric reset between angle keys can encode a continuous turn.
 // In ROM clip0A46: (480,360)->(482,1.50311) sits between two +0.75 degree
 // ramps. Original +3 samples skip its middle; Native samples exposed a rapid
@@ -201,7 +243,10 @@ void repair_authored_angle_resets(uint8_t* rdram,uint32_t model,const Model& own
             if(std::abs(rate-previous)>tolerance||std::abs(rate-following)>tolerance)break;
             const auto bone=std::find_if(owner.bones.begin(),owner.bones.end(),
                 [&](const auto& b){return word(rdram,b.address+4)==target;});
-            if(bone!=owner.bones.end())real(rdram,bone->address+0x20+4*unsigned(axis),first+rate*(time-begin));
+            if(bone!=owner.bones.end()) {
+                real(rdram,bone->address+0x20+4*unsigned(axis),first+rate*(time-begin));
+                repair_coupled_scale_recycle(rdram,model,bone->address,target,begin,end,time);
+            }
             break;
         }
     }

@@ -1,4 +1,46 @@
+## Test050: материалы и аудит камеры после049
+
+Исправлены непрерывные циклы воды, waterfall и спирали выбора предметов.
+Подключены промежуточные samples sand второго мира и связанных CI4/IA8
+материалов. Camera audit4778 Original functions обнаружил зависимость обычной
+камеры от player eligibility и два auxiliary Source-only пути; добавлены
+независимые camera equations и правильные overlay/module identities.
+
+Actual ROM35 sequences/339 pairs:674 Source transitions,658 scroll и1626
+CI4/IA8 samples;35 paused/rebound owners. Real GIMO0A45/GIMM0A46:86 coupled
+angle/scale samples. Camera/UI:192 blocked-player owners/16 ordinary modes,
+220 auxiliary cases/4views, оба Source divider и60..360 FPS. Source RAM,
+time/flags/context и ownership сохранены.
+
+Пользователь закрыл пачку «нет», затем остановил оставшиеся общие проверки:
+«проверки только изменённых частей эти уже не надо». Это последняя политика.
+26 актуальных CPU scopes PASS, включая изменённые материалы/модель/камеру
+и нужные связи;6 scopes исключены, полный suite не объявляется PASS.
+Пройденный gravity log предшествует изменению inactive test-only fixture;
+он сохранён, но исключён из свежего proof. Enemy был остановлен при компиляции,
+scene transition/frame/story не повторялись; full-player исключён ранее.
+Игра/renderer/GPU не запускались. Визуальная плавность и color/filter quality
+ещё не подтверждены. Windows050 собран и сохранён; прежние файлы сохранены. Этап сохраняется в private main.
+
 ## Test-049: семь пачек исправлений после048
+
+2026-10-07, общий camera audit после049: кроме15 ordinary roots, scripted4views,
+9 minigames и2D map просмотрены все Source camera/view/SDK callers. Найдены
+два Source-only auxiliary rate paths и зависимость обычной камеры от player
+eligibility. Добавлены independent camera frame equations/2 auxiliary profiles,
+17 Source reachability pins, overlay identity, имена и register roles. Новый код
+ещё не проверен/не собран; закрытия текущей пачки не было.
+Подробности: [аудит всей камеры](native-camera-audit-after049.md).
+
+
+После049: пользователь сообщил оставшиеся water/spiral jumps и Source-FPS sand.
+Общий material block дополнен полным cycle/Source-age continuation, CI4/IA8
+deformation samples, palette-count14/16 seams, точными component/TLUT и nested
+GIMO segment bindings; spiral repair теперь учитывает coupled scale reset.
+Actual wiring67 room references/25 bitmap tables/35 sequences разобрано по ROM.
+Новый код ещё не проверен/не собран: batch остаётся открытым до явного «нет».
+Подробности и границы: [исправления материалов после049](native-regressions-after049-materials.md).
+
 
 Пользователь закрыл список багов ответом «нет»2026-10-07. Исправлены стык воды/
 спирали, диалоговая стрелка, white fades, все четыре области stage map и cursor

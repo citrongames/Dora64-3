@@ -68,7 +68,9 @@ static uint32_t draw(Memory& m,unsigned bank,bool world){
  throw std::logic_error("Actual SDK material builder emitted no mesh DE");
 }
 static uint32_t resolved(uint32_t p){return p<0x400000?p|0x80000000u:p;}
-int main(){
+#include "native-after049-material-check.inc"
+int main(int argc,char** argv){
+ assert(argc==2);material_rom_regressions(argv[1]);
  unsigned cases=0;
  for(auto size:std::array<std::array<unsigned,2>,4>{{{16,16},{16,32},{32,32},{64,64}}})
  for(auto shift:std::array<std::array<int,2>,3>{{{2,0},{0,-2},{0,4}}})for(bool world:{false,true}){
@@ -130,7 +132,7 @@ int main(){
    }
    for(unsigned i=0;i<560/4;++i)assert(m.W(next+4*i)==int32_t(assets[(next&0xFFFFFF)/4+i]));
    m.B(channel+5)=0;m.H(next+16)^=0x40;
-   {TextureFrameScope lease(m.ram(),25'000'000,0);assert(resolved(draw(m,0,world))==mesh);}++cases;
+   {TextureFrameScope lease(m.ram(),25'000'000,0);assert((resolved(draw(m,0,world))==mesh)==!world);}++cases;
   }
   // Same header addresses reused for a different image must invalidate the
  // translation cache. A stopped or final clamped channel must hold its frame.

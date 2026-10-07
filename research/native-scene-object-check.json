@@ -1465,7 +1465,7 @@
     }
   ],
   "retained_kinds": [],
-  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+  "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
   "enemy_reference_receipt_sha256": "45e04bee0660b4e5776e71a1d8283e72e9b69a0f2eba885e435018c36e2ff6c7",
   "source_sha256": {
     "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
@@ -1474,10 +1474,10 @@
     "src/native_input_timeline.cpp": "b3a79f419e96ece1d12c4aa40a925d9f89444589cec3dcdf51d6b46f2d4e1960",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
-    "src/native_model_animation.cpp": "8357d1f2c6b9eace9ad7b73aaa19fe8e21e56f1495a6810590175be2969be515",
-    "src/native_texture_animation.cpp": "67d297ac995e4cb96f11f998afe74fa2e430fb929ddd5f9dd19ea78723e75802",
+    "src/native_model_animation.cpp": "cc0a2c7eec1f99b60df4772d77739ac908112e3c3e8d402d0395ce54004aa648",
+    "src/native_texture_animation.cpp": "dada9247475952e041e54b602baac4550c0afe9b46d3c3fb7635fc7d1c1c4b05",
     "src/native_frame_time.cpp": "cb2ad70206622d747fef82e10dcf711328d32d222f93b3fd13e83abb856c9495",
-    "research/native-gameplay-cutscene-fixture.cpp": "9d0f96ae66fa812b88f4cb3950452db2c26509e8bdfa0612fb1641b654c58cdb",
+    "research/native-gameplay-cutscene-fixture.cpp": "889f8544857b9ff7530d4cc96c04e6cb7800e1053041b8fd545235872e73293d",
     "research/native-story-pickup-source-check.cpp": "964a9ac09ff445f426ce18b8387729de3927efbad8a0de65590707681ac3af99",
     "tools/check_native_scene_objects.py": "97e888538b850fc56d30aeac47a2562a3c47f92ca2ea9cc5e74d30b689cbfe59",
     "research/native-scene-object-source-check.inc": "c6b234f9bf02b686c654998cc4a66264624003f5c1009cdc2dd4b75dc1e452a0",
@@ -1499,13 +1499,13 @@
     "src/native_minigames.hpp": "d300b1c20c5f063976341018969e90efe64ecc1e9e0ca63d5e07bd40c0dcba90",
     "src/native_model_animation.hpp": "0390dfbc9a1798c46dcf3b52af97899afd78c65380c1b6f78c319fa9a0744d90",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-    "src/native_texture_animation.hpp": "7403bbf3f80ac2335669356f78d8caf8c4803d7d9060b205c6fd60ef5f874a41",
+    "src/native_texture_animation.hpp": "84ec734870434c9a9202dfb9b2834a630f903f521ebea3edecce832a6c85ff61",
     "src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755"
   },
   "optimization": "O2",
   "replay_workers": 6,
-  "replay_summary_sha256": "86cace7e532f511fb5ac9fed73466c3c9d2a9d6f82b66903e537ffcbe9d19282",
+  "replay_summary_sha256": "3fb556b830b4c16d3a1d9eac37a1ada233d1044e8ed51dfd53ab01715efc1a4a",
   "source_body_proof": [
     "dora3_s0_menu_80039544",
     "dora3_s10_cave_8021D9F4",

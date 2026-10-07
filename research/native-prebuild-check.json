@@ -1,141 +1,121 @@
 {
-  "result": "PARTIAL_USER_SKIP:31 completed connected CPU scopes PASS for seven post048 regression batches; full-player explicitly excluded",
-  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
-  "base_commit": "e2099b112cb11b886f0e8bdeef7354500989039a",
+  "result": "PARTIAL_USER_SKIP:26 current valid CPU scopes PASS, including changed material/spiral/camera paths; remaining general scopes stopped at user request",
+  "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
+  "base_commit": "93dfc7779077f4d37201d47e56dd0f0509c7f40d",
   "checks": {
     "integration": {
       "path": "research/native-integration-check.json",
-      "sha256": "d002ee56a39a3d1809fb2b925710ddb437728f4cc348a96199efeb556439548f",
+      "sha256": "31bc41525442ee943ab6e248364c58adc48a1f3dce40924bfc4d89e7d7fa3618",
       "result": "PASS: 49 actual common-loop integration schedules, actual activation clock origin after held Original read, six Manual rates and both Source dividers, fractional modes, two completion boundaries, rate/reload/callback cancellation, unsupported fallback and quiescent mailbox reset; synthetic scene-clock/queue endpoints; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_integration.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3"
         ],
-        "elapsed_seconds": 41.11,
-        "log": "integration-attempt1.log",
+        "elapsed_seconds": 65.16,
+        "log": "integration-attempt2.log",
         "log_sha256": "71740cadf652b71ed1a59873bd7c834a7da6e665c79c0f15bdf897c0a66fe6f5",
-        "attempts": []
+        "attempts": [
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_integration.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3"
+            ],
+            "status": "FAIL",
+            "log": "integration-attempt1.log",
+            "exit_code": 1,
+            "elapsed_seconds": 45.04,
+            "log_sha256": "b6eeda3044e19a0e1b262ff1fc5d011073e12d20775834bcda0ebb41aaed6550"
+          }
+        ]
       }
     },
     "texture_animation": {
       "path": "research/native-texture-animation-check.json",
-      "sha256": "5d6d8156b1ad505d22d5d377b711f63be1acef1d21e0763995089a71ac253c1d",
-      "result": "PASS: 47 actual Source bitmap/material and Native RDP scroll cases; generic/world binding, horizontal/vertical shifts, ordered tile bounds, immutable resources, both frame banks, reuse/stopped/clamped guards and pre-submit fallback; synthetic assets, no game/GPU",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "sha256": "ae5bb8b2d310258d56528871edb5e9372ac0756f2eb159d9345f0a8ff31fbf51",
+      "result": "PASS:35 actual ROM room-material cycles/339 frame pairs, 674 real Source transitions, 658 complete-cycle scroll samples, 1626 CI4/IA8 deformation samples, skipped/half-tile seams, native palettes/TMEM shape, all immutable assets, two frame banks and35 paused/rebound owners; no game/GPU.\nPASS: 47 actual Source bitmap/material and Native RDP scroll cases; generic/world binding, horizontal/vertical shifts, ordered tile bounds, immutable resources, both frame banks, reuse/stopped/clamped guards and pre-submit fallback; synthetic assets, no game/GPU",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_texture_animation.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+          "--rom",
+          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64"
         ],
-        "elapsed_seconds": 15.34,
+        "elapsed_seconds": 29.93,
         "log": "texture_animation-attempt1.log",
-        "log_sha256": "254c7f35e3fb9728d5126b71d87a37b19a86411efbea640a24e6b623d843e079",
+        "log_sha256": "230b45e839c7e1aa22e84831bf819edfeeca2d13c0c9824ac886116ae788362e",
         "attempts": []
       }
     },
     "minigames": {
       "path": "research/native-minigame-check.json",
-      "sha256": "bb3c72c1157463dfb946dd7fb9a859e1fdffcb9765ba49c4cc0ab2934931782d",
+      "sha256": "3ca4be834bcd0af560124b4ac4da8b457937793fd4a08e9316e2121a47633d49",
       "result": "PASS: all9 minigame modules and3 common callback pairs; 1757 Source/Native cases, 10205 fractional slices;20/30Hz and Manual60/73/120/144/165/360; command-once, linked Euler motion, contact impulses, angle wrapping, model/draw input ownership and exact restoration; synthetic resources, no game/GPU",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_minigames.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-scene-block1-v4"
         ],
-        "elapsed_seconds": 195.77,
-        "log": "direct-minigames-1791361474057848423.log",
+        "elapsed_seconds": 153.69,
+        "log": "minigames-attempt1.log",
         "log_sha256": "29ee0ac8af73856521ffd641121fcea0e37c6c533c19edf6eafcb1b9a591c859",
-        "attempts": [
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_minigames.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-scene-block1-v4"
-            ],
-            "status": "FAIL",
-            "log": "minigames-attempt1.log",
-            "exit_code": 1,
-            "elapsed_seconds": 93.12,
-            "log_sha256": "fd93fe21abd4845e5334a767d92c47e9b271c1dbbeb21e8a7d063945d6bf7bdd"
-          }
-        ]
+        "attempts": []
       }
     },
     "ui": {
       "path": "research/native-ui-check.json",
-      "sha256": "d1c99c9d9722d3ab4722f413ea42410fbc76ea2917d42872e9eaa65493ed6476",
-      "result": "PASS: 3268 connected UI cases; 2882 Original motion endpoints; 40408 Native math samples; 369 repeated Original UI draw/command comparisons; 41 ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "sha256": "7f3479dd14beffe343c8b4d43b6f8fcef4a9a1df3a7b388a20c1ec10b228e00e",
+      "result": "PASS: 192 reached Original ordinary camera owners with blocked player,16 mode entries, both Source rates/60..360 FPS, real collision geometry, independent camera policy, Source endpoint/whole-image/context restore, no gameplay double-step and held/resource/script guards.\nPASS: 220 auxiliary Source camera cases, exact held combinations/floors, both rates/60..360 FPS, all4 eye/up views, Source-only >2000 cut, module identity and full frame restore.\nPASS: 3680 connected UI cases; 3294 Original motion endpoints; 55034 Native math samples; 369 repeated Original UI draw/command comparisons; 1435 ownership/pause guards; full math RAM/context restoration; ASan/UBSan; no game/GPU.",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_ui.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
         ],
-        "elapsed_seconds": 200.13,
-        "log": "direct-ui-1791358936864115251.log",
-        "log_sha256": "cef6356b116e4af723423b8f2aeda46948bd37033e0c02cf2e918bb6b47b7442",
-        "attempts": [
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_ui.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
-            ],
-            "status": "FAIL",
-            "log": "ui-attempt1.log",
-            "exit_code": 1,
-            "elapsed_seconds": 48.17,
-            "log_sha256": "245aa6c0f5af0b2da27c52e2206ec4e01c951072a0a5d3b46830df94a006f887"
-          }
-        ]
+        "elapsed_seconds": 164.04,
+        "log": "ui-attempt1.log",
+        "log_sha256": "2d76d61af84a60f99ae5214fec2e1c435cba061ccf668621182ab0ddbf701290",
+        "attempts": []
       }
     },
     "cutscene": {
       "path": "research/native-cutscene-check.json",
-      "sha256": "72f239cae4ddeefe36be6ca55c8477ebcead9c49b2dbc66d15e7a3c324b1bdeb",
+      "sha256": "625be432bf2f2c13a23c86bbc68a4fe64aa795e870156254c932bfbfdf82d678",
       "result": "PASS: 154 connected cutscene cases, 506 exact Source endpoints, 1431 Native intervals, 18 ownership/policy guards; 52 actual motion functions, all four linked cameras, XYZ/rotation/scale/polar/jump/alpha, Original20/30 at60/73FPS, actual interpreter wait/cut/finish, Source restoration and full-RAM/context duplicate-time checks; ASan/UBSan; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_cutscene.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
         ],
-        "elapsed_seconds": 39.22,
+        "elapsed_seconds": 40.71,
         "log": "cutscene-attempt1.log",
         "log_sha256": "47bbc6c60a35b8f9d1edad952cfd4aac8ebf928fe19988be2061cafcd5e72988",
         "attempts": []
@@ -143,49 +123,37 @@
     },
     "model_animation": {
       "path": "research/native-model-animation-check.json",
-      "sha256": "40edd96507ce8cc0aff800aae8d7356d6d2329a168af8f14a3147845238a88b2",
-      "result": "PASS: 430 one-shot terminal pose/morph samples, ordinary loops, component/run/step guards, reverse control, Source flags/time/context and bank restoration.\nPASS: 12 fractional Native→Original model/cue continuations, activation rebase without pose/time mutation, authored Source equality18→21 skip and21→24 continuation, pending/delivered cue once, pause/resume/run/seek/renderer reset; actual original SDK counter; no game/GPU.\nPASS: 20 crossing timelines / actual player frame-18 event; 24 native simulation model timelines with nondestructive events and no render double-advance; 12 fractional short-angle wrap schedules; 12 latched angular-command schedules; 12 preceding opacity-command schedules; 12 exact-float scalar/retirement timelines with pause/write/acquisition/lifetime invalidation; 86 original linear/morph native pose samples at 60/73/120/144/165/360 Hz and both dividers; Hermite curve through original matrix builder, bank isolation, guest context/time/event preservation, pause/seek/clamp/rebind/stale updates, unknown-write rollback, deferred logic morph, draw-time deletion and same-address recreation; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "sha256": "20524783f7a458a5290a4db129aae7f0092d602047679ff28e38b8ba0854410d",
+      "result": "PASS: 430 one-shot terminal pose/morph samples, ordinary loops, component/run/step guards, reverse control, Source flags/time/context and bank restoration.\nPASS: 86 real ROM0A46 coupled angle/scale recycle samples at both Source rates/60..360 FPS, actual SDK pose/matrix, exact Original midpoint retained, Native short seam continued, unchanged clip/time/flags/context and both bank restoration.\nPASS: 12 fractional Native→Original model/cue continuations, activation rebase without pose/time mutation, authored Source equality18→21 skip and21→24 continuation, pending/delivered cue once, pause/resume/run/seek/renderer reset; actual original SDK counter; no game/GPU.\nPASS: 20 crossing timelines / actual player frame-18 event; 24 native simulation model timelines with nondestructive events and no render double-advance; 12 fractional short-angle wrap schedules; 12 latched angular-command schedules; 12 preceding opacity-command schedules; 12 exact-float scalar/retirement timelines with pause/write/acquisition/lifetime invalidation; 86 original linear/morph native pose samples at 60/73/120/144/165/360 Hz and both dividers; Hermite curve through original matrix builder, bank isolation, guest context/time/event preservation, pause/seek/clamp/rebind/stale updates, unknown-write rollback, deferred logic morph, draw-time deletion and same-address recreation; no game/GPU.",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_model_animation.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+          "--rom",
+          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64"
         ],
-        "elapsed_seconds": 90.4,
-        "log": "direct-model_animation-1791359393493600492.log",
-        "log_sha256": "5d62fea84bd339f71087f9e5b80282d06ab9923f7c8921d6d66535c2da5a4848",
-        "attempts": [
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_model_animation.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
-            ],
-            "status": "FAIL",
-            "log": "model_animation-attempt1.log",
-            "exit_code": 1,
-            "elapsed_seconds": 60.59,
-            "log_sha256": "d315622531d477086ac5dcbb688afe93f08901cac3e1e419aea3770ef7a6706f"
-          }
-        ]
+        "elapsed_seconds": 58.79,
+        "log": "model_animation-attempt1.log",
+        "log_sha256": "05709cd5875d9de3b620a6e4f2e8f05de1d63193537800cd4e9c0dbddd2813d2",
+        "attempts": []
       }
     },
     "frame_time": {
       "path": "research/native-frame-time-check.json",
-      "sha256": "fd61580d92c21f9effaa40e473efb040612a33ef63b57e5037583266a090237d",
+      "sha256": "d96a2913466907dce8f9bbae98d2ff2d2f22c9761dceb042991765150c94cf2d",
       "result": "PASS: Manual 60..360 deadlines, Original/Display bypass, 20/30 Hz time conservation, mode changes, stalls/resume; 655360 original fade comparisons and fractional fades; 384 original animation comparisons, rate-independent native clip time, pause, clamp, multiple wraps and completion retention. All five original fade commands, inter-frame timestamp, no-op fractional retention, same-time commands and unknown-write rejection; rational Source command origins/reversal at12 FPS/divider settings with nonzero origin. No game/window/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_frame_time.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3"
         ],
-        "elapsed_seconds": 20.73,
+        "elapsed_seconds": 14.61,
         "log": "frame_time-attempt1.log",
         "log_sha256": "b7a060eedf7a6c699d4123a2818cf0c21238948ab575cfeb7b16f2317f469504",
         "attempts": []
@@ -193,19 +161,19 @@
     },
     "simulation": {
       "path": "research/native-simulation-check.json",
-      "sha256": "5a154b481c45a2316e9d8864414b874ebb534f912302696c153e07a5d686e2ce",
+      "sha256": "1567e90330a1f76ff29120ee7d0f5abcdbd79fda66f0b85fe6f1701f3c3d4933",
       "result": "PASS: 280 differential executions of seven original MIPS motion/camera helpers; Original and whole ticks unchanged; 12 20/30 Hz schedules at 60/73/120/144/165/360 FPS, 2036 real motion slices, exact discrete boundaries, constant-force kick/drift trajectory, approach/decay, long gaps, scene-reset cancellation and scope cleanup; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_simulation.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
         ],
-        "elapsed_seconds": 12.91,
+        "elapsed_seconds": 8.45,
         "log": "simulation-attempt1.log",
         "log_sha256": "cd346601c5b4b62f8109198735ddf93145603e64e190386703a2817a0a5c3ca1",
         "attempts": []
@@ -213,21 +181,21 @@
     },
     "camera_control": {
       "path": "research/native-camera-control-check.json",
-      "sha256": "0e1e3da76bc069734d1194c9721607540e7893768e0cefbf2eebdb71eaa3f864",
+      "sha256": "6b947563759fb2eaf1d1f19db09f46ebb491db61836caa83837c1c5276b581bc",
       "result": "PASS: 970 camera control/transition/coefficient cases; actual original angle helper, Original and full-step RAM equivalence; 60/73/120/144/165/360FPS, 20/30Hz; minimum distance20 unchanged; pitch dead-zone tolerance0.11 degrees; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_camera_control.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v69"
         ],
-        "elapsed_seconds": 13.99,
+        "elapsed_seconds": 8.5,
         "log": "camera_control-attempt1.log",
         "log_sha256": "b718ac57be459d9e2b20cd4bf3d562acf959e19c275a08d28ce3d64ea04b66ee",
         "attempts": []
@@ -235,21 +203,21 @@
     },
     "camera_modes": {
       "path": "research/native-camera-modes-check.json",
-      "sha256": "30cf67d648a917a49c27b04cdd2558c2bc9fa04fbbdd55925f609e520df2da44",
+      "sha256": "4df3b60d41530ad7df0eaad482b93ee703741655ac5c95cc9dc5e2ea79820f25",
       "result": "801D5864 diagnostic_max_rate_spread=0 field=0 variant=0\n801D7294 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8578 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8A24 diagnostic_max_rate_spread=0 field=0 variant=0\n801D8FF0 diagnostic_max_rate_spread=0 field=0 variant=0\n801DB720 diagnostic_max_rate_spread=0 field=0 variant=0\n801D9B00 diagnostic_max_rate_spread=0 field=0 variant=0\n801D9C94 diagnostic_max_rate_spread=0 field=0 variant=0\n801DA06C diagnostic_max_rate_spread=0 field=0 variant=0\n801DAB58 diagnostic_max_rate_spread=0 field=0 variant=0\n801DA588 diagnostic_max_rate_spread=0 field=0 variant=0\n801DAF50 diagnostic_max_rate_spread=0 field=0 variant=0\n801DB3D0 diagnostic_max_rate_spread=0 field=0 variant=0\nPASS: 10975 Original/full-tick memory comparisons across thirteen ordinary camera roots. Native equations also match at shared fractional timestamps; Source-end real shake commands at three final cuts and two dividers, external writes/reset preserved; synthetic room triangles through original collision query, no real level/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_camera_modes.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
         ],
-        "elapsed_seconds": 57.66,
+        "elapsed_seconds": 35.93,
         "log": "camera_modes-attempt1.log",
         "log_sha256": "e80bca6d3d3fc5099481ee37feb2874e658c23ff18e0415eecd54fdce18a345e",
         "attempts": []
@@ -257,21 +225,21 @@
     },
     "script_camera": {
       "path": "research/native-script-camera-check.json",
-      "sha256": "f33af1b4706dcc295384e6b6759cb52556aa2817803d8107e2c57a1692650495",
+      "sha256": "4105c0f41285364a1cfd4ac0e4a6ae85cf626fb903c1384beefc7424befa5007",
       "result": "PASS: 3920 script-camera cases; four cameras, all four modes, six orbit channels, local channels and combined rotations; Original/whole-step RAM differential, durations 0/1/2/7/40, 20/30 Hz timing at 60/73/120/144/165/360 FPS, original trigonometry and eye geometry; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_script_camera.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v69"
         ],
-        "elapsed_seconds": 26.37,
+        "elapsed_seconds": 15.82,
         "log": "script_camera-attempt1.log",
         "log_sha256": "316e1048a0fd348c41ec8d4cbed50b29e1d3ee42d48c14347992eeca83fc2a0f",
         "attempts": []
@@ -279,61 +247,39 @@
     },
     "effects": {
       "path": "research/native-effects-check.json",
-      "sha256": "f815f550c5e703f57555aea780e0b4a83e81a8a001e933b86b872dc0fe0fec9a",
+      "sha256": "004a8affdc97d01e0646935b70e5d7b1ab64e79fbb4c13059de63e5a5b99f805",
       "result": "PASS: 200 rectangle/zoom/sprite cases; all four rectangle modes, loop/clamp sprite events, durations0/1/2/7/40; original whole-step equivalence and per-tick state/event comparison at60/73/144/360FPS and20/30Hz; real fractional zoom changes; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_effects.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v69"
         ],
-        "elapsed_seconds": 62.51,
+        "elapsed_seconds": 38.88,
         "log": "effects-attempt1.log",
         "log_sha256": "16f0baa33a428a87264d785fa3f2e4036ead2e5b7a6d40a52185ad202b76fd7d",
         "attempts": []
       }
     },
-    "gravity": {
-      "path": "research/native-gravity-check.json",
-      "sha256": "41f6b30728bf4e0f7f02f7a3eaab563a1db765c1fa5fe13703be253476687cdc",
-      "result": "PASS: 786 original/gravity trajectory cases; 60/73/120/144/165/360FPS, 20/30Hz, both terminal caps, player special branches, contacts and scoped actor isolation; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
-      "execution": {
-        "command": [
-          "/usr/bin/python3",
-          "/home/vova/projects/DoraRecomp3/tools/check_native_gravity.py",
-          "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
-          "--rom",
-          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-          "--reference",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-v69"
-        ],
-        "elapsed_seconds": 14.6,
-        "log": "gravity-attempt1.log",
-        "log_sha256": "9eb33fbb0b90ea6030dcf5f039b0e30fdb9ef751aab4d5f4284627c7aabd410a",
-        "attempts": []
-      }
-    },
     "input": {
       "path": "research/native-input-check.json",
-      "sha256": "f690988c0d9b99d57d37313abcfe7b041473534c08854d184f99f27cd520e8d7",
+      "sha256": "d3d248920a660a18339dfb7942b61ee3b04f28775ed43076a4ee9e51172e7dde",
       "result": "PASS: 12 real VI accumulator/latch schedules at 60/73/120/144/165/360 FPS, four-port ownership, short presses, analog thresholds, Original handoff, disconnect/reconnect and scene reset; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_input.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3"
         ],
-        "elapsed_seconds": 21.08,
+        "elapsed_seconds": 12.77,
         "log": "input-attempt1.log",
         "log_sha256": "c524dbfb5d2eb8d4131032e3fc549c5dcbeb06e3d1ae42714b5df1ee37d4f794",
         "attempts": []
@@ -341,43 +287,61 @@
     },
     "player_motion": {
       "path": "research/native-player-motion-check.json",
-      "sha256": "60d710b0bf37c09d9cf45b512629f919e1db963a8b3529828e5d460429098ef6",
+      "sha256": "8f9e15b9cf9f1969553105bfdfc1b2a55cf4bd72f068197d181803279aafa310",
       "result": "PASS: 168 drive partitions; 24 joint player/vector/gravity/contact/camera trajectories at 60/73/144/360FPS; Original equivalence; movement cache preserved across camera boundary; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_player_motion.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
         ],
-        "elapsed_seconds": 45.86,
-        "log": "player_motion-attempt1.log",
+        "elapsed_seconds": 43.24,
+        "log": "player_motion-attempt2.log",
         "log_sha256": "0b4bcdac07c9f6897c6ff0d05887879d8c4a9fbd3e1e259765f37f8224e6f797",
-        "attempts": []
+        "attempts": [
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_player_motion.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+              "--reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v61"
+            ],
+            "status": "FAIL",
+            "log": "player_motion-attempt1.log",
+            "exit_code": 1,
+            "elapsed_seconds": 23.48,
+            "log_sha256": "2708bf86d67e80d739b73a71d56bcc967a96ebfda6dd4f0a3da9107f816576f6"
+          }
+        ]
       }
     },
     "process_time": {
       "path": "research/native-process-time-check.json",
-      "sha256": "5f6c0f8dad7788dd9258c386c5d3181a90a9e72ba52c104c63eb371a970344cc",
+      "sha256": "d0bd258aff3df2e52f7929ba1a0eb83adc0aa507811a19ef639d26f91b86e314",
       "result": "PASS: 2053 process dispatcher checks; all eight slots, states0..5, waits0/1/3, Original memory equivalence, repeated draw/simulation dispatch, delayed first activation; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_process_time.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
           "/home/vova/projects/DoraRecomp3/build-local/startup-v69"
         ],
-        "elapsed_seconds": 63.37,
+        "elapsed_seconds": 39.59,
         "log": "process_time-attempt1.log",
         "log_sha256": "fd7a94371c6e38f52df9157168ea90b7dea5410ad830e65f8a2ad17a3d311fe1",
         "attempts": []
@@ -385,17 +349,17 @@
     },
     "frame_bridge": {
       "path": "research/native-frame-bridge-address-check.json",
-      "sha256": "e02384756bfc9f44f40a5d36bac365b2a2d18dbac2d6a052bbfb6bd1c6ea970b",
+      "sha256": "113d8bbb8a7c3c480bfd3b5f31898951056760602cf552075d21d3dc4f6b7af6",
       "result": "PASS: registered type2 drains during pause while unregistered type2 remains Original; real runtime queue full/requeue/interrupt gating; original game loop native/VI/task/pause dispatch; context and all odd FPRs preserved in FR=0/FR=1; stale scene/rate wakes; quiescent reset; update before bank reservation, scene/rate cancellation; 2000 concurrent deliveries",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_frame_bridge.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3"
         ],
-        "elapsed_seconds": 30.68,
+        "elapsed_seconds": 15.52,
         "log": "frame_bridge-attempt1.log",
         "log_sha256": "99f1b90a2e0467aa09934ba463f4c7626a0e55c164a25176bdc975ab415112e8",
         "attempts": []
@@ -403,17 +367,17 @@
     },
     "frame_scheduler": {
       "path": "research/native-frame-scheduler-address-check.json",
-      "sha256": "51c35b51386e5de887bfa078bc962658238d3b82d284541fd05b197ee9835e89",
+      "sha256": "01158ec5eaab655b3be6cc4c416ebf3cfd3893f42f565c0fde3343d4ca3a6e31",
       "result": "PASS: one queued wake; immutable token behind 32-bit message; two banks; publication and independent guest/host completion; stale scene/rate tokens; enqueue rejection; elapsed-time conservation under backpressure; Original bypass; concurrent completion order; original ROM VI gate and completion-before-swap order; native 60/73/144/165/360 scheduling builds original 2D fade display lists with extra alpha phases and unchanged duration. No game/window/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_frame_scheduler.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3"
         ],
-        "elapsed_seconds": 20.55,
+        "elapsed_seconds": 12.2,
         "log": "frame_scheduler-attempt1.log",
         "log_sha256": "145cbdce4004034b29dd22d94bbfb8be5634424f05e4b812a5b7e286afd4b6af",
         "attempts": []
@@ -421,19 +385,19 @@
     },
     "graphics_pump": {
       "path": "research/native-graphics-pump-check.json",
-      "sha256": "23600cf2f6ba41ed64730779255c1b6c623fbbf94469bc6fbcbacd9d97b84366",
+      "sha256": "609616538b458e451cbc386c3b37e6f4ec29a841d685e7dc288a32b921eae746",
       "result": "PASS: immediate game+host completion and bank reuse after both SP/DP caller tails (SP-first and DP-first); registered native framebuffer bypass, present after swap, type2 consumption and delayed host acknowledgement; original submit -> native-only wake -> original scheduler including full event queue; no synthetic VI/client broadcast; audio priority/yield, SP/DP completion, framebuffer gate, pause, late Original wake and context/thread-local isolation preserved",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_graphics_pump.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64"
         ],
-        "elapsed_seconds": 76.23,
+        "elapsed_seconds": 44.87,
         "log": "graphics_pump-attempt1.log",
         "log_sha256": "081f137dd4ec10613ae163a3ab49c42697997a6394e4e41dcaa48ea43e0690c5",
         "attempts": []
@@ -441,55 +405,55 @@
     },
     "loop": {
       "path": "research/native-loop-check.json",
-      "sha256": "52d3fd9c6af2ee4e04ae08deaa13953b83f8d07c07e02756b53d9f23350e2b82",
-      "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 288 native white-fade builds with 255 distinct alpha values; 18 last-interval builds; 348 actual RDP fade-alpha comparisons; request state1; 76 discrete updates, 1102 native builds, 2 Original builds, 232 VI events; no GPU\nPASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 287 native white-fade builds with 254 distinct alpha values; 18 last-interval builds; 347 actual RDP fade-alpha comparisons; request state2; 76 discrete updates, 1102 native builds, 2 Original builds, 232 VI events; no GPU",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "sha256": "ec340bf49ef0d8589e329e7c1bcaff7a1d008712458609b533c97f7422b6ee76",
+      "result": "PASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 288 native white-fade builds with 255 distinct alpha values; 18 last-interval builds; 348 actual RDP fade-alpha comparisons; request state1; 76 discrete updates, 1103 native builds, 2 Original builds, 232 VI events; no GPU\nPASS: resource barrier drains two banks with early guest completion/late SP retirement/late HostRead, preserves foreign FIFO, registers and scratch; original message loop + update + dispatcher + full frame build/submit + image draw; shared native controller; Manual 60/73/144/360, Original, pause, original white fade commands and scene selection, drain before callback/resource replacement; 288 native white-fade builds with 255 distinct alpha values; 18 last-interval builds; 348 actual RDP fade-alpha comparisons; request state2; 76 discrete updates, 1103 native builds, 2 Original builds, 232 VI events; no GPU",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_loop.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64"
         ],
-        "elapsed_seconds": 209.54,
-        "log": "direct-loop-1791361474903291563.log",
-        "log_sha256": "a1ca75925906edccee9c19d1d1a001ba2faa2967248bd16eab4b38b597f1cb41",
+        "elapsed_seconds": 222.26,
+        "log": "loop-attempt2.log",
+        "log_sha256": "d94ae20ca9479bd0de0cc3dbb6c4bb60563f75bb066e2d3af4d681205ec6f1ed",
         "attempts": [
           {
             "command": [
               "/usr/bin/python3",
               "/home/vova/projects/DoraRecomp3/tools/check_native_loop.py",
               "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
               "--rom",
               "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64"
             ],
-            "status": "PASS",
+            "status": "FAIL",
             "log": "loop-attempt1.log",
-            "exit_code": 0,
-            "elapsed_seconds": 235.28,
-            "log_sha256": "7f7eefa7d0787293c5f7ac8b3e533001d7432cd785a2409c32f368c93e7cb991"
+            "exit_code": 1,
+            "elapsed_seconds": 105.82,
+            "log_sha256": "adf7aa1e6568b0975c59ba800a3d21d132714b2e1cb2c42bc8851f0dc9f8a066"
           }
         ]
       }
     },
     "scene34_draw": {
       "path": "research/native-scene34-draw-check.json",
-      "sha256": "6da4991a8838a149ab22638d0c477e5644070f741c65d03e960976c16376b9e6",
+      "sha256": "2696b7b4efb3c653cffe12c122ffadae439f4ec03cb333883f541f413744d30c",
       "result": "PASS: scene34 image branch original draw closure; CI4/CI8 headers, 3 sizes, 2 banks, alpha 0/128/255; 802 actual 2D command lists at 60/73/144/165/360 with native fade; all guest RAM outside DL/cursor/stack unchanged; no renderer or live scene activation",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_scene34_draw.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64"
         ],
-        "elapsed_seconds": 14.64,
+        "elapsed_seconds": 8.58,
         "log": "scene34_draw-attempt1.log",
         "log_sha256": "629368af6929ca7ed69008540f13451b9f8e19e376521c2acad3449223d62c29",
         "attempts": []
@@ -505,7 +469,7 @@
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_session.py"
         ],
-        "elapsed_seconds": 19.86,
+        "elapsed_seconds": 10.75,
         "log": "session-attempt1.log",
         "log_sha256": "378c5ed9810c78bd8f1fef0858a8e508468c1759bc59303e79f7dd195c199b3c",
         "attempts": []
@@ -521,159 +485,23 @@
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_present.py"
         ],
-        "elapsed_seconds": 18.51,
+        "elapsed_seconds": 9.73,
         "log": "present-attempt1.log",
         "log_sha256": "97173e6be0897b93f6c5efa7d11133855641ee34f9a2c92360f4c8e427149c67",
         "attempts": []
       }
     },
-    "scene_transition": {
-      "path": "research/native-scene-transition-check.json",
-      "sha256": "e974d1e8943c03d14933139c2ee098528c6b1e43bcf024db0317bc7c8f8542f0",
-      "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 336 actual slot09 constructors; 0 slot09 Source schedules; 32 slot09 Native edge schedules; 0 slot09 rejections; 0 slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; 0 slot09 intermediate yaw samples; settings=8; ASan/UBSan/LSan; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
-      "execution": {
-        "command": [
-          "/usr/bin/python3",
-          "/home/vova/projects/DoraRecomp3/tools/check_native_scene_transition.py",
-          "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
-          "--rom",
-          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-          "--reference",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-          "--city-reference",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-v189"
-        ],
-        "elapsed_seconds": 135.0,
-        "log": "scene_transition-attempt2.log",
-        "log_sha256": "5b9bdc0b9b0dcf73c36e2258f875d192afc0f9658c39683c8c677bdbb550cc27",
-        "attempts": [
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_scene_transition.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189"
-            ],
-            "status": "QUEUED"
-          }
-        ]
-      }
-    },
-    "scene_frame": {
-      "path": "research/native-scene-frame-check.json",
-      "sha256": "b37b6f9648bb3ed3e8a6ed91ad6426acdaafa30385d006b1062cb2846a6f3b88",
-      "result": "PASS: 3192 real common NPC collision/B priority, twelve actual NPC kinds in city and two other overlays, first-contact priority/non-talk obstacles/linked parent, stale/fresh contact, far/inactive/hidden/state/cooldown rejection, final pool slot and held-B cases; Original20/30 and Native60/73/120/144/165/360; ASan/UBSan/LSan; no game/GPU.\nPASS: 672 actual slot09 constructors; 0 slot09 Source schedules; 64 slot09 Native edge schedules; 0 slot09 rejections; 0 slot09 frozen189 full-RAM/context/heap/resource/command/model-count comparisons; 0 slot09 intermediate yaw samples; settings=16; ASan/UBSan/LSan; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
-      "execution": {
-        "command": [
-          "/usr/bin/python3",
-          "/home/vova/projects/DoraRecomp3/tools/check_native_player_update.py",
-          "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
-          "--rom",
-          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-          "--reference",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-          "--city-reference",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-          "--optimization",
-          "O2",
-          "--scope",
-          "scene-frame"
-        ],
-        "elapsed_seconds": 222.25,
-        "log": "scene_frame-attempt2.log",
-        "log_sha256": "60f6b044893cb51824d497144b08e5d3e2b2dcec51944f021e78d49f08da3311",
-        "attempts": [
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_player_update.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-              "--optimization",
-              "O2",
-              "--scope",
-              "scene-frame"
-            ],
-            "status": "QUEUED"
-          }
-        ]
-      }
-    },
-    "story_pickups": {
-      "path": "research/native-pickup-linked-batch-check.json",
-      "sha256": "1174b79b686b8d62cf473846ea23cd3f8924120d57d5387a78f8471d980e428d",
-      "result": "PASS: 72 Original and72 mixed Native/Source actual Native linked129 animation and standard pickup lifetimes;8 actual private producers with three129 children, three heights/XYZ velocity profiles, actual parent contact/quest/collection/six-flash130 and129 unlink/automatic retirement; 73656 Native intervals preserve every Source-only129 actor/physics word and unclaimed model/parent field; 19440 intermediate129 model-time changes and 73656 exact whole-snapshot duplicate-time checks; 18432 exact full live actor/physics/model/heap/resources/commands/quest/RNG/collision-result endpoints. Actual Source RNG timers/teleports/clip commands and complete resources on synthetic assets; Native129 owns only common model time/completion pulse after actual Source initialization and live reciprocal links; no actual selecting script/real-level renderer claim; no game/GPU.\nPASS: 117 Original and117 mixed Native/Source guarded linked129 animation lifetimes;13 command profiles at before/after/mid Native intervals, three root velocity profiles, actual private producer118 with three129 children, three heights/XYZ velocity profiles, actual parent contact/quest/collection/six-flash130 and129 unlink/automatic retirement; 129675 Native intervals preserve every Source-only129 actor/physics word and unclaimed model/parent field; 34830 intermediate129 model-time changes and 129675 exact whole-snapshot duplicate-time checks; 29952 exact full live actor/physics/model/heap/resources/commands/quest/RNG/collision-result endpoints. Actual Source RNG timers/teleports/clip commands and complete resources on synthetic assets; Native129 owns only common model time/completion pulse after actual Source initialization and live reciprocal links; no actual selecting script/real-level renderer claim; no game/GPU.\nPASS: linked Native animation batch;189 paired complete lifetimes/48384 exact Original endpoints; private commands and resources retain Source order; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
-      "execution": {
-        "command": [
-          "/usr/bin/python3",
-          "/home/vova/projects/DoraRecomp3/tools/check_native_story_pickups.py",
-          "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
-          "--rom",
-          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-          "--reference",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-          "--city-reference",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-          "--optimization",
-          "O2",
-          "--scope",
-          "pickup-linked-batch"
-        ],
-        "elapsed_seconds": 382.24,
-        "log": "story_pickups-attempt2.log",
-        "log_sha256": "ba3c5ab2d9b528f2340e90891a7fe51a72789d421b25e208843c9945b66c03b8",
-        "attempts": [
-          {
-            "command": [
-              "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_story_pickups.py",
-              "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
-              "--rom",
-              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-              "--reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-              "--city-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-              "--optimization",
-              "O2",
-              "--scope",
-              "pickup-linked-batch"
-            ],
-            "status": "QUEUED"
-          }
-        ]
-      }
-    },
     "scene_objects": {
       "path": "research/native-scene-object-check.json",
-      "sha256": "05a47dfb4928270d9a1726db0aa3fdc8144b8a846eedfd4c0ddd7fe706228e3b",
+      "sha256": "5128e7bf03cc1c81b21a58e279bf9b6e998404c0332af55ef212a5499bd56f4b",
       "result": "PASS: scene 3504 frozen/current Original and 10512 Native schedules across all292 ROM variants / 289 kinds; fresh replay=292 kinds/14016 cases, retained unchanged=0 kinds; 840960 fresh pool endpoints, 7461768 intervals, 7461768 zero-dt checks, 9184 genuine contacts; 289 scene/NPC kinds including platforms, doors, switches, traps, event actors and effects, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 0=1,2, 1=1,2, 2=1,2,3, 3=1,2,3, 4=1, 5=1, 6=1,2, 7=1,2, 8=1,2,3, 9=1,2,3, 10=1,2, 11=1,2, 12=1,2,3, 13=1, 14=1, 15=1, 16=1, 17=1,2, 18=1,2, 19=1,2, 20=1,2, 21=1,2, 22=1,2, 23=1,2, 24=1,2, 25=1,2, 26=1,2, 27=1,2,3, 28=1,2,3, 29=1,2,3, 30=1,2,3, 31=1,2,3, 32=1,2,3, 33=1,2,3, 34=1,2,3, 35=1,2,3, 36=1,2, 37=2,3, 38=1, 39=1,2, 40=1,2, 41=1,2, 42=1,3, 43=1, 44=1, 45=1,2, 46=1, 47=1, 48=1, 49=1, 50=1, 51=1, 52=1, 53=1, 54=1, 55=1, 56=1, 57=1, 58=1, 59=1, 60=1, 61=1, 62=1, 63=1, 64=1, 65=1, 66=1, 67=1, 68=1, 69=1, 70=1, 71=1, 72=1, 73=1, 74=1, 75=1, 76=1, 77=1, 78=1, 79=1, 80=1, 81=1, 82=1, 83=1, 84=1, 85=1, 86=1, 87=1, 88=1, 89=1, 90=1, 91=1, 92=1, 93=1, 94=1, 95=1, 96=1, 97=1, 98=1, 99=1, 100=1, 101=1, 102=1, 103=1, 104=1, 105=1, 106=1, 107=1, 108=1, 109=1, 110=1, 111=1, 112=1, 113=1, 114=1, 115=1, 116=1, 117=1, 118=1, 119=1, 120=1, 121=1, 122=1, 123=1, 124=1, 125=1, 126=1, 127=1, 128=1, 129=1, 130=1, 131=1, 132=1, 133=1, 134=1, 135=1, 136=1, 137=1, 138=1, 139=1, 140=1, 141=1, 142=1, 143=1, 144=1, 145=1, 146=1, 147=1, 148=1, 149=1, 150=1, 151=1, 152=1, 153=1, 154=1, 155=1, 156=1, 157=1, 158=1, 159=1, 160=1, 161=1, 162=1, 163=1, 164=1, 165=1, 166=1, 167=1, 168=1, 169=1, 170=1, 171=1, 172=1, 173=1, 174=, 175=1, 176=1, 177=1, 178=1, 179=1, 180=1, 181=1, 182=1, 183=1, 184=1, 185=1, 186=1, 187=1, 188=1, 189=1, 190=1, 191=1, 192=1, 193=1, 194=3, 195=3, 196=1, 197=1, 198=1, 199=1, 200=1, 201=1, 202=1, 203=1, 204=1, 205=1, 206=1, 207=1, 208=1, 209=1, 210=1, 211=1, 212=1, 213=1, 214=1, 215=1, 216=1, 217=1, 218=1, 219=1, 220=1, 221=1, 222=1, 223=1, 224=1, 225=1, 226=1, 227=1, 228=1, 229=1, 230=1, 231=1, 232=1, 233=1, 234=1, 235=1, 236=1, 237=1, 238=1, 239=1, 240=1, 241=1, 242=1, 243=1, 244=1, 245=1, 246=1, 247=1, 248=1, 249=1, 250=1, 251=1, 252=1, 253=1, 254=1, 255=1, 256=1, 257=1, 258=1, 259=1, 260=1, 261=1, 262=1, 263=1, 264=1, 265=1, 266=1, 267=1,10, 268=1, 269=1, 270=1, 271=1, 272=1, 273=1, 274=1, 275=1, 276=1, 277=1, 278=1, 279=1, 280=1, 281=1, 282=1, 283=1, 284=2, 285=1, 286=1, 287=1, 288=1, 289=1, 290=1, 291=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_native_scene_objects.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
           "--reference",
@@ -685,46 +513,16 @@
           "--workers",
           "6"
         ],
-        "elapsed_seconds": 1712.53,
-        "log": "scene_objects-attempt1.log",
-        "log_sha256": "aece7a3e2a740d1526fd480d6a5aadf5c966d999a836e348f7e5c7933dff5db8",
-        "attempts": []
-      }
-    },
-    "enemy": {
-      "path": "research/native-enemy-check.json",
-      "sha256": "5690434eef8f77481aa611d64e94f32468b3e7bd98e8e62a7e5d06c65286233a",
-      "result": "PASS: enemy 2616 frozen/current Original and 7848 Native schedules across all218 kinds; fresh replay=24 kinds/1152 cases, retained unchanged=194 kinds; 69120 fresh pool endpoints, 613296 intervals, 613296 zero-dt checks, 704 genuine contacts; 218 kinds including all135 ordinary/all79 bosses and4 outbound owners, actual constructors/retirement on synthetic assets; no game/GPU.\nEnemy reached-state coverage: 257=1, 258=1, 259=1, 264=1, 265=1, 266=2, 267=2,3, 268=1, 269=2, 270=2, 271=1,2, 272=2, 273=1, 274=2, 275=2,3, 276=1,10, 277=2, 278=1, 279=1,2,4, 280=1, 281=1,2,3,4, 282=1,2,3,5, 283=1,2,3,4, 284=1,2, 285=1, 286=1, 287=1,3, 288=2, 289=2,3,4, 290=1,2, 291=1,2, 292=1, 293=2,3, 294=1, 295=2,3, 296=1, 297=2,3, 298=2,3, 299=1,10, 300=2, 301=1, 302=1, 303=1, 304=1, 305=1, 306=1, 307=1, 308=1,2,3, 309=1,2,3, 310=1,2,3, 311=1, 312=2,3, 313=2, 314=2,3, 315=1,10, 316=1,10, 317=1, 318=1, 319=1,2, 320=1,2, 321=2, 322=1, 323=1, 324=1, 325=1, 326=2, 327=2, 328=1,10, 329=1, 330=2, 331=2, 332=2,3, 333=1,10, 334=2, 335=1,10, 336=2, 337=1,2,3, 338=1, 339=2, 340=1,10, 341=1,2,3, 342=1,2, 343=1,2, 344=1,2, 345=1, 346=3, 347=1,3,4,5, 348=1,2, 349=1, 350=1,3,10, 351=1,2, 352=1,10, 353=1, 354=1, 355=1, 356=1, 357=1, 358=1, 359=1,2,3, 360=2, 361=1, 362=3, 363=1,10, 364=2,3, 365=2,3, 366=2,3, 367=1, 368=1,3,4, 369=1, 370=1, 371=1,2, 372=1, 373=1,2, 374=1, 375=1, 376=1, 377=1,2, 378=1,2, 379=1, 380=1, 381=1, 382=1, 383=1, 384=1, 385=1, 386=1, 387=1,2, 388=2,4, 389=2, 390=3,4, 391=1, 392=1, 393=1, 394=1, 395=2, 396=1, 397=1,10, 398=1, 399=1,2,4, 400=1, 401=1,2, 402=1, 403=1,2, 404=1, 405=1, 406=1, 407=1, 408=1, 409=1, 410=4, 411=1, 412=1, 413=1, 414=1,10, 415=1,10, 416=1, 417=1, 418=1,10, 419=1, 420=1, 421=10, 422=1, 423=1,2,3, 424=1, 425=1, 426=1, 427=1, 428=1,3, 429=1,10, 430=1,10, 431=1, 432=1, 433=1, 434=1, 435=2, 436=1, 437=1, 438=1,10, 439=1, 440=1, 441=1, 442=1, 443=1,10, 444=1, 445=1, 446=1, 447=1, 448=1, 449=1, 450=1,10, 451=1,2, 452=1, 453=1, 454=1,2,4, 455=1, 456=1, 457=1,2,3,4, 458=1,10, 459=1,10, 460=1,2,3,4, 461=1,2,3,4, 462=1,2,3,4,10, 463=1, 464=1, 465=10, 466=1, 467=1,3,4, 468=1, 469=1, 470=1,2,3,4, 471=1,2,3,4, 472=1,3, 473=1, 474=1, 475=1, 476=1, 477=1, 478=1, rabbit landing transitions=0 ground hits=0 stable ground=0 fractional samples=0",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
-      "execution": {
-        "command": [
-          "/usr/bin/python3",
-          "/home/vova/projects/DoraRecomp3/tools/check_native_enemy.py",
-          "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
-          "--rom",
-          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-          "--reference",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-          "--city-reference",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-          "--enemy-reference",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-v356",
-          "--workers",
-          "5",
-          "--resume-evidence",
-          "/home/vova/projects/DoraRecomp3/build-local/native-enemy-check/test049-enemy-completed-resume.json"
-        ],
-        "elapsed_seconds": 278.8,
-        "log": "enemy-attempt2.log",
-        "log_sha256": "e7b6ba18e97b27bb7c2ad31c1873263538e413a634d25a9068597950cc95c608",
+        "elapsed_seconds": 1432.24,
+        "log": "scene_objects-attempt2.log",
+        "log_sha256": "7bd9fcf6420ed37a4565d83bfa6638b83d58316ea6f40a568640dcc787260c76",
         "attempts": [
           {
             "command": [
               "/usr/bin/python3",
-              "/home/vova/projects/DoraRecomp3/tools/check_native_enemy.py",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_scene_objects.py",
               "--generated",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
               "--rom",
               "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
               "--reference",
@@ -732,52 +530,52 @@
               "--city-reference",
               "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
               "--enemy-reference",
-              "/home/vova/projects/DoraRecomp3/build-local/startup-v356",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v362",
               "--workers",
               "6"
             ],
             "status": "FAIL",
-            "log": "enemy-attempt1.log",
+            "log": "scene_objects-attempt1.log",
             "exit_code": 1,
-            "elapsed_seconds": 1859.26,
-            "log_sha256": "553186b08be717a39aa06e3c21300013a333171c6edb24454f1cdc8338f95fc5"
+            "elapsed_seconds": 269.8,
+            "log_sha256": "ef9623898e2a1397b3bb68fa4647182c4cc11fc77a98f8a7d2e664df9523cfb8"
           }
         ]
       }
     },
     "names": {
       "path": "research/decomp-names-check.json",
-      "sha256": "0a7c7a97e2fbc87de22b9b6ef165478d84cd6cdaeece60b9a9c2d532a57e434a",
-      "result": "PASS: 2664 descriptions; 2333 semantic function names; 5831 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "sha256": "9477a9cfc454d0be0952800656094ca783328457bb9c97b6a752ea51db5a2e64",
+      "result": "PASS: 2690 descriptions; 2359 semantic function names; 5851 register scopes; 96 C units with identical preprocessed tokens and successful C17 syntax compilation; unchanged ABI/register storage; no game/GPU.",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_decomp_names.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1"
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3"
         ],
-        "elapsed_seconds": 25.42,
+        "elapsed_seconds": 17.2,
         "log": "names-attempt1.log",
-        "log_sha256": "82ee0e4699e30bf4724170de5ff22f49894117029e2a7cf4cbf389ec1495c7b7",
+        "log_sha256": "b72907a3812bcb213b927a91d7dfdae7baf27381bd7fdfbe1ae6177f85cbe0c2",
         "attempts": []
       }
     },
     "overlay": {
       "path": "research/overlay-load-state-check.json",
-      "sha256": "a7d18fc78ee3ba97562de577f7525898e6952846ab1498ee1c59ece738e84dbe",
+      "sha256": "56939b8e67f58f751b9fa821728ce37474be74d7511eaca0a04207a4c721c38d",
       "result": "PASS: 49 actual ROM overlay ranges, verified DMA/reload, identical VRAM replacement, partial overwrite, parent invalidation, scene unload and boot reset; ASan/UBSan/LSan; no game/GPU.",
-      "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+      "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
       "execution": {
         "command": [
           "/usr/bin/python3",
           "/home/vova/projects/DoraRecomp3/tools/check_overlay_load_state.py",
           "--generated",
-          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
           "--rom",
           "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64"
         ],
-        "elapsed_seconds": 48.02,
+        "elapsed_seconds": 32.09,
         "log": "overlay-attempt1.log",
         "log_sha256": "80d025eeab2194fabac7039b7d85aa15d0d14d7b2edadcb0a43ca6426eb8d9f7",
         "attempts": []
@@ -785,65 +583,49 @@
     }
   },
   "source_sha256": {
-    "recomp/decomp-symbols.json": "0bb973df6a2cf841d3a5fc563ba4fcd4e07cec0de44d273508b427cecc01bcab",
-    "recomp/native-timing-rules.json": "b918263db23d3bd1f0b5a76c7e6ccf715af263f6077356cbb2ffd7ad438c097b",
-    "recomp/startup.json": "a2e2c4e9ec5855177ad62bde92af593d88259f9c4c4f48c59d19cf69c026d090",
+    "recomp/decomp-symbols.json": "5f1ee28e2a32c21182e71bbb9f5a8418a99e87d77374234523f75f331cfe90ac",
+    "recomp/native-timing-rules.json": "5d87b2fb8b899ec909d32efb50a64b45953675ed818f9b89680e7f78627c7881",
     "research/native-after048-minigame-check.inc": "e25a7131acd7702bf00fe74ecf9541c5668532eba059c83cd5c9458bcc61e839",
     "research/native-after048-model-check.inc": "676704d192602c72c951212431bfe5b6a46fd5dc2ed93c3c8a148fb1eb46e437",
+    "research/native-after049-camera-ui-check.inc": "4b6a90d7e92719843f6e9ec006a8557a0fa60853c4da309d5a4a414b6adc6a16",
+    "research/native-after049-material-check.inc": "32070319c2db1c056af1036a7e148cdd1328b321d9f7285ce2061d257f1ce1f2",
+    "research/native-after049-spiral-check.inc": "e1ee8179cb59cb624792f13c9e68426890b4d8fef64dda6208f74b281661079b",
     "research/native-camera-control-check.cpp": "1c906070f434aace292a3e51cdce9b888e388bfeaf9fd948e835a9031b9d89d0",
     "research/native-camera-modes-check.cpp": "53c68efd4e29283ab4e9944f206b833ba9ee826a4050b02bc435224ca36d6bf7",
     "research/native-cutscene-check.cpp": "518540c9b532d003fc1d100904f5d6c386d29b6d6d2ccf44d0bab0aac51249cd",
     "research/native-effects-check.cpp": "06f1ea314a4a480fd62b8399a1157e91690517dc17db4b56c7f8678adb43f292",
-    "research/native-enemy-launch-contracts.json": "8b34d39c1003383492d9b623222fd3007f93d199ff4b67bfd9d44e38f3289f1d",
-    "research/native-enemy-source-check.inc": "b1ae10cab27bfa355583b88e6bcf3a7ef0735de7860b2eb4fec13e97c54caaf1",
-    "research/native-flash-pool-check.inc": "654c6474c0a39c2b15f3c21ab7ecbd1b92b1a0c3d281e70243bbb858549134fd",
     "research/native-frame-bridge-check.cpp": "660a6027b22660be528c0108d981222d4bfe349d59f3f017856f344c237c4376",
     "research/native-frame-scheduler-check.cpp": "542f67dafc9159f7cc1ac4a8c4b28fab4b9b7204ba540d6d30b2c998d21162a8",
     "research/native-frame-time-check.cpp": "74d584301a18479879976614350d2d257bd221a9dd0c4cdf9a8c9903cffc145b",
-    "research/native-gameplay-cutscene-fixture.cpp": "9d0f96ae66fa812b88f4cb3950452db2c26509e8bdfa0612fb1641b654c58cdb",
+    "research/native-gameplay-cutscene-fixture.cpp": "889f8544857b9ff7530d4cc96c04e6cb7800e1053041b8fd545235872e73293d",
     "research/native-graphics-pump-check.cpp": "7eb191d431fd47790e208ddaacd924a35efc2d6d58c447006c8ed2ad90877118",
-    "research/native-gravity-check.cpp": "95ce36b649cb0fa5205d17e05ba90aa333d43c26323b43ffce2244e736b0eb19",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
-    "research/native-inactive-gameplay-fixture.cpp": "fef1725b2e76e343c0e04cdad773df3a6604684f7f34eebaa1a94718cc0bdf1a",
+    "research/native-inactive-gameplay-fixture.cpp": "16b0aab76af9cf373e5ae99e3d76d62e4b2171c9c2daf7cbec02beea895f5c52",
     "research/native-inactive-minigame-fixture.cpp": "52a4a15d4e8cbd49d2dc7f993c0896832ba1bbd5082e5740b0c1aab085691900",
     "research/native-input-check.cpp": "ea42a1347957173d2aae86f6315aed85ed11bdb6bacd7fe73b752a312637f025",
-    "research/native-integration-check.cpp": "b8d045a698d75150b95acb5a21df7eb437a596decf4ab672c6b1799cd9fe51d4",
-    "research/native-loop-check.cpp": "0ce8174929b3ccea01dbe0ca36ffb8c94d5d9300f369877d9afdf2a5735acd3f",
+    "research/native-integration-check.cpp": "218078df31855ff474ff6387fda7ed8cfee0ae9dcc1c48503d4d753b809ad260",
+    "research/native-loop-check.cpp": "fc152301fdb6450afc2c657c1d58472f21c32ebeab38f0e9866f1a362235630d",
     "research/native-loop-stubs.cpp": "3154a3d2788e0493ea3e04670eeb87f21635eac98d906cca82ec954d906eb241",
+    "research/native-material-scroll-audit.json": "9d6d553c4c0b7b7b65526837e0232504e1a09be2eff225507ac5f004b4fb3bc4",
     "research/native-minigame-check.cpp": "2371406ceba960e8cde61905f6e9cf9ff5e5d63117757e9aa82b5ff172d53fa4",
     "research/native-minigame-reviewed.json": "e0c0fc68820b53a4b610ffb243eddbc11ebf4c168215e9fb6a3ead79c7fb7150",
-    "research/native-model-animation-check.cpp": "73720168353b39c91169edf144d5d9ab904d28aef7598251ae683bec1a5b0e22",
-    "research/native-npc-interaction-check.inc": "bbd8047cb8a38d89d641df86847f34aa5a64516b2350c61b506e5cb4f1ed3517",
-    "research/native-periodic-effect-source-check.inc": "c28c1e7c4d4189249c28c227f9fc1458419d817a82a18ecf4920536d7a6b7940",
-    "research/native-periodic-producer-check.inc": "c778c8103d470d0c7123d2b85eeaa4e099f50d04285f4af42eaa53665cdd8f61",
-    "research/native-pickup-linked-basic-check.inc": "aa86d37a231fe751c0289223b75851329a18d0525af503f9a5c8f1d65e10128b",
-    "research/native-pickup-linked-guard-check.inc": "c923b27d73b0f6c80de4f29c59056123dbff9a5c60a1878458ab0a26396c098b",
-    "research/native-pickup-settle-scatter-source-check.inc": "36197e05fb4b432d848cbd876589e927ed9355f4c35f4c3a04a6ecfd29bee2dc",
-    "research/native-pickup-uncollected-source-check.inc": "dc4c0b063c04a78de3fce3ffa0e588bbd5d06f9f86fbb04fba9b5d5e73da269e",
+    "research/native-model-animation-check.cpp": "5bc23269a68151e7691491ea7ab74a342b28d3d0e2b4eeed4d130b01f3fd790c",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
     "research/native-present-check.cpp": "b95f71694eccfa79c4a449d91c8f45c4cab84b53a171773851b399334fa052c3",
     "research/native-process-time-check.cpp": "751cceb4380ecf1c024cd2369b473363c9d390c8e6e6897c98168291a844f57c",
-    "research/native-scene-frame-check.cpp": "6f28672fa406531cc20f1edb6cad57f397d1f5573754cb35e9a9e409d93f8d99",
     "research/native-scene-object-source-check.inc": "c6b234f9bf02b686c654998cc4a66264624003f5c1009cdc2dd4b75dc1e452a0",
-    "research/native-scene-transition-check.cpp": "756e7637387060d6ffad22ff82cef79b0994333168b0548256574950c3a54d7a",
-    "research/native-scene-transition-menu-matrix-fixture.cpp": "07681fefee8ecf90a39fa3bb414a6219b05c7ea3034495f49d5d9120dff49544",
     "research/native-scene34-draw-check.cpp": "3033239c807cb8ca5b2462bc92a128e4e2537d08d4c37bed3514342ef31300fa",
     "research/native-script-camera-check.cpp": "2af1d9dddf04d6ad10277017223388ee71e36c5b764e32006210059897ab634b",
     "research/native-session-check.cpp": "f7139aa68d4036c4663ad861ef00031584a517b71da7197eeb516565c55f3fc0",
     "research/native-simulation-check.cpp": "bdd6a55e7ed77a6fbeadceefe6a6f7bf264ac11dcbe5e2b5384535d7822c2ac3",
     "research/native-story-pickup-source-check.cpp": "964a9ac09ff445f426ce18b8387729de3927efbad8a0de65590707681ac3af99",
-    "research/native-texture-animation-check.cpp": "13ccbadd20cff9a592c90ddb49696c523ef19b87e83222f0cff339b7ca02e19d",
-    "research/native-ui-check.cpp": "f352da75b3a2024d2d8fc44a8ad64318f525c3597d08dda02300d32a6e8f8eca",
-    "research/native-ui-inactive-fixture.cpp": "c4ed8a4a395ccc6f0ddfa9b928b1c929820a6e0fe6035b8ded80a3ab6a9db31b",
+    "research/native-texture-animation-check.cpp": "24100d365693d548f0e3eb59ae24a353ed829dc6a6e95fe4ffd0190cd9717908",
+    "research/native-ui-check.cpp": "0d782e7099ac6201a703b47d1e0187b266a3c6090ccf9ae5f0782ad15d2c318c",
+    "research/native-ui-inactive-fixture.cpp": "8b029ca4295b691075c85e763dd9c7ef6251022c08f167ea78b1a1eaa82b07df",
     "research/native-ui-menu-fatal-fixture.cpp": "949fa3b36ca1442ca88cea33cc50595af73d2f1e526a710eb3945e479506ae7b",
     "research/native-ui-model-inactive-fixture.cpp": "8ff6ed706b632364bc8a228b41b24c03fd8de02bed58a4d943f9f47c505ceb62",
     "research/overlay-load-state-check.cpp": "b8729f596f1846fbf0f99e5ab4792de62de63220f009b757ff31a53075e5b4f0",
-    "research/player-state-inventory.json": "6f1cd481b7ab3171a0b5a88eed90c68387c7f697f65b776e021d4ee7a0dbf4e7",
     "src/frame_lights.hpp": "fb1867751735b174af81fe108fdeaa013dce292b4a8311c461f403b08d08f54e",
-    "src/graphics_sync.hpp": "03fb24d4c08a7403d809cc8e1e9a594c1c029f51aa3e3f42a99a4a93aaacd655",
-    "src/live_graphics.hpp": "e8e0a028de63be949ca494f29816b2a4118e56aabe141e74902ff89d92054e49",
-    "src/live_io.hpp": "1ac7f6ceb515bd4e85b90355ff676bf5a7f102547a21ed12d8ec0b1bed967b08",
-    "src/n64_hardware.hpp": "b18a04de14a457d8d40787316f992cca5a579def5ff5fe64e9e17bb1729dc5d2",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "src/native_camera_timeline.hpp": "12a0395d92bba087c45f3cb01cb2a267fa1ed4b7cec2c442f0ef747c7cf84822",
     "src/native_cutscene.cpp": "bb4de0bfd11ce90de08da8db1da7f1c365ea06f283c856a102e19cf6d5221710",
@@ -875,112 +657,387 @@
     "src/native_minigame_registry.hpp": "0e0f1c767107be4fcf4c4235952747632951ea3982b5d97a7f27da4d8ce2d2d6",
     "src/native_minigames.cpp": "b00f5c59c3885ca07b3e84124563e892c06d488dcdb5d54e2ca90e57add83318",
     "src/native_minigames.hpp": "d300b1c20c5f063976341018969e90efe64ecc1e9e0ca63d5e07bd40c0dcba90",
-    "src/native_model_animation.cpp": "8357d1f2c6b9eace9ad7b73aaa19fe8e21e56f1495a6810590175be2969be515",
+    "src/native_model_animation.cpp": "cc0a2c7eec1f99b60df4772d77739ac908112e3c3e8d402d0395ce54004aa648",
     "src/native_model_animation.hpp": "0390dfbc9a1798c46dcf3b52af97899afd78c65380c1b6f78c319fa9a0744d90",
     "src/native_present.cpp": "9ff1ff3be5d4c16b57f5668a394a3e3fa4bafc303c32f52be63833ab33df2f5d",
     "src/native_present.hpp": "c17a60839de06f09c2c5245091a7389c7126a3146019b8477483bc86d03e9158",
     "src/native_present_hooks.cpp": "e659ba490ecea74c75fd50de47f0ea95ad9c32c6c30c6352e2123d7150914701",
     "src/native_presentation_gate.hpp": "f0fbc1799c6b1bb5a8196e6a6935254a8021cf9c098dafca6b7d9bbadcd3cb97",
     "src/native_process_time.cpp": "b7025893d91cf6851de180e5c90c34c72a0f6f3977a2a51236f6369615562c59",
-    "src/native_process_time.hpp": "610e46d91cf59a3581ef2f001e64975e2002e60f01dd165e7acb2b283abf01f7",
     "src/native_scene_objects.hpp": "cc51bfd8da7dc472c06f8cb6f52ee1a6515dd4f99a5bf5130416f216d54378ac",
-    "src/native_scene_policy.cpp": "5a39e94fc92d65bc3765d9663b37c8e17c8e87630563eac12f609b8ebdda4559",
+    "src/native_scene_policy.cpp": "c5bca677648dd8c4d64831e81f11137a3cbfba32294cbf6c96469b50fa12c656",
     "src/native_scene_policy.hpp": "fbd2d92ec7c099bc711fb347af91655dec524d4d7a4d599c8c0578b780cf6e8f",
     "src/native_script_camera.cpp": "6e78545af75c7a50b2d6994bd54b634c1cf9fbe03a6a0ca42eb5cf0d15d95b69",
     "src/native_script_camera.hpp": "e7bb2e1ba4d036ca2ead349d884daf9a0f857b935d0f3d9359c8cfa12a4d2d94",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-    "src/native_texture_animation.cpp": "67d297ac995e4cb96f11f998afe74fa2e430fb929ddd5f9dd19ea78723e75802",
-    "src/native_texture_animation.hpp": "7403bbf3f80ac2335669356f78d8caf8c4803d7d9060b205c6fd60ef5f874a41",
-    "src/native_ui.cpp": "fe35a142ac9911a729fbd45295ad1b5b34ad4509cea298b03317e1cb735d70b4",
-    "src/native_ui.hpp": "984257f6cffa951e335610aefa7a3a83a1e324ee1c71a394246d3ee740247ac4",
+    "src/native_texture_animation.cpp": "dada9247475952e041e54b602baac4550c0afe9b46d3c3fb7635fc7d1c1c4b05",
+    "src/native_texture_animation.hpp": "84ec734870434c9a9202dfb9b2834a630f903f521ebea3edecce832a6c85ff61",
+    "src/native_ui.cpp": "0cf606c1e4c07edf184139ebfe33953a4ecf0b6bed3d1a45a8c322d62d98b918",
+    "src/native_ui.hpp": "e1fad3d54ea5b9b93e18e0f7c3da2af23d3585660cce84647b590e676a691ee7",
     "src/native_vi_snapshot.hpp": "0fb280fcc557a64b1c6637653a57a231723a2cd642bd0f8a6163bc03413e2030",
     "src/native_wake_signal.hpp": "383fb955ef697a3caa9e772b3b56b58313c30e4ac14cb731d51afc15dbd29cb1",
-    "src/port_display.hpp": "60617c7b1edec4037e218ef06e5ba18964c6d347098df558e456714085d8bec7",
-    "src/port_menu.hpp": "5f3314b598c9824d4eaa4ee221d688e32bec6af922ac03fe9e32f2fedbb24ed5",
-    "src/port_settings.hpp": "44e0c1a5a17b3c29f7ffb0fa8ceccc481173dad2b5b07853baf441a007c4f106",
     "src/recomp_context_copy.hpp": "5624e67e7e6a7d81a178341a80d68a3160ad7a4625f0b932d0dc6fd8b0b45755",
-    "src/resource_retirement.hpp": "2bd034e4558699ce25d58d9254527b9dd982cb7ce09652e4ce912f0ea835bd9f",
     "src/startup_runtime.cpp": "bee19aa55287e9d0d9edb7c42bf685233b935250f6ad057ea5093f3ab6bc25fb",
     "tools/check_decomp_names.py": "bc742b8b16c9a6f24481d2b41a80c268a9a7feee4c2d95e6f1a537d026d1c74c",
     "tools/check_native_camera_control.py": "3cfcff8c805fea9efcd12b33330caf49dfd1b54d8e3a56d6b7996a972cede3c0",
     "tools/check_native_camera_modes.py": "026613abe6ec8fac62a7b6da9e7c92d2c6be3057e6612d0f00915548f23be8b2",
     "tools/check_native_cutscene.py": "fc100b5bd43f3dcfc4a5729e95b8d839bcc1e97d480cea236a7672d0bc35e812",
     "tools/check_native_effects.py": "d6db7a6e9b6365045b1d24892d83230d960848d55a7286391ee967cfe9552a44",
-    "tools/check_native_enemy.py": "6fddddc4053512ff7e878242a91ad35071617953c90bd32dbf1d067f2a95e568",
     "tools/check_native_frame_bridge.py": "d0cbca595e7a3a578ba1352286ecdb65bd39845d506005cafdb6935442798844",
     "tools/check_native_frame_scheduler.py": "a8757ca8c7953be03d731be3af7659d5f1c6dd84631417e68b71b7068599f77d",
     "tools/check_native_frame_time.py": "9e357ff69be17a36836dbb799868435038c5dc1a0a061634eb6410144645bf9f",
     "tools/check_native_graphics_pump.py": "171ec99008e2be029ae6b2acdc00ebd2836f3f042c4b59f886d2e9fc4737203d",
-    "tools/check_native_gravity.py": "9a53fc107c6435931f5f9ffdb676e7487a296d2039e2710b0c468fc6eb6cf7e4",
     "tools/check_native_input.py": "1291597abe0db3dd1e1b09f3b3a24135fd6ce5deee32ab50f96b35c1e9a44e46",
     "tools/check_native_integration.py": "ebecbab83c8fc9c599a5248ce78839110ade99a0040d80ca681318344f07c48c",
     "tools/check_native_loop.py": "4e112bf164a8c1e42dfe0e68575699c25b73b2c057ff71717d21fe9501981960",
     "tools/check_native_minigames.py": "f91eaef661471c4442ed3fd09b9e15803a6027d56c71ace8ed25073dad0977db",
-    "tools/check_native_model_animation.py": "1f7ebc6cfd4770aaaa7a415dcd0965458b3f31f46d59dc9998f17b262b9432fb",
+    "tools/check_native_model_animation.py": "b1cc86047a1939d172ec876fc2e29544ea4d757daa8283ef3b9ac11d9b794af8",
     "tools/check_native_player_motion.py": "0450b10ea9655e0eb8d4af7b16bf95bd273bb40c9333e0f58a24715a2f492999",
     "tools/check_native_player_update.py": "1d5770667a91be194c2a60bb5a2dd020522f1026fd69b7b53c2fa0c2c5d23123",
-    "tools/check_native_prebuild.py": "2858ac0689ba36dce70ea0bd02e63b5c9c63571f8e42f5a0d824ea5861ac4666",
+    "tools/check_native_prebuild.py": "93bb106aceb1d665c5c8d4a4d0968e2775f65c15d95286fd885821288856c320",
     "tools/check_native_present.py": "81ee4f8a66f3dabff3f53f99c3e4652cd0d32a9415a696f0e6c51f3cff97af25",
     "tools/check_native_process_time.py": "660e8ca7673c16bd0ec41af551e78a944ee1d80e32c377f817b674dcaa8f3e17",
     "tools/check_native_scene34_draw.py": "da12f8462678d78e5c41bbe3ab3d80437b4c57134d2ead5c36f9181f647af29c",
     "tools/check_native_scene_objects.py": "97e888538b850fc56d30aeac47a2562a3c47f92ca2ea9cc5e74d30b689cbfe59",
-    "tools/check_native_scene_transition.py": "6cca41becfaee7d957d3dc4d32cd1e45aedd0e905bbdee133701f901e6bfa4ba",
     "tools/check_native_script_camera.py": "7e71500775d55a88f4805ddea1f0c2a5edd1c4532bb87bad0d49e3624a6d1de6",
     "tools/check_native_session.py": "642e1727ae1a279f8ee3636e98c2729b2980e57690d00591de32c18fc9645d04",
     "tools/check_native_simulation.py": "71e5d9d48c68ca74b2828feb622a6947f4ac2e911512b2db8263f33e96e2cdd6",
     "tools/check_native_story_pickups.py": "6bc84b660a98376df59b62ed0589f8b79aca928cb43b20b6221b447d098fd3bf",
-    "tools/check_native_texture_animation.py": "8b15a11487b25fe529ce6ab96e4c036980c32351d0213c1c05564dea494a0e85",
-    "tools/check_native_ui.py": "494f3e7664136fecd5766cb15bd604bfa8cfe8d1b9ec1f491044ba07c29cc5e8",
+    "tools/check_native_texture_animation.py": "e97ff2433e6335f838ec9a4e1d45e4b10919d08f6c138569866196124671984c",
+    "tools/check_native_ui.py": "0b44c6c273e7010766083f4d559d98de99bf3e3a1d70d84b638236ebefe447c1",
     "tools/check_overlay_load_state.py": "32ef827b01bd01836b2a6666905b8f7c69d709fba99523c546ed3bc38ae3e311",
     "tools/decomp_annotations.py": "cc18b42a710a9998b9b33cbfe2c79009451496078b2136cdceb603d047c4b16b",
     "tools/generate_startup.py": "e64b7e9b45435ee3a4fe9f3046376efb705942828a89e20ae195178f0d7e3d1c",
     "tools/native_minigame_patches.py": "eb2c263ed9d7f820fc85f74eb218964491f1805210621014c93f52172053544d",
-    "tools/native_timing_patches.py": "5c8a5045474596bd9eb4864bdd95e8b8029d9ca58e712524d78d5b07808e8be4",
+    "tools/native_timing_patches.py": "9153c74345f050fa35d3183b232ac593352eba4a996809836848a4816e9f8529",
     "tools/prepare_runtime_timing.py": "e5d0799fcea1114c632bf086263297f834ce175dbc579156cd64e12f1425c556"
   },
-  "local_execution_manifest_sha256": "9e6a3ecc47e575d7797ff63ca34ae9726b724153429e19db592a352a04e6f710",
+  "local_execution_manifest_sha256": "60f09eddefc7f81334012beb315d36371db8f8606896bb5e1bd13e4e4df52b4f",
   "no_game_gpu": true,
   "full_variable_fps_complete": false,
   "user_requested_skip": true,
   "full_cpu_suite_complete": false,
-  "completed_checks": 31,
+  "completed_checks": 26,
   "skipped_checks": [
-    "player_update"
+    "enemy",
+    "gravity",
+    "player_update",
+    "scene_frame",
+    "scene_transition",
+    "story_pickups"
   ],
   "user_skip": {
-    "request": "Часовой full-player повторно не запускать после046",
-    "closed_bug_list": "нет (2026-10-07)",
-    "record": {
-      "command": [
-        "/usr/bin/python3",
-        "/home/vova/projects/DoraRecomp3/tools/check_native_player_update_partitions.py",
-        "--generated",
-        "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test049-v1",
-        "--rom",
-        "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
-        "--reference",
-        "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
-        "--city-reference",
-        "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
-        "--optimization",
-        "O2"
-      ],
-      "status": "USER_SKIP",
-      "attempts": [],
-      "reason": "Explicit user instruction after046: do not repeat the hour-long full-player proof; AGENTS.md current scope",
-      "executed": false
+    "request": "Проверки только изменённых частей; остановить оставшиеся общие проверки",
+    "previous_player_request": "Часовой full-player повторно не запускать после046",
+    "closed_bug_list": "нет (2026-10-07), новая пачка после049",
+    "records": {
+      "enemy": {
+        "command": [
+          "/usr/bin/python3",
+          "/home/vova/projects/DoraRecomp3/tools/check_native_enemy.py",
+          "--generated",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+          "--rom",
+          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+          "--reference",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+          "--city-reference",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
+          "--enemy-reference",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-v356",
+          "--workers",
+          "6"
+        ],
+        "status": "USER_SKIP",
+        "attempts": [
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_enemy.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+              "--reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+              "--city-reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
+              "--enemy-reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v356",
+              "--workers",
+              "6"
+            ],
+            "status": "QUEUED"
+          },
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_enemy.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+              "--reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+              "--city-reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
+              "--enemy-reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v356",
+              "--workers",
+              "6"
+            ],
+            "status": "RUNNING",
+            "log": "enemy-attempt2.log"
+          }
+        ],
+        "log": "enemy-attempt2.log",
+        "executed": false,
+        "reason": "Explicit user instruction2026-10-07: проверки только изменённых частей эти уже не надо; stop remaining unaffected checks",
+        "interrupted_log_sha256": "ac0f115f4ab9ca866b6912d784d6e78985e8206d3d5d94e21b95ce20010ad9c1"
+      },
+      "gravity": {
+        "command": [
+          "/usr/bin/python3",
+          "/home/vova/projects/DoraRecomp3/tools/check_native_gravity.py",
+          "--generated",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+          "--rom",
+          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+          "--reference",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-v69"
+        ],
+        "status": "USER_SKIP",
+        "attempts": [
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_gravity.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+              "--reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v69"
+            ],
+            "status": "PASS",
+            "log": "gravity-attempt1.log",
+            "exit_code": 0,
+            "elapsed_seconds": 8.6,
+            "log_sha256": "9eb33fbb0b90ea6030dcf5f039b0e30fdb9ef751aab4d5f4284627c7aabd410a"
+          }
+        ],
+        "log": "gravity-attempt1.log",
+        "exit_code": 0,
+        "elapsed_seconds": 8.6,
+        "log_sha256": "9eb33fbb0b90ea6030dcf5f039b0e30fdb9ef751aab4d5f4284627c7aabd410a",
+        "executed": false,
+        "reason": "Gravity runtime unchanged; its passed fixture predates a test-only inactive camera boundary. Excluded from fresh050 proof under latest changed-parts-only policy; actual prior log retained."
+      },
+      "player_update": {
+        "command": [
+          "/usr/bin/python3",
+          "/home/vova/projects/DoraRecomp3/tools/check_native_player_update_partitions.py",
+          "--generated",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+          "--rom",
+          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+          "--reference",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+          "--city-reference",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
+          "--optimization",
+          "O2"
+        ],
+        "status": "USER_SKIP",
+        "attempts": [],
+        "reason": "Explicit user instruction after046: do not repeat the hour-long full-player proof; AGENTS.md current scope",
+        "executed": false
+      },
+      "scene_frame": {
+        "command": [
+          "/usr/bin/python3",
+          "/home/vova/projects/DoraRecomp3/tools/check_native_player_update.py",
+          "--generated",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+          "--rom",
+          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+          "--reference",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+          "--city-reference",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
+          "--optimization",
+          "O2",
+          "--scope",
+          "scene-frame"
+        ],
+        "status": "USER_SKIP",
+        "attempts": [
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_player_update.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+              "--reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+              "--city-reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
+              "--optimization",
+              "O2",
+              "--scope",
+              "scene-frame"
+            ],
+            "status": "QUEUED"
+          },
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_player_update.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+              "--reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+              "--city-reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
+              "--optimization",
+              "O2",
+              "--scope",
+              "scene-frame"
+            ],
+            "status": "QUEUED"
+          }
+        ],
+        "executed": false,
+        "reason": "Explicit user instruction2026-10-07: проверки только изменённых частей эти уже не надо; stop remaining unaffected checks"
+      },
+      "scene_transition": {
+        "command": [
+          "/usr/bin/python3",
+          "/home/vova/projects/DoraRecomp3/tools/check_native_scene_transition.py",
+          "--generated",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+          "--rom",
+          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+          "--reference",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+          "--city-reference",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-v189"
+        ],
+        "status": "USER_SKIP",
+        "attempts": [
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_scene_transition.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+              "--reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+              "--city-reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v189"
+            ],
+            "status": "QUEUED"
+          },
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_scene_transition.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+              "--reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+              "--city-reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v189"
+            ],
+            "status": "QUEUED"
+          }
+        ],
+        "executed": false,
+        "reason": "Explicit user instruction2026-10-07: проверки только изменённых частей эти уже не надо; stop remaining unaffected checks"
+      },
+      "story_pickups": {
+        "command": [
+          "/usr/bin/python3",
+          "/home/vova/projects/DoraRecomp3/tools/check_native_story_pickups.py",
+          "--generated",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+          "--rom",
+          "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+          "--reference",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+          "--city-reference",
+          "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
+          "--optimization",
+          "O2",
+          "--scope",
+          "pickup-linked-batch"
+        ],
+        "status": "USER_SKIP",
+        "attempts": [
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_story_pickups.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+              "--reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+              "--city-reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
+              "--optimization",
+              "O2",
+              "--scope",
+              "pickup-linked-batch"
+            ],
+            "status": "QUEUED"
+          },
+          {
+            "command": [
+              "/usr/bin/python3",
+              "/home/vova/projects/DoraRecomp3/tools/check_native_story_pickups.py",
+              "--generated",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-regressions-test050-v3",
+              "--rom",
+              "/mnt/d/Games/DoraRecomp3/testbuild/Doraemon 3 - Nobita no Machi SOS! (J) [!].z64",
+              "--reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v61",
+              "--city-reference",
+              "/home/vova/projects/DoraRecomp3/build-local/startup-v189",
+              "--optimization",
+              "O2",
+              "--scope",
+              "pickup-linked-batch"
+            ],
+            "status": "QUEUED"
+          }
+        ],
+        "executed": false,
+        "reason": "Explicit user instruction2026-10-07: проверки только изменённых частей эти уже не надо; stop remaining unaffected checks"
+      }
     }
   },
-  "full_enemy_block_complete": true,
+  "full_enemy_block_complete": false,
   "full_scene_object_block_complete": true,
   "full_minigame_block_complete": true,
-  "full_integration_block_complete": true,
-  "regression049_scope_implemented": true,
+  "full_integration_block_complete": false,
+  "targeted_scope_complete": true,
+  "regression050_scope_implemented": true,
   "limitations": [
-    "Hour-long full-player explicitly excluded at user request; no full-player or full-suite PASS claimed.",
-    "Synthetic CPU states/resources and reached Original branches; no local game/renderer/GPU or full playthrough.",
-    "Six-character result policies use actual Source handlers with synthetic clip data. Bind/resource/sound/feedback commands are documented opaque fixture boundaries; real character art/visual appearance remains user verification.",
-    "CPU RDP addressing/bank ownership does not substitute for final filtering/art appearance."
+    "Latest user instruction stopped remaining unchanged scopes; only changed parts and necessary dependencies are required.26 current valid CPU scopes PASS;6 scopes excluded, not a full-suite PASS.",
+    "Enemy compilation interrupted; scene-transition/scene-frame/story scopes not rerun; full-player excluded earlier. Gravity runtime unchanged; its completed log predates an inactive test-only camera fixture addition and is excluded from fresh proof.",
+    "Actual ROM bitmap cycles and GIMO/GIMM0A45/0A46 plus camera math/Source commands run in CPU fixtures; no local game/renderer/GPU or full playthrough.",
+    "CI4 palette sampling retains original TMEM shape; CPU checks do not confirm real water/sand filtering or color quality.",
+    "Blocked-control ordinary camera16 modes and auxiliary4views/Source restore are covered; real in-game camera smoothness remains user visual QA."
   ]
 }

@@ -29,3 +29,11 @@ void native_minigame_reset(uint8_t*){}
 std::optional<dora3::native_time::Nanoseconds> native_minigame_render_time(){return std::nullopt;}
 
 void native_minigame_source_completed(uint8_t*,dora3::native_time::Nanoseconds){}
+
+// These scene/enemy/player fixtures do not begin a UI Source observation or
+// acquire UiFrameScope. The real observer therefore has no active recipient.
+// Only its inert reachability notification is a boundary here; the independent
+// camera/UI proof executes actual Source pins and the real observer separately.
+extern "C" void dora3_native_ui_domain(uint8_t*,unsigned domain) {
+    assert(domain==16384u);
+}

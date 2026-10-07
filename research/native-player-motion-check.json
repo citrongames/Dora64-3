@@ -65,19 +65,19 @@
     "dora3_s3_core_801C1664"
   ],
   "source_sha256": {
-    "research/native-inactive-gameplay-fixture.cpp": "fef1725b2e76e343c0e04cdad773df3a6604684f7f34eebaa1a94718cc0bdf1a",
+    "research/native-inactive-gameplay-fixture.cpp": "16b0aab76af9cf373e5ae99e3d76d62e4b2171c9c2daf7cbec02beea895f5c52",
     "src/native_simulation_time.cpp": "e581de71975d898f7e71556c782c2a48d658f065b1adb38e336ef4dc10d162fc",
     "src/native_camera_timeline.cpp": "beeb70d6009be9c296eb69123df67fa824fe3f6a8d642ffe6a74a4b74e6718c2",
     "research/native-player-motion-check.cpp": "242f43750f3a67812856ad8fddde72dc7a88d1e47a90fad130b95ff852ef28c7",
     "research/native-inactive-enemy-fixture.cpp": "542eb8905a98dd30617b7009aee989b0cf37040f4459213345a6a1a2f48f838d",
     "research/native-inactive-minigame-fixture.cpp": "52a4a15d4e8cbd49d2dc7f993c0896832ba1bbd5082e5740b0c1aab085691900",
     "src/native_simulation_time.hpp": "e2e13e3e11a2ced2e671a53909c305fedbc6b77bc87c7d4ce31f45351766722d",
-    "recomp/native-timing-rules.json": "b918263db23d3bd1f0b5a76c7e6ccf715af263f6077356cbb2ffd7ad438c097b",
-    "tools/native_timing_patches.py": "5c8a5045474596bd9eb4864bdd95e8b8029d9ca58e712524d78d5b07808e8be4",
+    "recomp/native-timing-rules.json": "5d87b2fb8b899ec909d32efb50a64b45953675ed818f9b89680e7f78627c7881",
+    "tools/native_timing_patches.py": "9153c74345f050fa35d3183b232ac593352eba4a996809836848a4816e9f8529",
     "tools/generate_startup.py": "e64b7e9b45435ee3a4fe9f3046376efb705942828a89e20ae195178f0d7e3d1c",
     "tools/check_native_player_motion.py": "0450b10ea9655e0eb8d4af7b16bf95bd273bb40c9333e0f58a24715a2f492999"
   },
-  "generation_receipt_sha256": "cd312c99a998aa588c042bacbc47e484efa768a1f2a48b128d5189d776c0fbd9",
+  "generation_receipt_sha256": "4f9722e71ffd529e4c8a76a86069dd0cad647d8e9143b3003d7990687ed80585",
   "reference_receipt_sha256": "cf1299b16317916e249baef0a9a60e575581dddd665a2501141f6ad6d66988a6",
   "limitations": [
     "Inactive GameplayPreview/flight/projectile owner boundaries only; full player-update and scene-frame checks cover the real acquired implementations",

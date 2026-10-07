@@ -5,8 +5,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--generated',type=Path,required=True)
-    g=p.parse_args().generated.resolve();receipt=json.loads((g/'generation-receipt.json').read_text())
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--generated',type=Path,required=True);p.add_argument('--rom',type=Path,required=True)
+    args=p.parse_args();g=args.generated.resolve();receipt=json.loads((g/'generation-receipt.json').read_text())
     for base,key in [(ROOT,'inputs'),(g,'generated')]:
         for name,value in receipt[key].items():
             if sha(base/name)!=value:raise ValueError('Stale generation: '+name)
@@ -34,10 +34,17 @@ def main():
     sources.append(ROOT/'research/native-inactive-enemy-fixture.cpp')
     sources.append(ROOT/'research/native-inactive-minigame-fixture.cpp')
     subprocess.run(['g++','-std=c++20','-Wall','-Wextra','-Werror',*flags,'-fsanitize=address,undefined',*map(str,sources),str(out/'functions.o'),'-o',str(out/'check')],check=True)
-    result=subprocess.check_output([str(out/'check')],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')).strip()
-    tracked=sources+[ROOT/'research/native-after048-model-check.inc',ROOT/'src/recomp_context_copy.hpp',ROOT/'src/native_model_animation.hpp',ROOT/'src/native_simulation_time.hpp',ROOT/'src/native_frame_time.hpp',Path(__file__).resolve()]
+    from analyze_layout import decode_record
+    import struct
+    rom=args.rom.read_bytes();assert hashlib.sha256(rom).hexdigest()==receipt['rom_sha256']
+    offset=struct.unpack_from('>I',rom,0x1000+0x80071B80-0x80025C00+4*0xA46)[0]+0x1C5DE0
+    clip=out/'spiral0a46.bin';clip.write_bytes(bytes(decode_record(rom,offset)))
+    mesh_offset=struct.unpack_from('>I',rom,0x1000+0x80071B80-0x80025C00+4*0xA45)[0]+0x1C5DE0
+    mesh=out/'spiral0a45.bin';mesh.write_bytes(bytes(decode_record(rom,mesh_offset)))
+    result=subprocess.check_output([str(out/'check'),str(clip),str(mesh)],text=True,env=dict(os.environ,ASAN_OPTIONS='detect_leaks=1:halt_on_error=1',UBSAN_OPTIONS='halt_on_error=1')).strip()
+    tracked=sources+[ROOT/'research/native-after048-model-check.inc',ROOT/'research/native-after049-spiral-check.inc',ROOT/'src/recomp_context_copy.hpp',ROOT/'src/native_model_animation.hpp',ROOT/'src/native_simulation_time.hpp',ROOT/'src/native_frame_time.hpp',Path(__file__).resolve()]
     report={'scope':'Actual original constructors, bind/seek/pause/clamp, linear/Hermite pose, morph and destruction; synthetic assets and allocator; no renderer or scene activation',
-        'result':result,'sanitizers':'ASan/LSan original and new code; UBSan new C++ only','original_functions':sorted(selected),'stub_boundaries':sorted(external),
+        'actual_rom_clip_sha256':sha(clip),'actual_rom_mesh_sha256':sha(mesh),'rom_sha256':receipt['rom_sha256'],'result':result,'sanitizers':'ASan/LSan original and new code; UBSan new C++ only','original_functions':sorted(selected),'stub_boundaries':sorted(external),
         'source_sha256':{str(f.relative_to(ROOT)):sha(f) for f in tracked},'generation_receipt_sha256':sha(g/'generation-receipt.json'),
         'remaining':['Unreviewed phase1 commands, matrix consumers and full scene coverage still need integration audit',
                      'This component does not convert movement, camera, collision, AI, scripts or all 2D systems']}
