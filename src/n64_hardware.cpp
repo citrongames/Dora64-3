@@ -103,6 +103,11 @@ void run_pif() {
 }
 
 void configure(Backend value) { backend = value; }
+void reset_session() {
+    std::lock_guard lock(sp_mutex);
+    ie=true;si_busy.clear();dp_busy=false;sp_tasks=0;pc=0;
+    pif={};channels.fill(-1);
+}
 bool interrupts_enabled() { return ie; }
 uint32_t disable_interrupts() { const uint32_t old = ie; ie = false; return old; }
 void restore_interrupts(uint8_t* ram, uint32_t saved) {

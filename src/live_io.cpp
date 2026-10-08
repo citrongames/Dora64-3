@@ -142,6 +142,17 @@ size_t dora3_audio_remaining(){
     return audio_device ? size_t(SDL_GetQueuedAudioSize(audio_device)/(2*sizeof(int16_t))) : 0;
 }
 
+void dora3_reset_live_io(){
+    // Keep device/controller handles and settings; discard the old session PCM.
+    std::scoped_lock lock(input_mutex,audio_mutex);
+    input={};
+    if(audio_device){
+        SDL_PauseAudioDevice(audio_device,1);
+        SDL_ClearQueuedAudio(audio_device);
+        SDL_PauseAudioDevice(audio_device,0);
+    }
+}
+
 void dora3_shutdown_live_io(){
     if(controller){SDL_GameControllerClose(controller);controller=nullptr;}
     std::lock_guard lock(audio_mutex);

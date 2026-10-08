@@ -1,4 +1,5 @@
 #include "port_menu.hpp"
+#include "game_reset.hpp"
 #include "port_display.hpp"
 #include "imgui/imgui.h"
 #include <algorithm>
@@ -171,8 +172,9 @@ void draw_overlay(){
             }
             ImGui::SetCursorPosY(std::max(ImGui::GetCursorPosY(),ImGui::GetWindowHeight()-54*scale));
             ImGui::Separator();ImGui::TextDisabled("Escape / Back: close menu");
-            ImGui::SameLine(ImGui::GetWindowWidth()-220*scale);
+            ImGui::SameLine(ImGui::GetWindowWidth()-330*scale);
             if(ImGui::Button("Continue",ImVec2(100*scale,0)))set_menu_open(false);
+            ImGui::SameLine();if(ImGui::Button("Reset game",ImVec2(100*scale,0)))ImGui::OpenPopup("Reset game?");
             ImGui::SameLine();if(ImGui::Button("Exit game",ImVec2(100*scale,0)))ImGui::OpenPopup("Exit game?");
             ImGui::EndDisabled();
             if(open_capture)ImGui::OpenPopup("Bind control");
@@ -186,6 +188,17 @@ void draw_overlay(){
                     if(ImGui::Button("Clear binding",ImVec2(120*scale,0))){bind(capture_action,capture_pad,capture_pad?-1:0);cancel_capture();ImGui::CloseCurrentPopup();}
                     ImGui::SameLine();if(ImGui::Button("Cancel",ImVec2(100*scale,0))){cancel_capture();ImGui::CloseCurrentPopup();}
                 }
+                ImGui::EndPopup();
+            }
+            ImGui::SetNextWindowPos(viewport->GetCenter(),ImGuiCond_Always,ImVec2(0.5f,0.5f));
+            if(ImGui::BeginPopupModal("Reset game?",nullptr,ImGuiWindowFlags_AlwaysAutoResize)) {
+                ImGui::TextUnformatted("Return to the opening screen?");
+                ImGui::TextDisabled("Unsaved progress will be lost.");ImGui::Spacing();
+                if(ImGui::Button("Reset",ImVec2(100*scale,0))){
+                    set_menu_open(false);cancel_capture();
+                    dora3::request_game_reset();ImGui::CloseCurrentPopup();
+                }
+                ImGui::SameLine();if(ImGui::Button("Cancel",ImVec2(100*scale,0)))ImGui::CloseCurrentPopup();
                 ImGui::EndPopup();
             }
             ImGui::SetNextWindowPos(viewport->GetCenter(),ImGuiCond_Always,ImVec2(0.5f,0.5f));

@@ -49,6 +49,7 @@ def main():
     registry.append('}};')
     (out/'overlay_regions.hpp').write_text('\n'.join(registry)+'\n')
     declarations=['#pragma once','#include "recomp.h"','#ifdef __cplusplus','extern "C" {','#endif','void dora3_trace(uint8_t*, recomp_context*, uint32_t, uint32_t);','void dora3_pending(uint32_t);','void dora3_verify_dma(uint8_t*);','void dora3_capture_resource(uint8_t*, recomp_context*);','void dora3_mark_stream_dma(void);']
+    declarations.append('void dora3_game_reset_poll(uint8_t*,recomp_context*);')
     native_names=[v[0] for v in meta.get('native',{}).values()]
     declarations.extend(['void dora3_native_task_register(uint8_t*, recomp_context*);',
                          'void dora3_native_task_retired(uint8_t*, recomp_context*);',
@@ -201,6 +202,8 @@ def main():
             if struct.unpack_from('>I',rom,0x1000+address-0x80025C00)[0]!=word:
                 raise ValueError('Unreviewed native game-message hook')
         name=compiled[(0,0x8002787C)][0]
+        # ROM-qualified common boundary, reached by Original, Native and pause.
+        config+=f'{{ func = "{name}", before_vram = 0x800278E0, text = "dora3_game_reset_poll(rdram, ctx);" }},\n'
         hook='dora3_native_loop_message(rdram, ctx); if (dora3_native_game_message(rdram, ctx)) goto L_800278E0; if (dora3_native_completion_during_pause(rdram, ctx)) goto L_80027914;'
         config+=f'{{ func = "{name}", before_vram = 0x800278EC, text = "if (dora3_native_loop_receive_deferred(rdram, ctx)) goto dora3_after_deferred_receive;" }},\n'
         config+=f'{{ func = "{name}", before_vram = 0x800278F4, text = {json.dumps("dora3_after_deferred_receive:; " + hook)} }},\n'

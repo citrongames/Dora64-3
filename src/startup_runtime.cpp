@@ -1,4 +1,5 @@
 #include "resource_retirement.hpp"
+#include "n64_hardware.hpp"
 #include "native_enemy.hpp"
 // Research frontend: runs reviewed original functions through the real runtime.
 // Unreviewed functions stop explicitly. The default mode stops at graphics/PCM;
@@ -32,6 +33,7 @@
 RspExitReason dora3_aspMain(uint8_t*, uint32_t);
 void dora3_configure_hardware(const recomp::Configuration&);
 extern "C" void dora3_controller_status(uint8_t*,recomp_context*);
+extern "C" void dora3_music_reset(uint8_t*,recomp_context*);
 namespace {
 std::array<std::atomic<bool>,std::size(dora3_overlay_regions)> overlay_active{};
 std::array<std::atomic<uint64_t>,std::size(dora3_overlay_regions)> overlay_generation{};
@@ -352,6 +354,17 @@ int main(int argc,char** argv){
     game.save_type=recomp::SaveType::Eep16k;game.is_enabled=true;
     game.entrypoint_address=(int32_t)0x80025C00;game.entrypoint=recomp_entrypoint;
     game.rom_path=rom_path;
+    game.on_init_callback=[](uint8_t* rdram,recomp_context* ctx){
+        // Initial boot and reset both run here before any new guest thread.
+        // Runtime already reset its overlay mappings; retain monotonic load IDs.
+        for(auto& active:overlay_active)active=false;
+        for(auto& generation:overlay_generation)generation=0;
+        pending_dma={};resource_rom=0;stream_dma_call=false;
+        dora3::hw::reset_session();dora3_music_reset(rdram,ctx);
+        audio_submitted=0;audio_completed=0;pcm_buffers=0;
+        std::lock_guard lock(captured_vi_mutex);
+        captured_vi={};captured_vi_ready=false;
+    };
     game.thread_create_callback=[](uint8_t* rdram,recomp_context* ctx){
         std::fprintf(stderr,"THREAD CONTEXT sp=%08X arg=%08X\n",(uint32_t)ctx->r29,(uint32_t)ctx->r4);
     };

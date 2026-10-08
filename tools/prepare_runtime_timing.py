@@ -92,6 +92,48 @@ text=replace_once(text,'    events_context.vi.thread = std::thread{ vi_thread_fu
     '    events_context.vi.thread = std::thread{ vi_thread_func };\n    dora3_start_native_frame_producer();')
 text=replace_once(text,'void ultramodern::join_event_threads() {',
     'void ultramodern::join_event_threads() {\n    dora3_stop_native_frame_producer();')
+# Reset sentinels must be ordered after ALL producers, not merely the enqueue
+# order of their own thread (moodycamel implicit producers are independent).
+# Share one explicit producer token under a short enqueue mutex for each queue.
+text=replace_once(text, '    moodycamel::BlockingConcurrentQueue<Action> action_queue{};',
+    '    Dora3ResetQueue<Action> action_queue{};')
+text=replace_once(text, '    moodycamel::BlockingConcurrentQueue<OSTask*> sp_task_queue{};',
+    '    Dora3ResetQueue<OSTask*> sp_task_queue{};')
+queue_adapter = r"""
+template<class T> class Dora3ResetQueue {
+    moodycamel::BlockingConcurrentQueue<T> queue;
+    moodycamel::ProducerToken producer{queue};
+    std::mutex enqueue_mutex;
+public:
+    bool enqueue(T value) {
+        std::lock_guard lock(enqueue_mutex);
+        if (!queue.enqueue(producer, std::move(value))) throw std::bad_alloc{};
+        return true;
+    }
+    void wait_dequeue(T& value) { queue.wait_dequeue(value); }
+    template<class Duration> bool wait_dequeue_timed(T& value, Duration duration) {
+        return queue.wait_dequeue_timed(value, duration);
+    }
+};
+
+"""
+text=replace_once(text, 'struct SpTaskAction {', queue_adapter+'struct SpTaskAction {')
+# Wait for an already-running VI tick before inserting the SP/graphics barriers.
+# A flag alone can leave an old framebuffer read queued AFTER the reset sentinel.
+text=replace_once(text, '    std::atomic_bool game_reset_paused = false;',
+    '    std::atomic_bool game_reset_paused = false;\n    std::mutex game_reset_vi_mutex;')
+text=replace_once(text, '        if (events_context.game_reset_paused.load(std::memory_order_acquire)) {',
+    '        std::lock_guard reset_tick_lock{events_context.game_reset_vi_mutex};\n        if (events_context.game_reset_paused.load(std::memory_order_acquire)) {')
+text=replace_once(text, '    events_context.game_reset_paused.store(true, std::memory_order_release);',
+    '    {\n        std::lock_guard reset_tick_lock{events_context.game_reset_vi_mutex};\n        events_context.game_reset_paused.store(true, std::memory_order_release);\n    }')
+# Retrace divider is session state even if the whole reset fits between VI ticks.
+text=replace_once(text, '    int remaining_retraces = 1;', '')
+text=text.replace('remaining_retraces', 'events_context.vi.remaining_retraces')
+text=replace_once(text, '        int cur_state;', '        int cur_state;\n        int remaining_retraces = 1;')
+text=replace_once(text, '        events_context.vi.cur_state = 0;',
+    '        events_context.vi.cur_state = 0;\n        events_context.vi.remaining_retraces = 1;')
+text=replace_once(text, '    gfx_completed.wait();',
+    '    gfx_completed.wait();\n    dora3::sync::periodic_present.complete();')
 output=Path(sys.argv[1]).resolve()
 if not output.is_relative_to(ROOT/'build-local'): raise ValueError('Output must stay in ignored build-local')
 output.mkdir(parents=True,exist_ok=True)

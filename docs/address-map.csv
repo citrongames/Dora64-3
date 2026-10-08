@@ -5039,3 +5039,4 @@ verified,native_owner,.scene1,0x801C6EA4,,healthy49 first incoming count21 to63 
 verified,native_timing_hook,.scene1,0x801C6F38,,healthy49 one second increment per Source period,v166 reentry and sameaddress model rebind,count reset detection
 verified,native_owner,.scene1,0x801C8118,,control2C hover63 speed yaw and immediate A vertical command,v166 actual Source geometry and Native paired solver,synthetic room
 verified,native_timing_hook,.scene1,0x801C38D8,,fall9 first actual Source period contact flags,v166 complete landing return plus previous full groups,geometry and solver remain Native
+verified,hook,0x2CE0,0x800278E0,0x14,dora3_game_reset_poll boundary,ROM3C04801B/248499E0/27A50010/0C0160F8/24060001 before blocking receive; pause and completion jump08009E38; docs/menu-reset.md,User gameplay verification pending

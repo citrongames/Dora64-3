@@ -1,3 +1,12 @@
+## Следующая сборка: Reset game после059
+
+Reset реализован и скомпилирован по translation units без Windows EXE.
+Следующая CPU generation: build-local/startup-menu-reset-v1 (audio-rsp-v1
+прежняя); использовать актуальный tools/prepare_runtime_timing.py.
+В Windows staging добавить src/game_reset.cpp и src/game_reset.hpp, новый
+CMake source и обновлённые src/tools. Нужна новая явная команда на билд;
+номер определить по фактически существующим EXE. Подробности: menu-reset.md.
+
 ## Действующее правило Git: только после пользовательской проверки
 
 Прямая инструкция пользователя: «коммит и пуш делай только после моей проверки

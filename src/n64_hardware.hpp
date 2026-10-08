@@ -19,6 +19,8 @@ struct Backend {
     void (*deliver_interrupts)(uint8_t*);
 };
 void configure(Backend backend);
+// Initial boot or quiescent runtime reset; preserves installed backend/save callbacks.
+void reset_session();
 bool interrupts_enabled();
 uint32_t disable_interrupts();
 void restore_interrupts(uint8_t* ram, uint32_t saved);

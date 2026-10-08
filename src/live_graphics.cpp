@@ -215,7 +215,16 @@ public:
         std::scoped_lock lock(ultramodern::get_graphics_rdram_mutex());
         app->updateScreen();
     }
-    void reset_game() override{frame_lights_active=false;dora3::frame::reset();dora3::retirement::reset();}
+    void reset_game() override{
+        // Runtime barrier: guest threads stopped, old SP/graphics actions read.
+        // Preserve the Application, window, queues and monotonically increasing
+        // renderer counters; reset only console-side graphics/audio state.
+        frame_lights_active=false;frame_lights={};parsing_raw=false;raw_syncs=0;
+        registers={};dmem={};imem={};
+        app->state->resetGameSession();
+        dora3::frame::reset();dora3::retirement::reset();
+        dora3_reset_live_io();
+    }
     void shutdown() override{
         app->end();
         RT64::SetRenderHooks(RT64::GetRenderHookInit(),previous_draw,RT64::GetRenderHookDeinit());
