@@ -142,6 +142,11 @@ size_t dora3_audio_remaining(){
     return audio_device ? size_t(SDL_GetQueuedAudioSize(audio_device)/(2*sizeof(int16_t))) : 0;
 }
 
+Dora3LiveInputSnapshot dora3_live_input_snapshot(){
+    std::lock_guard lock(input_mutex);
+    return {input.buttons,input.x,input.y,input_enabled};
+}
+
 void dora3_reset_live_io(){
     // Keep device/controller handles and settings; discard the old session PCM.
     std::scoped_lock lock(input_mutex,audio_mutex);

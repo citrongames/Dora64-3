@@ -16,6 +16,7 @@ extern "C" void dora3_game_reset_poll(uint8_t* rdram, recomp_context* ctx) {
     // be outstanding. The runtime barrier retires host reads before discarding
     // those guest owners; no old-session completion must run on the new RAM.
     (void)ctx;
+    dora3_capture_controller_state(rdram,"before-reset");
     dora3::native_time::game_frame_bridge().leave(dora3::native_time::monotonic_time());
     std::fputs("Game reset: guest message boundary; restarting internal session\n", stderr);
     // Does not return: the supervisor stops guest threads, drains SP/graphics,

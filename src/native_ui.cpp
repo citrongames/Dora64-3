@@ -1,4 +1,7 @@
 #include "native_ui.hpp"
+#include "game_reset.hpp"
+#include "cutscene_input.hpp"
+#include <cstdio>
 #include "native_simulation_time.hpp"
 #include "native_effects.hpp"
 #include "native_frame_bridge.hpp"
@@ -479,6 +482,13 @@ extern "C" void dora3_native_ui_domain(uint8_t* ram,unsigned domain) {
 }
 extern "C" void dora3_native_ui_source(uint8_t* ram,recomp_context* ctx) {
     if(ctx->r21!=0)return;
+    if(!state.frame&&!state.equations&&!active_simulation_slice()) {
+        if(dora3::cutscene_input_source_completed(ram)) {
+            std::fputs("Cutscene Start: retained request after skip-thread initialization\n",stderr);
+            dora3_capture_controller_state(ram,"early-start-retained");
+        }
+        dora3_capture_controller_state(ram,"source-complete");
+    }
     observation.running=false;
     if(!dora3_native_loop_owns_fade())return;
     if(state.frame)throw std::logic_error("Source update inside UI frame");

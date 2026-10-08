@@ -1,0 +1,105 @@
+{
+  "scope": "User-run Windows061 logs and static Original/host source analysis; no automated tests or game execution by agent",
+  "result": "Input loss root cause still unestablished; host/raw/latch delivery confirmed; Source-consumer observer extended",
+  "base_commit": "09ffb36f7ce24748f56fa6d63c878afd60acceea",
+  "branch": "main",
+  "run_directory": "/mnt/d/Games/DoraRecomp3/testbuild/logs/1791431816261",
+  "logs_sha256": {
+    "runtime.log": "26e1ec12f2f14f52860b180cfc8f2927144b221bfb9170eef434e84c1c457358",
+    "state/controller-input.jsonl": "f8820c02f33fbe387263011bac7a6822f32d058ed8e532cc68c2ebda2e2bbcc1"
+  },
+  "rows": 461,
+  "sessions": [
+    {
+      "session": 1,
+      "rows": 96,
+      "last_poll": 537,
+      "connected_port0_all_after_reads": true,
+      "pad0_errors": [
+        0
+      ],
+      "status0_errors": [
+        0
+      ],
+      "guest_buttons_match_host_all_rows": true,
+      "last_start_edge_poll": 291
+    },
+    {
+      "session": 2,
+      "rows": 111,
+      "last_poll": 523,
+      "connected_port0_all_after_reads": true,
+      "pad0_errors": [
+        0
+      ],
+      "status0_errors": [
+        0
+      ],
+      "guest_buttons_match_host_all_rows": true,
+      "last_start_edge_poll": 310
+    },
+    {
+      "session": 3,
+      "rows": 11,
+      "last_poll": 214,
+      "connected_port0_all_after_reads": true,
+      "pad0_errors": [
+        0
+      ],
+      "status0_errors": [
+        0
+      ],
+      "guest_buttons_match_host_all_rows": true,
+      "last_start_edge_poll": 38
+    },
+    {
+      "session": 4,
+      "rows": 243,
+      "last_poll": 1027,
+      "connected_port0_all_after_reads": true,
+      "pad0_errors": [
+        0
+      ],
+      "status0_errors": [
+        0
+      ],
+      "guest_buttons_match_host_all_rows": true,
+      "last_start_edge_poll": 859
+    }
+  ],
+  "final_session": "Initial scene1 cutscene; world-scripted-20 acquired at runtime.log line15390 and no subsequent leave/scene34 reload",
+  "latest_dump": "No new061 dump; latest remains060/24792, an earlier independent SDL shutdown defect",
+  "observer_schema": 2,
+  "observer_status": "Packaged in Windows062; user gameplay validation pending; absent from061",
+  "compile": {
+    "scope": "Linux C++20 objects only; no tests, EXE link/build, game, renderer or GPU execution",
+    "results": [
+      {
+        "source": "src/startup_runtime.cpp",
+        "source_sha256": "16006edd8a272eaf91afc281bbed99927c6bffa54d6ea6bd9564f90fde34b12a",
+        "exit_code": 0
+      },
+      {
+        "source": "src/native_ui.cpp",
+        "source_sha256": "33b150033ee5abe0d43cba3d06c7659c653f479e745bef0ea759c2e8f4abe5f0",
+        "exit_code": 0
+      }
+    ]
+  },
+  "limitations": [
+    "No consumer values, source dispatch counters or script skip flag in061 logs",
+    "ENTERS are first-visit traces, not call counters",
+    "Snapshots at30380 precede accumulator/latch; held/pressed show prior completed latch",
+    "No input behavior fix or user gameplay confirmation claimed",
+    "No EXE was built during initial analysis;062 subsequently compiled and packaged without commit/push"
+  ],
+  "observer_build": {
+    "build_id": "test-062",
+    "executable": "D:/Games/DoraRecomp3/testbuild/Dora64-3-test-062.exe",
+    "sha256": "6b47f139f8e0f3c95b44d270c96ff94bb29ba534826236da82b7856719522a4b",
+    "compiled": true,
+    "tests_executed": false,
+    "locally_launched": false,
+    "commit_push": false
+  }
+}

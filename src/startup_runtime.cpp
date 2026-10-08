@@ -1,6 +1,11 @@
 #include "resource_retirement.hpp"
 #include "n64_hardware.hpp"
 #include "native_enemy.hpp"
+#include "game_reset.hpp"
+#include "cutscene_input.hpp"
+#include "native_game_loop.hpp"
+#include "native_frame_bridge.hpp"
+#include "native_simulation_time.hpp"
 // Research frontend: runs reviewed original functions through the real runtime.
 // Unreviewed functions stop explicitly. The default mode stops at graphics/PCM;
 // the optional live RT64 mode continues through SDL input/audio.
@@ -18,6 +23,9 @@
 #include <cstring>
 #include <mutex>
 #include <unordered_set>
+#include <unordered_map>
+#include <sstream>
+#include <string_view>
 #include "ultramodern/ultramodern.hpp"
 #include "librecomp/game.hpp"
 #include "librecomp/overlays.hpp"
@@ -26,6 +34,7 @@
 #ifdef DORA3_LIVE_RT64
 #include "live_graphics.hpp"
 #include "live_io.hpp"
+#include "port_menu.hpp"
 #endif
 #define XXH_INLINE_ALL
 #include "xxHash/xxhash.h"
@@ -148,7 +157,118 @@ extern "C" void dora3_pending(uint32_t address) {
     std::fprintf(stderr,"PENDING original function %08X; execution stopped, no success stub\n",address);
     stop_diagnostic(77);
 }
+extern "C" void dora3_capture_controller_state(uint8_t* rdram,const char* reason) {
+    // The observer follows the real read, Source dispatch, and scene consumers.
+    // Nothing is published to the guest; each point has its own change cache.
+    // Boot/reset are serialized with guest quiescence by the runtime barrier.
+    static unsigned session=0;
+    static uint64_t polls=0,source_dispatches=0,source_completions=0,world_updates=0,script_updates=0;
+    static std::unordered_map<std::string,std::string> previous;
+    static std::unordered_map<std::string,uint64_t> observations;
+    const std::string point=reason;
+    const bool boot=point=="boot",forced=boot||point=="before-reset";
+    if(boot){++session;polls=source_dispatches=source_completions=world_updates=script_updates=0;previous.clear();observations.clear();}
+    if(point=="after-read")++polls;
+    if(point=="source-dispatch")++source_dispatches;
+    if(point=="source-complete")++source_completions;
+    if(point=="world-update")++world_updates;
+    if(point=="script-input")++script_updates;
+    const auto visits=++observations[point];
+    auto half=[&](uint32_t address){return MEM_HU(0,int32_t(address));};
+    auto word=[&](uint32_t address){return MEM_W(0,int32_t(address));};
+    std::ostringstream state;
+    state<<"\"presence\":"<<unsigned(MEM_BU(0,int32_t(0x801A48B4)))
+         <<",\"pads\":[";
+    for(unsigned port=0;port<4;++port){
+        if(port)state<<',';
+        const auto pad=int32_t(0x80171560+6*port),status=int32_t(0x801B1408+4*port);
+        state<<"{\"buttons\":"<<MEM_HU(0,pad)<<",\"x\":"<<int(MEM_B(2,pad))
+             <<",\"y\":"<<int(MEM_B(3,pad))<<",\"error\":"<<unsigned(MEM_BU(4,pad))
+             <<",\"type\":"<<MEM_HU(0,status)<<",\"status_error\":"<<unsigned(MEM_BU(3,status))<<'}';
+    }
+    // 305E0 computes99AC and copies it to48EC. 300C4 copies the selected
+    // port's48EC toC69C; scene1's script interpreter reads48EC directly.
+    state<<"],\"held\":"<<half(0x801A9504)<<",\"pressed\":"<<half(0x801A99AC)
+         <<",\"read_enabled\":"<<half(0x801AC6D8)
+         <<",\"latched_pressed\":"<<half(0x801A48EC)
+         <<",\"selected_port\":"<<half(0x801A39E0)
+         <<",\"selected_held\":"<<half(0x801A9AD0)
+         <<",\"selected_pressed\":"<<half(0x801AC69C)
+         <<",\"native_banks\":"<<dora3_native_loop_owns_frame_banks()
+         <<",\"native_gameplay\":"<<dora3_native_loop_gameplay_active()
+         <<",\"requested_fps\":"<<dora3_requested_native_fps()
+         <<",\"processes\":[";
+    for(unsigned slot=0;slot<8;++slot){
+        if(slot)state<<',';
+        const auto record=0x801A44F0u+slot*20;
+        state<<"{\"status\":"<<word(record)<<",\"phase\":"<<word(record+12)
+             <<",\"callback\":"<<uint32_t(word(record+16))<<'}';
+    }
+    state<<"],\"update_enabled\":"<<word(0x801AA648)<<",\"draw_enabled\":"<<word(0x801A9500)
+         <<",\"divider\":"<<word(0x801A39DC);
+    const bool world_loaded=dora3_overlay_loaded(0x70A50);
+    if(world_loaded){
+        state<<",\"world\":{\"scripted\":"<<word(0x80218AD8)
+             <<",\"pause\":"<<word(0x8021D484)<<",\"transition_wait\":"<<word(0x8021D494)
+             <<",\"room_pending\":"<<word(0x802170EC)
+             <<",\"demo\":"<<unsigned(MEM_BU(0,int32_t(0x801B36EC)))
+             <<",\"start_requested\":"<<half(0x80218B00)<<'}';
+    }
+#ifdef DORA3_LIVE_RT64
+    const auto input=dora3_live_input_snapshot();const auto physical=dora3::port::physical();
+    state<<",\"host_buttons\":"<<input.buttons<<",\"host_x\":"<<input.x<<",\"host_y\":"<<input.y
+         <<",\"host_enabled\":"<<input.enabled<<",\"focused\":"<<physical.focused
+         <<",\"menu\":"<<dora3::port::menu_open()<<",\"ui_blocked\":"<<dora3::port::ui_input_blocked();
+#endif
+    const auto current=state.str();
+    if(!forced&&current==previous[point]&&(visits%300)!=0)return;
+    previous[point]=current;
+    std::ostringstream detail;
+    // Changing clocks/waits do not defeat deduplication. They are included
+    // in each written observation, including the independent point heartbeat.
+    detail<<",\"steady_ns\":"<<dora3::native_time::monotonic_time()
+          <<",\"source_dispatches\":"<<source_dispatches<<",\"source_completions\":"<<source_completions
+          <<",\"world_updates\":"<<world_updates<<",\"script_updates\":"<<script_updates
+          <<",\"source_tick\":"<<uint32_t(word(0x801AC6B4))
+          <<",\"retrace_count\":"<<uint32_t(word(0x801AC694))
+          <<",\"accumulator\":"<<half(0x801A44E0)<<",\"history\":"<<half(0x801A9548)
+          <<",\"built\":"<<word(0x801A48C0)<<",\"deferred\":"<<word(0x801B1430);
+    if(world_loaded&&word(0x80218AD8)==1){
+        detail<<",\"script_threads\":[";
+        for(unsigned slot=0;slot<8;++slot){
+            if(slot)detail<<',';
+            const auto record=0x80218350u+slot*16;
+            const auto command=uint32_t(word(record));
+            detail<<"{\"command\":"<<command<<",\"finished\":"<<MEM_H(4,int32_t(record))
+                  <<",\"wait\":"<<MEM_H(6,int32_t(record))<<",\"paused\":"<<MEM_H(10,int32_t(record));
+            if(!(command&1)&&command>=0x80000000u&&uint64_t(command)+2<=0x80400000ull)
+                detail<<",\"opcode\":"<<half(command);
+            detail<<'}';
+        }
+        detail<<']';
+    }
+    std::ofstream out(diagnostic_path/"controller-input.jsonl",std::ios::app);
+    out<<"{\"schema\":2,\"session\":"<<session<<",\"reason\":\""<<point<<"\",\"polls\":"<<polls
+       <<",\"point_visits\":"<<visits<<','<<current<<detail.str()<<"}\n";
+    if(!out)std::fputs("INPUT SNAPSHOT write failed\n",stderr);
+}
+
 extern "C" void dora3_trace(uint8_t* rdram,recomp_context* ctx,uint32_t address,uint32_t section_rom) {
+    if(section_rom==0x1000&&address==0x80030380)
+        dora3_capture_controller_state(rdram,"after-read");
+    if(!dora3::native_time::active_frame_binding()&&!dora3::native_time::active_simulation_slice()) {
+        if(section_rom==0x1000&&address==0x800281B8&&uint32_t(ctx->r4)==0)
+            dora3_capture_controller_state(rdram,"source-dispatch");
+        if(section_rom==0x70A50&&address==0x801BB730)
+            dora3_capture_controller_state(rdram,"world-update");
+        if(section_rom==0x70A50&&address==0x801E4484) {
+            dora3::cutscene_input_before_script(rdram);
+            dora3_capture_controller_state(rdram,"script-input");
+        }
+        if(section_rom==0x635C0&&(address==0x801BB52C||address==0x801BCEF8||
+           address==0x801BFAA4||address==0x801C0088||address==0x801C0BBC||address==0x801C24A4))
+            dora3_capture_controller_state(rdram,"scene-update");
+    }
     if(address==0x80025C00){
         // Runtime initially maps every section in the boot 1MiB at entrypoint+ROM offset.
         // Only the resident section is executable there. Remove the rest before game code.
@@ -361,7 +481,9 @@ int main(int argc,char** argv){
         for(auto& generation:overlay_generation)generation=0;
         pending_dma={};resource_rom=0;stream_dma_call=false;
         dora3::hw::reset_session();dora3_music_reset(rdram,ctx);
+        dora3::reset_cutscene_input();
         audio_submitted=0;audio_completed=0;pcm_buffers=0;
+        dora3_capture_controller_state(rdram,"boot");
         std::lock_guard lock(captured_vi_mutex);
         captured_vi={};captured_vi_ready=false;
     };

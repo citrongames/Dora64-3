@@ -226,6 +226,15 @@ public:
         dora3_reset_live_io();
     }
     void shutdown() override{
+        // SDL can emit device-removal events during later controller/SDL
+        // shutdown. Its filter must not keep the destroyed RT64 window/listener.
+        // Restore only our own installed filter; preserve any newer owner.
+        SDL_EventFilter filter=nullptr;void* userdata=nullptr;
+        if(app->appWindow && SDL_GetEventFilter(&filter,&userdata) &&
+           filter==RT64::ApplicationWindow::sdlEventFilter && userdata==app->appWindow.get()) {
+            SDL_SetEventFilter(app->appWindow->sdlEventFilterStored,
+                               app->appWindow->sdlEventFilterUserdata);
+        }
         app->end();
         RT64::SetRenderHooks(RT64::GetRenderHookInit(),previous_draw,RT64::GetRenderHookDeinit());
     }

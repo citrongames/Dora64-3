@@ -1,0 +1,481 @@
+{
+  "scope": "User-run062 and static locked ROM script audit; no tests/game execution by agent",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "run": "1791433526009",
+  "log_sha256": {
+    "runtime.log": "3a7fe6c84c26fe14140295e16c41136d3ee79c5c7c62419c02bc5c0b35d94288",
+    "controller-input.jsonl": "8a3905da96e6ba8390b2389402875bc09c4b0a85787e2207aa614da0d8879b25"
+  },
+  "timeline": [
+    {
+      "reason": "script-input",
+      "polls": 250,
+      "source_tick": 1,
+      "start_requested": 0,
+      "thread7": {
+        "command": 2150640212,
+        "finished": 0,
+        "wait": 0,
+        "paused": 0,
+        "opcode": 3
+      }
+    },
+    {
+      "reason": "source-complete",
+      "polls": 250,
+      "source_tick": 1,
+      "start_requested": 1,
+      "thread7": {
+        "command": 2150640218,
+        "finished": 0,
+        "wait": 0,
+        "paused": 1,
+        "opcode": 6
+      }
+    },
+    {
+      "reason": "script-input",
+      "polls": 2639,
+      "source_tick": 798,
+      "start_requested": 1,
+      "thread7": {
+        "command": 2150640218,
+        "finished": 0,
+        "wait": 0,
+        "paused": 1,
+        "opcode": 6
+      }
+    }
+  ],
+  "script_table_address": "0x801FAC90",
+  "script_entries": [
+    {
+      "id": 350,
+      "rom_start": "0x167280",
+      "rom_end": "0x168630",
+      "skip_offset": 4380,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 351,
+      "rom_start": "0x168630",
+      "rom_end": "0x16b9d0",
+      "skip_offset": 12588,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 352,
+      "rom_start": "0x16b9d0",
+      "rom_end": "0x16c8b0",
+      "skip_offset": 3332,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 353,
+      "rom_start": "0x16c8b0",
+      "rom_end": "0x16dda0",
+      "skip_offset": 4864,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 354,
+      "rom_start": "0x16dda0",
+      "rom_end": "0x16ed40",
+      "skip_offset": 3684,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 355,
+      "rom_start": "0x16ed40",
+      "rom_end": "0x179480",
+      "skip_offset": 42732,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 356,
+      "rom_start": "0x179480",
+      "rom_end": "0x179a10",
+      "skip_offset": 1228,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 357,
+      "rom_start": "0x179a10",
+      "rom_end": "0x179c10",
+      "skip_offset": 432,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 358,
+      "rom_start": "0x179c10",
+      "rom_end": "0x179e50",
+      "skip_offset": 464,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 359,
+      "rom_start": "0x179e50",
+      "rom_end": "0x17b120",
+      "skip_offset": 4596,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 360,
+      "rom_start": "0x17b120",
+      "rom_end": "0x17bab0",
+      "skip_offset": 1896,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 361,
+      "rom_start": "0x17bab0",
+      "rom_end": "0x17e5a0",
+      "skip_offset": 10896,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 362,
+      "rom_start": "0x17e5a0",
+      "rom_end": "0x180130",
+      "skip_offset": 6728,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 363,
+      "rom_start": "0x180130",
+      "rom_end": "0x1815b0",
+      "skip_offset": 4780,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 364,
+      "rom_start": "0x1815b0",
+      "rom_end": "0x182090",
+      "skip_offset": 2524,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 365,
+      "rom_start": "0x182090",
+      "rom_end": "0x1830a0",
+      "skip_offset": 3900,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 366,
+      "rom_start": "0x1830a0",
+      "rom_end": "0x183d30",
+      "skip_offset": 2784,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 367,
+      "rom_start": "0x183d30",
+      "rom_end": "0x184870",
+      "skip_offset": 2452,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 368,
+      "rom_start": "0x184870",
+      "rom_end": "0x185250",
+      "skip_offset": 1884,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 369,
+      "rom_start": "0x185250",
+      "rom_end": "0x185760",
+      "skip_offset": 1216,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 370,
+      "rom_start": "0x185760",
+      "rom_end": "0x185cc0",
+      "skip_offset": 1304,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 371,
+      "rom_start": "0x185cc0",
+      "rom_end": "0x1864b0",
+      "skip_offset": 1956,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 372,
+      "rom_start": "0x1864b0",
+      "rom_end": "0x186e10",
+      "skip_offset": 2324,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 373,
+      "rom_start": "0x186e10",
+      "rom_end": "0x187700",
+      "skip_offset": 2244,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 374,
+      "rom_start": "0x187700",
+      "rom_end": "0x188800",
+      "skip_offset": 4308,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 375,
+      "rom_start": "0x188800",
+      "rom_end": "0x189f30",
+      "skip_offset": 5888,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 376,
+      "rom_start": "0x189f30",
+      "rom_end": "0x18aeb0",
+      "skip_offset": 3332,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 377,
+      "rom_start": "0x18aeb0",
+      "rom_end": "0x18b070",
+      "skip_offset": 368,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 378,
+      "rom_start": "0x18b070",
+      "rom_end": "0x18bda0",
+      "skip_offset": 3296,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    },
+    {
+      "id": 379,
+      "rom_start": "0x18bda0",
+      "rom_end": "0x18bdf0",
+      "skip_offset": 44,
+      "skip_head": [
+        3,
+        7,
+        1,
+        6
+      ],
+      "self_paused_skip_initializer": true
+    }
+  ],
+  "known_function_bodies": {
+    "0x801E3C28": {
+      "size": 40,
+      "sha256": "393a534ca25d2757a8c2c4a868c2741921a67fdd7927045ee31c86eb186d4bb9"
+    },
+    "0x801E3C50": {
+      "size": 36,
+      "sha256": "37b2e937d5aaae63b2b95838c4bcd64989e5b87ad2ac42c63503c0907fc2de28"
+    }
+  },
+  "root_cause": "First Source Start sets8B00 and clears skip thread paused+A before opcode3 initialization re-pauses it;8B00 then suppresses subsequent Start. Natural script end later resumes thread7 and normal input works.",
+  "implementation": {
+    "source_sha256": {
+      "src/cutscene_input.cpp": "5bf2e5d630fb1cda33cc879863922eb864b83d257b30ae44c490348a8b7bbf88",
+      "src/cutscene_input.hpp": "14e27b41e25560b4f2e7eb8e099b571254f6d5e35330f6857b86aeb7c87e70b4",
+      "src/startup_runtime.cpp": "1c3379b384df3f944c58c481c34ee1872a6dd890b062a6ead6a6b10edf7b2d38",
+      "src/native_ui.cpp": "c843db65bf724e287b9ba28f19f48a6ceb2f76b50b3a67e280ba221cb50b56d4",
+      "recomp/decomp-symbols.json": "34e5361435da48f0ffffacc384aa9d555d19c9f991c3843c858df76f198c78db"
+    },
+    "cpu_generation": "startup-cutscene-start-after062-v1",
+    "build_id": "test-063",
+    "executable_sha256": "b5ca61c393c76045457239ebe2a19e061cafc5d2e1d245c622a646453c401c27",
+    "windows_compile_exit_code": 0,
+    "user_gameplay_validation": {
+      "date": "2026-10-08",
+      "build_id": "test-063",
+      "user_statement": "вроде сработало, коммит и пуш",
+      "result": "user_reported_seems_fixed",
+      "scope": "Previously reported early Start/intro input failure; no claim of all30 cutscenes tested",
+      "all_scene_sweep_confirmed": false,
+      "commit_authorized": true,
+      "push_authorized": true,
+      "agent_tests_executed": false,
+      "agent_game_launched": false
+    },
+    "tests_executed": false,
+    "locally_launched": false
+  }
+}

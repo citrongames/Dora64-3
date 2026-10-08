@@ -15432,8 +15432,8 @@
           }
         }
       ],
-      "description": "Обновляет восемь script threads в порядке слотов: пропускает завершённые/paused, уменьшает wait, исполняет команды до separator1, затем participant pool и scripted camera. Если все потоки завершены, вызывает исходное освобождение. Native не повторяет interpreter на дополнительных кадрах.",
-      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source."
+      "description": "Обновляет восемь script threads в порядке слотов: пропускает завершённые/paused, уменьшает wait, исполняет команды до separator1, затем participant pool и scripted camera. Если все потоки завершены, вызывает исходное освобождение. Native не повторяет interpreter на дополнительных кадрах. Start4096 принимается перед script dispatch: при8B00=0 выставляет8B00 и снимает paused+A потока7 (802183CA, не wait+6). На первом update pause(7) может снова установить paused; host Source boundary сохраняет только этот подтверждённый ранний запрос после инициализации.",
+      "evidence": "Exact scene1 ROM body/instruction hashes and canonical352 Source order review. Connected cutscene implementation353; focused pre-build validation pending. Native publishes reviewed transforms only; opcode execution stays Source. User-run062/1791433526009 confirms Start accepted at tick1 and thread7 re-paused until tick798; locked ROM scripts350..379 all share3,7,1 initializer. Source-only early request retention; no gameplay execution by agent."
     },
     {
       "section": ".scene1",
@@ -90599,6 +90599,50 @@
       "evidence": "Статический разбор Original ROM instructions и всех1870 GIMO descriptors. Шейдеры компилируются отдельно; игровые/CPU/renderer проверки не выполнялись.",
       "rom_sha256": "3e2b856a2648973115d77b8ed761fa0896300cac6a2de9fc308196d66010f286",
       "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E3C28",
+      "legacy_name": "dora3_s3_801E3C28",
+      "size": 40,
+      "rom_sha256": "393a534ca25d2757a8c2c4a868c2741921a67fdd7927045ee31c86eb186d4bb9",
+      "name": "dora3_script_pause_thread_801E3C28",
+      "description": "Opcode3: читает индекс script thread из следующего halfword команды, продвигает command cursor на2 и ставит paused+A записи stride10. Начальный pause(7) всех30 сценариев может перекрыть уже принятый ранний Start.",
+      "evidence": "Exact locked ROM body and script table audit plus user-run062 snapshots; no tests/game execution by agent.",
+      "locals": [
+        {
+          "name": "script_thread_record_r4",
+          "expression": "ctx->r4",
+          "start": "0x801E3C28",
+          "end": "0x801E3C50",
+          "description": "Source interpreter thread record; word0 stores the current command cursor.",
+          "instructions": {
+            "0x801E3C28": "0x8C830000"
+          }
+        }
+      ]
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801E3C50",
+      "legacy_name": "dora3_s3_801E3C50",
+      "size": 36,
+      "rom_sha256": "37b2e937d5aaae63b2b95838c4bcd64989e5b87ad2ac42c63503c0907fc2de28",
+      "name": "dora3_script_resume_thread_801E3C50",
+      "description": "Opcode4: читает индекс script thread, продвигает command cursor на2 и снимает paused+A. Естественный финал opening script376 снимает паузу потока7; это объясняет восстановление реакции после заставки.",
+      "evidence": "Exact locked ROM body and script table audit plus user-run062 snapshots; no tests/game execution by agent.",
+      "locals": [
+        {
+          "name": "script_thread_record_r4",
+          "expression": "ctx->r4",
+          "start": "0x801E3C50",
+          "end": "0x801E3C74",
+          "description": "Source interpreter thread record; word0 stores the current command cursor.",
+          "instructions": {
+            "0x801E3C50": "0x8C830000"
+          }
+        }
+      ]
     }
   ]
 }

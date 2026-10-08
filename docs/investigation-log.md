@@ -1,3 +1,108 @@
+## Пользовательская проверка063 и разрешение Git (2026-10-08)
+
+Пользователь сообщил «вроде сработало, коммит и пуш» после063. Это его
+подтверждение ранее описанного отказа раннего Start на заставке и прямое
+разрешение сохранить текущий этап в main и отправить origin/main. Не считать
+все30 сцен проверенными в игре: остальные аналоги установлены статически.
+Последний EXE остаётся063, SHA256 b5ca61c393c76045457239ebe2a19e061cafc5d2e1d245c622a646453c401c27.
+
+Сохраняемый этап включает ранний Start с owner guards/reset cleanup,
+диагностику input/Source consumers, доказанную SDL filter teardown правку,
+смысловые pause/resume имена и честные061..063 build/investigation receipts.
+ROM, извлечённые ресурсы, generated game C, EXE/PDB, saves и реальные run
+logs/dumps остаются вне Git. Код после063 не менялся; новый билд не требуется.
+Агент автоматических тестов и game/emulator/renderer/GPU не запускал.
+Правило сохраняется: после завершённых изменений кода сразу билд; Git после
+пользовательской проверки и соответствующего разрешения.
+
+## Test063 готов: сохранение раннего Start при инициализации заставки (2026-10-08)
+
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-063.exe.
+SHA256: b5ca61c393c76045457239ebe2a19e061cafc5d2e1d245c622a646453c401c27.
+Причина установлена по пользовательскому062 запуску: реальный Start принят
+на tick1, затем начальный pause(7) опять остановил поток пропуска; однократный
+requested flag блокировал повторные нажатия. После natural completion ввод
+на следующих экранах работал. Все30 scripts350..379 имеют такой initializer.
+
+Shared Source adapter сохраняет только этот принятый ранний запрос после
+его точной инициализации, с script-buffer/cursor/tick/overlay-generation
+guards и очисткой pending при reset. Программа пропуска исполняется обычным
+interpreter на следующем Source update; buttons/waits/later pauses и
+однократность не меняются. Late Start остаётся прежним. Диагностика сохранена.
+Подробности: [cutscene-early-start-after062.md](cutscene-early-start-after062.md).
+
+Новая canonical CPU generation startup-cutscene-start-after062-v1 создана
+из-за новых смысловых pause/resume names,4778 функций/44 SDK/5 hardware,
+0 pending; ABI/Original C сохранён. Audio-rsp-v1 прежняя. Windows MSVC
+RelWithDebInfo configure/compile/link exit0, около50 секунд; упаковка exit0.
+Скопированы18 изменённых staging files и необходимая новая generation;
+полный source ZIP не создавался. PDB/EXE062 и receipt062 сохранены.
+Все201 старых файлов вне logs сохранили размер/mtime, DLL хэши совпали.
+ROM/settings/saves не менялись. Тесты и игра/emulator/renderer/GPU не запускались.
+Игровой результат063 требует пользовательской проверки; commit/push нет.
+
+## Найдена причина раннего отказа Start в062 (2026-10-08)
+
+Новый пользовательский лог1791433526009 подтвердил: Start принят на самом
+первом Source tick, затем начальный pause(7) снова остановил поток пропуска,
+а requested8B00 заблокировал повторные нажатия. После natural resume ввод
+на следующих экранах работал. Все30 ROM scripts350..379 имеют такой initializer.
+Общий Source-only adapter сохраняет только этот настоящий ранний запрос
+после инициализации; поздние/later pauses и однократность остаются Original.
+Владение связано с script buffer/cursor/Source tick/overlay generation, reset
+очищает pending. Подробности: [cutscene-early-start-after062.md](cutscene-early-start-after062.md).
+Подготовка canonical CPU generation и Windows063; тесты/игра/commit/push нет.
+
+## Test062 готов: диагностика игровых обработчиков ввода (2026-10-08)
+
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-062.exe.
+SHA256: 6b47f139f8e0f3c95b44d270c96ff94bb29ba534826236da82b7856719522a4b.
+По прямой команде пользователя062 собран/упакован из dirty main09ffb36;
+MSVC RelWithDebInfo configure/compile/link exit0. CPU startup-menu-reset-v1
+и audio-rsp-v1 переиспользованы по совпавшим входам. Скопированы только
+11 изменённых staging files; полного source ZIP нет, PDB/EXE061
+и receipt061 сохранены. Все198 прежних файлов вне logs сохранили
+размер/mtime; общие DLL проверены упаковщиком по хэшам. ROM/saves/settings
+не менялись. Тесты и игра/emulator/renderer/GPU не запускались, commit/push нет.
+
+controller-input.jsonl schema2 теперь видит Source dispatch/completion,
+игровой/script/menu consumer, выбранные/latched buttons, counters/processes
+и флаг/records пропуска заставки. Это диагностика ещё не установленной
+причины отказа061; сам input loss не заявлен исправленным. Разбор:
+[input-loss-after061.md](input-loss-after061.md). Пользователь проверяет062.
+Новое правило пользователя закреплено в AGENTS.md: после завершённых
+изменений кода сразу делать билд; Git только после пользовательской проверки.
+
+## Отказ ввода после последнего reset061 (2026-10-08)
+
+Пользователь поймал отказ на третьем reset в logs/1791431816261. Четыре
+сессии/461 snapshots: port0 подключён, ошибок нет, host/raw buttons совпадают,
+последняя Start edge в неисправной session4 на poll859. Игра остаётся в
+начальной scene1 заставке; причины отсутствия реакции в Source-consumer
+061 ещё не показывает. Root cause/fix не установлен и не заявлен.
+Расширена read-only диагностика непосредственно в Source dispatch/consumer/
+completion: latch/selected buttons, процесс/tick counters, script skip flag
+и records. Две host units скомпилированы exit0; тесты/игра/EXE не запускались.
+Последний EXE по-прежнему061, новой диагностики в нём нет. Нового build,
+commit/push нет; Source подготовлен к следующей прямой команде на билд.
+Подробности: [input-loss-after061.md](input-loss-after061.md).
+
+## Test061: диагностика игрового ввода (2026-10-08)
+
+По прямой команде пользователя собран и упакован Windows061 из dirty snapshot
+поверх09ffb36, без commit/push. EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-061.exe.
+SHA256: b704dab7614044d5ab6082bd6d51ded4d831a10097e221d28394a123ed039a57.
+MSVC RelWithDebInfo configure/compile/link exit0. CPU startup-menu-reset-v1 и
+RSP audio-rsp-v1 переиспользованы по совпавшим inputs; обновлены8 staging files,
+полный архив исходников не создавался. PDB/EXE060 и receipt060 сохранены.
+Все195 прежних файлов вне logs сохранили хэши. Игра/тесты/renderer/GPU не запускались.
+controller-input.jsonl в logs/<run>/state пишет host+guest buttons/status/latches
+на старте, перед reset, при изменениях и каждые300 опросов. Это диагностическая
+сборка для ещё НЕ установленной причины060 input loss. Отдельный доказанный
+SDL shutdown use-after-free исправлен: callback снимается до уничтожения RT64.
+Пользователь проверяет с логом; коммит/пуш после результата. Разбор —
+docs/input-loss-after060.md. Старые060 документы ниже являются историей.
+
 ## Reset game после059 (2026-10-08)
 
 Реализованы кнопка/подтверждение как в Dora64 и внутренний cold boot сессии

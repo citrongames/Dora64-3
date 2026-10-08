@@ -10,3 +10,7 @@ size_t dora3_audio_remaining();
 // Only after guest threads and queued RSP work have stopped.
 void dora3_reset_live_io();
 void dora3_shutdown_live_io();
+
+// Read-only diagnostic snapshot; uses the existing input mutex, never SDL calls.
+struct Dora3LiveInputSnapshot { uint16_t buttons;float x,y;bool enabled; };
+Dora3LiveInputSnapshot dora3_live_input_snapshot();

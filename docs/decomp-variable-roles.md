@@ -4564,6 +4564,7 @@
 | `script_camera_output_r17` | `ctx->r17` | Output camera stride34 после смены роли индекса s1. | 1 |
 | `script_motion_control_r4` | `ctx->r4` | Control записи движения/камеры; точное storage исходного a0, без замены register ABI. | 11 |
 | `script_thread_record_r16` | `ctx->r16` | Текущая thread record stride10 в восьмипоточном Source interpreter. | 1 |
+| `script_thread_record_r4` | `ctx->r4` | Source interpreter thread record; word0 stores the current command cursor. | 2 |
 | `script_thread_wait_r3` | `ctx->r3` | Signed wait6 до перехода к opcode; scope не захватывает новые роли v1. | 1 |
 | `second_shape_index_output_r17` | `ctx->r17` | Output pointer for the second colliding shape index | 1 |
 | `seek_group_offset_r5` | `ctx->r5` | Verified role only within this exact Original instruction region; register reuse elsewhere retains ctx register name. | 1 |
