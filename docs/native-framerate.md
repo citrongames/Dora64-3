@@ -1,3 +1,58 @@
+## Пользовательская проверка065 и разрешение Git (2026-10-08)
+
+После test065 пользователь сообщил: «работает, коммит и пуш». Это подтверждение
+работы читов после исправления HP и прямая команда сохранить весь текущий
+проверенный этап в существующей main и отправить origin/main. Конкретные
+сцены/FPS/число проверенных персонажей в065 этим сообщением не заданы.
+QA записана отдельно: research/windows-test065-user-confirmation.json.
+EXE064/065 и compile/package receipts сохраняют исходное происхождение.
+После065 игровой код не менялся; нового билда, тестов или запуска игры/
+renderer/GPU агентом не было. Для следующих изменений остаётся правило:
+сразу билд после завершённого кода, commit/push после проверки и команды.
+
+## Test065 готов: исправлен backend HP (2026-10-08)
+
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-065.exe.
+SHA256: 8c1d6cea11c1f03b90a7c22f888038a04ae1a53e3a206b3ccced9e87b9a86127.
+После пользовательского отказа064 исправлено знаковое расширение адреса
+максимума HP и убран лишний availability gate. Собранный MSVC065 object
+статически использует правильный RAM offset1B838B для slot0 вместо064
+offset1001B838B; прочие слоты следуют Original stride1C. Это чтение compiler
+disassembly, не CPU test или игровое подтверждение. Разбор: [hp-cheat-after064.md](hp-cheat-after064.md).
+
+По действующей прямой инструкции после исправления сразу собран/упакован065.
+MSVC configure/compile/link exit0, 12.75 секунд;
+существующий cache сохранён. Пересобран backend и штатные build-local RT64
+queue adapters, затем выполнена линковка; C-код игры не пересобирался.
+Скопированы11 изменённых source files и0 generation files; прежняя CPU
+startup-cheats-after063-v3 и audio-rsp-v1 переиспользованы по совпавшим inputs.
+EXE/PDB064 сохранены, прежний receipt064 — research/history/.
+Все207 старых файлов вне logs сохранили размер/mtime; DLL SHA256
+совпадают, ROM/settings/saves не переписывались. Предметы064, settings и
+reset/input/cutscene063 сохраняются. Тесты/CPU checks/игра/emulator/renderer/
+GPU не запускались. Пользователь проверяет065; commit/push не выполнялись.
+
+## Test064 готов: читы персонажа и предметов (2026-10-08)
+
+По прямой инструкции «билд сразу после завершения работы» собран и упакован
+Windows064 из dirty main78dc597. EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-064.exe.
+SHA256: bc7b30e6ad224d80876d4840d96eee1ad734eb03d7b92f6055940c9eeb2b31e2.
+Вкладка Cheats после Controls: Infinite HP по максимуму выбранного персонажа
+и семь независимых 99 с заморозкой предметов; сохранение настроек и Cheats On как у Dora64.
+Original/Display/Native/Manual, reset/input/cutscene исправления063 сохранены.
+Подробности: [cheats.md](cheats.md).
+
+MSVC RelWithDebInfo configure/compile/link exit0, 51.937 секунд; готовый
+кэш сохранён, Fresh не использовался. CPU startup-cheats-after063-v3,
+audio-rsp-v1 прежняя. Скопированы27 изменённых source files и108 generation files,
+полный source ZIP не создавался; отличающиеся staging данные и EXE/PDB063 сохранены.
+Все204 прежних файлов вне logs сохранили размер/mtime; общие DLL
+проверены упаковщиком по SHA256. ROM/settings/saves не переписывались.
+Тесты, CPU checks, игра/emulator/renderer/GPU не запускались. Успешная
+компиляция не подтверждает игровую работу читов. Пользователь проверяет064;
+commit/push не выполнены и разрешены только после его проверки и команды.
+Receipt: research/windows-build-check.json; предыдущий063 receipt в research/history/.
+
 ## Пользовательская проверка063 и разрешение Git (2026-10-08)
 
 Пользователь сообщил «вроде сработало, коммит и пуш» после063. Это его

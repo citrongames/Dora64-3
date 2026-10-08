@@ -1,0 +1,19 @@
+{
+  "date_local": "2026-10-08",
+  "timezone": "Asia/Omsk",
+  "build_id": "test-065",
+  "executable_sha256": "8c1d6cea11c1f03b90a7c22f888038a04ae1a53e3a206b3ccced9e87b9a86127",
+  "source_base_commit": "78dc597e4e817bbf3489f259dbe01ad455d50b7c",
+  "source_dirty_at_build": true,
+  "user_message_ru": "работает, коммит и пуш",
+  "gameplay_result": "User confirmed the cheat implementation after the corrected HP build065",
+  "authorized_actions": [
+    "commit current verified cheat stage on existing main",
+    "push existing origin/main"
+  ],
+  "scope_limit": "The confirmation does not specify scenes, FPS modes or the number of characters checked in065; no complete playthrough or automated coverage is claimed",
+  "agent_tests_executed": false,
+  "agent_game_renderer_gpu_launched": false,
+  "new_exe_required": false,
+  "provenance": "Compile/package receipts and EXE064/065 remain original snapshots; this separate record adds human verification and Git authorization"
+}

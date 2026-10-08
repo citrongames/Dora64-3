@@ -66,7 +66,7 @@ void save_locked(bool controls=false){
             for(int i=0;i<ActionCount;i++)input_document["bindings"][action_keys[i]]={{"keyboard",current.keys[i]},{"gamepad",encode_pad(current.pad[i])}};
             write(input_path,input_document);
         }else{
-            pc_document["version"]=14;pc_document["show_fps"]=current.show_fps;
+            pc_document["version"]=15;pc_document["show_fps"]=current.show_fps;
             pc_document["master_volume"]=current.volume/100.0f;pc_document.erase("menu_scale");
             if(!pc_document["graphics"].is_object())pc_document["graphics"]=Json::object();
             auto& g=pc_document["graphics"];g["window_mode"]=current.fullscreen?"Fullscreen":"Windowed";
@@ -76,6 +76,8 @@ void save_locked(bool controls=false){
             g["frame_rate_mode"]=frame_rates[current.frame_rate_mode];g["frame_rate_limit"]=current.frame_rate_limit;
             constexpr const char* resolutions[]={"Original","Original2x","Original4x","Auto"};
             g["render_resolution"]=resolutions[current.resolution];g["texture_filtering"]=current.filtering?"Bilinear":"ThreePoint";
+            if(!pc_document["cheats"].is_object())pc_document["cheats"]=Json::object();
+            for(int i=0;i<CheatCount;++i)pc_document["cheats"][cheat_keys[i]]=current.cheats[i];
             write(pc_path,pc_document);
         }
         error.clear();
@@ -132,6 +134,9 @@ void initialize(const std::filesystem::path& directory){
     if(!missing_pc&&read(pc_path,pc_document)){
         boolean(pc_document,"show_fps",current.show_fps);float volume=current.volume/100.0f;
         real(pc_document,"master_volume",volume,0,1);current.volume=int(volume*100+0.5f);
+        const auto cheats=pc_document.find("cheats");
+        if(cheats!=pc_document.end()&&cheats->is_object())
+            for(int i=0;i<CheatCount;++i)boolean(*cheats,cheat_keys[i],current.cheats[i]);
         const auto it=pc_document.find("graphics");if(it!=pc_document.end()&&it->is_object()){
             const auto& g=*it;integer(g,"display_width",current.window_width,320,16384);integer(g,"display_height",current.window_height,240,16384);
             integer(g,"display_index",current.display_index,0,1024);integer(g,"display_refresh_rate",current.display_refresh_rate,0,1000);
@@ -153,6 +158,7 @@ void initialize(const std::filesystem::path& directory){
             if(valid_key(key))current.keys[i]=key;pad=decode_pad(pad);if(valid_pad(pad))current.pad[i]=pad;
         }
     }
+    configure_cheats(current.cheats);
     const auto load_error=error;
     if(missing_pc||pc_document.contains("menu_scale"))save_locked();if(missing_input)save_locked(true);
     if(!load_error.empty())error=load_error;
@@ -168,6 +174,7 @@ void set_general(const Settings& v) {
     current.fullscreen=v.fullscreen;current.show_fps=v.show_fps;
     save_locked();
 }
+void set_cheats(const CheatSettings& value){std::lock_guard lock(mutex);current.cheats=value;configure_cheats(current.cheats);save_locked();}
 void set_background_gamepad_input(bool value){std::lock_guard lock(mutex);current.background_gamepad_input=value;save_locked(true);}
 void correct_display_index(int expected,int value){std::lock_guard lock(mutex);if(current.display_index==expected&&expected!=value){current.display_index=value;save_locked();}}
 void set_fullscreen(bool value){std::lock_guard lock(mutex);current.fullscreen=value;save_locked();}

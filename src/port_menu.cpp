@@ -168,6 +168,22 @@ void draw_overlay(){
                     }
                     ImGui::EndTabItem();
                 }
+                if(ImGui::BeginTabItem("Cheats")) {
+                    // Eight options fit independently of the fixed tab bar/footer.
+                    if(ImGui::BeginChild("##PortCheatsContent",ImVec2(0,-74*scale))) {
+                        bool changed=ImGui::Checkbox("Infinite HP",&s.cheats[InfiniteHealth]);
+                        ImGui::TextWrapped("Keep the selected character at their own maximum HP and prevent HP loss.");
+                        ImGui::Spacing();ImGui::Separator();ImGui::Spacing();
+                        ImGui::TextDisabled("Each enabled item stays at 99, including after use.");
+                        constexpr const char* labels[]={"Zenkai fuku no mi (99)","Fukkatsu capsule (99)",
+                            "Energy stone (99)","Gas spray (99)","Fushigi na mi (99)",
+                            "Silver key (99)","Gold key (99)"};
+                        for(int i=FullRecoveryFruit;i<CheatCount;++i)
+                            changed|=ImGui::Checkbox(labels[i-FullRecoveryFruit],&s.cheats[i]);
+                        if(changed)set_cheats(s.cheats);
+                    }
+                    ImGui::EndChild();ImGui::EndTabItem();
+                }
                 ImGui::EndTabBar();
             }
             ImGui::SetCursorPosY(std::max(ImGui::GetCursorPosY(),ImGui::GetWindowHeight()-54*scale));
@@ -221,6 +237,21 @@ void draw_overlay(){
             ImGui::PushStyleColor(ImGuiCol_Text,ImVec4(0.72f,1.0f,0.76f,1.0f));
             if(have_fps)ImGui::Text("FPS %.1f",fps);else ImGui::TextUnformatted("FPS --");
             ImGui::PopStyleColor();
+        }
+        ImGui::End();ImGui::PopStyleColor();ImGui::PopStyleVar(2);
+    }
+    if(cheats_enabled()) {
+        ImGui::SetNextWindowPos(ImVec2(viewport->WorkPos.x+size.x-12*scale,
+            viewport->WorkPos.y+size.y-12*scale),ImGuiCond_Always,ImVec2(1,1));
+        ImGui::SetNextWindowBgAlpha(0.72f);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding,5*scale);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding,ImVec2(8*scale,5*scale));
+        ImGui::PushStyleColor(ImGuiCol_WindowBg,ImVec4(0.025f,0.03f,0.04f,1));
+        if(ImGui::Begin("##Dora3CheatsIndicator",nullptr,ImGuiWindowFlags_NoDecoration|
+            ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoSavedSettings|
+            ImGuiWindowFlags_NoInputs|ImGuiWindowFlags_NoNav|ImGuiWindowFlags_NoFocusOnAppearing)) {
+            ImGui::PushStyleColor(ImGuiCol_Text,ImVec4(0.72f,1.0f,0.76f,1));
+            ImGui::TextUnformatted("Cheats On");ImGui::PopStyleColor();
         }
         ImGui::End();ImGui::PopStyleColor();ImGui::PopStyleVar(2);
     }

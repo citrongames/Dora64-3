@@ -3217,7 +3217,7 @@
       "size": 104,
       "legacy_name": "dora3_s3_801C0738",
       "name": "dora3_player_change_health_801C0738",
-      "description": "Изменяет здоровье текущего персонажа; lethal сценарии используют реальную команду -2.",
+      "description": "Изменяет byte+1 текущего status8021D4A8, затем ограничивает0..parameters8021D648+18. Lethal команды включают-2. Чит замещает значение перед store801C0758, до проверки смерти; native/Original caller effects сохранены.",
       "evidence": "Разбор Original функций; docs/native-simulation.md и connected CPU checks v175.",
       "rom_sha256": "2fdd3b56830d8a8d0bc476a2ef36d0dd85c6b0ee4da287bda3629c378808c65e",
       "locals": [
@@ -10017,7 +10017,7 @@
       "size": 16,
       "legacy_name": "dora3_s1_801B5178",
       "name": "dora3_game_counter_get_signed_801B5178",
-      "description": "Читает signed byte game counter801B3700+a0. Sentinel -1 и отрицательные значения возвращаются без преобразования.",
+      "description": "Signed inventory byte801B3700[a0]; -1 означает отсутствующий предмет. Меню имён8020EF88 индексируется тем же ID. Читы для IDs1/2/3/4/5/8/11 подготавливают99 перед исходным чтением; прочие IDs и bank3678 остаются Original.",
       "evidence": "Exact Original overlay-qualified ROM/table identity; isolated candidate189 PASS:864 Source/144 Native/72 ownership rejection schedules and1032 intermediate signed-return/wrap yaw samples,24 settings,ASan/UBSan/LSan. Actual contacts/descriptors/clip commands/accepted or declined outcome/byte counters/destruction; main connected integration pending. Dialogue outcome progression/input and sound-command execution remain observed boundaries; real rooms/collision selection unverified.",
       "rom_sha256": "d76a95ee04dfbf2f53e3246f13c73bdbd7ecfc54ff2d1c2eeddf46a7a2a3540f",
       "locals": [
@@ -90643,6 +90643,39 @@
           }
         }
       ]
+    },
+    {
+      "section": ".scene_common",
+      "vram": "0x801B56F4",
+      "size": 76,
+      "legacy_name": "dora3_s1_menu_801B56F4",
+      "name": "dora3_character_status_refill_all_maximum_hp_801B56F4",
+      "description": "Шесть записей801B361B с шагом2: копирует только HP+1 из character parameters801B8370, шаг1C, поле18. Флаги доступности+0 не изменяет. Оригинальная полная лечебная команда; максимумы8/6/6/6/10/8 HP единиц, без нового прогона.",
+      "evidence": "Статический разбор оригинального ROM/инструкций для читов после063; docs/cheats.md. Тесты и игра не запускались.",
+      "rom_sha256": "742222779da6b11e41ed030193535a770da4b728db70c0cbe8b2f6f995c10267",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801F09CC",
+      "size": 32,
+      "legacy_name": "dora3_s3_801F09CC",
+      "name": "dora3_inventory_menu_lookup_item_id_801F09CC",
+      "description": "Возвращает signed byte из8020F0A8[page*18+cell]. Этот ID передаётся getter801B5178 и индексирует name pointers8020EF88; сохранённые slot/page/input semantics не меняются.",
+      "evidence": "Статический разбор оригинального ROM/инструкций для читов после063; docs/cheats.md. Тесты и игра не запускались.",
+      "rom_sha256": "7860d620e482f804a5b94b3b61e9f76d1e8bed239120688cb05075391cb12e03",
+      "locals": []
+    },
+    {
+      "section": ".scene1",
+      "vram": "0x801F22D4",
+      "size": 336,
+      "legacy_name": "dora3_s3_801F22D4",
+      "name": "dora3_inventory_menu_draw_selected_name_and_markers_801F22D4",
+      "description": "Получает item ID через801F09CC, читает inventory count через801B5178. При count!=-1 рисует CP932 name pointer8020EF88[id] и штатные маркеры ячейки/стрелок; count0 остаётся существующим предметом.",
+      "evidence": "Статический разбор оригинального ROM/инструкций для читов после063; docs/cheats.md. Тесты и игра не запускались.",
+      "rom_sha256": "34dcd9d36a48c97f63f3d2da7fe8b310f5699244c613d7244809d8dd5d2c969a",
+      "locals": []
     }
   ]
 }

@@ -24,7 +24,7 @@ ROM инструкции, типы, float порядок, register storage и co
 address-map и ссылки на старые полные имена в остальных документах.
 `--check` проверяет, что документация соответствует каталогу.
 
-В каталоге: 2699 описаний функций, 2368 новых смысловых имён и 5855 ограниченных областей переменных.
+В каталоге: 2702 описаний функций, 2371 новых смысловых имён и 5855 ограниченных областей переменных.
 
 | Overlay / адрес | Читаемое имя | Прежнее ABI имя | Назначение |
 |---|---|---|---|
@@ -162,7 +162,7 @@ address-map и ссылки на старые полные имена в ост�
 | .scene1 / 0x801BF828 | `dora3_player_move_and_collide_801BF828` | `dora3_s3_801BF828` | Интегрирует перемещение персонажа и выполняет исходный collision solver; пространственные исправления отделены от скорости. |
 | .scene1 / 0x801C03FC | `dora3_player_set_weapon_visibility_801C03FC` | `dora3_s3_801C03FC` | Меняет видимость костей оружия текущей модели персонажа. |
 | .scene1 / 0x801C0624 | `dora3_player_can_begin_npc_interaction_801C0624` | `dora3_s3_801C0624` | Возвращает возможность начать NPC interaction только для player states1..5,57/58,64/65; состояния оружия28/29 не допускаются. Геометрию и занятость диалога проверяют отдельные Original routines. |
-| .scene1 / 0x801C0738 | `dora3_player_change_health_801C0738` | `dora3_s3_801C0738` | Изменяет здоровье текущего персонажа; lethal сценарии используют реальную команду -2. |
+| .scene1 / 0x801C0738 | `dora3_player_change_health_801C0738` | `dora3_s3_801C0738` | Изменяет byte+1 текущего status8021D4A8, затем ограничивает0..parameters8021D648+18. Lethal команды включают-2. Чит замещает значение перед store801C0758, до проверки смерти; native/Original caller effects сохранены. |
 | .scene1 / 0x801C0C7C | `dora3_player_query_contact_flags_801C0C7C` | `dora3_s3_801C0C7C` | Получает исходные контактные флаги персонажа; повторное чтение может менять момент перехода состояния. |
 | .scene1 / 0x801C0D88 | `dora3_player_project_flight_velocity_801C0D88` | `dora3_s3_801C0D88` | Вычисляет проекцию скорости полёта для исходного движения и столкновений. |
 | .scene1 / 0x801C0E3C | `dora3_player_prepare_hover_velocity_801C0E3C` | `dora3_s3_801C0E3C` | Подготавливает скорость специального движения49/63 перед управлением. |
@@ -409,7 +409,7 @@ address-map и ссылки на старые полные имена в ост�
 | .scene_common / 0x801B4F98 | `dora3_common_flags_clear` | `dora3_common_flags_clear` | ROM reviewed leaf4F98..4FB8; clears16 u32 words801B3628..801B3664 |
 | .scene_common / 0x801B5070 | `dora3_game_counter_bank3678_add_original_byte_limits_801B5070` | `dora3_s1_801B5070` | В byte table801B3678 по input index a0 прибавляет a1 и сначала сохраняет byte с исходным переполнением. Отрицательный signed byte заменяет0, значения99..127 ограничивает99. В отличие от соседней bank3700 helper, sentinel-1 до сложения не преобразуется в0. Source special NPC24 использует index14/delta1; значение самого счётчика за пределами этой проверенной ветви не угадывается. |
 | .scene_common / 0x801B50F4 | `dora3_game_counter_add_with_original_byte_limits_801B50F4` | `dora3_s1_801B50F4` | Для индекса a0 преобразует sentinel -1 в0, прибавляет a1 и сохраняет byte. Затем отрицательный signed byte заменяет0, а значения99..127 ограничивает99. Важно сохранить исходное byte переполнение; функция не выполняет широкую saturating арифметику. |
-| .scene_common / 0x801B5178 | `dora3_game_counter_get_signed_801B5178` | `dora3_s1_801B5178` | Читает signed byte game counter801B3700+a0. Sentinel -1 и отрицательные значения возвращаются без преобразования. |
+| .scene_common / 0x801B5178 | `dora3_game_counter_get_signed_801B5178` | `dora3_s1_801B5178` | Signed inventory byte801B3700[a0]; -1 означает отсутствующий предмет. Меню имён8020EF88 индексируется тем же ID. Читы для IDs1/2/3/4/5/8/11 подготавливают99 перед исходным чтением; прочие IDs и bank3678 остаются Original. |
 | .scene_common / 0x801B54C8 | `dora3_common_progress_reset` | `dora3_common_progress_reset` | ROM reviewed 54C8..56E0; clears progress/state arrays from common defaults, calls4F98; a0=0 after Epoch skips optional5450 progression presets |
 | .scene_common / 0x801B5ED0 | `dora3_common_text_state` | `dora3_common_text_state` | Leaf: geometry/othermode/combine перед glyph; DL cursor801B1424 |
 | .scene_common / 0x801B5FF0 | `dora3_common_glyph_draw` | `dora3_common_glyph_draw` | Leaf: исходный12x12 glyph из CI4 atlas шириной192 сTLUT иTexRect; jr63B0/delay63B4 |
@@ -2727,3 +2727,6 @@ address-map и ссылки на старые полные имена в ост�
 | .startup / 0x80039DC8 | `dora3_emit_model_no_depth_fog_render_mode_80039DC8` | `dora3_s0_80039DC8` | Вариант без Z_CMP/Z_UPD, с fog blender первого цикла: C8112048/C81041C8/C8113048. Читает исходный pass и material kind; RGB палитры и альфа не модифицирует. |
 | .scene1 / 0x801E3C28 | `dora3_script_pause_thread_801E3C28` | `dora3_s3_801E3C28` | Opcode3: читает индекс script thread из следующего halfword команды, продвигает command cursor на2 и ставит paused+A записи stride10. Начальный pause(7) всех30 сценариев может перекрыть уже принятый ранний Start. |
 | .scene1 / 0x801E3C50 | `dora3_script_resume_thread_801E3C50` | `dora3_s3_801E3C50` | Opcode4: читает индекс script thread, продвигает command cursor на2 и снимает paused+A. Естественный финал opening script376 снимает паузу потока7; это объясняет восстановление реакции после заставки. |
+| .scene_common / 0x801B56F4 | `dora3_character_status_refill_all_maximum_hp_801B56F4` | `dora3_s1_menu_801B56F4` | Шесть записей801B361B с шагом2: копирует только HP+1 из character parameters801B8370, шаг1C, поле18. Флаги доступности+0 не изменяет. Оригинальная полная лечебная команда; максимумы8/6/6/6/10/8 HP единиц, без нового прогона. |
+| .scene1 / 0x801F09CC | `dora3_inventory_menu_lookup_item_id_801F09CC` | `dora3_s3_801F09CC` | Возвращает signed byte из8020F0A8[page*18+cell]. Этот ID передаётся getter801B5178 и индексирует name pointers8020EF88; сохранённые slot/page/input semantics не меняются. |
+| .scene1 / 0x801F22D4 | `dora3_inventory_menu_draw_selected_name_and_markers_801F22D4` | `dora3_s3_801F22D4` | Получает item ID через801F09CC, читает inventory count через801B5178. При count!=-1 рисует CP932 name pointer8020EF88[id] и штатные маркеры ячейки/стрелок; count0 остаётся существующим предметом. |

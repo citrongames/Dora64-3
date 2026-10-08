@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-08",
+  "base_commit": "78dc597",
+  "reported_build": "test-064",
+  "user_observation": "Items seem to work; HP decreases on hit and does not fill to maximum for any tested character",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "backend_before_sha256": "d20dbde97e65b67e503162ec1e55e98a4ffdfd74e0233cfdbd66692d19b1803a",
+  "backend_after_sha256": "df09e7ea626c85933e6751625080a5677df827c1d953221cbdd072d8f6d350e1",
+  "static_root_cause": "unsigned health_offset promotes int32_t base in MEM_BU, losing required guest sign extension; emitted GCC and MSVC064 objects compute maximum-byte pointer at RAM+0x1001B838B instead of RAM+0x1B838B for slot0",
+  "additional_scope_correction": "Removed availability-byte gate absent in Original801C0738; availability remains untouched and only selected HP+1 is filled",
+  "original_health_change_function": "801C0738",
+  "original_character_bind_function": "801C9364",
+  "maximum_addresses": [
+    "0x801B8388",
+    "0x801B83A4",
+    "0x801B83C0",
+    "0x801B83DC",
+    "0x801B83F8",
+    "0x801B8414"
+  ],
+  "maximum_hp": [
+    8,
+    6,
+    6,
+    6,
+    10,
+    8
+  ],
+  "generated_sources_unchanged": true,
+  "items_backend_unchanged": true,
+  "tests_executed": false,
+  "game_launched": false,
+  "compiler_disassembly_is_static_evidence": true,
+  "gameplay_after_fix": "not verified",
+  "built_fix": "test-065",
+  "executable_sha256": "8c1d6cea11c1f03b90a7c22f888038a04ae1a53e3a206b3ccced9e87b9a86127",
+  "after_compilation_static_evidence": {
+    "kind": "Read MSVC065 object disassembly, without executing backend/game",
+    "maximum_health_sequence": "imul ecx,slot,1Ch; sub rcx,7FE47C78h using64-bit register; xor rcx,3; add rax80000000; read byte",
+    "effective_slot0_byte_offset": "0x001B838B",
+    "incorrect_extra_4gib_offset_removed": true,
+    "disassembly_sha256": "8a08805e60275540721703b6f8a5b42198cb2e3964d426c32c5e4ff5339805e2",
+    "local_disassembly": "build-local/hp-cheat-test065-build/hp065-msvc-disassembly.txt"
+  }
+}

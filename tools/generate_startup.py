@@ -1,5 +1,5 @@
 """Generate reviewed startup functions with explicit fail-stop boundaries."""
-import argparse, hashlib, json, struct, subprocess
+import argparse, hashlib, json, re, struct, subprocess
 from pathlib import Path
 from inspect_rom import ROOT, read_rom
 from overlay_layout import prepare_layout, pending_name
@@ -7,6 +7,7 @@ from local_jump_tables import reviewed_local_jumps, verify_generated_local_jumps
 from native_timing_patches import timing_hooks
 from audio_queue_patches import audio_queue_hooks
 from audio_music_patches import audio_music_hooks
+from cheat_patches import cheat_hooks
 from model_transition_patches import model_terminal_hooks
 from msvc_codegen_workarounds import apply_msvc_codegen_workarounds
 from decomp_annotations import annotate_generated_sources
@@ -50,6 +51,8 @@ def main():
     (out/'overlay_regions.hpp').write_text('\n'.join(registry)+'\n')
     declarations=['#pragma once','#include "recomp.h"','#ifdef __cplusplus','extern "C" {','#endif','void dora3_trace(uint8_t*, recomp_context*, uint32_t, uint32_t);','void dora3_pending(uint32_t);','void dora3_verify_dma(uint8_t*);','void dora3_capture_resource(uint8_t*, recomp_context*);','void dora3_mark_stream_dma(void);']
     declarations.append('void dora3_game_reset_poll(uint8_t*,recomp_context*);')
+    declarations.extend(['void dora3_cheats_tick(uint8_t*);','void dora3_cheats_health_store(uint8_t*,recomp_context*);',
+                         'void dora3_cheats_counter_store(uint8_t*,recomp_context*);','void dora3_cheats_counter_get(uint8_t*,recomp_context*);'])
     native_names=[v[0] for v in meta.get('native',{}).values()]
     declarations.extend(['void dora3_native_task_register(uint8_t*, recomp_context*);',
                          'void dora3_native_task_retired(uint8_t*, recomp_context*);',
@@ -242,6 +245,18 @@ def main():
         name=compiled[(0,0x800271B0)][0]
         for address,hook in [(0x800272BC,'dora3_begin_cpu_fb_copy();'),(0x800272F8,'dora3_end_cpu_fb_copy();')]:
             config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
+    for name,address,hook in cheat_hooks(sections,compiled,rom):
+        # N64Recomp keeps only the last hook at a site. Compose with trace/reset
+        # instead of replacing those already-authorized adapters.
+        pattern=rf'(\{{ func = "{re.escape(name)}", before_vram = 0x{address:08X}, text = )("(?:\\.|[^"\\])*")( \}},\n)'
+        matches=list(re.finditer(pattern,config))
+        if len(matches)>1:raise ValueError('Multiple existing hooks at cheats site')
+        if matches:
+            match=matches[0]
+            combined=json.dumps(json.loads(match[2])+' '+hook)
+            config=config[:match.start(2)]+combined+config[match.end(2):]
+        else:
+            config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
     for (name,address),hook in time_hooks.items():
         config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
     for jump in local_jumps:
@@ -263,7 +278,7 @@ def main():
     apply_msvc_codegen_workarounds(out/'RecompiledFuncs',sections,compiled,rom)
     annotate_generated_sources(out/'RecompiledFuncs',sections,compiled,rom,ROOT/'recomp/decomp-symbols.json')
     verify_generated_local_jumps(out/'RecompiledFuncs',local_jumps)
-    inputs=['tools/model_transition_patches.py','recomp/model-terminal-poses.json','tools/audio_music_patches.py','tools/msvc_codegen_workarounds.py','tools/audio_queue_patches.py','tools/native_minigame_patches.py','research/native-minigame-reviewed.json','tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
+    inputs=['tools/cheat_patches.py','research/cheats-rom-evidence.json','tools/model_transition_patches.py','recomp/model-terminal-poses.json','tools/audio_music_patches.py','tools/msvc_codegen_workarounds.py','tools/audio_queue_patches.py','tools/native_minigame_patches.py','research/native-minigame-reviewed.json','tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
     tracked=[f for f in out.rglob('*') if f.is_file() and f.name!='generation.log']
     report={'scope':'reviewed resident/overlay functions; explicit stop on unreviewed calls',
             'rom_sha256':hashlib.sha256(rom).hexdigest(),'tool_sha256':sha(binary),'inputs':{x:sha(ROOT/x) for x in inputs},

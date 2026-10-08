@@ -3,6 +3,7 @@
 #include <filesystem>
 #include <string>
 #include <SDL.h>
+#include "port_cheats.hpp"
 
 namespace dora3::port {
 enum Action { A, B, Z, Start, L, R, DUp, DDown, DLeft, DRight,
@@ -21,12 +22,14 @@ struct Settings {
     float deadzone=0.25f;
     bool background_gamepad_input=true;
     std::array<int, ActionCount> keys{}, pad{};
+    CheatSettings cheats{};
 };
 Settings defaults();
 void initialize(const std::filesystem::path& directory);
 Settings settings();
 // Independent setting groups avoid lost binding updates from another thread.
 void set_general(const Settings& value);
+void set_cheats(const CheatSettings& value);
 void set_deadzone(float value);
 void set_background_gamepad_input(bool value);
 void set_fullscreen(bool value);

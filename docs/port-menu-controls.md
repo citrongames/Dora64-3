@@ -1,3 +1,21 @@
+## HP backend065 (2026-10-08)
+
+Интерфейс и семь item switches064 прежние. Backend Infinite HP исправлен:
+адрес Original maximum правильно расширяется со знаком, progression flag
+не блокирует восстановление выбранного HP. Windows065 собран без тестов и
+игры; игровой результат ожидает пользователя. [Разбор](hp-cheat-after064.md).
+
+## Читы после063 (2026-10-08)
+
+Добавлена вкладка Cheats после Controls, как у Dora64, и индикатор Cheats On
+справа внизу. Восемь сохраняемых независимых опций: полный HP текущего персонажа
+по его оригинальному максимуму и99 с заморозкой для семи указанных предметов
+(IDs1/2/3/4/5/8/11). Backend game-thread-only; exact-ROM store hook до проверки
+смерти и common add/get hooks до расхода. Original/Display/Native/Manual,
+reset/input/cutscene fixes060..063 сохранены. Подробности: [cheats.md](cheats.md).
+Test064 собран по прямой инструкции пользователя; compilation/package exit0.
+Тесты/игра/renderer/GPU не запускались; commit/push ждут его проверки и команды.
+
 ## Reset game (2026-10-08, после059)
 
 Реализован Reset game между Continue и Exit game, с тем же центральным

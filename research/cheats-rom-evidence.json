@@ -1,0 +1,133 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "functions": [
+    {
+      "name": "dora3_game_message_loop",
+      "vram": 2147645564,
+      "size": 524,
+      "section": ".startup",
+      "section_rom": 4096,
+      "rom_offset": 11388,
+      "sha256": "d434cad7f9d78452d6b4d91ba6a68d0d6c8af303459f6e60d060ee84896d6f54",
+      "sites": {
+        "0x800278e0": "0x3c04801b"
+      }
+    },
+    {
+      "name": "dora3_s1_801B50F4",
+      "vram": 2149273844,
+      "size": 132,
+      "section": ".scene_common",
+      "section_rom": 386048,
+      "rom_offset": 392580,
+      "sha256": "f726004d959867315cacf01d59380f14f32612860099f63906b4fc8767073054",
+      "sites": {
+        "0x801b5130": "0xa0223700"
+      }
+    },
+    {
+      "name": "dora3_s1_801B5178",
+      "vram": 2149273976,
+      "size": 16,
+      "section": ".scene_common",
+      "section_rom": 386048,
+      "rom_offset": 392712,
+      "sha256": "d76a95ee04dfbf2f53e3246f13c73bdbd7ecfc54ff2d1c2eeddf46a7a2a3540f",
+      "sites": {
+        "0x801b5178": "0x3c02801b"
+      }
+    },
+    {
+      "name": "dora3_s3_801C0738",
+      "vram": 2149320504,
+      "size": 104,
+      "section": ".scene1",
+      "section_rom": 461392,
+      "rom_offset": 492216,
+      "sha256": "2fdd3b56830d8a8d0bc476a2ef36d0dd85c6b0ee4da287bda3629c378808c65e",
+      "sites": {
+        "0x801c0758": "0xa0620001"
+      }
+    },
+    {
+      "name": "dora3_s3_801C9364",
+      "vram": 2149356388,
+      "size": 112,
+      "section": ".scene1",
+      "section_rom": 461392,
+      "rom_offset": 528100,
+      "sha256": "940d6128c83d8bb1341cddd971ad11fe5be996509e3b7edd63923c05db18464a",
+      "sites": {
+        "0x801c93cc": "0x3e00008"
+      }
+    }
+  ],
+  "health_table": {
+    "section_rom": 386048,
+    "address": 2149286768,
+    "stride": 28,
+    "offset": 24,
+    "slots": 6,
+    "rom_offset": 405504,
+    "sha256": "563f3abfa8ad4c4b3506484c3e03142f722c98c8625141952a7862c24bd5b9ad",
+    "maximum_hp": [
+      8,
+      6,
+      6,
+      6,
+      10,
+      8
+    ]
+  },
+  "items": [
+    {
+      "id": 1,
+      "name": "ぜんかいふくのみ",
+      "counter": "0x801b3701",
+      "name_pointer": "0x802167e0",
+      "name_table_rom": "0xc6b0c"
+    },
+    {
+      "id": 2,
+      "name": "ふっかつカプセル",
+      "counter": "0x801b3702",
+      "name_pointer": "0x802167cc",
+      "name_table_rom": "0xc6b10"
+    },
+    {
+      "id": 3,
+      "name": "エナジーストーン",
+      "counter": "0x801b3703",
+      "name_pointer": "0x802167b8",
+      "name_table_rom": "0xc6b14"
+    },
+    {
+      "id": 4,
+      "name": "ガススプレー",
+      "counter": "0x801b3704",
+      "name_pointer": "0x802167a8",
+      "name_table_rom": "0xc6b18"
+    },
+    {
+      "id": 5,
+      "name": "ふしぎなみ",
+      "counter": "0x801b3705",
+      "name_pointer": "0x8021679c",
+      "name_table_rom": "0xc6b1c"
+    },
+    {
+      "id": 8,
+      "name": "ぎんのかぎ",
+      "counter": "0x801b3708",
+      "name_pointer": "0x80216774",
+      "name_table_rom": "0xc6b28"
+    },
+    {
+      "id": 11,
+      "name": "きんのかぎ",
+      "counter": "0x801b370b",
+      "name_pointer": "0x80216740",
+      "name_table_rom": "0xc6b34"
+    }
+  ]
+}

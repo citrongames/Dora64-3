@@ -1,0 +1,135 @@
+{
+  "scope": "Linux C/C++ object compilation only, no executable linking or execution",
+  "base_commit": "78dc597",
+  "generation": "build-local/startup-cheats-after063-v3",
+  "generation_receipt_sha256": "08e6b64c997b4f80c43565a7e3e100b50a7be039c444db5da217a07dc6b3b81a",
+  "tests_executed": false,
+  "cpu_checks_executed": false,
+  "game_launched": false,
+  "renderer_or_gpu_launched": false,
+  "windows_exe_built": false,
+  "last_windows_build": "test-063",
+  "provenance": "Initial changed objects compiled once; final store refinement recompiles only port_cheats.cpp and funcs_14.c. Retained records have identical final source hashes and retain their original generation/log provenance.",
+  "sources": [
+    {
+      "source": "src/port_menu.cpp",
+      "sha256": "f138599ca0bea28899a90b2bf61a0c42bf6728aa31b002c15a2b5ff70e12644c",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/port_menu.compile.log",
+      "generation_at_compilation": null,
+      "final_source": "src/port_menu.cpp"
+    },
+    {
+      "source": "src/port_settings.cpp",
+      "sha256": "1c8724f8ff745f6c4a632c88be20deb181b62e85f3b9e35eee5b23088f2a2785",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/port_settings.compile.log",
+      "generation_at_compilation": null,
+      "final_source": "src/port_settings.cpp"
+    },
+    {
+      "source": "src/port_input.cpp",
+      "sha256": "0a1e11fda1b0e66ccf0bc20ae1d6ac0170940e1cf262d8fd434a8c7bedea786e",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/port_input.compile.log",
+      "generation_at_compilation": null,
+      "final_source": "src/port_input.cpp"
+    },
+    {
+      "source": "src/port_display.cpp",
+      "sha256": "ea880764b8299963aa74a4f1a2949cee1efb45580464763d43f0fcc0dd765efa",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/port_display.compile.log",
+      "generation_at_compilation": null,
+      "final_source": "src/port_display.cpp"
+    },
+    {
+      "source": "src/live_io.cpp",
+      "sha256": "6b925d759f3824a8b366771e758da86b1cf3f659296153ebed8af50a00a311ba",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/live_io.compile.log",
+      "generation_at_compilation": null,
+      "final_source": "src/live_io.cpp"
+    },
+    {
+      "source": "src/live_graphics.cpp",
+      "sha256": "98514a81097c66a9f4a3acef1eb68df391a6565e9a6fb733534a164d125accab",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/live_graphics.compile.log",
+      "generation_at_compilation": null,
+      "final_source": "src/live_graphics.cpp"
+    },
+    {
+      "source": "src/native_frame_settings.cpp",
+      "sha256": "968a5c5765bde96da8ce49846dee46c3cb1652bcc1208f310e7372a10bf38a3f",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/native_frame_settings.compile.log",
+      "generation_at_compilation": null,
+      "final_source": "src/native_frame_settings.cpp"
+    },
+    {
+      "source": "build-local/startup-cheats-after063-v2/RecompiledFuncs/funcs_0.c",
+      "sha256": "6412d2c3895cddea4b18e675d6ef8ba244c7909ee55846356be3989976955bd6",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/funcs_0.compile.log",
+      "generation_at_compilation": "startup-cheats-after063-v2",
+      "final_source": "build-local/startup-cheats-after063-v3/RecompiledFuncs/funcs_0.c"
+    },
+    {
+      "source": "build-local/startup-cheats-after063-v2/RecompiledFuncs/funcs_16.c",
+      "sha256": "a21ca4053ec6beb8d2f5bf3a7270afef71cf68308675d05fcc3a10cb103d6162",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/funcs_16.compile.log",
+      "generation_at_compilation": "startup-cheats-after063-v2",
+      "final_source": "build-local/startup-cheats-after063-v3/RecompiledFuncs/funcs_16.c"
+    },
+    {
+      "source": "build-local/startup-cheats-after063-v2/RecompiledFuncs/funcs_20.c",
+      "sha256": "de016f1d1b60b3393006ce1720c67ad6fdae339a92501759514087d66301efbe",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/funcs_20.compile.log",
+      "generation_at_compilation": "startup-cheats-after063-v2",
+      "final_source": "build-local/startup-cheats-after063-v3/RecompiledFuncs/funcs_20.c"
+    },
+    {
+      "source": "build-local/startup-cheats-after063-v2/RecompiledFuncs/funcs_25.c",
+      "sha256": "cc172403c2fdf21e1507be9f15efd43b882953d364e162b898a150884d849103",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/funcs_25.compile.log",
+      "generation_at_compilation": "startup-cheats-after063-v2",
+      "final_source": "build-local/startup-cheats-after063-v3/RecompiledFuncs/funcs_25.c"
+    },
+    {
+      "source": "build-local/startup-cheats-after063-v2/RecompiledFuncs/funcs_41.c",
+      "sha256": "592b171a5c12bf4d12abb79cb2192a25624790c84dd0a0b285e1823535485ea9",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/funcs_41.compile.log",
+      "generation_at_compilation": "startup-cheats-after063-v2",
+      "final_source": "build-local/startup-cheats-after063-v3/RecompiledFuncs/funcs_41.c"
+    },
+    {
+      "source": "build-local/startup-cheats-after063-v2/RecompiledFuncs/funcs_42.c",
+      "sha256": "34a6a41d03af1accb913ca5645c102e5eef59538ac30a0e91e35523882919236",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/funcs_42.compile.log",
+      "generation_at_compilation": "startup-cheats-after063-v2",
+      "final_source": "build-local/startup-cheats-after063-v3/RecompiledFuncs/funcs_42.c"
+    },
+    {
+      "source": "src/port_cheats.cpp",
+      "sha256": "d20dbde97e65b67e503162ec1e55e98a4ffdfd74e0233cfdbd66692d19b1803a",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/port_cheats.compile.log",
+      "generation_at_compilation": null,
+      "final_source": "src/port_cheats.cpp"
+    },
+    {
+      "source": "build-local/startup-cheats-after063-v3/RecompiledFuncs/funcs_14.c",
+      "sha256": "6ac2c297d81c0f1d50eb289969ca2879783be22c4fc792ad30ba9504eaf44308",
+      "exit_code": 0,
+      "log": "build-local/cheats-compile/funcs_14.compile.log",
+      "generation_at_compilation": "startup-cheats-after063-v3",
+      "final_source": "build-local/startup-cheats-after063-v3/RecompiledFuncs/funcs_14.c"
+    }
+  ]
+}
