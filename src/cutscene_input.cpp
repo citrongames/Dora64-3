@@ -20,7 +20,7 @@ std::optional<EarlyStart> early_start;
 uint32_t word(uint8_t* rdram,uint32_t address){return uint32_t(MEM_W(0,int32_t(address)));}
 uint16_t half(uint8_t* rdram,uint32_t address){return MEM_HU(0,int32_t(address));}
 bool pointer(uint32_t address,unsigned bytes,unsigned alignment) {
-    return !(address&(alignment-1))&&address>=0x80000000u&&uint64_t(address)+bytes<=0x80400000ull;
+    return !(address&(alignment-1))&&address>=0x80000000u&&uint64_t(address)+bytes<=0x80800000ull;
 }
 bool source_boundary() {
     return !dora3::native_time::active_frame_binding()&&!dora3::native_time::active_simulation_slice();

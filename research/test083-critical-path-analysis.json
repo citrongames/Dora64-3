@@ -1,0 +1,59 @@
+{
+  "profile": "D:\\Games\\DoraRecomp3\\testbuild\\logs\\1791477249843\\state\\graphics-profile.jsonl",
+  "sha256": "1de3d16b6a5b90e4b57a2a08148d62cdb8ba84326e8eada1627e68fc6225c863",
+  "schema": 4,
+  "samples": 54,
+  "scope_errors": 0,
+  "trace_dropped": 0,
+  "window_us": [
+    30000000,
+    39000000
+  ],
+  "matched_frames": 1163,
+  "producer_duty_fraction": 0.6801535888888889,
+  "ready_idle_mean_us": 1996.0590713672239,
+  "ready_idle_median_us": 245.0,
+  "ready_idle_over500us_frames": 576,
+  "build_end_to_runtime_submit_mean_us": 4870.590197764568,
+  "frame_mapping": "NativeFrame start within50us after ticket; DL814000b0 bank0 /824000b0 bank1 observed at first Native frames; address order preserved until retirement",
+  "example_frames": [
+    {
+      "serial": 6811,
+      "ready": 30742097.5,
+      "submit": 30745094.2,
+      "parse": 30745125.9,
+      "previous_producer_end": 30733911.200000003,
+      "ready_idle_us": 3028.39999999851
+    },
+    {
+      "serial": 6812,
+      "ready": 30745236.6,
+      "submit": 30755356.7,
+      "parse": 30755369.2,
+      "previous_producer_end": 30750464.0,
+      "ready_idle_us": 4905.199999999255
+    },
+    {
+      "serial": 6813,
+      "ready": 30755434.7,
+      "submit": 30760839.2,
+      "parse": 30760932.6,
+      "previous_producer_end": 30760754.4,
+      "ready_idle_us": 178.20000000298023
+    },
+    {
+      "serial": 6814,
+      "ready": 30764814.3,
+      "submit": 30767932,
+      "parse": 30767957.9,
+      "previous_producer_end": 30765944.200000003,
+      "ready_idle_us": 2013.6999999955297
+    }
+  ],
+  "limitations": [
+    "ready_idle is available-frame plus idle-producer time; it is not a guarantee all time can be reclaimed (audio/SP and scheduling can still intervene)",
+    "Trace has observer overhead; no clean084 FPS prediction",
+    "Pending SP/DP individual enqueue times are not recorded, so exact contribution of each delivery race not known"
+  ],
+  "fix": "Explicit pending-event drain plus existing guest priority scheduling at before/after Native update and immediately after post-submit retained graphics wake; no artificial completion/no skipped work/no changed elapsed time"
+}

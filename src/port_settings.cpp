@@ -1,4 +1,6 @@
+#include "diagnostics.hpp"
 #include "port_settings.hpp"
+#include "draw_distance.hpp"
 #include "json/json.hpp"
 #include <algorithm>
 #include <cmath>
@@ -43,7 +45,7 @@ bool read(const std::filesystem::path& path,Json& data){
     catch(const std::exception& e){
         auto backup=path;backup+=".invalid";std::error_code ec;std::filesystem::copy_file(path,backup,std::filesystem::copy_options::none,ec);
         error="Settings could not be loaded; defaults in use. "+std::string(e.what());
-        std::fprintf(stderr,"PORT SETTINGS LOAD ERROR: %s\n",error.c_str());data=Json::object();return false;
+        DORA3_LOG(stderr,"PORT SETTINGS LOAD ERROR: %s\n",error.c_str());data=Json::object();return false;
     }
 }
 void write(const std::filesystem::path& path,const Json& data){
@@ -66,7 +68,7 @@ void save_locked(bool controls=false){
             for(int i=0;i<ActionCount;i++)input_document["bindings"][action_keys[i]]={{"keyboard",current.keys[i]},{"gamepad",encode_pad(current.pad[i])}};
             write(input_path,input_document);
         }else{
-            pc_document["version"]=15;pc_document["show_fps"]=current.show_fps;
+            pc_document["version"]=16;pc_document["show_fps"]=current.show_fps;
             pc_document["master_volume"]=current.volume/100.0f;pc_document.erase("menu_scale");
             if(!pc_document["graphics"].is_object())pc_document["graphics"]=Json::object();
             auto& g=pc_document["graphics"];g["window_mode"]=current.fullscreen?"Fullscreen":"Windowed";
@@ -75,13 +77,14 @@ void save_locked(bool controls=false){
             constexpr const char* frame_rates[]={"Original","Display","Manual"};
             g["frame_rate_mode"]=frame_rates[current.frame_rate_mode];g["frame_rate_limit"]=current.frame_rate_limit;
             constexpr const char* resolutions[]={"Original","Original2x","Original4x","Auto"};
+            g["draw_distance"]=current.draw_distance;
             g["render_resolution"]=resolutions[current.resolution];g["texture_filtering"]=current.filtering?"Bilinear":"ThreePoint";
             if(!pc_document["cheats"].is_object())pc_document["cheats"]=Json::object();
             for(int i=0;i<CheatCount;++i)pc_document["cheats"][cheat_keys[i]]=current.cheats[i];
             write(pc_path,pc_document);
         }
         error.clear();
-    }catch(const std::exception& e){error=e.what();std::fprintf(stderr,"PORT SETTINGS SAVE ERROR: %s\n",error.c_str());}
+    }catch(const std::exception& e){error=e.what();DORA3_LOG(stderr,"PORT SETTINGS SAVE ERROR: %s\n",error.c_str());}
 }
 }
 
@@ -141,6 +144,7 @@ void initialize(const std::filesystem::path& directory){
             const auto& g=*it;integer(g,"display_width",current.window_width,320,16384);integer(g,"display_height",current.window_height,240,16384);
             integer(g,"display_index",current.display_index,0,1024);integer(g,"display_refresh_rate",current.display_refresh_rate,0,1000);
             integer(g,"frame_rate_limit",current.frame_rate_limit,60,360);
+            real(g,"draw_distance",current.draw_distance,1,5);
             constexpr const char* frame_rates[]={"Original","Display","Manual"};
             for(int i=0;i<3;i++)if(g.contains("frame_rate_mode")&&g["frame_rate_mode"]==frame_rates[i])current.frame_rate_mode=i;
             if(g.contains("window_mode")&&g["window_mode"].is_string())current.fullscreen=g["window_mode"]=="Fullscreen";
@@ -159,6 +163,7 @@ void initialize(const std::filesystem::path& directory){
         }
     }
     configure_cheats(current.cheats);
+    current.draw_distance=dora3::distance::configure(current.draw_distance);
     const auto load_error=error;
     if(missing_pc||pc_document.contains("menu_scale"))save_locked();if(missing_input)save_locked(true);
     if(!load_error.empty())error=load_error;
@@ -172,6 +177,7 @@ void set_general(const Settings& v) {
     current.display_index=std::clamp(v.display_index,0,1024);current.display_refresh_rate=std::clamp(v.display_refresh_rate,0,1000);
     current.frame_rate_mode=std::clamp(v.frame_rate_mode,0,2);current.frame_rate_limit=std::clamp(v.frame_rate_limit,60,360);
     current.fullscreen=v.fullscreen;current.show_fps=v.show_fps;
+    current.draw_distance=dora3::distance::configure(v.draw_distance);
     save_locked();
 }
 void set_cheats(const CheatSettings& value){std::lock_guard lock(mutex);current.cheats=value;configure_cheats(current.cheats);save_locked();}
@@ -188,7 +194,7 @@ void bind(Action a,bool gamepad,int code) {
     bindings[a]=code;save_locked(true);
 }
 void reset_bindings(){std::lock_guard lock(mutex);const auto d=defaults();current.keys=d.keys;current.pad=d.pad;current.deadzone=d.deadzone;save_locked(true);}
-void profile(bool modern){std::lock_guard lock(mutex);current.resolution=modern?3:0;current.filtering=modern?1:0;current.frame_rate_mode=modern?1:0;save_locked();}
+void profile(bool modern){std::lock_guard lock(mutex);current.resolution=modern?3:0;current.filtering=modern?1:0;current.frame_rate_mode=modern?1:0;current.draw_distance=dora3::distance::configure(modern?5.f:1.f);save_locked();}
 std::string save_error(){std::lock_guard lock(mutex);return error;}
 std::string pad_name(int code){
     constexpr const char* names[]={"Unbound","A","B","X","Y","Start","LB","RB","LT","RT","Left stick click","Right stick click",

@@ -1,3 +1,4 @@
+#include "diagnostics.hpp"
 #include "port_display.hpp"
 #include <algorithm>
 #include <atomic>
@@ -162,7 +163,7 @@ std::vector<OutputMode> window_modes(const DisplayInfo& display){
 void refresh_displays(){
     std::vector<DisplayInfo> next;
     const int count=SDL_GetNumVideoDisplays();
-    if(count<=0)std::fprintf(stderr,"PORT display enumeration failed: %s\n",SDL_GetError());
+    if(count<=0)DORA3_LOG(stderr,"PORT display enumeration failed: %s\n",SDL_GetError());
     for(int i=0;i<count;i++){
         DisplayInfo d;const char* name=SDL_GetDisplayName(i);
         d.name=std::to_string(i+1)+": "+(name?name:"Display");
@@ -185,7 +186,7 @@ void update_display_window(SDL_Window* window){
     if(displays().empty())return;
     if(!applied||s.fullscreen!=last.fullscreen||s.display_index!=last.display_index||s.window_width!=last.window_width||s.window_height!=last.window_height||(refresh&&s.fullscreen)){
         if(!set_display_config(window,s)){
-            std::fprintf(stderr,"PORT display change failed: %s\n",SDL_GetError());
+            DORA3_LOG(stderr,"PORT display change failed: %s\n",SDL_GetError());
             last=s;last.fullscreen=(SDL_GetWindowFlags(window)&SDL_WINDOW_FULLSCREEN)!=0;
             set_fullscreen(last.fullscreen);
         }else last=s; // Do not acknowledge a newer UI request that arrived during SDL calls.

@@ -1,3 +1,6 @@
+#include "graphics_profile.hpp"
+#include "performance_profile.hpp"
+#include "guest_storage.hpp"
 #include "recomp_context_copy.hpp"
 #include "native_model_animation.hpp"
 #include "native_simulation_time.hpp"
@@ -23,7 +26,7 @@ int32_t& word(uint8_t* rdram,uint32_t a) { return MEM_W(0,int32_t(a)); }
 float real(uint8_t* rdram,uint32_t a) { return std::bit_cast<float>(word(rdram,a)); }
 void real(uint8_t* rdram,uint32_t a,float value) { word(rdram,a)=std::bit_cast<int32_t>(value); }
 void region(uint32_t a,uint64_t size) {
-    if((a&3) || a<0x80000000u || uint64_t(a)+size>0x80400000ull)
+    if((a&3) || a<0x80000000u || uint64_t(a)+size>0x80800000ull)
         throw std::logic_error("Model animation address outside game RDRAM");
 }
 struct Bone {
@@ -235,7 +238,7 @@ void repair_authored_angle_resets(uint8_t* rdram,uint32_t model,const Model& own
         const int key_count=word(rdram,curve+8),offset=word(rdram,curve+12);
         if(key_count<4||offset<0)continue;
         const uint64_t keys_address=uint64_t(keys_base)+unsigned(offset);
-        if(keys_address>=0x80400000ull)continue;
+        if(keys_address>=0x80800000ull)continue;
         const auto keys=uint32_t(keys_address);region(keys,uint64_t(key_count)*8);
         for(int j=2;j+1<key_count;++j) {
             const uint32_t before=keys+8*unsigned(j-1),after=before+8;
@@ -487,8 +490,8 @@ void ModelAnimation::hook(uint8_t* rdram,recomp_context* ctx,uint32_t address,Na
         if(auto i=s.models.find(model);i!=s.models.end()) {
             auto& entry=i->second;
             bool processed=false;
-            if(s.source_actor&&entry.source_step&&entry.source_pool==s.source_pool)for(unsigned slot=30;slot<230;++slot) {
-                const uint32_t actor=0x80171CD0u+slot*0xCC;
+            if(s.source_actor&&entry.source_step&&entry.source_pool==s.source_pool)for(unsigned slot=30;slot<dora3::distance::common_end;++slot) {
+                const uint32_t actor=0x804B1CD0u+slot*0xCC;
                 if(actor>s.source_actor)break;
                 if(word(rdram,actor+0x94)&&uint32_t(word(rdram,actor+0x74))==model) {processed=true;break;}
             }
@@ -603,6 +606,7 @@ void ModelAnimation::acquire_simulation(uint8_t* rdram,const AdvancePlan& plan,b
     }
 }
 std::uint64_t ModelAnimation::clip_boundary_limit(uint8_t* rdram,const SimulationSlice& slice,const AdvancePlan& plan) const {
+    dora3::graphics_profile::SampleScope graphics_sample(dora3::graphics_profile::Stage::ModelBoundarySample); dora3::profile::Scope profile(dora3::profile::Tag::ModelClipBoundaries);
     auto result=slice.numerator;
     for(const auto& [model,entry]:state_->models) {
         const auto intended=plan ? plan(model) : (entry.native_clock ? std::optional<float>{entry.native_clock->rate} : std::nullopt);
@@ -659,6 +663,7 @@ std::uint64_t ModelAnimation::frame_boundary_limit(uint8_t* rdram,const Simulati
     return std::min(slice.numerator,std::max(uint64_t(1),uint64_t(std::ceil(std::max(0.0L,units-tolerance)))));
 }
 void ModelAnimation::advance_simulation(uint8_t* rdram,recomp_context* ctx) {
+    dora3::profile::Scope detailProfile(dora3::profile::Tag::NativeModelClockSample,dora3::profile::sample_stage(dora3::profile::Tag::NativeModelClockSample,16));
     const auto* slice=active_simulation_slice();
     if(!slice || state_->frame)throw std::logic_error("Animation simulation outside update boundary");
     const auto model=uint32_t(ctx->r4);region(model,0x84);
@@ -743,7 +748,7 @@ float ModelAnimation::scalar_linear(uint8_t* rdram,uint32_t model,uint32_t addre
     return result;
 }
 float ModelAnimation::angle_short(uint8_t* rdram,uint32_t model,uint32_t address,float delta) {
-    if((address&1) || address<0x80000000u || uint64_t(address)+2>0x80400000ull ||
+    if((address&1) || address<0x80000000u || uint64_t(address)+2>0x80800000ull ||
        !std::isfinite(delta) || std::abs(delta)>360)
         throw std::logic_error("Invalid native short angle");
     const int32_t current=MEM_H(0,int32_t(address));
@@ -1094,11 +1099,12 @@ void ModelAnimation::end_frame(uint8_t* rdram) {
 }
 ModelAnimation& game_model_animation() { static ModelAnimation value;return value; }
 ModelFrameScope::ModelFrameScope(uint8_t* ram,recomp_context* ctx,Nanoseconds now,unsigned bank):ram_(ram) {
+    dora3::graphics_profile::SampleScope graphics_sample(dora3::graphics_profile::Stage::ModelPoseSample); dora3::profile::Scope profile(dora3::profile::Tag::NativeModels);
     const auto* binding=active_frame_binding();
     if(!binding || binding->ticket.bank!=bank)throw std::logic_error("Model frame without native ticket");
     game_model_animation().begin_frame(ram,ctx,now,bank);
 }
-ModelFrameScope::~ModelFrameScope() { game_model_animation().end_frame(ram_); }
+ModelFrameScope::~ModelFrameScope() { dora3::graphics_profile::SampleScope graphics_sample(dora3::graphics_profile::Stage::ModelPoseSample); dora3::profile::Scope profile(dora3::profile::Tag::NativeModels); game_model_animation().end_frame(ram_); }
 }
 extern "C" void dora3_native_model_hook(uint8_t* ram,recomp_context* ctx,uint32_t address) {
     dora3::native_time::game_model_animation().hook(ram,ctx,address,dora3::native_time::monotonic_time());

@@ -1,0 +1,2158 @@
+{
+  "build": "test-069",
+  "session": "1791455799537",
+  "profile_sha256": "bd39e26672bc14090e3428a0b7f65351d459d3ef71ab87149631f8ca28142fbf",
+  "samples": 59,
+  "scope_errors": 0,
+  "world_pause_observed": false,
+  "measured": "ObjectTimeline dominates collapse; last interval25.9318s, timeline25.885s/self16.7212s, common6746 calls; GPU0.946944ms, parser12.5096ms",
+  "static_mechanism": "Each clip boundary visits all registered models; planned_model_rate repeats570-slot common pool and evaluates ownership BEFORE comparing model. Actor-local phase/clip/input boundaries repeat this nested lookup; costly Native update feeds wall-time catch-up.",
+  "limits": "069 did not have a separate model-rate-plan timer; subdivision reasons and exact plan share were not measured. Successful070 compilation cannot establish FPS improvement.",
+  "change": "One read-only boundary-local rate table, rebuilt after each actual slice; same owner predicates, rates, first-match order and clip limits. No time truncation, AI/contact simplification, pool/distance changes.",
+  "groups": [
+    {
+      "distance": 1,
+      "port_menu": 0,
+      "samples": 12,
+      "interval_ms": 12135.6,
+      "output_fps": 58.42315171890965,
+      "common_alive_max": 4,
+      "stages": {
+        "native_update": {
+          "calls": 709,
+          "inclusive_ms": 995.8109999999999,
+          "self_ms": 2.3597,
+          "max_ms": 4.5641
+        },
+        "native_frame": {
+          "calls": 709,
+          "inclusive_ms": 1060.393,
+          "self_ms": 8.1686,
+          "max_ms": 16.6712
+        },
+        "frame_commands": {
+          "calls": 709,
+          "inclusive_ms": 1033.2431000000001,
+          "self_ms": 14.926099999999998,
+          "max_ms": 16.6238
+        },
+        "task_submit": {
+          "calls": 709,
+          "inclusive_ms": 745.4273999999999,
+          "self_ms": 745.4233,
+          "max_ms": 16.1782
+        },
+        "native_model_pose": {
+          "calls": 1418,
+          "inclusive_ms": 18.9808,
+          "self_ms": 2.608,
+          "max_ms": 0.1153
+        },
+        "trace_sample_1_in_64": {
+          "calls": 108380,
+          "inclusive_ms": 15.642700000000001,
+          "self_ms": 15.642700000000001,
+          "max_ms": 0.2691
+        },
+        "rt64_parse": {
+          "calls": 709,
+          "inclusive_ms": 6182.204,
+          "self_ms": 6182.204,
+          "max_ms": 20.5737
+        },
+        "rt64_screen": {
+          "calls": 726,
+          "inclusive_ms": 45.640299999999996,
+          "self_ms": 45.640299999999996,
+          "max_ms": 0.286
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 709,
+          "inclusive_ms": 1603.8853,
+          "self_ms": 478.6296,
+          "max_ms": 8.3364
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 709,
+          "inclusive_ms": 285.43409999999994,
+          "self_ms": 285.43409999999994,
+          "max_ms": 2.97549
+        },
+        "rt64_gpu_wait": {
+          "calls": 709,
+          "inclusive_ms": 1124.5892,
+          "self_ms": 1124.5892,
+          "max_ms": 7.6286
+        },
+        "rt64_upload_wait": {
+          "calls": 710,
+          "inclusive_ms": 0.6698999999999999,
+          "self_ms": 0.6698999999999999,
+          "max_ms": 0.1619
+        },
+        "rt64_workload_total": {
+          "calls": 709,
+          "inclusive_ms": 1623.6556999999998,
+          "self_ms": 19.77,
+          "max_ms": 9.8029
+        },
+        "present_swap": {
+          "calls": 709,
+          "inclusive_ms": 370.264,
+          "self_ms": 370.264,
+          "max_ms": 0.8865
+        },
+        "present_workload_wait": {
+          "calls": 709,
+          "inclusive_ms": 1318.9869999999999,
+          "self_ms": 1318.9869999999999,
+          "max_ms": 8.3303
+        },
+        "world_source_update": {
+          "calls": 204,
+          "inclusive_ms": 605.0776000000001,
+          "self_ms": 16.567,
+          "max_ms": 24.2144
+        },
+        "world_gameplay": {
+          "calls": 204,
+          "inclusive_ms": 588.4204,
+          "self_ms": 7.1851,
+          "max_ms": 24.1821
+        },
+        "actor_manager": {
+          "calls": 204,
+          "inclusive_ms": 47.41139999999999,
+          "self_ms": 47.202200000000005,
+          "max_ms": 21.8083
+        },
+        "common_actors": {
+          "calls": 2267,
+          "inclusive_ms": 798.9916000000001,
+          "self_ms": 756.9272000000001,
+          "max_ms": 1.3072
+        },
+        "contacts": {
+          "calls": 204,
+          "inclusive_ms": 96.28880000000001,
+          "self_ms": 94.6061,
+          "max_ms": 1.0175
+        },
+        "player": {
+          "calls": 2267,
+          "inclusive_ms": 229.3543,
+          "self_ms": 158.44799999999998,
+          "max_ms": 2.7488
+        },
+        "projectiles": {
+          "calls": 2267,
+          "inclusive_ms": 2.2086,
+          "self_ms": 2.2006,
+          "max_ms": 0.0037
+        },
+        "world_draw": {
+          "calls": 609,
+          "inclusive_ms": 272.73990000000003,
+          "self_ms": 70.39460000000001,
+          "max_ms": 1.2717
+        },
+        "world_geometry": {
+          "calls": 1218,
+          "inclusive_ms": 133.3225,
+          "self_ms": 122.96430000000001,
+          "max_ms": 0.6094
+        },
+        "model_advance": {
+          "calls": 10768,
+          "inclusive_ms": 5.6615,
+          "self_ms": 5.6312999999999995,
+          "max_ms": 0.0923
+        },
+        "model_evaluate": {
+          "calls": 11986,
+          "inclusive_ms": 84.9151,
+          "self_ms": 83.6682,
+          "max_ms": 0.1771
+        },
+        "texture_bind": {
+          "calls": 129000,
+          "inclusive_ms": 14.3379,
+          "self_ms": 14.3379,
+          "max_ms": 0.1173
+        },
+        "enemy_callback": {
+          "calls": 7265,
+          "inclusive_ms": 36.681599999999996,
+          "self_ms": 36.6392,
+          "max_ms": 0.8553
+        },
+        "object_timeline": {
+          "calls": 812,
+          "inclusive_ms": 1405.9385999999997,
+          "self_ms": 396.05460000000005,
+          "max_ms": 4.9507
+        },
+        "model_draw_commands": {
+          "calls": 7218,
+          "inclusive_ms": 63.747299999999996,
+          "self_ms": 63.3852,
+          "max_ms": 0.189
+        }
+      }
+    },
+    {
+      "distance": 1,
+      "port_menu": 1,
+      "samples": 2,
+      "interval_ms": 2001.84,
+      "output_fps": 59.944850737321666,
+      "common_alive_max": 4,
+      "stages": {
+        "native_update": {
+          "calls": 120,
+          "inclusive_ms": 221.091,
+          "self_ms": 0.427,
+          "max_ms": 3.9492
+        },
+        "native_frame": {
+          "calls": 120,
+          "inclusive_ms": 183.2038,
+          "self_ms": 1.3215,
+          "max_ms": 12.7178
+        },
+        "world_source_update": {
+          "calls": 40,
+          "inclusive_ms": 126.3613,
+          "self_ms": 1.8404000000000003,
+          "max_ms": 4.825
+        },
+        "world_gameplay": {
+          "calls": 40,
+          "inclusive_ms": 124.5189,
+          "self_ms": 1.1439,
+          "max_ms": 4.76
+        },
+        "actor_manager": {
+          "calls": 40,
+          "inclusive_ms": 0.75,
+          "self_ms": 0.7406,
+          "max_ms": 0.0248
+        },
+        "common_actors": {
+          "calls": 481,
+          "inclusive_ms": 170.32229999999998,
+          "self_ms": 160.3557,
+          "max_ms": 1.0477
+        },
+        "contacts": {
+          "calls": 40,
+          "inclusive_ms": 20.825200000000002,
+          "self_ms": 20.479300000000002,
+          "max_ms": 0.588
+        },
+        "player": {
+          "calls": 481,
+          "inclusive_ms": 39.5361,
+          "self_ms": 31.487,
+          "max_ms": 0.2309
+        },
+        "projectiles": {
+          "calls": 481,
+          "inclusive_ms": 0.4455,
+          "self_ms": 0.44389999999999996,
+          "max_ms": 0.0028
+        },
+        "world_draw": {
+          "calls": 120,
+          "inclusive_ms": 57.2651,
+          "self_ms": 15.1638,
+          "max_ms": 1.238
+        },
+        "world_geometry": {
+          "calls": 240,
+          "inclusive_ms": 26.533499999999997,
+          "self_ms": 24.4538,
+          "max_ms": 0.5583
+        },
+        "model_advance": {
+          "calls": 2646,
+          "inclusive_ms": 1.2054,
+          "self_ms": 1.1992,
+          "max_ms": 0.0042
+        },
+        "model_evaluate": {
+          "calls": 2886,
+          "inclusive_ms": 9.417,
+          "self_ms": 9.2832,
+          "max_ms": 0.0587
+        },
+        "frame_commands": {
+          "calls": 120,
+          "inclusive_ms": 179.7574,
+          "self_ms": 0.6808000000000001,
+          "max_ms": 12.685
+        },
+        "task_submit": {
+          "calls": 120,
+          "inclusive_ms": 121.8083,
+          "self_ms": 121.8081,
+          "max_ms": 12.2552
+        },
+        "native_model_pose": {
+          "calls": 240,
+          "inclusive_ms": 2.1248,
+          "self_ms": 0.4375,
+          "max_ms": 0.0611
+        },
+        "texture_bind": {
+          "calls": 26400,
+          "inclusive_ms": 2.8991,
+          "self_ms": 2.8991,
+          "max_ms": 0.0296
+        },
+        "trace_sample_1_in_64": {
+          "calls": 21994,
+          "inclusive_ms": 3.0059,
+          "self_ms": 3.0059,
+          "max_ms": 0.0793
+        },
+        "rt64_parse": {
+          "calls": 120,
+          "inclusive_ms": 1137.011,
+          "self_ms": 1137.011,
+          "max_ms": 19.9522
+        },
+        "rt64_screen": {
+          "calls": 120,
+          "inclusive_ms": 7.9599,
+          "self_ms": 7.9599,
+          "max_ms": 0.1814
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 120,
+          "inclusive_ms": 263.047,
+          "self_ms": 78.5746,
+          "max_ms": 3.4733
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 120,
+          "inclusive_ms": 41.4871,
+          "self_ms": 41.4871,
+          "max_ms": 0.543488
+        },
+        "rt64_gpu_wait": {
+          "calls": 120,
+          "inclusive_ms": 184.3856,
+          "self_ms": 184.3856,
+          "max_ms": 2.8164
+        },
+        "rt64_upload_wait": {
+          "calls": 120,
+          "inclusive_ms": 0.0869,
+          "self_ms": 0.0869,
+          "max_ms": 0.002
+        },
+        "rt64_workload_total": {
+          "calls": 120,
+          "inclusive_ms": 267.103,
+          "self_ms": 4.0563,
+          "max_ms": 3.5012
+        },
+        "present_swap": {
+          "calls": 120,
+          "inclusive_ms": 65.3803,
+          "self_ms": 65.3803,
+          "max_ms": 1.0075
+        },
+        "present_workload_wait": {
+          "calls": 120,
+          "inclusive_ms": 213.1805,
+          "self_ms": 213.1805,
+          "max_ms": 3.0462
+        },
+        "enemy_callback": {
+          "calls": 1924,
+          "inclusive_ms": 8.642800000000001,
+          "self_ms": 8.632000000000001,
+          "max_ms": 0.0458
+        },
+        "object_timeline": {
+          "calls": 160,
+          "inclusive_ms": 318.23199999999997,
+          "self_ms": 110.8082,
+          "max_ms": 4.097
+        },
+        "model_draw_commands": {
+          "calls": 1680,
+          "inclusive_ms": 14.479,
+          "self_ms": 14.4028,
+          "max_ms": 0.1249
+        }
+      }
+    },
+    {
+      "distance": 1.8,
+      "port_menu": 1,
+      "samples": 1,
+      "interval_ms": 1008.88,
+      "output_fps": 59.47188962017287,
+      "common_alive_max": 7,
+      "stages": {
+        "native_update": {
+          "calls": 60,
+          "inclusive_ms": 121.01,
+          "self_ms": 4.9964,
+          "max_ms": 6.4153
+        },
+        "native_frame": {
+          "calls": 60,
+          "inclusive_ms": 113.513,
+          "self_ms": 0.6913,
+          "max_ms": 13.2045
+        },
+        "world_source_update": {
+          "calls": 20,
+          "inclusive_ms": 112.716,
+          "self_ms": 0.9895,
+          "max_ms": 25.8897
+        },
+        "world_gameplay": {
+          "calls": 20,
+          "inclusive_ms": 111.725,
+          "self_ms": 0.6472,
+          "max_ms": 25.825
+        },
+        "actor_manager": {
+          "calls": 20,
+          "inclusive_ms": 40.4877,
+          "self_ms": 32.6379,
+          "max_ms": 20.6539
+        },
+        "common_actors": {
+          "calls": 255,
+          "inclusive_ms": 91.1423,
+          "self_ms": 84.945,
+          "max_ms": 0.8852
+        },
+        "contacts": {
+          "calls": 20,
+          "inclusive_ms": 12.3056,
+          "self_ms": 12.1023,
+          "max_ms": 0.9117
+        },
+        "player": {
+          "calls": 255,
+          "inclusive_ms": 21.2793,
+          "self_ms": 16.8302,
+          "max_ms": 0.3407
+        },
+        "projectiles": {
+          "calls": 255,
+          "inclusive_ms": 0.2438,
+          "self_ms": 0.2428,
+          "max_ms": 0.0036
+        },
+        "world_draw": {
+          "calls": 60,
+          "inclusive_ms": 29.5559,
+          "self_ms": 7.7152,
+          "max_ms": 1.5269
+        },
+        "world_geometry": {
+          "calls": 120,
+          "inclusive_ms": 12.5982,
+          "self_ms": 11.532,
+          "max_ms": 0.4225
+        },
+        "model_advance": {
+          "calls": 1640,
+          "inclusive_ms": 0.7122,
+          "self_ms": 0.708,
+          "max_ms": 0.0036
+        },
+        "model_evaluate": {
+          "calls": 1760,
+          "inclusive_ms": 5.1599,
+          "self_ms": 5.0938,
+          "max_ms": 0.2143
+        },
+        "frame_commands": {
+          "calls": 60,
+          "inclusive_ms": 111.749,
+          "self_ms": 0.3428,
+          "max_ms": 13.1736
+        },
+        "task_submit": {
+          "calls": 60,
+          "inclusive_ms": 81.8492,
+          "self_ms": 81.8488,
+          "max_ms": 12.7301
+        },
+        "native_model_pose": {
+          "calls": 120,
+          "inclusive_ms": 1.073,
+          "self_ms": 0.2449,
+          "max_ms": 0.0542
+        },
+        "texture_bind": {
+          "calls": 13848,
+          "inclusive_ms": 2.5172,
+          "self_ms": 2.5172,
+          "max_ms": 1.0404
+        },
+        "trace_sample_1_in_64": {
+          "calls": 12366,
+          "inclusive_ms": 1.6136,
+          "self_ms": 1.6136,
+          "max_ms": 0.0706
+        },
+        "distance_admission": {
+          "calls": 793,
+          "inclusive_ms": 7.7983,
+          "self_ms": 7.7983,
+          "max_ms": 0.042
+        },
+        "rt64_parse": {
+          "calls": 60,
+          "inclusive_ms": 576.729,
+          "self_ms": 576.729,
+          "max_ms": 28.1125
+        },
+        "rt64_screen": {
+          "calls": 60,
+          "inclusive_ms": 3.5988,
+          "self_ms": 3.5988,
+          "max_ms": 0.1536
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 60,
+          "inclusive_ms": 156.253,
+          "self_ms": 38.4296,
+          "max_ms": 4.5383
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 60,
+          "inclusive_ms": 29.833,
+          "self_ms": 29.833,
+          "max_ms": 1.15302
+        },
+        "rt64_gpu_wait": {
+          "calls": 60,
+          "inclusive_ms": 117.78,
+          "self_ms": 117.78,
+          "max_ms": 3.881
+        },
+        "rt64_upload_wait": {
+          "calls": 60,
+          "inclusive_ms": 0.0437,
+          "self_ms": 0.0437,
+          "max_ms": 0.0029
+        },
+        "rt64_workload_total": {
+          "calls": 60,
+          "inclusive_ms": 157.888,
+          "self_ms": 1.635,
+          "max_ms": 4.5686
+        },
+        "present_swap": {
+          "calls": 60,
+          "inclusive_ms": 29.1933,
+          "self_ms": 29.1933,
+          "max_ms": 0.7242
+        },
+        "present_workload_wait": {
+          "calls": 60,
+          "inclusive_ms": 125.5,
+          "self_ms": 125.5,
+          "max_ms": 4.234
+        },
+        "enemy_callback": {
+          "calls": 1209,
+          "inclusive_ms": 5.3571,
+          "self_ms": 5.3518,
+          "max_ms": 0.1429
+        },
+        "object_timeline": {
+          "calls": 80,
+          "inclusive_ms": 172.027,
+          "self_ms": 60.9344,
+          "max_ms": 4.7392
+        },
+        "model_draw_commands": {
+          "calls": 920,
+          "inclusive_ms": 7.582,
+          "self_ms": 7.543,
+          "max_ms": 0.0883
+        }
+      }
+    },
+    {
+      "distance": 2,
+      "port_menu": 1,
+      "samples": 2,
+      "interval_ms": 2007.88,
+      "output_fps": 59.76452776062314,
+      "common_alive_max": 12,
+      "stages": {
+        "native_update": {
+          "calls": 120,
+          "inclusive_ms": 342.879,
+          "self_ms": 0.43510000000000004,
+          "max_ms": 7.8763
+        },
+        "native_frame": {
+          "calls": 120,
+          "inclusive_ms": 254.56900000000002,
+          "self_ms": 1.5127,
+          "max_ms": 13.7934
+        },
+        "world_source_update": {
+          "calls": 40,
+          "inclusive_ms": 227.2647,
+          "self_ms": 2.0473,
+          "max_ms": 14.6688
+        },
+        "world_gameplay": {
+          "calls": 40,
+          "inclusive_ms": 225.2167,
+          "self_ms": 1.276,
+          "max_ms": 14.6367
+        },
+        "actor_manager": {
+          "calls": 40,
+          "inclusive_ms": 38.481899999999996,
+          "self_ms": 8.564,
+          "max_ms": 8.4759
+        },
+        "common_actors": {
+          "calls": 638,
+          "inclusive_ms": 270.12,
+          "self_ms": 242.449,
+          "max_ms": 1.605
+        },
+        "contacts": {
+          "calls": 40,
+          "inclusive_ms": 48.295100000000005,
+          "self_ms": 47.4959,
+          "max_ms": 1.5313
+        },
+        "player": {
+          "calls": 638,
+          "inclusive_ms": 51.4416,
+          "self_ms": 40.9695,
+          "max_ms": 0.2784
+        },
+        "projectiles": {
+          "calls": 638,
+          "inclusive_ms": 0.5881,
+          "self_ms": 0.5841000000000001,
+          "max_ms": 0.0082
+        },
+        "world_draw": {
+          "calls": 120,
+          "inclusive_ms": 73.8673,
+          "self_ms": 25.8273,
+          "max_ms": 1.2731
+        },
+        "world_geometry": {
+          "calls": 240,
+          "inclusive_ms": 25.2015,
+          "self_ms": 23.255699999999997,
+          "max_ms": 0.5586
+        },
+        "model_advance": {
+          "calls": 8289,
+          "inclusive_ms": 2.8487,
+          "self_ms": 2.832,
+          "max_ms": 0.0238
+        },
+        "model_evaluate": {
+          "calls": 8572,
+          "inclusive_ms": 13.954899999999999,
+          "self_ms": 13.7738,
+          "max_ms": 0.0633
+        },
+        "frame_commands": {
+          "calls": 120,
+          "inclusive_ms": 250.665,
+          "self_ms": 0.6959,
+          "max_ms": 13.7541
+        },
+        "task_submit": {
+          "calls": 120,
+          "inclusive_ms": 176.0971,
+          "self_ms": 176.0971,
+          "max_ms": 13.1402
+        },
+        "native_model_pose": {
+          "calls": 240,
+          "inclusive_ms": 2.3920000000000003,
+          "self_ms": 0.629,
+          "max_ms": 0.0429
+        },
+        "texture_bind": {
+          "calls": 37548,
+          "inclusive_ms": 3.3754999999999997,
+          "self_ms": 3.3754999999999997,
+          "max_ms": 0.0186
+        },
+        "trace_sample_1_in_64": {
+          "calls": 28911,
+          "inclusive_ms": 4.0762,
+          "self_ms": 4.0762,
+          "max_ms": 0.0979
+        },
+        "distance_admission": {
+          "calls": 2952,
+          "inclusive_ms": 29.8844,
+          "self_ms": 29.8844,
+          "max_ms": 0.1094
+        },
+        "rt64_parse": {
+          "calls": 120,
+          "inclusive_ms": 906.8389999999999,
+          "self_ms": 906.8389999999999,
+          "max_ms": 20.3032
+        },
+        "rt64_screen": {
+          "calls": 120,
+          "inclusive_ms": 6.6411,
+          "self_ms": 6.6411,
+          "max_ms": 0.1061
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 120,
+          "inclusive_ms": 215.1394,
+          "self_ms": 75.8339,
+          "max_ms": 3.142
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 120,
+          "inclusive_ms": 35.624700000000004,
+          "self_ms": 35.624700000000004,
+          "max_ms": 0.448512
+        },
+        "rt64_gpu_wait": {
+          "calls": 120,
+          "inclusive_ms": 139.2267,
+          "self_ms": 139.2267,
+          "max_ms": 2.5695
+        },
+        "rt64_upload_wait": {
+          "calls": 120,
+          "inclusive_ms": 0.0781,
+          "self_ms": 0.0781,
+          "max_ms": 0.0031
+        },
+        "rt64_workload_total": {
+          "calls": 120,
+          "inclusive_ms": 217.8114,
+          "self_ms": 2.6724,
+          "max_ms": 3.1655
+        },
+        "present_swap": {
+          "calls": 120,
+          "inclusive_ms": 60.1267,
+          "self_ms": 60.1267,
+          "max_ms": 0.8931
+        },
+        "present_workload_wait": {
+          "calls": 120,
+          "inclusive_ms": 164.0384,
+          "self_ms": 164.0384,
+          "max_ms": 2.793
+        },
+        "enemy_callback": {
+          "calls": 5896,
+          "inclusive_ms": 22.4229,
+          "self_ms": 22.2929,
+          "max_ms": 0.9322
+        },
+        "object_timeline": {
+          "calls": 160,
+          "inclusive_ms": 474.293,
+          "self_ms": 156.24540000000002,
+          "max_ms": 7.8718
+        },
+        "model_draw_commands": {
+          "calls": 4024,
+          "inclusive_ms": 20.984,
+          "self_ms": 20.85,
+          "max_ms": 0.1027
+        }
+      }
+    },
+    {
+      "distance": 2,
+      "port_menu": 0,
+      "samples": 10,
+      "interval_ms": 10149.23,
+      "output_fps": 60.004552069467344,
+      "common_alive_max": 15,
+      "stages": {
+        "native_update": {
+          "calls": 609,
+          "inclusive_ms": 1977.4119999999998,
+          "self_ms": 2.2518,
+          "max_ms": 11.7784
+        },
+        "native_frame": {
+          "calls": 609,
+          "inclusive_ms": 1697.6280000000002,
+          "self_ms": 7.708399999999999,
+          "max_ms": 14.9115
+        },
+        "world_source_update": {
+          "calls": 203,
+          "inclusive_ms": 1105.0513999999998,
+          "self_ms": 19.183600000000002,
+          "max_ms": 19.3275
+        },
+        "world_gameplay": {
+          "calls": 203,
+          "inclusive_ms": 1085.597,
+          "self_ms": 6.8370999999999995,
+          "max_ms": 19.2974
+        },
+        "actor_manager": {
+          "calls": 203,
+          "inclusive_ms": 157.67540000000002,
+          "self_ms": 5.007900000000001,
+          "max_ms": 1.1594
+        },
+        "common_actors": {
+          "calls": 3260,
+          "inclusive_ms": 1442.349,
+          "self_ms": 1249.282,
+          "max_ms": 12.4467
+        },
+        "contacts": {
+          "calls": 203,
+          "inclusive_ms": 269.6908,
+          "self_ms": 265.2193,
+          "max_ms": 1.8275
+        },
+        "player": {
+          "calls": 3260,
+          "inclusive_ms": 308.8661,
+          "self_ms": 210.26319999999998,
+          "max_ms": 0.4364
+        },
+        "projectiles": {
+          "calls": 3260,
+          "inclusive_ms": 3.0173999999999994,
+          "self_ms": 3.0052,
+          "max_ms": 0.0663
+        },
+        "world_draw": {
+          "calls": 609,
+          "inclusive_ms": 390.69079999999997,
+          "self_ms": 143.67960000000002,
+          "max_ms": 1.4432
+        },
+        "world_geometry": {
+          "calls": 1218,
+          "inclusive_ms": 127.20819999999999,
+          "self_ms": 117.30449999999999,
+          "max_ms": 0.5501
+        },
+        "model_advance": {
+          "calls": 46525,
+          "inclusive_ms": 16.119600000000002,
+          "self_ms": 16.016000000000002,
+          "max_ms": 0.0375
+        },
+        "model_evaluate": {
+          "calls": 48339,
+          "inclusive_ms": 157.6317,
+          "self_ms": 155.4227,
+          "max_ms": 0.2906
+        },
+        "frame_commands": {
+          "calls": 609,
+          "inclusive_ms": 1664.0359999999998,
+          "self_ms": 3.573,
+          "max_ms": 14.8453
+        },
+        "task_submit": {
+          "calls": 609,
+          "inclusive_ms": 1269.7611,
+          "self_ms": 1269.7579,
+          "max_ms": 14.2048
+        },
+        "native_model_pose": {
+          "calls": 1218,
+          "inclusive_ms": 25.8837,
+          "self_ms": 3.7977,
+          "max_ms": 0.1514
+        },
+        "texture_bind": {
+          "calls": 200388,
+          "inclusive_ms": 17.1687,
+          "self_ms": 17.1687,
+          "max_ms": 0.0189
+        },
+        "trace_sample_1_in_64": {
+          "calls": 169514,
+          "inclusive_ms": 23.0483,
+          "self_ms": 23.0483,
+          "max_ms": 0.3256
+        },
+        "distance_admission": {
+          "calls": 14819,
+          "inclusive_ms": 152.6182,
+          "self_ms": 152.6182,
+          "max_ms": 0.3172
+        },
+        "rt64_parse": {
+          "calls": 609,
+          "inclusive_ms": 5301.964,
+          "self_ms": 5301.964,
+          "max_ms": 20.2456
+        },
+        "rt64_screen": {
+          "calls": 609,
+          "inclusive_ms": 37.3317,
+          "self_ms": 37.3317,
+          "max_ms": 0.172
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 609,
+          "inclusive_ms": 1274.042,
+          "self_ms": 403.9425,
+          "max_ms": 5.6072
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 609,
+          "inclusive_ms": 216.57600000000002,
+          "self_ms": 216.57600000000002,
+          "max_ms": 0.99328
+        },
+        "rt64_gpu_wait": {
+          "calls": 609,
+          "inclusive_ms": 869.1784,
+          "self_ms": 869.1784,
+          "max_ms": 5.0977
+        },
+        "rt64_upload_wait": {
+          "calls": 609,
+          "inclusive_ms": 0.9203,
+          "self_ms": 0.9203,
+          "max_ms": 0.1802
+        },
+        "rt64_workload_total": {
+          "calls": 609,
+          "inclusive_ms": 1289.16,
+          "self_ms": 15.1177,
+          "max_ms": 5.6279
+        },
+        "present_swap": {
+          "calls": 609,
+          "inclusive_ms": 321.25,
+          "self_ms": 321.25,
+          "max_ms": 0.9596
+        },
+        "present_workload_wait": {
+          "calls": 609,
+          "inclusive_ms": 996.3591,
+          "self_ms": 996.3591,
+          "max_ms": 5.3325
+        },
+        "enemy_callback": {
+          "calls": 32896,
+          "inclusive_ms": 136.63329999999996,
+          "self_ms": 136.3054,
+          "max_ms": 8.6527
+        },
+        "object_timeline": {
+          "calls": 812,
+          "inclusive_ms": 2599.597,
+          "self_ms": 865.8116000000001,
+          "max_ms": 17.0782
+        },
+        "model_draw_commands": {
+          "calls": 23238,
+          "inclusive_ms": 110.2478,
+          "self_ms": 109.4808,
+          "max_ms": 0.125
+        }
+      }
+    },
+    {
+      "distance": 2.9,
+      "port_menu": 1,
+      "samples": 1,
+      "interval_ms": 1008.42,
+      "output_fps": 56.52406735288868,
+      "common_alive_max": 32,
+      "stages": {
+        "native_update": {
+          "calls": 58,
+          "inclusive_ms": 236.825,
+          "self_ms": 0.2412,
+          "max_ms": 12.1906
+        },
+        "native_frame": {
+          "calls": 57,
+          "inclusive_ms": 142.655,
+          "self_ms": 0.7264,
+          "max_ms": 34.541
+        },
+        "world_source_update": {
+          "calls": 19,
+          "inclusive_ms": 138.41,
+          "self_ms": 0.6828,
+          "max_ms": 21.8446
+        },
+        "world_gameplay": {
+          "calls": 19,
+          "inclusive_ms": 137.726,
+          "self_ms": 0.6246,
+          "max_ms": 21.8147
+        },
+        "actor_manager": {
+          "calls": 19,
+          "inclusive_ms": 49.6813,
+          "self_ms": 35.7428,
+          "max_ms": 17.429
+        },
+        "common_actors": {
+          "calls": 357,
+          "inclusive_ms": 171.096,
+          "self_ms": 148.278,
+          "max_ms": 1.5661
+        },
+        "contacts": {
+          "calls": 19,
+          "inclusive_ms": 30.9899,
+          "self_ms": 30.4788,
+          "max_ms": 2.2732
+        },
+        "player": {
+          "calls": 357,
+          "inclusive_ms": 28.6875,
+          "self_ms": 22.9155,
+          "max_ms": 0.3154
+        },
+        "projectiles": {
+          "calls": 357,
+          "inclusive_ms": 0.3388,
+          "self_ms": 0.3374,
+          "max_ms": 0.0059
+        },
+        "world_draw": {
+          "calls": 58,
+          "inclusive_ms": 45.4776,
+          "self_ms": 17.8198,
+          "max_ms": 1.3708
+        },
+        "world_geometry": {
+          "calls": 116,
+          "inclusive_ms": 12.0818,
+          "self_ms": 11.0942,
+          "max_ms": 0.3921
+        },
+        "model_advance": {
+          "calls": 6811,
+          "inclusive_ms": 2.3096,
+          "self_ms": 2.2976,
+          "max_ms": 0.0765
+        },
+        "model_evaluate": {
+          "calls": 6963,
+          "inclusive_ms": 9.2562,
+          "self_ms": 9.1396,
+          "max_ms": 0.0402
+        },
+        "frame_commands": {
+          "calls": 57,
+          "inclusive_ms": 140.655,
+          "self_ms": 0.3415,
+          "max_ms": 34.4957
+        },
+        "task_submit": {
+          "calls": 57,
+          "inclusive_ms": 95.9671,
+          "self_ms": 95.9671,
+          "max_ms": 33.7434
+        },
+        "native_model_pose": {
+          "calls": 115,
+          "inclusive_ms": 1.2989,
+          "self_ms": 0.357,
+          "max_ms": 0.0375
+        },
+        "texture_bind": {
+          "calls": 22348,
+          "inclusive_ms": 2.1576,
+          "self_ms": 2.1576,
+          "max_ms": 0.0473
+        },
+        "trace_sample_1_in_64": {
+          "calls": 15981,
+          "inclusive_ms": 2.1625,
+          "self_ms": 2.1625,
+          "max_ms": 0.1325
+        },
+        "distance_admission": {
+          "calls": 1302,
+          "inclusive_ms": 13.8339,
+          "self_ms": 13.8339,
+          "max_ms": 0.0379
+        },
+        "rt64_parse": {
+          "calls": 57,
+          "inclusive_ms": 532.839,
+          "self_ms": 532.839,
+          "max_ms": 33.3305
+        },
+        "rt64_screen": {
+          "calls": 57,
+          "inclusive_ms": 3.1004,
+          "self_ms": 3.1004,
+          "max_ms": 0.1655
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 58,
+          "inclusive_ms": 127.883,
+          "self_ms": 36.5681,
+          "max_ms": 3.034
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 58,
+          "inclusive_ms": 24.3638,
+          "self_ms": 24.3638,
+          "max_ms": 0.44288
+        },
+        "rt64_gpu_wait": {
+          "calls": 58,
+          "inclusive_ms": 91.2787,
+          "self_ms": 91.2787,
+          "max_ms": 2.4871
+        },
+        "rt64_upload_wait": {
+          "calls": 57,
+          "inclusive_ms": 0.0356,
+          "self_ms": 0.0356,
+          "max_ms": 0.0014
+        },
+        "rt64_workload_total": {
+          "calls": 58,
+          "inclusive_ms": 129.217,
+          "self_ms": 1.3341,
+          "max_ms": 3.0619
+        },
+        "present_swap": {
+          "calls": 57,
+          "inclusive_ms": 25.5167,
+          "self_ms": 25.5167,
+          "max_ms": 0.6455
+        },
+        "present_workload_wait": {
+          "calls": 57,
+          "inclusive_ms": 99.7487,
+          "self_ms": 99.7487,
+          "max_ms": 2.6842
+        },
+        "enemy_callback": {
+          "calls": 4843,
+          "inclusive_ms": 17.561,
+          "self_ms": 17.53,
+          "max_ms": 0.4732
+        },
+        "object_timeline": {
+          "calls": 77,
+          "inclusive_ms": 290.023,
+          "self_ms": 92.5415,
+          "max_ms": 12.1837
+        },
+        "model_draw_commands": {
+          "calls": 2753,
+          "inclusive_ms": 14.1407,
+          "self_ms": 14.0391,
+          "max_ms": 0.0681
+        }
+      }
+    },
+    {
+      "distance": 3,
+      "port_menu": 0,
+      "samples": 13,
+      "interval_ms": 13432.76,
+      "output_fps": 21.8123453407937,
+      "common_alive_max": 59,
+      "stages": {
+        "native_update": {
+          "calls": 293,
+          "inclusive_ms": 6468.219,
+          "self_ms": 1.3960000000000001,
+          "max_ms": 49.4962
+        },
+        "native_frame": {
+          "calls": 294,
+          "inclusive_ms": 950.3306999999999,
+          "self_ms": 4.3067,
+          "max_ms": 16.8083
+        },
+        "world_source_update": {
+          "calls": 187,
+          "inclusive_ms": 5198.62,
+          "self_ms": 15.8997,
+          "max_ms": 48.8205
+        },
+        "world_gameplay": {
+          "calls": 187,
+          "inclusive_ms": 5182.711,
+          "self_ms": 6.632900000000001,
+          "max_ms": 48.7312
+        },
+        "actor_manager": {
+          "calls": 187,
+          "inclusive_ms": 137.31050000000002,
+          "self_ms": 30.859,
+          "max_ms": 14.4197
+        },
+        "common_actors": {
+          "calls": 5733,
+          "inclusive_ms": 4505.74,
+          "self_ms": 3577.2700000000004,
+          "max_ms": 13.1053
+        },
+        "contacts": {
+          "calls": 187,
+          "inclusive_ms": 570.9245,
+          "self_ms": 561.4916000000001,
+          "max_ms": 4.0328
+        },
+        "player": {
+          "calls": 5733,
+          "inclusive_ms": 561.9249,
+          "self_ms": 385.0224,
+          "max_ms": 0.4272
+        },
+        "projectiles": {
+          "calls": 5733,
+          "inclusive_ms": 5.6313,
+          "self_ms": 5.6044,
+          "max_ms": 0.0061
+        },
+        "world_draw": {
+          "calls": 293,
+          "inclusive_ms": 405.30160000000006,
+          "self_ms": 198.1956,
+          "max_ms": 2.3338
+        },
+        "world_geometry": {
+          "calls": 586,
+          "inclusive_ms": 59.8664,
+          "self_ms": 55.18129999999999,
+          "max_ms": 0.3594
+        },
+        "model_advance": {
+          "calls": 319748,
+          "inclusive_ms": 100.0,
+          "self_ms": 99.4045,
+          "max_ms": 0.1689
+        },
+        "model_evaluate": {
+          "calls": 324448,
+          "inclusive_ms": 532.3253,
+          "self_ms": 525.2863,
+          "max_ms": 0.2587
+        },
+        "frame_commands": {
+          "calls": 294,
+          "inclusive_ms": 923.6286,
+          "self_ms": 1.9084000000000003,
+          "max_ms": 16.7535
+        },
+        "task_submit": {
+          "calls": 294,
+          "inclusive_ms": 515.281,
+          "self_ms": 515.2783,
+          "max_ms": 15.6025
+        },
+        "native_model_pose": {
+          "calls": 587,
+          "inclusive_ms": 22.369100000000003,
+          "self_ms": 4.2009,
+          "max_ms": 0.2117
+        },
+        "texture_bind": {
+          "calls": 230000,
+          "inclusive_ms": 15.3188,
+          "self_ms": 15.3188,
+          "max_ms": 0.2402
+        },
+        "trace_sample_1_in_64": {
+          "calls": 348124,
+          "inclusive_ms": 42.8136,
+          "self_ms": 42.8136,
+          "max_ms": 0.3143
+        },
+        "distance_admission": {
+          "calls": 8906,
+          "inclusive_ms": 106.35150000000002,
+          "self_ms": 106.35150000000002,
+          "max_ms": 0.1557
+        },
+        "rt64_parse": {
+          "calls": 293,
+          "inclusive_ms": 2312.3453,
+          "self_ms": 2312.3453,
+          "max_ms": 23.9579
+        },
+        "rt64_screen": {
+          "calls": 293,
+          "inclusive_ms": 16.4143,
+          "self_ms": 16.4143,
+          "max_ms": 0.1603
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 293,
+          "inclusive_ms": 694.7001,
+          "self_ms": 218.62159999999997,
+          "max_ms": 6.802
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 293,
+          "inclusive_ms": 178.65263999999996,
+          "self_ms": 178.65263999999996,
+          "max_ms": 3.92653
+        },
+        "rt64_gpu_wait": {
+          "calls": 293,
+          "inclusive_ms": 475.88300000000004,
+          "self_ms": 475.88300000000004,
+          "max_ms": 5.8852
+        },
+        "rt64_upload_wait": {
+          "calls": 293,
+          "inclusive_ms": 0.1951,
+          "self_ms": 0.1951,
+          "max_ms": 0.0015
+        },
+        "rt64_workload_total": {
+          "calls": 293,
+          "inclusive_ms": 699.9982000000001,
+          "self_ms": 5.2986,
+          "max_ms": 6.8186
+        },
+        "present_swap": {
+          "calls": 293,
+          "inclusive_ms": 121.82099999999997,
+          "self_ms": 121.82099999999997,
+          "max_ms": 0.7933
+        },
+        "present_workload_wait": {
+          "calls": 293,
+          "inclusive_ms": 217.06779999999998,
+          "self_ms": 217.06779999999998,
+          "max_ms": 5.5657
+        },
+        "enemy_callback": {
+          "calls": 137891,
+          "inclusive_ms": 481.7317,
+          "self_ms": 480.9019,
+          "max_ms": 10.456
+        },
+        "object_timeline": {
+          "calls": 480,
+          "inclusive_ms": 10889.453000000001,
+          "self_ms": 5851.73,
+          "max_ms": 49.4908
+        },
+        "model_draw_commands": {
+          "calls": 37833,
+          "inclusive_ms": 133.6806,
+          "self_ms": 132.6815,
+          "max_ms": 0.2807
+        }
+      }
+    },
+    {
+      "distance": 3,
+      "port_menu": 1,
+      "samples": 1,
+      "interval_ms": 1034.26,
+      "output_fps": 23.204996809312938,
+      "common_alive_max": 56,
+      "stages": {
+        "native_update": {
+          "calls": 24,
+          "inclusive_ms": 499.899,
+          "self_ms": 0.1227,
+          "max_ms": 33.2761
+        },
+        "native_frame": {
+          "calls": 24,
+          "inclusive_ms": 69.2242,
+          "self_ms": 0.3637,
+          "max_ms": 9.7512
+        },
+        "world_source_update": {
+          "calls": 19,
+          "inclusive_ms": 436.841,
+          "self_ms": 1.0546,
+          "max_ms": 30.6465
+        },
+        "world_gameplay": {
+          "calls": 19,
+          "inclusive_ms": 435.725,
+          "self_ms": 0.6553,
+          "max_ms": 30.6141
+        },
+        "actor_manager": {
+          "calls": 19,
+          "inclusive_ms": 10.7662,
+          "self_ms": 0.4202,
+          "max_ms": 0.6144
+        },
+        "common_actors": {
+          "calls": 459,
+          "inclusive_ms": 363.168,
+          "self_ms": 293.026,
+          "max_ms": 1.539
+        },
+        "contacts": {
+          "calls": 19,
+          "inclusive_ms": 57.8907,
+          "self_ms": 56.9527,
+          "max_ms": 3.5433
+        },
+        "player": {
+          "calls": 459,
+          "inclusive_ms": 38.6912,
+          "self_ms": 31.3531,
+          "max_ms": 0.1805
+        },
+        "projectiles": {
+          "calls": 459,
+          "inclusive_ms": 0.4583,
+          "self_ms": 0.4548,
+          "max_ms": 0.0029
+        },
+        "world_draw": {
+          "calls": 24,
+          "inclusive_ms": 36.6468,
+          "self_ms": 18.3535,
+          "max_ms": 2.0042
+        },
+        "world_geometry": {
+          "calls": 48,
+          "inclusive_ms": 5.0325,
+          "self_ms": 4.6421,
+          "max_ms": 0.2708
+        },
+        "model_advance": {
+          "calls": 26229,
+          "inclusive_ms": 8.348,
+          "self_ms": 8.2947,
+          "max_ms": 0.0589
+        },
+        "model_evaluate": {
+          "calls": 26757,
+          "inclusive_ms": 34.5086,
+          "self_ms": 34.0833,
+          "max_ms": 0.0581
+        },
+        "frame_commands": {
+          "calls": 24,
+          "inclusive_ms": 67.0757,
+          "self_ms": 0.1599,
+          "max_ms": 9.6355
+        },
+        "task_submit": {
+          "calls": 24,
+          "inclusive_ms": 30.2687,
+          "self_ms": 30.2687,
+          "max_ms": 7.8378
+        },
+        "native_model_pose": {
+          "calls": 48,
+          "inclusive_ms": 1.7848,
+          "self_ms": 0.3925,
+          "max_ms": 0.0982
+        },
+        "texture_bind": {
+          "calls": 20328,
+          "inclusive_ms": 1.3705,
+          "self_ms": 1.3705,
+          "max_ms": 0.0102
+        },
+        "trace_sample_1_in_64": {
+          "calls": 25085,
+          "inclusive_ms": 3.142,
+          "self_ms": 3.142,
+          "max_ms": 0.0603
+        },
+        "distance_admission": {
+          "calls": 855,
+          "inclusive_ms": 10.341,
+          "self_ms": 10.341,
+          "max_ms": 0.05
+        },
+        "rt64_parse": {
+          "calls": 24,
+          "inclusive_ms": 186.123,
+          "self_ms": 186.123,
+          "max_ms": 22.3838
+        },
+        "rt64_screen": {
+          "calls": 24,
+          "inclusive_ms": 1.3236,
+          "self_ms": 1.3236,
+          "max_ms": 0.0998
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 23,
+          "inclusive_ms": 50.9605,
+          "self_ms": 18.6906,
+          "max_ms": 3.5683
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 23,
+          "inclusive_ms": 9.93766,
+          "self_ms": 9.93766,
+          "max_ms": 0.446464
+        },
+        "rt64_gpu_wait": {
+          "calls": 23,
+          "inclusive_ms": 32.2523,
+          "self_ms": 32.2523,
+          "max_ms": 2.4607
+        },
+        "rt64_upload_wait": {
+          "calls": 23,
+          "inclusive_ms": 0.0176,
+          "self_ms": 0.0176,
+          "max_ms": 0.0016
+        },
+        "rt64_workload_total": {
+          "calls": 23,
+          "inclusive_ms": 51.3425,
+          "self_ms": 0.382,
+          "max_ms": 3.5973
+        },
+        "present_swap": {
+          "calls": 24,
+          "inclusive_ms": 9.1011,
+          "self_ms": 9.1011,
+          "max_ms": 0.5938
+        },
+        "present_workload_wait": {
+          "calls": 24,
+          "inclusive_ms": 8.6326,
+          "self_ms": 8.6326,
+          "max_ms": 3.1074
+        },
+        "enemy_callback": {
+          "calls": 10700,
+          "inclusive_ms": 35.2702,
+          "self_ms": 35.2104,
+          "max_ms": 0.1195
+        },
+        "object_timeline": {
+          "calls": 43,
+          "inclusive_ms": 861.337,
+          "self_ms": 463.423,
+          "max_ms": 33.2707
+        },
+        "model_draw_commands": {
+          "calls": 3420,
+          "inclusive_ms": 12.0196,
+          "self_ms": 11.9287,
+          "max_ms": 0.0709
+        }
+      }
+    },
+    {
+      "distance": 4,
+      "port_menu": 1,
+      "samples": 1,
+      "interval_ms": 1024.65,
+      "output_fps": 13.66320206899917,
+      "common_alive_max": 63,
+      "stages": {
+        "native_update": {
+          "calls": 14,
+          "inclusive_ms": 473.911,
+          "self_ms": 0.0647,
+          "max_ms": 45.4048
+        },
+        "native_frame": {
+          "calls": 14,
+          "inclusive_ms": 44.2921,
+          "self_ms": 0.2093,
+          "max_ms": 18.1875
+        },
+        "world_source_update": {
+          "calls": 13,
+          "inclusive_ms": 485.669,
+          "self_ms": 0.5485,
+          "max_ms": 52.2235
+        },
+        "world_gameplay": {
+          "calls": 13,
+          "inclusive_ms": 485.12,
+          "self_ms": 0.4757,
+          "max_ms": 52.1914
+        },
+        "actor_manager": {
+          "calls": 13,
+          "inclusive_ms": 31.719,
+          "self_ms": 24.7063,
+          "max_ms": 13.7919
+        },
+        "common_actors": {
+          "calls": 445,
+          "inclusive_ms": 366.12,
+          "self_ms": 294.995,
+          "max_ms": 1.3543
+        },
+        "contacts": {
+          "calls": 13,
+          "inclusive_ms": 40.9922,
+          "self_ms": 40.3151,
+          "max_ms": 3.3589
+        },
+        "player": {
+          "calls": 445,
+          "inclusive_ms": 38.6077,
+          "self_ms": 31.5288,
+          "max_ms": 0.1835
+        },
+        "projectiles": {
+          "calls": 445,
+          "inclusive_ms": 0.4783,
+          "self_ms": 0.4753,
+          "max_ms": 0.004
+        },
+        "world_draw": {
+          "calls": 14,
+          "inclusive_ms": 21.1135,
+          "self_ms": 10.5491,
+          "max_ms": 1.8542
+        },
+        "world_geometry": {
+          "calls": 28,
+          "inclusive_ms": 2.8779,
+          "self_ms": 2.6588,
+          "max_ms": 0.2349
+        },
+        "model_advance": {
+          "calls": 26402,
+          "inclusive_ms": 8.4193,
+          "self_ms": 8.3726,
+          "max_ms": 0.0328
+        },
+        "model_evaluate": {
+          "calls": 26710,
+          "inclusive_ms": 33.4841,
+          "self_ms": 33.0805,
+          "max_ms": 0.0407
+        },
+        "frame_commands": {
+          "calls": 14,
+          "inclusive_ms": 43.0809,
+          "self_ms": 0.0949,
+          "max_ms": 18.0881
+        },
+        "task_submit": {
+          "calls": 14,
+          "inclusive_ms": 21.8718,
+          "self_ms": 21.8718,
+          "max_ms": 16.6192
+        },
+        "native_model_pose": {
+          "calls": 28,
+          "inclusive_ms": 1.0019,
+          "self_ms": 0.223,
+          "max_ms": 0.0889
+        },
+        "texture_bind": {
+          "calls": 12092,
+          "inclusive_ms": 0.7635,
+          "self_ms": 0.7635,
+          "max_ms": 0.0088
+        },
+        "trace_sample_1_in_64": {
+          "calls": 21837,
+          "inclusive_ms": 2.7051,
+          "self_ms": 2.7051,
+          "max_ms": 0.0303
+        },
+        "distance_admission": {
+          "calls": 560,
+          "inclusive_ms": 6.976,
+          "self_ms": 6.976,
+          "max_ms": 0.0669
+        },
+        "rt64_parse": {
+          "calls": 14,
+          "inclusive_ms": 138.073,
+          "self_ms": 138.073,
+          "max_ms": 16.0348
+        },
+        "rt64_screen": {
+          "calls": 14,
+          "inclusive_ms": 0.7499,
+          "self_ms": 0.7499,
+          "max_ms": 0.0787
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 15,
+          "inclusive_ms": 39.2926,
+          "self_ms": 11.6259,
+          "max_ms": 4.9603
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 15,
+          "inclusive_ms": 9.59744,
+          "self_ms": 9.59744,
+          "max_ms": 0.89344
+        },
+        "rt64_gpu_wait": {
+          "calls": 15,
+          "inclusive_ms": 27.656,
+          "self_ms": 27.656,
+          "max_ms": 4.2063
+        },
+        "rt64_upload_wait": {
+          "calls": 15,
+          "inclusive_ms": 0.0107,
+          "self_ms": 0.0107,
+          "max_ms": 0.001
+        },
+        "rt64_workload_total": {
+          "calls": 15,
+          "inclusive_ms": 39.5629,
+          "self_ms": 0.2703,
+          "max_ms": 4.9807
+        },
+        "present_swap": {
+          "calls": 14,
+          "inclusive_ms": 6.1406,
+          "self_ms": 6.1406,
+          "max_ms": 0.5541
+        },
+        "present_workload_wait": {
+          "calls": 14,
+          "inclusive_ms": 14.6759,
+          "self_ms": 14.6759,
+          "max_ms": 4.6487
+        },
+        "enemy_callback": {
+          "calls": 10928,
+          "inclusive_ms": 36.3081,
+          "self_ms": 36.2436,
+          "max_ms": 0.0696
+        },
+        "object_timeline": {
+          "calls": 27,
+          "inclusive_ms": 882.031,
+          "self_ms": 480.139,
+          "max_ms": 46.21
+        },
+        "model_draw_commands": {
+          "calls": 2022,
+          "inclusive_ms": 6.9882,
+          "self_ms": 6.936,
+          "max_ms": 0.1068
+        }
+      }
+    },
+    {
+      "distance": 4.1,
+      "port_menu": 1,
+      "samples": 1,
+      "interval_ms": 2072.11,
+      "output_fps": 0.9651997239528789,
+      "common_alive_max": 72,
+      "stages": {
+        "native_update": {
+          "calls": 1,
+          "inclusive_ms": 224.946,
+          "self_ms": 0.0063,
+          "max_ms": 224.946
+        },
+        "native_frame": {
+          "calls": 1,
+          "inclusive_ms": 2.6787,
+          "self_ms": 0.0229,
+          "max_ms": 2.6787
+        },
+        "world_source_update": {
+          "calls": 12,
+          "inclusive_ms": 1839.16,
+          "self_ms": 0.6959,
+          "max_ms": 276.544
+        },
+        "world_gameplay": {
+          "calls": 12,
+          "inclusive_ms": 1838.46,
+          "self_ms": 0.4121,
+          "max_ms": 276.448
+        },
+        "actor_manager": {
+          "calls": 12,
+          "inclusive_ms": 5.7197,
+          "self_ms": 0.8764,
+          "max_ms": 1.1181
+        },
+        "common_actors": {
+          "calls": 789,
+          "inclusive_ms": 724.709,
+          "self_ms": 576.004,
+          "max_ms": 1.5899
+        },
+        "contacts": {
+          "calls": 12,
+          "inclusive_ms": 47.9764,
+          "self_ms": 47.2002,
+          "max_ms": 4.1198
+        },
+        "player": {
+          "calls": 789,
+          "inclusive_ms": 67.3937,
+          "self_ms": 54.8661,
+          "max_ms": 0.2513
+        },
+        "projectiles": {
+          "calls": 789,
+          "inclusive_ms": 0.7751,
+          "self_ms": 0.7721,
+          "max_ms": 0.008
+        },
+        "world_draw": {
+          "calls": 1,
+          "inclusive_ms": 1.8914,
+          "self_ms": 0.9405,
+          "max_ms": 1.8914
+        },
+        "world_geometry": {
+          "calls": 2,
+          "inclusive_ms": 0.1981,
+          "self_ms": 0.182,
+          "max_ms": 0.1913
+        },
+        "model_advance": {
+          "calls": 57567,
+          "inclusive_ms": 16.9787,
+          "self_ms": 16.8734,
+          "max_ms": 0.0108
+        },
+        "model_evaluate": {
+          "calls": 57591,
+          "inclusive_ms": 65.3997,
+          "self_ms": 64.5948,
+          "max_ms": 0.0547
+        },
+        "frame_commands": {
+          "calls": 1,
+          "inclusive_ms": 2.5691,
+          "self_ms": 0.0059,
+          "max_ms": 2.5691
+        },
+        "task_submit": {
+          "calls": 1,
+          "inclusive_ms": 0.6718,
+          "self_ms": 0.6718,
+          "max_ms": 0.6718
+        },
+        "native_model_pose": {
+          "calls": 2,
+          "inclusive_ms": 0.0867,
+          "self_ms": 0.025,
+          "max_ms": 0.0679
+        },
+        "texture_bind": {
+          "calls": 1036,
+          "inclusive_ms": 0.0583,
+          "self_ms": 0.0583,
+          "max_ms": 0.0083
+        },
+        "trace_sample_1_in_64": {
+          "calls": 34831,
+          "inclusive_ms": 4.2824,
+          "self_ms": 4.2824,
+          "max_ms": 0.08
+        },
+        "distance_admission": {
+          "calls": 366,
+          "inclusive_ms": 4.8404,
+          "self_ms": 4.8404,
+          "max_ms": 0.1226
+        },
+        "rt64_parse": {
+          "calls": 2,
+          "inclusive_ms": 23.5682,
+          "self_ms": 23.5682,
+          "max_ms": 12.7918
+        },
+        "rt64_screen": {
+          "calls": 2,
+          "inclusive_ms": 0.1131,
+          "self_ms": 0.1131,
+          "max_ms": 0.0566
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 2,
+          "inclusive_ms": 7.5386,
+          "self_ms": 1.415,
+          "max_ms": 4.7832
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 2,
+          "inclusive_ms": 2.03699,
+          "self_ms": 2.03699,
+          "max_ms": 1.10925
+        },
+        "rt64_gpu_wait": {
+          "calls": 2,
+          "inclusive_ms": 6.1226,
+          "self_ms": 6.1226,
+          "max_ms": 4.1471
+        },
+        "rt64_upload_wait": {
+          "calls": 2,
+          "inclusive_ms": 0.001,
+          "self_ms": 0.001,
+          "max_ms": 0.0006
+        },
+        "rt64_workload_total": {
+          "calls": 2,
+          "inclusive_ms": 7.569,
+          "self_ms": 0.0304,
+          "max_ms": 4.7981
+        },
+        "present_swap": {
+          "calls": 2,
+          "inclusive_ms": 1.0522,
+          "self_ms": 1.0522,
+          "max_ms": 0.6689
+        },
+        "present_workload_wait": {
+          "calls": 2,
+          "inclusive_ms": 0.0013,
+          "self_ms": 0.0013,
+          "max_ms": 0.0007
+        },
+        "enemy_callback": {
+          "calls": 24190,
+          "inclusive_ms": 77.3459,
+          "self_ms": 77.2284,
+          "max_ms": 0.1328
+        },
+        "object_timeline": {
+          "calls": 13,
+          "inclusive_ms": 2005.98,
+          "self_ms": 1215.66,
+          "max_ms": 271.72
+        },
+        "model_draw_commands": {
+          "calls": 186,
+          "inclusive_ms": 0.6967,
+          "self_ms": 0.6924,
+          "max_ms": 0.0438
+        }
+      }
+    },
+    {
+      "distance": 4.1,
+      "port_menu": 0,
+      "samples": 2,
+      "interval_ms": 30878.17,
+      "output_fps": 0.06477067779599634,
+      "common_alive_max": 98,
+      "stages": {
+        "native_update": {
+          "calls": 2,
+          "inclusive_ms": 6389.972,
+          "self_ms": 0.0092,
+          "max_ms": 5836.23
+        },
+        "native_frame": {
+          "calls": 2,
+          "inclusive_ms": 5.600099999999999,
+          "self_ms": 0.0359,
+          "max_ms": 3.5366
+        },
+        "world_source_update": {
+          "calls": 16,
+          "inclusive_ms": 24471.69,
+          "self_ms": 1.1613,
+          "max_ms": 12166.8
+        },
+        "world_gameplay": {
+          "calls": 16,
+          "inclusive_ms": 24470.46,
+          "self_ms": 0.5348999999999999,
+          "max_ms": 12166.6
+        },
+        "actor_manager": {
+          "calls": 16,
+          "inclusive_ms": 7.8002,
+          "self_ms": 1.8442,
+          "max_ms": 0.9603
+        },
+        "common_actors": {
+          "calls": 8606,
+          "inclusive_ms": 9186.81,
+          "self_ms": 7191.86,
+          "max_ms": 5.9205
+        },
+        "contacts": {
+          "calls": 16,
+          "inclusive_ms": 67.4591,
+          "self_ms": 66.2616,
+          "max_ms": 4.9578
+        },
+        "player": {
+          "calls": 8606,
+          "inclusive_ms": 1884.327,
+          "self_ms": 1608.302,
+          "max_ms": 1.3573
+        },
+        "projectiles": {
+          "calls": 8606,
+          "inclusive_ms": 8.9841,
+          "self_ms": 8.9405,
+          "max_ms": 0.0715
+        },
+        "world_draw": {
+          "calls": 2,
+          "inclusive_ms": 4.1314,
+          "self_ms": 2.1242,
+          "max_ms": 2.253
+        },
+        "world_geometry": {
+          "calls": 4,
+          "inclusive_ms": 0.397,
+          "self_ms": 0.36560000000000004,
+          "max_ms": 0.1943
+        },
+        "model_advance": {
+          "calls": 760473,
+          "inclusive_ms": 227.2405,
+          "self_ms": 225.8518,
+          "max_ms": 2.2911
+        },
+        "model_evaluate": {
+          "calls": 760523,
+          "inclusive_ms": 958.962,
+          "self_ms": 946.359,
+          "max_ms": 0.4575
+        },
+        "frame_commands": {
+          "calls": 2,
+          "inclusive_ms": 5.3607,
+          "self_ms": 0.0135,
+          "max_ms": 3.3925
+        },
+        "task_submit": {
+          "calls": 2,
+          "inclusive_ms": 1.2158,
+          "self_ms": 1.2158,
+          "max_ms": 1.1337
+        },
+        "native_model_pose": {
+          "calls": 4,
+          "inclusive_ms": 0.2035,
+          "self_ms": 0.050699999999999995,
+          "max_ms": 0.0999
+        },
+        "texture_bind": {
+          "calls": 2384,
+          "inclusive_ms": 0.1254,
+          "self_ms": 0.1254,
+          "max_ms": 0.0085
+        },
+        "trace_sample_1_in_64": {
+          "calls": 626902,
+          "inclusive_ms": 70.1914,
+          "self_ms": 70.1914,
+          "max_ms": 0.4467
+        },
+        "distance_admission": {
+          "calls": 434,
+          "inclusive_ms": 5.9487,
+          "self_ms": 5.9487,
+          "max_ms": 0.0799
+        },
+        "rt64_parse": {
+          "calls": 2,
+          "inclusive_ms": 22.4718,
+          "self_ms": 22.4718,
+          "max_ms": 12.5096
+        },
+        "rt64_screen": {
+          "calls": 2,
+          "inclusive_ms": 0.0826,
+          "self_ms": 0.0826,
+          "max_ms": 0.0453
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 2,
+          "inclusive_ms": 9.8568,
+          "self_ms": 2.083,
+          "max_ms": 7.1423
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 2,
+          "inclusive_ms": 1.8360319999999999,
+          "self_ms": 1.8360319999999999,
+          "max_ms": 0.946944
+        },
+        "rt64_gpu_wait": {
+          "calls": 2,
+          "inclusive_ms": 7.7727,
+          "self_ms": 7.7727,
+          "max_ms": 5.8148
+        },
+        "rt64_upload_wait": {
+          "calls": 2,
+          "inclusive_ms": 0.0010999999999999998,
+          "self_ms": 0.0010999999999999998,
+          "max_ms": 0.0006
+        },
+        "rt64_workload_total": {
+          "calls": 2,
+          "inclusive_ms": 9.89,
+          "self_ms": 0.0332,
+          "max_ms": 7.1596
+        },
+        "present_swap": {
+          "calls": 2,
+          "inclusive_ms": 0.7288,
+          "self_ms": 0.7288,
+          "max_ms": 0.4099
+        },
+        "present_workload_wait": {
+          "calls": 2,
+          "inclusive_ms": 0.0013,
+          "self_ms": 0.0013,
+          "max_ms": 0.0009
+        },
+        "enemy_callback": {
+          "calls": 322548,
+          "inclusive_ms": 1050.518,
+          "self_ms": 1049.094,
+          "max_ms": 2.3963
+        },
+        "object_timeline": {
+          "calls": 18,
+          "inclusive_ms": 30779.7,
+          "self_ms": 19685.66,
+          "max_ms": 12160.6
+        },
+        "model_draw_commands": {
+          "calls": 428,
+          "inclusive_ms": 1.4859,
+          "self_ms": 1.4734,
+          "max_ms": 0.0431
+        }
+      }
+    }
+  ]
+}

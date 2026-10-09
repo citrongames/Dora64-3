@@ -1,3 +1,4 @@
+#include "diagnostics.hpp"
 // Platform adapter only: no game addresses, hooks or controller-state writes.
 #include "live_io.hpp"
 #include "port_menu.hpp"
@@ -18,7 +19,7 @@ SDL_GameController* controller=nullptr; // SDL main thread only.
 SDL_AudioDeviceID audio_device=0;
 uint32_t audio_rate=0;
 bool audio_enabled=true;
-[[noreturn]] void audio_error(){std::fprintf(stderr,"LIVE AUDIO ERROR %s\n",SDL_GetError());std::_Exit(87);}
+[[noreturn]] void audio_error(){DORA3_LOG(stderr,"LIVE AUDIO ERROR %s\n",SDL_GetError());std::_Exit(87);}
 float axis(Sint16 value,float deadzone){
     const float magnitude=std::abs(int(value))/32767.0f;
     return magnitude<=deadzone ? 0.0f : std::copysign(std::min(1.0f,(magnitude-deadzone)/(1.0f-deadzone)),float(value));
@@ -48,17 +49,17 @@ void dora3_configure_live_input(recomp::Configuration& cfg){
         if(dora3::port::menu_open()){*buttons=0;*x=*y=0;}else {*buttons=input.buttons;*x=input.x;*y=input.y;}
         return true;
     };
-    std::fprintf(stderr,"LIVE INPUT port0=%s pak=none; keyboard/gamepad; focus clears state\n",input_enabled?"connected":"disconnected");
+    DORA3_LOG(stderr,"LIVE INPUT port0=%s pak=none; keyboard/gamepad; focus clears state\n",input_enabled?"connected":"disconnected");
 }
 
 void dora3_poll_live_input(SDL_Window* window){
     if(controller && !SDL_GameControllerGetAttached(controller)){
         SDL_GameControllerClose(controller);controller=nullptr;
-        std::fprintf(stderr,"LIVE INPUT gamepad detached\n");
+        DORA3_LOG(stderr,"LIVE INPUT gamepad detached\n");
     }
     if(!controller)for(int i=0;i<SDL_NumJoysticks();i++)if(SDL_IsGameController(i)){
         controller=SDL_GameControllerOpen(i);
-        if(controller){std::fprintf(stderr,"LIVE INPUT gamepad attached\n");break;}
+        if(controller){DORA3_LOG(stderr,"LIVE INPUT gamepad attached\n");break;}
     }
     using namespace dora3::port;
     const auto config=settings();
@@ -105,7 +106,7 @@ void dora3_poll_live_input(SDL_Window* window){
 
 void dora3_audio_frequency(uint32_t frequency){
     if(!audio_enabled)return;
-    if(frequency<8000 || frequency>96000){std::fprintf(stderr,"LIVE AUDIO unsupported rate %u\n",frequency);std::_Exit(87);}
+    if(frequency<8000 || frequency>96000){DORA3_LOG(stderr,"LIVE AUDIO unsupported rate %u\n",frequency);std::_Exit(87);}
     std::lock_guard lock(audio_mutex);
     if(audio_device && audio_rate==frequency)return;
     if(audio_device){SDL_CloseAudioDevice(audio_device);audio_device=0;}
@@ -117,7 +118,7 @@ void dora3_audio_frequency(uint32_t frequency){
         SDL_SetError("Unexpected audio format");audio_error();
     }
     audio_rate=frequency;SDL_PauseAudioDevice(audio_device,0);
-    std::fprintf(stderr,"LIVE AUDIO OPEN rate=%u channels=2 format=S16 driver=%s\n",frequency,SDL_GetCurrentAudioDriver());
+    DORA3_LOG(stderr,"LIVE AUDIO OPEN rate=%u channels=2 format=S16 driver=%s\n",frequency,SDL_GetCurrentAudioDriver());
 }
 
 void dora3_audio_queue(const int16_t* samples,size_t count){

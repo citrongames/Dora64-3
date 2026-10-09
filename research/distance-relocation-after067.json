@@ -1,0 +1,703 @@
+{
+  "date": "2026-10-08",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "scope": "Reviewed metadata and instruction fingerprints, no ROM assets or generated/disassembled game code",
+  "missed_roots": [
+    {
+      "func": "dora3_s0_8002A650",
+      "vram": 2147657320,
+      "value": 1006731336,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".startup",
+      "section_rom": 4096,
+      "function_rom_sha256": "65d56622e529a5ae325a36433d8d2e1cc072ecafc2d389e73ac8ae7ebf01c92c",
+      "original_word": "0x3c01801b"
+    },
+    {
+      "func": "dora3_s12_cave_8023DA9C",
+      "vram": 2149833492,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".cave_slot2",
+      "section_rom": 1379424,
+      "function_rom_sha256": "b70bede11805a5978a971b852c7eaf947c4f24cee86353cbee0ffdb47f5e0338",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s13_mountain_8022E218",
+      "vram": 2149769864,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".mountain_slot1",
+      "section_rom": 1200512,
+      "function_rom_sha256": "14c8ed9c395a8d4b2f8317776f4e06b14cef8fbe9ca622ca39151555b3b85601",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s15_lake_80221C6C",
+      "vram": 2149719252,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".lake_slot0",
+      "section_rom": 939136,
+      "function_rom_sha256": "028f60001897429eccb4038369ebc9a30b7735c76c9013e48bf92835a0962c43",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s17_lake_8023ED5C",
+      "vram": 2149838216,
+      "value": 1007059019,
+      "reason": "actor table",
+      "section": ".lake_slot2",
+      "section_rom": 1401312,
+      "function_rom_sha256": "fc97571db69a3e3d5def86b7b117b6167844a2341dfcfc9ff65ae1fd63d4a49d",
+      "original_word": "0x3c068017"
+    },
+    {
+      "func": "dora3_s1_801B6C34",
+      "vram": 2149281012,
+      "value": 1006862408,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene_common",
+      "section_rom": 386048,
+      "function_rom_sha256": "33d791cee46bac102ac667b661a1a19d10664cd1cf5e3efa78bb5eda0c3bd643",
+      "original_word": "0x3c03801b"
+    },
+    {
+      "func": "dora3_s20_mini_801BD7A8",
+      "vram": 2149308728,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_common",
+      "section_rom": 1621488,
+      "function_rom_sha256": "7b0ee3423169a3ad025dc6160da11d282357babe48a27861571f8e501484f7ab",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s20_mini_801BD7A8",
+      "vram": 2149309212,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_common",
+      "section_rom": 1621488,
+      "function_rom_sha256": "7b0ee3423169a3ad025dc6160da11d282357babe48a27861571f8e501484f7ab",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s20_mini_801BE990",
+      "vram": 2149313316,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_common",
+      "section_rom": 1621488,
+      "function_rom_sha256": "bdbf6dc9b6e18022e7287a6d7e742c6685d53607e70a0e92cbc4284af0739ada",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s20_mini_801C008C",
+      "vram": 2149319384,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_common",
+      "section_rom": 1621488,
+      "function_rom_sha256": "33fdc76460b779e4f5d9a8c463b2c1f66db6c136cd002020802eea090fb3d91b",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s20_mini_801C008C",
+      "vram": 2149320072,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_common",
+      "section_rom": 1621488,
+      "function_rom_sha256": "33fdc76460b779e4f5d9a8c463b2c1f66db6c136cd002020802eea090fb3d91b",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s20_mini_801C08A4",
+      "vram": 2149321872,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_common",
+      "section_rom": 1621488,
+      "function_rom_sha256": "4263eaa5da633c10a3fbe7adc89241ec9652395e59d0200d4f9f9cb1128d53d0",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s20_mini_801C08A4",
+      "vram": 2149322148,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_common",
+      "section_rom": 1621488,
+      "function_rom_sha256": "4263eaa5da633c10a3fbe7adc89241ec9652395e59d0200d4f9f9cb1128d53d0",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s20_mini_801C102C",
+      "vram": 2149323468,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_common",
+      "section_rom": 1621488,
+      "function_rom_sha256": "c8b80719ebfb0c4ca10a8911bc995d61b40d18ada09d1d3c3691205dcfd3e460",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s21_mini_801C3700",
+      "vram": 2149333004,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_1",
+      "section_rom": 1663408,
+      "function_rom_sha256": "2f6302f320fab9aa037e6abda07d72da2f4f3d2da3287656b0a5272babf07563",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s22_mini_801C71FC",
+      "vram": 2149348104,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_2",
+      "section_rom": 1701136,
+      "function_rom_sha256": "80a5128ad352b14496ec507e82c446384b30cbe48f58efc2ee6ab0ebc1f0dbf3",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s24_mini_801C3948",
+      "vram": 2149333396,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_4",
+      "section_rom": 1744464,
+      "function_rom_sha256": "356ce9dc8a9ab7faec2eaede94b0daa21b6edc3bb97a0d3400564ecc9c648615",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s25_mini_801C61EC",
+      "vram": 2149343984,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_5",
+      "section_rom": 1772432,
+      "function_rom_sha256": "ac0993c9c4edc1964ea8a330b63588479f34faff63aa8b90c95a3a5988f4f439",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s25_mini_801C6448",
+      "vram": 2149344392,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_5",
+      "section_rom": 1772432,
+      "function_rom_sha256": "2b0a47ff1db7643540613ecfc89da2f5dd4f4afdd5c3a81d9d6af6aba98a26e4",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s26_mini_801C5A38",
+      "vram": 2149342104,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_6",
+      "section_rom": 1787488,
+      "function_rom_sha256": "1bec32902d0435ad57880d963e8163406c11b404f2d14d8a2a494243adf6d6bf",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s26_mini_801C623C",
+      "vram": 2149343868,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".minigame_6",
+      "section_rom": 1787488,
+      "function_rom_sha256": "ef75a32342cb607a15425088af3f370289a25deb970399c06cbaec50274151f9",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s2_menu_801BA3C8",
+      "vram": 2149295288,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene34",
+      "section_rom": 406976,
+      "function_rom_sha256": "a4f7d46e1b34f53bc0564a51b340149e79c13b2501ad9714d36d4ae48da07d4d",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s2_menu_801BC760",
+      "vram": 2149304736,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene34",
+      "section_rom": 406976,
+      "function_rom_sha256": "7267bf0f80d5090b3f3c09263e2a493d4dee1892857f61b9d0a81f6e59ade4bd",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s2_menu_801BC760",
+      "vram": 2149304852,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene34",
+      "section_rom": 406976,
+      "function_rom_sha256": "7267bf0f80d5090b3f3c09263e2a493d4dee1892857f61b9d0a81f6e59ade4bd",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s2_menu_801BC760",
+      "vram": 2149305196,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene34",
+      "section_rom": 406976,
+      "function_rom_sha256": "7267bf0f80d5090b3f3c09263e2a493d4dee1892857f61b9d0a81f6e59ade4bd",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s2_menu_801BDEFC",
+      "vram": 2149310556,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene34",
+      "section_rom": 406976,
+      "function_rom_sha256": "c878cbd803359723b153aa306d8f54de48b36adc993272eb4885e745647c9e80",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s2_menu_801BDEFC",
+      "vram": 2149311340,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene34",
+      "section_rom": 406976,
+      "function_rom_sha256": "c878cbd803359723b153aa306d8f54de48b36adc993272eb4885e745647c9e80",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s2_menu_801BDEFC",
+      "vram": 2149311776,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene34",
+      "section_rom": 406976,
+      "function_rom_sha256": "c878cbd803359723b153aa306d8f54de48b36adc993272eb4885e745647c9e80",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s2_menu_801BDEFC",
+      "vram": 2149312092,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene34",
+      "section_rom": 406976,
+      "function_rom_sha256": "c878cbd803359723b153aa306d8f54de48b36adc993272eb4885e745647c9e80",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s32_remaining_802214B8",
+      "vram": 2149717312,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_05",
+      "section_rom": 916544,
+      "function_rom_sha256": "e26d4956ee3d83394341572ea73867ceede17fe25930f1d19b6d7ed40320eac4",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s32_remaining_802217E8",
+      "vram": 2149718084,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_05",
+      "section_rom": 916544,
+      "function_rom_sha256": "62ce36924f602bd10e924cd0d4dcd39f9ed58c219f080df09c3c85b20214e61f",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s33_remaining_8021F4C8",
+      "vram": 2149709220,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_11",
+      "section_rom": 1004032,
+      "function_rom_sha256": "949ea32fe2c576ea5dbf2d88556e8f9d0d94f834ff0802acc993df39c2d5c856",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s34_remaining_8021DDC8",
+      "vram": 2149703604,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_12",
+      "section_rom": 1018432,
+      "function_rom_sha256": "99b637ccf6585be610f45e13a46f5dcedb71ffa9b9a052158409276bc29ba782",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s34_remaining_8021DDC8",
+      "vram": 2149703784,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_12",
+      "section_rom": 1018432,
+      "function_rom_sha256": "99b637ccf6585be610f45e13a46f5dcedb71ffa9b9a052158409276bc29ba782",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s34_remaining_8021F290",
+      "vram": 2149708880,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_12",
+      "section_rom": 1018432,
+      "function_rom_sha256": "a37398460e3bd72076672b6ab82d17b2c87b2a7568df1953f4bc3c413d28a25d",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s34_remaining_8021F290",
+      "vram": 2149709144,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_12",
+      "section_rom": 1018432,
+      "function_rom_sha256": "a37398460e3bd72076672b6ab82d17b2c87b2a7568df1953f4bc3c413d28a25d",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s34_remaining_8021F5A8",
+      "vram": 2149709348,
+      "value": 1006993483,
+      "reason": "actor table",
+      "section": ".remaining_slot0_12",
+      "section_rom": 1018432,
+      "function_rom_sha256": "3d1c54341f2747e7997f51135e99c4030369075023403e81f0a48b555eea1dd6",
+      "original_word": "0x3c058017"
+    },
+    {
+      "func": "dora3_s34_remaining_802229F0",
+      "vram": 2149723756,
+      "value": 1007714379,
+      "reason": "actor table",
+      "section": ".remaining_slot0_12",
+      "section_rom": 1018432,
+      "function_rom_sha256": "040527fecfe319cbe87c3a5bbab1766958d3ed4e21a93a7d7b0ff7257bc9e2aa",
+      "original_word": "0x3c108017"
+    },
+    {
+      "func": "dora3_s34_remaining_802257E0",
+      "vram": 2149734972,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_12",
+      "section_rom": 1018432,
+      "function_rom_sha256": "fa2e993d123ab4280d08b92a7e2ba769410e5764e18c6cb0d58226936f8723db",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s36_remaining_8021F7CC",
+      "vram": 2149710076,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_14",
+      "section_rom": 1083184,
+      "function_rom_sha256": "1680a248c43b6f2c4aa6261e8cfc30ae728ffe6f5be218909f0898f5e98c9764",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s36_remaining_80221FD8",
+      "vram": 2149720624,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_14",
+      "section_rom": 1083184,
+      "function_rom_sha256": "424d0428317cee802fa5747fae553be5070592f3d264d045501ca09b9ea7883a",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s37_remaining_8021F818",
+      "vram": 2149710524,
+      "value": 1006862411,
+      "reason": "actor table",
+      "section": ".remaining_slot0_15",
+      "section_rom": 1104432,
+      "function_rom_sha256": "542b4bdcebddd26ae8c8f48a0c7a0a8c6ac42c9ecb4c02cb60adb9c0bf94f76e",
+      "original_word": "0x3c038017"
+    },
+    {
+      "func": "dora3_s38_remaining_8021DCE8",
+      "vram": 2149703384,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_16",
+      "section_rom": 1121904,
+      "function_rom_sha256": "14b0ee3b1659992f94029f08dc78792e2d5d9ecdd05706ac14dee215027df394",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s38_remaining_8021DCE8",
+      "vram": 2149703564,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_16",
+      "section_rom": 1121904,
+      "function_rom_sha256": "14b0ee3b1659992f94029f08dc78792e2d5d9ecdd05706ac14dee215027df394",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s38_remaining_8021ED94",
+      "vram": 2149707608,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_16",
+      "section_rom": 1121904,
+      "function_rom_sha256": "54c5fce29a67aadd5f52ee64047a40d930b0153ad2b0a0187b3777a112600774",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s38_remaining_8021ED94",
+      "vram": 2149707872,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_16",
+      "section_rom": 1121904,
+      "function_rom_sha256": "54c5fce29a67aadd5f52ee64047a40d930b0153ad2b0a0187b3777a112600774",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s38_remaining_8021F0B0",
+      "vram": 2149708076,
+      "value": 1006993483,
+      "reason": "actor table",
+      "section": ".remaining_slot0_16",
+      "section_rom": 1121904,
+      "function_rom_sha256": "46f0e5427849725a599f6961dca2072cfdce54e5034b9c13dfed9dccc3960636",
+      "original_word": "0x3c058017"
+    },
+    {
+      "func": "dora3_s38_remaining_80222420",
+      "vram": 2149722268,
+      "value": 1007714379,
+      "reason": "actor table",
+      "section": ".remaining_slot0_16",
+      "section_rom": 1121904,
+      "function_rom_sha256": "41c06352987e503d87aa10d9405cf7d2bfafbb1c02559a01795ebb59e3d6ea0b",
+      "original_word": "0x3c108017"
+    },
+    {
+      "func": "dora3_s38_remaining_80224D98",
+      "vram": 2149732340,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot0_16",
+      "section_rom": 1121904,
+      "function_rom_sha256": "c0821c8d7872782b015e74ce626fc130611ef171f989e9cae80ad5c5d953f474",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s3_801B90A8",
+      "vram": 2149290208,
+      "value": 1007714376,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "44abf505ee820186c4fb25ae601138656220266949c5efe949caf18f8dcfa6df",
+      "original_word": "0x3c10801b"
+    },
+    {
+      "func": "dora3_s3_801BBFF4",
+      "vram": 2149302416,
+      "value": 1007714376,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "d71f2000939993024fe7b5c2aa4649b17574516881f21ecc0f3a8b2dfa4525d6",
+      "original_word": "0x3c10801b"
+    },
+    {
+      "func": "dora3_s3_801BD2C8",
+      "vram": 2149307252,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "be73dae0cded404ce6370e172cfb7661d2b40b06e8fdbb338335b6669e370f9b",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s3_801BD2C8",
+      "vram": 2149307492,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "be73dae0cded404ce6370e172cfb7661d2b40b06e8fdbb338335b6669e370f9b",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s3_801BF828",
+      "vram": 2149317244,
+      "value": 1006796875,
+      "reason": "actor table",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "e7f22c928f7645963064dfe746b7bf8eb62936bf6089e5f02bee957097a9a4f6",
+      "original_word": "0x3c028017"
+    },
+    {
+      "func": "dora3_s3_801BF828",
+      "vram": 2149317304,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "e7f22c928f7645963064dfe746b7bf8eb62936bf6089e5f02bee957097a9a4f6",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s3_801BF828",
+      "vram": 2149317340,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "e7f22c928f7645963064dfe746b7bf8eb62936bf6089e5f02bee957097a9a4f6",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s3_801CA264",
+      "vram": 2149360336,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "a8ab55a0f0fdd6b5f9c9425a3aa8a0b88dbb87671e11bb19394d5b623ebed6a5",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s3_801CA264",
+      "vram": 2149360592,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "a8ab55a0f0fdd6b5f9c9425a3aa8a0b88dbb87671e11bb19394d5b623ebed6a5",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s3_801CA264",
+      "vram": 2149360640,
+      "value": 1006927944,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "a8ab55a0f0fdd6b5f9c9425a3aa8a0b88dbb87671e11bb19394d5b623ebed6a5",
+      "original_word": "0x3c04801b"
+    },
+    {
+      "func": "dora3_s3_801DC880",
+      "vram": 2149435652,
+      "value": 1006731336,
+      "reason": "Relocated fixed SDK pool root",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "87220e4eae4f7d3189976336606dfe2bc9dae719c244ca586064cea5bd56bafc",
+      "original_word": "0x3c01801b"
+    },
+    {
+      "func": "dora3_s3_801DD510",
+      "vram": 2149438868,
+      "value": 1006862411,
+      "reason": "actor table",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "64108808098c7350975ba28c333a809527e8db028c92dc575f41bbff97300b09",
+      "original_word": "0x3c038017"
+    },
+    {
+      "func": "dora3_s3_801DD8FC",
+      "vram": 2149439816,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "c661f9472e37ba8b4b28f1c4942d265ad20a423a1c55a1ceb3181a8a0f6368ae",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s3_core_801E5E4C",
+      "vram": 2149473988,
+      "value": 1007845451,
+      "reason": "actor table",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "bff80ac265f94734b5e68c1e4707c74f9095f8a4bce5570f040ee96cb26a74ec",
+      "original_word": "0x3c128017"
+    },
+    {
+      "func": "dora3_s3_demo_801E63B4",
+      "vram": 2149475428,
+      "value": 1007190091,
+      "reason": "actor table",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "3ba45c11ecec7d836395c4217cd526d9f5435f71d19557be47c09fc85a028792",
+      "original_word": "0x3c088017"
+    },
+    {
+      "func": "dora3_s3_demo_801E70E0",
+      "vram": 2149479560,
+      "value": 1006862411,
+      "reason": "actor table",
+      "section": ".scene1",
+      "section_rom": 461392,
+      "function_rom_sha256": "d163790d77b0396d5985b8ff7e645511a46ff7559812a527db05e939079547d4",
+      "original_word": "0x3c038017"
+    },
+    {
+      "func": "dora3_s41_remaining_8022FBBC",
+      "vram": 2149776412,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot1_02",
+      "section_rom": 1184384,
+      "function_rom_sha256": "23815ad108b73174dfe027f682c5bceb9774df34eeb1f5ccaf2a12ece3252db6",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s41_remaining_802300D4",
+      "vram": 2149777712,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot1_02",
+      "section_rom": 1184384,
+      "function_rom_sha256": "2e84d521ff81516b0d929dd3ee98a80b6aef3b8ad1765e9c2fc9561dd64a1b5e",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s42_remaining_8022E780",
+      "vram": 2149771244,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot1_04",
+      "section_rom": 1207200,
+      "function_rom_sha256": "286eecfa5c2f716143d7fec121ecc442f72e58eac83dcfdc712efcf33f5ca549",
+      "original_word": "0x3c018017"
+    },
+    {
+      "func": "dora3_s42_remaining_8022ED9C",
+      "vram": 2149772748,
+      "value": 1006731339,
+      "reason": "actor table",
+      "section": ".remaining_slot1_04",
+      "section_rom": 1207200,
+      "function_rom_sha256": "8f3d4a1d0c433776a741407be3a236d22815d9f38463dd85d07f3fd18c66386d",
+      "original_word": "0x3c018017"
+    }
+  ],
+  "independent_indexed_root_inventory": {
+    "pattern": "LUI plus indexed memory access",
+    "references": 706,
+    "uncovered": 0
+  },
+  "tests_executed": false
+}

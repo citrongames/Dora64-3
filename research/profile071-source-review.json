@@ -1,0 +1,32 @@
+{
+  "baseline": "test-070",
+  "scope": "Only observational scopes; gameplay source restored byte-for-byte after removing inserted scope lines; CPU generation unchanged",
+  "files": [
+    {
+      "path": "src/native_gameplay_preview.cpp",
+      "baseline070_sha256": "20a6e1bf41823686ae38007126ba7d6ca2ef75d2c21486b2c03850dc869afad4",
+      "only_scope_insertions": true,
+      "scope_count": 3
+    },
+    {
+      "path": "src/native_enemy.cpp",
+      "baseline070_sha256": "3184e0c3d190de02e2ca6f75111e2df31e3517c710264e336e0b695f285691a6",
+      "only_scope_insertions": true,
+      "scope_count": 3
+    },
+    {
+      "path": "src/native_model_animation.cpp",
+      "baseline070_sha256": "8a973260fee4696cbcd440b3549d0078a53ec22a6960d753721a41d13035cd81",
+      "only_scope_insertions": true,
+      "scope_count": 1
+    },
+    {
+      "path": "src/startup_runtime.cpp",
+      "baseline070_sha256": "1ee0873b3ed9db1b69f27fae6afaefc9abb93acaba56b7c8575b5f5ef2d8858c",
+      "only_scope_insertions": true,
+      "scope_count": 1
+    }
+  ],
+  "tests_executed": false,
+  "game_launched": false
+}

@@ -1,0 +1,25 @@
+{
+  "mechanism": "RT64 emulator default renderToRAM=true; fullSync renders native color/depth+wait+readback, then workload queue renders display again",
+  "dependency_sha256": {
+    "build-deps/lib/rt64/src/hle/rt64_state.cpp": "3a695dfdaa6defa114b15a748b384a3b1f7d41f7b28393c7dbcf61664339f7d1",
+    "build-deps/lib/rt64/src/render/rt64_native_target.cpp": "f05f81c02beb686d8f652d70e01d3a0b3387b0debe36239d1d466260580b8c5f",
+    "build-deps/lib/rt64/src/common/rt64_emulator_configuration.cpp": "f558cd19e8b1e83c23994b2726916392fa9ba50b32b280da276831a951051678"
+  },
+  "source_regions": {
+    "eager_native_pass": "rt64_state.cpp fullSync lines1181–1675",
+    "display_pass": "rt64_workload_queue.cpp threadRenderFrame lines297–880",
+    "CPU_reader": "ROM startup800271B0; no pending tasks, sourcea1 loaded800272B8, LHUs800272C4 thenSH800272C8",
+    "CPU_copy_lock": "existing ROM-qualified800272BC/800272F8 adapters",
+    "screen_dimensions": "80027278 reads801AA658 and80027280 reads801A48C4"
+  },
+  "scope": "Deferred RAM for eligible Native gameplay permanent320x240 RGBA16 color buffers and8038F800 Z only; Original/scripted/raw/unsupported framebuffer workload retains eager readback",
+  "synchronization": "RDRAM exclusion; wait already published workload and present IDs before locking shared workload/manager; queue GPU fence precedes first workload notification; materialize onNative->Original, CPU-copy, producerconfigchange, noneligible/newrawtask",
+  "upscaled_readback": "Native pixel centers projected with actual GPU target scale via thread-local optional16.16 CBoffset flag; legacy flag0 leaves coordinates unchanged",
+  "validation": "Static source/ROM inspection and compilation only; no game, CPU checks, tests or GPU execution",
+  "limitations": [
+    "GPU result and scene transitions require user playcheck",
+    "This is a found integration cost, not a claim every remaining frame cost has been removed"
+  ],
+  "user_feedback_after_playcheck": "ну примерно тоже самое",
+  "result_status": "No noticeable user-reported FPS improvement; residual bottleneck and actual fast-path activation remain unproven"
+}

@@ -13,7 +13,7 @@
 namespace dora3::native_time {
 namespace {
 bool field_pointer(std::uint32_t p) {
-    return !(p&3)&&p>=0x80000000u&&std::uint64_t(p)+4<=0x80400000ull;
+    return !(p&3)&&p>=0x80000000u&&std::uint64_t(p)+4<=0x80800000ull;
 }
 std::uint32_t bits(std::uint8_t* ram,std::uint32_t p) {
     auto* rdram=ram;

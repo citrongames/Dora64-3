@@ -1,0 +1,11 @@
+{
+  "analysis": "static generation configuration comparison; no executable tests",
+  "original_instruction_patches_identical": true,
+  "all_non_diagnostic_hook_text_identical": true,
+  "retained_functional_trace_entries": 12,
+  "changed_diagnostic_hook_records": 4767,
+  "profile_wrappers_generated": false,
+  "runtime_diagnostics_enabled": false,
+  "AI_time_contact_limits_changed": false,
+  "graphics_submit_completion_counters_preserved": true
+}

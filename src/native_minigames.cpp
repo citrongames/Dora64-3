@@ -29,7 +29,7 @@ using namespace dora3::native_time;
 using Expression=MinigameEquations::Expression;
 using Operation=MinigameEquations::Operation;
 using Role=MinigameEquations::FieldRole;
-constexpr std::uint32_t pool=0x80171CD0,cameras=0x801A99F8;
+constexpr std::uint32_t pool=0x804B1CD0,cameras=0x801A99F8;
 constexpr unsigned actor_count=230,actor_stride=0xCC;
 struct CircularCameraStore {std::uint32_t rom,site;bool opposite;};
 constexpr std::array circular_camera_stores{
@@ -39,7 +39,7 @@ constexpr std::array circular_camera_stores{
     CircularCameraStore{0x19F510,0x801C5494,false},
 };
 bool pointer(std::uint32_t p,unsigned size=4) {
-    return !(p&3)&&p>=0x80000000u&&std::uint64_t(p)+size<=0x80400000ull;
+    return !(p&3)&&p>=0x80000000u&&std::uint64_t(p)+size<=0x80800000ull;
 }
 std::uint32_t word(std::uint8_t* rdram,std::uint32_t p) {
     return std::uint32_t(MEM_W(0,std::int32_t(p)));

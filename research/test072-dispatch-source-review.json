@@ -1,0 +1,37 @@
+{
+  "baseline": "test-071",
+  "scope": "Static source review only; no tests/game execution",
+  "pool_end_blocks": [
+    {
+      "body_sha256": "84c94a5a654850fa8e87e80ee98ed40c4918f401f9a4c46569bf8560db76b047",
+      "relocated_intact": true
+    },
+    {
+      "body_sha256": "068fd046eb735b4d29d9856c4bce8301a7e3562015e246eef38bdb7ad5ac50a3",
+      "relocated_intact": true
+    }
+  ],
+  "pool_end_cleanup": "Both full existing handlers retained for every slot including inactive, paused, freed/reused actors; final live observation retained",
+  "site_first_guards": [
+    "if(object_call&&live(ram)&&active_simulation_slice()&&\n       (site==0x80232070||site==0x802320A4||site==0x802320B0||site==0x802322E0||site==0x8023229C)) {",
+    "if(object_call&&live(ram)&&active_simulation_slice()&&(site==0x801E8E00||site==0x801E8E10||site==0x801E8E20)) {",
+    "if(object_call&&live(ram)&&active_simulation_slice()&&\n       (site==0x80223FBC||site==0x8022402C||site==0x80224074)) {",
+    "if(object_call&&live(ram)&&active_simulation_slice()&&\n       (site==0x801EEFC8||site==0x801EED78||site==0x801EEE00||site==0x801EEE40||site==0x801EF038||site==0x801EF080||\n        turn_site==0x801EEEF8||turn_site==0x801EEF1C||turn_site==0x801EEF50||turn_site==0x801EEF70||turn_site==0x801EEF90||turn_site==0x801EEFB4)) {"
+  ],
+  "definition_records_unchanged_sha256": "7af45e92fa7bd4edce3c4a394854bbf608d6df22a7c5696d2352cf6c4ed40e19",
+  "definition_validation_unchanged_sha256": "96031d083aac9b8a74004487a2d4c7ec81c0befa9cbf4d73bbd8d9a292580ef5",
+  "definition_order": "First enemy record wins; scene candidate chain follows original ascending record order; all live overlay/type/lifetime checks retained",
+  "gameplay_unchanged": [
+    "AI/FSM bodies",
+    "contacts/colliders",
+    "elapsed time and catch-up",
+    "birth phases/clip edges",
+    "draw distance and capacities",
+    "Original ROM instruction/hook manifest",
+    "CPU generation"
+  ],
+  "source_files": [
+    "src/native_gameplay_preview.cpp",
+    "src/native_enemy.cpp"
+  ]
+}

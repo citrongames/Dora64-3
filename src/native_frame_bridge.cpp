@@ -1,5 +1,7 @@
+#include "graphics_profile.hpp"
 #include "recomp_context_copy.hpp"
 #include "native_frame_bridge.hpp"
+#include "native_graphics_pump.hpp"
 #include "native_present.hpp"
 #include "native_frame_session.hpp"
 #include "native_game_loop.hpp"
@@ -52,6 +54,7 @@ bool FrameBridge::post_due(Nanoseconds now, WakeSender sender) {
     // No mailbox/scheduler lock across enqueue. The scheduled game thread can
     // receive this message before the sender returns to the producer.
     try {
+        dora3::graphics_profile::mark(dora3::graphics_profile::Mark::WakePost,wake->serial,wake->epoch);
         if (sender()) return true;
     } catch (...) {
         // Sender exceptions must mean no enqueue, just like a false result.
@@ -67,6 +70,10 @@ bool FrameBridge::dispatch(uint32_t message, Nanoseconds now, uint8_t* ram, reco
     if (message != WakeMailbox::message_value) return false;
     const auto wake = mailbox_.receive(message);
     if (!wake) return true; // Reserved value is NEVER a guest pointer, even in Original.
+    dora3::graphics_profile::mark(dora3::graphics_profile::Mark::WakeReceive,wake->serial,wake->epoch);
+    // Host completions may have arrived after the receive that delivered this
+    // wake. Process them before a long Native update can delay the scheduler.
+    dora3_native_scheduler_checkpoint(ram);
     // Keep the queued request pending during update: no new wake can overtake
     // it. Unlike a Building bank, this token can be invalidated by a resource
     // barrier without waiting for a frame that has not yet been submitted.
@@ -74,9 +81,13 @@ bool FrameBridge::dispatch(uint32_t message, Nanoseconds now, uint8_t* ram, reco
         recomp_context update_context;dora3::copy_recomp_context(update_context,*context);
         update_(ram,&update_context,now);
     }
+    // The update is a coherent boundary: no borrowed model pose or unpublished
+    // frame buffer is active. Let already-ready scheduler work run before draw.
+    dora3_native_scheduler_checkpoint(ram);
     // Update may have changed scene/rate/session. Never publish its old wake.
     const auto ticket = scheduler_.receive(*wake, now);
     if (ticket && consumer_) {
+        dora3::graphics_profile::mark(dora3::graphics_profile::Mark::FrameTicket,ticket->token.serial,ticket->bank);
         // This hook is not a MIPS call site. Keep all registers, notably s0/s1
         // used by the original message loop, intact across the extra frame.
         recomp_context frame_context;dora3::copy_recomp_context(frame_context,*context);

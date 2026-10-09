@@ -1,0 +1,20 @@
+{
+  "before": {
+    "src/startup_runtime.cpp": "5746acc0cd18faa9a83a930a951f2bde57e7977fb5c6cad3f7c9a7feb3cc55dc",
+    "src/performance_profile.cpp": "ec066bb1e8c846a28d5bce959575d8fa9f98190dcf1bf7400cfd9c81f7c995b4"
+  },
+  "after": {
+    "src/startup_runtime.cpp": "46a6b32e214897dd3ed471f86f785f77acef15c1ccb6410b56c897f2c83f8e40",
+    "src/performance_profile.cpp": "d4f2e30ca3d34eb44400436c44b463a8f0dded3a2f0f4305a9e4308dc3d81ac8"
+  },
+  "gameplay_files_modified": false,
+  "input_timeline_modified": false,
+  "generated_code_modified": false,
+  "active_state_and_generation_publication_unchanged": true,
+  "guest_hooks_unchanged": true,
+  "validation": "static source review; compilation pending; no executable checks",
+  "source_changes_vs_packaged073": [
+    "src/performance_profile.cpp",
+    "src/startup_runtime.cpp"
+  ]
+}

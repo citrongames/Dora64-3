@@ -43,6 +43,9 @@ extern "C" void dora3_native_task_submitted(uint8_t* rdram, recomp_context* ctx)
     if (command_queue != 0x801A6A48u) throw std::runtime_error("Unreviewed native scheduler queue");
     // Do not block the game thread on another guest queue: the scheduler can
     // itself be waiting to send a completion to that game's full receive queue.
-    // The retained external message is delivered by the normal runtime drain.
+    // Publish first, then drain immediately: leaving the wake external until
+    // another SDK call can hold a ready task across the next Native update.
+    // Full guest queues retain the wake; priority switching is nonblocking.
     if (!dora3_enqueue_native_graphics_wake()) throw std::bad_alloc{};
+    dora3_native_scheduler_checkpoint(rdram);
 }

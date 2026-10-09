@@ -1,3 +1,4 @@
+#include "graphics_profile.hpp"
 #include "native_frame_scheduler.hpp"
 #include <limits>
 #include <stdexcept>
@@ -88,6 +89,7 @@ std::optional<WakeToken> FrameScheduler::request(Nanoseconds now) {
     if (serial_ == std::numeric_limits<std::uint64_t>::max())
         throw std::overflow_error("Native wake serial exhausted");
     pending_ = WakeToken{epoch_, ++serial_};
+    dora3::graphics_profile::mark(dora3::graphics_profile::Mark::WakeLateness,serial_,uint64_t(now-*clock_.deadline()));
     ++stats_.wakes;
     return pending_;
 }
@@ -155,6 +157,7 @@ bool FrameScheduler::complete(const FrameTicket& ticket, Completion completion) 
     if (done) return false;
     done = true;
     if (bank.guest_done && bank.host_done) bank.phase = Phase::Free;
+    dora3::graphics_profile::mark(completion==Completion::GuestTask?dora3::graphics_profile::Mark::GuestDone:dora3::graphics_profile::Mark::HostDone,ticket.token.serial,ticket.bank);
     return true;
 }
 

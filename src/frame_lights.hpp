@@ -8,6 +8,8 @@ inline constexpr uint32_t dl_offset = 0x12328;
 inline constexpr uint32_t light_address = 0x6FB70, light_size = 0x28;
 struct Lights {
     std::array<uint8_t, light_size> bytes{};
+    bool native_ram_optional=false;
+    uint32_t native_depth_address=0;
     // RT64 reads a 16-byte Light even for the ambient entry.
     const void* lookup(uint32_t physical_address) const;
 };

@@ -1,0 +1,82 @@
+{
+  "run": "1791478659712",
+  "build": "085",
+  "profile_sha256": "e3272dd8a661b728c34d3353cbfe35dfb3b8f84e49cea8e1ec7a1ed41bfc6904",
+  "sample_rows": 51,
+  "scope_errors": 0,
+  "trace_dropped": 0,
+  "windows": [
+    {
+      "start_us": 30000000,
+      "end_us": 39000000,
+      "matched_frames": 1054,
+      "producer_duty": 0.6548375333333333,
+      "ready_producer_idle_us": {
+        "mean": 2141.5619544592037,
+        "median": 1416.3500000014901,
+        "p90": 4430.69999999553
+      },
+      "ready_to_submit_us": {
+        "mean": 4663.7060721064345,
+        "median": 4028.150000002235,
+        "p90": 7519.999999992549
+      },
+      "submit_to_parse_us": {
+        "mean": 132.8347248576009,
+        "median": 47.94999999925494,
+        "p90": 108.70000000298023
+      },
+      "producer_gap_us": {
+        "mean": 2947.39269449717,
+        "median": 1564.3499999977648,
+        "p90": 10621.300000000745
+      }
+    },
+    {
+      "start_us": 40000000,
+      "end_us": 51000000,
+      "matched_frames": 1314,
+      "producer_duty": 0.6572572090909091,
+      "ready_producer_idle_us": {
+        "mean": 2151.2137747336137,
+        "median": 1498.550000000745,
+        "p90": 4697.600000008941
+      },
+      "ready_to_submit_us": {
+        "mean": 4590.909665144549,
+        "median": 3965.199999999255,
+        "p90": 7282.29999999702
+      },
+      "submit_to_parse_us": {
+        "mean": 135.23211567733816,
+        "median": 48.30000000447035,
+        "p90": 110.90000000596046
+      },
+      "producer_gap_us": {
+        "mean": 2867.516057838639,
+        "median": 1780.0,
+        "p90": 10167.89999999851
+      }
+    }
+  ],
+  "scene165_frames": 4782,
+  "cause": "Cooperative external-message handling remains outside world simulation slices; BB080 elapsed update bypasses FrameBridge checkpoints. Ready work overlaps repeated world updates after producer completion. Individual SP/DP enqueue delivery is not traced; not all idle is proven recoverable.",
+  "example": {
+    "origin_us": 35000000,
+    "frame6895_ready_us": 35005384,
+    "previous_producer_end_us": 35006870.3,
+    "common_player_chain_end_us": 35011110.8,
+    "next_submit_us": 35011694.6,
+    "next_parse_us": 35011768.5
+  },
+  "geometry_caution": "Selected parent durations include nested observer overhead. Vertex append estimated0.773ms/frame, triangle state0.639/bookkeeping0.515/bounds0.520; tiny phase clocks biased. No revival of ineffective082 batching.",
+  "fix": "086 checkpoints once at timeline entry and after each fully unwound simulation closure via timeline-only current predicate, same slice amounts and fixed now. Revalidates epoch after scheduling.",
+  "not_run": [
+    "game",
+    "tests",
+    "CPU checks",
+    "renderer",
+    "GPU"
+  ],
+  "fps_confirmed": false
+}

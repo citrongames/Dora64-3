@@ -1,0 +1,3622 @@
+{
+  "build": "test-071",
+  "session": "1791457405937",
+  "profile_sha256": "5019bf2a7834a82facf51a34d4fbf96fefea3bb4b50e95a2e32be9fa912002f3",
+  "samples": 75,
+  "scope_errors": 0,
+  "measured": "Active5x17.116s:10847908 preview calls,36701328 eligibility calls,14537837 enemy identity calls. Preview estimated self497.5ms/second, identity255.65ms/second; stages overlap and must not be added.",
+  "static_cause": "Full common slot exit traverses unrelated preview-site dispatch and four late site guards run live() before site matching. Definition(kind) also scans all218 enemy and additional scene records on every identity query.",
+  "change": "Route full existing pool-exit handlers directly; match four site families before eligibility; index immutable definition records without caching mutable owner/overlay decisions.",
+  "limitations": "Hashed sampled estimates; recursive preview inclusive can exceed wall time. Self excludes only actually sampled children. Instrumentation overhead and gameplay/FPS after072 need user verification.",
+  "groups": {
+    "1x/stopped": {
+      "samples": 4,
+      "interval_ms": 4034.59,
+      "output_frames": 242,
+      "common_alive_max": 128,
+      "stages": {
+        "native_update": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 8.061399999999999,
+          "self_ms": 0.7049000000000001,
+          "max_ms": 0.0792,
+          "estimated_inclusive_ms_per_second": 1.9980716751888046,
+          "estimated_self_ms_per_second": 0.17471415930738937
+        },
+        "native_frame": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 590.9574,
+          "self_ms": 2.7467,
+          "max_ms": 4.0777,
+          "estimated_inclusive_ms_per_second": 146.4727270924679,
+          "estimated_self_ms_per_second": 0.6807878867493351
+        },
+        "frame_commands": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 548.1125999999999,
+          "self_ms": 8.1654,
+          "max_ms": 3.8903,
+          "estimated_inclusive_ms_per_second": 135.8533580859517,
+          "estimated_self_ms_per_second": 2.023848767780617
+        },
+        "task_submit": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 21.7432,
+          "self_ms": 21.7413,
+          "max_ms": 3.3276,
+          "estimated_inclusive_ms_per_second": 5.389196919637436,
+          "estimated_self_ms_per_second": 5.388725991984315
+        },
+        "native_model_pose": {
+          "calls": 484,
+          "observed_calls": 484,
+          "inclusive_ms": 40.093999999999994,
+          "self_ms": 6.443099999999999,
+          "max_ms": 0.5176,
+          "estimated_inclusive_ms_per_second": 9.937564907462715,
+          "estimated_self_ms_per_second": 1.596965243060633
+        },
+        "trace_sample_1_in_64": {
+          "calls": 55165,
+          "observed_calls": 55165,
+          "inclusive_ms": 6.9948999999999995,
+          "self_ms": 6.9948999999999995,
+          "max_ms": 0.3145,
+          "estimated_inclusive_ms_per_second": 1.7337325477929602,
+          "estimated_self_ms_per_second": 1.7337325477929602
+        },
+        "rt64_parse": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 1970.663,
+          "self_ms": 1970.663,
+          "max_ms": 26.7971,
+          "estimated_inclusive_ms_per_second": 488.4419482524866,
+          "estimated_self_ms_per_second": 488.4419482524866
+        },
+        "rt64_screen": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 11.36,
+          "self_ms": 11.36,
+          "max_ms": 0.2469,
+          "estimated_inclusive_ms_per_second": 2.815651652336421,
+          "estimated_self_ms_per_second": 2.815651652336421
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 487.005,
+          "self_ms": 190.57819999999998,
+          "max_ms": 5.6343,
+          "estimated_inclusive_ms_per_second": 120.70743247764952,
+          "estimated_self_ms_per_second": 47.236076032508876
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 136.0498,
+          "self_ms": 136.0498,
+          "max_ms": 1.17965,
+          "estimated_inclusive_ms_per_second": 33.72084895863024,
+          "estimated_self_ms_per_second": 33.72084895863024
+        },
+        "rt64_gpu_wait": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 296.26849999999996,
+          "self_ms": 296.26849999999996,
+          "max_ms": 5.0046,
+          "estimated_inclusive_ms_per_second": 73.43212073593598,
+          "estimated_self_ms_per_second": 73.43212073593598
+        },
+        "rt64_upload_wait": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 0.15889999999999999,
+          "self_ms": 0.15889999999999999,
+          "max_ms": 0.0027,
+          "estimated_inclusive_ms_per_second": 0.03938442320037475,
+          "estimated_self_ms_per_second": 0.03938442320037475
+        },
+        "rt64_workload_total": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 492.41200000000003,
+          "self_ms": 5.4061,
+          "max_ms": 5.6559,
+          "estimated_inclusive_ms_per_second": 122.04759343576423,
+          "estimated_self_ms_per_second": 1.33993788712112
+        },
+        "present_swap": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 103.5061,
+          "self_ms": 103.5061,
+          "max_ms": 0.89,
+          "estimated_inclusive_ms_per_second": 25.65467618766715,
+          "estimated_self_ms_per_second": 25.65467618766715
+        },
+        "present_workload_wait": {
+          "calls": 242,
+          "observed_calls": 242,
+          "inclusive_ms": 402.3825,
+          "self_ms": 402.3825,
+          "max_ms": 5.4704,
+          "estimated_inclusive_ms_per_second": 99.73318230600879,
+          "estimated_self_ms_per_second": 99.73318230600879
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 102,
+          "observed_calls": 6532,
+          "inclusive_ms": 0.023899999999999998,
+          "self_ms": 0.023899999999999998,
+          "max_ms": 0.0011,
+          "estimated_inclusive_ms_per_second": 0.37935385129640453,
+          "estimated_self_ms_per_second": 0.37935385129640453
+        },
+        "world_source_update": {
+          "calls": 61,
+          "observed_calls": 61,
+          "inclusive_ms": 7.597999999999999,
+          "self_ms": 3.8607,
+          "max_ms": 0.4241,
+          "estimated_inclusive_ms_per_second": 1.8832148991595177,
+          "estimated_self_ms_per_second": 0.9569002054731708
+        },
+        "world_gameplay": {
+          "calls": 61,
+          "observed_calls": 61,
+          "inclusive_ms": 3.7317,
+          "self_ms": 1.0816,
+          "max_ms": 0.0966,
+          "estimated_inclusive_ms_per_second": 0.924926696392942,
+          "estimated_self_ms_per_second": 0.2680817629548479
+        },
+        "world_draw": {
+          "calls": 182,
+          "observed_calls": 182,
+          "inclusive_ms": 518.1220000000001,
+          "self_ms": 257.1397,
+          "max_ms": 3.8778,
+          "estimated_inclusive_ms_per_second": 128.41998815245168,
+          "estimated_self_ms_per_second": 63.73378707625806
+        },
+        "world_geometry": {
+          "calls": 364,
+          "observed_calls": 364,
+          "inclusive_ms": 49.768,
+          "self_ms": 46.148700000000005,
+          "max_ms": 0.5535,
+          "estimated_inclusive_ms_per_second": 12.335330231820333,
+          "estimated_self_ms_per_second": 11.438262623959313
+        },
+        "model_evaluate": {
+          "calls": 10556,
+          "observed_calls": 10556,
+          "inclusive_ms": 33.6509,
+          "self_ms": 33.1824,
+          "max_ms": 0.0555,
+          "estimated_inclusive_ms_per_second": 8.340599664402083,
+          "estimated_self_ms_per_second": 8.224478819409159
+        },
+        "texture_bind": {
+          "calls": 259364,
+          "observed_calls": 259364,
+          "inclusive_ms": 15.1202,
+          "self_ms": 15.1202,
+          "max_ms": 0.0367,
+          "estimated_inclusive_ms_per_second": 3.7476422635261577,
+          "estimated_self_ms_per_second": 3.7476422635261577
+        },
+        "object_timeline": {
+          "calls": 243,
+          "observed_calls": 243,
+          "inclusive_ms": 9.9624,
+          "self_ms": 3.6031000000000004,
+          "max_ms": 0.0728,
+          "estimated_inclusive_ms_per_second": 2.4692471849679896,
+          "estimated_self_ms_per_second": 0.8930523299765281
+        },
+        "model_draw_commands": {
+          "calls": 46678,
+          "observed_calls": 46678,
+          "inclusive_ms": 195.989,
+          "self_ms": 194.6189,
+          "max_ms": 0.1308,
+          "estimated_inclusive_ms_per_second": 48.57717884592982,
+          "estimated_self_ms_per_second": 48.237590436698646
+        },
+        "model_rate_plan": {
+          "calls": 486,
+          "observed_calls": 486,
+          "inclusive_ms": 2.4632,
+          "self_ms": 2.4632,
+          "max_ms": 0.0176,
+          "estimated_inclusive_ms_per_second": 0.6105205237706929,
+          "estimated_self_ms_per_second": 0.6105205237706929
+        },
+        "model_clip_boundaries": {
+          "calls": 486,
+          "observed_calls": 486,
+          "inclusive_ms": 3.8841,
+          "self_ms": 3.8841,
+          "max_ms": 0.0218,
+          "estimated_inclusive_ms_per_second": 0.9627000513063285,
+          "estimated_self_ms_per_second": 0.9627000513063285
+        },
+        "preview_hook_sample_1_in_16": {
+          "calls": 4,
+          "observed_calls": 61,
+          "inclusive_ms": 0.21780000000000002,
+          "self_ms": 0.0323,
+          "max_ms": 0.0672,
+          "estimated_inclusive_ms_per_second": 0.8232435018180286,
+          "estimated_self_ms_per_second": 0.1220879940712687
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 114,
+          "observed_calls": 3706,
+          "inclusive_ms": 0.032,
+          "self_ms": 0.032,
+          "max_ms": 0.0017,
+          "estimated_inclusive_ms_per_second": 0.2578404997172912,
+          "estimated_self_ms_per_second": 0.2578404997172912
+        }
+      },
+      "output_fps": 59.981311607870936
+    },
+    "1x/active": {
+      "samples": 10,
+      "interval_ms": 10072.76,
+      "output_frames": 582,
+      "common_alive_max": 4,
+      "stages": {
+        "native_update": {
+          "calls": 582,
+          "observed_calls": 582,
+          "inclusive_ms": 984.2794999999999,
+          "self_ms": 2.2365999999999997,
+          "max_ms": 4.2283,
+          "estimated_inclusive_ms_per_second": 97.7169613889341,
+          "estimated_self_ms_per_second": 0.2220444049098757
+        },
+        "native_frame": {
+          "calls": 582,
+          "observed_calls": 582,
+          "inclusive_ms": 286.9587,
+          "self_ms": 5.0257,
+          "max_ms": 1.2097,
+          "estimated_inclusive_ms_per_second": 28.488587040691925,
+          "estimated_self_ms_per_second": 0.4989397146363062
+        },
+        "world_source_update": {
+          "calls": 196,
+          "observed_calls": 196,
+          "inclusive_ms": 698.6720999999999,
+          "self_ms": 14.8136,
+          "max_ms": 20.1894,
+          "estimated_inclusive_ms_per_second": 69.36252824449305,
+          "estimated_self_ms_per_second": 1.4706594816117924
+        },
+        "world_gameplay": {
+          "calls": 196,
+          "observed_calls": 196,
+          "inclusive_ms": 683.7417,
+          "self_ms": 7.035799999999999,
+          "max_ms": 20.1551,
+          "estimated_inclusive_ms_per_second": 67.88027313268657,
+          "estimated_self_ms_per_second": 0.6984977305127889
+        },
+        "actor_manager": {
+          "calls": 196,
+          "observed_calls": 196,
+          "inclusive_ms": 32.5592,
+          "self_ms": 32.454299999999996,
+          "max_ms": 16.7029,
+          "estimated_inclusive_ms_per_second": 3.232401049960487,
+          "estimated_self_ms_per_second": 3.221986823869525
+        },
+        "common_actors": {
+          "calls": 2174,
+          "observed_calls": 2174,
+          "inclusive_ms": 973.5424,
+          "self_ms": 854.6000000000001,
+          "max_ms": 1.4902,
+          "estimated_inclusive_ms_per_second": 96.65100727109551,
+          "estimated_self_ms_per_second": 84.84268462665646
+        },
+        "contacts": {
+          "calls": 196,
+          "observed_calls": 196,
+          "inclusive_ms": 91.5997,
+          "self_ms": 90.13900000000001,
+          "max_ms": 0.7894,
+          "estimated_inclusive_ms_per_second": 9.09380348583705,
+          "estimated_self_ms_per_second": 8.948788614044215
+        },
+        "player": {
+          "calls": 2174,
+          "observed_calls": 2174,
+          "inclusive_ms": 215.30710000000002,
+          "self_ms": 155.6292,
+          "max_ms": 2.9471,
+          "estimated_inclusive_ms_per_second": 21.375184160051468,
+          "estimated_self_ms_per_second": 15.450502146382917
+        },
+        "projectiles": {
+          "calls": 2174,
+          "observed_calls": 2174,
+          "inclusive_ms": 2.2314999999999996,
+          "self_ms": 2.1699,
+          "max_ms": 0.0041,
+          "estimated_inclusive_ms_per_second": 0.22153808886541518,
+          "estimated_self_ms_per_second": 0.21542258526957855
+        },
+        "world_draw": {
+          "calls": 583,
+          "observed_calls": 583,
+          "inclusive_ms": 260.49080000000004,
+          "self_ms": 66.01660000000001,
+          "max_ms": 1.1559,
+          "estimated_inclusive_ms_per_second": 25.86091597536326,
+          "estimated_self_ms_per_second": 6.553973290339491
+        },
+        "world_geometry": {
+          "calls": 1166,
+          "observed_calls": 1166,
+          "inclusive_ms": 128.4177,
+          "self_ms": 118.69460000000001,
+          "max_ms": 0.7413,
+          "estimated_inclusive_ms_per_second": 12.749008216218792,
+          "estimated_self_ms_per_second": 11.783721641337628
+        },
+        "model_advance": {
+          "calls": 10503,
+          "observed_calls": 10503,
+          "inclusive_ms": 5.8004999999999995,
+          "self_ms": 5.6129,
+          "max_ms": 0.0271,
+          "estimated_inclusive_ms_per_second": 0.5758600423319924,
+          "estimated_self_ms_per_second": 0.5572355541083079
+        },
+        "model_evaluate": {
+          "calls": 11667,
+          "observed_calls": 11667,
+          "inclusive_ms": 70.2804,
+          "self_ms": 69.2635,
+          "max_ms": 0.1306,
+          "estimated_inclusive_ms_per_second": 6.977273359039628,
+          "estimated_self_ms_per_second": 6.8763179108804335
+        },
+        "frame_commands": {
+          "calls": 583,
+          "observed_calls": 583,
+          "inclusive_ms": 267.6777,
+          "self_ms": 3.2575000000000003,
+          "max_ms": 1.1668,
+          "estimated_inclusive_ms_per_second": 26.574414559663886,
+          "estimated_self_ms_per_second": 0.32339696369217574
+        },
+        "task_submit": {
+          "calls": 583,
+          "observed_calls": 583,
+          "inclusive_ms": 3.9186,
+          "self_ms": 3.9156,
+          "max_ms": 0.6554,
+          "estimated_inclusive_ms_per_second": 0.38902942192606593,
+          "estimated_self_ms_per_second": 0.3887315889587362
+        },
+        "native_model_pose": {
+          "calls": 1164,
+          "observed_calls": 1164,
+          "inclusive_ms": 14.877400000000002,
+          "self_ms": 1.5436999999999999,
+          "max_ms": 0.1112,
+          "estimated_inclusive_ms_per_second": 1.4769933960503379,
+          "estimated_self_ms_per_second": 0.1532549172222906
+        },
+        "texture_bind": {
+          "calls": 123616,
+          "observed_calls": 123616,
+          "inclusive_ms": 13.3769,
+          "self_ms": 13.3769,
+          "max_ms": 0.0393,
+          "estimated_inclusive_ms_per_second": 1.3280272735575949,
+          "estimated_self_ms_per_second": 1.3280272735575949
+        },
+        "trace_sample_1_in_64": {
+          "calls": 98053,
+          "observed_calls": 98053,
+          "inclusive_ms": 13.9815,
+          "self_ms": 13.9815,
+          "max_ms": 0.1342,
+          "estimated_inclusive_ms_per_second": 1.388050544240109,
+          "estimated_self_ms_per_second": 1.388050544240109
+        },
+        "rt64_parse": {
+          "calls": 583,
+          "observed_calls": 583,
+          "inclusive_ms": 3072.079,
+          "self_ms": 3072.079,
+          "max_ms": 17.7316,
+          "estimated_inclusive_ms_per_second": 304.98880148042844,
+          "estimated_self_ms_per_second": 304.98880148042844
+        },
+        "rt64_screen": {
+          "calls": 602,
+          "observed_calls": 602,
+          "inclusive_ms": 30.9012,
+          "self_ms": 30.9012,
+          "max_ms": 0.5619,
+          "estimated_inclusive_ms_per_second": 3.0677986966829347,
+          "estimated_self_ms_per_second": 3.0677986966829347
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 583,
+          "observed_calls": 583,
+          "inclusive_ms": 1094.0753,
+          "self_ms": 358.0168,
+          "max_ms": 9.3286,
+          "estimated_inclusive_ms_per_second": 108.6172310270472,
+          "estimated_self_ms_per_second": 35.54306863262899
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 583,
+          "observed_calls": 583,
+          "inclusive_ms": 264.3688,
+          "self_ms": 264.3688,
+          "max_ms": 3.95776,
+          "estimated_inclusive_ms_per_second": 26.245914724464797,
+          "estimated_self_ms_per_second": 26.245914724464797
+        },
+        "rt64_gpu_wait": {
+          "calls": 583,
+          "observed_calls": 583,
+          "inclusive_ms": 734.8109,
+          "self_ms": 734.8109,
+          "max_ms": 7.8487,
+          "estimated_inclusive_ms_per_second": 72.95030359107136,
+          "estimated_self_ms_per_second": 72.95030359107136
+        },
+        "rt64_upload_wait": {
+          "calls": 584,
+          "observed_calls": 584,
+          "inclusive_ms": 1.2492999999999999,
+          "self_ms": 1.2492999999999999,
+          "max_ms": 0.4988,
+          "estimated_inclusive_ms_per_second": 0.12402757536166849,
+          "estimated_self_ms_per_second": 0.12402757536166849
+        },
+        "rt64_workload_total": {
+          "calls": 583,
+          "observed_calls": 583,
+          "inclusive_ms": 1111.7593,
+          "self_ms": 17.683,
+          "max_ms": 10.8088,
+          "estimated_inclusive_ms_per_second": 110.37285709180006,
+          "estimated_self_ms_per_second": 1.7555267870970817
+        },
+        "present_swap": {
+          "calls": 582,
+          "observed_calls": 582,
+          "inclusive_ms": 252.8345,
+          "self_ms": 252.8345,
+          "max_ms": 1.0773,
+          "estimated_inclusive_ms_per_second": 25.100816459441106,
+          "estimated_self_ms_per_second": 25.100816459441106
+        },
+        "present_workload_wait": {
+          "calls": 582,
+          "observed_calls": 582,
+          "inclusive_ms": 918.0189,
+          "self_ms": 918.0189,
+          "max_ms": 8.0942,
+          "estimated_inclusive_ms_per_second": 91.13876435058515,
+          "estimated_self_ms_per_second": 91.13876435058515
+        },
+        "enemy_callback": {
+          "calls": 7162,
+          "observed_calls": 7162,
+          "inclusive_ms": 34.9453,
+          "self_ms": 34.3636,
+          "max_ms": 0.8559,
+          "estimated_inclusive_ms_per_second": 3.4692874644089606,
+          "estimated_self_ms_per_second": 3.4115376520437297
+        },
+        "object_timeline": {
+          "calls": 776,
+          "observed_calls": 776,
+          "inclusive_ms": 1506.1511,
+          "self_ms": 263.2271,
+          "max_ms": 4.7606,
+          "estimated_inclusive_ms_per_second": 149.52715045330177,
+          "estimated_self_ms_per_second": 26.132569424864684
+        },
+        "model_draw_commands": {
+          "calls": 6939,
+          "observed_calls": 6939,
+          "inclusive_ms": 61.1737,
+          "self_ms": 60.8645,
+          "max_ms": 0.191,
+          "estimated_inclusive_ms_per_second": 6.07318153117914,
+          "estimated_self_ms_per_second": 6.042484880013025
+        },
+        "model_rate_plan": {
+          "calls": 1978,
+          "observed_calls": 1978,
+          "inclusive_ms": 22.229300000000002,
+          "self_ms": 21.2665,
+          "max_ms": 0.3565,
+          "estimated_inclusive_ms_per_second": 2.2068727935541004,
+          "estimated_self_ms_per_second": 2.111288266572419
+        },
+        "model_clip_boundaries": {
+          "calls": 1978,
+          "observed_calls": 1978,
+          "inclusive_ms": 1.7755999999999998,
+          "self_ms": 1.7755999999999998,
+          "max_ms": 0.0042,
+          "estimated_inclusive_ms_per_second": 0.1762774055968771,
+          "estimated_self_ms_per_second": 0.1762774055968771
+        },
+        "object_clock_registration": {
+          "calls": 1978,
+          "observed_calls": 1978,
+          "inclusive_ms": 36.6134,
+          "self_ms": 35.2354,
+          "max_ms": 0.1003,
+          "estimated_inclusive_ms_per_second": 3.634892522009856,
+          "estimated_self_ms_per_second": 3.498087912349743
+        },
+        "preview_hook_sample_1_in_16": {
+          "calls": 81746,
+          "observed_calls": 1307937,
+          "inclusive_ms": 89.797,
+          "self_ms": 55.6857,
+          "max_ms": 3.9505,
+          "estimated_inclusive_ms_per_second": 142.63747954761152,
+          "estimated_self_ms_per_second": 88.45359972877078
+        },
+        "enemy_axis_sample_1_in_16": {
+          "calls": 1225,
+          "observed_calls": 19617,
+          "inclusive_ms": 0.9666000000000001,
+          "self_ms": 0.9226,
+          "max_ms": 0.0057,
+          "estimated_inclusive_ms_per_second": 1.5367202277048522,
+          "estimated_self_ms_per_second": 1.4667681378858848
+        },
+        "common_ownership_sample_1_in_16": {
+          "calls": 1707,
+          "observed_calls": 27316,
+          "inclusive_ms": 2.2906,
+          "self_ms": 2.1344000000000003,
+          "max_ms": 0.0124,
+          "estimated_inclusive_ms_per_second": 3.6390192504736825,
+          "estimated_self_ms_per_second": 3.3908681953248183
+        },
+        "enemy_identity_sample_1_in_16": {
+          "calls": 6362,
+          "observed_calls": 101800,
+          "inclusive_ms": 3.782,
+          "self_ms": 3.7534999999999994,
+          "max_ms": 0.0116,
+          "estimated_inclusive_ms_per_second": 6.007961644791453,
+          "estimated_self_ms_per_second": 5.962687475865869
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 3111,
+          "observed_calls": 199069,
+          "inclusive_ms": 0.48019999999999996,
+          "self_ms": 0.48019999999999996,
+          "max_ms": 0.0012,
+          "estimated_inclusive_ms_per_second": 3.0505439975791746,
+          "estimated_self_ms_per_second": 3.0505439975791746
+        },
+        "enemy_pool_finalize": {
+          "calls": 1978,
+          "observed_calls": 1978,
+          "inclusive_ms": 15.436099999999998,
+          "self_ms": 15.1625,
+          "max_ms": 0.0692,
+          "estimated_inclusive_ms_per_second": 1.532459822332707,
+          "estimated_self_ms_per_second": 1.5052974557122376
+        },
+        "native_model_clock_sample_1_in_16": {
+          "calls": 655,
+          "observed_calls": 10495,
+          "inclusive_ms": 0.16319999999999998,
+          "self_ms": 0.16319999999999998,
+          "max_ms": 0.0028,
+          "estimated_inclusive_ms_per_second": 0.2596048555291849,
+          "estimated_self_ms_per_second": 0.2596048555291849
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 183934,
+          "observed_calls": 5885944,
+          "inclusive_ms": 19.368700000000004,
+          "self_ms": 19.368700000000004,
+          "max_ms": 0.0488,
+          "estimated_inclusive_ms_per_second": 61.53271764014479,
+          "estimated_self_ms_per_second": 61.53271764014479
+        }
+      },
+      "output_fps": 57.779595661963555
+    },
+    "1.9x/active": {
+      "samples": 1,
+      "interval_ms": 1001.37,
+      "output_frames": 58,
+      "common_alive_max": 8,
+      "stages": {
+        "native_update": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 109.85,
+          "self_ms": 0.2204,
+          "max_ms": 3.5673,
+          "estimated_inclusive_ms_per_second": 109.6997113953883,
+          "estimated_self_ms_per_second": 0.22009846510280917
+        },
+        "native_frame": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 33.2293,
+          "self_ms": 0.4809,
+          "max_ms": 1.8439,
+          "estimated_inclusive_ms_per_second": 33.18383814174581,
+          "estimated_self_ms_per_second": 0.4802420683663381
+        },
+        "world_source_update": {
+          "calls": 20,
+          "observed_calls": 20,
+          "inclusive_ms": 117.001,
+          "self_ms": 0.7845,
+          "max_ms": 19.2186,
+          "estimated_inclusive_ms_per_second": 116.84092792873763,
+          "estimated_self_ms_per_second": 0.7834267054135834
+        },
+        "world_gameplay": {
+          "calls": 20,
+          "observed_calls": 20,
+          "inclusive_ms": 116.128,
+          "self_ms": 0.6327,
+          "max_ms": 19.1884,
+          "estimated_inclusive_ms_per_second": 115.96912230244565,
+          "estimated_self_ms_per_second": 0.6318343868899607
+        },
+        "actor_manager": {
+          "calls": 20,
+          "observed_calls": 20,
+          "inclusive_ms": 30.5799,
+          "self_ms": 19.7824,
+          "max_ms": 15.3112,
+          "estimated_inclusive_ms_per_second": 30.538062853890168,
+          "estimated_self_ms_per_second": 19.755335190788617
+        },
+        "common_actors": {
+          "calls": 251,
+          "observed_calls": 251,
+          "inclusive_ms": 122.121,
+          "self_ms": 104.281,
+          "max_ms": 1.7173,
+          "estimated_inclusive_ms_per_second": 121.95392312531831,
+          "estimated_self_ms_per_second": 104.1383304872325
+        },
+        "contacts": {
+          "calls": 20,
+          "observed_calls": 20,
+          "inclusive_ms": 15.5116,
+          "self_ms": 15.2637,
+          "max_ms": 0.9686,
+          "estimated_inclusive_ms_per_second": 15.49037818189081,
+          "estimated_self_ms_per_second": 15.242817340243866
+        },
+        "player": {
+          "calls": 251,
+          "observed_calls": 251,
+          "inclusive_ms": 21.2862,
+          "self_ms": 16.8378,
+          "max_ms": 0.3515,
+          "estimated_inclusive_ms_per_second": 21.25707780340933,
+          "estimated_self_ms_per_second": 16.81476377363013
+        },
+        "projectiles": {
+          "calls": 251,
+          "observed_calls": 251,
+          "inclusive_ms": 0.2618,
+          "self_ms": 0.2565,
+          "max_ms": 0.0079,
+          "estimated_inclusive_ms_per_second": 0.26144182470016075,
+          "estimated_self_ms_per_second": 0.25614907576620033
+        },
+        "world_draw": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 30.9916,
+          "self_ms": 8.7774,
+          "max_ms": 1.543,
+          "estimated_inclusive_ms_per_second": 30.94919959655272,
+          "estimated_self_ms_per_second": 8.765391413763144
+        },
+        "world_geometry": {
+          "calls": 116,
+          "observed_calls": 116,
+          "inclusive_ms": 12.1467,
+          "self_ms": 11.2206,
+          "max_ms": 0.4195,
+          "estimated_inclusive_ms_per_second": 12.130081787950507,
+          "estimated_self_ms_per_second": 11.20524880913149
+        },
+        "model_advance": {
+          "calls": 2019,
+          "observed_calls": 2019,
+          "inclusive_ms": 0.8974,
+          "self_ms": 0.8665,
+          "max_ms": 0.0044,
+          "estimated_inclusive_ms_per_second": 0.8961722440256847,
+          "estimated_self_ms_per_second": 0.865314519108821
+        },
+        "model_evaluate": {
+          "calls": 2135,
+          "observed_calls": 2135,
+          "inclusive_ms": 5.162,
+          "self_ms": 5.0954,
+          "max_ms": 0.1774,
+          "estimated_inclusive_ms_per_second": 5.154937735302635,
+          "estimated_self_ms_per_second": 5.088428852472113
+        },
+        "frame_commands": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 31.8268,
+          "self_ms": 0.3086,
+          "max_ms": 1.8175,
+          "estimated_inclusive_ms_per_second": 31.783256937994945,
+          "estimated_self_ms_per_second": 0.3081777964189061
+        },
+        "task_submit": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 0.5256,
+          "self_ms": 0.5247,
+          "max_ms": 0.2701,
+          "estimated_inclusive_ms_per_second": 0.5248809131489859,
+          "estimated_self_ms_per_second": 0.523982144462087
+        },
+        "native_model_pose": {
+          "calls": 116,
+          "observed_calls": 116,
+          "inclusive_ms": 0.9207,
+          "self_ms": 0.1541,
+          "max_ms": 0.0636,
+          "estimated_inclusive_ms_per_second": 0.9194403666976242,
+          "estimated_self_ms_per_second": 0.1538891718345866
+        },
+        "texture_bind": {
+          "calls": 14644,
+          "observed_calls": 14644,
+          "inclusive_ms": 2.5264,
+          "self_ms": 2.5264,
+          "max_ms": 1.0275,
+          "estimated_inclusive_ms_per_second": 2.522943567312782,
+          "estimated_self_ms_per_second": 2.522943567312782
+        },
+        "trace_sample_1_in_64": {
+          "calls": 9912,
+          "observed_calls": 9912,
+          "inclusive_ms": 1.6199,
+          "self_ms": 1.6199,
+          "max_ms": 0.0997,
+          "estimated_inclusive_ms_per_second": 1.617683773230674,
+          "estimated_self_ms_per_second": 1.617683773230674
+        },
+        "distance_admission": {
+          "calls": 1082,
+          "observed_calls": 1082,
+          "inclusive_ms": 10.7189,
+          "self_ms": 10.7189,
+          "max_ms": 0.0375,
+          "estimated_inclusive_ms_per_second": 10.704235197779042,
+          "estimated_self_ms_per_second": 10.704235197779042
+        },
+        "rt64_parse": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 274.533,
+          "self_ms": 274.533,
+          "max_ms": 19.4003,
+          "estimated_inclusive_ms_per_second": 274.15740435603226,
+          "estimated_self_ms_per_second": 274.15740435603226
+        },
+        "rt64_screen": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 2.9367,
+          "self_ms": 2.9367,
+          "max_ms": 0.0938,
+          "estimated_inclusive_ms_per_second": 2.932682225351269,
+          "estimated_self_ms_per_second": 2.932682225351269
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 78.0302,
+          "self_ms": 35.3592,
+          "max_ms": 1.8705,
+          "estimated_inclusive_ms_per_second": 77.92344488051369,
+          "estimated_self_ms_per_second": 35.31082417088589
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 13.4351,
+          "self_ms": 13.4351,
+          "max_ms": 0.242688,
+          "estimated_inclusive_ms_per_second": 13.416719094840069,
+          "estimated_self_ms_per_second": 13.416719094840069
+        },
+        "rt64_gpu_wait": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 42.6268,
+          "self_ms": 42.6268,
+          "max_ms": 1.3411,
+          "estimated_inclusive_ms_per_second": 42.56848118078233,
+          "estimated_self_ms_per_second": 42.56848118078233
+        },
+        "rt64_upload_wait": {
+          "calls": 57,
+          "observed_calls": 57,
+          "inclusive_ms": 0.0429,
+          "self_ms": 0.0429,
+          "max_ms": 0.0018,
+          "estimated_inclusive_ms_per_second": 0.04284130740884988,
+          "estimated_self_ms_per_second": 0.04284130740884988
+        },
+        "rt64_workload_total": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 79.3882,
+          "self_ms": 1.358,
+          "max_ms": 1.8943,
+          "estimated_inclusive_ms_per_second": 79.27958696585678,
+          "estimated_self_ms_per_second": 1.3561420853430801
+        },
+        "present_swap": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 24.6346,
+          "self_ms": 24.6346,
+          "max_ms": 0.6674,
+          "estimated_inclusive_ms_per_second": 24.600896771423148,
+          "estimated_self_ms_per_second": 24.600896771423148
+        },
+        "present_workload_wait": {
+          "calls": 58,
+          "observed_calls": 58,
+          "inclusive_ms": 61.0544,
+          "self_ms": 61.0544,
+          "max_ms": 1.4919,
+          "estimated_inclusive_ms_per_second": 60.97086990822573,
+          "estimated_self_ms_per_second": 60.97086990822573
+        },
+        "enemy_callback": {
+          "calls": 1522,
+          "observed_calls": 1522,
+          "inclusive_ms": 7.2002,
+          "self_ms": 7.0846,
+          "max_ms": 0.5605,
+          "estimated_inclusive_ms_per_second": 7.1903492215664535,
+          "estimated_self_ms_per_second": 7.0749073768936555
+        },
+        "object_timeline": {
+          "calls": 78,
+          "observed_calls": 78,
+          "inclusive_ms": 176.302,
+          "self_ms": 24.2205,
+          "max_ms": 4.9031,
+          "estimated_inclusive_ms_per_second": 176.06079670850934,
+          "estimated_self_ms_per_second": 24.187363312262203
+        },
+        "model_draw_commands": {
+          "calls": 1126,
+          "observed_calls": 1126,
+          "inclusive_ms": 8.3202,
+          "self_ms": 8.273,
+          "max_ms": 0.0993,
+          "estimated_inclusive_ms_per_second": 8.308816920818478,
+          "estimated_self_ms_per_second": 8.26168149635
+        },
+        "model_rate_plan": {
+          "calls": 231,
+          "observed_calls": 231,
+          "inclusive_ms": 3.2396,
+          "self_ms": 3.0709,
+          "max_ms": 0.0581,
+          "estimated_inclusive_ms_per_second": 3.2351678200864815,
+          "estimated_self_ms_per_second": 3.066698622886645
+        },
+        "model_clip_boundaries": {
+          "calls": 231,
+          "observed_calls": 231,
+          "inclusive_ms": 0.2089,
+          "self_ms": 0.2089,
+          "max_ms": 0.0036,
+          "estimated_inclusive_ms_per_second": 0.20861419854798927,
+          "estimated_self_ms_per_second": 0.20861419854798927
+        },
+        "object_clock_registration": {
+          "calls": 231,
+          "observed_calls": 231,
+          "inclusive_ms": 4.8409,
+          "self_ms": 4.6065,
+          "max_ms": 0.0708,
+          "estimated_inclusive_ms_per_second": 4.834277040454578,
+          "estimated_self_ms_per_second": 4.600197729111118
+        },
+        "preview_hook_sample_1_in_16": {
+          "calls": 9722,
+          "observed_calls": 155544,
+          "inclusive_ms": 14.4614,
+          "self_ms": 6.6186,
+          "max_ms": 4.9137,
+          "estimated_inclusive_ms_per_second": 231.05395614180145,
+          "estimated_self_ms_per_second": 105.74727993971034
+        },
+        "enemy_axis_sample_1_in_16": {
+          "calls": 292,
+          "observed_calls": 4671,
+          "inclusive_ms": 0.1988,
+          "self_ms": 0.1899,
+          "max_ms": 0.0043,
+          "estimated_inclusive_ms_per_second": 3.175768375407883,
+          "estimated_self_ms_per_second": 3.033593634255317
+        },
+        "common_ownership_sample_1_in_16": {
+          "calls": 398,
+          "observed_calls": 6365,
+          "inclusive_ms": 0.3921,
+          "self_ms": 0.3669,
+          "max_ms": 0.0078,
+          "estimated_inclusive_ms_per_second": 6.262065442705302,
+          "estimated_self_ms_per_second": 5.85960676084819
+        },
+        "enemy_identity_sample_1_in_16": {
+          "calls": 1390,
+          "observed_calls": 22246,
+          "inclusive_ms": 0.7127,
+          "self_ms": 0.7088,
+          "max_ms": 0.0153,
+          "estimated_inclusive_ms_per_second": 11.390671183356497,
+          "estimated_self_ms_per_second": 11.328339742897553
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 560,
+          "observed_calls": 35825,
+          "inclusive_ms": 0.0833,
+          "self_ms": 0.0833,
+          "max_ms": 0.0005,
+          "estimated_inclusive_ms_per_second": 5.321678051070034,
+          "estimated_self_ms_per_second": 5.321678051070034
+        },
+        "enemy_pool_finalize": {
+          "calls": 231,
+          "observed_calls": 231,
+          "inclusive_ms": 2.4776,
+          "self_ms": 2.4285,
+          "max_ms": 0.0746,
+          "estimated_inclusive_ms_per_second": 2.474210331845372,
+          "estimated_self_ms_per_second": 2.4251775068156625
+        },
+        "native_model_clock_sample_1_in_16": {
+          "calls": 126,
+          "observed_calls": 2019,
+          "inclusive_ms": 0.0231,
+          "self_ms": 0.0231,
+          "max_ms": 0.0027,
+          "estimated_inclusive_ms_per_second": 0.3696435882840508,
+          "estimated_self_ms_per_second": 0.3696435882840508
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 21721,
+          "observed_calls": 695124,
+          "inclusive_ms": 2.2011,
+          "self_ms": 2.2011,
+          "max_ms": 0.0084,
+          "estimated_inclusive_ms_per_second": 70.34409801162526,
+          "estimated_self_ms_per_second": 70.34409801162526
+        }
+      },
+      "output_fps": 57.920648711265564
+    },
+    "2x/active": {
+      "samples": 7,
+      "interval_ms": 7051.049999999999,
+      "output_frames": 423,
+      "common_alive_max": 12,
+      "stages": {
+        "native_update": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 992.201,
+          "self_ms": 1.8205,
+          "max_ms": 5.6515,
+          "estimated_inclusive_ms_per_second": 140.71677267924636,
+          "estimated_self_ms_per_second": 0.2581884967487112
+        },
+        "native_frame": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 285.8755,
+          "self_ms": 4.1452,
+          "max_ms": 1.4966,
+          "estimated_inclusive_ms_per_second": 40.54367789194517,
+          "estimated_self_ms_per_second": 0.5878840740031627
+        },
+        "world_source_update": {
+          "calls": 141,
+          "observed_calls": 141,
+          "inclusive_ms": 925.9870000000001,
+          "self_ms": 9.6715,
+          "max_ms": 10.3735,
+          "estimated_inclusive_ms_per_second": 131.32611455031522,
+          "estimated_self_ms_per_second": 1.3716396848696295
+        },
+        "world_gameplay": {
+          "calls": 141,
+          "observed_calls": 141,
+          "inclusive_ms": 916.219,
+          "self_ms": 4.695799999999999,
+          "max_ms": 10.1796,
+          "estimated_inclusive_ms_per_second": 129.94078896050945,
+          "estimated_self_ms_per_second": 0.6659717347061784
+        },
+        "actor_manager": {
+          "calls": 141,
+          "observed_calls": 141,
+          "inclusive_ms": 110.6462,
+          "self_ms": 5.717,
+          "max_ms": 3.1366,
+          "estimated_inclusive_ms_per_second": 15.692159323788657,
+          "estimated_self_ms_per_second": 0.8108012281858731
+        },
+        "common_actors": {
+          "calls": 2118,
+          "observed_calls": 2118,
+          "inclusive_ms": 1071.1870000000001,
+          "self_ms": 896.6519999999999,
+          "max_ms": 3.7901,
+          "estimated_inclusive_ms_per_second": 151.91879223661726,
+          "estimated_self_ms_per_second": 127.16574127257643
+        },
+        "contacts": {
+          "calls": 141,
+          "observed_calls": 141,
+          "inclusive_ms": 168.65720000000002,
+          "self_ms": 165.9381,
+          "max_ms": 1.4937,
+          "estimated_inclusive_ms_per_second": 23.91944462172301,
+          "estimated_self_ms_per_second": 23.533814112791713
+        },
+        "player": {
+          "calls": 2118,
+          "observed_calls": 2118,
+          "inclusive_ms": 197.33509999999998,
+          "self_ms": 141.084,
+          "max_ms": 0.3572,
+          "estimated_inclusive_ms_per_second": 27.98662610533183,
+          "estimated_self_ms_per_second": 20.008934839491992
+        },
+        "projectiles": {
+          "calls": 2118,
+          "observed_calls": 2118,
+          "inclusive_ms": 2.1643999999999997,
+          "self_ms": 2.1028000000000002,
+          "max_ms": 0.0255,
+          "estimated_inclusive_ms_per_second": 0.30696137454705325,
+          "estimated_self_ms_per_second": 0.29822508704377365
+        },
+        "world_draw": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 263.731,
+          "self_ms": 93.36330000000001,
+          "max_ms": 1.4287,
+          "estimated_inclusive_ms_per_second": 37.40308181051049,
+          "estimated_self_ms_per_second": 13.24104920543749
+        },
+        "world_geometry": {
+          "calls": 846,
+          "observed_calls": 846,
+          "inclusive_ms": 88.91369999999999,
+          "self_ms": 81.8492,
+          "max_ms": 0.5688,
+          "estimated_inclusive_ms_per_second": 12.609994256174613,
+          "estimated_self_ms_per_second": 11.608086738854498
+        },
+        "model_advance": {
+          "calls": 27207,
+          "observed_calls": 27207,
+          "inclusive_ms": 10.479000000000001,
+          "self_ms": 10.1992,
+          "max_ms": 0.0367,
+          "estimated_inclusive_ms_per_second": 1.4861616355010958,
+          "estimated_self_ms_per_second": 1.4464796023287312
+        },
+        "model_evaluate": {
+          "calls": 28053,
+          "observed_calls": 28053,
+          "inclusive_ms": 68.042,
+          "self_ms": 66.9565,
+          "max_ms": 0.1443,
+          "estimated_inclusive_ms_per_second": 9.649910297047958,
+          "estimated_self_ms_per_second": 9.49596159437247
+        },
+        "frame_commands": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 270.4311,
+          "self_ms": 2.6341,
+          "max_ms": 1.4425,
+          "estimated_inclusive_ms_per_second": 38.35330908162614,
+          "estimated_self_ms_per_second": 0.37357556675956066
+        },
+        "task_submit": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 4.0545,
+          "self_ms": 4.0511,
+          "max_ms": 0.3883,
+          "estimated_inclusive_ms_per_second": 0.5750207415916779,
+          "estimated_self_ms_per_second": 0.5745385439048085
+        },
+        "native_model_pose": {
+          "calls": 846,
+          "observed_calls": 846,
+          "inclusive_ms": 11.295,
+          "self_ms": 1.6131,
+          "max_ms": 0.1452,
+          "estimated_inclusive_ms_per_second": 1.6018890803497352,
+          "estimated_self_ms_per_second": 0.228774437849682
+        },
+        "texture_bind": {
+          "calls": 131832,
+          "observed_calls": 131832,
+          "inclusive_ms": 12.020999999999999,
+          "self_ms": 12.020999999999999,
+          "max_ms": 0.2347,
+          "estimated_inclusive_ms_per_second": 1.7048524687812454,
+          "estimated_self_ms_per_second": 1.7048524687812454
+        },
+        "trace_sample_1_in_64": {
+          "calls": 96263,
+          "observed_calls": 96263,
+          "inclusive_ms": 13.014399999999998,
+          "self_ms": 13.014399999999998,
+          "max_ms": 0.2317,
+          "estimated_inclusive_ms_per_second": 1.8457392870565377,
+          "estimated_self_ms_per_second": 1.8457392870565377
+        },
+        "distance_admission": {
+          "calls": 10346,
+          "observed_calls": 10346,
+          "inclusive_ms": 104.8697,
+          "self_ms": 104.8697,
+          "max_ms": 0.1904,
+          "estimated_inclusive_ms_per_second": 14.87291963608257,
+          "estimated_self_ms_per_second": 14.87291963608257
+        },
+        "rt64_parse": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 2205.5029999999997,
+          "self_ms": 2205.5029999999997,
+          "max_ms": 15.3393,
+          "estimated_inclusive_ms_per_second": 312.7907191127562,
+          "estimated_self_ms_per_second": 312.7907191127562
+        },
+        "rt64_screen": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 19.9833,
+          "self_ms": 19.9833,
+          "max_ms": 0.1116,
+          "estimated_inclusive_ms_per_second": 2.8340885400046805,
+          "estimated_self_ms_per_second": 2.8340885400046805
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 716.228,
+          "self_ms": 263.3796,
+          "max_ms": 4.065,
+          "estimated_inclusive_ms_per_second": 101.57749555030811,
+          "estimated_self_ms_per_second": 37.35324526134406
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 164.3929,
+          "self_ms": 164.3929,
+          "max_ms": 0.906752,
+          "estimated_inclusive_ms_per_second": 23.31466944639451,
+          "estimated_self_ms_per_second": 23.31466944639451
+        },
+        "rt64_gpu_wait": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 452.268,
+          "self_ms": 452.268,
+          "max_ms": 3.4184,
+          "estimated_inclusive_ms_per_second": 64.14193630735848,
+          "estimated_self_ms_per_second": 64.14193630735848
+        },
+        "rt64_upload_wait": {
+          "calls": 424,
+          "observed_calls": 424,
+          "inclusive_ms": 0.581,
+          "self_ms": 0.581,
+          "max_ms": 0.2886,
+          "estimated_inclusive_ms_per_second": 0.08239907531502401,
+          "estimated_self_ms_per_second": 0.08239907531502401
+        },
+        "rt64_workload_total": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 726.5867000000001,
+          "self_ms": 10.359,
+          "max_ms": 4.0954,
+          "estimated_inclusive_ms_per_second": 103.04659589706499,
+          "estimated_self_ms_per_second": 1.4691428936115898
+        },
+        "present_swap": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 183.79069999999996,
+          "self_ms": 183.79069999999996,
+          "max_ms": 0.8292,
+          "estimated_inclusive_ms_per_second": 26.065720708263303,
+          "estimated_self_ms_per_second": 26.065720708263303
+        },
+        "present_workload_wait": {
+          "calls": 423,
+          "observed_calls": 423,
+          "inclusive_ms": 596.4608999999999,
+          "self_ms": 596.4608999999999,
+          "max_ms": 3.7897,
+          "estimated_inclusive_ms_per_second": 84.59178420235284,
+          "estimated_self_ms_per_second": 84.59178420235284
+        },
+        "enemy_callback": {
+          "calls": 19001,
+          "observed_calls": 19001,
+          "inclusive_ms": 72.2948,
+          "self_ms": 70.9481,
+          "max_ms": 0.1309,
+          "estimated_inclusive_ms_per_second": 10.253054509612044,
+          "estimated_self_ms_per_second": 10.062061678757065
+        },
+        "object_timeline": {
+          "calls": 564,
+          "observed_calls": 564,
+          "inclusive_ms": 1601.5880000000002,
+          "self_ms": 235.2825,
+          "max_ms": 7.8796,
+          "estimated_inclusive_ms_per_second": 227.14177321108207,
+          "estimated_self_ms_per_second": 33.36843448848044
+        },
+        "model_draw_commands": {
+          "calls": 14653,
+          "observed_calls": 14653,
+          "inclusive_ms": 75.054,
+          "self_ms": 74.5679,
+          "max_ms": 0.1753,
+          "estimated_inclusive_ms_per_second": 10.644372114791414,
+          "estimated_self_ms_per_second": 10.575432027854008
+        },
+        "model_rate_plan": {
+          "calls": 1977,
+          "observed_calls": 1977,
+          "inclusive_ms": 35.0482,
+          "self_ms": 32.768,
+          "max_ms": 0.0769,
+          "estimated_inclusive_ms_per_second": 4.970635579098149,
+          "estimated_self_ms_per_second": 4.6472511186277226
+        },
+        "model_clip_boundaries": {
+          "calls": 1977,
+          "observed_calls": 1977,
+          "inclusive_ms": 2.0137,
+          "self_ms": 2.0137,
+          "max_ms": 0.0078,
+          "estimated_inclusive_ms_per_second": 0.2855886711908156,
+          "estimated_self_ms_per_second": 0.2855886711908156
+        },
+        "object_clock_registration": {
+          "calls": 1977,
+          "observed_calls": 1977,
+          "inclusive_ms": 47.6402,
+          "self_ms": 44.8599,
+          "max_ms": 0.09,
+          "estimated_inclusive_ms_per_second": 6.756468894703627,
+          "estimated_self_ms_per_second": 6.362158827408685
+        },
+        "preview_hook_sample_1_in_16": {
+          "calls": 85185,
+          "observed_calls": 1362921,
+          "inclusive_ms": 101.5067,
+          "self_ms": 59.6947,
+          "max_ms": 5.6812,
+          "estimated_inclusive_ms_per_second": 230.32891944940286,
+          "estimated_self_ms_per_second": 135.4532828656263
+        },
+        "enemy_axis_sample_1_in_16": {
+          "calls": 4316,
+          "observed_calls": 69051,
+          "inclusive_ms": 2.4339,
+          "self_ms": 2.3125,
+          "max_ms": 0.0269,
+          "estimated_inclusive_ms_per_second": 5.522522230780884,
+          "estimated_self_ms_per_second": 5.247065474621304
+        },
+        "common_ownership_sample_1_in_16": {
+          "calls": 6063,
+          "observed_calls": 97042,
+          "inclusive_ms": 5.469100000000001,
+          "self_ms": 5.1701,
+          "max_ms": 0.0302,
+          "estimated_inclusive_ms_per_second": 12.414643143437232,
+          "estimated_self_ms_per_second": 11.735924835143773
+        },
+        "enemy_identity_sample_1_in_16": {
+          "calls": 20043,
+          "observed_calls": 320686,
+          "inclusive_ms": 8.7231,
+          "self_ms": 8.6668,
+          "max_ms": 0.0276,
+          "estimated_inclusive_ms_per_second": 19.794034868770314,
+          "estimated_self_ms_per_second": 19.666281643069386
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 6675,
+          "observed_calls": 427351,
+          "inclusive_ms": 0.9126,
+          "self_ms": 0.9126,
+          "max_ms": 0.0012,
+          "estimated_inclusive_ms_per_second": 8.286289926219451,
+          "estimated_self_ms_per_second": 8.286289926219451
+        },
+        "enemy_pool_finalize": {
+          "calls": 1977,
+          "observed_calls": 1977,
+          "inclusive_ms": 28.4069,
+          "self_ms": 27.8502,
+          "max_ms": 0.0728,
+          "estimated_inclusive_ms_per_second": 4.028747491508358,
+          "estimated_self_ms_per_second": 3.9497947114259584
+        },
+        "native_model_clock_sample_1_in_16": {
+          "calls": 1686,
+          "observed_calls": 26971,
+          "inclusive_ms": 0.2163,
+          "self_ms": 0.2163,
+          "max_ms": 0.0018,
+          "estimated_inclusive_ms_per_second": 0.4907295425398015,
+          "estimated_self_ms_per_second": 0.4907295425398015
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 188508,
+          "observed_calls": 6032161,
+          "inclusive_ms": 17.9169,
+          "self_ms": 17.9169,
+          "max_ms": 0.0424,
+          "estimated_inclusive_ms_per_second": 81.31154518061966,
+          "estimated_self_ms_per_second": 81.31154518061966
+        }
+      },
+      "output_fps": 59.991065160508015
+    },
+    "2.4x/active": {
+      "samples": 1,
+      "interval_ms": 1009.25,
+      "output_frames": 60,
+      "common_alive_max": 12,
+      "stages": {
+        "native_update": {
+          "calls": 61,
+          "observed_calls": 61,
+          "inclusive_ms": 134.196,
+          "self_ms": 0.2409,
+          "max_ms": 4.2881,
+          "estimated_inclusive_ms_per_second": 132.96606390884318,
+          "estimated_self_ms_per_second": 0.23869209809264305
+        },
+        "native_frame": {
+          "calls": 61,
+          "observed_calls": 61,
+          "inclusive_ms": 41.0666,
+          "self_ms": 0.5555,
+          "max_ms": 1.373,
+          "estimated_inclusive_ms_per_second": 40.69021550656428,
+          "estimated_self_ms_per_second": 0.5504087193460491
+        },
+        "world_source_update": {
+          "calls": 20,
+          "observed_calls": 20,
+          "inclusive_ms": 122.439,
+          "self_ms": 1.021,
+          "max_ms": 7.239,
+          "estimated_inclusive_ms_per_second": 121.31681942036164,
+          "estimated_self_ms_per_second": 1.0116423086450332
+        },
+        "world_gameplay": {
+          "calls": 20,
+          "observed_calls": 20,
+          "inclusive_ms": 121.417,
+          "self_ms": 0.6165,
+          "max_ms": 7.1762,
+          "estimated_inclusive_ms_per_second": 120.30418627693831,
+          "estimated_self_ms_per_second": 0.6108496408223929
+        },
+        "actor_manager": {
+          "calls": 20,
+          "observed_calls": 20,
+          "inclusive_ms": 14.9748,
+          "self_ms": 0.4699,
+          "max_ms": 0.7714,
+          "estimated_inclusive_ms_per_second": 14.837552638097597,
+          "estimated_self_ms_per_second": 0.4655932623235075
+        },
+        "common_actors": {
+          "calls": 302,
+          "observed_calls": 302,
+          "inclusive_ms": 153.234,
+          "self_ms": 128.964,
+          "max_ms": 1.3711,
+          "estimated_inclusive_ms_per_second": 151.8295764181323,
+          "estimated_self_ms_per_second": 127.78201634877384
+        },
+        "contacts": {
+          "calls": 20,
+          "observed_calls": 20,
+          "inclusive_ms": 24.1967,
+          "self_ms": 23.8077,
+          "max_ms": 1.3081,
+          "estimated_inclusive_ms_per_second": 23.97493188010899,
+          "estimated_self_ms_per_second": 23.589497151350013
+        },
+        "player": {
+          "calls": 302,
+          "observed_calls": 302,
+          "inclusive_ms": 23.6519,
+          "self_ms": 18.7866,
+          "max_ms": 0.258,
+          "estimated_inclusive_ms_per_second": 23.43512509289076,
+          "estimated_self_ms_per_second": 18.614416646024274
+        },
+        "projectiles": {
+          "calls": 302,
+          "observed_calls": 302,
+          "inclusive_ms": 0.275,
+          "self_ms": 0.2669,
+          "max_ms": 0.003,
+          "estimated_inclusive_ms_per_second": 0.2724795640326976,
+          "estimated_self_ms_per_second": 0.2644538023284617
+        },
+        "world_draw": {
+          "calls": 61,
+          "observed_calls": 61,
+          "inclusive_ms": 38.8341,
+          "self_ms": 13.7789,
+          "max_ms": 1.3453,
+          "estimated_inclusive_ms_per_second": 38.47817686400793,
+          "estimated_self_ms_per_second": 13.652613326727767
+        },
+        "world_geometry": {
+          "calls": 122,
+          "observed_calls": 122,
+          "inclusive_ms": 13.0282,
+          "self_ms": 12.0645,
+          "max_ms": 0.5257,
+          "estimated_inclusive_ms_per_second": 12.908793658657418,
+          "estimated_self_ms_per_second": 11.953926182809017
+        },
+        "model_advance": {
+          "calls": 3988,
+          "observed_calls": 3988,
+          "inclusive_ms": 1.4711,
+          "self_ms": 1.434,
+          "max_ms": 0.0287,
+          "estimated_inclusive_ms_per_second": 1.4576170423581867,
+          "estimated_self_ms_per_second": 1.42085707208323
+        },
+        "model_evaluate": {
+          "calls": 4110,
+          "observed_calls": 4110,
+          "inclusive_ms": 6.0077,
+          "self_ms": 5.9303,
+          "max_ms": 0.039,
+          "estimated_inclusive_ms_per_second": 5.952638097597225,
+          "estimated_self_ms_per_second": 5.8759474857567495
+        },
+        "frame_commands": {
+          "calls": 61,
+          "observed_calls": 61,
+          "inclusive_ms": 39.5425,
+          "self_ms": 0.3462,
+          "max_ms": 1.3521,
+          "estimated_inclusive_ms_per_second": 39.180084220956154,
+          "estimated_self_ms_per_second": 0.3430270002477087
+        },
+        "task_submit": {
+          "calls": 61,
+          "observed_calls": 61,
+          "inclusive_ms": 0.3612,
+          "self_ms": 0.3606,
+          "max_ms": 0.0464,
+          "estimated_inclusive_ms_per_second": 0.35788952192221946,
+          "estimated_self_ms_per_second": 0.357295021055239
+        },
+        "native_model_pose": {
+          "calls": 122,
+          "observed_calls": 122,
+          "inclusive_ms": 0.9677,
+          "self_ms": 0.1925,
+          "max_ms": 0.0392,
+          "estimated_inclusive_ms_per_second": 0.9588308149616052,
+          "estimated_self_ms_per_second": 0.19073569482288827
+        },
+        "texture_bind": {
+          "calls": 19276,
+          "observed_calls": 19276,
+          "inclusive_ms": 1.6854,
+          "self_ms": 1.6854,
+          "max_ms": 0.0172,
+          "estimated_inclusive_ms_per_second": 1.6699529353480307,
+          "estimated_self_ms_per_second": 1.6699529353480307
+        },
+        "trace_sample_1_in_64": {
+          "calls": 11826,
+          "observed_calls": 11826,
+          "inclusive_ms": 1.5546,
+          "self_ms": 1.5546,
+          "max_ms": 0.0536,
+          "estimated_inclusive_ms_per_second": 1.5403517463462966,
+          "estimated_self_ms_per_second": 1.5403517463462966
+        },
+        "distance_admission": {
+          "calls": 1460,
+          "observed_calls": 1460,
+          "inclusive_ms": 14.4992,
+          "self_ms": 14.4992,
+          "max_ms": 0.0296,
+          "estimated_inclusive_ms_per_second": 14.366311617537775,
+          "estimated_self_ms_per_second": 14.366311617537775
+        },
+        "rt64_parse": {
+          "calls": 60,
+          "observed_calls": 60,
+          "inclusive_ms": 391.651,
+          "self_ms": 391.651,
+          "max_ms": 19.2747,
+          "estimated_inclusive_ms_per_second": 388.06143175625465,
+          "estimated_self_ms_per_second": 388.06143175625465
+        },
+        "rt64_screen": {
+          "calls": 60,
+          "observed_calls": 60,
+          "inclusive_ms": 3.0007,
+          "self_ms": 3.0007,
+          "max_ms": 0.0807,
+          "estimated_inclusive_ms_per_second": 2.9731979192469655,
+          "estimated_self_ms_per_second": 2.9731979192469655
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 60,
+          "observed_calls": 60,
+          "inclusive_ms": 112.523,
+          "self_ms": 36.5039,
+          "max_ms": 3.384,
+          "estimated_inclusive_ms_per_second": 111.49170175873172,
+          "estimated_self_ms_per_second": 36.169333663611596
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 60,
+          "observed_calls": 60,
+          "inclusive_ms": 27.3469,
+          "self_ms": 27.3469,
+          "max_ms": 0.786432,
+          "estimated_inclusive_ms_per_second": 27.096259598711914,
+          "estimated_self_ms_per_second": 27.096259598711914
+        },
+        "rt64_gpu_wait": {
+          "calls": 60,
+          "observed_calls": 60,
+          "inclusive_ms": 75.9798,
+          "self_ms": 75.9798,
+          "max_ms": 2.69,
+          "estimated_inclusive_ms_per_second": 75.28342828833291,
+          "estimated_self_ms_per_second": 75.28342828833291
+        },
+        "rt64_upload_wait": {
+          "calls": 60,
+          "observed_calls": 60,
+          "inclusive_ms": 0.0391,
+          "self_ms": 0.0391,
+          "max_ms": 0.0022,
+          "estimated_inclusive_ms_per_second": 0.03874163983155809,
+          "estimated_self_ms_per_second": 0.03874163983155809
+        },
+        "rt64_workload_total": {
+          "calls": 60,
+          "observed_calls": 60,
+          "inclusive_ms": 113.808,
+          "self_ms": 1.2856,
+          "max_ms": 3.4124,
+          "estimated_inclusive_ms_per_second": 112.76492444884816,
+          "estimated_self_ms_per_second": 1.2738171909834035
+        },
+        "present_swap": {
+          "calls": 60,
+          "observed_calls": 60,
+          "inclusive_ms": 27.481,
+          "self_ms": 27.481,
+          "max_ms": 1.3599,
+          "estimated_inclusive_ms_per_second": 27.229130542482043,
+          "estimated_self_ms_per_second": 27.229130542482043
+        },
+        "present_workload_wait": {
+          "calls": 60,
+          "observed_calls": 60,
+          "inclusive_ms": 92.4558,
+          "self_ms": 92.4558,
+          "max_ms": 3.0391,
+          "estimated_inclusive_ms_per_second": 91.60842209561555,
+          "estimated_self_ms_per_second": 91.60842209561555
+        },
+        "enemy_callback": {
+          "calls": 2718,
+          "observed_calls": 2718,
+          "inclusive_ms": 9.9902,
+          "self_ms": 9.7942,
+          "max_ms": 0.0522,
+          "estimated_inclusive_ms_per_second": 9.898637602179836,
+          "estimated_self_ms_per_second": 9.704433985632896
+        },
+        "object_timeline": {
+          "calls": 81,
+          "observed_calls": 81,
+          "inclusive_ms": 212.822,
+          "self_ms": 22.5164,
+          "max_ms": 5.0866,
+          "estimated_inclusive_ms_per_second": 210.87143918751548,
+          "estimated_self_ms_per_second": 22.310032202130294
+        },
+        "model_draw_commands": {
+          "calls": 2196,
+          "observed_calls": 2196,
+          "inclusive_ms": 11.0911,
+          "self_ms": 11.0184,
+          "max_ms": 0.1062,
+          "estimated_inclusive_ms_per_second": 10.989447609611098,
+          "estimated_self_ms_per_second": 10.917413921228635
+        },
+        "model_rate_plan": {
+          "calls": 282,
+          "observed_calls": 282,
+          "inclusive_ms": 4.9263,
+          "self_ms": 4.6006,
+          "max_ms": 0.073,
+          "estimated_inclusive_ms_per_second": 4.881149368342829,
+          "estimated_self_ms_per_second": 4.558434481050285
+        },
+        "model_clip_boundaries": {
+          "calls": 282,
+          "observed_calls": 282,
+          "inclusive_ms": 0.2649,
+          "self_ms": 0.2649,
+          "max_ms": 0.0047,
+          "estimated_inclusive_ms_per_second": 0.2624721327718603,
+          "estimated_self_ms_per_second": 0.2624721327718603
+        },
+        "object_clock_registration": {
+          "calls": 282,
+          "observed_calls": 282,
+          "inclusive_ms": 6.5856,
+          "self_ms": 6.2029,
+          "max_ms": 0.0858,
+          "estimated_inclusive_ms_per_second": 6.525241515977211,
+          "estimated_self_ms_per_second": 6.146049046321525
+        },
+        "preview_hook_sample_1_in_16": {
+          "calls": 12179,
+          "observed_calls": 194878,
+          "inclusive_ms": 16.7583,
+          "self_ms": 8.0592,
+          "max_ms": 4.5049,
+          "estimated_inclusive_ms_per_second": 265.6943908797641,
+          "estimated_self_ms_per_second": 127.77454962485426
+        },
+        "enemy_axis_sample_1_in_16": {
+          "calls": 634,
+          "observed_calls": 10152,
+          "inclusive_ms": 0.3511,
+          "self_ms": 0.3353,
+          "max_ms": 0.004,
+          "estimated_inclusive_ms_per_second": 5.570503129959547,
+          "estimated_self_ms_per_second": 5.319822556181816
+        },
+        "common_ownership_sample_1_in_16": {
+          "calls": 894,
+          "observed_calls": 14300,
+          "inclusive_ms": 0.7844,
+          "self_ms": 0.7442,
+          "max_ms": 0.0101,
+          "estimated_inclusive_ms_per_second": 12.431895348341044,
+          "estimated_self_ms_per_second": 11.794768636200159
+        },
+        "enemy_identity_sample_1_in_16": {
+          "calls": 2935,
+          "observed_calls": 46962,
+          "inclusive_ms": 1.2845,
+          "self_ms": 1.2771,
+          "max_ms": 0.0343,
+          "estimated_inclusive_ms_per_second": 20.364503639461045,
+          "estimated_self_ms_per_second": 20.24718380533725
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 955,
+          "observed_calls": 61055,
+          "inclusive_ms": 0.1298,
+          "self_ms": 0.1298,
+          "max_ms": 0.0008,
+          "estimated_inclusive_ms_per_second": 8.222309085980855,
+          "estimated_self_ms_per_second": 8.222309085980855
+        },
+        "enemy_pool_finalize": {
+          "calls": 282,
+          "observed_calls": 282,
+          "inclusive_ms": 3.786,
+          "self_ms": 3.7056,
+          "max_ms": 0.0702,
+          "estimated_inclusive_ms_per_second": 3.7513004706465196,
+          "estimated_self_ms_per_second": 3.671637354471142
+        },
+        "native_model_clock_sample_1_in_16": {
+          "calls": 247,
+          "observed_calls": 3948,
+          "inclusive_ms": 0.0278,
+          "self_ms": 0.0278,
+          "max_ms": 0.0022,
+          "estimated_inclusive_ms_per_second": 0.44027723316408235,
+          "estimated_self_ms_per_second": 0.44027723316408235
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 26917,
+          "observed_calls": 861410,
+          "inclusive_ms": 2.6217,
+          "self_ms": 2.6217,
+          "max_ms": 0.0316,
+          "estimated_inclusive_ms_per_second": 83.13185866857437,
+          "estimated_self_ms_per_second": 83.13185866857437
+        }
+      },
+      "output_fps": 59.4500866980431
+    },
+    "3x/active": {
+      "samples": 8,
+      "interval_ms": 8091.790000000001,
+      "output_frames": 454,
+      "common_alive_max": 47,
+      "stages": {
+        "native_update": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 2571.271,
+          "self_ms": 2.0171,
+          "max_ms": 21.3083,
+          "estimated_inclusive_ms_per_second": 317.76294243918835,
+          "estimated_self_ms_per_second": 0.24927735396000142
+        },
+        "native_frame": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 1022.2428,
+          "self_ms": 6.144,
+          "max_ms": 18.484,
+          "estimated_inclusive_ms_per_second": 126.33086128038417,
+          "estimated_self_ms_per_second": 0.7592881179565955
+        },
+        "world_source_update": {
+          "calls": 161,
+          "observed_calls": 161,
+          "inclusive_ms": 1830.5319999999997,
+          "self_ms": 11.1994,
+          "max_ms": 23.6213,
+          "estimated_inclusive_ms_per_second": 226.2208979718949,
+          "estimated_self_ms_per_second": 1.3840448157947747
+        },
+        "world_gameplay": {
+          "calls": 161,
+          "observed_calls": 161,
+          "inclusive_ms": 1819.239,
+          "self_ms": 5.607,
+          "max_ms": 23.5368,
+          "estimated_inclusive_ms_per_second": 224.82528587617819,
+          "estimated_self_ms_per_second": 0.6929245568656626
+        },
+        "actor_manager": {
+          "calls": 161,
+          "observed_calls": 161,
+          "inclusive_ms": 128.18099999999998,
+          "self_ms": 26.787999999999997,
+          "max_ms": 13.3755,
+          "estimated_inclusive_ms_per_second": 15.840870808560277,
+          "estimated_self_ms_per_second": 3.3105159674188274
+        },
+        "common_actors": {
+          "calls": 3523,
+          "observed_calls": 3523,
+          "inclusive_ms": 2773.276,
+          "self_ms": 2142.635,
+          "max_ms": 2.2585,
+          "estimated_inclusive_ms_per_second": 342.7271345400708,
+          "estimated_self_ms_per_second": 264.79122666307455
+        },
+        "contacts": {
+          "calls": 161,
+          "observed_calls": 161,
+          "inclusive_ms": 424.24,
+          "self_ms": 417.3187,
+          "max_ms": 3.1736,
+          "estimated_inclusive_ms_per_second": 52.42844908234148,
+          "estimated_self_ms_per_second": 51.573100636571134
+        },
+        "player": {
+          "calls": 3523,
+          "observed_calls": 3523,
+          "inclusive_ms": 318.632,
+          "self_ms": 228.97439999999995,
+          "max_ms": 0.5661,
+          "estimated_inclusive_ms_per_second": 39.3771958985589,
+          "estimated_self_ms_per_second": 28.297125852252705
+        },
+        "projectiles": {
+          "calls": 3523,
+          "observed_calls": 3523,
+          "inclusive_ms": 3.5652,
+          "self_ms": 3.4757000000000002,
+          "max_ms": 0.0107,
+          "estimated_inclusive_ms_per_second": 0.4405947262595791,
+          "estimated_self_ms_per_second": 0.42953413274442365
+        },
+        "world_draw": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 569.2388,
+          "self_ms": 266.32779999999997,
+          "max_ms": 2.6257,
+          "estimated_inclusive_ms_per_second": 70.3476980989373,
+          "estimated_self_ms_per_second": 32.913335615481856
+        },
+        "world_geometry": {
+          "calls": 908,
+          "observed_calls": 908,
+          "inclusive_ms": 94.4406,
+          "self_ms": 87.2696,
+          "max_ms": 0.4488,
+          "estimated_inclusive_ms_per_second": 11.671162993602156,
+          "estimated_self_ms_per_second": 10.78495610983478
+        },
+        "model_advance": {
+          "calls": 159541,
+          "observed_calls": 159541,
+          "inclusive_ms": 52.2744,
+          "self_ms": 50.9271,
+          "max_ms": 0.0839,
+          "estimated_inclusive_ms_per_second": 6.4601775379736734,
+          "estimated_self_ms_per_second": 6.293675441404188
+        },
+        "model_evaluate": {
+          "calls": 165929,
+          "observed_calls": 165929,
+          "inclusive_ms": 251.02390000000003,
+          "self_ms": 247.6824,
+          "max_ms": 0.2754,
+          "estimated_inclusive_ms_per_second": 31.022048273620545,
+          "estimated_self_ms_per_second": 30.60909885204633
+        },
+        "frame_commands": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 987.2109999999999,
+          "self_ms": 2.9677000000000002,
+          "max_ms": 18.3966,
+          "estimated_inclusive_ms_per_second": 122.00155960547663,
+          "estimated_self_ms_per_second": 0.366754451116502
+        },
+        "task_submit": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 414.9945000000001,
+          "self_ms": 414.9899,
+          "max_ms": 17.1111,
+          "estimated_inclusive_ms_per_second": 51.28587123491836,
+          "estimated_self_ms_per_second": 51.285302757486285
+        },
+        "native_model_pose": {
+          "calls": 908,
+          "observed_calls": 908,
+          "inclusive_ms": 28.8819,
+          "self_ms": 5.8256000000000006,
+          "max_ms": 0.2077,
+          "estimated_inclusive_ms_per_second": 3.5692844228532867,
+          "estimated_self_ms_per_second": 0.7199395930937407
+        },
+        "texture_bind": {
+          "calls": 317020,
+          "observed_calls": 317020,
+          "inclusive_ms": 21.760399999999997,
+          "self_ms": 21.760399999999997,
+          "max_ms": 0.0815,
+          "estimated_inclusive_ms_per_second": 2.6891948505831214,
+          "estimated_self_ms_per_second": 2.6891948505831214
+        },
+        "trace_sample_1_in_64": {
+          "calls": 233765,
+          "observed_calls": 233765,
+          "inclusive_ms": 29.0315,
+          "self_ms": 29.0315,
+          "max_ms": 0.3419,
+          "estimated_inclusive_ms_per_second": 3.587772297600407,
+          "estimated_self_ms_per_second": 3.587772297600407
+        },
+        "distance_admission": {
+          "calls": 8759,
+          "observed_calls": 8759,
+          "inclusive_ms": 101.265,
+          "self_ms": 101.265,
+          "max_ms": 0.1519,
+          "estimated_inclusive_ms_per_second": 12.514536338684023,
+          "estimated_self_ms_per_second": 12.514536338684023
+        },
+        "rt64_parse": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 3257.5860000000002,
+          "self_ms": 3257.5860000000002,
+          "max_ms": 17.3098,
+          "estimated_inclusive_ms_per_second": 402.57915739286364,
+          "estimated_self_ms_per_second": 402.57915739286364
+        },
+        "rt64_screen": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 23.0961,
+          "self_ms": 23.0961,
+          "max_ms": 0.1661,
+          "estimated_inclusive_ms_per_second": 2.854263395367403,
+          "estimated_self_ms_per_second": 2.854263395367403
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 866.2384,
+          "self_ms": 330.7994,
+          "max_ms": 4.4391,
+          "estimated_inclusive_ms_per_second": 107.05151764937051,
+          "estimated_self_ms_per_second": 40.88086813918799
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 208.2103,
+          "self_ms": 208.2103,
+          "max_ms": 1.25133,
+          "estimated_inclusive_ms_per_second": 25.731055798531592,
+          "estimated_self_ms_per_second": 25.731055798531592
+        },
+        "rt64_gpu_wait": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 535.1214,
+          "self_ms": 535.1214,
+          "max_ms": 3.6842,
+          "estimated_inclusive_ms_per_second": 66.13139985096004,
+          "estimated_self_ms_per_second": 66.13139985096004
+        },
+        "rt64_upload_wait": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 0.3167,
+          "self_ms": 0.3167,
+          "max_ms": 0.0018,
+          "estimated_inclusive_ms_per_second": 0.03913843537709208,
+          "estimated_self_ms_per_second": 0.03913843537709208
+        },
+        "rt64_workload_total": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 875.9283,
+          "self_ms": 9.6899,
+          "max_ms": 4.4632,
+          "estimated_inclusive_ms_per_second": 108.24901536001305,
+          "estimated_self_ms_per_second": 1.1974977106425153
+        },
+        "present_swap": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 192.61950000000002,
+          "self_ms": 192.61950000000002,
+          "max_ms": 1.19,
+          "estimated_inclusive_ms_per_second": 23.804312766396556,
+          "estimated_self_ms_per_second": 23.804312766396556
+        },
+        "present_workload_wait": {
+          "calls": 454,
+          "observed_calls": 454,
+          "inclusive_ms": 521.9712,
+          "self_ms": 521.9712,
+          "max_ms": 4.262,
+          "estimated_inclusive_ms_per_second": 64.50627117115,
+          "estimated_self_ms_per_second": 64.50627117115
+        },
+        "enemy_callback": {
+          "calls": 69385,
+          "observed_calls": 69385,
+          "inclusive_ms": 222.7952,
+          "self_ms": 218.7315,
+          "max_ms": 0.4454,
+          "estimated_inclusive_ms_per_second": 27.53348764612032,
+          "estimated_self_ms_per_second": 27.031287267712088
+        },
+        "object_timeline": {
+          "calls": 615,
+          "observed_calls": 615,
+          "inclusive_ms": 3790.565,
+          "self_ms": 374.79990000000004,
+          "max_ms": 21.304,
+          "estimated_inclusive_ms_per_second": 468.4457950589424,
+          "estimated_self_ms_per_second": 46.31854014995446
+        },
+        "model_draw_commands": {
+          "calls": 50304,
+          "observed_calls": 50304,
+          "inclusive_ms": 189.999,
+          "self_ms": 188.58299999999997,
+          "max_ms": 0.3883,
+          "estimated_inclusive_ms_per_second": 23.48046600319583,
+          "estimated_self_ms_per_second": 23.305473819760515
+        },
+        "model_rate_plan": {
+          "calls": 3362,
+          "observed_calls": 3362,
+          "inclusive_ms": 122.8041,
+          "self_ms": 112.3052,
+          "max_ms": 0.1446,
+          "estimated_inclusive_ms_per_second": 15.176382481502856,
+          "estimated_self_ms_per_second": 13.87890689204737
+        },
+        "model_clip_boundaries": {
+          "calls": 3362,
+          "observed_calls": 3362,
+          "inclusive_ms": 7.4860999999999995,
+          "self_ms": 7.4860999999999995,
+          "max_ms": 0.1426,
+          "estimated_inclusive_ms_per_second": 0.9251475878637482,
+          "estimated_self_ms_per_second": 0.9251475878637482
+        },
+        "object_clock_registration": {
+          "calls": 3362,
+          "observed_calls": 3362,
+          "inclusive_ms": 142.426,
+          "self_ms": 130.8382,
+          "max_ms": 0.3297,
+          "estimated_inclusive_ms_per_second": 17.601297117201504,
+          "estimated_self_ms_per_second": 16.16925303301247
+        },
+        "preview_hook_sample_1_in_16": {
+          "calls": 181851,
+          "observed_calls": 2909617,
+          "inclusive_ms": 217.46559999999997,
+          "self_ms": 127.62549999999999,
+          "max_ms": 16.5742,
+          "estimated_inclusive_ms_per_second": 429.9976637857568,
+          "estimated_self_ms_per_second": 252.35562240413708
+        },
+        "enemy_axis_sample_1_in_16": {
+          "calls": 27949,
+          "observed_calls": 447183,
+          "inclusive_ms": 10.9251,
+          "self_ms": 10.3613,
+          "max_ms": 0.0649,
+          "estimated_inclusive_ms_per_second": 21.60229184220937,
+          "estimated_self_ms_per_second": 20.487485374475654
+        },
+        "common_ownership_sample_1_in_16": {
+          "calls": 45371,
+          "observed_calls": 725920,
+          "inclusive_ms": 29.805999999999997,
+          "self_ms": 28.194599999999998,
+          "max_ms": 0.0204,
+          "estimated_inclusive_ms_per_second": 58.934486555969,
+          "estimated_self_ms_per_second": 55.748314924878336
+        },
+        "enemy_identity_sample_1_in_16": {
+          "calls": 126794,
+          "observed_calls": 2028710,
+          "inclusive_ms": 39.6806,
+          "self_ms": 39.537299999999995,
+          "max_ms": 0.0811,
+          "estimated_inclusive_ms_per_second": 78.46119062899135,
+          "estimated_self_ms_per_second": 78.17784086570312
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 17973,
+          "observed_calls": 1150172,
+          "inclusive_ms": 2.2388,
+          "self_ms": 2.2388,
+          "max_ms": 0.0487,
+          "estimated_inclusive_ms_per_second": 17.70569225567254,
+          "estimated_self_ms_per_second": 17.70569225567254
+        },
+        "enemy_pool_finalize": {
+          "calls": 3362,
+          "observed_calls": 3362,
+          "inclusive_ms": 81.8446,
+          "self_ms": 80.3004,
+          "max_ms": 0.2031,
+          "estimated_inclusive_ms_per_second": 10.114523486150777,
+          "estimated_self_ms_per_second": 9.923688083847948
+        },
+        "native_model_clock_sample_1_in_16": {
+          "calls": 9737,
+          "observed_calls": 155785,
+          "inclusive_ms": 1.0221,
+          "self_ms": 1.0221,
+          "max_ms": 0.0022,
+          "estimated_inclusive_ms_per_second": 2.0209206127307517,
+          "estimated_self_ms_per_second": 2.0209206127307517
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 360371,
+          "observed_calls": 11531859,
+          "inclusive_ms": 31.855199999999996,
+          "self_ms": 31.855199999999996,
+          "max_ms": 0.0548,
+          "estimated_inclusive_ms_per_second": 125.97524785709814,
+          "estimated_self_ms_per_second": 125.97524785709814
+        }
+      },
+      "output_fps": 56.10625090369374
+    },
+    "3.8x/active": {
+      "samples": 1,
+      "interval_ms": 1010.29,
+      "output_frames": 53,
+      "common_alive_max": 59,
+      "stages": {
+        "native_update": {
+          "calls": 53,
+          "observed_calls": 53,
+          "inclusive_ms": 433.5,
+          "self_ms": 0.2384,
+          "max_ms": 21.4384,
+          "estimated_inclusive_ms_per_second": 429.08471824921554,
+          "estimated_self_ms_per_second": 0.23597184966692733
+        },
+        "native_frame": {
+          "calls": 53,
+          "observed_calls": 53,
+          "inclusive_ms": 106.4,
+          "self_ms": 0.7269,
+          "max_ms": 10.9539,
+          "estimated_inclusive_ms_per_second": 105.31629532114542,
+          "estimated_self_ms_per_second": 0.7194963822268854
+        },
+        "world_source_update": {
+          "calls": 21,
+          "observed_calls": 21,
+          "inclusive_ms": 182.283,
+          "self_ms": 0.9012,
+          "max_ms": 26.2298,
+          "estimated_inclusive_ms_per_second": 180.42641221827395,
+          "estimated_self_ms_per_second": 0.8920211028516565
+        },
+        "world_gameplay": {
+          "calls": 21,
+          "observed_calls": 21,
+          "inclusive_ms": 181.381,
+          "self_ms": 0.7336,
+          "max_ms": 26.1988,
+          "estimated_inclusive_ms_per_second": 179.53359926357777,
+          "estimated_self_ms_per_second": 0.7261281414247395
+        },
+        "actor_manager": {
+          "calls": 21,
+          "observed_calls": 21,
+          "inclusive_ms": 44.1448,
+          "self_ms": 31.4113,
+          "max_ms": 17.8229,
+          "estimated_inclusive_ms_per_second": 43.69517663245207,
+          "estimated_self_ms_per_second": 31.09136980470954
+        },
+        "common_actors": {
+          "calls": 452,
+          "observed_calls": 452,
+          "inclusive_ms": 386.954,
+          "self_ms": 296.74,
+          "max_ms": 4.7969,
+          "estimated_inclusive_ms_per_second": 383.01279830543706,
+          "estimated_self_ms_per_second": 293.7176454285403
+        },
+        "contacts": {
+          "calls": 21,
+          "observed_calls": 21,
+          "inclusive_ms": 59.6879,
+          "self_ms": 58.7209,
+          "max_ms": 3.5638,
+          "estimated_inclusive_ms_per_second": 59.079967138148454,
+          "estimated_self_ms_per_second": 58.12281622108504
+        },
+        "player": {
+          "calls": 452,
+          "observed_calls": 452,
+          "inclusive_ms": 37.144,
+          "self_ms": 30.0922,
+          "max_ms": 0.2491,
+          "estimated_inclusive_ms_per_second": 36.76568114105851,
+          "estimated_self_ms_per_second": 29.7857050945768
+        },
+        "projectiles": {
+          "calls": 452,
+          "observed_calls": 452,
+          "inclusive_ms": 0.4891,
+          "self_ms": 0.4765,
+          "max_ms": 0.0153,
+          "estimated_inclusive_ms_per_second": 0.48411842144334793,
+          "estimated_self_ms_per_second": 0.4716467548921597
+        },
+        "world_draw": {
+          "calls": 53,
+          "observed_calls": 53,
+          "inclusive_ms": 71.6371,
+          "self_ms": 34.1742,
+          "max_ms": 1.8388,
+          "estimated_inclusive_ms_per_second": 70.9074622138198,
+          "estimated_self_ms_per_second": 33.82612913123955
+        },
+        "world_geometry": {
+          "calls": 106,
+          "observed_calls": 106,
+          "inclusive_ms": 10.9473,
+          "self_ms": 10.1036,
+          "max_ms": 0.2881,
+          "estimated_inclusive_ms_per_second": 10.835799621890745,
+          "estimated_self_ms_per_second": 10.000692870363954
+        },
+        "model_advance": {
+          "calls": 23159,
+          "observed_calls": 23159,
+          "inclusive_ms": 7.6964,
+          "self_ms": 7.4896,
+          "max_ms": 0.0124,
+          "estimated_inclusive_ms_per_second": 7.618010670203605,
+          "estimated_self_ms_per_second": 7.413316968395214
+        },
+        "model_evaluate": {
+          "calls": 24166,
+          "observed_calls": 24166,
+          "inclusive_ms": 31.4976,
+          "self_ms": 31.1047,
+          "max_ms": 0.0912,
+          "estimated_inclusive_ms_per_second": 31.17679082243712,
+          "estimated_self_ms_per_second": 30.787892585297293
+        },
+        "frame_commands": {
+          "calls": 53,
+          "observed_calls": 53,
+          "inclusive_ms": 102.287,
+          "self_ms": 0.3417,
+          "max_ms": 10.869,
+          "estimated_inclusive_ms_per_second": 101.24518702550753,
+          "estimated_self_ms_per_second": 0.33821971909055815
+        },
+        "task_submit": {
+          "calls": 53,
+          "observed_calls": 53,
+          "inclusive_ms": 30.3066,
+          "self_ms": 30.3057,
+          "max_ms": 9.3571,
+          "estimated_inclusive_ms_per_second": 29.997921388908136,
+          "estimated_self_ms_per_second": 29.997030555583052
+        },
+        "native_model_pose": {
+          "calls": 106,
+          "observed_calls": 106,
+          "inclusive_ms": 3.3863,
+          "self_ms": 0.7987,
+          "max_ms": 0.0791,
+          "estimated_inclusive_ms_per_second": 3.3518098763721307,
+          "estimated_self_ms_per_second": 0.7905650852725454
+        },
+        "texture_bind": {
+          "calls": 40736,
+          "observed_calls": 40736,
+          "inclusive_ms": 2.6827,
+          "self_ms": 2.6827,
+          "max_ms": 0.0116,
+          "estimated_inclusive_ms_per_second": 2.6553761791168875,
+          "estimated_self_ms_per_second": 2.6553761791168875
+        },
+        "trace_sample_1_in_64": {
+          "calls": 29091,
+          "observed_calls": 29091,
+          "inclusive_ms": 3.5495,
+          "self_ms": 3.5495,
+          "max_ms": 0.0962,
+          "estimated_inclusive_ms_per_second": 3.5133476526541885,
+          "estimated_self_ms_per_second": 3.5133476526541885
+        },
+        "distance_admission": {
+          "calls": 1055,
+          "observed_calls": 1055,
+          "inclusive_ms": 12.6607,
+          "self_ms": 12.6607,
+          "max_ms": 0.0892,
+          "estimated_inclusive_ms_per_second": 12.531748309891219,
+          "estimated_self_ms_per_second": 12.531748309891219
+        },
+        "rt64_parse": {
+          "calls": 53,
+          "observed_calls": 53,
+          "inclusive_ms": 460.543,
+          "self_ms": 460.543,
+          "max_ms": 22.5597,
+          "estimated_inclusive_ms_per_second": 455.85228003840484,
+          "estimated_self_ms_per_second": 455.85228003840484
+        },
+        "rt64_screen": {
+          "calls": 53,
+          "observed_calls": 53,
+          "inclusive_ms": 2.6638,
+          "self_ms": 2.6638,
+          "max_ms": 0.0856,
+          "estimated_inclusive_ms_per_second": 2.636668679290105,
+          "estimated_self_ms_per_second": 2.636668679290105
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 54,
+          "observed_calls": 54,
+          "inclusive_ms": 98.7225,
+          "self_ms": 38.1962,
+          "max_ms": 2.7683,
+          "estimated_inclusive_ms_per_second": 97.71699215076859,
+          "estimated_self_ms_per_second": 37.80716427956329
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 54,
+          "observed_calls": 54,
+          "inclusive_ms": 22.2968,
+          "self_ms": 22.2968,
+          "max_ms": 0.565504,
+          "estimated_inclusive_ms_per_second": 22.069702758613865,
+          "estimated_self_ms_per_second": 22.069702758613865
+        },
+        "rt64_gpu_wait": {
+          "calls": 54,
+          "observed_calls": 54,
+          "inclusive_ms": 60.4886,
+          "self_ms": 60.4886,
+          "max_ms": 2.1666,
+          "estimated_inclusive_ms_per_second": 59.87251185303229,
+          "estimated_self_ms_per_second": 59.87251185303229
+        },
+        "rt64_upload_wait": {
+          "calls": 53,
+          "observed_calls": 53,
+          "inclusive_ms": 0.0369,
+          "self_ms": 0.0369,
+          "max_ms": 0.0017,
+          "estimated_inclusive_ms_per_second": 0.03652416632847994,
+          "estimated_self_ms_per_second": 0.03652416632847994
+        },
+        "rt64_workload_total": {
+          "calls": 54,
+          "observed_calls": 54,
+          "inclusive_ms": 99.8645,
+          "self_ms": 1.142,
+          "max_ms": 2.7888,
+          "estimated_inclusive_ms_per_second": 98.84736065882075,
+          "estimated_self_ms_per_second": 1.1303685080521433
+        },
+        "present_swap": {
+          "calls": 53,
+          "observed_calls": 53,
+          "inclusive_ms": 20.3885,
+          "self_ms": 20.3885,
+          "max_ms": 0.5414,
+          "estimated_inclusive_ms_per_second": 20.180839164992232,
+          "estimated_self_ms_per_second": 20.180839164992232
+        },
+        "present_workload_wait": {
+          "calls": 53,
+          "observed_calls": 53,
+          "inclusive_ms": 56.8168,
+          "self_ms": 56.8168,
+          "max_ms": 2.5244,
+          "estimated_inclusive_ms_per_second": 56.23810984964713,
+          "estimated_self_ms_per_second": 56.23810984964713
+        },
+        "enemy_callback": {
+          "calls": 9572,
+          "observed_calls": 9572,
+          "inclusive_ms": 30.9799,
+          "self_ms": 30.3875,
+          "max_ms": 0.0645,
+          "estimated_inclusive_ms_per_second": 30.66436369755219,
+          "estimated_self_ms_per_second": 30.07799740668521
+        },
+        "object_timeline": {
+          "calls": 74,
+          "observed_calls": 74,
+          "inclusive_ms": 504.092,
+          "self_ms": 33.8689,
+          "max_ms": 21.4334,
+          "estimated_inclusive_ms_per_second": 498.9577250096507,
+          "estimated_self_ms_per_second": 33.52393867107464
+        },
+        "model_draw_commands": {
+          "calls": 6569,
+          "observed_calls": 6569,
+          "inclusive_ms": 24.1609,
+          "self_ms": 23.9868,
+          "max_ms": 0.0655,
+          "estimated_inclusive_ms_per_second": 23.914816537825775,
+          "estimated_self_ms_per_second": 23.74248978016213
+        },
+        "model_rate_plan": {
+          "calls": 431,
+          "observed_calls": 431,
+          "inclusive_ms": 17.7936,
+          "self_ms": 16.231,
+          "max_ms": 0.1209,
+          "estimated_inclusive_ms_per_second": 17.6123687258114,
+          "estimated_self_ms_per_second": 16.065684110502925
+        },
+        "model_clip_boundaries": {
+          "calls": 431,
+          "observed_calls": 431,
+          "inclusive_ms": 1.1352,
+          "self_ms": 1.1352,
+          "max_ms": 0.01,
+          "estimated_inclusive_ms_per_second": 1.1236377673737243,
+          "estimated_self_ms_per_second": 1.1236377673737243
+        },
+        "object_clock_registration": {
+          "calls": 431,
+          "observed_calls": 431,
+          "inclusive_ms": 20.5444,
+          "self_ms": 18.8101,
+          "max_ms": 0.1543,
+          "estimated_inclusive_ms_per_second": 20.335151293193043,
+          "estimated_self_ms_per_second": 18.618515475754485
+        },
+        "preview_hook_sample_1_in_16": {
+          "calls": 24317,
+          "observed_calls": 389082,
+          "inclusive_ms": 22.9857,
+          "self_ms": 17.0647,
+          "max_ms": 5.2139,
+          "estimated_inclusive_ms_per_second": 364.03473509876017,
+          "estimated_self_ms_per_second": 270.26122954879827
+        },
+        "enemy_axis_sample_1_in_16": {
+          "calls": 4069,
+          "observed_calls": 65103,
+          "inclusive_ms": 1.5611,
+          "self_ms": 1.4883,
+          "max_ms": 0.0494,
+          "estimated_inclusive_ms_per_second": 24.72281854030213,
+          "estimated_self_ms_per_second": 23.56989996382785
+        },
+        "common_ownership_sample_1_in_16": {
+          "calls": 6673,
+          "observed_calls": 106784,
+          "inclusive_ms": 4.4119,
+          "self_ms": 4.1793,
+          "max_ms": 0.0117,
+          "estimated_inclusive_ms_per_second": 69.88189382297669,
+          "estimated_self_ms_per_second": 66.19764701248134
+        },
+        "enemy_identity_sample_1_in_16": {
+          "calls": 18665,
+          "observed_calls": 298617,
+          "inclusive_ms": 5.9093,
+          "self_ms": 5.891,
+          "max_ms": 0.0285,
+          "estimated_inclusive_ms_per_second": 93.57859451054436,
+          "estimated_self_ms_per_second": 93.28879905599933
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 2553,
+          "observed_calls": 163476,
+          "inclusive_ms": 0.3065,
+          "self_ms": 0.3065,
+          "max_ms": 0.0013,
+          "estimated_inclusive_ms_per_second": 19.426189120297614,
+          "estimated_self_ms_per_second": 19.426189120297614
+        },
+        "enemy_pool_finalize": {
+          "calls": 431,
+          "observed_calls": 431,
+          "inclusive_ms": 11.6863,
+          "self_ms": 11.4587,
+          "max_ms": 0.0773,
+          "estimated_inclusive_ms_per_second": 11.567272763265992,
+          "estimated_self_ms_per_second": 11.341990913500084
+        },
+        "native_model_clock_sample_1_in_16": {
+          "calls": 1410,
+          "observed_calls": 22563,
+          "inclusive_ms": 0.1628,
+          "self_ms": 0.1628,
+          "max_ms": 0.0015,
+          "estimated_inclusive_ms_per_second": 2.5786124607575287,
+          "estimated_self_ms_per_second": 2.5786124607575287
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 47204,
+          "observed_calls": 1510562,
+          "inclusive_ms": 4.1536,
+          "self_ms": 4.1536,
+          "max_ms": 0.0548,
+          "estimated_inclusive_ms_per_second": 131.56439413085567,
+          "estimated_self_ms_per_second": 131.56439413085567
+        }
+      },
+      "output_fps": 52.460184699442735
+    },
+    "4x/active": {
+      "samples": 11,
+      "interval_ms": 11225.86,
+      "output_frames": 285,
+      "common_alive_max": 73,
+      "stages": {
+        "native_update": {
+          "calls": 284,
+          "observed_calls": 284,
+          "inclusive_ms": 5273.13,
+          "self_ms": 1.3950999999999998,
+          "max_ms": 38.9081,
+          "estimated_inclusive_ms_per_second": 469.7306041586123,
+          "estimated_self_ms_per_second": 0.12427555661659773
+        },
+        "native_frame": {
+          "calls": 284,
+          "observed_calls": 284,
+          "inclusive_ms": 1191.4192,
+          "self_ms": 4.2931,
+          "max_ms": 15.7104,
+          "estimated_inclusive_ms_per_second": 106.1316638547069,
+          "estimated_self_ms_per_second": 0.3824294976064194
+        },
+        "world_source_update": {
+          "calls": 190,
+          "observed_calls": 190,
+          "inclusive_ms": 4116.707,
+          "self_ms": 14.755800000000002,
+          "max_ms": 46.7835,
+          "estimated_inclusive_ms_per_second": 366.7164030194569,
+          "estimated_self_ms_per_second": 1.3144471782117362
+        },
+        "world_gameplay": {
+          "calls": 190,
+          "observed_calls": 190,
+          "inclusive_ms": 4101.7339999999995,
+          "self_ms": 6.7279,
+          "max_ms": 46.6296,
+          "estimated_inclusive_ms_per_second": 365.38260765767603,
+          "estimated_self_ms_per_second": 0.5993215664545968
+        },
+        "actor_manager": {
+          "calls": 190,
+          "observed_calls": 190,
+          "inclusive_ms": 79.9622,
+          "self_ms": 4.9984,
+          "max_ms": 0.7287,
+          "estimated_inclusive_ms_per_second": 7.123035562531511,
+          "estimated_self_ms_per_second": 0.4452576461847912
+        },
+        "common_actors": {
+          "calls": 6195,
+          "observed_calls": 6195,
+          "inclusive_ms": 6403.998999999999,
+          "self_ms": 4765.447000000001,
+          "max_ms": 2.6344,
+          "estimated_inclusive_ms_per_second": 570.4684540872591,
+          "estimated_self_ms_per_second": 424.50618482681955
+        },
+        "contacts": {
+          "calls": 190,
+          "observed_calls": 190,
+          "inclusive_ms": 761.9308,
+          "self_ms": 749.4765000000001,
+          "max_ms": 5.6177,
+          "estimated_inclusive_ms_per_second": 67.87282221584805,
+          "estimated_self_ms_per_second": 66.76339273783924
+        },
+        "player": {
+          "calls": 6195,
+          "observed_calls": 6195,
+          "inclusive_ms": 565.2832,
+          "self_ms": 418.7302,
+          "max_ms": 0.3341,
+          "estimated_inclusive_ms_per_second": 50.35544715505092,
+          "estimated_self_ms_per_second": 37.30050080795591
+        },
+        "projectiles": {
+          "calls": 6195,
+          "observed_calls": 6195,
+          "inclusive_ms": 6.4479,
+          "self_ms": 6.291199999999998,
+          "max_ms": 0.0104,
+          "estimated_inclusive_ms_per_second": 0.574379156697126,
+          "estimated_self_ms_per_second": 0.5604203152364271
+        },
+        "world_draw": {
+          "calls": 284,
+          "observed_calls": 284,
+          "inclusive_ms": 540.9419,
+          "self_ms": 262.7808,
+          "max_ms": 2.7134,
+          "estimated_inclusive_ms_per_second": 48.18712330280263,
+          "estimated_self_ms_per_second": 23.408522821414127
+        },
+        "world_geometry": {
+          "calls": 568,
+          "observed_calls": 568,
+          "inclusive_ms": 60.507,
+          "self_ms": 55.977799999999995,
+          "max_ms": 0.4951,
+          "estimated_inclusive_ms_per_second": 5.389965668554569,
+          "estimated_self_ms_per_second": 4.986504374720511
+        },
+        "model_advance": {
+          "calls": 448504,
+          "observed_calls": 448504,
+          "inclusive_ms": 138.0172,
+          "self_ms": 134.4892,
+          "max_ms": 0.0554,
+          "estimated_inclusive_ms_per_second": 12.294576985638516,
+          "estimated_self_ms_per_second": 11.980302622694387
+        },
+        "model_evaluate": {
+          "calls": 455005,
+          "observed_calls": 455005,
+          "inclusive_ms": 567.5491,
+          "self_ms": 560.1133000000001,
+          "max_ms": 0.6237,
+          "estimated_inclusive_ms_per_second": 50.55729360601325,
+          "estimated_self_ms_per_second": 49.89491228288969
+        },
+        "frame_commands": {
+          "calls": 284,
+          "observed_calls": 284,
+          "inclusive_ms": 1161.5056999999997,
+          "self_ms": 1.9415,
+          "max_ms": 15.5931,
+          "estimated_inclusive_ms_per_second": 103.46696823227794,
+          "estimated_self_ms_per_second": 0.17294888765760483
+        },
+        "task_submit": {
+          "calls": 284,
+          "observed_calls": 284,
+          "inclusive_ms": 618.6152,
+          "self_ms": 618.6142,
+          "max_ms": 13.7068,
+          "estimated_inclusive_ms_per_second": 55.1062635735703,
+          "estimated_self_ms_per_second": 55.106174493535455
+        },
+        "native_model_pose": {
+          "calls": 568,
+          "observed_calls": 568,
+          "inclusive_ms": 25.618000000000002,
+          "self_ms": 5.882899999999999,
+          "max_ms": 0.7208,
+          "estimated_inclusive_ms_per_second": 2.2820523327388726,
+          "estimated_self_ms_per_second": 0.5240489370079441
+        },
+        "texture_bind": {
+          "calls": 288428,
+          "observed_calls": 288428,
+          "inclusive_ms": 17.0824,
+          "self_ms": 17.0824,
+          "max_ms": 0.0225,
+          "estimated_inclusive_ms_per_second": 1.5217007872893478,
+          "estimated_self_ms_per_second": 1.5217007872893478
+        },
+        "trace_sample_1_in_64": {
+          "calls": 400511,
+          "observed_calls": 400511,
+          "inclusive_ms": 49.319500000000005,
+          "self_ms": 49.319500000000005,
+          "max_ms": 0.2154,
+          "estimated_inclusive_ms_per_second": 4.393382778691343,
+          "estimated_self_ms_per_second": 4.393382778691343
+        },
+        "distance_admission": {
+          "calls": 5699,
+          "observed_calls": 5699,
+          "inclusive_ms": 74.90950000000001,
+          "self_ms": 74.90950000000001,
+          "max_ms": 0.139,
+          "estimated_inclusive_ms_per_second": 6.672940870454469,
+          "estimated_self_ms_per_second": 6.672940870454469
+        },
+        "rt64_parse": {
+          "calls": 285,
+          "observed_calls": 285,
+          "inclusive_ms": 2709.1440000000002,
+          "self_ms": 2709.1440000000002,
+          "max_ms": 22.9446,
+          "estimated_inclusive_ms_per_second": 241.33064192854712,
+          "estimated_self_ms_per_second": 241.33064192854712
+        },
+        "rt64_screen": {
+          "calls": 285,
+          "observed_calls": 285,
+          "inclusive_ms": 16.087899999999998,
+          "self_ms": 16.087899999999998,
+          "max_ms": 0.2168,
+          "estimated_inclusive_ms_per_second": 1.4331106926329027,
+          "estimated_self_ms_per_second": 1.4331106926329027
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 285,
+          "observed_calls": 285,
+          "inclusive_ms": 788.0004999999999,
+          "self_ms": 233.9236,
+          "max_ms": 6.522,
+          "estimated_inclusive_ms_per_second": 70.1951120003278,
+          "estimated_self_ms_per_second": 20.837922439795257
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 285,
+          "observed_calls": 285,
+          "inclusive_ms": 234.8841,
+          "self_ms": 234.8841,
+          "max_ms": 4.30592,
+          "estimated_inclusive_ms_per_second": 20.923483813266866,
+          "estimated_self_ms_per_second": 20.923483813266866
+        },
+        "rt64_gpu_wait": {
+          "calls": 285,
+          "observed_calls": 285,
+          "inclusive_ms": 553.8604,
+          "self_ms": 553.8604,
+          "max_ms": 5.7456,
+          "estimated_inclusive_ms_per_second": 49.33790373298794,
+          "estimated_self_ms_per_second": 49.33790373298794
+        },
+        "rt64_upload_wait": {
+          "calls": 285,
+          "observed_calls": 285,
+          "inclusive_ms": 0.21650000000000003,
+          "self_ms": 0.21650000000000003,
+          "max_ms": 0.0026,
+          "estimated_inclusive_ms_per_second": 0.019285827544615736,
+          "estimated_self_ms_per_second": 0.019285827544615736
+        },
+        "rt64_workload_total": {
+          "calls": 285,
+          "observed_calls": 285,
+          "inclusive_ms": 793.2374,
+          "self_ms": 5.2369,
+          "max_ms": 6.5511,
+          "estimated_inclusive_ms_per_second": 70.66161523482387,
+          "estimated_self_ms_per_second": 0.46650323449606534
+        },
+        "present_swap": {
+          "calls": 285,
+          "observed_calls": 285,
+          "inclusive_ms": 115.1392,
+          "self_ms": 115.1392,
+          "max_ms": 0.8068,
+          "estimated_inclusive_ms_per_second": 10.256603948383464,
+          "estimated_self_ms_per_second": 10.256603948383464
+        },
+        "present_workload_wait": {
+          "calls": 285,
+          "observed_calls": 285,
+          "inclusive_ms": 231.06949999999998,
+          "self_ms": 231.06949999999998,
+          "max_ms": 5.7805,
+          "estimated_inclusive_ms_per_second": 20.583679112335265,
+          "estimated_self_ms_per_second": 20.583679112335265
+        },
+        "enemy_callback": {
+          "calls": 187419,
+          "observed_calls": 187419,
+          "inclusive_ms": 602.1294999999999,
+          "self_ms": 589.5992,
+          "max_ms": 0.2867,
+          "estimated_inclusive_ms_per_second": 53.63771684307481,
+          "estimated_self_ms_per_second": 52.521517282417555
+        },
+        "object_timeline": {
+          "calls": 474,
+          "observed_calls": 474,
+          "inclusive_ms": 8463.462000000001,
+          "self_ms": 618.2452,
+          "max_ms": 40.931,
+          "estimated_inclusive_ms_per_second": 753.9254898956517,
+          "estimated_self_ms_per_second": 55.073303960676505
+        },
+        "model_draw_commands": {
+          "calls": 51235,
+          "observed_calls": 51235,
+          "inclusive_ms": 201.2315,
+          "self_ms": 199.7703,
+          "max_ms": 0.3946,
+          "estimated_inclusive_ms_per_second": 17.925709032537373,
+          "estimated_self_ms_per_second": 17.795545285617315
+        },
+        "model_rate_plan": {
+          "calls": 6005,
+          "observed_calls": 6005,
+          "inclusive_ms": 321.6446000000001,
+          "self_ms": 291.0847,
+          "max_ms": 0.3084,
+          "estimated_inclusive_ms_per_second": 28.65211217670629,
+          "estimated_self_ms_per_second": 25.929835219751535
+        },
+        "model_clip_boundaries": {
+          "calls": 6005,
+          "observed_calls": 6005,
+          "inclusive_ms": 18.348699999999997,
+          "self_ms": 18.348699999999997,
+          "max_ms": 0.0539,
+          "estimated_inclusive_ms_per_second": 1.6345028354175088,
+          "estimated_self_ms_per_second": 1.6345028354175088
+        },
+        "object_clock_registration": {
+          "calls": 6005,
+          "observed_calls": 6005,
+          "inclusive_ms": 362.07910000000004,
+          "self_ms": 330.07460000000003,
+          "max_ms": 0.2689,
+          "estimated_inclusive_ms_per_second": 32.25401884577217,
+          "estimated_self_ms_per_second": 29.403056870475847
+        },
+        "preview_hook_sample_1_in_16": {
+          "calls": 377766,
+          "observed_calls": 6044246,
+          "inclusive_ms": 494.70349999999996,
+          "self_ms": 275.73859999999996,
+          "max_ms": 40.9374,
+          "estimated_inclusive_ms_per_second": 705.0901137640307,
+          "estimated_self_ms_per_second": 393.0042153393589
+        },
+        "enemy_axis_sample_1_in_16": {
+          "calls": 80471,
+          "observed_calls": 1287555,
+          "inclusive_ms": 30.0219,
+          "self_ms": 28.4775,
+          "max_ms": 0.0343,
+          "estimated_inclusive_ms_per_second": 42.79026181227053,
+          "estimated_self_ms_per_second": 40.58902603629131
+        },
+        "common_ownership_sample_1_in_16": {
+          "calls": 128995,
+          "observed_calls": 2063890,
+          "inclusive_ms": 84.44380000000001,
+          "self_ms": 79.86219999999999,
+          "max_ms": 0.1278,
+          "estimated_inclusive_ms_per_second": 120.35435691749058,
+          "estimated_self_ms_per_second": 113.82438643234926
+        },
+        "enemy_identity_sample_1_in_16": {
+          "calls": 369118,
+          "observed_calls": 5905918,
+          "inclusive_ms": 114.7761,
+          "self_ms": 114.40140000000001,
+          "max_ms": 0.0399,
+          "estimated_inclusive_ms_per_second": 163.58897477851818,
+          "estimated_self_ms_per_second": 163.05491944078227
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 52574,
+          "observed_calls": 3364786,
+          "inclusive_ms": 6.0403,
+          "self_ms": 6.0403,
+          "max_ms": 0.0201,
+          "estimated_inclusive_ms_per_second": 34.437000334010854,
+          "estimated_self_ms_per_second": 34.437000334010854
+        },
+        "enemy_pool_finalize": {
+          "calls": 6005,
+          "observed_calls": 6005,
+          "inclusive_ms": 219.94869999999997,
+          "self_ms": 215.4956,
+          "max_ms": 0.4691,
+          "estimated_inclusive_ms_per_second": 19.593037860796407,
+          "estimated_self_ms_per_second": 19.196355557614293
+        },
+        "native_model_clock_sample_1_in_16": {
+          "calls": 27573,
+          "observed_calls": 441195,
+          "inclusive_ms": 2.6711,
+          "self_ms": 2.6711,
+          "max_ms": 0.009,
+          "estimated_inclusive_ms_per_second": 3.807299894292228,
+          "estimated_self_ms_per_second": 3.807299894292228
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 700061,
+          "observed_calls": 22401900,
+          "inclusive_ms": 59.9813,
+          "self_ms": 59.9813,
+          "max_ms": 0.0366,
+          "estimated_inclusive_ms_per_second": 170.97996453140686,
+          "estimated_self_ms_per_second": 170.97996453140686
+        }
+      },
+      "output_fps": 25.387809931711242
+    },
+    "5x/active": {
+      "samples": 8,
+      "interval_ms": 17116.67,
+      "output_frames": 24,
+      "common_alive_max": 130,
+      "stages": {
+        "native_update": {
+          "calls": 24,
+          "observed_calls": 24,
+          "inclusive_ms": 1913.4226999999998,
+          "self_ms": 0.11430000000000001,
+          "max_ms": 315.952,
+          "estimated_inclusive_ms_per_second": 111.78708825957386,
+          "estimated_self_ms_per_second": 0.006677700744362077
+        },
+        "native_frame": {
+          "calls": 23,
+          "observed_calls": 23,
+          "inclusive_ms": 88.2298,
+          "self_ms": 0.3487,
+          "max_ms": 18.438,
+          "estimated_inclusive_ms_per_second": 5.154612433376353,
+          "estimated_self_ms_per_second": 0.020371953189493055
+        },
+        "world_source_update": {
+          "calls": 88,
+          "observed_calls": 88,
+          "inclusive_ms": 14999.317000000003,
+          "self_ms": 4.9689000000000005,
+          "max_ms": 360.154,
+          "estimated_inclusive_ms_per_second": 876.2987777412314,
+          "estimated_self_ms_per_second": 0.29029595125687424
+        },
+        "world_gameplay": {
+          "calls": 88,
+          "observed_calls": 88,
+          "inclusive_ms": 14994.155,
+          "self_ms": 3.203,
+          "max_ms": 359.943,
+          "estimated_inclusive_ms_per_second": 875.9972003900293,
+          "estimated_self_ms_per_second": 0.1871275195467343
+        },
+        "actor_manager": {
+          "calls": 86,
+          "observed_calls": 86,
+          "inclusive_ms": 20.1447,
+          "self_ms": 3.9119,
+          "max_ms": 1.2406,
+          "estimated_inclusive_ms_per_second": 1.1769053209531997,
+          "estimated_self_ms_per_second": 0.22854328558066497
+        },
+        "common_actors": {
+          "calls": 8523,
+          "observed_calls": 8523,
+          "inclusive_ms": 12835.777999999998,
+          "self_ms": 9394.569,
+          "max_ms": 8.2428,
+          "estimated_inclusive_ms_per_second": 749.8992502630476,
+          "estimated_self_ms_per_second": 548.8549466689491
+        },
+        "contacts": {
+          "calls": 86,
+          "observed_calls": 86,
+          "inclusive_ms": 437.64720000000005,
+          "self_ms": 430.68069999999994,
+          "max_ms": 8.1702,
+          "estimated_inclusive_ms_per_second": 25.568477980822212,
+          "estimated_self_ms_per_second": 25.161477086372525
+        },
+        "player": {
+          "calls": 8523,
+          "observed_calls": 8523,
+          "inclusive_ms": 817.6078,
+          "self_ms": 614.8514,
+          "max_ms": 0.4637,
+          "estimated_inclusive_ms_per_second": 47.76675603373788,
+          "estimated_self_ms_per_second": 35.921204299668105
+        },
+        "projectiles": {
+          "calls": 8523,
+          "observed_calls": 8523,
+          "inclusive_ms": 9.887699999999999,
+          "self_ms": 9.672500000000001,
+          "max_ms": 0.0519,
+          "estimated_inclusive_ms_per_second": 0.5776649313213377,
+          "estimated_self_ms_per_second": 0.5650923923870708
+        },
+        "world_draw": {
+          "calls": 24,
+          "observed_calls": 24,
+          "inclusive_ms": 56.432,
+          "self_ms": 28.204600000000003,
+          "max_ms": 3.2601,
+          "estimated_inclusive_ms_per_second": 3.2969029606810207,
+          "estimated_self_ms_per_second": 1.647785462943435
+        },
+        "world_geometry": {
+          "calls": 48,
+          "observed_calls": 48,
+          "inclusive_ms": 4.975599999999999,
+          "self_ms": 4.591900000000001,
+          "max_ms": 0.2877,
+          "estimated_inclusive_ms_per_second": 0.2906873825341027,
+          "estimated_self_ms_per_second": 0.26827063909043064
+        },
+        "model_advance": {
+          "calls": 1052971,
+          "observed_calls": 1052971,
+          "inclusive_ms": 325.0974,
+          "self_ms": 316.5345,
+          "max_ms": 0.0802,
+          "estimated_inclusive_ms_per_second": 18.993028433684824,
+          "estimated_self_ms_per_second": 18.4927617346131
+        },
+        "model_evaluate": {
+          "calls": 1053689,
+          "observed_calls": 1053689,
+          "inclusive_ms": 1142.7031,
+          "self_ms": 1128.2865,
+          "max_ms": 0.4541,
+          "estimated_inclusive_ms_per_second": 66.75966178000745,
+          "estimated_self_ms_per_second": 65.9174068320532
+        },
+        "frame_commands": {
+          "calls": 24,
+          "observed_calls": 24,
+          "inclusive_ms": 105.3419,
+          "self_ms": 0.16280000000000006,
+          "max_ms": 19.8287,
+          "estimated_inclusive_ms_per_second": 6.154345442191735,
+          "estimated_self_ms_per_second": 0.009511195810867422
+        },
+        "task_submit": {
+          "calls": 24,
+          "observed_calls": 24,
+          "inclusive_ms": 48.7469,
+          "self_ms": 48.7469,
+          "max_ms": 16.5624,
+          "estimated_inclusive_ms_per_second": 2.847919601184109,
+          "estimated_self_ms_per_second": 2.847919601184109
+        },
+        "native_model_pose": {
+          "calls": 48,
+          "observed_calls": 48,
+          "inclusive_ms": 2.5372000000000003,
+          "self_ms": 0.6252,
+          "max_ms": 0.1488,
+          "estimated_inclusive_ms_per_second": 0.14822976665437848,
+          "estimated_self_ms_per_second": 0.036525796197508044
+        },
+        "texture_bind": {
+          "calls": 31572,
+          "observed_calls": 31572,
+          "inclusive_ms": 1.6692999999999998,
+          "self_ms": 1.6692999999999998,
+          "max_ms": 0.0157,
+          "estimated_inclusive_ms_per_second": 0.09752481060860553,
+          "estimated_self_ms_per_second": 0.09752481060860553
+        },
+        "trace_sample_1_in_64": {
+          "calls": 511673,
+          "observed_calls": 511673,
+          "inclusive_ms": 59.0125,
+          "self_ms": 59.0125,
+          "max_ms": 0.3587,
+          "estimated_inclusive_ms_per_second": 3.4476624249927124,
+          "estimated_self_ms_per_second": 3.4476624249927124
+        },
+        "distance_admission": {
+          "calls": 1001,
+          "observed_calls": 1001,
+          "inclusive_ms": 16.2071,
+          "self_ms": 16.2071,
+          "max_ms": 0.2349,
+          "estimated_inclusive_ms_per_second": 0.9468605751001803,
+          "estimated_self_ms_per_second": 0.9468605751001803
+        },
+        "rt64_parse": {
+          "calls": 24,
+          "observed_calls": 24,
+          "inclusive_ms": 301.55129999999997,
+          "self_ms": 301.55129999999997,
+          "max_ms": 24.5311,
+          "estimated_inclusive_ms_per_second": 17.61740455357263,
+          "estimated_self_ms_per_second": 17.61740455357263
+        },
+        "rt64_screen": {
+          "calls": 24,
+          "observed_calls": 24,
+          "inclusive_ms": 1.3124999999999998,
+          "self_ms": 1.3124999999999998,
+          "max_ms": 0.0885,
+          "estimated_inclusive_ms_per_second": 0.07667963453171674,
+          "estimated_self_ms_per_second": 0.07667963453171674
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 23,
+          "observed_calls": 23,
+          "inclusive_ms": 80.85940000000001,
+          "self_ms": 19.3656,
+          "max_ms": 6.7832,
+          "estimated_inclusive_ms_per_second": 4.724014659393446,
+          "estimated_self_ms_per_second": 1.1313882898951726
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 23,
+          "observed_calls": 23,
+          "inclusive_ms": 26.275089999999995,
+          "self_ms": 26.275089999999995,
+          "max_ms": 4.43776,
+          "estimated_inclusive_ms_per_second": 1.5350585131336878,
+          "estimated_self_ms_per_second": 1.5350585131336878
+        },
+        "rt64_gpu_wait": {
+          "calls": 23,
+          "observed_calls": 23,
+          "inclusive_ms": 61.477799999999995,
+          "self_ms": 61.477799999999995,
+          "max_ms": 6.0151,
+          "estimated_inclusive_ms_per_second": 3.59169160823922,
+          "estimated_self_ms_per_second": 3.59169160823922
+        },
+        "rt64_upload_wait": {
+          "calls": 23,
+          "observed_calls": 23,
+          "inclusive_ms": 0.016,
+          "self_ms": 0.016,
+          "max_ms": 0.0013,
+          "estimated_inclusive_ms_per_second": 0.000934761259053309,
+          "estimated_self_ms_per_second": 0.000934761259053309
+        },
+        "rt64_workload_total": {
+          "calls": 23,
+          "observed_calls": 23,
+          "inclusive_ms": 81.24560000000001,
+          "self_ms": 0.3862,
+          "max_ms": 6.7969,
+          "estimated_inclusive_ms_per_second": 4.746577459283846,
+          "estimated_self_ms_per_second": 0.022562799890399245
+        },
+        "present_swap": {
+          "calls": 24,
+          "observed_calls": 24,
+          "inclusive_ms": 10.968300000000001,
+          "self_ms": 10.968300000000001,
+          "max_ms": 0.7291,
+          "estimated_inclusive_ms_per_second": 0.6407963698546506,
+          "estimated_self_ms_per_second": 0.6407963698546506
+        },
+        "present_workload_wait": {
+          "calls": 24,
+          "observed_calls": 24,
+          "inclusive_ms": 12.2424,
+          "self_ms": 12.2424,
+          "max_ms": 5.6425,
+          "estimated_inclusive_ms_per_second": 0.7152325773646394,
+          "estimated_self_ms_per_second": 0.7152325773646394
+        },
+        "enemy_callback": {
+          "calls": 350335,
+          "observed_calls": 350335,
+          "inclusive_ms": 1158.5143,
+          "self_ms": 1132.3304,
+          "max_ms": 3.6926,
+          "estimated_inclusive_ms_per_second": 67.68339285620394,
+          "estimated_self_ms_per_second": 66.15366189802107
+        },
+        "object_timeline": {
+          "calls": 112,
+          "observed_calls": 112,
+          "inclusive_ms": 16408.145,
+          "self_ms": 769.1880999999998,
+          "max_ms": 359.791,
+          "estimated_inclusive_ms_per_second": 958.6061424330785,
+          "estimated_self_ms_per_second": 44.9379523003014
+        },
+        "model_draw_commands": {
+          "calls": 5627,
+          "observed_calls": 5627,
+          "inclusive_ms": 21.5628,
+          "self_ms": 21.417800000000003,
+          "max_ms": 0.0672,
+          "estimated_inclusive_ms_per_second": 1.2597543797946682,
+          "estimated_self_ms_per_second": 1.2512831058844978
+        },
+        "model_rate_plan": {
+          "calls": 8448,
+          "observed_calls": 8448,
+          "inclusive_ms": 729.93,
+          "self_ms": 658.2175000000001,
+          "max_ms": 0.3019,
+          "estimated_inclusive_ms_per_second": 42.64439286379886,
+          "estimated_self_ms_per_second": 38.454763689432596
+        },
+        "model_clip_boundaries": {
+          "calls": 8448,
+          "observed_calls": 8448,
+          "inclusive_ms": 46.8103,
+          "self_ms": 46.8103,
+          "max_ms": 0.0897,
+          "estimated_inclusive_ms_per_second": 2.734778435291444,
+          "estimated_self_ms_per_second": 2.734778435291444
+        },
+        "object_clock_registration": {
+          "calls": 8437,
+          "observed_calls": 8437,
+          "inclusive_ms": 789.691,
+          "self_ms": 714.3848,
+          "max_ms": 0.4204,
+          "estimated_inclusive_ms_per_second": 46.13578458894167,
+          "estimated_self_ms_per_second": 41.73620219353415
+        },
+        "preview_hook_sample_1_in_16": {
+          "calls": 677992,
+          "observed_calls": 10847908,
+          "inclusive_ms": 2044.6083999999998,
+          "self_ms": 532.2432,
+          "max_ms": 326.944,
+          "estimated_inclusive_ms_per_second": 1911.2270648764554,
+          "estimated_self_ms_per_second": 497.5219748370653
+        },
+        "enemy_axis_sample_1_in_16": {
+          "calls": 193157,
+          "observed_calls": 3090480,
+          "inclusive_ms": 68.6704,
+          "self_ms": 64.9511,
+          "max_ms": 0.0924,
+          "estimated_inclusive_ms_per_second": 64.18976491856563,
+          "estimated_self_ms_per_second": 60.71314336602448
+        },
+        "common_ownership_sample_1_in_16": {
+          "calls": 324425,
+          "observed_calls": 5190830,
+          "inclusive_ms": 211.072,
+          "self_ms": 199.72390000000001,
+          "max_ms": 0.2211,
+          "estimated_inclusive_ms_per_second": 197.30306876870654,
+          "estimated_self_ms_per_second": 186.6952432177374
+        },
+        "enemy_identity_sample_1_in_16": {
+          "calls": 908614,
+          "observed_calls": 14537837,
+          "inclusive_ms": 273.4904,
+          "self_ms": 272.8084,
+          "max_ms": 0.2546,
+          "estimated_inclusive_ms_per_second": 255.6484592485257,
+          "estimated_self_ms_per_second": 255.01095149978025
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 96614,
+          "observed_calls": 6183404,
+          "inclusive_ms": 10.8539,
+          "self_ms": 10.8539,
+          "max_ms": 0.1191,
+          "estimated_inclusive_ms_per_second": 40.58392976184153,
+          "estimated_self_ms_per_second": 40.58392976184153
+        },
+        "enemy_pool_finalize": {
+          "calls": 8437,
+          "observed_calls": 8437,
+          "inclusive_ms": 437.0026,
+          "self_ms": 428.11039999999997,
+          "max_ms": 0.3708,
+          "estimated_inclusive_ms_per_second": 25.530818786598097,
+          "estimated_self_ms_per_second": 25.01131353236348
+        },
+        "native_model_clock_sample_1_in_16": {
+          "calls": 65441,
+          "observed_calls": 1047034,
+          "inclusive_ms": 6.6321,
+          "self_ms": 6.6321,
+          "max_ms": 0.0172,
+          "estimated_inclusive_ms_per_second": 6.199299888126605,
+          "estimated_self_ms_per_second": 6.199299888126605
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 1146917,
+          "observed_calls": 36701328,
+          "inclusive_ms": 97.6697,
+          "self_ms": 97.6697,
+          "max_ms": 0.1935,
+          "estimated_inclusive_ms_per_second": 182.5956238838768,
+          "estimated_self_ms_per_second": 182.5956238838768
+        }
+      },
+      "output_fps": 1.4021418885799635
+    },
+    "5x/stopped": {
+      "samples": 10,
+      "interval_ms": 10100.07,
+      "output_frames": 606,
+      "common_alive_max": 128,
+      "stages": {
+        "native_update": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 26.288600000000002,
+          "self_ms": 1.6780000000000002,
+          "max_ms": 0.0923,
+          "estimated_inclusive_ms_per_second": 2.6028136438658347,
+          "estimated_self_ms_per_second": 0.16613746241362687
+        },
+        "native_frame": {
+          "calls": 607,
+          "observed_calls": 607,
+          "inclusive_ms": 2142.958,
+          "self_ms": 6.3603,
+          "max_ms": 20.0131,
+          "estimated_inclusive_ms_per_second": 212.1725889028492,
+          "estimated_self_ms_per_second": 0.6297283088137012
+        },
+        "world_source_update": {
+          "calls": 202,
+          "observed_calls": 202,
+          "inclusive_ms": 22.951099999999997,
+          "self_ms": 10.8708,
+          "max_ms": 0.3591,
+          "estimated_inclusive_ms_per_second": 2.2723703895121514,
+          "estimated_self_ms_per_second": 1.0763093721132626
+        },
+        "world_gameplay": {
+          "calls": 202,
+          "observed_calls": 202,
+          "inclusive_ms": 11.936599999999999,
+          "self_ms": 3.3687,
+          "max_ms": 0.1302,
+          "estimated_inclusive_ms_per_second": 1.1818333932339082,
+          "estimated_self_ms_per_second": 0.3335323418550565
+        },
+        "world_draw": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 1913.636,
+          "self_ms": 977.6833,
+          "max_ms": 5.906,
+          "estimated_inclusive_ms_per_second": 189.46759774932252,
+          "estimated_self_ms_per_second": 96.7996558439694
+        },
+        "world_geometry": {
+          "calls": 1212,
+          "observed_calls": 1212,
+          "inclusive_ms": 167.5529,
+          "self_ms": 155.2024,
+          "max_ms": 0.6294,
+          "estimated_inclusive_ms_per_second": 16.58928106438866,
+          "estimated_self_ms_per_second": 15.36646775715416
+        },
+        "model_evaluate": {
+          "calls": 35148,
+          "observed_calls": 35148,
+          "inclusive_ms": 113.2427,
+          "self_ms": 111.6533,
+          "max_ms": 0.1345,
+          "estimated_inclusive_ms_per_second": 11.212070807430047,
+          "estimated_self_ms_per_second": 11.054705561446605
+        },
+        "frame_commands": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 1982.71,
+          "self_ms": 4.4546,
+          "max_ms": 18.2383,
+          "estimated_inclusive_ms_per_second": 196.30656025156262,
+          "estimated_self_ms_per_second": 0.4410464481929333
+        },
+        "task_submit": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 64.59790000000001,
+          "self_ms": 64.5914,
+          "max_ms": 14.7826,
+          "estimated_inclusive_ms_per_second": 6.395787355929217,
+          "estimated_self_ms_per_second": 6.395143796033096
+        },
+        "native_model_pose": {
+          "calls": 1212,
+          "observed_calls": 1212,
+          "inclusive_ms": 133.88139999999999,
+          "self_ms": 20.6387,
+          "max_ms": 0.4482,
+          "estimated_inclusive_ms_per_second": 13.255492288667305,
+          "estimated_self_ms_per_second": 2.043421481237259
+        },
+        "texture_bind": {
+          "calls": 1035048,
+          "observed_calls": 1035048,
+          "inclusive_ms": 56.54900000000001,
+          "self_ms": 56.54900000000001,
+          "max_ms": 0.0687,
+          "estimated_inclusive_ms_per_second": 5.59887208702514,
+          "estimated_self_ms_per_second": 5.59887208702514
+        },
+        "trace_sample_1_in_64": {
+          "calls": 200492,
+          "observed_calls": 200492,
+          "inclusive_ms": 22.8413,
+          "self_ms": 22.8413,
+          "max_ms": 0.1702,
+          "estimated_inclusive_ms_per_second": 2.261499177728471,
+          "estimated_self_ms_per_second": 2.261499177728471
+        },
+        "rt64_parse": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 5793.3330000000005,
+          "self_ms": 5793.3330000000005,
+          "max_ms": 19.585,
+          "estimated_inclusive_ms_per_second": 573.5933513332086,
+          "estimated_self_ms_per_second": 573.5933513332086
+        },
+        "rt64_screen": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 27.6646,
+          "self_ms": 27.6646,
+          "max_ms": 0.1014,
+          "estimated_inclusive_ms_per_second": 2.7390503234136,
+          "estimated_self_ms_per_second": 2.7390503234136
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 1082.4482,
+          "self_ms": 565.4884999999999,
+          "max_ms": 6.017,
+          "estimated_inclusive_ms_per_second": 107.17234633027297,
+          "estimated_self_ms_per_second": 55.98857235642921
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 227.8338,
+          "self_ms": 227.8338,
+          "max_ms": 1.2585,
+          "estimated_inclusive_ms_per_second": 22.557645640079723,
+          "estimated_self_ms_per_second": 22.557645640079723
+        },
+        "rt64_gpu_wait": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 516.5837,
+          "self_ms": 516.5837,
+          "max_ms": 5.2631,
+          "estimated_inclusive_ms_per_second": 51.146546509083606,
+          "estimated_self_ms_per_second": 51.146546509083606
+        },
+        "rt64_upload_wait": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 0.3761,
+          "self_ms": 0.3761,
+          "max_ms": 0.0016,
+          "estimated_inclusive_ms_per_second": 0.03723736568162399,
+          "estimated_self_ms_per_second": 0.03723736568162399
+        },
+        "rt64_workload_total": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 1095.7044,
+          "self_ms": 13.255600000000001,
+          "max_ms": 6.0374,
+          "estimated_inclusive_ms_per_second": 108.48483228334062,
+          "estimated_self_ms_per_second": 1.3124265475387795
+        },
+        "present_swap": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 271.9428,
+          "self_ms": 271.9428,
+          "max_ms": 0.8618,
+          "estimated_inclusive_ms_per_second": 26.924843095146862,
+          "estimated_self_ms_per_second": 26.924843095146862
+        },
+        "present_workload_wait": {
+          "calls": 606,
+          "observed_calls": 606,
+          "inclusive_ms": 870.5227,
+          "self_ms": 870.5227,
+          "max_ms": 5.735,
+          "estimated_inclusive_ms_per_second": 86.18976898179913,
+          "estimated_self_ms_per_second": 86.18976898179913
+        },
+        "object_timeline": {
+          "calls": 808,
+          "observed_calls": 808,
+          "inclusive_ms": 33.0476,
+          "self_ms": 11.7776,
+          "max_ms": 0.1052,
+          "estimated_inclusive_ms_per_second": 3.2720169266153603,
+          "estimated_self_ms_per_second": 1.1660909280826766
+        },
+        "model_draw_commands": {
+          "calls": 185436,
+          "observed_calls": 185436,
+          "inclusive_ms": 710.0042999999998,
+          "self_ms": 705.1172999999999,
+          "max_ms": 0.1713,
+          "estimated_inclusive_ms_per_second": 70.29696823883397,
+          "estimated_self_ms_per_second": 69.81311020616688
+        },
+        "model_rate_plan": {
+          "calls": 1622,
+          "observed_calls": 1622,
+          "inclusive_ms": 8.1283,
+          "self_ms": 8.1283,
+          "max_ms": 0.0254,
+          "estimated_inclusive_ms_per_second": 0.8047766005582139,
+          "estimated_self_ms_per_second": 0.8047766005582139
+        },
+        "model_clip_boundaries": {
+          "calls": 1622,
+          "observed_calls": 1622,
+          "inclusive_ms": 13.101300000000002,
+          "self_ms": 13.101300000000002,
+          "max_ms": 0.0659,
+          "estimated_inclusive_ms_per_second": 1.29714942569705,
+          "estimated_self_ms_per_second": 1.29714942569705
+        },
+        "preview_hook_sample_1_in_16": {
+          "calls": 13,
+          "observed_calls": 202,
+          "inclusive_ms": 0.6512,
+          "self_ms": 0.09189999999999998,
+          "max_ms": 0.0889,
+          "estimated_inclusive_ms_per_second": 1.0018392104060818,
+          "estimated_self_ms_per_second": 0.1413836354980327
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 205,
+          "observed_calls": 13032,
+          "inclusive_ms": 0.0547,
+          "self_ms": 0.0547,
+          "max_ms": 0.0012,
+          "estimated_inclusive_ms_per_second": 0.34428662617093186,
+          "estimated_self_ms_per_second": 0.34428662617093186
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 383,
+          "observed_calls": 12353,
+          "inclusive_ms": 0.1122,
+          "self_ms": 0.1122,
+          "max_ms": 0.002,
+          "estimated_inclusive_ms_per_second": 0.3582961492335752,
+          "estimated_self_ms_per_second": 0.3582961492335752
+        }
+      },
+      "output_fps": 59.999584161297896
+    }
+  }
+}

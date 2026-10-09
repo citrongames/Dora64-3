@@ -1,0 +1,44 @@
+{
+  "status": "Static control-flow proof; no executed renderer/test/profile",
+  "previous_result": "076 user reports no improvement; 1x render/distance still below300 at target360",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "rom_functions": {
+    "video_buffers_init": {
+      "vram": "0x80031588",
+      "rom": "0xc988",
+      "size": 104,
+      "sha256": "cc77bcea0712aee374fb23c169a6e9ef259b01794282415fc9711b84777e8b78"
+    },
+    "depth_buffer_clear": {
+      "vram": "0x8002f594",
+      "rom": "0xa994",
+      "size": 272,
+      "sha256": "1ba03d63dbab33f481406726ac857e866423aaf4c7b7ffad6763bf396f280489"
+    },
+    "color_buffer_setup": {
+      "vram": "0x8002f6a4",
+      "rom": "0xaaa4",
+      "size": 388,
+      "sha256": "2d49631fcd883b178d2e035e104eac0e6cfe73c5025c0c57a2a901e646b937d2"
+    }
+  },
+  "defects": [
+    "076 requires depth address0038F800 but Original sets00000400; any depth-reading/writing pair must reject",
+    "076 rejects Z-clear color-image pair; Original world draw801BB848 calls8002F594 at801BB868 on its normal draw path",
+    "RT64 submitFramebufferPair marks preceding Z fill clearDepthOnly; display queue renders this to Depth target, not Color"
+  ],
+  "fix": "Use exact Doraemon3 depth address00000400 and accept only RT64-recognized fill-only Z-clear pair at captured address; retain all offscreen/operations/texture reinterpret fallback and CPU/handoff barriers",
+  "limits": [
+    "No new measured internal timings or 077 FPS",
+    "No guarantee300/360FPS; remaining HLE,draw,Native costs unchanged",
+    "076 measurements do not exist; frequency of other fallback conditions not measured"
+  ],
+  "build": {
+    "id": "test-077",
+    "compiled": true,
+    "exe_sha256": "165c529caff91d7dbf083fe0c49d996cb5d4e135bccff34cf3db0c8e54d4948c",
+    "diagnostics": false,
+    "profiling": false,
+    "gameplay_or_FPS_verified": false
+  }
+}

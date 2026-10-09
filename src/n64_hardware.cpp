@@ -1,3 +1,4 @@
+#include "diagnostics.hpp"
 #include "n64_hardware.hpp"
 #include <algorithm>
 #include <cstdio>
@@ -145,7 +146,7 @@ void dp_consumed() { dp_busy.store(false); }
 void sp_submitted() { std::lock_guard lock(sp_mutex); ++sp_tasks; pc = 0; }
 void sp_completed() {
     std::lock_guard lock(sp_mutex);
-    if (sp_tasks == 0) { std::fputs("Unbalanced RSP completion\n",stderr); std::abort(); }
+    if (sp_tasks == 0) { DORA3_LOG_TEXT("Unbalanced RSP completion\n",stderr); std::abort(); }
     --sp_tasks;
 }
 int sp_set_pc(uint32_t address) {
@@ -168,7 +169,7 @@ uint32_t bus_read32(uint8_t* ram, uint32_t address) {
         const auto* p = rom.data()+(physical-0x10000000);
         return uint32_t(p[0])<<24 | uint32_t(p[1])<<16 | uint32_t(p[2])<<8 | p[3];
     }
-    std::fprintf(stderr,"Unsupported N64 bus word read %08X\n",address);
+    DORA3_LOG(stderr,"Unsupported N64 bus word read %08X\n",address);
     std::abort();
 }
 }

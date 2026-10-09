@@ -131,6 +131,9 @@ void draw_overlay(){
                         }
                         changed|=ImGui::Combo("Game render resolution",&s.resolution,"Original (1x)\0Original (2x)\0Original (4x)\0Fit to window\0");
                         changed|=ImGui::Combo("Texture filtering",&s.filtering,"Original N64 (three-point)\0Bilinear\0");
+                        ImGui::Spacing();
+                        changed|=ImGui::SliderFloat("Object / NPC draw distance",&s.draw_distance,1.f,5.f,"%.1fx",ImGuiSliderFlags_AlwaysClamp);
+                        ImGui::TextDisabled("1x = Original. Higher values show objects farther away.");
                         if(changed)set_general(s);
                     }
                     ImGui::EndTabItem();

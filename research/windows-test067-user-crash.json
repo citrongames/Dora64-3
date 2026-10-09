@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-08",
+  "build_id": "test-067",
+  "user_report": "ииии вылет там же",
+  "runtime_log_session": "1791451300644",
+  "runtime_log_sha256": "8d7b0dc4f7d165c83f668147f90f96d292c3ef9fb19fece80d360652f7f8b4b8",
+  "windows_exception": "C0000005",
+  "fault_rva": "00159F29",
+  "fault_function": "dora3_s3_801BC4EC",
+  "fault_guest_instruction": "801BC5B0",
+  "static_cause": "8002A650 component binding read the old801AEC00 cache after relocation to8047EC00, then stored the invalid model pointer at actor+74; geometry draw dereferenced model+0C",
+  "previous_stack_fix": "The067 user log passes the Native handoff and reaches scene1 resource loading and world drawing;067 exception differs from066 C00000FD",
+  "fixed_in": "test-068",
+  "gameplay_confirmation_received": false,
+  "tests_or_game_launched_by_agent": false
+}

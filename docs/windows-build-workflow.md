@@ -1,3 +1,280 @@
+
+## Сборка077 завершена
+
+Инкрементальный MSVC RelWithDebInfo configure/compile/link: exit0,17.375с.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-077.exe.
+SHA256: 165c529caff91d7dbf083fe0c49d996cb5d4e135bccff34cf3db0c8e54d4948c.
+DORA3_DIAGNOSTICS=OFF, clean CPU generation diagnostics=false/profiling=false;
+DORA3_PROFILE отсутствует в compile definitions. Все243 старых файла вне logs
+сохранили size/mtime; общиеDLL совпали по хэшам упаковщика. ROM/settings/saves
+не переписывались. Старые076 EXE/PDB/receipt сохранены. Новых игровых измерений
+нет; успешная компиляция не подтверждает FPS. Commit/push не выполнялись.
+
+
+## Сборка завершена
+
+Windows MSVC configure/compile/link: exit 0, 24.125 секунд, инкрементальный кэш сохранён.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-076.exe.
+SHA-256: `3f70a421d6c5cde13590958ceba56fd7aa788984288038e2c7b1707203624d46`.
+Все 240 прежних файлов пакета сохранены.
+Игра, renderer/GPU, тесты и CPU checks не запускались.
+FPS измеряет пользователь; автоматические журналы и профилировщик выключены.
+Commit/push не выполнялись.
+
+
+## Сборка завершена
+
+Windows MSVC configure/compile/link: exit 0, 57.688 секунд, инкрементальный кэш сохранён.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-075.exe.
+SHA-256: `4a53b62935f1c3e6d5e7cb882f05bc86f802cf2f395c69537f03f29611f36534`.
+Все 237 прежних файлов пакета сохранены.
+Игра, renderer/GPU, тесты и CPU checks не запускались.
+FPS измеряет пользователь; автоматические журналы и профилировщик выключены.
+Commit/push не выполнялись.
+
+
+## Сборка завершена
+
+Windows MSVC configure/compile/link: exit 0, 17.047 секунд, инкрементальный кэш сохранён.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-074.exe.
+SHA-256: `1d027fcd9b924e98fdab02063da063a4f1e60a11d1fdf6aaa7bdfdf5506ec029`.
+Все 234 прежних файлов пакета сохранены.
+Игра, renderer/GPU, тесты и CPU checks не запускались.
+Эффект изменения на FPS требует пользовательского профиля.
+Commit/push не выполнялись.
+
+
+## Сборка завершена
+
+Windows MSVC configure/compile/link: exit 0, 27.0 секунд, инкрементальный кэш сохранён.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-073.exe.
+SHA-256: `10a1868e14b15a88a3dd03ff6bf9e318ddd5c684463738aa0cd5bde10a7a6b2d`.
+Все 231 прежних файлов пакета сохранены.
+Игра, renderer/GPU, тесты и CPU checks не запускались.
+Эффект изменения на FPS требует пользовательского профиля.
+Commit/push не выполнялись.
+
+##072:5x32FPS;073 фиксирует точную причину full-pool subdivision
+
+Native common около516 calls/сек против Original20 при сопоставимом/большем
+числе actors. Общее Source gameplay в Original около7мс/update. Лимит кадров
+не объясняет просадку. Нужны причины min-limit и размеры slices;073 добавляет
+эти counters и thread CPU durations, не меняя time/AI/contact/birth/clip rules.
+Immutable membership predicates также переведены на существующий индекс.
+Детали: docs/performance-timeline-partitions.md. Один user замер5x+пауза,
+затем исправлять конкретный измеренный источник дробления. Git после проверки.
+
+
+## Сборка завершена
+
+Windows MSVC configure/compile/link: exit 0, 18.547 секунд, инкрементальный кэш сохранён.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-072.exe.
+SHA-256: `e481d5549ac9468966b302c266b4fed6e6c3d398fe9f8ef7338237170849f96f`.
+Все 228 прежних файлов пакета сохранены.
+Игра, renderer/GPU, тесты и CPU checks не запускались.
+Эффект изменения на FPS требует пользовательского профиля.
+Commit/push не выполнялись.
+
+##071: измерены Native dispatcher/identity расходы; targeted072
+
+На5x за17.1с:10.8млн preview calls,36.7млн eligibility calls,14.5млн identity calls.
+По выборке preview self примерно500мс/сек, identity inclusive256мс/сек;
+вложенные оценки не складывать. Найдены полный site dispatch для каждого
+E8E7C slot exit и поздние site guards; immutable definition поиск линейный.
+072 направляет прежние exit handlers напрямую, проверяет site раньше live,
+индексирует только immutable records. AI/contacts/time/cleanup не урезаны.
+Детали и ограничения: docs/performance-native-dispatch.md. FPS требует user run.
+Commit/push не выполнять без пользовательской проверки и команды.
+
+
+## Сборка завершена
+
+Windows MSVC configure/compile/link: exit 0, 27.625 секунд, инкрементальный кэш сохранён.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-071.exe.
+SHA-256: `1e92e09247d4ebeb4e70a46fb802ba4185689c041ee752ca7d509c6efb49c511`.
+Все 225 прежних файлов пакета сохранены.
+Игра, renderer/GPU, тесты и CPU checks не запускались.
+Эффект изменения на FPS требует пользовательского профиля.
+Commit/push не выполнялись.
+
+##070:3x улучшилось,4x/5x просадки;071 только уточняет common pool timings
+
+Замер070 локализовал оставшийся расход в common pool self489–632мс/second
+при5x. Lookup rates40–54мс, clip2–3мс. Для отделения Native hooks/axis/identity/
+ownership/overlay checks и model clocks подготовлен071 без игровых изменений.
+Подробности: docs/performance-common-pool-profile.md. Не делать новый FPS fix
+на предположениях. Commit/push после пользовательской проверки и команды.
+
+
+## Сборка завершена
+
+Windows MSVC configure/compile/link: exit 0, 26.891 секунд, инкрементальный кэш сохранён.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-070.exe.
+SHA-256: `d35c6a88741f2176db1af0729b240998fbbf05c00793e8af4bef9f9a20fcbad8`.
+Все 222 прежних файлов пакета сохранены.
+Игра, renderer/GPU, тесты и CPU checks не запускались.
+Эффект изменения на FPS требует пользовательского профиля.
+Commit/push не выполнялись.
+
+## Профиль069: Native object timeline и повторный model-rate поиск;070
+
+Лес фей:2x60FPS, на4.1x один кадр за25.9318с. Object timeline25.885с,
+self16.7212с; common pool6746 вызовов. GPU0.947мс. Детали и ограничения
+измерений: docs/performance-model-rate-plan.md, research/test069-performance-analysis.json.
+Сформирована boundary-local model-rate table с прежними predicates и priority,
+без изменений AI/contacts/elapsed time/clip edges; добавлены три уточняющих
+таймера. Причина провала локализована в Native timeline; точная доля lookup
+и результат070 требуют пользовательского профиля. Compile не является FPS proof.
+Commit/push не выполнять до проверки и явной команды.
+
+
+## Сборка завершена
+
+Windows MSVC configure/compile/link: exit 0, 55.531 секунд, инкрементальный кэш сохранён.
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-069.exe.
+SHA-256: `b929d6da4e129935b54515d534ad6677dad9d945bdeb9aa7d25ce6df198df989`.
+Все 219 прежних файлов пакета сохранены.
+Игра, renderer/GPU, тесты и CPU checks не запускались.
+Причина падения FPS ещё не установлена: требуется пользовательский профиль.
+Commit/push не выполнялись.
+
+## FPS после068: пользователь требует измерений, профайлер069 (2026-10-08)
+
+068 без замеченных вылетов; action levels/Fairy Forest на3x..5x резко падают
+до5–10FPS и ниже,1x/2x нормально, города на5x стабильны, пауза восстанавливает FPS.
+Предположительные оптимизации этого этапа отменены; код возвращён к068.
+Причина не установлена. Пользователь прямо разрешил profiler build и потребовал
+сначала доказанную причину. Правило сохранено в AGENTS.md.
+Добавлены только наблюдательные scopes, Source wrappers и существующие RT64
+CPU/GPU timestamps;14 игровых bodies совпадают с068. Генерация --profile,
+потом один Windows069, без запусков/тестов. После пользовательского лога
+сначала анализ измерений, затем целевой fix. Commit/push не разрешены.
+Подробности: docs/performance-profile-after068.md.
+
+## test-068 готов: перенос indexed pool references после067 (2026-10-08)
+
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-068.exe.
+SHA256: edc7ac752545f79712685d13571efeecbe45980b1413e7dc6939be32ac7f9afc.
+MSVC configure/compile/link exit0, 55.594 секунды;
+существующий cache сохранён, Fresh не использовался.13 source files и108
+generation files синхронизированы. CPU startup-distance-after067-v1:
+4778 Original/44 SDK/5 hardware/0 pending; audio-rsp-v1 переиспользована.
+Упаковка exit0;216 старых файлов вне logs сохранили size/mtime,
+shared DLL подтверждены по SHA256.067 EXE/PDB и compile receipt сохранены.
+ROM/settings/saves/старые EXE не переписывались.
+
+В готовом EXE статическое чтение MSVC address instructions в8002A650
+подтверждает RDRAM offset0047EC00+index*20, то есть перенесённый cache8047EC00.
+Это исправляет установленный источник неверного model pointer в world draw;
+также закреплены68 похожих roots. Stack resets067 и лимиты/дальность/чеаты
+сохраняются. Тесты/CPU checks/игра/emulator/renderer/GPU не запускались.
+Успешная компиляция и разбор инструкции не означают успешного игрового
+перехода: пользователь068 пока не проверил. Commit/push не выполнялись.
+Основание: research/windows-test068-binding-analysis.json и текущий
+research/windows-build-check.json; предыдущие receipts в research/history/.
+
+## Второй вылет:067, пропущенные indexed pool roots (2026-10-08)
+
+Пользователь сообщил «ииии вылет там же». Свежий log1791451300644 проходит
+handoff Native→Original, загрузку scene1 и создание геометрии. Windows1000/1001:
+exception C0000005, RVA00159F29. Статический разбор EXE067/PDB связывает его
+с801BC4EC, чтением model+0C в801BC5B0 после actor+74. Это следующий дефект;
+переполнение стека066 на этом переходе в067 уже не повторяется по журналу.
+
+Original8002A650 связывает component actor+74 с cache[slot]. Ранее8002A668
+остался с LUI801B и читал старый801AEC00 после переноса cache в8047EC00.
+Статический вывод roots пропускал SLL/SRA/SLT destination writes: stale
+константа из предшествующей инструкции мешала распознать indexed base.
+Исправлен разбор эффекта инструкций и просмотрены все69 дополнительных LUI:
+ресурсные lookup в world/menus/minigames и actor-index reads/writes в overlays.
+Все1312 прежние patches сохранены без изменения;1381 patches/674 functions,
+71 hooks. Независимый static LUI/indexed-memory inventory:706 references,
+0 пропусков в проверенной форме; это не доказательство игровой работы.
+
+Изменения закреплены в exact-ROM evidence и генераторе; Generated C вручную
+не редактируется. Обновляется startup generation, затем один Windows068.
+Дальность, увеличенные лимиты, stack reset067 и пользовательские fixes065
+сохраняются. Только статический анализ/генерация/компиляция/упаковка;
+тесты/CPU checks/игра/emulator/renderer/GPU не запускались. Git после проверки.
+Основание: research/windows-test067-user-crash.json,
+research/distance-relocation-after067.json.
+
+## test-067 готов: исправление переполнения стека066 (2026-10-08)
+
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-067.exe.
+SHA256: ac1d4e20a40dfb276846a105b252020ebe38c97b979a3fc888cd4a83964ffab6.
+MSVC configure/compile/link exit0, 19.516 секунды;
+существующий cache сохранён,9 изменённых source files и0 generation files.
+CPU startup-distance-after065-v2/audio-rsp-v1 переиспользованы: inputs не менялись.
+Упаковка exit0;213 прежних файлов вне logs сохранили размер/mtime;
+общие DLL подтверждены упаковщиком по SHA256. EXE/PDB066 и его compile receipt
+сохранены. ROM/settings/saves/старые EXE не переписывались.
+
+Очищаются на месте все расширенные Native enemy/common arrays, включая reset
+и simulation-slice entry. Статический MSVC PDB067: native_enemy_reset32 bytes
+вместо1559568; gameplay reset688 вместо182448; GameplaySliceScope32 вместо82128.
+Это чтение компиляторных метаданных, без вызова функций/CPU checks или запуска
+игры. Исчезновение большой stack temporary подтверждено; отсутствие вылета
+и игровое поведение067 пользователь пока не проверил. Дальность/лимиты066,
+Original/Native/Manual и читы065 сохраняются. Commit/push не выполнялись.
+Основание: research/windows-test066-user-crash.json,
+research/windows-test067-stack-analysis.json; детали: docs/draw-distance.md.
+
+## Вылет066 при входе в катсцену: очистка Native pools (2026-10-08)
+
+Пользователь сообщил немедленный вылет при загрузке начальной катсцены.
+Его runtime.log1791450497545 заканчивается «NATIVE LOOP drained frames=224;
+Original resumes». Windows Application1000/1001: exception C00000FD,
+RVA00FD7D37. Статический разбор именно EXE066/PDB связывает RVA с __chkstk;
+native_enemy_reset имеет stack frame1559568 bytes (0x17CC10): periods={}
+создаёт временную таблицу расширенных570 optional<Period>. finish_session
+вызывает её сразу после последней строки журнала через gameplay reset.
+Это переполнение host stack при handoff, а не доказанное переполнение
+guest actor/DL/cache buffers. Игра/эмулятор/CPU checks не запускались.
+
+Очистка теперь поэлементная на месте, optional::reset освобождает историю
+и её ресурсы. Аналогичные aggregate resets всех расширенных common arrays
+в gameplay reset и GameplaySliceScope заменены тем же helper. Сохраняются
+570 slots, epoch/cancellation/handoff ownership, Original/Native/Manual и
+остальные изменения066. Не увеличивается стек и не отключается очистка.
+После компиляции размеры frame читаются статически из нового PDB.
+Игровое подтверждение остаётся за пользователем; commit/push не разрешены.
+
+## test-066 готов: дальность рисования (2026-10-08)
+
+EXE: D:/Games/DoraRecomp3/testbuild/Dora64-3-test-066.exe.
+SHA256: 75b9021879523cee60fc14fba423270df02719865bccffd07ebe06bdc0fa6e10.
+Graphics → Object / NPC draw distance после Texture filtering:1x..5x,
+сохранение выбора, общий Original/Native/Manual backend. LOD не добавлен.
+570 common/1536 total actor slots с отдельными menus/geo/effects/sky ranges;
+2048 sprites,1024 graphic records,4096 cache entries;65536 matrices и
+524288 DL commands на банк,3MiB дополнительной игровой кучи. Near objects
+имеют резерв, true allocation failure получает повтор; сроки снарядов/атак,
+Source cadence и предыдущие065 cheats/reset/input сохраняются.
+
+Generation startup-distance-after065-v2:4778 Original functions,44 SDK,
+5 hardware,0 pending; instruction/hooks закреплены в генераторе и exact-ROM
+evidence. MSVC configure/compile/link exit0,62.171 секунды;
+37 изменённых source files и108 generation files, existing cache сохранён,
+Fresh не использовался. Упаковка exit0;210 прежних файлов вне logs сохранили
+size/mtime, DLL подтверждены упаковщиком по SHA256. ROM/settings/saves/старые
+EXE не переписывались;065 EXE/PDB/receipt сохранены.
+
+Тесты/CPU checks/игра/emulator/renderer/GPU не запускались. Компиляция
+подтверждает сборку, а не игровую работу новой дальности. Проверка пользователем
+ещё не получена; commit/push не выполнялись. Подробности: [draw-distance.md](draw-distance.md).
+
+## Дальность рисования: подготовка test-066 (2026-10-08)
+
+Завершена настройка Graphics1x..5x, qualified Source thresholds/projection,
+1536 total/570 common actors с сохранением menu indices, расширенные gfx/cache,
+65536 matrices/524288 DL commands на банк и3MiB дополнительной игровой кучи.
+Far admission оставляет резерв близким; group allocation failure повторяется.
+Original и Native/Manual adapters согласованы. LOD не добавлен по анализу ROM.
+Тесты/игра/CPU checks/renderer/GPU не запускаются. После завершённого кода
+сразу Windows build по правилу пользователя; Git после его проверки и команды.
+Подробности: [draw-distance.md](draw-distance.md).
+
 ## Пользовательская проверка065 и разрешение Git (2026-10-08)
 
 После test065 пользователь сообщил: «работает, коммит и пуш». Это подтверждение
@@ -281,3 +558,12 @@ CRT051: `VC/Redist/MSVC/14.44.35112/x64/Microsoft.VC143.CRT` внутри Visual
 Локальные материалы051: build-local/audio-test051-build/ (stage manifest,
 архив исходников050 перед staging, Windows build log, package-before.json,
 package-preservation.json). Это не CPU tests и не игровое подтверждение.
+
+
+## Точечный профиль078
+
+Явно разрешён пользователем для расследования. build_windows.ps1 -GraphicsProfile
+включает только DORA3_GRAPHICS_PROFILE для10 translation units и сохраняет
+clean CPU generation/DIAGNOSTICS=OFF. Журнал logs/<run>/state/graphics-profile.jsonl.
+Обычная следующая сборка без ключа явно выставляет GRAPHICS_PROFILE=OFF.
+078 exit0,24с,246 прежних файлов сохранены; receipt research/windows-build-check.json.

@@ -1,0 +1,15 @@
+{
+  "validation": "static MSVC PDB and PE reading only; no function/game/test execution",
+  "source_build": "test-067",
+  "pdb_sha256": "b103534ab4effbc9af9447e129e74dfffa3629160f2e9fa933f4e4f2010be4d6",
+  "before_bytes": {
+    "native_enemy_reset": 1559568,
+    "native_gameplay_preview_reset": 182448,
+    "GameplaySliceScope": 82128
+  },
+  "after_bytes": {
+    "``native_gameplay_preview_update'::`8'::<lambda_2>::operator()'::`2'::GameplaySliceScope::GameplaySliceScope": 32,
+    "native_gameplay_preview_reset": 688,
+    "native_enemy_reset": 32
+  }
+}

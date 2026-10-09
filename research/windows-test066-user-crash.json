@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-08",
+  "build_id": "test-066",
+  "user_report": "ииии сразу же вылет при загрузке начальной катсцены",
+  "runtime_log_session": "1791450497545",
+  "runtime_log_sha256": "ef17fd1ba1963892637eb24f3a62cae200c168f18bdf76a4cdb17571c01b1a49",
+  "last_runtime_line": "NATIVE LOOP drained frames=224; Original resumes",
+  "windows_application_events": {
+    "ids": [
+      1000,
+      1001
+    ],
+    "exception": "C00000FD",
+    "fault_rva": "00FD7D37",
+    "fault_symbol": "__chkstk",
+    "time_local": "2026-10-08 15:08:25"
+  },
+  "exe_sha256": "75b9021879523cee60fc14fba423270df02719865bccffd07ebe06bdc0fa6e10",
+  "static_source_path": "finish_session -> native_gameplay_preview_reset -> native_enemy_reset",
+  "native_enemy_reset_stack_bytes": 1559568,
+  "exe_host_stack_reserve_bytes": 1048576,
+  "cause": "Whole expanded optional<Period> array reset materializes a pool-sized stack temporary; handoff exceeds Windows thread stack",
+  "validation": "Existing user log, Windows event read and static EXE/PDB/source analysis only; no local game or test execution",
+  "fixed_in": "test-067",
+  "fix_gameplay_confirmation_received": false
+}

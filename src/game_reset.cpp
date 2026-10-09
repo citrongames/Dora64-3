@@ -1,3 +1,4 @@
+#include "diagnostics.hpp"
 #include "game_reset.hpp"
 #include "native_frame_bridge.hpp"
 #include <atomic>
@@ -18,7 +19,7 @@ extern "C" void dora3_game_reset_poll(uint8_t* rdram, recomp_context* ctx) {
     (void)ctx;
     dora3_capture_controller_state(rdram,"before-reset");
     dora3::native_time::game_frame_bridge().leave(dora3::native_time::monotonic_time());
-    std::fputs("Game reset: guest message boundary; restarting internal session\n", stderr);
+    DORA3_LOG_TEXT("Game reset: guest message boundary; restarting internal session\n", stderr);
     // Does not return: the supervisor stops guest threads, drains SP/graphics,
     // clears session adapters and RAM, then runs this ROM's original entrypoint.
     recomp_request_game_reset(rdram);

@@ -1,3 +1,4 @@
+#include "diagnostics.hpp"
 #include "native_ui.hpp"
 #include "game_reset.hpp"
 #include "cutscene_input.hpp"
@@ -50,7 +51,7 @@ void dora3_s3_801DB3D0(uint8_t*,recomp_context*);
 }
 namespace {
 using namespace dora3::native_time;
-constexpr uint32_t image_size=0x400000,processes=0x801A44F0,panels=0x801B8AE0;
+constexpr uint32_t image_size=0x800000,processes=0x801A44F0,panels=0x801B8AE0;
 int32_t& word(uint8_t* rdram,uint32_t a){return MEM_W(0,int32_t(a));}
 float real(uint8_t* rdram,uint32_t a){return std::bit_cast<float>(word(rdram,a));}
 void real(uint8_t* rdram,uint32_t a,float f){word(rdram,a)=std::bit_cast<int32_t>(f);}
@@ -110,11 +111,11 @@ struct UiState {
     bool map_rectangle_valid=false;
 } state;
 void publish(uint8_t* ram,uint32_t a,int32_t value){state.fields.push_back({a,word(ram,a)});word(ram,a)=value;}
-// Menu actors occupy the resident extended pool (slots612..648), outside
-// the230 world actors. Their draw-derived matrix/world coordinates must be
+// Menu indices612..648 are preserved in the relocated actor table, outside
+// the ordinary common range30..599. Their draw-derived matrix/world coordinates must be
 // restored together with the borrowed local pose before the next Source update.
 bool guest_pointer(uint32_t p,unsigned bytes) {
-    return !(p&3)&&p>=0x80000000u&&uint64_t(p)+bytes<=0x80400000ull;
+    return !(p&3)&&p>=0x80000000u&&uint64_t(p)+bytes<=0x80800000ull;
 }
 void lease_menu_actor(uint8_t* ram,uint32_t actor) {
     if(std::any_of(state.actors.begin(),state.actors.end(),[&](const auto& v){return v.actor==actor;}))return;
@@ -163,13 +164,13 @@ void evaluate_game_menus(uint8_t* ram,double h) {
     const int menu=word(ram,0x8021D484);
     if(menu==1||menu==2) {
         // F1598/F4948 advance the highlighted item/weapon model's yaw by4/10.
-        constexpr uint32_t selected=0x80192130;
+        constexpr uint32_t selected=0x804D2130;
         if((state.domains&GameMenuSpin)&&word(ram,selected+0x94))publish_menu_float(ram,selected,0x10,float(normalized_angle(real(ram,selected+0x10)+(menu==1?4.:10.)*h)));
         // F1A38/F433C: preview copies rotate by1 and fade from Source count/20.
         // The short timer, show/hide flag and clip commands remain Source-owned.
         if(!(state.domains&GameMenuGhost))return;
         for(unsigned i=0;i<unsigned(menu==1?18:14);++i) {
-            const uint32_t actor=0x801912D8+i*0xCC;
+            const uint32_t actor=0x804D12D8+i*0xCC;
             if(!word(ram,actor+0x94))continue;
             publish_menu_float(ram,actor,0x10,float(normalized_angle(real(ram,actor+0x10)+h)));
             const uint32_t driver=uint32_t(word(ram,actor+0x98)),model=uint32_t(word(ram,actor+0x74));
@@ -190,7 +191,7 @@ void evaluate_game_menus(uint8_t* ram,double h) {
         const int selected=MEM_B(0,int32_t(0x8021BFF4));
         if(selected<0||selected>=6)return;
         for(unsigned group=0;group<2;++group)for(unsigned i=0;i<6;++i) {
-            const uint32_t actor=(group?0x8018FFB8u:0x8018FAF0u)+i*0xCC;
+            const uint32_t actor=(group?0x804CFFB8u:0x804CFAF0u)+i*0xCC;
             const uint32_t driver=uint32_t(word(ram,actor+0x98));
             if(!word(ram,actor+0x94)||!guest_pointer(driver,0x36))continue;
             const double angle=normalized_angle(double(MEM_H(0x34,int32_t(driver)))-selected*60.+shown);
@@ -359,7 +360,7 @@ void evaluate_selection(uint8_t* ram,recomp_context* ctx) {
     state.equations=false;
     // This reviewed menu actor lives in the resident fixed object array.
     // Its command flags and phase/counter writes remain private.
-    if(word(ram,0x8017255C))for(uint32_t a:{0x801724CCu,0x801724D0u})publish_menu_float(ram,0x801724C8,a-0x801724C8,std::bit_cast<float>(word(scratch,a)));
+    if(word(ram,0x804B255C))for(uint32_t a:{0x804B24CCu,0x804B24D0u})publish_menu_float(ram,0x804B24C8,a-0x804B24C8,std::bit_cast<float>(word(scratch,a)));
     const int y=word(ram,0x801C69C4);
     if((state.domains&SelectionExit)&&y>=105)publish(ram,0x801C69C4,int32_t(double(y)-state.h));
     if(state.domains&SelectionRow) {
@@ -484,7 +485,7 @@ extern "C" void dora3_native_ui_source(uint8_t* ram,recomp_context* ctx) {
     if(ctx->r21!=0)return;
     if(!state.frame&&!state.equations&&!active_simulation_slice()) {
         if(dora3::cutscene_input_source_completed(ram)) {
-            std::fputs("Cutscene Start: retained request after skip-thread initialization\n",stderr);
+            DORA3_LOG_TEXT("Cutscene Start: retained request after skip-thread initialization\n",stderr);
             dora3_capture_controller_state(ram,"early-start-retained");
         }
         dora3_capture_controller_state(ram,"source-complete");

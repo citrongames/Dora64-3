@@ -1,0 +1,859 @@
+{
+  "run": "1791460594137",
+  "build": "test-073",
+  "profile_sha256": "16fae5e478ba9adf197bbfcd7fb14a86cf465ec77eacfb24a74e923480c907ad",
+  "phases": {
+    "1x_stable": {
+      "duration_s": 10.07534,
+      "fps": 59.94834913759734,
+      "actor_range": [
+        2,
+        4
+      ],
+      "trace_calls_per_s": 581355.0708958704,
+      "common_calls_per_s": 230.86069551995266,
+      "timeline_slices_per_s": 210.91099655197738,
+      "limit_reasons": [
+        1611,
+        6,
+        508,
+        0,
+        0
+      ],
+      "stages": {
+        "preview_hook_sample_1_in_16": {
+          "calls": 87633,
+          "observed_calls": 1402137,
+          "measured_wall_ms_per_s": 3.6596978364998103,
+          "sample_estimated_wall_ms_per_s": 58.55554123876091,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "native_model_clock_sample_1_in_16": {
+          "calls": 740,
+          "observed_calls": 11825,
+          "measured_wall_ms_per_s": 0.019483213469719134,
+          "sample_estimated_wall_ms_per_s": 0.31133648551274157,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "world_source_update": {
+          "calls": 201,
+          "observed_calls": 201,
+          "measured_wall_ms_per_s": 45.34822646183652,
+          "sample_estimated_wall_ms_per_s": 45.348226461836525,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_screen": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 3.2247447728811136,
+          "sample_estimated_wall_ms_per_s": 3.2247447728811136,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 3526,
+          "observed_calls": 225451,
+          "measured_wall_ms_per_s": 0.06869247092405814,
+          "sample_estimated_wall_ms_per_s": 4.392168537237615,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "object_timeline": {
+          "calls": 805,
+          "observed_calls": 805,
+          "measured_wall_ms_per_s": 124.02233572266543,
+          "sample_estimated_wall_ms_per_s": 124.02233572266543,
+          "thread_cpu_ms_per_s": 66.68509449805167
+        },
+        "texture_bind": {
+          "calls": 129916,
+          "observed_calls": 129916,
+          "measured_wall_ms_per_s": 1.519650949744624,
+          "sample_estimated_wall_ms_per_s": 1.519650949744624,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "object_clock_registration": {
+          "calls": 2125,
+          "observed_calls": 2125,
+          "measured_wall_ms_per_s": 4.067029003487724,
+          "sample_estimated_wall_ms_per_s": 4.067029003487724,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "task_submit": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 0.3253488219752385,
+          "sample_estimated_wall_ms_per_s": 0.3253488219752385,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_clip_boundaries": {
+          "calls": 2125,
+          "observed_calls": 2125,
+          "measured_wall_ms_per_s": 0.2103551840434169,
+          "sample_estimated_wall_ms_per_s": 0.2103551840434169,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_workload_total": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 120.3207931444497,
+          "sample_estimated_wall_ms_per_s": 120.3207931444497,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_evaluate": {
+          "calls": 13033,
+          "observed_calls": 13033,
+          "measured_wall_ms_per_s": 11.031607866335031,
+          "sample_estimated_wall_ms_per_s": 11.031607866335033,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_gpu_wait": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 82.30127221513119,
+          "sample_estimated_wall_ms_per_s": 82.30127221513119,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 118.8088739437081,
+          "sample_estimated_wall_ms_per_s": 118.8088739437081,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "enemy_pool_finalize": {
+          "calls": 2125,
+          "observed_calls": 2125,
+          "measured_wall_ms_per_s": 1.6706433728291055,
+          "sample_estimated_wall_ms_per_s": 1.6706433728291055,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_upload_wait": {
+          "calls": 603,
+          "observed_calls": 603,
+          "measured_wall_ms_per_s": 0.07732741525348028,
+          "sample_estimated_wall_ms_per_s": 0.07732741525348028,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "enemy_callback": {
+          "calls": 8276,
+          "observed_calls": 8276,
+          "measured_wall_ms_per_s": 4.170956017365171,
+          "sample_estimated_wall_ms_per_s": 4.170956017365171,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "world_geometry": {
+          "calls": 1208,
+          "observed_calls": 1208,
+          "measured_wall_ms_per_s": 14.51434889542189,
+          "sample_estimated_wall_ms_per_s": 14.51434889542189,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "enemy_identity_sample_1_in_16": {
+          "calls": 7293,
+          "observed_calls": 116697,
+          "measured_wall_ms_per_s": 0.33715983778214925,
+          "sample_estimated_wall_ms_per_s": 5.394973480003218,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "trace_sample_1_in_64": {
+          "calls": 91521,
+          "observed_calls": 5857350,
+          "measured_wall_ms_per_s": 1.6874666264364278,
+          "sample_estimated_wall_ms_per_s": 107.99797472009057,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "common_actors": {
+          "calls": 2326,
+          "observed_calls": 2326,
+          "measured_wall_ms_per_s": 47.41653383409393,
+          "sample_estimated_wall_ms_per_s": 47.41653383409393,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "actor_manager": {
+          "calls": 201,
+          "observed_calls": 201,
+          "measured_wall_ms_per_s": 2.88756508465223,
+          "sample_estimated_wall_ms_per_s": 2.88756508465223,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 23.048264376189785,
+          "sample_estimated_wall_ms_per_s": 23.048264376189785,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "native_update": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 96.96184942642134,
+          "sample_estimated_wall_ms_per_s": 96.96184942642134,
+          "thread_cpu_ms_per_s": 58.93101374246427
+        },
+        "common_ownership_sample_1_in_16": {
+          "calls": 1960,
+          "observed_calls": 31379,
+          "measured_wall_ms_per_s": 0.19205307215438883,
+          "sample_estimated_wall_ms_per_s": 3.0747108934349834,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "world_gameplay": {
+          "calls": 201,
+          "observed_calls": 201,
+          "measured_wall_ms_per_s": 43.9309144902306,
+          "sample_estimated_wall_ms_per_s": 43.9309144902306,
+          "thread_cpu_ms_per_s": 21.71142611564473
+        },
+        "player": {
+          "calls": 2326,
+          "observed_calls": 2326,
+          "measured_wall_ms_per_s": 31.355557231815503,
+          "sample_estimated_wall_ms_per_s": 31.355557231815503,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_rate_plan": {
+          "calls": 2125,
+          "observed_calls": 2125,
+          "measured_wall_ms_per_s": 2.3596523789767887,
+          "sample_estimated_wall_ms_per_s": 2.3596523789767887,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "native_model_pose": {
+          "calls": 1208,
+          "observed_calls": 1208,
+          "measured_wall_ms_per_s": 2.080158088957792,
+          "sample_estimated_wall_ms_per_s": 2.080158088957792,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "frame_commands": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 31.12517294701717,
+          "sample_estimated_wall_ms_per_s": 31.12517294701717,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "projectiles": {
+          "calls": 2326,
+          "observed_calls": 2326,
+          "measured_wall_ms_per_s": 0.2878513280941387,
+          "sample_estimated_wall_ms_per_s": 0.2878513280941387,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 43798,
+          "observed_calls": 1401535,
+          "measured_wall_ms_per_s": 0.6226588879382731,
+          "sample_estimated_wall_ms_per_s": 19.92507019741923,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_draw_commands": {
+          "calls": 7655,
+          "observed_calls": 7655,
+          "measured_wall_ms_per_s": 7.065577935831446,
+          "sample_estimated_wall_ms_per_s": 7.065577935831446,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "present_swap": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 26.301305960890648,
+          "sample_estimated_wall_ms_per_s": 26.301305960890648,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "native_frame": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 33.766661968727604,
+          "sample_estimated_wall_ms_per_s": 33.766661968727604,
+          "thread_cpu_ms_per_s": 38.77040377793702
+        },
+        "rt64_parse": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 332.695273807137,
+          "sample_estimated_wall_ms_per_s": 332.695273807137,
+          "thread_cpu_ms_per_s": 161.284879716218
+        },
+        "world_draw": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 30.459478290558923,
+          "sample_estimated_wall_ms_per_s": 30.459478290558923,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "present_workload_wait": {
+          "calls": 604,
+          "observed_calls": 604,
+          "measured_wall_ms_per_s": 100.75121038098962,
+          "sample_estimated_wall_ms_per_s": 100.75121038098963,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_advance": {
+          "calls": 11825,
+          "observed_calls": 11825,
+          "measured_wall_ms_per_s": 0.7818991716408578,
+          "sample_estimated_wall_ms_per_s": 0.7818991716408579,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "contacts": {
+          "calls": 201,
+          "observed_calls": 201,
+          "measured_wall_ms_per_s": 10.763954367793048,
+          "sample_estimated_wall_ms_per_s": 10.763954367793048,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "enemy_axis_sample_1_in_16": {
+          "calls": 1420,
+          "observed_calls": 22725,
+          "measured_wall_ms_per_s": 0.09827956178153788,
+          "sample_estimated_wall_ms_per_s": 1.5728190432996114,
+          "thread_cpu_ms_per_s": 0.0
+        }
+      }
+    },
+    "5x_stable": {
+      "duration_s": 15.20131,
+      "fps": 46.77228475703739,
+      "actor_range": [
+        106,
+        131
+      ],
+      "trace_calls_per_s": 2801073.723251483,
+      "common_calls_per_s": 299.6452279441706,
+      "timeline_slices_per_s": 279.84430289231653,
+      "limit_reasons": [
+        2227,
+        219,
+        1808,
+        0,
+        0
+      ],
+      "stages": {
+        "preview_hook_sample_1_in_16": {
+          "calls": 341933,
+          "observed_calls": 5470923,
+          "measured_wall_ms_per_s": 17.98710111168051,
+          "sample_estimated_wall_ms_per_s": 287.79335476604615,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "native_model_clock_sample_1_in_16": {
+          "calls": 30815,
+          "observed_calls": 493026,
+          "measured_wall_ms_per_s": 0.2400187878544678,
+          "sample_estimated_wall_ms_per_s": 3.8401915593294453,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "world_source_update": {
+          "calls": 301,
+          "observed_calls": 301,
+          "measured_wall_ms_per_s": 252.27082402766604,
+          "sample_estimated_wall_ms_per_s": 252.27082402766604,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_screen": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 2.583040540584989,
+          "sample_estimated_wall_ms_per_s": 2.583040540584989,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 52338,
+          "observed_calls": 3349696,
+          "measured_wall_ms_per_s": 0.4309825929475815,
+          "sample_estimated_wall_ms_per_s": 27.583412963165234,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "object_timeline": {
+          "calls": 1012,
+          "observed_calls": 1012,
+          "measured_wall_ms_per_s": 400.93176180210787,
+          "sample_estimated_wall_ms_per_s": 400.93176180210787,
+          "thread_cpu_ms_per_s": 362.8387948143943
+        },
+        "texture_bind": {
+          "calls": 1089168,
+          "observed_calls": 1089168,
+          "measured_wall_ms_per_s": 3.7560381309242428,
+          "sample_estimated_wall_ms_per_s": 3.7560381309242428,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "object_clock_registration": {
+          "calls": 4254,
+          "observed_calls": 4254,
+          "measured_wall_ms_per_s": 14.621779307178132,
+          "sample_estimated_wall_ms_per_s": 14.621779307178132,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "task_submit": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 105.42535478850178,
+          "sample_estimated_wall_ms_per_s": 105.42535478850179,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "distance_admission": {
+          "calls": 3188,
+          "observed_calls": 3188,
+          "measured_wall_ms_per_s": 3.876692206132235,
+          "sample_estimated_wall_ms_per_s": 3.8766922061322346,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_clip_boundaries": {
+          "calls": 4254,
+          "observed_calls": 4254,
+          "measured_wall_ms_per_s": 1.835394449557308,
+          "sample_estimated_wall_ms_per_s": 1.835394449557308,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_workload_total": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 110.74139005125217,
+          "sample_estimated_wall_ms_per_s": 110.74139005125217,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_evaluate": {
+          "calls": 546874,
+          "observed_calls": 546874,
+          "measured_wall_ms_per_s": 59.34944422553057,
+          "sample_estimated_wall_ms_per_s": 59.34944422553057,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_gpu_wait": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 67.3890210777887,
+          "sample_estimated_wall_ms_per_s": 67.3890210777887,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 109.6905792987578,
+          "sample_estimated_wall_ms_per_s": 109.6905792987578,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "enemy_pool_finalize": {
+          "calls": 4254,
+          "observed_calls": 4254,
+          "measured_wall_ms_per_s": 12.253496573650562,
+          "sample_estimated_wall_ms_per_s": 12.253496573650562,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_upload_wait": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 0.026346413565672962,
+          "sample_estimated_wall_ms_per_s": 0.026346413565672966,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "enemy_callback": {
+          "calls": 184070,
+          "observed_calls": 184070,
+          "measured_wall_ms_per_s": 39.713682570778445,
+          "sample_estimated_wall_ms_per_s": 39.713682570778445,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "world_geometry": {
+          "calls": 1422,
+          "observed_calls": 1422,
+          "measured_wall_ms_per_s": 9.881457584905512,
+          "sample_estimated_wall_ms_per_s": 9.881457584905512,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "enemy_identity_sample_1_in_16": {
+          "calls": 438669,
+          "observed_calls": 7018670,
+          "measured_wall_ms_per_s": 3.397779533474418,
+          "sample_estimated_wall_ms_per_s": 54.36420918325866,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "trace_sample_1_in_64": {
+          "calls": 665312,
+          "observed_calls": 42579990,
+          "measured_wall_ms_per_s": 5.98575385937133,
+          "sample_estimated_wall_ms_per_s": 383.08844493184046,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "common_actors": {
+          "calls": 4555,
+          "observed_calls": 4555,
+          "measured_wall_ms_per_s": 288.1501660054298,
+          "sample_estimated_wall_ms_per_s": 288.1501660054298,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "actor_manager": {
+          "calls": 301,
+          "observed_calls": 301,
+          "measured_wall_ms_per_s": 4.358874333856753,
+          "sample_estimated_wall_ms_per_s": 4.358874333856753,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 27.832870982829768,
+          "sample_estimated_wall_ms_per_s": 27.832870982829768,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "native_update": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 278.84195506834607,
+          "sample_estimated_wall_ms_per_s": 278.84195506834607,
+          "thread_cpu_ms_per_s": 256.96798499602994
+        },
+        "common_ownership_sample_1_in_16": {
+          "calls": 151665,
+          "observed_calls": 2426658,
+          "measured_wall_ms_per_s": 2.786819030728273,
+          "sample_estimated_wall_ms_per_s": 44.58943523864444,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "world_gameplay": {
+          "calls": 301,
+          "observed_calls": 301,
+          "measured_wall_ms_per_s": 250.16337407762882,
+          "sample_estimated_wall_ms_per_s": 250.1633740776288,
+          "thread_cpu_ms_per_s": 243.6056497762364
+        },
+        "player": {
+          "calls": 4555,
+          "observed_calls": 4555,
+          "measured_wall_ms_per_s": 33.70893692714641,
+          "sample_estimated_wall_ms_per_s": 33.70893692714641,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_rate_plan": {
+          "calls": 4254,
+          "observed_calls": 4254,
+          "measured_wall_ms_per_s": 12.823236944710686,
+          "sample_estimated_wall_ms_per_s": 12.823236944710686,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "native_model_pose": {
+          "calls": 1422,
+          "observed_calls": 1422,
+          "measured_wall_ms_per_s": 8.184439367396626,
+          "sample_estimated_wall_ms_per_s": 8.184439367396626,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "frame_commands": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 234.04542108541963,
+          "sample_estimated_wall_ms_per_s": 234.04542108541963,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "projectiles": {
+          "calls": 4555,
+          "observed_calls": 4555,
+          "measured_wall_ms_per_s": 0.3515420710451928,
+          "sample_estimated_wall_ms_per_s": 0.3515420710451928,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 133424,
+          "observed_calls": 4269613,
+          "measured_wall_ms_per_s": 0.846427051352811,
+          "sample_estimated_wall_ms_per_s": 27.08595111829678,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_draw_commands": {
+          "calls": 195117,
+          "observed_calls": 195117,
+          "measured_wall_ms_per_s": 42.477503583572734,
+          "sample_estimated_wall_ms_per_s": 42.477503583572734,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "present_swap": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 18.56583412876917,
+          "sample_estimated_wall_ms_per_s": 18.56583412876917,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "native_frame": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 242.95425854745415,
+          "sample_estimated_wall_ms_per_s": 242.95425854745415,
+          "thread_cpu_ms_per_s": 158.29227875755444
+        },
+        "rt64_parse": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 479.19942426014603,
+          "sample_estimated_wall_ms_per_s": 479.199424260146,
+          "thread_cpu_ms_per_s": 379.2847458541402
+        },
+        "world_draw": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 128.27999692131797,
+          "sample_estimated_wall_ms_per_s": 128.27999692131797,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "present_workload_wait": {
+          "calls": 711,
+          "observed_calls": 711,
+          "measured_wall_ms_per_s": 59.34606293799679,
+          "sample_estimated_wall_ms_per_s": 59.34606293799679,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_advance": {
+          "calls": 514279,
+          "observed_calls": 514279,
+          "measured_wall_ms_per_s": 11.659435930192858,
+          "sample_estimated_wall_ms_per_s": 11.659435930192858,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "contacts": {
+          "calls": 301,
+          "observed_calls": 301,
+          "measured_wall_ms_per_s": 113.30786622994994,
+          "sample_estimated_wall_ms_per_s": 113.30786622994994,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "enemy_axis_sample_1_in_16": {
+          "calls": 90846,
+          "observed_calls": 1453554,
+          "measured_wall_ms_per_s": 1.1823257337689976,
+          "sample_estimated_wall_ms_per_s": 18.91744600337782,
+          "thread_cpu_ms_per_s": 0.0
+        }
+      }
+    },
+    "5x_pause": {
+      "duration_s": 4.0338,
+      "fps": 59.993058654370564,
+      "actor_range": [
+        129,
+        129
+      ],
+      "trace_calls_per_s": 1282354.3556943825,
+      "common_calls_per_s": 0.0,
+      "timeline_slices_per_s": 159.89885467797114,
+      "limit_reasons": [
+        645,
+        0,
+        0,
+        0,
+        0
+      ],
+      "stages": {
+        "preview_hook_sample_1_in_16": {
+          "calls": 5,
+          "observed_calls": 81,
+          "measured_wall_ms_per_s": 0.05895185680995587,
+          "sample_estimated_wall_ms_per_s": 0.955020080321285,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "world_source_update": {
+          "calls": 81,
+          "observed_calls": 81,
+          "measured_wall_ms_per_s": 1.978085180227081,
+          "sample_estimated_wall_ms_per_s": 1.978085180227081,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_screen": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 3.767241806733105,
+          "sample_estimated_wall_ms_per_s": 3.767241806733105,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "overlay_lookup_sample_1_in_64": {
+          "calls": 83,
+          "observed_calls": 5202,
+          "measured_wall_ms_per_s": 0.005230799742178591,
+          "sample_estimated_wall_ms_per_s": 0.3278387982989521,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "object_timeline": {
+          "calls": 323,
+          "observed_calls": 323,
+          "measured_wall_ms_per_s": 3.8027666220437304,
+          "sample_estimated_wall_ms_per_s": 3.8027666220437304,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "texture_bind": {
+          "calls": 416240,
+          "observed_calls": 416240,
+          "measured_wall_ms_per_s": 6.243046259110516,
+          "sample_estimated_wall_ms_per_s": 6.243046259110516,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "task_submit": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 3.625192126530814,
+          "sample_estimated_wall_ms_per_s": 3.625192126530814,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_clip_boundaries": {
+          "calls": 645,
+          "observed_calls": 645,
+          "measured_wall_ms_per_s": 1.3684119192820663,
+          "sample_estimated_wall_ms_per_s": 1.3684119192820663,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_workload_total": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 158.85195101393228,
+          "sample_estimated_wall_ms_per_s": 158.85195101393228,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_evaluate": {
+          "calls": 14520,
+          "observed_calls": 14520,
+          "measured_wall_ms_per_s": 17.299395111309433,
+          "sample_estimated_wall_ms_per_s": 17.299395111309433,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_gpu_wait": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 101.15429619713422,
+          "sample_estimated_wall_ms_per_s": 101.15429619713422,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_render_cpu_including_wait": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 157.06281917794632,
+          "sample_estimated_wall_ms_per_s": 157.06281917794632,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_upload_wait": {
+          "calls": 243,
+          "observed_calls": 243,
+          "measured_wall_ms_per_s": 0.04080519609301403,
+          "sample_estimated_wall_ms_per_s": 0.04080519609301403,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "world_geometry": {
+          "calls": 484,
+          "observed_calls": 484,
+          "measured_wall_ms_per_s": 20.803783033368035,
+          "sample_estimated_wall_ms_per_s": 20.803783033368035,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "trace_sample_1_in_64": {
+          "calls": 80824,
+          "observed_calls": 5172761,
+          "measured_wall_ms_per_s": 2.5491348108483316,
+          "sample_estimated_wall_ms_per_s": 163.1454163775441,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "rt64_gpu_timestamp": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 31.403515295750903,
+          "sample_estimated_wall_ms_per_s": 31.403515295750903,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "native_update": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 3.357256185234766,
+          "sample_estimated_wall_ms_per_s": 3.357256185234766,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "world_gameplay": {
+          "calls": 81,
+          "observed_calls": 81,
+          "measured_wall_ms_per_s": 1.197109425355744,
+          "sample_estimated_wall_ms_per_s": 1.197109425355744,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_rate_plan": {
+          "calls": 645,
+          "observed_calls": 645,
+          "measured_wall_ms_per_s": 1.0443998215082553,
+          "sample_estimated_wall_ms_per_s": 1.0443998215082553,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "native_model_pose": {
+          "calls": 484,
+          "observed_calls": 484,
+          "measured_wall_ms_per_s": 19.801105657196686,
+          "sample_estimated_wall_ms_per_s": 19.801105657196686,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "frame_commands": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 208.6005751400664,
+          "sample_estimated_wall_ms_per_s": 208.6005751400664,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "gameplay_eligibility_sample_1_in_32": {
+          "calls": 154,
+          "observed_calls": 4921,
+          "measured_wall_ms_per_s": 0.01584114234716644,
+          "sample_estimated_wall_ms_per_s": 0.506196503184455,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "model_draw_commands": {
+          "calls": 74536,
+          "observed_calls": 74536,
+          "measured_wall_ms_per_s": 65.8647925033467,
+          "sample_estimated_wall_ms_per_s": 65.8647925033467,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "present_swap": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 31.8579255292776,
+          "sample_estimated_wall_ms_per_s": 31.8579255292776,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "native_frame": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 229.19406019138282,
+          "sample_estimated_wall_ms_per_s": 229.1940601913828,
+          "thread_cpu_ms_per_s": 201.4229758540334
+        },
+        "rt64_parse": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 880.6100946997867,
+          "sample_estimated_wall_ms_per_s": 880.6100946997867,
+          "thread_cpu_ms_per_s": 418.3400267737617
+        },
+        "world_draw": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 204.48088650899896,
+          "sample_estimated_wall_ms_per_s": 204.48088650899896,
+          "thread_cpu_ms_per_s": 0.0
+        },
+        "present_workload_wait": {
+          "calls": 242,
+          "observed_calls": 242,
+          "measured_wall_ms_per_s": 132.26163914918936,
+          "sample_estimated_wall_ms_per_s": 132.26163914918936,
+          "thread_cpu_ms_per_s": 0.0
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Stable time windows explicitly selected; first distance/menu transition and final pause transition excluded",
+    "Trace uses periodic1/64 sample in073; extrapolation is estimated wall duration, susceptible to aliasing; not precise CPU attribution",
+    "Nested stages and sampled extrapolations must not be summed",
+    "073 jumps1x to5x; cohort phases differ from072 ramp; improvement cannot be attributed solely to kind index",
+    "Sampled body timing includes timing-scope overhead; extrapolation can overstate actual uninstrumented body cost"
+  ],
+  "findings": [
+    "No zero-length timeline runaway observed",
+    "Full pool replay multiplies service calls; actual local periods/events cannot be removed without dependency proof",
+    "Every original function entry scans49 immutable overlays; matched overlay rescans91 dependencies",
+    "first-entry diagnostic unordered_set is queried on every invocation",
+    "Indexed immutable metadata preserves atomic active-state/generation/loader changes"
+  ],
+  "fix": "074 replaces repeated immutable searches and first-entry hash set while retaining timeline/AI/contact/input/hooks"
+}

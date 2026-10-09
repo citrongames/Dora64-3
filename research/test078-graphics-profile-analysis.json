@@ -1,0 +1,694 @@
+{
+  "build_id": "test-078",
+  "purpose": "observation only; remaining bottleneck not yet established",
+  "user_authorized_graphics_profile": true,
+  "previous_user_observation": {
+    "native_distance": 5,
+    "limit": 360,
+    "world_fps_approx": 120,
+    "mountain_fps_approx": 70,
+    "intro_fps_approx": 120,
+    "2d_fps_approx": 360,
+    "cpu_gpu_percent_approx": 10
+  },
+  "runtime_diagnostics": false,
+  "generic_game_profiler": false,
+  "graphics_profile": true,
+  "agent_game_or_test_execution": false,
+  "measurement_available": true,
+  "compiled": true,
+  "compile_seconds": 24.0,
+  "executable_sha256": "59194858c49a10c359ee931298ca3d157f15d1a105390c9ca0acb7775f443045",
+  "preserved_prior_files": 246,
+  "log": "D:\\Games\\DoraRecomp3\\testbuild\\logs\\1791473499098\\state\\graphics-profile.jsonl",
+  "log_sha256": "4dd59eb24823ebbcf194af19900c36aadecf941b9b5c3e1fea5f55bb6541b04f",
+  "groups": {
+    "2d": {
+      "samples": 2,
+      "start_ms": 5018,
+      "end_ms": 6020,
+      "interval_ms": 2001.98,
+      "guest_frames": 721,
+      "fps": 360.14345797660314,
+      "counters": {
+        "output_frames": 721,
+        "guest_frames": 721,
+        "vertices_sum": 0,
+        "faces_sum": 0,
+        "matrices_sum": 721,
+        "pairs_sum": 1442,
+        "tiles_sum": 8652,
+        "render_gpu_timestamp_ns": 18008320,
+        "gate_not_native_build": 0,
+        "gate_not_gameplay": 721,
+        "gate_dimensions": 0,
+        "gate_cpu_framebuffer": 0,
+        "request_off": 721,
+        "no_pairs": 0,
+        "reject_operations": 0,
+        "reject_format": 0,
+        "reject_height": 0,
+        "reject_depth_clear": 0,
+        "reject_color_address": 0,
+        "reject_depth_address": 0,
+        "reject_tile_copy": 0,
+        "no_writes": 721,
+        "deferred": 0,
+        "eager": 721,
+        "materializations": 0
+      },
+      "stages_per_guest": {
+        "native_update": {
+          "calls": 1.0,
+          "inclusive_ms": 0.002683633841886269,
+          "self_ms": 0.002683633841886269,
+          "cpu_ms": 0.0,
+          "thread_cycles": 3294.5714285714284
+        },
+        "native_frame": {
+          "calls": 1.0,
+          "inclusive_ms": 0.02969459084604716,
+          "self_ms": 0.02969459084604716,
+          "cpu_ms": 0.0,
+          "thread_cycles": 80380.1761442441
+        },
+        "producer": {
+          "calls": 1.0,
+          "inclusive_ms": 1.1623619972260748,
+          "self_ms": 0.011243273231622747,
+          "cpu_ms": 0.6718099861303745,
+          "thread_cycles": 2184177.6102635227
+        },
+        "screen": {
+          "calls": 1.0,
+          "inclusive_ms": 0.04543994452149792,
+          "self_ms": 0.04543994452149792,
+          "cpu_ms": 0.0,
+          "thread_cycles": 128775.37447988904
+        },
+        "hle": {
+          "calls": 1.0,
+          "inclusive_ms": 1.151117891816921,
+          "self_ms": 0.04187267683772538,
+          "cpu_ms": 0.6501386962552012,
+          "thread_cycles": 2154219.2773925103
+        },
+        "rdram_check": {
+          "calls": 1.0,
+          "inclusive_ms": 0.07290513176144243,
+          "self_ms": 0.07290513176144243,
+          "cpu_ms": 0.0,
+          "thread_cycles": 210664.3411927878
+        },
+        "full_sync": {
+          "calls": 1.0,
+          "inclusive_ms": 1.0363411927877948,
+          "self_ms": 0.044139251040221913,
+          "cpu_ms": 0.5634535367545076,
+          "thread_cycles": 1824912.5714285714
+        },
+        "flush": {
+          "calls": 1.0,
+          "inclusive_ms": 0.0010669902912621358,
+          "self_ms": 0.0010669902912621358,
+          "cpu_ms": 0.0,
+          "thread_cycles": 3005.590846047157
+        },
+        "tile_validation": {
+          "calls": 1.0,
+          "inclusive_ms": 0.0005128987517337032,
+          "self_ms": 0.0005128987517337032,
+          "cpu_ms": 0.0,
+          "thread_cycles": 1360.2843273231622
+        },
+        "call_preparation": {
+          "calls": 1.0,
+          "inclusive_ms": 0.006247018030513175,
+          "self_ms": 0.006247018030513175,
+          "cpu_ms": 0.0,
+          "thread_cycles": 18087.284327323163
+        },
+        "draw_upload": {
+          "calls": 1.0,
+          "inclusive_ms": 0.02289278779472954,
+          "self_ms": 0.02289278779472954,
+          "cpu_ms": 0.0,
+          "thread_cycles": 65726.29264909847
+        },
+        "eager_path": {
+          "calls": 1.0,
+          "inclusive_ms": 0.024197642163661583,
+          "self_ms": 0.024197642163661583,
+          "cpu_ms": 0.0,
+          "thread_cycles": 70671.01109570042
+        },
+        "tiles": {
+          "calls": 2.0,
+          "inclusive_ms": 0.05560832177531206,
+          "self_ms": 0.05560832177531206,
+          "cpu_ms": 0.0,
+          "thread_cycles": 160139.72399445216
+        },
+        "eager_setup": {
+          "calls": 1.0,
+          "inclusive_ms": 0.02938335644937587,
+          "self_ms": 0.02938335644937587,
+          "cpu_ms": 0.0,
+          "thread_cycles": 83160.94036061026
+        },
+        "target_safety": {
+          "calls": 2.0,
+          "inclusive_ms": 0.0011474341192787795,
+          "self_ms": 0.0011474341192787795,
+          "cpu_ms": 0.0,
+          "thread_cycles": 2924.5048543689322
+        },
+        "eager_render": {
+          "calls": 1.0,
+          "inclusive_ms": 0.767359223300971,
+          "self_ms": 0.2855155339805825,
+          "cpu_ms": 0.3250693481276006,
+          "thread_cycles": 1074324.2857142857
+        },
+        "producer_upload_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.0018224687933425798,
+          "self_ms": 0.0018224687933425798,
+          "cpu_ms": 0.08668515950069348,
+          "thread_cycles": 2527.955617198336
+        },
+        "producer_gpu_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.3962787794729542,
+          "self_ms": 0.3962787794729542,
+          "cpu_ms": 0.0,
+          "thread_cycles": 17781.82801664355
+        },
+        "texture_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.001011095700416089,
+          "self_ms": 0.001011095700416089,
+          "cpu_ms": 0.02167128987517337,
+          "thread_cycles": 2267.843273231623
+        },
+        "cpu_readback": {
+          "calls": 1.0,
+          "inclusive_ms": 0.08231414701803051,
+          "self_ms": 0.08231414701803051,
+          "cpu_ms": 0.0,
+          "thread_cycles": 237871.14008321776
+        },
+        "queue_advance": {
+          "calls": 1.0,
+          "inclusive_ms": 0.006572676837725382,
+          "self_ms": 0.006572676837725382,
+          "cpu_ms": 0.04334257975034674,
+          "thread_cycles": 18864.775312066573
+        },
+        "inspect": {
+          "calls": 1.0,
+          "inclusive_ms": 0.07763092926490985,
+          "self_ms": 0.07763092926490985,
+          "cpu_ms": 0.02167128987517337,
+          "thread_cycles": 206363.4646324549
+        },
+        "workload": {
+          "calls": 1.0,
+          "inclusive_ms": 0.6343980582524271,
+          "self_ms": 0.018136615811373092,
+          "cpu_ms": 0.585124826629681,
+          "thread_cycles": 987149.0208044383
+        },
+        "render": {
+          "calls": 1.0,
+          "inclusive_ms": 0.61626213592233,
+          "self_ms": 0.320621359223301,
+          "cpu_ms": 0.4984396671289875,
+          "thread_cycles": 938797.557558946
+        },
+        "render_upload_wait": {
+          "calls": 1.001386962552011,
+          "inclusive_ms": 0.0017932038834951455,
+          "self_ms": 0.0017932038834951455,
+          "cpu_ms": 0.2817267683772538,
+          "thread_cycles": 2458.875173370319
+        },
+        "render_gpu_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.2938488210818308,
+          "self_ms": 0.2938488210818308,
+          "cpu_ms": 0.19504160887656033,
+          "thread_cycles": 18535.68377253814
+        },
+        "present": {
+          "calls": 1.0,
+          "inclusive_ms": 0.300875173370319,
+          "self_ms": 0.300875173370319,
+          "cpu_ms": 0.02167128987517337,
+          "thread_cycles": 861696.346740638
+        },
+        "present_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.5155367545076283,
+          "self_ms": 0.5155367545076283,
+          "cpu_ms": 0.02167128987517337,
+          "thread_cycles": 30746.26907073509
+        }
+      }
+    },
+    "intro": {
+      "samples": 17,
+      "start_ms": 8032,
+      "end_ms": 24080,
+      "interval_ms": 17056.41,
+      "guest_frames": 1995,
+      "fps": 116.96482436808215,
+      "counters": {
+        "output_frames": 1995,
+        "guest_frames": 1995,
+        "vertices_sum": 43431150,
+        "faces_sum": 18286170,
+        "matrices_sum": 612465,
+        "pairs_sum": 3990,
+        "tiles_sum": 736155,
+        "render_gpu_timestamp_ns": 480271104,
+        "gate_not_native_build": 0,
+        "gate_not_gameplay": 1995,
+        "gate_dimensions": 0,
+        "gate_cpu_framebuffer": 0,
+        "request_off": 1995,
+        "no_pairs": 0,
+        "reject_operations": 0,
+        "reject_format": 0,
+        "reject_height": 0,
+        "reject_depth_clear": 0,
+        "reject_color_address": 0,
+        "reject_depth_address": 0,
+        "reject_tile_copy": 0,
+        "no_writes": 1995,
+        "deferred": 0,
+        "eager": 1995,
+        "materializations": 0
+      },
+      "stages_per_guest": {
+        "native_update": {
+          "calls": 1.0,
+          "inclusive_ms": 1.0423388471177946,
+          "self_ms": 1.0423388471177946,
+          "cpu_ms": 0.10964912280701754,
+          "thread_cycles": 2981034.3799498747
+        },
+        "native_frame": {
+          "calls": 1.0,
+          "inclusive_ms": 0.5656082205513785,
+          "self_ms": 0.5656082205513785,
+          "cpu_ms": 0.25845864661654133,
+          "thread_cycles": 1259628.9558897242
+        },
+        "producer": {
+          "calls": 1.0,
+          "inclusive_ms": 7.520858145363408,
+          "self_ms": 0.011411428571428572,
+          "cpu_ms": 6.524122807017544,
+          "thread_cycles": 18928320.19498747
+        },
+        "screen": {
+          "calls": 1.0,
+          "inclusive_ms": 0.0554853634085213,
+          "self_ms": 0.0554853634085213,
+          "cpu_ms": 0.0,
+          "thread_cycles": 156990.42556390978
+        },
+        "hle": {
+          "calls": 1.0,
+          "inclusive_ms": 7.509447117794487,
+          "self_ms": 2.692068671679198,
+          "cpu_ms": 6.524122807017544,
+          "thread_cycles": 18897794.514285713
+        },
+        "rdram_check": {
+          "calls": 1.0,
+          "inclusive_ms": 0.08231022556390978,
+          "self_ms": 0.08231022556390978,
+          "cpu_ms": 0.0,
+          "thread_cycles": 236296.91478696742
+        },
+        "full_sync": {
+          "calls": 1.0,
+          "inclusive_ms": 4.735070175438596,
+          "self_ms": 0.15192015037593987,
+          "cpu_ms": 4.832393483709273,
+          "thread_cycles": 10965184.882205514
+        },
+        "flush": {
+          "calls": 1.0,
+          "inclusive_ms": 0.003720200501253133,
+          "self_ms": 0.003720200501253133,
+          "cpu_ms": 0.007832080200501253,
+          "thread_cycles": 10523.563909774437
+        },
+        "tile_validation": {
+          "calls": 1.0,
+          "inclusive_ms": 0.0009563909774436091,
+          "self_ms": 0.0009563909774436091,
+          "cpu_ms": 0.0,
+          "thread_cycles": 2594.021553884712
+        },
+        "call_preparation": {
+          "calls": 1.0,
+          "inclusive_ms": 0.08023929824561404,
+          "self_ms": 0.08023929824561404,
+          "cpu_ms": 0.0,
+          "thread_cycles": 229871.93634085212
+        },
+        "draw_upload": {
+          "calls": 1.0,
+          "inclusive_ms": 0.028726666666666664,
+          "self_ms": 0.028726666666666664,
+          "cpu_ms": 0.007832080200501253,
+          "thread_cycles": 82413.85664160401
+        },
+        "eager_path": {
+          "calls": 1.0,
+          "inclusive_ms": 0.040979699248120297,
+          "self_ms": 0.040979699248120297,
+          "cpu_ms": 0.0,
+          "thread_cycles": 118773.9619047619
+        },
+        "tiles": {
+          "calls": 2.0,
+          "inclusive_ms": 2.659343859649123,
+          "self_ms": 2.659343859649123,
+          "cpu_ms": 1.3549498746867168,
+          "thread_cycles": 7630875.280200501
+        },
+        "eager_setup": {
+          "calls": 1.0,
+          "inclusive_ms": 0.05646711779448621,
+          "self_ms": 0.05646711779448621,
+          "cpu_ms": 0.007832080200501253,
+          "thread_cycles": 162727.94636591477
+        },
+        "target_safety": {
+          "calls": 2.0,
+          "inclusive_ms": 0.0016121804511278195,
+          "self_ms": 0.0016121804511278195,
+          "cpu_ms": 0.0,
+          "thread_cycles": 4235.107268170426
+        },
+        "eager_render": {
+          "calls": 1.0,
+          "inclusive_ms": 1.6209844611528825,
+          "self_ms": 0.5772146365914788,
+          "cpu_ms": 0.7205513784461153,
+          "thread_cycles": 2043800.675689223
+        },
+        "producer_upload_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.0032852130325814535,
+          "self_ms": 0.0032852130325814535,
+          "cpu_ms": 0.24279448621553884,
+          "thread_cycles": 3554.4756892230575
+        },
+        "producer_gpu_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.9152727318295741,
+          "self_ms": 0.9152727318295741,
+          "cpu_ms": 0.10181704260651629,
+          "thread_cycles": 27038.501754385965
+        },
+        "texture_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.0014329824561403507,
+          "self_ms": 0.0014329824561403507,
+          "cpu_ms": 0.15664160401002505,
+          "thread_cycles": 2674.5157894736844
+        },
+        "cpu_readback": {
+          "calls": 1.0,
+          "inclusive_ms": 0.12304325814536342,
+          "self_ms": 0.12304325814536342,
+          "cpu_ms": 0.0,
+          "thread_cycles": 355530.00350877194
+        },
+        "queue_advance": {
+          "calls": 1.0,
+          "inclusive_ms": 0.009335338345864664,
+          "self_ms": 0.009335338345864664,
+          "cpu_ms": 0.046992481203007516,
+          "thread_cycles": 26395.141854636593
+        },
+        "inspect": {
+          "calls": 1.0,
+          "inclusive_ms": 0.08152060150375941,
+          "self_ms": 0.08152060150375941,
+          "cpu_ms": 0.03132832080200501,
+          "thread_cycles": 232904.19097744362
+        },
+        "workload": {
+          "calls": 1.0,
+          "inclusive_ms": 1.6441233082706768,
+          "self_ms": 0.028004761904761904,
+          "cpu_ms": 1.0416666666666667,
+          "thread_cycles": 2843634.796491228
+        },
+        "render": {
+          "calls": 1.0,
+          "inclusive_ms": 1.616119298245614,
+          "self_ms": 0.948674686716792,
+          "cpu_ms": 1.0260025062656641,
+          "thread_cycles": 2770363.221553885
+        },
+        "render_upload_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.005653734335839599,
+          "self_ms": 0.005653734335839599,
+          "cpu_ms": 0.6892230576441103,
+          "thread_cycles": 4502.294235588973
+        },
+        "render_gpu_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.6617903759398496,
+          "self_ms": 0.6617903759398496,
+          "cpu_ms": 0.2506265664160401,
+          "thread_cycles": 35123.29674185464
+        },
+        "present": {
+          "calls": 1.0,
+          "inclusive_ms": 0.393943007518797,
+          "self_ms": 0.393943007518797,
+          "cpu_ms": 0.03132832080200501,
+          "thread_cycles": 1125261.7729323308
+        },
+        "present_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 1.45458045112782,
+          "self_ms": 1.45458045112782,
+          "cpu_ms": 0.007832080200501253,
+          "thread_cycles": 39461.96591478697
+        }
+      }
+    },
+    "mountain": {
+      "samples": 36,
+      "start_ms": 48142,
+      "end_ms": 83368,
+      "interval_ms": 36232.77,
+      "guest_frames": 3149,
+      "fps": 86.91027486995888,
+      "counters": {
+        "output_frames": 3149,
+        "guest_frames": 3149,
+        "vertices_sum": 67258792,
+        "faces_sum": 21852354,
+        "matrices_sum": 1577798,
+        "pairs_sum": 6298,
+        "tiles_sum": 1891522,
+        "render_gpu_timestamp_ns": 886800896,
+        "gate_not_native_build": 0,
+        "gate_not_gameplay": 0,
+        "gate_dimensions": 0,
+        "gate_cpu_framebuffer": 0,
+        "request_off": 0,
+        "no_pairs": 0,
+        "reject_operations": 0,
+        "reject_format": 0,
+        "reject_height": 0,
+        "reject_depth_clear": 0,
+        "reject_color_address": 0,
+        "reject_depth_address": 0,
+        "reject_tile_copy": 0,
+        "no_writes": 0,
+        "deferred": 3149,
+        "eager": 0,
+        "materializations": 0
+      },
+      "stages_per_guest": {
+        "native_update": {
+          "calls": 1.0,
+          "inclusive_ms": 2.9118862813591613,
+          "self_ms": 2.9118862813591613,
+          "cpu_ms": 1.9897189583994919,
+          "thread_cycles": 8163052.507145125
+        },
+        "native_frame": {
+          "calls": 1.0,
+          "inclusive_ms": 1.9904445855827244,
+          "self_ms": 1.9904445855827244,
+          "cpu_ms": 0.9377977135598603,
+          "thread_cycles": 3445130.817719911
+        },
+        "producer": {
+          "calls": 1.0,
+          "inclusive_ms": 8.310275007939032,
+          "self_ms": 0.013121721181327404,
+          "cpu_ms": 7.616505239758654,
+          "thread_cycles": 21551667.338837728
+        },
+        "screen": {
+          "calls": 1.0,
+          "inclusive_ms": 0.06083099396633853,
+          "self_ms": 0.06083099396633853,
+          "cpu_ms": 0.01984757065735154,
+          "thread_cycles": 171014.7189583995
+        },
+        "hle": {
+          "calls": 1.0,
+          "inclusive_ms": 8.297153382026039,
+          "self_ms": 2.835013337567482,
+          "cpu_ms": 7.60161956176564,
+          "thread_cycles": 21518210.088599555
+        },
+        "rdram_check": {
+          "calls": 1.0,
+          "inclusive_ms": 0.0005154969831692601,
+          "self_ms": 0.0005154969831692601,
+          "cpu_ms": 0.004961892664337885,
+          "thread_cycles": 1376.8802794537949
+        },
+        "full_sync": {
+          "calls": 1.0,
+          "inclusive_ms": 5.461624325182597,
+          "self_ms": 0.4491404890441409,
+          "cpu_ms": 5.527548428072404,
+          "thread_cycles": 13417935.135281041
+        },
+        "flush": {
+          "calls": 1.0,
+          "inclusive_ms": 0.003479136233724993,
+          "self_ms": 0.003479136233724993,
+          "cpu_ms": 0.0,
+          "thread_cycles": 9838.32486503652
+        },
+        "tile_validation": {
+          "calls": 1.0,
+          "inclusive_ms": 0.0013022864401397273,
+          "self_ms": 0.0013022864401397273,
+          "cpu_ms": 0.0,
+          "thread_cycles": 3473.0835185773262
+        },
+        "call_preparation": {
+          "calls": 1.0,
+          "inclusive_ms": 0.12827062559542712,
+          "self_ms": 0.12827062559542712,
+          "cpu_ms": 0.00992378532867577,
+          "thread_cycles": 367743.77611940296
+        },
+        "draw_upload": {
+          "calls": 1.0,
+          "inclusive_ms": 0.027353000952683393,
+          "self_ms": 0.027353000952683393,
+          "cpu_ms": 0.0,
+          "thread_cycles": 78779.56017783424
+        },
+        "tiles": {
+          "calls": 2.0,
+          "inclusive_ms": 3.949859955541441,
+          "self_ms": 3.949859955541441,
+          "cpu_ms": 2.947364242616704,
+          "thread_cycles": 11364004.16544935
+        },
+        "producer_upload_wait": {
+          "calls": 2.0,
+          "inclusive_ms": 0.002113051762464274,
+          "self_ms": 0.002113051762464274,
+          "cpu_ms": 0.14389488726579866,
+          "thread_cycles": 3840.50301683074
+        },
+        "producer_gpu_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.7851218164496664,
+          "self_ms": 0.7851218164496664,
+          "cpu_ms": 0.10419974595109559,
+          "thread_cycles": 29789.15846300413
+        },
+        "texture_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.01678952048269292,
+          "self_ms": 0.01678952048269292,
+          "cpu_ms": 0.0,
+          "thread_cycles": 7426.232772308669
+        },
+        "queue_advance": {
+          "calls": 1.0,
+          "inclusive_ms": 0.009391076532232452,
+          "self_ms": 0.009391076532232452,
+          "cpu_ms": 0.1687043505874881,
+          "thread_cycles": 26156.838678945696
+        },
+        "inspect": {
+          "calls": 1.0,
+          "inclusive_ms": 0.08880377897745316,
+          "self_ms": 0.08880377897745316,
+          "cpu_ms": 0.00992378532867577,
+          "thread_cycles": 253324.6243251826
+        },
+        "workload": {
+          "calls": 1.0,
+          "inclusive_ms": 1.7302804064782469,
+          "self_ms": 0.02895525563671007,
+          "cpu_ms": 0.908026357573833,
+          "thread_cycles": 2654368.949190219
+        },
+        "render": {
+          "calls": 1.0,
+          "inclusive_ms": 1.7013261352810418,
+          "self_ms": 0.8857555731978405,
+          "cpu_ms": 0.8931406795808193,
+          "thread_cycles": 2577887.7573832963
+        },
+        "render_upload_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.0038589393458240695,
+          "self_ms": 0.0038589393458240695,
+          "cpu_ms": 0.6351222610352493,
+          "thread_cycles": 3621.6776754525245
+        },
+        "render_gpu_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 0.8117118450301684,
+          "self_ms": 0.8117118450301684,
+          "cpu_ms": 0.17366624325182597,
+          "thread_cycles": 32980.74245792315
+        },
+        "present": {
+          "calls": 1.0,
+          "inclusive_ms": 0.3914315338202604,
+          "self_ms": 0.3914315338202604,
+          "cpu_ms": 0.05954271197205462,
+          "thread_cycles": 1108955.7256271832
+        },
+        "present_wait": {
+          "calls": 1.0,
+          "inclusive_ms": 1.4374628453477294,
+          "self_ms": 1.4374628453477294,
+          "cpu_ms": 0.00992378532867577,
+          "thread_cycles": 39238.73547157828
+        }
+      }
+    }
+  },
+  "scope_errors": 0,
+  "conclusion": "Measured HLE self and tile processing dominate producer; gameplay deferred path active for3149/3149 measured frames. No specific inner-function root cause established yet. Further sampled detail separates TMEM loads, hashes and geometry.",
+  "cpu_time_caution": "GetThreadTimes is coarse; some micro-stage CPU estimates exceed wall; use wall/cycles and do not sum nesting/threads."
+}

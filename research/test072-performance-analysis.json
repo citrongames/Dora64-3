@@ -1,0 +1,2717 @@
+{
+  "baseline": "test-072",
+  "sessions": [
+    {
+      "session": "1791458554488",
+      "sha256": "b75343055a266daa2f4097c333156daf48af703a21b74671dfa349937101ed68",
+      "groups": {
+        "1x/mode2/stopped": {
+          "samples": 3,
+          "interval_ms": 3030.58,
+          "output_frames": 182,
+          "common_alive_max": 107,
+          "stages": {
+            "native_update": {
+              "calls": 182,
+              "observed_calls": 182,
+              "inclusive_ms": 5.3462,
+              "self_ms": 0.5062
+            },
+            "native_frame": {
+              "calls": 182,
+              "observed_calls": 182,
+              "inclusive_ms": 377.33029999999997,
+              "self_ms": 1.9453
+            },
+            "frame_commands": {
+              "calls": 182,
+              "observed_calls": 182,
+              "inclusive_ms": 354.00300000000004,
+              "self_ms": 6.9794
+            },
+            "task_submit": {
+              "calls": 182,
+              "observed_calls": 182,
+              "inclusive_ms": 1.0194,
+              "self_ms": 1.0169
+            },
+            "native_model_pose": {
+              "calls": 364,
+              "observed_calls": 364,
+              "inclusive_ms": 21.3784,
+              "self_ms": 3.657
+            },
+            "trace_sample_1_in_64": {
+              "calls": 36740,
+              "observed_calls": 36740,
+              "inclusive_ms": 4.6172,
+              "self_ms": 4.6172
+            },
+            "rt64_parse": {
+              "calls": 182,
+              "observed_calls": 182,
+              "inclusive_ms": 1440.9300000000003,
+              "self_ms": 1440.9300000000003
+            },
+            "rt64_screen": {
+              "calls": 182,
+              "observed_calls": 182,
+              "inclusive_ms": 8.7185,
+              "self_ms": 8.7185
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 182,
+              "observed_calls": 182,
+              "inclusive_ms": 324.58389999999997,
+              "self_ms": 139.53480000000002
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 182,
+              "observed_calls": 182,
+              "inclusive_ms": 66.4371,
+              "self_ms": 66.4371
+            },
+            "rt64_gpu_wait": {
+              "calls": 182,
+              "observed_calls": 182,
+              "inclusive_ms": 184.8379,
+              "self_ms": 184.8379
+            },
+            "rt64_upload_wait": {
+              "calls": 180,
+              "observed_calls": 180,
+              "inclusive_ms": 0.2097,
+              "self_ms": 0.2097
+            },
+            "rt64_workload_total": {
+              "calls": 182,
+              "observed_calls": 182,
+              "inclusive_ms": 328.4491,
+              "self_ms": 3.8654
+            },
+            "present_swap": {
+              "calls": 182,
+              "observed_calls": 182,
+              "inclusive_ms": 95.7461,
+              "self_ms": 95.7461
+            },
+            "present_workload_wait": {
+              "calls": 182,
+              "observed_calls": 182,
+              "inclusive_ms": 263.1442,
+              "self_ms": 263.1442
+            },
+            "overlay_lookup_sample_1_in_64": {
+              "calls": 80,
+              "observed_calls": 5256,
+              "inclusive_ms": 0.0163,
+              "self_ms": 0.0163
+            },
+            "world_source_update": {
+              "calls": 41,
+              "observed_calls": 41,
+              "inclusive_ms": 4.5615000000000006,
+              "self_ms": 1.9727999999999999
+            },
+            "world_gameplay": {
+              "calls": 41,
+              "observed_calls": 41,
+              "inclusive_ms": 2.4381000000000004,
+              "self_ms": 0.6489
+            },
+            "world_draw": {
+              "calls": 121,
+              "observed_calls": 121,
+              "inclusive_ms": 345.93,
+              "self_ms": 177.1637
+            },
+            "world_geometry": {
+              "calls": 242,
+              "observed_calls": 242,
+              "inclusive_ms": 32.243300000000005,
+              "self_ms": 29.9036
+            },
+            "model_evaluate": {
+              "calls": 5324,
+              "observed_calls": 5324,
+              "inclusive_ms": 17.721400000000003,
+              "self_ms": 17.4813
+            },
+            "texture_bind": {
+              "calls": 176176,
+              "observed_calls": 176176,
+              "inclusive_ms": 10.270900000000001,
+              "self_ms": 10.270900000000001
+            },
+            "object_timeline": {
+              "calls": 162,
+              "observed_calls": 162,
+              "inclusive_ms": 6.5915,
+              "self_ms": 2.2768
+            },
+            "model_draw_commands": {
+              "calls": 31702,
+              "observed_calls": 31702,
+              "inclusive_ms": 126.0481,
+              "self_ms": 125.1149
+            },
+            "model_rate_plan": {
+              "calls": 322,
+              "observed_calls": 322,
+              "inclusive_ms": 2.2465,
+              "self_ms": 2.2465
+            },
+            "model_clip_boundaries": {
+              "calls": 322,
+              "observed_calls": 322,
+              "inclusive_ms": 2.0551,
+              "self_ms": 2.0551
+            },
+            "preview_hook_sample_1_in_16": {
+              "calls": 3,
+              "observed_calls": 40,
+              "inclusive_ms": 0.1901,
+              "self_ms": 0.0281
+            },
+            "gameplay_eligibility_sample_1_in_32": {
+              "calls": 77,
+              "observed_calls": 2458,
+              "inclusive_ms": 0.0184,
+              "self_ms": 0.0184
+            }
+          },
+          "output_fps": 60.05451101769298
+        },
+        "1x/mode2/active": {
+          "samples": 10,
+          "interval_ms": 10055.55,
+          "output_frames": 580,
+          "common_alive_max": 4,
+          "stages": {
+            "native_update": {
+              "calls": 580,
+              "observed_calls": 580,
+              "inclusive_ms": 667.494,
+              "self_ms": 2.2469000000000006
+            },
+            "native_frame": {
+              "calls": 580,
+              "observed_calls": 580,
+              "inclusive_ms": 313.1094,
+              "self_ms": 5.3061
+            },
+            "world_source_update": {
+              "calls": 192,
+              "observed_calls": 192,
+              "inclusive_ms": 435.3506,
+              "self_ms": 16.7743
+            },
+            "world_gameplay": {
+              "calls": 192,
+              "observed_calls": 192,
+              "inclusive_ms": 418.2733,
+              "self_ms": 7.8793
+            },
+            "actor_manager": {
+              "calls": 192,
+              "observed_calls": 192,
+              "inclusive_ms": 33.0248,
+              "self_ms": 32.914899999999996
+            },
+            "common_actors": {
+              "calls": 2123,
+              "observed_calls": 2123,
+              "inclusive_ms": 392.4067,
+              "self_ms": 325.63699999999994
+            },
+            "contacts": {
+              "calls": 192,
+              "observed_calls": 192,
+              "inclusive_ms": 98.8339,
+              "self_ms": 97.2419
+            },
+            "player": {
+              "calls": 2123,
+              "observed_calls": 2123,
+              "inclusive_ms": 232.17079999999999,
+              "self_ms": 167.16140000000001
+            },
+            "projectiles": {
+              "calls": 2123,
+              "observed_calls": 2123,
+              "inclusive_ms": 2.3049999999999997,
+              "self_ms": 2.2369
+            },
+            "world_draw": {
+              "calls": 568,
+              "observed_calls": 568,
+              "inclusive_ms": 282.59299999999996,
+              "self_ms": 71.4158
+            },
+            "world_geometry": {
+              "calls": 1136,
+              "observed_calls": 1136,
+              "inclusive_ms": 138.8998,
+              "self_ms": 128.2825
+            },
+            "model_advance": {
+              "calls": 10213,
+              "observed_calls": 10213,
+              "inclusive_ms": 5.927099999999999,
+              "self_ms": 5.740100000000001
+            },
+            "model_evaluate": {
+              "calls": 11347,
+              "observed_calls": 11347,
+              "inclusive_ms": 77.26140000000001,
+              "self_ms": 76.064
+            },
+            "frame_commands": {
+              "calls": 581,
+              "observed_calls": 581,
+              "inclusive_ms": 291.2997,
+              "self_ms": 4.4639999999999995
+            },
+            "task_submit": {
+              "calls": 581,
+              "observed_calls": 581,
+              "inclusive_ms": 4.2143999999999995,
+              "self_ms": 4.2097
+            },
+            "native_model_pose": {
+              "calls": 1160,
+              "observed_calls": 1160,
+              "inclusive_ms": 17.103499999999997,
+              "self_ms": 1.8512000000000002
+            },
+            "texture_bind": {
+              "calls": 120280,
+              "observed_calls": 120280,
+              "inclusive_ms": 14.6857,
+              "self_ms": 14.6857
+            },
+            "trace_sample_1_in_64": {
+              "calls": 90911,
+              "observed_calls": 90911,
+              "inclusive_ms": 13.9283,
+              "self_ms": 13.9283
+            },
+            "rt64_parse": {
+              "calls": 581,
+              "observed_calls": 581,
+              "inclusive_ms": 4479.884,
+              "self_ms": 4479.884
+            },
+            "rt64_screen": {
+              "calls": 599,
+              "observed_calls": 599,
+              "inclusive_ms": 32.786500000000004,
+              "self_ms": 32.786500000000004
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 581,
+              "observed_calls": 581,
+              "inclusive_ms": 1042.9144000000001,
+              "self_ms": 353.35339999999997
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 581,
+              "observed_calls": 581,
+              "inclusive_ms": 216.516,
+              "self_ms": 216.516
+            },
+            "rt64_gpu_wait": {
+              "calls": 581,
+              "observed_calls": 581,
+              "inclusive_ms": 689.2066,
+              "self_ms": 689.2066
+            },
+            "rt64_upload_wait": {
+              "calls": 582,
+              "observed_calls": 582,
+              "inclusive_ms": 0.35530000000000006,
+              "self_ms": 0.35530000000000006
+            },
+            "rt64_workload_total": {
+              "calls": 581,
+              "observed_calls": 581,
+              "inclusive_ms": 1059.6165,
+              "self_ms": 16.702099999999998
+            },
+            "present_swap": {
+              "calls": 580,
+              "observed_calls": 580,
+              "inclusive_ms": 266.3086,
+              "self_ms": 266.3086
+            },
+            "present_workload_wait": {
+              "calls": 580,
+              "observed_calls": 580,
+              "inclusive_ms": 860.7989999999999,
+              "self_ms": 860.7989999999999
+            },
+            "enemy_callback": {
+              "calls": 6949,
+              "observed_calls": 6949,
+              "inclusive_ms": 33.9921,
+              "self_ms": 33.4467
+            },
+            "object_timeline": {
+              "calls": 757,
+              "observed_calls": 757,
+              "inclusive_ms": 920.0137,
+              "self_ms": 238.7679
+            },
+            "model_draw_commands": {
+              "calls": 6723,
+              "observed_calls": 6723,
+              "inclusive_ms": 66.90079999999999,
+              "self_ms": 66.5555
+            },
+            "model_rate_plan": {
+              "calls": 1931,
+              "observed_calls": 1931,
+              "inclusive_ms": 22.8351,
+              "self_ms": 22.113400000000002
+            },
+            "model_clip_boundaries": {
+              "calls": 1931,
+              "observed_calls": 1931,
+              "inclusive_ms": 1.7410999999999999,
+              "self_ms": 1.7410999999999999
+            },
+            "object_clock_registration": {
+              "calls": 1931,
+              "observed_calls": 1931,
+              "inclusive_ms": 35.4792,
+              "self_ms": 34.3885
+            },
+            "preview_hook_sample_1_in_16": {
+              "calls": 79815,
+              "observed_calls": 1277044,
+              "inclusive_ms": 36.3076,
+              "self_ms": 19.9642
+            },
+            "enemy_axis_sample_1_in_16": {
+              "calls": 1188,
+              "observed_calls": 19029,
+              "inclusive_ms": 0.7831,
+              "self_ms": 0.7494
+            },
+            "common_ownership_sample_1_in_16": {
+              "calls": 1655,
+              "observed_calls": 26515,
+              "inclusive_ms": 1.6929,
+              "self_ms": 1.5872
+            },
+            "enemy_identity_sample_1_in_16": {
+              "calls": 6175,
+              "observed_calls": 98813,
+              "inclusive_ms": 2.5774,
+              "self_ms": 2.5486
+            },
+            "overlay_lookup_sample_1_in_64": {
+              "calls": 3032,
+              "observed_calls": 193890,
+              "inclusive_ms": 0.5167,
+              "self_ms": 0.5167
+            },
+            "enemy_pool_finalize": {
+              "calls": 1931,
+              "observed_calls": 1931,
+              "inclusive_ms": 14.2683,
+              "self_ms": 14.0706
+            },
+            "native_model_clock_sample_1_in_16": {
+              "calls": 637,
+              "observed_calls": 10205,
+              "inclusive_ms": 0.15,
+              "self_ms": 0.15
+            },
+            "gameplay_eligibility_sample_1_in_32": {
+              "calls": 39910,
+              "observed_calls": 1277163,
+              "inclusive_ms": 4.8925,
+              "self_ms": 4.8925
+            }
+          },
+          "output_fps": 57.67958987822646
+        },
+        "2x/mode2/active": {
+          "samples": 8,
+          "interval_ms": 8081.44,
+          "output_frames": 484,
+          "common_alive_max": 12,
+          "stages": {
+            "native_update": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 872.5541999999999,
+              "self_ms": 2.0393
+            },
+            "native_frame": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 337.5058,
+              "self_ms": 4.386500000000001
+            },
+            "world_source_update": {
+              "calls": 161,
+              "observed_calls": 161,
+              "inclusive_ms": 730.9190000000001,
+              "self_ms": 14.204500000000001
+            },
+            "world_gameplay": {
+              "calls": 161,
+              "observed_calls": 161,
+              "inclusive_ms": 716.6226999999999,
+              "self_ms": 5.6101
+            },
+            "actor_manager": {
+              "calls": 161,
+              "observed_calls": 161,
+              "inclusive_ms": 144.9709,
+              "self_ms": 23.608999999999998
+            },
+            "common_actors": {
+              "calls": 2511,
+              "observed_calls": 2511,
+              "inclusive_ms": 597.5621,
+              "self_ms": 457.9937
+            },
+            "contacts": {
+              "calls": 161,
+              "observed_calls": 161,
+              "inclusive_ms": 178.6648,
+              "self_ms": 175.6929
+            },
+            "player": {
+              "calls": 2511,
+              "observed_calls": 2511,
+              "inclusive_ms": 242.62040000000002,
+              "self_ms": 175.63619999999997
+            },
+            "projectiles": {
+              "calls": 2511,
+              "observed_calls": 2511,
+              "inclusive_ms": 2.4446,
+              "self_ms": 2.372
+            },
+            "world_draw": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 314.3066,
+              "self_ms": 105.0245
+            },
+            "world_geometry": {
+              "calls": 968,
+              "observed_calls": 968,
+              "inclusive_ms": 111.92660000000001,
+              "self_ms": 103.6246
+            },
+            "model_advance": {
+              "calls": 30588,
+              "observed_calls": 30588,
+              "inclusive_ms": 12.039,
+              "self_ms": 11.7099
+            },
+            "model_evaluate": {
+              "calls": 31556,
+              "observed_calls": 31556,
+              "inclusive_ms": 80.36710000000001,
+              "self_ms": 79.2085
+            },
+            "frame_commands": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 320.1621,
+              "self_ms": 2.7629
+            },
+            "task_submit": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 3.0803999999999996,
+              "self_ms": 3.0774000000000004
+            },
+            "native_model_pose": {
+              "calls": 968,
+              "observed_calls": 968,
+              "inclusive_ms": 12.9519,
+              "self_ms": 1.796
+            },
+            "texture_bind": {
+              "calls": 146032,
+              "observed_calls": 146032,
+              "inclusive_ms": 15.162999999999998,
+              "self_ms": 15.162999999999998
+            },
+            "trace_sample_1_in_64": {
+              "calls": 109015,
+              "observed_calls": 109015,
+              "inclusive_ms": 15.979600000000001,
+              "self_ms": 15.979600000000001
+            },
+            "distance_admission": {
+              "calls": 11949,
+              "observed_calls": 11949,
+              "inclusive_ms": 121.1233,
+              "self_ms": 121.1233
+            },
+            "rt64_parse": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 2395.838,
+              "self_ms": 2395.838
+            },
+            "rt64_screen": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 22.2961,
+              "self_ms": 22.2961
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 772.8373000000001,
+              "self_ms": 291.34490000000005
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 187.33279999999996,
+              "self_ms": 187.33279999999996
+            },
+            "rt64_gpu_wait": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 481.2074,
+              "self_ms": 481.2074
+            },
+            "rt64_upload_wait": {
+              "calls": 483,
+              "observed_calls": 483,
+              "inclusive_ms": 0.2836,
+              "self_ms": 0.2836
+            },
+            "rt64_workload_total": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 783.6757,
+              "self_ms": 10.8383
+            },
+            "present_swap": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 204.4886,
+              "self_ms": 204.4886
+            },
+            "present_workload_wait": {
+              "calls": 484,
+              "observed_calls": 484,
+              "inclusive_ms": 647.9422,
+              "self_ms": 647.9422
+            },
+            "enemy_callback": {
+              "calls": 21453,
+              "observed_calls": 21453,
+              "inclusive_ms": 83.434,
+              "self_ms": 82.1856
+            },
+            "object_timeline": {
+              "calls": 645,
+              "observed_calls": 645,
+              "inclusive_ms": 1238.6009999999999,
+              "self_ms": 292.10269999999997
+            },
+            "model_draw_commands": {
+              "calls": 15522,
+              "observed_calls": 15522,
+              "inclusive_ms": 88.8189,
+              "self_ms": 88.25200000000001
+            },
+            "model_rate_plan": {
+              "calls": 2350,
+              "observed_calls": 2350,
+              "inclusive_ms": 36.66,
+              "self_ms": 34.9089
+            },
+            "model_clip_boundaries": {
+              "calls": 2350,
+              "observed_calls": 2350,
+              "inclusive_ms": 2.2195,
+              "self_ms": 2.2195
+            },
+            "object_clock_registration": {
+              "calls": 2350,
+              "observed_calls": 2350,
+              "inclusive_ms": 49.7591,
+              "self_ms": 47.5228
+            },
+            "preview_hook_sample_1_in_16": {
+              "calls": 100457,
+              "observed_calls": 1607280,
+              "inclusive_ms": 40.974799999999995,
+              "self_ms": 26.3062
+            },
+            "enemy_axis_sample_1_in_16": {
+              "calls": 4813,
+              "observed_calls": 76992,
+              "inclusive_ms": 1.9977,
+              "self_ms": 1.9158
+            },
+            "common_ownership_sample_1_in_16": {
+              "calls": 6737,
+              "observed_calls": 107759,
+              "inclusive_ms": 4.3019,
+              "self_ms": 4.0933
+            },
+            "enemy_identity_sample_1_in_16": {
+              "calls": 22412,
+              "observed_calls": 358592,
+              "inclusive_ms": 6.371300000000001,
+              "self_ms": 6.300000000000001
+            },
+            "overlay_lookup_sample_1_in_64": {
+              "calls": 7661,
+              "observed_calls": 490480,
+              "inclusive_ms": 1.1929,
+              "self_ms": 1.1929
+            },
+            "enemy_pool_finalize": {
+              "calls": 2350,
+              "observed_calls": 2350,
+              "inclusive_ms": 30.0852,
+              "self_ms": 29.603200000000005
+            },
+            "native_model_clock_sample_1_in_16": {
+              "calls": 1898,
+              "observed_calls": 30364,
+              "inclusive_ms": 0.255,
+              "self_ms": 0.255
+            },
+            "gameplay_eligibility_sample_1_in_32": {
+              "calls": 48726,
+              "observed_calls": 1559205,
+              "inclusive_ms": 5.2600999999999996,
+              "self_ms": 5.2600999999999996
+            }
+          },
+          "output_fps": 59.89031657724366
+        },
+        "3x/mode2/active": {
+          "samples": 8,
+          "interval_ms": 8078.67,
+          "output_frames": 482,
+          "common_alive_max": 47,
+          "stages": {
+            "native_update": {
+              "calls": 483,
+              "observed_calls": 483,
+              "inclusive_ms": 1521.729,
+              "self_ms": 2.1286
+            },
+            "native_frame": {
+              "calls": 483,
+              "observed_calls": 483,
+              "inclusive_ms": 661.5718999999999,
+              "self_ms": 5.1030999999999995
+            },
+            "world_source_update": {
+              "calls": 162,
+              "observed_calls": 162,
+              "inclusive_ms": 1139.538,
+              "self_ms": 11.0008
+            },
+            "world_gameplay": {
+              "calls": 162,
+              "observed_calls": 162,
+              "inclusive_ms": 1128.4430000000002,
+              "self_ms": 5.7193000000000005
+            },
+            "actor_manager": {
+              "calls": 162,
+              "observed_calls": 162,
+              "inclusive_ms": 128.7823,
+              "self_ms": 26.119499999999995
+            },
+            "common_actors": {
+              "calls": 2913,
+              "observed_calls": 2913,
+              "inclusive_ms": 1326.2089999999998,
+              "self_ms": 905.7184
+            },
+            "contacts": {
+              "calls": 162,
+              "observed_calls": 162,
+              "inclusive_ms": 414.7123,
+              "self_ms": 407.92490000000004
+            },
+            "player": {
+              "calls": 2913,
+              "observed_calls": 2913,
+              "inclusive_ms": 260.91499999999996,
+              "self_ms": 197.58219999999997
+            },
+            "projectiles": {
+              "calls": 2913,
+              "observed_calls": 2913,
+              "inclusive_ms": 2.9457,
+              "self_ms": 2.8722
+            },
+            "world_draw": {
+              "calls": 483,
+              "observed_calls": 483,
+              "inclusive_ms": 608.1846,
+              "self_ms": 273.1938
+            },
+            "world_geometry": {
+              "calls": 966,
+              "observed_calls": 966,
+              "inclusive_ms": 104.0044,
+              "self_ms": 96.2263
+            },
+            "model_advance": {
+              "calls": 126176,
+              "observed_calls": 126176,
+              "inclusive_ms": 43.537699999999994,
+              "self_ms": 42.445499999999996
+            },
+            "model_evaluate": {
+              "calls": 132618,
+              "observed_calls": 132618,
+              "inclusive_ms": 198.7526,
+              "self_ms": 196.1022
+            },
+            "frame_commands": {
+              "calls": 483,
+              "observed_calls": 483,
+              "inclusive_ms": 629.5711,
+              "self_ms": 2.8019
+            },
+            "task_submit": {
+              "calls": 483,
+              "observed_calls": 483,
+              "inclusive_ms": 18.5767,
+              "self_ms": 18.5718
+            },
+            "native_model_pose": {
+              "calls": 966,
+              "observed_calls": 966,
+              "inclusive_ms": 26.892499999999995,
+              "self_ms": 4.6759
+            },
+            "texture_bind": {
+              "calls": 328704,
+              "observed_calls": 328704,
+              "inclusive_ms": 22.987400000000004,
+              "self_ms": 22.987400000000004
+            },
+            "trace_sample_1_in_64": {
+              "calls": 203825,
+              "observed_calls": 203825,
+              "inclusive_ms": 26.902000000000005,
+              "self_ms": 26.902000000000005
+            },
+            "distance_admission": {
+              "calls": 8947,
+              "observed_calls": 8947,
+              "inclusive_ms": 102.52579999999999,
+              "self_ms": 102.52579999999999
+            },
+            "rt64_parse": {
+              "calls": 482,
+              "observed_calls": 482,
+              "inclusive_ms": 3121.241,
+              "self_ms": 3121.241
+            },
+            "rt64_screen": {
+              "calls": 482,
+              "observed_calls": 482,
+              "inclusive_ms": 24.1112,
+              "self_ms": 24.1112
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 482,
+              "observed_calls": 482,
+              "inclusive_ms": 909.8368,
+              "self_ms": 361.74129999999997
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 482,
+              "observed_calls": 482,
+              "inclusive_ms": 213.01170000000002,
+              "self_ms": 213.01170000000002
+            },
+            "rt64_gpu_wait": {
+              "calls": 482,
+              "observed_calls": 482,
+              "inclusive_ms": 547.7851,
+              "self_ms": 547.7851
+            },
+            "rt64_upload_wait": {
+              "calls": 483,
+              "observed_calls": 483,
+              "inclusive_ms": 0.3115,
+              "self_ms": 0.3115
+            },
+            "rt64_workload_total": {
+              "calls": 482,
+              "observed_calls": 482,
+              "inclusive_ms": 921.1401999999999,
+              "self_ms": 11.302200000000001
+            },
+            "present_swap": {
+              "calls": 482,
+              "observed_calls": 482,
+              "inclusive_ms": 208.4344,
+              "self_ms": 208.4344
+            },
+            "present_workload_wait": {
+              "calls": 482,
+              "observed_calls": 482,
+              "inclusive_ms": 656.6083,
+              "self_ms": 656.6083
+            },
+            "enemy_callback": {
+              "calls": 56648,
+              "observed_calls": 56648,
+              "inclusive_ms": 185.15269999999998,
+              "self_ms": 182.1982
+            },
+            "object_timeline": {
+              "calls": 645,
+              "observed_calls": 645,
+              "inclusive_ms": 2064.6259999999997,
+              "self_ms": 286.7281
+            },
+            "model_draw_commands": {
+              "calls": 51905,
+              "observed_calls": 51905,
+              "inclusive_ms": 211.76170000000002,
+              "self_ms": 210.32940000000002
+            },
+            "model_rate_plan": {
+              "calls": 2751,
+              "observed_calls": 2751,
+              "inclusive_ms": 64.3971,
+              "self_ms": 60.234500000000004
+            },
+            "model_clip_boundaries": {
+              "calls": 2751,
+              "observed_calls": 2751,
+              "inclusive_ms": 6.425999999999999,
+              "self_ms": 6.425999999999999
+            },
+            "object_clock_registration": {
+              "calls": 2751,
+              "observed_calls": 2751,
+              "inclusive_ms": 82.2899,
+              "self_ms": 77.39109999999998
+            },
+            "preview_hook_sample_1_in_16": {
+              "calls": 148246,
+              "observed_calls": 2371966,
+              "inclusive_ms": 72.9615,
+              "self_ms": 47.9386
+            },
+            "enemy_axis_sample_1_in_16": {
+              "calls": 21960,
+              "observed_calls": 351363,
+              "inclusive_ms": 5.307100000000001,
+              "self_ms": 5.089700000000001
+            },
+            "common_ownership_sample_1_in_16": {
+              "calls": 35538,
+              "observed_calls": 568623,
+              "inclusive_ms": 12.0959,
+              "self_ms": 11.6137
+            },
+            "enemy_identity_sample_1_in_16": {
+              "calls": 100296,
+              "observed_calls": 1604761,
+              "inclusive_ms": 14.4777,
+              "self_ms": 14.366299999999999
+            },
+            "overlay_lookup_sample_1_in_64": {
+              "calls": 14779,
+              "observed_calls": 945835,
+              "inclusive_ms": 1.911,
+              "self_ms": 1.911
+            },
+            "enemy_pool_finalize": {
+              "calls": 2751,
+              "observed_calls": 2751,
+              "inclusive_ms": 64.7263,
+              "self_ms": 63.6249
+            },
+            "native_model_clock_sample_1_in_16": {
+              "calls": 7662,
+              "observed_calls": 122623,
+              "inclusive_ms": 0.8385999999999999,
+              "self_ms": 0.8385999999999999
+            },
+            "gameplay_eligibility_sample_1_in_32": {
+              "calls": 65265,
+              "observed_calls": 2088537,
+              "inclusive_ms": 6.3932,
+              "self_ms": 6.3932
+            }
+          },
+          "output_fps": 59.66328615972679
+        },
+        "3.8x/mode2/active": {
+          "samples": 1,
+          "interval_ms": 1011.16,
+          "output_frames": 59,
+          "common_alive_max": 57,
+          "stages": {
+            "native_update": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 209.4,
+              "self_ms": 0.2619
+            },
+            "native_frame": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 104.824,
+              "self_ms": 0.698
+            },
+            "world_source_update": {
+              "calls": 20,
+              "observed_calls": 20,
+              "inclusive_ms": 187.31,
+              "self_ms": 0.9319
+            },
+            "world_gameplay": {
+              "calls": 20,
+              "observed_calls": 20,
+              "inclusive_ms": 186.378,
+              "self_ms": 0.7223
+            },
+            "actor_manager": {
+              "calls": 20,
+              "observed_calls": 20,
+              "inclusive_ms": 32.2046,
+              "self_ms": 20.3587
+            },
+            "common_actors": {
+              "calls": 389,
+              "observed_calls": 389,
+              "inclusive_ms": 207.271,
+              "self_ms": 139.918
+            },
+            "contacts": {
+              "calls": 20,
+              "observed_calls": 20,
+              "inclusive_ms": 57.4036,
+              "self_ms": 56.4745
+            },
+            "player": {
+              "calls": 389,
+              "observed_calls": 389,
+              "inclusive_ms": 33.4521,
+              "self_ms": 27.1996
+            },
+            "projectiles": {
+              "calls": 389,
+              "observed_calls": 389,
+              "inclusive_ms": 0.4176,
+              "self_ms": 0.4087
+            },
+            "world_draw": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 85.8659,
+              "self_ms": 40.009
+            },
+            "world_geometry": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 12.4615,
+              "self_ms": 11.5558
+            },
+            "model_advance": {
+              "calls": 20518,
+              "observed_calls": 20518,
+              "inclusive_ms": 7.1654,
+              "self_ms": 6.9811
+            },
+            "model_evaluate": {
+              "calls": 21639,
+              "observed_calls": 21639,
+              "inclusive_ms": 29.5952,
+              "self_ms": 29.2175
+            },
+            "frame_commands": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 100.348,
+              "self_ms": 0.3718
+            },
+            "task_submit": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 14.1099,
+              "self_ms": 14.1083
+            },
+            "native_model_pose": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 3.7774,
+              "self_ms": 0.7647
+            },
+            "texture_bind": {
+              "calls": 46676,
+              "observed_calls": 46676,
+              "inclusive_ms": 3.1087,
+              "self_ms": 3.1087
+            },
+            "trace_sample_1_in_64": {
+              "calls": 27743,
+              "observed_calls": 27743,
+              "inclusive_ms": 3.3958,
+              "self_ms": 3.3958
+            },
+            "distance_admission": {
+              "calls": 988,
+              "observed_calls": 988,
+              "inclusive_ms": 11.7878,
+              "self_ms": 11.7878
+            },
+            "rt64_parse": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 479.492,
+              "self_ms": 479.492
+            },
+            "rt64_screen": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 2.942,
+              "self_ms": 2.942
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 115.088,
+              "self_ms": 43.1979
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 23.3725,
+              "self_ms": 23.3725
+            },
+            "rt64_gpu_wait": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 71.8579,
+              "self_ms": 71.8579
+            },
+            "rt64_upload_wait": {
+              "calls": 58,
+              "observed_calls": 58,
+              "inclusive_ms": 0.0316,
+              "self_ms": 0.0316
+            },
+            "rt64_workload_total": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 116.436,
+              "self_ms": 1.348
+            },
+            "present_swap": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 25.0631,
+              "self_ms": 25.0631
+            },
+            "present_workload_wait": {
+              "calls": 59,
+              "observed_calls": 59,
+              "inclusive_ms": 83.3327,
+              "self_ms": 83.3327
+            },
+            "enemy_callback": {
+              "calls": 8528,
+              "observed_calls": 8528,
+              "inclusive_ms": 27.8851,
+              "self_ms": 27.4439
+            },
+            "object_timeline": {
+              "calls": 79,
+              "observed_calls": 79,
+              "inclusive_ms": 300.146,
+              "self_ms": 30.1003
+            },
+            "model_draw_commands": {
+              "calls": 7528,
+              "observed_calls": 7528,
+              "inclusive_ms": 30.6331,
+              "self_ms": 30.4305
+            },
+            "model_rate_plan": {
+              "calls": 369,
+              "observed_calls": 369,
+              "inclusive_ms": 10.1776,
+              "self_ms": 9.4795
+            },
+            "model_clip_boundaries": {
+              "calls": 369,
+              "observed_calls": 369,
+              "inclusive_ms": 1.0668,
+              "self_ms": 1.0668
+            },
+            "object_clock_registration": {
+              "calls": 369,
+              "observed_calls": 369,
+              "inclusive_ms": 12.382,
+              "self_ms": 11.6436
+            },
+            "preview_hook_sample_1_in_16": {
+              "calls": 21146,
+              "observed_calls": 338325,
+              "inclusive_ms": 17.6696,
+              "self_ms": 7.2901
+            },
+            "enemy_axis_sample_1_in_16": {
+              "calls": 3599,
+              "observed_calls": 57600,
+              "inclusive_ms": 0.7914,
+              "self_ms": 0.759
+            },
+            "common_ownership_sample_1_in_16": {
+              "calls": 5913,
+              "observed_calls": 94609,
+              "inclusive_ms": 1.9806,
+              "self_ms": 1.902
+            },
+            "enemy_identity_sample_1_in_16": {
+              "calls": 16673,
+              "observed_calls": 266741,
+              "inclusive_ms": 2.2694,
+              "self_ms": 2.2531
+            },
+            "overlay_lookup_sample_1_in_64": {
+              "calls": 2320,
+              "observed_calls": 148385,
+              "inclusive_ms": 0.2911,
+              "self_ms": 0.2911
+            },
+            "enemy_pool_finalize": {
+              "calls": 369,
+              "observed_calls": 369,
+              "inclusive_ms": 9.886,
+              "self_ms": 9.7021
+            },
+            "native_model_clock_sample_1_in_16": {
+              "calls": 1248,
+              "observed_calls": 19938,
+              "inclusive_ms": 0.142,
+              "self_ms": 0.142
+            },
+            "gameplay_eligibility_sample_1_in_32": {
+              "calls": 9100,
+              "observed_calls": 291236,
+              "inclusive_ms": 0.8772,
+              "self_ms": 0.8772
+            }
+          },
+          "output_fps": 58.34882708967918
+        },
+        "4x/mode2/active": {
+          "samples": 10,
+          "interval_ms": 10108.519999999999,
+          "output_frames": 524,
+          "common_alive_max": 73,
+          "stages": {
+            "native_update": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 3474.7850000000003,
+              "self_ms": 2.4649
+            },
+            "native_frame": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 1698.53,
+              "self_ms": 7.543100000000001
+            },
+            "world_source_update": {
+              "calls": 202,
+              "observed_calls": 202,
+              "inclusive_ms": 2192.81,
+              "self_ms": 13.7027
+            },
+            "world_gameplay": {
+              "calls": 202,
+              "observed_calls": 202,
+              "inclusive_ms": 2178.594,
+              "self_ms": 7.561599999999999
+            },
+            "actor_manager": {
+              "calls": 202,
+              "observed_calls": 202,
+              "inclusive_ms": 93.40619999999998,
+              "self_ms": 8.819700000000001
+            },
+            "common_actors": {
+              "calls": 5119,
+              "observed_calls": 5119,
+              "inclusive_ms": 3224.677,
+              "self_ms": 2145.161
+            },
+            "contacts": {
+              "calls": 202,
+              "observed_calls": 202,
+              "inclusive_ms": 767.082,
+              "self_ms": 754.4155
+            },
+            "player": {
+              "calls": 5119,
+              "observed_calls": 5119,
+              "inclusive_ms": 467.7371,
+              "self_ms": 346.18469999999996
+            },
+            "projectiles": {
+              "calls": 5119,
+              "observed_calls": 5119,
+              "inclusive_ms": 5.2666,
+              "self_ms": 5.1236
+            },
+            "world_draw": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 964.4426,
+              "self_ms": 465.9991
+            },
+            "world_geometry": {
+              "calls": 1048,
+              "observed_calls": 1048,
+              "inclusive_ms": 111.7741,
+              "self_ms": 103.54889999999999
+            },
+            "model_advance": {
+              "calls": 356985,
+              "observed_calls": 356985,
+              "inclusive_ms": 114.9965,
+              "self_ms": 112.1201
+            },
+            "model_evaluate": {
+              "calls": 368939,
+              "observed_calls": 368939,
+              "inclusive_ms": 484.76759999999996,
+              "self_ms": 478.43550000000005
+            },
+            "frame_commands": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 1645.0070000000003,
+              "self_ms": 3.3211000000000004
+            },
+            "task_submit": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 677.2355,
+              "self_ms": 677.2304999999999
+            },
+            "native_model_pose": {
+              "calls": 1048,
+              "observed_calls": 1048,
+              "inclusive_ms": 45.97730000000001,
+              "self_ms": 11.050199999999998
+            },
+            "texture_bind": {
+              "calls": 517424,
+              "observed_calls": 517424,
+              "inclusive_ms": 30.7106,
+              "self_ms": 30.7106
+            },
+            "trace_sample_1_in_64": {
+              "calls": 400518,
+              "observed_calls": 400518,
+              "inclusive_ms": 48.7544,
+              "self_ms": 48.7544
+            },
+            "distance_admission": {
+              "calls": 6568,
+              "observed_calls": 6568,
+              "inclusive_ms": 84.5145,
+              "self_ms": 84.5145
+            },
+            "rt64_parse": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 4183.052,
+              "self_ms": 4183.052
+            },
+            "rt64_screen": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 28.730100000000004,
+              "self_ms": 28.730100000000004
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 1012.2023,
+              "self_ms": 413.7182
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 222.9709,
+              "self_ms": 222.9709
+            },
+            "rt64_gpu_wait": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 598.1577,
+              "self_ms": 598.1577
+            },
+            "rt64_upload_wait": {
+              "calls": 525,
+              "observed_calls": 525,
+              "inclusive_ms": 0.3274,
+              "self_ms": 0.3274
+            },
+            "rt64_workload_total": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 1023.7423999999999,
+              "self_ms": 11.539000000000001
+            },
+            "present_swap": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 220.1572,
+              "self_ms": 220.1572
+            },
+            "present_workload_wait": {
+              "calls": 524,
+              "observed_calls": 524,
+              "inclusive_ms": 580.1731,
+              "self_ms": 580.1731
+            },
+            "enemy_callback": {
+              "calls": 149113,
+              "observed_calls": 149113,
+              "inclusive_ms": 452.7697,
+              "self_ms": 445.49719999999996
+            },
+            "object_timeline": {
+              "calls": 726,
+              "observed_calls": 726,
+              "inclusive_ms": 4722.115,
+              "self_ms": 538.6609
+            },
+            "model_draw_commands": {
+              "calls": 91140,
+              "observed_calls": 91140,
+              "inclusive_ms": 357.4705,
+              "self_ms": 354.9818
+            },
+            "model_rate_plan": {
+              "calls": 4917,
+              "observed_calls": 4917,
+              "inclusive_ms": 164.1259,
+              "self_ms": 153.30870000000002
+            },
+            "model_clip_boundaries": {
+              "calls": 4917,
+              "observed_calls": 4917,
+              "inclusive_ms": 17.709400000000002,
+              "self_ms": 17.709400000000002
+            },
+            "object_clock_registration": {
+              "calls": 4917,
+              "observed_calls": 4917,
+              "inclusive_ms": 190.69129999999998,
+              "self_ms": 177.82070000000002
+            },
+            "preview_hook_sample_1_in_16": {
+              "calls": 307367,
+              "observed_calls": 4917860,
+              "inclusive_ms": 169.4304,
+              "self_ms": 109.0239
+            },
+            "enemy_axis_sample_1_in_16": {
+              "calls": 63677,
+              "observed_calls": 1018830,
+              "inclusive_ms": 13.6716,
+              "self_ms": 13.108099999999999
+            },
+            "common_ownership_sample_1_in_16": {
+              "calls": 102432,
+              "observed_calls": 1638922,
+              "inclusive_ms": 31.9491,
+              "self_ms": 30.656799999999997
+            },
+            "enemy_identity_sample_1_in_16": {
+              "calls": 293537,
+              "observed_calls": 4696591,
+              "inclusive_ms": 38.2891,
+              "self_ms": 37.9902
+            },
+            "overlay_lookup_sample_1_in_64": {
+              "calls": 41977,
+              "observed_calls": 2686637,
+              "inclusive_ms": 4.9615,
+              "self_ms": 4.9615
+            },
+            "enemy_pool_finalize": {
+              "calls": 4917,
+              "observed_calls": 4917,
+              "inclusive_ms": 166.10870000000003,
+              "self_ms": 163.29749999999999
+            },
+            "native_model_clock_sample_1_in_16": {
+              "calls": 21839,
+              "observed_calls": 349444,
+              "inclusive_ms": 2.1860999999999997,
+              "self_ms": 2.1860999999999997
+            },
+            "gameplay_eligibility_sample_1_in_32": {
+              "calls": 127006,
+              "observed_calls": 4064114,
+              "inclusive_ms": 11.7001,
+              "self_ms": 11.7001
+            }
+          },
+          "output_fps": 51.83745988532446
+        },
+        "5x/mode2/active": {
+          "samples": 20,
+          "interval_ms": 20340.880000000005,
+          "output_frames": 655,
+          "common_alive_max": 107,
+          "stages": {
+            "native_update": {
+              "calls": 654,
+              "observed_calls": 654,
+              "inclusive_ms": 8083.4038,
+              "self_ms": 3.2798999999999996
+            },
+            "native_frame": {
+              "calls": 654,
+              "observed_calls": 654,
+              "inclusive_ms": 3437.8309999999997,
+              "self_ms": 9.878999999999998
+            },
+            "world_source_update": {
+              "calls": 377,
+              "observed_calls": 377,
+              "inclusive_ms": 6338.448799999998,
+              "self_ms": 25.078799999999998
+            },
+            "world_gameplay": {
+              "calls": 377,
+              "observed_calls": 377,
+              "inclusive_ms": 6313.154199999999,
+              "self_ms": 13.7166
+            },
+            "actor_manager": {
+              "calls": 357,
+              "observed_calls": 357,
+              "inclusive_ms": 82.2524,
+              "self_ms": 8.6993
+            },
+            "common_actors": {
+              "calls": 10498,
+              "observed_calls": 10498,
+              "inclusive_ms": 9072.3214,
+              "self_ms": 5874.228600000001
+            },
+            "contacts": {
+              "calls": 357,
+              "observed_calls": 357,
+              "inclusive_ms": 1779.3165000000001,
+              "self_ms": 1750.1698000000001
+            },
+            "player": {
+              "calls": 10498,
+              "observed_calls": 10498,
+              "inclusive_ms": 943.0451999999999,
+              "self_ms": 716.5704000000001
+            },
+            "projectiles": {
+              "calls": 10498,
+              "observed_calls": 10498,
+              "inclusive_ms": 11.066699999999999,
+              "self_ms": 10.7977
+            },
+            "world_draw": {
+              "calls": 654,
+              "observed_calls": 654,
+              "inclusive_ms": 1642.4602,
+              "self_ms": 845.9629999999999
+            },
+            "world_geometry": {
+              "calls": 1308,
+              "observed_calls": 1308,
+              "inclusive_ms": 142.2229,
+              "self_ms": 131.60099999999997
+            },
+            "model_advance": {
+              "calls": 1101839,
+              "observed_calls": 1101839,
+              "inclusive_ms": 349.1758000000001,
+              "self_ms": 340.13710000000003
+            },
+            "model_evaluate": {
+              "calls": 1128262,
+              "observed_calls": 1128262,
+              "inclusive_ms": 1427.4483999999998,
+              "self_ms": 1408.9894000000004
+            },
+            "frame_commands": {
+              "calls": 654,
+              "observed_calls": 654,
+              "inclusive_ms": 3337.893000000001,
+              "self_ms": 4.4248
+            },
+            "task_submit": {
+              "calls": 654,
+              "observed_calls": 654,
+              "inclusive_ms": 1690.9952,
+              "self_ms": 1690.9869
+            },
+            "native_model_pose": {
+              "calls": 1308,
+              "observed_calls": 1308,
+              "inclusive_ms": 90.05189999999999,
+              "self_ms": 21.274699999999996
+            },
+            "texture_bind": {
+              "calls": 927516,
+              "observed_calls": 927516,
+              "inclusive_ms": 49.837,
+              "self_ms": 49.837
+            },
+            "trace_sample_1_in_64": {
+              "calls": 917424,
+              "observed_calls": 917424,
+              "inclusive_ms": 110.16420000000001,
+              "self_ms": 110.16420000000001
+            },
+            "distance_admission": {
+              "calls": 4653,
+              "observed_calls": 4653,
+              "inclusive_ms": 73.4574,
+              "self_ms": 73.4574
+            },
+            "rt64_parse": {
+              "calls": 655,
+              "observed_calls": 655,
+              "inclusive_ms": 6898.599,
+              "self_ms": 6898.599
+            },
+            "rt64_screen": {
+              "calls": 655,
+              "observed_calls": 655,
+              "inclusive_ms": 35.73619999999999,
+              "self_ms": 35.73619999999999
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 655,
+              "observed_calls": 655,
+              "inclusive_ms": 1702.6081,
+              "self_ms": 590.3998999999999
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 655,
+              "observed_calls": 655,
+              "inclusive_ms": 491.47909999999996,
+              "self_ms": 491.47909999999996
+            },
+            "rt64_gpu_wait": {
+              "calls": 655,
+              "observed_calls": 655,
+              "inclusive_ms": 1111.7937,
+              "self_ms": 1111.7937
+            },
+            "rt64_upload_wait": {
+              "calls": 654,
+              "observed_calls": 654,
+              "inclusive_ms": 0.4138,
+              "self_ms": 0.4138
+            },
+            "rt64_workload_total": {
+              "calls": 655,
+              "observed_calls": 655,
+              "inclusive_ms": 1716.6461000000002,
+              "self_ms": 14.037799999999997
+            },
+            "present_swap": {
+              "calls": 655,
+              "observed_calls": 655,
+              "inclusive_ms": 269.59159999999997,
+              "self_ms": 269.59159999999997
+            },
+            "present_workload_wait": {
+              "calls": 655,
+              "observed_calls": 655,
+              "inclusive_ms": 800.0278000000002,
+              "self_ms": 800.0278000000002
+            },
+            "enemy_callback": {
+              "calls": 418931,
+              "observed_calls": 418931,
+              "inclusive_ms": 1215.0470999999998,
+              "self_ms": 1194.1087
+            },
+            "object_timeline": {
+              "calls": 1031,
+              "observed_calls": 1031,
+              "inclusive_ms": 12373.8715,
+              "self_ms": 1034.1751000000002
+            },
+            "model_draw_commands": {
+              "calls": 166671,
+              "observed_calls": 166671,
+              "inclusive_ms": 602.638,
+              "self_ms": 598.1829
+            },
+            "model_rate_plan": {
+              "calls": 10294,
+              "observed_calls": 10294,
+              "inclusive_ms": 435.4228999999998,
+              "self_ms": 404.96680000000003
+            },
+            "model_clip_boundaries": {
+              "calls": 10294,
+              "observed_calls": 10294,
+              "inclusive_ms": 52.203599999999994,
+              "self_ms": 52.203599999999994
+            },
+            "object_clock_registration": {
+              "calls": 10141,
+              "observed_calls": 10141,
+              "inclusive_ms": 487.7796,
+              "self_ms": 453.39799999999997
+            },
+            "preview_hook_sample_1_in_16": {
+              "calls": 760452,
+              "observed_calls": 12167270,
+              "inclusive_ms": 546.3194,
+              "self_ms": 292.4134
+            },
+            "enemy_axis_sample_1_in_16": {
+              "calls": 198665,
+              "observed_calls": 3178626,
+              "inclusive_ms": 38.166,
+              "self_ms": 36.568900000000006
+            },
+            "common_ownership_sample_1_in_16": {
+              "calls": 326879,
+              "observed_calls": 5230048,
+              "inclusive_ms": 93.43779999999997,
+              "self_ms": 89.696
+            },
+            "enemy_identity_sample_1_in_16": {
+              "calls": 930390,
+              "observed_calls": 14886250,
+              "inclusive_ms": 107.55919999999998,
+              "self_ms": 106.74130000000001
+            },
+            "overlay_lookup_sample_1_in_64": {
+              "calls": 116113,
+              "observed_calls": 7431259,
+              "inclusive_ms": 13.3483,
+              "self_ms": 13.3483
+            },
+            "enemy_pool_finalize": {
+              "calls": 10141,
+              "observed_calls": 10141,
+              "inclusive_ms": 467.0444000000001,
+              "self_ms": 458.9373
+            },
+            "native_model_clock_sample_1_in_16": {
+              "calls": 67489,
+              "observed_calls": 1079824,
+              "inclusive_ms": 6.9434000000000005,
+              "self_ms": 6.9434000000000005
+            },
+            "gameplay_eligibility_sample_1_in_32": {
+              "calls": 297219,
+              "observed_calls": 9510965,
+              "inclusive_ms": 31.2685,
+              "self_ms": 31.2685
+            }
+          },
+          "output_fps": 32.201163371496214
+        },
+        "5x/mode2/stopped": {
+          "samples": 6,
+          "interval_ms": 6020.65,
+          "output_frames": 361,
+          "common_alive_max": 107,
+          "stages": {
+            "native_update": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 16.6913,
+              "self_ms": 1.0061
+            },
+            "native_frame": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 1106.272,
+              "self_ms": 3.8343
+            },
+            "world_source_update": {
+              "calls": 120,
+              "observed_calls": 120,
+              "inclusive_ms": 13.9041,
+              "self_ms": 6.1748
+            },
+            "world_gameplay": {
+              "calls": 120,
+              "observed_calls": 120,
+              "inclusive_ms": 7.341799999999999,
+              "self_ms": 1.9945
+            },
+            "world_draw": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 1019.2059999999999,
+              "self_ms": 519.7516
+            },
+            "world_geometry": {
+              "calls": 722,
+              "observed_calls": 722,
+              "inclusive_ms": 100.12700000000001,
+              "self_ms": 92.7688
+            },
+            "model_evaluate": {
+              "calls": 15884,
+              "observed_calls": 15884,
+              "inclusive_ms": 55.407900000000005,
+              "self_ms": 54.651999999999994
+            },
+            "frame_commands": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 1035.815,
+              "self_ms": 2.6749
+            },
+            "task_submit": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 13.920700000000002,
+              "self_ms": 13.913900000000002
+            },
+            "native_model_pose": {
+              "calls": 722,
+              "observed_calls": 722,
+              "inclusive_ms": 66.6178,
+              "self_ms": 11.2099
+            },
+            "texture_bind": {
+              "calls": 525616,
+              "observed_calls": 525616,
+              "inclusive_ms": 31.1064,
+              "self_ms": 31.1064
+            },
+            "trace_sample_1_in_64": {
+              "calls": 106943,
+              "observed_calls": 106943,
+              "inclusive_ms": 12.0685,
+              "self_ms": 12.0685
+            },
+            "rt64_parse": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 3546.2909999999997,
+              "self_ms": 3546.2909999999997
+            },
+            "rt64_screen": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 17.9705,
+              "self_ms": 17.9705
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 680.6580000000001,
+              "self_ms": 324.51489999999995
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 159.6815,
+              "self_ms": 159.6815
+            },
+            "rt64_gpu_wait": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 355.9278,
+              "self_ms": 355.9278
+            },
+            "rt64_upload_wait": {
+              "calls": 362,
+              "observed_calls": 362,
+              "inclusive_ms": 0.2158,
+              "self_ms": 0.2158
+            },
+            "rt64_workload_total": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 688.8462999999999,
+              "self_ms": 8.1894
+            },
+            "present_swap": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 181.6655,
+              "self_ms": 181.6655
+            },
+            "present_workload_wait": {
+              "calls": 361,
+              "observed_calls": 361,
+              "inclusive_ms": 535.8000999999999,
+              "self_ms": 535.8000999999999
+            },
+            "object_timeline": {
+              "calls": 482,
+              "observed_calls": 482,
+              "inclusive_ms": 21.0116,
+              "self_ms": 7.212799999999999
+            },
+            "model_draw_commands": {
+              "calls": 94582,
+              "observed_calls": 94582,
+              "inclusive_ms": 368.07959999999997,
+              "self_ms": 365.3411
+            },
+            "model_rate_plan": {
+              "calls": 966,
+              "observed_calls": 966,
+              "inclusive_ms": 7.236999999999999,
+              "self_ms": 7.236999999999999
+            },
+            "model_clip_boundaries": {
+              "calls": 966,
+              "observed_calls": 966,
+              "inclusive_ms": 6.5435,
+              "self_ms": 6.5435
+            },
+            "preview_hook_sample_1_in_16": {
+              "calls": 8,
+              "observed_calls": 121,
+              "inclusive_ms": 0.39769999999999994,
+              "self_ms": 0.05619999999999999
+            },
+            "overlay_lookup_sample_1_in_64": {
+              "calls": 121,
+              "observed_calls": 7771,
+              "inclusive_ms": 0.027499999999999997,
+              "self_ms": 0.027499999999999997
+            },
+            "gameplay_eligibility_sample_1_in_32": {
+              "calls": 229,
+              "observed_calls": 7361,
+              "inclusive_ms": 0.0662,
+              "self_ms": 0.0662
+            }
+          },
+          "output_fps": 59.960303289511934
+        }
+      }
+    },
+    {
+      "session": "1791458247326",
+      "sha256": "507486471c495bd6ab179d800bbd53b551e6875dd35d7416a2e63f6c95025505",
+      "groups": {
+        "1x/mode0/stopped": {
+          "samples": 1,
+          "interval_ms": 1016.8,
+          "output_frames": 19,
+          "common_alive_max": 0,
+          "stages": {
+            "frame_commands": {
+              "calls": 18,
+              "observed_calls": 18,
+              "inclusive_ms": 1.5751,
+              "self_ms": 1.5061
+            },
+            "task_submit": {
+              "calls": 18,
+              "observed_calls": 18,
+              "inclusive_ms": 0.0509,
+              "self_ms": 0.0509
+            },
+            "trace_sample_1_in_64": {
+              "calls": 5495,
+              "observed_calls": 5495,
+              "inclusive_ms": 0.6471,
+              "self_ms": 0.6471
+            },
+            "rt64_parse": {
+              "calls": 18,
+              "observed_calls": 18,
+              "inclusive_ms": 67.7892,
+              "self_ms": 67.7892
+            },
+            "rt64_screen": {
+              "calls": 61,
+              "observed_calls": 61,
+              "inclusive_ms": 3.2038,
+              "self_ms": 3.2038
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 18,
+              "observed_calls": 18,
+              "inclusive_ms": 49.6182,
+              "self_ms": 11.697
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 18,
+              "observed_calls": 18,
+              "inclusive_ms": 20.8768,
+              "self_ms": 20.8768
+            },
+            "rt64_gpu_wait": {
+              "calls": 18,
+              "observed_calls": 18,
+              "inclusive_ms": 37.9056,
+              "self_ms": 37.9056
+            },
+            "rt64_upload_wait": {
+              "calls": 18,
+              "observed_calls": 18,
+              "inclusive_ms": 0.0156,
+              "self_ms": 0.0156
+            },
+            "rt64_workload_total": {
+              "calls": 18,
+              "observed_calls": 18,
+              "inclusive_ms": 50.0104,
+              "self_ms": 0.3922
+            },
+            "present_swap": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 6.7005,
+              "self_ms": 6.7005
+            },
+            "present_workload_wait": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 0.0153,
+              "self_ms": 0.0153
+            }
+          },
+          "output_fps": 18.68607395751377
+        },
+        "1x/mode0/active": {
+          "samples": 6,
+          "interval_ms": 6073.37,
+          "output_frames": 117,
+          "common_alive_max": 4,
+          "stages": {
+            "world_source_update": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 204.99660000000003,
+              "self_ms": 8.3861
+            },
+            "world_gameplay": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 196.6057,
+              "self_ms": 18.6543
+            },
+            "actor_manager": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 10.319699999999997,
+              "self_ms": 9.825899999999999
+            },
+            "common_actors": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 17.8748,
+              "self_ms": 15.6117
+            },
+            "contacts": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 115.91149999999999,
+              "self_ms": 113.8852
+            },
+            "player": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 33.2567,
+              "self_ms": 30.480200000000004
+            },
+            "projectiles": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 0.15,
+              "self_ms": 0.15
+            },
+            "world_draw": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 46.249900000000004,
+              "self_ms": 26.418200000000002
+            },
+            "world_geometry": {
+              "calls": 236,
+              "observed_calls": 236,
+              "inclusive_ms": 9.581100000000001,
+              "self_ms": 8.7526
+            },
+            "model_advance": {
+              "calls": 1806,
+              "observed_calls": 1806,
+              "inclusive_ms": 0.5148,
+              "self_ms": 0.511
+            },
+            "model_evaluate": {
+              "calls": 1806,
+              "observed_calls": 1806,
+              "inclusive_ms": 4.0966000000000005,
+              "self_ms": 4.0388
+            },
+            "frame_commands": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 77.8571,
+              "self_ms": 0.5314
+            },
+            "task_submit": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 31.0737,
+              "self_ms": 31.073299999999996
+            },
+            "texture_bind": {
+              "calls": 39712,
+              "observed_calls": 39712,
+              "inclusive_ms": 1.3790000000000002,
+              "self_ms": 1.3790000000000002
+            },
+            "trace_sample_1_in_64": {
+              "calls": 31868,
+              "observed_calls": 31868,
+              "inclusive_ms": 5.632599999999999,
+              "self_ms": 5.632599999999999
+            },
+            "rt64_parse": {
+              "calls": 118,
+              "observed_calls": 118,
+              "inclusive_ms": 657.6965,
+              "self_ms": 657.6965
+            },
+            "rt64_screen": {
+              "calls": 365,
+              "observed_calls": 365,
+              "inclusive_ms": 18.5974,
+              "self_ms": 18.5974
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 119,
+              "observed_calls": 119,
+              "inclusive_ms": 316.7578,
+              "self_ms": 78.222
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 119,
+              "observed_calls": 119,
+              "inclusive_ms": 111.0167,
+              "self_ms": 111.0167
+            },
+            "rt64_gpu_wait": {
+              "calls": 119,
+              "observed_calls": 119,
+              "inclusive_ms": 238.45499999999998,
+              "self_ms": 238.45499999999998
+            },
+            "rt64_upload_wait": {
+              "calls": 119,
+              "observed_calls": 119,
+              "inclusive_ms": 0.08079999999999998,
+              "self_ms": 0.08079999999999998
+            },
+            "rt64_workload_total": {
+              "calls": 119,
+              "observed_calls": 119,
+              "inclusive_ms": 318.7376,
+              "self_ms": 1.9798
+            },
+            "present_swap": {
+              "calls": 117,
+              "observed_calls": 117,
+              "inclusive_ms": 46.2105,
+              "self_ms": 46.2105
+            },
+            "present_workload_wait": {
+              "calls": 117,
+              "observed_calls": 117,
+              "inclusive_ms": 0.0815,
+              "self_ms": 0.0815
+            },
+            "enemy_callback": {
+              "calls": 643,
+              "observed_calls": 643,
+              "inclusive_ms": 0.2577,
+              "self_ms": 0.2577
+            },
+            "model_draw_commands": {
+              "calls": 3026,
+              "observed_calls": 3026,
+              "inclusive_ms": 9.2735,
+              "self_ms": 9.1613
+            },
+            "distance_admission": {
+              "calls": 15,
+              "observed_calls": 15,
+              "inclusive_ms": 0.4269,
+              "self_ms": 0.4269
+            }
+          },
+          "output_fps": 19.264428151092392
+        },
+        "4.9x/mode0/active": {
+          "samples": 1,
+          "interval_ms": 1000.37,
+          "output_frames": 20,
+          "common_alive_max": 2,
+          "stages": {
+            "world_source_update": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 15.3834,
+              "self_ms": 0.835
+            },
+            "world_gameplay": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 14.5482,
+              "self_ms": 1.3614
+            },
+            "actor_manager": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 0.5304,
+              "self_ms": 0.5235
+            },
+            "common_actors": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 1.9178,
+              "self_ms": 1.8617
+            },
+            "contacts": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 8.4731,
+              "self_ms": 8.3328
+            },
+            "player": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 2.2241,
+              "self_ms": 1.8313
+            },
+            "projectiles": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 0.0258,
+              "self_ms": 0.0258
+            },
+            "world_draw": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 4.3195,
+              "self_ms": 1.7977
+            },
+            "world_geometry": {
+              "calls": 38,
+              "observed_calls": 38,
+              "inclusive_ms": 1.8044,
+              "self_ms": 1.648
+            },
+            "model_advance": {
+              "calls": 76,
+              "observed_calls": 76,
+              "inclusive_ms": 0.0358,
+              "self_ms": 0.0356
+            },
+            "model_evaluate": {
+              "calls": 76,
+              "observed_calls": 76,
+              "inclusive_ms": 0.3831,
+              "self_ms": 0.3771
+            },
+            "frame_commands": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 8.0717,
+              "self_ms": 0.0758
+            },
+            "task_submit": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 3.6755,
+              "self_ms": 3.6755
+            },
+            "texture_bind": {
+              "calls": 3724,
+              "observed_calls": 3724,
+              "inclusive_ms": 0.1576,
+              "self_ms": 0.1576
+            },
+            "trace_sample_1_in_64": {
+              "calls": 3949,
+              "observed_calls": 3949,
+              "inclusive_ms": 0.5504,
+              "self_ms": 0.5504
+            },
+            "distance_admission": {
+              "calls": 27,
+              "observed_calls": 27,
+              "inclusive_ms": 0.3457,
+              "self_ms": 0.3457
+            },
+            "rt64_parse": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 108.166,
+              "self_ms": 108.166
+            },
+            "rt64_screen": {
+              "calls": 60,
+              "observed_calls": 60,
+              "inclusive_ms": 2.8342,
+              "self_ms": 2.8342
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 48.7534,
+              "self_ms": 11.8288
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 15.85,
+              "self_ms": 15.85
+            },
+            "rt64_gpu_wait": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 36.9108,
+              "self_ms": 36.9108
+            },
+            "rt64_upload_wait": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 0.0138,
+              "self_ms": 0.0138
+            },
+            "rt64_workload_total": {
+              "calls": 19,
+              "observed_calls": 19,
+              "inclusive_ms": 49.073,
+              "self_ms": 0.3196
+            },
+            "present_swap": {
+              "calls": 20,
+              "observed_calls": 20,
+              "inclusive_ms": 8.0579,
+              "self_ms": 8.0579
+            },
+            "present_workload_wait": {
+              "calls": 20,
+              "observed_calls": 20,
+              "inclusive_ms": 0.0134,
+              "self_ms": 0.0134
+            },
+            "enemy_callback": {
+              "calls": 38,
+              "observed_calls": 38,
+              "inclusive_ms": 0.0079,
+              "self_ms": 0.0079
+            },
+            "model_draw_commands": {
+              "calls": 152,
+              "observed_calls": 152,
+              "inclusive_ms": 0.6786,
+              "self_ms": 0.671
+            }
+          },
+          "output_fps": 19.992602736987315
+        },
+        "5x/mode0/active": {
+          "samples": 15,
+          "interval_ms": 15176.880000000001,
+          "output_frames": 303,
+          "common_alive_max": 132,
+          "stages": {
+            "world_source_update": {
+              "calls": 304,
+              "observed_calls": 304,
+              "inclusive_ms": 2163.4669999999996,
+              "self_ms": 22.0491
+            },
+            "world_gameplay": {
+              "calls": 304,
+              "observed_calls": 304,
+              "inclusive_ms": 2141.281,
+              "self_ms": 47.593900000000005
+            },
+            "actor_manager": {
+              "calls": 304,
+              "observed_calls": 304,
+              "inclusive_ms": 149.23569999999998,
+              "self_ms": 82.29909999999997
+            },
+            "common_actors": {
+              "calls": 304,
+              "observed_calls": 304,
+              "inclusive_ms": 232.7403,
+              "self_ms": 185.2382
+            },
+            "contacts": {
+              "calls": 304,
+              "observed_calls": 304,
+              "inclusive_ms": 1646.049,
+              "self_ms": 1618.4848999999997
+            },
+            "player": {
+              "calls": 304,
+              "observed_calls": 304,
+              "inclusive_ms": 54.6167,
+              "self_ms": 46.168200000000006
+            },
+            "projectiles": {
+              "calls": 304,
+              "observed_calls": 304,
+              "inclusive_ms": 10.392400000000002,
+              "self_ms": 9.8283
+            },
+            "world_draw": {
+              "calls": 304,
+              "observed_calls": 304,
+              "inclusive_ms": 643.0318000000001,
+              "self_ms": 433.61659999999995
+            },
+            "world_geometry": {
+              "calls": 608,
+              "observed_calls": 608,
+              "inclusive_ms": 22.779600000000002,
+              "self_ms": 20.8595
+            },
+            "model_advance": {
+              "calls": 36845,
+              "observed_calls": 36845,
+              "inclusive_ms": 7.9457,
+              "self_ms": 7.8803
+            },
+            "model_evaluate": {
+              "calls": 36845,
+              "observed_calls": 36845,
+              "inclusive_ms": 46.191399999999994,
+              "self_ms": 45.5689
+            },
+            "frame_commands": {
+              "calls": 304,
+              "observed_calls": 304,
+              "inclusive_ms": 755.2656999999999,
+              "self_ms": 1.4773
+            },
+            "task_submit": {
+              "calls": 304,
+              "observed_calls": 304,
+              "inclusive_ms": 110.75100000000002,
+              "self_ms": 110.74930000000002
+            },
+            "texture_bind": {
+              "calls": 486422,
+              "observed_calls": 486422,
+              "inclusive_ms": 15.6076,
+              "self_ms": 15.6076
+            },
+            "trace_sample_1_in_64": {
+              "calls": 289056,
+              "observed_calls": 289056,
+              "inclusive_ms": 43.0416,
+              "self_ms": 43.0416
+            },
+            "distance_admission": {
+              "calls": 2820,
+              "observed_calls": 2820,
+              "inclusive_ms": 66.2213,
+              "self_ms": 66.2213
+            },
+            "rt64_parse": {
+              "calls": 304,
+              "observed_calls": 304,
+              "inclusive_ms": 3318.1759999999995,
+              "self_ms": 3318.1759999999995
+            },
+            "rt64_screen": {
+              "calls": 910,
+              "observed_calls": 910,
+              "inclusive_ms": 46.292100000000005,
+              "self_ms": 46.292100000000005
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 303,
+              "observed_calls": 303,
+              "inclusive_ms": 1191.1054000000001,
+              "self_ms": 288.2968
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 303,
+              "observed_calls": 303,
+              "inclusive_ms": 351.7049499999999,
+              "self_ms": 351.7049499999999
+            },
+            "rt64_gpu_wait": {
+              "calls": 303,
+              "observed_calls": 303,
+              "inclusive_ms": 902.6049000000002,
+              "self_ms": 902.6049000000002
+            },
+            "rt64_upload_wait": {
+              "calls": 303,
+              "observed_calls": 303,
+              "inclusive_ms": 0.20370000000000002,
+              "self_ms": 0.20370000000000002
+            },
+            "rt64_workload_total": {
+              "calls": 303,
+              "observed_calls": 303,
+              "inclusive_ms": 1197.2359000000001,
+              "self_ms": 6.130999999999999
+            },
+            "present_swap": {
+              "calls": 303,
+              "observed_calls": 303,
+              "inclusive_ms": 117.12479999999998,
+              "self_ms": 117.12479999999998
+            },
+            "present_workload_wait": {
+              "calls": 303,
+              "observed_calls": 303,
+              "inclusive_ms": 6.2752,
+              "self_ms": 6.2752
+            },
+            "enemy_callback": {
+              "calls": 12234,
+              "observed_calls": 12234,
+              "inclusive_ms": 0.5115999999999999,
+              "self_ms": 0.5115999999999999
+            },
+            "model_draw_commands": {
+              "calls": 86787,
+              "observed_calls": 86787,
+              "inclusive_ms": 166.7438,
+              "self_ms": 164.5903
+            }
+          },
+          "output_fps": 19.964577699764376
+        },
+        "1x/mode2/active": {
+          "samples": 5,
+          "interval_ms": 5046.22,
+          "output_frames": 288,
+          "common_alive_max": 3,
+          "stages": {
+            "native_update": {
+              "calls": 283,
+              "observed_calls": 283,
+              "inclusive_ms": 453.95250000000004,
+              "self_ms": 0.913
+            },
+            "native_frame": {
+              "calls": 283,
+              "observed_calls": 283,
+              "inclusive_ms": 129.9126,
+              "self_ms": 2.3507
+            },
+            "world_source_update": {
+              "calls": 101,
+              "observed_calls": 101,
+              "inclusive_ms": 212.0124,
+              "self_ms": 7.906000000000001
+            },
+            "world_gameplay": {
+              "calls": 101,
+              "observed_calls": 101,
+              "inclusive_ms": 204.1029,
+              "self_ms": 4.5511
+            },
+            "actor_manager": {
+              "calls": 101,
+              "observed_calls": 101,
+              "inclusive_ms": 2.147,
+              "self_ms": 2.1193
+            },
+            "common_actors": {
+              "calls": 861,
+              "observed_calls": 861,
+              "inclusive_ms": 330.4107,
+              "self_ms": 313.4131
+            },
+            "contacts": {
+              "calls": 101,
+              "observed_calls": 101,
+              "inclusive_ms": 44.6645,
+              "self_ms": 43.9165
+            },
+            "player": {
+              "calls": 861,
+              "observed_calls": 861,
+              "inclusive_ms": 93.81620000000001,
+              "self_ms": 64.5343
+            },
+            "projectiles": {
+              "calls": 861,
+              "observed_calls": 861,
+              "inclusive_ms": 0.8946000000000001,
+              "self_ms": 0.8884
+            },
+            "world_draw": {
+              "calls": 289,
+              "observed_calls": 289,
+              "inclusive_ms": 117.314,
+              "self_ms": 30.2958
+            },
+            "world_geometry": {
+              "calls": 578,
+              "observed_calls": 578,
+              "inclusive_ms": 62.675399999999996,
+              "self_ms": 57.735299999999995
+            },
+            "model_advance": {
+              "calls": 3835,
+              "observed_calls": 3835,
+              "inclusive_ms": 2.5398,
+              "self_ms": 2.5273000000000003
+            },
+            "model_evaluate": {
+              "calls": 4401,
+              "observed_calls": 4401,
+              "inclusive_ms": 36.517799999999994,
+              "self_ms": 35.9851
+            },
+            "frame_commands": {
+              "calls": 289,
+              "observed_calls": 289,
+              "inclusive_ms": 121.68969999999999,
+              "self_ms": 1.4877
+            },
+            "task_submit": {
+              "calls": 289,
+              "observed_calls": 289,
+              "inclusive_ms": 2.8824,
+              "self_ms": 2.8803
+            },
+            "native_model_pose": {
+              "calls": 566,
+              "observed_calls": 566,
+              "inclusive_ms": 8.8237,
+              "self_ms": 0.6991
+            },
+            "texture_bind": {
+              "calls": 60112,
+              "observed_calls": 60112,
+              "inclusive_ms": 6.803,
+              "self_ms": 6.803
+            },
+            "trace_sample_1_in_64": {
+              "calls": 38346,
+              "observed_calls": 38346,
+              "inclusive_ms": 5.6593,
+              "self_ms": 5.6593
+            },
+            "rt64_parse": {
+              "calls": 289,
+              "observed_calls": 289,
+              "inclusive_ms": 1813.8590000000002,
+              "self_ms": 1813.8590000000002
+            },
+            "rt64_screen": {
+              "calls": 302,
+              "observed_calls": 302,
+              "inclusive_ms": 16.4556,
+              "self_ms": 16.4556
+            },
+            "rt64_render_cpu_including_wait": {
+              "calls": 288,
+              "observed_calls": 288,
+              "inclusive_ms": 585.8904,
+              "self_ms": 183.5395
+            },
+            "rt64_gpu_timestamp": {
+              "calls": 288,
+              "observed_calls": 288,
+              "inclusive_ms": 137.43380000000002,
+              "self_ms": 137.43380000000002
+            },
+            "rt64_gpu_wait": {
+              "calls": 288,
+              "observed_calls": 288,
+              "inclusive_ms": 402.1428,
+              "self_ms": 402.1428
+            },
+            "rt64_upload_wait": {
+              "calls": 288,
+              "observed_calls": 288,
+              "inclusive_ms": 0.20879999999999999,
+              "self_ms": 0.20879999999999999
+            },
+            "rt64_workload_total": {
+              "calls": 288,
+              "observed_calls": 288,
+              "inclusive_ms": 594.7733,
+              "self_ms": 8.8813
+            },
+            "present_swap": {
+              "calls": 288,
+              "observed_calls": 288,
+              "inclusive_ms": 122.88319999999999,
+              "self_ms": 122.88319999999999
+            },
+            "present_workload_wait": {
+              "calls": 288,
+              "observed_calls": 288,
+              "inclusive_ms": 480.9679,
+              "self_ms": 480.9679
+            },
+            "enemy_callback": {
+              "calls": 2586,
+              "observed_calls": 2586,
+              "inclusive_ms": 14.4652,
+              "self_ms": 14.4495
+            },
+            "object_timeline": {
+              "calls": 377,
+              "observed_calls": 377,
+              "inclusive_ms": 594.3811,
+              "self_ms": 178.60909999999998
+            },
+            "model_draw_commands": {
+              "calls": 3179,
+              "observed_calls": 3179,
+              "inclusive_ms": 21.9238,
+              "self_ms": 21.7869
+            }
+          },
+          "output_fps": 57.0724225261681
+        }
+      }
+    }
+  ],
+  "user_goal": "5x must hold60 before aiming above100; FPS limit is not the reported cause",
+  "finding": "Manual5x repeats common pool approximately516 times/second and outputs32.2FPS; Original5x runs common pool20 times/second, whole world gameplay approximately7ms/update. Scope/call costs improved after072, but global timeline subdivision remains excessive.",
+  "unknown": "Which boundary group causes most of the repeated full-pool passes, and how much parser/native wall time is CPU versus waits/preemption. Do not remove birth/clip/input boundaries by guesswork."
+}

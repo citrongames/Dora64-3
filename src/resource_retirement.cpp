@@ -1,3 +1,5 @@
+#include "diagnostics.hpp"
+#include "guest_storage.hpp"
 #include "resource_retirement.hpp"
 #include "frame_lights.hpp"
 #include "recomp.h"
@@ -14,7 +16,7 @@ struct Task { uint64_t ticket=0; bool active=false, published=false; };
 struct Entry { uint32_t pointer=0; uint64_t ticket=0; };
 struct Spill { Entry entry; uint8_t remaining=16; };
 constexpr int32_t table=int32_t(0x800DD420);
-constexpr uint32_t maximum_records=0x400000/16; // Physical RAM / allocator alignment.
+constexpr uint32_t maximum_records=0x800000/16; // Physical RAM / allocator alignment.
 std::mutex task_mutex;
 std::array<Task,2> tasks{};
 uint64_t sequence=0;
@@ -24,7 +26,7 @@ std::array<Entry,100> entries{};
 std::vector<Spill> overflow;
 dora3::retirement::Stats counters{};
 [[noreturn]] void invalid(const char* why,uint32_t value=0){
- std::fprintf(stderr,"RESOURCE RETIRE invariant: %s value=%08X\n",why,value);std::abort();
+ DORA3_LOG(stderr,"RESOURCE RETIRE invariant: %s value=%08X\n",why,value);std::abort();
 }
 unsigned index_for_bank(uint32_t bank){
  if(bank==dora3::frame::bank0)return 0;
@@ -42,7 +44,7 @@ void spill(Entry entry,uint8_t remaining){
  if(overflow.size()>=maximum_records)invalid("more retirements than RAM allocations");
  overflow.push_back({entry,remaining});++counters.spilled;
  if((counters.spilled&(counters.spilled-1))==0)
-  std::fprintf(stderr,"RESOURCE RETIRE overflow retained count=%llu pending=%zu\n",
+  DORA3_LOG(stderr,"RESOURCE RETIRE overflow retained count=%llu pending=%zu\n",
    static_cast<unsigned long long>(counters.spilled),overflow.size());
 }
 void registry_reset(uint8_t* rdram){
@@ -78,7 +80,7 @@ void clear_for_heap(uint8_t* rdram){
 }
 void enqueue(uint8_t* rdram,uint32_t pointer){
  if(pointer==0)return;
- if(pointer<0x80000010 || pointer>=0x80400000 || (pointer&15))invalid("invalid retired allocation",pointer);
+ if(pointer<0x80000010 || pointer>=0x80800000 || (pointer&15))invalid("invalid retired allocation",pointer);
  Entry entry{pointer,current_ticket()};
  for(int i=0;i<100;++i)if(MEM_W(i*8,table)==0){entries[i]=entry;return;}
  // The original enqueue will return without storing; preserve this request here.
@@ -117,7 +119,7 @@ void reset(){std::scoped_lock lock(task_mutex);tasks={};sequence=0;clear_entries
 Stats stats(){auto result=counters;result.spill_pending=uint32_t(overflow.size());return result;}
 void parsed(uint32_t dl){
  if(!enabled)return;
- const uint32_t bank=(dl&0x1fffffff)+0x80000000-dora3::frame::dl_offset;
+ const uint32_t bank=dora3::distance::task_for_display_list(dl);
  std::scoped_lock lock(task_mutex);auto& t=tasks[index_for_bank(bank)];
  if(!t.active || !t.published)invalid("unmatched parse completion",dl);
  t.active=false;

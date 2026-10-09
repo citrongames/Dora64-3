@@ -1,0 +1,352 @@
+{
+  "source_profile": "D:\\Games\\DoraRecomp3\\testbuild\\logs\\1791474301346\\state\\graphics-profile.jsonl",
+  "sha256": "d40236b6a05c9ee3e062c4aa18a2cffceee7a7dc78386b343e3e5390a5a21782",
+  "schema": 2,
+  "scope_errors": 0,
+  "selection": "scene165 with eager0/deferred>0;26samples",
+  "samples": 26,
+  "guest_frames": 2169,
+  "fps": 82.91931022143929,
+  "counters": {
+    "output_frames": 2169,
+    "guest_frames": 2169,
+    "vertices_sum": 45764280,
+    "faces_sum": 14883750,
+    "matrices_sum": 1069611,
+    "pairs_sum": 4338,
+    "tiles_sum": 1288097,
+    "render_gpu_timestamp_ns": 640264960,
+    "gate_not_native_build": 0,
+    "gate_not_gameplay": 0,
+    "gate_dimensions": 0,
+    "gate_cpu_framebuffer": 0,
+    "request_off": 0,
+    "no_pairs": 0,
+    "reject_operations": 0,
+    "reject_format": 0,
+    "reject_height": 0,
+    "reject_depth_clear": 0,
+    "reject_color_address": 0,
+    "reject_depth_address": 0,
+    "reject_tile_copy": 0,
+    "no_writes": 0,
+    "deferred": 2169,
+    "eager": 0,
+    "materializations": 0
+  },
+  "stages": {
+    "native_update": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 5839.344999999998,
+      "self_ms": 5839.344999999998,
+      "cpu_ms": 3968.75,
+      "thread_cycles": 16600003380,
+      "inclusive_ms_per_guest": 2.692183033656062
+    },
+    "native_frame": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 4738.687,
+      "self_ms": 4738.687,
+      "cpu_ms": 2093.75,
+      "thread_cycles": 7437490043,
+      "inclusive_ms_per_guest": 2.1847335177501153
+    },
+    "producer": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 18779.807,
+      "self_ms": 27.8843,
+      "cpu_ms": 17093.75,
+      "thread_cycles": 48894354392,
+      "inclusive_ms_per_guest": 8.658278930382664
+    },
+    "screen": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 131.08360000000002,
+      "self_ms": 131.08360000000002,
+      "cpu_ms": 62.5,
+      "thread_cycles": 369450665,
+      "inclusive_ms_per_guest": 0.060435039188566166
+    },
+    "hle": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 18751.921,
+      "self_ms": 6541.640999999999,
+      "cpu_ms": 17078.125,
+      "thread_cycles": 48821503163,
+      "inclusive_ms_per_guest": 8.645422314430613
+    },
+    "rdram_check": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 1.2285,
+      "self_ms": 1.2285,
+      "cpu_ms": 0,
+      "thread_cycles": 2938304,
+      "inclusive_ms_per_guest": 0.0005663900414937759
+    },
+    "full_sync": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 11939.651000000002,
+      "self_ms": 994.7056,
+      "cpu_ms": 10046.875,
+      "thread_cycles": 29375034834,
+      "inclusive_ms_per_guest": 5.504680036883357
+    },
+    "flush": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 6.484,
+      "self_ms": 6.4632999999999985,
+      "cpu_ms": 0,
+      "thread_cycles": 18602930,
+      "inclusive_ms_per_guest": 0.0029893960350391886
+    },
+    "tile_validation": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 3.4394000000000005,
+      "self_ms": 3.4394000000000005,
+      "cpu_ms": 15.625,
+      "thread_cycles": 9300756,
+      "inclusive_ms_per_guest": 0.0015857076994006457
+    },
+    "call_preparation": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 287.61609999999996,
+      "self_ms": 287.61609999999996,
+      "cpu_ms": 0,
+      "thread_cycles": 824932662,
+      "inclusive_ms_per_guest": 0.13260308898109727
+    },
+    "draw_upload": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 58.995599999999996,
+      "self_ms": 58.995599999999996,
+      "cpu_ms": 0,
+      "thread_cycles": 169732523,
+      "inclusive_ms_per_guest": 0.027199446749654216
+    },
+    "tiles": {
+      "calls": 4338,
+      "observed_calls": 0,
+      "inclusive_ms": 8636.945999999998,
+      "self_ms": 8460.944999999998,
+      "cpu_ms": 8390.625,
+      "thread_cycles": 24803659788,
+      "inclusive_ms_per_guest": 3.9819944674965413
+    },
+    "producer_upload_wait": {
+      "calls": 4338,
+      "observed_calls": 0,
+      "inclusive_ms": 5.0849,
+      "self_ms": 5.0849,
+      "cpu_ms": 281.25,
+      "thread_cycles": 8990215,
+      "inclusive_ms_per_guest": 0.002344352236053481
+    },
+    "producer_gpu_wait": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 1706.6919999999998,
+      "self_ms": 1706.6919999999998,
+      "cpu_ms": 296.875,
+      "thread_cycles": 66357078,
+      "inclusive_ms_per_guest": 0.7868566159520516
+    },
+    "texture_wait": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 21.742300000000007,
+      "self_ms": 21.742300000000007,
+      "cpu_ms": 0,
+      "thread_cycles": 14966870,
+      "inclusive_ms_per_guest": 0.01002411249423698
+    },
+    "queue_advance": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 19.762799999999995,
+      "self_ms": 19.762799999999995,
+      "cpu_ms": 296.875,
+      "thread_cycles": 55110719,
+      "inclusive_ms_per_guest": 0.009111479944674964
+    },
+    "inspect": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 198.1792,
+      "self_ms": 198.1792,
+      "cpu_ms": 15.625,
+      "thread_cycles": 568071079,
+      "inclusive_ms_per_guest": 0.09136892577224529
+    },
+    "workload": {
+      "calls": 2168,
+      "observed_calls": 0,
+      "inclusive_ms": 3810.276,
+      "self_ms": 55.44579999999999,
+      "cpu_ms": 2078.125,
+      "thread_cycles": 5517896343,
+      "inclusive_ms_per_guest": 1.7566970954356846
+    },
+    "render": {
+      "calls": 2168,
+      "observed_calls": 0,
+      "inclusive_ms": 3754.8279999999995,
+      "self_ms": 1961.6359000000002,
+      "cpu_ms": 2031.25,
+      "thread_cycles": 5373399198,
+      "inclusive_ms_per_guest": 1.731133241124942
+    },
+    "render_upload_wait": {
+      "calls": 2168,
+      "observed_calls": 0,
+      "inclusive_ms": 6.981000000000001,
+      "self_ms": 6.981000000000001,
+      "cpu_ms": 1343.75,
+      "thread_cycles": 7036473,
+      "inclusive_ms_per_guest": 0.0032185338865836793
+    },
+    "render_gpu_wait": {
+      "calls": 2168,
+      "observed_calls": 0,
+      "inclusive_ms": 1786.2103000000006,
+      "self_ms": 1786.2103000000006,
+      "cpu_ms": 375.0,
+      "thread_cycles": 58147142,
+      "inclusive_ms_per_guest": 0.8235178884278472
+    },
+    "present": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 849.8696999999999,
+      "self_ms": 849.8696999999999,
+      "cpu_ms": 109.375,
+      "thread_cycles": 2411739460,
+      "inclusive_ms_per_guest": 0.3918255878284923
+    },
+    "present_wait": {
+      "calls": 2169,
+      "observed_calls": 0,
+      "inclusive_ms": 3096.6142,
+      "self_ms": 3096.6142,
+      "cpu_ms": 62.5,
+      "thread_cycles": 80182035,
+      "inclusive_ms_per_guest": 1.4276690640848317
+    },
+    "vertex_sample_1_in_64": {
+      "calls": 50487,
+      "observed_calls": 3231154,
+      "inclusive_ms": 61.107299999999995,
+      "self_ms": 61.107299999999995,
+      "cpu_ms": 718.75,
+      "thread_cycles": 156952124,
+      "inclusive_ms_per_guest": 0.02817302904564315,
+      "sample_scaled_ms_per_guest": 1.8030660465653743,
+      "sample_mean_us": 1.2103571216352724
+    },
+    "triangle_sample_1_in_64": {
+      "calls": 232668,
+      "observed_calls": 14890883,
+      "inclusive_ms": 149.14489999999998,
+      "self_ms": 148.77440000000004,
+      "cpu_ms": 4328.125,
+      "thread_cycles": 343210888,
+      "inclusive_ms_per_guest": 0.06876205624711848,
+      "sample_scaled_ms_per_guest": 4.4008103151927225,
+      "sample_mean_us": 0.6410202520329394
+    },
+    "matrix_sample_1_in_64": {
+      "calls": 16720,
+      "observed_calls": 1070124,
+      "inclusive_ms": 8.512199999999998,
+      "self_ms": 8.512199999999998,
+      "cpu_ms": 203.125,
+      "thread_cycles": 17154870,
+      "inclusive_ms_per_guest": 0.003924481327800829,
+      "sample_scaled_ms_per_guest": 0.25117713256169466,
+      "sample_mean_us": 0.5091028708133971
+    },
+    "draw_state_sample_1_in_64": {
+      "calls": 20583,
+      "observed_calls": 1317205,
+      "inclusive_ms": 15.522399999999998,
+      "self_ms": 15.522399999999998,
+      "cpu_ms": 265.625,
+      "thread_cycles": 35954775,
+      "inclusive_ms_per_guest": 0.0071564776394651905,
+      "sample_scaled_ms_per_guest": 0.45797736622901164,
+      "sample_mean_us": 0.7541369090997424
+    },
+    "flush_sample_1_in_64": {
+      "calls": 21230,
+      "observed_calls": 1358699,
+      "inclusive_ms": 13.5626,
+      "self_ms": 13.5626,
+      "cpu_ms": 468.75,
+      "thread_cycles": 29895565,
+      "inclusive_ms_per_guest": 0.0062529276164130934,
+      "sample_scaled_ms_per_guest": 0.4001811822653252,
+      "sample_mean_us": 0.6388412623645785
+    },
+    "load_planning_sample_1_in_64": {
+      "calls": 36852,
+      "observed_calls": 2358490,
+      "inclusive_ms": 21.945700000000002,
+      "self_ms": 21.945700000000002,
+      "cpu_ms": 640.625,
+      "thread_cycles": 47358940,
+      "inclusive_ms_per_guest": 0.010117888427846935,
+      "sample_scaled_ms_per_guest": 0.6475344263050232,
+      "sample_mean_us": 0.5955090632801476
+    },
+    "tmem_load_sample_1_in_64": {
+      "calls": 36852,
+      "observed_calls": 2358490,
+      "inclusive_ms": 31.693400000000004,
+      "self_ms": 31.693400000000004,
+      "cpu_ms": 5328.125,
+      "thread_cycles": 74848598,
+      "inclusive_ms_per_guest": 0.014611987090825267,
+      "sample_scaled_ms_per_guest": 0.9351521066384588,
+      "sample_mean_us": 0.860018452187127
+    },
+    "texture_upload_sample_1_in_64": {
+      "calls": 20127,
+      "observed_calls": 1288097,
+      "inclusive_ms": 144.3039,
+      "self_ms": 18.270200000000003,
+      "cpu_ms": 2218.75,
+      "thread_cycles": 404003558,
+      "inclusive_ms_per_guest": 0.06653015214384508,
+      "sample_scaled_ms_per_guest": 4.257827266161397,
+      "sample_mean_us": 7.1696676106722315
+    },
+    "texture_hash_sample_1_in_64": {
+      "calls": 20127,
+      "observed_calls": 1288097,
+      "inclusive_ms": 126.03370000000001,
+      "self_ms": 126.03370000000001,
+      "cpu_ms": 0,
+      "thread_cycles": 361522305,
+      "inclusive_ms_per_guest": 0.05810682342093131,
+      "sample_scaled_ms_per_guest": 3.7187472016709573,
+      "sample_mean_us": 6.261921796591643
+    }
+  },
+  "finding": "TextureManager recalculates TMEMHasher v5 before GPU hashSet lookup. Sampled hash is a major cost within measured3.982ms texture stage. Implement exact-input memoization for paletted v5 textures, preserve original GPU cache operations.",
+  "limits": [
+    "sample scaling includes timer overhead; nested estimates must not be added and are not exact costs",
+    "Memo cache hit rate and new FPS not measured; user080 playcheck required",
+    "Other HLE/native/render work remains; no300/360FPS claim",
+    "No agent tests/game/emulator/renderer/GPU execution"
+  ]
+}

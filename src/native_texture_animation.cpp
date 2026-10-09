@@ -1,3 +1,5 @@
+#include "performance_profile.hpp"
+#include "guest_storage.hpp"
 #include "native_texture_animation.hpp"
 #include "native_frame_bridge.hpp"
 #include "native_simulation_time.hpp"
@@ -15,7 +17,7 @@
 namespace {
 using namespace dora3::native_time;
 uint32_t word(uint8_t* rdram,uint32_t p){return uint32_t(MEM_W(0,int32_t(p)));}
-bool pointer(uint32_t p,uint64_t n){return p>=0x80000000u&&uint64_t(p)+n<=0x80400000ull;}
+bool pointer(uint32_t p,uint64_t n){return (p>=0x80000000u&&uint64_t(p)+n<=0x80800000ull)||dora3::distance::frame_pointer(p,n);}
 struct Bitmap {uint32_t header=0,pixels=0,palette=0;unsigned width=0,height=0,format=0,colors=0,palette_bytes=0;};
 std::optional<Bitmap> bitmap_raw(uint8_t* rdram,uint32_t p) {
     if(!pointer(p,16)||(p&7)||MEM_BU(0,int32_t(p))!='B'||MEM_BU(1,int32_t(p))!='M'||MEM_BU(2,int32_t(p))!='P')return {};
@@ -92,7 +94,7 @@ struct State {
     uint8_t* source_ram=nullptr,*frame_ram=nullptr;
     Nanoseconds source_time=0;
     uint64_t source_epoch=0;
-    std::array<ChannelClock,300> channels{};
+    std::array<ChannelClock,dora3::distance::sprite_capacity> channels{};
     std::vector<ChannelUpdate> updates;
     double h=0;
     uint32_t bank=0,arena=0;
@@ -123,12 +125,12 @@ uint64_t bitmap_signature(uint8_t* rdram,const Bitmap& b) {
     return at->second;
 }
 uint32_t resolve(uint32_t p) {
-    if(p>=0x80000000u&&p<0x80400000u)return p;
-    if(p<0x400000u)return p|0x80000000u;
+    if(p>=0x80000000u&&(p<0x80800000u||dora3::distance::frame_pointer(p,8)))return p;
+    if(p<0x800000u)return p|0x80000000u;
     const auto segment=p>>24;
     if(segment<16&&state.segments[segment].base) {
         const uint64_t result=uint64_t(state.segments[segment].base)+(p&0xffffffu);
-        if(result<0x80400000ull)return uint32_t(result);
+        if(result<0x80800000ull||dora3::distance::frame_pointer(uint32_t(result),8))return uint32_t(result);
     }
     return 0;
 }
@@ -138,7 +140,7 @@ uint32_t resolve(uint32_t p) {
 uint32_t allocate(uint8_t* rdram,const std::vector<uint32_t>& commands) {
     const auto bytes=uint32_t(commands.size()*4);
     const auto cursor=word(rdram,0x801B1424);
-    if(bytes>state.arena-state.bank||cursor<state.bank+dora3::frame::dl_offset||
+    if(bytes>state.arena-state.bank||cursor<state.bank||
        uint64_t(cursor)+0x10000u+bytes>state.arena)return 0;
     const auto at=(state.arena-bytes)&~7u;
     for(unsigned i=0;i<commands.size();++i)MEM_W(0,int32_t(at+4*i))=int32_t(commands[i]);
@@ -251,8 +253,8 @@ std::optional<ScrollCycle> scroll_cycle(uint8_t* rdram,uint32_t indices,uint32_t
         if(!pointer(indices+i,1)||!pointer(durations+i,1))return {};
         const auto index=MEM_BU(int32_t(i),int32_t(indices));if(index==255)break;
         if(!pointer(table+2*index,2))return {};
-        const int handle=MEM_H(int32_t(2*index),int32_t(table));if(handle<0||handle>=512)return {};
-        const auto frame=bitmap(rdram,word(rdram,0x801AEC00+20*unsigned(handle)));if(!frame)return {};
+        const int handle=MEM_H(int32_t(2*index),int32_t(table));if(handle<0||handle>=dora3::distance::resource_capacity)return {};
+        const auto frame=bitmap(rdram,word(rdram,dora3::distance::resources+20*unsigned(handle)));if(!frame)return {};
         const auto duration=MEM_BU(int32_t(i),int32_t(durations));
         if(!duration||duration!=MEM_BU(0,int32_t(durations)))return {};
         cycle.starts.push_back(cycle.ticks);cycle.ticks+=duration;frames.push_back(*frame);
@@ -308,7 +310,7 @@ bool rewrite_command(uint8_t* rdram,uint32_t& first,uint32_t& second,unsigned de
         } else if(op==0xDB&&(first&0xffff0000u)==0xDB060000u) {
             const auto offset=first&0xffffu;
             if(!(offset&3)&&offset/4<16) {
-                const auto base=second<0x400000u?second|0x80000000u:second;
+                const auto base=second<0x800000u?second|0x80000000u:second;
                 auto& segment=state.segments[offset/4];if(segment.base!=base)segment=Binding{base};
             }
         } else if(op==0xF5)parser.tiles[(second>>24)&7]=second;
@@ -334,7 +336,7 @@ bool rewrite_command(uint8_t* rdram,uint32_t& first,uint32_t& second,unsigned de
             move(12,dx,b.width*4,wrap_s);move(0,dy,b.height*4,wrap_t);
         } else if(op==0xDE) {
             const auto copied=clone_list(rdram,second,depth+1,path,parser);
-            changed|=copied!=second;second=copied==second?second:(copied&0x1fffffff);
+            changed|=copied!=second;second=copied==second?second:dora3::distance::display_address(copied);
 
         }
     return changed;
@@ -366,8 +368,8 @@ void native_texture_source_completed(uint8_t* ram,Nanoseconds now){state.source_
 void native_texture_reset(){if(state.active)throw std::logic_error("Texture reset inside frame");state=State{};}
 TextureFrameScope::TextureFrameScope(uint8_t* ram,Nanoseconds now,unsigned bank):ram_(ram) {
     const auto* binding=active_frame_binding();if(!binding||binding->ticket.bank!=bank||state.active)throw std::logic_error("Invalid texture frame ownership");
-    state.active=true;state.frame_ram=ram;state.bank=dora3::frame::bank0+bank*dora3::frame::bank_stride;
-    state.arena=state.bank+dora3::frame::bank_stride-0x100;
+    state.active=true;state.frame_ram=ram;state.bank=dora3::distance::display_list_begin(bank);
+    state.arena=dora3::distance::display_list_end(bank)-0x100;
     state.h=state.source_ram==ram?std::clamp(double(now-state.source_time)*60./(word(ram,0x801A39DC)*1e9),0.,1.):0.;
     state.segments={};state.copies.clear();state.samples.clear();state.cycles.clear();state.bitmaps.clear();state.signatures.clear();state.builders.clear();state.patches.clear();
 }
@@ -385,15 +387,15 @@ extern "C" void dora3_native_texture_channel_clock(uint8_t* rdram,recomp_context
         // Constructor28BC8 retains actor/slot in s2/s1 through28C58.
         const auto actor=uint32_t(c->r18),slot=unsigned(c->r17);
         if(slot>=8||!pointer(actor,0xcc)||MEM_BU(int32_t(0x6b+slot),int32_t(actor))!=5)return;
-        const auto handle=word(rdram,actor+0x74+4*slot);if(handle>=300)return;
-        state.channels[handle]={word(rdram,0x801A9CB0+8*handle),0,0};return;
+        const auto handle=word(rdram,actor+0x74+4*slot);if(handle>=dora3::distance::sprite_capacity)return;
+        state.channels[handle]={word(rdram,dora3::distance::sprites+8*handle),0,0};return;
     }
     if(!boundary) {
         const auto actor=uint32_t(c->r4),slot=unsigned(c->r5);ChannelUpdate update;
         if(slot<8&&pointer(actor,0xcc)&&MEM_BU(int32_t(0x6b+slot),int32_t(actor))==5) {
             const auto handle=word(rdram,actor+0x74+4*slot);
-            if(handle<300) {
-                update.entry=0x801A9CB0+8*handle;update.sequence=word(rdram,update.entry);
+            if(handle<dora3::distance::sprite_capacity) {
+                update.entry=dora3::distance::sprites+8*handle;update.sequence=word(rdram,update.entry);
                 update.index=MEM_BU(5,int32_t(update.entry));update.remaining=MEM_BU(4,int32_t(update.entry));
                 update.active=MEM_BU(6,int32_t(update.entry))&1;
             }
@@ -403,7 +405,7 @@ extern "C" void dora3_native_texture_channel_clock(uint8_t* rdram,recomp_context
     if(state.updates.empty())throw std::logic_error("Unmatched bitmap Source update boundary");
     const auto update=state.updates.back();state.updates.pop_back();
     if(!update.entry||!update.active||!pointer(update.sequence,12)||word(rdram,update.entry)!=update.sequence)return;
-    auto& clock=state.channels[(update.entry-0x801A9CB0)/8];
+    auto& clock=state.channels[(update.entry-dora3::distance::sprites)/8];
     if(clock.sequence!=update.sequence||!clock.age) {
         const auto durations=word(rdram,update.sequence+4);
         if(!pointer(durations,uint64_t(update.index)+1))return;
@@ -415,11 +417,12 @@ extern "C" void dora3_native_texture_channel_clock(uint8_t* rdram,recomp_context
     ++clock.age;clock.updated_epoch=state.source_epoch+1;
 }
 extern "C" void dora3_native_texture_bind(uint8_t* rdram,recomp_context* c,unsigned world) {
+    dora3::profile::Scope profile(dora3::profile::Tag::TextureBind);
     if(!state.active||state.frame_ram!=rdram)return;
     const auto actor=uint32_t(world?c->r20:c->r4),slot=unsigned(world?c->r18:c->r5);
     if(slot>=8||!pointer(actor,0xcc)||MEM_BU(int32_t(0x6b+slot),int32_t(actor))!=5)return;
-    const auto handle=word(rdram,actor+0x74+4*slot);if(handle>=300)return;
-    const auto entry=0x801A9CB0+8*handle,sequence=word(rdram,entry);
+    const auto handle=word(rdram,actor+0x74+4*slot);if(handle>=dora3::distance::sprite_capacity)return;
+    const auto entry=dora3::distance::sprites+8*handle,sequence=word(rdram,entry);
     if(!pointer(sequence,12))return;
     const unsigned segment=MEM_BU(8,int32_t(sequence)),palette=MEM_BU(9,int32_t(sequence));
     if(segment>=16||palette>=16)return;
@@ -434,7 +437,7 @@ extern "C" void dora3_native_texture_bind(uint8_t* rdram,recomp_context* c,unsig
     const auto table=world?0x80217120u:word(rdram,actor+0xb8);
     if(!pointer(table,2*(std::max(current,next)+1)))return;
     const auto resource=[&](unsigned n)->uint32_t{
-        const int id=MEM_H(int32_t(2*n),int32_t(table));return id>=0&&id<512?word(rdram,0x801AEC00+20*unsigned(id)):0;
+        const int id=MEM_H(int32_t(2*n),int32_t(table));return id>=0&&id<int(dora3::distance::resource_capacity)?word(rdram,dora3::distance::resources+20*unsigned(id)):0;
     };
     const auto a=bitmap(rdram,resource(current)),b=bitmap(rdram,resource(next));if(!a||!b)return;
     state.segments[segment]={a->pixels,a->palette,a->width,a->height,a->width*a->height/(a->format==5?2:1),0,0,false};
@@ -479,13 +482,13 @@ extern "C" void dora3_native_texture_builder(uint8_t* rdram,recomp_context* c,un
             const auto object_segment=word(rdram,resource+0x44),vertex_segment=word(rdram,resource+0x4c);
             const uint64_t vertices=uint64_t(resource)+word(rdram,resource+0x2c);
             if(object_segment<16&&state.segments[object_segment].base!=resource)state.segments[object_segment]=Binding{resource};
-            if(vertex_segment<16&&vertices<0x80400000ull&&state.segments[vertex_segment].base!=vertices)state.segments[vertex_segment]=Binding{uint32_t(vertices)};
+            if(vertex_segment<16&&vertices<0x80800000ull&&state.segments[vertex_segment].base!=vertices)state.segments[vertex_segment]=Binding{uint32_t(vertices)};
         }
         state.builders.push_back(pointer(cursor_pointer,4)?word(rdram,cursor_pointer):0);return;
     }
     if(state.builders.empty())throw std::logic_error("Unmatched material builder boundary");
     const auto begin=state.builders.back(),last=uint32_t(c->r2);state.builders.pop_back();
-    if(begin<state.bank+dora3::frame::dl_offset||last<begin||last>state.arena||((begin|last)&7))
+    if(begin<state.bank||last<begin||last>state.arena||((begin|last)&7))
         return; // Other Source-owned builders are outside this ticket's lease.
     if(std::none_of(state.segments.begin(),state.segments.end(),[](const auto& b){return b.scroll||b.sampled_pixels;}))return;
     // The actual SDK builds material setup before the mesh DE. Process that

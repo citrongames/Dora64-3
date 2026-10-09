@@ -1,0 +1,78 @@
+{
+  "scope": "Static source/body comparison only; no execution or CPU checks",
+  "baseline": "test-068",
+  "wrapped_game_bodies": [
+    {
+      "function": "dora3_s3_801BB730",
+      "body_text_sha256": "5774cd74cce7257050d11c4d450b1ea10abfb678692ff14676423f7b27b62317",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_s3_801BB080",
+      "body_text_sha256": "036578d1c50f69bb1a3eabb0a4f63d5420c83fd044d12ee6f8190603f3df861a",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_s3_801E4AD0",
+      "body_text_sha256": "dca1a347fc77a772d97f1855e7dc7056cd9ed29aac08a0650d851f7c57d0e185",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_s3_801E8BDC",
+      "body_text_sha256": "9816ca573010332e01f95553d6227d1016a2d3c432f0014801ea6d143ed9a009",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_s3_801DD0DC",
+      "body_text_sha256": "70c4e0d85cc6804e48af0a3eac7bbcd5d2782ed5c01689c346b28b333933f5b7",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_s3_801C8B28",
+      "body_text_sha256": "6907b1b446357322877a0093bb55b72d93ffe9a159f293732266821bcf68a71c",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_s3_801D10D8",
+      "body_text_sha256": "cbf37432ea450ac943f58b66eb0a2c60cee139a1a54a18392127a58d06c7d74c",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_s3_801BB848",
+      "body_text_sha256": "b365e208c457333a0deaa1578d1a8d6b3b875c367d49c66f661ecd128516ca1d",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_s3_801BC4EC",
+      "body_text_sha256": "6f06fb93c375ace07f80940b46e6e8da31c87806c196867e07968069598b8b3b",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_s0_8003948C",
+      "body_text_sha256": "ea807ba068e754b333334a8299d7a8215e6e85873bd53eceb4d8fa29b0c6fa67",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_s0_800393C4",
+      "body_text_sha256": "35917d177b54c6bc5bc26e8b535cdaacb3801a0c96b712a4554e4ded9f22c686",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_graphics_frame_build",
+      "body_text_sha256": "f4c6890b99cbdcc5bc22fd53f1b07704cdebe090f085510b2584df4e0ae65961",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_graphics_task_submit",
+      "body_text_sha256": "487277e9494e48d01cef24440ef7e0cef461e0c02e6ca60f8e211c62e1231d28",
+      "unchanged_from068": true
+    },
+    {
+      "function": "dora3_s0_8003AFEC",
+      "body_text_sha256": "8d1d7942b3272d75df8dd2f6a235bf994e4854646747e719c5c7793ef18e76bd",
+      "unchanged_from068": true
+    }
+  ],
+  "unmeasured_optimizations_restored": true,
+  "gameplay_instruction_manifest_unchanged": true
+}

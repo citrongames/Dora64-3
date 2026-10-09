@@ -1,0 +1,12 @@
+{
+  "build": "test-075",
+  "actual_build_type": "RelWithDebInfo",
+  "actual_flags": "/Zi /O2 /Ob1 /DNDEBUG",
+  "DORA3_DIAGNOSTICS": "OFF",
+  "frontend_DORA3_PROFILE_defined": false,
+  "rt64_DORA3_PROFILE_defined": false,
+  "static_configuration_only": true,
+  "game_launched": false,
+  "tests_executed": false,
+  "cpu_checks_executed": false
+}

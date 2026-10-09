@@ -1,3 +1,6 @@
+#include "graphics_profile.hpp"
+#include "diagnostics.hpp"
+#include "performance_profile.hpp"
 #include "resource_retirement.hpp"
 #include "native_present.hpp"
 #include "native_game_loop.hpp"
@@ -9,6 +12,8 @@ void dora3_set_native_present_target(unsigned(*query)());
 #include "port_display.hpp"
 #include "rhi/rt64_render_hooks.h"
 #include "frame_lights.hpp"
+#include "framebuffer_readback.hpp"
+#include "guest_storage.hpp"
 #include "graphics_sync.hpp"
 #include "n64_hardware.hpp"
 void dora3_raw_dp_event();
@@ -33,15 +38,20 @@ void dora3_raw_dp_event();
 #include "hle/rt64_state.h"
 #include "hle/rt64_rsp.h"
 
+namespace RT64 {struct Workload;}
+void dora3_set_framebuffer_ram_policy(bool(*query)(RT64::State*,const RT64::Workload*));
 namespace {
 SDL_Window* live_window=nullptr;
 
 RT64::RenderHookDraw* previous_draw=nullptr;
 void count_output(plume::RenderCommandList* list,plume::RenderFramebuffer* framebuffer){
     if(previous_draw)previous_draw(list,framebuffer);
+    dora3::graphics_profile::add(dora3::graphics_profile::Counter::Output);
     dora3::port::record_output_frame();
+    dora3::profile::output_frame();
 }
 void log_memory_usage(){
+    if constexpr(!dora3::diagnostics::enabled)return;
     static auto next=std::chrono::steady_clock::time_point{};
     const auto now=std::chrono::steady_clock::now();
     if(now<next)return;
@@ -62,7 +72,7 @@ void log_memory_usage(){
         std::fclose(stats);
     }
     #endif
-    std::fprintf(stderr,"MEMORY available=%u resident_bytes=%llu private_bytes=%llu periodic_queued=%llu periodic_coalesced=%llu\n",
+    DORA3_LOG(stderr,"MEMORY available=%u resident_bytes=%llu private_bytes=%llu periodic_queued=%llu periodic_coalesced=%llu\n",
         unsigned(available),static_cast<unsigned long long>(resident),static_cast<unsigned long long>(private_bytes),
         static_cast<unsigned long long>(dora3::sync::periodic_present.submissions()),
         static_cast<unsigned long long>(dora3::sync::periodic_present.coalesced()));
@@ -81,6 +91,7 @@ class LiveContext final : public ultramodern::renderer::RendererContext {
         const bool native=dora3::native_time::native_presentation_owned();
         const auto s=dora3::port::settings();
         if(native==applied_native&&s.resolution==applied_resolution&&s.filtering==applied_filtering&&s.frame_rate_mode==applied_rate&&s.frame_rate_limit==applied_limit)return false;
+        if(framebuffer_readback.pending())framebuffer_readback.materialize(*app->state);
         using U=RT64::UserConfiguration;
         app->userConfig.resolution=s.resolution==3?U::Resolution::WindowIntegerScale:U::Resolution::Manual;
         app->userConfig.resolutionMultiplier=s.resolution==1?2.0f:s.resolution==2?4.0f:1.0f;
@@ -100,6 +111,7 @@ class LiveContext final : public ultramodern::renderer::RendererContext {
     unsigned raw_syncs=0;
     dora3::frame::Lights frame_lights{};
     bool frame_lights_active=false;
+    dora3::graphics::FramebufferReadback framebuffer_readback;
 public:
     LiveContext(uint8_t* rdram, ultramodern::renderer::WindowHandle window):ram(rdram){
         RT64::Application::Core core{};
@@ -143,33 +155,51 @@ public:
         previous_draw=RT64::GetRenderHookDraw();
         RT64::SetRenderHooks(RT64::GetRenderHookInit(),count_output,RT64::GetRenderHookDeinit());
         const auto result=app->setup(0);
-        std::fprintf(stderr,"LIVE RT64 SETUP result=%u\n",unsigned(result));
+        DORA3_LOG(stderr,"LIVE RT64 SETUP result=%u\n",unsigned(result));
         if(result!=RT64::Application::SetupResult::Success)std::_Exit(84);
         static_assert(sizeof(RT64::RSP::Light)==16);
         app->state->rsp->lightDataCallback=[](uint32_t address)->const void* {
             return current->frame_lights_active ? current->frame_lights.lookup(address) : nullptr;
         };
+        dora3_set_framebuffer_ram_policy([](RT64::State* state,const RT64::Workload* workload) {
+            return current&&state==current->app->state.get()&&
+                current->framebuffer_readback.defer(*state,*workload);
+        });
         setup_result=ultramodern::renderer::SetupResult::Success;
         switch(app->chosenGraphicsAPI){
         case RT64::UserConfiguration::GraphicsAPI::D3D12:
             chosen_api=ultramodern::renderer::GraphicsApi::D3D12;
-            std::fprintf(stderr,"LIVE RT64 API D3D12 (Automatic)\n");break;
+            DORA3_LOG(stderr,"LIVE RT64 API D3D12 (Automatic)\n");break;
         case RT64::UserConfiguration::GraphicsAPI::Vulkan:
             chosen_api=ultramodern::renderer::GraphicsApi::Vulkan;
-            std::fprintf(stderr,"LIVE RT64 API Vulkan (Automatic)\n");break;
+            DORA3_LOG(stderr,"LIVE RT64 API Vulkan (Automatic)\n");break;
         default:
-            std::fprintf(stderr,"LIVE RT64 unexpected API\n");std::_Exit(84);
+            DORA3_LOG(stderr,"LIVE RT64 unexpected API\n");std::_Exit(84);
         }
+    }
+    ~LiveContext() override {
+        dora3_set_framebuffer_ram_policy(nullptr);
+        if(current==this)current=nullptr;
+    }
+    static void materialize_current_locked() {
+        if(current)current->framebuffer_readback.materialize(*current->app->state);
     }
     bool valid() override{return true;}
     bool update_config(const ultramodern::renderer::GraphicsConfig&,const ultramodern::renderer::GraphicsConfig&) override{return true;}
     void enable_instant_present() override{}
     void send_dl(const OSTask* task) override{
+        dora3::graphics_profile::mark(dora3::graphics_profile::Mark::ParseStart,uint32_t(task->t.data_ptr),task->t.data_size);
+        dora3::graphics_profile::Scope graphics_scope(dora3::graphics_profile::Stage::Producer);
+        dora3::graphics_profile::add(dora3::graphics_profile::Counter::Guest);
+        dora3::profile::Scope profile(dora3::profile::Tag::RT64Parse);
+        dora3::profile::guest_frame();
         // Disable RT64 interpolation BEFORE parsing the first native workload;
         // restore the selected legacy policy when native ownership has drained.
         if ((applied_native || dora3::native_time::native_presentation_owned()) && apply_graphics())
             app->updateUserConfig(true);
+        framebuffer_readback.request(false,0);
         if(task->t.type==dora3::hw::raw_rdp_task){
+            framebuffer_readback.materialize(*app->state);
             const uint32_t start=uint32_t(task->t.data_ptr),bytes=task->t.data_size;
             if((start&7) || (bytes&7) || start>=dora3::hw::ram_size || bytes>dora3::hw::ram_size-start) std::abort();
             registers[1]=registers[3]=start; registers[2]=start+bytes;
@@ -188,31 +218,43 @@ public:
         // Restrict this experiment to the resident microcode already identified.
         if(task->t.type!=1 || text!=0x63510 || data!=0x78E00 || task->t.ucode_size!=0x1000 ||
            task->t.ucode_data_size!=0x800 || (dl&7) || !task->t.data_size ||
-           (task->t.data_size&7) || dl>=0x400000 || task->t.data_size>0x400000-dl){
-            std::fprintf(stderr,"LIVE RT64 unsupported task\n");std::_Exit(84);
+           (task->t.data_size&7) || !dora3::distance::task_for_display_list(dl) || !dora3::distance::frame_pointer(dl,task->t.data_size)){
+            DORA3_LOG(stderr,"LIVE RT64 unsupported task\n");std::_Exit(84);
         }
         if(!dora3::frame::take(dl,frame_lights)) {
-            std::fprintf(stderr,"LIVE RT64 missing frame light snapshot dl=%08X\n",dl);
+            DORA3_LOG(stderr,"LIVE RT64 missing frame light snapshot dl=%08X\n",dl);
             std::abort();
         }
+        const auto& config=app->userConfig;
+        const bool defer_ram=frame_lights.native_ram_optional&&
+            config.aspectRatio==RT64::UserConfiguration::AspectRatio::Original;
+        if(!defer_ram)framebuffer_readback.materialize(*app->state);
+        framebuffer_readback.request(defer_ram,frame_lights.native_depth_address);
         app->state->rsp->reset();
         app->interpreter->loadUCodeGBI(text,data,true);
         if(!app->interpreter->hleGBI || app->interpreter->hleGBI->ucode!=RT64::GBIUCode::F3DEX2){
-            std::fprintf(stderr,"LIVE RT64 unreviewed microcode\n");std::_Exit(84);
+            DORA3_LOG(stderr,"LIVE RT64 unreviewed microcode\n");std::_Exit(84);
         }
         frame_lights_active=true;
+        const bool prior_extended=app->state->extended.extendRDRAM;
+        app->state->setExtendedRDRAM(true); // Only emitted frame-arena pointers carry kseg0.
         app->processDisplayLists(ram,dl,0,true);
+        app->state->setExtendedRDRAM(prior_extended);
         frame_lights_active=false;
         dora3::retirement::parsed(dl);
-        std::fprintf(stderr,"LIVE RT64 PARSED task=%u dl=%08X bytes=%X gbi=7\n",++tasks,dl,task->t.data_size);
+        ++tasks;DORA3_LOG(stderr,"LIVE RT64 PARSED task=%u dl=%08X bytes=%X gbi=7\n",tasks,dl,task->t.data_size);
         completed.fetch_add(1);
     }
     void send_dummy_workload(uint32_t) override{}
     void update_screen(bool=false) override{
+        dora3::graphics_profile::report();
+        dora3::graphics_profile::Scope graphics_scope(dora3::graphics_profile::Stage::Screen);
+        dora3::profile::report();
+        dora3::profile::Scope profile(dora3::profile::Tag::RT64Screen);
+        std::scoped_lock lock(ultramodern::get_graphics_rdram_mutex());
         // RT64 configuration belongs to its producer thread; UI only edits snapshots.
         if(apply_graphics())app->updateUserConfig(true);
         // Same exclusion as PI DMA and the reviewed guest CPU framebuffer copy.
-        std::scoped_lock lock(ultramodern::get_graphics_rdram_mutex());
         app->updateScreen();
     }
     void reset_game() override{
@@ -221,6 +263,7 @@ public:
         // renderer counters; reset only console-side graphics/audio state.
         frame_lights_active=false;frame_lights={};parsing_raw=false;raw_syncs=0;
         registers={};dmem={};imem={};
+        framebuffer_readback.reset();
         app->state->resetGameSession();
         dora3::frame::reset();dora3::retirement::reset();
         dora3_reset_live_io();
@@ -254,16 +297,18 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
     dora3::retirement::enable();
     dora3::port::initialize(recomp::get_config_path());
     dora3_configure_live_input(cfg);
-    std::fprintf(stderr,"LIVE SESSION: no time or graphics-task limit\n");
+    DORA3_LOG(stderr,"LIVE SESSION: no time or graphics-task limit\n");
     cfg.events_callbacks.gfx_task_submitted_callback=[](uint8_t*,uint32_t dl,uint32_t bytes){
-        std::fprintf(stderr,"LIVE RT64 SUBMITTED task=%u dl=%08X bytes=%X\n",submitted.fetch_add(1)+1,dl,bytes);
+        dora3::graphics_profile::mark(dora3::graphics_profile::Mark::TaskSubmit,dl,bytes);
+        const auto ordinal=submitted.fetch_add(1)+1;
+        DORA3_LOG(stderr,"LIVE RT64 SUBMITTED task=%u dl=%08X bytes=%X\n",ordinal,dl,bytes);
     };
     cfg.renderer_callbacks.create_render_context=[](uint8_t* ram,ultramodern::renderer::WindowHandle w,bool)
         ->std::unique_ptr<ultramodern::renderer::RendererContext>{return std::make_unique<LiveContext>(ram,w);};
     cfg.gfx_callbacks.create_window=[](void*)->ultramodern::renderer::WindowHandle{
         SDL_SetMainReady();
         dora3_prepare_sdl_input();
-        if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS|SDL_INIT_GAMECONTROLLER|SDL_INIT_AUDIO)!=0){std::fprintf(stderr,"SDL: %s\n",SDL_GetError());std::_Exit(84);}
+        if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS|SDL_INIT_GAMECONTROLLER|SDL_INIT_AUDIO)!=0){DORA3_LOG(stderr,"SDL: %s\n",SDL_GetError());std::_Exit(84);}
         uint32_t flags=SDL_WINDOW_RESIZABLE|SDL_WINDOW_ALLOW_HIGHDPI;
         #ifndef _WIN32
         flags|=SDL_WINDOW_VULKAN;
@@ -272,13 +317,13 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
         const auto settings=dora3::port::settings();
         const int centered=SDL_WINDOWPOS_CENTERED_DISPLAY(settings.display_index);
         auto* window=SDL_CreateWindow("Dora64-3 test build",centered,centered,settings.window_width,settings.window_height,flags);
-        if(!window){std::fprintf(stderr,"SDL window: %s\n",SDL_GetError());std::_Exit(84);}
+        if(!window){DORA3_LOG(stderr,"SDL window: %s\n",SDL_GetError());std::_Exit(84);}
         live_window=window;
         SDL_SetWindowMinimumSize(window,320,240);
         dora3::port::update_display_window(window);
         #ifdef _WIN32
         SDL_SysWMinfo info{};SDL_VERSION(&info.version);
-        if(!SDL_GetWindowWMInfo(window,&info)){std::fprintf(stderr,"SDL HWND: %s\n",SDL_GetError());std::_Exit(84);}
+        if(!SDL_GetWindowWMInfo(window,&info)){DORA3_LOG(stderr,"SDL HWND: %s\n",SDL_GetError());std::_Exit(84);}
         return {info.info.win.window,GetCurrentThreadId()};
         #else
         return window;
@@ -301,5 +346,11 @@ void dora3_drain_live_graphics(){
     const auto deadline=std::chrono::steady_clock::now()+std::chrono::seconds(2);
     while(completed.load()<submitted.load() && std::chrono::steady_clock::now()<deadline)
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
-    std::fprintf(stderr,"LIVE RT64 DRAIN submitted=%u parsed=%u\n",submitted.load(),completed.load());
+    DORA3_LOG(stderr,"LIVE RT64 DRAIN submitted=%u parsed=%u\n",submitted.load(),completed.load());
+}
+
+void dora3_materialize_native_framebuffers_locked(){LiveContext::materialize_current_locked();}
+void dora3_materialize_native_framebuffers(){
+    std::scoped_lock lock(ultramodern::get_graphics_rdram_mutex());
+    dora3_materialize_native_framebuffers_locked();
 }

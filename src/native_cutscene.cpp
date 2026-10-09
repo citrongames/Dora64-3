@@ -19,11 +19,11 @@ void dora3_s3_801BBDDC(uint8_t*,recomp_context*);
 void dora3_s0_8002F064(uint8_t*,recomp_context*);
 }
 namespace {
-constexpr uint32_t image_size=0x400000, cameras=0x801A99F8;
+constexpr uint32_t image_size=0x800000, cameras=0x801A99F8;
 constexpr uint32_t camera_controls=0x802183D0, participant_controls=0x80218B10;
 constexpr std::array<uint32_t,3> origins{0x800DAE54,0x800FE878,0x800DD3F0};
 int32_t word(uint8_t* rdram,uint32_t address){return MEM_W(0,int32_t(address));}
-bool pointer(uint32_t address,unsigned size){return !(address&3)&&address>=0x80000000u&&uint64_t(address)+size<=0x80400000ull;}
+bool pointer(uint32_t address,unsigned size){return !(address&3)&&address>=0x80000000u&&uint64_t(address)+size<=0x80800000ull;}
 struct JumpStep {uint32_t address;float velocity,displacement;};
 thread_local bool equations_active=false;
 thread_local std::vector<JumpStep> jumps;

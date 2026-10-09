@@ -1,0 +1,146 @@
+{
+  "scope": "Profiler boundaries only; no gameplay instruction or logic changes",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "functions": [
+    {
+      "section": ".scene1",
+      "vram": 2149300016,
+      "name": "dora3_s3_801BB730",
+      "semantic_name": "dora3_scene1_update_callback_801BB730",
+      "size": 280,
+      "function_rom_sha256": "aa11a4bfdce1e2abcc37c7136b6d2e8b9bb1e31a1ad1b51f7f93f9191dd9cf70",
+      "tag": 2,
+      "capture_context": true
+    },
+    {
+      "section": ".scene1",
+      "vram": 2149298304,
+      "name": "dora3_s3_801BB080",
+      "semantic_name": "dora3_scene1_world_update_801BB080",
+      "size": 692,
+      "function_rom_sha256": "e315ff070053b6c0595b58323195ba35d393fdfba6f998d3ad148a81f1df4d0a",
+      "tag": 3,
+      "capture_context": false
+    },
+    {
+      "section": ".scene1",
+      "vram": 2149468880,
+      "name": "dora3_s3_801E4AD0",
+      "semantic_name": "dora3_s3_801E4AD0",
+      "size": 1432,
+      "function_rom_sha256": "9444fb5540b870679ead352812e7ae85ceb5c4779eb231b058bf43c3a3f39453",
+      "tag": 4,
+      "capture_context": false
+    },
+    {
+      "section": ".scene1",
+      "vram": 2149485532,
+      "name": "dora3_s3_801E8BDC",
+      "semantic_name": "dora3_scene1_update_actor_pool_801E8BDC",
+      "size": 752,
+      "function_rom_sha256": "2879bb417c70bc311b9f21b162530b9232eaee84dc501722c82f9006d8bfae7f",
+      "tag": 5,
+      "capture_context": false
+    },
+    {
+      "section": ".scene1",
+      "vram": 2149437660,
+      "name": "dora3_s3_801DD0DC",
+      "semantic_name": "dora3_world_detect_actor_contacts_801DD0DC",
+      "size": 516,
+      "function_rom_sha256": "cafa54964e93d3789ae7cf472698abfcb61293ea016e1ac53cb7dea70e496a4f",
+      "tag": 6,
+      "capture_context": false
+    },
+    {
+      "section": ".scene1",
+      "vram": 2149354280,
+      "name": "dora3_s3_801C8B28",
+      "semantic_name": "dora3_player_update_801C8B28",
+      "size": 1664,
+      "function_rom_sha256": "c8f578b2e94e3e4682a9fbc1aeeed0eae7f979e304ea0de89661b66d5866d866",
+      "tag": 7,
+      "capture_context": false
+    },
+    {
+      "section": ".scene1",
+      "vram": 2149388504,
+      "name": "dora3_s3_801D10D8",
+      "semantic_name": "dora3_scene1_update_projectile_pool_801D10D8",
+      "size": 228,
+      "function_rom_sha256": "6a0e86e7350829fe86d6e7e428299fbb0e4a3507dde435bc13b4c616c05d865d",
+      "tag": 8,
+      "capture_context": false
+    },
+    {
+      "section": ".scene1",
+      "vram": 2149300296,
+      "name": "dora3_s3_801BB848",
+      "semantic_name": "dora3_scene1_draw_callback_801BB848",
+      "size": 220,
+      "function_rom_sha256": "1504f8b9ed8179e5aa2073df63deb69624c8188dffeb20d27847b9a9ede52fab",
+      "tag": 9,
+      "capture_context": false
+    },
+    {
+      "section": ".scene1",
+      "vram": 2149303532,
+      "name": "dora3_s3_801BC4EC",
+      "semantic_name": "dora3_s3_801BC4EC",
+      "size": 752,
+      "function_rom_sha256": "3b9c63bf25a2bca680a22f5c44ac26680af0d8025776a79dcf7fabc8954db443",
+      "tag": 10,
+      "capture_context": false
+    },
+    {
+      "section": ".startup",
+      "vram": 2147718284,
+      "name": "dora3_s0_8003948C",
+      "semantic_name": "dora3_model_advance_animation_8003948C",
+      "size": 184,
+      "function_rom_sha256": "047c93665e941d8719f917627b10890c28d8ae29bbb9e0418185627ecc9bf339",
+      "tag": 11,
+      "capture_context": false
+    },
+    {
+      "section": ".startup",
+      "vram": 2147718084,
+      "name": "dora3_s0_800393C4",
+      "semantic_name": "dora3_s0_800393C4",
+      "size": 200,
+      "function_rom_sha256": "0332a6fa3f7cbc2399562cd86653b705b8485d6960f6e668525f38fe0fabcf20",
+      "tag": 12,
+      "capture_context": false
+    },
+    {
+      "section": ".startup",
+      "vram": 2147680100,
+      "name": "dora3_graphics_frame_build",
+      "semantic_name": "dora3_graphics_frame_build",
+      "size": 344,
+      "function_rom_sha256": "7b9a8b39fa365de4f25d5f40460140282b91022ed3247c8f5a0ece4df1f5c119",
+      "tag": 13,
+      "capture_context": true
+    },
+    {
+      "section": ".startup",
+      "vram": 2147679776,
+      "name": "dora3_graphics_task_submit",
+      "semantic_name": "dora3_graphics_task_submit",
+      "size": 324,
+      "function_rom_sha256": "670a41913fc5d26543fd01a0e9613dee37256db0589b60fdb8359100c41486c7",
+      "tag": 14,
+      "capture_context": false
+    },
+    {
+      "section": ".startup",
+      "vram": 2147725292,
+      "name": "dora3_s0_8003AFEC",
+      "semantic_name": "dora3_s0_8003AFEC",
+      "size": 228,
+      "function_rom_sha256": "97d0cb23c6714dc0dc6026a7fe4998763842e5918b1062a5d8a69d477fd421e8",
+      "tag": 30,
+      "capture_context": false
+    }
+  ]
+}

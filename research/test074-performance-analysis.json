@@ -1,0 +1,44 @@
+{
+  "build": "test-074",
+  "user_confirmation": "Пользователь подтвердил достижение60FPS; запросил выяснить FPS ниже100 приManual360 и влияниеDebug/logging",
+  "run": "1791464902194",
+  "profile_sha256": "de948dcb23626612cf243dc16857d28a60090fc9ebc163308ade959619310cb8",
+  "phases": {
+    "165": {
+      "duration_s": 11.08865,
+      "fps": 60.78287257691424,
+      "parser_wall_ms_per_frame": 9.817152818991097,
+      "parser_thread_cpu_ms_per_frame": 8.160237388724036,
+      "gpu_ms_per_frame": 0.3650713649851632
+    },
+    "169": {
+      "duration_s": 24.102580000000003,
+      "fps": 95.09355429999609,
+      "parser_wall_ms_per_frame": 6.839743455497382,
+      "parser_thread_cpu_ms_per_frame": 5.194698952879581,
+      "gpu_ms_per_frame": 0.3104816753926702
+    },
+    "150": {
+      "duration_s": 8.048020000000001,
+      "fps": 97.04250237946724,
+      "parser_wall_ms_per_frame": 8.545673495518566,
+      "parser_thread_cpu_ms_per_frame": 6.902208706786172,
+      "gpu_ms_per_frame": 0.3202147247119078
+    }
+  },
+  "verified_configuration": {
+    "build_type": "RelWithDebInfo",
+    "frontend_and_rt64_cxx_flags": "/Zi /O2 /Ob1 /DNDEBUG",
+    "debug_build": false,
+    "profiling_compiled": true,
+    "RT64_LOG_PRINTF_disabled_by_NDEBUG": true,
+    "per_task_audio_graphics_logs_enabled": true
+  },
+  "findings": [
+    "Manual360 reaches355–360FPS in no-geometry transitions and121FPS in scene169",
+    "No universal100FPS limiter; menu manual value propagates toclock360",
+    "Largest remaining observed stage is graphics producer RT64Parse; includes preparation,interpreter/fullsync/queue waits and own final log",
+    "Own logs and profiling have overhead, but their isolated duration is not measured and is not the established sole cause"
+  ],
+  "policy": "Read-only logs/static source analysis; no tests, CPU checks, game or renderer execution; no executable/code changes or Git"
+}

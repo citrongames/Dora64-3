@@ -1,0 +1,28 @@
+{
+  "baseline": "test-072",
+  "scope": "Two immutable kind membership queries use existing constexpr index; Native timeline metrics stripped statically restore original equations/body; CPU/wall observations only",
+  "files": [
+    {
+      "file": "src/native_enemy.cpp",
+      "before_sha256": "b7a37f4700c0da0fdbf34770276b0a5643de8551ae3611506f0a6087a8dc1d37",
+      "after_sha256": "32183d93143692906e35dd6a37f35725f8eeb165a6fab428d656b93ad2544e75"
+    },
+    {
+      "file": "src/native_gameplay_preview.cpp",
+      "before_sha256": "220ef478a3a8350bd10eef047ad53306939fb84a23e8e0c93b8efdb335395834",
+      "after_sha256": "3bf724d3ab5b7942f2993907c016b2a3cfece547f6b70d8ab2e6ed1451803cfe"
+    },
+    {
+      "file": "src/performance_profile.hpp",
+      "before_sha256": "6642c3b08677b3eddd1fa3ac81bc6a36e8ff2abcb8e11e08364472b692c95cb0",
+      "after_sha256": "07f6aa452496983c3edf2e8c9a07aba0a61c6c1ab0e3665a440b4602e9e2ef57"
+    },
+    {
+      "file": "src/performance_profile.cpp",
+      "before_sha256": "a9b17f5f4a387257f2bc4c4a97a91f757ce44f7e3302d1342dc2a11c3d9477ac",
+      "after_sha256": "ec066bb1e8c846a28d5bce959575d8fa9f98190dcf1bf7400cfd9c81f7c995b4"
+    }
+  ],
+  "timeline_equations_unchanged": true,
+  "no_runtime_checks_or_tests_executed": true
+}

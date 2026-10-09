@@ -1,4 +1,10 @@
+#include "graphics_profile.hpp"
+#include "diagnostics.hpp"
+#include "performance_profile.hpp"
 #include "native_game_loop.hpp"
+#ifdef DORA3_LIVE_RT64
+#include "live_graphics.hpp"
+#endif
 #include "native_process_time.hpp"
 #include "native_camera_timeline.hpp"
 #include "native_gameplay_preview.hpp"
@@ -69,7 +75,10 @@ bool common_eligible(uint8_t* rdram) {
 }
 void finish_session(uint8_t* ram,Phase before,Phase after) {
     if(before!=Phase::Original && after==Phase::Original) {
-        std::fprintf(stderr,"NATIVE LOOP drained frames=%llu; Original resumes\n",static_cast<unsigned long long>(frames));
+#ifdef DORA3_LIVE_RT64
+        dora3_materialize_native_framebuffers();
+#endif
+        DORA3_LOG(stderr,"NATIVE LOOP drained frames=%llu; Original resumes\n",static_cast<unsigned long long>(frames));
         active_policy=nullptr;active_identity.reset();fade.reset();applied_fps=0;
         dora3_native_camera_dispatch_reset();native_gameplay_preview_reset(ram);
         native_cutscene_reset(ram);native_minigame_reset(ram);native_ui_reset();native_texture_reset();
@@ -99,7 +108,7 @@ void try_enter(uint8_t* rdram,Nanoseconds now,unsigned fps) {
     active_policy=entry_policy;active_identity=entry_identity;
     entry_policy=nullptr;entry_identity.reset();applied_fps=fps;frames=0;last_fallback=nullptr;
     if(game_frame_session().poll(now)==Phase::Native)start_timelines(rdram,now);
-    std::fprintf(stderr,"NATIVE LOOP acquire policy=%s fps=%u original_hz=%u\n",active_policy->name,fps,60/active_policy->divider);
+    DORA3_LOG(stderr,"NATIVE LOOP acquire policy=%s fps=%u original_hz=%u\n",active_policy->name,fps,60/active_policy->divider);
 }
 void synchronize(uint8_t* rdram,Nanoseconds now) {
     auto& session=game_frame_session();const auto before=session.phase();
@@ -110,7 +119,7 @@ void synchronize(uint8_t* rdram,Nanoseconds now) {
             // pose, then invalidate this scene. Handoff belongs to the current
             // event, not render_time(): that pose can predate the command.
             if(before==Phase::Native && fade)write_fade(rdram,fade->sample(read_fade(rdram),now));
-            std::fprintf(stderr,"NATIVE LOOP leave (mode/pause/scene boundary)\n");session.leave(now);
+            DORA3_LOG(stderr,"NATIVE LOOP leave (mode/pause/scene boundary)\n");session.leave(now);
         } else if(fps!=applied_fps) { session.change_rate(fps,now);applied_fps=fps; }
     }
     const auto after=session.poll(now);
@@ -124,6 +133,9 @@ void synchronize(uint8_t* rdram,Nanoseconds now) {
     }
 }
 void update_frame(uint8_t* rdram,recomp_context* ctx,Nanoseconds now) {
+    dora3::profile::capture_context(rdram);
+    dora3::graphics_profile::Scope graphics_scope(dora3::graphics_profile::Stage::NativeUpdate);
+    dora3::profile::Scope profile(dora3::profile::Tag::NativeUpdate);
     synchronize(rdram,now);
     if(game_frame_session().phase()!=Phase::Native || !active_policy)return;
     if(active_policy->update)active_policy->update(rdram,ctx,now);
@@ -132,6 +144,8 @@ void update_frame(uint8_t* rdram,recomp_context* ctx,Nanoseconds now) {
     synchronize(rdram,now);
 }
 void build_frame(uint8_t* rdram,recomp_context* ctx,const FrameTicket& ticket,FrameScheduler& owner) {
+    dora3::graphics_profile::Scope graphics_scope(dora3::graphics_profile::Stage::NativeFrame);
+    dora3::profile::Scope profile(dora3::profile::Tag::NativeFrame);
     // Eligibility was checked immediately before dispatch on this guest thread.
     // No yield occurs between that check, reservation and entry here.
     if(!active_policy || !fade || game_frame_session().phase()!=Phase::Native ||
@@ -147,6 +161,7 @@ void build_frame(uint8_t* rdram,recomp_context* ctx,const FrameTicket& ticket,Fr
         ModelFrameScope models(rdram,ctx,frame_time,ticket.bank);
         UiFrameScope ui(rdram,ctx,frame_time);
         MinigameFrameScope minigames(rdram);
+        dora3::graphics_profile::Scope builder_scope(dora3::graphics_profile::Stage::FrameBuild);
         dora3_graphics_frame_build(rdram,ctx);
     }
     // Same ordering as the original loop: increment after blocking submit;
@@ -171,7 +186,7 @@ extern "C" int dora3_native_loop_after_vi(uint8_t* rdram,recomp_context*) {
     if(!entry_policy){
         entry_identity.reset();const auto reason=native_scene_fallback_reason(rdram);
         if(last_fallback!=reason) {
-            std::fprintf(stderr,"NATIVE LOOP Source fallback requested_fps=%u reason=%s update=%08X draw=%08X divider=%d\n",fps,reason,
+            DORA3_LOG(stderr,"NATIVE LOOP Source fallback requested_fps=%u reason=%s update=%08X draw=%08X divider=%d\n",fps,reason,
                 uint32_t(word(rdram,0x801A4500)),uint32_t(word(rdram,0x801A4514)),word(rdram,0x801A39DC));
             last_fallback=reason;
         }

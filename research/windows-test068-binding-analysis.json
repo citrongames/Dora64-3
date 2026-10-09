@@ -1,0 +1,10 @@
+{
+  "scope": "Static read of compiled068 PE and its PDB; no execution of game functions or tests",
+  "build_id": "test-068",
+  "exe_sha256": "edc7ac752545f79712685d13571efeecbe45980b1413e7dc6939be32ac7f9afc",
+  "function": "dora3_s0_8002A650",
+  "cache_base_guest": "8047EC00",
+  "cache_base_ram_offset": "0047EC00",
+  "compiler_address_formula": "sign_extend_32(index*20+80480000) + 7FFFEC00 = index*20 + 0047EC00",
+  "gameplay_confirmation_received": false
+}

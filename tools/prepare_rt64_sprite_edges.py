@@ -8,6 +8,9 @@ PINNED = {
     'CMakeLists.txt': '8d9fd515ef4041bc989e4ceb214594d2a6b4969f19d9d6421a188a4c559b7be6',
     'src/shaders/RasterPS.hlsl': 'dfa02fcecdfe881a21e4f8a5c4d11b07184619625eb3a08a1ae7af9a0ce259e5',
     'src/shaders/TextureSampler.hlsli': '3eafa0ea5a55dece3c19a2a07451d3c7977d670c4aad7082811b7b5e2d7da642',
+    'src/shaders/FbWriteColorCS.hlsl': 'c589dfa305f3aaa791e05966b16cb9aba3a4661988a7a122ae8dd9806ebfa317',
+    'src/shaders/FbWriteDepthCS.hlsl': '2a170828ab61d215848e1a4cd8999d6cc037beba22dde7c78e283b510d6469ef',
+    'src/shaders/FbWritePackedCS.hlsl': 'e5b8a52eac01d752f5e15cde78e6c3f7c9545ece9293ccfd8df3bbb94afb8c24',
 }
 
 def replace_once(text, old, new):
@@ -70,8 +73,11 @@ def main():
     if cmake.count(needle) != 5:
         raise SystemExit('RT64 shader builder layout changed')
     cmake = cmake.replace(needle, needle + '''
-    if(SHADERNAME STREQUAL "src/shaders/RasterPS.hlsl")
-        set(FILENAME "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/src/shaders/RasterPS.hlsl")
+    if(SHADERNAME STREQUAL "src/shaders/RasterPS.hlsl" OR
+       SHADERNAME STREQUAL "src/shaders/FbWriteColorCS.hlsl" OR
+       SHADERNAME STREQUAL "src/shaders/FbWriteDepthCS.hlsl" OR
+       SHADERNAME STREQUAL "src/shaders/FbWritePackedCS.hlsl")
+        set(FILENAME "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/${SHADERNAME}")
     endif()''')
     dependency = '        list(APPEND SHADER_INCLUDE_DEPS "${PROJECT_SOURCE_DIR}/src/shaders/TextureSampler.hlsli")'
     if cmake.count(dependency) != 3:
@@ -79,8 +85,34 @@ def main():
     cmake = cmake.replace(dependency, '''        list(APPEND SHADER_INCLUDE_DEPS
             "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/src/shaders/TextureSampler.hlsli"
             "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/src/shaders/world_sprite_edges.hlsli")''')
+    # Preserve ordinary eager offset/pixel addressing. Only the optional
+    # deferred-copy flag selects native pixel centers in a scaled GPU target.
+    fb_color=sources['src/shaders/FbWriteColorCS.hlsl']
+    fb_depth=sources['src/shaders/FbWriteDepthCS.hlsl']
+    fb_packed=sources['src/shaders/FbWritePackedCS.hlsl']
+    old='        uint2 offsetCoord = gConstants.offset + coord;'
+    new="""        const bool deferred = (gConstants.offset.x & 0x80000000u) != 0;
+        uint2 offsetCoord = uint2(deferred ? 0u : gConstants.offset.x, gConstants.offset.y) + coord;
+        uint2 sourceCoord = deferred ? uint2((float2(offsetCoord) + 0.5f) *
+            (float(gConstants.offset.x & 0x7fffffffu) / 65536.0f)) : offsetCoord;"""
+    fb_color=replace_once(fb_color,old,new)
+    fb_depth=replace_once(fb_depth,old,new)
+    fb_color=replace_once(fb_color,'gInput.Load(uint3(offsetCoord, 0))','gInput.Load(uint3(sourceCoord, 0))')
+    fb_depth=replace_once(fb_depth,'gInput.Load(offsetCoord, 0)','gInput.Load(sourceCoord, 0)')
+    fb_depth=replace_once(fb_depth,'gInput.Load(uint3(offsetCoord, 0))','gInput.Load(uint3(sourceCoord, 0))')
+    old='    const uint2 pixelCoord = uint2(pixelIndex % gConstants.resolution.x, pixelIndex / gConstants.resolution.x);'
+    new=old+"""
+    const bool deferred = (gConstants.offset.x & 0x80000000u) != 0;
+    const uint2 sourceCoord = deferred ? uint2((float2(pixelCoord) + 0.5f) *
+        (float(gConstants.offset.x & 0x7fffffffu) / 65536.0f)) : pixelCoord;"""
+    fb_packed=replace_once(fb_packed,old,new)
+    fb_packed=replace_once(fb_packed,'gInput.Load(pixelCoord, 0)','gInput.Load(sourceCoord, 0)')
+    fb_packed=fb_packed.replace('gInput.Load(uint3(pixelCoord, 0))','gInput.Load(uint3(sourceCoord, 0))')
     outputs = {
         'CMakeLists.txt': cmake,
+        'src/shaders/FbWriteColorCS.hlsl': fb_color,
+        'src/shaders/FbWriteDepthCS.hlsl': fb_depth,
+        'src/shaders/FbWritePackedCS.hlsl': fb_packed,
         'src/shaders/RasterPS.hlsl': sources['src/shaders/RasterPS.hlsl'],
         'src/shaders/TextureSampler.hlsli': sampler,
         'src/shaders/world_sprite_edges.hlsli': (ROOT / 'src/shaders/world_sprite_edges.hlsli').read_text(),

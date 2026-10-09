@@ -140,6 +140,18 @@ output.mkdir(parents=True,exist_ok=True)
 def write(name,content):
     dest=output/name
     if not dest.exists() or dest.read_text()!=content: dest.write_text(content)
+#087: observe actual runtime work; retain all task/completion/lock ordering.
+text='#include "graphics_profile.hpp"\n'+text
+text=replace_once(text, '        if (!ultramodern::rsp::run_task(PASS_RDRAM task)) {',
+    '        dora3::graphics_profile::Scope audio_scope(dora3::graphics_profile::Stage::AudioTask);\n        if (!ultramodern::rsp::run_task(PASS_RDRAM task)) {')
+text=replace_once(text, '        // Tell the game that the RSP has completed',
+    '        audio_scope.finish();\n        // Tell the game that the RSP has completed')
+text=replace_once(text, '        events_context.sp_task_queue.enqueue(task);',
+    '        dora3::graphics_profile::mark(dora3::graphics_profile::Mark::AudioSubmit,uint32_t(task_),task->t.type);\n        events_context.sp_task_queue.enqueue(task);')
+text=replace_once(text, '                ultramodern::measure_input_latency();',
+    '                graphics_ram_wait.finish();\n                ultramodern::measure_input_latency();')
+text=replace_once(text, '            else if (const auto* task_action = std::get_if<SpTaskAction>(&action)) {',
+    '            else if (const auto* task_action = std::get_if<SpTaskAction>(&action)) {\n                dora3::graphics_profile::Scope graphics_ram_wait(dora3::graphics_profile::Stage::GraphicsRAMWait);')
 write('events-after-parse.cpp',text)
 data=(source.parent/'scheduling.cpp').read_bytes()
 if hashlib.sha256(data).hexdigest()!='c722d615e94bee97d87f158249b6d75429fa381f875cde2db7110dba21ca2f7e': raise RuntimeError('Unreviewed scheduling.cpp')
@@ -190,5 +202,46 @@ if hashlib.sha256(reset_caller.read_bytes()).hexdigest()!='1b7ffe7b2d8993d851ac2
 adapted='void dora3_reset_native_frame_delivery();\n'+adapted
 adapted=replace_once(adapted,'void ultramodern::reset_message_queues_for_game_reset() {',
     'void ultramodern::reset_message_queues_for_game_reset() {\n    dora3_reset_native_frame_delivery();')
+# Native update/build boundaries are explicit cooperative interrupt safe points.
+# Keep the existing interrupt mask, queue requeue policy and priority scheduler.
+adapted += r"""
+void dora3_native_scheduler_checkpoint(uint8_t* rdram) {
+    if (!ultramodern::is_game_thread() || !dora3_interrupts_enabled()) return;
+    dequeue_external_messages(PASS_RDRAM1);
+    ultramodern::check_running_queue(PASS_RDRAM1);
+}
+"""
+# IDs live only in host-side diagnostic messages; requeues retain the same ID.
+adapted='#include "graphics_profile.hpp"\n#include <atomic>\n'+adapted
+adapted=replace_once(adapted,'    bool requeue_if_blocked;','    bool requeue_if_blocked;\n#ifdef DORA3_GRAPHICS_PROFILE\n    uint64_t profile_id=0;\n#endif')
+adapted=replace_once(adapted,'    external_messages.enqueue({mq, msg, jam, requeue_enabled[static_cast<int>(src)]});',r"""    QueuedMessage message{mq,msg,jam,requeue_enabled[static_cast<int>(src)]};
+#ifdef DORA3_GRAPHICS_PROFILE
+    if(src==EventMessageSource::Sp || src==EventMessageSource::Dp) {
+        static std::atomic<uint64_t> serial{0};
+        message.profile_id=serial.fetch_add(1,std::memory_order_relaxed)+1;
+        // Profile-local source tags:1=SP,2=DP; low32bits=guest message.
+        const uint64_t tag=src==EventMessageSource::Sp?1:2;
+        dora3::graphics_profile::mark(dora3::graphics_profile::Mark::ExternalQueued,message.profile_id,(tag<<32)|uint32_t(msg));
+    }
+#endif
+    external_messages.enqueue(message);""")
+anchor='bool do_send(RDRAM_ARG PTR(OSMesgQueue) mq_, OSMesg msg, bool jam, bool block);'
+adapted=replace_once(adapted,anchor,anchor+r"""
+static bool deliver_external_message(RDRAM_ARG const QueuedMessage& message) {
+    const bool delivered=do_send(PASS_RDRAM message.mq,message.mesg,message.jam,false);
+#ifdef DORA3_GRAPHICS_PROFILE
+    if(message.profile_id) dora3::graphics_profile::mark(delivered?
+        dora3::graphics_profile::Mark::ExternalDelivered:dora3::graphics_profile::Mark::ExternalBlocked,
+        message.profile_id,uint32_t(message.mq));
+#endif
+    return delivered;
+}
+""")
+call='do_send(PASS_RDRAM to_send.mq, to_send.mesg, to_send.jam, false)'
+if adapted.count(call)!=3:raise RuntimeError('External delivery paths changed')
+adapted=adapted.replace(call,'deliver_external_message(PASS_RDRAM to_send)')
+adapted=replace_once(adapted,'    if (msg_ != NULLPTR) {',r"""    if(uint32_t(mq_)==0x801A6A10u) dora3::graphics_profile::mark(
+        dora3::graphics_profile::Mark::SchedulerReceived,uint32_t(mq_),uint32_t(TO_PTR(OSMesg,mq->msg)[mq->first]));
+    if (msg_ != NULLPTR) {""")
 write('mesgqueue.cpp',adapted)
 print('Pinned runtime: SP lifecycle, raw RDP queue, interrupt gating; original dependencies unchanged')

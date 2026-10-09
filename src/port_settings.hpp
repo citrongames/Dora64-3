@@ -19,6 +19,7 @@ struct Settings {
     int display_index=0, display_refresh_rate=0;
     int frame_rate_mode=0, frame_rate_limit=144; // Original, Display, Manual (Dora64)
     bool fullscreen=false, show_fps=false;
+    float draw_distance=1.0f;
     float deadzone=0.25f;
     bool background_gamepad_input=true;
     std::array<int, ActionCount> keys{}, pad{};

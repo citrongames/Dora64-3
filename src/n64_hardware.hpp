@@ -5,7 +5,7 @@
 #include <span>
 
 namespace dora3::hw {
-constexpr uint32_t ram_size = 0x400000;
+constexpr uint32_t ram_size = 0x800000;
 constexpr uint32_t raw_rdp_task = 0x44335244;
 struct Controller { bool connected; uint16_t buttons; int8_t x, y; };
 // Frontend callbacks are installed before guest/worker threads start.

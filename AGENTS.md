@@ -1,3 +1,265 @@
+## 2026-10-09: performance work accepted for now; commit/push authorized
+
+User paused further FPS optimization: mountain is a heavy scene, city can reach360.
+Explicitly authorized commit and push of the previous stage through clean089.
+088 user estimate140->160 remains the last numerical comparison; no separate089
+controlled FPS result. New lava fade and swimming vertical-camera bugs are a
+separate uncommitted task, not covered by this commit/push authorization.
+No agent tests/CPU checks/game/renderer/GPU; source/ROM analysis and builds only.
+
+## After088: user140->160FPS;089 removes repeated viewport clipping calculation
+
+User reports approximately140->160FPS after088; estimate, no new profile.
+087 HLE outsidefullSync2.971ms;085 trianglebounds sampled0.520ms includes
+observer overhead. Static088 MSVC object has4 lroundf calls per visible triangle
+for invariant viewport rect.089 caches pure rect by all4 XYfloat bit patterns
+and4 int16 clip ratios, compares every call; original arithmetic on miss.
+No geometry/gameplay/time/culling omissions;080/084/086/088 retained,082inactive.
+Actual089 FPS unmeasured. Clean build; no agent game/tests/CPU/GPU.
+See docs/performance-viewport-after088.md. Git only on explicit user command.
+
+## After087: measured upload serialization;088 overlaps CPU tiles with GPU copy
+
+087 profile1791480023665:53samples/errors0/drop0. Late165 producer5.057ms,
+HLE outside fullSync2.971ms; tiles0.743ms then upload GPU wait0.682ms/frame.
+SP/DP delivery mean0.262/0.142ms; RAM wait negligible.088 starts existing GPU
+geometry copy before independent CPU tile/TMEM processing, then retains same
+fence/texture waits before publication. Exceptional path also waits beforethrow.
+No gameplay/AI/time/contact/bank/completion changes. Actual FPS unmeasured;
+remaining HLE/Native costs persist, no360claim.080/084/086 retained,082 inactive.
+See docs/performance-upload-after087.md, research/test087-performance-analysis.json.
+Clean088; no agent tests/game/CPU checks/renderer/GPU; Git only on usercommand.
+
+## After086: approximately same, possible10FPS;087 delivery timeline
+
+User086 reports little change, perhaps10FPS. Not confirmed improvement.
+087 observes actual SP/DP enqueue/delivery/guest receive, audio tasks and waits.
+Hot-function sampling disabled to reduce observer overhead; schema6/stride0.
+Keep080/084/086;082 inactive. No new performance fix claimed; see
+ docs/performance-after086.md. Diagnostic permission persists; no agent game,
+tests/CPU checks/renderer/GPU. Final fixes clean; Git only on command.
+
+## After085: ready-frame idle persists;086 per-slice scheduler service
+
+085 profile1791478659712:51samples/errors0/drop0;30..39s producer duty65.48%,
+ready+producer-idle mean2.142ms. Common/player catch-up chains overlap the gap;
+BB080 update bypasses FrameBridge entirely.086 services existing pending events
+at fully unwound simulation boundaries via timeline-only current predicate.
+No elapsed/slice/AI/contact/clip changes; no early SP/DP or bank-release changes.
+080/084 preserved,082 batching inactive. Not all idle proven recoverable; FPS
+pending user check. Clean086, no agent tests/game/CPU checks/renderer/GPU.
+See docs/performance-handoff-after085.md and research/test085-critical-path-analysis.json.
+Commit/push only on command; all dirty work and previous builds preserved.
+
+## After084: user confirms +20-30FPS, about150;085 post-fix geometry measurements
+
+084 checkpoints improve FPS by user observation20-30, still about150. Preserve
+084 and080;082 batching remains inactive. No post084 internal profile yet.
+085 keeps schema4 shared timeline plus schema5 geometry parts, active only
+inside already-selected1/64 vertex/triangle samples. No per-vertex timers.
+Parent sampled durations now include nested observer overhead; analyze part
+sums using parent observed/calls, not as independent exact total times.
+See docs/performance-after084.md. Diagnostic permission persists; no agent
+execution of game/tests/CPU/GPU. Final fixes clean; Git only on command.
+
+## After083: ready frames wait before runtime submission;084 explicit scheduler handoff
+
+Profile1791477249843 schema4:54samples, zero scope errors/dropped events.
+30..39s1163 matched frames:producer duty68.0%, ready+producer-idle mean1.996ms,
+576frames>0.5ms, frame-build-end to runtime-submit mean4.871ms (includes busy SP).
+This is measured handoff delay, not proof all of it is recoverable.
+084 delivers already-pending external events and runs existing guest-priority
+scheduler before/after Native update and after graphics wake enqueue. Original
+SP/DP completion, banks, queue retention, time and all gameplay stay unchanged.
+082 batching still disabled;080 cache retained. Clean084; user FPS pending.
+Details docs/performance-handoff-after083.md; no agent game/tests/CPU/GPU.
+Commit/push only by explicit user command; all dirty work preserved.
+
+## After082: no user-visible gain;083 observes the frame critical path
+
+User:082 approximately same FPS. Disable only082 geometry batching invocation;
+keep080 proven TMEM cache and all prior functional fixes. Do not present082 as
+successful.083 adds shared-clock timeline of Native update/build, source common
+and player costs, RT64 producer/fullSync/render, task submit/parse, wake delivery,
+deadline lateness and bank completion. FrameBuild includes blocking enqueue.
+Static SP completion occurs after send_dl/fullSync; this is not yet proof of
+harmful serialization. Do not remove lifetime waits without evidence/ownership.
+See docs/performance-critical-path-after082.md. Diagnostic permission persists;
+no agent game/tests/CPU checks/GPU. Commit/push only after explicit user command.
+
+## After081: memo cache confirmed;082 batch geometry bookkeeping
+
+User080 reported about2x FPS.081 profile1791476020198 stable165:137.38FPS,
+cache99.9889% hit; texture0.734ms/frame, HLE self2.870ms, producer5.085ms.
+Vertex/triangle sampled costs ~1.064/1.178ms/frame, estimates with overhead.
+082 batches per-command vertex array growth and per-triangle UV bounds updates;
+keeps all geometry, math, draw order, AI/time/contact. Actual additional gain
+not measured; no360 claim. Build clean, no tests/game/GPU agent execution.
+See docs/performance-geometry-after081.md and research/test081-remaining-performance-analysis.json.
+All dirty work preserved; commit/push only on user command after playcheck.
+
+## После080: пользователь подтвердил примерно двукратный прирост;081 уточняет остаток
+
+080 exact-input TMEM hash memoization дала по наблюдению пользователя примерно2x
+FPS, но360 не достигнуты. Это пользовательская оценка, не новый внутренний профиль.
+081 сохраняет080 и добавляет cache hit/miss/bypass, sampled Native object/model/enemy
+stages. Sampled timers теперь wall-only: GetThreadTimes/QueryThreadCycleTime исключены
+из мелких измерений, coarse thread CPU остаётся. Schema3; вложенные/параллельные
+затраты не суммировать, выборочные оценки всё ещё имеют observer overhead.
+081 диагностический по ранее данному разрешению, generic traces/profiler выключены.
+Не объявлять нынешнюю причину без нового профиля. Нет запуска игры/тестов агентом.
+Подробности docs/performance-remaining-after080.md. Commit/push по команде.
+
+## После079: измеренный TMEM hash;080 exact-input memoization, чистый билд
+
+Профиль1791474301346 (schema2,41sample,scope_errors0): stable16526samples,
+2169frames,82.92FPS; texture stage3.982мс/frame. Sampled TMEMHasher среднее
+6.262мкс; extrapolation~3.719мс/frame включает observer overhead, не складывать
+с вложенным upload/прочими оценками. Источник:research/test079-graphics-detail-analysis.json.
+TextureManager::uploadTexture всегда пересчитывает hash доhashSet lookup.
+080 memoizes pure paletted v5 hash только по точному совпадению всех4096bytes
+и9параметров; GPUcache/eviction/uploads/readback и gameplay unchanged.
+Bounded2048entries/~8.2MiB per producer thread. Hit rate/newFPS ещё не измерены,
+не обещать300/360. После правки clean080: GraphicsProfileOFF/DiagnosticsOFF,
+CPU generation прежняяclean; tests/game/GPU агентом не запускать; Git по команде.
+Подробности docs/performance-tmem-hash-after079.md.
+
+## После профиля078: измерены HLE и texture processing;079 уточняет внутреннюю причину
+
+Пользовательский запуск1791473499098:2D360.14FPS, intro116.96, тяжёлая165
+86.91FPS. В165 deferred3149/3149, eager0:077 fast path действительно работает.
+Producer8.31мс/frame; HLE self2.835, tiles3.950, producer GPU wait0.785.
+Не суммировать nested/параллельные stages; thread CPU мелких областей грубый.
+078 ещё не разделяет loadToTMEM/TextureManager hash; точную внутреннюю причину
+не заявлять.079 добавляет только1/64 sampled detail этих операций и HLE
+vertex/triangle/matrix/draw-state/flush, без изменений алгоритмов. Диагностика
+разрешена пользователем для расследования; tests/game/GPU агенту запрещены.
+После измеренного исправления чистый билд; commit/push только по команде.
+
+## После077: точечный графический профиль078 разрешён пользователем
+
+077 не устранила просадку: Native5x/360 около120FPS, гора до70; начальная
+катсцена около120; чистые2D экраны дают360. По наблюдению CPU/GPU около10%.
+Это приблизительные наблюдения, не новые внутренние измерения. Причина
+остаточной просадки НЕ установлена;077 исправила eligibility, не доказалаFPS.
+Пользователь прямо разрешил точечный диагностический билд и пояснил: прежний
+запрет профиля был для сравнения чистой скорости, для расследования можно.
+078 только наблюдение, gameplay/077 fallback/barriers не меняются. Общие
+DIAGNOSTICS/PROFILE и generated traces выключены; отдельный GRAPHICS_PROFILE
+с coarse stage timers/counters, один graphics-profile.jsonl/сек. После
+измеренного исправления вернуть чистую сборку. Агент игру/тесты не запускает.
+Подробности docs/performance-graphics-profile-after077.md. Git только по команде.
+
+## После076: исправлены два препятствия deferred readback
+
+Статически подтверждено: Original задаёт Z00000400, а076 ожидала0038F800;
+кроме того,076 отвергала штатную SetColorImage(Z)+FillRect очистку. Общий
+planner теперь принимает реальный адрес и RT64 clearDepthOnly, сохраняя
+результат какDepth. Другие fallback/barriers/AI/time/contacts не менялись.
+Детали docs/performance-depth-readback-after076.md. Новый FPS не измерен,
+300/360 не обещаны; clean077 по команде, без тестов/запуска и commit/push.
+
+## После076: пользователь не заметил улучшения; причина остаточной просадки не установлена
+
+Пользователь после проверки076: «ну примерно тоже самое». Предыдущая оценка:
+360FPS только в2D меню/маленьких комнатах; обычный мир около80–110FPS,
+при дальности1x максимум порядка200+. Новые точные замеры076 не предоставлены.
+Отдельный RAM-render вfullSync найден по исходникам, но его устранение в076
+не дало заметного пользовательского эффекта. Не считать это доказанной причиной
+остаточной просадки и не утверждать, что fast path реально работал в проблемной
+сцене:076 без профиля/логов, фактическая eligibility/fallback частота не измерена.
+Следующая задача передаётся Астре: независимо локализовать оставшееся узкое место,
+проверить применение076 и изучить весь критический graphics/Native путь.
+Новых исправлений или сборки при передаче не сделано. Commit/push запрещены
+до пользовательской проверки и прямой команды. Все незакоммиченные изменения
+main сохранить; не применять reset/clean и упрощения игровой логики.
+
+##076: deferred Native framebuffer RAM; clean build
+
+075 user: world80–110FPS, drawdistance1x up to200+,360 onlysimple scenes.
+Найдена интеграционная причина: frontend default renderToRAM=true заставляет
+State fullSync отдельно рисовать native scene для RAM перед вторым display
+рендером.076 переносит RAM копию eligible Native gameplay постоянных color/Z
+буферов к CPU copy/Native handoff/config/fallback; Original/raw/unsupported
+пути сохраняют eager handling. Есть масштабированные native pixel coordinates
+дляAuto/2x/4x. Не выключать CPU copy и не упрощатьAI/time/contact.
+Подробности docs/performance-framebuffer-readback.md. Legacy eager shader flag0
+неизменён; pinned libraries read-only/build-local adapters.076 clean, безлогов,
+profiling/tests/CPU checks/game/GPU agent execution. Git после команды.
+
+##075: чистая скорость без диагностической нагрузки
+
+Прямая инструкция пользователя: следующий билд без проверок и логов.
+Windows075 использует --no-diagnostics CPU generation, profiling=false,
+DORA3_DIAGNOSTICS=OFF: нет generic trace entries, timers/atomic profiler,
+per-task/audio/input logs, ресурсных снимков и исследовательских byte checks.
+Сохранены12 ROM-qualified functional entries и реальная overlay/queue/lifetime
+логика. Не отключать игровые условия/AI/contact/time радиFPS.075 сравнивает
+нагрузку диагностики с074; ещё не доказывает устранения расходов graphics producer.
+Подробнее docs/performance-clean-build.md. Старые файлы/сейвы сохранять;
+нет tests/CPU checks/game/GPU запуска агентом; commit/push после команды.
+
+##074: пользователь подтвердил60; исследованиеManual360
+
+После исправления entry registry пользователь получил60FPS. Новый журнал
+1791464902194 подтверждает accepted360 и355–360FPS в переходах,121 при входе
+в169; универсального100FPS cap нет. На5x тяжёлые сцены165/169/150 дают примерно
+61/95/97FPS. Следующая локализация — producer RT64Parse (CPU6–8мс/frame,
+GPU~0.3мс), не уменьшениеAI или границвремени. Build RelWithDebInfo /O2/NDEBUG;
+RT64 verbose logging disabled, собственные task/audio logs и profiler enabled.
+Доля logging overhead не измерена отдельно; не объявлять его всей причиной.
+Подробности docs/performance-after074.md. Только статический анализ/сборка,
+игру/тесты агентом не запускать; Git после команды пользователя.
+
+## После073: измеренный служебный entry registry;074
+
+Профиль073 active5x46–48FPS, pause60. Около2.8млн trace calls/сек;
+каждый повторно сканировал49 immutable overlay records и91 dependency records
+при совпадении. Trace sampled duration раньше нельзя брать без scale1/64;
+оценка порядка383мс/сек wall, не точная CPU attribution.074 исправляет
+immutable lookup/first-entry registry, сохраняя actual atomic loaded/generation
+проверки на каждом вызове и все special hooks. Тайминг/AI/contact/input не менять.
+Подробности docs/performance-entry-registry.md; игра/тесты агентом запрещены,
+Git после пользовательской проверки. Не применять speculative input coalescing.
+
+## После072: исследовать excessive full-pool subdivision
+
+Пользователь требует хороший быстрый результат по теме; просадку ниже60
+не объяснять настройкой лимита.072 на5x около32FPS, Native common516 calls/сек,
+Original20 calls/сек.073 пишет boundary reasons/slice histogram и thread CPU
+durations; time/AI/contact/birth/clip rules не менять без доказанной причины.
+Для следующего замера достаточно5x+пауза; не гонять снова все значения1..5.
+Тесты/CPU checks/игра/renderer/GPU агентом запрещены. Git после user проверки.
+
+## После профиля071: измеренный Native dispatcher и identity lookup
+
+071 показал миллионы повторных служебных preview/eligibility/identity calls;
+на5x dispatcher self примерно500мс/сек по выборке.072 исправляет только
+маршрутизацию подтверждённого E8E7C и порядок site guards, а также поиск
+immutable definitions; cleanup/AI/contacts/elapsed time не сокращать.
+Профиль сохраняется, улучшение072 проверяет пользователь. Подробности:
+docs/performance-native-dispatch.md. Git только после проверки и команды.
+
+## Текущее состояние профилирования после070
+
+070:3x улучшилось до58–60FPS,4x/5x остаются просадки. Профиль локализует
+остаток в common pool self; отдельная причина внутри ещё не измерена.
+071 добавляет только sampled scopes/observed_calls с сохранением070 логики.
+Следующее исправление выбирать по071 измерениям, без упрощений AI/contacts
+или ограничения elapsed time. Игру/профиль запускает только пользователь.
+
+## Диагностика производительности: сначала доказанная причина (2026-10-08)
+
+Прямая инструкция пользователя после068: не вносить оптимизации, упрощения
+логики или предположительные исправления FPS без установления реальной причины.
+Сначала изучить код и измерить именно проблемный сценарий. Пользователь разрешил
+профилировочный Windows build для определения того, что съедает FPS. В нём
+сохранять игровую логику/дальность/лимиты068, добавлять только наблюдение и журнал.
+Неподтверждённые оптимизации текущего этапа отменены. После пользовательского
+профиля назвать измеренное узкое место, затем исправлять его целевым изменением.
+Без запусков игры/renderer/GPU/CPU checks агентом; профиль собирает пользователь.
+Commit/push по-прежнему после проверки и отдельной команды.
+
 ## Действующее правило сборки: после завершённых изменений кода (2026-10-08)
 
 Прямая инструкция пользователя: «после того как ты сделал все изменения в коде,

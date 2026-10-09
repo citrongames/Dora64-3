@@ -1,3 +1,7 @@
+#include "graphics_profile.hpp"
+#include "performance_profile.hpp"
+#include "guest_storage.hpp"
+#include "native_slot_reset.hpp"
 #include "native_enemy.hpp"
 #include "native_scene_objects.hpp"
 #include "native_enemy_projection_math.hpp"
@@ -18,7 +22,7 @@ extern "C" int dora3_overlay_loaded(uint32_t);
 extern "C" void dora3_s33_remaining_8021FED8(uint8_t*,recomp_context*);
 using namespace dora3::native_time;
 namespace {
-constexpr uint32_t pool=0x801734B8u;
+constexpr uint32_t pool=0x804B34B8u;
 constexpr uint32_t stride=0xCCu;
 using Definition=dora3::scene_objects::Definition;
 // Registered callback/contact closures have explicit ROM identity.
@@ -244,10 +248,37 @@ constexpr std::array definitions{
     Definition{258,0x70A50,0x801E5598,0x801E5D7C},
     Definition{259,0x70A50,0x801E57C0,0x801E5D7C}
 };
+// Immutable definition records are indexed by kind at compile time. Runtime
+// overlay, callback/contact/constructor and lifetime validation remain live.
+// Linked scene candidates retain their original order, including duplicate kinds.
+constexpr size_t definition_kind_count=[] {
+    int highest=-1;
+    for(const auto& value:definitions)highest=std::max(highest,value.kind);
+    for(const auto& value:dora3::scene_objects::definitions)highest=std::max(highest,value.kind);
+    return size_t(highest)+1;
+}();
+struct DefinitionIndex {
+    std::array<int,definition_kind_count> enemy{},scene{};
+    std::array<int,dora3::scene_objects::definitions.size()> next{};
+};
+constexpr auto definition_index=[] {
+    DefinitionIndex result;result.enemy.fill(-1);result.scene.fill(-1);result.next.fill(-1);
+    for(size_t i=0;i<definitions.size();++i) {
+        const auto kind=size_t(definitions[i].kind);
+        if(result.enemy[kind]<0)result.enemy[kind]=int(i);
+    }
+    for(size_t i=dora3::scene_objects::definitions.size();i-->0;) {
+        const auto kind=size_t(dora3::scene_objects::definitions[i].kind);
+        result.next[i]=result.scene[kind];result.scene[kind]=int(i);
+    }
+    return result;
+}();
 const Definition* definition(int kind,uint8_t* rdram=nullptr) {
-    for(const auto& v:definitions)if(v.kind==kind)return &v;
-    for(const auto& v:dora3::scene_objects::definitions) {
-        if(v.kind!=kind)continue;
+    if(kind<0||size_t(kind)>=definition_kind_count)return nullptr;
+    if(const int selected=definition_index.enemy[size_t(kind)];selected>=0)
+        return &definitions[size_t(selected)];
+    for(int selected=definition_index.scene[size_t(kind)];selected>=0;selected=definition_index.next[size_t(selected)]) {
+        const auto& v=dora3::scene_objects::definitions[size_t(selected)];
         if(!rdram)return &v;
         if(dora3_overlay_loaded(v.rom)&&uint32_t(MEM_W(0,int32_t(0x80202064u+unsigned(kind)*84)))==v.callback&&
            uint32_t(MEM_W(0,int32_t(0x80202068u+unsigned(kind)*84)))==v.contact&&
@@ -255,7 +286,7 @@ const Definition* definition(int kind,uint8_t* rdram=nullptr) {
     }
     return nullptr;
 }
-bool pointer(uint32_t p,unsigned size) {return !(p&3)&&p>=0x80000000u&&uint64_t(p)+size<=0x80400000ull;}
+bool pointer(uint32_t p,unsigned size) {return !(p&3)&&p>=0x80000000u&&uint64_t(p)+size<=0x80800000ull;}
 int32_t word(uint8_t* rdram,uint32_t p) {return MEM_W(0,int32_t(p));}
 float real(uint8_t* rdram,uint32_t p) {return std::bit_cast<float>(word(rdram,p));}
 void put(uint8_t* rdram,uint32_t p,float v) {MEM_W(0,int32_t(p))=std::bit_cast<int32_t>(v);}
@@ -265,7 +296,8 @@ double rom_double(uint8_t* rdram,uint32_t address) {
 unsigned index(uint32_t actor) {return (actor-pool)/stride;}
 struct Identity {uint32_t actor,physical,model,callback,rom;uint64_t lifetime;int kind;};
 std::optional<Identity> identity(uint8_t* rdram,uint32_t actor) {
-    if(!rdram||actor<pool||actor>=pool+200*stride||(actor-pool)%stride||!word(rdram,actor+0x94))return std::nullopt;
+    dora3::profile::Scope detailProfile(dora3::profile::Tag::EnemyIdentitySample,dora3::profile::sample_stage(dora3::profile::Tag::EnemyIdentitySample,16));
+    if(!rdram||actor<pool||actor>=pool+dora3::distance::common_capacity*stride||(actor-pool)%stride||!word(rdram,actor+0x94))return std::nullopt;
     const auto physical=uint32_t(word(rdram,actor+0x98)),model=uint32_t(word(rdram,actor+0x74));
     if(!pointer(physical,0xDC)||!pointer(model,0x84))return std::nullopt;
     const auto kind=MEM_H(0x20,int32_t(physical));const auto* def=definition(kind,rdram);
@@ -292,20 +324,20 @@ bool same(const Identity& a,const Identity& b) {
 int attachment_parent_slot(uint8_t* rdram,const Identity& child) {
     const int root=MEM_H(0x7C,int32_t(child.physical));
     if(child.rom==0x111E70&&((child.kind==454&&word(rdram,child.actor+0x94)==100)||(child.kind==469&&MEM_H(0x44,int32_t(child.physical))==1))) {
-        if(root<30||root>=230)return -1;
-        const auto parent=identity(rdram,0x80171CD0u+unsigned(root)*stride);
+        if(root<30||root>=dora3::distance::common_end)return -1;
+        const auto parent=identity(rdram,0x804B1CD0u+unsigned(root)*stride);
         if(!parent||parent->actor>=child.actor)return -1;
         const int selector=child.kind==469?1:MEM_H(0x42,int32_t(child.physical));
         if(selector==0)return root;
         if(selector<0||selector>9||!pointer(parent->physical,0x80+2*unsigned(selector)))return -1;
         const int selected=MEM_H(0x7E + 2*selector,int32_t(parent->physical));
         if(selected==-1)return root;
-        const auto linked=selected>=30&&selected<230?identity(rdram,0x80171CD0u+unsigned(selected)*stride):std::nullopt;
+        const auto linked=selected>=30&&selected<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(selected)*stride):std::nullopt;
         return linked&&linked->actor<child.actor?selected:-1;
     }
     if(child.rom==0xF8A40&&(child.kind==410||child.kind==414||child.kind==425)) {
-        if(root<30||root>=230)return -1;
-        const auto parent=identity(rdram,0x80171CD0u+unsigned(root)*stride);
+        if(root<30||root>=dora3::distance::common_end)return -1;
+        const auto parent=identity(rdram,0x804B1CD0u+unsigned(root)*stride);
         if(!parent||parent->actor>=child.actor)return -1;
         int selector=0;
         if(child.kind==410&&word(rdram,child.actor+0x94)==100)selector=MEM_H(0x42,int32_t(child.physical));
@@ -313,20 +345,20 @@ int attachment_parent_slot(uint8_t* rdram,const Identity& child) {
         if(selector==0)return root;
         if(selector<0||selector>8||!pointer(parent->physical,0x80+2*unsigned(selector)))return -1;
         const int selected=MEM_H(0x7E + 2*selector,int32_t(parent->physical));
-        const auto linked=selected>=30&&selected<230?identity(rdram,0x80171CD0u+unsigned(selected)*stride):std::nullopt;
+        const auto linked=selected>=30&&selected<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(selected)*stride):std::nullopt;
         if(selected==-1)return root; // Original retains its root fallback.
         return linked&&linked->actor<child.actor?selected:-1;
     }
     if(child.kind!=353&&child.kind!=406)return root;
-    if(root<30||root>=230)return -1;
-    const auto parent=identity(rdram,0x80171CD0u+unsigned(root)*stride);
+    if(root<30||root>=dora3::distance::common_end)return -1;
+    const auto parent=identity(rdram,0x804B1CD0u+unsigned(root)*stride);
     if(!parent||parent->actor>=child.actor)return -1;
     const int selector=MEM_H(0x44,int32_t(child.physical));
     if(selector==0)return root;
     if(selector<0||selector>(child.kind==406?2:46)||!pointer(parent->physical,0x80+2*unsigned(selector)))return -1;
     const int selected=MEM_H(0x7E + 2*selector,int32_t(parent->physical));
-    if(selected<30||selected>=230)return -1;
-    const auto linked=identity(rdram,0x80171CD0u+unsigned(selected)*stride);
+    if(selected<30||selected>=dora3::distance::common_end)return -1;
+    const auto linked=identity(rdram,0x804B1CD0u+unsigned(selected)*stride);
     return linked&&linked->actor<child.actor?selected:-1;
 }
 // Boss2 detached phases use their own equations. Reattached phases copy only
@@ -376,8 +408,8 @@ std::vector<uint64_t> commands(uint8_t* rdram,const Identity& v) {
         const int slot=MEM_H(int32_t(0x80+2*n),int32_t(v.physical));
         result.push_back(uint64_t(int64_t(slot)));
         uint64_t lifetime=0;
-        if(slot>=30&&slot<230) {
-            const auto actor=0x80171CD0u+unsigned(slot)*stride;
+        if(slot>=30&&slot<dora3::distance::common_end) {
+            const auto actor=0x804B1CD0u+unsigned(slot)*stride;
             const auto model=uint32_t(word(rdram,actor+0x74));
             if(pointer(model,0x84)&&word(rdram,actor+0x94))lifetime=game_model_animation().lifetime_token(model);
         }
@@ -385,14 +417,14 @@ std::vector<uint64_t> commands(uint8_t* rdram,const Identity& v) {
     }
     if(kind==301||kind==302||kind==306||kind==307) {
         const int slot=MEM_H(0x7C,int32_t(v.physical));
-        const auto root=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+        const auto root=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
         result.push_back(root?root->lifetime:0);
         result.push_back(root?uint32_t(word(rdram,root->physical+0x48)):0);
     }
     if(kind==353||kind==406||(kind>=410&&kind<=477)) {
         for(const int slot:std::array<int,2>{MEM_H(0x7C,int32_t(v.physical)),attachment_parent_slot(rdram,v)}) {
             result.push_back(uint64_t(int64_t(slot)));
-            const auto linked=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+            const auto linked=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
             result.push_back(linked?linked->lifetime:0);
         }
     }
@@ -402,7 +434,7 @@ std::vector<uint64_t> commands(uint8_t* rdram,const Identity& v) {
         result.push_back(uint16_t(MEM_H(0,int32_t(0x8021F324u))));
         for(unsigned n=0;n<8;++n) {
             const int slot=MEM_H(int32_t(0x80+2*n),int32_t(v.physical));
-            const auto part=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+            const auto part=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
             result.push_back(part?uint32_t(word(rdram,part->actor+0x94)):0);
             for(const unsigned offset:{0xD0u,0xD6u,0xD8u})result.push_back(part?uint16_t(MEM_H(int32_t(offset),int32_t(part->physical))):0);
         }
@@ -416,7 +448,7 @@ std::vector<uint64_t> commands(uint8_t* rdram,const Identity& v) {
         for(const unsigned offset:{0xD0u,0xD6u,0xD8u})result.push_back(uint16_t(MEM_H(int32_t(offset),int32_t(v.physical))));
         for(const unsigned offset:{0x7Cu,0x80u,0x82u,0x84u,0x86u,0x88u,0x8Au,0x8Cu}) {
             const int slot=MEM_H(int32_t(offset),int32_t(v.physical));result.push_back(uint64_t(int64_t(slot)));
-            const uint32_t linked=slot>=30&&slot<230?0x80171CD0u+unsigned(slot)*stride:0;
+            const uint32_t linked=slot>=30&&slot<dora3::distance::common_end?0x804B1CD0u+unsigned(slot)*stride:0;
             const uint32_t model=linked?uint32_t(word(rdram,linked+0x74)):0;
             result.push_back(pointer(model,0x84)&&word(rdram,linked+0x94)?game_model_animation().lifetime_token(model):0);
         }
@@ -431,7 +463,7 @@ std::vector<uint64_t> commands(uint8_t* rdram,const Identity& v) {
         // Main parts carry independent damage/shell commands read by the head.
         for(unsigned n=0;n<2;++n) {
             const int slot=MEM_H(int32_t(0x80+2*n),int32_t(v.physical));
-            const auto part=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+            const auto part=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
             result.push_back(part?uint32_t(word(rdram,part->actor+0x94)):0);
             result.push_back(part?uint16_t(MEM_H(0xD0,int32_t(part->physical))):0);
             result.push_back(part?uint16_t(MEM_H(0xD8,int32_t(part->physical))):0);
@@ -441,7 +473,7 @@ std::vector<uint64_t> commands(uint8_t* rdram,const Identity& v) {
         for(const unsigned offset:{0xD0u,0xD6u,0xD8u})result.push_back(uint64_t(int64_t(MEM_H(int32_t(offset),int32_t(v.physical)))));
         if(word(rdram,v.actor+0x94)==6) {
             const int slot=MEM_H(0x88,int32_t(v.physical));
-            const auto part=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+            const auto part=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
             result.push_back(part?game_model_animation().run_token(part->model):0);
             result.push_back(part?game_model_animation().time_command_token(part->model):0);
             result.push_back(part?uint32_t(word(rdram,part->physical+0xCC)):0);
@@ -471,7 +503,7 @@ std::vector<uint64_t> commands(uint8_t* rdram,const Identity& v) {
     }
     if(kind==401) {
         const int slot=attachment_parent_slot(rdram,v);
-        const auto parent=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+        const auto parent=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
         result.push_back(parent?game_model_animation().run_token(parent->model):0);
     }
     return result;
@@ -1234,7 +1266,7 @@ struct Period {
     std::vector<ForeignStep> foreign_steps{};
     int32_t callback_opacity_flag=0;
 };
-std::array<std::optional<Period>,200> periods;
+std::array<std::optional<Period>,dora3::distance::common_capacity> periods;
 // Historical pose paths need only motion operands. Retaining every prior
 // visual look-at equation would recursively keep unused old Period objects
 // alive, even when the actor's physical path has no history dependency.
@@ -1262,7 +1294,7 @@ std::map<uint32_t,float> equation_operands;
 struct DelayedHeadingHistory {
     Identity owner;uint64_t epoch;std::array<Equation,6> samples;
 };
-std::array<std::optional<DelayedHeadingHistory>,200> delayed_heading_history;
+std::array<std::optional<DelayedHeadingHistory>,dora3::distance::common_capacity> delayed_heading_history;
 struct SoundoragoHistory {
     Identity owner;uint64_t epoch;uint32_t buffer;unsigned count;
     std::array<std::array<Equation,5>,60> samples{};
@@ -1355,8 +1387,8 @@ public:
         const auto kind=MEM_H(0x20,int32_t(child.physical));
         if(!scene_parent_attachment_active(rdram,child)&&kind!=268&&kind!=361&&kind!=299&&kind!=273&&kind!=324&&kind!=285&&kind!=286&&kind!=292&&kind!=329&&kind!=333&&kind!=338&&kind!=349&&kind!=353&&kind!=401&&kind!=403&&kind!=405&&kind!=406&&!(child.rom==0xF8A40||child.rom==0x10DA30||child.rom==0x111E70||child.rom==0x11D570||(child.rom==0x108730&&child.kind==441)))return;
         const int parent_slot=attachment_parent_slot(rdram,child);
-        if(parent_slot<30||parent_slot>=230)return;
-        owner=identity(rdram,0x80171CD0u+unsigned(parent_slot)*stride);
+        if(parent_slot<30||parent_slot>=dora3::distance::common_end)return;
+        owner=identity(rdram,0x804B1CD0u+unsigned(parent_slot)*stride);
         if(!owner||owner->actor>=child.actor)return;
         const auto& stored=periods[index(owner->actor)];
         if(!stored||!same(stored->owner,*owner))return;
@@ -1387,17 +1419,34 @@ public:
 };
 }
 bool native_enemy_kind(int kind) {
-    return std::any_of(definitions.begin(),definitions.end(),[&](const auto& v){return v.kind==kind;});
+    return kind>=0&&size_t(kind)<definition_kind_count&&definition_index.enemy[size_t(kind)]>=0;
 }
 bool native_scene_object_kind(int kind) {
-    return std::any_of(dora3::scene_objects::definitions.begin(),dora3::scene_objects::definitions.end(),[&](const auto& v){return v.kind==kind;});
+    return kind>=0&&size_t(kind)<definition_kind_count&&definition_index.scene[size_t(kind)]>=0;
 }
 bool native_scene_object_owned(uint8_t* rdram,uint32_t actor) {
     const auto owner=identity(rdram,actor);return owner&&native_scene_object_kind(owner->kind);
 }
 bool native_enemy_owned(uint8_t* rdram,uint32_t actor) {const auto owner=identity(rdram,actor);return owner&&native_enemy_kind(owner->kind);}
-void native_enemy_reset() {++epoch;scene_phase_samples.clear();foreign_steps.clear();periods={};delayed_heading_history={};soundorago_history.clear();vortex_trail_history.clear();boss2_ghost_history.clear();gravity.reset();turn.reset();projection.reset();equations.clear();equation_operands.clear();integer_motion_operands.clear();model_reads.clear();}
+void native_enemy_reset() {
+    ++epoch;
+    scene_phase_samples.clear();
+    foreign_steps.clear();
+    reset_slots(periods);
+    reset_slots(delayed_heading_history);
+    soundorago_history.clear();
+    vortex_trail_history.clear();
+    boss2_ghost_history.clear();
+    gravity.reset();
+    turn.reset();
+    projection.reset();
+    equations.clear();
+    equation_operands.clear();
+    integer_motion_operands.clear();
+    model_reads.clear();
+}
 extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,uint32_t callback,uint32_t rom,void (*update)(uint8_t*,recomp_context*)) {
+    dora3::graphics_profile::SampleScope graphics_sample(dora3::graphics_profile::Stage::EnemyCallbackSample); dora3::profile::Scope profile(dora3::profile::Tag::EnemyCallback);
     if(executing||attachment_only||!native_gameplay_preview_object_pass()||!active_simulation_slice())return 0;
     const auto actor=uint32_t(word(rdram,0x8021BDEC));const auto owner=identity(rdram,actor);
     if(!owner||owner->callback!=callback||owner->rom!=rom)return 0;
@@ -1449,7 +1498,7 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
     const auto entered_epoch=epoch;
     // A producer can reuse an earlier slot that Source has already visited.
     // Capture allocation identity before its command, never just the address.
-    std::array<uint64_t,200> earlier_lifetimes{};
+    std::array<uint64_t,dora3::distance::common_capacity> earlier_lifetimes{};
     for(unsigned slot=0;slot<index(actor);++slot) {
         const uint32_t prior=pool+slot*stride,model=uint32_t(word(rdram,prior+0x74));
         if(word(rdram,prior+0x94)&&pointer(model,0x84))earlier_lifetimes[slot]=game_model_animation().lifetime_token(model);
@@ -1568,12 +1617,12 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
         // Start continuous attachment only after an actual state4 command.
         const bool attachment_executed=!(after->rom==0x111E70&&kind==467&&entered_state!=4);
         const int parent_slot=attachment_parent_slot(rdram,*after);
-        if(attachment_executed&&parent_slot>=30&&parent_slot<230)value.parent=identity(rdram,0x80171CD0u+unsigned(parent_slot)*stride);
+        if(attachment_executed&&parent_slot>=30&&parent_slot<dora3::distance::common_end)value.parent=identity(rdram,0x804B1CD0u+unsigned(parent_slot)*stride);
     }
 
     if(scene_parent_attachment_active(rdram,*after)) {
         const int parent_slot=MEM_H(0x7C,int32_t(after->physical));
-        if(parent_slot>=30&&parent_slot<230)value.parent=identity(rdram,0x80171CD0u+unsigned(parent_slot)*stride);
+        if(parent_slot>=30&&parent_slot<dora3::distance::common_end)value.parent=identity(rdram,0x804B1CD0u+unsigned(parent_slot)*stride);
     }
     value.attachment_source_position=value.initial_position;
     for(unsigned axis=0;axis<3;++axis) {
@@ -1635,6 +1684,7 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
 // parent's entry. Those are Source-pool results, consumed next Source period;
 // they must not rerun its wait/attack commands on the next Native slice.
 void native_enemy_source_pool_end(uint8_t* rdram) {
+    dora3::graphics_profile::SampleScope graphics_sample(dora3::graphics_profile::Stage::EnemyFinalizeSample); dora3::profile::Scope detailProfile(dora3::profile::Tag::EnemyPoolFinalize);
     for(auto& period:periods)if(period) {
         const auto owner=identity(rdram,period->owner.actor);
         if(owner&&same(*owner,period->owner))period->command=commands(rdram,*owner);
@@ -2296,7 +2346,7 @@ churatto_other_store:
             value=*source;value.address=actor+0x10;value.after=ctx->f0.fl;
         } else if(site==0x8021EF2C) {
             const int slot=attachment_parent_slot(rdram,*owner);
-            const auto parent=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+            const auto parent=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
             const auto& previous=periods[index(actor)];
             if(!parent||!previous||!same(previous->owner,*owner)||!model_reads.contains(parent->model)||
                !previous->model_reads.contains(parent->model)||ctx->f0.fl<=0)return;
@@ -2338,7 +2388,7 @@ churatto_other_store:
         } else if(owner->kind==406&&(site==0x8022058C||site==0x802205B4||site==0x802205C0||
                   site==0x802205D0||site==0x802205D4||site==0x802205E0||site==0x802205EC||site==0x8022060C)) {
             const int slot=attachment_parent_slot(rdram,*owner);
-            const auto parent=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+            const auto parent=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
             if(!parent)return;
             const auto& source_period=periods[index(parent->actor)];
             if(site==0x8022058C) {
@@ -2404,7 +2454,7 @@ boss1_other_store:
             // The head is earlier in the real pool than its body. Source
             // reads the body's preceding period, not its future updated pose.
             const int slot=MEM_H(0x80,int32_t(physical));
-            const auto body=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+            const auto body=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
             if(!body||body->rom!=owner->rom||body->kind!=411)return;
             const auto& old=periods[index(body->actor)];
             if(!old||!same(old->owner,*body)||
@@ -2552,7 +2602,7 @@ boss1_other_store:
             }
             if(!write) {value=history->second.fields[field];value.address=actor+offset;value.after=ctx->f0.fl;break;}
             const int slot=attachment_parent_slot(rdram,*owner);
-            const auto parent=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+            const auto parent=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
             Equation sample{0,EquationKind::linear,ctx->f0.fl,ctx->f0.fl};
             if(parent)if(const auto& period=periods[index(parent->actor)];period&&same(period->owner,*parent)) {
                 if(field<3&&std::bit_cast<int32_t>(sample_period_motion(*period,1,field).first)==std::bit_cast<int32_t>(ctx->f0.fl)) {
@@ -2874,7 +2924,7 @@ boss5_other_store:
         case 0x80225000: {
             // Source head precedes its detached body in the pool; consume its
             // completed preceding period, never the body's future callback.
-            const int slot=MEM_H(0x80,int32_t(physical));const auto part=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+            const int slot=MEM_H(0x80,int32_t(physical));const auto part=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
             if(!part||part->rom!=owner->rom||part->kind!=455)return;
             const auto& old=periods[index(part->actor)];
             if(!old||!same(old->owner,*part)||std::bit_cast<int32_t>(sample_period_motion(*old,1,1).first)!=std::bit_cast<int32_t>(ctx->f0.fl))return;
@@ -2958,7 +3008,7 @@ boss5_other_store:
             value={actor+0xA0,EquationKind::sine,0,ctx->f0.fl};
             value.step=MEM_H(0x44,int32_t(physical))&1?10:-10;value.phase=MEM_H(0x34,int32_t(physical))-value.step;value.amplitude=10;value.radians=rom_double(rdram,0x80228AA8);
             if(site==0x802218F8) {
-                const int slot=attachment_parent_slot(rdram,*owner);const auto part=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;if(!part)return;
+                const int slot=attachment_parent_slot(rdram,*owner);const auto part=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;if(!part)return;
                 value.base=real(rdram,part->actor+0xA0)-real(rdram,physical+0x60);
             }
             value.before=value.evaluate(0);break;
@@ -2975,7 +3025,7 @@ boss5_other_store:
                 history=boss2_ghost_history.insert_or_assign(actor,initial).first;
             }
             if(read) {value=history->second.fields[field];value.address=actor+offset;value.after=ctx->f0.fl;break;}
-            const int slot=attachment_parent_slot(rdram,*owner);const auto part=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+            const int slot=attachment_parent_slot(rdram,*owner);const auto part=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
             Equation sample{0,EquationKind::linear,ctx->f0.fl,ctx->f0.fl};
             if(part)if(const auto& prior=periods[index(part->actor)];prior&&same(prior->owner,*part)) {
                 if(field<3&&std::bit_cast<int32_t>(sample_period_motion(*prior,1,field).first)==std::bit_cast<int32_t>(ctx->f0.fl)) {sample.kind=EquationKind::historical_axis;sample.motion=immutable_motion(*prior);sample.motion_axis=field;sample.before=sample_period_motion(*prior,0,field).first;}
@@ -3002,7 +3052,7 @@ boss6_other_store:
             // The parent's command snapshot includes all eight part lifetimes.
             const auto mask=identity(rdram,uint32_t(ctx->r17));
             const int slot=MEM_H(0x80,int32_t(physical));
-            if(!mask||mask->kind!=473||mask->rom!=owner->rom||slot<30||slot>=230||mask->actor!=0x80171CD0u+unsigned(slot)*stride)return;
+            if(!mask||mask->kind!=473||mask->rom!=owner->rom||slot<30||slot>=dora3::distance::common_end||mask->actor!=0x804B1CD0u+unsigned(slot)*stride)return;
             const unsigned offset=site==0x8021E228?0x18:site==0x8021E22C?0x20:0x1C;
             value={mask->actor+offset,EquationKind::sine,0,ctx->f0.fl};
             value.phase=MEM_H(0x36,int32_t(physical))-3;value.step=3;
@@ -3091,8 +3141,8 @@ boss7_other_store:
         if((owner->kind==301||owner->kind==302||owner->kind==306||owner->kind==307)&&
            (site==0x8023EE08||site==0x8023EE10||site==0x8023EE18||site==0x8023EE20||site==0x8023EE28)) {
             const int slot=MEM_H(0x7C,int32_t(physical));
-            if(slot<30||slot>=230)return;
-            const uint32_t root=0x80171CD0u+unsigned(slot)*stride;
+            if(slot<30||slot>=dora3::distance::common_end)return;
+            const uint32_t root=0x804B1CD0u+unsigned(slot)*stride;
             const auto parent=identity(rdram,root);const auto history=soundorago_history.find(root);
             if(!parent||history==soundorago_history.end()||!same(history->second.owner,*parent)||history->second.epoch!=epoch||
                uint32_t(word(rdram,parent->physical+0x48))!=history->second.buffer)return;
@@ -3150,7 +3200,7 @@ soundorago_other_store:
         }
         if(site==0x80220728) {
             const int slot=attachment_parent_slot(rdram,*owner);
-            const auto parent=slot>=30&&slot<230?identity(rdram,0x80171CD0u+unsigned(slot)*stride):std::nullopt;
+            const auto parent=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
             Equation sample{actor+0x10,EquationKind::angle,ctx->f0.fl,ctx->f0.fl};
             if(parent) {
                 const auto& period=periods[index(parent->actor)];
@@ -4128,6 +4178,7 @@ std::pair<float,float> sample_period_motion(const Period& v,double age,unsigned 
 }
 }
 int native_enemy_axis(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
+    dora3::profile::Scope detailProfile(dora3::profile::Tag::EnemyAxisSample,dora3::profile::sample_stage(dora3::profile::Tag::EnemyAxisSample,16));
     if(!native_gameplay_preview_object_pass()||!active_simulation_slice())return 0;
     const auto actor=uint32_t(word(rdram,0x8021BDEC));const auto owner=identity(rdram,actor);if(!owner)return 0;
     auto& stored=periods[index(actor)];if(!stored)return 0;
@@ -4205,7 +4256,7 @@ int native_enemy_axis(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
             }
         } scene_parent_pose(rdram,v,double(slice.phase+slice.numerator-v.scene_parent_start_phase)/slice.denominator);
         if(v.parent&&scene_parent_attachment_active(rdram,*owner)&&
-           MEM_H(0x7C,int32_t(owner->physical))==int((v.parent->actor-0x80171CD0u)/stride))
+           MEM_H(0x7C,int32_t(owner->physical))==int((v.parent->actor-0x804B1CD0u)/stride))
         if(const auto parent=identity(rdram,v.parent->actor);parent&&same(*parent,*v.parent)) {
             if(kind==133) {
                 for(unsigned j=0;j<3;++j) {
@@ -4230,7 +4281,7 @@ int native_enemy_axis(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
         }
         if(v.parent&&((((kind==268||kind==299||kind==292||kind==333)&&MEM_H(0x36,int32_t(owner->physical))==0)||((kind==273||kind==324||kind==285||kind==286)&&word(rdram,actor+0x94)==1)||(kind==329&&word(rdram,actor+0x94)==1&&MEM_H(0x34,int32_t(owner->physical))==0))||((kind==361||kind==338||kind==349||kind==353||kind==405)&&word(rdram,actor+0x94)==1)||(kind==401&&word(rdram,actor+0x94)!=10)||(kind==403&&(word(rdram,actor+0x94)==1||
             (word(rdram,actor+0x94)==10&&MEM_H(0x34,int32_t(owner->physical))==0)))||enemy_parent_attachment_active(rdram,*owner))&&
-           attachment_parent_slot(rdram,*owner)==int((v.parent->actor-0x80171CD0u)/stride))
+           attachment_parent_slot(rdram,*owner)==int((v.parent->actor-0x804B1CD0u)/stride))
         if(const auto parent=identity(rdram,v.parent->actor);parent&&same(*parent,*v.parent)) {
             // Execute the reviewed Original attachment geometry only. Its
             // constructor, animation, counters and collision paths are bypassed.
@@ -4349,7 +4400,7 @@ int native_enemy_axis(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
     return 1;
 }
 void native_enemy_motion_end(uint8_t* rdram,uint32_t actor) {
-    if(!native_gameplay_preview_object_pass()||actor<pool||actor>=pool+200*stride||(actor-pool)%stride||!active_simulation_slice())return;
+    if(!native_gameplay_preview_object_pass()||actor<pool||actor>=pool+dora3::distance::common_capacity*stride||(actor-pool)%stride||!active_simulation_slice())return;
     auto& stored=periods[index(actor)];if(!stored)return;
     const auto owner=identity(rdram,actor);if(!owner||!same(stored->owner,*owner)){stored.reset();return;}
     auto& v=*stored;const auto& slice=*active_simulation_slice();

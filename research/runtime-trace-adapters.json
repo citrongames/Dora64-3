@@ -1,0 +1,77 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "adapters": [
+    {
+      "section_rom": 4096,
+      "address": 2147638272,
+      "word": 1007190024,
+      "role": "initialize relocated storage/remove boot overlay aliases"
+    },
+    {
+      "section_rom": 4096,
+      "address": 2147681060,
+      "word": 1006796826,
+      "role": "retry actual controller status query"
+    },
+    {
+      "section_rom": 4096,
+      "address": 2147758992,
+      "word": 1006796827,
+      "role": "unload scene code"
+    },
+    {
+      "section_rom": 4096,
+      "address": 2147718492,
+      "word": 65011720,
+      "role": "Native enemy Source model-command shadow"
+    },
+    {
+      "section_rom": 4096,
+      "address": 2147644172,
+      "word": 666763184,
+      "role": "stream refill correction and overlay DMA tracking"
+    },
+    {
+      "section_rom": 4096,
+      "address": 2147680100,
+      "word": 666763240,
+      "role": "resource retirement frame begin"
+    },
+    {
+      "section_rom": 4096,
+      "address": 2147679776,
+      "word": 666763240,
+      "role": "resource retirement frame publish"
+    },
+    {
+      "section_rom": 4096,
+      "address": 2147715856,
+      "word": 10273,
+      "role": "resource retirement enqueue"
+    },
+    {
+      "section_rom": 4096,
+      "address": 2147715916,
+      "word": 666763232,
+      "role": "resource retirement tick"
+    },
+    {
+      "section_rom": 4096,
+      "address": 2147715812,
+      "word": 8225,
+      "role": "resource retirement registry reset"
+    },
+    {
+      "section_rom": 4096,
+      "address": 2147695124,
+      "word": 748814368,
+      "role": "resource retirement heap initialization"
+    },
+    {
+      "section_rom": 461392,
+      "address": 2149467268,
+      "word": 1006796826,
+      "role": "cutscene input before actual Original script"
+    }
+  ]
+}

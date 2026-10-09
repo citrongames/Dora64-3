@@ -8,9 +8,12 @@ from native_timing_patches import timing_hooks
 from audio_queue_patches import audio_queue_hooks
 from audio_music_patches import audio_music_hooks
 from cheat_patches import cheat_hooks
+from distance_patches import distance_hooks, distance_instructions
 from model_transition_patches import model_terminal_hooks
 from msvc_codegen_workarounds import apply_msvc_codegen_workarounds
 from decomp_annotations import annotate_generated_sources
+from profile_instrumentation import instrument as instrument_profile
+from runtime_trace_adapters import functional_trace_entries
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 
@@ -18,11 +21,15 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--rom',required=True,type=Path)
     p.add_argument('--output-dir',required=True,type=Path)
+    p.add_argument('--profile',action='store_true',help='Observe unchanged game subsystem calls')
+    p.add_argument('--no-diagnostics',action='store_true',help='Only functional runtime adapters; omit general entry tracing')
     a=p.parse_args();rom=read_rom(a.rom);out=a.output_dir.resolve()
     if not out.is_relative_to(ROOT/'build-local'):raise ValueError('Keep generated code under build-local')
     out.mkdir(parents=True,exist_ok=False)
     meta=json.loads((ROOT/'recomp/startup.json').read_text())
     sections,compiled,sdk,frontier=prepare_layout(meta,rom)
+    if a.no_diagnostics and a.profile:raise ValueError('Clean generation cannot enable profiling')
+    functional_entries=functional_trace_entries(sections,compiled,rom) if a.no_diagnostics else set()
     local_jumps=reviewed_local_jumps(meta,sections,compiled,rom)
     functions={key:(v[0],v[1]) for key,v in compiled.items()}
     functions.update({(0,addr):(v[0],4) for addr,v in sdk.items()})
@@ -51,6 +58,17 @@ def main():
     (out/'overlay_regions.hpp').write_text('\n'.join(registry)+'\n')
     declarations=['#pragma once','#include "recomp.h"','#ifdef __cplusplus','extern "C" {','#endif','void dora3_trace(uint8_t*, recomp_context*, uint32_t, uint32_t);','void dora3_pending(uint32_t);','void dora3_verify_dma(uint8_t*);','void dora3_capture_resource(uint8_t*, recomp_context*);','void dora3_mark_stream_dma(void);']
     declarations.append('void dora3_game_reset_poll(uint8_t*,recomp_context*);')
+    declarations.extend([
+        'float dora3_distance_squared(float);','float dora3_distance_lifetime(float);','float dora3_distance_far(float);',
+        'float dora3_distance_spawn_limit(uint8_t*,float,float);','int dora3_distance_draw_budget(uint8_t*);',
+        'void dora3_distance_spawn_begin(uint8_t*,recomp_context*);','void dora3_distance_spawn_end(uint8_t*,recomp_context*);',
+        'void dora3_distance_spawn_result(uint8_t*,recomp_context*);','void dora3_distance_frame_begin(uint8_t*,recomp_context*);',
+        'void dora3_distance_frame_usage(uint8_t*,recomp_context*);','void dora3_distance_frame_submit(uint8_t*,recomp_context*);','uint32_t dora3_distance_matrix(uint8_t*,uint32_t,uint32_t);',
+        'uint32_t dora3_distance_display_address(uint32_t);','int dora3_distance_model_draw(uint8_t*,recomp_context*);',
+        'void dora3_distance_alloc_begin(uint8_t*,recomp_context*);','void dora3_distance_alloc_end(uint8_t*,recomp_context*);',
+        'int dora3_distance_free(uint8_t*,recomp_context*);','int dora3_distance_free_address(uint8_t*,uint32_t);',
+        'void dora3_distance_heap_reset(uint8_t*,recomp_context*);',
+        'uint64_t dora3_profile_begin(unsigned);','void dora3_profile_end(uint64_t);','void dora3_profile_context(uint8_t*);'])
     declarations.extend(['void dora3_cheats_tick(uint8_t*);','void dora3_cheats_health_store(uint8_t*,recomp_context*);',
                          'void dora3_cheats_counter_store(uint8_t*,recomp_context*);','void dora3_cheats_counter_get(uint8_t*,recomp_context*);'])
     native_names=[v[0] for v in meta.get('native',{}).values()]
@@ -150,9 +168,15 @@ def main():
     for name, site, text in model_terminal_hooks(sections, compiled, rom):
         # Capture a0 before other post-call adapters restore Source operands.
         time_hooks[name, site] = text + ' ' + time_hooks.get((name, site), '')
+    config+='instruction = [\n'
+    for patch in distance_instructions(sections,compiled,rom):
+        config+=f'{{ func = "{patch["func"]}", vram = 0x{patch["vram"]:08X}, value = 0x{patch["value"]:08X} }},\n'
+    config+=']\n'
+    for name,site,text in distance_hooks(sections,compiled,rom):
+        time_hooks[name,site]=text+' '+time_hooks.get((name,site),'')
     config+='hook = [\n'
     for (index,addr),(name,size,evidence) in compiled.items():
-        hook=f'dora3_trace(rdram, ctx, 0x{addr:08X}, 0x{sections[index]["rom"]:X});'
+        hook=f'dora3_trace(rdram, ctx, 0x{addr:08X}, 0x{sections[index]["rom"]:X});' if not a.no_diagnostics or (index,addr) in functional_entries else ''
         extra=time_hooks.pop((name,addr),None)
         if extra:hook+=' '+extra
         if index==0 and addr in {0x80028878,0x800288C0,0x800288EC,0x80028914,0x80028930}:
@@ -169,7 +193,8 @@ def main():
             hook+=' if (!dora3_native_model_morph_allowed(rdram, ctx)) return;'
         if index==0 and addr==0x80026CEC:
             hook+=' if (dora3_native_framebuffer_ready((uint32_t)ctx->r4)) { ctx->r2 = ctx->r4; return; }'
-        config+=f'{{ func = "{name}", before_vram = 0x{addr:08X}, text = {json.dumps(hook)} }},\n'
+        if hook:
+            config+=f'{{ func = "{name}", before_vram = 0x{addr:08X}, text = {json.dumps(hook)} }},\n'
     if (0,0x80045520) in compiled:
         for load,word,displacement in [(0x8004552C,0x8CC7FFFC,-4),(0x80045574,0x8CC7FFFC,-4),(0x800455DC,0x8CC70000,0)]:
             assert struct.unpack_from('>I',rom,0x1000+load-0x80025C00)[0]==word
@@ -265,7 +290,7 @@ def main():
         config+='{ func = "dora3_rom_dma", before_vram = 0x800273EC, text = "dora3_verify_dma(rdram);" },\n'
     if (0,0x80034000) in compiled:
         config+='{ func = "dora3_compressed_stream_read", before_vram = 0x8003407C, text = "dora3_mark_stream_dma();" },\n'
-    if (0,0x80030AE8) in compiled:
+    if not a.no_diagnostics and (0,0x80030AE8) in compiled:
         config+='{ func = "dora3_resource_load", before_vram = 0x80030BF8, text = "dora3_capture_resource(rdram, ctx);" },\n'
     config+=']\n';(out/'startup.toml').write_text(config)
     lock=json.loads((ROOT/'tools/n64recomp/lock.json').read_text())
@@ -278,9 +303,10 @@ def main():
     apply_msvc_codegen_workarounds(out/'RecompiledFuncs',sections,compiled,rom)
     annotate_generated_sources(out/'RecompiledFuncs',sections,compiled,rom,ROOT/'recomp/decomp-symbols.json')
     verify_generated_local_jumps(out/'RecompiledFuncs',local_jumps)
-    inputs=['tools/cheat_patches.py','research/cheats-rom-evidence.json','tools/model_transition_patches.py','recomp/model-terminal-poses.json','tools/audio_music_patches.py','tools/msvc_codegen_workarounds.py','tools/audio_queue_patches.py','tools/native_minigame_patches.py','research/native-minigame-reviewed.json','tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
+    if a.profile:instrument_profile(out/'RecompiledFuncs',sections,compiled,rom)
+    inputs=['tools/runtime_trace_adapters.py','research/runtime-trace-adapters.json','tools/profile_instrumentation.py','research/performance-profile-functions.json','tools/distance_patches.py','research/draw-distance-rom-evidence.json','tools/cheat_patches.py','research/cheats-rom-evidence.json','tools/model_transition_patches.py','recomp/model-terminal-poses.json','tools/audio_music_patches.py','tools/msvc_codegen_workarounds.py','tools/audio_queue_patches.py','tools/native_minigame_patches.py','research/native-minigame-reviewed.json','tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
     tracked=[f for f in out.rglob('*') if f.is_file() and f.name!='generation.log']
-    report={'scope':'reviewed resident/overlay functions; explicit stop on unreviewed calls',
+    report={'profiling':a.profile,'diagnostics':not a.no_diagnostics,'scope':'reviewed resident/overlay functions; explicit stop on unreviewed calls',
             'rom_sha256':hashlib.sha256(rom).hexdigest(),'tool_sha256':sha(binary),'inputs':{x:sha(ROOT/x) for x in inputs},
             'generated':{x.relative_to(out).as_posix():sha(x) for x in tracked},'frontier':[{'section':sections[i]['name'],'address':f'0x{x:08X}'} for i,x in sorted(frontier)],'sections':[{k:v for k,v in section.items() if k not in ('compiled','indirect_targets')} for section in sections]}
     (out/'generation-receipt.json').write_text(json.dumps(report,indent=2)+'\n')
