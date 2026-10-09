@@ -2120,7 +2120,7 @@ def timing_hooks(sections,compiled,rom):
                 text=text.replace('dora3_native_model_event(rdram',f'dora3_native_player_weapon_command_only() ? ({var}_time==ctx->f{other}.fl*{scale}.0f) : dora3_native_model_event(rdram')
             hooks[name,site+4].insert(0,label+':;')
         elif op=='ground_preview_boundary':
-            action={0x801BB080:'',0x801C8B28:'return;',0x801C8F10:'return;',0x801C8F34:'return;',0x801C9048:'return;',0x801DBD7C:'goto L_801DBE78;',0x801DBE78:'goto L_801DBF88;'}[site]
+            action={0x801BB080:'',0x801C8B28:'return;',0x801C8F10:'return;',0x801C8F34:'return;',0x801C9048:'return;',0x801DBD7C:'goto L_801DBE78;',0x801DBE84:'goto L_801DBF88;'}[site]
             prefix='dora3_native_cutscene_source(rdram,ctx,0); ' if site==0x801BB080 else ''
             call=f'dora3_native_preview_hook(rdram,ctx,0x{site:08X}u)'
             text=prefix+(f'if ({call}) {{ {action} }}' if action else call+';')

@@ -1,3 +1,48 @@
+## 2026-10-09: fixes through092 accepted; commit/push authorized
+
+User confirmed091 swimming camera fix, then confirmed092 removed the lava loop
+flash and explicitly requested commit and push. Preserve camera ownership join,
+extended sampled-texture/TLUT addressing and whole-cycle CI4 continuity.
+Clean Windows092 compile succeeded; user playcheck succeeded. No agent tests,
+CPU checks, game, emulator, renderer or GPU were run. Historical notes below
+retain their original validation status; this acceptance supersedes pending
+playcheck and no-push restrictions for this completed set only.
+
+## After091: camera confirmed; lava loop seam follow-up092
+
+User confirms swimming camera fixed; lava generally improved but one-frame flash
+at loop seam remains. Preserve091 ownership/address fixes. Static material
+analysis: pair-local CI4 partitions disagree with each other and with ROM holds.
+092 uses one content-qualified pixel partition over each compatible opaque CI4
+loop, including holds and phases0/1. Palettes share identical end/start values.
+Equal-color holds bypass lerp arithmetic to avoid half-integer rounding wobble.
+Original assets/timing and exact UV scroll path unchanged. Quantized Native
+keyframes may differ slightly in color from ROM; visual check pending.
+No tests/CPU checks/game/GPU. Clean incremental build; no commit/push.
+
+## After090: user rejected both visual fixes;091 addresses missed paths
+
+090 did not fix lava or underwater swimming camera by user observation.
+Static091 findings: DBE5C bypasses BE78 ownership hook for swimming mode3,
+leaving camera_allowed false after BB080. Hook moves to shared BE84 join.
+Unconfirmed090 pitch-law change removed; Original camera equations retained.
+Animated bitmap FD pointers wrongly stripped kseg0 after frame arena expansion;
+use display_address for sampled texels and TLUT, retaining extended RAM tag.
+Applies to CI4 and IA8 sampled materials. 090 stable palette grouping retained.
+No tests/CPU checks/game/renderer/GPU. Compile/package only; visual check pending.
+No commit/push of these fixes without direct user command.
+
+## After089: new lava/swimming-camera changes, FPS investigation paused
+
+Previous stage08d2760 committed/pushed to private main on explicit usercommand.
+New separate task: unstable lava fade; vertical swimming camera at world1 lake.
+090 keeps CI4 transition membership fixed using endpoint-color trajectories;
+mode3 pitch follows current player pitch with current dt, while other camera
+fields/counters keep cumulative Source anchors. No Source commands/AI/contact
+cuts. Static defects found; exact visual effect awaits user playcheck.
+See docs/native-lava-swimming-after089.md. No agent tests/CPU/game/renderer/GPU.
+Build clean. Do not commit/push these new changes without another direct command.
+
 ## 2026-10-09: performance work accepted for now; commit/push authorized
 
 User paused further FPS optimization: mountain is a heavy scene, city can reach360.

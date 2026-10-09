@@ -8,6 +8,7 @@
 #include <array>
 #include <cmath>
 #include <map>
+#include <memory>
 #include <optional>
 #include <set>
 #include <stdexcept>
@@ -84,6 +85,16 @@ struct Binding {
     uint32_t sampled_pixels=0,sampled_palette=0;
 };
 struct SampledBitmap {uint32_t pixels=0,palette=0;};
+struct MaterialLayout {
+    // One CI4 pixel partition for the entire authored cycle, including holds.
+    unsigned colors=0;
+    std::vector<uint8_t> indices;
+    std::vector<std::vector<std::array<double,3>>> palettes;
+};
+struct MaterialLoop {
+    std::vector<unsigned> steps;
+    std::shared_ptr<const MaterialLayout> layout;
+};
 struct ScrollCycle {double x=0,y=0;unsigned ticks=0;std::vector<Shift> offsets;std::vector<unsigned> starts;};
 struct ChannelClock {uint32_t sequence=0;uint64_t age=0,updated_epoch=0;};
 struct ChannelUpdate {uint32_t entry=0,sequence=0;unsigned index=0,remaining=0;bool active=false;};
@@ -105,6 +116,9 @@ struct State {
     std::map<uint32_t,uint64_t> signatures;
     std::map<std::tuple<uint64_t,uint64_t,unsigned>,SampledBitmap> samples;
     std::map<std::tuple<uint32_t,uint32_t,uint32_t>,std::optional<ScrollCycle>> cycles;
+    std::map<std::tuple<uint32_t,uint32_t,uint32_t>,std::optional<MaterialLoop>> material_loops;
+    std::map<std::vector<uint64_t>,std::shared_ptr<const MaterialLayout>> material_layouts;
+    std::map<std::tuple<uintptr_t,unsigned,unsigned,unsigned>,SampledBitmap> cycle_samples;
     std::vector<uint32_t> builders;
     std::vector<FramePatch> patches;
     std::map<std::pair<uint32_t,uint64_t>,Copy> copies;
@@ -179,7 +193,10 @@ SampledBitmap sample_stage_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b
         }
         return state.samples.emplace(key,SampledBitmap{pixels,0}).first->second;
     }
-    using Color=std::array<unsigned,3>;
+    // Partition endpoint color trajectories, never the current rounded frame.
+    // Re-running median cut on interpolated colors changes cluster membership
+    // at arbitrary fractional phases, making authored palette fades sparkle.
+    using Color=std::array<unsigned,6>;
     std::vector<Color> colors;colors.reserve(a.width*a.height);
     std::map<Color,unsigned> counts;
     for(unsigned y=0;y<a.height;++y)for(unsigned x=0;x<a.width;++x) {
@@ -190,7 +207,8 @@ SampledBitmap sample_stage_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b
         Color color{};
         for(unsigned c=0;c<3;++c) {
             const auto shift=11-5*c;
-            color[c]=unsigned(std::llround(double((first>>shift)&31)*(1-phase)+double((last>>shift)&31)*phase));
+            color[c]=(first>>shift)&31;
+            color[c+3]=(last>>shift)&31;
         }
         colors.push_back(color);++counts[color];
     }
@@ -203,9 +221,9 @@ SampledBitmap sample_stage_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b
         size_t chosen=boxes.size();unsigned chosen_axis=0;uint64_t best=0;
         for(size_t i=0;i<boxes.size();++i) {
             if(boxes[i].size()<2)continue;
-            Color lo{31,31,31},hi{};uint64_t weight=0;
-            for(const auto& c:boxes[i]){weight+=c.count;for(unsigned axis=0;axis<3;++axis){lo[axis]=std::min(lo[axis],c.value[axis]);hi[axis]=std::max(hi[axis],c.value[axis]);}}
-            for(unsigned axis=0;axis<3;++axis) {
+            Color lo{31,31,31,31,31,31},hi{};uint64_t weight=0;
+            for(const auto& c:boxes[i]){weight+=c.count;for(unsigned axis=0;axis<6;++axis){lo[axis]=std::min(lo[axis],c.value[axis]);hi[axis]=std::max(hi[axis],c.value[axis]);}}
+            for(unsigned axis=0;axis<6;++axis) {
                 const uint64_t score=uint64_t(hi[axis]-lo[axis])*(hi[axis]-lo[axis])*weight;
                 if(score>best){best=score;chosen=i;chosen_axis=axis;}
             }
@@ -220,15 +238,15 @@ SampledBitmap sample_stage_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b
     }
     std::vector<Color> palette;
     for(const auto& box:boxes) {
-        uint64_t weight=0;std::array<uint64_t,3> sums{};
-        for(const auto& c:box){weight+=c.count;for(unsigned axis=0;axis<3;++axis)sums[axis]+=uint64_t(c.value[axis])*c.count;}
-        Color value{};for(unsigned axis=0;axis<3;++axis)value[axis]=unsigned((sums[axis]+weight/2)/weight);palette.push_back(value);
+        uint64_t weight=0;std::array<uint64_t,6> sums{};
+        for(const auto& c:box){weight+=c.count;for(unsigned axis=0;axis<6;++axis)sums[axis]+=uint64_t(c.value[axis])*c.count;}
+        Color value{};for(unsigned axis=0;axis<6;++axis)value[axis]=unsigned((sums[axis]+weight/2)/weight);palette.push_back(value);
     }
     std::map<Color,unsigned> encoded;
     for(const auto& [color,count]:counts) {
         (void)count;unsigned best_index=0,distance=~0u;
         for(unsigned i=0;i<palette.size();++i) {
-            unsigned candidate=0;for(unsigned axis=0;axis<3;++axis){const int delta=int(color[axis])-int(palette[i][axis]);candidate+=unsigned(delta*delta);}
+            unsigned candidate=0;for(unsigned axis=0;axis<6;++axis){const int delta=int(color[axis])-int(palette[i][axis]);candidate+=unsigned(delta*delta);}
             if(candidate<distance){distance=candidate;best_index=i;}
         }
         encoded.emplace(color,best_index);
@@ -236,12 +254,134 @@ SampledBitmap sample_stage_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b
     std::vector<uint32_t> bytes((a.palette_bytes+a.width*a.height/2+7)/4,0);
     const auto address=allocate(rdram,bytes);if(!address)return {};
     for(unsigned i=0;i<a.colors;++i) {
-        const auto c=palette[std::min(i,unsigned(palette.size()-1))];
+        const auto& endpoints=palette[std::min(i,unsigned(palette.size()-1))];
+        std::array<unsigned,3> c{};
+        for(unsigned axis=0;axis<3;++axis)
+            c[axis]=unsigned(std::llround(endpoints[axis]*(1-phase)+endpoints[axis+3]*phase));
         MEM_H(int32_t(2*i),int32_t(address))=int16_t((c[0]<<11)|(c[1]<<6)|(c[2]<<1)|1);
     }
     const auto pixels=address+a.palette_bytes;
     for(unsigned i=0;i<colors.size();i+=2)MEM_B(int32_t(i/2),int32_t(pixels))=int8_t((encoded.at(colors[i])<<4)|encoded.at(colors[i+1]));
     return state.samples.emplace(key,SampledBitmap{pixels,address}).first->second;
+}
+// Pair-local quantization has different errors at B in A->B and B->C.
+// Switching to an exact ROM image for a hold or phase0/1 adds another seam.
+// A single whole-cycle partition makes those endpoints identical in Native.
+// Original assets and the Source channel clock are never modified.
+std::optional<MaterialLoop> material_loop(uint8_t* rdram,uint32_t indices,uint32_t durations,uint32_t table) {
+    MaterialLoop result;std::vector<Bitmap> frames;std::vector<uint32_t> headers;
+    bool ended=false;
+    for(unsigned i=0;i<255;++i) {
+        if(!pointer(indices+i,1)||!pointer(durations+i,1))return {};
+        const auto index=MEM_BU(int32_t(i),int32_t(indices));
+        if(index==255){ended=true;break;}
+        if(!MEM_BU(int32_t(i),int32_t(durations))||!pointer(table+2*index,2))return {};
+        const int handle=MEM_H(int32_t(2*index),int32_t(table));
+        if(handle<0||handle>=dora3::distance::resource_capacity)return {};
+        const auto frame=bitmap(rdram,word(rdram,dora3::distance::resources+20*unsigned(handle)));
+        if(!frame||frame->format!=5)return {};
+        if(!frames.empty()&&(frame->width!=frames[0].width||frame->height!=frames[0].height||
+            frame->palette_bytes!=frames[0].palette_bytes||
+            (word(rdram,frame->header+4)&0xffff0000u)!=(word(rdram,frames[0].header+4)&0xffff0000u)))return {};
+        const auto found=std::find(headers.begin(),headers.end(),frame->header);
+        result.steps.push_back(unsigned(found-headers.begin()));
+        if(found==headers.end()) {
+            if(frames.size()==64)return {}; // Bounded optional material workspace.
+            headers.push_back(frame->header);frames.push_back(*frame);
+        }
+    }
+    if(!ended||frames.size()<2)return {};
+    // Exact spatial translations retain the existing UV/cycle path throughout.
+    for(unsigned i=0;i<result.steps.size();++i) {
+        const auto a=result.steps[i],b=result.steps[(i+1)%result.steps.size()];
+        if(a==b)continue;
+        const auto shift=cached_translation(rdram,frames[a],frames[b]);
+        if(shift.translated&&(shift.x||shift.y))return {};
+    }
+    std::vector<uint64_t> signatures;
+    for(const auto& frame:frames)signatures.push_back(bitmap_signature(rdram,frame));
+    if(const auto found=state.material_layouts.find(signatures);found!=state.material_layouts.end()) {
+        result.layout=found->second;return result;
+    }
+    using Trajectory=std::vector<unsigned>;
+    const unsigned axes=unsigned(frames.size())*3,area=frames[0].width*frames[0].height;
+    std::vector<Trajectory> pixels;pixels.reserve(area);
+    std::map<Trajectory,unsigned> counts;
+    unsigned capacity=16;for(const auto& frame:frames)capacity=std::min(capacity,frame.colors);
+    for(unsigned y=0;y<frames[0].height;++y)for(unsigned x=0;x<frames[0].width;++x) {
+        Trajectory color;color.reserve(axes);
+        for(const auto& frame:frames) {
+            const auto value=pixel(rdram,frame,x,y);if(!(value&1))return {};
+            for(unsigned shift:{11u,6u,1u})color.push_back((value>>shift)&31);
+        }
+        ++counts[color];pixels.push_back(std::move(color));
+    }
+    struct Weighted {Trajectory color;unsigned count;};
+    std::vector<std::vector<Weighted>> boxes(1);
+    for(const auto& [color,count]:counts)boxes[0].push_back({color,count});
+    while(boxes.size()<capacity) {
+        size_t chosen=boxes.size();unsigned axis=0;uint64_t best=0;
+        for(size_t i=0;i<boxes.size();++i) {
+            if(boxes[i].size()<2)continue;
+            Trajectory lo(axes,31),hi(axes,0);uint64_t weight=0;
+            for(const auto& c:boxes[i]) {
+                weight+=c.count;
+                for(unsigned j=0;j<axes;++j){lo[j]=std::min(lo[j],c.color[j]);hi[j]=std::max(hi[j],c.color[j]);}
+            }
+            for(unsigned j=0;j<axes;++j) {
+                const uint64_t score=uint64_t(hi[j]-lo[j])*(hi[j]-lo[j])*weight;
+                if(score>best){best=score;chosen=i;axis=j;}
+            }
+        }
+        if(chosen==boxes.size())break;
+        auto& box=boxes[chosen];
+        std::sort(box.begin(),box.end(),[&](const auto& a,const auto& b){
+            if(a.color[axis]!=b.color[axis])return a.color[axis]<b.color[axis];return a.color<b.color;
+        });
+        uint64_t total=0,sum=0;for(const auto& c:box)total+=c.count;
+        size_t split=0;while(split+1<box.size()&&sum<total/2){sum+=box[split].count;++split;}
+        split=std::clamp(split,size_t(1),box.size()-1);
+        std::vector<Weighted> right(box.begin()+split,box.end());box.resize(split);boxes.push_back(std::move(right));
+    }
+    auto layout=std::make_shared<MaterialLayout>();layout->colors=capacity;
+    layout->palettes.resize(frames.size(),std::vector<std::array<double,3>>(capacity));
+    std::map<Trajectory,uint8_t> encoded;
+    for(unsigned i=0;i<boxes.size();++i) {
+        std::vector<uint64_t> sums(axes,0);uint64_t weight=0;
+        for(const auto& c:boxes[i]) {
+            weight+=c.count;encoded.emplace(c.color,uint8_t(i));
+            for(unsigned j=0;j<axes;++j)sums[j]+=uint64_t(c.color[j])*c.count;
+        }
+        for(unsigned f=0;f<frames.size();++f)for(unsigned j=0;j<3;++j)
+            layout->palettes[f][i][j]=double(sums[3*f+j])/double(weight);
+    }
+    for(const auto& color:pixels)layout->indices.push_back(encoded.at(color));
+    // Content-qualified layouts persist; per-frame maps and samples do not.
+    if(state.material_layouts.size()>=16)state.material_layouts.clear();
+    state.material_layouts.emplace(std::move(signatures),layout);result.layout=std::move(layout);return result;
+}
+SampledBitmap sample_material_loop(uint8_t* rdram,const MaterialLoop& loop,unsigned step,double phase,unsigned palette_bytes) {
+    if(step>=loop.steps.size())return {};
+    phase=std::clamp(phase,0.,1.);
+    const auto first=loop.steps[step],last=loop.steps[(step+1)%loop.steps.size()];
+    const auto& layout=*loop.layout;
+    const auto key=std::tuple{reinterpret_cast<uintptr_t>(&layout),first,last,unsigned(std::llround(phase*65535))};
+    if(const auto found=state.cycle_samples.find(key);found!=state.cycle_samples.end())return found->second;
+    std::vector<uint32_t> storage((palette_bytes+layout.indices.size()/2+7)/4,0);
+    const auto address=allocate(rdram,storage);if(!address)return {};
+    for(unsigned i=0;i<layout.colors;++i) {
+        unsigned color=1;
+        for(unsigned j=0;j<3;++j) {
+            const double a=layout.palettes[first][i][j],b=layout.palettes[last][i][j];
+            // Exact holds must not wobble across a half-integer from FP cancellation.
+            color|=unsigned(std::llround(a==b?a:std::lerp(a,b,phase)))<<(11-5*j);
+        }
+        MEM_H(int32_t(2*i),int32_t(address))=int16_t(color);
+    }
+    const auto pixels=address+palette_bytes;
+    for(unsigned i=0;i<layout.indices.size();i+=2)
+        MEM_B(int32_t(i/2),int32_t(pixels))=int8_t((layout.indices[i]<<4)|layout.indices[i+1]);
+    return state.cycle_samples.emplace(key,SampledBitmap{pixels,address}).first->second;
 }
 // Read the entire authored cycle, not only current->next. Four water tables
 // omit frame2: local pair interpolation makes that one interval twice as fast.
@@ -294,10 +434,13 @@ bool rewrite_command(uint8_t* rdram,uint32_t& first,uint32_t& second,unsigned de
     auto& image=parser.image;bool changed=false;const auto op=first>>24;
         if(op==0xFD) {
             image.reset();const auto actual=resolve(second);const auto segment=second>>24;
+            // Sample storage moved with the display-list banks into extended
+            // RAM. Keep its kseg0 tag: RSP::fromSegmented and RDP::maskAddress
+            // otherwise reinterpret/truncate the pointer as an N64 address.
             const auto apply=[&](const Binding& b) {
-                if(b.sampled_palette&&actual==b.palette){second=b.sampled_palette&0x1fffffffu;changed=true;return true;}
+                if(b.sampled_palette&&actual==b.palette){second=dora3::distance::display_address(b.sampled_palette);changed=true;return true;}
                 if(b.sampled_pixels&&actual>=b.base&&uint64_t(actual)<uint64_t(b.base)+b.pixel_bytes) {
-                    second=(b.sampled_pixels+actual-b.base)&0x1fffffffu;changed=true;return true;
+                    second=dora3::distance::display_address(b.sampled_pixels+actual-b.base);changed=true;return true;
                 }
                 if(b.scroll&&b.base==actual){image=b;return true;}
                 return false;
@@ -371,9 +514,9 @@ TextureFrameScope::TextureFrameScope(uint8_t* ram,Nanoseconds now,unsigned bank)
     state.active=true;state.frame_ram=ram;state.bank=dora3::distance::display_list_begin(bank);
     state.arena=dora3::distance::display_list_end(bank)-0x100;
     state.h=state.source_ram==ram?std::clamp(double(now-state.source_time)*60./(word(ram,0x801A39DC)*1e9),0.,1.):0.;
-    state.segments={};state.copies.clear();state.samples.clear();state.cycles.clear();state.bitmaps.clear();state.signatures.clear();state.builders.clear();state.patches.clear();
+    state.segments={};state.copies.clear();state.samples.clear();state.cycles.clear();state.material_loops.clear();state.cycle_samples.clear();state.bitmaps.clear();state.signatures.clear();state.builders.clear();state.patches.clear();
 }
-TextureFrameScope::~TextureFrameScope(){if(ram_){state.active=false;state.frame_ram=nullptr;state.segments={};state.copies.clear();state.samples.clear();state.cycles.clear();state.bitmaps.clear();state.signatures.clear();state.builders.clear();state.patches.clear();}}
+TextureFrameScope::~TextureFrameScope(){if(ram_){state.active=false;state.frame_ram=nullptr;state.segments={};state.copies.clear();state.samples.clear();state.cycles.clear();state.material_loops.clear();state.cycle_samples.clear();state.bitmaps.clear();state.signatures.clear();state.builders.clear();state.patches.clear();}}
 }
 extern "C" void dora3_native_texture_channel_clock(uint8_t* rdram,recomp_context* c,unsigned boundary) {
     // Native simulation executes the real bitmap tick too; only the extra
@@ -453,6 +596,16 @@ extern "C" void dora3_native_texture_bind(uint8_t* rdram,recomp_context* c,unsig
     const double source_phase=observed&&clock.updated_epoch!=state.source_epoch?0.:state.h;
     const double elapsed=double(duration-1-remaining)+source_phase,h=elapsed/duration;
     auto& binding=state.segments[segment];
+    if(world&&a->format==5&&!(flags&2)) {
+        const auto key=std::tuple{indices,durations,table};
+        auto loop=state.material_loops.find(key);
+        if(loop==state.material_loops.end())loop=state.material_loops.emplace(key,material_loop(rdram,indices,durations,table)).first;
+        if(loop->second) {
+            const auto sample=sample_material_loop(rdram,*loop->second,index,h,a->palette_bytes);
+            binding.sampled_pixels=sample.pixels;binding.sampled_palette=sample.palette;
+            state.segments[palette].sampled_palette=sample.palette;return;
+        }
+    }
     if(shift.translated) {
         binding.x=shift.x*h;binding.y=shift.y*h;binding.scroll=true;
         if(!(flags&2)) {
