@@ -1,3 +1,22 @@
+## 2026-10-09:093 flower flicker fix accepted; commit/push authorized
+
+User confirmed test093 fixes the flower flicker and explicitly requested commit
+and push. Preserve deferred workload texture retention and earlier accepted fixes.
+Clean093 compile/package completed; visual confirmation is the user's playcheck.
+No agent tests/CPU checks/game/emulator/renderer/GPU were run. Historical pending
+validation/no-push notes below are superseded for this completed fix only.
+
+## After092: user bisects flower flicker to077;093 texture lifetime correction
+
+076 normal,077 first bad;085 flower disappears,092 can show black transparency.
+Deferred fullSync evicts before display createGPUTiles marks sampled hashes used.
+Hash-hit upload skips refresh, so a returning texture can be evicted in its own
+workload.093 refreshes current valid non-copy callTiles under the eviction mutex,
+with allocation-free list splice and original bounded policy. Eager behavior,
+GPU locks, performance paths, texture/alpha/animation/gameplay unchanged.
+See docs/texture-lifetime-after092.md. Static defect; visual result pending.
+No tests/CPU/game/emulator/renderer/GPU; incremental clean build only. No Git push.
+
 ## 2026-10-09: fixes through092 accepted; commit/push authorized
 
 User confirmed091 swimming camera fix, then confirmed092 removed the lava loop

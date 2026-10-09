@@ -151,3 +151,7 @@ adapt(root,out,receipt)
 from rt64_viewport_cache import adapt as cache_viewport
 cache_viewport(root,out,receipt)
 (out/"generation-receipt.json").write_text(json.dumps(receipt,indent=2)+"\n")
+
+from rt64_texture_lifetime import adapt as retain_workload_textures
+retain_workload_textures(root,out,receipt)
+(out/"generation-receipt.json").write_text(json.dumps(receipt,indent=2)+"\n")

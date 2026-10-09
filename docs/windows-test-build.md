@@ -1,3 +1,11 @@
+## test-093: flower texture lifetime after077
+
+Clean build. Deferred rendering now retains every sampled texture of the current
+frame before cache eviction. Check the swaying flowers in Fairy Forest, including
+several loop boundaries, and other previously flashing sprites. Visual result is
+pending user playcheck. Camera/lava092 and performance improvements retained.
+No diagnostic logs/profilers, no agent game or tests. Previous builds preserved.
+
 ## test-085: diagnostic post084 measurement
 
 Preserves084 handoff improvement and080 cache. Adds sampled geometry phases and

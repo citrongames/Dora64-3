@@ -186,7 +186,7 @@ if(DORA3_LIVE_RT64)
         target_compile_definitions(rt64 PRIVATE DORA3_PROFILE)
     endif()
     set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
-        "${ROOT}/tools/prepare_rt64_framerate.py" "${ROOT}/tools/rt64_upload_overlap.py" "${ROOT}/tools/rt64_viewport_cache.py" "${RT64_ROOT}/src/shared/rt64_rsp_viewport.h" "${ROOT}/src/performance_profile.hpp")
+        "${ROOT}/tools/prepare_rt64_framerate.py" "${ROOT}/tools/rt64_upload_overlap.py" "${ROOT}/tools/rt64_texture_lifetime.py" "${ROOT}/tools/rt64_viewport_cache.py" "${RT64_ROOT}/src/shared/rt64_rsp_viewport.h" "${ROOT}/src/performance_profile.hpp")
     target_sources(dora3_startup PRIVATE "${ROOT}/src/framebuffer_readback.cpp" "${ROOT}/src/live_graphics.cpp" "${ROOT}/src/live_io.cpp" "${ROOT}/src/port_settings.cpp" "${ROOT}/src/port_input.cpp" "${ROOT}/src/port_menu.cpp" "${ROOT}/src/port_display.cpp")
     target_compile_definitions(dora3_startup PRIVATE DORA3_LIVE_RT64)
     target_include_directories(dora3_startup PRIVATE "${RT64_ROOT}/src" "${RT64_ROOT}/src/contrib"
