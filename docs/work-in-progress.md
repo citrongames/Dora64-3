@@ -1,3 +1,23 @@
+## 2026-10-10: автосейв test105 принят
+
+Пользователь подтвердил, что автосейв работает, и разрешил коммит/пуш в main.
+Прежние отметки ожидания для test105 ниже исторические. Новая сборка не нужна;
+тесты, CPU checks, игра, эмулятор, renderer и GPU не запускались.
+
+## Windows test-105: автосейв готов для проверки (2026-10-10)
+
+Автосейв один раз при готовности карты; настройка и уведомление как в Dora64.
+Собрана инкрементальная Windows-сборка. Игру/тесты/CPU/GPU не запускала.
+Исправления104 сохранены. Коммит/пуш ждут проверки и разрешения пользователя.
+
+## 2026-10-10: map autosave implemented; user verification pending
+
+User approved implementation after analysis. See docs/autosave.md. Game-tab
+option/toast match Dora64; ROM-qualified map-ready hook uses original pack/write
+functions once per map visit. Original and Native share the hook. No tests/CPU/
+game/emulator/renderer/GPU execution. Incremental build follows standing approval.
+Do not commit or push until user gameplay verification and explicit authorization.
+
 ## 2026-10-10: иконка test104 принята для коммита и пуша
 
 После передачи test104 пользователь разрешил коммит/пуш выбранной иконки в main.

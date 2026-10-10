@@ -1,6 +1,7 @@
 #include "diagnostics.hpp"
 #include "port_settings.hpp"
 #include "draw_distance.hpp"
+#include "autosave.hpp"
 #include "json/json.hpp"
 #include <algorithm>
 #include <cmath>
@@ -71,6 +72,8 @@ void save_locked(bool controls=false){
             pc_document["camera"]={{"modern",current.camera.enabled},{"capture_mouse",current.camera.capture_mouse},
                 {"invert_x",current.camera.invert_x},{"invert_y",current.camera.invert_y},
                 {"stick_speed",current.camera.stick_speed},{"mouse_sensitivity",current.camera.mouse_sensitivity}};
+            if(!pc_document["game"].is_object())pc_document["game"]=Json::object();
+            pc_document["game"]["autosave"]=current.autosave;
             pc_document["version"]=17;pc_document["show_fps"]=current.show_fps;
             pc_document["master_volume"]=current.volume/100.0f;pc_document.erase("menu_scale");
             if(!pc_document["graphics"].is_object())pc_document["graphics"]=Json::object();
@@ -142,6 +145,8 @@ void initialize(const std::filesystem::path& directory){
     if(!missing_pc&&read(pc_path,pc_document)){
         boolean(pc_document,"show_fps",current.show_fps);float volume=current.volume/100.0f;
         real(pc_document,"master_volume",volume,0,1);current.volume=int(volume*100+0.5f);
+        const auto game=pc_document.find("game");
+        if(game!=pc_document.end()&&game->is_object())boolean(*game,"autosave",current.autosave);
         const auto camera=pc_document.find("camera");
         if(camera!=pc_document.end()&&camera->is_object()) {
             boolean(*camera,"modern",current.camera.enabled);boolean(*camera,"capture_mouse",current.camera.capture_mouse);
@@ -176,6 +181,7 @@ void initialize(const std::filesystem::path& directory){
         }
     }
     configure_cheats(current.cheats);
+    dora3::autosave::configure(current.autosave);
     dora3::camera::configure(current.camera);
     current.draw_distance=dora3::distance::configure(current.draw_distance);
     const auto load_error=error;
@@ -196,6 +202,7 @@ void set_general(const Settings& v) {
     current.camera.mouse_sensitivity=std::isfinite(v.camera.mouse_sensitivity)?std::clamp(v.camera.mouse_sensitivity,.02f,1.f):.15f;
     dora3::camera::configure(current.camera);
     current.fullscreen=v.fullscreen;current.show_fps=v.show_fps;
+    current.autosave=v.autosave;dora3::autosave::configure(current.autosave);
     current.draw_distance=dora3::distance::configure(v.draw_distance);
     save_locked();
 }
@@ -213,7 +220,7 @@ void bind(Action a,bool gamepad,int code) {
     bindings[a]=code;save_locked(true);
 }
 void reset_bindings(){std::lock_guard lock(mutex);const auto d=defaults();current.keys=d.keys;current.pad=d.pad;current.deadzone=d.deadzone;save_locked(true);}
-void profile(bool modern){std::lock_guard lock(mutex);current.aspect_ratio=current.hud_layout=modern?1:0;current.camera.enabled=modern;dora3::camera::configure(current.camera);current.resolution=modern?3:0;current.filtering=modern?1:0;current.frame_rate_mode=modern?1:0;current.draw_distance=dora3::distance::configure(modern?5.f:1.f);save_locked();}
+void profile(bool modern){std::lock_guard lock(mutex);current.autosave=modern;dora3::autosave::configure(current.autosave);current.aspect_ratio=current.hud_layout=modern?1:0;current.camera.enabled=modern;dora3::camera::configure(current.camera);current.resolution=modern?3:0;current.filtering=modern?1:0;current.frame_rate_mode=modern?1:0;current.draw_distance=dora3::distance::configure(modern?5.f:1.f);save_locked();}
 std::string save_error(){std::lock_guard lock(mutex);return error;}
 std::string pad_name(int code){
     constexpr const char* names[]={"Unbound","A","B","X","Y","Start","LB","RB","LT","RT","Left stick click","Right stick click",

@@ -8,6 +8,7 @@
 #include "n64_hardware.hpp"
 #include "native_enemy.hpp"
 #include "game_reset.hpp"
+#include "autosave.hpp"
 #include "cutscene_input.hpp"
 #include "native_game_loop.hpp"
 #include "native_frame_bridge.hpp"
@@ -608,6 +609,7 @@ int main(int argc,char** argv){
         pending_dma={};resource_rom=0;stream_dma_call=false;
         dora3::hw::reset_session();dora3_music_reset(rdram,ctx);
         dora3::reset_cutscene_input();
+        dora3::autosave::reset();
         dora3::camera::reset();
         dora3::wide::reset();
         audio_submitted=0;audio_completed=0;pcm_buffers=0;

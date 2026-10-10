@@ -252,7 +252,19 @@ def main():
         name=compiled[(0,function)][0]
         hook=f'dora3_native_model_hook(rdram, ctx, 0x{address:08X});'
         config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
-    scene34=next(s for s in sections if s['name']=='.scene34')
+    scene34_index=next(i for i,s in enumerate(sections) if s['name']=='.scene34')
+    scene34=sections[scene34_index]
+    # N3DJ map entry completion and first normal input after mandatory progress
+    # messages. Declarations stay local so unrelated generated units stay intact.
+    for entry,address,expected,hook_name in [
+        (0x801BB704,0x801BB9D0,0x8FBF0010,'dora3_autosave_map_begin'),
+        (0x801BAF64,0x801BB108,0x3C03801B,'dora3_autosave_map_ready')]:
+        if struct.unpack_from('>I',rom,scene34['rom']+address-scene34['vram'])[0]!=expected:
+            raise ValueError('Unreviewed map autosave hook')
+        name,size,_=compiled[scene34_index,entry]
+        if not entry<=address<entry+size:raise ValueError('Autosave hook outside map function')
+        hook=f'extern void {hook_name}(uint8_t*,recomp_context*); {hook_name}(rdram,ctx);'
+        config+=f'{{ func = "{name}", before_vram = 0x{address:08X}, text = {json.dumps(hook)} }},\n'
     if struct.unpack_from('>I',rom,scene34['rom']+0x801C02B0-scene34['vram'])[0]!=0x8FBF0010:raise ValueError('Unreviewed scene34 entry')
     config+='{ func = "dora3_scene34_init", before_vram = 0x801C02B0, text = "dora3_native_loop_scene_ready(rdram, ctx);" },\n'
     if (0,0x8002FE20) in compiled:

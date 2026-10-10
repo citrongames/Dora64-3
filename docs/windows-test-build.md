@@ -1,14 +1,12 @@
-# test-104: User-selected application icon
+# test-105: World-map autosave
 
-The approved abducted-town artwork (ド 64 3) is embedded in the Windows EXE
-and SDL window, following Dora64. No loose PNG is required beside the EXE.
-ICO sizes:16/32/48/64/128/256; the SDL icon uses the256 PNG. Linux desktop
-assets and registration helper are included in source; Linux was not compiled.
-Artwork and export instructions: resources/artwork/README.md.
+Game > Autosave matches Dora64 placement and notice style. Default and Modern
+profile enable it; Original profile disables it. One save per ready map visit,
+using the active slot and original packing/EEPROM functions. Manual save remains.
+Implementation and ROM evidence: docs/autosave.md.
 
-Incremental Windows compile/link succeeded. Existing gameplay fixes including
-accepted test103 are preserved. No tests, CPU checks, game, emulator, renderer
-or GPU launches. After delivery of test104 the user authorized commit/push
-of the selected icon. No additional build for this documentation/Git step.
-Linux desktop integration has not been compiled or visually verified.
+Incremental Windows compile/link succeeded. No tests, CPU checks, game, emulator,
+renderer or GPU execution. The user confirmed autosave works on 2026-10-10 and
+authorized commit/push to main. This feedback is not exhaustive scenario coverage.
+No additional build or execution was performed for the acceptance/Git step.
 Previous EXEs, ROM, settings, saves and shared DLLs preserved.

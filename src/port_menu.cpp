@@ -1,5 +1,6 @@
 #include "port_menu.hpp"
 #include "game_reset.hpp"
+#include "autosave.hpp"
 #include "port_display.hpp"
 #include "imgui/imgui.h"
 #include <algorithm>
@@ -84,6 +85,8 @@ void draw_overlay(){
                         ImGui::Spacing();ImGui::Separator();ImGui::Spacing();
                         ImGui::TextWrapped("Original: original resolution, frame rate and N64 filtering. Modern: fit to window, display frame rate and bilinear filtering.");
                         ImGui::TextWrapped("Original keeps 4:3; Modern fits the window.");
+                        ImGui::Separator();
+                        if(ImGui::Checkbox("Autosave",&s.autosave))set_general(s);
                         ImGui::Separator();
                         bool camera_changed=ImGui::Checkbox("Modern camera",&s.camera.enabled);
                         if(s.camera.enabled) {
@@ -245,6 +248,20 @@ void draw_overlay(){
             }
         }
         ImGui::End();ImGui::PopStyleColor(5);ImGui::PopStyleVar(4);
+    }
+    const auto autosave_notice=dora3::autosave::notification();
+    if(autosave_notice!=dora3::autosave::Notification::None) {
+        ImGui::SetNextWindowPos(ImVec2(viewport->WorkPos.x+12*scale,viewport->WorkPos.y+12*scale),ImGuiCond_Always);
+        ImGui::SetNextWindowBgAlpha(0.72f);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding,5*scale);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding,ImVec2(8*scale,5*scale));
+        ImGui::PushStyleColor(ImGuiCol_WindowBg,ImVec4(0.025f,0.03f,0.04f,1));
+        if(ImGui::Begin("##Dora3Autosave",nullptr,ImGuiWindowFlags_NoDecoration|ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoSavedSettings|ImGuiWindowFlags_NoFocusOnAppearing|ImGuiWindowFlags_NoNav|ImGuiWindowFlags_NoInputs)) {
+            const bool saved=autosave_notice==dora3::autosave::Notification::Saved;
+            ImGui::PushStyleColor(ImGuiCol_Text,saved?ImVec4(0.72f,1,0.76f,1):ImVec4(1,0.55f,0.5f,1));
+            ImGui::TextUnformatted(saved?"Autosave":"Autosave failed");ImGui::PopStyleColor();
+        }
+        ImGui::End();ImGui::PopStyleColor();ImGui::PopStyleVar(2);
     }
     if(s.show_fps) {
         ImGui::SetNextWindowPos(ImVec2(viewport->WorkPos.x+size.x-12*scale,viewport->WorkPos.y+12*scale),ImGuiCond_Always,ImVec2(1,0));

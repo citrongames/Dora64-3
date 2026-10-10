@@ -1,3 +1,24 @@
+## 2026-10-10: test105 autosave accepted; commit/push authorized
+
+User confirmed autosave works and explicitly requested commit/push to existing
+private main. This supersedes pending verification/Git notes below for test105.
+No new build or tests/CPU/game/emulator/renderer/GPU execution for this Git step.
+Keep the build receipt as built; user acceptance is documented separately.
+
+## 2026-10-10: Windows test-105 compiled; autosave check pending
+
+Map autosave and donor-style setting/notice compiled incrementally. See
+docs/autosave.md. No tests/CPU/game/emulator/renderer/GPU execution. Preserve
+accepted104 and earlier fixes. No commit/push until user verification/authorization.
+
+## 2026-10-10: map autosave implemented; user verification pending
+
+User approved implementation after analysis. See docs/autosave.md. Game-tab
+option/toast match Dora64; ROM-qualified map-ready hook uses original pack/write
+functions once per map visit. Original and Native share the hook. No tests/CPU/
+game/emulator/renderer/GPU execution. Incremental build follows standing approval.
+Do not commit or push until user gameplay verification and explicit authorization.
+
 ## 2026-10-10: test104 icon accepted for commit/push
 
 After delivery of test104 the user explicitly authorized commit/push to existing
