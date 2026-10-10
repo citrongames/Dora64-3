@@ -76,17 +76,16 @@ void draw_overlay(){
             static bool capture_pad=false;
             bool open_capture=false;
             ImGui::BeginDisabled(ui_input_blocked());
+            // Match Dora64 desktop: draw directly into the menu. Its 72px
+            // child-window reservation is Android-only and clips desktop tabs.
             if(ImGui::BeginTabBar("##Dora3PcMenuTabs")) {
                 if(ImGui::BeginTabItem("Game")) {
-                     {
+                    {
                         ImGui::TextUnformatted("Settings profiles");
                         const ImVec2 profile_size((ImGui::GetContentRegionAvail().x-ImGui::GetStyle().ItemSpacing.x)*0.5f,ImGui::GetFrameHeight()*1.8f);
                         if(ImGui::Button("Modern",profile_size)){profile(true);s=settings();}ImGui::SameLine();
                         if(ImGui::Button("Original",profile_size)){profile(false);s=settings();}
                         ImGui::Spacing();ImGui::Separator();ImGui::Spacing();
-                        ImGui::TextWrapped("Original: original resolution, frame rate and N64 filtering. Modern: fit to window, display frame rate and bilinear filtering.");
-                        ImGui::TextWrapped("Original keeps 4:3; Modern fits the window.");
-                        ImGui::Separator();
                         const auto& languages=dora3::localization::languages();
                         const char* language_name="Original Japanese";
                         for(const auto& language:languages)if(language.code==s.language)language_name=language.name.c_str();
@@ -98,7 +97,6 @@ void draw_overlay(){
                             }
                             ImGui::EndCombo();
                         }
-                        ImGui::Separator();
                         if(ImGui::Checkbox("Autosave",&s.autosave))set_general(s);
                         ImGui::Separator();
                         bool camera_changed=ImGui::Checkbox("Modern camera",&s.camera.enabled);
@@ -115,12 +113,11 @@ void draw_overlay(){
                         if(camera_changed)set_general(s);
                         ImGui::Separator();
                         if(ImGui::Checkbox("Show FPS counter",&s.show_fps))set_general(s);
-                        ImGui::Spacing();ImGui::TextWrapped("The game keeps running while this menu is open.");
                     }
                     ImGui::EndTabItem();
                 }
                 if(ImGui::BeginTabItem("Graphics")) {
-                     {
+                    {
                         bool changed=false;int mode=s.fullscreen?1:0;
                         if(ImGui::Combo("Display mode",&mode,"Windowed\0Borderless fullscreen\0")){s.fullscreen=mode!=0;changed=true;}
                         const auto catalog=displays();
@@ -157,7 +154,7 @@ void draw_overlay(){
                         if(s.frame_rate_mode!=0){
                             const unsigned rate=display_rate();
                             if(rate>0)ImGui::Text("Display: %u Hz | Target: %u FPS",rate,target_frame_rate(s,rate));
-                            ImGui::TextWrapped(s.frame_rate_mode==2?"Experimental native frame rate in supported scenes; other scenes keep original timing. No RT64 interpolation. Manual can exceed the display refresh rate.":"Smoother motion with the original game speed. Display follows the display refresh rate.");
+                            ImGui::TextWrapped(s.frame_rate_mode==2?"Smoother motion with the original game speed. Manual can exceed the display refresh rate.":"Smoother motion with the original game speed. Display follows the display refresh rate.");
                         }
                         changed|=ImGui::Combo("Game render resolution",&s.resolution,"Original (1x)\0Original (2x)\0Original (4x)\0Fit to window\0");
                         changed|=ImGui::Combo("Game aspect ratio",&s.aspect_ratio,"Original (4:3)\0Fit to window / fullscreen\0");
@@ -171,12 +168,13 @@ void draw_overlay(){
                     ImGui::EndTabItem();
                 }
                 if(ImGui::BeginTabItem("Audio")) {
-
+                    {
                         if(ImGui::SliderInt("Master volume",&s.volume,0,100,"%d%%"))set_general(s);
+                    }
                     ImGui::EndTabItem();
                 }
                 if(ImGui::BeginTabItem("Controls")) {
-                     {
+                    {
                         const auto p=physical();
                         if(p.connected)ImGui::Text("Gamepad: %s",p.controller_name.empty()?"SDL controller":p.controller_name.c_str());
                         else ImGui::TextDisabled("Gamepad: not connected");
@@ -204,8 +202,7 @@ void draw_overlay(){
                     ImGui::EndTabItem();
                 }
                 if(ImGui::BeginTabItem("Cheats")) {
-                    // Eight options fit independently of the fixed tab bar/footer.
-                    if(ImGui::BeginChild("##PortCheatsContent",ImVec2(0,-74*scale))) {
+                    {
                         bool changed=ImGui::Checkbox("Infinite HP",&s.cheats[InfiniteHealth]);
                         ImGui::TextWrapped("Keep the selected character at their own maximum HP and prevent HP loss.");
                         ImGui::Spacing();ImGui::Separator();ImGui::Spacing();
@@ -217,7 +214,7 @@ void draw_overlay(){
                             changed|=ImGui::Checkbox(labels[i-FullRecoveryFruit],&s.cheats[i]);
                         if(changed)set_cheats(s.cheats);
                     }
-                    ImGui::EndChild();ImGui::EndTabItem();
+                    ImGui::EndTabItem();
                 }
                 ImGui::EndTabBar();
             }

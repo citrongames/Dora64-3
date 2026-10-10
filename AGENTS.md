@@ -1,3 +1,27 @@
+## 2026-10-10: test109 menu accepted; commit/push authorized
+
+User confirmed the corrected desktop menu fits properly and explicitly requested
+commit/push to existing private main. This accepts the menu cleanup/profile audit
+through109 and supersedes pending Git restrictions for108/109. Build receipt
+remains as built. No new build, tests, CPU checks, game, emulator, renderer or GPU
+execution for this Git step.
+
+## 2026-10-10: Windows test-109 desktop menu height correction; user check pending
+
+test108 mistakenly used Dora64's Android-only72px child reservation. All tabs
+now use the direct desktop content path; no font/menu resizing. Keep108 profile
+cleanup/audit and accepted107 localization. Incremental build only; no tests,
+CPU checks, game, emulator, renderer or GPU execution. No commit/push before
+user verification and authorization. See docs/port-menu-controls.md.
+
+## 2026-10-10: Windows test-108 Esc menu cleanup; user check pending
+
+Esc tabs now follow Dora64's independent scrolling layout; removed profile
+descriptions. All eight supported Modern/Original settings audited, values
+unchanged. See docs/port-menu-controls.md. Incremental build only; no tests/CPU/
+game/emulator/renderer/GPU execution. Preserve accepted107 localization and
+earlier fixes. No commit/push before user verification and explicit authorization.
+
 ## 2026-10-10: test107 localization accepted; commit/push authorized
 
 User confirmed the test107 fixes work and explicitly requested commit/push to

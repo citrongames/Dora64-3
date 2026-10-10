@@ -226,7 +226,22 @@ void bind(Action a,bool gamepad,int code) {
     bindings[a]=code;save_locked(true);
 }
 void reset_bindings(){std::lock_guard lock(mutex);const auto d=defaults();current.keys=d.keys;current.pad=d.pad;current.deadzone=d.deadzone;save_locked(true);}
-void profile(bool modern){std::lock_guard lock(mutex);current.autosave=modern;dora3::autosave::configure(current.autosave);current.aspect_ratio=current.hud_layout=modern?1:0;current.camera.enabled=modern;dora3::camera::configure(current.camera);current.resolution=modern?3:0;current.filtering=modern?1:0;current.frame_rate_mode=modern?1:0;current.draw_distance=dora3::distance::configure(modern?5.f:1.f);save_locked();}
+void profile(bool modern) {
+    std::lock_guard lock(mutex);
+    // Profiles cover game/presentation enhancements. Keep personal language,
+    // camera tuning, controls, audio, display selection and cheats as configured.
+    current.autosave=modern;
+    current.camera.enabled=modern;
+    current.resolution=modern?3:0;
+    current.frame_rate_mode=modern?1:0;
+    current.aspect_ratio=modern?1:0;
+    current.hud_layout=modern?1:0;
+    current.filtering=modern?1:0;
+    current.draw_distance=dora3::distance::configure(modern?5.f:1.f);
+    dora3::autosave::configure(current.autosave);
+    dora3::camera::configure(current.camera);
+    save_locked();
+}
 std::string save_error(){std::lock_guard lock(mutex);return error;}
 std::string pad_name(int code){
     constexpr const char* names[]={"Unbound","A","B","X","Y","Start","LB","RB","LT","RT","Left stick click","Right stick click",
