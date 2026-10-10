@@ -79,11 +79,25 @@ void draw_overlay(){
                      {
                         ImGui::TextUnformatted("Settings profiles");
                         const ImVec2 profile_size((ImGui::GetContentRegionAvail().x-ImGui::GetStyle().ItemSpacing.x)*0.5f,ImGui::GetFrameHeight()*1.8f);
-                        if(ImGui::Button("Modern",profile_size))profile(true);ImGui::SameLine();
-                        if(ImGui::Button("Original",profile_size))profile(false);
+                        if(ImGui::Button("Modern",profile_size)){profile(true);s=settings();}ImGui::SameLine();
+                        if(ImGui::Button("Original",profile_size)){profile(false);s=settings();}
                         ImGui::Spacing();ImGui::Separator();ImGui::Spacing();
                         ImGui::TextWrapped("Original: original resolution, frame rate and N64 filtering. Modern: fit to window, display frame rate and bilinear filtering.");
                         ImGui::TextWrapped("Both profiles preserve the original game speed and 4:3 picture.");
+                        ImGui::Separator();
+                        bool camera_changed=ImGui::Checkbox("Modern camera",&s.camera.enabled);
+                        if(s.camera.enabled) {
+                            ImGui::TextWrapped("Rotate with the right stick or camera keys. Enable mouse capture to rotate with the mouse. Scripted and boss cameras retain their original control.");
+                            camera_changed|=ImGui::SliderFloat("Camera stick speed",&s.camera.stick_speed,30.f,360.f,"%.0f deg/s");
+                            camera_changed|=ImGui::Checkbox("Capture mouse",&s.camera.capture_mouse);
+                            camera_changed|=ImGui::SliderFloat("Camera mouse sensitivity",&s.camera.mouse_sensitivity,.02f,1.f,"%.2f deg/pixel");
+                            camera_changed|=ImGui::Checkbox("Invert camera X",&s.camera.invert_x);
+                            camera_changed|=ImGui::Checkbox("Invert camera Y",&s.camera.invert_y);
+                            ImGui::TextWrapped("Zoom: D-pad up / down (your configured bindings), mouse wheel, Page Up / Page Down, or hold Camera mode (RB / E by default) and move the camera stick vertically.");
+                            ImGui::TextDisabled("Esc opens this menu and releases the mouse.");
+                        }
+                        if(camera_changed)set_general(s);
+                        ImGui::Separator();
                         if(ImGui::Checkbox("Show FPS counter",&s.show_fps))set_general(s);
                         ImGui::Spacing();ImGui::TextWrapped("The game keeps running while this menu is open.");
                     }

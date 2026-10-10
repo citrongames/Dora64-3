@@ -1,5 +1,6 @@
 #include "diagnostics.hpp"
 #include "native_ui.hpp"
+#include "modern_camera.hpp"
 #include "game_reset.hpp"
 #include "cutscene_input.hpp"
 #include <cstdio>
@@ -261,6 +262,9 @@ void evaluate_ordinary_camera_frame(uint8_t* ram,recomp_context* ctx) {
     auto* scratch=reinterpret_cast<uint8_t*>(state.working.data());std::memcpy(scratch,ram,image_size);
     recomp_context local;dora3::copy_recomp_context(local,*ctx);
     local.r29=int32_t(0x803FD000);local.r4=int32_t(0x801A99F8);
+    if(dora3::camera::frame(scratch,&local,state.h*state.divider/60.)) {
+        publish_camera_geometry(ram,ctx,scratch,1);return;
+    }
     constexpr uint64_t denominator=3000000000ull;
     // Only the reached camera equation runs in the private image. DBD58's
     // input/mode-change prefix, world/player dispatch and resource commands are
@@ -476,6 +480,7 @@ UiFrameScope::~UiFrameScope(){if(!ram_)return;
 }
 extern "C" void dora3_native_ui_source_begin(uint8_t* ram,recomp_context* ctx) {
     if(ctx->r4!=0||state.frame)return;
+    dora3::camera::observe(ram);
     observation={ram,profile(ram),0,true};
 }
 extern "C" void dora3_native_ui_domain(uint8_t* ram,unsigned domain) {
@@ -490,6 +495,7 @@ extern "C" void dora3_native_ui_source(uint8_t* ram,recomp_context* ctx) {
         }
         dora3_capture_controller_state(ram,"source-complete");
     }
+    dora3::camera::observe(ram);
     observation.running=false;
     if(!dora3_native_loop_owns_fade())return;
     if(state.frame)throw std::logic_error("Source update inside UI frame");

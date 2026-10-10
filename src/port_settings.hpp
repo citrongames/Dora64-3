@@ -4,13 +4,14 @@
 #include <string>
 #include <SDL.h>
 #include "port_cheats.hpp"
+#include "modern_camera.hpp"
 
 namespace dora3::port {
 enum Action { A, B, Z, Start, L, R, DUp, DDown, DLeft, DRight,
-              CUp, CDown, CLeft, CRight, StickUp, StickDown, StickLeft, StickRight, ActionCount };
+              CUp, CDown, CLeft, CRight, StickUp, StickDown, StickLeft, StickRight, CameraZoomIn, CameraZoomOut, ActionCount };
 inline constexpr std::array<const char*, ActionCount> action_names{
     "A", "B", "Z", "Start", "L", "R", "D-pad Up", "D-pad Down", "D-pad Left", "D-pad Right",
-    "C Up", "C Down", "C Left", "C Right", "Stick Up", "Stick Down", "Stick Left", "Stick Right"};
+    "C Up", "C Down", "C Left", "C Right", "Stick Up", "Stick Down", "Stick Left", "Stick Right", "Camera zoom in", "Camera zoom out"};
 // SDL button IDs, or 100 + axis * 2 + direction (0 negative, 1 positive).
 constexpr int pad_axis(int axis, bool positive) { return 100 + axis * 2 + int(positive); }
 struct Settings {
@@ -24,6 +25,7 @@ struct Settings {
     bool background_gamepad_input=true;
     std::array<int, ActionCount> keys{}, pad{};
     CheatSettings cheats{};
+    dora3::camera::Options camera{};
 };
 Settings defaults();
 void initialize(const std::filesystem::path& directory);

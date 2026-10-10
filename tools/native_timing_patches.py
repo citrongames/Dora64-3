@@ -2084,7 +2084,7 @@ def timing_hooks(sections,compiled,rom):
             if address!=0x801DBD58 or word>>26!=3 or delay!=0x02002021:raise ValueError('Unreviewed ordinary camera dispatcher call')
             name_target=compiled[i,target][0]
             label=f'dora3_after_timing_{site:08X}'
-            text=f'if (!dora3_native_simulation_active()) dora3_native_ui_domain(rdram,16384); if (dora3_native_simulation_active()) {{ ctx->r4=ctx->r16; dora3_native_camera_dispatch(rdram,ctx,0x{target:08X}u,{name_target}); goto {label}; }}'
+            text=f'if (!dora3_native_simulation_active()) dora3_native_ui_domain(rdram,16384); {{ ctx->r4=ctx->r16; dora3_native_camera_dispatch(rdram,ctx,0x{target:08X}u,{name_target}); goto {label}; }}'
             hooks[name,site+8].insert(0,label+':;')
         elif op=='model_frame_event':
             read=int(rule['read_site'],16);reg=rule['register'];other=rule['other_register'];scale=rule['threshold_scale']

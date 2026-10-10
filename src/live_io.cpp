@@ -52,6 +52,8 @@ void dora3_configure_live_input(recomp::Configuration& cfg){
     DORA3_LOG(stderr,"LIVE INPUT port0=%s pak=none; keyboard/gamepad; focus clears state\n",input_enabled?"connected":"disconnected");
 }
 
+namespace { float camera_wheel=0; bool camera_center_held=false; }
+void dora3_camera_mouse_wheel(float value){if(dora3::camera::active()&&!dora3::port::menu_open())camera_wheel+=value;}
 void dora3_poll_live_input(SDL_Window* window){
     if(controller && !SDL_GameControllerGetAttached(controller)){
         SDL_GameControllerClose(controller);controller=nullptr;
@@ -87,6 +89,13 @@ void dora3_poll_live_input(SDL_Window* window){
     Input next{};
     PhysicalInput gameplay;
     const bool blocked=process_port_input(physical,&gameplay);
+    const bool modern=input_enabled&&!blocked&&!capture_active()&&config.camera.enabled&&dora3::camera::active();
+    const bool mouse_capture=modern&&physical.focused&&config.camera.capture_mouse;
+    const bool captured=SDL_GetRelativeMouseMode()==SDL_TRUE;
+    if(mouse_capture!=captured)SDL_SetRelativeMouseMode(mouse_capture?SDL_TRUE:SDL_FALSE);
+    int mouse_x=0,mouse_y=0;SDL_GetRelativeMouseState(&mouse_x,&mouse_y);
+    if(!mouse_capture||!captured)mouse_x=mouse_y=0;
+    if(!modern){dora3::camera::clear_input();camera_center_held=false;}
     if(input_enabled&&!blocked){
         constexpr uint16_t masks[]={0x8000,0x4000,0x2000,0x1000,0x20,0x10,0x800,0x400,0x200,0x100,8,4,2,1};
         const auto amount=[&](int action){
@@ -97,10 +106,21 @@ void dora3_poll_live_input(SDL_Window* window){
             return std::max(keyboard,gamepad);
         };
         for(int i=0;i<StickUp;i++)if(amount(i)>(i>=CUp?0.32f:0.01f))next.buttons|=masks[i];
+        const bool center=amount(Z)>.01f;
+        if(modern) {
+            const bool zoom_mode=amount(R)>.01f;
+            const float vertical=amount(CDown)-amount(CUp);
+            dora3::camera::submit(amount(CRight)-amount(CLeft),zoom_mode?0.f:vertical,float(mouse_x),float(mouse_y),
+                std::max(amount(CameraZoomOut),amount(DDown))-std::max(amount(CameraZoomIn),amount(DUp))+(zoom_mode?vertical:0.f),
+                physical.focused?camera_wheel:0.f,center&&!camera_center_held);
+            next.buttons&=~uint16_t(0x10|0x800|0x400|0xF|0x2000);
+        }
+        camera_center_held=center;
         next.x=amount(StickRight)-amount(StickLeft);next.y=amount(StickUp)-amount(StickDown);
         const float length=std::sqrt(next.x*next.x+next.y*next.y);
         if(length>1){next.x/=length;next.y/=length;}
     }
+    camera_wheel=0;
     std::lock_guard lock(input_mutex);input=next;
 }
 

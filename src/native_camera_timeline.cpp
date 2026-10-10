@@ -1,5 +1,6 @@
 #include <numeric>
 #include "native_camera_timeline.hpp"
+#include "modern_camera.hpp"
 #include <algorithm>
 #include <span>
 #include <stdexcept>
@@ -95,9 +96,10 @@ struct CameraLane {
 };
 thread_local std::array<CameraLane,4> camera_lanes;
 }
-void dora3_native_camera_dispatch_reset(){camera_lanes={};}
+void dora3_native_camera_dispatch_reset(){camera_lanes={};dora3::camera::clock_handoff();}
 extern "C" void dora3_native_camera_dispatch(uint8_t* rdram,recomp_context* ctx,uint32_t root,recomp_func_t* update) {
     using namespace dora3::native_time;
+    if(dora3::camera::dispatch(rdram,ctx,root)){camera_lanes={};return;}
     const auto* current=active_simulation_slice();
     if(!current){update(rdram,ctx);return;}
     const auto slice=*current;const auto camera=uint32_t(ctx->r4);

@@ -1,3 +1,44 @@
+## 2026-10-10 — test095 принята, коммит и пуш разрешены
+
+Пользователь сообщил, что теперь вроде работает, и запросил коммит/пуш.
+Завершены Modern camera и исправление вылета при переходах зон. Подтверждение
+пользователя не означает проверки всех комнат. Последняя сборка test095;
+игру/тесты/CPU checks агент не запускал. Прежние записи об ожидании проверки
+ниже относятся к истории этой работы.
+
+## Windows test-095 готова к проверке камеры (2026-10-10)
+
+Инкрементальная компиляция и линковка завершены. Игру и тесты не запускали.
+Исправлен вылет test094 при переходах зон; игровая проверка ожидается.
+Коммит/пуш отложены до неё. Настройки: Game -> Modern camera.
+
+## 2026-10-10: test094 zone-reentry crash diagnosed and source fix pending build
+
+User reported a crash after reentering zones. Read-only analysis of local dump
+Dora64-3-test-094.exe.32628.dmp found fail-fast C0000409/7 and a C++ logic_error.
+Saved stack addresses resolve against test094 PDB to SimulationSuspension
+constructor, modern_camera.cpp update line171, camera::dispatch, and native
+camera dispatch. Source review identifies the constructor's explicit exception
+"Subsystem suspension outside simulation". Camera's Source shake path wrongly
+constructed a Native suspension with no active slice after a zone handoff.
+Fixed by suspending only when a slice exists; Original calls the same shake
+handler directly. UI fallback remains geometry-only and does not advance shake
+commands. No generation changes; no tests/game/CPU/GPU runs. User asked to check;
+no new Windows EXE without a build command. No commit/push before user playcheck.
+
+## Windows test-094 готова к проверке камеры (2026-10-10)
+
+Инкрементальная компиляция и линковка завершены. Игру и тесты не запускали.
+Modern camera реализована; корректность поведения ожидает проверки пользователя.
+Коммит/пуш отложены до неё. Настройки: Game -> Modern camera.
+
+## 2026-10-10 — Modern camera awaits user playcheck
+
+Implementation approved after source/ROM plan. Same Dora64 settings, with Dora64-3
+Z-follow permission and Original/Native integration. Build at completion; no
+commit/push until user verification. No agent game/tests/CPU checks. Details:
+docs/modern-camera.md. Accepted camera091/material092/sprite093 fixes preserved.
+
 ## После079: измеренный TMEM hash;080 exact-input memoization, чистый билд
 
 Профиль1791474301346 (schema2,41sample,scope_errors0): stable16526samples,

@@ -22,7 +22,7 @@ using Json=nlohmann::json;
 Json pc_document=Json::object(),input_document=Json::object();
 constexpr const char* action_keys[]={"n64_a","n64_b","n64_z","n64_start","n64_l","n64_r",
     "dpad_up","dpad_down","dpad_left","dpad_right","c_up","c_down","c_left","c_right",
-    "move_up","move_down","move_left","move_right"};
+    "move_up","move_down","move_left","move_right","camera_zoom_in","camera_zoom_out"};
 // Dora64 GamepadInput serialization. Extra SDL buttons use a separate range.
 constexpr int pad_codes[]={-1,SDL_CONTROLLER_BUTTON_A,SDL_CONTROLLER_BUTTON_B,SDL_CONTROLLER_BUTTON_X,SDL_CONTROLLER_BUTTON_Y,
     SDL_CONTROLLER_BUTTON_START,SDL_CONTROLLER_BUTTON_LEFTSHOULDER,SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
@@ -68,7 +68,10 @@ void save_locked(bool controls=false){
             for(int i=0;i<ActionCount;i++)input_document["bindings"][action_keys[i]]={{"keyboard",current.keys[i]},{"gamepad",encode_pad(current.pad[i])}};
             write(input_path,input_document);
         }else{
-            pc_document["version"]=16;pc_document["show_fps"]=current.show_fps;
+            pc_document["camera"]={{"modern",current.camera.enabled},{"capture_mouse",current.camera.capture_mouse},
+                {"invert_x",current.camera.invert_x},{"invert_y",current.camera.invert_y},
+                {"stick_speed",current.camera.stick_speed},{"mouse_sensitivity",current.camera.mouse_sensitivity}};
+            pc_document["version"]=17;pc_document["show_fps"]=current.show_fps;
             pc_document["master_volume"]=current.volume/100.0f;pc_document.erase("menu_scale");
             if(!pc_document["graphics"].is_object())pc_document["graphics"]=Json::object();
             auto& g=pc_document["graphics"];g["window_mode"]=current.fullscreen?"Fullscreen":"Windowed";
@@ -94,14 +97,14 @@ Settings defaults() {
     Settings s;
     s.keys={SDL_SCANCODE_SPACE,SDL_SCANCODE_C,SDL_SCANCODE_Z,SDL_SCANCODE_RETURN,SDL_SCANCODE_Q,SDL_SCANCODE_E,
         SDL_SCANCODE_UP,SDL_SCANCODE_DOWN,SDL_SCANCODE_LEFT,SDL_SCANCODE_RIGHT,
-        SDL_SCANCODE_I,SDL_SCANCODE_K,SDL_SCANCODE_J,SDL_SCANCODE_L,SDL_SCANCODE_W,SDL_SCANCODE_S,SDL_SCANCODE_A,SDL_SCANCODE_D};
+        SDL_SCANCODE_I,SDL_SCANCODE_K,SDL_SCANCODE_J,SDL_SCANCODE_L,SDL_SCANCODE_W,SDL_SCANCODE_S,SDL_SCANCODE_A,SDL_SCANCODE_D,SDL_SCANCODE_PAGEUP,SDL_SCANCODE_PAGEDOWN};
     s.pad={SDL_CONTROLLER_BUTTON_A,SDL_CONTROLLER_BUTTON_B,pad_axis(SDL_CONTROLLER_AXIS_TRIGGERLEFT,true),
         SDL_CONTROLLER_BUTTON_START,SDL_CONTROLLER_BUTTON_LEFTSHOULDER,SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
         SDL_CONTROLLER_BUTTON_DPAD_UP,SDL_CONTROLLER_BUTTON_DPAD_DOWN,SDL_CONTROLLER_BUTTON_DPAD_LEFT,SDL_CONTROLLER_BUTTON_DPAD_RIGHT,
         pad_axis(SDL_CONTROLLER_AXIS_RIGHTY,false),pad_axis(SDL_CONTROLLER_AXIS_RIGHTY,true),
         pad_axis(SDL_CONTROLLER_AXIS_RIGHTX,false),pad_axis(SDL_CONTROLLER_AXIS_RIGHTX,true),
         pad_axis(SDL_CONTROLLER_AXIS_LEFTY,false),pad_axis(SDL_CONTROLLER_AXIS_LEFTY,true),
-        pad_axis(SDL_CONTROLLER_AXIS_LEFTX,false),pad_axis(SDL_CONTROLLER_AXIS_LEFTX,true)};
+        pad_axis(SDL_CONTROLLER_AXIS_LEFTX,false),pad_axis(SDL_CONTROLLER_AXIS_LEFTX,true),-1,-1};
     return s;
 }
 void initialize(const std::filesystem::path& directory){
@@ -121,8 +124,8 @@ void initialize(const std::filesystem::path& directory){
                 real(j,"deadzone",current.deadzone,0.05f,0.5f);
                 for(bool pad:{false,true}){
                     const char* name=pad?"pad":"keys";auto& dst=pad?current.pad:current.keys;
-                    if(j.contains(name)&&j[name].is_array()&&j[name].size()==ActionCount)
-                        for(int i=0;i<ActionCount;i++)if(j[name][i].is_number_integer()){
+                    if(j.contains(name)&&j[name].is_array()&&j[name].size()>=18&&j[name].size()<=ActionCount)
+                        for(int i=0;i<int(j[name].size());i++)if(j[name][i].is_number_integer()){
                             int v=j[name][i].get<int>();if(pad?valid_pad(v):valid_key(v))dst[i]=v;
                         }
                 }
@@ -137,6 +140,12 @@ void initialize(const std::filesystem::path& directory){
     if(!missing_pc&&read(pc_path,pc_document)){
         boolean(pc_document,"show_fps",current.show_fps);float volume=current.volume/100.0f;
         real(pc_document,"master_volume",volume,0,1);current.volume=int(volume*100+0.5f);
+        const auto camera=pc_document.find("camera");
+        if(camera!=pc_document.end()&&camera->is_object()) {
+            boolean(*camera,"modern",current.camera.enabled);boolean(*camera,"capture_mouse",current.camera.capture_mouse);
+            boolean(*camera,"invert_x",current.camera.invert_x);boolean(*camera,"invert_y",current.camera.invert_y);
+            real(*camera,"stick_speed",current.camera.stick_speed,30,360);real(*camera,"mouse_sensitivity",current.camera.mouse_sensitivity,.02f,1.f);
+        }
         const auto cheats=pc_document.find("cheats");
         if(cheats!=pc_document.end()&&cheats->is_object())
             for(int i=0;i<CheatCount;++i)boolean(*cheats,cheat_keys[i],current.cheats[i]);
@@ -163,6 +172,7 @@ void initialize(const std::filesystem::path& directory){
         }
     }
     configure_cheats(current.cheats);
+    dora3::camera::configure(current.camera);
     current.draw_distance=dora3::distance::configure(current.draw_distance);
     const auto load_error=error;
     if(missing_pc||pc_document.contains("menu_scale"))save_locked();if(missing_input)save_locked(true);
@@ -176,6 +186,10 @@ void set_general(const Settings& v) {
     current.window_width=std::clamp(v.window_width,320,16384);current.window_height=std::clamp(v.window_height,240,16384);
     current.display_index=std::clamp(v.display_index,0,1024);current.display_refresh_rate=std::clamp(v.display_refresh_rate,0,1000);
     current.frame_rate_mode=std::clamp(v.frame_rate_mode,0,2);current.frame_rate_limit=std::clamp(v.frame_rate_limit,60,360);
+    current.camera=v.camera;
+    current.camera.stick_speed=std::isfinite(v.camera.stick_speed)?std::clamp(v.camera.stick_speed,30.f,360.f):120.f;
+    current.camera.mouse_sensitivity=std::isfinite(v.camera.mouse_sensitivity)?std::clamp(v.camera.mouse_sensitivity,.02f,1.f):.15f;
+    dora3::camera::configure(current.camera);
     current.fullscreen=v.fullscreen;current.show_fps=v.show_fps;
     current.draw_distance=dora3::distance::configure(v.draw_distance);
     save_locked();
@@ -194,7 +208,7 @@ void bind(Action a,bool gamepad,int code) {
     bindings[a]=code;save_locked(true);
 }
 void reset_bindings(){std::lock_guard lock(mutex);const auto d=defaults();current.keys=d.keys;current.pad=d.pad;current.deadzone=d.deadzone;save_locked(true);}
-void profile(bool modern){std::lock_guard lock(mutex);current.resolution=modern?3:0;current.filtering=modern?1:0;current.frame_rate_mode=modern?1:0;current.draw_distance=dora3::distance::configure(modern?5.f:1.f);save_locked();}
+void profile(bool modern){std::lock_guard lock(mutex);current.camera.enabled=modern;dora3::camera::configure(current.camera);current.resolution=modern?3:0;current.filtering=modern?1:0;current.frame_rate_mode=modern?1:0;current.draw_distance=dora3::distance::configure(modern?5.f:1.f);save_locked();}
 std::string save_error(){std::lock_guard lock(mutex);return error;}
 std::string pad_name(int code){
     constexpr const char* names[]={"Unbound","A","B","X","Y","Start","LB","RB","LT","RT","Left stick click","Right stick click",

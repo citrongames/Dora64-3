@@ -333,6 +333,7 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
         SDL_Event event;
         while(SDL_PollEvent(&event)){
             if(event.type==SDL_QUIT)ultramodern::quit();
+            if(event.type==SDL_MOUSEWHEEL)dora3_camera_mouse_wheel(float(event.wheel.y)*(event.wheel.direction==SDL_MOUSEWHEEL_FLIPPED?-1.f:1.f));
             if(event.type==SDL_DISPLAYEVENT)dora3::port::request_display_refresh();
         }
         if(dora3::port::take_exit_request())ultramodern::quit();

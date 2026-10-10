@@ -1,3 +1,65 @@
+## 2026-10-10: test095 accepted; camera commit/push authorized
+
+User reported test095 appears to work and explicitly requested commit/push.
+This accepts the Modern camera implementation and the test094 zone-reentry crash
+fix for this task. It is user playcheck evidence, not exhaustive scene coverage.
+Preserve all accepted changes through093. Historical pending/no-push entries
+below are superseded for the completed camera work only. No agent tests, CPU
+checks, game/emulator/renderer/GPU were run. No additional build for this
+documentation/commit step; test095 remains the delivered executable.
+
+## 2026-10-10: Windows test-095 compiled/packaged for user camera check
+
+Incremental Windows compile/link exit0; no application/test/CPU/GPU execution.
+The test094 zone-reentry crash fix awaits user gameplay verification. No commit/push yet. Existing
+test093 and prior accepted fixes retained. Next action depends on user's test.
+
+## 2026-10-10: standing authorization to build immediately after fixes
+
+User explicitly instructed: after fixes, immediately build a Windows EXE.
+This supersedes earlier requirements for another build command after each fix.
+Use incremental compilation and next existing build number; no tests/CPU checks,
+game/emulator/renderer/GPU. Preserve old EXE/ROM/settings/saves/shared DLLs.
+Commit/push still require the user's gameplay verification. Current build includes
+the test094 Source/Native camera handoff crash fix documented below.
+
+## 2026-10-10: test094 zone-reentry crash diagnosed and source fix pending build
+
+User reported a crash after reentering zones. Read-only analysis of local dump
+Dora64-3-test-094.exe.32628.dmp found fail-fast C0000409/7 and a C++ logic_error.
+Saved stack addresses resolve against test094 PDB to SimulationSuspension
+constructor, modern_camera.cpp update line171, camera::dispatch, and native
+camera dispatch. Source review identifies the constructor's explicit exception
+"Subsystem suspension outside simulation". Camera's Source shake path wrongly
+constructed a Native suspension with no active slice after a zone handoff.
+Fixed by suspending only when a slice exists; Original calls the same shake
+handler directly. UI fallback remains geometry-only and does not advance shake
+commands. No generation changes; no tests/game/CPU/GPU runs. User asked to check;
+no new Windows EXE without a build command. No commit/push before user playcheck.
+
+## 2026-10-10: Windows test-094 compiled/packaged for user camera check
+
+Incremental Windows compile/link exit0; no application/test/CPU/GPU execution.
+Modern camera awaits user gameplay verification. No commit/push yet. Existing
+test093 and prior accepted fixes retained. Next action depends on user's test.
+
+## 2026-10-10: Modern camera implementation; user playcheck pending
+
+User approved implementation after ROM/source analysis and requested the build
+at completion. Commit/push only AFTER the user's gameplay check. No agent tests,
+CPU checks, game/emulator/renderer/GPU execution. Preserve accepted093 and091/092.
+Modern camera follows Original Z permission: scene1 ordinary modes3/4/5 only,
+with scene/script/menu/dialogue/room and player-recovery gates. Other owners keep
+Original camera. Dora64 Game-tab options/defaults/order/input are ported; its
+mode0/1 permission and game addresses must NOT be copied. Original R/C prefix is
+isolated through a ROM-qualified generator hook. All ordinary roots pass the
+existing dispatcher; disabled mode retains original equations. Native gameplay
+uses slice time; UI-only camera frames use incremental elapsed time within the
+Source period. Reset clears orbit/input. See docs/modern-camera.md.
+Windows generation: startup-modern-camera-v2, clean diagnostics OFF. Incremental
+Windows staging reuses its existing CPU cache path with generator-produced files;
+previous differing generated files/receipt are preserved before replacement.
+
 ## 2026-10-09:093 flower flicker fix accepted; commit/push authorized
 
 User confirmed test093 fixes the flower flicker and explicitly requested commit

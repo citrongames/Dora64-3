@@ -1,5 +1,6 @@
 #include "graphics_profile.hpp"
 #include "diagnostics.hpp"
+#include "modern_camera.hpp"
 #include "performance_profile.hpp"
 #include "resource_retirement.hpp"
 #include "guest_storage.hpp"
@@ -606,6 +607,7 @@ int main(int argc,char** argv){
         pending_dma={};resource_rom=0;stream_dma_call=false;
         dora3::hw::reset_session();dora3_music_reset(rdram,ctx);
         dora3::reset_cutscene_input();
+        dora3::camera::reset();
         audio_submitted=0;audio_completed=0;pcm_buffers=0;
         dora3_capture_controller_state(rdram,"boot");
         std::lock_guard lock(captured_vi_mutex);
