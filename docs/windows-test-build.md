@@ -1,13 +1,15 @@
-# test-102: Common world dialogue/fade readback optimization
+# test-103: Native water-damage animation boundary correction
 
-Native world presentation keeps deferred framebuffer readback across gameplay,
-UI-owned fade/dialogue and scripted camera modes. The request follows the acquired
-world draw identity; workload/CPU-copy/resource/Original handoff guards remain.
-No NPC or location-specific conditions. See docs/fade-performance-after101.md.
+Shared player animation rate planning now matches Original slow damage/death
+states37/40/43/46/51–56, with the state40 kick-period guard. Frame/clip boundary
+calculation preserves precise current animation time across rate changes.
+Held player models no longer request boundaries while their update is skipped.
+Includes the requested related slow/reverse animation audit; see
+docs/water-damage-performance-after102.md for ROM evidence and limitations.
 
-User confirmed101 opening-chair and minigame grenade fixes; those are preserved.
-User reports the fade fix appears to work in102 and authorized commit/push.
-No new numerical FPS measurement was supplied.
-Incremental compile/link succeeded; no tests, CPU checks, game, emulator, renderer
-or GPU execution. Existing EXEs/ROM/settings/saves/shared DLLs preserved.
-No additional build for this acceptance/documentation/Git step.
+Incremental compile/link succeeded. The user confirmed the water-damage
+FPS fix works in test103 and authorized commit/push to main. No tests, CPU checks, game, emulator, renderer or
+GPU execution. Generation101 reused unchanged; accepted102 fixes preserved.
+Old EXEs, ROM, settings, saves and DLLs preserved. No additional build for
+this acceptance/documentation/Git step. The suspected cutscene pose glitch was
+withdrawn after the user reviewed a recording; no corresponding code change.

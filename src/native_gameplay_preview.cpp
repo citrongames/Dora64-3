@@ -1604,13 +1604,44 @@ void begin_projectile_scope(uint8_t* ram,uint32_t actor) {
     try {projectile_scope.emplace(local);}catch(...) {projectile_suspension.reset();throw;}
     (void)ram;
 }
+// C8B28 clears physics+CC before dispatch, then defaults zero to3 at90A8.
+// These second bodies explicitly write1. The mirror always advances at3.
+// Keep acquisition and per-slice planning on the same ROM-derived rate law.
+float primary_player_model_rate(uint8_t* rdram,const SimulationSlice* slice=nullptr) {
+    const auto actor=uint32_t(word(rdram,0x8021D49C));
+    const auto state=word(rdram,actor+0x94);
+    switch(state) {
+    case 37: // C6084 -> C6108
+    case 43: // C67C8 -> C684C
+    case 46: // C6B08 -> C6B2C
+    case 51: // C729C -> C72BC
+    case 52: case 53: case 54: case 55: case 56: // C73F0 and wrappers
+        return 1.f;
+    case 40: { // C63F8: freeze through15, kick at16, rate1 after16.
+        const auto physical=uint32_t(word(rdram,0x8021D4B0));
+        const auto count=MEM_H(0x44,int32_t(physical));
+        if(count>16)return 1.f;
+        if(count!=16||!slice)return 3.f;
+        // A kick already consumed in this Source period must not forecast
+        // the next counter increment. Match the existing C6418 phase guard.
+        const auto model=uint32_t(word(rdram,actor+0x74));
+        if(player_damage_counter) {
+            const auto& c=*player_damage_counter;
+            if(c.actor==actor&&c.physical==physical&&c.model==model&&
+               c.lifetime==game_model_animation().lifetime_token(model)&&
+               c.run==game_model_animation().run_token(model)&&
+               c.tick==slice->tick&&c.denominator==slice->denominator)return 3.f;
+        }
+        return 1.f; // Next unconsumed C6418 increments16 to17.
+    }
+    default:return 3.f;
+    }
+}
 std::optional<float> planned_model_rate(uint8_t* ram,uint32_t model) {
-    if(motion_allowed)for(auto slot:{0x8021D49Cu,0x8021D640u}) {
+    if(motion_allowed&&word(ram,0x8021D494)==0)for(auto slot:{0x8021D49Cu,0x8021D640u}) {
         const auto actor=uint32_t(word(ram,slot));
         if(pointer(actor,0xCC)&&uint32_t(word(ram,actor+0x74))==model) {
-            // C6B2C writes rate1 for primary46; the mirrored actor always
-            // uses rate3 in C8B28. Plan clip boundaries with the actual rate.
-            return slot==0x8021D49Cu && word(ram,actor+0x94)==46?1.0f:3.0f;
+            return slot==0x8021D49Cu?primary_player_model_rate(ram):3.f;
         }
     }
     if(object_allowed)for(unsigned i=30;i<dora3::distance::common_end;++i) {
@@ -1633,17 +1664,17 @@ std::optional<float> planned_model_rate(uint8_t* ram,uint32_t model) {
 // rates once at this boundary instead of repeating the whole actor pool for
 // every registered model. Rebuild after every actual simulation slice; no
 // lifetime, state, command, pause or overlay decision survives a mutation.
-std::unordered_map<uint32_t,float> boundary_model_rates(uint8_t* ram) {
+std::unordered_map<uint32_t,float> boundary_model_rates(uint8_t* ram,const SimulationSlice& slice) {
     dora3::graphics_profile::SampleScope graphics_sample(dora3::graphics_profile::Stage::ModelRatePlanSample); dora3::profile::Scope profile(dora3::profile::Tag::ModelRatePlan);
     std::unordered_map<uint32_t,float> rates;
     rates.reserve(dora3::distance::common_capacity+22);
     // emplace preserves the old search order, including shared model pointers:
     // primary player, mirrored player, common actors, then projectiles.
-    if(motion_allowed)for(auto address:{0x8021D49Cu,0x8021D640u}) {
+    if(motion_allowed&&word(ram,0x8021D494)==0)for(auto address:{0x8021D49Cu,0x8021D640u}) {
         const auto actor=uint32_t(word(ram,address));
         if(!pointer(actor,0xCC))continue;
         rates.emplace(uint32_t(word(ram,actor+0x74)),
-            address==0x8021D49Cu&&word(ram,actor+0x94)==46?1.f:3.f);
+            address==0x8021D49Cu?primary_player_model_rate(ram,&slice):3.f);
     }
     if(object_allowed)for(unsigned slot=30;slot<dora3::distance::common_end;++slot) {
         const auto actor=0x804B1CD0u+slot*0xCC;
@@ -4475,7 +4506,7 @@ void native_gameplay_preview_update(uint8_t* rdram,recomp_context* original,Nano
         } catch(...) {dora3_native_object_scope_end();dora3_native_projectile_scope_end();motion_call=camera_call=object_call=projectile_call=false;throw;}
     },[](uint64_t){},current_at_boundary,[&](const SimulationSlice& slice) {
         if(object_allowed)register_object_clocks(rdram,slice);
-        const auto rates=boundary_model_rates(rdram);
+        const auto rates=boundary_model_rates(rdram,slice);
         auto limit=game_model_animation().clip_boundary_limit(rdram,slice,[&](uint32_t model)->std::optional<float> {
             const auto found=rates.find(model);
             return found==rates.end()?std::nullopt:std::optional<float>{found->second};

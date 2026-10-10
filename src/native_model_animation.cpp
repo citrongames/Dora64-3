@@ -620,7 +620,10 @@ std::uint64_t ModelAnimation::clip_boundary_limit(uint8_t* rdram,const Simulatio
         long double time=guest_time;
         if(entry.native_clock) {
             const auto& clock=*entry.native_clock;
-            const bool same=clock.denominator==slice.denominator && clock.rate==rate &&
+            // A new planned speed does not invalidate the precise CURRENT
+            // position. Falling back to float RAM can round it to the clip
+            // edge early and repeatedly request one rational unit of work.
+            const bool same=clock.denominator==slice.denominator && (plan || clock.rate==rate) &&
                 clock.expected_time==word(rdram,model+0x64) && clock.expected_flags==flags &&
                 clock.channels==channels && clock.descriptors==descriptors && clock.duration==duration;
             if(same)time=clock.time;
@@ -653,7 +656,9 @@ std::uint64_t ModelAnimation::frame_boundary_limit(uint8_t* rdram,const Simulati
     long double time=guest_time;
     if(found->second.native_clock) {
         const auto& c=*found->second.native_clock;
-        if(c.denominator==slice.denominator && c.rate==rate && c.expected_time==word(rdram,model+0x64) &&
+        // The supplied rate is the next step's rate; retained current time
+        // remains exact across rate changes while the model identity matches.
+        if(c.denominator==slice.denominator && c.expected_time==word(rdram,model+0x64) &&
            c.expected_flags==flags && c.channels==channels && c.descriptors==descriptors && c.duration==duration)time=c.time;
     }
     if(time<0 || time>=target)return slice.numerator;

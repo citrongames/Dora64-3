@@ -1,3 +1,27 @@
+## 2026-10-10: test103 accepted; damage fix commit/push authorized
+
+User confirmed the water-damage FPS fix works and explicitly authorized
+commit/push to existing private main. This supersedes pending verification/Git
+notes below for test103. The suspected Nobita cutscene pose glitch was withdrawn
+after the user reviewed a recording frame by frame; no animation patch was made.
+No new build or tests/CPU/game/emulator/renderer/GPU execution for this Git step.
+Keep the test103 build receipt as built; acceptance is recorded in documentation.
+
+## 2026-10-10: Windows test-103 compiled/packaged; damage FPS check pending
+
+Shared damage/death rates and animation boundary precision corrected; user's
+extra slow/reverse animation audit completed statically. No tests/CPU/game/GPU.
+See docs/water-damage-performance-after102.md. User playcheck pending; no Git.
+
+## 2026-10-10: Native water-damage stall correction; user check pending
+
+After accepted102 user reports reproducible0–1FPS during water damage/falling in
+fairy forest, all characters; Original fine. Shared player rate plan missed slow
+damage/death clips; rate mismatch also discarded precise clip position near end.
+Fix both shared rate paths and boundary precision, preserve Source commands.
+See docs/water-damage-performance-after102.md. Build immediately is authorized;
+no tests/CPU/game/emulator/renderer/GPU. No commit/push before user verification.
+
 ## 2026-10-10: test102 accepted; motion/fade commit and push authorized
 
 User reported test102 appears to resolve the fade FPS issue and explicitly
