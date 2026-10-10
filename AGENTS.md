@@ -1,3 +1,58 @@
+## 2026-10-11: test115 accepted; minigame widescreen commit/push authorized
+
+User confirmed the upper wall looks good and explicitly requested commit/push
+to existing private main. This accepts the minigame widescreen corrections
+through115, following the earlier confirmations of112,113 and114, and supersedes
+their pending Git restrictions below. User feedback is not exhaustive coverage.
+Keep the build receipt as built. No new build, tests, CPU checks, game, emulator,
+renderer or GPU execution for this Git step.
+
+## 2026-10-10: Windows test-115 fruit upper wall continuation; user check pending
+
+User accepted114 and requested extending the upper wall. Added one wall quad
+to the matching right edge with original texture density/phase. Retain114 field. Added separate grass strips and cells
+with original size/alternation; original geometry and gameplay unchanged.
+See docs/widescreen.md. Retain accepted113 and110 fixes. Incremental compilation
+only; no tests/CPU/game/emulator/renderer/GPU execution. No commit/push until
+user verification and explicit authorization.
+
+## 2026-10-10: Windows test-114 fruit field continuation; user check pending
+
+User accepted113 and authorized extending fruit-game ground/checker field on
+the right without moving the goal line. Added separate grass strips and cells
+with original size/alternation; original geometry and gameplay unchanged.
+See docs/widescreen.md. Retain accepted113 and110 fixes. Incremental compilation
+only; no tests/CPU/game/emulator/renderer/GPU execution. No commit/push until
+user verification and explicit authorization.
+
+## 2026-10-10: Windows test-113 number-game ground; user check pending
+
+User accepted112 sky/address correction, then requested stretching the ground
+only in both number games. Extended explicit B84/B96 ground vertex ranges;
+buildings, actors, collision bounds and grenade arena unchanged. Sky retained.
+See docs/widescreen.md. Static ROM/source and incremental compilation only;
+no tests/CPU/game/emulator/renderer/GPU execution. Preserve accepted110 controls.
+No commit/push until user verification and explicit authorization.
+
+## 2026-10-10: Windows test-112 sky address correction; user check pending
+
+Fixed test111 sky vertex segment address truncation in both number games.
+Keep kseg0 for RT64 extended-RDRAM decoding. Arena fixes retained. Both number-game
+skies use immutable sky-only vertex extensions; world/players share projection.
+Blue underlay fills uncovered finite-art margins. Collision/gameplay unchanged.
+See docs/widescreen.md. Preserve accepted110 four-player input and earlier fixes.
+Incremental compile only; no tests/CPU/game/emulator/renderer/GPU execution.
+No commit/push until user verification and explicit authorization.
+
+## 2026-10-10: Windows test-111 minigame arena correction; user check pending
+
+Removed whole-model stretch in four finite minigame backdrops. Both number-game
+skies use immutable sky-only vertex extensions; world/players share projection.
+Blue underlay fills uncovered finite-art margins. Collision/gameplay unchanged.
+See docs/widescreen.md. Preserve accepted110 four-player input and earlier fixes.
+Incremental compile only; no tests/CPU/game/emulator/renderer/GPU execution.
+No commit/push until user verification and explicit authorization.
+
 ## 2026-10-10: test110 four-gamepad support accepted; commit/push authorized
 
 User tested four gamepads, confirmed everything works and explicitly authorized

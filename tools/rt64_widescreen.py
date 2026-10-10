@@ -19,7 +19,7 @@ def adapt(root,out,receipt):
             t=cut(t,'        constexpr uint64_t CameraHudTextureHash','        for (uint32_t pr =')
             t=cut(t,'            bool precedingThreeDimensionalProjection','#       if RT_ENABLED')
             t=once(t,'(viewportOrigin == G_EX_ORIGIN_NONE) && coversWholeWidth && horizontalRatio;',
-                '((viewportOrigin == G_EX_ORIGIN_NONE) || (viewportOrigin == 0x803)) && ((proj.type == Projection::Type::Perspective) || (coversWholeWidth && horizontalRatio));')
+                '(viewportOrigin == G_EX_ORIGIN_NONE) && ((proj.type == Projection::Type::Perspective) || (coversWholeWidth && horizontalRatio));')
             t=cut(t,'                if (wideThreeDimensionalScissor) {','            }\n\n            for (uint32_t d')
             t=cut(t,'                const auto menuTile =','                renderIndices.instanceIndex', '''                const bool repeatMenuTile = widescreenRequested &&
                     (call.callDesc.rectLeftOrigin == 0x801 || call.callDesc.rectLeftOrigin == 0x802);

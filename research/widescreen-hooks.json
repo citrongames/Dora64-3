@@ -122,12 +122,12 @@
       "role": 14
     },
     {
-      "section": ".minigame_3",
-      "address": "801C40D8",
-      "name": "dora3_s23_mini_801C40D8",
-      "size": 228,
-      "sha256": "682f91eb3f49b7ffffd4b849403376b16031264b9c0466914b4569c5b24370a0",
-      "role": 15
+      "section": ".minigame_8",
+      "address": "801C3EF4",
+      "name": "dora3_s28_mini_801C3EF4",
+      "size": 364,
+      "sha256": "250a19ba041e9e6652f6e1cca18d51bb59bbdf4db8c2aee3d45504fceb37e831",
+      "role": 21
     },
     {
       "section": ".minigame_7",
@@ -135,15 +135,7 @@
       "name": "dora3_s27_mini_801C44E0",
       "size": 48,
       "sha256": "366b5808e0259c4dbba42260d2db11438fe3b7f7382e3a0642c4a3f2cb7ed20e",
-      "role": 15
-    },
-    {
-      "section": ".minigame_8",
-      "address": "801C3CBC",
-      "name": "dora3_s28_mini_801C3CBC",
-      "size": 48,
-      "sha256": "91e6178e5fcd54945a6e0b48ecc24ea5840a91bb06029ea72d888ba731818b3f",
-      "role": 15
+      "role": 22
     },
     {
       "section": ".minigame_9",
@@ -151,15 +143,15 @@
       "name": "dora3_s29_mini_801C4B70",
       "size": 48,
       "sha256": "366b5808e0259c4dbba42260d2db11438fe3b7f7382e3a0642c4a3f2cb7ed20e",
-      "role": 15
+      "role": 23
     },
     {
-      "section": ".minigame_8",
-      "address": "801C3EF4",
-      "name": "dora3_s28_mini_801C3EF4",
-      "size": 364,
-      "sha256": "250a19ba041e9e6652f6e1cca18d51bb59bbdf4db8c2aee3d45504fceb37e831",
-      "role": 21
+      "section": ".minigame_3",
+      "address": "801C40D8",
+      "name": "dora3_s23_mini_801C40D8",
+      "size": 228,
+      "sha256": "682f91eb3f49b7ffffd4b849403376b16031264b9c0466914b4569c5b24370a0",
+      "role": 24
     }
   ],
   "sites": [
@@ -547,6 +539,50 @@
       "leave": "801C7264",
       "role": 5,
       "description": "Puzzle models/effects preserve the centered original canvas together with backgrounds and UI"
+    },
+    {
+      "section": ".minigame_3",
+      "address": "801C764C",
+      "name": "dora3_s23_mini_801C764C",
+      "size": 480,
+      "sha256": "a5559285c2be9040bf03a196c254729080457ab2080c72050639bf67af2ac582",
+      "enter": "801C76A8",
+      "leave": "801C76B0",
+      "role": 6,
+      "description": "Blue underlay outside finite minigame geometry; world and players share the normal wide projection"
+    },
+    {
+      "section": ".minigame_7",
+      "address": "801C6B90",
+      "name": "dora3_s27_mini_801C6B90",
+      "size": 308,
+      "sha256": "7ee91ec2fd6cc3364d125171d1a649240ede68dc2dfcbbad8a2be9b4d3c044e9",
+      "enter": "801C6BF4",
+      "leave": "801C6BFC",
+      "role": 6,
+      "description": "Blue underlay outside finite minigame geometry; world and players share the normal wide projection"
+    },
+    {
+      "section": ".minigame_8",
+      "address": "801C8270",
+      "name": "dora3_s28_mini_801C8270",
+      "size": 316,
+      "sha256": "c803bae74660f8f9964edc98c17ce376f80f422d9464674db1601dcfd6823033",
+      "enter": "801C82D4",
+      "leave": "801C82DC",
+      "role": 6,
+      "description": "Blue underlay outside finite minigame geometry; world and players share the normal wide projection"
+    },
+    {
+      "section": ".minigame_9",
+      "address": "801C7864",
+      "name": "dora3_s29_mini_801C7864",
+      "size": 368,
+      "sha256": "5cb4d156aaac428750bfc87829e078f273afe914b710ab4da4d85316e3d61636",
+      "enter": "801C78C8",
+      "leave": "801C78D0",
+      "role": 6,
+      "description": "Blue underlay outside finite minigame geometry; world and players share the normal wide projection"
     }
   ]
 }

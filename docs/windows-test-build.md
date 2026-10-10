@@ -1,28 +1,27 @@
-## User acceptance — 2026-10-10
+## test115 accepted by the user (2026-10-11)
 
-User tested four gamepads in test110, confirmed they work and authorized
-commit/push to existing main. This supersedes the pending authorization below.
-No additional build or agent-run gameplay/tests; the receipt remains as built.
+User confirmed the upper wall continuation and authorized commit/push to main.
+This completes acceptance of the minigame widescreen corrections through115;
+earlier number-game and fruit-field fixes were confirmed in112–114. The build
+receipt remains as built; pending wording below records the delivery state.
+No new build or agent game/test execution for this Git step.
 
-# test-110: four-player gamepad and keyboard input
+# test-115: fruit/voice minigame upper wall continuation
 
-Up to four SDL gamepads supply independent N64 ports. Controls has Player1–4
-tabs, each with keyboard/gamepad bindings, dead zone and its own default reset.
-Player1 keeps previous assignments; Players2–4 start with blank keyboard maps
-and standard gamepad maps. Assigning keyboard keys also connects a secondary
-port, allowing several players on one physical keyboard.
+User accepted114 ground/checker continuation. Added the upper wall from X800
+to2800 at original Y0..400 and Z=-500. Its original repeating texture keeps
+its scale and phase. Wall material list is a separate immutable copy.
 
-Existing device slots remain stable when another pad disconnects; reconnects
-prefer the previous device identity. Any pad can open the PC menu, while binding
-capture reads only the selected player's device. Held inputs are quarantined
-per device across menu/focus/hotplug changes. Modern camera remains Player1-only.
-Original status queries refresh all four port bits after hotplug/key setup.
-Existing four-port Original/Native latch and minigame paths are reused.
+Retained the accepted ground and checker field continuation:
+Twenty new columns retain the original100-unit cell size and alternating colors;
+two grass strips fill the outside edges. Original field, red goal line, actors
+and gameplay bounds stay unchanged. Accepted test113 number-game ground/sky
+and grenade arena corrections are retained.
 
-See docs/four-player-input.md for ROM evidence, settings migration and limits.
-Incremental Windows compile/link succeeded; generated code unchanged. No tests,
-CPU checks, game, emulator, renderer or GPU execution. Real multiplayer, reconnect
-and Original/Manual FPS verification remains the owner's task. In the original
-participant menu, choose human players as usual; CPU choices are not overridden.
-No commit/push before user verification and explicit authorization.
-Previous EXEs, ROM, settings, saves, shared DLLs and localization assets retained.
+Immutable material-list/vertex copies preserve extended-RDRAM pointer tags.
+Original aspect uses the original scene; Original and Native/Manual share the
+wide extension. See docs/widescreen.md and widescreen-fruit-extension.json.
+Generation: startup-wide-fruit114-v1; incremental compile/link succeeded.
+No tests, CPU checks, game, emulator, renderer or GPU execution. User visual
+verification pending; no commit/push until explicit authorization.
+Previous EXEs, ROM, settings, saves, shared DLLs and assets retained.

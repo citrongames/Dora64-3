@@ -1,3 +1,130 @@
+# Minigame corrections through test115 accepted (2026-10-11)
+
+User confirmed the completed fruit-game upper wall and requested commit/push.
+This accepts the corrections below through115, including the previously
+confirmed number-game backgrounds and fruit-field continuation. Historical
+pending notes describe each build at delivery. No exhaustive scene/FPS coverage
+is claimed. No additional build, tests or game execution for this Git step.
+
+# Fruit-game upper wall after accepted114 (2026-10-10)
+
+User accepted114 ground/checker continuation and requested completing the upper
+wall. ROM B0C vertices20–23 form its vertical quad at Z=-500, Y0..400, X-750..800.
+The independent material list2C80..2D08 loads them at2CF8. Added a third immutable
+material-list copy with one extra quad from X800 to2800, matching the new ground.
+Original wall commands and vertices remain unchanged; original height/depth,
+texture repeat, texel density and right-edge UV phase are preserved. S delta is
+rounded from2000*12288/1550, within signed16-bit range. ROM evidence is recorded
+in research/widescreen-fruit-extension.json.
+
+Accepted114 cells/grass, goal line, gameplay bounds and other minigame fixes
+remain. Original aspect bypasses the extension; Original and Native/Manual use
+the same render adapter. Existing114 generation is reused. Static source/ROM
+analysis and incremental compilation only; no tests/CPU/game/emulator/renderer/
+GPU execution. User wall verification pending; no commit/push yet.
+
+# Fruit/voice minigame right-hand continuation after accepted113 (2026-10-10)
+
+User confirmed113 ground in both number games, then authorized extending the
+fruit/voice game's checker field and grass without moving the goal line.
+ROM B0C (record4B2CA0) separates grass vertices64–75, red line76–99 and checker
+tiles100–291. Material lists2E70..2F08 and2F10..3170 draw grass and the line/tiles.
+Exact ROM hash, template vertices and scope are in widescreen-fruit-extension.json.
+
+The minigame3 background draw801C40D8 now replaces only those two exact material
+calls with immutable lists containing the original commands followed by extra
+quads. Two grass strips continue the X800 edge to2800 with matching edge colors
+and UV phase. Twenty new100-unit checker columns, six rows each, repeat the
+original adjacent540/640 column templates with alternating colors. The original
+short final column, all existing cells and the red goal line stay byte-identical.
+Only appended geometry occupies the added space; no model, actor, collision,
+scoring or other gameplay memory is changed. Other minigames retain accepted113.
+
+New vertex and display-list pointers retain the extended-RDRAM tag fixed112.
+Copies are immutable across pending frames and scene changes, reset with the
+drained heap. Full original sublist-byte comparisons qualify replacements in
+the ROM-bound background scope. Original aspect bypasses the extension;
+Original and Native/Manual share this adapter. The blue underlay remains a
+fallback beyond finite geometry for unusually wide views.
+
+Generation: startup-wide-fruit114-v1. Static ROM/source analysis and incremental
+compile/package only. No tests, CPU checks, game, emulator, renderer or GPU runs.
+Visual acceptance pending; commit/push still requires the user's command.
+
+# Number-game ground extension after accepted test112 (2026-10-10)
+
+User confirmed test112 fixes the corrupt background and requested stretching
+only the ground as well as the sky in both number-shooting games. The ROM ground
+is B84 vertices372–435 (16 flat quads), B96 vertices100–103 (one quad). Their
+G_VTX loads and coordinates were read directly from the locked ROM; exact vertex
+data is recorded in research/widescreen-arena-after110.json.
+
+Multiply X by4 in those explicit ranges only, widening ±700 to ±2800. Keep Y/Z,
+UVs and colors: the ground texture stretches horizontally with its polygons.
+The corrected immutable vertex-copy/extended-address path from112 is retained.
+Buildings, targets, actors, movement/collision bounds and the grenade arena are
+unchanged. Sky keeps its accepted112 extension. Original aspect uses original
+vertices; Original and Native/Manual share the same wide render path.
+
+No new generation required. Static ROM/source inspection and incremental
+compile/package only; no tests/CPU checks/game/emulator/renderer/GPU execution.
+User verification of the ground pending; no commit/push before authorization.
+
+# Number-game sky address correction after test111 (2026-10-10)
+
+User reports background polygons covering the screen in both number games.
+test111 incorrectly stripped kseg0 from the immutable vertex copy when writing
+G_MW_SEGMENT2. That copy is in the recompiler heap, beyond the original DMA
+address range. RT64 F3DEX2 moveWord passes w1 unchanged to RSP::setSegment;
+fromSegmented adds the vertex offset, then maskPhysicalAddress applies the
+24-bit DMA mask unless bit31 is present. The stripped pointer therefore aliases
+unrelated RAM and corrupts all geometry using that vertex segment.
+
+Keep sky.address intact, as required by the already-enabled ExtendedRDRAM path.
+Both number games share this correction. The sky-only coordinates/UV extension,
+normal arena projection, original collision bounds and blue underlay remain.
+No regenerated guest functions are needed. Static source inspection and one
+incremental Windows compile/package only; no tests/CPU/game/emulator/renderer/
+GPU execution. User visual verification pending; no commit/push yet.
+
+# Finite minigame arenas after test110 (2026-10-10)
+
+User reports the grenade squares look wider than their movement boundaries.
+The test097 whole-backdrop projection stretch was wrong: B95 contains the actual
+four arena squares, not just decoration. Actors used normal wide perspective,
+while their floor was stretched. The same mismatch affected the street/floor
+models B84/B96 in both number-shooting games, and B0C in minigame3.
+
+Removed all four role15 whole-model stretches and its renderer exception.
+Environment, participants, projectiles and targets now share normal widescreen
+perspective. No collision dimensions, movement limits, target hitboxes, cameras,
+HUD anchors or timing are changed. Original aspect bypasses these new scopes;
+Original and Native/Manual use the same rendering adapters.
+
+ROM evidence: minigame8 init801C3C2C loads B95 at actor804B2000 and translates
+Y by25. B95 has four square beds with X/Z edges at25 and350; original boundary
+routine801C4334 and object update801C4794 use those same25/350 magnitudes.
+Full function/asset hashes are in research/widescreen-arena-after110.json.
+
+Both street models include a separate four-vertex distant sky plane: B84
+vertices100–103, B96 vertices372–375. Immutable vertex copies extend only sky X
+from ±1000 to ±4000; S expands around2048 at the same rate, preserving the
+original central cloud scale/phase. Y/Z, T, colors and every other vertex stay
+unchanged. GIMO vertex segment2 is rebound only in the just-built background
+commands, with a full original vertex-array comparison. Original model/CPU
+resources stay untouched. Copies survive scene changes/pending frames and reset
+only with the drained game heap, matching existing widescreen blue assets.
+
+The existing blue underlay fills uncovered space beyond finite geometry in
+these four minigames. It is inserted before projection load, below all world
+draws, without distorting walkable floors or inventing extra playable space.
+The sky extension is finite; very wide/custom views can still reveal this
+underlay. No renderer execution or visual result has been claimed.
+
+Necessary generation: startup-wide-arena111-v1. Static ROM/source inspection and
+one incremental Windows compile/package only; no tests/CPU checks/game/emulator/
+renderer/GPU execution. User verification pending; no commit/push yet.
+
 # Widescreen accepted after test100 (2026-10-10)
 
 User reported that everything now appears normal and authorized commit/push to
