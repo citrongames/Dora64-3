@@ -15,3 +15,4 @@ void dora3_shutdown_live_io();
 // Read-only diagnostic snapshot; uses the existing input mutex, never SDL calls.
 struct Dora3LiveInputSnapshot { uint16_t buttons;float x,y;bool enabled; };
 Dora3LiveInputSnapshot dora3_live_input_snapshot();
+uint8_t dora3_live_connected_mask();

@@ -10,12 +10,39 @@
 #include <vector>
 
 namespace {
-struct Input { uint16_t buttons=0; float x=0,y=0; };
+struct Input { uint16_t buttons=0; float x=0,y=0; bool connected=false; };
 std::mutex input_mutex, audio_mutex;
-Input input;
+std::array<Input,dora3::port::PlayerCount> input{};
 bool input_enabled=true;
 int applied_background=-1;
-SDL_GameController* controller=nullptr; // SDL main thread only.
+struct GamepadSlot {
+    SDL_GameController* controller=nullptr;
+    SDL_JoystickID instance=-1;
+    std::string identity;
+};
+std::array<GamepadSlot,dora3::port::PlayerCount> controllers{}; // SDL thread only.
+bool connected_locked(int port){return input_enabled&&port>=0&&port<dora3::port::PlayerCount&&(port==0||input[port].connected);}
+void refresh_controllers() {
+    for(auto& slot:controllers)if(slot.controller&&!SDL_GameControllerGetAttached(slot.controller)) {
+        SDL_GameControllerClose(slot.controller);slot.controller=nullptr;slot.instance=-1;
+    }
+    for(int device=0;device<SDL_NumJoysticks();++device) {
+        if(!SDL_IsGameController(device))continue;
+        const auto instance=SDL_JoystickGetDeviceInstanceID(device);
+        if(instance<0||std::any_of(controllers.begin(),controllers.end(),[&](const auto& p){return p.instance==instance;}))continue;
+        if(std::none_of(controllers.begin(),controllers.end(),[](const auto& p){return !p.controller;}))break;
+        auto* pad=SDL_GameControllerOpen(device);if(!pad)continue;
+        char guid[33]{};SDL_JoystickGetGUIDString(SDL_JoystickGetGUID(SDL_GameControllerGetJoystick(pad)),guid,sizeof(guid));
+        const char* serial=SDL_GameControllerGetSerial(pad);const char* path=SDL_GameControllerPath(pad);
+        const std::string identity=std::string(guid)+":"+(serial&&*serial?serial:path?path:"");
+        // Retain existing player slots; prefer a disconnected device's old slot.
+        auto slot=std::find_if(controllers.begin(),controllers.end(),[&](const auto& p){return !p.controller&&p.identity==identity;});
+        if(slot==controllers.end())slot=std::find_if(controllers.begin(),controllers.end(),[](const auto& p){return !p.controller&&p.identity.empty();});
+        if(slot==controllers.end())slot=std::find_if(controllers.begin(),controllers.end(),[](const auto& p){return !p.controller;});
+        slot->controller=pad;slot->instance=instance;slot->identity=identity;
+        SDL_GameControllerSetPlayerIndex(pad,int(slot-controllers.begin()));
+    }
+}
 SDL_AudioDeviceID audio_device=0;
 uint32_t audio_rate=0;
 bool audio_enabled=true;
@@ -41,28 +68,23 @@ void dora3_configure_live_input(recomp::Configuration& cfg){
     audio_enabled=std::getenv("DORA3_NO_AUDIO")==nullptr;
     cfg.input_callbacks.get_connected_device_info=[](int port){
         using namespace ultramodern::input;
-        return connected_device_info_t{input_enabled && port==0 ? Device::Controller : Device::None,Pak::None};
+        std::lock_guard lock(input_mutex);
+        return connected_device_info_t{connected_locked(port)?Device::Controller:Device::None,Pak::None};
     };
     cfg.input_callbacks.get_input=[](int port,uint16_t* buttons,float* x,float* y){
-        if(!input_enabled || port!=0)return false;
         std::lock_guard lock(input_mutex);
-        if(dora3::port::menu_open()){*buttons=0;*x=*y=0;}else {*buttons=input.buttons;*x=input.x;*y=input.y;}
+        *buttons=0;*x=*y=0;
+        if(!connected_locked(port))return false;
+        if(!dora3::port::menu_open()){*buttons=input[port].buttons;*x=input[port].x;*y=input[port].y;}
         return true;
     };
-    DORA3_LOG(stderr,"LIVE INPUT port0=%s pak=none; keyboard/gamepad; focus clears state\n",input_enabled?"connected":"disconnected");
+    DORA3_LOG(stderr,"LIVE INPUT port0=%s; four keyboard/gamepad ports; pak=none; focus clears state\n",input_enabled?"connected":"disconnected");
 }
 
 namespace { float camera_wheel=0; bool camera_center_held=false; }
 void dora3_camera_mouse_wheel(float value){if(dora3::camera::active()&&!dora3::port::menu_open())camera_wheel+=value;}
 void dora3_poll_live_input(SDL_Window* window){
-    if(controller && !SDL_GameControllerGetAttached(controller)){
-        SDL_GameControllerClose(controller);controller=nullptr;
-        DORA3_LOG(stderr,"LIVE INPUT gamepad detached\n");
-    }
-    if(!controller)for(int i=0;i<SDL_NumJoysticks();i++)if(SDL_IsGameController(i)){
-        controller=SDL_GameControllerOpen(i);
-        if(controller){DORA3_LOG(stderr,"LIVE INPUT gamepad attached\n");break;}
-    }
+    refresh_controllers();
     using namespace dora3::port;
     const auto config=settings();
     if(applied_background!=int(config.background_gamepad_input)){
@@ -72,21 +94,26 @@ void dora3_poll_live_input(SDL_Window* window){
     PhysicalInput physical;
     physical.background_gamepad=config.background_gamepad_input;
     physical.focused=(SDL_GetWindowFlags(window)&SDL_WINDOW_INPUT_FOCUS)!=0;
-    physical.connected=controller!=nullptr;
     const auto* keys=SDL_GetKeyboardState(nullptr);
     if(physical.focused)std::copy_n(keys,SDL_NUM_SCANCODES,physical.keys.begin());
-    if(controller){
-        const char* name=SDL_GameControllerName(controller);physical.controller_name=name?name:"Gamepad";
-        if(physical.focused||config.background_gamepad_input){
-        for(int i=0;i<SDL_CONTROLLER_BUTTON_MAX;i++)physical.pad[i]=SDL_GameControllerGetButton(controller,SDL_GameControllerButton(i))?1.0f:0.0f;
-        for(int i=0;i<SDL_CONTROLLER_AXIS_MAX;i++){
-            const float v=axis(SDL_GameControllerGetAxis(controller,SDL_GameControllerAxis(i)),config.deadzone);
-            physical.pad[SDL_CONTROLLER_BUTTON_MAX+i*2]=std::max(0.0f,-v);
-            physical.pad[SDL_CONTROLLER_BUTTON_MAX+i*2+1]=std::max(0.0f,v);
+    std::array<Input,PlayerCount> next{};
+    for(int player=0;player<PlayerCount;++player) {
+        const auto& slot=controllers[player];auto& pad=physical.gamepads[player];
+        pad.connected=slot.controller!=nullptr;pad.instance=slot.instance;
+        const auto& controls=config.players[player];
+        // P1 always has the keyboard. Other ports appear with a pad or assigned keys.
+        next[player].connected=player==0||pad.connected||
+            std::any_of(controls.keys.begin(),controls.keys.begin()+CameraZoomIn,[](int key){return key>0;});
+        if(!slot.controller)continue;
+        const char* name=SDL_GameControllerName(slot.controller);pad.name=name?name:"Gamepad";
+        if(!physical.focused&&!config.background_gamepad_input)continue;
+        for(int i=0;i<SDL_CONTROLLER_BUTTON_MAX;i++)pad.pad[i]=SDL_GameControllerGetButton(slot.controller,SDL_GameControllerButton(i))?1.f:0.f;
+        for(int i=0;i<SDL_CONTROLLER_AXIS_MAX;i++) {
+            const float v=axis(SDL_GameControllerGetAxis(slot.controller,SDL_GameControllerAxis(i)),controls.deadzone);
+            pad.pad[SDL_CONTROLLER_BUTTON_MAX+i*2]=std::max(0.f,-v);
+            pad.pad[SDL_CONTROLLER_BUTTON_MAX+i*2+1]=std::max(0.f,v);
         }
     }
-    }
-    Input next{};
     PhysicalInput gameplay;
     const bool blocked=process_port_input(physical,&gameplay);
     const bool modern=input_enabled&&!blocked&&!capture_active()&&config.camera.enabled&&dora3::camera::active();
@@ -96,29 +123,31 @@ void dora3_poll_live_input(SDL_Window* window){
     int mouse_x=0,mouse_y=0;SDL_GetRelativeMouseState(&mouse_x,&mouse_y);
     if(!mouse_capture||!captured)mouse_x=mouse_y=0;
     if(!modern){dora3::camera::clear_input();camera_center_held=false;}
-    if(input_enabled&&!blocked){
+    if(input_enabled&&!blocked)for(int player=0;player<PlayerCount;++player) {
+        auto& state=next[player];const auto& controls=config.players[player];
+        const auto& pad=gameplay.gamepads[player].pad;
         constexpr uint16_t masks[]={0x8000,0x4000,0x2000,0x1000,0x20,0x10,0x800,0x400,0x200,0x100,8,4,2,1};
         const auto amount=[&](int action){
-            const int key=config.keys[action],binding=config.pad[action];
+            const int key=controls.keys[action],binding=controls.pad[action];
             const float keyboard=key>0&&gameplay.keys[key]?1.0f:0.0f;
             const int index=binding<100?binding:SDL_CONTROLLER_BUTTON_MAX+binding-100;
-            const float gamepad=index>=0&&index<int(gameplay.pad.size())?gameplay.pad[index]:0.0f;
+            const float gamepad=index>=0&&index<int(pad.size())?pad[index]:0.0f;
             return std::max(keyboard,gamepad);
         };
-        for(int i=0;i<StickUp;i++)if(amount(i)>(i>=CUp?0.32f:0.01f))next.buttons|=masks[i];
+        for(int i=0;i<StickUp;i++)if(amount(i)>(i>=CUp?0.32f:0.01f))state.buttons|=masks[i];
         const bool center=amount(Z)>.01f;
-        if(modern) {
+        if(player==0&&modern) {
             const bool zoom_mode=amount(R)>.01f;
             const float vertical=amount(CDown)-amount(CUp);
             dora3::camera::submit(amount(CRight)-amount(CLeft),zoom_mode?0.f:vertical,float(mouse_x),float(mouse_y),
                 std::max(amount(CameraZoomOut),amount(DDown))-std::max(amount(CameraZoomIn),amount(DUp))+(zoom_mode?vertical:0.f),
                 physical.focused?camera_wheel:0.f,center&&!camera_center_held);
-            next.buttons&=~uint16_t(0x10|0x800|0x400|0xF|0x2000);
+            state.buttons&=~uint16_t(0x10|0x800|0x400|0xF|0x2000);
         }
-        camera_center_held=center;
-        next.x=amount(StickRight)-amount(StickLeft);next.y=amount(StickUp)-amount(StickDown);
-        const float length=std::sqrt(next.x*next.x+next.y*next.y);
-        if(length>1){next.x/=length;next.y/=length;}
+        if(player==0)camera_center_held=center;
+        state.x=amount(StickRight)-amount(StickLeft);state.y=amount(StickUp)-amount(StickDown);
+        const float length=std::sqrt(state.x*state.x+state.y*state.y);
+        if(length>1){state.x/=length;state.y/=length;}
     }
     camera_wheel=0;
     std::lock_guard lock(input_mutex);input=next;
@@ -163,9 +192,15 @@ size_t dora3_audio_remaining(){
     return audio_device ? size_t(SDL_GetQueuedAudioSize(audio_device)/(2*sizeof(int16_t))) : 0;
 }
 
+uint8_t dora3_live_connected_mask(){
+    std::lock_guard lock(input_mutex);uint8_t mask=0;
+    for(int player=0;player<dora3::port::PlayerCount;++player)if(connected_locked(player))mask|=uint8_t(1u<<player);
+    return mask;
+}
+
 Dora3LiveInputSnapshot dora3_live_input_snapshot(){
     std::lock_guard lock(input_mutex);
-    return {input.buttons,input.x,input.y,input_enabled};
+    return {input[0].buttons,input[0].x,input[0].y,input_enabled};
 }
 
 void dora3_reset_live_io(){
@@ -180,7 +215,7 @@ void dora3_reset_live_io(){
 }
 
 void dora3_shutdown_live_io(){
-    if(controller){SDL_GameControllerClose(controller);controller=nullptr;}
+    for(auto& slot:controllers){if(slot.controller)SDL_GameControllerClose(slot.controller);slot={};}
     std::lock_guard lock(audio_mutex);
     if(audio_device){SDL_CloseAudioDevice(audio_device);audio_device=0;}
 }

@@ -377,17 +377,19 @@ extern "C" void dora3_trace(uint8_t* rdram,recomp_context* ctx,uint32_t address,
         for(auto& active:overlay_active)active=false;
         DORA3_LOG(stderr,"OVERLAY BOOT aliases removed; resident only\n");
     }
-    if(section_rom==0x1000&&address==0x80030324 &&
-       !(MEM_BU(0,int32_t(0x801A48B4))&1)) {
-        // Original 80030324 skips all pad reads when port 0 was absent at
-        // startup. Its only later status refresh depends on peripheral code
-        // which 8003D110 can disable (800DAD20), leaving input dead forever.
-        // Retry the real status query before the read gate, independently of
-        // peripherals. Do not invent a connected port or bypass OS pad errors.
-        // This is an entry hook before the read function's stack prologue;
-        // the query may use the same free stack area, but not its registers.
-        auto query_context=*ctx;
-        dora3_controller_status(rdram,&query_context);
+    if(section_rom==0x1000&&address==0x80030324) {
+        const auto presence=MEM_BU(0,int32_t(0x801A48B4));
+        bool refresh=!(presence&1);
+#ifdef DORA3_LIVE_RT64
+        // Original status refresh can be disabled with peripheral polling.
+        // Re-query on any PC port change, including P2-P4 hotplug/keyboard setup.
+        // The verified original query still owns all guest status/error writes.
+        refresh=(presence&0xF)!=dora3_live_connected_mask();
+#endif
+        if(refresh) {
+            auto query_context=*ctx;
+            dora3_controller_status(rdram,&query_context);
+        }
     }
     dora3::retirement::trace(rdram,ctx,address);
     if(address==0x80043390)unload_scene_code();

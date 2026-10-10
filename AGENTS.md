@@ -1,3 +1,20 @@
+## 2026-10-10: test110 four-gamepad support accepted; commit/push authorized
+
+User tested four gamepads, confirmed everything works and explicitly authorized
+commit/push to existing private main. This supersedes the test110 pending Git
+restriction below. Shared-keyboard and exhaustive hotplug/FPS coverage were not
+separately reported. Keep the build receipt as built. No new build, tests, CPU
+checks, game, emulator, renderer or GPU execution for this Git step.
+
+## 2026-10-10: Windows test-110 four-player input; user check pending
+
+Four SDL gamepad/N64 ports plus independent keyboard bindings. Player1 settings
+preserved; P2-P4 keys blank by default. Controls tabs, per-player dead zones/reset,
+stable hotplug slots and original status-query refresh added. See
+docs/four-player-input.md. Accepted109 menu and107 localization preserved.
+Incremental compile only; no tests/CPU/game/emulator/renderer/GPU execution.
+No commit/push until user verification and explicit authorization.
+
 ## 2026-10-10: test109 menu accepted; commit/push authorized
 
 User confirmed the corrected desktop menu fits properly and explicitly requested

@@ -14,6 +14,11 @@ inline constexpr std::array<const char*, ActionCount> action_names{
     "C Up", "C Down", "C Left", "C Right", "Stick Up", "Stick Down", "Stick Left", "Stick Right", "Camera zoom in", "Camera zoom out"};
 // SDL button IDs, or 100 + axis * 2 + direction (0 negative, 1 positive).
 constexpr int pad_axis(int axis, bool positive) { return 100 + axis * 2 + int(positive); }
+inline constexpr int PlayerCount=4;
+struct PlayerControls {
+    std::array<int,ActionCount> keys{},pad{};
+    float deadzone=0.25f;
+};
 struct Settings {
     std::string language="ja";
     int volume=100, resolution=0, filtering=0; // 0 original, 1 2x, 2 4x, 3 window scale; 0 N64, 1 bilinear
@@ -23,9 +28,8 @@ struct Settings {
     bool fullscreen=false, show_fps=false, autosave=true;
     int aspect_ratio=0, hud_layout=0; // Original/Expand and Original/Full, independently.
     float draw_distance=1.0f;
-    float deadzone=0.25f;
     bool background_gamepad_input=true;
-    std::array<int, ActionCount> keys{}, pad{};
+    std::array<PlayerControls,PlayerCount> players{};
     CheatSettings cheats{};
     dora3::camera::Options camera{};
 };
@@ -35,12 +39,12 @@ Settings settings();
 // Independent setting groups avoid lost binding updates from another thread.
 void set_general(const Settings& value);
 void set_cheats(const CheatSettings& value);
-void set_deadzone(float value);
+void set_deadzone(float value,int player=0);
 void set_background_gamepad_input(bool value);
 void set_fullscreen(bool value);
 void correct_display_index(int expected, int value);
-void bind(Action action, bool gamepad, int code);
-void reset_bindings();
+void bind(Action action, bool gamepad, int code,int player=0);
+void reset_bindings(int player=0);
 void profile(bool modern);
 std::string save_error();
 std::string pad_name(int code);

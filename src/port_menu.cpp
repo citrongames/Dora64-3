@@ -24,10 +24,10 @@ const char* key_name(int code){const char* n=SDL_GetScancodeName(SDL_Scancode(co
 void record_output_frame(){frames.fetch_add(1,std::memory_order_relaxed);}
 void overlay_input(){
     auto& io=ImGui::GetIO();io.ConfigFlags|=ImGuiConfigFlags_NavEnableKeyboard|ImGuiConfigFlags_NavEnableGamepad;
-    const auto p=physical();
-    if(p.connected)io.BackendFlags|=ImGuiBackendFlags_HasGamepad;else io.BackendFlags&=~ImGuiBackendFlags_HasGamepad;
-    const bool enabled=(p.focused||p.background_gamepad)&&menu_open()&&!ui_input_blocked();
-    auto button=[&](ImGuiKey key,int b){io.AddKeyEvent(key,enabled&&p.pad[b]>0.5f);};
+    const auto p=physical();const auto& gamepad=p.gamepads[menu_gamepad()];
+    if(gamepad.connected)io.BackendFlags|=ImGuiBackendFlags_HasGamepad;else io.BackendFlags&=~ImGuiBackendFlags_HasGamepad;
+    const bool enabled=gamepad.connected&&(p.focused||p.background_gamepad)&&menu_open()&&!ui_input_blocked();
+    auto button=[&](ImGuiKey key,int b){io.AddKeyEvent(key,enabled&&gamepad.pad[b]>0.5f);};
     button(ImGuiKey_GamepadFaceDown,SDL_CONTROLLER_BUTTON_A);button(ImGuiKey_GamepadFaceRight,SDL_CONTROLLER_BUTTON_B);
     button(ImGuiKey_GamepadFaceLeft,SDL_CONTROLLER_BUTTON_X);button(ImGuiKey_GamepadFaceUp,SDL_CONTROLLER_BUTTON_Y);
     button(ImGuiKey_GamepadDpadUp,SDL_CONTROLLER_BUTTON_DPAD_UP);button(ImGuiKey_GamepadDpadDown,SDL_CONTROLLER_BUTTON_DPAD_DOWN);
@@ -36,7 +36,7 @@ void overlay_input(){
     io.AddKeyEvent(ImGuiKey_GamepadBack,false); // Reserved for opening/closing the port menu.
     button(ImGuiKey_GamepadL3,SDL_CONTROLLER_BUTTON_LEFTSTICK);button(ImGuiKey_GamepadR3,SDL_CONTROLLER_BUTTON_RIGHTSTICK);
     button(ImGuiKey_GamepadL1,SDL_CONTROLLER_BUTTON_LEFTSHOULDER);button(ImGuiKey_GamepadR1,SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
-    auto stick=[&](ImGuiKey key,int axis,bool positive){float v=enabled?p.pad[SDL_CONTROLLER_BUTTON_MAX+axis*2+int(positive)]:0;io.AddKeyAnalogEvent(key,v>0.1f,v);};
+    auto stick=[&](ImGuiKey key,int axis,bool positive){float v=enabled?gamepad.pad[SDL_CONTROLLER_BUTTON_MAX+axis*2+int(positive)]:0;io.AddKeyAnalogEvent(key,v>0.1f,v);};
     stick(ImGuiKey_GamepadLStickLeft,SDL_CONTROLLER_AXIS_LEFTX,false);stick(ImGuiKey_GamepadLStickRight,SDL_CONTROLLER_AXIS_LEFTX,true);
     stick(ImGuiKey_GamepadLStickUp,SDL_CONTROLLER_AXIS_LEFTY,false);stick(ImGuiKey_GamepadLStickDown,SDL_CONTROLLER_AXIS_LEFTY,true);
     stick(ImGuiKey_GamepadRStickLeft,SDL_CONTROLLER_AXIS_RIGHTX,false);stick(ImGuiKey_GamepadRStickRight,SDL_CONTROLLER_AXIS_RIGHTX,true);
@@ -74,6 +74,7 @@ void draw_overlay(){
             const auto error=save_error();if(!error.empty())ImGui::TextWrapped("Settings error: %s",error.c_str());
             static Action capture_action=A;
             static bool capture_pad=false;
+            static int capture_player=0;
             bool open_capture=false;
             ImGui::BeginDisabled(ui_input_blocked());
             // Match Dora64 desktop: draw directly into the menu. Its 72px
@@ -174,30 +175,48 @@ void draw_overlay(){
                     ImGui::EndTabItem();
                 }
                 if(ImGui::BeginTabItem("Controls")) {
-                    {
-                        const auto p=physical();
-                        if(p.connected)ImGui::Text("Gamepad: %s",p.controller_name.empty()?"SDL controller":p.controller_name.c_str());
-                        else ImGui::TextDisabled("Gamepad: not connected");
-                        if(ImGui::Checkbox("Background gamepad input",&s.background_gamepad_input))set_background_gamepad_input(s.background_gamepad_input);
-                        ImGui::TextDisabled("Gamepad only; keyboard input still requires focus.");
-                        int deadzone=int(s.deadzone*100+0.5f);
-                        if(ImGui::SliderInt("Stick dead zone",&deadzone,5,50,"%d%%"))set_deadzone(deadzone/100.0f);
-                        ImGui::TextDisabled("Escape and Back / Select are reserved for the PC menu.");ImGui::Spacing();
-                        if(ImGui::BeginTable("##InputBindings",3,ImGuiTableFlags_Borders|ImGuiTableFlags_RowBg|ImGuiTableFlags_ScrollY|ImGuiTableFlags_SizingStretchProp,ImVec2(0,252*scale))) {
-                            ImGui::TableSetupScrollFreeze(0,1);
-                            ImGui::TableSetupColumn("Action",ImGuiTableColumnFlags_WidthStretch,2);
-                            ImGui::TableSetupColumn("Keyboard",ImGuiTableColumnFlags_WidthStretch,1);
-                            ImGui::TableSetupColumn("Gamepad",ImGuiTableColumnFlags_WidthStretch,1);ImGui::TableHeadersRow();
-                            for(int i=0;i<ActionCount;i++) {
-                                ImGui::PushID(i);ImGui::TableNextRow();ImGui::TableNextColumn();ImGui::AlignTextToFramePadding();ImGui::TextUnformatted(action_names[i]);
-                                ImGui::TableNextColumn();if(ImGui::Button((std::string(key_name(s.keys[i]))+"###keyboard").c_str(),ImVec2(-1,0))){capture_action=Action(i);capture_pad=false;begin_capture(capture_action,false);open_capture=true;}
-                                ImGui::TableNextColumn();
-                                if(ImGui::Button((pad_name(s.pad[i])+"###gamepad").c_str(),ImVec2(-1,0))){capture_action=Action(i);capture_pad=true;begin_capture(capture_action,true);open_capture=true;}
-                                ImGui::PopID();
+                    const auto p=physical();
+                    if(ImGui::Checkbox("Background gamepad input",&s.background_gamepad_input))set_background_gamepad_input(s.background_gamepad_input);
+                    ImGui::TextDisabled("Gamepad only; keyboard input still requires focus.");
+                    if(ImGui::BeginTabBar("##PlayerControlsTabs")) {
+                        constexpr const char* player_names[]={"Player 1","Player 2","Player 3","Player 4"};
+                        for(int player=0;player<PlayerCount;++player)if(ImGui::BeginTabItem(player_names[player])) {
+                            ImGui::PushID(player);
+                            const auto& pad=p.gamepads[player];auto& controls=s.players[player];
+                            if(pad.connected)ImGui::Text("Gamepad: %s",pad.name.empty()?"SDL controller":pad.name.c_str());
+                            else ImGui::TextDisabled("Gamepad: not connected. Assign keys to play on the keyboard.");
+                            int deadzone=int(controls.deadzone*100+0.5f);
+                            if(ImGui::SliderInt("Stick dead zone",&deadzone,5,50,"%d%%"))set_deadzone(deadzone/100.0f,player);
+                            ImGui::TextDisabled("Escape and Back / Select are reserved for the PC menu.");ImGui::Spacing();
+                            // Player tabs need one more row. Shrink only the binding
+                            // table, keeping Restore defaults and the footer visible.
+                            const float table_height=std::max(1.f,std::min(252*scale,ImGui::GetContentRegionAvail().y-76*scale));
+                            if(ImGui::BeginTable("##InputBindings",3,ImGuiTableFlags_Borders|ImGuiTableFlags_RowBg|ImGuiTableFlags_ScrollY|ImGuiTableFlags_SizingStretchProp,ImVec2(0,table_height))) {
+                                ImGui::TableSetupScrollFreeze(0,1);
+                                ImGui::TableSetupColumn("Action",ImGuiTableColumnFlags_WidthStretch,2);
+                                ImGui::TableSetupColumn("Keyboard",ImGuiTableColumnFlags_WidthStretch,1);
+                                ImGui::TableSetupColumn("Gamepad",ImGuiTableColumnFlags_WidthStretch,1);ImGui::TableHeadersRow();
+                                const int count=player==0?ActionCount:CameraZoomIn;
+                                for(int i=0;i<count;i++) {
+                                    ImGui::PushID(i);ImGui::TableNextRow();ImGui::TableNextColumn();ImGui::AlignTextToFramePadding();ImGui::TextUnformatted(action_names[i]);
+                                    ImGui::TableNextColumn();
+                                    if(ImGui::Button((std::string(key_name(controls.keys[i]))+"###keyboard").c_str(),ImVec2(-1,0))) {
+                                        capture_action=Action(i);capture_pad=false;capture_player=player;
+                                        begin_capture(capture_action,false,player);open_capture=true;
+                                    }
+                                    ImGui::TableNextColumn();ImGui::BeginDisabled(!pad.connected);
+                                    if(ImGui::Button((pad_name(controls.pad[i])+"###gamepad").c_str(),ImVec2(-1,0))) {
+                                        capture_action=Action(i);capture_pad=true;capture_player=player;
+                                        begin_capture(capture_action,true,player);open_capture=true;
+                                    }
+                                    ImGui::EndDisabled();ImGui::PopID();
+                                }
+                                ImGui::EndTable();
                             }
-                            ImGui::EndTable();
+                            if(ImGui::Button("Restore defaults for this player"))reset_bindings(player);
+                            ImGui::PopID();ImGui::EndTabItem();
                         }
-                        if(ImGui::Button("Restore default controls"))reset_bindings();
+                        ImGui::EndTabBar();
                     }
                     ImGui::EndTabItem();
                 }
@@ -230,10 +249,10 @@ void draw_overlay(){
             if(ImGui::BeginPopupModal("Bind control",nullptr,ImGuiWindowFlags_AlwaysAutoResize)) {
                 if(!capture_active())ImGui::CloseCurrentPopup();
                 else {
-                    ImGui::TextUnformatted(action_names[capture_action]);ImGui::Spacing();
+                    ImGui::Text("Player %d: %s",capture_player+1,action_names[capture_action]);ImGui::Spacing();
                     ImGui::TextWrapped("%s",capture_pad?"Release the current control, then press a button, trigger, or stick direction.":"Release the current key, then press the new key.");
                     ImGui::Spacing();
-                    if(ImGui::Button("Clear binding",ImVec2(120*scale,0))){bind(capture_action,capture_pad,capture_pad?-1:0);cancel_capture();ImGui::CloseCurrentPopup();}
+                    if(ImGui::Button("Clear binding",ImVec2(120*scale,0))){bind(capture_action,capture_pad,capture_pad?-1:0,capture_player);cancel_capture();ImGui::CloseCurrentPopup();}
                     ImGui::SameLine();if(ImGui::Button("Cancel",ImVec2(100*scale,0))){cancel_capture();ImGui::CloseCurrentPopup();}
                 }
                 ImGui::EndPopup();

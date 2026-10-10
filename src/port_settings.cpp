@@ -64,10 +64,21 @@ void save_locked(bool controls=false){
     if(pc_path.empty())return;
     try {
         if(controls){
-            input_document["version"]=3;input_document["background_gamepad_input"]=current.background_gamepad_input;
-            input_document["stick_dead_zone_percent"]=current.deadzone*100;
+            input_document["version"]=4;input_document["background_gamepad_input"]=current.background_gamepad_input;
+            input_document["stick_dead_zone_percent"]=current.players[0].deadzone*100;
             if(!input_document["bindings"].is_object())input_document["bindings"]=Json::object();
-            for(int i=0;i<ActionCount;i++)input_document["bindings"][action_keys[i]]={{"keyboard",current.keys[i]},{"gamepad",encode_pad(current.pad[i])}};
+            for(int i=0;i<ActionCount;i++)input_document["bindings"][action_keys[i]]={{"keyboard",current.players[0].keys[i]},{"gamepad",encode_pad(current.players[0].pad[i])}};
+            // Keep Player 1 in the existing fields for old builds; add only P2-P4.
+            if(!input_document["players"].is_object())input_document["players"]=Json::object();
+            for(int player=1;player<PlayerCount;++player) {
+                auto& row=input_document["players"][std::to_string(player+1)];
+                if(!row.is_object())row=Json::object();
+                row["stick_dead_zone_percent"]=current.players[player].deadzone*100;
+                if(!row["bindings"].is_object())row["bindings"]=Json::object();
+                for(int i=0;i<ActionCount;++i)row["bindings"][action_keys[i]]={
+                    {"keyboard",current.players[player].keys[i]},
+                    {"gamepad",encode_pad(current.players[player].pad[i])}};
+            }
             write(input_path,input_document);
         }else{
             pc_document["camera"]={{"modern",current.camera.enabled},{"capture_mouse",current.camera.capture_mouse},
@@ -102,16 +113,17 @@ bool valid_key(int code) { return code>=0 && code<SDL_NUM_SCANCODES && code!=SDL
 bool valid_pad(int code) { return code==-1 || (code>=0 && code<SDL_CONTROLLER_BUTTON_MAX && code!=SDL_CONTROLLER_BUTTON_BACK) || (code>=100 && code<100+2*SDL_CONTROLLER_AXIS_MAX); }
 Settings defaults() {
     Settings s;
-    s.keys={SDL_SCANCODE_SPACE,SDL_SCANCODE_C,SDL_SCANCODE_Z,SDL_SCANCODE_RETURN,SDL_SCANCODE_Q,SDL_SCANCODE_E,
+    s.players[0].keys={SDL_SCANCODE_SPACE,SDL_SCANCODE_C,SDL_SCANCODE_Z,SDL_SCANCODE_RETURN,SDL_SCANCODE_Q,SDL_SCANCODE_E,
         SDL_SCANCODE_UP,SDL_SCANCODE_DOWN,SDL_SCANCODE_LEFT,SDL_SCANCODE_RIGHT,
         SDL_SCANCODE_I,SDL_SCANCODE_K,SDL_SCANCODE_J,SDL_SCANCODE_L,SDL_SCANCODE_W,SDL_SCANCODE_S,SDL_SCANCODE_A,SDL_SCANCODE_D,SDL_SCANCODE_PAGEUP,SDL_SCANCODE_PAGEDOWN};
-    s.pad={SDL_CONTROLLER_BUTTON_A,SDL_CONTROLLER_BUTTON_B,pad_axis(SDL_CONTROLLER_AXIS_TRIGGERLEFT,true),
+    s.players[0].pad={SDL_CONTROLLER_BUTTON_A,SDL_CONTROLLER_BUTTON_B,pad_axis(SDL_CONTROLLER_AXIS_TRIGGERLEFT,true),
         SDL_CONTROLLER_BUTTON_START,SDL_CONTROLLER_BUTTON_LEFTSHOULDER,SDL_CONTROLLER_BUTTON_RIGHTSHOULDER,
         SDL_CONTROLLER_BUTTON_DPAD_UP,SDL_CONTROLLER_BUTTON_DPAD_DOWN,SDL_CONTROLLER_BUTTON_DPAD_LEFT,SDL_CONTROLLER_BUTTON_DPAD_RIGHT,
         pad_axis(SDL_CONTROLLER_AXIS_RIGHTY,false),pad_axis(SDL_CONTROLLER_AXIS_RIGHTY,true),
         pad_axis(SDL_CONTROLLER_AXIS_RIGHTX,false),pad_axis(SDL_CONTROLLER_AXIS_RIGHTX,true),
         pad_axis(SDL_CONTROLLER_AXIS_LEFTY,false),pad_axis(SDL_CONTROLLER_AXIS_LEFTY,true),
         pad_axis(SDL_CONTROLLER_AXIS_LEFTX,false),pad_axis(SDL_CONTROLLER_AXIS_LEFTX,true),-1,-1};
+    for(int player=1;player<PlayerCount;++player)s.players[player].pad=s.players[0].pad;
     return s;
 }
 void initialize(const std::filesystem::path& directory){
@@ -129,9 +141,9 @@ void initialize(const std::filesystem::path& directory){
                 integer(j,"window_width",current.window_width,480,7680);integer(j,"window_height",current.window_height,360,4320);
             }
             if(missing_input){
-                real(j,"deadzone",current.deadzone,0.05f,0.5f);
+                real(j,"deadzone",current.players[0].deadzone,0.05f,0.5f);
                 for(bool pad:{false,true}){
-                    const char* name=pad?"pad":"keys";auto& dst=pad?current.pad:current.keys;
+                    const char* name=pad?"pad":"keys";auto& dst=pad?current.players[0].pad:current.players[0].keys;
                     if(j.contains(name)&&j[name].is_array()&&j[name].size()>=18&&j[name].size()<=ActionCount)
                         for(int i=0;i<int(j[name].size());i++)if(j[name][i].is_number_integer()){
                             int v=j[name][i].get<int>();if(pad?valid_pad(v):valid_key(v))dst[i]=v;
@@ -142,8 +154,8 @@ void initialize(const std::filesystem::path& directory){
     }
     // Upgrade an untouched test-021 keyboard layout; preserve customized layouts.
     if(missing_input){
-        auto old_keys=defaults().keys;old_keys[A]=SDL_SCANCODE_Z;old_keys[B]=SDL_SCANCODE_X;old_keys[Z]=SDL_SCANCODE_SPACE;
-        if(current.keys==old_keys)current.keys=defaults().keys;
+        auto old_keys=defaults().players[0].keys;old_keys[A]=SDL_SCANCODE_Z;old_keys[B]=SDL_SCANCODE_X;old_keys[Z]=SDL_SCANCODE_SPACE;
+        if(current.players[0].keys==old_keys)current.players[0].keys=defaults().players[0].keys;
     }
     if(!missing_pc&&read(pc_path,pc_document)){
         if(pc_document.contains("language")&&pc_document["language"].is_object()&&pc_document["language"].contains("code")&&pc_document["language"]["code"].is_string())current.language=pc_document["language"]["code"].get<std::string>();
@@ -177,11 +189,28 @@ void initialize(const std::filesystem::path& directory){
     }
     if(!missing_input&&read(input_path,input_document)){
         boolean(input_document,"background_gamepad_input",current.background_gamepad_input);
-        float percent=current.deadzone*100;real(input_document,"stick_dead_zone_percent",percent,5,50);current.deadzone=percent/100;
+        float percent=current.players[0].deadzone*100;real(input_document,"stick_dead_zone_percent",percent,5,50);current.players[0].deadzone=percent/100;
         const auto it=input_document.find("bindings");if(it!=input_document.end()&&it->is_object())for(int i=0;i<ActionCount;i++){
             const auto entry=it->find(action_keys[i]);if(entry==it->end()||!entry->is_object())continue;
-            int key=current.keys[i],pad=encode_pad(current.pad[i]);integer(*entry,"keyboard",key,0,SDL_NUM_SCANCODES-1);integer(*entry,"gamepad",pad,0,1200);
-            if(valid_key(key))current.keys[i]=key;pad=decode_pad(pad);if(valid_pad(pad))current.pad[i]=pad;
+            int key=current.players[0].keys[i],pad=encode_pad(current.players[0].pad[i]);integer(*entry,"keyboard",key,0,SDL_NUM_SCANCODES-1);integer(*entry,"gamepad",pad,0,1200);
+            if(valid_key(key))current.players[0].keys[i]=key;pad=decode_pad(pad);if(valid_pad(pad))current.players[0].pad[i]=pad;
+        }
+    }
+    const auto players=input_document.find("players");
+    if(players!=input_document.end()&&players->is_object())for(int player=1;player<PlayerCount;++player) {
+        const auto row=players->find(std::to_string(player+1));
+        if(row==players->end()||!row->is_object())continue;
+        auto& controls=current.players[player];float percent=controls.deadzone*100;
+        real(*row,"stick_dead_zone_percent",percent,5,50);controls.deadzone=percent/100;
+        const auto bindings=row->find("bindings");
+        if(bindings==row->end()||!bindings->is_object())continue;
+        for(int i=0;i<ActionCount;++i) {
+            const auto entry=bindings->find(action_keys[i]);
+            if(entry==bindings->end()||!entry->is_object())continue;
+            int key=controls.keys[i],pad=encode_pad(controls.pad[i]);
+            integer(*entry,"keyboard",key,0,SDL_NUM_SCANCODES-1);integer(*entry,"gamepad",pad,0,1200);
+            if(valid_key(key))controls.keys[i]=key;
+            pad=decode_pad(pad);if(valid_pad(pad))controls.pad[i]=pad;
         }
     }
     current.language=dora3::localization::select(current.language);
@@ -216,16 +245,16 @@ void set_cheats(const CheatSettings& value){std::lock_guard lock(mutex);current.
 void set_background_gamepad_input(bool value){std::lock_guard lock(mutex);current.background_gamepad_input=value;save_locked(true);}
 void correct_display_index(int expected,int value){std::lock_guard lock(mutex);if(current.display_index==expected&&expected!=value){current.display_index=value;save_locked();}}
 void set_fullscreen(bool value){std::lock_guard lock(mutex);current.fullscreen=value;save_locked();}
-void set_deadzone(float v){if(!std::isfinite(v))return;std::lock_guard lock(mutex);current.deadzone=std::clamp(v,0.05f,0.5f);save_locked(true);}
-void bind(Action a,bool gamepad,int code) {
-    if(a<0||a>=ActionCount||!(gamepad?valid_pad(code):valid_key(code)))return;
-    std::lock_guard lock(mutex);auto& bindings=gamepad?current.pad:current.keys;
+void set_deadzone(float v,int player){if(!std::isfinite(v)||player<0||player>=PlayerCount)return;std::lock_guard lock(mutex);current.players[player].deadzone=std::clamp(v,0.05f,0.5f);save_locked(true);}
+void bind(Action a,bool gamepad,int code,int player) {
+    if(player<0||player>=PlayerCount||a<0||a>=ActionCount||!(gamepad?valid_pad(code):valid_key(code)))return;
+    std::lock_guard lock(mutex);auto& bindings=gamepad?current.players[player].pad:current.players[player].keys;
     const int old=bindings[a],none=gamepad?-1:0;
     // Swap conflicts; one physical control never unexpectedly triggers two actions.
     if(code!=none)for(int i=0;i<ActionCount;i++)if(i!=a&&bindings[i]==code)bindings[i]=old;
     bindings[a]=code;save_locked(true);
 }
-void reset_bindings(){std::lock_guard lock(mutex);const auto d=defaults();current.keys=d.keys;current.pad=d.pad;current.deadzone=d.deadzone;save_locked(true);}
+void reset_bindings(int player){if(player<0||player>=PlayerCount)return;std::lock_guard lock(mutex);current.players[player]=defaults().players[player];save_locked(true);}
 void profile(bool modern) {
     std::lock_guard lock(mutex);
     // Profiles cover game/presentation enhancements. Keep personal language,
