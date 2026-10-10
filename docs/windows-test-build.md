@@ -1,15 +1,14 @@
-# test-103: Native water-damage animation boundary correction
+# test-104: User-selected application icon
 
-Shared player animation rate planning now matches Original slow damage/death
-states37/40/43/46/51–56, with the state40 kick-period guard. Frame/clip boundary
-calculation preserves precise current animation time across rate changes.
-Held player models no longer request boundaries while their update is skipped.
-Includes the requested related slow/reverse animation audit; see
-docs/water-damage-performance-after102.md for ROM evidence and limitations.
+The approved abducted-town artwork (ド 64 3) is embedded in the Windows EXE
+and SDL window, following Dora64. No loose PNG is required beside the EXE.
+ICO sizes:16/32/48/64/128/256; the SDL icon uses the256 PNG. Linux desktop
+assets and registration helper are included in source; Linux was not compiled.
+Artwork and export instructions: resources/artwork/README.md.
 
-Incremental compile/link succeeded. The user confirmed the water-damage
-FPS fix works in test103 and authorized commit/push to main. No tests, CPU checks, game, emulator, renderer or
-GPU execution. Generation101 reused unchanged; accepted102 fixes preserved.
-Old EXEs, ROM, settings, saves and DLLs preserved. No additional build for
-this acceptance/documentation/Git step. The suspected cutscene pose glitch was
-withdrawn after the user reviewed a recording; no corresponding code change.
+Incremental Windows compile/link succeeded. Existing gameplay fixes including
+accepted test103 are preserved. No tests, CPU checks, game, emulator, renderer
+or GPU launches. After delivery of test104 the user authorized commit/push
+of the selected icon. No additional build for this documentation/Git step.
+Linux desktop integration has not been compiled or visually verified.
+Previous EXEs, ROM, settings, saves and shared DLLs preserved.

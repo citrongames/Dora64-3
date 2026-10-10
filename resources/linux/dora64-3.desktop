@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Dora64-3
+Comment=Doraemon 3: Nobita no Machi SOS!
+Exec=dora3_startup
+Icon=dora64-3
+Terminal=false
+Categories=Game;AdventureGame;
+StartupWMClass=dora64-3

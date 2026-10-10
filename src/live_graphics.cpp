@@ -7,6 +7,7 @@
 void dora3_set_native_present_target(unsigned(*query)());
 // Windows/Linux research frontend, original VI and F3DEX2, no game-one patches.
 #include "live_graphics.hpp"
+#include "app_icon.hpp"
 #include "live_io.hpp"
 #include "port_menu.hpp"
 #include "port_display.hpp"
@@ -311,6 +312,8 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
         ->std::unique_ptr<ultramodern::renderer::RendererContext>{return std::make_unique<LiveContext>(ram,w);};
     cfg.gfx_callbacks.create_window=[](void*)->ultramodern::renderer::WindowHandle{
         SDL_SetMainReady();
+        SDL_SetHint(SDL_HINT_APP_NAME,"Dora64-3");
+        SDL_SetHint("SDL_VIDEO_X11_WMCLASS","dora64-3");
         dora3_prepare_sdl_input();
         if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS|SDL_INIT_GAMECONTROLLER|SDL_INIT_AUDIO)!=0){DORA3_LOG(stderr,"SDL: %s\n",SDL_GetError());std::_Exit(84);}
         uint32_t flags=SDL_WINDOW_RESIZABLE|SDL_WINDOW_ALLOW_HIGHDPI;
@@ -322,6 +325,7 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
         const int centered=SDL_WINDOWPOS_CENTERED_DISPLAY(settings.display_index);
         auto* window=SDL_CreateWindow("Dora64-3 test build",centered,centered,settings.window_width,settings.window_height,flags);
         if(!window){DORA3_LOG(stderr,"SDL window: %s\n",SDL_GetError());std::_Exit(84);}
+        dora3_set_window_icon(window);
         live_window=window;
         SDL_SetWindowMinimumSize(window,320,240);
         dora3::port::update_display_window(window);

@@ -1,3 +1,24 @@
+## 2026-10-10: test104 icon accepted for commit/push
+
+After delivery of test104 the user explicitly authorized commit/push to existing
+private main. This supersedes pending Git notes below for the selected icon1.
+No further build, tests/CPU/game/emulator/renderer/GPU execution. Linux assets
+remain unbuilt; do not infer Linux verification from Windows acceptance.
+The test104 receipt stays as built; subsequent acceptance is documented here.
+
+## 2026-10-10: Windows test-104 compiled; application icon check pending
+
+Selected concept1 is embedded as EXE ICO and SDL PNG. Incremental MSVC build
+succeeded; no tests/CPU/game/renderer/GPU execution. Existing103 fixes retained.
+Linux desktop files prepared but not built. No commit/push until user approval.
+
+## 2026-10-10: selected icon1 integrated; user verification pending
+
+Owner selected the abducted-town icon (ド 64 3). PNG/ICO exports and desktop
+integration follow Dora64, donor untouched. See resources/artwork/README.md.
+Incremental build follows standing authorization. No tests/CPU/game/GPU launches.
+No commit/push before user verification and explicit authorization.
+
 ## 2026-10-10: test103 accepted; damage fix commit/push authorized
 
 User confirmed the water-damage FPS fix works and explicitly authorized

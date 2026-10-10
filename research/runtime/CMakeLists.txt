@@ -200,4 +200,33 @@ if(DORA3_LIVE_RT64)
     target_include_directories(dora3_startup PRIVATE "${RT64_ROOT}/src" "${RT64_ROOT}/src/contrib"
         "${RT64_ROOT}/src/contrib/hlslpp/include" "${RT64_ROOT}/src/rhi" "${RT64_ROOT}/src/render")
     target_link_libraries(dora3_startup PRIVATE rt64 SDL2::SDL2)
+    # Same desktop icon ownership as Dora64: embedded PNG for SDL, ICO for EXE.
+    set(icon_png "${ROOT}/assets/icons/dora64-3_256.png")
+    set(icon_c "${CMAKE_CURRENT_BINARY_DIR}/generated/dora3_icon.c")
+    set(icon_h "${CMAKE_CURRENT_BINARY_DIR}/generated/dora3_icon.h")
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/generated")
+    add_custom_command(OUTPUT "${icon_c}" "${icon_h}"
+        COMMAND file_to_c "${icon_png}" dora3_icon_png "${icon_c}" "${icon_h}"
+        DEPENDS "${icon_png}" file_to_c VERBATIM)
+    target_sources(dora3_startup PRIVATE "${ROOT}/src/app_icon.cpp" "${icon_c}" "${icon_h}")
+    set_source_files_properties("${ROOT}/src/app_icon.cpp" PROPERTIES
+        INCLUDE_DIRECTORIES "${CMAKE_CURRENT_BINARY_DIR}/generated")
+    if(WIN32)
+        enable_language(RC)
+        configure_file("${ROOT}/resources/windows/app.rc.in" generated/dora3.rc @ONLY)
+        set_source_files_properties("${CMAKE_CURRENT_BINARY_DIR}/generated/dora3.rc"
+            PROPERTIES OBJECT_DEPENDS "${ROOT}/assets/icons/dora64-3.ico")
+        target_sources(dora3_startup PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/generated/dora3.rc")
+    else()
+        # Copy launchers/assets only; registration is an explicit user action.
+        add_custom_target(dora3_desktop_files
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                "${ROOT}/resources/linux/dora64-3.desktop" "$<TARGET_FILE_DIR:dora3_startup>/dora64-3.desktop"
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                "${ROOT}/resources/linux/install-desktop.py" "$<TARGET_FILE_DIR:dora3_startup>/install-desktop.py"
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${ROOT}/assets/icons" "$<TARGET_FILE_DIR:dora3_startup>/assets/icons"
+            VERBATIM)
+        add_dependencies(dora3_startup dora3_desktop_files)
+    endif()
 endif()
