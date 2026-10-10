@@ -1,3 +1,34 @@
+## 2026-10-10: test107 localization accepted; commit/push authorized
+
+User confirmed the test107 fixes work and explicitly requested commit/push to
+existing private main. This accepts the localization implementation through107
+and supersedes its earlier pending/Git restrictions. Keep the build receipt as
+built; acceptance is recorded separately. No new build, tests, CPU checks, game,
+emulator, renderer or GPU execution for this Git step.
+
+## 2026-10-10: Windows test-107 localization corrections; user check pending
+
+Fixed copied file-menu prompts, missing save-card/minigame action labels, and
+description overflow in EN/RU. See docs/localization.md and windows-test-build.md.
+Incremental compile only; no tests/CPU/game/emulator/renderer/GPU execution.
+No commit/push until user gameplay verification and explicit authorization.
+
+## 2026-10-10: Windows test-106 localization compiled; user check pending
+
+English/Russian language packs, text adapters and native-pixel graphics compiled
+and packaged incrementally. See docs/localization.md. No tests/CPU/game/emulator/
+renderer/GPU execution. Keep accepted105 and all earlier fixes. No commit/push
+until user gameplay verification and explicit authorization.
+
+## 2026-10-10: English/Russian localization; user check pending
+
+Approved complete localization implementation after analysis. See docs/localization.md.
+Preserve accepted105 and earlier fixes. No tests/CPU/game/emulator/renderer/GPU
+execution. Static ROM/catalog/asset analysis and required generation allowed;
+one incremental Windows build at completion follows standing user authorization.
+No commit/push until user gameplay verification and explicit authorization.
+Donor /home/vova/projects/Dora64 and sources/ remain read-only.
+
 ## 2026-10-10: test105 autosave accepted; commit/push authorized
 
 User confirmed autosave works and explicitly requested commit/push to existing

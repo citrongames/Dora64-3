@@ -1,5 +1,6 @@
 #include "diagnostics.hpp"
 #include "guest_storage.hpp"
+#include "localization.hpp"
 #include "widescreen.hpp"
 #include "frame_lights.hpp"
 #include "recomp.h"
@@ -26,7 +27,7 @@ unsigned current_bank(uint8_t* ram) {
 }
 bool live(uint8_t* ram){return live_ram.load(std::memory_order_acquire)==ram;}
 void clear_heap() {
-    allocated.clear();free_blocks.clear();free_blocks.emplace(dora3::distance::spill_begin,dora3::distance::game_ram_end-dora3::distance::spill_begin);
+    allocated.clear();free_blocks.clear();free_blocks.emplace(dora3::distance::spill_begin,dora3::localization::arena_begin-dora3::distance::spill_begin);
 }
 uint32_t spill_allocate(uint8_t* ram,uint32_t bytes) {
     if(!bytes||bytes>0x1000000u)return 0;
@@ -67,6 +68,7 @@ void initialize_storage(uint8_t* ram) {
     if(live(ram))return;
     std::memset(ram+0x400000,0,0x400000);
     clear_heap();requested.clear();
+    dora3::localization::initialize_memory(ram);
     for(auto& frame:frames) {
         auto* memory=static_cast<uint8_t*>(recomp::alloc(ram,matrix_bytes+display_list_bytes));
         if(!memory)throw std::bad_alloc{};

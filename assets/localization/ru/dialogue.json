@@ -1,0 +1,5665 @@
+{
+  "format_version": 1,
+  "entries": [
+    {
+      "id": "rom_06ea12",
+      "translation": "{white}Удачи вам, юные друзья!{close}"
+    },
+    {
+      "id": "rom_06ea3e",
+      "translation": "{white}Пока это всё, что мне известно.{next}"
+    },
+    {
+      "id": "rom_06ea62",
+      "translation": "{white}Больше о нём пока ничего не знаю.{wait}{end}"
+    },
+    {
+      "id": "rom_06ea8a",
+      "translation": "{white}Он где-то в четвёртом районе.{next}"
+    },
+    {
+      "id": "rom_06eab2",
+      "translation": "{white}Что до {yellow}императора Багула{white}...{next}"
+    },
+    {
+      "id": "rom_06eada",
+      "translation": "{white}Но вам он непременно поможет.{wait}{end}"
+    },
+    {
+      "id": "rom_06eb02",
+      "translation": "{white}Он бывает упрям и ворчлив.{next}"
+    },
+    {
+      "id": "rom_06eb2e",
+      "translation": "{white}Прошу вас, спасите его!{next}"
+    },
+    {
+      "id": "rom_06eb5a",
+      "translation": "{white}попал в плен!{wait}{end}"
+    },
+    {
+      "id": "rom_06eb7e",
+      "translation": "{white}Мой брат, {yellow}доктор Цу{white},{next}"
+    },
+    {
+      "id": "rom_06eba2",
+      "translation": "{white}Где-то во втором районе{next}"
+    },
+    {
+      "id": "rom_06ebca",
+      "translation": "{white}{yellow}генератора щита{white} в этом районе.{wait}{end}"
+    },
+    {
+      "id": "rom_06ebf6",
+      "translation": "{white}вам нужно уничтожить три {yellow}{next}"
+    },
+    {
+      "id": "rom_06ec26",
+      "translation": "{white}Чтобы войти в {yellow}башню Металдо{white},{next}"
+    },
+    {
+      "id": "rom_06ec4e",
+      "translation": "{white}Оттуда управляют всем районом.{wait}{end}"
+    },
+    {
+      "id": "rom_06ec6a",
+      "translation": "{white}щитом вокруг {yellow}башни Металдо{white}.{next}"
+    },
+    {
+      "id": "rom_06ec92",
+      "translation": "{white}Второй район закрыт огромным{next}"
+    },
+    {
+      "id": "rom_06ecba",
+      "translation": "{white}которые я собрал о втором районе!{wait}{end}"
+    },
+    {
+      "id": "rom_06ecde",
+      "translation": "{white}А теперь послушайте сведения,{next}"
+    },
+    {
+      "id": "rom_06ed06",
+      "translation": "{white}Благодаря вам я снова дома!{wait}{end}"
+    },
+    {
+      "id": "rom_06ed32",
+      "translation": "{white}Спасибо вам за помощь!{next}"
+    },
+    {
+      "id": "rom_06ed5e",
+      "translation": "{white}О, привет! Как ваши дела?{next}"
+    },
+    {
+      "id": "rom_06ed82",
+      "translation": "{white}Обязательно навестите его.{close}"
+    },
+    {
+      "id": "rom_06edae",
+      "translation": "{white}{yellow}Доктор Цу{white} может что-то знать.{next}"
+    },
+    {
+      "id": "rom_06edde",
+      "translation": "{white}В {yellow}подземном городе 2{white}{next}"
+    },
+    {
+      "id": "rom_06ee0a",
+      "translation": "{white}Хм... А ведь это мысль!{wait}{end}"
+    },
+    {
+      "id": "rom_06ee2e",
+      "translation": "{white}сможет вернуть его к жизни?{next}"
+    },
+    {
+      "id": "rom_06ee56",
+      "translation": "{white}Может, один из ваших гаджетов{next}"
+    },
+    {
+      "id": "rom_06ee82",
+      "translation": "{white}Там спит {yellow}джинн{white}!{wait}{end}"
+    },
+    {
+      "id": "rom_06eeaa",
+      "translation": "{white}Постойте! В {yellow}море Поседо{white}...{next}"
+    },
+    {
+      "id": "rom_06eeda",
+      "translation": "{white}Что же нам делать?.. {next}"
+    },
+    {
+      "id": "rom_06ef06",
+      "translation": "{white}не дадут вам пройти.{wait}{end}"
+    },
+    {
+      "id": "rom_06ef2a",
+      "translation": "{white}бесчисленные провода под током{next}"
+    },
+    {
+      "id": "rom_06ef52",
+      "translation": "{white}Даже если пойти под землёй,{next}"
+    },
+    {
+      "id": "rom_06ef7e",
+      "translation": "{white}вас встретят ураганным огнём.{wait}{end}"
+    },
+    {
+      "id": "rom_06ef9e",
+      "translation": "{white}Её пушки и боевые корабли{next}"
+    },
+    {
+      "id": "rom_06efca",
+      "translation": "{white}Если приблизиться по воздуху,{next}"
+    },
+    {
+      "id": "rom_06eff6",
+      "translation": "{white}у меня пока нет.{wait}{end}"
+    },
+    {
+      "id": "rom_06f00e",
+      "translation": "{white}Способа попасть внутрь{next}"
+    },
+    {
+      "id": "rom_06f03a",
+      "translation": "{white}Как же войти в {yellow}башню Гарок{white}?{next}"
+    },
+    {
+      "id": "rom_06f06a",
+      "translation": "{white}вокруг {yellow}башни Гарок{white}.{next}"
+    },
+    {
+      "id": "rom_06f09a",
+      "translation": "{white}Третий район защищён барьером{next}"
+    },
+    {
+      "id": "rom_06f0c6",
+      "translation": "{white}о третьем районе!{wait}{end}"
+    },
+    {
+      "id": "rom_06f0de",
+      "translation": "{white}А теперь новые сведения{next}"
+    },
+    {
+      "id": "rom_06f102",
+      "translation": "{white}Я свяжусь с вами, когда закончу.{next}"
+    },
+    {
+      "id": "rom_06f12e",
+      "translation": "{white}чертежи нового оружия!{wait}{end}"
+    },
+    {
+      "id": "rom_06f156",
+      "translation": "{white}Чтобы его одолеть, я готовлю{next}"
+    },
+    {
+      "id": "rom_06f17e",
+      "translation": "{white}чтобы победить {yellow}императора Багула{white}.{next}"
+    },
+    {
+      "id": "rom_06f1aa",
+      "translation": "{white}и данные вашего оружия,{wait}{end}"
+    },
+    {
+      "id": "rom_06f1ca",
+      "translation": "{white}Используя его сведения{next}"
+    },
+    {
+      "id": "rom_06f1f2",
+      "translation": "{white}{yellow}Робот Б-0{white} доставил сведения.{next}"
+    },
+    {
+      "id": "rom_06f222",
+      "translation": "{white}Спасибо вам!{wait}{end}"
+    },
+    {
+      "id": "rom_06f23a",
+      "translation": "{white}Вы спасли {yellow}доктора Цу{white}!{next}"
+    },
+    {
+      "id": "rom_06f262",
+      "translation": "{white}Я буду ждать вас.{close}"
+    },
+    {
+      "id": "rom_06f28a",
+      "translation": "{white}Зайдите потом за чертежами.{next}"
+    },
+    {
+      "id": "rom_06f2b2",
+      "translation": "{white}Что ж, желаю вам удачи!{next}"
+    },
+    {
+      "id": "rom_06f2de",
+      "translation": "{white}Хорошо бы найти другой способ...{wait}{end}"
+    },
+    {
+      "id": "rom_06f30a",
+      "translation": "{white}нет космического корабля.{next}"
+    },
+    {
+      "id": "rom_06f336",
+      "translation": "{white}Но, к сожалению, у нас сейчас{next}"
+    },
+    {
+      "id": "rom_06f35e",
+      "translation": "{white}в космосе за ним.{wait}{end}"
+    },
+    {
+      "id": "rom_06f37a",
+      "translation": "{white}Вероятно, крепость {yellow}Багула{white}{next}"
+    },
+    {
+      "id": "rom_06f3aa",
+      "translation": "{white}находится за пределами этого луча,{next}"
+    },
+    {
+      "id": "rom_06f3d6",
+      "translation": "{white}невидимый защитный луч.{wait}{end}"
+    },
+    {
+      "id": "rom_06f402",
+      "translation": "{white}Из неё прямо в небо бьёт{next}"
+    },
+    {
+      "id": "rom_06f42e",
+      "translation": "{white}Я также обнаружил в {yellow}башне Мире{white}{next}"
+    },
+    {
+      "id": "rom_06f45e",
+      "translation": "{white}Нужно найти оба осколка!{wait}{end}"
+    },
+    {
+      "id": "rom_06f486",
+      "translation": "{white}нужны два {yellow}осколка зеркала{white}.{next}"
+    },
+    {
+      "id": "rom_06f4aa",
+      "translation": "{white}Чтобы попасть в {yellow}башню Мире{white},{next}"
+    },
+    {
+      "id": "rom_06f4d2",
+      "translation": "{white}Четвёртый район: {yellow}башня Мире{white}.{next}"
+    },
+    {
+      "id": "rom_06f4fa",
+      "translation": "{white}...Но сначала новые сведения.{next}"
+    },
+    {
+      "id": "rom_06f522",
+      "translation": "{white}Наверное, {yellow}его{white} для этого похитили.{wait}{end}"
+    },
+    {
+      "id": "rom_06f556",
+      "translation": "{white}У {yellow}Дораэмона{white} столько гаджетов...{next}"
+    },
+    {
+      "id": "rom_06f586",
+      "translation": "{white}Чтобы закончить этого мастера,{next}"
+    },
+    {
+      "id": "rom_06f5ae",
+      "translation": "{white}Его ещё не достроили. Возможно...{wait}{end}"
+    },
+    {
+      "id": "rom_06f5da",
+      "translation": "{white}мастер четвёртого района{next}"
+    },
+    {
+      "id": "rom_06f606",
+      "translation": "{white}По словам {yellow}робота Б-0{white},{next}"
+    },
+    {
+      "id": "rom_06f632",
+      "translation": "{white}Я как раз хотел вас предупредить.{wait}{end}"
+    },
+    {
+      "id": "rom_06f662",
+      "translation": "{white}Я обнаружил, что за вами следят.{next}"
+    },
+    {
+      "id": "rom_06f68e",
+      "translation": "{white}Один из {yellow}спутников слежения{white}{next}"
+    },
+    {
+      "id": "rom_06f6be",
+      "translation": "{white}Над нами спутники войска Багула.{wait}{end}"
+    },
+    {
+      "id": "rom_06f6ee",
+      "translation": "{white}Пропал?! Ох, беда!{next}"
+    },
+    {
+      "id": "rom_06f71a",
+      "translation": "{white}Что случилось? Где {yellow}Дораэмон{white}?{next}"
+    },
+    {
+      "id": "rom_06f74a",
+      "translation": "{white}готовы! Хм?.. Что такое?{wait}{end}"
+    },
+    {
+      "id": "rom_06f772",
+      "translation": "{white}Чертежи {yellow}гипервоздушной пушки{white}{next}"
+    },
+    {
+      "id": "rom_06f79e",
+      "translation": "{white}Привет! Я закончил чертежи!{next}"
+    },
+    {
+      "id": "rom_0c7572",
+      "translation": "{white}Начало сцены: стандартный текст{close}"
+    },
+    {
+      "id": "rom_0c759e",
+      "translation": "{white}(Следите за трубой бани!){close}"
+    },
+    {
+      "id": "rom_0c75ca",
+      "translation": "{white}(Найдите трубу общественной бани.){next}"
+    },
+    {
+      "id": "rom_0c75f2",
+      "translation": "{white}(Осмотритесь с помощью камеры.){next}"
+    },
+    {
+      "id": "rom_0c7616",
+      "translation": "{white}Пойдём к общественной бане.{wait}{end}"
+    },
+    {
+      "id": "rom_0c7646",
+      "translation": "{white}Метеорит упал на севере!{next}"
+    },
+    {
+      "id": "rom_0c7672",
+      "translation": "{white}Главное, не попасться роботу!{close}"
+    },
+    {
+      "id": "rom_0c769e",
+      "translation": "{white}Надо скорее вернуться домой!{next}"
+    },
+    {
+      "id": "rom_0c76c6",
+      "translation": "{white}А-а-а! Да что же происходит?!{next}"
+    },
+    {
+      "id": "rom_0c76f2",
+      "translation": "{white}Подойдём поближе.{close}"
+    },
+    {
+      "id": "rom_0c770e",
+      "translation": "{white}Оно со мной разговаривает!{next}"
+    },
+    {
+      "id": "rom_0c7736",
+      "translation": "{white}Что? Там кто-то есть?.. {next}"
+    },
+    {
+      "id": "rom_0c775e",
+      "translation": "{white}Воспользуемся им!{wait}{end}"
+    },
+    {
+      "id": "rom_0c7772",
+      "translation": "{white}Гирокапсула всё ещё у нас!{next}"
+    },
+    {
+      "id": "rom_0c779e",
+      "translation": "{white}К счастью, слизь её не захватила.{next}"
+    },
+    {
+      "id": "rom_0c77ca",
+      "translation": "{white}Выйдем за город и осмотримся!{wait}{end}"
+    },
+    {
+      "id": "rom_0c77f2",
+      "translation": "{white}Надо выяснить, куда мы попали.{next}"
+    },
+    {
+      "id": "rom_0c781a",
+      "translation": "{white}и сядем в машину времени!{close}"
+    },
+    {
+      "id": "rom_0c7846",
+      "translation": "{white}Вернёмся в комнату{next}"
+    },
+    {
+      "id": "rom_0c7872",
+      "translation": "{white}Найдите ключ-кристалл!{close}"
+    },
+    {
+      "id": "rom_0c789e",
+      "translation": "{white}{yellow}Лес Карека{white}{next}"
+    },
+    {
+      "id": "rom_0c78ca",
+      "translation": "{white}Соберите предметы!{close}"
+    },
+    {
+      "id": "rom_0c78f6",
+      "translation": "{white}Найдите ключ-кристалл!{close}"
+    },
+    {
+      "id": "rom_0c7922",
+      "translation": "{white}{yellow}Пещера Домеро{white}{next}"
+    },
+    {
+      "id": "rom_0c794e",
+      "translation": "{white}{yellow}Гора Гурун{white}{next}"
+    },
+    {
+      "id": "rom_0c797a",
+      "translation": "{white}{yellow}Озеро Дезон{white}{next}"
+    },
+    {
+      "id": "rom_0c79a6",
+      "translation": "{white}Соберите предметы!{close}"
+    },
+    {
+      "id": "rom_0c79d6",
+      "translation": "{white}Исследуйте местность!{close}"
+    },
+    {
+      "id": "rom_0c7a02",
+      "translation": "{white}{yellow}Город пепинцев{white}{next}"
+    },
+    {
+      "id": "rom_0c7a2e",
+      "translation": "{white}Уничтожьте генератор щита!{close}"
+    },
+    {
+      "id": "rom_0c7a5e",
+      "translation": "{white}{yellow}Пустыня Зараха{white}{next}"
+    },
+    {
+      "id": "rom_0c7a8a",
+      "translation": "{white}{yellow}Пещера Фабан{white}{next}"
+    },
+    {
+      "id": "rom_0c7ab6",
+      "translation": "{white}{yellow}Парк Дез{white}{next}"
+    },
+    {
+      "id": "rom_0c7ae6",
+      "translation": "{white}{yellow}Подземный город 1{white}{next}"
+    },
+    {
+      "id": "rom_0c7b16",
+      "translation": "{white}{yellow}Город миникцев{white}{next}"
+    },
+    {
+      "id": "rom_0c7b42",
+      "translation": "{white}Найдите осколок звезды!{close}"
+    },
+    {
+      "id": "rom_0c7b6e",
+      "translation": "{white}{yellow}Озеро Рикс{white}{next}"
+    },
+    {
+      "id": "rom_0c7b9a",
+      "translation": "{white}{yellow}Лес Кираф{white}{next}"
+    },
+    {
+      "id": "rom_0c7bc6",
+      "translation": "{white}Найдите джинна!{close}"
+    },
+    {
+      "id": "rom_0c7bf2",
+      "translation": "{white}{yellow}Море Поседо{white}{next}"
+    },
+    {
+      "id": "rom_0c7c1e",
+      "translation": "{white}{yellow}Море Поседо{white}{next}"
+    },
+    {
+      "id": "rom_0c7c4a",
+      "translation": "{white}{yellow}Подземный город 2{white}{next}"
+    },
+    {
+      "id": "rom_0c7c7a",
+      "translation": "{white}{yellow}Город драгонцев{white}{next}"
+    },
+    {
+      "id": "rom_0c7ca6",
+      "translation": "{white}Найдите осколки зеркала!{close}"
+    },
+    {
+      "id": "rom_0c7cd2",
+      "translation": "{white}{yellow}Гора Когол{white}{next}"
+    },
+    {
+      "id": "rom_0c7cfe",
+      "translation": "{white}{yellow}Пещера Латена{white}{next}"
+    },
+    {
+      "id": "rom_0c7d2a",
+      "translation": "{white}{yellow}Город попиканцев{white}{next}"
+    },
+    {
+      "id": "rom_0c9552",
+      "translation": "{white}прежде чем покинуть этот город!{close}"
+    },
+    {
+      "id": "rom_0c957e",
+      "translation": "{white}Обязательно выслушайте всех,{next}"
+    },
+    {
+      "id": "rom_0c95aa",
+      "translation": "{white}Они пригодятся вам в пути.{wait}{end}"
+    },
+    {
+      "id": "rom_0c95c6",
+      "translation": "{white}принесли полезные сведения.{next}"
+    },
+    {
+      "id": "rom_0c95ee",
+      "translation": "{white}Ещё четверо моих друзей{next}"
+    },
+    {
+      "id": "rom_0c9616",
+      "translation": "{white}Обязательно приходите!{wait}{end}"
+    },
+    {
+      "id": "rom_0c9646",
+      "translation": "{white}Я буду ждать вас в лесу Карека.{next}"
+    },
+    {
+      "id": "rom_0c9672",
+      "translation": "{white}снова ожил.{wait}{end}"
+    },
+    {
+      "id": "rom_0c969a",
+      "translation": "{white}Я хочу, чтобы наш лес Карека{next}"
+    },
+    {
+      "id": "rom_0c96c2",
+      "translation": "{white}Прошу вас, помогите нам.{next}"
+    },
+    {
+      "id": "rom_0c96ee",
+      "translation": "{white}полезные гаджеты...{wait}{end}"
+    },
+    {
+      "id": "rom_0c9716",
+      "translation": "{white}Я вижу, что у вас есть{next}"
+    },
+    {
+      "id": "rom_0c973e",
+      "translation": "{white}Откуда вы прибыли?{next}"
+    },
+    {
+      "id": "rom_0c976a",
+      "translation": "{white}Я {yellow}Пучу{white}, предводительница фей.{wait}{end}"
+    },
+    {
+      "id": "rom_0c979e",
+      "translation": "{white}Привет! Я из {yellow}леса Карека{white}.{next}"
+    },
+    {
+      "id": "rom_0c97ce",
+      "translation": "{white}прямо здесь, на этой планете!{close}"
+    },
+    {
+      "id": "rom_0c97ee",
+      "translation": "{white}и создать могучую цивилизацию{next}"
+    },
+    {
+      "id": "rom_0c981a",
+      "translation": "{white}Он хочет изучить их{wait}{end}"
+    },
+    {
+      "id": "rom_0c9832",
+      "translation": "{white}цивилизации со всей вселенной.{next}"
+    },
+    {
+      "id": "rom_0c985e",
+      "translation": "{white}Император Багул собирает{next}"
+    },
+    {
+      "id": "rom_0c988a",
+      "translation": "{white}которых тоже перенесли сюда...{close}"
+    },
+    {
+      "id": "rom_0c98b6",
+      "translation": "{white}Похоже, есть и другие люди,{next}"
+    },
+    {
+      "id": "rom_0c98de",
+      "translation": "{white}на планету Дакт.{wait}{end}"
+    },
+    {
+      "id": "rom_0c98f6",
+      "translation": "{white}Поэтому весь ваш город перенесли{next}"
+    },
+    {
+      "id": "rom_0c9922",
+      "translation": "{white}Когда вы подобрали его,{wait}{end}"
+    },
+    {
+      "id": "rom_0c9946",
+      "translation": "{white}{yellow}зонд поиска цивилизаций{white}.{next}"
+    },
+    {
+      "id": "rom_0c9972",
+      "translation": "{white}Вы нашли созданный Багулом{next}"
+    },
+    {
+      "id": "rom_0c999a",
+      "translation": "{white}пришла в ещё больший упадок...{close}"
+    },
+    {
+      "id": "rom_0c99c6",
+      "translation": "{white}Из-за него природа нашей планеты{next}"
+    },
+    {
+      "id": "rom_0c99ee",
+      "translation": "{white}словно это всего лишь игра.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9a1a",
+      "translation": "{white}Он всё крушит и ломает,{next}"
+    },
+    {
+      "id": "rom_0c9a46",
+      "translation": "{white}и захватил нашу планету.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9a72",
+      "translation": "{white}Недавно сюда прибыл Багул{next}"
+    },
+    {
+      "id": "rom_0c9a9e",
+      "translation": "{white}Это планета Дакт.{next}"
+    },
+    {
+      "id": "rom_0c9ac2",
+      "translation": "{white}поможет {yellow}газовый спрей{white} учёного.{close}"
+    },
+    {
+      "id": "rom_0c9aee",
+      "translation": "{white}Чтобы избавиться от них,{next}"
+    },
+    {
+      "id": "rom_0c9b1a",
+      "translation": "{white}Но маленькие сгустки слабее.{next}"
+    },
+    {
+      "id": "rom_0c9b46",
+      "translation": "{white}который перенёс вас сюда...{wait}{end}"
+    },
+    {
+      "id": "rom_0c9b76",
+      "translation": "{white}придётся одолеть Багула,{next}"
+    },
+    {
+      "id": "rom_0c9b9e",
+      "translation": "{white}Чтобы освободить всех,{next}"
+    },
+    {
+      "id": "rom_0c9bca",
+      "translation": "{white}силой императора Багула.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9bfa",
+      "translation": "{white}Она была создана{next}"
+    },
+    {
+      "id": "rom_0c9c22",
+      "translation": "{white}Это {yellow}хронослизь{white}.{next}"
+    },
+    {
+      "id": "rom_0c9c4e",
+      "translation": "{white}Потом растёт и сохраняет их.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9c7e",
+      "translation": "{white}обволакивает всё, что даёт энергию.{next}"
+    },
+    {
+      "id": "rom_0c9caa",
+      "translation": "{white}Слизь, захватившая ваших друзей,{next}"
+    },
+    {
+      "id": "rom_0c9cd2",
+      "translation": "{white}четыре {yellow}ключа-кристалла{white}!{close}"
+    },
+    {
+      "id": "rom_0c9cfe",
+      "translation": "{white}надо отыскать в разных местах{next}"
+    },
+    {
+      "id": "rom_0c9d26",
+      "translation": "{white}Чтобы войти в башню Марил,{next}"
+    },
+    {
+      "id": "rom_0c9d52",
+      "translation": "{white}вокруг этого района не исчезнет.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9d7a",
+      "translation": "{white}не побеждён, невидимая стена{next}"
+    },
+    {
+      "id": "rom_0c9da6",
+      "translation": "{white}Пока {yellow}мастер{white} в башне Марил{next}"
+    },
+    {
+      "id": "rom_0c9dd2",
+      "translation": "{white}управляет первым районом.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9dfa",
+      "translation": "{white}Здесь {yellow}башня Марил{white}{next}"
+    },
+    {
+      "id": "rom_0c9e26",
+      "translation": "{white}{yellow}башни{white} управляют поверхностью.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9e56",
+      "translation": "{white}На Дакте сейчас {yellow}четыре{next}"
+    },
+    {
+      "id": "rom_0c9e86",
+      "translation": "{white}и поговорите с духом!{close}"
+    },
+    {
+      "id": "rom_0c9eaa",
+      "translation": "{white}Используйте {yellow}призыватель душ{white}{next}"
+    },
+    {
+      "id": "rom_0c9ed6",
+      "translation": "{white}Здесь пригодится один из гаджетов.{next}"
+    },
+    {
+      "id": "rom_0c9f02",
+      "translation": "{white}{red}А вот и ангел-проводник!{next}"
+    },
+    {
+      "id": "rom_0c9f3a",
+      "translation": "{white}с духом дерева ещё раз!{wait}{end}"
+    },
+    {
+      "id": "rom_0c9f66",
+      "translation": "{white}чтобы мы могли поговорить{next}"
+    },
+    {
+      "id": "rom_0c9f8e",
+      "translation": "{white}Прошу, используйте свой гаджет,{next}"
+    },
+    {
+      "id": "rom_0c9fb2",
+      "translation": "{white}Самых разных...{wait}{end}"
+    },
+    {
+      "id": "rom_0c9fd6",
+      "translation": "{white}Он рассказывал нам истории.{next}"
+    },
+    {
+      "id": "rom_0c9ffe",
+      "translation": "{white}появлялся перед нами.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca01e",
+      "translation": "{white}дух этого дерева{next}"
+    },
+    {
+      "id": "rom_0ca046",
+      "translation": "{white}Раньше стоило встать на этот пень,{next}"
+    },
+    {
+      "id": "rom_0ca072",
+      "translation": "{white}и верните духам силу!{close}"
+    },
+    {
+      "id": "rom_0ca09a",
+      "translation": "{white}Пусть в лесу снова цветут цветы!{next}"
+    },
+    {
+      "id": "rom_0ca0c6",
+      "translation": "{white}Как хорошо, что мы вас встретили.{close}"
+    },
+    {
+      "id": "rom_0ca0f2",
+      "translation": "{white}Большое вам спасибо.{next}"
+    },
+    {
+      "id": "rom_0ca112",
+      "translation": "{white}держат взаперти.{close}"
+    },
+    {
+      "id": "rom_0ca136",
+      "translation": "{white}девочку с Дакта{next}"
+    },
+    {
+      "id": "rom_0ca15a",
+      "translation": "{white}В том здании войска Багула{next}"
+    },
+    {
+      "id": "rom_0ca182",
+      "translation": "{white}растёт от таинственных плодов.{close}"
+    },
+    {
+      "id": "rom_0ca1ae",
+      "translation": "{white}Существо по имени Пован{next}"
+    },
+    {
+      "id": "rom_0ca1da",
+      "translation": "{white}очень любит мягкую еду.{close}"
+    },
+    {
+      "id": "rom_0ca206",
+      "translation": "{white}Вон та птица, {yellow}Оппи{white},{next}"
+    },
+    {
+      "id": "rom_0ca22e",
+      "translation": "{white}и выберите оружие!{close}"
+    },
+    {
+      "id": "rom_0ca246",
+      "translation": "{white}Откройте меню паузы{next}"
+    },
+    {
+      "id": "rom_0ca272",
+      "translation": "{white}Поэтому возьмите оружие!{wait}{end}"
+    },
+    {
+      "id": "rom_0ca28a",
+      "translation": "{white}опасных чудовищ.{next}"
+    },
+    {
+      "id": "rom_0ca2ae",
+      "translation": "{white}На этой планете полно{next}"
+    },
+    {
+      "id": "rom_0ca2da",
+      "translation": "{white}Так что вы поймёте друг друга.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca306",
+      "translation": "{white}есть переводчик.{next}"
+    },
+    {
+      "id": "rom_0ca332",
+      "translation": "{white}У каждого жителя Дакта{next}"
+    },
+    {
+      "id": "rom_0ca35e",
+      "translation": "{white}в подземных городах.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca38a",
+      "translation": "{white}Жители этой планеты живут{next}"
+    },
+    {
+      "id": "rom_0ca3b2",
+      "translation": "{white}разорили эту планету.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca3d6",
+      "translation": "{white}и загрязнение природы{next}"
+    },
+    {
+      "id": "rom_0ca402",
+      "translation": "{white}На Дакте падения метеоритов{next}"
+    },
+    {
+      "id": "rom_0ca42a",
+      "translation": "{white}чтобы осветить путь!{close}"
+    },
+    {
+      "id": "rom_0ca44a",
+      "translation": "{white}Примените {yellow}светящийся мох{white},{next}"
+    },
+    {
+      "id": "rom_0ca47a",
+      "translation": "{white}лучше воспользуйтесь им.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca4a6",
+      "translation": "{white}Если есть что-то для освещения,{next}"
+    },
+    {
+      "id": "rom_0ca4d2",
+      "translation": "{white}В пещере темно. Будьте осторожны!{next}"
+    },
+    {
+      "id": "rom_0ca4fe",
+      "translation": "{white}кажется, держат в плену!{wait}{end}"
+    },
+    {
+      "id": "rom_0ca526",
+      "translation": "{white}одного доброго учёного,{next}"
+    },
+    {
+      "id": "rom_0ca54a",
+      "translation": "{white}В комнате впереди{next}"
+    },
+    {
+      "id": "rom_0ca56e",
+      "translation": "{white}и освободите доктора!{close}"
+    },
+    {
+      "id": "rom_0ca596",
+      "translation": "{white}чтобы открыть эту дверь{next}"
+    },
+    {
+      "id": "rom_0ca5be",
+      "translation": "{white}Возьмите эту {yellow}ключ-карту{white},{next}"
+    },
+    {
+      "id": "rom_0ca5e2",
+      "translation": "{white}Используйте свою {yellow}ключ-карту{white},{next}"
+    },
+    {
+      "id": "rom_0ca612",
+      "translation": "{white}прежде чем нырять!{close}"
+    },
+    {
+      "id": "rom_0ca62a",
+      "translation": "{white}используйте {yellow}глубоководный крем{white},{next}"
+    },
+    {
+      "id": "rom_0ca65a",
+      "translation": "{white}А если собираетесь на глубину,{next}"
+    },
+    {
+      "id": "rom_0ca686",
+      "translation": "{white}прежде чем плыть!{wait}{end}"
+    },
+    {
+      "id": "rom_0ca6ae",
+      "translation": "{white}используйте {yellow}жаберные трубки{white},{next}"
+    },
+    {
+      "id": "rom_0ca6da",
+      "translation": "{white}Когда войдёте в озеро,{next}"
+    },
+    {
+      "id": "rom_0ca6fa",
+      "translation": "{white}вам понадобится {yellow}ключ-карта{white}!{wait}{end}"
+    },
+    {
+      "id": "rom_0ca722",
+      "translation": "{white}Она спрятана внутри.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca746",
+      "translation": "{white}На глубине есть ещё одна база.{next}"
+    },
+    {
+      "id": "rom_0ca76e",
+      "translation": "{white}Чтобы попасть на базу на дне,{next}"
+    },
+    {
+      "id": "rom_0ca796",
+      "translation": "{white}спрятан там...{wait}{end}"
+    },
+    {
+      "id": "rom_0ca7c6",
+      "translation": "{white}{yellow}Ключ-кристалл{white} на подводной базе{next}"
+    },
+    {
+      "id": "rom_0ca7f6",
+      "translation": "{white}Когда ныряете на большую глубину,{next}"
+    },
+    {
+      "id": "rom_0ca81a",
+      "translation": "{white}Она спрятана внутри.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca82e",
+      "translation": "{white}Там находится {yellow}ключ-карта{white}.{next}"
+    },
+    {
+      "id": "rom_0ca85a",
+      "translation": "{white}За отверстием на дне есть база.{next}"
+    },
+    {
+      "id": "rom_0ca882",
+      "translation": "{white}гораздо быстрее!{close}"
+    },
+    {
+      "id": "rom_0ca8aa",
+      "translation": "{white}По нему можно подняться на гору{next}"
+    },
+    {
+      "id": "rom_0ca8d2",
+      "translation": "{white}и вырастет огромный стебель.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca902",
+      "translation": "{white}посадите {yellow}боб Джека{white},{next}"
+    },
+    {
+      "id": "rom_0ca92e",
+      "translation": "{white}На холмике влажной земли{next}"
+    },
+    {
+      "id": "rom_0ca95a",
+      "translation": "{white}похоже, хранит {yellow}ключ-кристалл{white}.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca98e",
+      "translation": "{white}статуя-страж {yellow}Двуликий{white}{next}"
+    },
+    {
+      "id": "rom_0ca9be",
+      "translation": "{white}На вершине горы{next}"
+    },
+    {
+      "id": "rom_0ca9e6",
+      "translation": "{white}чтобы поговорить с пришельцами!{close}"
+    },
+    {
+      "id": "rom_0caa12",
+      "translation": "{white}Съешьте {yellow}переводной конняку{white},{next}"
+    },
+    {
+      "id": "rom_0caa42",
+      "translation": "{white}живут в этих местах.{wait}{end}"
+    },
+    {
+      "id": "rom_0caa66",
+      "translation": "{white}Пришельцы, похожие на земноводных,{next}"
+    },
+    {
+      "id": "rom_0caa8e",
+      "translation": "{white}Будьте осторожны!{close}"
+    },
+    {
+      "id": "rom_0caaa6",
+      "translation": "{white}стал напарником мастера...{next}"
+    },
+    {
+      "id": "rom_0caad2",
+      "translation": "{white}Похоже, один из ваших друзей{next}"
+    },
+    {
+      "id": "rom_0caafe",
+      "translation": "{white}находится там!{wait}{end}"
+    },
+    {
+      "id": "rom_0cab16",
+      "translation": "{white}водный мастер {yellow}Сидзутар{white}{next}"
+    },
+    {
+      "id": "rom_0cab3e",
+      "translation": "{white}На крыше этой башни{next}"
+    },
+    {
+      "id": "rom_0cab5e",
+      "translation": "{white}чтобы изгнать призрака!{close}"
+    },
+    {
+      "id": "rom_0cab86",
+      "translation": "{white}поможет {yellow}наклейка-оберег{white}.{next}"
+    },
+    {
+      "id": "rom_0cabae",
+      "translation": "{white}Если в вас вселится призрак,{next}"
+    },
+    {
+      "id": "rom_0cabda",
+      "translation": "{white}Так что будьте начеку!{wait}{end}"
+    },
+    {
+      "id": "rom_0cabf2",
+      "translation": "{white}умеет раздваиваться и вселяться.{next}"
+    },
+    {
+      "id": "rom_0cac22",
+      "translation": "{white}Местный призрак, {yellow}Дерорин{white},{next}"
+    },
+    {
+      "id": "rom_0cac52",
+      "translation": "{white}{yellow}Доктор Ка{white} уже вернулся домой.{close}"
+    },
+    {
+      "id": "rom_0cac82",
+      "translation": "{white}Это дом {yellow}доктора Ка{white}.{next}"
+    },
+    {
+      "id": "rom_0cacae",
+      "translation": "{white}и её старший брат Нобил.{close}"
+    },
+    {
+      "id": "rom_0cacd6",
+      "translation": "{white}Здесь живут любимица города Рейна{next}"
+    },
+    {
+      "id": "rom_0cad02",
+      "translation": "{white}чтобы защититься!{close}"
+    },
+    {
+      "id": "rom_0cad26",
+      "translation": "{white}{yellow}тайфуна{white} укроет от смерча:{next}"
+    },
+    {
+      "id": "rom_0cad52",
+      "translation": "{white}Здесь пригодится {yellow}глаз{next}"
+    },
+    {
+      "id": "rom_0cad7e",
+      "translation": "{white}Для входа нужна ключ-карта.{wait}{end}"
+    },
+    {
+      "id": "rom_0cadae",
+      "translation": "{white}на базе впереди.{next}"
+    },
+    {
+      "id": "rom_0cadda",
+      "translation": "{white}Генератор щита должен быть{next}"
+    },
+    {
+      "id": "rom_0cae06",
+      "translation": "{white}чтобы починить робота!{close}"
+    },
+    {
+      "id": "rom_0cae26",
+      "translation": "{white}{yellow}механизмов{white},{next}"
+    },
+    {
+      "id": "rom_0cae52",
+      "translation": "{white}Возьмите {yellow}аптечку для{next}"
+    },
+    {
+      "id": "rom_0cae7e",
+      "translation": "{white}Попробуйте помочь ему!{wait}{end}"
+    },
+    {
+      "id": "rom_0caeaa",
+      "translation": "{white}Кажется, у робота что-то есть.{next}"
+    },
+    {
+      "id": "rom_0caed6",
+      "translation": "{white}Иначе вы обожжётесь.{close}"
+    },
+    {
+      "id": "rom_0caefa",
+      "translation": "{white}Обязательно используйте его.{wait}{end}"
+    },
+    {
+      "id": "rom_0caf12",
+      "translation": "{white}Нужен {yellow}эскимосский экстракт{white}.{next}"
+    },
+    {
+      "id": "rom_0caf46",
+      "translation": "{white}Здесь очень жарко.{next}"
+    },
+    {
+      "id": "rom_0caf6a",
+      "translation": "{white}генератор{white} должен быть здесь.{wait}{end}"
+    },
+    {
+      "id": "rom_0caf96",
+      "translation": "{white}Где-то в пещере есть {yellow}защитный{next}"
+    },
+    {
+      "id": "rom_0cafc2",
+      "translation": "{white}Раздуйте им пламя!{close}"
+    },
+    {
+      "id": "rom_0cafe2",
+      "translation": "{white}Возьмите {yellow}веер бога ветра{white}.{next}"
+    },
+    {
+      "id": "rom_0cb012",
+      "translation": "{white}и скала начнёт двигаться.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb02a",
+      "translation": "{white}Пламя должно стать сильнее,{next}"
+    },
+    {
+      "id": "rom_0cb056",
+      "translation": "{white}чтобы попасть на базу!{close}"
+    },
+    {
+      "id": "rom_0cb082",
+      "translation": "{white}используйте {yellow}туннельный фонарь{white},{next}"
+    },
+    {
+      "id": "rom_0cb0b2",
+      "translation": "{white}На стене другого цвета{next}"
+    },
+    {
+      "id": "rom_0cb0de",
+      "translation": "{white}но входа нигде нет...{wait}{end}"
+    },
+    {
+      "id": "rom_0cb102",
+      "translation": "{white}База должна быть дальше,{next}"
+    },
+    {
+      "id": "rom_0cb12e",
+      "translation": "{white}все аттракционы снова заработают.{close}"
+    },
+    {
+      "id": "rom_0cb15a",
+      "translation": "{white}Если её починить,{next}"
+    },
+    {
+      "id": "rom_0cb186",
+      "translation": "{white}Пульт управления сломан.{next}"
+    },
+    {
+      "id": "rom_0cb1aa",
+      "translation": "{white}Когда-то здесь было оживлённо.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb1d2",
+      "translation": "{white}Этот парк развлечений...{next}"
+    },
+    {
+      "id": "rom_0cb1f6",
+      "translation": "{white}и заберитесь на платформу!{close}"
+    },
+    {
+      "id": "rom_0cb212",
+      "translation": "{white}Затем используйте трамплин{next}"
+    },
+    {
+      "id": "rom_0cb23e",
+      "translation": "{white}чтобы запустить платформу.{next}"
+    },
+    {
+      "id": "rom_0cb266",
+      "translation": "{white}Включите этот переключатель,{wait}{end}"
+    },
+    {
+      "id": "rom_0cb292",
+      "translation": "{white}Он спрятан в комнате управления.{next}"
+    },
+    {
+      "id": "rom_0cb2be",
+      "translation": "{white}Нужен переключатель пути к базе.{next}"
+    },
+    {
+      "id": "rom_0cb2ea",
+      "translation": "{white}прямо над нами.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb30a",
+      "translation": "{white}Войско Багула построило базу{next}"
+    },
+    {
+      "id": "rom_0cb332",
+      "translation": "{white}{yellow}управления{white}!{close}"
+    },
+    {
+      "id": "rom_0cb35a",
+      "translation": "{yellow}механизмов{white} и почините {yellow}пульт{next}"
+    },
+    {
+      "id": "rom_0cb386",
+      "translation": "{white}который сможет его починить?{wait}{end}"
+    },
+    {
+      "id": "rom_0cb3aa",
+      "translation": "{white}Нет ли у вас гаджета,{next}"
+    },
+    {
+      "id": "rom_0cb3d2",
+      "translation": "{white}Этот сломанный {yellow}пульт управления{white}...{next}"
+    },
+    {
+      "id": "rom_0cb402",
+      "translation": "{white}не забудьте переводчик!{close}"
+    },
+    {
+      "id": "rom_0cb41a",
+      "translation": "{white}А когда будете говорить с ними,{next}"
+    },
+    {
+      "id": "rom_0cb43e",
+      "translation": "{white}снова используйте {yellow}малый фонарь{white}!{wait}{end}"
+    },
+    {
+      "id": "rom_0cb472",
+      "translation": "{white}Чтобы воспользоваться оружием,{next}"
+    },
+    {
+      "id": "rom_0cb49a",
+      "translation": "{white}Но так нельзя пользоваться оружием!{next}"
+    },
+    {
+      "id": "rom_0cb4c2",
+      "translation": "{white}чтобы уменьшиться!{wait}{end}"
+    },
+    {
+      "id": "rom_0cb4e2",
+      "translation": "{white}примените {yellow}уменьшающий фонарь{white},{next}"
+    },
+    {
+      "id": "rom_0cb512",
+      "translation": "{white}Чтобы поговорить с жителями,{next}"
+    },
+    {
+      "id": "rom_0cb53e",
+      "translation": "{white}живут здесь!{wait}{end}"
+    },
+    {
+      "id": "rom_0cb55a",
+      "translation": "{white}Крошечные пришельцы{next}"
+    },
+    {
+      "id": "rom_0cb586",
+      "translation": "{white}её ход станет шире!{close}"
+    },
+    {
+      "id": "rom_0cb5ae",
+      "translation": "{white}Тогда платформа{next}"
+    },
+    {
+      "id": "rom_0cb5d2",
+      "translation": "{white}Вставьте кристаллы в глаза статуи.{next}"
+    },
+    {
+      "id": "rom_0cb5fe",
+      "translation": "{white}и доберётесь туда!{wait}{end}"
+    },
+    {
+      "id": "rom_0cb612",
+      "translation": "{white}Используйте вращающуюся платформу{next}"
+    },
+    {
+      "id": "rom_0cb63a",
+      "translation": "{white}Нужно добраться до переключателя.{next}"
+    },
+    {
+      "id": "rom_0cb666",
+      "translation": "{white}на южной стороне этого этажа.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb696",
+      "translation": "{white}включите переключатель{next}"
+    },
+    {
+      "id": "rom_0cb6c2",
+      "translation": "{white}Чтобы открыть дверь этажом выше,{next}"
+    },
+    {
+      "id": "rom_0cb6ee",
+      "translation": "{white}механический мастер {yellow}Сунэнгер{white}{next}"
+    },
+    {
+      "id": "rom_0cb71a",
+      "translation": "{white}На верхнем этаже башни{next}"
+    },
+    {
+      "id": "rom_0cb73e",
+      "translation": "{white}и летите на облаке!{close}"
+    },
+    {
+      "id": "rom_0cb766",
+      "translation": "{white}чтобы сделать облако твёрдым,{next}"
+    },
+    {
+      "id": "rom_0cb78e",
+      "translation": "{white}Примените {yellow}отвердитель облаков{white},{next}"
+    },
+    {
+      "id": "rom_0cb7be",
+      "translation": "{white}Но пути туда нет.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb7d6",
+      "translation": "{white}Нужно подняться выше.{next}"
+    },
+    {
+      "id": "rom_0cb7fa",
+      "translation": "{white}Комната мастера наверху.{next}"
+    },
+    {
+      "id": "rom_0cb81e",
+      "translation": "{white}Это дом {yellow}доктора Цу{white}!{close}"
+    },
+    {
+      "id": "rom_0cb84a",
+      "translation": "{white}чтобы разогнать туман!{close}"
+    },
+    {
+      "id": "rom_0cb876",
+      "translation": "{white}используйте {yellow}генератор тайфунов{white},{next}"
+    },
+    {
+      "id": "rom_0cb8a2",
+      "translation": "{white}Когда одолеете чудовище,{next}"
+    },
+    {
+      "id": "rom_0cb8ce",
+      "translation": "{white}нужно сначала победить.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb8f6",
+      "translation": "{white}Чтобы рассеять туман, {yellow}Кирафа{white}{next}"
+    },
+    {
+      "id": "rom_0cb926",
+      "translation": "{white}найти дорогу.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb936",
+      "translation": "{white}Из-за него очень трудно{next}"
+    },
+    {
+      "id": "rom_0cb962",
+      "translation": "{white}Этот лес окутан туманом.{next}"
+    },
+    {
+      "id": "rom_0cb98e",
+      "translation": "{white}прячется впереди. Осторожно!{close}"
+    },
+    {
+      "id": "rom_0cb9b6",
+      "translation": "{white}Чудовище {yellow}Кираф{white}{next}"
+    },
+    {
+      "id": "rom_0cb9e2",
+      "translation": "{white}и отведите его к пруду!{close}"
+    },
+    {
+      "id": "rom_0cba0a",
+      "translation": "{white}{yellow}угощение{white} скормите {yellow}Габугону{white}{next}"
+    },
+    {
+      "id": "rom_0cba3a",
+      "translation": "{white}Возьмите {yellow}кибиданго Момотаро{white}:{next}"
+    },
+    {
+      "id": "rom_0cba6a",
+      "translation": "{white}он может дать {yellow}целебный плод{white}!{wait}{end}"
+    },
+    {
+      "id": "rom_0cba9e",
+      "translation": "{white}Съев нескольких {yellow}метабо{white},{next}"
+    },
+    {
+      "id": "rom_0cbac6",
+      "translation": "{white}обожает {yellow}метабо{white} из пруда.{wait}{end}"
+    },
+    {
+      "id": "rom_0cbaf2",
+      "translation": "{white}{yellow}Габугон{white}{next}"
+    },
+    {
+      "id": "rom_0cbb1e",
+      "translation": "{white}Здешний четвероногий зверь,{next}"
+    },
+    {
+      "id": "rom_0cbb46",
+      "translation": "{white}{yellow}крем{white}!{close}"
+    },
+    {
+      "id": "rom_0cbb72",
+      "translation": "{white}Нужны {yellow}жаберные трубки{white} и {yellow}глубинный{next}"
+    },
+    {
+      "id": "rom_0cbb9e",
+      "translation": "{white}защитным щитом!{wait}{end}"
+    },
+    {
+      "id": "rom_0cbbce",
+      "translation": "{white}Войско Багула закрыло вход к {yellow}джинну{white}{next}"
+    },
+    {
+      "id": "rom_0cbbfa",
+      "translation": "{white}расположилась база войска Багула.{wait}{end}"
+    },
+    {
+      "id": "rom_0cbc22",
+      "translation": "{white}В одной живёт {yellow}джинн{white}, а в другой{next}"
+    },
+    {
+      "id": "rom_0cbc4e",
+      "translation": "{white}На морском дне две пещеры.{next}"
+    },
+    {
+      "id": "rom_0cbc7a",
+      "translation": "{white}чтобы поговорить с {yellow}джинном{white}!{close}"
+    },
+    {
+      "id": "rom_0cbcaa",
+      "translation": "{white}Примените {yellow}призыватель душ{white},{next}"
+    },
+    {
+      "id": "rom_0cbcda",
+      "translation": "{white}сначала попросите об этом {yellow}джинна{white}.{wait}{end}"
+    },
+    {
+      "id": "rom_0cbd0e",
+      "translation": "{white}Если нужна помощь {yellow}джинна{white},{next}"
+    },
+    {
+      "id": "rom_0cbd3a",
+      "translation": "{white}и расспросите жителей!{close}"
+    },
+    {
+      "id": "rom_0cbd52",
+      "translation": "{white}идите в {yellow}подземный город 2{white}{next}"
+    },
+    {
+      "id": "rom_0cbd82",
+      "translation": "{white}Чтобы найти {yellow}эмблему джинна{white},{next}"
+    },
+    {
+      "id": "rom_0cbdae",
+      "translation": "{white}Пора возвращать её!{close}"
+    },
+    {
+      "id": "rom_0cbdc6",
+      "translation": "{white}Верните {yellow}эмблему{white} её {yellow}хозяину{white}.{next}"
+    },
+    {
+      "id": "rom_0cbdf6",
+      "translation": "{white}перед ним.{wait}{end}"
+    },
+    {
+      "id": "rom_0cbe0e",
+      "translation": "{white}встаньте на камень{next}"
+    },
+    {
+      "id": "rom_0cbe36",
+      "translation": "{white}Чтобы попросить {yellow}джинна{white},{next}"
+    },
+    {
+      "id": "rom_0cbe66",
+      "translation": "{white}конняку{white}!{close}"
+    },
+    {
+      "id": "rom_0cbe8e",
+      "translation": "{white}И не забудьте {yellow}переводной{next}"
+    },
+    {
+      "id": "rom_0cbeba",
+      "translation": "{white}чтобы поговорить с ними!{wait}{end}"
+    },
+    {
+      "id": "rom_0cbed6",
+      "translation": "{white}нужна {yellow}пластина перевоплощения{white},{next}"
+    },
+    {
+      "id": "rom_0cbf06",
+      "translation": "{white}Чтобы говорить с местными жителями,{next}"
+    },
+    {
+      "id": "rom_0cbf2e",
+      "translation": "{white}но, похоже, умеют телепортироваться.{wait}{end}"
+    },
+    {
+      "id": "rom_0cbf5e",
+      "translation": "{white}Это первобытное племя,{next}"
+    },
+    {
+      "id": "rom_0cbf86",
+      "translation": "{white}и они очень свирепые.{wait}{end}"
+    },
+    {
+      "id": "rom_0cbfaa",
+      "translation": "{white}называются {yellow}драгонцами{white},{next}"
+    },
+    {
+      "id": "rom_0cbfd2",
+      "translation": "{white}Осторожно! Местные жители{next}"
+    },
+    {
+      "id": "rom_0cbffa",
+      "translation": "{white}чтобы его успокоить!{close}"
+    },
+    {
+      "id": "rom_0cc016",
+      "translation": "{white}драгонцев{white}.{next}"
+    },
+    {
+      "id": "rom_0cc046",
+      "translation": "{white}Примените {yellow}сердечный микрофон{white}: вождь{next}"
+    },
+    {
+      "id": "rom_0cc072",
+      "translation": "{white}нападать на них.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc092",
+      "translation": "{white}Он приказал своим воинам{next}"
+    },
+    {
+      "id": "rom_0cc0be",
+      "translation": "{white}города других пришельцев.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc0de",
+      "translation": "Вождь {yellow}драгонцев{white} нападает на{next}"
+    },
+    {
+      "id": "rom_0cc10a",
+      "translation": "{white}В местном дворце...{next}"
+    },
+    {
+      "id": "rom_0cc132",
+      "translation": "{white}у него обратно.{close}"
+    },
+    {
+      "id": "rom_0cc14e",
+      "translation": "{white}и заберите {yellow}камень силы{white}{next}"
+    },
+    {
+      "id": "rom_0cc16a",
+      "translation": "{white}Сначала успокойте его,{wait}{end}"
+    },
+    {
+      "id": "rom_0cc186",
+      "translation": "{white}{yellow}силы{white}.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc1b6",
+      "translation": "{white}У вождя {yellow}драгонцев{white} есть {yellow}камень{next}"
+    },
+    {
+      "id": "rom_0cc1e6",
+      "translation": "{white}{yellow}силы{white}.{close}"
+    },
+    {
+      "id": "rom_0cc212",
+      "translation": "{white}и можно будет пройти!{close}"
+    },
+    {
+      "id": "rom_0cc236",
+      "translation": "{white}очиститель{white} уберёт яд,{next}"
+    },
+    {
+      "id": "rom_0cc262",
+      "translation": "{white}Здесь пригодится {yellow}корабль-{next}"
+    },
+    {
+      "id": "rom_0cc292",
+      "translation": "{white}Не заходите в ядовитую воду!{wait}{end}"
+    },
+    {
+      "id": "rom_0cc2ba",
+      "translation": "{white}ядовитой водой!{next}"
+    },
+    {
+      "id": "rom_0cc2e2",
+      "translation": "{white}Это озеро наполнено{next}"
+    },
+    {
+      "id": "rom_0cc306",
+      "translation": "{white}над озером.{close}"
+    },
+    {
+      "id": "rom_0cc32a",
+      "translation": "{white}Кажется, много предметов парит{next}"
+    },
+    {
+      "id": "rom_0cc356",
+      "translation": "{white}Уменьшите её, прежде чем брать!{close}"
+    },
+    {
+      "id": "rom_0cc37e",
+      "translation": "{white}{yellow}Эмблема джинна{white} очень велика.{next}"
+    },
+    {
+      "id": "rom_0cc3ae",
+      "translation": "{white}должна быть где-то здесь!{wait}{end}"
+    },
+    {
+      "id": "rom_0cc3c6",
+      "translation": "{white}{yellow}Эмблема джинна{white}{next}"
+    },
+    {
+      "id": "rom_0cc3f6",
+      "translation": "{white}звуковой мастер {yellow}Джайконг{white}{next}"
+    },
+    {
+      "id": "rom_0cc426",
+      "translation": "{white}так что будьте осторожны.{close}"
+    },
+    {
+      "id": "rom_0cc44e",
+      "translation": "{white}В глубине совсем темно,{next}"
+    },
+    {
+      "id": "rom_0cc476",
+      "translation": "{white}Это пещера Латена.{next}"
+    },
+    {
+      "id": "rom_0cc49e",
+      "translation": "{white}чтобы осветить дорогу!{close}"
+    },
+    {
+      "id": "rom_0cc4c6",
+      "translation": "{white}Возьмите {yellow}светящийся мох{white},{next}"
+    },
+    {
+      "id": "rom_0cc4f2",
+      "translation": "{white}Смотрите под ноги.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc506",
+      "translation": "{white}Осторожно: здесь темно.{next}"
+    },
+    {
+      "id": "rom_0cc52e",
+      "translation": "{white}спрятан где-то здесь.{close}"
+    },
+    {
+      "id": "rom_0cc54a",
+      "translation": "{white}нужный вам {yellow}осколок зеркала{white}{next}"
+    },
+    {
+      "id": "rom_0cc576",
+      "translation": "{white}Чтобы войти в башню Мире,{next}"
+    },
+    {
+      "id": "rom_0cc59a",
+      "translation": "{white}Бр-р-р... Как холодно!{wait}{end}"
+    },
+    {
+      "id": "rom_0cc5b6",
+      "translation": "{white}Мир, закованный во льдах.{next}"
+    },
+    {
+      "id": "rom_0cc5de",
+      "translation": "{white}Это гора Когол.{next}"
+    },
+    {
+      "id": "rom_0cc602",
+      "translation": "{white}Применяйте гаджеты у указателя.{next}"
+    },
+    {
+      "id": "rom_0cc62e",
+      "translation": "{white}В центре горы Когол...{next}"
+    },
+    {
+      "id": "rom_0cc65a",
+      "translation": "{white}чтобы избежать обвалов и беды.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc682",
+      "translation": "{white}Оба гаджета надо применять там,{next}"
+    },
+    {
+      "id": "rom_0cc6ae",
+      "translation": "{white}чтобы всё вернуть, как было.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc6da",
+      "translation": "{white}используйте {yellow}снегоустройство{white},{next}"
+    },
+    {
+      "id": "rom_0cc706",
+      "translation": "{white}Когда войдёте в святилище,{next}"
+    },
+    {
+      "id": "rom_0cc72e",
+      "translation": "{white}и войдите к переключателю!{wait}{end}"
+    },
+    {
+      "id": "rom_0cc75e",
+      "translation": "{white}чтобы растопить лёд,{next}"
+    },
+    {
+      "id": "rom_0cc78a",
+      "translation": "{white}Используйте {yellow}искусственное солнце{white},{next}"
+    },
+    {
+      "id": "rom_0cc7ba",
+      "translation": "{white}иначе она не заработает.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc7d2",
+      "translation": "{white}нужен переключатель в святилище,{next}"
+    },
+    {
+      "id": "rom_0cc7fe",
+      "translation": "{white}Для этой парящей платформы{next}"
+    },
+    {
+      "id": "rom_0cc82a",
+      "translation": "{white}чтобы до него добраться.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc852",
+      "translation": "{white}Но нужна эта платформа,{next}"
+    },
+    {
+      "id": "rom_0cc87e",
+      "translation": "{white}{yellow}Осколок зеркала{white} впереди.{next}"
+    },
+    {
+      "id": "rom_0cc8aa",
+      "translation": "{white}Насекомоподобные пришельцы{next}"
+    },
+    {
+      "id": "rom_0cc8ce",
+      "translation": "{white}Не дайте себя запутать!{close}"
+    },
+    {
+      "id": "rom_0cc8ee",
+      "translation": "{white}чтобы перемещаться между ними!{next}"
+    },
+    {
+      "id": "rom_0cc912",
+      "translation": "{white}Используйте {yellow}зеркало-проход{white},{next}"
+    },
+    {
+      "id": "rom_0cc942",
+      "translation": "{white}Будьте осторожны!{wait}{end}"
+    },
+    {
+      "id": "rom_0cc95a",
+      "translation": "{white}соединены зеркалами.{next}"
+    },
+    {
+      "id": "rom_0cc97e",
+      "translation": "{white}Здесь, в башне Мире, комнаты{next}"
+    },
+    {
+      "id": "rom_0cc9aa",
+      "translation": "{white}ждёт вас там!{close}"
+    },
+    {
+      "id": "rom_0cc9ce",
+      "translation": "{white}Новый мастер пространства и времени{next}"
+    },
+    {
+      "id": "rom_0cc9f6",
+      "translation": "{white}чтобы приспособиться к среде!{close}"
+    },
+    {
+      "id": "rom_0cca1e",
+      "translation": "{white}ваша {yellow}лампа адаптации{white},{next}"
+    },
+    {
+      "id": "rom_0cca46",
+      "translation": "{white}Мы в космосе, поэтому нужна{next}"
+    },
+    {
+      "id": "rom_0cca72",
+      "translation": "{white}Удачи вам!{wait}{end}"
+    },
+    {
+      "id": "rom_0cca9a",
+      "translation": "{white}вход на станцию.{next}"
+    },
+    {
+      "id": "rom_0ccac6",
+      "translation": "{white}Впереди вы найдёте{next}"
+    },
+    {
+      "id": "rom_0ccd82",
+      "translation": "{white}Осторожно: ядовитая вода!{close}"
+    },
+    {
+      "id": "rom_0ccdb6",
+      "translation": "{white}Тупик.{close}"
+    },
+    {
+      "id": "rom_0ccdda",
+      "translation": "{white}Смелее прыгайте!{close}"
+    },
+    {
+      "id": "rom_0cce02",
+      "translation": "{white}Берегитесь песчаных ловушек!{close}"
+    },
+    {
+      "id": "rom_0cce2e",
+      "translation": "{white}База Багула: наверху справа.{close}"
+    },
+    {
+      "id": "rom_0cce5a",
+      "translation": "{white}парящими руинами наверху.{close}"
+    },
+    {
+      "id": "rom_0cce82",
+      "translation": "{white}Этот портал соединён с{next}"
+    },
+    {
+      "id": "rom_0cceae",
+      "translation": "{white}Впереди старинный замок.{close}"
+    },
+    {
+      "id": "rom_0cceda",
+      "translation": "{white}Упадёте в воду и замёрзнете.{close}"
+    },
+    {
+      "id": "rom_0ccf06",
+      "translation": "{white}Центральная область.{close}"
+    },
+    {
+      "id": "rom_0ccf22",
+      "translation": "{white}Вы на {yellow}горе Когол{white}.{next}"
+    },
+    {
+      "id": "rom_0f4db2",
+      "translation": "{white}...Попо.{close}"
+    },
+    {
+      "id": "rom_0f4dce",
+      "translation": "{white}...Пова.{close}"
+    },
+    {
+      "id": "rom_0f4dfa",
+      "translation": "{white}...Пова-ан.{close}"
+    },
+    {
+      "id": "rom_0f4e52",
+      "translation": "{white}Спасибо! Возьми это, пова!{close}"
+    },
+    {
+      "id": "rom_0f4e7e",
+      "translation": "{white}Хочу тот плод, пова.{close}"
+    },
+    {
+      "id": "rom_0f4e9a",
+      "translation": "{white}Спасибо! Подожди немного, пова.{close}"
+    },
+    {
+      "id": "rom_0f4ec6",
+      "translation": "{white}Это в благодарность, пова.{close}"
+    },
+    {
+      "id": "rom_0f4f5a",
+      "translation": "{white}на {yellow}плод полного исцеления{white}!{close}"
+    },
+    {
+      "id": "rom_0f4f86",
+      "translation": "{white}Хорошо! Обменяю {yellow}энергокамни{white}{next}"
+    },
+    {
+      "id": "rom_0f4fb6",
+      "translation": "{white}заходи снова!{close}"
+    },
+    {
+      "id": "rom_0f4fd6",
+      "translation": "{white}Если нужен {yellow}плод полного исцеления{white},{next}"
+    },
+    {
+      "id": "rom_0f500a",
+      "translation": "{white}на {yellow}плод полного исцеления{white}?{choice}{yes:1}{no:0}{end}"
+    },
+    {
+      "id": "rom_0f5042",
+      "translation": "{white}Обменять 30 {yellow}энергокамней{white}{next}"
+    },
+    {
+      "id": "rom_0f506a",
+      "translation": "{white}С радостью обменяю!{white}{close}"
+    },
+    {
+      "id": "rom_0f5082",
+      "translation": "{white}получишь {yellow}плод полного исцеления{white}!{next}"
+    },
+    {
+      "id": "rom_0f50ae",
+      "translation": "{white}За 30 {yellow}энергокамней{white}{next}"
+    },
+    {
+      "id": "rom_0f50da",
+      "translation": "{white}на {yellow}капсулу возрождения{white}!{close}"
+    },
+    {
+      "id": "rom_0f5106",
+      "translation": "{white}Если нужна {yellow}капсула возрождения{white},{next}"
+    },
+    {
+      "id": "rom_0f5136",
+      "translation": "{white}на {yellow}капсулу возрождения{white}?{choice}{yes:1}{no:0}{end}"
+    },
+    {
+      "id": "rom_0f516e",
+      "translation": "{white}Обменять 50 {yellow}энергокамней{white}{next}"
+    },
+    {
+      "id": "rom_0f5196",
+      "translation": "{white}получишь {yellow}капсулу возрождения{white}!{next}"
+    },
+    {
+      "id": "rom_0f51c2",
+      "translation": "{white}За 50 {yellow}энергокамней{white}{next}"
+    },
+    {
+      "id": "rom_12df6a",
+      "translation": "{white}я дарую вам свою силу!{close}"
+    },
+    {
+      "id": "rom_12df86",
+      "translation": "{white}и принесёте её мне,{next}"
+    },
+    {
+      "id": "rom_12dfae",
+      "translation": "{white}Если вы вернёте мою {yellow}эмблему{white}{next}"
+    },
+    {
+      "id": "rom_12dfda",
+      "translation": "{white}я не могу поглощать свет...{wait}{end}"
+    },
+    {
+      "id": "rom_12e002",
+      "translation": "{white}Без неё{next}"
+    },
+    {
+      "id": "rom_12e02e",
+      "translation": "{white}и унёс её.{next}"
+    },
+    {
+      "id": "rom_12e04e",
+      "translation": "{white}мою {yellow}эмблему{white}, источник моей силы,{wait}{end}"
+    },
+    {
+      "id": "rom_12e07a",
+      "translation": "{white}кто-то снял с моей груди{next}"
+    },
+    {
+      "id": "rom_12e0a6",
+      "translation": "{white}Пока я был погружён в сон,{next}"
+    },
+    {
+      "id": "rom_12e0d2",
+      "translation": "{white}Сейчас я не могу двигаться.{wait}{end}"
+    },
+    {
+      "id": "rom_12e0f6",
+      "translation": "{white}Боюсь, это невозможно.{next}"
+    },
+    {
+      "id": "rom_12e122",
+      "translation": "{white}Что? Вы просите моей помощи?.. {next}"
+    },
+    {
+      "id": "rom_12e14e",
+      "translation": "{white}Так вы можете говорить со мной...{wait}{end}"
+    },
+    {
+      "id": "rom_12e16e",
+      "translation": "{white}Вы слышите мой голос?{next}"
+    },
+    {
+      "id": "rom_12e196",
+      "translation": "{white}Я {yellow}джинн Поседо{white}.{next}"
+    },
+    {
+      "id": "rom_12e1be",
+      "translation": "{white}в глубокий сон. Прощайте...{close}"
+    },
+    {
+      "id": "rom_12e1e6",
+      "translation": "{white}Теперь я вновь погружусь{next}"
+    },
+    {
+      "id": "rom_138bf2",
+      "translation": "{white}Может, тебе просто показалось?{close}"
+    },
+    {
+      "id": "rom_138c1e",
+      "translation": "{white}Ты уже всё сделал?!{close}"
+    },
+    {
+      "id": "rom_138c3a",
+      "translation": "{white}Нобита! Твоё задание на лето...{next}"
+    },
+    {
+      "id": "rom_138c66",
+      "translation": "{white}Дораэмон, где ты был?{close}"
+    },
+    {
+      "id": "rom_138c90",
+      "translation": "{white}Нобита, где же ты был?.. {close}"
+    },
+    {
+      "id": "rom_138cb8",
+      "translation": "{white}Да что же случилось?.. {close}"
+    },
+    {
+      "id": "rom_138ce2",
+      "translation": "{white}Да что же случилось?.. {close}"
+    },
+    {
+      "id": "rom_138d0c",
+      "translation": "{white}Да что же случилось?.. {close}"
+    },
+    {
+      "id": "rom_138d36",
+      "translation": "{white}Да что же случилось?.. {close}"
+    },
+    {
+      "id": "rom_138d62",
+      "translation": "{white}Боюсь, его нет дома.{close}"
+    },
+    {
+      "id": "rom_138d76",
+      "translation": "{white}Мой дорогой Сунэо куда-то ушёл.{next}"
+    },
+    {
+      "id": "rom_138da2",
+      "translation": "{white}О, здравствуй, Нобита.{next}"
+    },
+    {
+      "id": "rom_138dce",
+      "translation": "{white}Ты его не видел?{close}"
+    },
+    {
+      "id": "rom_138de8",
+      "translation": "{white}Ты его не видел?{close}"
+    },
+    {
+      "id": "rom_138e02",
+      "translation": "{white}Ты его не видел?{close}"
+    },
+    {
+      "id": "rom_138e1c",
+      "translation": "{white}Как хорошо, что ты цел!{close}"
+    },
+    {
+      "id": "rom_138e3e",
+      "translation": "{white}Ты его не видел?{close}"
+    },
+    {
+      "id": "rom_138e58",
+      "translation": "{white}Ты его не видел?{close}"
+    },
+    {
+      "id": "rom_138e76",
+      "translation": "{white}Прости, мой милый Сунэо...{next}"
+    },
+    {
+      "id": "rom_138e98",
+      "translation": "{white}Прости, мой милый Сунэо...{next}"
+    },
+    {
+      "id": "rom_138eba",
+      "translation": "{white}Прости, мой милый Сунэо...{next}"
+    },
+    {
+      "id": "rom_138edc",
+      "translation": "{white}Ах! Мой дорогой Сунэо!{next}"
+    },
+    {
+      "id": "rom_138f02",
+      "translation": "{white}Прости, мой милый Сунэо...{next}"
+    },
+    {
+      "id": "rom_138f24",
+      "translation": "{white}Прости, мой милый Сунэо...{next}"
+    },
+    {
+      "id": "rom_138f4a",
+      "translation": "{white}Сидзука только что ушла.{close}"
+    },
+    {
+      "id": "rom_138f76",
+      "translation": "{white}Здравствуй, Нобита.{next}"
+    },
+    {
+      "id": "rom_138f96",
+      "translation": "{white}Да что же случилось?.. {close}"
+    },
+    {
+      "id": "rom_138fc0",
+      "translation": "{white}Да что же случилось?.. {close}"
+    },
+    {
+      "id": "rom_138fea",
+      "translation": "{white}Сидзука, не выходи на улицу!{close}"
+    },
+    {
+      "id": "rom_13900c",
+      "translation": "{white}Да что же случилось?.. {close}"
+    },
+    {
+      "id": "rom_139036",
+      "translation": "{white}Да что же случилось?.. {close}"
+    },
+    {
+      "id": "rom_139060",
+      "translation": "{white}Да что же случилось?.. {close}"
+    },
+    {
+      "id": "rom_13908e",
+      "translation": "{white}Даже в лавке не помогает...{close}"
+    },
+    {
+      "id": "rom_1390ba",
+      "translation": "{white}Ну что за мальчишка!{next}"
+    },
+    {
+      "id": "rom_1390d6",
+      "translation": "{white}Такэси сейчас нет дома!{wait}{end}"
+    },
+    {
+      "id": "rom_1390fa",
+      "translation": "{white}А, здравствуй, Нобита.{next}"
+    },
+    {
+      "id": "rom_139116",
+      "translation": "{white}Да что же здесь творится?!{close}"
+    },
+    {
+      "id": "rom_13913e",
+      "translation": "{white}Не знаю, куда он пошёл.{close}"
+    },
+    {
+      "id": "rom_139166",
+      "translation": "{white}Что? Мой брат?.. {next}"
+    },
+    {
+      "id": "rom_13918a",
+      "translation": "{white}для своей манги.{wait}{end}"
+    },
+    {
+      "id": "rom_1391b2",
+      "translation": "{white}Я сейчас придумываю идеи{next}"
+    },
+    {
+      "id": "rom_1391d6",
+      "translation": "{white}Что такое, Нобита?{next}"
+    },
+    {
+      "id": "rom_1391f6",
+      "translation": "{white}в мангу! Обязательно!{close}"
+    },
+    {
+      "id": "rom_13921e",
+      "translation": "{white}Я превращу это странное приключение{next}"
+    },
+    {
+      "id": "rom_139246",
+      "translation": "{white}Ты его уже выполнил?!{close}"
+    },
+    {
+      "id": "rom_139262",
+      "translation": "{white}Твоё летнее задание...{next}"
+    },
+    {
+      "id": "rom_139286",
+      "translation": "{white}Хм? Что такое, Нобита?{next}"
+    },
+    {
+      "id": "rom_1392aa",
+      "translation": "{white}Что? Скоро всё станет как раньше?{close}"
+    },
+    {
+      "id": "rom_1392d4",
+      "translation": "{white}Да где же мы оказались?.. {close}"
+    },
+    {
+      "id": "rom_1392fe",
+      "translation": "{white}Да где же мы оказались?.. {close}"
+    },
+    {
+      "id": "rom_139328",
+      "translation": "{white}Да где же мы оказались?.. {close}"
+    },
+    {
+      "id": "rom_139352",
+      "translation": "{white}Да где же мы оказались?.. {close}"
+    },
+    {
+      "id": "rom_13937c",
+      "translation": "{white}Что? Скоро всё станет как раньше?{close}"
+    },
+    {
+      "id": "rom_1393aa",
+      "translation": "{white}А твои гаджеты не могут помочь?{next}"
+    },
+    {
+      "id": "rom_1393d4",
+      "translation": "{white}Иди в свою комнату!{next}"
+    },
+    {
+      "id": "rom_1393f4",
+      "translation": "{white}Иди в комнату Нобиты!{next}"
+    },
+    {
+      "id": "rom_13941a",
+      "translation": "{white}Иди в комнату Нобиты!{next}"
+    },
+    {
+      "id": "rom_139440",
+      "translation": "{white}Иди в комнату Нобиты!{next}"
+    },
+    {
+      "id": "rom_139466",
+      "translation": "{white}А твои гаджеты не могут помочь?{next}"
+    },
+    {
+      "id": "rom_139492",
+      "translation": "{white}Где мы оказались?!{next}"
+    },
+    {
+      "id": "rom_1394ae",
+      "translation": "{white}Нобита! На улице опасно!{next}"
+    },
+    {
+      "id": "rom_1394d6",
+      "translation": "{white}На улице опасно!{next}"
+    },
+    {
+      "id": "rom_1394f0",
+      "translation": "{white}На улице опасно!{next}"
+    },
+    {
+      "id": "rom_13950a",
+      "translation": "{white}На улице опасно!{next}"
+    },
+    {
+      "id": "rom_139524",
+      "translation": "{white}Да что же случилось?!{next}"
+    },
+    {
+      "id": "rom_13954a",
+      "translation": "{white}ты уже сделал задание?{close}"
+    },
+    {
+      "id": "rom_139576",
+      "translation": "{white}Ноби! Задание на лето...{next}"
+    },
+    {
+      "id": "rom_139596",
+      "translation": "{white}Где мы оказались?!{close}"
+    },
+    {
+      "id": "rom_1395b2",
+      "translation": "{white}Какое безобразие!{close}"
+    },
+    {
+      "id": "rom_1395c6",
+      "translation": "{white}Входить без разрешения...{next}"
+    },
+    {
+      "id": "rom_1395ee",
+      "translation": "{white}М-м? Чего тебе?{next}"
+    },
+    {
+      "id": "rom_139612",
+      "translation": "{white}Я ему покажу!{close}"
+    },
+    {
+      "id": "rom_139636",
+      "translation": "{white}В следующий раз этому роботу{next}"
+    },
+    {
+      "id": "rom_139662",
+      "translation": "{white}Иначе ничему не научишься!{close}"
+    },
+    {
+      "id": "rom_139686",
+      "translation": "{white}Нет! Ты должен сделать сам!{next}"
+    },
+    {
+      "id": "rom_1396ae",
+      "translation": "{white}Хочешь списать у меня?{wait}{end}"
+    },
+    {
+      "id": "rom_1396ca",
+      "translation": "{white}Что? Задание на лето?{next}"
+    },
+    {
+      "id": "rom_1396f2",
+      "translation": "{white}Привет, Нобита...{next}"
+    },
+    {
+      "id": "rom_139716",
+      "translation": "{white}это планета Солнечной системы...{close}"
+    },
+    {
+      "id": "rom_139740",
+      "translation": "{white}тут не работает?!{close}"
+    },
+    {
+      "id": "rom_13975e",
+      "translation": "{white}Насколько я понимаю, вряд ли{next}"
+    },
+    {
+      "id": "rom_139784",
+      "translation": "{white}Где мы? Даже машина времени{next}"
+    },
+    {
+      "id": "rom_1397b2",
+      "translation": "{white}Дораэмон! Где мы оказались?{next}"
+    },
+    {
+      "id": "rom_1397dc",
+      "translation": "{white}Нобита! Ты в порядке?!{close}"
+    },
+    {
+      "id": "rom_139802",
+      "translation": "{white}Сидзука! Ты в порядке?!{close}"
+    },
+    {
+      "id": "rom_139828",
+      "translation": "{white}Сунэо! Ты в порядке?!{close}"
+    },
+    {
+      "id": "rom_13984e",
+      "translation": "{white}Такэси! Ты в порядке?!{close}"
+    },
+    {
+      "id": "rom_139874",
+      "translation": "{white}Послушай, Дорами! Это место...{next}"
+    },
+    {
+      "id": "rom_13f592",
+      "translation": "{white}Я запущу парящую платформу.{close}"
+    },
+    {
+      "id": "rom_13f5be",
+      "translation": "{white}Чтобы вы смогли подняться,{next}"
+    },
+    {
+      "id": "rom_13f5e6",
+      "translation": "{white}Вы туда идёте? Ну, раз уж решили!{next}"
+    },
+    {
+      "id": "rom_13f612",
+      "translation": "{white}должна быть база...{wait}{end}"
+    },
+    {
+      "id": "rom_13f63a",
+      "translation": "{white}Впереди, в тупике,{next}"
+    },
+    {
+      "id": "rom_13f666",
+      "translation": "{white}Что? {yellow}Генератор щита{white}?{next}"
+    },
+    {
+      "id": "rom_13f692",
+      "translation": "{white}Я вас об этом не просил!{wait}{end}"
+    },
+    {
+      "id": "rom_13f6b6",
+      "translation": "{white}...Спасти меня?{next}"
+    },
+    {
+      "id": "rom_13f6de",
+      "translation": "{white}Хм? Чего вам нужно?.. {next}"
+    },
+    {
+      "id": "rom_13f706",
+      "translation": "{white}Пора собираться домой!{close}"
+    },
+    {
+      "id": "rom_13f72a",
+      "translation": "{white}Что ж, здесь мне уже надоело.{next}"
+    },
+    {
+      "id": "rom_13f756",
+      "translation": "{white}Недаром {yellow}Цунэо{white} называют лжецом.{close}"
+    },
+    {
+      "id": "rom_13f786",
+      "translation": "{white}Но он что-то скрывает...{next}"
+    },
+    {
+      "id": "rom_13f7b2",
+      "translation": "{white}Я сделал ему {yellow}пульт управления{white}.{next}"
+    },
+    {
+      "id": "rom_13f7e2",
+      "translation": "{white}Чтобы двигать что-то огромное,{wait}{end}"
+    },
+    {
+      "id": "rom_13f80e",
+      "translation": "{white}ко мне приходил директор {yellow}Цунэо{white}.{next}"
+    },
+    {
+      "id": "rom_13f83a",
+      "translation": "{white}...Кстати, недавно...{next}"
+    },
+    {
+      "id": "rom_13f862",
+      "translation": "{white}и выбросили куда-то.{wait}{end}"
+    },
+    {
+      "id": "rom_13f88e",
+      "translation": "{white}они сняли с его груди {yellow}эмблему{white}{next}"
+    },
+    {
+      "id": "rom_13f8ba",
+      "translation": "{white}Чтобы заточить {yellow}джинна{white},{next}"
+    },
+    {
+      "id": "rom_13f8e6",
+      "translation": "{white}Судя по моим сведениям,{wait}{end}"
+    },
+    {
+      "id": "rom_13f90e",
+      "translation": "{white}Он просыпается раз в пятьдесят лет.{next}"
+    },
+    {
+      "id": "rom_13f93a",
+      "translation": "{white}Так сказано в старых записях.{next}"
+    },
+    {
+      "id": "rom_13f966",
+      "translation": "{white}крепким сном.{wait}{end}"
+    },
+    {
+      "id": "rom_13f97e",
+      "translation": "{white}{yellow}Джинн{white} спит в {yellow}море Поседо{white}{next}"
+    },
+    {
+      "id": "rom_13f9aa",
+      "translation": "{white}Что? Рассказать о {yellow}джинне{white}?{next}"
+    },
+    {
+      "id": "rom_13f9da",
+      "translation": "{white}Он что-то скрывает...{close}"
+    },
+    {
+      "id": "rom_13fa06",
+      "translation": "{white}Вот только...{next}"
+    },
+    {
+      "id": "rom_13fa2a",
+      "translation": "{white}пульт для огромного предмета.{next}"
+    },
+    {
+      "id": "rom_13fa56",
+      "translation": "{white}Я сделал директору{wait}{end}"
+    },
+    {
+      "id": "rom_13fa86",
+      "translation": "{white}...Кстати, вчера...{next}"
+    },
+    {
+      "id": "rom_13faa6",
+      "translation": "{white}Что? Где эмблема джинна?{next}"
+    },
+    {
+      "id": "rom_13fad2",
+      "translation": "{white}Приходите позже.{close}"
+    },
+    {
+      "id": "rom_13faea",
+      "translation": "{white}Я сейчас занят.{next}"
+    },
+    {
+      "id": "rom_13fb0a",
+      "translation": "{white}Что?! Опять вы?{next}"
+    },
+    {
+      "id": "rom_13fb2e",
+      "translation": "{white}Принесите мне {yellow}камень силы{white}!{close}"
+    },
+    {
+      "id": "rom_13fb5e",
+      "translation": "{white}Он хранится на городском складе.{next}"
+    },
+    {
+      "id": "rom_13fb8a",
+      "translation": "{white}нужную мощность!{wait}{end}"
+    },
+    {
+      "id": "rom_13fbae",
+      "translation": "{white}она не выдаст{next}"
+    },
+    {
+      "id": "rom_13fbda",
+      "translation": "{white}Но без {yellow}камня силы{white}{wait}{end}"
+    },
+    {
+      "id": "rom_13fc0a",
+      "translation": "{white}ненужную работу...{next}"
+    },
+    {
+      "id": "rom_13fc32",
+      "translation": "{white}Ка снова свалил на меня{next}"
+    },
+    {
+      "id": "rom_13fc5a",
+      "translation": "{white}Используйте её с умом!{close}"
+    },
+    {
+      "id": "rom_13fc7a",
+      "translation": "{white}пушка{white}!!{next}"
+    },
+    {
+      "id": "rom_13fc96",
+      "translation": "{white}Готово! Вот {yellow}гипервоздушная{next}"
+    },
+    {
+      "id": "rom_13fcc2",
+      "translation": "{white}..................{wait}{end}"
+    },
+    {
+      "id": "rom_13fcf2",
+      "translation": "{white}..................{next}"
+    },
+    {
+      "id": "rom_13fd1e",
+      "translation": "{white}Подождите немного!{wait}{end}"
+    },
+    {
+      "id": "rom_13fd3e",
+      "translation": "{white}Отлично! Теперь всё получится!{next}"
+    },
+    {
+      "id": "rom_13fd5e",
+      "translation": "{white}...Что?! Ещё нет?!{close}"
+    },
+    {
+      "id": "rom_13fd8a",
+      "translation": "{white}Хм? Вы победили {yellow}Багула{white}?{next}"
+    },
+    {
+      "id": "rom_13fdb6",
+      "translation": "{white}Я постараюсь отключить ток!{close}"
+    },
+    {
+      "id": "rom_13fde2",
+      "translation": "{white}Эти ворота под током...{next}"
+    },
+    {
+      "id": "rom_13fe06",
+      "translation": "{white}Но его охраняют роботы-солдаты!{wait}{end}"
+    },
+    {
+      "id": "rom_13fe32",
+      "translation": "{white}Один хранится дальше по пути.{next}"
+    },
+    {
+      "id": "rom_13fe5e",
+      "translation": "{white}Хотите узнать, где он?{wait}{end}"
+    },
+    {
+      "id": "rom_13fe7a",
+      "translation": "{white}Хм? {yellow}Ключ-кристалл{white}?{next}"
+    },
+    {
+      "id": "rom_13fe9e",
+      "translation": "{white}чтобы помочь вам!{wait}{end}"
+    },
+    {
+      "id": "rom_13feb2",
+      "translation": "{white}Я соберу полезные сведения,{next}"
+    },
+    {
+      "id": "rom_13fede",
+      "translation": "{white}Хорошо! Я тоже внесу свою лепту.{next}"
+    },
+    {
+      "id": "rom_13ff0a",
+      "translation": "{white}вы намерены с ним сразиться!{wait}{end}"
+    },
+    {
+      "id": "rom_13ff32",
+      "translation": "{white}Понятно... {yellow}Император Багул{white}...{next}"
+    },
+    {
+      "id": "rom_13ff5e",
+      "translation": "{white}вероятно, использует эту силу...{wait}{end}"
+    },
+    {
+      "id": "rom_13ff8a",
+      "translation": "{white}{yellow}Император Багул{white}{next}"
+    },
+    {
+      "id": "rom_13ffb6",
+      "translation": "{white}обретает невероятную силу.{next}"
+    },
+    {
+      "id": "rom_13ffde",
+      "translation": "{white}зонд{white},{wait}{end}"
+    },
+    {
+      "id": "rom_14000a",
+      "translation": "{white}Тот, кто держит {yellow}поисковый{next}"
+    },
+    {
+      "id": "rom_140032",
+      "translation": "{white}Наверное, у {yellow}императора Багула{white}...{next}"
+    },
+    {
+      "id": "rom_14005e",
+      "translation": "{white}Хм, понятно...{wait}{end}"
+    },
+    {
+      "id": "rom_14007a",
+      "translation": "{white}После соединения метеоритов...{next}"
+    },
+    {
+      "id": "rom_1400a6",
+      "translation": "{white}Что? Вы ищете своего друга?{next}"
+    },
+    {
+      "id": "rom_1400d2",
+      "translation": "{white}Меня заставили его создать.{wait}{end}"
+    },
+    {
+      "id": "rom_1400f2",
+      "translation": "{white}Это я его создал... Точнее,{next}"
+    },
+    {
+      "id": "rom_14011e",
+      "translation": "{white}Простите! Это устройство...{next}"
+    },
+    {
+      "id": "rom_140146",
+      "translation": "{white}зонда{white}...{wait}{end}"
+    },
+    {
+      "id": "rom_14016e",
+      "translation": "{white}с помощью {yellow}поискового{next}"
+    },
+    {
+      "id": "rom_14019a",
+      "translation": "{white}Хм... Значит, вас перенесли сюда{next}"
+    },
+    {
+      "id": "rom_1401c2",
+      "translation": "{white}Вы ведь не с Дакта?{wait}{end}"
+    },
+    {
+      "id": "rom_1401ee",
+      "translation": "{white}Я {yellow}доктор Ка{white}... Хм?{next}"
+    },
+    {
+      "id": "rom_14021e",
+      "translation": "{white}О! Спасибо, что спасли меня!{next}"
+    },
+    {
+      "id": "rom_14024a",
+      "translation": "{white}Я вернусь в {yellow}подземный город 1{white}.{close}"
+    },
+    {
+      "id": "rom_14027a",
+      "translation": "{white}и разрушите барьер,{next}"
+    },
+    {
+      "id": "rom_1402a2",
+      "translation": "{white}Когда победите мастера района 1{next}"
+    },
+    {
+      "id": "rom_1402d2",
+      "translation": "{white}чтобы собрать сведения.{close}"
+    },
+    {
+      "id": "rom_1402fe",
+      "translation": "{white}к компьютерам по всему миру,{next}"
+    },
+    {
+      "id": "rom_140326",
+      "translation": "{white}Я сейчас подключаюсь{next}"
+    },
+    {
+      "id": "rom_140346",
+      "translation": "{white}Вижу, вы тоже стараетесь!{wait}{end}"
+    },
+    {
+      "id": "rom_140376",
+      "translation": "{white}О! Как ваши дела?{next}"
+    },
+    {
+      "id": "rom_140396",
+      "translation": "{white}отдам вам. Подождите немного!{close}"
+    },
+    {
+      "id": "rom_1403be",
+      "translation": "{white}как образец. Когда будет готово,{next}"
+    },
+    {
+      "id": "rom_1403ea",
+      "translation": "{white}Я использую и ваше оружие{next}"
+    },
+    {
+      "id": "rom_140416",
+      "translation": "{white}Его я сейчас и разрабатываю.{wait}{end}"
+    },
+    {
+      "id": "rom_140442",
+      "translation": "{white}оружие, способное убрать щит.{wait}{end}"
+    },
+    {
+      "id": "rom_14046e",
+      "translation": "{white}Я использую их, чтобы создать{next}"
+    },
+    {
+      "id": "rom_140496",
+      "translation": "{white}Он принёс нужные данные.{next}"
+    },
+    {
+      "id": "rom_1404c2",
+      "translation": "{white}необходимо уничтожить!{wait}{end}"
+    },
+    {
+      "id": "rom_1404de",
+      "translation": "{white}сначала этот слизевый щит{next}"
+    },
+    {
+      "id": "rom_140506",
+      "translation": "{white}Если хотите победить {yellow}Багула{white},{next}"
+    },
+    {
+      "id": "rom_140532",
+      "translation": "{white}есть щит из слизи.{wait}{end}"
+    },
+    {
+      "id": "rom_140562",
+      "translation": "{white}у {yellow}императора Багула{white}{next}"
+    },
+    {
+      "id": "rom_140592",
+      "translation": "{white}По его сведениям,{next}"
+    },
+    {
+      "id": "rom_1405ba",
+      "translation": "{white}Я снова встретил {yellow}робота Б-0{white}!{wait}{end}"
+    },
+    {
+      "id": "rom_1405e6",
+      "translation": "{white}Думал, больше его не увижу.{next}"
+    },
+    {
+      "id": "rom_14060e",
+      "translation": "{white}О! Вы снова мне помогли!{next}"
+    },
+    {
+      "id": "rom_140636",
+      "translation": "{white}Над этим я сейчас и работаю!{close}"
+    },
+    {
+      "id": "rom_14064e",
+      "translation": "{white}как его нейтрализовать.{next}"
+    },
+    {
+      "id": "rom_14067a",
+      "translation": "{white}Слизевый щит... Я думаю,{next}"
+    },
+    {
+      "id": "rom_1406a6",
+      "translation": "{white}для вас!{close}"
+    },
+    {
+      "id": "rom_1406be",
+      "translation": "{white}Он создаст {yellow}гипервоздушную пушку{white}{next}"
+    },
+    {
+      "id": "rom_1406ee",
+      "translation": "{white}и отдайте доктору Цу.{next}"
+    },
+    {
+      "id": "rom_140712",
+      "translation": "{white}Мой брат в {yellow}подземном городе 2{white}.{wait}{end}"
+    },
+    {
+      "id": "rom_14073e",
+      "translation": "{white}Возьмите {yellow}диск с данными{white}{next}"
+    },
+    {
+      "id": "rom_14076a",
+      "translation": "{white}Готово! Чертежи на этом диске.{next}"
+    },
+    {
+      "id": "rom_14078e",
+      "translation": "{white}{yellow}доктору Цу{white}?{close}"
+    },
+    {
+      "id": "rom_1407be",
+      "translation": "{white}Вы уже передали {yellow}диск с данными{white}{next}"
+    },
+    {
+      "id": "rom_1407e2",
+      "translation": "{white}не устоит!{close}"
+    },
+    {
+      "id": "rom_1407f2",
+      "translation": "{white}даже {yellow}император Багул{white}{next}"
+    },
+    {
+      "id": "rom_14081e",
+      "translation": "{white}Против {yellow}гипервоздушной пушки{white}{next}"
+    },
+    {
+      "id": "rom_14084a",
+      "translation": "{white}Сразу видно: работа моего брата Цу!{close}"
+    },
+    {
+      "id": "rom_14086e",
+      "translation": "{white}{yellow}пушка{white}! Впечатляет!{next}"
+    },
+    {
+      "id": "rom_14089a",
+      "translation": "{white}О! Так вот она, {yellow}гипервоздушная{white}{next}"
+    },
+    {
+      "id": "rom_1408d2",
+      "translation": "{white}Если нужно, воспользуйтесь им!{close}"
+    },
+    {
+      "id": "rom_1408fa",
+      "translation": "{white}Я нашёл его, когда вошёл внутрь.{next}"
+    },
+    {
+      "id": "rom_140922",
+      "translation": "{white}Я случайно попала на базу Багула.{next}"
+    },
+    {
+      "id": "rom_14094a",
+      "translation": "{white}Вы про этот?.. {wait}{end}"
+    },
+    {
+      "id": "rom_14096a",
+      "translation": "{white}Может, это он?{next}"
+    },
+    {
+      "id": "rom_140996",
+      "translation": "{white}О! Вы ищете {yellow}ключ-кристалл{white}?{next}"
+    },
+    {
+      "id": "rom_1409c6",
+      "translation": "{white}вас перенесли на Дакт...{wait}{end}"
+    },
+    {
+      "id": "rom_1409f2",
+      "translation": "{white}Понятно... Из-за {yellow}Багула{white}{next}"
+    },
+    {
+      "id": "rom_140a22",
+      "translation": "{white}Почему вы здесь?{next}"
+    },
+    {
+      "id": "rom_140a4e",
+      "translation": "{white}попросите его вернуться домой.{wait}{end}"
+    },
+    {
+      "id": "rom_140a76",
+      "translation": "{white}скажите ему, пожалуйста.{wait}{end}"
+    },
+    {
+      "id": "rom_140a92",
+      "translation": "{white}мальчика моего возраста,{next}"
+    },
+    {
+      "id": "rom_140ab8",
+      "translation": "{white}попросите его вернуться домой.{next}"
+    },
+    {
+      "id": "rom_140ae6",
+      "translation": "{white}Если вы увидите{next}"
+    },
+    {
+      "id": "rom_140b0e",
+      "translation": "{white}Если увидите похожего на вас парня,{next}"
+    },
+    {
+      "id": "rom_140b3a",
+      "translation": "{white}домой...{wait}{end}"
+    },
+    {
+      "id": "rom_140b5a",
+      "translation": "{white}и приносил странные вещи{next}"
+    },
+    {
+      "id": "rom_140b7e",
+      "translation": "{white}Мой брат выходил на поверхность{next}"
+    },
+    {
+      "id": "rom_140ba6",
+      "translation": "{white}но вы другой...{wait}{end}"
+    },
+    {
+      "id": "rom_140bc4",
+      "translation": "{white}Ой! Простите, это было невежливо.{wait}{end}"
+    },
+    {
+      "id": "rom_140bf2",
+      "translation": "{white}Но вы не похожи на роботов Багула.{next}"
+    },
+    {
+      "id": "rom_140c18",
+      "translation": "{white}Мой брат выглядит чуть мужественнее!{next}"
+    },
+    {
+      "id": "rom_140c42",
+      "translation": "{white}Вы робот?.. {next}"
+    },
+    {
+      "id": "rom_140c6c",
+      "translation": "{white}О, брат? ...Нет, это не он.{next}"
+    },
+    {
+      "id": "rom_140c9a",
+      "translation": "{white}Не знаю, когда смогу вернуться.{close}"
+    },
+    {
+      "id": "rom_140cc2",
+      "translation": "{white}возвела невидимую стену, так что{next}"
+    },
+    {
+      "id": "rom_140cee",
+      "translation": "{yellow}Башня Марил{white}{next}"
+    },
+    {
+      "id": "rom_140d16",
+      "translation": "{white}Я собиралась вернуться, но...{wait}{end}"
+    },
+    {
+      "id": "rom_140d42",
+      "translation": "{white}Мой дом в {yellow}подземном городе 1{white}.{next}"
+    },
+    {
+      "id": "rom_140d72",
+      "translation": "{white}Чувствуйте себя как дома.{close}"
+    },
+    {
+      "id": "rom_140d9e",
+      "translation": "{white}Мы с братом живём здесь.{next}"
+    },
+    {
+      "id": "rom_140dca",
+      "translation": "{white}чтобы увидеть события прошлого!{close}"
+    },
+    {
+      "id": "rom_140df6",
+      "translation": "{white}Включите {yellow}телевизор времени{white},{next}"
+    },
+    {
+      "id": "rom_140e2e",
+      "translation": "{white}{red}А вот и ангел-проводник!{next}"
+    },
+    {
+      "id": "rom_140e66",
+      "translation": "{white}Мой брат был здесь!{wait}{end}"
+    },
+    {
+      "id": "rom_140e8a",
+      "translation": "{white}Это карта данных моего брата.{next}"
+    },
+    {
+      "id": "rom_140ea6",
+      "translation": "{white}Посмотрите!{next}"
+    },
+    {
+      "id": "rom_140ece",
+      "translation": "{white}..................{close}"
+    },
+    {
+      "id": "rom_140efa",
+      "translation": "{white}Что же мне делать?.. {next}"
+    },
+    {
+      "id": "rom_140f26",
+      "translation": "{white}Мой брат... Император Багул...{next}"
+    },
+    {
+      "id": "rom_140f52",
+      "translation": "{white}я отдам вам осколок звезды.{close}"
+    },
+    {
+      "id": "rom_140f7a",
+      "translation": "{white}Если это поможет,{next}"
+    },
+    {
+      "id": "rom_140f9e",
+      "translation": "{white}Приходите к нам домой.{next}"
+    },
+    {
+      "id": "rom_140fca",
+      "translation": "{white}до того, как пропал!{wait}{end}"
+    },
+    {
+      "id": "rom_140ff2",
+      "translation": "{white}Брат нашёл его{next}"
+    },
+    {
+      "id": "rom_14101a",
+      "translation": "{white}У нас дома есть один!{next}"
+    },
+    {
+      "id": "rom_141042",
+      "translation": "{white}Вы его ищете?.. {wait}{end}"
+    },
+    {
+      "id": "rom_14106e",
+      "translation": "{white}Что?! Осколок звезды?{next}"
+    },
+    {
+      "id": "rom_14108e",
+      "translation": "{white}Ох, простите. Я совсем растерялась.{next}"
+    },
+    {
+      "id": "rom_1410ba",
+      "translation": "{white}..................{wait}{end}"
+    },
+    {
+      "id": "rom_1410e6",
+      "translation": "{white}Возьмите его, пожалуйста.{close}"
+    },
+    {
+      "id": "rom_141112",
+      "translation": "{white}Вам нужен этот {yellow}осколок звезды{white}.{next}"
+    },
+    {
+      "id": "rom_14113a",
+      "translation": "{white}О, я ждала вас...{next}"
+    },
+    {
+      "id": "rom_141162",
+      "translation": "{white}моего брата.{close}"
+    },
+    {
+      "id": "rom_14117a",
+      "translation": "{white}Я снова пойду искать{next}"
+    },
+    {
+      "id": "rom_1411a2",
+      "translation": "{white}Уходи!{close}"
+    },
+    {
+      "id": "rom_1411ba",
+      "translation": "{white}Мне нечего тебе сказать!{next}"
+    },
+    {
+      "id": "rom_1411de",
+      "translation": "{white}Что?! Ты кто такой?{next}"
+    },
+    {
+      "id": "rom_141202",
+      "translation": "{white}пусть расскажет правду!{close}"
+    },
+    {
+      "id": "rom_14121a",
+      "translation": "{white}Примените {yellow}волны правды{white},{next}"
+    },
+    {
+      "id": "rom_14124a",
+      "translation": "{white}Этот человек лжёт.{next}"
+    },
+    {
+      "id": "rom_141276",
+      "translation": "{white}А теперь уходи! Живо!{wait}{end}"
+    },
+    {
+      "id": "rom_1412a2",
+      "translation": "{white}Я-я ничего об этом не знаю!{next}"
+    },
+    {
+      "id": "rom_1412ca",
+      "translation": "{white}Что? {yellow}Эмблема джинна{white}?{next}"
+    },
+    {
+      "id": "rom_1412f2",
+      "translation": "{white}Так говорят. Ну, за дело!{close}"
+    },
+    {
+      "id": "rom_141316",
+      "translation": "{white}Она у парня по имени {yellow}Нобил{white}.{next}"
+    },
+    {
+      "id": "rom_141346",
+      "translation": "{white}Ещё один в {yellow}подземном городе 1{white}.{next}"
+    },
+    {
+      "id": "rom_14136e",
+      "translation": "{white}и в {yellow}лесу Кираф{white}.{wait}{end}"
+    },
+    {
+      "id": "rom_14139a",
+      "translation": "{white}Осколки звезды есть в {yellow}озере Рикс{white}{next}"
+    },
+    {
+      "id": "rom_1413ca",
+      "translation": "{white}Тогда, может быть, обменяю!{wait}{end}"
+    },
+    {
+      "id": "rom_1413f6",
+      "translation": "{white}на три {yellow}осколка звезды{white}.{next}"
+    },
+    {
+      "id": "rom_141422",
+      "translation": "{white}А впрочем, я мог бы обменять её{next}"
+    },
+    {
+      "id": "rom_14144e",
+      "translation": "{white}прежде чем изучу её! Ещё чего!{wait}{end}"
+    },
+    {
+      "id": "rom_141472",
+      "translation": "{white}Ни за что её не отдам,{next}"
+    },
+    {
+      "id": "rom_14149a",
+      "translation": "{white}В этой {yellow}эмблеме{white} неведомая сила.{wait}{end}"
+    },
+    {
+      "id": "rom_1414ca",
+      "translation": "{white}Не смеши меня!{next}"
+    },
+    {
+      "id": "rom_1414f2",
+      "translation": "{white}Что?! Хочешь, чтобы я её отдал?!{next}"
+    },
+    {
+      "id": "rom_14151a",
+      "translation": "{white}этим {yellow}пультом управления{white}...{wait}{end}"
+    },
+    {
+      "id": "rom_141542",
+      "translation": "{white}{yellow}эмблему{white}, я сам спрятал её!{next}"
+    },
+    {
+      "id": "rom_141572",
+      "translation": "{white}Когда выбросили реликвию {yellow}джинна{white},{next}"
+    },
+    {
+      "id": "rom_1415a2",
+      "translation": "{white}Так говорят. Не забудь!{close}"
+    },
+    {
+      "id": "rom_1415ce",
+      "translation": "{white}вроде бы есть один.{next}"
+    },
+    {
+      "id": "rom_1415f2",
+      "translation": "{white}{yellow}Подземный город 1{white}: у {yellow}Нобила{white}{next}"
+    },
+    {
+      "id": "rom_141622",
+      "translation": "{white}А третий...{wait}{end}"
+    },
+    {
+      "id": "rom_14163e",
+      "translation": "{white}Второй в {yellow}лесу Кираф{white}!{next}"
+    },
+    {
+      "id": "rom_141666",
+      "translation": "{white}Первый в {yellow}озере Рикс{white}.{next}"
+    },
+    {
+      "id": "rom_141692",
+      "translation": "{white}где найти осколки!{wait}{end}"
+    },
+    {
+      "id": "rom_1416be",
+      "translation": "{white}возвращайся! Ещё раз скажу,{next}"
+    },
+    {
+      "id": "rom_1416ea",
+      "translation": "{white}Когда будут три {yellow}осколка звезды{white},{next}"
+    },
+    {
+      "id": "rom_141716",
+      "translation": "{white}Давай меняться!{close}"
+    },
+    {
+      "id": "rom_14172a",
+      "translation": "{white}Ты их нашёл! Скорее!{next}"
+    },
+    {
+      "id": "rom_141756",
+      "translation": "{white}О! Три {yellow}осколка звезды{white}!{next}"
+    },
+    {
+      "id": "rom_14177e",
+      "translation": "{white}Там и используй {yellow}пульт{white}!{close}"
+    },
+    {
+      "id": "rom_1417ae",
+      "translation": "{white}рядом появится светящаяся отметка.{wait}{end}"
+    },
+    {
+      "id": "rom_1417de",
+      "translation": "{white}Где я зарыл {yellow}эмблему джинна{white},{next}"
+    },
+    {
+      "id": "rom_14180e",
+      "translation": "{white}Когда придёшь к {yellow}озеру Рикс{white},{next}"
+    },
+    {
+      "id": "rom_141836",
+      "translation": "{white}{yellow}управления{white}, как обещал!{wait}{end}"
+    },
+    {
+      "id": "rom_141856",
+      "translation": "{white}Вот! Бери этот {yellow}пульт{next}"
+    },
+    {
+      "id": "rom_141882",
+      "translation": "{white}На что бы её потратить?{wait}{end}"
+    },
+    {
+      "id": "rom_14189e",
+      "translation": "{white}Столько энергии...{next}"
+    },
+    {
+      "id": "rom_1418ca",
+      "translation": "{white}Теперь у меня ровно пятьдесят!{wait}{end}"
+    },
+    {
+      "id": "rom_1418f6",
+      "translation": "{white}А-ха-ха! Наконец-то они мои!{next}"
+    },
+    {
+      "id": "rom_14191e",
+      "translation": "{white}Рядом появится светящаяся отметка.{next}"
+    },
+    {
+      "id": "rom_14194e",
+      "translation": "{white}Отправляйся к {yellow}озеру Рикс{white}.{wait}{end}"
+    },
+    {
+      "id": "rom_141976",
+      "translation": "{white}Ладно, слушай внимательно!{next}"
+    },
+    {
+      "id": "rom_14199a",
+      "translation": "{white}Объяснить ещё раз?!{wait}{end}"
+    },
+    {
+      "id": "rom_1419c6",
+      "translation": "{white}Где использовать {yellow}пульт{white}?{next}"
+    },
+    {
+      "id": "rom_1419f2",
+      "translation": "{white}Больше ничего не дам! Что?!{next}"
+    },
+    {
+      "id": "rom_141a1e",
+      "translation": "{white}Больше ничего тебе не дам!{close}"
+    },
+    {
+      "id": "rom_141a52",
+      "translation": "{white}Убирайся, а то получишь!{close}"
+    },
+    {
+      "id": "rom_141a76",
+      "translation": "{white}Нет, нет! Уходи!{next}"
+    },
+    {
+      "id": "rom_141a9e",
+      "translation": "{white}Хочешь попасть на склад?!{next}"
+    },
+    {
+      "id": "rom_141aca",
+      "translation": "{white}Я дам тебе разрешение.{close}"
+    },
+    {
+      "id": "rom_141af2",
+      "translation": "{white}Ладно! Только для тебя!{next}"
+    },
+    {
+      "id": "rom_141b1a",
+      "translation": "{white}Ты мой верный друг!!{wait}{end}"
+    },
+    {
+      "id": "rom_141b42",
+      "translation": "{white}О-о... Как трогательно!{next}"
+    },
+    {
+      "id": "rom_141b62",
+      "translation": "{white}Я сейчас занят!{next}"
+    },
+    {
+      "id": "rom_141b82",
+      "translation": "{white}Ты мой верный друг!!{close}"
+    },
+    {
+      "id": "rom_141baa",
+      "translation": "{white}самые разные припасы.{close}"
+    },
+    {
+      "id": "rom_141bc6",
+      "translation": "{white}На этом складе хранятся{next}"
+    },
+    {
+      "id": "rom_141bf2",
+      "translation": "{white}и другие вещи!{close}"
+    },
+    {
+      "id": "rom_141c16",
+      "translation": "{white}украл со склада {yellow}камень силы{white}{next}"
+    },
+    {
+      "id": "rom_141c42",
+      "translation": "{white}Прошлой ночью ящероподобный вор{next}"
+    },
+    {
+      "id": "rom_141c6e",
+      "translation": "{white}чтобы растрогать Дайнана!{close}"
+    },
+    {
+      "id": "rom_141c96",
+      "translation": "{white}Возьмите {yellow}сердечный микрофон{white},{next}"
+    },
+    {
+      "id": "rom_141cc2",
+      "translation": "{white}Может, он тебя впустит...{wait}{end}"
+    },
+    {
+      "id": "rom_141cde",
+      "translation": "{white}Если хочешь попасть на склад,{next}"
+    },
+    {
+      "id": "rom_141d06",
+      "translation": "{white}попробуй спеть перед Дайнаном.{next}"
+    },
+    {
+      "id": "rom_141d32",
+      "translation": "{white}Так говорят.{wait}{end}"
+    },
+    {
+      "id": "rom_141d4e",
+      "translation": "{white}Он добр к тем, кто хорошо поёт.{next}"
+    },
+    {
+      "id": "rom_141d7a",
+      "translation": "{white}Дайнан обожает песни.{next}"
+    },
+    {
+      "id": "rom_141da6",
+      "translation": "{white}спрятано здесь!{wait}{end}"
+    },
+    {
+      "id": "rom_141dd6",
+      "translation": "{white}тайных вещей директора Дайнана{next}"
+    },
+    {
+      "id": "rom_141e02",
+      "translation": "{white}Говорят, множество{next}"
+    },
+    {
+      "id": "rom_141e2e",
+      "translation": "{white}Дайнан ужасно фальшивит!{close}"
+    },
+    {
+      "id": "rom_141e5a",
+      "translation": "{white}Тебе этого чувства не понять.{close}"
+    },
+    {
+      "id": "rom_141e82",
+      "translation": "{white}моё сердце ноет и ноет...{next}"
+    },
+    {
+      "id": "rom_141eaa",
+      "translation": "{white}Когда я думаю о {yellow}Рейне{white},{next}"
+    },
+    {
+      "id": "rom_141ed6",
+      "translation": "{white}Не дай ему вселиться в тебя!{close}"
+    },
+    {
+      "id": "rom_141f02",
+      "translation": "{white}здесь появился призрак {yellow}Дерорин{white}.{next}"
+    },
+    {
+      "id": "rom_141f32",
+      "translation": "{white}Недавно{next}"
+    },
+    {
+      "id": "rom_141f5a",
+      "translation": "{white}Прямо по дороге.{close}"
+    },
+    {
+      "id": "rom_141f6a",
+      "translation": "{white}Там административное здание.{next}"
+    },
+    {
+      "id": "rom_141f96",
+      "translation": "{white}Я городской проводник.{next}"
+    },
+    {
+      "id": "rom_141fc2",
+      "translation": "{white}дальше по пути.{close}"
+    },
+    {
+      "id": "rom_141fd6",
+      "translation": "{white}Большой склад находится{next}"
+    },
+    {
+      "id": "rom_142002",
+      "translation": "{white}Это административное здание.{wait}{end}"
+    },
+    {
+      "id": "rom_14202a",
+      "translation": "{white}и через него пробираются зверьки.{close}"
+    },
+    {
+      "id": "rom_142056",
+      "translation": "{white}маленький лаз,{next}"
+    },
+    {
+      "id": "rom_142082",
+      "translation": "{white}Где-то наверху есть{next}"
+    },
+    {
+      "id": "rom_1420aa",
+      "translation": "{white}дом!{close}"
+    },
+    {
+      "id": "rom_1420be",
+      "translation": "{white}Вон тот красный дом: {yellow}доктора Цу{white}{next}"
+    },
+    {
+      "id": "rom_1420ee",
+      "translation": "{white}увидите административное здание.{wait}{end}"
+    },
+    {
+      "id": "rom_14210e",
+      "translation": "{white}Впереди поверните направо,{next}"
+    },
+    {
+      "id": "rom_142132",
+      "translation": "{white}Я городской проводник.{next}"
+    },
+    {
+      "id": "rom_14215a",
+      "translation": "{white}Рада знакомству!{close}"
+    },
+    {
+      "id": "rom_14216e",
+      "translation": "{white}Я лучшая подруга Рейны.{next}"
+    },
+    {
+      "id": "rom_142192",
+      "translation": "{white}Привет, я Памела.{next}"
+    },
+    {
+      "id": "rom_1421ba",
+      "translation": "{white}искать его!{close}"
+    },
+    {
+      "id": "rom_1421ce",
+      "translation": "{white}Она отправилась искать Нобила.{next}"
+    },
+    {
+      "id": "rom_1421f6",
+      "translation": "{white}Рейна ушла в {yellow}лес Кираф{white}.{next}"
+    },
+    {
+      "id": "rom_142222",
+      "translation": "{white}Не случилось ли чего с {yellow}Нобилом{white}?{close}"
+    },
+    {
+      "id": "rom_142252",
+      "translation": "{white}Она выглядела очень грустной.{next}"
+    },
+    {
+      "id": "rom_14227e",
+      "translation": "{white}Что случилось с {yellow}Рейной{white}?..{next}"
+    },
+    {
+      "id": "rom_1422ae",
+      "translation": "{white}отправились в путешествие.{close}"
+    },
+    {
+      "id": "rom_1422ce",
+      "translation": "{white}{yellow}Рейна{white} и {yellow}Нобил{white}{next}"
+    },
+    {
+      "id": "rom_142316",
+      "translation": "{white}Он прогнал её.{close}"
+    },
+    {
+      "id": "rom_142342",
+      "translation": "{white}чудовищная птица Рикс.{wait}{end}"
+    },
+    {
+      "id": "rom_142362",
+      "translation": "{white}Жителей Дакта мучила{next}"
+    },
+    {
+      "id": "rom_142386",
+      "translation": "{white}Давно {yellow}владыка Поседо{white} спас нас.{next}"
+    },
+    {
+      "id": "rom_1423b2",
+      "translation": "{white}Я совсем заговорилась...{wait}{end}"
+    },
+    {
+      "id": "rom_1423d6",
+      "translation": "{white}рассказываю о {yellow}легендарном джинне{white}.{next}"
+    },
+    {
+      "id": "rom_142406",
+      "translation": "{white}Ох, простите...{next}"
+    },
+    {
+      "id": "rom_14242a",
+      "translation": "{white}вы не справитесь!{wait}{end}"
+    },
+    {
+      "id": "rom_14244a",
+      "translation": "{white}Без помощи {yellow}владыки Поседо{white}{next}"
+    },
+    {
+      "id": "rom_142476",
+      "translation": "{white}Это невозможно!!{wait}{end}"
+    },
+    {
+      "id": "rom_1424a2",
+      "translation": "{white}Ох, хотите попасть в башню Гарок?{next}"
+    },
+    {
+      "id": "rom_1424ce",
+      "translation": "{white}снова пробудился!{close}"
+    },
+    {
+      "id": "rom_1424ee",
+      "translation": "{white}Я слышала, {yellow}владыка Поседо{white}{next}"
+    },
+    {
+      "id": "rom_14252a",
+      "translation": "{white}чтобы войти!{close}"
+    },
+    {
+      "id": "rom_14254a",
+      "translation": "{white}предъявите {yellow}универсальный пропуск{white},{next}"
+    },
+    {
+      "id": "rom_14257a",
+      "translation": "{white}Здесь пригодится гаджет.{next}"
+    },
+    {
+      "id": "rom_14259a",
+      "translation": "{white}Вход запрещён!{wait}{end}"
+    },
+    {
+      "id": "rom_1425b2",
+      "translation": "{white}Вход только по пропускам.{next}"
+    },
+    {
+      "id": "rom_1425da",
+      "translation": "{white}Это кабинет директора!{next}"
+    },
+    {
+      "id": "rom_142606",
+      "translation": "{white}Прошу, проходите!{close}"
+    },
+    {
+      "id": "rom_14262a",
+      "translation": "{white}Прошу прощения!{next}"
+    },
+    {
+      "id": "rom_14264e",
+      "translation": "{white}Спасибо за работу.{close}"
+    },
+    {
+      "id": "rom_14b762",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14b782",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14b7a2",
+      "translation": "{white}Я так рада, пин!{close}"
+    },
+    {
+      "id": "rom_14b7be",
+      "translation": "{white}мы наконец сыграем свадьбу!{next}"
+    },
+    {
+      "id": "rom_14b7e2",
+      "translation": "{white}Благодаря вам{next}"
+    },
+    {
+      "id": "rom_14b80e",
+      "translation": "{white}вместе, пин.{close}"
+    },
+    {
+      "id": "rom_14b82a",
+      "translation": "{white}Мы с {yellow}Пики{white} создадим счастливый дом{next}"
+    },
+    {
+      "id": "rom_14b85a",
+      "translation": "{white}Теперь моя очередь, пин!{close}"
+    },
+    {
+      "id": "rom_14b87e",
+      "translation": "{white}А-а! Поздравляю!{next}"
+    },
+    {
+      "id": "rom_14b89e",
+      "translation": "{white}Ох, как же я завидую, пин...{close}"
+    },
+    {
+      "id": "rom_14b8d2",
+      "translation": "{white}...Где же мы, пин?{close}"
+    },
+    {
+      "id": "rom_14b8fe",
+      "translation": "{white}должна была быть завтра...{next}"
+    },
+    {
+      "id": "rom_14b92a",
+      "translation": "{white}Наша свадьба{next}"
+    },
+    {
+      "id": "rom_14b952",
+      "translation": "{white}обволокла какая-то слизь, пин.{wait}{end}"
+    },
+    {
+      "id": "rom_14b97e",
+      "translation": "{white}Всех остальных{next}"
+    },
+    {
+      "id": "rom_14b9a6",
+      "translation": "{white}Я {yellow}Пики{white} с планеты Пепин, пин.{next}"
+    },
+    {
+      "id": "rom_14b9d6",
+      "translation": "{white}С вами случилось то же, пин?{wait}{end}"
+    },
+    {
+      "id": "rom_14b9fe",
+      "translation": "{white}А? А, понятно...{next}"
+    },
+    {
+      "id": "rom_14ba2e",
+      "translation": "{white}Чт-что вы такое?.. {next}"
+    },
+    {
+      "id": "rom_14ba5a",
+      "translation": "{white}Они собираются меня съесть, пин?{close}"
+    },
+    {
+      "id": "rom_14ba82",
+      "translation": "{white}Что это за существа?!{next}"
+    },
+    {
+      "id": "rom_14baa6",
+      "translation": "{white}Возьмите его, пин!{close}"
+    },
+    {
+      "id": "rom_14baba",
+      "translation": "{white}В благодарность дам найденный ключ.{next}"
+    },
+    {
+      "id": "rom_14bae6",
+      "translation": "{white}Спасибо, пин!!{wait}{end}"
+    },
+    {
+      "id": "rom_14bb02",
+      "translation": "{white}Вы прогнали чудовище!{next}"
+    },
+    {
+      "id": "rom_14bb2e",
+      "translation": "{white}с нами дальше, пин?.. {close}"
+    },
+    {
+      "id": "rom_14bb4e",
+      "translation": "{white}Что же будет{next}"
+    },
+    {
+      "id": "rom_14bb8a",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14bbb2",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14bbda",
+      "translation": "{white}Где, где мы, ки?{close}"
+    },
+    {
+      "id": "rom_14bbfe",
+      "translation": "{white}Рад знакомству, ки!{next}"
+    },
+    {
+      "id": "rom_14bc16",
+      "translation": "{white}Я с планеты Миник.{next}"
+    },
+    {
+      "id": "rom_14bc3a",
+      "translation": "{white}Какая беда, ки!{close}"
+    },
+    {
+      "id": "rom_14bc52",
+      "translation": "{white}Ничего не работает! Ничего!{next}"
+    },
+    {
+      "id": "rom_14bc6e",
+      "translation": "{white}Электричество пропало.{next}"
+    },
+    {
+      "id": "rom_14bc92",
+      "translation": "{white}чтобы раскрутить ветряки!{close}"
+    },
+    {
+      "id": "rom_14bcbe",
+      "translation": "{white}Примените {yellow}веер бога ветра{white},{next}"
+    },
+    {
+      "id": "rom_14bcfa",
+      "translation": "{white}{red}А вот и ангел-проводник!{next}"
+    },
+    {
+      "id": "rom_14bd32",
+      "translation": "{white}Нам нужен ветер, ки!{wait}{end}"
+    },
+    {
+      "id": "rom_14bd56",
+      "translation": "{white}Нет электричества! Вот беда, ки!{next}"
+    },
+    {
+      "id": "rom_14bd7e",
+      "translation": "{white}Нет ветра! Оба ветряка стоят.{next}"
+    },
+    {
+      "id": "rom_14bdaa",
+      "translation": "{white}Нам нужно электричество, ки!{close}"
+    },
+    {
+      "id": "rom_14bdd6",
+      "translation": "{white}Мой друг пропал, ки!{close}"
+    },
+    {
+      "id": "rom_14bdfe",
+      "translation": "{white}Вот это да, ки!{close}"
+    },
+    {
+      "id": "rom_14be1a",
+      "translation": "{white}Всё вокруг такое огромное!{next}"
+    },
+    {
+      "id": "rom_14be3e",
+      "translation": "{white}на эту планету, ки?.. {wait}{end}"
+    },
+    {
+      "id": "rom_14be5a",
+      "translation": "{white}Почему нас перенесли{next}"
+    },
+    {
+      "id": "rom_14be82",
+      "translation": "{white}Буду беречь электричество, ки.{close}"
+    },
+    {
+      "id": "rom_14beae",
+      "translation": "{white}Электричество вернулось, ки!{next}"
+    },
+    {
+      "id": "rom_14bed2",
+      "translation": "{white}Как удобно! Здорово, ки!{close}"
+    },
+    {
+      "id": "rom_14befa",
+      "translation": "{white}У нас дома снова есть свет, ки!{next}"
+    },
+    {
+      "id": "rom_14bf26",
+      "translation": "{white}Ура, ура, ки!{close}"
+    },
+    {
+      "id": "rom_14bf4e",
+      "translation": "{white}Монорельс тоже заработал!{next}"
+    },
+    {
+      "id": "rom_14bf6e",
+      "translation": "{white}Ветер подул! Ветряки крутятся!{next}"
+    },
+    {
+      "id": "rom_14bf96",
+      "translation": "{white}Я так рад, ки!{close}"
+    },
+    {
+      "id": "rom_14bfae",
+      "translation": "{white}Теперь можно не волноваться, ки!{close}"
+    },
+    {
+      "id": "rom_14bfce",
+      "translation": "{white}спокойно, ки?.. {close}"
+    },
+    {
+      "id": "rom_14bfea",
+      "translation": "{white}Неужели теперь заживём{next}"
+    },
+    {
+      "id": "rom_14c00e",
+      "translation": "{white}Мне страшно, ки!!{close}"
+    },
+    {
+      "id": "rom_14c026",
+      "translation": "{white}Что это такое, ки?.. {next}"
+    },
+    {
+      "id": "rom_14c04e",
+      "translation": "{white}Сделайте что-нибудь, ки!!{close}"
+    },
+    {
+      "id": "rom_14c06a",
+      "translation": "{white}Появилось чудовище, ки!{next}"
+    },
+    {
+      "id": "rom_14c092",
+      "translation": "{white}Страшно, очень страшно, ки!!{close}"
+    },
+    {
+      "id": "rom_14c0b2",
+      "translation": "{white}Я его видел! Как страшно, ки!!{close}"
+    },
+    {
+      "id": "rom_14c0de",
+      "translation": "{white}За окном огромное чудовище...{next}"
+    },
+    {
+      "id": "rom_14c10a",
+      "translation": "{white}Помогите нам, ки!!{close}"
+    },
+    {
+      "id": "rom_14c136",
+      "translation": "{white}Снаружи появилось чудовище!{next}"
+    },
+    {
+      "id": "rom_14c15e",
+      "translation": "{white}Что делать, что делать, ки?!{close}"
+    },
+    {
+      "id": "rom_14c182",
+      "translation": "{white}Ты такой сильный, ки!{close}"
+    },
+    {
+      "id": "rom_14c1a6",
+      "translation": "{white}Спасибо, ки!!{wait}{end}"
+    },
+    {
+      "id": "rom_14c1c2",
+      "translation": "{white}Ты прогнал чудовище!{next}"
+    },
+    {
+      "id": "rom_14c1ea",
+      "translation": "{white}Ты герой, ки!{close}"
+    },
+    {
+      "id": "rom_14c20a",
+      "translation": "{white}Ох, как же было страшно, ки!!{close}"
+    },
+    {
+      "id": "rom_14c22a",
+      "translation": "{white}Чудовище исчезло! Как хорошо, ки!{next}"
+    },
+    {
+      "id": "rom_14c256",
+      "translation": "{white}Спасибо, ки!!{close}"
+    },
+    {
+      "id": "rom_14c272",
+      "translation": "{white}Теперь можно жить спокойно.{next}"
+    },
+    {
+      "id": "rom_14c292",
+      "translation": "{white}Хочу вернуться на Миник, ки!{close}"
+    },
+    {
+      "id": "rom_14c2ba",
+      "translation": "{white}Вот это да, ки! Невероятно!{close}"
+    },
+    {
+      "id": "rom_14c2e2",
+      "translation": "{white}Что?! Это ты сделал?{next}"
+    },
+    {
+      "id": "rom_14c30a",
+      "translation": "{white}Я видел в небе огромный огонь, ки.{next}"
+    },
+    {
+      "id": "rom_14c336",
+      "translation": "{white}Мой друг вернулся, ки!{close}"
+    },
+    {
+      "id": "rom_14c35e",
+      "translation": "{white}Над этим я и думаю, ки.{close}"
+    },
+    {
+      "id": "rom_14c37a",
+      "translation": "{white}Как нам жить на этой планете?{next}"
+    },
+    {
+      "id": "rom_14c3a6",
+      "translation": "{white}Лучше дома места нет, ки.{close}"
+    },
+    {
+      "id": "rom_14c3c2",
+      "translation": "{white}Я вернулся, ки!{next}"
+    },
+    {
+      "id": "rom_14c3e6",
+      "translation": "{white}Огромное спасибо, ки!{close}"
+    },
+    {
+      "id": "rom_14c406",
+      "translation": "{white}Привет, ки! Ты нас спас!{next}"
+    },
+    {
+      "id": "rom_14c42e",
+      "translation": "{white}больше никогда, ки!{close}"
+    },
+    {
+      "id": "rom_14c446",
+      "translation": "{white}Я не буду подбирать метеориты{next}"
+    },
+    {
+      "id": "rom_14c46a",
+      "translation": "{white}Я снова в городе, ки!{next}"
+    },
+    {
+      "id": "rom_14c48e",
+      "translation": "{white}Ты найдёшь ему применение, ки!{close}"
+    },
+    {
+      "id": "rom_14c4ba",
+      "translation": "{white}большой ключ, ки!{next}"
+    },
+    {
+      "id": "rom_14c4d6",
+      "translation": "{white}В награду дам то, что нашёл снаружи:{next}"
+    },
+    {
+      "id": "rom_14c502",
+      "translation": "{white}Спасибо, ки!{wait}{end}"
+    },
+    {
+      "id": "rom_14c51e",
+      "translation": "{white}Это ты запустил ветряки, ки?{next}"
+    },
+    {
+      "id": "rom_14c562",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14c58e",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14c5ba",
+      "translation": "{white}Не понимаю...{close}"
+    },
+    {
+      "id": "rom_14c5d2",
+      "translation": "{white}Почему это случилось?{next}"
+    },
+    {
+      "id": "rom_14c5fa",
+      "translation": "{white}к моим крыльям...{close}"
+    },
+    {
+      "id": "rom_14c622",
+      "translation": "{white}Спасибо! Сила возвращается{next}"
+    },
+    {
+      "id": "rom_14c64a",
+      "translation": "{white}всё хорошо! Правда, {yellow}Пато{white}?{close}"
+    },
+    {
+      "id": "rom_14c672",
+      "translation": "{white}Раз все вернулись,{next}"
+    },
+    {
+      "id": "rom_14c696",
+      "translation": "{white}Даже если не вернёмся на Попику,{next}"
+    },
+    {
+      "id": "rom_14c6be",
+      "translation": "{white}тоже вернулись...{close}"
+    },
+    {
+      "id": "rom_14c6de",
+      "translation": "{white}Все пропавшие{next}"
+    },
+    {
+      "id": "rom_14c702",
+      "translation": "{white}Как хорошо! Все снова в порядке.{next}"
+    },
+    {
+      "id": "rom_14c72e",
+      "translation": "{white}или что?.. {close}"
+    },
+    {
+      "id": "rom_14c75a",
+      "translation": "{white}Мне приснился кошмар...{next}"
+    },
+    {
+      "id": "rom_14c786",
+      "translation": "{white}Откуда вы прибыли?.. {close}"
+    },
+    {
+      "id": "rom_14c7c2",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14c7e6",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14c80a",
+      "translation": "{white}{yellow}ветра{white}!{close}"
+    },
+    {
+      "id": "rom_14c83a",
+      "translation": "{white}Пойдёт дождь и оживит {yellow}кристалл{white}{next}"
+    },
+    {
+      "id": "rom_14c866",
+      "translation": "{white}Используйте {yellow}облачное ведро{white}.{next}"
+    },
+    {
+      "id": "rom_14c892",
+      "translation": "{white}Ах, если бы пошёл дождь...{wait}{end}"
+    },
+    {
+      "id": "rom_14c8c2",
+      "translation": "{white}даёт моим крыльям силу!{wait}{end}"
+    },
+    {
+      "id": "rom_14c8ea",
+      "translation": "{white}в свет, который{next}"
+    },
+    {
+      "id": "rom_14c912",
+      "translation": "{white}{yellow}Кристалл ветра{white} обращает силу воды{next}"
+    },
+    {
+      "id": "rom_14c942",
+      "translation": "{white}перестал работать...{wait}{end}"
+    },
+    {
+      "id": "rom_14c96a",
+      "translation": "{white}{yellow}кристалл ветра{white}{next}"
+    },
+    {
+      "id": "rom_14c992",
+      "translation": "{white}А ещё наш драгоценный{next}"
+    },
+    {
+      "id": "rom_14c9be",
+      "translation": "{white}сумели убежать, но...{wait}{end}"
+    },
+    {
+      "id": "rom_14c9e6",
+      "translation": "{white}Мы с {red}Пиколь{white} едва{next}"
+    },
+    {
+      "id": "rom_14ca0a",
+      "translation": "{white}Они оказались в ловушке.{wait}{end}"
+    },
+    {
+      "id": "rom_14ca1e",
+      "translation": "{white}Всех обволокла слизь.{next}"
+    },
+    {
+      "id": "rom_14ca4a",
+      "translation": "{white}Нас перенесли сюда.{next}"
+    },
+    {
+      "id": "rom_14ca6e",
+      "translation": "{white}и с вами?{wait}{end}"
+    },
+    {
+      "id": "rom_14ca86",
+      "translation": "{white}То же самое случилось{next}"
+    },
+    {
+      "id": "rom_14caae",
+      "translation": "{white}Я {red}Пато{white} с Попики.{next}"
+    },
+    {
+      "id": "rom_14cada",
+      "translation": "{white}и отыскать пропавших друзей!{close}"
+    },
+    {
+      "id": "rom_14cb02",
+      "translation": "{white}Хочу поскорее снова летать{next}"
+    },
+    {
+      "id": "rom_14cb2e",
+      "translation": "{white}Ах, если бы пошёл дождь...{next}"
+    },
+    {
+      "id": "rom_14cb5a",
+      "translation": "{white}Смотри, как я летаю!{close}"
+    },
+    {
+      "id": "rom_14cb7e",
+      "translation": "{white}Благодаря тебе я снова могу летать!{next}"
+    },
+    {
+      "id": "rom_14cbaa",
+      "translation": "{white}Спасибо! Ты просто чудо!{next}"
+    },
+    {
+      "id": "rom_14cbd6",
+      "translation": "{white}Вот тебе подарок в благодарность!{close}"
+    },
+    {
+      "id": "rom_14cbfa",
+      "translation": "{white}{red}Пиколь{white} тоже рада!{next}"
+    },
+    {
+      "id": "rom_14cc22",
+      "translation": "{white}Ну как? Здорово, правда?{next}"
+    },
+    {
+      "id": "rom_14cc42",
+      "translation": "{white}Вот тебе подарок в благодарность!{close}"
+    },
+    {
+      "id": "rom_14cc66",
+      "translation": "{white}Благодаря тебе я снова могу летать!{next}"
+    },
+    {
+      "id": "rom_14cc92",
+      "translation": "{white}Пора искать остальных!{close}"
+    },
+    {
+      "id": "rom_14ccbe",
+      "translation": "{white}неспокойны... Но я постараюсь!{close}"
+    },
+    {
+      "id": "rom_14ccea",
+      "translation": "{white}С чего начать? Воздушные потоки{next}"
+    },
+    {
+      "id": "rom_14cd16",
+      "translation": "{white}Хм... Где же искать?{next}"
+    },
+    {
+      "id": "rom_14cd3e",
+      "translation": "{white}Оно напоминало красный цветок.{close}"
+    },
+    {
+      "id": "rom_14cd6a",
+      "translation": "{white}Я видел, как что-то упало!{next}"
+    },
+    {
+      "id": "rom_14cd8a",
+      "translation": "{white}Только что на ту {yellow}зелёную гору{white}{next}"
+    },
+    {
+      "id": "rom_14cdba",
+      "translation": "{white}Может, полетаете вместе?{close}"
+    },
+    {
+      "id": "rom_14cdd2",
+      "translation": "{white}Тогда лети вместе с {red}Пиколь{white}!{next}"
+    },
+    {
+      "id": "rom_14cdfa",
+      "translation": "{white}Что?! Ты тоже умеешь летать?{next}"
+    },
+    {
+      "id": "rom_14ce32",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14ce5a",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14ce7e",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14cea6",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14cece",
+      "translation": "{white}Тебе надо больше есть!{close}"
+    },
+    {
+      "id": "rom_14ceee",
+      "translation": "{white}Уж больно ты мелкий!{next}"
+    },
+    {
+      "id": "rom_14cf16",
+      "translation": "{white}Ты что за тип?!{next}"
+    },
+    {
+      "id": "rom_14cf32",
+      "translation": "{white}У тебя странная физиономия!{close}"
+    },
+    {
+      "id": "rom_14cf56",
+      "translation": "{white}Жалкий какой-то...{close}"
+    },
+    {
+      "id": "rom_14cf82",
+      "translation": "{white}захватим этот город!{close}"
+    },
+    {
+      "id": "rom_14cf9e",
+      "translation": "{white}Эй! Давай вместе{next}"
+    },
+    {
+      "id": "rom_14cfc6",
+      "translation": "{white}Я тоже ухожу!{close}"
+    },
+    {
+      "id": "rom_14cfe6",
+      "translation": "{white}охоту сражаться...{next}"
+    },
+    {
+      "id": "rom_14d00e",
+      "translation": "{white}Похоже, босс потерял{next}"
+    },
+    {
+      "id": "rom_14d03a",
+      "translation": "{white}Боевой дух куда-то делся...{close}"
+    },
+    {
+      "id": "rom_14d062",
+      "translation": "{white}Похоже, война закончилась!{next}"
+    },
+    {
+      "id": "rom_14d08e",
+      "translation": "{white}Скучища смертная!{close}"
+    },
+    {
+      "id": "rom_14d0b2",
+      "translation": "{white}Я сам видел!{close}"
+    },
+    {
+      "id": "rom_14d0c2",
+      "translation": "{white}В небе что-то взорвалось.{next}"
+    },
+    {
+      "id": "rom_14d0ee",
+      "translation": "{white}вернулись!{close}"
+    },
+    {
+      "id": "rom_14d0fe",
+      "translation": "{white}Наши пропавшие товарищи{next}"
+    },
+    {
+      "id": "rom_14d12a",
+      "translation": "{white}Эй! Это ты! Спасибо за помощь!{close}"
+    },
+    {
+      "id": "rom_14d15a",
+      "translation": "{white}Сейчас я тебя отделаю!!{close}"
+    },
+    {
+      "id": "rom_14d176",
+      "translation": "{white}Что?! Ты кто такой?!!{next}"
+    },
+    {
+      "id": "rom_14d19a",
+      "translation": "{white}...Ладно! Иди за мной!!{close}"
+    },
+    {
+      "id": "rom_14d1c2",
+      "translation": "{white}Тебе нужен босс?{next}"
+    },
+    {
+      "id": "rom_14d1e2",
+      "translation": "{white}Хватит болтать чепуху! Сражайся!{close}"
+    },
+    {
+      "id": "rom_14d20e",
+      "translation": "{white}Я всё это уничтожу!{next}"
+    },
+    {
+      "id": "rom_14d232",
+      "translation": "{white}Эта хвалёная цивилизация планеты!{next}"
+    },
+    {
+      "id": "rom_14d256",
+      "translation": "{white}что у нас останется?!{wait}{end}"
+    },
+    {
+      "id": "rom_14d27a",
+      "translation": "{white}Если отнять у драгонцев войну,{next}"
+    },
+    {
+      "id": "rom_14d2a2",
+      "translation": "{white}Ты... Заболел, что ли?{next}"
+    },
+    {
+      "id": "rom_14d2ce",
+      "translation": "{white}Прекратить вторжение?!!{wait}{end}"
+    },
+    {
+      "id": "rom_14d2f6",
+      "translation": "{white}Чего тебе? ЧТО-О?!{next}"
+    },
+    {
+      "id": "rom_14d31a",
+      "translation": "{white}Нет! Он мой!{next}"
+    },
+    {
+      "id": "rom_14d346",
+      "translation": "{white}Что?! Тебе нужен {yellow}камень силы{white}?{next}"
+    },
+    {
+      "id": "rom_14d376",
+      "translation": "{white}как жить на этой планете!{close}"
+    },
+    {
+      "id": "rom_14d39e",
+      "translation": "{white}Хватит войн! Пора подумать,{next}"
+    },
+    {
+      "id": "rom_14d3ca",
+      "translation": "{white}Мне стыдно за свои сражения.{next}"
+    },
+    {
+      "id": "rom_14d3f6",
+      "translation": "{white}Вот она, сила цивилизации...{wait}{end}"
+    },
+    {
+      "id": "rom_14d422",
+      "translation": "{white}О-о-о! Как трогательно!{next}"
+    },
+    {
+      "id": "rom_14d44e",
+      "translation": "{white}во имя мира!{close}"
+    },
+    {
+      "id": "rom_14d466",
+      "translation": "{white}Вот, бери! Используй его{next}"
+    },
+    {
+      "id": "rom_14d48e",
+      "translation": "{white}как жить на этой планете!{wait}{end}"
+    },
+    {
+      "id": "rom_14f7f2",
+      "translation": "{white}чтобы вернуть лес к жизни!{close}"
+    },
+    {
+      "id": "rom_14f81a",
+      "translation": "{white}Примените {yellow}цветущий пепел{white},{next}"
+    },
+    {
+      "id": "rom_14f842",
+      "translation": "{white}Здесь нужен один из ваших гаджетов.{next}"
+    },
+    {
+      "id": "rom_14f86e",
+      "translation": "{white}{red}А вот и ангел-проводник!{next}"
+    },
+    {
+      "id": "rom_14f8a2",
+      "translation": "{white}...{wait}{end}"
+    },
+    {
+      "id": "rom_14f8ba",
+      "translation": "{white}я смогу помочь вам...{next}"
+    },
+    {
+      "id": "rom_14f8e6",
+      "translation": "{white}Если он станет прежним,{next}"
+    },
+    {
+      "id": "rom_14f90e",
+      "translation": "{white}отравлен.{wait}{end}"
+    },
+    {
+      "id": "rom_14f92a",
+      "translation": "{white}Как видите, лес{next}"
+    },
+    {
+      "id": "rom_14f94e",
+      "translation": "{white}Вы можете говорить со мной.{wait}{end}"
+    },
+    {
+      "id": "rom_14f96a",
+      "translation": "{white}Меня зовут Карен.{next}"
+    },
+    {
+      "id": "rom_14f992",
+      "translation": "{white}Я... Я дух этого леса.{next}"
+    },
+    {
+      "id": "rom_14f9be",
+      "translation": "{white}Если он станет прежним,{next}"
+    },
+    {
+      "id": "rom_14f9e2",
+      "translation": "{white}Меня зовут Канан.{next}"
+    },
+    {
+      "id": "rom_14fa0a",
+      "translation": "{white}Не сдавайтесь!{close}"
+    },
+    {
+      "id": "rom_14fa26",
+      "translation": "{white}зависит от вашей храбрости.{next}"
+    },
+    {
+      "id": "rom_14fa4a",
+      "translation": "{white}Будущее этой планеты{next}"
+    },
+    {
+      "id": "rom_14fa72",
+      "translation": "{white}когда понадобится помощь.{wait}{end}"
+    },
+    {
+      "id": "rom_14fa92",
+      "translation": "{white}Навестите эту фею,{next}"
+    },
+    {
+      "id": "rom_14faba",
+      "translation": "{white}в ваш город.{next}"
+    },
+    {
+      "id": "rom_14fade",
+      "translation": "{white}Я отправлю фею, умеющую их делать,{wait}{end}"
+    },
+    {
+      "id": "rom_14fb02",
+      "translation": "{white}{yellow}Плод полного исцеления{white} поможет.{next}"
+    },
+    {
+      "id": "rom_14fb2e",
+      "translation": "{white}Чтобы помочь вам в путешествии,{next}"
+    },
+    {
+      "id": "rom_14fb56",
+      "translation": "{white}Приходите к ней.{wait}{end}"
+    },
+    {
+      "id": "rom_14fb6a",
+      "translation": "{white}Навестите её, если нужна помощь.{next}"
+    },
+    {
+      "id": "rom_14fb92",
+      "translation": "{white}Я отправлю фею туда.{next}"
+    },
+    {
+      "id": "rom_14fbb6",
+      "translation": "{white}Фея в районе 2 умеет их делать.{wait}{end}"
+    },
+    {
+      "id": "rom_14fbe6",
+      "translation": "{white}{yellow}Капсулы возрождения{white} помогут вам.{next}"
+    },
+    {
+      "id": "rom_14fc12",
+      "translation": "{white}Я попрошу их помочь вам.{close}"
+    },
+    {
+      "id": "rom_14fc3e",
+      "translation": "{white}пусть помогают вам.{next}"
+    },
+    {
+      "id": "rom_14fc6a",
+      "translation": "{white}Я передам феям на вашем пути:{next}"
+    },
+    {
+      "id": "rom_14fc96",
+      "translation": "{white}Примите его, пожалуйста.{close}"
+    },
+    {
+      "id": "rom_14fcaa",
+      "translation": "{white}Вы спасли его. Вот вам подарок.{next}"
+    },
+    {
+      "id": "rom_14fcd6",
+      "translation": "{white}Спасибо! Этот лес вам обязан!{next}"
+    },
+    {
+      "id": "rom_159352",
+      "translation": "{white}П... ПО...{close}"
+    },
+    {
+      "id": "rom_15936e",
+      "translation": "{white}СЕЙЧАС ПОЙДУ К НЕМУ!{close}"
+    },
+    {
+      "id": "rom_159396",
+      "translation": "{white}В ПОРЯДКЕ!! ТОГДА...{next}"
+    },
+    {
+      "id": "rom_1593be",
+      "translation": "{white}ЧТО-О! ДОКТОР КА{next}"
+    },
+    {
+      "id": "rom_1593e2",
+      "translation": "{white}ОН ОЧЕНЬ ДОБРЫЙ!{wait}{end}"
+    },
+    {
+      "id": "rom_159406",
+      "translation": "{white}ДАВНЫМ-ДАВНО.{next}"
+    },
+    {
+      "id": "rom_159422",
+      "translation": "{white}Я РАБОТАЛ У НЕГО.{next}"
+    },
+    {
+      "id": "rom_15944e",
+      "translation": "{white}...О! ВЫ ЗНАЕТЕ ДОКТОРА?{wait}{end}"
+    },
+    {
+      "id": "rom_15947e",
+      "translation": "{white}ХОЧУ УВИДЕТЬ ДОКТОРА КА...{next}"
+    },
+    {
+      "id": "rom_1594aa",
+      "translation": "{white}ЧТО ЖЕ МНЕ ТЕПЕРЬ ДЕЛАТЬ?..{next}"
+    },
+    {
+      "id": "rom_1594d6",
+      "translation": "{white}ВОТ {yellow}КЛЮЧ-КАРТА{white} ОТ БАЗЫ!{wait}{end}"
+    },
+    {
+      "id": "rom_159506",
+      "translation": "{white}ВОТ! У МЕНЯ ОСТАЛАСЬ ОДНА.{next}"
+    },
+    {
+      "id": "rom_159532",
+      "translation": "{white}НА БАЗУ?..{wait}{end}"
+    },
+    {
+      "id": "rom_159556",
+      "translation": "{white}ЧТО?! ВЫ ИДЁТЕ{next}"
+    },
+    {
+      "id": "rom_159582",
+      "translation": "{white}МЕНЯ СЛОМАЛИ И ВЫБРОСИЛИ.{wait}{end}"
+    },
+    {
+      "id": "rom_1595aa",
+      "translation": "{white}СТОЛЬКО ИХ ПОТЕРЯЛ, ЧТО{next}"
+    },
+    {
+      "id": "rom_1595d2",
+      "translation": "{white}А НЕДАВНО ПОТЕРЯЛ {yellow}КЛЮЧ-КАРТЫ{white}.{next}"
+    },
+    {
+      "id": "rom_1595fe",
+      "translation": "{white}ТАК МЕНЯ НАЗЫВАЛИ.{wait}{end}"
+    },
+    {
+      "id": "rom_15961a",
+      "translation": "{white}ВСЕ ЗВАЛИ МЕНЯ НИКЧЁМНЫМ РОБОТОМ.{next}"
+    },
+    {
+      "id": "rom_15963e",
+      "translation": "{white}Я ПОСТОЯННО ОШИБАЛСЯ.{next}"
+    },
+    {
+      "id": "rom_159666",
+      "translation": "{white}С-СПАСИ-И-ИБО!!{wait}{end}"
+    },
+    {
+      "id": "rom_159692",
+      "translation": "{white}УРА! Я ПОЧИНЕН!{next}"
+    },
+    {
+      "id": "rom_1596b6",
+      "translation": "{white}Я ОТПРАВЛЯЮСЬ!{close}"
+    },
+    {
+      "id": "rom_1596ca",
+      "translation": "{white}ПОЙДУ К ДОКТОРУ КА!{next}"
+    },
+    {
+      "id": "rom_1596f2",
+      "translation": "{white}Я ОТДАЛ ЕМУ! Я МОЛОДЕЦ?{close}"
+    },
+    {
+      "id": "rom_159716",
+      "translation": "{white}Я ПЕРЕДАЛ ИХ {yellow}ДОКТОРУ КА{white}!{next}"
+    },
+    {
+      "id": "rom_159746",
+      "translation": "{white}У МЕНЯ БЫЛИ ДАННЫЕ О БАГУЛЕ!{next}"
+    },
+    {
+      "id": "rom_15d20a",
+      "translation": "{white}КРАСНЫЙ. Дар даётся лишь раз.{close}"
+    },
+    {
+      "id": "rom_15d22e",
+      "translation": "{white}Заклинание: СИНИЙ, ЖЁЛТЫЙ,{next}"
+    },
+    {
+      "id": "rom_15d25a",
+      "translation": "{white}Свет и звук призовут богиню.{next}"
+    },
+    {
+      "id": "rom_15d282",
+      "translation": "{white}Сыграйте ноты МИ, РЕ, ДО!{close}"
+    },
+    {
+      "id": "rom_15d2ae",
+      "translation": "{white}Как открыть звуковую дверь{next}"
+    },
+    {
+      "id": "rom_15d2da",
+      "translation": "{white}Сыграйте ноты ДО, РЕ, МИ!{close}"
+    },
+    {
+      "id": "rom_15d306",
+      "translation": "{white}Сыграйте ноты МИ, ДО, РЕ!{close}"
+    },
+    {
+      "id": "rom_15d332",
+      "translation": "{white}чтобы приспособиться к среде!{close}"
+    },
+    {
+      "id": "rom_15d35a",
+      "translation": "{white}ваша {yellow}лампа адаптации{white},{next}"
+    },
+    {
+      "id": "rom_15d382",
+      "translation": "{white}Мы в космосе, поэтому нужна{next}"
+    },
+    {
+      "id": "rom_15d3ae",
+      "translation": "{white}{red}А вот и ангел-проводник!{next}"
+    },
+    {
+      "id": "rom_15d3f2",
+      "translation": "{white}Станция Багула - секция 1{next}"
+    },
+    {
+      "id": "rom_15f002",
+      "translation": "{white}Мяу-мяу?{close}"
+    },
+    {
+      "id": "rom_15f016",
+      "translation": "{white}МЯ-Я-ЯУ!!!{close}"
+    },
+    {
+      "id": "rom_1683e6",
+      "translation": "Дораэмон,{next}"
+    },
+    {
+      "id": "rom_1683fa",
+      "translation": "А! Метеорит!{end}"
+    },
+    {
+      "id": "rom_168416",
+      "translation": "Куда он летит?{end}"
+    },
+    {
+      "id": "rom_16842e",
+      "translation": "Ой, беда! Он упал! Упал!{end}"
+    },
+    {
+      "id": "rom_168456",
+      "translation": "Эх, не получается...{end}"
+    },
+    {
+      "id": "rom_16847a",
+      "translation": "Постарайся сам.{end}"
+    },
+    {
+      "id": "rom_168492",
+      "translation": "Делай уроки самостоятельно!{end}"
+    },
+    {
+      "id": "rom_1684b6",
+      "translation": "Ну, Нобита! Опять ты!{next}"
+    },
+    {
+      "id": "rom_1684d6",
+      "translation": "Дай гаджет, который всё сделает!{end}"
+    },
+    {
+      "id": "rom_1684fe",
+      "translation": "Это задание на лето...{next}"
+    },
+    {
+      "id": "rom_16851e",
+      "translation": "Угу... Да ладно, не об этом.{next}"
+    },
+    {
+      "id": "rom_168546",
+      "translation": "отдать гаджеты в ремонт!{end}"
+    },
+    {
+      "id": "rom_16856a",
+      "translation": "Я отправился в будущее,{next}"
+    },
+    {
+      "id": "rom_168592",
+      "translation": "Дораэмон, где ты был?{end}"
+    },
+    {
+      "id": "rom_1685ba",
+      "translation": "Я дома!{end}"
+    },
+    {
+      "id": "rom_1685ca",
+      "translation": "А-а-а!{end}"
+    },
+    {
+      "id": "rom_1685da",
+      "translation": "Удалённая фраза{end}"
+    },
+    {
+      "id": "rom_1685f2",
+      "translation": "Не успеть мне!{end}"
+    },
+    {
+      "id": "rom_168606",
+      "translation": "Эх... Задание на лето...{next}"
+    },
+    {
+      "id": "rom_16b782",
+      "translation": "Дораэмон!{end}"
+    },
+    {
+      "id": "rom_16b796",
+      "translation": "Мы врежемся в планету!{end}"
+    },
+    {
+      "id": "rom_16b7b6",
+      "translation": "Ой, беда!{next}"
+    },
+    {
+      "id": "rom_16b7ca",
+      "translation": "А-а-а-а-а!{end}"
+    },
+    {
+      "id": "rom_16b7e2",
+      "translation": "А-а-а!{end}"
+    },
+    {
+      "id": "rom_16b7f2",
+      "translation": "Соединим их!{end}"
+    },
+    {
+      "id": "rom_16b80a",
+      "translation": "Я сам видел!{end}"
+    },
+    {
+      "id": "rom_16b826",
+      "translation": "Он в небе раскололся на три части!{next}"
+    },
+    {
+      "id": "rom_16b84e",
+      "translation": "Это похоже на какую-то эмблему...{end}"
+    },
+    {
+      "id": "rom_16b87a",
+      "translation": "Я тоже нашёл{end}"
+    },
+    {
+      "id": "rom_16b88e",
+      "translation": "Возле своего дома.{next}"
+    },
+    {
+      "id": "rom_16b8ae",
+      "translation": "с неба!{end}"
+    },
+    {
+      "id": "rom_16b8c2",
+      "translation": "Глядите! Вот что упало{next}"
+    },
+    {
+      "id": "rom_16b8ee",
+      "translation": "Сунэо! Джайан!{end}"
+    },
+    {
+      "id": "rom_16b90a",
+      "translation": "Эй, Нобита!{end}"
+    },
+    {
+      "id": "rom_16b922",
+      "translation": "Удалённая фраза{end}"
+    },
+    {
+      "id": "rom_16b93a",
+      "translation": "Осколок метеорита?{end}"
+    },
+    {
+      "id": "rom_16b95a",
+      "translation": "О, это, наверное...{next}"
+    },
+    {
+      "id": "rom_16b976",
+      "translation": "Смотри, что у меня...{end}"
+    },
+    {
+      "id": "rom_16b992",
+      "translation": "О, здравствуй, Нобита.{next}"
+    },
+    {
+      "id": "rom_16b9b2",
+      "translation": "Сидзука!{end}"
+    },
+    {
+      "id": "rom_16c702",
+      "translation": "Теперь гаджеты не использовать!{end}"
+    },
+    {
+      "id": "rom_16c72a",
+      "translation": "Мой карман весь в слизи!{next}"
+    },
+    {
+      "id": "rom_16c752",
+      "translation": "А-а-а!{next}"
+    },
+    {
+      "id": "rom_16c762",
+      "translation": "Там такое творится!{end}"
+    },
+    {
+      "id": "rom_16c78a",
+      "translation": "Дораэмон! Там...{next}"
+    },
+    {
+      "id": "rom_16c7a6",
+      "translation": "На улице настоящий кошмар!{end}"
+    },
+    {
+      "id": "rom_16c7ce",
+      "translation": "Давайте пока выйдем на улицу!{end}"
+    },
+    {
+      "id": "rom_16c7fa",
+      "translation": "Ты в порядке?{end}"
+    },
+    {
+      "id": "rom_16c812",
+      "translation": "Что делать?!{end}"
+    },
+    {
+      "id": "rom_16c826",
+      "translation": "сражался со странным роботом!{end}"
+    },
+    {
+      "id": "rom_16c84e",
+      "translation": "М-м... Я только что{next}"
+    },
+    {
+      "id": "rom_16c876",
+      "translation": "Удалённая фраза{end}"
+    },
+    {
+      "id": "rom_16c88e",
+      "translation": "У-уф!{end}"
+    },
+    {
+      "id": "rom_16c89e",
+      "translation": "Дораэмон!{end}"
+    },
+    {
+      "id": "rom_16dbe2",
+      "translation": "До свидания!{end}"
+    },
+    {
+      "id": "rom_16dbf6",
+      "translation": "Прощайте!{end}"
+    },
+    {
+      "id": "rom_16dc06",
+      "translation": "Рейна! Нобил!{next}"
+    },
+    {
+      "id": "rom_16dc26",
+      "translation": "Ну что! Вперёд!{end}"
+    },
+    {
+      "id": "rom_16dc3e",
+      "translation": "И тогда всё станет как раньше!{end}"
+    },
+    {
+      "id": "rom_16dc6a",
+      "translation": "Всё получится!{next}"
+    },
+    {
+      "id": "rom_16dc82",
+      "translation": "Это точно поможет?{end}"
+    },
+    {
+      "id": "rom_16dcaa",
+      "translation": "и одолеем ту маску!{end}"
+    },
+    {
+      "id": "rom_16dcce",
+      "translation": "до того, как она вселилась,{next}"
+    },
+    {
+      "id": "rom_16dcf2",
+      "translation": "Машина времени вернёт нас назад,{next}"
+    },
+    {
+      "id": "rom_16dd1a",
+      "translation": "А что вы теперь будете делать?{end}"
+    },
+    {
+      "id": "rom_16dd3e",
+      "translation": "Простите за все беды, что я вам причинил.{next}"
+    },
+    {
+      "id": "rom_16dd72",
+      "translation": "Спасибо вам всем!{end}"
+    },
+    {
+      "id": "rom_16ec32",
+      "translation": "Что ты задумал?{end}"
+    },
+    {
+      "id": "rom_16ec4a",
+      "translation": "напоследок.{end}"
+    },
+    {
+      "id": "rom_16ec5e",
+      "translation": "Но сначала ещё одно дело{next}"
+    },
+    {
+      "id": "rom_16ec82",
+      "translation": "Ага! Идём!{end}"
+    },
+    {
+      "id": "rom_16ec9e",
+      "translation": "Ну же, скорее домой!{next}"
+    },
+    {
+      "id": "rom_16ecca",
+      "translation": "станет как раньше.{end}"
+    },
+    {
+      "id": "rom_16ece2",
+      "translation": "Теперь всё...{next}"
+    },
+    {
+      "id": "rom_16ecfa",
+      "translation": "Как хорошо!{end}"
+    },
+    {
+      "id": "rom_16ed0e",
+      "translation": "Отлично! Теперь всё в порядке!{end}"
+    },
+    {
+      "id": "rom_179452",
+      "translation": "          КОНЕЦ{end}"
+    },
+    {
+      "id": "rom_179972",
+      "translation": "Меня зовут Рейна.{end}"
+    },
+    {
+      "id": "rom_179992",
+      "translation": "С-спасибо, что спасли меня!{next}"
+    },
+    {
+      "id": "rom_1799be",
+      "translation": "Ах...{next}"
+    },
+    {
+      "id": "rom_1799ce",
+      "translation": "{white}О, Сидзука?!{end}"
+    },
+    {
+      "id": "rom_1799ea",
+      "translation": "{white}О, Сидзука?!{end}"
+    },
+    {
+      "id": "rom_179bf2",
+      "translation": "О, это вы...{end}"
+    },
+    {
+      "id": "rom_179e12",
+      "translation": "Мы снова встретились...{end}"
+    },
+    {
+      "id": "rom_179e36",
+      "translation": "Ах!..{next}"
+    },
+    {
+      "id": "rom_17b072",
+      "translation": "Что?!{end}"
+    },
+    {
+      "id": "rom_17b082",
+      "translation": "Ваш драгоценный робот теперь у меня...{end}"
+    },
+    {
+      "id": "rom_17b0ae",
+      "translation": "А-ха-ха! Ваш дорогой друг...{next}"
+    },
+    {
+      "id": "rom_17b0d6",
+      "translation": "И правда!{end}"
+    },
+    {
+      "id": "rom_17b0e6",
+      "translation": "А? Дораэмон пропал?!{end}"
+    },
+    {
+      "id": "rom_17b10a",
+      "translation": "А-а-а!{end}"
+    },
+    {
+      "id": "rom_17b8b2",
+      "translation": "{white}Спасибо, Дорами!{end}"
+    },
+    {
+      "id": "rom_17b8ce",
+      "translation": "{white} {end}"
+    },
+    {
+      "id": "rom_17b8d6",
+      "translation": "{white} {end}"
+    },
+    {
+      "id": "rom_17b8de",
+      "translation": "{white} {end}"
+    },
+    {
+      "id": "rom_17b8e6",
+      "translation": "{white} {end}"
+    },
+    {
+      "id": "rom_17b8f2",
+      "translation": "Я их принесла.{end}"
+    },
+    {
+      "id": "rom_17b90e",
+      "translation": "отдал в будущем на ремонт.{next}"
+    },
+    {
+      "id": "rom_17b932",
+      "translation": "Вот гаджеты, что он{next}"
+    },
+    {
+      "id": "rom_17b94e",
+      "translation": "но меня кто-то сбил...{end}"
+    },
+    {
+      "id": "rom_17b972",
+      "translation": "прилетела сюда,{next}"
+    },
+    {
+      "id": "rom_17b992",
+      "translation": "Чтобы всех вас спасти,{next}"
+    },
+    {
+      "id": "rom_17b9b6",
+      "translation": "что нашла вас...{end}"
+    },
+    {
+      "id": "rom_17b9d6",
+      "translation": "Как я рада,{next}"
+    },
+    {
+      "id": "rom_17b9ea",
+      "translation": "{white}Дорами! Ты в порядке?!{end}"
+    },
+    {
+      "id": "rom_17ba0c",
+      "translation": "{white}Дорами! С тобой всё хорошо?!{end}"
+    },
+    {
+      "id": "rom_17ba36",
+      "translation": "{white}Дорами! Ты в порядке?!{end}"
+    },
+    {
+      "id": "rom_17ba5a",
+      "translation": "{white}Дорами! Ты в порядке?!{end}"
+    },
+    {
+      "id": "rom_17ba80",
+      "translation": "{white}Эй, Дорами! Ты цела?!{end}"
+    },
+    {
+      "id": "rom_17e572",
+      "translation": "Твоя просьба услышана.{end}"
+    },
+    {
+      "id": "rom_180012",
+      "translation": "Ладно! Идём вместе!{end}"
+    },
+    {
+      "id": "rom_180036",
+      "translation": "Но я волнуюсь за брата...{end}"
+    },
+    {
+      "id": "rom_180066",
+      "translation": "Что? Это же опасно!{end}"
+    },
+    {
+      "id": "rom_18008a",
+      "translation": "Прошу, возьмите меня с собой!{end}"
+    },
+    {
+      "id": "rom_1800ae",
+      "translation": "О, Рейна!{end}"
+    },
+    {
+      "id": "rom_1800c6",
+      "translation": "Подождите меня!{end}"
+    },
+    {
+      "id": "rom_1800de",
+      "translation": "Космическая шлюпка!{end}"
+    },
+    {
+      "id": "rom_1800fe",
+      "translation": "Ого!{end}"
+    },
+    {
+      "id": "rom_18010e",
+      "translation": "Пора решающей битвы!{end}"
+    },
+    {
+      "id": "rom_181402",
+      "translation": "Да...{end}"
+    },
+    {
+      "id": "rom_181412",
+      "translation": "Скорее, брат! Пойдём!{end}"
+    },
+    {
+      "id": "rom_18143a",
+      "translation": "{white}Скорее! Надо выбираться!{end}"
+    },
+    {
+      "id": "rom_181464",
+      "translation": "{white}С-с-скорее! Надо выбираться!{end}"
+    },
+    {
+      "id": "rom_181490",
+      "translation": "{white}Рейна! Надо скорее выбираться!{end}"
+    },
+    {
+      "id": "rom_1814c0",
+      "translation": "{white}Эй, скорее! Надо выбираться!{end}"
+    },
+    {
+      "id": "rom_1814ec",
+      "translation": "{white}Давайте скорее выбираться!{end}"
+    },
+    {
+      "id": "rom_181512",
+      "translation": "{white}Скорее! Надо выбираться!{end}"
+    },
+    {
+      "id": "rom_181542",
+      "translation": "Ох, слава богу!{end}"
+    },
+    {
+      "id": "rom_18155a",
+      "translation": "Что со мной случилось?{end}"
+    },
+    {
+      "id": "rom_18157a",
+      "translation": "У-уф!{end}"
+    },
+    {
+      "id": "rom_18158a",
+      "translation": "Брат! Ты в порядке?!{end}"
+    },
+    {
+      "id": "rom_181fb2",
+      "translation": "{white}Что-о?!{end}"
+    },
+    {
+      "id": "rom_181fc0",
+      "translation": "{white}Что-о?!{end}"
+    },
+    {
+      "id": "rom_181fd2",
+      "translation": "сейчас достанется!{end}"
+    },
+    {
+      "id": "rom_181ff2",
+      "translation": "Вот таким извращенцам{next}"
+    },
+    {
+      "id": "rom_18200e",
+      "translation": "{white}Ой, прости!{end}"
+    },
+    {
+      "id": "rom_182024",
+      "translation": "{white}Прости меня!{end}"
+    },
+    {
+      "id": "rom_18203a",
+      "translation": "А-а-ай!{end}"
+    },
+    {
+      "id": "rom_18204a",
+      "translation": "{white}О! Сидзука!{end}"
+    },
+    {
+      "id": "rom_182068",
+      "translation": "{white}О! Это Сидзука!{end}"
+    },
+    {
+      "id": "rom_182ff2",
+      "translation": "сразится с вами!{end}"
+    },
+    {
+      "id": "rom_18300a",
+      "translation": "Робот, которого я создал,{next}"
+    },
+    {
+      "id": "rom_18302a",
+      "translation": "А вот и вы!{next}"
+    },
+    {
+      "id": "rom_183052",
+      "translation": "{white}О, Сунэо!{end}"
+    },
+    {
+      "id": "rom_18306c",
+      "translation": "{white}О, Сунэо!{end}"
+    },
+    {
+      "id": "rom_183082",
+      "translation": "{white}О, Сунэо!{end}"
+    },
+    {
+      "id": "rom_183bb2",
+      "translation": "{white}А-а-а!{end}"
+    },
+    {
+      "id": "rom_183bc0",
+      "translation": "{white}А-а-а!{end}"
+    },
+    {
+      "id": "rom_183bd0",
+      "translation": "{white}А-а-ай!{end}"
+    },
+    {
+      "id": "rom_183be0",
+      "translation": "{white}А-а-а!{end}"
+    },
+    {
+      "id": "rom_183bf2",
+      "translation": "Вот он!{end}"
+    },
+    {
+      "id": "rom_183c06",
+      "translation": "Представляю вам...{end}"
+    },
+    {
+      "id": "rom_183c1e",
+      "translation": "моего верного напарника!{next}"
+    },
+    {
+      "id": "rom_183c46",
+      "translation": "Добро пожаловать на мой концерт!{end}"
+    },
+    {
+      "id": "rom_183c76",
+      "translation": "{white}Ой... Д-Джайан!{end}"
+    },
+    {
+      "id": "rom_183c96",
+      "translation": "{white}А-а-а! Д-Джайан!{end}"
+    },
+    {
+      "id": "rom_183cba",
+      "translation": "{white}Ай! Такэси!{end}"
+    },
+    {
+      "id": "rom_183cd6",
+      "translation": "{white}А-а-а! Д-Джайан!{end}"
+    },
+    {
+      "id": "rom_183cfe",
+      "translation": "Я Джайан! Я главный хулиган!{end}"
+    },
+    {
+      "id": "rom_1846f2",
+      "translation": "Вперёд! Дораяки-пушка!{end}"
+    },
+    {
+      "id": "rom_184712",
+      "translation": "{white}Это не Дораэмон!{end}"
+    },
+    {
+      "id": "rom_184732",
+      "translation": "{white}Это не Дораэмон!{end}"
+    },
+    {
+      "id": "rom_184754",
+      "translation": "{white}О! Поддельный Дораэмон!{end}"
+    },
+    {
+      "id": "rom_184776",
+      "translation": "{white}Так ты подделка!{end}"
+    },
+    {
+      "id": "rom_18479a",
+      "translation": "Удалённая фраза{end}"
+    },
+    {
+      "id": "rom_1847b2",
+      "translation": "Вы пришли! Я покажу вам свою силу!{end}"
+    },
+    {
+      "id": "rom_1847de",
+      "translation": "Гу-ху-ху-ху...{next}"
+    },
+    {
+      "id": "rom_1847fe",
+      "translation": "{white}О, Дораэмон!{end}"
+    },
+    {
+      "id": "rom_184818",
+      "translation": "{white}О, Дораэмон!{end}"
+    },
+    {
+      "id": "rom_184832",
+      "translation": "{white}О! Это Дораэмон!{end}"
+    },
+    {
+      "id": "rom_18484e",
+      "translation": "{white}Эй, Дораэмон!{end}"
+    },
+    {
+      "id": "rom_184ff2",
+      "translation": "Ну же! В бой!!{end}"
+    },
+    {
+      "id": "rom_18500e",
+      "translation": "О чём вы вообще говорите?!{next}"
+    },
+    {
+      "id": "rom_18502e",
+      "translation": "{white}Рейна пришла повидаться с тобой!{end}"
+    },
+    {
+      "id": "rom_185054",
+      "translation": "{white}Рейна пришла забрать тебя домой!{end}"
+    },
+    {
+      "id": "rom_18507e",
+      "translation": "{white}Рейна пришла забрать тебя домой!{end}"
+    },
+    {
+      "id": "rom_1850a6",
+      "translation": "{white}Рейна пришла повидаться с тобой!{end}"
+    },
+    {
+      "id": "rom_1850ce",
+      "translation": "{white}Рейна пришла забрать тебя домой!{end}"
+    },
+    {
+      "id": "rom_1850f8",
+      "translation": "{white}Рейна пришла забрать тебя домой!{end}"
+    },
+    {
+      "id": "rom_185122",
+      "translation": "{white}Ты Нобил?!{next}"
+    },
+    {
+      "id": "rom_185148",
+      "translation": "{white}Ты... Ты Нобил?!{next}"
+    },
+    {
+      "id": "rom_18516c",
+      "translation": "{white}В-вы ведь Нобил?!{next}"
+    },
+    {
+      "id": "rom_185194",
+      "translation": "{white}Ты ведь Нобил?!{next}"
+    },
+    {
+      "id": "rom_1851b8",
+      "translation": "{white}Эй! Ты Нобил?!{next}"
+    },
+    {
+      "id": "rom_1851da",
+      "translation": "{white}Послушай, ты ведь Нобил?!{next}"
+    },
+    {
+      "id": "rom_185206",
+      "translation": "Я одолею вас всех до единого!{end}"
+    },
+    {
+      "id": "rom_185232",
+      "translation": "Наконец-то пришли!{next}"
+    },
+    {
+      "id": "rom_185742",
+      "translation": "Сидзука спасена!"
+    },
+    {
+      "id": "rom_185ca2",
+      "translation": "Сунэо спасён!"
+    },
+    {
+      "id": "rom_186492",
+      "translation": "Джайан спасён!"
+    },
+    {
+      "id": "rom_186df2",
+      "translation": "Дораэмон спасён!{end}"
+    },
+    {
+      "id": "rom_18ac62",
+      "translation": "Дораэмон!{end}"
+    },
+    {
+      "id": "rom_18ac76",
+      "translation": "Мы врежемся в планету!{end}"
+    },
+    {
+      "id": "rom_18ac96",
+      "translation": "Ой, беда!{next}"
+    },
+    {
+      "id": "rom_18acaa",
+      "translation": "А-а-а-а-а!{end}"
+    },
+    {
+      "id": "rom_18acc2",
+      "translation": "А-а-а!{end}"
+    },
+    {
+      "id": "rom_18acd2",
+      "translation": "Соединим их!{end}"
+    },
+    {
+      "id": "rom_18acea",
+      "translation": "Я сам видел!{end}"
+    },
+    {
+      "id": "rom_18ad06",
+      "translation": "Он в небе раскололся на три части!{next}"
+    },
+    {
+      "id": "rom_18ad2e",
+      "translation": "Это похоже на какую-то эмблему...{end}"
+    },
+    {
+      "id": "rom_18ad5a",
+      "translation": "Я тоже нашёл{end}"
+    },
+    {
+      "id": "rom_18ad6e",
+      "translation": "Возле своего дома.{next}"
+    },
+    {
+      "id": "rom_18ad8e",
+      "translation": "с неба!{end}"
+    },
+    {
+      "id": "rom_18ada2",
+      "translation": "Глядите! Вот что упало{next}"
+    },
+    {
+      "id": "rom_18adce",
+      "translation": "Сунэо! Джайан!{end}"
+    },
+    {
+      "id": "rom_18adea",
+      "translation": "Эй, Нобита!{end}"
+    },
+    {
+      "id": "rom_18ae02",
+      "translation": "Удалённая фраза{end}"
+    },
+    {
+      "id": "rom_18ae1a",
+      "translation": "Осколок метеорита?{end}"
+    },
+    {
+      "id": "rom_18ae3a",
+      "translation": "О, это, наверное...{next}"
+    },
+    {
+      "id": "rom_18ae56",
+      "translation": "Смотри, что у меня...{end}"
+    },
+    {
+      "id": "rom_18ae72",
+      "translation": "О, здравствуй, Нобита.{next}"
+    },
+    {
+      "id": "rom_18ae92",
+      "translation": "Сидзука!{end}"
+    },
+    {
+      "id": "rom_18b052",
+      "translation": "О, это вы...{end}"
+    },
+    {
+      "id": "rom_18bd82",
+      "translation": "Над горой Гурун{end}"
+    },
+    {
+      "id": "rom_0c9ef6",
+      "translation": "{white} {wait}{end}"
+    },
+    {
+      "id": "rom_0ccdaa",
+      "translation": "{white} {next}"
+    },
+    {
+      "id": "rom_14f862",
+      "translation": "{white} {wait}{end}"
+    },
+    {
+      "id": "rom_14bcee",
+      "translation": "{white} {wait}{end}"
+    },
+    {
+      "id": "rom_140e22",
+      "translation": "{white} {wait}{end}"
+    },
+    {
+      "id": "rom_15d3e6",
+      "translation": "{white} {wait}{end}"
+    },
+    {
+      "id": "rom_15d41e",
+      "translation": "{white} {next}"
+    },
+    {
+      "id": "rom_1683c2",
+      "translation": "Скорее бы он вернулся!{end}"
+    }
+  ]
+}

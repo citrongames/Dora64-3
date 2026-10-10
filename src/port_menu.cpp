@@ -1,6 +1,7 @@
 #include "port_menu.hpp"
 #include "game_reset.hpp"
 #include "autosave.hpp"
+#include "localization.hpp"
 #include "port_display.hpp"
 #include "imgui/imgui.h"
 #include <algorithm>
@@ -85,6 +86,18 @@ void draw_overlay(){
                         ImGui::Spacing();ImGui::Separator();ImGui::Spacing();
                         ImGui::TextWrapped("Original: original resolution, frame rate and N64 filtering. Modern: fit to window, display frame rate and bilinear filtering.");
                         ImGui::TextWrapped("Original keeps 4:3; Modern fits the window.");
+                        ImGui::Separator();
+                        const auto& languages=dora3::localization::languages();
+                        const char* language_name="Original Japanese";
+                        for(const auto& language:languages)if(language.code==s.language)language_name=language.name.c_str();
+                        if(ImGui::BeginCombo("Language",language_name)) {
+                            for(const auto& language:languages) {
+                                const bool active=language.code==s.language;
+                                if(ImGui::Selectable(language.name.c_str(),active)){s.language=language.code;set_general(s);}
+                                if(active)ImGui::SetItemDefaultFocus();
+                            }
+                            ImGui::EndCombo();
+                        }
                         ImGui::Separator();
                         if(ImGui::Checkbox("Autosave",&s.autosave))set_general(s);
                         ImGui::Separator();
@@ -197,9 +210,9 @@ void draw_overlay(){
                         ImGui::TextWrapped("Keep the selected character at their own maximum HP and prevent HP loss.");
                         ImGui::Spacing();ImGui::Separator();ImGui::Spacing();
                         ImGui::TextDisabled("Each enabled item stays at 99, including after use.");
-                        constexpr const char* labels[]={"Zenkai fuku no mi (99)","Fukkatsu capsule (99)",
-                            "Energy stone (99)","Gas spray (99)","Fushigi na mi (99)",
-                            "Silver key (99)","Gold key (99)"};
+                        constexpr const char* labels[]={"Full Recovery Fruit (99)","Revival Capsule (99)",
+                            "Energy Stone (99)","Gas Spray (99)","Mysterious Fruit (99)",
+                            "Silver Key (99)","Gold Key (99)"};
                         for(int i=FullRecoveryFruit;i<CheatCount;++i)
                             changed|=ImGui::Checkbox(labels[i-FullRecoveryFruit],&s.cheats[i]);
                         if(changed)set_cheats(s.cheats);

@@ -2,6 +2,7 @@
 #include "port_settings.hpp"
 #include "draw_distance.hpp"
 #include "autosave.hpp"
+#include "localization.hpp"
 #include "json/json.hpp"
 #include <algorithm>
 #include <cmath>
@@ -74,7 +75,8 @@ void save_locked(bool controls=false){
                 {"stick_speed",current.camera.stick_speed},{"mouse_sensitivity",current.camera.mouse_sensitivity}};
             if(!pc_document["game"].is_object())pc_document["game"]=Json::object();
             pc_document["game"]["autosave"]=current.autosave;
-            pc_document["version"]=17;pc_document["show_fps"]=current.show_fps;
+            pc_document["language"]["code"]=current.language;
+            pc_document["version"]=18;pc_document["show_fps"]=current.show_fps;
             pc_document["master_volume"]=current.volume/100.0f;pc_document.erase("menu_scale");
             if(!pc_document["graphics"].is_object())pc_document["graphics"]=Json::object();
             auto& g=pc_document["graphics"];g["window_mode"]=current.fullscreen?"Fullscreen":"Windowed";
@@ -114,6 +116,7 @@ Settings defaults() {
 }
 void initialize(const std::filesystem::path& directory){
     std::lock_guard lock(mutex);current=defaults();error.clear();pc_document=Json::object();input_document=Json::object();
+    current.language=dora3::localization::system_language();
     pc_path=directory/"port_pc_settings.json";input_path=directory/"port_input_settings.json";
     const bool missing_pc=!std::filesystem::exists(pc_path),missing_input=!std::filesystem::exists(input_path);
     // Import test-021 only for missing destinations. Leave its original file intact.
@@ -143,6 +146,7 @@ void initialize(const std::filesystem::path& directory){
         if(current.keys==old_keys)current.keys=defaults().keys;
     }
     if(!missing_pc&&read(pc_path,pc_document)){
+        if(pc_document.contains("language")&&pc_document["language"].is_object()&&pc_document["language"].contains("code")&&pc_document["language"]["code"].is_string())current.language=pc_document["language"]["code"].get<std::string>();
         boolean(pc_document,"show_fps",current.show_fps);float volume=current.volume/100.0f;
         real(pc_document,"master_volume",volume,0,1);current.volume=int(volume*100+0.5f);
         const auto game=pc_document.find("game");
@@ -180,6 +184,7 @@ void initialize(const std::filesystem::path& directory){
             if(valid_key(key))current.keys[i]=key;pad=decode_pad(pad);if(valid_pad(pad))current.pad[i]=pad;
         }
     }
+    current.language=dora3::localization::select(current.language);
     configure_cheats(current.cheats);
     dora3::autosave::configure(current.autosave);
     dora3::camera::configure(current.camera);
@@ -197,6 +202,7 @@ void set_general(const Settings& v) {
     current.display_index=std::clamp(v.display_index,0,1024);current.display_refresh_rate=std::clamp(v.display_refresh_rate,0,1000);
     current.frame_rate_mode=std::clamp(v.frame_rate_mode,0,2);current.frame_rate_limit=std::clamp(v.frame_rate_limit,60,360);
     current.aspect_ratio=std::clamp(v.aspect_ratio,0,1);current.hud_layout=std::clamp(v.hud_layout,0,1);
+    current.language=dora3::localization::select(v.language);
     current.camera=v.camera;
     current.camera.stick_speed=std::isfinite(v.camera.stick_speed)?std::clamp(v.camera.stick_speed,30.f,360.f):120.f;
     current.camera.mouse_sensitivity=std::isfinite(v.camera.mouse_sensitivity)?std::clamp(v.camera.mouse_sensitivity,.02f,1.f):.15f;

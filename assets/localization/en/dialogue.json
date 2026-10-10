@@ -1,0 +1,5665 @@
+{
+  "format_version": 1,
+  "entries": [
+    {
+      "id": "rom_06ea12",
+      "translation": "{white}Good luck, my young friends!{close}"
+    },
+    {
+      "id": "rom_06ea3e",
+      "translation": "{white}That's all I know for now.{next}"
+    },
+    {
+      "id": "rom_06ea62",
+      "translation": "{white}but I know nothing more yet.{wait}{end}"
+    },
+    {
+      "id": "rom_06ea8a",
+      "translation": "{white}is somewhere in Area 4,{next}"
+    },
+    {
+      "id": "rom_06eab2",
+      "translation": "{white}As for {yellow}Emperor Bagul{white}, he{next}"
+    },
+    {
+      "id": "rom_06eada",
+      "translation": "{white}but I'm sure he'll help you.{wait}{end}"
+    },
+    {
+      "id": "rom_06eb02",
+      "translation": "{white}He can be a stubborn old man,{next}"
+    },
+    {
+      "id": "rom_06eb2e",
+      "translation": "{white}Please go and rescue him.{next}"
+    },
+    {
+      "id": "rom_06eb5a",
+      "translation": "{white}has been taken prisoner!{wait}{end}"
+    },
+    {
+      "id": "rom_06eb7e",
+      "translation": "{white}My brother, {yellow}Dr. Tsu{white},{next}"
+    },
+    {
+      "id": "rom_06eba2",
+      "translation": "{white}Somewhere in Area 2,{next}"
+    },
+    {
+      "id": "rom_06ebca",
+      "translation": "{white}{yellow}generators{white} across the region.{wait}{end}"
+    },
+    {
+      "id": "rom_06ebf6",
+      "translation": "{white}you must destroy three {yellow}shield{next}"
+    },
+    {
+      "id": "rom_06ec26",
+      "translation": "{white}To enter {yellow}Metaldo Tower{white},{next}"
+    },
+    {
+      "id": "rom_06ec4e",
+      "translation": "{white}which controls the region.{wait}{end}"
+    },
+    {
+      "id": "rom_06ec6a",
+      "translation": "{white}shield around {yellow}Metaldo Tower{white},{next}"
+    },
+    {
+      "id": "rom_06ec92",
+      "translation": "{white}Area 2 is sealed by a huge{next}"
+    },
+    {
+      "id": "rom_06ecba",
+      "translation": "{white}I have gathered about Area 2!{wait}{end}"
+    },
+    {
+      "id": "rom_06ecde",
+      "translation": "{white}Now, here is the information{next}"
+    },
+    {
+      "id": "rom_06ed06",
+      "translation": "{white}all thanks to you! Thank you.{wait}{end}"
+    },
+    {
+      "id": "rom_06ed32",
+      "translation": "{white}I was able to return home,{next}"
+    },
+    {
+      "id": "rom_06ed5e",
+      "translation": "{white}Hello there! How are you doing?{next}"
+    },
+    {
+      "id": "rom_06ed82",
+      "translation": "{white}Go and pay him a visit.{close}"
+    },
+    {
+      "id": "rom_06edae",
+      "translation": "{white}{yellow}Dr. Tsu{white} might know something.{next}"
+    },
+    {
+      "id": "rom_06edde",
+      "translation": "{white}Back in {yellow}Undercity 2{white},{next}"
+    },
+    {
+      "id": "rom_06ee0a",
+      "translation": "{white}Hmm... Could that work?{wait}{end}"
+    },
+    {
+      "id": "rom_06ee2e",
+      "translation": "{white}to bring him back to life?{next}"
+    },
+    {
+      "id": "rom_06ee56",
+      "translation": "{white}Could one of your handy gadgets{next}"
+    },
+    {
+      "id": "rom_06ee82",
+      "translation": "{white}the sleeping {yellow}genie{white}!{wait}{end}"
+    },
+    {
+      "id": "rom_06eeaa",
+      "translation": "{white}...Wait! In the {yellow}Posedo Sea{white}...{next}"
+    },
+    {
+      "id": "rom_06eeda",
+      "translation": "{white}What are we to do...?{next}"
+    },
+    {
+      "id": "rom_06ef06",
+      "translation": "{white}will bar your way.{wait}{end}"
+    },
+    {
+      "id": "rom_06ef2a",
+      "translation": "{white}countless high-voltage wires{next}"
+    },
+    {
+      "id": "rom_06ef52",
+      "translation": "{white}Even if you try going underground,{next}"
+    },
+    {
+      "id": "rom_06ef7e",
+      "translation": "{white}will rain fire on you.{wait}{end}"
+    },
+    {
+      "id": "rom_06ef9e",
+      "translation": "{white}its gun turrets and fighter ships{next}"
+    },
+    {
+      "id": "rom_06efca",
+      "translation": "{white}If you try to approach by air,{next}"
+    },
+    {
+      "id": "rom_06eff6",
+      "translation": "{white}no way in.{wait}{end}"
+    },
+    {
+      "id": "rom_06f00e",
+      "translation": "{white}For now, I can think of{next}"
+    },
+    {
+      "id": "rom_06f03a",
+      "translation": "{white}How can we enter {yellow}Garock Tower{white}?{next}"
+    },
+    {
+      "id": "rom_06f06a",
+      "translation": "{white}surrounding {yellow}Garock Tower{white}.{next}"
+    },
+    {
+      "id": "rom_06f09a",
+      "translation": "{white}Area 3 has a powerful barrier{next}"
+    },
+    {
+      "id": "rom_06f0c6",
+      "translation": "{white}about Area 3!{wait}{end}"
+    },
+    {
+      "id": "rom_06f0de",
+      "translation": "{white}Now for some information{next}"
+    },
+    {
+      "id": "rom_06f102",
+      "translation": "{white}I'll call when they're ready.{next}"
+    },
+    {
+      "id": "rom_06f12e",
+      "translation": "{white}for a new weapon!{wait}{end}"
+    },
+    {
+      "id": "rom_06f156",
+      "translation": "{white}I'm now drawing up the plans{next}"
+    },
+    {
+      "id": "rom_06f17e",
+      "translation": "{white}to defeat {yellow}Emperor Bagul{white}.{next}"
+    },
+    {
+      "id": "rom_06f1aa",
+      "translation": "{white}and your own weapons' data,{wait}{end}"
+    },
+    {
+      "id": "rom_06f1ca",
+      "translation": "{white}Using the information he brought{next}"
+    },
+    {
+      "id": "rom_06f1f2",
+      "translation": "{white}Now that {yellow}Robot B-0{white} is here...{next}"
+    },
+    {
+      "id": "rom_06f222",
+      "translation": "{white}Thank you!{wait}{end}"
+    },
+    {
+      "id": "rom_06f23a",
+      "translation": "{white}You rescued {yellow}Dr. Tsu{white}!{next}"
+    },
+    {
+      "id": "rom_06f262",
+      "translation": "{white}I'll be waiting for you.{close}"
+    },
+    {
+      "id": "rom_06f28a",
+      "translation": "{white}Come and pick up the plans later.{next}"
+    },
+    {
+      "id": "rom_06f2b2",
+      "translation": "{white}Well then, I wish you luck!{next}"
+    },
+    {
+      "id": "rom_06f2de",
+      "translation": "{white}I hope we can find another way.{wait}{end}"
+    },
+    {
+      "id": "rom_06f30a",
+      "translation": "{white}a spaceship at our disposal.{next}"
+    },
+    {
+      "id": "rom_06f336",
+      "translation": "{white}Unfortunately, we don't have{next}"
+    },
+    {
+      "id": "rom_06f35e",
+      "translation": "{white}out there in space.{wait}{end}"
+    },
+    {
+      "id": "rom_06f37a",
+      "translation": "{white}{yellow}Emperor Bagul's{white} fortress is{next}"
+    },
+    {
+      "id": "rom_06f3aa",
+      "translation": "{white}I suspect that, beyond the beam,{next}"
+    },
+    {
+      "id": "rom_06f3d6",
+      "translation": "{white}an invisible shield beam.{wait}{end}"
+    },
+    {
+      "id": "rom_06f402",
+      "translation": "{white}shooting up into the sky:{next}"
+    },
+    {
+      "id": "rom_06f42e",
+      "translation": "{white}Also, {yellow}Mire Tower{white} is emitting{next}"
+    },
+    {
+      "id": "rom_06f45e",
+      "translation": "{white}You must find both of them!{wait}{end}"
+    },
+    {
+      "id": "rom_06f486",
+      "translation": "{white}you need two {yellow}Mirror Shards{white}.{next}"
+    },
+    {
+      "id": "rom_06f4aa",
+      "translation": "{white}To enter {yellow}Mire Tower{white},{next}"
+    },
+    {
+      "id": "rom_06f4d2",
+      "translation": "{white}Area 4 is ruled by {yellow}Mire Tower{white}.{next}"
+    },
+    {
+      "id": "rom_06f4fa",
+      "translation": "{white}...First, here's what I know.{next}"
+    },
+    {
+      "id": "rom_06f522",
+      "translation": "{white}{yellow}him{white} to finish their creation.{wait}{end}"
+    },
+    {
+      "id": "rom_06f556",
+      "translation": "{white}{yellow}Doraemon{white} has all those gadgets.{next}"
+    },
+    {
+      "id": "rom_06f586",
+      "translation": "{white}To complete that master,{next}"
+    },
+    {
+      "id": "rom_06f5ae",
+      "translation": "{white}when he saw it. So, perhaps...{wait}{end}"
+    },
+    {
+      "id": "rom_06f5da",
+      "translation": "{white}Area 4's master was unfinished{next}"
+    },
+    {
+      "id": "rom_06f606",
+      "translation": "{white}According to {yellow}Robot B-0{white},{next}"
+    },
+    {
+      "id": "rom_06f632",
+      "translation": "{white}I was just calling to warn you.{wait}{end}"
+    },
+    {
+      "id": "rom_06f662",
+      "translation": "{white}was tracking you, so{next}"
+    },
+    {
+      "id": "rom_06f68e",
+      "translation": "{white}A {yellow}surveillance satellite{white}{next}"
+    },
+    {
+      "id": "rom_06f6be",
+      "translation": "{white}Bagul's army has satellites above.{wait}{end}"
+    },
+    {
+      "id": "rom_06f6ee",
+      "translation": "{white}Missing?! ...Oh, no!{next}"
+    },
+    {
+      "id": "rom_06f71a",
+      "translation": "{white}What's wrong? Where's {yellow}Doraemon{white}?{next}"
+    },
+    {
+      "id": "rom_06f74a",
+      "translation": "{white}are finally... Hm? What's this?{wait}{end}"
+    },
+    {
+      "id": "rom_06f772",
+      "translation": "{white}The plans for the {yellow}Hyper Air Cannon{white}{next}"
+    },
+    {
+      "id": "rom_06f79e",
+      "translation": "{white}Hello! I've finished the plans!{next}"
+    },
+    {
+      "id": "rom_0c7572",
+      "translation": "{white}Scene start: default message{close}"
+    },
+    {
+      "id": "rom_0c759e",
+      "translation": "{white}(Keep the chimney in sight!){close}"
+    },
+    {
+      "id": "rom_0c75ca",
+      "translation": "{white}(Look for the bathhouse chimney.){next}"
+    },
+    {
+      "id": "rom_0c75f2",
+      "translation": "{white}(Use the camera to look around.){next}"
+    },
+    {
+      "id": "rom_0c7616",
+      "translation": "{white}Let's head toward the bathhouse.{wait}{end}"
+    },
+    {
+      "id": "rom_0c7646",
+      "translation": "{white}The meteorite fell to the north!{next}"
+    },
+    {
+      "id": "rom_0c7672",
+      "translation": "{white}Don't let that robot spot us!{close}"
+    },
+    {
+      "id": "rom_0c769e",
+      "translation": "{white}Let's get back home for now!{next}"
+    },
+    {
+      "id": "rom_0c76c6",
+      "translation": "{white}Waaah! What's going on here?!{next}"
+    },
+    {
+      "id": "rom_0c76f2",
+      "translation": "{white}Let's go closer.{close}"
+    },
+    {
+      "id": "rom_0c770e",
+      "translation": "{white}It's talking to me!{next}"
+    },
+    {
+      "id": "rom_0c7736",
+      "translation": "{white}Huh? Is someone there...?{next}"
+    },
+    {
+      "id": "rom_0c775e",
+      "translation": "{white}Let's use it!{wait}{end}"
+    },
+    {
+      "id": "rom_0c7772",
+      "translation": "{white}The Gyro Capsule is still here!{next}"
+    },
+    {
+      "id": "rom_0c779e",
+      "translation": "{white}Luckily, the slime missed it.{next}"
+    },
+    {
+      "id": "rom_0c77ca",
+      "translation": "{white}Let's go outside and investigate!{wait}{end}"
+    },
+    {
+      "id": "rom_0c77f2",
+      "translation": "{white}We need to find out where we are.{next}"
+    },
+    {
+      "id": "rom_0c781a",
+      "translation": "{white}and board the Time Machine!{close}"
+    },
+    {
+      "id": "rom_0c7846",
+      "translation": "{white}Let's go back to the bedroom{next}"
+    },
+    {
+      "id": "rom_0c7872",
+      "translation": "{white}Find the Key Crystal!{close}"
+    },
+    {
+      "id": "rom_0c789e",
+      "translation": "{white}{yellow}Kareka Forest{white}{next}"
+    },
+    {
+      "id": "rom_0c78ca",
+      "translation": "{white}Collect items!{close}"
+    },
+    {
+      "id": "rom_0c78f6",
+      "translation": "{white}Find the Key Crystal!{close}"
+    },
+    {
+      "id": "rom_0c7922",
+      "translation": "{white}{yellow}Domero Cave{white}{next}"
+    },
+    {
+      "id": "rom_0c794e",
+      "translation": "{white}{yellow}Mount Gurun{white}{next}"
+    },
+    {
+      "id": "rom_0c797a",
+      "translation": "{white}{yellow}Lake Dezon{white}{next}"
+    },
+    {
+      "id": "rom_0c79a6",
+      "translation": "{white}Collect items!{close}"
+    },
+    {
+      "id": "rom_0c79d6",
+      "translation": "{white}Explore the area!{close}"
+    },
+    {
+      "id": "rom_0c7a02",
+      "translation": "{white}{yellow}Pepin Town{white}{next}"
+    },
+    {
+      "id": "rom_0c7a2e",
+      "translation": "{white}Destroy the shield generator!{close}"
+    },
+    {
+      "id": "rom_0c7a5e",
+      "translation": "{white}{yellow}Zaraha Desert{white}{next}"
+    },
+    {
+      "id": "rom_0c7a8a",
+      "translation": "{white}{yellow}Faban Cave{white}{next}"
+    },
+    {
+      "id": "rom_0c7ab6",
+      "translation": "{white}{yellow}Dez Fun Park{white}{next}"
+    },
+    {
+      "id": "rom_0c7ae6",
+      "translation": "{white}{yellow}Undercity 1{white}{next}"
+    },
+    {
+      "id": "rom_0c7b16",
+      "translation": "{white}{yellow}Minic Town{white}{next}"
+    },
+    {
+      "id": "rom_0c7b42",
+      "translation": "{white}Find the Star Fragment!{close}"
+    },
+    {
+      "id": "rom_0c7b6e",
+      "translation": "{white}{yellow}Lake Rix{white}{next}"
+    },
+    {
+      "id": "rom_0c7b9a",
+      "translation": "{white}{yellow}Kiraf Forest{white}{next}"
+    },
+    {
+      "id": "rom_0c7bc6",
+      "translation": "{white}Go and meet the genie!{close}"
+    },
+    {
+      "id": "rom_0c7bf2",
+      "translation": "{white}{yellow}Posedo Sea{white}{next}"
+    },
+    {
+      "id": "rom_0c7c1e",
+      "translation": "{white}{yellow}Posedo Sea{white}{next}"
+    },
+    {
+      "id": "rom_0c7c4a",
+      "translation": "{white}{yellow}Undercity 2{white}{next}"
+    },
+    {
+      "id": "rom_0c7c7a",
+      "translation": "{white}{yellow}Dragonian Town{white}{next}"
+    },
+    {
+      "id": "rom_0c7ca6",
+      "translation": "{white}Find the Mirror Shards!{close}"
+    },
+    {
+      "id": "rom_0c7cd2",
+      "translation": "{white}{yellow}Mount Kogol{white}{next}"
+    },
+    {
+      "id": "rom_0c7cfe",
+      "translation": "{white}{yellow}Latena Cave{white}{next}"
+    },
+    {
+      "id": "rom_0c7d2a",
+      "translation": "{white}{yellow}Popika Town{white}{next}"
+    },
+    {
+      "id": "rom_0c9552",
+      "translation": "{white}before you leave this town!{close}"
+    },
+    {
+      "id": "rom_0c957e",
+      "translation": "{white}Be sure to hear them all out{next}"
+    },
+    {
+      "id": "rom_0c95aa",
+      "translation": "{white}that will help you on your way.{wait}{end}"
+    },
+    {
+      "id": "rom_0c95c6",
+      "translation": "{white}have brought useful information{next}"
+    },
+    {
+      "id": "rom_0c95ee",
+      "translation": "{white}Four of my friends{next}"
+    },
+    {
+      "id": "rom_0c9616",
+      "translation": "{white}Please do come and see me!{wait}{end}"
+    },
+    {
+      "id": "rom_0c9646",
+      "translation": "{white}I'll be waiting in Kareka Forest.{next}"
+    },
+    {
+      "id": "rom_0c9672",
+      "translation": "{white}back to life.{wait}{end}"
+    },
+    {
+      "id": "rom_0c969a",
+      "translation": "{white}I want to bring our Kareka Forest{next}"
+    },
+    {
+      "id": "rom_0c96c2",
+      "translation": "{white}Please lend us your strength.{next}"
+    },
+    {
+      "id": "rom_0c96ee",
+      "translation": "{white}very useful gadgets...{wait}{end}"
+    },
+    {
+      "id": "rom_0c9716",
+      "translation": "{white}I can see that you have some{next}"
+    },
+    {
+      "id": "rom_0c973e",
+      "translation": "{white}Where did you all come from?{next}"
+    },
+    {
+      "id": "rom_0c976a",
+      "translation": "{white}I'm {yellow}Puchu{white}, leader of the fairies.{wait}{end}"
+    },
+    {
+      "id": "rom_0c979e",
+      "translation": "{white}Welcome! I'm from {yellow}Kareka Forest{white}.{next}"
+    },
+    {
+      "id": "rom_0c97ce",
+      "translation": "{white}right here on this planet!{close}"
+    },
+    {
+      "id": "rom_0c97ee",
+      "translation": "{white}to build the strongest civilization{next}"
+    },
+    {
+      "id": "rom_0c981a",
+      "translation": "{white}He wants to study them{wait}{end}"
+    },
+    {
+      "id": "rom_0c9832",
+      "translation": "{white}civilizations from across space.{next}"
+    },
+    {
+      "id": "rom_0c985e",
+      "translation": "{white}Emperor Bagul is collecting{next}"
+    },
+    {
+      "id": "rom_0c988a",
+      "translation": "{white}who were brought here as well...{close}"
+    },
+    {
+      "id": "rom_0c98b6",
+      "translation": "{white}There seem to be others like you{next}"
+    },
+    {
+      "id": "rom_0c98de",
+      "translation": "{white}to the planet Dact.{wait}{end}"
+    },
+    {
+      "id": "rom_0c98f6",
+      "translation": "{white}your entire town was transported{next}"
+    },
+    {
+      "id": "rom_0c9922",
+      "translation": "{white}Because you picked it up,{wait}{end}"
+    },
+    {
+      "id": "rom_0c9946",
+      "translation": "{white}{yellow}Civilization Probe{white}.{next}"
+    },
+    {
+      "id": "rom_0c9972",
+      "translation": "{white}You found one of Emperor Bagul's{next}"
+    },
+    {
+      "id": "rom_0c999a",
+      "translation": "{white}has become even worse...{close}"
+    },
+    {
+      "id": "rom_0c99c6",
+      "translation": "{white}Because of him, our environment{next}"
+    },
+    {
+      "id": "rom_0c99ee",
+      "translation": "{white}as if it were all just a game.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9a1a",
+      "translation": "{white}He has been rampaging here{next}"
+    },
+    {
+      "id": "rom_0c9a46",
+      "translation": "{white}and conquered our world.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9a72",
+      "translation": "{white}Emperor Bagul arrived{next}"
+    },
+    {
+      "id": "rom_0c9a9e",
+      "translation": "{white}This is the planet Dact.{next}"
+    },
+    {
+      "id": "rom_0c9ac2",
+      "translation": "{white}use a scientist's {yellow}Gas Spray{white}.{close}"
+    },
+    {
+      "id": "rom_0c9aee",
+      "translation": "{white}To get rid of those, you can{next}"
+    },
+    {
+      "id": "rom_0c9b1a",
+      "translation": "{white}Small slimes are weaker, though.{next}"
+    },
+    {
+      "id": "rom_0c9b46",
+      "translation": "{white}who brought you all here...{wait}{end}"
+    },
+    {
+      "id": "rom_0c9b76",
+      "translation": "{white}you must defeat Emperor Bagul,{next}"
+    },
+    {
+      "id": "rom_0c9b9e",
+      "translation": "{white}To set everyone free,{next}"
+    },
+    {
+      "id": "rom_0c9bca",
+      "translation": "{white}by Emperor Bagul's power.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9bfa",
+      "translation": "{white}It was created{next}"
+    },
+    {
+      "id": "rom_0c9c22",
+      "translation": "{white}It's called {yellow}Space-Time Slime{white}.{next}"
+    },
+    {
+      "id": "rom_0c9c4e",
+      "translation": "{white}then grows and preserves them.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9c7e",
+      "translation": "{white}attaches to things with energy,{next}"
+    },
+    {
+      "id": "rom_0c9caa",
+      "translation": "{white}The slime covering everyone{next}"
+    },
+    {
+      "id": "rom_0c9cd2",
+      "translation": "{white}four {yellow}Key Crystals{white}!{close}"
+    },
+    {
+      "id": "rom_0c9cfe",
+      "translation": "{white}you must search far and wide for{next}"
+    },
+    {
+      "id": "rom_0c9d26",
+      "translation": "{white}To enter Maril Tower,{next}"
+    },
+    {
+      "id": "rom_0c9d52",
+      "translation": "{white}around this area will not vanish.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9d7a",
+      "translation": "{white}is defeated, the invisible wall{next}"
+    },
+    {
+      "id": "rom_0c9da6",
+      "translation": "{white}Until the {yellow}master{white} in Maril Tower{next}"
+    },
+    {
+      "id": "rom_0c9dd2",
+      "translation": "{white}is the one in charge.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9dfa",
+      "translation": "{white}Here in Area 1, {yellow}Maril Tower{white}{next}"
+    },
+    {
+      "id": "rom_0c9e26",
+      "translation": "{white}{yellow}towers{white} control its surface.{wait}{end}"
+    },
+    {
+      "id": "rom_0c9e56",
+      "translation": "{white}Here on Dact, {yellow}four{next}"
+    },
+    {
+      "id": "rom_0c9e86",
+      "translation": "{white}to meet the spirit!{close}"
+    },
+    {
+      "id": "rom_0c9eaa",
+      "translation": "{white}Use your {yellow}Spirit Caller{white}{next}"
+    },
+    {
+      "id": "rom_0c9ed6",
+      "translation": "{white}This is the place to use a gadget.{next}"
+    },
+    {
+      "id": "rom_0c9f02",
+      "translation": "{white}{red}Here comes the Guiding Angel!{next}"
+    },
+    {
+      "id": "rom_0c9f3a",
+      "translation": "{white}the tree spirit once more!{wait}{end}"
+    },
+    {
+      "id": "rom_0c9f66",
+      "translation": "{white}to let us speak with{next}"
+    },
+    {
+      "id": "rom_0c9f8e",
+      "translation": "{white}Please use your handy gadget{next}"
+    },
+    {
+      "id": "rom_0c9fb2",
+      "translation": "{white}about all kinds of things...{wait}{end}"
+    },
+    {
+      "id": "rom_0c9fd6",
+      "translation": "{white}It used to tell us stories{next}"
+    },
+    {
+      "id": "rom_0c9ffe",
+      "translation": "{white}would appear before us.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca01e",
+      "translation": "{white}the spirit of this tree{next}"
+    },
+    {
+      "id": "rom_0ca046",
+      "translation": "{white}Long ago, if we stood on this stump,{next}"
+    },
+    {
+      "id": "rom_0ca072",
+      "translation": "{white}and give the spirits strength!{close}"
+    },
+    {
+      "id": "rom_0ca09a",
+      "translation": "{white}Bring flowers back to the forest{next}"
+    },
+    {
+      "id": "rom_0ca0c6",
+      "translation": "{white}I'm so glad we met you.{close}"
+    },
+    {
+      "id": "rom_0ca0f2",
+      "translation": "{white}Thank you so much.{next}"
+    },
+    {
+      "id": "rom_0ca112",
+      "translation": "{white}has been locked up.{close}"
+    },
+    {
+      "id": "rom_0ca136",
+      "translation": "{white}a girl from Dact{next}"
+    },
+    {
+      "id": "rom_0ca15a",
+      "translation": "{white}In that building of Bagul's army,{next}"
+    },
+    {
+      "id": "rom_0ca182",
+      "translation": "{white}grows when it eats Mysterious Fruit.{close}"
+    },
+    {
+      "id": "rom_0ca1ae",
+      "translation": "{white}The creature called Powan{next}"
+    },
+    {
+      "id": "rom_0ca1da",
+      "translation": "{white}really loves soft food.{close}"
+    },
+    {
+      "id": "rom_0ca206",
+      "translation": "{white}That bird, {yellow}Oppy{white},{next}"
+    },
+    {
+      "id": "rom_0ca22e",
+      "translation": "{white}and choose a weapon!{close}"
+    },
+    {
+      "id": "rom_0ca246",
+      "translation": "{white}Open the pause menu{next}"
+    },
+    {
+      "id": "rom_0ca272",
+      "translation": "{white}so equip a weapon first!{wait}{end}"
+    },
+    {
+      "id": "rom_0ca28a",
+      "translation": "{white}monsters on this planet,{next}"
+    },
+    {
+      "id": "rom_0ca2ae",
+      "translation": "{white}There are lots of{next}"
+    },
+    {
+      "id": "rom_0ca2da",
+      "translation": "{white}so you should be able to talk.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca306",
+      "translation": "{white}carries a translator,{next}"
+    },
+    {
+      "id": "rom_0ca332",
+      "translation": "{white}Everyone on Dact{next}"
+    },
+    {
+      "id": "rom_0ca35e",
+      "translation": "{white}in underground towns.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca38a",
+      "translation": "{white}The people of this planet live{next}"
+    },
+    {
+      "id": "rom_0ca3b2",
+      "translation": "{white}have devastated this planet.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca3d6",
+      "translation": "{white}and environmental pollution{next}"
+    },
+    {
+      "id": "rom_0ca402",
+      "translation": "{white}Here on Dact, meteorite impacts{next}"
+    },
+    {
+      "id": "rom_0ca42a",
+      "translation": "{white}to light up the area!{close}"
+    },
+    {
+      "id": "rom_0ca44a",
+      "translation": "{white}Use your {yellow}Glowing Moss{white}{next}"
+    },
+    {
+      "id": "rom_0ca47a",
+      "translation": "{white}you should use it.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca4a6",
+      "translation": "{white}If you have something to light it,{next}"
+    },
+    {
+      "id": "rom_0ca4d2",
+      "translation": "{white}This cave is dark. Be careful!{next}"
+    },
+    {
+      "id": "rom_0ca4fe",
+      "translation": "{white}seems to be locked up!{wait}{end}"
+    },
+    {
+      "id": "rom_0ca526",
+      "translation": "{white}a kind-hearted scientist{next}"
+    },
+    {
+      "id": "rom_0ca54a",
+      "translation": "{white}In the room up ahead,{next}"
+    },
+    {
+      "id": "rom_0ca56e",
+      "translation": "{white}and rescue the doctor inside!{close}"
+    },
+    {
+      "id": "rom_0ca596",
+      "translation": "{white}to open that door{next}"
+    },
+    {
+      "id": "rom_0ca5be",
+      "translation": "{white}Use the {yellow}Key Card{white} here{next}"
+    },
+    {
+      "id": "rom_0ca5e2",
+      "translation": "{white}Use the {yellow}Key Card{white} you have{next}"
+    },
+    {
+      "id": "rom_0ca612",
+      "translation": "{white}before you dive!{close}"
+    },
+    {
+      "id": "rom_0ca62a",
+      "translation": "{white}use your {yellow}Deep-Sea Cream{white}{next}"
+    },
+    {
+      "id": "rom_0ca65a",
+      "translation": "{white}And if you're going deeper,{next}"
+    },
+    {
+      "id": "rom_0ca686",
+      "translation": "{white}before you go swimming!{wait}{end}"
+    },
+    {
+      "id": "rom_0ca6ae",
+      "translation": "{white}use your {yellow}Gill Tube{white}{next}"
+    },
+    {
+      "id": "rom_0ca6da",
+      "translation": "{white}When you enter the lake,{next}"
+    },
+    {
+      "id": "rom_0ca6fa",
+      "translation": "{white}you'll need a {yellow}Key Card{white}!{wait}{end}"
+    },
+    {
+      "id": "rom_0ca722",
+      "translation": "{white}It is hidden inside.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca746",
+      "translation": "{white}another base deeper underwater.{next}"
+    },
+    {
+      "id": "rom_0ca76e",
+      "translation": "{white}To enter the lakebed base,{next}"
+    },
+    {
+      "id": "rom_0ca796",
+      "translation": "{white}is hidden there...{wait}{end}"
+    },
+    {
+      "id": "rom_0ca7c6",
+      "translation": "{white}A {yellow}Key Crystal{white} in the lakebed base{next}"
+    },
+    {
+      "id": "rom_0ca7f6",
+      "translation": "{white}When you dive into deep water,{next}"
+    },
+    {
+      "id": "rom_0ca81a",
+      "translation": "{white}inside it.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca82e",
+      "translation": "{white}You'll find a {yellow}Key Card{white}{next}"
+    },
+    {
+      "id": "rom_0ca85a",
+      "translation": "{white}There's a base beyond the hole.{next}"
+    },
+    {
+      "id": "rom_0ca882",
+      "translation": "{white}much faster!{close}"
+    },
+    {
+      "id": "rom_0ca8aa",
+      "translation": "{white}Use it to climb the mountain{next}"
+    },
+    {
+      "id": "rom_0ca8d2",
+      "translation": "{white}and a giant beanstalk will grow.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca902",
+      "translation": "{white}use your {yellow}Jack's Bean{white},{next}"
+    },
+    {
+      "id": "rom_0ca92e",
+      "translation": "{white}On a mound of damp soil,{next}"
+    },
+    {
+      "id": "rom_0ca95a",
+      "translation": "{white}seems to have a {yellow}Key Crystal{white}.{wait}{end}"
+    },
+    {
+      "id": "rom_0ca98e",
+      "translation": "{white}the guardian statue {yellow}Twinface{white}{next}"
+    },
+    {
+      "id": "rom_0ca9be",
+      "translation": "{white}At the mountain summit,{next}"
+    },
+    {
+      "id": "rom_0ca9e6",
+      "translation": "{white}to talk to the aliens!{close}"
+    },
+    {
+      "id": "rom_0caa12",
+      "translation": "{white}Use your {yellow}Translation Konjac{white}{next}"
+    },
+    {
+      "id": "rom_0caa42",
+      "translation": "{white}live around here.{wait}{end}"
+    },
+    {
+      "id": "rom_0caa66",
+      "translation": "{white}Amphibian-like aliens{next}"
+    },
+    {
+      "id": "rom_0caa8e",
+      "translation": "{white}Be careful!{close}"
+    },
+    {
+      "id": "rom_0caaa6",
+      "translation": "{white}has become the master's partner...{next}"
+    },
+    {
+      "id": "rom_0caad2",
+      "translation": "{white}It seems that one of your friends{next}"
+    },
+    {
+      "id": "rom_0caafe",
+      "translation": "{white}is waiting there!{wait}{end}"
+    },
+    {
+      "id": "rom_0cab16",
+      "translation": "{white}the water master {yellow}Shizutar{white}{next}"
+    },
+    {
+      "id": "rom_0cab3e",
+      "translation": "{white}On the roof of this tower,{next}"
+    },
+    {
+      "id": "rom_0cab5e",
+      "translation": "{white}to drive the ghost away!{close}"
+    },
+    {
+      "id": "rom_0cab86",
+      "translation": "{white}use your {yellow}Good-Luck Sticker{white}{next}"
+    },
+    {
+      "id": "rom_0cabae",
+      "translation": "{white}If a ghost possesses you,{next}"
+    },
+    {
+      "id": "rom_0cabda",
+      "translation": "{white}so watch out!{wait}{end}"
+    },
+    {
+      "id": "rom_0cabf2",
+      "translation": "{white}can split up and possess you,{next}"
+    },
+    {
+      "id": "rom_0cac22",
+      "translation": "{white}The ghost here, {yellow}Derorin{white},{next}"
+    },
+    {
+      "id": "rom_0cac52",
+      "translation": "{white}{yellow}Dr. Ka{white} is back home now.{close}"
+    },
+    {
+      "id": "rom_0cac82",
+      "translation": "{white}This is {yellow}Dr. Ka's{white} house.{next}"
+    },
+    {
+      "id": "rom_0cacae",
+      "translation": "{white}and her older brother, Nobil.{close}"
+    },
+    {
+      "id": "rom_0cacd6",
+      "translation": "{white}The town's idol, Reina, lives here{next}"
+    },
+    {
+      "id": "rom_0cad02",
+      "translation": "{white}to protect yourself!{close}"
+    },
+    {
+      "id": "rom_0cad26",
+      "translation": "{white}{yellow}Eye{white} to keep the tornado away{next}"
+    },
+    {
+      "id": "rom_0cad52",
+      "translation": "{white}Here, use your {yellow}Typhoon{next}"
+    },
+    {
+      "id": "rom_0cad7e",
+      "translation": "{white}You'll need a Key Card to enter.{wait}{end}"
+    },
+    {
+      "id": "rom_0cadae",
+      "translation": "{white}inside the base further ahead.{next}"
+    },
+    {
+      "id": "rom_0cadda",
+      "translation": "{white}The shield generator should be{next}"
+    },
+    {
+      "id": "rom_0cae06",
+      "translation": "{white}to help that robot!{close}"
+    },
+    {
+      "id": "rom_0cae26",
+      "translation": "{white}{yellow}Kit{white}{next}"
+    },
+    {
+      "id": "rom_0cae52",
+      "translation": "{white}Use your {yellow}Mecha First-Aid{next}"
+    },
+    {
+      "id": "rom_0cae7e",
+      "translation": "{white}Try helping it out!{wait}{end}"
+    },
+    {
+      "id": "rom_0caeaa",
+      "translation": "{white}That robot seems to have something.{next}"
+    },
+    {
+      "id": "rom_0caed6",
+      "translation": "{white}or you'll get burned.{close}"
+    },
+    {
+      "id": "rom_0caefa",
+      "translation": "{white}Be sure to use it,{wait}{end}"
+    },
+    {
+      "id": "rom_0caf12",
+      "translation": "{white}You'll need {yellow}Eskimo Extract{white}.{next}"
+    },
+    {
+      "id": "rom_0caf46",
+      "translation": "{white}It's extremely hot here.{next}"
+    },
+    {
+      "id": "rom_0caf6a",
+      "translation": "{white}generator{white} somewhere in this cave.{wait}{end}"
+    },
+    {
+      "id": "rom_0caf96",
+      "translation": "{white}There should be a {yellow}shield{next}"
+    },
+    {
+      "id": "rom_0cafc2",
+      "translation": "{white}to fan the flames!{close}"
+    },
+    {
+      "id": "rom_0cafe2",
+      "translation": "{white}Use the {yellow}Wind God Fan{white}{next}"
+    },
+    {
+      "id": "rom_0cb012",
+      "translation": "{white}moves that rock.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb02a",
+      "translation": "{white}The force of the flames{next}"
+    },
+    {
+      "id": "rom_0cb056",
+      "translation": "{white}to get into the base!{close}"
+    },
+    {
+      "id": "rom_0cb082",
+      "translation": "{white}use your {yellow}Tunnel Light{white}{next}"
+    },
+    {
+      "id": "rom_0cb0b2",
+      "translation": "{white}On that differently colored wall,{next}"
+    },
+    {
+      "id": "rom_0cb0de",
+      "translation": "{white}but there's no entrance...{wait}{end}"
+    },
+    {
+      "id": "rom_0cb102",
+      "translation": "{white}The base should be further in,{next}"
+    },
+    {
+      "id": "rom_0cb12e",
+      "translation": "{white}all the rides might work again.{close}"
+    },
+    {
+      "id": "rom_0cb15a",
+      "translation": "{white}If you repair it,{next}"
+    },
+    {
+      "id": "rom_0cb186",
+      "translation": "{white}The control unit is broken.{next}"
+    },
+    {
+      "id": "rom_0cb1aa",
+      "translation": "{white}used to be so lively.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb1d2",
+      "translation": "{white}This amusement park{next}"
+    },
+    {
+      "id": "rom_0cb1f6",
+      "translation": "{white}to get aboard!{close}"
+    },
+    {
+      "id": "rom_0cb212",
+      "translation": "{white}Then use the jump platform{next}"
+    },
+    {
+      "id": "rom_0cb23e",
+      "translation": "{white}to start the floating platform.{next}"
+    },
+    {
+      "id": "rom_0cb266",
+      "translation": "{white}Activate that switch{wait}{end}"
+    },
+    {
+      "id": "rom_0cb292",
+      "translation": "{white}hidden in the control room.{next}"
+    },
+    {
+      "id": "rom_0cb2be",
+      "translation": "{white}To reach the base, find a switch{next}"
+    },
+    {
+      "id": "rom_0cb2ea",
+      "translation": "{white}up above us.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb30a",
+      "translation": "{white}Bagul's army built a base{next}"
+    },
+    {
+      "id": "rom_0cb332",
+      "translation": "{white}{yellow}unit{white}!{close}"
+    },
+    {
+      "id": "rom_0cb35a",
+      "translation": "{yellow}Kit{white} to repair the {yellow}control{next}"
+    },
+    {
+      "id": "rom_0cb386",
+      "translation": "{white}repair it?{wait}{end}"
+    },
+    {
+      "id": "rom_0cb3aa",
+      "translation": "{white}Don't you have a gadget that can{next}"
+    },
+    {
+      "id": "rom_0cb3d2",
+      "translation": "{white}This broken {yellow}control unit{white}...{next}"
+    },
+    {
+      "id": "rom_0cb402",
+      "translation": "{white}don't forget your translator!{close}"
+    },
+    {
+      "id": "rom_0cb41a",
+      "translation": "{white}And when you talk to them,{next}"
+    },
+    {
+      "id": "rom_0cb43e",
+      "translation": "{white}use the {yellow}Small Light{white} again!{wait}{end}"
+    },
+    {
+      "id": "rom_0cb472",
+      "translation": "{white}To use a weapon,{next}"
+    },
+    {
+      "id": "rom_0cb49a",
+      "translation": "{white}But you can't use weapons this way!{next}"
+    },
+    {
+      "id": "rom_0cb4c2",
+      "translation": "{white}to shrink yourself!{wait}{end}"
+    },
+    {
+      "id": "rom_0cb4e2",
+      "translation": "{white}use your {yellow}Small Light{white}{next}"
+    },
+    {
+      "id": "rom_0cb512",
+      "translation": "{white}To talk to the people here,{next}"
+    },
+    {
+      "id": "rom_0cb53e",
+      "translation": "{white}living here!{wait}{end}"
+    },
+    {
+      "id": "rom_0cb55a",
+      "translation": "{white}There are tiny aliens{next}"
+    },
+    {
+      "id": "rom_0cb586",
+      "translation": "{white}will rotate over a wider range!{close}"
+    },
+    {
+      "id": "rom_0cb5ae",
+      "translation": "{white}and the platform{next}"
+    },
+    {
+      "id": "rom_0cb5d2",
+      "translation": "{white}Put crystals in the statue's eyes,{next}"
+    },
+    {
+      "id": "rom_0cb5fe",
+      "translation": "{white}to get there!{wait}{end}"
+    },
+    {
+      "id": "rom_0cb612",
+      "translation": "{white}use that rotating platform{next}"
+    },
+    {
+      "id": "rom_0cb63a",
+      "translation": "{white}To reach the switch,{next}"
+    },
+    {
+      "id": "rom_0cb666",
+      "translation": "{white}on the south side of this floor.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb696",
+      "translation": "{white}activate the switch{next}"
+    },
+    {
+      "id": "rom_0cb6c2",
+      "translation": "{white}To open the door on the next floor,{next}"
+    },
+    {
+      "id": "rom_0cb6ee",
+      "translation": "{white}the machine master {yellow}Sunenger{white}{next}"
+    },
+    {
+      "id": "rom_0cb71a",
+      "translation": "{white}On this tower's top floor,{next}"
+    },
+    {
+      "id": "rom_0cb73e",
+      "translation": "{white}ride the cloud to get there!{close}"
+    },
+    {
+      "id": "rom_0cb766",
+      "translation": "{white}to make a solid cloud, then{next}"
+    },
+    {
+      "id": "rom_0cb78e",
+      "translation": "{white}Use your {yellow}Cloud-Hardening Gas{white}{next}"
+    },
+    {
+      "id": "rom_0cb7be",
+      "translation": "{white}to reach it.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb7d6",
+      "translation": "{white}but there's no way{next}"
+    },
+    {
+      "id": "rom_0cb7fa",
+      "translation": "{white}The master's room is above us,{next}"
+    },
+    {
+      "id": "rom_0cb81e",
+      "translation": "{white}This is {yellow}Dr. Tsu's{white} house!{close}"
+    },
+    {
+      "id": "rom_0cb84a",
+      "translation": "{white}to clear the fog!{close}"
+    },
+    {
+      "id": "rom_0cb876",
+      "translation": "{white}use your {yellow}Typhoon Generator{white}{next}"
+    },
+    {
+      "id": "rom_0cb8a2",
+      "translation": "{white}After you defeat the monster,{next}"
+    },
+    {
+      "id": "rom_0cb8ce",
+      "translation": "{white}must be defeated first.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb8f6",
+      "translation": "{white}To clear the fog, {yellow}Kiraf{white}{next}"
+    },
+    {
+      "id": "rom_0cb926",
+      "translation": "{white}through it.{wait}{end}"
+    },
+    {
+      "id": "rom_0cb936",
+      "translation": "{white}It is hard to find a way{next}"
+    },
+    {
+      "id": "rom_0cb962",
+      "translation": "{white}This forest is covered in fog.{next}"
+    },
+    {
+      "id": "rom_0cb98e",
+      "translation": "{white}lurks up ahead. Be careful!{close}"
+    },
+    {
+      "id": "rom_0cb9b6",
+      "translation": "{white}The monster {yellow}Kiraf{white}{next}"
+    },
+    {
+      "id": "rom_0cb9e2",
+      "translation": "{white}and lead it to the pond!{close}"
+    },
+    {
+      "id": "rom_0cba0a",
+      "translation": "{white}{yellow}Kibi Dango{white} to {yellow}Gabugon{white}{next}"
+    },
+    {
+      "id": "rom_0cba3a",
+      "translation": "{white}Feed {yellow}Momotaro's{white}{next}"
+    },
+    {
+      "id": "rom_0cba6a",
+      "translation": "{white}it may drop a {yellow}Recovery Fruit{white}!{wait}{end}"
+    },
+    {
+      "id": "rom_0cba9e",
+      "translation": "{white}After eating a few {yellow}Metabo{white},{next}"
+    },
+    {
+      "id": "rom_0cbac6",
+      "translation": "{white}loves the {yellow}Metabo{white} in the pond.{wait}{end}"
+    },
+    {
+      "id": "rom_0cbaf2",
+      "translation": "{white}{yellow}Gabugon{white}{next}"
+    },
+    {
+      "id": "rom_0cbb1e",
+      "translation": "{white}The four-legged creature here,{next}"
+    },
+    {
+      "id": "rom_0cbb46",
+      "translation": "{white}{yellow}Cream{white}!{close}"
+    },
+    {
+      "id": "rom_0cbb72",
+      "translation": "{white}Use {yellow}Gill Tubes{white} and {yellow}Deep-Sea{next}"
+    },
+    {
+      "id": "rom_0cbb9e",
+      "translation": "{white}with a shield!{wait}{end}"
+    },
+    {
+      "id": "rom_0cbbce",
+      "translation": "{white}Bagul's army sealed the {yellow}genie's{white} den{next}"
+    },
+    {
+      "id": "rom_0cbbfa",
+      "translation": "{white}holds a base of Bagul's army.{wait}{end}"
+    },
+    {
+      "id": "rom_0cbc22",
+      "translation": "{white}One holds the {yellow}genie{white}, and the other{next}"
+    },
+    {
+      "id": "rom_0cbc4e",
+      "translation": "{white}There are two holes on the seabed.{next}"
+    },
+    {
+      "id": "rom_0cbc7a",
+      "translation": "{white}to speak with the {yellow}genie{white}!{close}"
+    },
+    {
+      "id": "rom_0cbcaa",
+      "translation": "{white}Use your {yellow}Spirit Caller{white}{next}"
+    },
+    {
+      "id": "rom_0cbcda",
+      "translation": "{white}first make a wish before the {yellow}genie{white}.{wait}{end}"
+    },
+    {
+      "id": "rom_0cbd0e",
+      "translation": "{white}If you need the {yellow}genie's{white} help,{next}"
+    },
+    {
+      "id": "rom_0cbd3a",
+      "translation": "{white}and ask around!{close}"
+    },
+    {
+      "id": "rom_0cbd52",
+      "translation": "{white}go to {yellow}Undercity 2{white}{next}"
+    },
+    {
+      "id": "rom_0cbd82",
+      "translation": "{white}To find the {yellow}Genie's Emblem{white},{next}"
+    },
+    {
+      "id": "rom_0cbdae",
+      "translation": "{white}right away!{close}"
+    },
+    {
+      "id": "rom_0cbdc6",
+      "translation": "{white}Return the {yellow}Emblem{white} to the {yellow}genie{white}!{next}"
+    },
+    {
+      "id": "rom_0cbdf6",
+      "translation": "{white}in front of him.{wait}{end}"
+    },
+    {
+      "id": "rom_0cbe0e",
+      "translation": "{white}stand on the stone{next}"
+    },
+    {
+      "id": "rom_0cbe36",
+      "translation": "{white}To make a wish to the {yellow}genie{white},{next}"
+    },
+    {
+      "id": "rom_0cbe66",
+      "translation": "{white}Konjac{white}, too!{close}"
+    },
+    {
+      "id": "rom_0cbe8e",
+      "translation": "{white}Of course, bring {yellow}Translation{next}"
+    },
+    {
+      "id": "rom_0cbeba",
+      "translation": "{white}to talk to them!{wait}{end}"
+    },
+    {
+      "id": "rom_0cbed6",
+      "translation": "{white}use your {yellow}Transformation Plate{white}{next}"
+    },
+    {
+      "id": "rom_0cbf06",
+      "translation": "{white}To speak with the people here,{next}"
+    },
+    {
+      "id": "rom_0cbf2e",
+      "translation": "{white}but they seem able to teleport.{wait}{end}"
+    },
+    {
+      "id": "rom_0cbf5e",
+      "translation": "{white}They are a primitive tribe,{next}"
+    },
+    {
+      "id": "rom_0cbf86",
+      "translation": "{white}and they're very fierce.{wait}{end}"
+    },
+    {
+      "id": "rom_0cbfaa",
+      "translation": "{white}are called {yellow}Dragonians{white},{next}"
+    },
+    {
+      "id": "rom_0cbfd2",
+      "translation": "{white}Watch out! The people here{next}"
+    },
+    {
+      "id": "rom_0cbffa",
+      "translation": "{white}to calm him down!{close}"
+    },
+    {
+      "id": "rom_0cc016",
+      "translation": "{white}Dragonian{white} chief{next}"
+    },
+    {
+      "id": "rom_0cc046",
+      "translation": "{white}Use the {yellow}Heartfelt Microphone{white} on the{next}"
+    },
+    {
+      "id": "rom_0cc072",
+      "translation": "{white}to attack them.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc092",
+      "translation": "{white}He's ordering his soldiers{next}"
+    },
+    {
+      "id": "rom_0cc0be",
+      "translation": "{white}towns of other aliens.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc0de",
+      "translation": "The {yellow}Dragonian{white} chief is attacking{next}"
+    },
+    {
+      "id": "rom_0cc10a",
+      "translation": "{white}In the palace here,{next}"
+    },
+    {
+      "id": "rom_0cc132",
+      "translation": "{white}back from him.{close}"
+    },
+    {
+      "id": "rom_0cc14e",
+      "translation": "{white}and take the {yellow}Power Stone{white}{next}"
+    },
+    {
+      "id": "rom_0cc16a",
+      "translation": "{white}Calm him down first,{wait}{end}"
+    },
+    {
+      "id": "rom_0cc186",
+      "translation": "{white}{yellow}Stone{white}.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc1b6",
+      "translation": "{white}The {yellow}Dragonian{white} chief has a {yellow}Power{next}"
+    },
+    {
+      "id": "rom_0cc1e6",
+      "translation": "{white}{yellow}Stone{white}.{close}"
+    },
+    {
+      "id": "rom_0cc212",
+      "translation": "{white}so you can walk through!{close}"
+    },
+    {
+      "id": "rom_0cc236",
+      "translation": "{white}Cleaning Ship{white} to clear the poison{next}"
+    },
+    {
+      "id": "rom_0cc262",
+      "translation": "{white}Here, use your {yellow}Water-{next}"
+    },
+    {
+      "id": "rom_0cc292",
+      "translation": "{white}Be careful not to go in!{wait}{end}"
+    },
+    {
+      "id": "rom_0cc2ba",
+      "translation": "{white}poisoned water!{next}"
+    },
+    {
+      "id": "rom_0cc2e2",
+      "translation": "{white}This lake is filled with{next}"
+    },
+    {
+      "id": "rom_0cc306",
+      "translation": "{white}floating above the lake.{close}"
+    },
+    {
+      "id": "rom_0cc32a",
+      "translation": "{white}There seem to be lots of items{next}"
+    },
+    {
+      "id": "rom_0cc356",
+      "translation": "{white}Shrink it before you pick it up!{close}"
+    },
+    {
+      "id": "rom_0cc37e",
+      "translation": "{white}The {yellow}Genie's Emblem{white} is huge.{next}"
+    },
+    {
+      "id": "rom_0cc3ae",
+      "translation": "{white}somewhere around here!{wait}{end}"
+    },
+    {
+      "id": "rom_0cc3c6",
+      "translation": "{white}The {yellow}Genie's Emblem{white}{next}"
+    },
+    {
+      "id": "rom_0cc3f6",
+      "translation": "{white}the sound master {yellow}Jaikong{white}{next}"
+    },
+    {
+      "id": "rom_0cc426",
+      "translation": "{white}so be careful.{close}"
+    },
+    {
+      "id": "rom_0cc44e",
+      "translation": "{white}It gets pitch-dark further in,{next}"
+    },
+    {
+      "id": "rom_0cc476",
+      "translation": "{white}This is Latena Cave.{next}"
+    },
+    {
+      "id": "rom_0cc49e",
+      "translation": "{white}to light the way!{close}"
+    },
+    {
+      "id": "rom_0cc4c6",
+      "translation": "{white}Use your {yellow}Glowing Moss{white}{next}"
+    },
+    {
+      "id": "rom_0cc4f2",
+      "translation": "{white}Watch your step.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc506",
+      "translation": "{white}Be careful: it's dark here.{next}"
+    },
+    {
+      "id": "rom_0cc52e",
+      "translation": "{white}is hidden somewhere here.{close}"
+    },
+    {
+      "id": "rom_0cc54a",
+      "translation": "{white}the {yellow}Mirror Shard{white} you need{next}"
+    },
+    {
+      "id": "rom_0cc576",
+      "translation": "{white}To enter Mire Tower,{next}"
+    },
+    {
+      "id": "rom_0cc59a",
+      "translation": "{white}Brrr... It's freezing!{wait}{end}"
+    },
+    {
+      "id": "rom_0cc5b6",
+      "translation": "{white}A world wrapped in ice.{next}"
+    },
+    {
+      "id": "rom_0cc5de",
+      "translation": "{white}This is Mount Kogol.{next}"
+    },
+    {
+      "id": "rom_0cc602",
+      "translation": "{white}Use the gadgets near the sign.{next}"
+    },
+    {
+      "id": "rom_0cc62e",
+      "translation": "{white}In the center of Mount Kogol...{next}"
+    },
+    {
+      "id": "rom_0cc65a",
+      "translation": "{white}to avoid landslides and danger.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc682",
+      "translation": "{white}Both gadgets must be used there{next}"
+    },
+    {
+      "id": "rom_0cc6ae",
+      "translation": "{white}to put everything back as it was.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc6da",
+      "translation": "{white}use your {yellow}Snow Maker{white}{next}"
+    },
+    {
+      "id": "rom_0cc706",
+      "translation": "{white}Once you've entered the shrine,{next}"
+    },
+    {
+      "id": "rom_0cc72e",
+      "translation": "{white}and enter the shrine's switch room!{wait}{end}"
+    },
+    {
+      "id": "rom_0cc75e",
+      "translation": "{white}to melt the ice{next}"
+    },
+    {
+      "id": "rom_0cc78a",
+      "translation": "{white}Use your {yellow}Artificial Sun{white}{next}"
+    },
+    {
+      "id": "rom_0cc7ba",
+      "translation": "{white}to make it move.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc7d2",
+      "translation": "{white}you must press the switch inside.{next}"
+    },
+    {
+      "id": "rom_0cc7fe",
+      "translation": "{white}To use that floating platform,{next}"
+    },
+    {
+      "id": "rom_0cc82a",
+      "translation": "{white}to reach it.{wait}{end}"
+    },
+    {
+      "id": "rom_0cc852",
+      "translation": "{white}But you'll need that platform{next}"
+    },
+    {
+      "id": "rom_0cc87e",
+      "translation": "{white}A {yellow}Mirror Shard{white} is up ahead.{next}"
+    },
+    {
+      "id": "rom_0cc8aa",
+      "translation": "{white}Insect-like aliens{next}"
+    },
+    {
+      "id": "rom_0cc8ce",
+      "translation": "{white}Don't let them confuse you!{close}"
+    },
+    {
+      "id": "rom_0cc8ee",
+      "translation": "{white}to move between them!{next}"
+    },
+    {
+      "id": "rom_0cc912",
+      "translation": "{white}Use your {yellow}Entering Mirror{white}{next}"
+    },
+    {
+      "id": "rom_0cc942",
+      "translation": "{white}Be careful!{wait}{end}"
+    },
+    {
+      "id": "rom_0cc95a",
+      "translation": "{white}are linked by mirrors.{next}"
+    },
+    {
+      "id": "rom_0cc97e",
+      "translation": "{white}Here in Mire Tower, the rooms{next}"
+    },
+    {
+      "id": "rom_0cc9aa",
+      "translation": "{white}is waiting there!{close}"
+    },
+    {
+      "id": "rom_0cc9ce",
+      "translation": "{white}The new space-time master{next}"
+    },
+    {
+      "id": "rom_0cc9f6",
+      "translation": "{white}to adapt to this environment!{close}"
+    },
+    {
+      "id": "rom_0cca1e",
+      "translation": "{white}your {yellow}Adaptation Lamp{white}{next}"
+    },
+    {
+      "id": "rom_0cca46",
+      "translation": "{white}We're in space, so you'll need{next}"
+    },
+    {
+      "id": "rom_0cca72",
+      "translation": "{white}Good luck!{wait}{end}"
+    },
+    {
+      "id": "rom_0cca9a",
+      "translation": "{white}the entrance to the station.{next}"
+    },
+    {
+      "id": "rom_0ccac6",
+      "translation": "{white}Further ahead, you'll find{next}"
+    },
+    {
+      "id": "rom_0ccd82",
+      "translation": "{white}Beware of poisonous water!{close}"
+    },
+    {
+      "id": "rom_0ccdb6",
+      "translation": "{white}Dead end.{close}"
+    },
+    {
+      "id": "rom_0ccdda",
+      "translation": "{white}Be brave and jump!{close}"
+    },
+    {
+      "id": "rom_0cce02",
+      "translation": "{white}Beware of antlion pits!{close}"
+    },
+    {
+      "id": "rom_0cce2e",
+      "translation": "{white}Bagul's base: up and to the right.{close}"
+    },
+    {
+      "id": "rom_0cce5a",
+      "translation": "{white}the floating ruins above.{close}"
+    },
+    {
+      "id": "rom_0cce82",
+      "translation": "{white}This warp hole connects to{next}"
+    },
+    {
+      "id": "rom_0cceae",
+      "translation": "{white}An ancient castle lies ahead.{close}"
+    },
+    {
+      "id": "rom_0cceda",
+      "translation": "{white}Fall in the water and you'll freeze.{close}"
+    },
+    {
+      "id": "rom_0ccf06",
+      "translation": "{white}Central area.{close}"
+    },
+    {
+      "id": "rom_0ccf22",
+      "translation": "{white}You are on {yellow}Mount Kogol{white}.{next}"
+    },
+    {
+      "id": "rom_0f4db2",
+      "translation": "{white}...Popo.{close}"
+    },
+    {
+      "id": "rom_0f4dce",
+      "translation": "{white}...Powa.{close}"
+    },
+    {
+      "id": "rom_0f4dfa",
+      "translation": "{white}...Powaan.{close}"
+    },
+    {
+      "id": "rom_0f4e52",
+      "translation": "{white}Thanks! Have this, powa!{close}"
+    },
+    {
+      "id": "rom_0f4e7e",
+      "translation": "{white}I want that fruit, powa.{close}"
+    },
+    {
+      "id": "rom_0f4e9a",
+      "translation": "{white}Thanks! Wait a moment, powa.{close}"
+    },
+    {
+      "id": "rom_0f4ec6",
+      "translation": "{white}Here's my thank-you gift, powa.{close}"
+    },
+    {
+      "id": "rom_0f4f5a",
+      "translation": "{white}for a {yellow}Full Recovery Fruit{white}!{close}"
+    },
+    {
+      "id": "rom_0f4f86",
+      "translation": "{white}All right! I'll trade {yellow}Energy Stones{white}{next}"
+    },
+    {
+      "id": "rom_0f4fb6",
+      "translation": "{white}please come back!{close}"
+    },
+    {
+      "id": "rom_0f4fd6",
+      "translation": "{white}If you need a {yellow}Full Recovery Fruit{white},{next}"
+    },
+    {
+      "id": "rom_0f500a",
+      "translation": "{white}for a {yellow}Full Recovery Fruit{white}?{choice}{yes:1}{no:0}{end}"
+    },
+    {
+      "id": "rom_0f5042",
+      "translation": "{white}Trade 30 {yellow}Energy Stones{white}{next}"
+    },
+    {
+      "id": "rom_0f506a",
+      "translation": "{white}I'd be happy to trade!{white}{close}"
+    },
+    {
+      "id": "rom_0f5082",
+      "translation": "{white}you can get a {yellow}Full Recovery Fruit{white}!{next}"
+    },
+    {
+      "id": "rom_0f50ae",
+      "translation": "{white}For 30 {yellow}Energy Stones{white},{next}"
+    },
+    {
+      "id": "rom_0f50da",
+      "translation": "{white}for a {yellow}Revival Capsule{white}!{close}"
+    },
+    {
+      "id": "rom_0f5106",
+      "translation": "{white}If you need a {yellow}Revival Capsule{white},{next}"
+    },
+    {
+      "id": "rom_0f5136",
+      "translation": "{white}for a {yellow}Revival Capsule{white}?{choice}{yes:1}{no:0}{end}"
+    },
+    {
+      "id": "rom_0f516e",
+      "translation": "{white}Trade 50 {yellow}Energy Stones{white}{next}"
+    },
+    {
+      "id": "rom_0f5196",
+      "translation": "{white}you can get a {yellow}Revival Capsule{white}!{next}"
+    },
+    {
+      "id": "rom_0f51c2",
+      "translation": "{white}For 50 {yellow}Energy Stones{white},{next}"
+    },
+    {
+      "id": "rom_12df6a",
+      "translation": "{white}I shall lend you my power!{close}"
+    },
+    {
+      "id": "rom_12df86",
+      "translation": "{white}and return it to me,{next}"
+    },
+    {
+      "id": "rom_12dfae",
+      "translation": "{white}If you recover my {yellow}Emblem{white}{next}"
+    },
+    {
+      "id": "rom_12dfda",
+      "translation": "{white}I cannot absorb any light...{wait}{end}"
+    },
+    {
+      "id": "rom_12e002",
+      "translation": "{white}Without it,{next}"
+    },
+    {
+      "id": "rom_12e02e",
+      "translation": "{white}and took it away.{next}"
+    },
+    {
+      "id": "rom_12e04e",
+      "translation": "{white}my {yellow}Emblem{white}, the source of my power,{wait}{end}"
+    },
+    {
+      "id": "rom_12e07a",
+      "translation": "{white}someone removed from my chest{next}"
+    },
+    {
+      "id": "rom_12e0a6",
+      "translation": "{white}While I was deep in slumber,{next}"
+    },
+    {
+      "id": "rom_12e0d2",
+      "translation": "{white}I cannot move at present.{wait}{end}"
+    },
+    {
+      "id": "rom_12e0f6",
+      "translation": "{white}I'm afraid that is impossible.{next}"
+    },
+    {
+      "id": "rom_12e122",
+      "translation": "{white}What? You seek my power...?{next}"
+    },
+    {
+      "id": "rom_12e14e",
+      "translation": "{white}So you can speak with me...{wait}{end}"
+    },
+    {
+      "id": "rom_12e16e",
+      "translation": "{white}You can hear my voice?{next}"
+    },
+    {
+      "id": "rom_12e196",
+      "translation": "{white}I am {yellow}Posedo, the genie{white}.{next}"
+    },
+    {
+      "id": "rom_12e1be",
+      "translation": "{white}to my deep slumber. Farewell...{close}"
+    },
+    {
+      "id": "rom_12e1e6",
+      "translation": "{white}Now I shall return{next}"
+    },
+    {
+      "id": "rom_138bf2",
+      "translation": "{white}Didn't you mistake it for something?{close}"
+    },
+    {
+      "id": "rom_138c1e",
+      "translation": "{white}Have you finished it already?!{close}"
+    },
+    {
+      "id": "rom_138c3a",
+      "translation": "{white}Nobita! Your summer homework...{next}"
+    },
+    {
+      "id": "rom_138c66",
+      "translation": "{white}Doraemon, where have you been? {close}"
+    },
+    {
+      "id": "rom_138c90",
+      "translation": "{white}Nobita, where have you been...?{close}"
+    },
+    {
+      "id": "rom_138cb8",
+      "translation": "{white}What on earth has happened...?{close}"
+    },
+    {
+      "id": "rom_138ce2",
+      "translation": "{white}What on earth has happened...?{close}"
+    },
+    {
+      "id": "rom_138d0c",
+      "translation": "{white}What on earth has happened...?{close}"
+    },
+    {
+      "id": "rom_138d36",
+      "translation": "{white}What on earth has happened...?{close}"
+    },
+    {
+      "id": "rom_138d62",
+      "translation": "{white}I'm afraid he's out.{close}"
+    },
+    {
+      "id": "rom_138d76",
+      "translation": "{white}My dear Suneo has gone out.{next}"
+    },
+    {
+      "id": "rom_138da2",
+      "translation": "{white}Oh, hello there, Nobita.{next}"
+    },
+    {
+      "id": "rom_138dce",
+      "translation": "{white}Have you seen him?{close}"
+    },
+    {
+      "id": "rom_138de8",
+      "translation": "{white}Have you seen him?{close}"
+    },
+    {
+      "id": "rom_138e02",
+      "translation": "{white}Have you seen him?{close}"
+    },
+    {
+      "id": "rom_138e1c",
+      "translation": "{white}Thank goodness you're safe!{close}"
+    },
+    {
+      "id": "rom_138e3e",
+      "translation": "{white}Have you seen him?{close}"
+    },
+    {
+      "id": "rom_138e58",
+      "translation": "{white}Have you seen him?{close}"
+    },
+    {
+      "id": "rom_138e76",
+      "translation": "{white}Excuse me, my dear Suneo...{next}"
+    },
+    {
+      "id": "rom_138e98",
+      "translation": "{white}Excuse me, my dear Suneo...{next}"
+    },
+    {
+      "id": "rom_138eba",
+      "translation": "{white}Excuse me, my dear Suneo...{next}"
+    },
+    {
+      "id": "rom_138edc",
+      "translation": "{white}Oh! My precious Suneo!{next}"
+    },
+    {
+      "id": "rom_138f02",
+      "translation": "{white}Excuse me, my dear Suneo...{next}"
+    },
+    {
+      "id": "rom_138f24",
+      "translation": "{white}Excuse me, my dear Suneo...{next}"
+    },
+    {
+      "id": "rom_138f4a",
+      "translation": "{white}Shizuka just went out.{close}"
+    },
+    {
+      "id": "rom_138f76",
+      "translation": "{white}Hello, Nobita.{next}"
+    },
+    {
+      "id": "rom_138f96",
+      "translation": "{white}What on earth has happened...?{close}"
+    },
+    {
+      "id": "rom_138fc0",
+      "translation": "{white}What on earth has happened...?{close}"
+    },
+    {
+      "id": "rom_138fea",
+      "translation": "{white}Shizuka, don't go outside!{close}"
+    },
+    {
+      "id": "rom_13900c",
+      "translation": "{white}What on earth has happened...?{close}"
+    },
+    {
+      "id": "rom_139036",
+      "translation": "{white}What on earth has happened...?{close}"
+    },
+    {
+      "id": "rom_139060",
+      "translation": "{white}What on earth has happened...?{close}"
+    },
+    {
+      "id": "rom_13908e",
+      "translation": "{white}Not even helping at the shop...{close}"
+    },
+    {
+      "id": "rom_1390ba",
+      "translation": "{white}Honestly, that boy!{next}"
+    },
+    {
+      "id": "rom_1390d6",
+      "translation": "{white}Takeshi isn't here right now!{wait}{end}"
+    },
+    {
+      "id": "rom_1390fa",
+      "translation": "{white}Oh, hello, Nobita.{next}"
+    },
+    {
+      "id": "rom_139116",
+      "translation": "{white}Just what is going on here?!{close}"
+    },
+    {
+      "id": "rom_13913e",
+      "translation": "{white}I don't know where he went.{close}"
+    },
+    {
+      "id": "rom_139166",
+      "translation": "{white}Huh? My big brother...?{next}"
+    },
+    {
+      "id": "rom_13918a",
+      "translation": "{white}for my manga right now.{wait}{end}"
+    },
+    {
+      "id": "rom_1391b2",
+      "translation": "{white}I'm thinking up ideas{next}"
+    },
+    {
+      "id": "rom_1391d6",
+      "translation": "{white}What is it, Nobita?{next}"
+    },
+    {
+      "id": "rom_1391f6",
+      "translation": "{white}into a manga, I swear!{close}"
+    },
+    {
+      "id": "rom_13921e",
+      "translation": "{white}I'm turning this strange adventure{next}"
+    },
+    {
+      "id": "rom_139246",
+      "translation": "{white}Have you finished it yet?!{close}"
+    },
+    {
+      "id": "rom_139262",
+      "translation": "{white}Your summer homework...{next}"
+    },
+    {
+      "id": "rom_139286",
+      "translation": "{white}Hm? What is it, Nobita?{next}"
+    },
+    {
+      "id": "rom_1392aa",
+      "translation": "{white}What? It'll all be normal soon?{close}"
+    },
+    {
+      "id": "rom_1392d4",
+      "translation": "{white}Where on earth are we...?{close}"
+    },
+    {
+      "id": "rom_1392fe",
+      "translation": "{white}Where on earth are we...?{close}"
+    },
+    {
+      "id": "rom_139328",
+      "translation": "{white}Where on earth are we...?{close}"
+    },
+    {
+      "id": "rom_139352",
+      "translation": "{white}Where on earth are we...?{close}"
+    },
+    {
+      "id": "rom_13937c",
+      "translation": "{white}What? It'll all be normal soon?{close}"
+    },
+    {
+      "id": "rom_1393aa",
+      "translation": "{white}Can't one of your gadgets help us?{next}"
+    },
+    {
+      "id": "rom_1393d4",
+      "translation": "{white}Go back to your room!{next}"
+    },
+    {
+      "id": "rom_1393f4",
+      "translation": "{white}Go to Nobita's room!{next}"
+    },
+    {
+      "id": "rom_13941a",
+      "translation": "{white}Go to Nobita's room!{next}"
+    },
+    {
+      "id": "rom_139440",
+      "translation": "{white}Go to Nobita's room!{next}"
+    },
+    {
+      "id": "rom_139466",
+      "translation": "{white}Can't one of your gadgets help us?{next}"
+    },
+    {
+      "id": "rom_139492",
+      "translation": "{white}Where are we?!{next}"
+    },
+    {
+      "id": "rom_1394ae",
+      "translation": "{white}Nobita! It's dangerous outside!{next}"
+    },
+    {
+      "id": "rom_1394d6",
+      "translation": "{white}It's dangerous outside!{next}"
+    },
+    {
+      "id": "rom_1394f0",
+      "translation": "{white}It's dangerous outside!{next}"
+    },
+    {
+      "id": "rom_13950a",
+      "translation": "{white}It's dangerous outside!{next}"
+    },
+    {
+      "id": "rom_139524",
+      "translation": "{white}What on earth has happened?!{next}"
+    },
+    {
+      "id": "rom_13954a",
+      "translation": "{white}have you finished your homework?{close}"
+    },
+    {
+      "id": "rom_139576",
+      "translation": "{white}Nobi! Your summer homework...{next}"
+    },
+    {
+      "id": "rom_139596",
+      "translation": "{white}Where are we?!{close}"
+    },
+    {
+      "id": "rom_1395b2",
+      "translation": "{white}How outrageous!{close}"
+    },
+    {
+      "id": "rom_1395c6",
+      "translation": "{white}Walking in without permission...{next}"
+    },
+    {
+      "id": "rom_1395ee",
+      "translation": "{white}Hmm? What do you want?{next}"
+    },
+    {
+      "id": "rom_139612",
+      "translation": "{white}what I'm made of!{close}"
+    },
+    {
+      "id": "rom_139636",
+      "translation": "{white}Next time, I'll show that robot{next}"
+    },
+    {
+      "id": "rom_139662",
+      "translation": "{white}or you won't learn anything!{close}"
+    },
+    {
+      "id": "rom_139686",
+      "translation": "{white}No! You have to do it yourself,{next}"
+    },
+    {
+      "id": "rom_1396ae",
+      "translation": "{white}You want to copy mine?{wait}{end}"
+    },
+    {
+      "id": "rom_1396ca",
+      "translation": "{white}Huh? The summer homework?{next}"
+    },
+    {
+      "id": "rom_1396f2",
+      "translation": "{white}Hi, Nobita...{next}"
+    },
+    {
+      "id": "rom_139716",
+      "translation": "{white}a planet in our solar system...{close}"
+    },
+    {
+      "id": "rom_139740",
+      "translation": "{white}doesn't work here?!{close}"
+    },
+    {
+      "id": "rom_13975e",
+      "translation": "{white}From what I can tell, this isn't{next}"
+    },
+    {
+      "id": "rom_139784",
+      "translation": "{white}Where are we? Even the Time Machine{next}"
+    },
+    {
+      "id": "rom_1397b2",
+      "translation": "{white}Doraemon! Where are we?{next}"
+    },
+    {
+      "id": "rom_1397dc",
+      "translation": "{white}Nobita! Are you all right?!{close}"
+    },
+    {
+      "id": "rom_139802",
+      "translation": "{white}Shizuka! Are you all right?!{close}"
+    },
+    {
+      "id": "rom_139828",
+      "translation": "{white}Suneo! Are you all right?!{close}"
+    },
+    {
+      "id": "rom_13984e",
+      "translation": "{white}Takeshi! Are you all right?!{close}"
+    },
+    {
+      "id": "rom_139874",
+      "translation": "{white}Hey, Dorami! This place...{next}"
+    },
+    {
+      "id": "rom_13f592",
+      "translation": "{white}I'll start the floating platform.{close}"
+    },
+    {
+      "id": "rom_13f5be",
+      "translation": "{white}So you can get up there,{next}"
+    },
+    {
+      "id": "rom_13f5e6",
+      "translation": "{white}You're going? Fine, if you insist!{next}"
+    },
+    {
+      "id": "rom_13f612",
+      "translation": "{white}there should be a base...{wait}{end}"
+    },
+    {
+      "id": "rom_13f63a",
+      "translation": "{white}At the dead end up ahead,{next}"
+    },
+    {
+      "id": "rom_13f666",
+      "translation": "{white}What? A {yellow}shield generator{white}?{next}"
+    },
+    {
+      "id": "rom_13f692",
+      "translation": "{white}I never asked you to!{wait}{end}"
+    },
+    {
+      "id": "rom_13f6b6",
+      "translation": "{white}...Rescue me?{next}"
+    },
+    {
+      "id": "rom_13f6de",
+      "translation": "{white}Hm? What do you want...?{next}"
+    },
+    {
+      "id": "rom_13f706",
+      "translation": "{white}I'd better get ready to go home!{close}"
+    },
+    {
+      "id": "rom_13f72a",
+      "translation": "{white}Well, I'm tired of this place.{next}"
+    },
+    {
+      "id": "rom_13f756",
+      "translation": "{white}They do call {yellow}Tsuneo{white} a liar.{close}"
+    },
+    {
+      "id": "rom_13f786",
+      "translation": "{white}But he's hiding something...{next}"
+    },
+    {
+      "id": "rom_13f7b2",
+      "translation": "{white}I built him a {yellow}remote control{white}.{next}"
+    },
+    {
+      "id": "rom_13f7e2",
+      "translation": "{white}To move something enormous,{wait}{end}"
+    },
+    {
+      "id": "rom_13f80e",
+      "translation": "{white}Director {yellow}Tsuneo{white} came to me.{next}"
+    },
+    {
+      "id": "rom_13f83a",
+      "translation": "{white}...Come to think of it, recently...{next}"
+    },
+    {
+      "id": "rom_13f862",
+      "translation": "{white}and threw it away somewhere.{wait}{end}"
+    },
+    {
+      "id": "rom_13f88e",
+      "translation": "{white}they removed his chest {yellow}Emblem{white}{next}"
+    },
+    {
+      "id": "rom_13f8ba",
+      "translation": "{white}To seal away the {yellow}genie{white},{next}"
+    },
+    {
+      "id": "rom_13f8e6",
+      "translation": "{white}According to what I learned,{wait}{end}"
+    },
+    {
+      "id": "rom_13f90e",
+      "translation": "{white}He wakes once every fifty years.{next}"
+    },
+    {
+      "id": "rom_13f93a",
+      "translation": "{white}That's what past records suggest.{next}"
+    },
+    {
+      "id": "rom_13f966",
+      "translation": "{white}fast asleep.{wait}{end}"
+    },
+    {
+      "id": "rom_13f97e",
+      "translation": "{white}The {yellow}genie{white} sleeps in {yellow}Posedo Sea{white},{next}"
+    },
+    {
+      "id": "rom_13f9aa",
+      "translation": "{white}What? Tell you about the {yellow}genie{white}?{next}"
+    },
+    {
+      "id": "rom_13f9da",
+      "translation": "{white}He's hiding something...{close}"
+    },
+    {
+      "id": "rom_13fa06",
+      "translation": "{white}But...{next}"
+    },
+    {
+      "id": "rom_13fa2a",
+      "translation": "{white}a remote to move a giant object.{next}"
+    },
+    {
+      "id": "rom_13fa56",
+      "translation": "{white}I made the director{wait}{end}"
+    },
+    {
+      "id": "rom_13fa86",
+      "translation": "{white}...Come to think of it, yesterday...{next}"
+    },
+    {
+      "id": "rom_13faa6",
+      "translation": "{white}What? Where is the genie's emblem?{next}"
+    },
+    {
+      "id": "rom_13fad2",
+      "translation": "{white}Come back later.{close}"
+    },
+    {
+      "id": "rom_13faea",
+      "translation": "{white}I'm busy right now.{next}"
+    },
+    {
+      "id": "rom_13fb0a",
+      "translation": "{white}What?! You again?{next}"
+    },
+    {
+      "id": "rom_13fb2e",
+      "translation": "{white}Bring me the {yellow}Power Stone{white}!{close}"
+    },
+    {
+      "id": "rom_13fb5e",
+      "translation": "{white}It's kept in this town's storehouse.{next}"
+    },
+    {
+      "id": "rom_13fb8a",
+      "translation": "{white}the required power!{wait}{end}"
+    },
+    {
+      "id": "rom_13fbae",
+      "translation": "{white}it won't produce{next}"
+    },
+    {
+      "id": "rom_13fbda",
+      "translation": "{white}But without a {yellow}Power Stone{white},{wait}{end}"
+    },
+    {
+      "id": "rom_13fc0a",
+      "translation": "{white}unnecessary work again...{next}"
+    },
+    {
+      "id": "rom_13fc32",
+      "translation": "{white}Ka's saddling me with{next}"
+    },
+    {
+      "id": "rom_13fc5a",
+      "translation": "{white}Make good use of it!{close}"
+    },
+    {
+      "id": "rom_13fc7a",
+      "translation": "{white}Air Cannon{white}!!{next}"
+    },
+    {
+      "id": "rom_13fc96",
+      "translation": "{white}Done! Here is the {yellow}Hyper{next}"
+    },
+    {
+      "id": "rom_13fcc2",
+      "translation": "{white}..................{wait}{end}"
+    },
+    {
+      "id": "rom_13fcf2",
+      "translation": "{white}..................{next}"
+    },
+    {
+      "id": "rom_13fd1e",
+      "translation": "{white}Wait a moment!{wait}{end}"
+    },
+    {
+      "id": "rom_13fd3e",
+      "translation": "{white}Good! Now I can finish it!{next}"
+    },
+    {
+      "id": "rom_13fd5e",
+      "translation": "{white}...What?! Not yet?!{close}"
+    },
+    {
+      "id": "rom_13fd8a",
+      "translation": "{white}Hm? Have you defeated {yellow}Bagul{white}?{next}"
+    },
+    {
+      "id": "rom_13fdb6",
+      "translation": "{white}I'll find a way to shut it off!{close}"
+    },
+    {
+      "id": "rom_13fde2",
+      "translation": "{white}The electricity in that gate...{next}"
+    },
+    {
+      "id": "rom_13fe06",
+      "translation": "{white}But robot soldiers guard it!{wait}{end}"
+    },
+    {
+      "id": "rom_13fe32",
+      "translation": "{white}There's one stored further ahead.{next}"
+    },
+    {
+      "id": "rom_13fe5e",
+      "translation": "{white}You want to know where it is?{wait}{end}"
+    },
+    {
+      "id": "rom_13fe7a",
+      "translation": "{white}Hm? A {yellow}Key Crystal{white}?{next}"
+    },
+    {
+      "id": "rom_13fe9e",
+      "translation": "{white}to help you!{wait}{end}"
+    },
+    {
+      "id": "rom_13feb2",
+      "translation": "{white}I'll gather useful information{next}"
+    },
+    {
+      "id": "rom_13fede",
+      "translation": "{white}All right! I'll do my part.{next}"
+    },
+    {
+      "id": "rom_13ff0a",
+      "translation": "{white}you intend to fight him!{wait}{end}"
+    },
+    {
+      "id": "rom_13ff32",
+      "translation": "{white}I see... {yellow}Emperor Bagul{white}...{next}"
+    },
+    {
+      "id": "rom_13ff5e",
+      "translation": "{white}is probably using that power...{wait}{end}"
+    },
+    {
+      "id": "rom_13ff8a",
+      "translation": "{white}{yellow}Emperor Bagul{white}{next}"
+    },
+    {
+      "id": "rom_13ffb6",
+      "translation": "{white}is filled with incredible power.{next}"
+    },
+    {
+      "id": "rom_13ffde",
+      "translation": "{white}Probe{white}{wait}{end}"
+    },
+    {
+      "id": "rom_14000a",
+      "translation": "{white}Anyone holding a {yellow}Civilization{next}"
+    },
+    {
+      "id": "rom_140032",
+      "translation": "{white}Probably with {yellow}Emperor Bagul{white}...{next}"
+    },
+    {
+      "id": "rom_14005e",
+      "translation": "{white}Hmm, I see...{wait}{end}"
+    },
+    {
+      "id": "rom_14007a",
+      "translation": "{white}After you joined the meteorites...{next}"
+    },
+    {
+      "id": "rom_1400a6",
+      "translation": "{white}What? You're looking for a friend?{next}"
+    },
+    {
+      "id": "rom_1400d2",
+      "translation": "{white}I was forced to build it.{wait}{end}"
+    },
+    {
+      "id": "rom_1400f2",
+      "translation": "{white}I'm the one who built it... Well,{next}"
+    },
+    {
+      "id": "rom_14011e",
+      "translation": "{white}I'm sorry! That device...{next}"
+    },
+    {
+      "id": "rom_140146",
+      "translation": "{white}Probe{white}...{wait}{end}"
+    },
+    {
+      "id": "rom_14016e",
+      "translation": "{white}by the {yellow}Civilization{next}"
+    },
+    {
+      "id": "rom_14019a",
+      "translation": "{white}Hmm... So you were brought here{next}"
+    },
+    {
+      "id": "rom_1401c2",
+      "translation": "{white}You're not from Dact, are you?{wait}{end}"
+    },
+    {
+      "id": "rom_1401ee",
+      "translation": "{white}I'm {yellow}Dr. Ka{white}... Hm?{next}"
+    },
+    {
+      "id": "rom_14021e",
+      "translation": "{white}Oh! Thank you for rescuing me!{next}"
+    },
+    {
+      "id": "rom_14024a",
+      "translation": "{white}I'll return to {yellow}Undercity 1{white}.{close}"
+    },
+    {
+      "id": "rom_14027a",
+      "translation": "{white}and break down the barrier,{next}"
+    },
+    {
+      "id": "rom_1402a2",
+      "translation": "{white}Once you beat Area 1's master{next}"
+    },
+    {
+      "id": "rom_1402d2",
+      "translation": "{white}to gather information.{close}"
+    },
+    {
+      "id": "rom_1402fe",
+      "translation": "{white}computers all over the place{next}"
+    },
+    {
+      "id": "rom_140326",
+      "translation": "{white}I'm currently accessing{next}"
+    },
+    {
+      "id": "rom_140346",
+      "translation": "{white}I see you're working hard, too!{wait}{end}"
+    },
+    {
+      "id": "rom_140376",
+      "translation": "{white}Oh! How are you doing?{next}"
+    },
+    {
+      "id": "rom_140396",
+      "translation": "{white}I'll give it to you. Be patient!{close}"
+    },
+    {
+      "id": "rom_1403be",
+      "translation": "{white}as a reference. When it's ready,{next}"
+    },
+    {
+      "id": "rom_1403ea",
+      "translation": "{white}I'll also use your weapons{next}"
+    },
+    {
+      "id": "rom_140416",
+      "translation": "{white}That's what I'm designing now.{wait}{end}"
+    },
+    {
+      "id": "rom_140442",
+      "translation": "{white}a weapon to neutralize the shield.{wait}{end}"
+    },
+    {
+      "id": "rom_14046e",
+      "translation": "{white}I'll use it to design{next}"
+    },
+    {
+      "id": "rom_140496",
+      "translation": "{white}With the data he brought,{next}"
+    },
+    {
+      "id": "rom_1404c2",
+      "translation": "{white}must be eliminated!{wait}{end}"
+    },
+    {
+      "id": "rom_1404de",
+      "translation": "{white}first, that slime shield{next}"
+    },
+    {
+      "id": "rom_140506",
+      "translation": "{white}If you want to defeat {yellow}Bagul{white},{next}"
+    },
+    {
+      "id": "rom_140532",
+      "translation": "{white}has a slime-type shield.{wait}{end}"
+    },
+    {
+      "id": "rom_140562",
+      "translation": "{white}{yellow}Emperor Bagul{white}{next}"
+    },
+    {
+      "id": "rom_140592",
+      "translation": "{white}According to his information,{next}"
+    },
+    {
+      "id": "rom_1405ba",
+      "translation": "{white}I saw {yellow}Robot B-0{white} again!{wait}{end}"
+    },
+    {
+      "id": "rom_1405e6",
+      "translation": "{white}I thought I'd never see him again.{next}"
+    },
+    {
+      "id": "rom_14060e",
+      "translation": "{white}Oh! You've helped me once more!{next}"
+    },
+    {
+      "id": "rom_140636",
+      "translation": "{white}That's what I'm working on!{close}"
+    },
+    {
+      "id": "rom_14064e",
+      "translation": "{white}how to neutralize it.{next}"
+    },
+    {
+      "id": "rom_14067a",
+      "translation": "{white}That slime shield... I'm thinking{next}"
+    },
+    {
+      "id": "rom_1406a6",
+      "translation": "{white}for you!{close}"
+    },
+    {
+      "id": "rom_1406be",
+      "translation": "{white}Have him build the {yellow}Hyper Air Cannon{white}{next}"
+    },
+    {
+      "id": "rom_1406ee",
+      "translation": "{white}and give it to Dr. Tsu.{next}"
+    },
+    {
+      "id": "rom_140712",
+      "translation": "{white}My brother lives in {yellow}Undercity 2{white}.{wait}{end}"
+    },
+    {
+      "id": "rom_14073e",
+      "translation": "{white}Take this {yellow}Data Disk{white} with the plans{next}"
+    },
+    {
+      "id": "rom_14076a",
+      "translation": "{white}Done! The plans are on this disk.{next}"
+    },
+    {
+      "id": "rom_14078e",
+      "translation": "{white}to {yellow}Dr. Tsu{white} yet?{close}"
+    },
+    {
+      "id": "rom_1407be",
+      "translation": "{white}Have you given the {yellow}Data Disk{white}{next}"
+    },
+    {
+      "id": "rom_1407e2",
+      "translation": "{white}won't stand a chance!{close}"
+    },
+    {
+      "id": "rom_1407f2",
+      "translation": "{white}even {yellow}Emperor Bagul{white}{next}"
+    },
+    {
+      "id": "rom_14081e",
+      "translation": "{white}With the {yellow}Hyper Air Cannon{white},{next}"
+    },
+    {
+      "id": "rom_14084a",
+      "translation": "{white}That's my big brother Tsu for you!{close}"
+    },
+    {
+      "id": "rom_14086e",
+      "translation": "{white}{yellow}Air Cannon{white}! Impressive!{next}"
+    },
+    {
+      "id": "rom_14089a",
+      "translation": "{white}Oh! So that's the {yellow}Hyper{white}{next}"
+    },
+    {
+      "id": "rom_1408d2",
+      "translation": "{white}Please use it if you need it!{close}"
+    },
+    {
+      "id": "rom_1408fa",
+      "translation": "{white}I found it when I went inside.{next}"
+    },
+    {
+      "id": "rom_140922",
+      "translation": "{white}I happened to enter Bagul's base.{next}"
+    },
+    {
+      "id": "rom_14094a",
+      "translation": "{white}Is this what you mean...?!{wait}{end}"
+    },
+    {
+      "id": "rom_14096a",
+      "translation": "{white}Could this be the one?{next}"
+    },
+    {
+      "id": "rom_140996",
+      "translation": "{white}Oh! Looking for a {yellow}Key Crystal{white}?{next}"
+    },
+    {
+      "id": "rom_1409c6",
+      "translation": "{white}you were brought to Dact...{wait}{end}"
+    },
+    {
+      "id": "rom_1409f2",
+      "translation": "{white}I see... Because of {yellow}Emperor Bagul{white},{next}"
+    },
+    {
+      "id": "rom_140a22",
+      "translation": "{white}Why are you here?{next}"
+    },
+    {
+      "id": "rom_140a4e",
+      "translation": "{white}please tell him to come home.{wait}{end}"
+    },
+    {
+      "id": "rom_140a76",
+      "translation": "{white}please tell him.{wait}{end}"
+    },
+    {
+      "id": "rom_140a92",
+      "translation": "{white}a boy about my age,{next}"
+    },
+    {
+      "id": "rom_140ab8",
+      "translation": "{white}ask him to come home.{next}"
+    },
+    {
+      "id": "rom_140ae6",
+      "translation": "{white}If you happen to see{next}"
+    },
+    {
+      "id": "rom_140b0e",
+      "translation": "{white}If you see a boy who looks like you,{next}"
+    },
+    {
+      "id": "rom_140b3a",
+      "translation": "{white}back with him...{wait}{end}"
+    },
+    {
+      "id": "rom_140b5a",
+      "translation": "{white}and bring strange things{next}"
+    },
+    {
+      "id": "rom_140b7e",
+      "translation": "{white}My brother would visit the surface{next}"
+    },
+    {
+      "id": "rom_140ba6",
+      "translation": "{white}but you're different...{wait}{end}"
+    },
+    {
+      "id": "rom_140bc4",
+      "translation": "{white}Oh! I'm sorry, that was rude.{wait}{end}"
+    },
+    {
+      "id": "rom_140bf2",
+      "translation": "{white}But you're not like Bagul's robots.{next}"
+    },
+    {
+      "id": "rom_140c18",
+      "translation": "{white}My brother looks a bit more gallant!{next}"
+    },
+    {
+      "id": "rom_140c42",
+      "translation": "{white}Are you a robot...?{next}"
+    },
+    {
+      "id": "rom_140c6c",
+      "translation": "{white}Oh, brother? ...No, you're not him.{next}"
+    },
+    {
+      "id": "rom_140c9a",
+      "translation": "{white}I don't know when I can go back.{close}"
+    },
+    {
+      "id": "rom_140cc2",
+      "translation": "{white}has put up an invisible wall, so{next}"
+    },
+    {
+      "id": "rom_140cee",
+      "translation": "{yellow}Maril Tower{white}{next}"
+    },
+    {
+      "id": "rom_140d16",
+      "translation": "{white}I was going to go back, but...{wait}{end}"
+    },
+    {
+      "id": "rom_140d42",
+      "translation": "{white}My home is in {yellow}Undercity 1{white}.{next}"
+    },
+    {
+      "id": "rom_140d72",
+      "translation": "{white}Please make yourself at home.{close}"
+    },
+    {
+      "id": "rom_140d9e",
+      "translation": "{white}My brother and I live here.{next}"
+    },
+    {
+      "id": "rom_140dca",
+      "translation": "{white}to see what happened in the past!{close}"
+    },
+    {
+      "id": "rom_140df6",
+      "translation": "{white}Use your {yellow}Time TV{white}{next}"
+    },
+    {
+      "id": "rom_140e2e",
+      "translation": "{white}{red}Here comes the Guiding Angel!{next}"
+    },
+    {
+      "id": "rom_140e66",
+      "translation": "{white}My brother was here!{wait}{end}"
+    },
+    {
+      "id": "rom_140e8a",
+      "translation": "{white}It's my brother's data card.{next}"
+    },
+    {
+      "id": "rom_140ea6",
+      "translation": "{white}Look at this!{next}"
+    },
+    {
+      "id": "rom_140ece",
+      "translation": "{white}..................{close}"
+    },
+    {
+      "id": "rom_140efa",
+      "translation": "{white}What should I do...?{next}"
+    },
+    {
+      "id": "rom_140f26",
+      "translation": "{white}My brother... Emperor Bagul...{next}"
+    },
+    {
+      "id": "rom_140f52",
+      "translation": "{white}I'll give you the Star Fragment.{close}"
+    },
+    {
+      "id": "rom_140f7a",
+      "translation": "{white}If it can be of any help,{next}"
+    },
+    {
+      "id": "rom_140f9e",
+      "translation": "{white}Please come to our house.{next}"
+    },
+    {
+      "id": "rom_140fca",
+      "translation": "{white}before he disappeared!{wait}{end}"
+    },
+    {
+      "id": "rom_140ff2",
+      "translation": "{white}My brother found it{next}"
+    },
+    {
+      "id": "rom_14101a",
+      "translation": "{white}We have one at home!{next}"
+    },
+    {
+      "id": "rom_141042",
+      "translation": "{white}You're looking for one...?{wait}{end}"
+    },
+    {
+      "id": "rom_14106e",
+      "translation": "{white}What?! A Star Fragment?{next}"
+    },
+    {
+      "id": "rom_14108e",
+      "translation": "{white}Oh, I'm sorry. I lost my composure.{next}"
+    },
+    {
+      "id": "rom_1410ba",
+      "translation": "{white}..................{wait}{end}"
+    },
+    {
+      "id": "rom_1410e6",
+      "translation": "{white}Please take it.{close}"
+    },
+    {
+      "id": "rom_141112",
+      "translation": "{white}You wanted this {yellow}Star Fragment{white}.{next}"
+    },
+    {
+      "id": "rom_14113a",
+      "translation": "{white}Oh, I've been waiting for you...{next}"
+    },
+    {
+      "id": "rom_141162",
+      "translation": "{white}for my brother.{close}"
+    },
+    {
+      "id": "rom_14117a",
+      "translation": "{white}I'm going out to look{next}"
+    },
+    {
+      "id": "rom_1411a2",
+      "translation": "{white}Go away!{close}"
+    },
+    {
+      "id": "rom_1411ba",
+      "translation": "{white}I've got nothing to say to you!{next}"
+    },
+    {
+      "id": "rom_1411de",
+      "translation": "{white}Huh?! Who are you?{next}"
+    },
+    {
+      "id": "rom_141202",
+      "translation": "{white}to make him tell the truth!{close}"
+    },
+    {
+      "id": "rom_14121a",
+      "translation": "{white}Use your {yellow}Truth Waves{white}{next}"
+    },
+    {
+      "id": "rom_14124a",
+      "translation": "{white}This man is lying.{next}"
+    },
+    {
+      "id": "rom_141276",
+      "translation": "{white}Now hurry up and leave! Go on!{wait}{end}"
+    },
+    {
+      "id": "rom_1412a2",
+      "translation": "{white}I-I don't know anything about it!{next}"
+    },
+    {
+      "id": "rom_1412ca",
+      "translation": "{white}Huh? The {yellow}Genie's Emblem{white}?{next}"
+    },
+    {
+      "id": "rom_1412f2",
+      "translation": "{white}That's what I heard. Get to it!{close}"
+    },
+    {
+      "id": "rom_141316",
+      "translation": "{white}A guy named {yellow}Nobil{white} has it.{next}"
+    },
+    {
+      "id": "rom_141346",
+      "translation": "{white}The other is in {yellow}Undercity 1{white}.{next}"
+    },
+    {
+      "id": "rom_14136e",
+      "translation": "{white}and {yellow}Kiraf Forest{white}.{wait}{end}"
+    },
+    {
+      "id": "rom_14139a",
+      "translation": "{white}Find Star Fragments at {yellow}Lake Rix{white}{next}"
+    },
+    {
+      "id": "rom_1413ca",
+      "translation": "{white}I might be willing to trade!{wait}{end}"
+    },
+    {
+      "id": "rom_1413f6",
+      "translation": "{white}for three {yellow}Star Fragments{white}.{next}"
+    },
+    {
+      "id": "rom_141422",
+      "translation": "{white}Oh, but I could trade it{next}"
+    },
+    {
+      "id": "rom_14144e",
+      "translation": "{white}without studying it first! Really!{wait}{end}"
+    },
+    {
+      "id": "rom_141472",
+      "translation": "{white}There's no way I'd give it away{next}"
+    },
+    {
+      "id": "rom_14149a",
+      "translation": "{white}This {yellow}Emblem{white} holds unknown power.{wait}{end}"
+    },
+    {
+      "id": "rom_1414ca",
+      "translation": "{white}Don't be ridiculous!{next}"
+    },
+    {
+      "id": "rom_1414f2",
+      "translation": "{white}What?! You want me to hand it over?!{next}"
+    },
+    {
+      "id": "rom_14151a",
+      "translation": "{white}with this {yellow}remote control{white}...{wait}{end}"
+    },
+    {
+      "id": "rom_141542",
+      "translation": "{white}{yellow}Emblem{white}, I hid it myself!{next}"
+    },
+    {
+      "id": "rom_141572",
+      "translation": "{white}They threw away the {yellow}Genie's{white}{next}"
+    },
+    {
+      "id": "rom_1415a2",
+      "translation": "{white}That's what I heard. Don't forget!{close}"
+    },
+    {
+      "id": "rom_1415ce",
+      "translation": "{white}apparently has one.{next}"
+    },
+    {
+      "id": "rom_1415f2",
+      "translation": "{white}{yellow}Nobil{white} in {yellow}Undercity 1{white}{next}"
+    },
+    {
+      "id": "rom_141622",
+      "translation": "{white}And the third...{wait}{end}"
+    },
+    {
+      "id": "rom_14163e",
+      "translation": "{white}The second is in {yellow}Kiraf Forest{white}!{next}"
+    },
+    {
+      "id": "rom_141666",
+      "translation": "{white}The first is at {yellow}Lake Rix{white}.{next}"
+    },
+    {
+      "id": "rom_141692",
+      "translation": "{white}where the fragments are!{wait}{end}"
+    },
+    {
+      "id": "rom_1416be",
+      "translation": "{white}come back! I'll tell you again{next}"
+    },
+    {
+      "id": "rom_1416ea",
+      "translation": "{white}Once you have three {yellow}Star Fragments{white},{next}"
+    },
+    {
+      "id": "rom_141716",
+      "translation": "{white}Let's trade!{close}"
+    },
+    {
+      "id": "rom_14172a",
+      "translation": "{white}You found them! Hurry up!{next}"
+    },
+    {
+      "id": "rom_141756",
+      "translation": "{white}Oh! Three {yellow}Star Fragments{white}!{next}"
+    },
+    {
+      "id": "rom_14177e",
+      "translation": "{white}Use the {yellow}remote control{white} there!{close}"
+    },
+    {
+      "id": "rom_1417ae",
+      "translation": "{white}a glowing mark will appear nearby.{wait}{end}"
+    },
+    {
+      "id": "rom_1417de",
+      "translation": "{white}Where I buried the {yellow}Genie's Emblem{white},{next}"
+    },
+    {
+      "id": "rom_14180e",
+      "translation": "{white}When you go to {yellow}Lake Rix{white},{next}"
+    },
+    {
+      "id": "rom_141836",
+      "translation": "{white}{yellow}control{white}, as promised!{wait}{end}"
+    },
+    {
+      "id": "rom_141856",
+      "translation": "{white}Here! Take this {yellow}remote{next}"
+    },
+    {
+      "id": "rom_141882",
+      "translation": "{white}What should I use it for?{wait}{end}"
+    },
+    {
+      "id": "rom_14189e",
+      "translation": "{white}So much energy...{next}"
+    },
+    {
+      "id": "rom_1418ca",
+      "translation": "{white}That makes exactly fifty!{wait}{end}"
+    },
+    {
+      "id": "rom_1418f6",
+      "translation": "{white}Ahaha! At last, they're mine!{next}"
+    },
+    {
+      "id": "rom_14191e",
+      "translation": "{white}You'll see a glowing mark nearby.{next}"
+    },
+    {
+      "id": "rom_14194e",
+      "translation": "{white}Go to {yellow}Lake Rix{white}.{wait}{end}"
+    },
+    {
+      "id": "rom_141976",
+      "translation": "{white}Fine, listen carefully!{next}"
+    },
+    {
+      "id": "rom_14199a",
+      "translation": "{white}You want me to explain it again?!{wait}{end}"
+    },
+    {
+      "id": "rom_1419c6",
+      "translation": "{white}Where to use the {yellow}remote control{white}?{next}"
+    },
+    {
+      "id": "rom_1419f2",
+      "translation": "{white}You won't get anything else! What?!{next}"
+    },
+    {
+      "id": "rom_141a1e",
+      "translation": "{white}I'm not giving you anything else!{close}"
+    },
+    {
+      "id": "rom_141a52",
+      "translation": "{white}Get lost or I'll punch you!{close}"
+    },
+    {
+      "id": "rom_141a76",
+      "translation": "{white}No, no! Go away!{next}"
+    },
+    {
+      "id": "rom_141a9e",
+      "translation": "{white}You want to enter the storehouse?!{next}"
+    },
+    {
+      "id": "rom_141aca",
+      "translation": "{white}I'll grant you access.{close}"
+    },
+    {
+      "id": "rom_141af2",
+      "translation": "{white}All right! Just this once,{next}"
+    },
+    {
+      "id": "rom_141b1a",
+      "translation": "{white}You're my true friend!!{wait}{end}"
+    },
+    {
+      "id": "rom_141b42",
+      "translation": "{white}Oh... I'm so moved!{next}"
+    },
+    {
+      "id": "rom_141b62",
+      "translation": "{white}I'm busy right now!{next}"
+    },
+    {
+      "id": "rom_141b82",
+      "translation": "{white}You're my true friend!!{close}"
+    },
+    {
+      "id": "rom_141baa",
+      "translation": "{white}all sorts of resources.{close}"
+    },
+    {
+      "id": "rom_141bc6",
+      "translation": "{white}This storehouse holds{next}"
+    },
+    {
+      "id": "rom_141bf2",
+      "translation": "{white}and other things!{close}"
+    },
+    {
+      "id": "rom_141c16",
+      "translation": "{white}stole a {yellow}Power Stone{white}{next}"
+    },
+    {
+      "id": "rom_141c42",
+      "translation": "{white}Last night, a lizard-like creature{next}"
+    },
+    {
+      "id": "rom_141c6e",
+      "translation": "{white}to move Dinan's heart!{close}"
+    },
+    {
+      "id": "rom_141c96",
+      "translation": "{white}Use your {yellow}Heartfelt Microphone{white}{next}"
+    },
+    {
+      "id": "rom_141cc2",
+      "translation": "{white}he may let you in...{wait}{end}"
+    },
+    {
+      "id": "rom_141cde",
+      "translation": "{white}If you want to enter the storehouse,{next}"
+    },
+    {
+      "id": "rom_141d06",
+      "translation": "{white}Try singing in front of Dinan.{next}"
+    },
+    {
+      "id": "rom_141d32",
+      "translation": "{white}That's what people say.{wait}{end}"
+    },
+    {
+      "id": "rom_141d4e",
+      "translation": "{white}he's kind to good singers.{next}"
+    },
+    {
+      "id": "rom_141d7a",
+      "translation": "{white}Dinan loves songs, so{next}"
+    },
+    {
+      "id": "rom_141da6",
+      "translation": "{white}hidden away in here!{wait}{end}"
+    },
+    {
+      "id": "rom_141dd6",
+      "translation": "{white}the director Dinan's secret items{next}"
+    },
+    {
+      "id": "rom_141e02",
+      "translation": "{white}Apparently, lots of{next}"
+    },
+    {
+      "id": "rom_141e2e",
+      "translation": "{white}Dinan is completely tone-deaf!{close}"
+    },
+    {
+      "id": "rom_141e5a",
+      "translation": "{white}You wouldn't understand how I feel.{close}"
+    },
+    {
+      "id": "rom_141e82",
+      "translation": "{white}my heart aches and aches...{next}"
+    },
+    {
+      "id": "rom_141eaa",
+      "translation": "{white}Whenever I think of {yellow}Reina{white},{next}"
+    },
+    {
+      "id": "rom_141ed6",
+      "translation": "{white}Don't let it possess you!{close}"
+    },
+    {
+      "id": "rom_141f02",
+      "translation": "{white}the ghost {yellow}Derorin{white} appeared here.{next}"
+    },
+    {
+      "id": "rom_141f32",
+      "translation": "{white}Recently,{next}"
+    },
+    {
+      "id": "rom_141f5a",
+      "translation": "{white}straight ahead.{close}"
+    },
+    {
+      "id": "rom_141f6a",
+      "translation": "{white}The administration building is{next}"
+    },
+    {
+      "id": "rom_141f96",
+      "translation": "{white}I'm this town's guide.{next}"
+    },
+    {
+      "id": "rom_141fc2",
+      "translation": "{white}further in.{close}"
+    },
+    {
+      "id": "rom_141fd6",
+      "translation": "{white}There's a large storehouse{next}"
+    },
+    {
+      "id": "rom_142002",
+      "translation": "{white}This is the administration building.{wait}{end}"
+    },
+    {
+      "id": "rom_14202a",
+      "translation": "{white}and little animals sneak in.{close}"
+    },
+    {
+      "id": "rom_142056",
+      "translation": "{white}a little passage{next}"
+    },
+    {
+      "id": "rom_142082",
+      "translation": "{white}Somewhere up above, there's{next}"
+    },
+    {
+      "id": "rom_1420aa",
+      "translation": "{white}house!{close}"
+    },
+    {
+      "id": "rom_1420be",
+      "translation": "{white}That red house is {yellow}Dr. Tsu's{white}{next}"
+    },
+    {
+      "id": "rom_1420ee",
+      "translation": "{white}is the administration building.{wait}{end}"
+    },
+    {
+      "id": "rom_14210e",
+      "translation": "{white}Turn right up ahead and{next}"
+    },
+    {
+      "id": "rom_142132",
+      "translation": "{white}I'm this town's guide.{next}"
+    },
+    {
+      "id": "rom_14215a",
+      "translation": "{white}Nice to meet you!{close}"
+    },
+    {
+      "id": "rom_14216e",
+      "translation": "{white}I'm Reina's best friend.{next}"
+    },
+    {
+      "id": "rom_142192",
+      "translation": "{white}Hello, I'm Pamela.{next}"
+    },
+    {
+      "id": "rom_1421ba",
+      "translation": "{white}to look for him!{close}"
+    },
+    {
+      "id": "rom_1421ce",
+      "translation": "{white}She went to look for Nobil.{next}"
+    },
+    {
+      "id": "rom_1421f6",
+      "translation": "{white}Reina headed for {yellow}Kiraf Forest{white}.{next}"
+    },
+    {
+      "id": "rom_142222",
+      "translation": "{white}I wonder if {yellow}Nobil{white} is all right.{close}"
+    },
+    {
+      "id": "rom_142252",
+      "translation": "{white}She looked so sad.{next}"
+    },
+    {
+      "id": "rom_14227e",
+      "translation": "{white}What's wrong with {yellow}Reina{white}...?{next}"
+    },
+    {
+      "id": "rom_1422ae",
+      "translation": "{white}have gone on a trip.{close}"
+    },
+    {
+      "id": "rom_1422ce",
+      "translation": "{white}{yellow}Reina{white} and {yellow}Nobil{white}{next}"
+    },
+    {
+      "id": "rom_142316",
+      "translation": "{white}he drove it away.{close}"
+    },
+    {
+      "id": "rom_142342",
+      "translation": "{white}the monstrous bird Rix.{wait}{end}"
+    },
+    {
+      "id": "rom_142362",
+      "translation": "{white}The people of Dact were tormented by{next}"
+    },
+    {
+      "id": "rom_142386",
+      "translation": "{white}Long ago, {yellow}Lord Posedo{white} helped us.{next}"
+    },
+    {
+      "id": "rom_1423b2",
+      "translation": "{white}I've gone off on a tangent...{wait}{end}"
+    },
+    {
+      "id": "rom_1423d6",
+      "translation": "{white}talking about the {yellow}legendary genie{white}.{next}"
+    },
+    {
+      "id": "rom_142406",
+      "translation": "{white}Oh, I'm sorry...{next}"
+    },
+    {
+      "id": "rom_14242a",
+      "translation": "{white}you'll never manage it!{wait}{end}"
+    },
+    {
+      "id": "rom_14244a",
+      "translation": "{white}Without {yellow}Lord Posedo's{white} power,{next}"
+    },
+    {
+      "id": "rom_142476",
+      "translation": "{white}That's impossible!!{wait}{end}"
+    },
+    {
+      "id": "rom_1424a2",
+      "translation": "{white}You want to enter Garock Tower?!{next}"
+    },
+    {
+      "id": "rom_1424ce",
+      "translation": "{white}has returned!{close}"
+    },
+    {
+      "id": "rom_1424ee",
+      "translation": "{white}I've heard that {yellow}Lord Posedo{white}{next}"
+    },
+    {
+      "id": "rom_14252a",
+      "translation": "{white}to get inside!{close}"
+    },
+    {
+      "id": "rom_14254a",
+      "translation": "{white}use your {yellow}Almighty Pass{white}{next}"
+    },
+    {
+      "id": "rom_14257a",
+      "translation": "{white}This is the place for a gadget.{next}"
+    },
+    {
+      "id": "rom_14259a",
+      "translation": "{white}are allowed inside!{wait}{end}"
+    },
+    {
+      "id": "rom_1425b2",
+      "translation": "{white}Only those with a permit{next}"
+    },
+    {
+      "id": "rom_1425da",
+      "translation": "{white}This is the director's office!{next}"
+    },
+    {
+      "id": "rom_142606",
+      "translation": "{white}Please come in!{close}"
+    },
+    {
+      "id": "rom_14262a",
+      "translation": "{white}My apologies!{next}"
+    },
+    {
+      "id": "rom_14264e",
+      "translation": "{white}Thank you for your work.{close}"
+    },
+    {
+      "id": "rom_14b762",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14b782",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14b7a2",
+      "translation": "{white}I'm so happy, shoo!{close}"
+    },
+    {
+      "id": "rom_14b7be",
+      "translation": "{white}we can finally have our wedding!{next}"
+    },
+    {
+      "id": "rom_14b7e2",
+      "translation": "{white}Thanks to you,{next}"
+    },
+    {
+      "id": "rom_14b80e",
+      "translation": "{white}together, shoo.{close}"
+    },
+    {
+      "id": "rom_14b82a",
+      "translation": "{white}{yellow}Piki{white} and I will build a happy home{next}"
+    },
+    {
+      "id": "rom_14b85a",
+      "translation": "{white}My turn next, shoo!{close}"
+    },
+    {
+      "id": "rom_14b87e",
+      "translation": "{white}Eee! Congratulations!{next}"
+    },
+    {
+      "id": "rom_14b89e",
+      "translation": "{white}Oh, I'm so jealous, shoo...{close}"
+    },
+    {
+      "id": "rom_14b8d2",
+      "translation": "{white}...Where are we, shoo?{close}"
+    },
+    {
+      "id": "rom_14b8fe",
+      "translation": "{white}was supposed to be tomorrow...{next}"
+    },
+    {
+      "id": "rom_14b92a",
+      "translation": "{white}Our wedding{next}"
+    },
+    {
+      "id": "rom_14b952",
+      "translation": "{white}covered in squishy stuff, shoo.{wait}{end}"
+    },
+    {
+      "id": "rom_14b97e",
+      "translation": "{white}Everyone else got{next}"
+    },
+    {
+      "id": "rom_14b9a6",
+      "translation": "{white}I'm {yellow}Piki{white}, from Pepin, shoo.{next}"
+    },
+    {
+      "id": "rom_14b9d6",
+      "translation": "{white}It happened to you too, shoo?{wait}{end}"
+    },
+    {
+      "id": "rom_14b9fe",
+      "translation": "{white}Huh? Oh, I see...{next}"
+    },
+    {
+      "id": "rom_14ba2e",
+      "translation": "{white}Wh-what are you...?{next}"
+    },
+    {
+      "id": "rom_14ba5a",
+      "translation": "{white}Are they going to eat me, shoo?{close}"
+    },
+    {
+      "id": "rom_14ba82",
+      "translation": "{white}What are those things?!{next}"
+    },
+    {
+      "id": "rom_14baa6",
+      "translation": "{white}I want you to have it, shoo!{close}"
+    },
+    {
+      "id": "rom_14baba",
+      "translation": "{white}As thanks, here's a key I found.{next}"
+    },
+    {
+      "id": "rom_14bae6",
+      "translation": "{white}Thank you, shoo!!{wait}{end}"
+    },
+    {
+      "id": "rom_14bb02",
+      "translation": "{white}You chased the monster away!{next}"
+    },
+    {
+      "id": "rom_14bb2e",
+      "translation": "{white}to us now, shoo...?{close}"
+    },
+    {
+      "id": "rom_14bb4e",
+      "translation": "{white}What's going to happen{next}"
+    },
+    {
+      "id": "rom_14bb8a",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14bbb2",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14bbda",
+      "translation": "{white}Where, where are we, ki?{close}"
+    },
+    {
+      "id": "rom_14bbfe",
+      "translation": "{white}Nice to meet you, ki!{next}"
+    },
+    {
+      "id": "rom_14bc16",
+      "translation": "{white}I'm from the planet Minic.{next}"
+    },
+    {
+      "id": "rom_14bc3a",
+      "translation": "{white}What a mess, ki!{close}"
+    },
+    {
+      "id": "rom_14bc52",
+      "translation": "{white}Nothing works! Nothing!{next}"
+    },
+    {
+      "id": "rom_14bc6e",
+      "translation": "{white}The power has gone out.{next}"
+    },
+    {
+      "id": "rom_14bc92",
+      "translation": "{white}to turn the windmills!{close}"
+    },
+    {
+      "id": "rom_14bcbe",
+      "translation": "{white}Use the {yellow}Wind God Fan{white}{next}"
+    },
+    {
+      "id": "rom_14bcfa",
+      "translation": "{white}{red}Here comes the Guiding Angel!{next}"
+    },
+    {
+      "id": "rom_14bd32",
+      "translation": "{white}We need some wind, ki!{wait}{end}"
+    },
+    {
+      "id": "rom_14bd56",
+      "translation": "{white}No electricity! What a mess, ki!{next}"
+    },
+    {
+      "id": "rom_14bd7e",
+      "translation": "{white}No wind! Both windmills stopped.{next}"
+    },
+    {
+      "id": "rom_14bdaa",
+      "translation": "{white}We need electricity, ki!{close}"
+    },
+    {
+      "id": "rom_14bdd6",
+      "translation": "{white}My friend is missing, ki!{close}"
+    },
+    {
+      "id": "rom_14bdfe",
+      "translation": "{white}It's amazing, ki!{close}"
+    },
+    {
+      "id": "rom_14be1a",
+      "translation": "{white}Everything I see is so huge!{next}"
+    },
+    {
+      "id": "rom_14be3e",
+      "translation": "{white}to this planet, ki...?{wait}{end}"
+    },
+    {
+      "id": "rom_14be5a",
+      "translation": "{white}Why were we brought{next}"
+    },
+    {
+      "id": "rom_14be82",
+      "translation": "{white}I'll use electricity carefully, ki.{close}"
+    },
+    {
+      "id": "rom_14beae",
+      "translation": "{white}The power is back, ki!{next}"
+    },
+    {
+      "id": "rom_14bed2",
+      "translation": "{white}So handy! I'm happy, ki!{close}"
+    },
+    {
+      "id": "rom_14befa",
+      "translation": "{white}Our house has power again, ki!{next}"
+    },
+    {
+      "id": "rom_14bf26",
+      "translation": "{white}Hooray, hooray, ki!{close}"
+    },
+    {
+      "id": "rom_14bf4e",
+      "translation": "{white}The monorail works too!{next}"
+    },
+    {
+      "id": "rom_14bf6e",
+      "translation": "{white}The wind is blowing! The mills turn!{next}"
+    },
+    {
+      "id": "rom_14bf96",
+      "translation": "{white}I'm so happy, ki!{close}"
+    },
+    {
+      "id": "rom_14bfae",
+      "translation": "{white}Now we can relax, ki!{close}"
+    },
+    {
+      "id": "rom_14bfce",
+      "translation": "{white}in peace now, ki...?{close}"
+    },
+    {
+      "id": "rom_14bfea",
+      "translation": "{white}Can we finally live{next}"
+    },
+    {
+      "id": "rom_14c00e",
+      "translation": "{white}I'm scared, ki!!{close}"
+    },
+    {
+      "id": "rom_14c026",
+      "translation": "{white}What is that thing, ki...?{next}"
+    },
+    {
+      "id": "rom_14c04e",
+      "translation": "{white}Please do something, ki!!{close}"
+    },
+    {
+      "id": "rom_14c06a",
+      "translation": "{white}A monster appeared, ki!{next}"
+    },
+    {
+      "id": "rom_14c092",
+      "translation": "{white}So scary, so scary, ki!!{close}"
+    },
+    {
+      "id": "rom_14c0b2",
+      "translation": "{white}I saw it! So scary, ki!!{close}"
+    },
+    {
+      "id": "rom_14c0de",
+      "translation": "{white}A huge monster outside the window...{next}"
+    },
+    {
+      "id": "rom_14c10a",
+      "translation": "{white}Please help us, ki!!{close}"
+    },
+    {
+      "id": "rom_14c136",
+      "translation": "{white}A monster appeared outside!{next}"
+    },
+    {
+      "id": "rom_14c15e",
+      "translation": "{white}What do we do, what do we do, ki?!{close}"
+    },
+    {
+      "id": "rom_14c182",
+      "translation": "{white}You're so strong, ki!{close}"
+    },
+    {
+      "id": "rom_14c1a6",
+      "translation": "{white}Thank you, ki!!{wait}{end}"
+    },
+    {
+      "id": "rom_14c1c2",
+      "translation": "{white}You chased the monster away!{next}"
+    },
+    {
+      "id": "rom_14c1ea",
+      "translation": "{white}You're a hero, ki!{close}"
+    },
+    {
+      "id": "rom_14c20a",
+      "translation": "{white}Oh, that was frightening, ki!!{close}"
+    },
+    {
+      "id": "rom_14c22a",
+      "translation": "{white}The monster's gone! What relief, ki!{next}"
+    },
+    {
+      "id": "rom_14c256",
+      "translation": "{white}Thank you, ki!!{close}"
+    },
+    {
+      "id": "rom_14c272",
+      "translation": "{white}Now we can live in peace.{next}"
+    },
+    {
+      "id": "rom_14c292",
+      "translation": "{white}I want to go back to Minic, ki!{close}"
+    },
+    {
+      "id": "rom_14c2ba",
+      "translation": "{white}Amazing, ki! Unbelievable!{close}"
+    },
+    {
+      "id": "rom_14c2e2",
+      "translation": "{white}Huh?! You did that?{next}"
+    },
+    {
+      "id": "rom_14c30a",
+      "translation": "{white}A huge fireball in the sky, ki!{next}"
+    },
+    {
+      "id": "rom_14c336",
+      "translation": "{white}My friend's back, ki!{close}"
+    },
+    {
+      "id": "rom_14c35e",
+      "translation": "{white}That's what I'm thinking about, ki.{close}"
+    },
+    {
+      "id": "rom_14c37a",
+      "translation": "{white}How can we live on this planet?{next}"
+    },
+    {
+      "id": "rom_14c3a6",
+      "translation": "{white}There's no place like home, ki.{close}"
+    },
+    {
+      "id": "rom_14c3c2",
+      "translation": "{white}I'm back, ki!{next}"
+    },
+    {
+      "id": "rom_14c3e6",
+      "translation": "{white}Thank you so much, ki!{close}"
+    },
+    {
+      "id": "rom_14c406",
+      "translation": "{white}Hello, ki! You rescued us!{next}"
+    },
+    {
+      "id": "rom_14c42e",
+      "translation": "{white}ever again, ki!{close}"
+    },
+    {
+      "id": "rom_14c446",
+      "translation": "{white}I'll never pick up a meteorite{next}"
+    },
+    {
+      "id": "rom_14c46a",
+      "translation": "{white}I'm back in town, ki!{next}"
+    },
+    {
+      "id": "rom_14c48e",
+      "translation": "{white}You'll find a use for it, ki!{close}"
+    },
+    {
+      "id": "rom_14c4ba",
+      "translation": "{white}a big key, ki!{next}"
+    },
+    {
+      "id": "rom_14c4d6",
+      "translation": "{white}As thanks, here is what I found:{next}"
+    },
+    {
+      "id": "rom_14c502",
+      "translation": "{white}Thank you, ki!{wait}{end}"
+    },
+    {
+      "id": "rom_14c51e",
+      "translation": "{white}You got the windmills turning, ki?{next}"
+    },
+    {
+      "id": "rom_14c562",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14c58e",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14c5ba",
+      "translation": "{white}I wonder...{close}"
+    },
+    {
+      "id": "rom_14c5d2",
+      "translation": "{white}How did this happen?{next}"
+    },
+    {
+      "id": "rom_14c5fa",
+      "translation": "{white}to my wings...{close}"
+    },
+    {
+      "id": "rom_14c622",
+      "translation": "{white}Thank you! Strength is returning{next}"
+    },
+    {
+      "id": "rom_14c64a",
+      "translation": "{white}everything's fine! Right, {yellow}Pato{white}?{close}"
+    },
+    {
+      "id": "rom_14c672",
+      "translation": "{white}Now that everyone's back,{next}"
+    },
+    {
+      "id": "rom_14c696",
+      "translation": "{white}Even if we can't return to Popika,{next}"
+    },
+    {
+      "id": "rom_14c6be",
+      "translation": "{white}have come back too...{close}"
+    },
+    {
+      "id": "rom_14c6de",
+      "translation": "{white}All the missing people{next}"
+    },
+    {
+      "id": "rom_14c702",
+      "translation": "{white}Great! Everyone's back to normal!{next}"
+    },
+    {
+      "id": "rom_14c72e",
+      "translation": "{white}or something...?{close}"
+    },
+    {
+      "id": "rom_14c75a",
+      "translation": "{white}Was I having a nightmare...{next}"
+    },
+    {
+      "id": "rom_14c786",
+      "translation": "{white}Where did you all come from...?{close}"
+    },
+    {
+      "id": "rom_14c7c2",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14c7e6",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14c80a",
+      "translation": "{white}{yellow}Crystal{white} back to life!{close}"
+    },
+    {
+      "id": "rom_14c83a",
+      "translation": "{white}to bring rain and revive the {yellow}Wind{white}{next}"
+    },
+    {
+      "id": "rom_14c866",
+      "translation": "{white}Use your {yellow}Cloud Bucket{white}{next}"
+    },
+    {
+      "id": "rom_14c892",
+      "translation": "{white}Oh, if only it would rain...{wait}{end}"
+    },
+    {
+      "id": "rom_14c8c2",
+      "translation": "{white}gives my wings their power!{wait}{end}"
+    },
+    {
+      "id": "rom_14c8ea",
+      "translation": "{white}into light, which{next}"
+    },
+    {
+      "id": "rom_14c912",
+      "translation": "{white}The {yellow}Wind Crystal{white} turns water energy{next}"
+    },
+    {
+      "id": "rom_14c942",
+      "translation": "{white}has stopped working...{wait}{end}"
+    },
+    {
+      "id": "rom_14c96a",
+      "translation": "{white}the {yellow}Wind Crystal{white}{next}"
+    },
+    {
+      "id": "rom_14c992",
+      "translation": "{white}And what's worse, our precious{next}"
+    },
+    {
+      "id": "rom_14c9be",
+      "translation": "{white}managed to escape, but...{wait}{end}"
+    },
+    {
+      "id": "rom_14c9e6",
+      "translation": "{white}{red}Picol{white} and I barely{next}"
+    },
+    {
+      "id": "rom_14ca0a",
+      "translation": "{white}were trapped inside it.{wait}{end}"
+    },
+    {
+      "id": "rom_14ca1e",
+      "translation": "{white}Everyone was covered in slime.{next}"
+    },
+    {
+      "id": "rom_14ca4a",
+      "translation": "{white}We were brought to this place.{next}"
+    },
+    {
+      "id": "rom_14ca6e",
+      "translation": "{white}happen to you too?{wait}{end}"
+    },
+    {
+      "id": "rom_14ca86",
+      "translation": "{white}Did the same thing{next}"
+    },
+    {
+      "id": "rom_14caae",
+      "translation": "{white}I'm {red}Pato{white}, from Popika.{next}"
+    },
+    {
+      "id": "rom_14cada",
+      "translation": "{white}and find our missing friends!{close}"
+    },
+    {
+      "id": "rom_14cb02",
+      "translation": "{white}I want to fly again soon{next}"
+    },
+    {
+      "id": "rom_14cb2e",
+      "translation": "{white}Oh, if only it would rain...{next}"
+    },
+    {
+      "id": "rom_14cb5a",
+      "translation": "{white}I'll show you how I fly!{close}"
+    },
+    {
+      "id": "rom_14cb7e",
+      "translation": "{white}Thanks to you, I can fly again!{next}"
+    },
+    {
+      "id": "rom_14cbaa",
+      "translation": "{white}Thank you! You're amazing!{next}"
+    },
+    {
+      "id": "rom_14cbd6",
+      "translation": "{white}Here's a gift to thank you!{close}"
+    },
+    {
+      "id": "rom_14cbfa",
+      "translation": "{white}{red}Picol{white} is happy too!{next}"
+    },
+    {
+      "id": "rom_14cc22",
+      "translation": "{white}Well? Isn't that amazing?{next}"
+    },
+    {
+      "id": "rom_14cc42",
+      "translation": "{white}Here's a gift to thank you!{close}"
+    },
+    {
+      "id": "rom_14cc66",
+      "translation": "{white}Thanks to you, I can fly again!{next}"
+    },
+    {
+      "id": "rom_14cc92",
+      "translation": "{white}Let's go and find everyone!{close}"
+    },
+    {
+      "id": "rom_14ccbe",
+      "translation": "{white}are unstable... But I'll do my best!{close}"
+    },
+    {
+      "id": "rom_14ccea",
+      "translation": "{white}Where to look? The air currents{next}"
+    },
+    {
+      "id": "rom_14cd16",
+      "translation": "{white}Hmm... Where should I look?{next}"
+    },
+    {
+      "id": "rom_14cd3e",
+      "translation": "{white}It was shaped like a red flower.{close}"
+    },
+    {
+      "id": "rom_14cd6a",
+      "translation": "{white}I saw something fall!{next}"
+    },
+    {
+      "id": "rom_14cd8a",
+      "translation": "{white}Just now, on that {yellow}green mountain{white},{next}"
+    },
+    {
+      "id": "rom_14cdba",
+      "translation": "{white}Why not fly together?{close}"
+    },
+    {
+      "id": "rom_14cdd2",
+      "translation": "{white}Then you could go with {red}Picol{white}!{next}"
+    },
+    {
+      "id": "rom_14cdfa",
+      "translation": "{white}What?! You can fly too?{next}"
+    },
+    {
+      "id": "rom_14ce32",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14ce5a",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14ce7e",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14cea6",
+      "translation": "",
+      "original": true,
+      "note": "Alien speech before Translation Konjac; preserve original symbols."
+    },
+    {
+      "id": "rom_14cece",
+      "translation": "{white}You should eat more!{close}"
+    },
+    {
+      "id": "rom_14ceee",
+      "translation": "{white}You're awfully small!{next}"
+    },
+    {
+      "id": "rom_14cf16",
+      "translation": "{white}What's with you?!{next}"
+    },
+    {
+      "id": "rom_14cf32",
+      "translation": "{white}Your face looks funny!{close}"
+    },
+    {
+      "id": "rom_14cf56",
+      "translation": "{white}You look pathetic...{close}"
+    },
+    {
+      "id": "rom_14cf82",
+      "translation": "{white}conquer this town!{close}"
+    },
+    {
+      "id": "rom_14cf9e",
+      "translation": "{white}Hey! Let's join forces and{next}"
+    },
+    {
+      "id": "rom_14cfc6",
+      "translation": "{white}I'm out of here too!{close}"
+    },
+    {
+      "id": "rom_14cfe6",
+      "translation": "{white}his will to fight...{next}"
+    },
+    {
+      "id": "rom_14d00e",
+      "translation": "{white}Looks like the boss has lost{next}"
+    },
+    {
+      "id": "rom_14d03a",
+      "translation": "{white}I'm losing my fighting spirit...{close}"
+    },
+    {
+      "id": "rom_14d062",
+      "translation": "{white}Looks like the war is over!{next}"
+    },
+    {
+      "id": "rom_14d08e",
+      "translation": "{white}I'm bored out of my mind!{close}"
+    },
+    {
+      "id": "rom_14d0b2",
+      "translation": "{white}I saw it!{close}"
+    },
+    {
+      "id": "rom_14d0c2",
+      "translation": "{white}Something exploded in the sky.{next}"
+    },
+    {
+      "id": "rom_14d0ee",
+      "translation": "{white}have come back!{close}"
+    },
+    {
+      "id": "rom_14d0fe",
+      "translation": "{white}Our missing friends{next}"
+    },
+    {
+      "id": "rom_14d12a",
+      "translation": "{white}Hey! It's you! Thanks for the help!{close}"
+    },
+    {
+      "id": "rom_14d15a",
+      "translation": "{white}I'll beat you to a pulp!!{close}"
+    },
+    {
+      "id": "rom_14d176",
+      "translation": "{white}What?! Who are you?!!{next}"
+    },
+    {
+      "id": "rom_14d19a",
+      "translation": "{white}...All right! Follow me!!{close}"
+    },
+    {
+      "id": "rom_14d1c2",
+      "translation": "{white}You want to see the boss?{next}"
+    },
+    {
+      "id": "rom_14d1e2",
+      "translation": "{white}Stop talking nonsense and fight!{close}"
+    },
+    {
+      "id": "rom_14d20e",
+      "translation": "{white}I'll destroy it all!{next}"
+    },
+    {
+      "id": "rom_14d232",
+      "translation": "{white}This world's so-called civilization!{next}"
+    },
+    {
+      "id": "rom_14d256",
+      "translation": "{white}what have we got left?!{wait}{end}"
+    },
+    {
+      "id": "rom_14d27a",
+      "translation": "{white}If you take war from us Dragonians,{next}"
+    },
+    {
+      "id": "rom_14d2a2",
+      "translation": "{white}You... Are you feeling ill?{next}"
+    },
+    {
+      "id": "rom_14d2ce",
+      "translation": "{white}Stop the invasion?!!{wait}{end}"
+    },
+    {
+      "id": "rom_14d2f6",
+      "translation": "{white}What do you want? WHAAAT?!{next}"
+    },
+    {
+      "id": "rom_14d31a",
+      "translation": "{white}No! It's mine!{next}"
+    },
+    {
+      "id": "rom_14d346",
+      "translation": "{white}What?! You want the {yellow}Power Stone{white}?{next}"
+    },
+    {
+      "id": "rom_14d376",
+      "translation": "{white}how to live on this planet!{close}"
+    },
+    {
+      "id": "rom_14d39e",
+      "translation": "{white}No more fighting! Let's think about{next}"
+    },
+    {
+      "id": "rom_14d3ca",
+      "translation": "{white}I'm ashamed of all my fighting.{next}"
+    },
+    {
+      "id": "rom_14d3f6",
+      "translation": "{white}Such is the power of civilization...{wait}{end}"
+    },
+    {
+      "id": "rom_14d422",
+      "translation": "{white}Ohhh! I'm so moved!{next}"
+    },
+    {
+      "id": "rom_14d44e",
+      "translation": "{white}for peace!{close}"
+    },
+    {
+      "id": "rom_14d466",
+      "translation": "{white}Here, take it! Use it{next}"
+    },
+    {
+      "id": "rom_14d48e",
+      "translation": "{white}how to live on this planet!{wait}{end}"
+    },
+    {
+      "id": "rom_14f7f2",
+      "translation": "{white}to bring the forest back to life!{close}"
+    },
+    {
+      "id": "rom_14f81a",
+      "translation": "{white}Use your {yellow}Blossom Ashes{white}{next}"
+    },
+    {
+      "id": "rom_14f842",
+      "translation": "{white}This calls for one of your gadgets.{next}"
+    },
+    {
+      "id": "rom_14f86e",
+      "translation": "{white}{red}Here comes the Guiding Angel!{next}"
+    },
+    {
+      "id": "rom_14f8a2",
+      "translation": "{white}...{wait}{end}"
+    },
+    {
+      "id": "rom_14f8ba",
+      "translation": "{white}I could lend you my power...{next}"
+    },
+    {
+      "id": "rom_14f8e6",
+      "translation": "{white}If it returns to its former state,{next}"
+    },
+    {
+      "id": "rom_14f90e",
+      "translation": "{white}has been poisoned.{wait}{end}"
+    },
+    {
+      "id": "rom_14f92a",
+      "translation": "{white}As you can see, the forest{next}"
+    },
+    {
+      "id": "rom_14f94e",
+      "translation": "{white}You can speak with me.{wait}{end}"
+    },
+    {
+      "id": "rom_14f96a",
+      "translation": "{white}Karen is my name.{next}"
+    },
+    {
+      "id": "rom_14f992",
+      "translation": "{white}I... I'm the spirit of this forest.{next}"
+    },
+    {
+      "id": "rom_14f9be",
+      "translation": "{white}If it returns to its former state,{next}"
+    },
+    {
+      "id": "rom_14f9e2",
+      "translation": "{white}Kanan is my name.{next}"
+    },
+    {
+      "id": "rom_14fa0a",
+      "translation": "{white}Do your best!{close}"
+    },
+    {
+      "id": "rom_14fa26",
+      "translation": "{white}depends on your courage.{next}"
+    },
+    {
+      "id": "rom_14fa4a",
+      "translation": "{white}The future of this planet{next}"
+    },
+    {
+      "id": "rom_14fa72",
+      "translation": "{white}whenever you need help.{wait}{end}"
+    },
+    {
+      "id": "rom_14fa92",
+      "translation": "{white}Go and visit the fairy{next}"
+    },
+    {
+      "id": "rom_14faba",
+      "translation": "{white}to your town.{next}"
+    },
+    {
+      "id": "rom_14fade",
+      "translation": "{white}I'll send a fairy who can make them{wait}{end}"
+    },
+    {
+      "id": "rom_14fb02",
+      "translation": "{white}{yellow}Full Recovery Fruit{white} will help.{next}"
+    },
+    {
+      "id": "rom_14fb2e",
+      "translation": "{white}To help you on your journey,{next}"
+    },
+    {
+      "id": "rom_14fb56",
+      "translation": "{white}Please do visit.{wait}{end}"
+    },
+    {
+      "id": "rom_14fb6a",
+      "translation": "{white}Visit whenever you need help.{next}"
+    },
+    {
+      "id": "rom_14fb92",
+      "translation": "{white}That's where I'll send the fairy.{next}"
+    },
+    {
+      "id": "rom_14fbb6",
+      "translation": "{white}A fairy in Area 2 can make them.{wait}{end}"
+    },
+    {
+      "id": "rom_14fbe6",
+      "translation": "{white}{yellow}Revival Capsules{white} will help you.{next}"
+    },
+    {
+      "id": "rom_14fc12",
+      "translation": "{white}I'll ask them to help you.{close}"
+    },
+    {
+      "id": "rom_14fc3e",
+      "translation": "{white}to lend you their strength.{next}"
+    },
+    {
+      "id": "rom_14fc6a",
+      "translation": "{white}I'll tell the fairies on your path{next}"
+    },
+    {
+      "id": "rom_14fc96",
+      "translation": "{white}Please accept it.{close}"
+    },
+    {
+      "id": "rom_14fcaa",
+      "translation": "{white}savior. Here is a gift for you.{next}"
+    },
+    {
+      "id": "rom_14fcd6",
+      "translation": "{white}Thank you! You are this forest's{next}"
+    },
+    {
+      "id": "rom_159352",
+      "translation": "{white}H... HEL...{close}"
+    },
+    {
+      "id": "rom_15936e",
+      "translation": "{white}I WILL GO AND SEE HIM NOW!{close}"
+    },
+    {
+      "id": "rom_159396",
+      "translation": "{white}IS SAFE!! THEN...{next}"
+    },
+    {
+      "id": "rom_1593be",
+      "translation": "{white}WHAAAT! DR. KA{next}"
+    },
+    {
+      "id": "rom_1593e2",
+      "translation": "{white}HE IS A VERY KIND MAN!{wait}{end}"
+    },
+    {
+      "id": "rom_159406",
+      "translation": "{white}A LONG TIME AGO.{next}"
+    },
+    {
+      "id": "rom_159422",
+      "translation": "{white}I USED TO WORK FOR HIM.{next}"
+    },
+    {
+      "id": "rom_15944e",
+      "translation": "{white}...OH! YOU KNOW THE DOCTOR?{wait}{end}"
+    },
+    {
+      "id": "rom_15947e",
+      "translation": "{white}I WANT TO SEE DR. KA...{next}"
+    },
+    {
+      "id": "rom_1594aa",
+      "translation": "{white}WHAT SHALL I DO NOW...?{next}"
+    },
+    {
+      "id": "rom_1594d6",
+      "translation": "{white}A BASE {yellow}KEY CARD{white} FOR YOU!{wait}{end}"
+    },
+    {
+      "id": "rom_159506",
+      "translation": "{white}HERE! I HAD ONE LEFT.{next}"
+    },
+    {
+      "id": "rom_159532",
+      "translation": "{white}TO THE BASE...?{wait}{end}"
+    },
+    {
+      "id": "rom_159556",
+      "translation": "{white}WHAT?! YOU ARE GOING{next}"
+    },
+    {
+      "id": "rom_159582",
+      "translation": "{white}I WAS BROKEN AND THROWN AWAY.{wait}{end}"
+    },
+    {
+      "id": "rom_1595aa",
+      "translation": "{white}SO MANY OF THEM THAT{next}"
+    },
+    {
+      "id": "rom_1595d2",
+      "translation": "{white}AND RECENTLY, I LOST {yellow}KEY CARDS{white}.{next}"
+    },
+    {
+      "id": "rom_1595fe",
+      "translation": "{white}THAT IS WHAT THEY CALLED ME.{wait}{end}"
+    },
+    {
+      "id": "rom_15961a",
+      "translation": "{white}EVERYONE SAID I WAS A USELESS ROBOT.{next}"
+    },
+    {
+      "id": "rom_15963e",
+      "translation": "{white}I WAS ALWAYS MAKING MISTAKES.{next}"
+    },
+    {
+      "id": "rom_159666",
+      "translation": "{white}TH-THANK YOUUUUU!!{wait}{end}"
+    },
+    {
+      "id": "rom_159692",
+      "translation": "{white}HOORAY! I AM FIXED!{next}"
+    },
+    {
+      "id": "rom_1596b6",
+      "translation": "{white}I AM ON MY WAY!{close}"
+    },
+    {
+      "id": "rom_1596ca",
+      "translation": "{white}I WILL GO AND SEE DR. KA!{next}"
+    },
+    {
+      "id": "rom_1596f2",
+      "translation": "{white}I GAVE IT TO HIM! DID I DO WELL?{close}"
+    },
+    {
+      "id": "rom_159716",
+      "translation": "{white}I GAVE IT TO {yellow}DR. KA{white}!{next}"
+    },
+    {
+      "id": "rom_159746",
+      "translation": "{white}I HAD DATA ON EMPEROR BAGUL!{next}"
+    },
+    {
+      "id": "rom_15d20a",
+      "translation": "{white}RED. This blessing comes only once.{close}"
+    },
+    {
+      "id": "rom_15d22e",
+      "translation": "{white}The spell is BLUE, YELLOW,{next}"
+    },
+    {
+      "id": "rom_15d25a",
+      "translation": "{white}Light and sound summon the goddess.{next}"
+    },
+    {
+      "id": "rom_15d282",
+      "translation": "{white}Play the notes MI, RE, DO!{close}"
+    },
+    {
+      "id": "rom_15d2ae",
+      "translation": "{white}How to open the Sound Door{next}"
+    },
+    {
+      "id": "rom_15d2da",
+      "translation": "{white}Play the notes DO, RE, MI!{close}"
+    },
+    {
+      "id": "rom_15d306",
+      "translation": "{white}Play the notes MI, DO, RE!{close}"
+    },
+    {
+      "id": "rom_15d332",
+      "translation": "{white}to adapt to this environment!{close}"
+    },
+    {
+      "id": "rom_15d35a",
+      "translation": "{white}your {yellow}Adaptation Lamp{white}{next}"
+    },
+    {
+      "id": "rom_15d382",
+      "translation": "{white}We're in space, so you'll need{next}"
+    },
+    {
+      "id": "rom_15d3ae",
+      "translation": "{white}{red}Here comes the Guiding Angel!{next}"
+    },
+    {
+      "id": "rom_15d3f2",
+      "translation": "{white}Bagul Station - Section 1{next}"
+    },
+    {
+      "id": "rom_15f002",
+      "translation": "{white}Meow-meow?{close}"
+    },
+    {
+      "id": "rom_15f016",
+      "translation": "{white}MEOOOOW!!!{close}"
+    },
+    {
+      "id": "rom_1683e6",
+      "translation": "Doraemon,{next}"
+    },
+    {
+      "id": "rom_1683fa",
+      "translation": "Oh! A meteorite!{end}"
+    },
+    {
+      "id": "rom_168416",
+      "translation": "Where's it off?{end}"
+    },
+    {
+      "id": "rom_16842e",
+      "translation": "Oh, no! It fell! It fell!{end}"
+    },
+    {
+      "id": "rom_168456",
+      "translation": "Ugh, I can't do this...{end}"
+    },
+    {
+      "id": "rom_16847a",
+      "translation": "Do it properly.{end}"
+    },
+    {
+      "id": "rom_168492",
+      "translation": "Do your own homework!{end}"
+    },
+    {
+      "id": "rom_1684b6",
+      "translation": "Oh, Nobita! Honestly!{next}"
+    },
+    {
+      "id": "rom_1684d6",
+      "translation": "Give me a homework gadget!{end}"
+    },
+    {
+      "id": "rom_1684fe",
+      "translation": "My summer homework...{next}"
+    },
+    {
+      "id": "rom_16851e",
+      "translation": "Hmm... Anyway, forget that.{next}"
+    },
+    {
+      "id": "rom_168546",
+      "translation": "to have my gadgets repaired!{end}"
+    },
+    {
+      "id": "rom_16856a",
+      "translation": "I went to the future{next}"
+    },
+    {
+      "id": "rom_168592",
+      "translation": "Doraemon, where have you been?{end}"
+    },
+    {
+      "id": "rom_1685ba",
+      "translation": "I'm home!{end}"
+    },
+    {
+      "id": "rom_1685ca",
+      "translation": "Waaah!{end}"
+    },
+    {
+      "id": "rom_1685da",
+      "translation": "Unused line{end}"
+    },
+    {
+      "id": "rom_1685f2",
+      "translation": "I can't finish{end}"
+    },
+    {
+      "id": "rom_168606",
+      "translation": "Ugh... This summer homework...{next}"
+    },
+    {
+      "id": "rom_16b782",
+      "translation": "Doraemooon!{end}"
+    },
+    {
+      "id": "rom_16b796",
+      "translation": "We'll hit that planet!{end}"
+    },
+    {
+      "id": "rom_16b7b6",
+      "translation": "Oh, no!{next}"
+    },
+    {
+      "id": "rom_16b7ca",
+      "translation": "W-w-w-waaaah!{end}"
+    },
+    {
+      "id": "rom_16b7e2",
+      "translation": "Waaah!{end}"
+    },
+    {
+      "id": "rom_16b7f2",
+      "translation": "Let's join them!{end}"
+    },
+    {
+      "id": "rom_16b80a",
+      "translation": "I saw it happen!{end}"
+    },
+    {
+      "id": "rom_16b826",
+      "translation": "It split into three in the sky!{next}"
+    },
+    {
+      "id": "rom_16b84e",
+      "translation": "It looks like some kind of emblem...{end}"
+    },
+    {
+      "id": "rom_16b87a",
+      "translation": "I found one.{end}"
+    },
+    {
+      "id": "rom_16b88e",
+      "translation": "Near my house, too.{next}"
+    },
+    {
+      "id": "rom_16b8ae",
+      "translation": "from the sky!{end}"
+    },
+    {
+      "id": "rom_16b8c2",
+      "translation": "Look, look! This thing fell{next}"
+    },
+    {
+      "id": "rom_16b8ee",
+      "translation": "Suneo! Gian!{end}"
+    },
+    {
+      "id": "rom_16b90a",
+      "translation": "Hey, Nobita!{end}"
+    },
+    {
+      "id": "rom_16b922",
+      "translation": "Unused line{end}"
+    },
+    {
+      "id": "rom_16b93a",
+      "translation": "A piece of the meteorite?{end}"
+    },
+    {
+      "id": "rom_16b95a",
+      "translation": "Oh, that must be...{next}"
+    },
+    {
+      "id": "rom_16b976",
+      "translation": "Hey, look at this...{end}"
+    },
+    {
+      "id": "rom_16b992",
+      "translation": "Oh, hello, Nobita.{next}"
+    },
+    {
+      "id": "rom_16b9b2",
+      "translation": "Shizukaaa!{end}"
+    },
+    {
+      "id": "rom_16c702",
+      "translation": "I can't use my gadgets now!{end}"
+    },
+    {
+      "id": "rom_16c72a",
+      "translation": "My pocket is full of slime!{next}"
+    },
+    {
+      "id": "rom_16c752",
+      "translation": "Aaah!{next}"
+    },
+    {
+      "id": "rom_16c762",
+      "translation": "Something terrible has happened!{end}"
+    },
+    {
+      "id": "rom_16c78a",
+      "translation": "Doraemon! Outside...{next}"
+    },
+    {
+      "id": "rom_16c7a6",
+      "translation": "It's chaos out there!{end}"
+    },
+    {
+      "id": "rom_16c7ce",
+      "translation": "Let's go outside for now!{end}"
+    },
+    {
+      "id": "rom_16c7fa",
+      "translation": "Are you okay?{end}"
+    },
+    {
+      "id": "rom_16c812",
+      "translation": "What now?!{end}"
+    },
+    {
+      "id": "rom_16c826",
+      "translation": "fighting a strange robot!{end}"
+    },
+    {
+      "id": "rom_16c84e",
+      "translation": "Hmm... I was just{next}"
+    },
+    {
+      "id": "rom_16c876",
+      "translation": "Unused line{end}"
+    },
+    {
+      "id": "rom_16c88e",
+      "translation": "Nngh!{end}"
+    },
+    {
+      "id": "rom_16c89e",
+      "translation": "Doraemooon!{end}"
+    },
+    {
+      "id": "rom_16dbe2",
+      "translation": "Goodbyeee!{end}"
+    },
+    {
+      "id": "rom_16dbf6",
+      "translation": "Goodbye!{end}"
+    },
+    {
+      "id": "rom_16dc06",
+      "translation": "Reina! Nobil!{next}"
+    },
+    {
+      "id": "rom_16dc26",
+      "translation": "Right! Let's go!{end}"
+    },
+    {
+      "id": "rom_16dc3e",
+      "translation": "Then it'll all be back to normal!{end}"
+    },
+    {
+      "id": "rom_16dc6a",
+      "translation": "It'll be fine!{next}"
+    },
+    {
+      "id": "rom_16dc82",
+      "translation": "Will that really work?{end}"
+    },
+    {
+      "id": "rom_16dcaa",
+      "translation": "and defeat that mask!{end}"
+    },
+    {
+      "id": "rom_16dcce",
+      "translation": "to before it possessed you,{next}"
+    },
+    {
+      "id": "rom_16dcf2",
+      "translation": "We'll take the Time Machine back{next}"
+    },
+    {
+      "id": "rom_16dd1a",
+      "translation": "But what will you do now?!{end}"
+    },
+    {
+      "id": "rom_16dd3e",
+      "translation": "I'm sorry for all the trouble I've caused you.{next}"
+    },
+    {
+      "id": "rom_16dd72",
+      "translation": "Thank you, everyone!{end}"
+    },
+    {
+      "id": "rom_16ec32",
+      "translation": "What now?{end}"
+    },
+    {
+      "id": "rom_16ec4a",
+      "translation": "to do first.{end}"
+    },
+    {
+      "id": "rom_16ec5e",
+      "translation": "Before that, one more thing{next}"
+    },
+    {
+      "id": "rom_16ec82",
+      "translation": "Yeah! Let's go!{end}"
+    },
+    {
+      "id": "rom_16ec9e",
+      "translation": "Come on, let's get home!{next}"
+    },
+    {
+      "id": "rom_16ecca",
+      "translation": "will be normal.{end}"
+    },
+    {
+      "id": "rom_16ece2",
+      "translation": "So everything...{next}"
+    },
+    {
+      "id": "rom_16ecfa",
+      "translation": "I'm so glad!{end}"
+    },
+    {
+      "id": "rom_16ed0e",
+      "translation": "All right! It's all fine now!{end}"
+    },
+    {
+      "id": "rom_179452",
+      "translation": "          THE END{end}"
+    },
+    {
+      "id": "rom_179972",
+      "translation": "My name is Reina.{end}"
+    },
+    {
+      "id": "rom_179992",
+      "translation": "Th-thank you for rescuing me!{next}"
+    },
+    {
+      "id": "rom_1799be",
+      "translation": "Oh...{next}"
+    },
+    {
+      "id": "rom_1799ce",
+      "translation": "{white}Oh, Shizuka?!{end}"
+    },
+    {
+      "id": "rom_1799ea",
+      "translation": "{white}Oh, Shizuka?!{end}"
+    },
+    {
+      "id": "rom_179bf2",
+      "translation": "Oh, you're...{end}"
+    },
+    {
+      "id": "rom_179e12",
+      "translation": "We meet again...{end}"
+    },
+    {
+      "id": "rom_179e36",
+      "translation": "Oh...!{next}"
+    },
+    {
+      "id": "rom_17b072",
+      "translation": "What?!{end}"
+    },
+    {
+      "id": "rom_17b082",
+      "translation": "I've taken your precious robot...{end}"
+    },
+    {
+      "id": "rom_17b0ae",
+      "translation": "Ahaha! Your dear friend...{next}"
+    },
+    {
+      "id": "rom_17b0d6",
+      "translation": "He's gone!{end}"
+    },
+    {
+      "id": "rom_17b0e6",
+      "translation": "Huh? Doraemon is missing?!{end}"
+    },
+    {
+      "id": "rom_17b10a",
+      "translation": "Waaah!{end}"
+    },
+    {
+      "id": "rom_17b8b2",
+      "translation": "{white}Thanks, Dorami!{end}"
+    },
+    {
+      "id": "rom_17b8ce",
+      "translation": "{white} {end}"
+    },
+    {
+      "id": "rom_17b8d6",
+      "translation": "{white} {end}"
+    },
+    {
+      "id": "rom_17b8de",
+      "translation": "{white} {end}"
+    },
+    {
+      "id": "rom_17b8e6",
+      "translation": "{white} {end}"
+    },
+    {
+      "id": "rom_17b8f2",
+      "translation": "I brought them back.{end}"
+    },
+    {
+      "id": "rom_17b90e",
+      "translation": "left for repairs in the future{next}"
+    },
+    {
+      "id": "rom_17b932",
+      "translation": "Look! The gadgets he{next}"
+    },
+    {
+      "id": "rom_17b94e",
+      "translation": "but someone shot me down...{end}"
+    },
+    {
+      "id": "rom_17b972",
+      "translation": "all the way here,{next}"
+    },
+    {
+      "id": "rom_17b992",
+      "translation": "I came to rescue everyone,{next}"
+    },
+    {
+      "id": "rom_17b9b6",
+      "translation": "I found you...{end}"
+    },
+    {
+      "id": "rom_17b9d6",
+      "translation": "I'm so glad{next}"
+    },
+    {
+      "id": "rom_17b9ea",
+      "translation": "{white}Dorami! Are you okay?!{end}"
+    },
+    {
+      "id": "rom_17ba0c",
+      "translation": "{white}Hey, Dorami! Are you all right?!{end}"
+    },
+    {
+      "id": "rom_17ba36",
+      "translation": "{white}Dorami! Are you all right?!{end}"
+    },
+    {
+      "id": "rom_17ba5a",
+      "translation": "{white}Dorami! Are you okay?!{end}"
+    },
+    {
+      "id": "rom_17ba80",
+      "translation": "{white}Hey, Dorami! You all right?!{end}"
+    },
+    {
+      "id": "rom_17e572",
+      "translation": "Your wish has been heard.{end}"
+    },
+    {
+      "id": "rom_180012",
+      "translation": "All right! Let's go together!{end}"
+    },
+    {
+      "id": "rom_180036",
+      "translation": "But I'm worried about my brother...{end}"
+    },
+    {
+      "id": "rom_180066",
+      "translation": "What? It's dangerous!{end}"
+    },
+    {
+      "id": "rom_18008a",
+      "translation": "Please take me with you!{end}"
+    },
+    {
+      "id": "rom_1800ae",
+      "translation": "Oh, Reina!{end}"
+    },
+    {
+      "id": "rom_1800c6",
+      "translation": "Wait for me!{end}"
+    },
+    {
+      "id": "rom_1800de",
+      "translation": "Space Lifeboat!{end}"
+    },
+    {
+      "id": "rom_1800fe",
+      "translation": "Whoa!{end}"
+    },
+    {
+      "id": "rom_18010e",
+      "translation": "Time for the showdown!{end}"
+    },
+    {
+      "id": "rom_181402",
+      "translation": "Yeah...{end}"
+    },
+    {
+      "id": "rom_181412",
+      "translation": "Come on, brother! Let's go!{end}"
+    },
+    {
+      "id": "rom_18143a",
+      "translation": "{white}Come on! We have to get out!{end}"
+    },
+    {
+      "id": "rom_181464",
+      "translation": "{white}H-h-h-hurry! Let's escape!{end}"
+    },
+    {
+      "id": "rom_181490",
+      "translation": "{white}Reina! We have to get out of here!{end}"
+    },
+    {
+      "id": "rom_1814c0",
+      "translation": "{white}Hey, hurry! We've got to escape!{end}"
+    },
+    {
+      "id": "rom_1814ec",
+      "translation": "{white}Come on! Let's get out of here!{end}"
+    },
+    {
+      "id": "rom_181512",
+      "translation": "{white}Quickly! We have to get out!{end}"
+    },
+    {
+      "id": "rom_181542",
+      "translation": "What a relief!{end}"
+    },
+    {
+      "id": "rom_18155a",
+      "translation": "What... happened to me?{end}"
+    },
+    {
+      "id": "rom_18157a",
+      "translation": "Nngh!{end}"
+    },
+    {
+      "id": "rom_18158a",
+      "translation": "Brother! Are you all right?!{end}"
+    },
+    {
+      "id": "rom_181fb2",
+      "translation": "{white}Whaaat?!{end}"
+    },
+    {
+      "id": "rom_181fc0",
+      "translation": "{white}Whaaat?!{end}"
+    },
+    {
+      "id": "rom_181fd2",
+      "translation": "deserves a punishment!{end}"
+    },
+    {
+      "id": "rom_181ff2",
+      "translation": "You peeping Toms{next}"
+    },
+    {
+      "id": "rom_18200e",
+      "translation": "{white}W-w-sorry!{end}"
+    },
+    {
+      "id": "rom_182024",
+      "translation": "{white}I'm sorry!{end}"
+    },
+    {
+      "id": "rom_18203a",
+      "translation": "Eeeek!{end}"
+    },
+    {
+      "id": "rom_18204a",
+      "translation": "{white}Oh! Shizuka!{end}"
+    },
+    {
+      "id": "rom_182068",
+      "translation": "{white}Oh! It's Shizuka!{end}"
+    },
+    {
+      "id": "rom_182ff2",
+      "translation": "will fight you!{end}"
+    },
+    {
+      "id": "rom_18300a",
+      "translation": "The robot I made{next}"
+    },
+    {
+      "id": "rom_18302a",
+      "translation": "So, you're here!{next}"
+    },
+    {
+      "id": "rom_183052",
+      "translation": "{white}Oh, Suneo!{end}"
+    },
+    {
+      "id": "rom_18306c",
+      "translation": "{white}Oh, Suneo!{end}"
+    },
+    {
+      "id": "rom_183082",
+      "translation": "{white}Oh, Suneo!{end}"
+    },
+    {
+      "id": "rom_183bb2",
+      "translation": "{white}Aaah!{end}"
+    },
+    {
+      "id": "rom_183bc0",
+      "translation": "{white}Waaah!{end}"
+    },
+    {
+      "id": "rom_183bd0",
+      "translation": "{white}Eeeek!{end}"
+    },
+    {
+      "id": "rom_183be0",
+      "translation": "{white}Aaah!{end}"
+    },
+    {
+      "id": "rom_183bf2",
+      "translation": "This guy!{end}"
+    },
+    {
+      "id": "rom_183c06",
+      "translation": "Introducing...{end}"
+    },
+    {
+      "id": "rom_183c1e",
+      "translation": "my very own partner!{next}"
+    },
+    {
+      "id": "rom_183c46",
+      "translation": "Welcome to my recital!{end}"
+    },
+    {
+      "id": "rom_183c76",
+      "translation": "{white}Ugh... G-Gian!{end}"
+    },
+    {
+      "id": "rom_183c96",
+      "translation": "{white}Waaah! G-Giaaan!{end}"
+    },
+    {
+      "id": "rom_183cba",
+      "translation": "{white}Eek! Takeshi!{end}"
+    },
+    {
+      "id": "rom_183cd6",
+      "translation": "{white}Aaah! G-Giaaan!{end}"
+    },
+    {
+      "id": "rom_183cfe",
+      "translation": "I'm Gian! The king of the kids!{end}"
+    },
+    {
+      "id": "rom_1846f2",
+      "translation": "Go! Dorayaki Cannon!{end}"
+    },
+    {
+      "id": "rom_184712",
+      "translation": "{white}Oh, that's not Doraemon!{end}"
+    },
+    {
+      "id": "rom_184732",
+      "translation": "{white}Oh, that's not Doraemon!{end}"
+    },
+    {
+      "id": "rom_184754",
+      "translation": "{white}Oh! A fake Doraemon!{end}"
+    },
+    {
+      "id": "rom_184776",
+      "translation": "{white}So you're a fake!{end}"
+    },
+    {
+      "id": "rom_18479a",
+      "translation": "Unused line{end}"
+    },
+    {
+      "id": "rom_1847b2",
+      "translation": "You're here! I'll show you my power!{end}"
+    },
+    {
+      "id": "rom_1847de",
+      "translation": "Guhuhuhu...{next}"
+    },
+    {
+      "id": "rom_1847fe",
+      "translation": "{white}Oh, Doraemon!{end}"
+    },
+    {
+      "id": "rom_184818",
+      "translation": "{white}Oh, Doraemon!{end}"
+    },
+    {
+      "id": "rom_184832",
+      "translation": "{white}Oh! It's Doraemon!{end}"
+    },
+    {
+      "id": "rom_18484e",
+      "translation": "{white}Hey, Doraemon!{end}"
+    },
+    {
+      "id": "rom_184ff2",
+      "translation": "Come on! Let's fight!!{end}"
+    },
+    {
+      "id": "rom_18500e",
+      "translation": "What are you saying?!{next}"
+    },
+    {
+      "id": "rom_18502e",
+      "translation": "{white}Reina is here to see you!{end}"
+    },
+    {
+      "id": "rom_185054",
+      "translation": "{white}Reina has come to take you home!{end}"
+    },
+    {
+      "id": "rom_18507e",
+      "translation": "{white}Reina has come to take you home!{end}"
+    },
+    {
+      "id": "rom_1850a6",
+      "translation": "{white}Reina is here to see you!{end}"
+    },
+    {
+      "id": "rom_1850ce",
+      "translation": "{white}Reina has come to take you home!{end}"
+    },
+    {
+      "id": "rom_1850f8",
+      "translation": "{white}Reina has come to take you home!{end}"
+    },
+    {
+      "id": "rom_185122",
+      "translation": "{white}Are you Nobil?!{next}"
+    },
+    {
+      "id": "rom_185148",
+      "translation": "{white}You... Are you Nobil?!{next}"
+    },
+    {
+      "id": "rom_18516c",
+      "translation": "{white}Y-you must be Nobil?!{next}"
+    },
+    {
+      "id": "rom_185194",
+      "translation": "{white}You're Nobil, aren't you?!{next}"
+    },
+    {
+      "id": "rom_1851b8",
+      "translation": "{white}Hey! Are you Nobil?!{next}"
+    },
+    {
+      "id": "rom_1851da",
+      "translation": "{white}Hey, you're Nobil, aren't you?!{next}"
+    },
+    {
+      "id": "rom_185206",
+      "translation": "I'll defeat every last one of you!{end}"
+    },
+    {
+      "id": "rom_185232",
+      "translation": "Here at last!{next}"
+    },
+    {
+      "id": "rom_185742",
+      "translation": "Shizuka rescued!"
+    },
+    {
+      "id": "rom_185ca2",
+      "translation": "Suneo rescued!"
+    },
+    {
+      "id": "rom_186492",
+      "translation": "Gian rescued!"
+    },
+    {
+      "id": "rom_186df2",
+      "translation": "Doraemon rescued!{end}"
+    },
+    {
+      "id": "rom_18ac62",
+      "translation": "Doraemooon!{end}"
+    },
+    {
+      "id": "rom_18ac76",
+      "translation": "We'll hit that planet!{end}"
+    },
+    {
+      "id": "rom_18ac96",
+      "translation": "Oh, no!{next}"
+    },
+    {
+      "id": "rom_18acaa",
+      "translation": "W-w-w-waaaah!{end}"
+    },
+    {
+      "id": "rom_18acc2",
+      "translation": "Waaah!{end}"
+    },
+    {
+      "id": "rom_18acd2",
+      "translation": "Let's join them!{end}"
+    },
+    {
+      "id": "rom_18acea",
+      "translation": "I saw it happen!{end}"
+    },
+    {
+      "id": "rom_18ad06",
+      "translation": "It split into three in the sky!{next}"
+    },
+    {
+      "id": "rom_18ad2e",
+      "translation": "It looks like some kind of emblem...{end}"
+    },
+    {
+      "id": "rom_18ad5a",
+      "translation": "I found one.{end}"
+    },
+    {
+      "id": "rom_18ad6e",
+      "translation": "Near my house, too.{next}"
+    },
+    {
+      "id": "rom_18ad8e",
+      "translation": "from the sky!{end}"
+    },
+    {
+      "id": "rom_18ada2",
+      "translation": "Look, look! This thing fell{next}"
+    },
+    {
+      "id": "rom_18adce",
+      "translation": "Suneo! Gian!{end}"
+    },
+    {
+      "id": "rom_18adea",
+      "translation": "Hey, Nobita!{end}"
+    },
+    {
+      "id": "rom_18ae02",
+      "translation": "Unused line{end}"
+    },
+    {
+      "id": "rom_18ae1a",
+      "translation": "A piece of the meteorite?{end}"
+    },
+    {
+      "id": "rom_18ae3a",
+      "translation": "Oh, that must be...{next}"
+    },
+    {
+      "id": "rom_18ae56",
+      "translation": "Hey, look at this...{end}"
+    },
+    {
+      "id": "rom_18ae72",
+      "translation": "Oh, hello, Nobita.{next}"
+    },
+    {
+      "id": "rom_18ae92",
+      "translation": "Shizukaaa!{end}"
+    },
+    {
+      "id": "rom_18b052",
+      "translation": "Oh, you're...{end}"
+    },
+    {
+      "id": "rom_18bd82",
+      "translation": "Above Mount Gurun{end}"
+    },
+    {
+      "id": "rom_0c9ef6",
+      "translation": "{white} {wait}{end}"
+    },
+    {
+      "id": "rom_0ccdaa",
+      "translation": "{white} {next}"
+    },
+    {
+      "id": "rom_14f862",
+      "translation": "{white} {wait}{end}"
+    },
+    {
+      "id": "rom_14bcee",
+      "translation": "{white} {wait}{end}"
+    },
+    {
+      "id": "rom_140e22",
+      "translation": "{white} {wait}{end}"
+    },
+    {
+      "id": "rom_15d3e6",
+      "translation": "{white} {wait}{end}"
+    },
+    {
+      "id": "rom_15d41e",
+      "translation": "{white} {next}"
+    },
+    {
+      "id": "rom_1683c2",
+      "translation": "I wish he would hurry back!{end}"
+    }
+  ]
+}

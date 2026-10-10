@@ -1,6 +1,7 @@
 /build-*/
 /local/
 /research/private/
+/assets/localization/*_source.json
 __pycache__/
 *.pyc
 *.z64

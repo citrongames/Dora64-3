@@ -1,0 +1,3025 @@
+{
+  "format_version": 1,
+  "entries": [
+    {
+      "id": "rom_06d034",
+      "translation": "Nobita's Town"
+    },
+    {
+      "id": "rom_06d0cc",
+      "translation": "Kareka Forest"
+    },
+    {
+      "id": "rom_06d164",
+      "translation": "Domero Cave"
+    },
+    {
+      "id": "rom_06d1fc",
+      "translation": "Mount Gurun"
+    },
+    {
+      "id": "rom_06d294",
+      "translation": "Lake Dezon"
+    },
+    {
+      "id": "rom_06d32c",
+      "translation": "Pepin Town"
+    },
+    {
+      "id": "rom_06d3c4",
+      "translation": "Maril Tower"
+    },
+    {
+      "id": "rom_06d45c",
+      "translation": "Undercity 1"
+    },
+    {
+      "id": "rom_06d4f4",
+      "translation": "Zaraha Desert"
+    },
+    {
+      "id": "rom_06d58c",
+      "translation": "Faban Cave"
+    },
+    {
+      "id": "rom_06d624",
+      "translation": "Dez Fun Park"
+    },
+    {
+      "id": "rom_06d6bc",
+      "translation": "Minic Town"
+    },
+    {
+      "id": "rom_06d754",
+      "translation": "Metaldo Tower"
+    },
+    {
+      "id": "rom_06d7ec",
+      "translation": "Undercity 2"
+    },
+    {
+      "id": "rom_06d884",
+      "translation": "Lake Rix"
+    },
+    {
+      "id": "rom_06d91c",
+      "translation": "Kiraf Forest"
+    },
+    {
+      "id": "rom_06d9b4",
+      "translation": "Posedo Sea"
+    },
+    {
+      "id": "rom_06da4c",
+      "translation": "Dragonian Town"
+    },
+    {
+      "id": "rom_06dae4",
+      "translation": "Garock Tower"
+    },
+    {
+      "id": "rom_06db7c",
+      "translation": "Latena Cave"
+    },
+    {
+      "id": "rom_06dc14",
+      "translation": "Mount Kogol"
+    },
+    {
+      "id": "rom_06dcac",
+      "translation": "Popika Town"
+    },
+    {
+      "id": "rom_06dd44",
+      "translation": "Mire Tower"
+    },
+    {
+      "id": "rom_06dddc",
+      "translation": "Bagul Station"
+    },
+    {
+      "id": "rom_06f7c8",
+      "translation": " "
+    },
+    {
+      "id": "rom_06f7f0",
+      "translation": "To enter Maril Tower,"
+    },
+    {
+      "id": "rom_06f818",
+      "translation": "you need four Key Crystals."
+    },
+    {
+      "id": "rom_06f840",
+      "translation": "To enter Metaldo Tower,"
+    },
+    {
+      "id": "rom_06f868",
+      "translation": "destroy all three"
+    },
+    {
+      "id": "rom_06f890",
+      "translation": "shield generators."
+    },
+    {
+      "id": "rom_06f8b8",
+      "translation": "Garock Tower is protected"
+    },
+    {
+      "id": "rom_06f8e0",
+      "translation": "by a strong barrier."
+    },
+    {
+      "id": "rom_06f908",
+      "translation": "Destroy it to get inside."
+    },
+    {
+      "id": "rom_06f930",
+      "translation": "To enter Mire Tower,"
+    },
+    {
+      "id": "rom_06f958",
+      "translation": "you need two Mirror Shards."
+    },
+    {
+      "id": "rom_06f980",
+      "translation": "To fight Emperor Bagul,"
+    },
+    {
+      "id": "rom_06f9a8",
+      "translation": "you need the Hyper Air Cannon."
+    },
+    {
+      "id": "rom_06f9d0",
+      "translation": "           Design: Dr. Ka"
+    },
+    {
+      "id": "rom_06f9f8",
+      "translation": "           Built by: Dr. Tsu"
+    },
+    {
+      "id": "rom_06fa30",
+      "translation": "Quit the game?"
+    },
+    {
+      "id": "rom_06fa48",
+      "translation": "    Yes       No"
+    },
+    {
+      "id": "rom_06fa60",
+      "translation": "Save progress?"
+    },
+    {
+      "id": "rom_06fc54",
+      "translation": "Create a save file."
+    },
+    {
+      "id": "rom_06fc70",
+      "translation": "Choose a save file."
+    },
+    {
+      "id": "rom_06fc8c",
+      "translation": "Choose the difficulty."
+    },
+    {
+      "id": "rom_06fcac",
+      "translation": "        Easy              Hard"
+    },
+    {
+      "id": "rom_06fcd8",
+      "translation": "Which mode will you play?"
+    },
+    {
+      "id": "rom_06fcf8",
+      "translation": "        Story             Game Land"
+    },
+    {
+      "id": "rom_06fd20",
+      "translation": "Which file will you copy?"
+    },
+    {
+      "id": "rom_06fd40",
+      "translation": "Copy to which slot?"
+    },
+    {
+      "id": "rom_06fd58",
+      "translation": "Choose a file to erase."
+    },
+    {
+      "id": "rom_06fd80",
+      "translation": "Copy this file?"
+    },
+    {
+      "id": "rom_06fd9c",
+      "translation": "        Yes               No"
+    },
+    {
+      "id": "rom_06fdc0",
+      "translation": "Erase this file?"
+    },
+    {
+      "id": "rom_06fe30",
+      "translation": "No controller is connected."
+    },
+    {
+      "id": "rom_06fe54",
+      "translation": "Turn off the system,"
+    },
+    {
+      "id": "rom_06fe78",
+      "translation": "then connect a controller."
+    },
+    {
+      "id": "rom_06feb4",
+      "translation": "                    Michihiro Maeda"
+    },
+    {
+      "id": "rom_06fee4",
+      "translation": "                    Hideaki Jatani"
+    },
+    {
+      "id": "rom_06ff14",
+      "translation": "            Executive Producers"
+    },
+    {
+      "id": "rom_06ff44",
+      "translation": "                    Takehiro Horikoshi"
+    },
+    {
+      "id": "rom_06ff74",
+      "translation": "                    Akira Nakagomi"
+    },
+    {
+      "id": "rom_06ffa4",
+      "translation": "            Producers"
+    },
+    {
+      "id": "rom_06ffd4",
+      "translation": "                    Ritsuko Sakurai"
+    },
+    {
+      "id": "rom_070004",
+      "translation": "                    Shinji Oda"
+    },
+    {
+      "id": "rom_070034",
+      "translation": "            Sales"
+    },
+    {
+      "id": "rom_070064",
+      "translation": "                    Shoichi Sakemoto"
+    },
+    {
+      "id": "rom_070094",
+      "translation": "                    Akira Namiki"
+    },
+    {
+      "id": "rom_0700c4",
+      "translation": "                    Takahisa Hirano"
+    },
+    {
+      "id": "rom_0700f4",
+      "translation": "                    Junichi Suzuki"
+    },
+    {
+      "id": "rom_070124",
+      "translation": "            <EPOCH Staff>"
+    },
+    {
+      "id": "rom_070154",
+      "translation": "                    Norio Okubo"
+    },
+    {
+      "id": "rom_070184",
+      "translation": "                    Hiroyuki Arai"
+    },
+    {
+      "id": "rom_0701b4",
+      "translation": "            Supervisors"
+    },
+    {
+      "id": "rom_0701e4",
+      "translation": "                    Hidekazu Matsunouchi"
+    },
+    {
+      "id": "rom_070214",
+      "translation": "                    Hironori Tanaka"
+    },
+    {
+      "id": "rom_070244",
+      "translation": "                    Takashi Fujii"
+    },
+    {
+      "id": "rom_070274",
+      "translation": "                    Tetsuma Yoshida"
+    },
+    {
+      "id": "rom_0702a4",
+      "translation": "            Programming"
+    },
+    {
+      "id": "rom_0702d4",
+      "translation": "                    Hiroyo Yokozawa"
+    },
+    {
+      "id": "rom_070304",
+      "translation": "                    Masami Yasuraoka"
+    },
+    {
+      "id": "rom_070334",
+      "translation": "                    Miwa Murao"
+    },
+    {
+      "id": "rom_070364",
+      "translation": "                    Teiji Nagaoka"
+    },
+    {
+      "id": "rom_070394",
+      "translation": "                    Kei Tatsu"
+    },
+    {
+      "id": "rom_0703c4",
+      "translation": "                    Yusuke Kudo"
+    },
+    {
+      "id": "rom_0703f4",
+      "translation": "                    Hiroyuki Kaneda"
+    },
+    {
+      "id": "rom_070424",
+      "translation": "                    Naoko Katagi"
+    },
+    {
+      "id": "rom_070454",
+      "translation": "                    Hiroe Endo"
+    },
+    {
+      "id": "rom_070484",
+      "translation": "                    Akira Katagi"
+    },
+    {
+      "id": "rom_0704b4",
+      "translation": "            Graphics"
+    },
+    {
+      "id": "rom_0704e4",
+      "translation": "                    Katsumi Miyashita"
+    },
+    {
+      "id": "rom_070514",
+      "translation": "                    Hideyuki Kubota"
+    },
+    {
+      "id": "rom_070544",
+      "translation": "            Directors"
+    },
+    {
+      "id": "rom_070574",
+      "translation": "                    Norihiko Togashi"
+    },
+    {
+      "id": "rom_0705a4",
+      "translation": "            Sound Engineer"
+    },
+    {
+      "id": "rom_0705d4",
+      "translation": "                    Haruhiko Kuroiwa"
+    },
+    {
+      "id": "rom_070604",
+      "translation": "            Music and Arrangements"
+    },
+    {
+      "id": "rom_070634",
+      "translation": "                    Shigeaki Irie"
+    },
+    {
+      "id": "rom_070664",
+      "translation": "            Sound Producer"
+    },
+    {
+      "id": "rom_070694",
+      "translation": "                    Yoshinori Yamagishi"
+    },
+    {
+      "id": "rom_0706c4",
+      "translation": "                    Hirotaka Hoshi"
+    },
+    {
+      "id": "rom_0706f4",
+      "translation": "            Debugging"
+    },
+    {
+      "id": "rom_070724",
+      "translation": "                    Ippei Horii"
+    },
+    {
+      "id": "rom_070754",
+      "translation": "                    Takahiro Nishiyama"
+    },
+    {
+      "id": "rom_070784",
+      "translation": "                    Naoki Hirasawa"
+    },
+    {
+      "id": "rom_0707b4",
+      "translation": "            Special Thanks"
+    },
+    {
+      "id": "rom_0707e4",
+      "translation": "            <Production Staff>"
+    },
+    {
+      "id": "rom_070814",
+      "translation": "            Reina: Michiko Nomura"
+    },
+    {
+      "id": "rom_070844",
+      "translation": "            Bagul: Noriko Ohara"
+    },
+    {
+      "id": "rom_070874",
+      "translation": "            Nobiru /"
+    },
+    {
+      "id": "rom_0708a4",
+      "translation": "            Dorami: Keiko Yokozawa"
+    },
+    {
+      "id": "rom_0708d4",
+      "translation": "            Gian: Kazuya Tatekabe"
+    },
+    {
+      "id": "rom_070904",
+      "translation": "            Suneo: Kaneta Kimotsuki"
+    },
+    {
+      "id": "rom_070934",
+      "translation": "            Shizuka: Michiko Nomura"
+    },
+    {
+      "id": "rom_070964",
+      "translation": "            Nobita: Noriko Ohara"
+    },
+    {
+      "id": "rom_070994",
+      "translation": "            Doraemon: Nobuyo Oyama"
+    },
+    {
+      "id": "rom_0709c4",
+      "translation": " "
+    },
+    {
+      "id": "rom_0709f4",
+      "translation": "            <Voice Cast>"
+    },
+    {
+      "id": "rom_0ccf54",
+      "translation": "are restored."
+    },
+    {
+      "id": "rom_0ccf68",
+      "translation": "2 health points"
+    },
+    {
+      "id": "rom_0ccf84",
+      "translation": "By eating this,"
+    },
+    {
+      "id": "rom_0ccf98",
+      "translation": "all health points"
+    },
+    {
+      "id": "rom_0ccfb0",
+      "translation": "A capsule."
+    },
+    {
+      "id": "rom_0ccfc0",
+      "translation": "revives an ally"
+    },
+    {
+      "id": "rom_0ccfdc",
+      "translation": "who can no longer fight."
+    },
+    {
+      "id": "rom_0ccff8",
+      "translation": "Unlocks more minigames, too."
+    },
+    {
+      "id": "rom_0cd018",
+      "translation": "At Game Land, it"
+    },
+    {
+      "id": "rom_0cd038",
+      "translation": "ore for making things."
+    },
+    {
+      "id": "rom_0cd050",
+      "translation": "Used to make"
+    },
+    {
+      "id": "rom_0cd068",
+      "translation": "back to normal."
+    },
+    {
+      "id": "rom_0cd07c",
+      "translation": "restores objects"
+    },
+    {
+      "id": "rom_0cd094",
+      "translation": "Covered in slime? This"
+    },
+    {
+      "id": "rom_0cd0ac",
+      "translation": "favourite fruit."
+    },
+    {
+      "id": "rom_0cd0c8",
+      "translation": "A strange creature's"
+    },
+    {
+      "id": "rom_0cd0dc",
+      "translation": "A card-shaped key."
+    },
+    {
+      "id": "rom_0cd0f4",
+      "translation": "can be opened."
+    },
+    {
+      "id": "rom_0cd10c",
+      "translation": "Special room doors"
+    },
+    {
+      "id": "rom_0cd128",
+      "translation": "You need four."
+    },
+    {
+      "id": "rom_0cd140",
+      "translation": "A crystal."
+    },
+    {
+      "id": "rom_0cd150",
+      "translation": "needed to enter"
+    },
+    {
+      "id": "rom_0cd16c",
+      "translation": "<Maril Tower>"
+    },
+    {
+      "id": "rom_0cd184",
+      "translation": "a key that opens them."
+    },
+    {
+      "id": "rom_0cd1a0",
+      "translation": "Silver treasure chests:"
+    },
+    {
+      "id": "rom_0cd1bc",
+      "translation": "This is needed."
+    },
+    {
+      "id": "rom_0cd1d0",
+      "translation": "to turn its platforms,"
+    },
+    {
+      "id": "rom_0cd1ec",
+      "translation": "In <Metaldo Tower>,"
+    },
+    {
+      "id": "rom_0cd204",
+      "translation": "Gold treasure chests:"
+    },
+    {
+      "id": "rom_0cd220",
+      "translation": "a giant emblem."
+    },
+    {
+      "id": "rom_0cd23c",
+      "translation": "To revive the Genie,"
+    },
+    {
+      "id": "rom_0cd258",
+      "translation": "sealed in this ore."
+    },
+    {
+      "id": "rom_0cd26c",
+      "translation": "Incredible power lies"
+    },
+    {
+      "id": "rom_0cd284",
+      "translation": "You need two."
+    },
+    {
+      "id": "rom_0cd29c",
+      "translation": "A mirror shard."
+    },
+    {
+      "id": "rom_0cd2b0",
+      "translation": "For <Mire Tower>."
+    },
+    {
+      "id": "rom_0cd2c4",
+      "translation": "to move the giant emblem."
+    },
+    {
+      "id": "rom_0cd2e4",
+      "translation": "a magnetic field"
+    },
+    {
+      "id": "rom_0cd2fc",
+      "translation": "Generates a powerful"
+    },
+    {
+      "id": "rom_0cd314",
+      "translation": "A disk."
+    },
+    {
+      "id": "rom_0cd320",
+      "translation": "and energy data."
+    },
+    {
+      "id": "rom_0cd334",
+      "translation": "Stores blueprints"
+    },
+    {
+      "id": "rom_0cd350",
+      "translation": "An energy source."
+    },
+    {
+      "id": "rom_0cd368",
+      "translation": "the core fragment."
+    },
+    {
+      "id": "rom_0cd37c",
+      "translation": "From a broken meteor,"
+    },
+    {
+      "id": "rom_0cd394",
+      "translation": "with these shoes."
+    },
+    {
+      "id": "rom_0cd3ac",
+      "translation": "Enter a picture book"
+    },
+    {
+      "id": "rom_0cd3c8",
+      "translation": "instead of down."
+    },
+    {
+      "id": "rom_0cd3e4",
+      "translation": "so you fall upwards"
+    },
+    {
+      "id": "rom_0cd3fc",
+      "translation": "Reverse gravity"
+    },
+    {
+      "id": "rom_0cd418",
+      "translation": "on this television."
+    },
+    {
+      "id": "rom_0cd434",
+      "translation": "See past and future"
+    },
+    {
+      "id": "rom_0cd44c",
+      "translation": "evolve or go back in time."
+    },
+    {
+      "id": "rom_0cd46c",
+      "translation": "can be made to"
+    },
+    {
+      "id": "rom_0cd484",
+      "translation": "Things and creatures"
+    },
+    {
+      "id": "rom_0cd498",
+      "translation": "with ease."
+    },
+    {
+      "id": "rom_0cd4a4",
+      "translation": "Pass right through walls"
+    },
+    {
+      "id": "rom_0cd4c0",
+      "translation": "to dig a tunnel."
+    },
+    {
+      "id": "rom_0cd4d8",
+      "translation": "Just shine this light"
+    },
+    {
+      "id": "rom_0cd4f0",
+      "translation": "where left and right swap."
+    },
+    {
+      "id": "rom_0cd510",
+      "translation": "You can enter a world"
+    },
+    {
+      "id": "rom_0cd52c",
+      "translation": "and lakes."
+    },
+    {
+      "id": "rom_0cd544",
+      "translation": "A device to clean rivers"
+    },
+    {
+      "id": "rom_0cd560",
+      "translation": "you there."
+    },
+    {
+      "id": "rom_0cd56c",
+      "translation": "It takes you there"
+    },
+    {
+      "id": "rom_0cd584",
+      "translation": "or a space station."
+    },
+    {
+      "id": "rom_0cd59c",
+      "translation": "Find a habitable planet"
+    },
+    {
+      "id": "rom_0cd5b8",
+      "translation": "lets you enter."
+    },
+    {
+      "id": "rom_0cd5cc",
+      "translation": "Anywhere at all, this card"
+    },
+    {
+      "id": "rom_0cd5e8",
+      "translation": "are put on at once."
+    },
+    {
+      "id": "rom_0cd600",
+      "translation": "Point at someone: clothes"
+    },
+    {
+      "id": "rom_0cd61c",
+      "translation": "Gas that solidifies clouds."
+    },
+    {
+      "id": "rom_0cd63c",
+      "translation": "rain falls."
+    },
+    {
+      "id": "rom_0cd64c",
+      "translation": "A rain cloud appears and"
+    },
+    {
+      "id": "rom_0cd668",
+      "translation": "Open the bucket's lid."
+    },
+    {
+      "id": "rom_0cd684",
+      "translation": "Genie's spirit, too."
+    },
+    {
+      "id": "rom_0cd6a0",
+      "translation": "It can call the fabled"
+    },
+    {
+      "id": "rom_0cd6b8",
+      "translation": "and talk."
+    },
+    {
+      "id": "rom_0cd6c8",
+      "translation": "Call their spirits out"
+    },
+    {
+      "id": "rom_0cd6e4",
+      "translation": "Mountains, forests and more:"
+    },
+    {
+      "id": "rom_0cd700",
+      "translation": "at once."
+    },
+    {
+      "id": "rom_0cd70c",
+      "translation": "a giant tree grows"
+    },
+    {
+      "id": "rom_0cd724",
+      "translation": "Plant this bean in soil:"
+    },
+    {
+      "id": "rom_0cd740",
+      "translation": "tell the truth."
+    },
+    {
+      "id": "rom_0cd754",
+      "translation": "you can't help but"
+    },
+    {
+      "id": "rom_0cd768",
+      "translation": "These waves make"
+    },
+    {
+      "id": "rom_0cd780",
+      "translation": "sun you can bring out."
+    },
+    {
+      "id": "rom_0cd7a0",
+      "translation": "Whenever needed, a little"
+    },
+    {
+      "id": "rom_0cd7bc",
+      "translation": "shrinks it down."
+    },
+    {
+      "id": "rom_0cd7d0",
+      "translation": "Point at anything: it"
+    },
+    {
+      "id": "rom_0cd7ec",
+      "translation": "the winds grow calm."
+    },
+    {
+      "id": "rom_0cd80c",
+      "translation": "a tiny typhoon eye:"
+    },
+    {
+      "id": "rom_0cd824",
+      "translation": "Wear this to create"
+    },
+    {
+      "id": "rom_0cd840",
+      "translation": "it finds it for you."
+    },
+    {
+      "id": "rom_0cd854",
+      "translation": "treasure hidden nearby,"
+    },
+    {
+      "id": "rom_0cd86c",
+      "translation": "If there is any"
+    },
+    {
+      "id": "rom_0cd888",
+      "translation": "can blossom."
+    },
+    {
+      "id": "rom_0cd8a4",
+      "translation": "and any tree"
+    },
+    {
+      "id": "rom_0cd8b8",
+      "translation": "Scatter these ashes"
+    },
+    {
+      "id": "rom_0cd8d4",
+      "translation": "it lights up."
+    },
+    {
+      "id": "rom_0cd8ec",
+      "translation": "Scatter this moss around:"
+    },
+    {
+      "id": "rom_0cd908",
+      "translation": "made into a boat."
+    },
+    {
+      "id": "rom_0cd91c",
+      "translation": "a huge sheet of paper"
+    },
+    {
+      "id": "rom_0cd934",
+      "translation": "Water can't tear it:"
+    },
+    {
+      "id": "rom_0cd950",
+      "translation": "good advice."
+    },
+    {
+      "id": "rom_0cd960",
+      "translation": "Ask, and it gives"
+    },
+    {
+      "id": "rom_0cd97c",
+      "translation": "Put it on your finger."
+    },
+    {
+      "id": "rom_0cd998",
+      "translation": "back into shape."
+    },
+    {
+      "id": "rom_0cd9ac",
+      "translation": "Gets broken machines"
+    },
+    {
+      "id": "rom_0cd9c4",
+      "translation": "creates a map."
+    },
+    {
+      "id": "rom_0cd9d8",
+      "translation": "The smoke inside"
+    },
+    {
+      "id": "rom_0cd9f0",
+      "translation": "Release smoke indoors."
+    },
+    {
+      "id": "rom_0cda08",
+      "translation": "will leave you."
+    },
+    {
+      "id": "rom_0cda1c",
+      "translation": "and a haunting ghost"
+    },
+    {
+      "id": "rom_0cda38",
+      "translation": "Stick it on your belly,"
+    },
+    {
+      "id": "rom_0cda54",
+      "translation": "boost."
+    },
+    {
+      "id": "rom_0cda60",
+      "translation": "for a performance"
+    },
+    {
+      "id": "rom_0cda7c",
+      "translation": "Pour this on machines"
+    },
+    {
+      "id": "rom_0cda98",
+      "translation": "touches listeners' hearts."
+    },
+    {
+      "id": "rom_0cdab8",
+      "translation": "Singing into this mic"
+    },
+    {
+      "id": "rom_0cdad0",
+      "translation": "to make a typhoon."
+    },
+    {
+      "id": "rom_0cdae8",
+      "translation": "a low-pressure area"
+    },
+    {
+      "id": "rom_0cdafc",
+      "translation": "This device creates"
+    },
+    {
+      "id": "rom_0cdb14",
+      "translation": "out by itself."
+    },
+    {
+      "id": "rom_0cdb28",
+      "translation": "take its contents"
+    },
+    {
+      "id": "rom_0cdb40",
+      "translation": "Spray an object and"
+    },
+    {
+      "id": "rom_0cdb58",
+      "translation": "will obey you."
+    },
+    {
+      "id": "rom_0cdb70",
+      "translation": "that eats one of these"
+    },
+    {
+      "id": "rom_0cdb8c",
+      "translation": "Any kind of animal"
+    },
+    {
+      "id": "rom_0cdba4",
+      "translation": "to blow out snow."
+    },
+    {
+      "id": "rom_0cdbb8",
+      "translation": "Press the switch"
+    },
+    {
+      "id": "rom_0cdbd4",
+      "translation": "feel cool."
+    },
+    {
+      "id": "rom_0cdbf0",
+      "translation": "In hot weather, you'll"
+    },
+    {
+      "id": "rom_0cdc0c",
+      "translation": "Apply this liquid."
+    },
+    {
+      "id": "rom_0cdc24",
+      "translation": "breathe underwater"
+    },
+    {
+      "id": "rom_0cdc3c",
+      "translation": "On your nose, you"
+    },
+    {
+      "id": "rom_0cdc50",
+      "translation": "even in the deepest waters."
+    },
+    {
+      "id": "rom_0cdc70",
+      "translation": "This cream resists pressure"
+    },
+    {
+      "id": "rom_0cdc8c",
+      "translation": "where air is calm."
+    },
+    {
+      "id": "rom_0cdca0",
+      "translation": "it can only be used"
+    },
+    {
+      "id": "rom_0cdcbc",
+      "translation": "On planet Dact,"
+    },
+    {
+      "id": "rom_0cdcd8",
+      "translation": "lets you fly with ease."
+    },
+    {
+      "id": "rom_0cdcf4",
+      "translation": "Wear it on your head:"
+    },
+    {
+      "id": "rom_0cdd08",
+      "translation": "comfortably."
+    },
+    {
+      "id": "rom_0cdd18",
+      "translation": "Live in any environment"
+    },
+    {
+      "id": "rom_0cdd34",
+      "translation": "into anything you like."
+    },
+    {
+      "id": "rom_0cdd4c",
+      "translation": "Wear this to transform"
+    },
+    {
+      "id": "rom_0cdd68",
+      "translation": "speak any unknown tongue."
+    },
+    {
+      "id": "rom_0cdd84",
+      "translation": "Eat this, and you can"
+    },
+    {
+      "id": "rom_0cdda0",
+      "translation": "by this machine."
+    },
+    {
+      "id": "rom_0cddb4",
+      "translation": "Travel to past or future"
+    },
+    {
+      "id": "rom_0cddd0",
+      "translation": "connects to it."
+    },
+    {
+      "id": "rom_0cdde4",
+      "translation": "only the Gyro Capsule"
+    },
+    {
+      "id": "rom_0cddfc",
+      "translation": "On planet Dact,"
+    },
+    {
+      "id": "rom_0cde0c",
+      "translation": "space-time is distorted."
+    },
+    {
+      "id": "rom_0cde28",
+      "translation": "Around planet Dact,"
+    },
+    {
+      "id": "rom_0cde44",
+      "translation": "with this door."
+    },
+    {
+      "id": "rom_0cde60",
+      "translation": "Go anywhere you want"
+    },
+    {
+      "id": "rom_0cde78",
+      "translation": "of flowers."
+    },
+    {
+      "id": "rom_0cde88",
+      "translation": "Gas that makes a garden"
+    },
+    {
+      "id": "rom_0cdea0",
+      "translation": "and travel in disguise."
+    },
+    {
+      "id": "rom_0cdec0",
+      "translation": "with rocks or other things"
+    },
+    {
+      "id": "rom_0cdedc",
+      "translation": "Cover the capsule"
+    },
+    {
+      "id": "rom_0cdef8",
+      "translation": "Test"
+    },
+    {
+      "id": "rom_0cdf00",
+      "translation": "Secret Item"
+    },
+    {
+      "id": "rom_0cdf10",
+      "translation": "Gyro Capsule"
+    },
+    {
+      "id": "rom_0cdf24",
+      "translation": "Flower Garden Gas"
+    },
+    {
+      "id": "rom_0cdf34",
+      "translation": "Anywhere Door"
+    },
+    {
+      "id": "rom_0cdf44",
+      "translation": "Time Machine"
+    },
+    {
+      "id": "rom_0cdf54",
+      "translation": "Translation Konjac"
+    },
+    {
+      "id": "rom_0cdf68",
+      "translation": "Transformation Plate"
+    },
+    {
+      "id": "rom_0cdf7c",
+      "translation": "Adaptation Lamp"
+    },
+    {
+      "id": "rom_0cdf8c",
+      "translation": "Take-copter"
+    },
+    {
+      "id": "rom_0cdf9c",
+      "translation": "Deep-Sea Cream"
+    },
+    {
+      "id": "rom_0cdfb0",
+      "translation": "Gill Tubes"
+    },
+    {
+      "id": "rom_0cdfc0",
+      "translation": "Eskimo Extract"
+    },
+    {
+      "id": "rom_0cdfd4",
+      "translation": "Snow Maker"
+    },
+    {
+      "id": "rom_0cdfe4",
+      "translation": "Momotaro's Kibi Dango"
+    },
+    {
+      "id": "rom_0ce004",
+      "translation": "Contents Popper"
+    },
+    {
+      "id": "rom_0ce010",
+      "translation": "Typhoon Generator"
+    },
+    {
+      "id": "rom_0ce024",
+      "translation": "Heartfelt Microphone"
+    },
+    {
+      "id": "rom_0ce034",
+      "translation": "Upgrade Liquid"
+    },
+    {
+      "id": "rom_0ce048",
+      "translation": "Good-Luck Sticker"
+    },
+    {
+      "id": "rom_0ce058",
+      "translation": "Maze Mapping Ball"
+    },
+    {
+      "id": "rom_0ce06c",
+      "translation": "Mecha First-Aid Kit"
+    },
+    {
+      "id": "rom_0ce084",
+      "translation": "Guiding Angel"
+    },
+    {
+      "id": "rom_0ce098",
+      "translation": "Waterproof Origami"
+    },
+    {
+      "id": "rom_0ce0ac",
+      "translation": "Glowing Moss"
+    },
+    {
+      "id": "rom_0ce0b8",
+      "translation": "Blossom Ashes"
+    },
+    {
+      "id": "rom_0ce0c8",
+      "translation": "Treasure Finder"
+    },
+    {
+      "id": "rom_0ce0d8",
+      "translation": "Typhoon Eye"
+    },
+    {
+      "id": "rom_0ce0ec",
+      "translation": "Small Light"
+    },
+    {
+      "id": "rom_0ce0fc",
+      "translation": "Artificial Sun"
+    },
+    {
+      "id": "rom_0ce110",
+      "translation": "Truth Waves"
+    },
+    {
+      "id": "rom_0ce124",
+      "translation": "Jack's Bean"
+    },
+    {
+      "id": "rom_0ce134",
+      "translation": "Spirit Caller"
+    },
+    {
+      "id": "rom_0ce148",
+      "translation": "Cloud Bucket"
+    },
+    {
+      "id": "rom_0ce158",
+      "translation": "Cloud-Hardening Gas"
+    },
+    {
+      "id": "rom_0ce168",
+      "translation": "Dress-Up Camera"
+    },
+    {
+      "id": "rom_0ce178",
+      "translation": "Almighty Pass"
+    },
+    {
+      "id": "rom_0ce18c",
+      "translation": "Space Lifeboat"
+    },
+    {
+      "id": "rom_0ce1a8",
+      "translation": "Water-Cleaning Ship"
+    },
+    {
+      "id": "rom_0ce1c4",
+      "translation": "Entering Mirror"
+    },
+    {
+      "id": "rom_0ce1d8",
+      "translation": "Tunnel Light"
+    },
+    {
+      "id": "rom_0ce1e8",
+      "translation": "Pass-Through Hoop"
+    },
+    {
+      "id": "rom_0ce1fc",
+      "translation": "Time Cloth"
+    },
+    {
+      "id": "rom_0ce20c",
+      "translation": "Time TV"
+    },
+    {
+      "id": "rom_0ce21c",
+      "translation": "Reverse Gravity Belt"
+    },
+    {
+      "id": "rom_0ce238",
+      "translation": "Picture Book Shoes"
+    },
+    {
+      "id": "rom_0ce250",
+      "translation": "Star Fragment"
+    },
+    {
+      "id": "rom_0ce260",
+      "translation": "Data Disk"
+    },
+    {
+      "id": "rom_0ce270",
+      "translation": "Emblem Remote Control"
+    },
+    {
+      "id": "rom_0ce28c",
+      "translation": "Mire Mirror"
+    },
+    {
+      "id": "rom_0ce29c",
+      "translation": "Power Stone"
+    },
+    {
+      "id": "rom_0ce2ac",
+      "translation": "Genie's Emblem"
+    },
+    {
+      "id": "rom_0ce2c0",
+      "translation": "Gold Key"
+    },
+    {
+      "id": "rom_0ce2cc",
+      "translation": "Red Crystal"
+    },
+    {
+      "id": "rom_0ce2e0",
+      "translation": "Green Crystal"
+    },
+    {
+      "id": "rom_0ce2f4",
+      "translation": "Silver Key"
+    },
+    {
+      "id": "rom_0ce300",
+      "translation": "Key Crystal"
+    },
+    {
+      "id": "rom_0ce310",
+      "translation": "Key Card"
+    },
+    {
+      "id": "rom_0ce31c",
+      "translation": "Mysterious Fruit"
+    },
+    {
+      "id": "rom_0ce328",
+      "translation": "Gas Spray"
+    },
+    {
+      "id": "rom_0ce338",
+      "translation": "Energy Stone"
+    },
+    {
+      "id": "rom_0ce34c",
+      "translation": "Revival Capsule"
+    },
+    {
+      "id": "rom_0ce360",
+      "translation": "Full Recovery Fruit"
+    },
+    {
+      "id": "rom_0ce374",
+      "translation": "Recovery Fruit"
+    },
+    {
+      "id": "rom_0ce3a8",
+      "translation": "Use it on whom?"
+    },
+    {
+      "id": "rom_0ce3c0",
+      "translation": "Revive them first."
+    },
+    {
+      "id": "rom_0ce3d8",
+      "translation": "Cannot use."
+    },
+    {
+      "id": "rom_0ce3e8",
+      "translation": "Can't use it here."
+    },
+    {
+      "id": "rom_0ce400",
+      "translation": "Are you sure?"
+    },
+    {
+      "id": "rom_0ce41c",
+      "translation": "No"
+    },
+    {
+      "id": "rom_0ce448",
+      "translation": "Hyper Air Cannon"
+    },
+    {
+      "id": "rom_0ce45c",
+      "translation": "Extending Hand"
+    },
+    {
+      "id": "rom_0ce46c",
+      "translation": "Super Gloves"
+    },
+    {
+      "id": "rom_0ce480",
+      "translation": "Champion Gloves"
+    },
+    {
+      "id": "rom_0ce498",
+      "translation": "Water Cannon"
+    },
+    {
+      "id": "rom_0ce4a8",
+      "translation": "Water Gun"
+    },
+    {
+      "id": "rom_0ce4b8",
+      "translation": "Air Cannon"
+    },
+    {
+      "id": "rom_0ce4c4",
+      "translation": "Shock Gun"
+    },
+    {
+      "id": "rom_0ce4d4",
+      "translation": "Shockwave Pistol"
+    },
+    {
+      "id": "rom_0ce4ec",
+      "translation": "Wind God Fan"
+    },
+    {
+      "id": "rom_0ce508",
+      "translation": "Firecracker Paper"
+    },
+    {
+      "id": "rom_0ce518",
+      "translation": "Sure-Hit Gun"
+    },
+    {
+      "id": "rom_0ce528",
+      "translation": "Flashbang Grenade"
+    },
+    {
+      "id": "rom_0ce540",
+      "translation": "Automatic Fireworks"
+    },
+    {
+      "id": "rom_0ce558",
+      "translation": "Unequipped"
+    },
+    {
+      "id": "rom_0ce564",
+      "translation": "and bursts."
+    },
+    {
+      "id": "rom_0ce578",
+      "translation": "it flies into the sky"
+    },
+    {
+      "id": "rom_0ce594",
+      "translation": "Roll it on the ground:"
+    },
+    {
+      "id": "rom_0ce5ac",
+      "translation": "to scare enemies."
+    },
+    {
+      "id": "rom_0ce5c0",
+      "translation": "a loud bang and a flash"
+    },
+    {
+      "id": "rom_0ce5dc",
+      "translation": "Throw this bomb to make"
+    },
+    {
+      "id": "rom_0ce5f8",
+      "translation": "never miss."
+    },
+    {
+      "id": "rom_0ce608",
+      "translation": "Aim and fire: you"
+    },
+    {
+      "id": "rom_0ce624",
+      "translation": "The bullets have eyes."
+    },
+    {
+      "id": "rom_0ce63c",
+      "translation": "the blast grows"
+    },
+    {
+      "id": "rom_0ce654",
+      "translation": "Hold down the button:"
+    },
+    {
+      "id": "rom_0ce670",
+      "translation": "throw it as a firecracker."
+    },
+    {
+      "id": "rom_0ce68c",
+      "translation": "Tear off this paper and"
+    },
+    {
+      "id": "rom_0ce6a4",
+      "translation": "as well."
+    },
+    {
+      "id": "rom_0ce6b0",
+      "translation": "can sometimes work"
+    },
+    {
+      "id": "rom_0ce6c8",
+      "translation": "Against traps, it"
+    },
+    {
+      "id": "rom_0ce6e0",
+      "translation": "can be generated."
+    },
+    {
+      "id": "rom_0ce6fc",
+      "translation": "A powerful wind"
+    },
+    {
+      "id": "rom_0ce714",
+      "translation": "Rapid fire is possible."
+    },
+    {
+      "id": "rom_0ce730",
+      "translation": "instead of bullets."
+    },
+    {
+      "id": "rom_0ce74c",
+      "translation": "A pistol firing air blasts"
+    },
+    {
+      "id": "rom_0ce768",
+      "translation": "larger."
+    },
+    {
+      "id": "rom_0ce77c",
+      "translation": "The electric blast grows"
+    },
+    {
+      "id": "rom_0ce794",
+      "translation": "at foes."
+    },
+    {
+      "id": "rom_0ce7a0",
+      "translation": "balls of electricity"
+    },
+    {
+      "id": "rom_0ce7b8",
+      "translation": "Fires shocking"
+    },
+    {
+      "id": "rom_0ce7d0",
+      "translation": "The air blast grows"
+    },
+    {
+      "id": "rom_0ce7e8",
+      "translation": "to fire air blasts"
+    },
+    {
+      "id": "rom_0ce800",
+      "translation": "Uses air pressure"
+    },
+    {
+      "id": "rom_0ce81c",
+      "translation": "weapon."
+    },
+    {
+      "id": "rom_0ce82c",
+      "translation": "An underwater-only"
+    },
+    {
+      "id": "rom_0ce844",
+      "translation": "shock waves."
+    },
+    {
+      "id": "rom_0ce860",
+      "translation": "Powerful"
+    },
+    {
+      "id": "rom_0ce870",
+      "translation": "The water blast"
+    },
+    {
+      "id": "rom_0ce884",
+      "translation": "blasts of water"
+    },
+    {
+      "id": "rom_0ce898",
+      "translation": "Uses water pressure"
+    },
+    {
+      "id": "rom_0ce8b0",
+      "translation": "gloves."
+    },
+    {
+      "id": "rom_0ce8bc",
+      "translation": "with a single punch."
+    },
+    {
+      "id": "rom_0ce8d4",
+      "translation": "Breaks giant rocks"
+    },
+    {
+      "id": "rom_0ce8e8",
+      "translation": "gloves."
+    },
+    {
+      "id": "rom_0ce8f4",
+      "translation": "Shock-wave emitting"
+    },
+    {
+      "id": "rom_0ce908",
+      "translation": "grab distant items."
+    },
+    {
+      "id": "rom_0ce924",
+      "translation": "It can also"
+    },
+    {
+      "id": "rom_0ce938",
+      "translation": "to damage enemies."
+    },
+    {
+      "id": "rom_0ce954",
+      "translation": "The hand extends far"
+    },
+    {
+      "id": "rom_0ce970",
+      "translation": "Effective against Bagul."
+    },
+    {
+      "id": "rom_0ce98c",
+      "translation": "upgraded."
+    },
+    {
+      "id": "rom_0ce99c",
+      "translation": "An Air Cannon,"
+    },
+    {
+      "id": "rom_0ce9d8",
+      "translation": "is fast"
+    },
+    {
+      "id": "rom_0ce9e4",
+      "translation": "Swimming"
+    },
+    {
+      "id": "rom_0ce9f8",
+      "translation": "<Jump>"
+    },
+    {
+      "id": "rom_0cea08",
+      "translation": "    Normal"
+    },
+    {
+      "id": "rom_0cea18",
+      "translation": "<Movement>"
+    },
+    {
+      "id": "rom_0cea24",
+      "translation": "Great!"
+    },
+    {
+      "id": "rom_0cea30",
+      "translation": "Shooting"
+    },
+    {
+      "id": "rom_0cea3c",
+      "translation": "    High"
+    },
+    {
+      "id": "rom_0cea4c",
+      "translation": "    Fast"
+    },
+    {
+      "id": "rom_0cea64",
+      "translation": "Health"
+    },
+    {
+      "id": "rom_195640",
+      "translation": "Choose the number of players!"
+    },
+    {
+      "id": "rom_195680",
+      "translation": "Choose your character!"
+    },
+    {
+      "id": "rom_1956b0",
+      "translation": "Panel Shot 36"
+    },
+    {
+      "id": "rom_1956c4",
+      "translation": "Flashbang Battle"
+    },
+    {
+      "id": "rom_1956e0",
+      "translation": "Practice Car: Slippery Race"
+    },
+    {
+      "id": "rom_195704",
+      "translation": "Cubic Roulette"
+    },
+    {
+      "id": "rom_195720",
+      "translation": "Solid Voice Shot"
+    },
+    {
+      "id": "rom_195744",
+      "translation": "9-Puzzle Duel"
+    },
+    {
+      "id": "rom_19575c",
+      "translation": "Tricycle Plane Race"
+    },
+    {
+      "id": "rom_195774",
+      "translation": "Quick-Draw Number Shot"
+    },
+    {
+      "id": "rom_195798",
+      "translation": "Practice Car Race"
+    },
+    {
+      "id": "rom_195828",
+      "translation": "Choose a minigame!"
+    },
+    {
+      "id": "rom_19584c",
+      "translation": "To play, you need Energy Stones:"
+    },
+    {
+      "id": "rom_195870",
+      "translation": "required."
+    },
+    {
+      "id": "rom_195888",
+      "translation": "Spend the Energy Stones?"
+    },
+    {
+      "id": "rom_1958ac",
+      "translation": "                   Yes       No"
+    },
+    {
+      "id": "rom_195908",
+      "translation": "Race to the goal"
+    },
+    {
+      "id": "rom_19591c",
+      "translation": "and get there"
+    },
+    {
+      "id": "rom_195930",
+      "translation": "first!"
+    },
+    {
+      "id": "rom_19594c",
+      "translation": "Slippery! A test"
+    },
+    {
+      "id": "rom_195964",
+      "translation": "for you!"
+    },
+    {
+      "id": "rom_195984",
+      "translation": "Steer"
+    },
+    {
+      "id": "rom_195994",
+      "translation": "Gas"
+    },
+    {
+      "id": "rom_1959a0",
+      "translation": "Brake"
+    },
+    {
+      "id": "rom_1959ac",
+      "translation": "Track 1     Track 2"
+    },
+    {
+      "id": "rom_195af8",
+      "translation": "Shoot all nine"
+    },
+    {
+      "id": "rom_195b10",
+      "translation": "numbered panels"
+    },
+    {
+      "id": "rom_195b28",
+      "translation": "in ascending order."
+    },
+    {
+      "id": "rom_195b40",
+      "translation": "Be quick!"
+    },
+    {
+      "id": "rom_195b58",
+      "translation": "The first player"
+    },
+    {
+      "id": "rom_195b70",
+      "translation": "to shoot them all"
+    },
+    {
+      "id": "rom_195b88",
+      "translation": "wins."
+    },
+    {
+      "id": "rom_195ba0",
+      "translation": " "
+    },
+    {
+      "id": "rom_195bd8",
+      "translation": "Alternate the"
+    },
+    {
+      "id": "rom_195bf0",
+      "translation": "buttons to spin"
+    },
+    {
+      "id": "rom_195c08",
+      "translation": "the propeller and"
+    },
+    {
+      "id": "rom_195c20",
+      "translation": "race to the goal."
+    },
+    {
+      "id": "rom_195c38",
+      "translation": "The closer the bar"
+    },
+    {
+      "id": "rom_195c50",
+      "translation": "is to the middle,"
+    },
+    {
+      "id": "rom_195c68",
+      "translation": "the faster!"
+    },
+    {
+      "id": "rom_195c94",
+      "translation": "Before time runs out"
+    },
+    {
+      "id": "rom_195cac",
+      "translation": "arrange all nine"
+    },
+    {
+      "id": "rom_195cc4",
+      "translation": "scrambled tiles"
+    },
+    {
+      "id": "rom_195cdc",
+      "translation": "into the picture."
+    },
+    {
+      "id": "rom_195cf4",
+      "translation": "  "
+    },
+    {
+      "id": "rom_195d0c",
+      "translation": "to finish the puzzle"
+    },
+    {
+      "id": "rom_195d24",
+      "translation": "wins!"
+    },
+    {
+      "id": "rom_195d5c",
+      "translation": "Shoot the word"
+    },
+    {
+      "id": "rom_195d74",
+      "translation": "matching the food"
+    },
+    {
+      "id": "rom_195d8c",
+      "translation": "to clear it away."
+    },
+    {
+      "id": "rom_195da4",
+      "translation": "If you get it wrong,"
+    },
+    {
+      "id": "rom_195dbc",
+      "translation": "your solid voice"
+    },
+    {
+      "id": "rom_195dd4",
+      "translation": "will disappear."
+    },
+    {
+      "id": "rom_195e08",
+      "translation": "Match as many"
+    },
+    {
+      "id": "rom_195e20",
+      "translation": "panels as you can"
+    },
+    {
+      "id": "rom_195e38",
+      "translation": "to the person shown"
+    },
+    {
+      "id": "rom_195e50",
+      "translation": "in the middle."
+    },
+    {
+      "id": "rom_195e68",
+      "translation": "The player with"
+    },
+    {
+      "id": "rom_195e80",
+      "translation": "the most matches"
+    },
+    {
+      "id": "rom_195eb8",
+      "translation": "Throw Flashbang"
+    },
+    {
+      "id": "rom_195ed0",
+      "translation": "Grenades to reduce"
+    },
+    {
+      "id": "rom_195ee8",
+      "translation": "your rivals' health."
+    },
+    {
+      "id": "rom_195f00",
+      "translation": "The player with"
+    },
+    {
+      "id": "rom_195f18",
+      "translation": "the most health"
+    },
+    {
+      "id": "rom_195f30",
+      "translation": "remaining"
+    },
+    {
+      "id": "rom_195f68",
+      "translation": "Shoot panels"
+    },
+    {
+      "id": "rom_195f80",
+      "translation": "to earn points."
+    },
+    {
+      "id": "rom_195f98",
+      "translation": " "
+    },
+    {
+      "id": "rom_195fb0",
+      "translation": "The highest score"
+    },
+    {
+      "id": "rom_195fc8",
+      "translation": "wins the game."
+    },
+    {
+      "id": "rom_195fe0",
+      "translation": "Some panels take"
+    },
+    {
+      "id": "rom_195ff8",
+      "translation": "points away, so"
+    },
+    {
+      "id": "rom_196010",
+      "translation": "watch your aim!"
+    },
+    {
+      "id": "rom_196048",
+      "translation": "   Best Record"
+    },
+    {
+      "id": "rom_19605c",
+      "translation": "Move cursor"
+    },
+    {
+      "id": "rom_196074",
+      "translation": "Pedal"
+    },
+    {
+      "id": "rom_196084",
+      "translation": "Move tile"
+    },
+    {
+      "id": "rom_196094",
+      "translation": "Cancel"
+    },
+    {
+      "id": "rom_1960a0",
+      "translation": "Move"
+    },
+    {
+      "id": "rom_1960b0",
+      "translation": "Shoot dorayaki"
+    },
+    {
+      "id": "rom_1960c0",
+      "translation": "Shoot melon"
+    },
+    {
+      "id": "rom_1960d0",
+      "translation": "Shoot dango"
+    },
+    {
+      "id": "rom_1960e0",
+      "translation": "Stop spinning"
+    },
+    {
+      "id": "rom_1960f0",
+      "translation": "Throw nearby"
+    },
+    {
+      "id": "rom_196100",
+      "translation": "Throw far"
+    },
+    {
+      "id": "rom_196158",
+      "translation": "Level     Easy"
+    },
+    {
+      "id": "rom_19616c",
+      "translation": "          Hard"
+    },
+    {
+      "id": "rom_1a9d70",
+      "translation": "Melon"
+    },
+    {
+      "id": "rom_1a9d78",
+      "translation": "Dango"
+    },
+    {
+      "id": "rom_1a9d80",
+      "translation": "Dorayaki"
+    },
+    {
+      "id": "context_0c5f0c",
+      "translation": "Eating this restores 2"
+    },
+    {
+      "id": "context_0c5f10",
+      "translation": "health points."
+    },
+    {
+      "id": "context_0c5f14",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5f1c",
+      "translation": "Eating this fully"
+    },
+    {
+      "id": "context_0c5f20",
+      "translation": "restores your health."
+    },
+    {
+      "id": "context_0c5f24",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5f2c",
+      "translation": "A capsule that revives"
+    },
+    {
+      "id": "context_0c5f30",
+      "translation": "an ally who has run out"
+    },
+    {
+      "id": "context_0c5f34",
+      "translation": "of health."
+    },
+    {
+      "id": "context_0c5f3c",
+      "translation": "Ore used to make things."
+    },
+    {
+      "id": "context_0c5f40",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5f48",
+      "translation": "Also unlocks more"
+    },
+    {
+      "id": "context_0c5f4c",
+      "translation": "minigames at Game Land."
+    },
+    {
+      "id": "context_0c5f54",
+      "translation": "Restores objects that"
+    },
+    {
+      "id": "context_0c5f58",
+      "translation": "have been covered in"
+    },
+    {
+      "id": "context_0c5f5c",
+      "translation": "slime."
+    },
+    {
+      "id": "context_0c5f64",
+      "translation": "A strange creature's"
+    },
+    {
+      "id": "context_0c5f68",
+      "translation": "favourite fruit."
+    },
+    {
+      "id": "context_0c5f70",
+      "translation": "A card-shaped key that"
+    },
+    {
+      "id": "context_0c5f74",
+      "translation": "opens a special room."
+    },
+    {
+      "id": "context_0c5f78",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5f80",
+      "translation": "Crystals needed to enter"
+    },
+    {
+      "id": "context_0c5f84",
+      "translation": "Maril Tower. You need"
+    },
+    {
+      "id": "context_0c5f88",
+      "translation": "four."
+    },
+    {
+      "id": "context_0c5f8c",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5f94",
+      "translation": "A key that opens silver"
+    },
+    {
+      "id": "context_0c5f98",
+      "translation": "treasure chests."
+    },
+    {
+      "id": "context_0c5fa0",
+      "translation": "A crystal needed to move"
+    },
+    {
+      "id": "context_0c5fa4",
+      "translation": "the rotating platforms"
+    },
+    {
+      "id": "context_0c5fa8",
+      "translation": "in Metaldo Tower."
+    },
+    {
+      "id": "context_0c5fac",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5fb4",
+      "translation": "A crystal needed to move"
+    },
+    {
+      "id": "context_0c5fb8",
+      "translation": "the rotating platforms"
+    },
+    {
+      "id": "context_0c5fbc",
+      "translation": "in Metaldo Tower."
+    },
+    {
+      "id": "context_0c5fc0",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5fc8",
+      "translation": "A key that opens gold"
+    },
+    {
+      "id": "context_0c5fcc",
+      "translation": "treasure chests."
+    },
+    {
+      "id": "context_0c5fd4",
+      "translation": "A giant emblem needed to"
+    },
+    {
+      "id": "context_0c5fd8",
+      "translation": "revive the Genie."
+    },
+    {
+      "id": "context_0c5fdc",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5fe4",
+      "translation": "Ore that holds"
+    },
+    {
+      "id": "context_0c5fe8",
+      "translation": "incredible power."
+    },
+    {
+      "id": "context_0c5ff0",
+      "translation": "Mirror shards needed to"
+    },
+    {
+      "id": "context_0c5ff4",
+      "translation": "enter Mire Tower. You"
+    },
+    {
+      "id": "context_0c5ff8",
+      "translation": "need two."
+    },
+    {
+      "id": "context_0c5ffc",
+      "translation": " "
+    },
+    {
+      "id": "context_0c6004",
+      "translation": "Creates a strong"
+    },
+    {
+      "id": "context_0c6008",
+      "translation": "magnetic field to move"
+    },
+    {
+      "id": "context_0c600c",
+      "translation": "the giant emblem."
+    },
+    {
+      "id": "context_0c6014",
+      "translation": "A disk containing"
+    },
+    {
+      "id": "context_0c6018",
+      "translation": "blueprints and energy"
+    },
+    {
+      "id": "context_0c601c",
+      "translation": "source data."
+    },
+    {
+      "id": "context_0c6024",
+      "translation": "The core of a shattered"
+    },
+    {
+      "id": "context_0c6028",
+      "translation": "meteor. It serves as an"
+    },
+    {
+      "id": "context_0c602c",
+      "translation": "energy source."
+    },
+    {
+      "id": "context_0c6034",
+      "translation": "Shoes that let you enter"
+    },
+    {
+      "id": "context_0c6038",
+      "translation": "picture books."
+    },
+    {
+      "id": "context_0c6040",
+      "translation": "Reverses gravity,"
+    },
+    {
+      "id": "context_0c6044",
+      "translation": "letting you fall up"
+    },
+    {
+      "id": "context_0c6048",
+      "translation": "instead of down."
+    },
+    {
+      "id": "context_0c6050",
+      "translation": "A TV that shows the past"
+    },
+    {
+      "id": "context_0c6054",
+      "translation": "or the future."
+    },
+    {
+      "id": "context_0c605c",
+      "translation": "Makes living things and"
+    },
+    {
+      "id": "context_0c6060",
+      "translation": "objects evolve or return"
+    },
+    {
+      "id": "context_0c6064",
+      "translation": "to an earlier form."
+    },
+    {
+      "id": "context_0c606c",
+      "translation": "Lets you pass through"
+    },
+    {
+      "id": "context_0c6070",
+      "translation": "solid walls."
+    },
+    {
+      "id": "context_0c6078",
+      "translation": "Shine this light to dig"
+    },
+    {
+      "id": "context_0c607c",
+      "translation": "a tunnel."
+    },
+    {
+      "id": "context_0c6084",
+      "translation": "Enter a world where left"
+    },
+    {
+      "id": "context_0c6088",
+      "translation": "and right are reversed."
+    },
+    {
+      "id": "context_0c6090",
+      "translation": "Cleans polluted rivers"
+    },
+    {
+      "id": "context_0c6094",
+      "translation": "and lakes."
+    },
+    {
+      "id": "context_0c609c",
+      "translation": "Automatically takes you"
+    },
+    {
+      "id": "context_0c60a0",
+      "translation": "to a space station or a"
+    },
+    {
+      "id": "context_0c60a4",
+      "translation": "planet where people can"
+    },
+    {
+      "id": "context_0c60a8",
+      "translation": "live."
+    },
+    {
+      "id": "context_0c60b0",
+      "translation": "A card that lets you"
+    },
+    {
+      "id": "context_0c60b4",
+      "translation": "freely enter anywhere."
+    },
+    {
+      "id": "context_0c60bc",
+      "translation": "Instantly dresses anyone"
+    },
+    {
+      "id": "context_0c60c0",
+      "translation": "in clothes you choose."
+    },
+    {
+      "id": "context_0c60d0",
+      "translation": "Open the bucket's lid: a"
+    },
+    {
+      "id": "context_0c60d4",
+      "translation": "rain cloud appears and"
+    },
+    {
+      "id": "context_0c60d8",
+      "translation": "rain starts to fall."
+    },
+    {
+      "id": "context_0c60e0",
+      "translation": "Calls spirits of forests"
+    },
+    {
+      "id": "context_0c60e4",
+      "translation": "and mountains so you can"
+    },
+    {
+      "id": "context_0c60e8",
+      "translation": "talk to them."
+    },
+    {
+      "id": "context_0c60f0",
+      "translation": "Also calls the spirit of"
+    },
+    {
+      "id": "context_0c60f4",
+      "translation": "the legendary Genie."
+    },
+    {
+      "id": "context_0c60fc",
+      "translation": "Plant this bean in soil"
+    },
+    {
+      "id": "context_0c6100",
+      "translation": "and it will instantly"
+    },
+    {
+      "id": "context_0c6104",
+      "translation": "grow into a huge tree."
+    },
+    {
+      "id": "context_0c610c",
+      "translation": "Anyone hit by these"
+    },
+    {
+      "id": "context_0c6110",
+      "translation": "waves cannot help"
+    },
+    {
+      "id": "context_0c6114",
+      "translation": "telling the truth."
+    },
+    {
+      "id": "context_0c611c",
+      "translation": "A little sun you can use"
+    },
+    {
+      "id": "context_0c6120",
+      "translation": "whenever you need it."
+    },
+    {
+      "id": "context_0c6128",
+      "translation": "A device that can shrink"
+    },
+    {
+      "id": "context_0c612c",
+      "translation": "anything."
+    },
+    {
+      "id": "context_0c6134",
+      "translation": "Wear it to form a small"
+    },
+    {
+      "id": "context_0c6138",
+      "translation": "typhoon eye, calming the"
+    },
+    {
+      "id": "context_0c613c",
+      "translation": "wind around you."
+    },
+    {
+      "id": "context_0c6144",
+      "translation": "Automatically finds"
+    },
+    {
+      "id": "context_0c6148",
+      "translation": "treasure hidden nearby."
+    },
+    {
+      "id": "context_0c614c",
+      "translation": " "
+    },
+    {
+      "id": "context_0c6154",
+      "translation": "Scatter these ashes on"
+    },
+    {
+      "id": "context_0c6158",
+      "translation": "any tree to make it"
+    },
+    {
+      "id": "context_0c615c",
+      "translation": "blossom."
+    },
+    {
+      "id": "context_0c6164",
+      "translation": "Scatter this moss to"
+    },
+    {
+      "id": "context_0c6168",
+      "translation": "make the area glow."
+    },
+    {
+      "id": "context_0c6170",
+      "translation": "A boat folded from a"
+    },
+    {
+      "id": "context_0c6174",
+      "translation": "huge sheet of paper that"
+    },
+    {
+      "id": "context_0c6178",
+      "translation": "won't tear when wet."
+    },
+    {
+      "id": "context_0c6180",
+      "translation": "Wear it on your finger"
+    },
+    {
+      "id": "context_0c6184",
+      "translation": "and ask for advice. It"
+    },
+    {
+      "id": "context_0c6188",
+      "translation": "gives helpful answers."
+    },
+    {
+      "id": "context_0c6190",
+      "translation": "Repairs broken"
+    },
+    {
+      "id": "context_0c6194",
+      "translation": "machinery."
+    },
+    {
+      "id": "context_0c619c",
+      "translation": "Sends smoke through a"
+    },
+    {
+      "id": "context_0c61a0",
+      "translation": "room and makes a map of"
+    },
+    {
+      "id": "context_0c61a4",
+      "translation": "its interior."
+    },
+    {
+      "id": "context_0c61ac",
+      "translation": "Stick it on your belly"
+    },
+    {
+      "id": "context_0c61b0",
+      "translation": "to banish a ghost that"
+    },
+    {
+      "id": "context_0c61b4",
+      "translation": "has possessed you."
+    },
+    {
+      "id": "context_0c61bc",
+      "translation": "Pour it on a machine to"
+    },
+    {
+      "id": "context_0c61c0",
+      "translation": "improve its performance."
+    },
+    {
+      "id": "context_0c61c4",
+      "translation": " "
+    },
+    {
+      "id": "context_0c61cc",
+      "translation": "Sing into this mic to"
+    },
+    {
+      "id": "context_0c61d0",
+      "translation": "touch people's hearts."
+    },
+    {
+      "id": "context_0c61d8",
+      "translation": "Creates a low-pressure"
+    },
+    {
+      "id": "context_0c61dc",
+      "translation": "area to generate a"
+    },
+    {
+      "id": "context_0c61e0",
+      "translation": "typhoon."
+    },
+    {
+      "id": "context_0c61e8",
+      "translation": "Spray an object to take"
+    },
+    {
+      "id": "context_0c61ec",
+      "translation": "out just its contents."
+    },
+    {
+      "id": "context_0c61f0",
+      "translation": " "
+    },
+    {
+      "id": "context_0c61f8",
+      "translation": "Any animal that eats"
+    },
+    {
+      "id": "context_0c61fc",
+      "translation": "this treat will obey"
+    },
+    {
+      "id": "context_0c6200",
+      "translation": "your commands."
+    },
+    {
+      "id": "context_0c6208",
+      "translation": "Press the switch to"
+    },
+    {
+      "id": "context_0c620c",
+      "translation": "spray out snow."
+    },
+    {
+      "id": "context_0c6214",
+      "translation": "Use this liquid in hot"
+    },
+    {
+      "id": "context_0c6218",
+      "translation": "places to make the air"
+    },
+    {
+      "id": "context_0c621c",
+      "translation": "feel cool."
+    },
+    {
+      "id": "context_0c6224",
+      "translation": "Attach these to your"
+    },
+    {
+      "id": "context_0c6228",
+      "translation": "nose to breathe"
+    },
+    {
+      "id": "context_0c622c",
+      "translation": "underwater."
+    },
+    {
+      "id": "context_0c6234",
+      "translation": "A cream that protects"
+    },
+    {
+      "id": "context_0c6238",
+      "translation": "from deep-sea pressure."
+    },
+    {
+      "id": "context_0c6240",
+      "translation": "Wear it on your head to"
+    },
+    {
+      "id": "context_0c6244",
+      "translation": "fly with ease."
+    },
+    {
+      "id": "context_0c624c",
+      "translation": "On planet Dact, you can"
+    },
+    {
+      "id": "context_0c6250",
+      "translation": "only use it where air"
+    },
+    {
+      "id": "context_0c6254",
+      "translation": "currents are steady."
+    },
+    {
+      "id": "context_0c625c",
+      "translation": "Lets you live in any"
+    },
+    {
+      "id": "context_0c6260",
+      "translation": "environment."
+    },
+    {
+      "id": "context_0c6268",
+      "translation": "Wear this plate to"
+    },
+    {
+      "id": "context_0c626c",
+      "translation": "transform into anything"
+    },
+    {
+      "id": "context_0c6270",
+      "translation": "you want."
+    },
+    {
+      "id": "context_0c6278",
+      "translation": "Eat this to speak"
+    },
+    {
+      "id": "context_0c627c",
+      "translation": "languages you have never"
+    },
+    {
+      "id": "context_0c6280",
+      "translation": "learned."
+    },
+    {
+      "id": "context_0c6288",
+      "translation": "A vehicle for travel to"
+    },
+    {
+      "id": "context_0c628c",
+      "translation": "the past or future."
+    },
+    {
+      "id": "context_0c6294",
+      "translation": "A door that takes you"
+    },
+    {
+      "id": "context_0c6298",
+      "translation": "anywhere you want to go."
+    },
+    {
+      "id": "context_0c62a0",
+      "translation": "Space-time around planet"
+    },
+    {
+      "id": "context_0c62a4",
+      "translation": "Dact is distorted."
+    },
+    {
+      "id": "context_0c62ac",
+      "translation": "On planet Dact, it only"
+    },
+    {
+      "id": "context_0c62b0",
+      "translation": "connects to the Gyro"
+    },
+    {
+      "id": "context_0c62b4",
+      "translation": "Capsule."
+    },
+    {
+      "id": "context_0c62bc",
+      "translation": "Gas that creates a"
+    },
+    {
+      "id": "context_0c62c0",
+      "translation": "flower garden."
+    },
+    {
+      "id": "context_0c62c8",
+      "translation": "Cover the capsule with"
+    },
+    {
+      "id": "context_0c62cc",
+      "translation": "rocks and other things"
+    },
+    {
+      "id": "context_0c62d0",
+      "translation": "to travel in disguise."
+    },
+    {
+      "id": "context_0c6f38",
+      "translation": "Roll it on the ground."
+    },
+    {
+      "id": "context_0c6f3c",
+      "translation": "It rises into the air"
+    },
+    {
+      "id": "context_0c6f40",
+      "translation": "and explodes."
+    },
+    {
+      "id": "context_0c6f48",
+      "translation": "A bomb that scares"
+    },
+    {
+      "id": "context_0c6f4c",
+      "translation": "enemies with a loud bang"
+    },
+    {
+      "id": "context_0c6f50",
+      "translation": "and a flash."
+    },
+    {
+      "id": "context_0c6f58",
+      "translation": "Its bullets have eyes."
+    },
+    {
+      "id": "context_0c6f5c",
+      "translation": "Aim and fire for a"
+    },
+    {
+      "id": "context_0c6f60",
+      "translation": "guaranteed hit."
+    },
+    {
+      "id": "context_0c6f68",
+      "translation": "Tear off a piece of this"
+    },
+    {
+      "id": "context_0c6f6c",
+      "translation": "paper and throw it to"
+    },
+    {
+      "id": "context_0c6f70",
+      "translation": "make a firecracker."
+    },
+    {
+      "id": "context_0c6f78",
+      "translation": "Hold the button to"
+    },
+    {
+      "id": "context_0c6f7c",
+      "translation": "create a larger blast of"
+    },
+    {
+      "id": "context_0c6f80",
+      "translation": "wind."
+    },
+    {
+      "id": "context_0c6f88",
+      "translation": "Creates a powerful gust"
+    },
+    {
+      "id": "context_0c6f8c",
+      "translation": "of wind."
+    },
+    {
+      "id": "context_0c6f94",
+      "translation": "May also work against"
+    },
+    {
+      "id": "context_0c6f98",
+      "translation": "certain traps."
+    },
+    {
+      "id": "context_0c6f9c",
+      "translation": " "
+    },
+    {
+      "id": "context_0c6fa4",
+      "translation": "Fires compressed air"
+    },
+    {
+      "id": "context_0c6fa8",
+      "translation": "instead of bullets. Can"
+    },
+    {
+      "id": "context_0c6fac",
+      "translation": "fire rapid bursts."
+    },
+    {
+      "id": "context_0c6fb4",
+      "translation": "Fires balls of"
+    },
+    {
+      "id": "context_0c6fb8",
+      "translation": "electricity that shock"
+    },
+    {
+      "id": "context_0c6fbc",
+      "translation": "enemies."
+    },
+    {
+      "id": "context_0c6fc4",
+      "translation": "Hold the button to"
+    },
+    {
+      "id": "context_0c6fc8",
+      "translation": "charge up a larger ball"
+    },
+    {
+      "id": "context_0c6fcc",
+      "translation": "of electricity."
+    },
+    {
+      "id": "context_0c6fd4",
+      "translation": "Uses air pressure to"
+    },
+    {
+      "id": "context_0c6fd8",
+      "translation": "fire a ball of"
+    },
+    {
+      "id": "context_0c6fdc",
+      "translation": "compressed air."
+    },
+    {
+      "id": "context_0c6fe4",
+      "translation": "Hold the button to"
+    },
+    {
+      "id": "context_0c6fe8",
+      "translation": "charge up a larger air"
+    },
+    {
+      "id": "context_0c6fec",
+      "translation": "blast."
+    },
+    {
+      "id": "context_0c6ff4",
+      "translation": "Fires a powerful shock"
+    },
+    {
+      "id": "context_0c6ff8",
+      "translation": "wave."
+    },
+    {
+      "id": "context_0c7000",
+      "translation": "A weapon for underwater"
+    },
+    {
+      "id": "context_0c7004",
+      "translation": "use only."
+    },
+    {
+      "id": "context_0c700c",
+      "translation": "Uses water pressure to"
+    },
+    {
+      "id": "context_0c7010",
+      "translation": "fire a ball of water."
+    },
+    {
+      "id": "context_0c7014",
+      "translation": " "
+    },
+    {
+      "id": "context_0c701c",
+      "translation": "Hold the button to"
+    },
+    {
+      "id": "context_0c7020",
+      "translation": "charge up a larger ball"
+    },
+    {
+      "id": "context_0c7024",
+      "translation": "of water."
+    },
+    {
+      "id": "context_0c702c",
+      "translation": "A glove that can smash a"
+    },
+    {
+      "id": "context_0c7030",
+      "translation": "huge rock with a single"
+    },
+    {
+      "id": "context_0c7034",
+      "translation": "punch."
+    },
+    {
+      "id": "context_0c703c",
+      "translation": "A glove that emits shock"
+    },
+    {
+      "id": "context_0c7040",
+      "translation": "waves."
+    },
+    {
+      "id": "context_0c7048",
+      "translation": "A long, extending arm"
+    },
+    {
+      "id": "context_0c704c",
+      "translation": "that damages enemies."
+    },
+    {
+      "id": "context_0c7054",
+      "translation": "It can also grab items"
+    },
+    {
+      "id": "context_0c7058",
+      "translation": "that are far away."
+    },
+    {
+      "id": "context_0c705c",
+      "translation": " "
+    },
+    {
+      "id": "rom_0cea5c",
+      "translation": "Yes"
+    },
+    {
+      "id": "rom_1956d8",
+      "translation": "10"
+    },
+    {
+      "id": "rom_19573c",
+      "translation": "15"
+    },
+    {
+      "id": "rom_195754",
+      "translation": "20"
+    },
+    {
+      "id": "rom_195790",
+      "translation": "00"
+    },
+    {
+      "id": "rom_06fbf4",
+      "translation": "G"
+    },
+    {
+      "id": "rom_06fbf8",
+      "translation": "A"
+    },
+    {
+      "id": "rom_06fbfc",
+      "translation": "M"
+    },
+    {
+      "id": "rom_06fc00",
+      "translation": "E"
+    },
+    {
+      "id": "rom_06fc04",
+      "translation": "S"
+    },
+    {
+      "id": "rom_19606c",
+      "translation": "Shoot"
+    }
+  ]
+}

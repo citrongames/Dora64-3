@@ -1,0 +1,3025 @@
+{
+  "format_version": 1,
+  "entries": [
+    {
+      "id": "rom_06d034",
+      "translation": "Город Нобиты"
+    },
+    {
+      "id": "rom_06d0cc",
+      "translation": "Лес Карека"
+    },
+    {
+      "id": "rom_06d164",
+      "translation": "Пещера Домеро"
+    },
+    {
+      "id": "rom_06d1fc",
+      "translation": "Гора Гурун"
+    },
+    {
+      "id": "rom_06d294",
+      "translation": "Озеро Дезон"
+    },
+    {
+      "id": "rom_06d32c",
+      "translation": "Город пепинцев"
+    },
+    {
+      "id": "rom_06d3c4",
+      "translation": "Башня Марил"
+    },
+    {
+      "id": "rom_06d45c",
+      "translation": "Подзем. город 1"
+    },
+    {
+      "id": "rom_06d4f4",
+      "translation": "Пустыня Зараха"
+    },
+    {
+      "id": "rom_06d58c",
+      "translation": "Пещера Фабан"
+    },
+    {
+      "id": "rom_06d624",
+      "translation": "Парк Дез"
+    },
+    {
+      "id": "rom_06d6bc",
+      "translation": "Город миникцев"
+    },
+    {
+      "id": "rom_06d754",
+      "translation": "Башня Металдо"
+    },
+    {
+      "id": "rom_06d7ec",
+      "translation": "Подзем. город 2"
+    },
+    {
+      "id": "rom_06d884",
+      "translation": "Озеро Рикс"
+    },
+    {
+      "id": "rom_06d91c",
+      "translation": "Лес Кираф"
+    },
+    {
+      "id": "rom_06d9b4",
+      "translation": "Море Поседо"
+    },
+    {
+      "id": "rom_06da4c",
+      "translation": "Город драгонцев"
+    },
+    {
+      "id": "rom_06dae4",
+      "translation": "Башня Гарок"
+    },
+    {
+      "id": "rom_06db7c",
+      "translation": "Пещера Латена"
+    },
+    {
+      "id": "rom_06dc14",
+      "translation": "Гора Когол"
+    },
+    {
+      "id": "rom_06dcac",
+      "translation": "Город попиканцев"
+    },
+    {
+      "id": "rom_06dd44",
+      "translation": "Башня Мире"
+    },
+    {
+      "id": "rom_06dddc",
+      "translation": "Станция Багула"
+    },
+    {
+      "id": "rom_06f7c8",
+      "translation": " "
+    },
+    {
+      "id": "rom_06f7f0",
+      "translation": "Чтобы войти в башню Марил,"
+    },
+    {
+      "id": "rom_06f818",
+      "translation": "нужны четыре ключа-кристалла."
+    },
+    {
+      "id": "rom_06f840",
+      "translation": "Чтобы войти в башню Металдо,"
+    },
+    {
+      "id": "rom_06f868",
+      "translation": "уничтожь все три"
+    },
+    {
+      "id": "rom_06f890",
+      "translation": "генератора щита."
+    },
+    {
+      "id": "rom_06f8b8",
+      "translation": "Башню Гарок защищает"
+    },
+    {
+      "id": "rom_06f8e0",
+      "translation": "прочная преграда."
+    },
+    {
+      "id": "rom_06f908",
+      "translation": "Разрушь её, чтобы войти."
+    },
+    {
+      "id": "rom_06f930",
+      "translation": "Чтобы войти в башню Мире,"
+    },
+    {
+      "id": "rom_06f958",
+      "translation": "нужны два осколка зеркала."
+    },
+    {
+      "id": "rom_06f980",
+      "translation": "Для битвы с императором Багулом"
+    },
+    {
+      "id": "rom_06f9a8",
+      "translation": "нужна гипервоздушная пушка."
+    },
+    {
+      "id": "rom_06f9d0",
+      "translation": "          Чертежи: доктор Ка"
+    },
+    {
+      "id": "rom_06f9f8",
+      "translation": "          Создатель: доктор Цу"
+    },
+    {
+      "id": "rom_06fa30",
+      "translation": "Закончить игру?"
+    },
+    {
+      "id": "rom_06fa48",
+      "translation": "    Да        Нет"
+    },
+    {
+      "id": "rom_06fa60",
+      "translation": "Сохранить игру?"
+    },
+    {
+      "id": "rom_06fc54",
+      "translation": "Создай файл сохранения."
+    },
+    {
+      "id": "rom_06fc70",
+      "translation": "Выбери файл сохранения."
+    },
+    {
+      "id": "rom_06fc8c",
+      "translation": "Выбери сложность игры."
+    },
+    {
+      "id": "rom_06fcac",
+      "translation": "        Легко             Трудно"
+    },
+    {
+      "id": "rom_06fcd8",
+      "translation": "В каком режиме будем играть?"
+    },
+    {
+      "id": "rom_06fcf8",
+      "translation": "        Сюжет             Мини-игры"
+    },
+    {
+      "id": "rom_06fd20",
+      "translation": "Какой файл скопировать?"
+    },
+    {
+      "id": "rom_06fd40",
+      "translation": "Куда скопировать?"
+    },
+    {
+      "id": "rom_06fd58",
+      "translation": "Выбери файл для удаления."
+    },
+    {
+      "id": "rom_06fd80",
+      "translation": "Скопировать этот файл?"
+    },
+    {
+      "id": "rom_06fd9c",
+      "translation": "        Да                Нет"
+    },
+    {
+      "id": "rom_06fdc0",
+      "translation": "Удалить этот файл?"
+    },
+    {
+      "id": "rom_06fe30",
+      "translation": "Контроллер не подключён."
+    },
+    {
+      "id": "rom_06fe54",
+      "translation": "Выключи консоль,"
+    },
+    {
+      "id": "rom_06fe78",
+      "translation": "затем подключи контроллер."
+    },
+    {
+      "id": "rom_06feb4",
+      "translation": "                    Митихиро Маэда"
+    },
+    {
+      "id": "rom_06fee4",
+      "translation": "                    Хидэаки Дзятани"
+    },
+    {
+      "id": "rom_06ff14",
+      "translation": "            Исполнительные продюсеры"
+    },
+    {
+      "id": "rom_06ff44",
+      "translation": "                    Такэхиро Хорикоси"
+    },
+    {
+      "id": "rom_06ff74",
+      "translation": "                    Акира Накагоми"
+    },
+    {
+      "id": "rom_06ffa4",
+      "translation": "            Продюсеры"
+    },
+    {
+      "id": "rom_06ffd4",
+      "translation": "                    Рицуко Сакураи"
+    },
+    {
+      "id": "rom_070004",
+      "translation": "                    Синдзи Ода"
+    },
+    {
+      "id": "rom_070034",
+      "translation": "            Продажи"
+    },
+    {
+      "id": "rom_070064",
+      "translation": "                    Сёити Сакэмото"
+    },
+    {
+      "id": "rom_070094",
+      "translation": "                    Акира Намики"
+    },
+    {
+      "id": "rom_0700c4",
+      "translation": "                    Такахиса Хирано"
+    },
+    {
+      "id": "rom_0700f4",
+      "translation": "                    Дзюнъити Судзуки"
+    },
+    {
+      "id": "rom_070124",
+      "translation": "            <Сотрудники EPOCH>"
+    },
+    {
+      "id": "rom_070154",
+      "translation": "                    Норио Окубо"
+    },
+    {
+      "id": "rom_070184",
+      "translation": "                    Хироюки Араи"
+    },
+    {
+      "id": "rom_0701b4",
+      "translation": "            Руководители"
+    },
+    {
+      "id": "rom_0701e4",
+      "translation": "                    Хидэкадзу Мацуноути"
+    },
+    {
+      "id": "rom_070214",
+      "translation": "                    Хиронори Танака"
+    },
+    {
+      "id": "rom_070244",
+      "translation": "                    Такаси Фудзии"
+    },
+    {
+      "id": "rom_070274",
+      "translation": "                    Тэцума Ёсида"
+    },
+    {
+      "id": "rom_0702a4",
+      "translation": "            Программирование"
+    },
+    {
+      "id": "rom_0702d4",
+      "translation": "                    Хироё Ёкодзава"
+    },
+    {
+      "id": "rom_070304",
+      "translation": "                    Масами Ясураока"
+    },
+    {
+      "id": "rom_070334",
+      "translation": "                    Мива Мурао"
+    },
+    {
+      "id": "rom_070364",
+      "translation": "                    Тэйдзи Нагаока"
+    },
+    {
+      "id": "rom_070394",
+      "translation": "                    Кэй Тацу"
+    },
+    {
+      "id": "rom_0703c4",
+      "translation": "                    Юсукэ Кудо"
+    },
+    {
+      "id": "rom_0703f4",
+      "translation": "                    Хироюки Канэда"
+    },
+    {
+      "id": "rom_070424",
+      "translation": "                    Наоко Катаги"
+    },
+    {
+      "id": "rom_070454",
+      "translation": "                    Хироэ Эндо"
+    },
+    {
+      "id": "rom_070484",
+      "translation": "                    Акира Катаги"
+    },
+    {
+      "id": "rom_0704b4",
+      "translation": "            Графика"
+    },
+    {
+      "id": "rom_0704e4",
+      "translation": "                    Кацуми Миясита"
+    },
+    {
+      "id": "rom_070514",
+      "translation": "                    Хидэюки Кубота"
+    },
+    {
+      "id": "rom_070544",
+      "translation": "            Режиссёры"
+    },
+    {
+      "id": "rom_070574",
+      "translation": "                    Норихико Тогаси"
+    },
+    {
+      "id": "rom_0705a4",
+      "translation": "            Звукорежиссёр"
+    },
+    {
+      "id": "rom_0705d4",
+      "translation": "                    Харухико Куроива"
+    },
+    {
+      "id": "rom_070604",
+      "translation": "            Музыка и аранжировки"
+    },
+    {
+      "id": "rom_070634",
+      "translation": "                    Сигэаки Ириэ"
+    },
+    {
+      "id": "rom_070664",
+      "translation": "            Звуковой продюсер"
+    },
+    {
+      "id": "rom_070694",
+      "translation": "                    Ёсинори Ямагиси"
+    },
+    {
+      "id": "rom_0706c4",
+      "translation": "                    Хиротака Хоси"
+    },
+    {
+      "id": "rom_0706f4",
+      "translation": "            Отладка"
+    },
+    {
+      "id": "rom_070724",
+      "translation": "                    Иппэй Хории"
+    },
+    {
+      "id": "rom_070754",
+      "translation": "                    Такахиро Нисияма"
+    },
+    {
+      "id": "rom_070784",
+      "translation": "                    Наоки Хирасава"
+    },
+    {
+      "id": "rom_0707b4",
+      "translation": "            Особая благодарность"
+    },
+    {
+      "id": "rom_0707e4",
+      "translation": "            <Создатели игры>"
+    },
+    {
+      "id": "rom_070814",
+      "translation": "            Рэйна: Митико Номура"
+    },
+    {
+      "id": "rom_070844",
+      "translation": "            Багул: Норико Охара"
+    },
+    {
+      "id": "rom_070874",
+      "translation": "            Нобиру /"
+    },
+    {
+      "id": "rom_0708a4",
+      "translation": "            Дорами: Кэйко Ёкодзава"
+    },
+    {
+      "id": "rom_0708d4",
+      "translation": "            Джайан: Кадзуя Татэкабэ"
+    },
+    {
+      "id": "rom_070904",
+      "translation": "            Сунэо: Канэта Кимоцуки"
+    },
+    {
+      "id": "rom_070934",
+      "translation": "            Сидзука: Митико Номура"
+    },
+    {
+      "id": "rom_070964",
+      "translation": "            Нобита: Норико Охара"
+    },
+    {
+      "id": "rom_070994",
+      "translation": "            Дораэмон: Нобуё Ояма"
+    },
+    {
+      "id": "rom_0709c4",
+      "translation": " "
+    },
+    {
+      "id": "rom_0709f4",
+      "translation": "            <Актёры озвучивания>"
+    },
+    {
+      "id": "rom_0ccf54",
+      "translation": "восстановятся."
+    },
+    {
+      "id": "rom_0ccf68",
+      "translation": "2 очка здоровья"
+    },
+    {
+      "id": "rom_0ccf84",
+      "translation": "Если съесть,"
+    },
+    {
+      "id": "rom_0ccf98",
+      "translation": "все очки здоровья"
+    },
+    {
+      "id": "rom_0ccfb0",
+      "translation": "Капсула."
+    },
+    {
+      "id": "rom_0ccfc0",
+      "translation": "оживляет друга,"
+    },
+    {
+      "id": "rom_0ccfdc",
+      "translation": "который выбился из сил."
+    },
+    {
+      "id": "rom_0ccff8",
+      "translation": "открывает новые мини-игры."
+    },
+    {
+      "id": "rom_0cd018",
+      "translation": "В парке мини-игр"
+    },
+    {
+      "id": "rom_0cd038",
+      "translation": "руда для создания"
+    },
+    {
+      "id": "rom_0cd050",
+      "translation": "разных вещей."
+    },
+    {
+      "id": "rom_0cd068",
+      "translation": "исходный вид."
+    },
+    {
+      "id": "rom_0cd07c",
+      "translation": "возвращает вещам"
+    },
+    {
+      "id": "rom_0cd094",
+      "translation": "Покрытым слизью"
+    },
+    {
+      "id": "rom_0cd0ac",
+      "translation": "очень нравится этот фрукт."
+    },
+    {
+      "id": "rom_0cd0c8",
+      "translation": "Странному существу"
+    },
+    {
+      "id": "rom_0cd0dc",
+      "translation": "Ключ в виде карты."
+    },
+    {
+      "id": "rom_0cd0f4",
+      "translation": "можно открыть."
+    },
+    {
+      "id": "rom_0cd10c",
+      "translation": "Дверь в особую комнату"
+    },
+    {
+      "id": "rom_0cd128",
+      "translation": "Нужно четыре штуки."
+    },
+    {
+      "id": "rom_0cd140",
+      "translation": "Кристалл."
+    },
+    {
+      "id": "rom_0cd150",
+      "translation": "нужный для входа"
+    },
+    {
+      "id": "rom_0cd16c",
+      "translation": "в башню Марил."
+    },
+    {
+      "id": "rom_0cd184",
+      "translation": "нужен этот ключ."
+    },
+    {
+      "id": "rom_0cd1a0",
+      "translation": "Для серебряных сундуков"
+    },
+    {
+      "id": "rom_0cd1bc",
+      "translation": "нужна эта вещь."
+    },
+    {
+      "id": "rom_0cd1d0",
+      "translation": "Для поворотных площадок"
+    },
+    {
+      "id": "rom_0cd1ec",
+      "translation": "башни Металдо"
+    },
+    {
+      "id": "rom_0cd204",
+      "translation": "Для золотых сундуков"
+    },
+    {
+      "id": "rom_0cd220",
+      "translation": "нужна огромная эмблема."
+    },
+    {
+      "id": "rom_0cd23c",
+      "translation": "Чтобы пробудить джинна,"
+    },
+    {
+      "id": "rom_0cd258",
+      "translation": "скрыта в этой руде."
+    },
+    {
+      "id": "rom_0cd26c",
+      "translation": "Невероятная сила"
+    },
+    {
+      "id": "rom_0cd284",
+      "translation": "Нужно две штуки."
+    },
+    {
+      "id": "rom_0cd29c",
+      "translation": "Осколок зеркала."
+    },
+    {
+      "id": "rom_0cd2b0",
+      "translation": "Для башни Мире."
+    },
+    {
+      "id": "rom_0cd2c4",
+      "translation": "чтобы двигать эмблему."
+    },
+    {
+      "id": "rom_0cd2e4",
+      "translation": "магнитное поле,"
+    },
+    {
+      "id": "rom_0cd2fc",
+      "translation": "Создаёт мощное"
+    },
+    {
+      "id": "rom_0cd314",
+      "translation": "Диск."
+    },
+    {
+      "id": "rom_0cd320",
+      "translation": "и данные энергии."
+    },
+    {
+      "id": "rom_0cd334",
+      "translation": "Хранит чертежи"
+    },
+    {
+      "id": "rom_0cd350",
+      "translation": "Источник энергии."
+    },
+    {
+      "id": "rom_0cd368",
+      "translation": "кусок ядра."
+    },
+    {
+      "id": "rom_0cd37c",
+      "translation": "Осколок метеорита,"
+    },
+    {
+      "id": "rom_0cd394",
+      "translation": "в этих туфлях."
+    },
+    {
+      "id": "rom_0cd3ac",
+      "translation": "Можно войти в книгу"
+    },
+    {
+      "id": "rom_0cd3c8",
+      "translation": "а не вниз."
+    },
+    {
+      "id": "rom_0cd3e4",
+      "translation": "и падать вверх,"
+    },
+    {
+      "id": "rom_0cd3fc",
+      "translation": "Можно сменить гравитацию"
+    },
+    {
+      "id": "rom_0cd418",
+      "translation": "по этому телевизору."
+    },
+    {
+      "id": "rom_0cd434",
+      "translation": "Смотри прошлое и будущее"
+    },
+    {
+      "id": "rom_0cd44c",
+      "translation": "развиваться или стареть."
+    },
+    {
+      "id": "rom_0cd46c",
+      "translation": "можно заставить"
+    },
+    {
+      "id": "rom_0cd484",
+      "translation": "Вещи и существ"
+    },
+    {
+      "id": "rom_0cd498",
+      "translation": "легко."
+    },
+    {
+      "id": "rom_0cd4a4",
+      "translation": "Проходи сквозь стены"
+    },
+    {
+      "id": "rom_0cd4c0",
+      "translation": "чтобы вырыть туннель."
+    },
+    {
+      "id": "rom_0cd4d8",
+      "translation": "Посвети этим фонарём,"
+    },
+    {
+      "id": "rom_0cd4f0",
+      "translation": "где всё наоборот."
+    },
+    {
+      "id": "rom_0cd510",
+      "translation": "Можно попасть в мир,"
+    },
+    {
+      "id": "rom_0cd52c",
+      "translation": "и озёра."
+    },
+    {
+      "id": "rom_0cd544",
+      "translation": "Устройство очищает реки"
+    },
+    {
+      "id": "rom_0cd560",
+      "translation": "место."
+    },
+    {
+      "id": "rom_0cd56c",
+      "translation": "доставит тебя в нужное"
+    },
+    {
+      "id": "rom_0cd584",
+      "translation": "или станцию в космосе."
+    },
+    {
+      "id": "rom_0cd59c",
+      "translation": "Найди обитаемую планету"
+    },
+    {
+      "id": "rom_0cd5b8",
+      "translation": "впустит внутрь."
+    },
+    {
+      "id": "rom_0cd5cc",
+      "translation": "Куда угодно эта карта"
+    },
+    {
+      "id": "rom_0cd5e8",
+      "translation": "появится на нём."
+    },
+    {
+      "id": "rom_0cd600",
+      "translation": "Любая одежда мгновенно"
+    },
+    {
+      "id": "rom_0cd61c",
+      "translation": "Газ делает облака твёрдыми."
+    },
+    {
+      "id": "rom_0cd63c",
+      "translation": "пойдёт дождь."
+    },
+    {
+      "id": "rom_0cd64c",
+      "translation": "Возникнет туча, из неё"
+    },
+    {
+      "id": "rom_0cd668",
+      "translation": "Открой крышку ведра."
+    },
+    {
+      "id": "rom_0cd684",
+      "translation": "и дух древнего джинна."
+    },
+    {
+      "id": "rom_0cd6a0",
+      "translation": "Можно призвать"
+    },
+    {
+      "id": "rom_0cd6b8",
+      "translation": "и говорить."
+    },
+    {
+      "id": "rom_0cd6c8",
+      "translation": "Можно вызвать их души"
+    },
+    {
+      "id": "rom_0cd6e4",
+      "translation": "У гор и лесов есть души."
+    },
+    {
+      "id": "rom_0cd700",
+      "translation": "сразу."
+    },
+    {
+      "id": "rom_0cd70c",
+      "translation": "вырастет большое дерево"
+    },
+    {
+      "id": "rom_0cd724",
+      "translation": "Посади этот боб в землю:"
+    },
+    {
+      "id": "rom_0cd740",
+      "translation": "говорить правду."
+    },
+    {
+      "id": "rom_0cd754",
+      "translation": "ты поневоле начнёшь"
+    },
+    {
+      "id": "rom_0cd768",
+      "translation": "Под действием этих волн"
+    },
+    {
+      "id": "rom_0cd780",
+      "translation": "солнце всегда под рукой."
+    },
+    {
+      "id": "rom_0cd7a0",
+      "translation": "Когда нужно, маленькое"
+    },
+    {
+      "id": "rom_0cd7bc",
+      "translation": "уменьшит её."
+    },
+    {
+      "id": "rom_0cd7d0",
+      "translation": "Направь на любую вещь:"
+    },
+    {
+      "id": "rom_0cd7ec",
+      "translation": "и ветры вокруг утихнут."
+    },
+    {
+      "id": "rom_0cd80c",
+      "translation": "малый глаз тайфуна,"
+    },
+    {
+      "id": "rom_0cd824",
+      "translation": "Надень его: появится"
+    },
+    {
+      "id": "rom_0cd840",
+      "translation": "оно всё отыщет."
+    },
+    {
+      "id": "rom_0cd854",
+      "translation": "спрятанные сокровища,"
+    },
+    {
+      "id": "rom_0cd86c",
+      "translation": "Если поблизости есть"
+    },
+    {
+      "id": "rom_0cd888",
+      "translation": "расцветёт."
+    },
+    {
+      "id": "rom_0cd8a4",
+      "translation": "и любое дерево"
+    },
+    {
+      "id": "rom_0cd8b8",
+      "translation": "Рассыпь этот пепел,"
+    },
+    {
+      "id": "rom_0cd8d4",
+      "translation": "оно засияет."
+    },
+    {
+      "id": "rom_0cd8ec",
+      "translation": "Разбросай этот мох вокруг:"
+    },
+    {
+      "id": "rom_0cd908",
+      "translation": "сложили лодку."
+    },
+    {
+      "id": "rom_0cd91c",
+      "translation": "бумаги, что не боится"
+    },
+    {
+      "id": "rom_0cd934",
+      "translation": "Из огромного листа мокрой"
+    },
+    {
+      "id": "rom_0cd950",
+      "translation": "дельный совет."
+    },
+    {
+      "id": "rom_0cd960",
+      "translation": "Попроси, и он даст"
+    },
+    {
+      "id": "rom_0cd97c",
+      "translation": "Надень его на палец."
+    },
+    {
+      "id": "rom_0cd998",
+      "translation": "в порядок."
+    },
+    {
+      "id": "rom_0cd9ac",
+      "translation": "Приводит сломанные"
+    },
+    {
+      "id": "rom_0cd9c4",
+      "translation": "создаст карту."
+    },
+    {
+      "id": "rom_0cd9d8",
+      "translation": "Дым внутри помещения"
+    },
+    {
+      "id": "rom_0cd9f0",
+      "translation": "Впусти дым в комнату."
+    },
+    {
+      "id": "rom_0cda08",
+      "translation": "покинет тебя."
+    },
+    {
+      "id": "rom_0cda1c",
+      "translation": "и вселившийся призрак"
+    },
+    {
+      "id": "rom_0cda38",
+      "translation": "Наклей её на живот,"
+    },
+    {
+      "id": "rom_0cda54",
+      "translation": "сильнее."
+    },
+    {
+      "id": "rom_0cda60",
+      "translation": "и они станут"
+    },
+    {
+      "id": "rom_0cda7c",
+      "translation": "Полей этим механизмы,"
+    },
+    {
+      "id": "rom_0cda98",
+      "translation": "растрогаешь слушателей."
+    },
+    {
+      "id": "rom_0cdab8",
+      "translation": "Спой в микрофон:"
+    },
+    {
+      "id": "rom_0cdad0",
+      "translation": "и создаёт тайфун."
+    },
+    {
+      "id": "rom_0cdae8",
+      "translation": "пониженного давления"
+    },
+    {
+      "id": "rom_0cdafc",
+      "translation": "Прибор создаёт область"
+    },
+    {
+      "id": "rom_0cdb14",
+      "translation": "отдельно."
+    },
+    {
+      "id": "rom_0cdb28",
+      "translation": "можно достать содержимое"
+    },
+    {
+      "id": "rom_0cdb40",
+      "translation": "Если побрызгать вещь,"
+    },
+    {
+      "id": "rom_0cdb58",
+      "translation": "станет тебя слушаться."
+    },
+    {
+      "id": "rom_0cdb70",
+      "translation": "съев это лакомство,"
+    },
+    {
+      "id": "rom_0cdb8c",
+      "translation": "Любой зверь,"
+    },
+    {
+      "id": "rom_0cdba4",
+      "translation": "и пойдёт снег."
+    },
+    {
+      "id": "rom_0cdbb8",
+      "translation": "Нажми на выключатель,"
+    },
+    {
+      "id": "rom_0cdbd4",
+      "translation": "ощутишь прохладу."
+    },
+    {
+      "id": "rom_0cdbf0",
+      "translation": "Даже в сильную жару"
+    },
+    {
+      "id": "rom_0cdc0c",
+      "translation": "нанеси эту жидкость."
+    },
+    {
+      "id": "rom_0cdc24",
+      "translation": "сможешь дышать под водой"
+    },
+    {
+      "id": "rom_0cdc3c",
+      "translation": "Надень на нос:"
+    },
+    {
+      "id": "rom_0cdc50",
+      "translation": "даже на морском дне."
+    },
+    {
+      "id": "rom_0cdc70",
+      "translation": "Крем защитит от давления"
+    },
+    {
+      "id": "rom_0cdc8c",
+      "translation": "поток спокоен."
+    },
+    {
+      "id": "rom_0cdca0",
+      "translation": "он работает лишь там, где"
+    },
+    {
+      "id": "rom_0cdcbc",
+      "translation": "На планете Дакт"
+    },
+    {
+      "id": "rom_0cdcd8",
+      "translation": "и легко летай."
+    },
+    {
+      "id": "rom_0cdcf4",
+      "translation": "Надень на голову"
+    },
+    {
+      "id": "rom_0cdd08",
+      "translation": "удобно."
+    },
+    {
+      "id": "rom_0cdd18",
+      "translation": "Живи в любых условиях"
+    },
+    {
+      "id": "rom_0cdd34",
+      "translation": "в кого захочешь."
+    },
+    {
+      "id": "rom_0cdd4c",
+      "translation": "Надень это и превратись"
+    },
+    {
+      "id": "rom_0cdd68",
+      "translation": "говорить на чужом языке."
+    },
+    {
+      "id": "rom_0cdd84",
+      "translation": "Съешь это и сможешь"
+    },
+    {
+      "id": "rom_0cdda0",
+      "translation": "на этой машине."
+    },
+    {
+      "id": "rom_0cddb4",
+      "translation": "Отправляйся сквозь время"
+    },
+    {
+      "id": "rom_0cddd0",
+      "translation": "соединена с ним."
+    },
+    {
+      "id": "rom_0cdde4",
+      "translation": "лишь гирокапсула"
+    },
+    {
+      "id": "rom_0cddfc",
+      "translation": "На Дакте"
+    },
+    {
+      "id": "rom_0cde0c",
+      "translation": "время и пространство."
+    },
+    {
+      "id": "rom_0cde28",
+      "translation": "Вокруг Дакта искажены"
+    },
+    {
+      "id": "rom_0cde44",
+      "translation": "через эту дверь."
+    },
+    {
+      "id": "rom_0cde60",
+      "translation": "Иди куда захочешь"
+    },
+    {
+      "id": "rom_0cde78",
+      "translation": "из цветов."
+    },
+    {
+      "id": "rom_0cde88",
+      "translation": "Газ создаёт сад"
+    },
+    {
+      "id": "rom_0cdea0",
+      "translation": "и путешествуй незаметно."
+    },
+    {
+      "id": "rom_0cdec0",
+      "translation": "камнями и другими вещами"
+    },
+    {
+      "id": "rom_0cdedc",
+      "translation": "Покрой капсулу"
+    },
+    {
+      "id": "rom_0cdef8",
+      "translation": "Тест"
+    },
+    {
+      "id": "rom_0cdf00",
+      "translation": "Секретный гаджет"
+    },
+    {
+      "id": "rom_0cdf10",
+      "translation": "Гирокапсула"
+    },
+    {
+      "id": "rom_0cdf24",
+      "translation": "Цветочный баллон"
+    },
+    {
+      "id": "rom_0cdf34",
+      "translation": "Дверь куда угодно"
+    },
+    {
+      "id": "rom_0cdf44",
+      "translation": "Машина времени"
+    },
+    {
+      "id": "rom_0cdf54",
+      "translation": "Переводной конняку"
+    },
+    {
+      "id": "rom_0cdf68",
+      "translation": "Пластина перевоплощения"
+    },
+    {
+      "id": "rom_0cdf7c",
+      "translation": "Лампа адаптации"
+    },
+    {
+      "id": "rom_0cdf8c",
+      "translation": "Такекоптер"
+    },
+    {
+      "id": "rom_0cdf9c",
+      "translation": "Глубоководный крем"
+    },
+    {
+      "id": "rom_0cdfb0",
+      "translation": "Жаберные трубки"
+    },
+    {
+      "id": "rom_0cdfc0",
+      "translation": "Эскимосский экстракт"
+    },
+    {
+      "id": "rom_0cdfd4",
+      "translation": "Снегоустройство"
+    },
+    {
+      "id": "rom_0cdfe4",
+      "translation": "Кибиданго Момотаро"
+    },
+    {
+      "id": "rom_0ce004",
+      "translation": "Извлекатель содержимого"
+    },
+    {
+      "id": "rom_0ce010",
+      "translation": "Генератор тайфунов"
+    },
+    {
+      "id": "rom_0ce024",
+      "translation": "Сердечный микрофон"
+    },
+    {
+      "id": "rom_0ce034",
+      "translation": "Жидкость-улучшитель"
+    },
+    {
+      "id": "rom_0ce048",
+      "translation": "Наклейка-оберег"
+    },
+    {
+      "id": "rom_0ce058",
+      "translation": "Шар-картограф"
+    },
+    {
+      "id": "rom_0ce06c",
+      "translation": "Аптечка для механизмов"
+    },
+    {
+      "id": "rom_0ce084",
+      "translation": "Ангел-проводник"
+    },
+    {
+      "id": "rom_0ce098",
+      "translation": "Водостойкое оригами"
+    },
+    {
+      "id": "rom_0ce0ac",
+      "translation": "Светящийся мох"
+    },
+    {
+      "id": "rom_0ce0b8",
+      "translation": "Цветущий пепел"
+    },
+    {
+      "id": "rom_0ce0c8",
+      "translation": "Искатель сокровищ"
+    },
+    {
+      "id": "rom_0ce0d8",
+      "translation": "Глаз тайфуна"
+    },
+    {
+      "id": "rom_0ce0ec",
+      "translation": "Уменьшающий фонарь"
+    },
+    {
+      "id": "rom_0ce0fc",
+      "translation": "Искусственное солнце"
+    },
+    {
+      "id": "rom_0ce110",
+      "translation": "Волны правды"
+    },
+    {
+      "id": "rom_0ce124",
+      "translation": "Боб Джека"
+    },
+    {
+      "id": "rom_0ce134",
+      "translation": "Призыватель душ"
+    },
+    {
+      "id": "rom_0ce148",
+      "translation": "Облачное ведро"
+    },
+    {
+      "id": "rom_0ce158",
+      "translation": "Отвердитель облаков"
+    },
+    {
+      "id": "rom_0ce168",
+      "translation": "Камера-переодеватель"
+    },
+    {
+      "id": "rom_0ce178",
+      "translation": "Универсальный пропуск"
+    },
+    {
+      "id": "rom_0ce18c",
+      "translation": "Космическая шлюпка"
+    },
+    {
+      "id": "rom_0ce1a8",
+      "translation": "Корабль-очиститель"
+    },
+    {
+      "id": "rom_0ce1c4",
+      "translation": "Зеркало-проход"
+    },
+    {
+      "id": "rom_0ce1d8",
+      "translation": "Туннельный фонарь"
+    },
+    {
+      "id": "rom_0ce1e8",
+      "translation": "Сквозной обруч"
+    },
+    {
+      "id": "rom_0ce1fc",
+      "translation": "Платок времени"
+    },
+    {
+      "id": "rom_0ce20c",
+      "translation": "Телевизор времени"
+    },
+    {
+      "id": "rom_0ce21c",
+      "translation": "Пояс обратной гравитации"
+    },
+    {
+      "id": "rom_0ce238",
+      "translation": "Туфли для входа в книгу"
+    },
+    {
+      "id": "rom_0ce250",
+      "translation": "Осколок звезды"
+    },
+    {
+      "id": "rom_0ce260",
+      "translation": "Диск с данными"
+    },
+    {
+      "id": "rom_0ce270",
+      "translation": "Пульт управления эмблемой"
+    },
+    {
+      "id": "rom_0ce28c",
+      "translation": "Зеркало Мире"
+    },
+    {
+      "id": "rom_0ce29c",
+      "translation": "Камень силы"
+    },
+    {
+      "id": "rom_0ce2ac",
+      "translation": "Эмблема джинна"
+    },
+    {
+      "id": "rom_0ce2c0",
+      "translation": "Золотой ключ"
+    },
+    {
+      "id": "rom_0ce2cc",
+      "translation": "Красный кристалл"
+    },
+    {
+      "id": "rom_0ce2e0",
+      "translation": "Зелёный кристалл"
+    },
+    {
+      "id": "rom_0ce2f4",
+      "translation": "Серебряный ключ"
+    },
+    {
+      "id": "rom_0ce300",
+      "translation": "Ключ-кристалл"
+    },
+    {
+      "id": "rom_0ce310",
+      "translation": "Ключ-карта"
+    },
+    {
+      "id": "rom_0ce31c",
+      "translation": "Таинственный плод"
+    },
+    {
+      "id": "rom_0ce328",
+      "translation": "Газовый спрей"
+    },
+    {
+      "id": "rom_0ce338",
+      "translation": "Энергокамень"
+    },
+    {
+      "id": "rom_0ce34c",
+      "translation": "Капсула возрождения"
+    },
+    {
+      "id": "rom_0ce360",
+      "translation": "Плод полного исцеления"
+    },
+    {
+      "id": "rom_0ce374",
+      "translation": "Целебный плод"
+    },
+    {
+      "id": "rom_0ce3a8",
+      "translation": "На кого применить?"
+    },
+    {
+      "id": "rom_0ce3c0",
+      "translation": "Сначала оживи друга."
+    },
+    {
+      "id": "rom_0ce3d8",
+      "translation": "Нельзя."
+    },
+    {
+      "id": "rom_0ce3e8",
+      "translation": "Здесь нельзя."
+    },
+    {
+      "id": "rom_0ce400",
+      "translation": "Подтверждаешь?"
+    },
+    {
+      "id": "rom_0ce41c",
+      "translation": "Нет"
+    },
+    {
+      "id": "rom_0ce448",
+      "translation": "Гипервоздушная пушка"
+    },
+    {
+      "id": "rom_0ce45c",
+      "translation": "Рука-удлинитель"
+    },
+    {
+      "id": "rom_0ce46c",
+      "translation": "Суперперчатки"
+    },
+    {
+      "id": "rom_0ce480",
+      "translation": "Перчатки чемпиона"
+    },
+    {
+      "id": "rom_0ce498",
+      "translation": "Водяная пушка"
+    },
+    {
+      "id": "rom_0ce4a8",
+      "translation": "Водяной пистолет"
+    },
+    {
+      "id": "rom_0ce4b8",
+      "translation": "Воздушная пушка"
+    },
+    {
+      "id": "rom_0ce4c4",
+      "translation": "Электропистолет"
+    },
+    {
+      "id": "rom_0ce4d4",
+      "translation": "Ударно-волновой пистолет"
+    },
+    {
+      "id": "rom_0ce4ec",
+      "translation": "Веер бога ветра"
+    },
+    {
+      "id": "rom_0ce508",
+      "translation": "Взрывная бумага"
+    },
+    {
+      "id": "rom_0ce518",
+      "translation": "Меткий пистолет"
+    },
+    {
+      "id": "rom_0ce528",
+      "translation": "Светошумовая граната"
+    },
+    {
+      "id": "rom_0ce540",
+      "translation": "Автофейерверк"
+    },
+    {
+      "id": "rom_0ce558",
+      "translation": "Без оружия"
+    },
+    {
+      "id": "rom_0ce564",
+      "translation": "и взрывается."
+    },
+    {
+      "id": "rom_0ce578",
+      "translation": "она взлетит в небо"
+    },
+    {
+      "id": "rom_0ce594",
+      "translation": "Брось на землю:"
+    },
+    {
+      "id": "rom_0ce5ac",
+      "translation": "чтобы напугать врага."
+    },
+    {
+      "id": "rom_0ce5c0",
+      "translation": "грохот и вспышку света,"
+    },
+    {
+      "id": "rom_0ce5dc",
+      "translation": "Брось эту бомбу: она издаст"
+    },
+    {
+      "id": "rom_0ce5f8",
+      "translation": "не промахнёшься."
+    },
+    {
+      "id": "rom_0ce608",
+      "translation": "Прицелься и стреляй:"
+    },
+    {
+      "id": "rom_0ce624",
+      "translation": "У пуль есть глаза."
+    },
+    {
+      "id": "rom_0ce63c",
+      "translation": "взрыв становится"
+    },
+    {
+      "id": "rom_0ce654",
+      "translation": "Удерживай кнопку:"
+    },
+    {
+      "id": "rom_0ce670",
+      "translation": "и бросай как петарду."
+    },
+    {
+      "id": "rom_0ce68c",
+      "translation": "Оторви кусочек бумаги"
+    },
+    {
+      "id": "rom_0ce6a4",
+      "translation": "тоже."
+    },
+    {
+      "id": "rom_0ce6b0",
+      "translation": "иногда действует"
+    },
+    {
+      "id": "rom_0ce6c8",
+      "translation": "На ловушки оно"
+    },
+    {
+      "id": "rom_0ce6e0",
+      "translation": "можно создать."
+    },
+    {
+      "id": "rom_0ce6fc",
+      "translation": "Сильный ветер"
+    },
+    {
+      "id": "rom_0ce714",
+      "translation": "Можно стрелять очередью."
+    },
+    {
+      "id": "rom_0ce730",
+      "translation": "вместо пуль."
+    },
+    {
+      "id": "rom_0ce74c",
+      "translation": "Пистолет стреляет воздухом"
+    },
+    {
+      "id": "rom_0ce768",
+      "translation": "больше."
+    },
+    {
+      "id": "rom_0ce77c",
+      "translation": "Заряд тока становится"
+    },
+    {
+      "id": "rom_0ce794",
+      "translation": "во врагов."
+    },
+    {
+      "id": "rom_0ce7a0",
+      "translation": "электрические заряды"
+    },
+    {
+      "id": "rom_0ce7b8",
+      "translation": "Выпускает мощные"
+    },
+    {
+      "id": "rom_0ce7d0",
+      "translation": "Сгусток воздуха растёт"
+    },
+    {
+      "id": "rom_0ce7e8",
+      "translation": "и стреляет воздухом"
+    },
+    {
+      "id": "rom_0ce800",
+      "translation": "Сжимает воздух"
+    },
+    {
+      "id": "rom_0ce81c",
+      "translation": "оружие."
+    },
+    {
+      "id": "rom_0ce82c",
+      "translation": "Только для воды"
+    },
+    {
+      "id": "rom_0ce844",
+      "translation": "ударные волны."
+    },
+    {
+      "id": "rom_0ce860",
+      "translation": "Мощные"
+    },
+    {
+      "id": "rom_0ce870",
+      "translation": "Сгусток воды"
+    },
+    {
+      "id": "rom_0ce884",
+      "translation": "водяные сгустки"
+    },
+    {
+      "id": "rom_0ce898",
+      "translation": "Использует напор воды"
+    },
+    {
+      "id": "rom_0ce8b0",
+      "translation": "перчатки."
+    },
+    {
+      "id": "rom_0ce8bc",
+      "translation": "одним ударом."
+    },
+    {
+      "id": "rom_0ce8d4",
+      "translation": "Разбивает камни"
+    },
+    {
+      "id": "rom_0ce8e8",
+      "translation": "перчатки."
+    },
+    {
+      "id": "rom_0ce8f4",
+      "translation": "Выпускающие волны"
+    },
+    {
+      "id": "rom_0ce908",
+      "translation": "хватать далёкие предметы."
+    },
+    {
+      "id": "rom_0ce924",
+      "translation": "Также позволяет"
+    },
+    {
+      "id": "rom_0ce938",
+      "translation": "чтобы бить врагов."
+    },
+    {
+      "id": "rom_0ce954",
+      "translation": "Рука далеко вытягивается,"
+    },
+    {
+      "id": "rom_0ce970",
+      "translation": "Поможет в битве с Багулом."
+    },
+    {
+      "id": "rom_0ce98c",
+      "translation": "усиленная."
+    },
+    {
+      "id": "rom_0ce99c",
+      "translation": "Воздушная пушка,"
+    },
+    {
+      "id": "rom_0ce9d8",
+      "translation": "быстро"
+    },
+    {
+      "id": "rom_0ce9e4",
+      "translation": "Плавает"
+    },
+    {
+      "id": "rom_0ce9f8",
+      "translation": "<Прыжок>"
+    },
+    {
+      "id": "rom_0cea08",
+      "translation": "    Обычно"
+    },
+    {
+      "id": "rom_0cea18",
+      "translation": "<Скорость>"
+    },
+    {
+      "id": "rom_0cea24",
+      "translation": "Меткий!"
+    },
+    {
+      "id": "rom_0cea30",
+      "translation": "Стрельба"
+    },
+    {
+      "id": "rom_0cea3c",
+      "translation": "    Высоко"
+    },
+    {
+      "id": "rom_0cea4c",
+      "translation": "    Быстро"
+    },
+    {
+      "id": "rom_0cea64",
+      "translation": "Здоровье"
+    },
+    {
+      "id": "rom_195640",
+      "translation": "Выбери количество игроков!"
+    },
+    {
+      "id": "rom_195680",
+      "translation": "Выбери персонажа!"
+    },
+    {
+      "id": "rom_1956b0",
+      "translation": "36 мишеней"
+    },
+    {
+      "id": "rom_1956c4",
+      "translation": "Битва гранатами"
+    },
+    {
+      "id": "rom_1956e0",
+      "translation": "Учебные машинки: скользкая гонка"
+    },
+    {
+      "id": "rom_195704",
+      "translation": "Кубическая рулетка"
+    },
+    {
+      "id": "rom_195720",
+      "translation": "Слова-снаряды"
+    },
+    {
+      "id": "rom_195744",
+      "translation": "Битва пазлов"
+    },
+    {
+      "id": "rom_19575c",
+      "translation": "Гонки на велолётах"
+    },
+    {
+      "id": "rom_195774",
+      "translation": "Числа на скорость"
+    },
+    {
+      "id": "rom_195798",
+      "translation": "Гонки на учебных машинках"
+    },
+    {
+      "id": "rom_195828",
+      "translation": "Выбери мини-игру!"
+    },
+    {
+      "id": "rom_19584c",
+      "translation": "Для игры нужны энергокамни:"
+    },
+    {
+      "id": "rom_195870",
+      "translation": "шт."
+    },
+    {
+      "id": "rom_195888",
+      "translation": "Потратить энергокамни?"
+    },
+    {
+      "id": "rom_1958ac",
+      "translation": "                   Да        Нет"
+    },
+    {
+      "id": "rom_195908",
+      "translation": "Мчись к финишу"
+    },
+    {
+      "id": "rom_19591c",
+      "translation": "и доберись туда"
+    },
+    {
+      "id": "rom_195930",
+      "translation": "первым!"
+    },
+    {
+      "id": "rom_19594c",
+      "translation": "Скользко! Справишься"
+    },
+    {
+      "id": "rom_195964",
+      "translation": "ли ты?"
+    },
+    {
+      "id": "rom_195984",
+      "translation": "Управление"
+    },
+    {
+      "id": "rom_195994",
+      "translation": "Газ"
+    },
+    {
+      "id": "rom_1959a0",
+      "translation": "Тормоз"
+    },
+    {
+      "id": "rom_1959ac",
+      "translation": "Трасса 1    Трасса 2"
+    },
+    {
+      "id": "rom_195af8",
+      "translation": "Попади во все девять"
+    },
+    {
+      "id": "rom_195b10",
+      "translation": "панелей с числами"
+    },
+    {
+      "id": "rom_195b28",
+      "translation": "по порядку: от"
+    },
+    {
+      "id": "rom_195b40",
+      "translation": "меньшего к большему."
+    },
+    {
+      "id": "rom_195b58",
+      "translation": "Кто первым все"
+    },
+    {
+      "id": "rom_195b70",
+      "translation": "панели собьёт,"
+    },
+    {
+      "id": "rom_195b88",
+      "translation": "тот и победит."
+    },
+    {
+      "id": "rom_195ba0",
+      "translation": " "
+    },
+    {
+      "id": "rom_195bd8",
+      "translation": "Нажимай кнопки"
+    },
+    {
+      "id": "rom_195bf0",
+      "translation": "по очереди,"
+    },
+    {
+      "id": "rom_195c08",
+      "translation": "вращай пропеллер"
+    },
+    {
+      "id": "rom_195c20",
+      "translation": "и мчись к финишу."
+    },
+    {
+      "id": "rom_195c38",
+      "translation": "Чем ближе полоса"
+    },
+    {
+      "id": "rom_195c50",
+      "translation": "к центру, тем"
+    },
+    {
+      "id": "rom_195c68",
+      "translation": "быстрее!"
+    },
+    {
+      "id": "rom_195c94",
+      "translation": "За отведённое время"
+    },
+    {
+      "id": "rom_195cac",
+      "translation": "из девяти плиток"
+    },
+    {
+      "id": "rom_195cc4",
+      "translation": "собери целую"
+    },
+    {
+      "id": "rom_195cdc",
+      "translation": "картинку."
+    },
+    {
+      "id": "rom_195cf4",
+      "translation": "  "
+    },
+    {
+      "id": "rom_195d0c",
+      "translation": "плитки соберёт,"
+    },
+    {
+      "id": "rom_195d24",
+      "translation": "тот и победит!"
+    },
+    {
+      "id": "rom_195d5c",
+      "translation": "Стреляй названием"
+    },
+    {
+      "id": "rom_195d74",
+      "translation": "подходящей еды,"
+    },
+    {
+      "id": "rom_195d8c",
+      "translation": "чтобы её убрать."
+    },
+    {
+      "id": "rom_195da4",
+      "translation": "Если ошибёшься,"
+    },
+    {
+      "id": "rom_195dbc",
+      "translation": "твоё слово-снаряд"
+    },
+    {
+      "id": "rom_195dd4",
+      "translation": "пропадёт."
+    },
+    {
+      "id": "rom_195e08",
+      "translation": "Собери больше"
+    },
+    {
+      "id": "rom_195e20",
+      "translation": "панелей героя,"
+    },
+    {
+      "id": "rom_195e38",
+      "translation": "показанного"
+    },
+    {
+      "id": "rom_195e50",
+      "translation": "в центре экрана."
+    },
+    {
+      "id": "rom_195e68",
+      "translation": "У кого больше"
+    },
+    {
+      "id": "rom_195e80",
+      "translation": "таких панелей,"
+    },
+    {
+      "id": "rom_195eb8",
+      "translation": "Бросай светошумовые"
+    },
+    {
+      "id": "rom_195ed0",
+      "translation": "гранаты, уменьшая"
+    },
+    {
+      "id": "rom_195ee8",
+      "translation": "здоровье соперников."
+    },
+    {
+      "id": "rom_195f00",
+      "translation": "У кого в конце"
+    },
+    {
+      "id": "rom_195f18",
+      "translation": "игры будет"
+    },
+    {
+      "id": "rom_195f30",
+      "translation": "больше сил,"
+    },
+    {
+      "id": "rom_195f68",
+      "translation": "Стреляй по панелям"
+    },
+    {
+      "id": "rom_195f80",
+      "translation": "и зарабатывай очки."
+    },
+    {
+      "id": "rom_195f98",
+      "translation": " "
+    },
+    {
+      "id": "rom_195fb0",
+      "translation": "Победит тот, у кого"
+    },
+    {
+      "id": "rom_195fc8",
+      "translation": "будет больше очков."
+    },
+    {
+      "id": "rom_195fe0",
+      "translation": "Есть панели,"
+    },
+    {
+      "id": "rom_195ff8",
+      "translation": "отнимающие очки."
+    },
+    {
+      "id": "rom_196010",
+      "translation": "Будь осторожен!"
+    },
+    {
+      "id": "rom_196048",
+      "translation": "  Лучший результат"
+    },
+    {
+      "id": "rom_19605c",
+      "translation": "Двигать курсор"
+    },
+    {
+      "id": "rom_196074",
+      "translation": "Крути педали"
+    },
+    {
+      "id": "rom_196084",
+      "translation": "Сдвиг плитки"
+    },
+    {
+      "id": "rom_196094",
+      "translation": "Отмена"
+    },
+    {
+      "id": "rom_1960a0",
+      "translation": "Движение"
+    },
+    {
+      "id": "rom_1960b0",
+      "translation": "Пуск дораяки"
+    },
+    {
+      "id": "rom_1960c0",
+      "translation": "Пуск дыни"
+    },
+    {
+      "id": "rom_1960d0",
+      "translation": "Пуск данго"
+    },
+    {
+      "id": "rom_1960e0",
+      "translation": "Остановить"
+    },
+    {
+      "id": "rom_1960f0",
+      "translation": "Бросок близко"
+    },
+    {
+      "id": "rom_196100",
+      "translation": "Бросок далеко"
+    },
+    {
+      "id": "rom_196158",
+      "translation": "Уровень   Легко"
+    },
+    {
+      "id": "rom_19616c",
+      "translation": "          Трудно"
+    },
+    {
+      "id": "rom_1a9d70",
+      "translation": "Дыня"
+    },
+    {
+      "id": "rom_1a9d78",
+      "translation": "Данго"
+    },
+    {
+      "id": "rom_1a9d80",
+      "translation": "Дораяки"
+    },
+    {
+      "id": "context_0c5f0c",
+      "translation": "Съешь, чтобы"
+    },
+    {
+      "id": "context_0c5f10",
+      "translation": "восстановить 2 очка"
+    },
+    {
+      "id": "context_0c5f14",
+      "translation": "здоровья."
+    },
+    {
+      "id": "context_0c5f1c",
+      "translation": "Съешь, чтобы полностью"
+    },
+    {
+      "id": "context_0c5f20",
+      "translation": "восстановить здоровье."
+    },
+    {
+      "id": "context_0c5f24",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5f2c",
+      "translation": "Капсула оживляет друга,"
+    },
+    {
+      "id": "context_0c5f30",
+      "translation": "потерявшего все силы."
+    },
+    {
+      "id": "context_0c5f34",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5f3c",
+      "translation": "Руда для создания разных"
+    },
+    {
+      "id": "context_0c5f40",
+      "translation": "вещей."
+    },
+    {
+      "id": "context_0c5f48",
+      "translation": "Также открывает новые"
+    },
+    {
+      "id": "context_0c5f4c",
+      "translation": "игры в парке мини-игр."
+    },
+    {
+      "id": "context_0c5f54",
+      "translation": "Восстанавливает вещи,"
+    },
+    {
+      "id": "context_0c5f58",
+      "translation": "которые покрылись"
+    },
+    {
+      "id": "context_0c5f5c",
+      "translation": "слизью."
+    },
+    {
+      "id": "context_0c5f64",
+      "translation": "Любимый фрукт одного"
+    },
+    {
+      "id": "context_0c5f68",
+      "translation": "загадочного существа."
+    },
+    {
+      "id": "context_0c5f70",
+      "translation": "Ключ-карта, открывающая"
+    },
+    {
+      "id": "context_0c5f74",
+      "translation": "дверь в особую комнату."
+    },
+    {
+      "id": "context_0c5f78",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5f80",
+      "translation": "Кристаллы для входа в"
+    },
+    {
+      "id": "context_0c5f84",
+      "translation": "башню Марил. Нужно"
+    },
+    {
+      "id": "context_0c5f88",
+      "translation": "четыре штуки."
+    },
+    {
+      "id": "context_0c5f8c",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5f94",
+      "translation": "Ключ для серебряных"
+    },
+    {
+      "id": "context_0c5f98",
+      "translation": "сундуков с сокровищами."
+    },
+    {
+      "id": "context_0c5fa0",
+      "translation": "Кристалл, необходимый"
+    },
+    {
+      "id": "context_0c5fa4",
+      "translation": "для поворотных площадок"
+    },
+    {
+      "id": "context_0c5fa8",
+      "translation": "в башне Металдо."
+    },
+    {
+      "id": "context_0c5fac",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5fb4",
+      "translation": "Кристалл, необходимый"
+    },
+    {
+      "id": "context_0c5fb8",
+      "translation": "для поворотных площадок"
+    },
+    {
+      "id": "context_0c5fbc",
+      "translation": "в башне Металдо."
+    },
+    {
+      "id": "context_0c5fc0",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5fc8",
+      "translation": "Ключ для золотых"
+    },
+    {
+      "id": "context_0c5fcc",
+      "translation": "сундуков с сокровищами."
+    },
+    {
+      "id": "context_0c5fd4",
+      "translation": "Огромная эмблема, нужная"
+    },
+    {
+      "id": "context_0c5fd8",
+      "translation": "для пробуждения джинна."
+    },
+    {
+      "id": "context_0c5fdc",
+      "translation": " "
+    },
+    {
+      "id": "context_0c5fe4",
+      "translation": "Руда, в которой скрыта"
+    },
+    {
+      "id": "context_0c5fe8",
+      "translation": "огромная сила."
+    },
+    {
+      "id": "context_0c5ff0",
+      "translation": "Осколки зеркала для"
+    },
+    {
+      "id": "context_0c5ff4",
+      "translation": "входа в башню Мире."
+    },
+    {
+      "id": "context_0c5ff8",
+      "translation": "Нужно две штуки."
+    },
+    {
+      "id": "context_0c5ffc",
+      "translation": " "
+    },
+    {
+      "id": "context_0c6004",
+      "translation": "Создаёт мощное магнитное"
+    },
+    {
+      "id": "context_0c6008",
+      "translation": "поле, чтобы двигать"
+    },
+    {
+      "id": "context_0c600c",
+      "translation": "огромную эмблему."
+    },
+    {
+      "id": "context_0c6014",
+      "translation": "Диск с чертежами и"
+    },
+    {
+      "id": "context_0c6018",
+      "translation": "данными об источнике"
+    },
+    {
+      "id": "context_0c601c",
+      "translation": "энергии."
+    },
+    {
+      "id": "context_0c6024",
+      "translation": "Ядро расколотого"
+    },
+    {
+      "id": "context_0c6028",
+      "translation": "метеорита. Служит"
+    },
+    {
+      "id": "context_0c602c",
+      "translation": "источником энергии."
+    },
+    {
+      "id": "context_0c6034",
+      "translation": "Туфли для входа в книгу"
+    },
+    {
+      "id": "context_0c6038",
+      "translation": "с картинками."
+    },
+    {
+      "id": "context_0c6040",
+      "translation": "Меняет гравитацию: можно"
+    },
+    {
+      "id": "context_0c6044",
+      "translation": "падать снизу вверх."
+    },
+    {
+      "id": "context_0c6048",
+      "translation": " "
+    },
+    {
+      "id": "context_0c6050",
+      "translation": "Телевизор, показывающий"
+    },
+    {
+      "id": "context_0c6054",
+      "translation": "прошлое и будущее."
+    },
+    {
+      "id": "context_0c605c",
+      "translation": "Развивает вещи и существ"
+    },
+    {
+      "id": "context_0c6060",
+      "translation": "или возвращает им"
+    },
+    {
+      "id": "context_0c6064",
+      "translation": "прежнюю форму."
+    },
+    {
+      "id": "context_0c606c",
+      "translation": "Позволяет проходить"
+    },
+    {
+      "id": "context_0c6070",
+      "translation": "сквозь стены."
+    },
+    {
+      "id": "context_0c6078",
+      "translation": "Посвети фонарём, чтобы"
+    },
+    {
+      "id": "context_0c607c",
+      "translation": "вырыть туннель."
+    },
+    {
+      "id": "context_0c6084",
+      "translation": "Открывает мир, в котором"
+    },
+    {
+      "id": "context_0c6088",
+      "translation": "лево и право поменялись."
+    },
+    {
+      "id": "context_0c6090",
+      "translation": "Устройство для очистки"
+    },
+    {
+      "id": "context_0c6094",
+      "translation": "грязных рек и озёр."
+    },
+    {
+      "id": "context_0c609c",
+      "translation": "Автоматически доставит"
+    },
+    {
+      "id": "context_0c60a0",
+      "translation": "на космическую станцию"
+    },
+    {
+      "id": "context_0c60a4",
+      "translation": "или пригодную для жизни"
+    },
+    {
+      "id": "context_0c60a8",
+      "translation": "планету."
+    },
+    {
+      "id": "context_0c60b0",
+      "translation": "Карта для свободного"
+    },
+    {
+      "id": "context_0c60b4",
+      "translation": "входа куда угодно."
+    },
+    {
+      "id": "context_0c60bc",
+      "translation": "Мгновенно одевает любого"
+    },
+    {
+      "id": "context_0c60c0",
+      "translation": "в наряд на твой вкус."
+    },
+    {
+      "id": "context_0c60d0",
+      "translation": "Открой ведро, и появится"
+    },
+    {
+      "id": "context_0c60d4",
+      "translation": "дождевая туча. Из неё"
+    },
+    {
+      "id": "context_0c60d8",
+      "translation": "пойдёт дождь."
+    },
+    {
+      "id": "context_0c60e0",
+      "translation": "Вызывает духов лесов,"
+    },
+    {
+      "id": "context_0c60e4",
+      "translation": "гор и других мест для"
+    },
+    {
+      "id": "context_0c60e8",
+      "translation": "разговора с ними."
+    },
+    {
+      "id": "context_0c60f0",
+      "translation": "Также вызывает дух"
+    },
+    {
+      "id": "context_0c60f4",
+      "translation": "легендарного джинна."
+    },
+    {
+      "id": "context_0c60fc",
+      "translation": "Посади боб в землю, и из"
+    },
+    {
+      "id": "context_0c6100",
+      "translation": "него сразу вырастет"
+    },
+    {
+      "id": "context_0c6104",
+      "translation": "огромное дерево."
+    },
+    {
+      "id": "context_0c610c",
+      "translation": "Под действием этих волн"
+    },
+    {
+      "id": "context_0c6110",
+      "translation": "любой начнёт говорить"
+    },
+    {
+      "id": "context_0c6114",
+      "translation": "правду."
+    },
+    {
+      "id": "context_0c611c",
+      "translation": "Маленькое солнце, всегда"
+    },
+    {
+      "id": "context_0c6120",
+      "translation": "готовое к работе."
+    },
+    {
+      "id": "context_0c6128",
+      "translation": "Прибор, который может"
+    },
+    {
+      "id": "context_0c612c",
+      "translation": "уменьшить что угодно."
+    },
+    {
+      "id": "context_0c6134",
+      "translation": "Создаёт вокруг тебя"
+    },
+    {
+      "id": "context_0c6138",
+      "translation": "малый глаз тайфуна, в"
+    },
+    {
+      "id": "context_0c613c",
+      "translation": "котором ветер утихает."
+    },
+    {
+      "id": "context_0c6144",
+      "translation": "Автоматически ищет"
+    },
+    {
+      "id": "context_0c6148",
+      "translation": "сокровища, спрятанные"
+    },
+    {
+      "id": "context_0c614c",
+      "translation": "поблизости."
+    },
+    {
+      "id": "context_0c6154",
+      "translation": "Посыпь этим пеплом любое"
+    },
+    {
+      "id": "context_0c6158",
+      "translation": "дерево, чтобы оно"
+    },
+    {
+      "id": "context_0c615c",
+      "translation": "зацвело."
+    },
+    {
+      "id": "context_0c6164",
+      "translation": "Разбросай мох, чтобы всё"
+    },
+    {
+      "id": "context_0c6168",
+      "translation": "вокруг засияло."
+    },
+    {
+      "id": "context_0c6170",
+      "translation": "Лодка из огромного листа"
+    },
+    {
+      "id": "context_0c6174",
+      "translation": "бумаги, которая не"
+    },
+    {
+      "id": "context_0c6178",
+      "translation": "рвётся от воды."
+    },
+    {
+      "id": "context_0c6180",
+      "translation": "Надень на палец и спроси"
+    },
+    {
+      "id": "context_0c6184",
+      "translation": "совета. Он подскажет,"
+    },
+    {
+      "id": "context_0c6188",
+      "translation": "что делать."
+    },
+    {
+      "id": "context_0c6190",
+      "translation": "Чинит сломанные"
+    },
+    {
+      "id": "context_0c6194",
+      "translation": "механизмы."
+    },
+    {
+      "id": "context_0c619c",
+      "translation": "Наполняет комнату дымом"
+    },
+    {
+      "id": "context_0c61a0",
+      "translation": "и составляет карту её"
+    },
+    {
+      "id": "context_0c61a4",
+      "translation": "внутреннего устройства."
+    },
+    {
+      "id": "context_0c61ac",
+      "translation": "Наклей на живот, чтобы"
+    },
+    {
+      "id": "context_0c61b0",
+      "translation": "изгнать вселившегося в"
+    },
+    {
+      "id": "context_0c61b4",
+      "translation": "тебя призрака."
+    },
+    {
+      "id": "context_0c61bc",
+      "translation": "Полей этим механизм,"
+    },
+    {
+      "id": "context_0c61c0",
+      "translation": "чтобы улучшить его"
+    },
+    {
+      "id": "context_0c61c4",
+      "translation": "работу."
+    },
+    {
+      "id": "context_0c61cc",
+      "translation": "Спой в этот микрофон и"
+    },
+    {
+      "id": "context_0c61d0",
+      "translation": "растрогай слушателей."
+    },
+    {
+      "id": "context_0c61d8",
+      "translation": "Создаёт область низкого"
+    },
+    {
+      "id": "context_0c61dc",
+      "translation": "давления, вызывая"
+    },
+    {
+      "id": "context_0c61e0",
+      "translation": "тайфун."
+    },
+    {
+      "id": "context_0c61e8",
+      "translation": "Побрызгай на вещь, чтобы"
+    },
+    {
+      "id": "context_0c61ec",
+      "translation": "достать только её"
+    },
+    {
+      "id": "context_0c61f0",
+      "translation": "содержимое."
+    },
+    {
+      "id": "context_0c61f8",
+      "translation": "Любой зверь, съевший это"
+    },
+    {
+      "id": "context_0c61fc",
+      "translation": "лакомство, станет тебя"
+    },
+    {
+      "id": "context_0c6200",
+      "translation": "слушаться."
+    },
+    {
+      "id": "context_0c6208",
+      "translation": "Нажми на кнопку, чтобы"
+    },
+    {
+      "id": "context_0c620c",
+      "translation": "выпустить струю снега."
+    },
+    {
+      "id": "context_0c6214",
+      "translation": "С этой жидкостью даже в"
+    },
+    {
+      "id": "context_0c6218",
+      "translation": "жарком месте ты будешь"
+    },
+    {
+      "id": "context_0c621c",
+      "translation": "чувствовать прохладу."
+    },
+    {
+      "id": "context_0c6224",
+      "translation": "Надень на нос, чтобы"
+    },
+    {
+      "id": "context_0c6228",
+      "translation": "дышать под водой."
+    },
+    {
+      "id": "context_0c622c",
+      "translation": " "
+    },
+    {
+      "id": "context_0c6234",
+      "translation": "Крем защищает от напора"
+    },
+    {
+      "id": "context_0c6238",
+      "translation": "воды на морском дне."
+    },
+    {
+      "id": "context_0c6240",
+      "translation": "Надень на голову и легко"
+    },
+    {
+      "id": "context_0c6244",
+      "translation": "летай."
+    },
+    {
+      "id": "context_0c624c",
+      "translation": "На планете Дакт работает"
+    },
+    {
+      "id": "context_0c6250",
+      "translation": "лишь там, где воздушные"
+    },
+    {
+      "id": "context_0c6254",
+      "translation": "потоки спокойны."
+    },
+    {
+      "id": "context_0c625c",
+      "translation": "Позволяет жить в любых"
+    },
+    {
+      "id": "context_0c6260",
+      "translation": "условиях."
+    },
+    {
+      "id": "context_0c6268",
+      "translation": "Надень эту пластину,"
+    },
+    {
+      "id": "context_0c626c",
+      "translation": "чтобы превратиться в"
+    },
+    {
+      "id": "context_0c6270",
+      "translation": "кого захочешь."
+    },
+    {
+      "id": "context_0c6278",
+      "translation": "Съешь, чтобы говорить"
+    },
+    {
+      "id": "context_0c627c",
+      "translation": "даже на незнакомых"
+    },
+    {
+      "id": "context_0c6280",
+      "translation": "языках."
+    },
+    {
+      "id": "context_0c6288",
+      "translation": "Машина для путешествий в"
+    },
+    {
+      "id": "context_0c628c",
+      "translation": "прошлое и будущее."
+    },
+    {
+      "id": "context_0c6294",
+      "translation": "Дверь, ведущая в любое"
+    },
+    {
+      "id": "context_0c6298",
+      "translation": "место по твоему желанию."
+    },
+    {
+      "id": "context_0c62a0",
+      "translation": "У планеты Дакт искажены"
+    },
+    {
+      "id": "context_0c62a4",
+      "translation": "пространство и время."
+    },
+    {
+      "id": "context_0c62ac",
+      "translation": "На планете Дакт ведёт"
+    },
+    {
+      "id": "context_0c62b0",
+      "translation": "только в гирокапсулу."
+    },
+    {
+      "id": "context_0c62b4",
+      "translation": " "
+    },
+    {
+      "id": "context_0c62bc",
+      "translation": "Газ, создающий цветущий"
+    },
+    {
+      "id": "context_0c62c0",
+      "translation": "сад."
+    },
+    {
+      "id": "context_0c62c8",
+      "translation": "Обложи капсулу камнями и"
+    },
+    {
+      "id": "context_0c62cc",
+      "translation": "другими вещами: они"
+    },
+    {
+      "id": "context_0c62d0",
+      "translation": "скроют её при движении."
+    },
+    {
+      "id": "context_0c6f38",
+      "translation": "Катится по земле, затем"
+    },
+    {
+      "id": "context_0c6f3c",
+      "translation": "взмывает в воздух и"
+    },
+    {
+      "id": "context_0c6f40",
+      "translation": "взрывается."
+    },
+    {
+      "id": "context_0c6f48",
+      "translation": "Бомба пугает врагов"
+    },
+    {
+      "id": "context_0c6f4c",
+      "translation": "громким взрывом и яркой"
+    },
+    {
+      "id": "context_0c6f50",
+      "translation": "вспышкой."
+    },
+    {
+      "id": "context_0c6f58",
+      "translation": "У этих пуль есть глаза."
+    },
+    {
+      "id": "context_0c6f5c",
+      "translation": "Прицелься, и они точно"
+    },
+    {
+      "id": "context_0c6f60",
+      "translation": "попадут в цель."
+    },
+    {
+      "id": "context_0c6f68",
+      "translation": "Оторви кусочек бумаги и"
+    },
+    {
+      "id": "context_0c6f6c",
+      "translation": "брось: он превратится в"
+    },
+    {
+      "id": "context_0c6f70",
+      "translation": "петарду."
+    },
+    {
+      "id": "context_0c6f78",
+      "translation": "Удерживай кнопку, чтобы"
+    },
+    {
+      "id": "context_0c6f7c",
+      "translation": "усилить порыв ветра."
+    },
+    {
+      "id": "context_0c6f80",
+      "translation": " "
+    },
+    {
+      "id": "context_0c6f88",
+      "translation": "Создаёт мощный порыв"
+    },
+    {
+      "id": "context_0c6f8c",
+      "translation": "ветра."
+    },
+    {
+      "id": "context_0c6f94",
+      "translation": "Иногда помогает"
+    },
+    {
+      "id": "context_0c6f98",
+      "translation": "справиться и с"
+    },
+    {
+      "id": "context_0c6f9c",
+      "translation": "ловушками."
+    },
+    {
+      "id": "context_0c6fa4",
+      "translation": "Стреляет сжатым воздухом"
+    },
+    {
+      "id": "context_0c6fa8",
+      "translation": "вместо пуль. Умеет вести"
+    },
+    {
+      "id": "context_0c6fac",
+      "translation": "огонь очередями."
+    },
+    {
+      "id": "context_0c6fb4",
+      "translation": "Стреляет сгустками"
+    },
+    {
+      "id": "context_0c6fb8",
+      "translation": "энергии, которые бьют"
+    },
+    {
+      "id": "context_0c6fbc",
+      "translation": "врагов током."
+    },
+    {
+      "id": "context_0c6fc4",
+      "translation": "Удерживай кнопку, чтобы"
+    },
+    {
+      "id": "context_0c6fc8",
+      "translation": "накопить больше энергии."
+    },
+    {
+      "id": "context_0c6fcc",
+      "translation": " "
+    },
+    {
+      "id": "context_0c6fd4",
+      "translation": "Использует давление для"
+    },
+    {
+      "id": "context_0c6fd8",
+      "translation": "стрельбы сгустками"
+    },
+    {
+      "id": "context_0c6fdc",
+      "translation": "сжатого воздуха."
+    },
+    {
+      "id": "context_0c6fe4",
+      "translation": "Удерживай кнопку, чтобы"
+    },
+    {
+      "id": "context_0c6fe8",
+      "translation": "увеличить воздушный"
+    },
+    {
+      "id": "context_0c6fec",
+      "translation": "снаряд."
+    },
+    {
+      "id": "context_0c6ff4",
+      "translation": "Выпускает мощную ударную"
+    },
+    {
+      "id": "context_0c6ff8",
+      "translation": "волну."
+    },
+    {
+      "id": "context_0c7000",
+      "translation": "Оружие только для"
+    },
+    {
+      "id": "context_0c7004",
+      "translation": "подводного боя."
+    },
+    {
+      "id": "context_0c700c",
+      "translation": "Использует давление для"
+    },
+    {
+      "id": "context_0c7010",
+      "translation": "стрельбы водяными"
+    },
+    {
+      "id": "context_0c7014",
+      "translation": "снарядами."
+    },
+    {
+      "id": "context_0c701c",
+      "translation": "Удерживай кнопку, чтобы"
+    },
+    {
+      "id": "context_0c7020",
+      "translation": "увеличить водяной"
+    },
+    {
+      "id": "context_0c7024",
+      "translation": "снаряд."
+    },
+    {
+      "id": "context_0c702c",
+      "translation": "Перчатка, которая"
+    },
+    {
+      "id": "context_0c7030",
+      "translation": "разбивает огромные камни"
+    },
+    {
+      "id": "context_0c7034",
+      "translation": "одним ударом."
+    },
+    {
+      "id": "context_0c703c",
+      "translation": "Перчатка, выпускающая"
+    },
+    {
+      "id": "context_0c7040",
+      "translation": "ударные волны."
+    },
+    {
+      "id": "context_0c7048",
+      "translation": "Длинная выдвижная рука"
+    },
+    {
+      "id": "context_0c704c",
+      "translation": "наносит урон врагам."
+    },
+    {
+      "id": "context_0c7054",
+      "translation": "Также позволяет хватать"
+    },
+    {
+      "id": "context_0c7058",
+      "translation": "предметы на расстоянии."
+    },
+    {
+      "id": "context_0c705c",
+      "translation": " "
+    },
+    {
+      "id": "rom_0cea5c",
+      "translation": "Да"
+    },
+    {
+      "id": "rom_1956d8",
+      "translation": "10"
+    },
+    {
+      "id": "rom_19573c",
+      "translation": "15"
+    },
+    {
+      "id": "rom_195754",
+      "translation": "20"
+    },
+    {
+      "id": "rom_195790",
+      "translation": "00"
+    },
+    {
+      "id": "rom_06fbf4",
+      "translation": "И"
+    },
+    {
+      "id": "rom_06fbf8",
+      "translation": "Г"
+    },
+    {
+      "id": "rom_06fbfc",
+      "translation": "Р"
+    },
+    {
+      "id": "rom_06fc00",
+      "translation": "Ы"
+    },
+    {
+      "id": "rom_06fc04",
+      "translation": " "
+    },
+    {
+      "id": "rom_19606c",
+      "translation": "Стрелять"
+    }
+  ]
+}

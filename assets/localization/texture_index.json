@@ -1,0 +1,560 @@
+{
+  "format_version": 1,
+  "identity": "ROM palette and texels, before original scaled sprite clipping",
+  "entries": [
+    {
+      "file": "0a6a-status.png",
+      "record": 4849104,
+      "resource": "0:0a6a",
+      "width": 72,
+      "height": 12,
+      "role": "status"
+    },
+    {
+      "file": "0a6d-resume.png",
+      "record": 4850512,
+      "resource": "0:0a6d",
+      "width": 112,
+      "height": 16,
+      "role": "resume"
+    },
+    {
+      "file": "0a6e-quit.png",
+      "record": 4851136,
+      "resource": "0:0a6e",
+      "width": 112,
+      "height": 16,
+      "role": "quit"
+    },
+    {
+      "file": "0a75-pause.png",
+      "record": 4852336,
+      "resource": "0:0a75",
+      "width": 72,
+      "height": 16,
+      "role": "pause"
+    },
+    {
+      "file": "0a76-item.png",
+      "record": 4852816,
+      "resource": "0:0a76",
+      "width": 64,
+      "height": 16,
+      "role": "item"
+    },
+    {
+      "file": "0a77-weapon.png",
+      "record": 4853232,
+      "resource": "0:0a77",
+      "width": 80,
+      "height": 16,
+      "role": "weapon"
+    },
+    {
+      "file": "0a78-stats.png",
+      "record": 4853792,
+      "resource": "0:0a78",
+      "width": 80,
+      "height": 16,
+      "role": "stats"
+    },
+    {
+      "file": "0a79-yes.png",
+      "record": 4854240,
+      "resource": "0:0a79",
+      "width": 32,
+      "height": 16,
+      "role": "yes"
+    },
+    {
+      "file": "0a7a-no.png",
+      "record": 4854512,
+      "resource": "0:0a7a",
+      "width": 48,
+      "height": 16,
+      "role": "no"
+    },
+    {
+      "file": "0a87-ready.png",
+      "record": 4860752,
+      "resource": "0:0a87",
+      "width": 96,
+      "height": 32,
+      "role": "ready"
+    },
+    {
+      "file": "0a88-start.png",
+      "record": 4861488,
+      "resource": "0:0a88",
+      "width": 128,
+      "height": 32,
+      "role": "start"
+    },
+    {
+      "file": "0a89-last-ten.png",
+      "record": 4862528,
+      "resource": "0:0a89",
+      "width": 80,
+      "height": 12,
+      "role": "last-ten"
+    },
+    {
+      "file": "0a8a-finish.png",
+      "record": 4862976,
+      "resource": "0:0a8a",
+      "width": 192,
+      "height": 32,
+      "role": "finish"
+    },
+    {
+      "file": "0a8b-new-record.png",
+      "record": 4864416,
+      "resource": "0:0a8b",
+      "width": 88,
+      "height": 12,
+      "role": "new-record"
+    },
+    {
+      "file": "0a8c-draw.png",
+      "record": 4864784,
+      "resource": "0:0a8c",
+      "width": 48,
+      "height": 16,
+      "role": "draw"
+    },
+    {
+      "file": "0a8d-doraemon.png",
+      "record": 4864992,
+      "resource": "0:0a8d",
+      "width": 80,
+      "height": 16,
+      "role": "doraemon"
+    },
+    {
+      "file": "0a8e-nobita.png",
+      "record": 4865488,
+      "resource": "0:0a8e",
+      "width": 48,
+      "height": 16,
+      "role": "nobita"
+    },
+    {
+      "file": "0a8f-shizuka.png",
+      "record": 4865872,
+      "resource": "0:0a8f",
+      "width": 96,
+      "height": 16,
+      "role": "shizuka"
+    },
+    {
+      "file": "0a90-suneo.png",
+      "record": 4866480,
+      "resource": "0:0a90",
+      "width": 48,
+      "height": 16,
+      "role": "suneo"
+    },
+    {
+      "file": "0a91-gian.png",
+      "record": 4866800,
+      "resource": "0:0a91",
+      "width": 80,
+      "height": 16,
+      "role": "gian"
+    },
+    {
+      "file": "0a92-dorami.png",
+      "record": 4867248,
+      "resource": "0:0a92",
+      "width": 96,
+      "height": 16,
+      "role": "dorami"
+    },
+    {
+      "file": "0a93-wins.png",
+      "record": 4867808,
+      "resource": "0:0a93",
+      "width": 64,
+      "height": 16,
+      "role": "wins"
+    },
+    {
+      "file": "0ae1-best-lap.png",
+      "record": 4908144,
+      "resource": "0:0ae1",
+      "width": 72,
+      "height": 12,
+      "role": "best-lap"
+    },
+    {
+      "file": "0ae2-best-time.png",
+      "record": 4908528,
+      "resource": "0:0ae2",
+      "width": 72,
+      "height": 12,
+      "role": "best-time"
+    },
+    {
+      "file": "0ae3-final-lap.png",
+      "record": 4908912,
+      "resource": "0:0ae3",
+      "width": 64,
+      "height": 12,
+      "role": "final-lap"
+    },
+    {
+      "file": "0ae4-lap.png",
+      "record": 4909216,
+      "resource": "0:0ae4",
+      "width": 40,
+      "height": 12,
+      "role": "lap"
+    },
+    {
+      "file": "0ae5-last-lap.png",
+      "record": 4909456,
+      "resource": "0:0ae5",
+      "width": 40,
+      "height": 12,
+      "role": "last-lap"
+    },
+    {
+      "file": "0aea-lap-alt.png",
+      "record": 4911248,
+      "resource": "0:0aea",
+      "width": 40,
+      "height": 12,
+      "role": "lap-alt"
+    },
+    {
+      "file": "0aeb-total.png",
+      "record": 4911488,
+      "resource": "0:0aeb",
+      "width": 40,
+      "height": 12,
+      "role": "total"
+    },
+    {
+      "file": "0b1c-dorayaki-dim.png",
+      "record": 4949456,
+      "resource": "0:0b1c",
+      "width": 64,
+      "height": 16,
+      "role": "dorayaki-dim"
+    },
+    {
+      "file": "0b1d-dorayaki.png",
+      "record": 4949856,
+      "resource": "0:0b1d",
+      "width": 64,
+      "height": 16,
+      "role": "dorayaki"
+    },
+    {
+      "file": "0b1e-dango-dim.png",
+      "record": 4950272,
+      "resource": "0:0b1e",
+      "width": 48,
+      "height": 16,
+      "role": "dango-dim"
+    },
+    {
+      "file": "0b1f-dango.png",
+      "record": 4950608,
+      "resource": "0:0b1f",
+      "width": 48,
+      "height": 16,
+      "role": "dango"
+    },
+    {
+      "file": "0b20-melon-dim.png",
+      "record": 4950944,
+      "resource": "0:0b20",
+      "width": 48,
+      "height": 16,
+      "role": "melon-dim"
+    },
+    {
+      "file": "0b21-melon.png",
+      "record": 4951280,
+      "resource": "0:0b21",
+      "width": 48,
+      "height": 16,
+      "role": "melon"
+    },
+    {
+      "file": "0b2b-apologize.png",
+      "record": 4962768,
+      "resource": "0:0b2b",
+      "width": 120,
+      "height": 24,
+      "role": "apologize"
+    },
+    {
+      "file": "0b2c-cheer.png",
+      "record": 4963600,
+      "resource": "0:0b2c",
+      "width": 120,
+      "height": 24,
+      "role": "cheer"
+    },
+    {
+      "file": "0b97-penalty.png",
+      "record": 5091584,
+      "resource": "0:0b97",
+      "width": 88,
+      "height": 12,
+      "role": "penalty"
+    },
+    {
+      "file": "0b9e-press-start.png",
+      "record": 5104960,
+      "resource": "0:0b9e",
+      "width": 176,
+      "height": 12,
+      "role": "press-start"
+    },
+    {
+      "file": "0ba1-save.png",
+      "record": 5156560,
+      "resource": "0:0ba1",
+      "width": 64,
+      "height": 10,
+      "role": "save"
+    },
+    {
+      "file": "0bcf-file-select.png",
+      "record": 5531504,
+      "resource": "0:0bcf",
+      "width": 80,
+      "height": 32,
+      "role": "file-select"
+    },
+    {
+      "file": "0bd4-select-dim.png",
+      "record": 5534016,
+      "resource": "0:0bd4",
+      "width": 56,
+      "height": 24,
+      "role": "select-dim"
+    },
+    {
+      "file": "0bd5-select.png",
+      "record": 5534480,
+      "resource": "0:0bd5",
+      "width": 56,
+      "height": 24,
+      "role": "select"
+    },
+    {
+      "file": "0bd7-erase-dim.png",
+      "record": 5535152,
+      "resource": "0:0bd7",
+      "width": 56,
+      "height": 24,
+      "role": "erase-dim"
+    },
+    {
+      "file": "0bd8-erase.png",
+      "record": 5535584,
+      "resource": "0:0bd8",
+      "width": 56,
+      "height": 24,
+      "role": "erase"
+    },
+    {
+      "file": "0bd9-copy-dim.png",
+      "record": 5536016,
+      "resource": "0:0bd9",
+      "width": 56,
+      "height": 24,
+      "role": "copy-dim"
+    },
+    {
+      "file": "0bda-copy.png",
+      "record": 5536352,
+      "resource": "0:0bda",
+      "width": 56,
+      "height": 24,
+      "role": "copy"
+    },
+    {
+      "file": "0bdb-area.png",
+      "record": 5536688,
+      "resource": "0:0bdb",
+      "width": 40,
+      "height": 12,
+      "role": "area"
+    },
+    {
+      "file": "0be9-no-data.png",
+      "record": 5538592,
+      "resource": "0:0be9",
+      "width": 48,
+      "height": 24,
+      "role": "no-data"
+    },
+    {
+      "file": "0bf4-continue.png",
+      "record": 5547232,
+      "resource": "0:0bf4",
+      "width": 144,
+      "height": 16,
+      "role": "continue"
+    },
+    {
+      "file": "0bf5-continue-yes.png",
+      "record": 5547760,
+      "resource": "0:0bf5",
+      "width": 32,
+      "height": 16,
+      "role": "continue-yes"
+    },
+    {
+      "file": "0bf6-continue-no.png",
+      "record": 5547936,
+      "resource": "0:0bf6",
+      "width": 48,
+      "height": 16,
+      "role": "continue-no"
+    },
+    {
+      "file": "0bf7-credits.png",
+      "record": 5548144,
+      "resource": "0:0bf7",
+      "width": 80,
+      "height": 16,
+      "role": "credits"
+    },
+    {
+      "file": "0c11-human.png",
+      "record": 5591088,
+      "resource": "0:0c11",
+      "width": 40,
+      "height": 14,
+      "role": "human"
+    },
+    {
+      "file": "0c12-computer.png",
+      "record": 5591376,
+      "resource": "0:0c12",
+      "width": 48,
+      "height": 14,
+      "role": "computer"
+    },
+    {
+      "file": "0c2b-minigame-start.png",
+      "record": 5670016,
+      "resource": "0:0c2b",
+      "width": 48,
+      "height": 14,
+      "role": "minigame-start"
+    },
+    {
+      "file": "0a61-commands.png",
+      "record": 4845712,
+      "resource": "0:0a61",
+      "width": 64,
+      "height": 52,
+      "role": "commands"
+    },
+    {
+      "file": "0a62-commands.png",
+      "record": 4846736,
+      "resource": "0:0a62",
+      "width": 64,
+      "height": 52,
+      "role": "commands"
+    },
+    {
+      "file": "0c18-commands.png",
+      "record": 5593088,
+      "resource": "0:0c18",
+      "width": 64,
+      "height": 104,
+      "role": "commands"
+    },
+    {
+      "file": "0c10-voice-controller.png",
+      "record": 5588848,
+      "resource": "0:0c10",
+      "width": 64,
+      "height": 56,
+      "role": "voice-controller",
+      "regions": [
+        [
+          1,
+          1,
+          62,
+          11
+        ]
+      ]
+    },
+    {
+      "file": "0a5a-item-frame.png",
+      "record": 4841264,
+      "resource": "0:0a5a",
+      "width": 280,
+      "height": 40,
+      "role": "item-frame",
+      "regions": [
+        [
+          118,
+          3,
+          55,
+          10
+        ]
+      ]
+    },
+    {
+      "file": "0a5e-weapon-frame.png",
+      "record": 4843264,
+      "resource": "0:0a5e",
+      "width": 280,
+      "height": 40,
+      "role": "weapon-frame",
+      "regions": [
+        [
+          104,
+          3,
+          78,
+          10
+        ]
+      ]
+    },
+    {
+      "file": "096b-gian-recital.png",
+      "record": 4589264,
+      "resource": "0:096b",
+      "width": 128,
+      "height": 32,
+      "role": "gian-recital",
+      "material": true
+    },
+    {
+      "file": "096c-gian-recital.png",
+      "record": 4590368,
+      "resource": "0:096c",
+      "width": 128,
+      "height": 32,
+      "role": "gian-recital",
+      "material": true
+    },
+    {
+      "file": "0b9c-doraemon-logo.png",
+      "record": 5101008,
+      "resource": "0:0b9c",
+      "width": 168,
+      "height": 58,
+      "role": "doraemon-logo"
+    },
+    {
+      "file": "0b9b-town-subtitle.png",
+      "record": 5094752,
+      "resource": "0:0b9b",
+      "width": 184,
+      "height": 56,
+      "role": "town-subtitle"
+    }
+  ]
+}

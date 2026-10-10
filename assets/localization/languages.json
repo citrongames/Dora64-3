@@ -1,0 +1,20 @@
+{
+  "format_version": 1,
+  "languages": [
+    {
+      "code": "ja",
+      "name": "Original Japanese",
+      "original": true
+    },
+    {
+      "code": "en",
+      "name": "English",
+      "font": "dialogue_font.json"
+    },
+    {
+      "code": "ru",
+      "name": "Russian",
+      "font": "dialogue_font.json"
+    }
+  ]
+}

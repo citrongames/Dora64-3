@@ -9,6 +9,7 @@
 #include "native_enemy.hpp"
 #include "game_reset.hpp"
 #include "autosave.hpp"
+#include "localization.hpp"
 #include "cutscene_input.hpp"
 #include "native_game_loop.hpp"
 #include "native_frame_bridge.hpp"
@@ -39,6 +40,7 @@
 #include "recomp_overlays.inl"
 #include "overlay_regions.hpp"
 #ifdef DORA3_LIVE_RT64
+#include <SDL.h>
 #include "live_graphics.hpp"
 #include "live_io.hpp"
 #include "port_menu.hpp"
@@ -592,6 +594,15 @@ int main(int argc,char** argv){
     #else
     recomp::register_config_path(state_dir);
     #endif
+    #ifdef DORA3_LIVE_RT64
+    auto localization_root=recomp::get_config_path()/"assets"/"localization";
+    if(!std::filesystem::exists(localization_root/"languages.json")) {
+        if(auto* base=SDL_GetBasePath()) {
+            localization_root=std::filesystem::u8path(base)/"assets"/"localization";SDL_free(base);
+        }
+    }
+    dora3::localization::initialize(localization_root,rom);
+    #endif
     recomp::GameEntry game{};
     game.rom_hash=expected_rom_hash;
     game.internal_name=std::string(rom.data()+0x20,20);
@@ -610,6 +621,7 @@ int main(int argc,char** argv){
         dora3::hw::reset_session();dora3_music_reset(rdram,ctx);
         dora3::reset_cutscene_input();
         dora3::autosave::reset();
+        dora3::localization::reset();
         dora3::camera::reset();
         dora3::wide::reset();
         audio_submitted=0;audio_completed=0;pcm_buffers=0;

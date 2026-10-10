@@ -1,0 +1,119 @@
+[
+  {
+    "section": ".scene_common",
+    "function": 2149279568,
+    "site": 2149279568,
+    "role": "plain",
+    "returns": false,
+    "size": 224,
+    "sha256": "444e396890e19562d5332c4164795b916b141ba6a99d8b88e3c52dc037d5deaf"
+  },
+  {
+    "section": ".scene_common",
+    "function": 2149279380,
+    "site": 2149279380,
+    "role": "glyph",
+    "returns": true,
+    "size": 188,
+    "sha256": "41b65f53714a185c1322eea249b45c33f826f45949cce1cd05e493f20a51e32d"
+  },
+  {
+    "section": ".scene_common",
+    "function": 2149277680,
+    "site": 2149277680,
+    "role": "draw_pair",
+    "returns": true,
+    "size": 968,
+    "sha256": "9843d3baca39f5f01b5dbf58252f6bf0d3a359f3a346a2bf2d746e1948ef348d"
+  },
+  {
+    "section": ".scene_common",
+    "function": 2149282108,
+    "site": 2149282108,
+    "role": "dialogue_begin",
+    "returns": false,
+    "size": 384,
+    "sha256": "d0af403f37bfdabd1de45b5a2301f43f81d90dfa820e89c843e1177228125900"
+  },
+  {
+    "section": ".scene_common",
+    "function": 2149282784,
+    "site": 2149283008,
+    "role": "dialogue_line",
+    "returns": false,
+    "size": 232,
+    "sha256": "c4e6915301be00c49a7d02beceacbe6d6522666f2bc72b00ab4f6c09a1fbc254"
+  },
+  {
+    "section": ".scene_common",
+    "function": 2149280508,
+    "site": 2149280508,
+    "role": "bind",
+    "returns": false,
+    "size": 20,
+    "sha256": "22d675b98bf24485131c0ac0ded85bc89bf3c3bf999db9e43ce4562f066ffc0c"
+  },
+  {
+    "section": ".scene_common",
+    "function": 2149280528,
+    "site": 2149280812,
+    "role": "widget_line",
+    "returns": false,
+    "size": 292,
+    "sha256": "c103c82f539ad36bac77cea9dd9d259b34f2cb0c6d05786069c6abe8ef56726f"
+  },
+  {
+    "section": ".scene1",
+    "function": 2149465320,
+    "site": 2149465320,
+    "role": "script_load",
+    "returns": false,
+    "size": 284,
+    "sha256": "2d8cb1c04690ace0834ff418c8d64cfe4bfd880c6ccdb6eed14a7d291d011584"
+  },
+  {
+    "section": ".scene1",
+    "function": 2149527600,
+    "site": 2149527704,
+    "role": "context_plain",
+    "returns": false,
+    "size": 200,
+    "sha256": "f75f16187568b9cf745f53c50abc7366ffd2431a3337dd3fc8107f9a3006be98"
+  },
+  {
+    "section": ".scene1",
+    "function": 2149537888,
+    "site": 2149537992,
+    "role": "context_plain",
+    "returns": false,
+    "size": 200,
+    "sha256": "394e2bef22404a93196edd2331e1be994219b8e43a54058585139ca5ff916d62"
+  },
+  {
+    "section": ".scene_common",
+    "function": 2149285324,
+    "site": 2149286128,
+    "role": "choice",
+    "returns": false,
+    "size": 1444,
+    "sha256": "1827e50e6bb910037bdbd822932d59fdce5518726d89819c7b0c4e86ad5c6d45"
+  },
+  {
+    "section": ".startup",
+    "function": 2147657796,
+    "site": 2147657796,
+    "role": "sprite",
+    "returns": true,
+    "size": 2436,
+    "sha256": "0f0e642fded1de4db33298262f280ac3025f7320256047507a88354bb9c9643b"
+  },
+  {
+    "section": ".startup",
+    "function": 2147648236,
+    "site": 2147648236,
+    "role": "material",
+    "returns": true,
+    "size": 52,
+    "sha256": "e46b56a72adcab8b8a877230e553f590e250d03b6e9e987953e163ecfdd5fea9"
+  }
+]

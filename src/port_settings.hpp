@@ -15,6 +15,7 @@ inline constexpr std::array<const char*, ActionCount> action_names{
 // SDL button IDs, or 100 + axis * 2 + direction (0 negative, 1 positive).
 constexpr int pad_axis(int axis, bool positive) { return 100 + axis * 2 + int(positive); }
 struct Settings {
+    std::string language="ja";
     int volume=100, resolution=0, filtering=0; // 0 original, 1 2x, 2 4x, 3 window scale; 0 N64, 1 bilinear
     int window_width=1280, window_height=720;
     int display_index=0, display_refresh_rate=0;

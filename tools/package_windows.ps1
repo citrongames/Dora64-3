@@ -46,6 +46,23 @@ foreach ($entry in $items.GetEnumerator()) {
     }
     $hashes[$entry.Key] = (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLowerInvariant()
 }
+# Localizations are portable assets, separate from settings and EEPROM saves.
+# Preserve any previously installed/customized file before updating its copy.
+foreach ($entry in $stage.source_sha256.PSObject.Properties) {
+    if (-not $entry.Name.StartsWith('assets/localization/')) { continue }
+    if ($entry.Name -like '*_source.json') { continue }
+    $source = Join-Path $projectRoot $entry.Name
+    $target = Join-Path $Destination $entry.Name
+    if (Test-Path -LiteralPath $target) {
+        if ((Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLowerInvariant() -eq $entry.Value) { continue }
+        $backup = Join-Path $Destination ("asset-backups/$BuildId/" + $entry.Name)
+        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $backup) | Out-Null
+        Copy-Item -LiteralPath $target -Destination $backup
+    }
+    New-Item -ItemType Directory -Force -Path (Split-Path -Parent $target) | Out-Null
+    Copy-Item -LiteralPath $source -Destination $target
+    $hashes[$entry.Name] = (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLowerInvariant()
+}
 $report = [ordered]@{
     build_id = $BuildId
     platform = 'Windows x64'
