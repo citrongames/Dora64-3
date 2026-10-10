@@ -86,10 +86,12 @@ extern "C" float dora3_native_cutscene_axis_drift(uint8_t* rdram,uint32_t contro
 }
 namespace dora3::native_time {
 struct CutsceneTimeline::State {
-    // Source geometry/ROM/heap reads use an exact immutable4MiB anchor.
+    // Source geometry/ROM/heap reads use an exact immutable8MiB anchor.
     // A separate working image prevents every geometry/model/timer scratch
     // write from escaping. No pointers into these images are kept by guest code.
-    std::vector<uint32_t> anchor,working;
+    std::vector<uint32_t> anchor,working,pending;
+    std::vector<int32_t> controls;
+    bool motion_pending=false,current_interval=false;
     struct Lease {uint32_t control,actor,physics,model;int32_t identity;};
     std::vector<Lease> leases;
     struct Field {uint32_t address;int32_t source,published;int lease;};
@@ -112,7 +114,25 @@ struct CutsceneTimeline::State {
     }
     void capture(uint8_t* rdram,Nanoseconds now) {
         anchor.resize(image_size/4);working.resize(image_size/4);
-        std::memcpy(anchor.data(),rdram,image_size);
+        if(motion_pending) {
+            auto* before=reinterpret_cast<uint8_t*>(pending.data());
+            // A later Source lifecycle operation may replace a participant.
+            // Never publish transforms from a different allocation/command.
+            for(unsigned i=0;i<60&&motion_pending;++i) {
+                const auto control=participant_controls+i*0xD4;
+                if(MEM_H(4,int32_t(control))==0)continue;
+                const auto actor=uint32_t(word(rdram,control));
+                if(word(before,control)!=int32_t(actor)||!pointer(actor,0xCC)) {motion_pending=false;break;}
+                for(unsigned off:{0x74u,0x94u,0x98u})
+                    if(word(before,actor+off)!=word(rdram,actor+off))motion_pending=false;
+            }
+        }
+        if(motion_pending)anchor.swap(pending);
+        else std::memcpy(anchor.data(),rdram,image_size);
+        current_interval=motion_pending;motion_pending=false;
+        controls.clear();
+        for(auto region:{std::pair{camera_controls,4u*0x1B8},std::pair{participant_controls,60u*0xD4}})
+            for(unsigned off=0;off<region.second;off+=4)controls.push_back(word(rdram,region.first+off));
         fields.clear();leases.clear();source_time=shown_time=now;ram=rdram;open=true;in_source=false;
         auto own=[&](uint32_t address,unsigned bytes,int lease=-1) {
             for(unsigned off=0;off<bytes;off+=4) {
@@ -147,7 +167,7 @@ struct CutsceneTimeline::State {
         if(rdram!=ram)return true;
         for(const auto& lease:leases)if(!valid(rdram,lease))return true;
         for(const auto& field:fields)if(word(rdram,field.address)!=field.published)return true;
-        auto* saved=reinterpret_cast<uint8_t*>(const_cast<uint32_t*>(anchor.data()));
+        unsigned control_index=0;
         // The complete controller arrays cover cuts, rates, flags, durations,
         // actor replacement and follow target. Equal-valued commands are
         // bracketed by the actual BB080 Source hooks rather than guessed here.
@@ -155,7 +175,8 @@ struct CutsceneTimeline::State {
             for(unsigned off=0;off<region.second;off+=4) {
                 const auto address=region.first+off;
                 const auto it=std::lower_bound(fields.begin(),fields.end(),address,[](const Field& f,uint32_t value){return f.address<value;});
-                if(word(rdram,address)!=(it==fields.end()||it->address!=address?word(saved,address):it->published))return true;
+                if(word(rdram,address)!=(it==fields.end()||it->address!=address?controls[control_index]:it->published))return true;
+                ++control_index;
             }
         return false;
     }
@@ -183,7 +204,11 @@ void CutsceneTimeline::advance(uint8_t* rdram,recomp_context* ctx,Nanoseconds no
     const auto elapsed=uint64_t(now-state.source_time);
     if(elapsed>UINT64_MAX/60)throw std::overflow_error("Cutscene elapsed overflow");
     const auto denominator=uint64_t(state.divider)*second;
-    auto remaining=elapsed*60;uint64_t tick=0;
+    // Replay only the reached command interval. In script350 the chair/Nobita
+    // move in one/two-tick bursts (opcode65 at ROM16778E onward). Starting
+    // from the completed pose predicts the *next* timer clear and loses those
+    // intermediate poses. SDK model samples already use the current interval.
+    auto remaining=state.current_interval?std::min(elapsed*60,denominator):elapsed*60;uint64_t tick=0;
     while(remaining) {
         // A30Hz endpoint is rounded upward to integer nanoseconds. Its
         // sub-nanosecond residue must not enter the next timer/composition
@@ -211,10 +236,21 @@ void CutsceneTimeline::after_source(uint8_t* rdram,Nanoseconds now) {
     auto& state=*state_;if(!state.open)return;
     state.capture(rdram,now);
 }
+void CutsceneTimeline::motion_source(uint8_t* ram) {
+    auto& s=*state_;
+    if(!s.open||!s.in_source||s.ram!=ram||equations_active)return;
+    s.pending.resize(image_size/4);std::memcpy(s.pending.data(),ram,image_size);
+    s.motion_pending=true;
+}
+void CutsceneTimeline::source_completed(uint8_t* ram,Nanoseconds now) {
+    auto& s=*state_;
+    if(s.open&&!s.in_source&&s.ram==ram&&now>=s.source_time)
+        s.source_time=s.shown_time=now;
+}
 void CutsceneTimeline::reset(uint8_t* ram) {
     auto& state=*state_;
     if(ram&&state.open&&ram==state.ram)state.restore(ram);
-    state.fields.clear();state.leases.clear();state.open=state.in_source=false;state.ram=nullptr;
+    state.fields.clear();state.leases.clear();state.open=state.in_source=false;state.motion_pending=state.current_interval=false;state.ram=nullptr;
 }
 std::optional<Nanoseconds> CutsceneTimeline::render_time() const {
     return state_->open?std::optional{state_->shown_time}:std::nullopt;
@@ -251,6 +287,7 @@ void native_cutscene_begin(uint8_t* ram,dora3::native_time::Nanoseconds now,unsi
 void native_cutscene_update(uint8_t* ram,recomp_context* ctx,dora3::native_time::Nanoseconds now) {
     if(dora3_native_loop_cutscene_active()&&native_cutscene_eligible(ram))scene.advance(ram,ctx,now,evaluate_scene);
 }
+void native_cutscene_source_completed(uint8_t* ram,dora3::native_time::Nanoseconds now){scene.source_completed(ram,now);}
 void native_cutscene_reset(uint8_t* ram){scene.reset(ram);}
 std::optional<dora3::native_time::Nanoseconds> native_cutscene_render_time(){return scene.render_time();}
 void native_cutscene_evaluate(uint8_t* ram,recomp_context* ctx){evaluate_scene(ram,ctx);}
@@ -262,5 +299,6 @@ extern "C" void dora3_native_cutscene_source(uint8_t* ram,recomp_context* ctx,un
     } else if(phase==1) {
         if(native_cutscene_eligible(ram))scene.after_source(ram,monotonic_time());
         else scene.reset(); // Original completion already owns the new pose.
-    } else throw std::invalid_argument("Invalid cutscene Source boundary");
+    } else if(phase==2)scene.motion_source(ram);
+    else throw std::invalid_argument("Invalid cutscene Source boundary");
 }

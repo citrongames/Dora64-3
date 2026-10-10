@@ -330,6 +330,38 @@ MinigameEquations::Lifetime lifetime(std::uint8_t* rdram,std::uint32_t address,s
     }
     return out;
 }
+void capture_bomb_flight(std::uint8_t* rdram) {
+    if(!runtime.definition||runtime.definition->rom!=0x1BC460)return;
+    // 4E24 -> type0/4D74 -> 4218,42C8,4300. Only flying grenades:
+    // constant XZ projection; vy'=max(vy-g,-50), position+=velocity.
+    // Bind the completed Source driver explicitly. This also covers the birth
+    // interval, whose spawn writes are commands rather than motion records.
+    for(unsigned slot=10;slot<60;++slot) {
+        const auto actor=pool+slot*actor_stride,driver=word(rdram,actor+0x98);
+        if(!word(rdram,actor+0x94)||!pointer(driver,0xDC)||MEM_H(0x20,std::int32_t(driver))!=0)continue;
+        const float gravity=std::bit_cast<float>(word(rdram,driver+0x1C));
+        const float velocity=std::bit_cast<float>(word(rdram,driver+0x14));
+        if(!std::isfinite(gravity)||gravity<0||!std::isfinite(velocity))continue;
+        // Use Original4218's completed projection, including its float
+        // rounding, rather than approximating SDK trigonometry on the host.
+        const std::array<float,3> rate{
+            std::bit_cast<float>(word(rdram,driver+0x10)),velocity,
+            std::bit_cast<float>(word(rdram,driver+0x18))};
+        if(!std::isfinite(rate[0])||!std::isfinite(rate[2]))continue;
+        for(unsigned axis=0;axis<3;++axis) {
+            const auto address=actor+0x9C+4*axis;
+            const float source=std::bit_cast<float>(word(rdram,address));
+            if(!std::isfinite(source))continue;
+            const auto motion=runtime.equations.time_operand(source,[source,rate,gravity,axis](double h) {
+                if(axis!=1||gravity==0)return double(source)+rate[axis]*h;
+                return double(source)+std::max(-50.*h,
+                    double(rate[1])*h-.5*gravity*h*(h+1));
+            });
+            auto owner=lifetime(rdram,address);owner.driver=driver;
+            runtime.equations.store_float(address,motion,source,Role::Derived,owner);
+        }
+    }
+}
 void capture_bomb_object_contact_positions(std::uint8_t* rdram) {
     if(!runtime.definition||runtime.definition->rom!=0x1BC460)return;
     // Original4EC8 copies world X/Z to local0/8 before drawing slots10..59.
@@ -433,6 +465,7 @@ extern "C" void dora3_native_minigame_source(std::uint8_t* rdram,recomp_context*
             if(std::bit_cast<std::uint32_t>(actual)!=parameter.value.expected)continue;
             runtime.equations.store_float(parameter.model+0x78,parameter.value.expression,actual,Role::Derived,parameter.owner);
         }
+        capture_bomb_flight(rdram);
         capture_bomb_object_contact_positions(rdram);
         runtime.equations.end_source(rdram,now);runtime.source_time=runtime.render_time=now;runtime.in_source=false;
         if(rom==0x18BDF0&&root==0x801BF8CC)

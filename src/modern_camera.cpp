@@ -39,6 +39,12 @@ struct Orbit {
     double frame_elapsed=0,center_remaining=0;
     float center_yaw=0;
 } orbit;
+struct Handoff {
+    bool have_pose=false,pending=false;
+    int64_t start=0;
+    uint64_t generation=0;
+    Vec focus{},eye{},up{};
+} handoff;
 float preferred_distance=300.f;
 int64_t now_ms(){return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();}
 int32_t& word(uint8_t* rdram,uint32_t a){return MEM_W(0,int32_t(a));}
@@ -67,7 +73,24 @@ bool eligible(uint8_t* rdram) {
     const uint32_t actor=word(rdram,0x8021D49C),control=word(rdram,0x8021D6C0);
     return pointer(actor,0xCC)&&pointer(control,0x58)&&word(rdram,actor+0x94)!=0&&word(rdram,actor+0x94)!=66&&word(rdram,actor+0x94)!=67;
 }
-void revoke(){available=false;orbit.initialized=false;orbit.frame_elapsed=0;clear_input();}
+bool handoff_scene(uint8_t* rdram) {
+    if(!rdram||!dora3_overlay_loaded(0x70A50)||
+       dora3_overlay_generation(0x70A50)!=handoff.generation)return false;
+    // Only world dialogue/script ownership changes, never loaders, menus,
+    // minigames, framebuffer transitions or an unrelated fixed camera mode.
+    if(uint32_t(word(rdram,0x801A4500))!=0x801BB730u||
+       uint32_t(word(rdram,0x801A4514))!=0x801BB848u)return false;
+    return (word(rdram,0x80218AD8)||MEM_B(0,int32_t(0x8021710D)))&&
+        !word(rdram,0x8021D484)&&!word(rdram,0x802170EC)&&!word(rdram,0x802170F0)&&
+        !MEM_BU(0,int32_t(0x80217118))&&!word(rdram,0x801A9C88)&&
+        word(rdram,0x801AA648)&&word(rdram,0x801A9500);
+}
+void revoke(uint8_t* ram){
+    if(orbit.initialized&&handoff.have_pose&&handoff_scene(ram)) {
+        handoff.pending=true;handoff.start=now_ms();
+    } else if(!handoff.pending)handoff.have_pose=false;
+    available=false;orbit.initialized=false;orbit.frame_elapsed=0;clear_input();
+}
 Vec origin(uint8_t* ram){return{real(ram,0x800DAE54),real(ram,0x800FE878),real(ram,0x800DD3F0)};}
 void call(uint8_t* ram,const recomp_context& ctx,recomp_func_t* fn,uint32_t a0) {
     recomp_context local;copy_recomp_context(local,ctx);local.r4=int32_t(a0);local.r29=ADD32(ctx.r29,-0x200);fn(ram,&local);
@@ -117,19 +140,19 @@ void retire_recenter(uint8_t* rdram) {
 bool update(uint8_t* rdram,recomp_context* ctx,double seconds,bool source,bool frame_update) {
     Options config;Input input;
     {std::lock_guard lock(input_mutex);config=options;}
-    if(!config.enabled||!eligible(rdram)){revoke();return false;}
+    if(!config.enabled||!eligible(rdram)){revoke(rdram);return false;}
     const unsigned mode=MEM_BU(0,int32_t(0x801B361A));
     const uint32_t player=word(rdram,0x8021D49C);
     const auto generation=dora3_overlay_generation(0x70A50);
     const Vec world=origin(rdram),position=vector(rdram,player+0x9C);
-    if(!finite(world)||!finite(position)){revoke();return false;}
+    if(!finite(world)||!finite(position)){revoke(rdram);return false;}
     const bool acquire=!orbit.initialized||orbit.player!=player||orbit.generation!=generation||orbit.revision!=revision.load();
     if(acquire) {
         orbit={};orbit.initialized=true;orbit.player=player;orbit.generation=generation;orbit.revision=revision;
         orbit.yaw=real(rdram,Camera+0x1C);orbit.pitch=std::clamp(real(rdram,Camera+0x18),0.f,80.f);
         orbit.focus=vector(rdram,Camera)+world;orbit.distance=preferred_distance;
         orbit.actual=std::clamp(real(rdram,Camera+0x30),1.f,600.f);
-        if(!finite(orbit.focus)||!std::isfinite(orbit.yaw)||!std::isfinite(orbit.pitch)||!std::isfinite(orbit.actual)){revoke();return false;}
+        if(!finite(orbit.focus)||!std::isfinite(orbit.yaw)||!std::isfinite(orbit.pitch)||!std::isfinite(orbit.actual)){revoke(rdram);return false;}
         orbit.height=std::clamp(orbit.focus.y-position.y,20.f,100.f);
     }
     if(!frame_update)retire_recenter(rdram);
@@ -180,6 +203,10 @@ bool update(uint8_t* rdram,recomp_context* ctx,double seconds,bool source,bool f
     }
     real(rdram,Camera+4,relative.y+orbit.shake);
     call(rdram,*ctx,dora3_s0_8002F064,Camera);
+    handoff.have_pose=true;handoff.pending=false;handoff.generation=generation;
+    handoff.focus=vector(rdram,Camera)+world;
+    handoff.eye=vector(rdram,Camera+0xC)+world;
+    handoff.up=vector(rdram,Camera+0x24);
     return true;
 }
 }
@@ -187,11 +214,51 @@ void configure(const Options& value){std::lock_guard lock(input_mutex);if(option
 bool active(){return available.load()&&now_ms()-last_available.load()<150;}
 void submit(float x,float y,float mx,float my,float zoom,float wheel,bool center){std::lock_guard lock(input_mutex);if(!active()){pending={};return;}pending.x=x;pending.y=y;pending.mx+=mx;pending.my+=my;pending.zoom=zoom;pending.wheel+=wheel;pending.center|=center;}
 void clear_input(){std::lock_guard lock(input_mutex);pending={};}
-void reset(){orbit={};preferred_distance=300;available=false;last_available=0;clear_input();}
+void reset(){handoff={};orbit={};preferred_distance=300;available=false;last_available=0;clear_input();}
 void clock_handoff(){orbit.frame_elapsed=0;}
-void observe(uint8_t* ram){bool enabled;{std::lock_guard lock(input_mutex);enabled=options.enabled;}if(!enabled||!eligible(ram))revoke();}
+HandoffFrameScope::HandoffFrameScope(uint8_t* ram) {
+    if(!handoff.pending)return;
+    bool enabled;{std::lock_guard lock(input_mutex);enabled=options.enabled;}
+    if(!enabled||!handoff_scene(ram)){handoff={};return;}
+    const auto now=now_ms();
+    if(!handoff.start)handoff.start=now;
+    const float t=std::clamp(float(now-handoff.start)/200.f,0.f,1.f);
+    if(t>=1){handoff={};return;}
+    const auto world=origin(ram);
+    const auto focus=vector(ram,Camera)+world,eye=vector(ram,Camera+0xC)+world;
+    const auto up=vector(ram,Camera+0x24);
+    if(!finite(world)||!finite(focus)||!finite(eye)||!finite(up)){handoff={};return;}
+    // Smooth only the ownership handoff; subsequent authored cuts stay instant.
+    // World-space endpoints survive an origin change. Original controls/rates,
+    // commands and camera fields are restored before any Source callback.
+    const float mix=t*t*(3.f-2.f*t);
+    const auto old_ray=handoff.eye-handoff.focus,new_ray=eye-focus;
+    const auto length=[](Vec v){return std::sqrt(v.x*v.x+v.y*v.y+v.z*v.z);};
+    const float old_length=length(old_ray),new_length=length(new_ray);
+    if(old_length<1e-3f||new_length<1e-3f||handoff.up.y<=0||up.y<=0){handoff={};return;}
+    const float old_yaw=std::atan2(old_ray.x,old_ray.z);
+    const float yaw=old_yaw+std::remainder(std::atan2(new_ray.x,new_ray.z)-old_yaw,2.f*3.14159265358979323846f)*mix;
+    const float old_pitch=std::asin(std::clamp(old_ray.y/old_length,-1.f,1.f));
+    const float pitch=old_pitch+(std::asin(std::clamp(new_ray.y/new_length,-1.f,1.f))-old_pitch)*mix;
+    const float distance=old_length+(new_length-old_length)*mix;
+    const auto target=handoff.focus+(focus-handoff.focus)*mix-world;
+    const Vec ray{std::sin(yaw)*std::cos(pitch),std::sin(pitch),std::cos(yaw)*std::cos(pitch)};
+    const std::array<Vec,3> pose{target,target+ray*distance,handoff.up+(up-handoff.up)*mix};
+    constexpr std::array<unsigned,3> offsets{0,0xC,0x24};
+    ram_=ram;
+    for(unsigned i=0;i<3;++i) {
+        const std::array<float,3> v{pose[i].x,pose[i].y,pose[i].z};
+        for(unsigned j=0;j<3;++j){const auto a=Camera+offsets[i]+j*4;saved_[i*3+j]=word(ram,a);real(ram,a,v[j]);}
+    }
+}
+HandoffFrameScope::~HandoffFrameScope(){
+    if(!ram_)return;
+    constexpr std::array<unsigned,3> offsets{0,0xC,0x24};
+    for(unsigned i=0;i<3;++i)for(unsigned j=0;j<3;++j)word(ram_,Camera+offsets[i]+j*4)=saved_[i*3+j];
+}
+void observe(uint8_t* ram){bool enabled;{std::lock_guard lock(input_mutex);enabled=options.enabled;}if(!enabled||!eligible(ram))revoke(ram);}
 bool dispatch(uint8_t* ram,recomp_context* ctx,uint32_t root){
-    if(root!=0x801D8FF0&&root!=0x801D7294&&root!=0x801D5864){revoke();return false;}
+    if(root!=0x801D8FF0&&root!=0x801D7294&&root!=0x801D5864){revoke(ram);return false;}
     const auto* slice=native_time::active_simulation_slice();
     return update(ram,ctx,slice?slice->seconds():double(word(ram,0x801A39DC))/60.,!slice,false);
 }

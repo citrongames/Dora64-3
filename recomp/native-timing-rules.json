@@ -25884,6 +25884,18 @@
       "role": "camera_equation_source_owner",
       "status": "Implementation after049; CPU/visual validation deferred until batch closure",
       "evidence": "Exact Original camera-only call path; observe reached Source equation once. Native frame borrows camera geometry, preserving commands/inputs/counters and Source bytes."
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E3768",
+      "function_name": "dora3_s3_801E3768",
+      "function_sha256": "5cc82be4500fdbb30df7b8c390c16c42b37b473a176455c63348dbba19951298",
+      "site": "0x801E3768",
+      "expected_word": "0x27BDFFE0",
+      "operation": "cutscene_motion_source",
+      "role": "capture_reached_script_command_motion_interval",
+      "evidence": "E4484 executes commands before E3768 participants then E0760 cameras. Opening350 chair150 uses short opcode65 bursts; capture after commands before timer/motion.",
+      "status": "Source analysis; user playcheck pending101"
     }
   ]
 }

@@ -18,6 +18,8 @@ public:
     void advance(uint8_t*,recomp_context*,Nanoseconds,Evaluate);
     void before_source(uint8_t*);
     void after_source(uint8_t*,Nanoseconds);
+    void motion_source(uint8_t*);
+    void source_completed(uint8_t*,Nanoseconds);
     void reset(uint8_t* =nullptr);
     std::optional<Nanoseconds> render_time() const;
 private:
@@ -29,6 +31,7 @@ private:
 bool native_cutscene_eligible(uint8_t*);
 void native_cutscene_begin(uint8_t*,dora3::native_time::Nanoseconds,unsigned);
 void native_cutscene_update(uint8_t*,recomp_context*,dora3::native_time::Nanoseconds);
+void native_cutscene_source_completed(uint8_t*,dora3::native_time::Nanoseconds);
 void native_cutscene_reset(uint8_t* =nullptr);
 std::optional<dora3::native_time::Nanoseconds> native_cutscene_render_time();
 void native_cutscene_evaluate(uint8_t*,recomp_context*);

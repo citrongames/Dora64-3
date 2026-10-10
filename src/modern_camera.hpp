@@ -1,6 +1,7 @@
 #pragma once
 #include "recomp.h"
 #include <cstdint>
+#include <array>
 
 namespace dora3::camera {
 struct Options {
@@ -18,5 +19,14 @@ bool dispatch(uint8_t*,recomp_context*,uint32_t root);
 // UI fallback uses cumulative elapsed seconds within its Source period.
 bool frame(uint8_t*,recomp_context*,double elapsed);
 void clock_handoff();
+// Native draw-only transition to a newly acquired Original camera owner.
+class HandoffFrameScope {
+    uint8_t* ram_=nullptr;
+    std::array<int32_t,9> saved_{};
+public:
+    explicit HandoffFrameScope(uint8_t*);
+    ~HandoffFrameScope();
+    HandoffFrameScope(const HandoffFrameScope&)=delete;
+};
 }
 extern "C" int dora3_modern_camera_prepare(uint8_t*);

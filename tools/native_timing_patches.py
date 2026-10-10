@@ -2680,6 +2680,9 @@ def timing_hooks(sections,compiled,rom):
             elif op=='ui_selection_y_drift':
                 text='if (dora3_native_ui_equations_active()) { union { uint64_t bits; double value; } gain; gain.bits=LD(0,(int32_t)0x801C6340u); ctx->f2.d=dora3_native_ui_selection_y_f64(ctx->f2.d,ctx->f6.fl,gain.value); }'
             else:raise ValueError('Unknown UI operation')
+        elif op=='cutscene_motion_source':
+            if rule['section']!='.scene1' or (address,site,word)!=(0x801E3768,0x801E3768,0x27BDFFE0):raise ValueError('Unreviewed scripted motion interval')
+            text='dora3_native_cutscene_source(rdram,ctx,2);'
         elif op=='cutscene_source_end':
             if rule['section']!='.scene1' or (address,site,word)!=(0x801BB080,0x801BB320,0x8FBF0018):raise ValueError('Unreviewed scripted Source endpoint')
             text='dora3_native_cutscene_source(rdram,ctx,1);'

@@ -7,6 +7,7 @@
 #endif
 #include "native_process_time.hpp"
 #include "native_camera_timeline.hpp"
+#include "modern_camera.hpp"
 #include "native_gameplay_preview.hpp"
 #include "native_cutscene.hpp"
 #include "native_ui.hpp"
@@ -161,6 +162,7 @@ void build_frame(uint8_t* rdram,recomp_context* ctx,const FrameTicket& ticket,Fr
         ModelFrameScope models(rdram,ctx,frame_time,ticket.bank);
         UiFrameScope ui(rdram,ctx,frame_time);
         MinigameFrameScope minigames(rdram);
+        dora3::camera::HandoffFrameScope camera_handoff(rdram);
         dora3::graphics_profile::Scope builder_scope(dora3::graphics_profile::Stage::FrameBuild);
         dora3_graphics_frame_build(rdram,ctx);
     }
@@ -265,6 +267,14 @@ void dora3_native_loop_reset() {
     active_identity.reset();entry_identity.reset();timelines_started=false;last_fallback=nullptr;fade.reset();applied_fps=0;frames=0;deferred_messages.clear();game_model_animation().reset();
 }
 
+extern "C" int dora3_native_loop_world_presentation_active() {
+    // build_frame already validates the acquired generation and policy before
+    // entering the builder. A dialogue/fade/script can change the simulation
+    // owner while retaining this exact world renderer and permanent screen/Z.
+    return active_policy && active_identity && active_identity->load_generation &&
+        active_identity->module==0x70A50u && active_identity->update==0x801BB730u &&
+        active_identity->draw==0x801BB848u && game_frame_session().phase()==Phase::Native;
+}
 extern "C" int dora3_native_loop_gameplay_active() {return active_policy && active_policy->update==native_gameplay_preview_update && game_frame_session().phase()==FrameSession::Phase::Native;}
 
 extern "C" int dora3_native_loop_cutscene_active() {return active_policy&&active_policy->update==native_cutscene_update&&game_frame_session().phase()==FrameSession::Phase::Native;}

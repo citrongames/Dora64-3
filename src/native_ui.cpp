@@ -9,6 +9,7 @@
 #include "native_frame_bridge.hpp"
 #include "native_model_animation.hpp"
 #include "native_minigames.hpp"
+#include "native_cutscene.hpp"
 #include "native_texture_animation.hpp"
 #include "native_gameplay_preview.hpp"
 #include "recomp_context_copy.hpp"
@@ -506,6 +507,7 @@ extern "C" void dora3_native_ui_source(uint8_t* ram,recomp_context* ctx) {
     // Commit all borrowed visual owners at the same completed Source boundary.
     game_model_animation().resume_frame_clock(ram,completed);
     native_minigame_source_completed(ram,completed);
+    native_cutscene_source_completed(ram,completed);
     dora3::native_time::native_texture_source_completed(ram,completed);
     if(state.ram!=ram)return;
     ++state.epoch;state.source_time=completed;

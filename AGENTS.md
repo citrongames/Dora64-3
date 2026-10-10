@@ -1,3 +1,38 @@
+## 2026-10-10: test102 accepted; motion/fade commit and push authorized
+
+User reported test102 appears to resolve the fade FPS issue and explicitly
+requested commit/push to existing private main. Earlier101 chair/grenade fixes
+were also confirmed by the user. This accepts the motion/fade changes through102;
+historical pending/no-push notes below are superseded for this completed work.
+User observation is not a measured FPS benchmark or exhaustive scene coverage.
+No new build or tests/CPU/game/emulator/renderer/GPU execution for this Git step.
+Preserve102 EXE, previous builds and all accepted unrelated fixes.
+
+## 2026-10-10: Windows test-102; common world fade performance, user check pending
+
+101 chair/grenade motion accepted by user. Remaining approach/white-fade FPS dip
+observed at city Shizuka dialogue (Manual60/Modern/Wide,35FPS or lower).102 changes
+deferred RAM-readback eligibility from gameplay owner to acquired world draw.
+No NPC/location branch; all workload/copy/resource barriers preserved. Static
+defect fixed, exact contribution to reported FPS drop unmeasured. See
+docs/fade-performance-after101.md. Incremental compile/package only; no tests,
+CPU/game/emulator/renderer/GPU execution. No commit/push before explicit user approval.
+
+## 2026-10-10: Windows test-101 compiled/packaged; motion check pending
+
+Incremental MSVC compile/link exit0. Native camera handoff, current scripted
+motion interval and explicit minigame8 grenade flight binding. No tests/CPU/
+game/emulator/renderer/GPU. No commit/push until user check. See docs/motion-after100.md.
+
+## 2026-10-10: motion fixes after100; user playcheck pending
+
+User default setup is Manual60 FPS + Modern Camera + Widescreen. Correct Native
+camera handoff, short-command scripted motion and minigame8 flying grenade
+equations. Main-game grenade path unchanged. See docs/motion-after100.md for
+ROM evidence and limitations. Build immediately after fixes is authorized;
+no tests/CPU checks/game/emulator/renderer/GPU. No commit/push before user check.
+Preserve accepted095/100 and other work. Opening chair is script350, not376.
+
 ## 2026-10-10: test100 accepted; widescreen commit/push authorized
 
 User reported that everything now appears normal after test100 and explicitly

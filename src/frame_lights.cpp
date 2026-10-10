@@ -67,15 +67,20 @@ extern "C" void dora3_capture_frame_lights(uint8_t* ram, uint32_t bank) {
     uint8_t* rdram=ram;
     slots[index].lights.aspect_ratio=dora3::wide::aspect();
     slots[index].lights.hud_layout=dora3::wide::hud();
+    // RAM visibility follows the world draw, not who currently moves the
+    // player. Native UI fades and scripted cameras use the same framebuffer.
+    // The consumer still rejects offscreen/copy-dependent workloads, and
+    // CPU-copy, resource and Original handoff barriers still materialize RAM.
     slots[index].lights.native_ram_optional=dora3_native_frame_build_active()&&
-        dora3_native_loop_gameplay_active()&&MEM_W(0,int32_t(0x801AA658))==320&&
+        dora3_native_loop_world_presentation_active()&&MEM_W(0,int32_t(0x801AA658))==320&&
         MEM_W(0,int32_t(0x801A48C4))==240&&MEM_W(0,int32_t(0x801A9C88))==0;
 #ifdef DORA3_GRAPHICS_PROFILE
     using namespace dora3::graphics_profile;
     const auto settings=dora3::port::settings();
     context(MEM_HU(0,int32_t(0x801B36B8)),settings.frame_rate_limit,settings.frame_rate_mode,dora3::distance::multiplier());
     if(!dora3_native_frame_build_active())add(Counter::GateNotNativeBuild);
-    if(!dora3_native_loop_gameplay_active())add(Counter::GateNotGameplay);
+    // Keep the historical counter ID for existing profile readers.
+    if(!dora3_native_loop_world_presentation_active())add(Counter::GateNotGameplay);
     if(MEM_W(0,int32_t(0x801AA658))!=320||MEM_W(0,int32_t(0x801A48C4))!=240)add(Counter::GateDimensions);
     if(MEM_W(0,int32_t(0x801A9C88))!=0)add(Counter::GateCPUFramebuffer);
 #endif
