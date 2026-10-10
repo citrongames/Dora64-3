@@ -92,9 +92,10 @@ def main():
     fb_packed=sources['src/shaders/FbWritePackedCS.hlsl']
     old='        uint2 offsetCoord = gConstants.offset + coord;'
     new="""        const bool deferred = (gConstants.offset.x & 0x80000000u) != 0;
-        uint2 offsetCoord = uint2(deferred ? 0u : gConstants.offset.x, gConstants.offset.y) + coord;
+        uint2 offsetCoord = uint2(deferred ? 0u : gConstants.offset.x, (deferred ? (gConstants.offset.y & 0xffffu) : gConstants.offset.y)) + coord;
         uint2 sourceCoord = deferred ? uint2((float2(offsetCoord) + 0.5f) *
-            (float(gConstants.offset.x & 0x7fffffffu) / 65536.0f)) : offsetCoord;"""
+            (float(gConstants.offset.x & 0xffffu) / 256.0f) +
+            float2(float((gConstants.offset.x >> 16) & 0x7fffu) + float(gConstants.offset.y >> 16) / 65536.0f, 0.0f)) : offsetCoord;"""
     fb_color=replace_once(fb_color,old,new)
     fb_depth=replace_once(fb_depth,old,new)
     fb_color=replace_once(fb_color,'gInput.Load(uint3(offsetCoord, 0))','gInput.Load(uint3(sourceCoord, 0))')
@@ -104,7 +105,8 @@ def main():
     new=old+"""
     const bool deferred = (gConstants.offset.x & 0x80000000u) != 0;
     const uint2 sourceCoord = deferred ? uint2((float2(pixelCoord) + 0.5f) *
-        (float(gConstants.offset.x & 0x7fffffffu) / 65536.0f)) : pixelCoord;"""
+        (float(gConstants.offset.x & 0xffffu) / 256.0f) +
+        float2(float((gConstants.offset.x >> 16) & 0x7fffu) + float(gConstants.offset.y >> 16) / 65536.0f, 0.0f)) : pixelCoord;"""
     fb_packed=replace_once(fb_packed,old,new)
     fb_packed=replace_once(fb_packed,'gInput.Load(pixelCoord, 0)','gInput.Load(sourceCoord, 0)')
     fb_packed=fb_packed.replace('gInput.Load(uint3(pixelCoord, 0))','gInput.Load(uint3(sourceCoord, 0))')

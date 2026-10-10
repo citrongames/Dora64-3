@@ -86,13 +86,18 @@ class LiveContext final : public ultramodern::renderer::RendererContext {
     std::unique_ptr<RT64::Application> app;
     unsigned tasks=0;
     int applied_resolution=-1,applied_filtering=-1,applied_rate=-1,applied_limit=-1;
+    int applied_aspect=-1,applied_hud=-1;
     bool applied_native=false;
-    bool apply_graphics(){
+    bool apply_graphics(int frame_aspect=-1,int frame_hud=-1){
         const bool native=dora3::native_time::native_presentation_owned();
-        const auto s=dora3::port::settings();
-        if(native==applied_native&&s.resolution==applied_resolution&&s.filtering==applied_filtering&&s.frame_rate_mode==applied_rate&&s.frame_rate_limit==applied_limit)return false;
+        auto s=dora3::port::settings();
+        if(frame_aspect>=0){s.aspect_ratio=frame_aspect;s.hud_layout=frame_hud;}
+        if(s.aspect_ratio==applied_aspect&&s.hud_layout==applied_hud&&native==applied_native&&s.resolution==applied_resolution&&s.filtering==applied_filtering&&s.frame_rate_mode==applied_rate&&s.frame_rate_limit==applied_limit)return false;
         if(framebuffer_readback.pending())framebuffer_readback.materialize(*app->state);
         using U=RT64::UserConfiguration;
+        app->userConfig.aspectRatio=s.aspect_ratio?U::AspectRatio::Expand:U::AspectRatio::Original;
+        app->userConfig.extAspectRatio=s.hud_layout?U::AspectRatio::Expand:U::AspectRatio::Original;
+        applied_aspect=s.aspect_ratio;applied_hud=s.hud_layout;
         app->userConfig.resolution=s.resolution==3?U::Resolution::WindowIntegerScale:U::Resolution::Manual;
         app->userConfig.resolutionMultiplier=s.resolution==1?2.0f:s.resolution==2?4.0f:1.0f;
         app->userConfig.downsampleMultiplier=1;
@@ -225,9 +230,8 @@ public:
             DORA3_LOG(stderr,"LIVE RT64 missing frame light snapshot dl=%08X\n",dl);
             std::abort();
         }
-        const auto& config=app->userConfig;
-        const bool defer_ram=frame_lights.native_ram_optional&&
-            config.aspectRatio==RT64::UserConfiguration::AspectRatio::Original;
+        if(apply_graphics(frame_lights.aspect_ratio,frame_lights.hud_layout))app->updateUserConfig(true);
+        const bool defer_ram=frame_lights.native_ram_optional;
         if(!defer_ram)framebuffer_readback.materialize(*app->state);
         framebuffer_readback.request(defer_ram,frame_lights.native_depth_address);
         app->state->rsp->reset();

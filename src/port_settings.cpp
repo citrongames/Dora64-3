@@ -81,6 +81,8 @@ void save_locked(bool controls=false){
             g["frame_rate_mode"]=frame_rates[current.frame_rate_mode];g["frame_rate_limit"]=current.frame_rate_limit;
             constexpr const char* resolutions[]={"Original","Original2x","Original4x","Auto"};
             g["draw_distance"]=current.draw_distance;
+            g["aspect_ratio"]=current.aspect_ratio?"Expand":"Original";
+            g["hud_layout"]=current.hud_layout?"Full":"Original";
             g["render_resolution"]=resolutions[current.resolution];g["texture_filtering"]=current.filtering?"Bilinear":"ThreePoint";
             if(!pc_document["cheats"].is_object())pc_document["cheats"]=Json::object();
             for(int i=0;i<CheatCount;++i)pc_document["cheats"][cheat_keys[i]]=current.cheats[i];
@@ -154,6 +156,8 @@ void initialize(const std::filesystem::path& directory){
             integer(g,"display_index",current.display_index,0,1024);integer(g,"display_refresh_rate",current.display_refresh_rate,0,1000);
             integer(g,"frame_rate_limit",current.frame_rate_limit,60,360);
             real(g,"draw_distance",current.draw_distance,1,5);
+            if(g.contains("aspect_ratio"))current.aspect_ratio=g["aspect_ratio"]=="Expand";
+            if(g.contains("hud_layout"))current.hud_layout=g["hud_layout"]=="Full";
             constexpr const char* frame_rates[]={"Original","Display","Manual"};
             for(int i=0;i<3;i++)if(g.contains("frame_rate_mode")&&g["frame_rate_mode"]==frame_rates[i])current.frame_rate_mode=i;
             if(g.contains("window_mode")&&g["window_mode"].is_string())current.fullscreen=g["window_mode"]=="Fullscreen";
@@ -186,6 +190,7 @@ void set_general(const Settings& v) {
     current.window_width=std::clamp(v.window_width,320,16384);current.window_height=std::clamp(v.window_height,240,16384);
     current.display_index=std::clamp(v.display_index,0,1024);current.display_refresh_rate=std::clamp(v.display_refresh_rate,0,1000);
     current.frame_rate_mode=std::clamp(v.frame_rate_mode,0,2);current.frame_rate_limit=std::clamp(v.frame_rate_limit,60,360);
+    current.aspect_ratio=std::clamp(v.aspect_ratio,0,1);current.hud_layout=std::clamp(v.hud_layout,0,1);
     current.camera=v.camera;
     current.camera.stick_speed=std::isfinite(v.camera.stick_speed)?std::clamp(v.camera.stick_speed,30.f,360.f):120.f;
     current.camera.mouse_sensitivity=std::isfinite(v.camera.mouse_sensitivity)?std::clamp(v.camera.mouse_sensitivity,.02f,1.f):.15f;
@@ -208,7 +213,7 @@ void bind(Action a,bool gamepad,int code) {
     bindings[a]=code;save_locked(true);
 }
 void reset_bindings(){std::lock_guard lock(mutex);const auto d=defaults();current.keys=d.keys;current.pad=d.pad;current.deadzone=d.deadzone;save_locked(true);}
-void profile(bool modern){std::lock_guard lock(mutex);current.camera.enabled=modern;dora3::camera::configure(current.camera);current.resolution=modern?3:0;current.filtering=modern?1:0;current.frame_rate_mode=modern?1:0;current.draw_distance=dora3::distance::configure(modern?5.f:1.f);save_locked();}
+void profile(bool modern){std::lock_guard lock(mutex);current.aspect_ratio=current.hud_layout=modern?1:0;current.camera.enabled=modern;dora3::camera::configure(current.camera);current.resolution=modern?3:0;current.filtering=modern?1:0;current.frame_rate_mode=modern?1:0;current.draw_distance=dora3::distance::configure(modern?5.f:1.f);save_locked();}
 std::string save_error(){std::lock_guard lock(mutex);return error;}
 std::string pad_name(int code){
     constexpr const char* names[]={"Unbound","A","B","X","Y","Start","LB","RB","LT","RT","Left stick click","Right stick click",

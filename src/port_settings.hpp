@@ -20,6 +20,7 @@ struct Settings {
     int display_index=0, display_refresh_rate=0;
     int frame_rate_mode=0, frame_rate_limit=144; // Original, Display, Manual (Dora64)
     bool fullscreen=false, show_fps=false;
+    int aspect_ratio=0, hud_layout=0; // Original/Expand and Original/Full, independently.
     float draw_distance=1.0f;
     float deadzone=0.25f;
     bool background_gamepad_input=true;

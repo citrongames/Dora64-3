@@ -1,0 +1,552 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "bodies": [
+    {
+      "section": ".startup",
+      "address": "8002A844",
+      "name": "dora3_scaled_texture_rect",
+      "size": 2436,
+      "sha256": "0f0e642fded1de4db33298262f280ac3025f7320256047507a88354bb9c9643b",
+      "role": 1
+    },
+    {
+      "section": ".startup",
+      "address": "800289D8",
+      "name": "dora3_fade_draw_dispatch",
+      "size": 148,
+      "sha256": "fc7c72fcb6652dfc2a4fe179868aa40bb75109a30ddaa7ac61968156759480b8",
+      "role": 4
+    },
+    {
+      "section": ".startup",
+      "address": "8002F4E0",
+      "name": "dora3_s0_8002F4E0",
+      "size": 56,
+      "sha256": "d5ddd0845c202c0f85b44fd9d0fa34d11194fb09b4e4e495fd84231662ffe60f",
+      "role": 10
+    },
+    {
+      "section": ".scene34",
+      "address": "801BB648",
+      "name": "dora3_s2_menu_801BB648",
+      "size": 188,
+      "sha256": "71ad99714d35309b2e69e31bad378b41a15d4cbf109f56c3f5145b5e8a25cbbc",
+      "role": 5
+    },
+    {
+      "section": ".scene34",
+      "address": "801BA0CC",
+      "name": "dora3_s2_menu_801BA0CC",
+      "size": 764,
+      "sha256": "1a16fbc0d76eb8ea459134df510156cc7fac399d1f9179d94bb856c0b7df59e3",
+      "role": 6
+    },
+    {
+      "section": ".scene1",
+      "address": "801CA828",
+      "name": "dora3_s3_801CA828",
+      "size": 284,
+      "sha256": "19f005a4c59914b5a1970d0d1f3a42703806f609f373e4f74b946e3937f49f53",
+      "role": 2
+    },
+    {
+      "section": ".scene1",
+      "address": "801CA5C4",
+      "name": "dora3_s3_801CA5C4",
+      "size": 332,
+      "sha256": "4335321fa6cc0922aa26be7f4c988ee6d16160d78f9325055c1ff09c306a4bfe",
+      "role": 2
+    },
+    {
+      "section": ".scene1",
+      "address": "801CA9FC",
+      "name": "dora3_s3_801CA9FC",
+      "size": 176,
+      "sha256": "677a84fec79cdae48094277411c371b004624e0f1d6e19ec4cc4a4061222269b",
+      "role": 3
+    },
+    {
+      "section": ".scene1",
+      "address": "801C9EBC",
+      "name": "dora3_s3_801C9EBC",
+      "size": 496,
+      "sha256": "8496bfd64b3936a49ce98426f338f2675274d78d6c8ba11e4d74612ce63b0b5b",
+      "role": 3
+    },
+    {
+      "section": ".scene1",
+      "address": "801CA264",
+      "name": "dora3_s3_801CA264",
+      "size": 544,
+      "sha256": "a8ab55a0f0fdd6b5f9c9425a3aa8a0b88dbb87671e11bb19394d5b623ebed6a5",
+      "role": 3
+    },
+    {
+      "section": ".scene1",
+      "address": "801F3358",
+      "name": "dora3_s3_801F3358",
+      "size": 348,
+      "sha256": "212994c6e847c331bb409496a3613d2a64b4c6e2aa9ae675cd4991ff3013c42d",
+      "role": 9
+    },
+    {
+      "section": ".scene1",
+      "address": "801F5C2C",
+      "name": "dora3_s3_801F5C2C",
+      "size": 348,
+      "sha256": "78a086085864f5e8e3ddcc717e5ee0a80be16563501519e776e2e152486feac5",
+      "role": 9
+    },
+    {
+      "section": ".scene1",
+      "address": "801F6F44",
+      "name": "dora3_s3_801F6F44",
+      "size": 364,
+      "sha256": "5887f1f7337d112ef610165459b17df24a745c928927912a07329bf3544b7f84",
+      "role": 9
+    },
+    {
+      "section": ".startup",
+      "address": "80028688",
+      "name": "dora3_rgba_rectangle",
+      "size": 384,
+      "sha256": "3530389bf26523c03655eb86eb8fe7d398f0cc7bb9a8ef3ac655e3d3ce746899",
+      "role": 11
+    },
+    {
+      "section": ".scene1",
+      "address": "801BDAF0",
+      "name": "dora3_s3_801BDAF0",
+      "size": 2508,
+      "sha256": "ca6e0d91b72b870538921f917a1e0b48c478b47bbb5ec449b4f24537b35d1fdd",
+      "role": 14
+    },
+    {
+      "section": ".minigame_3",
+      "address": "801C40D8",
+      "name": "dora3_s23_mini_801C40D8",
+      "size": 228,
+      "sha256": "682f91eb3f49b7ffffd4b849403376b16031264b9c0466914b4569c5b24370a0",
+      "role": 15
+    },
+    {
+      "section": ".minigame_7",
+      "address": "801C44E0",
+      "name": "dora3_s27_mini_801C44E0",
+      "size": 48,
+      "sha256": "366b5808e0259c4dbba42260d2db11438fe3b7f7382e3a0642c4a3f2cb7ed20e",
+      "role": 15
+    },
+    {
+      "section": ".minigame_8",
+      "address": "801C3CBC",
+      "name": "dora3_s28_mini_801C3CBC",
+      "size": 48,
+      "sha256": "91e6178e5fcd54945a6e0b48ecc24ea5840a91bb06029ea72d888ba731818b3f",
+      "role": 15
+    },
+    {
+      "section": ".minigame_9",
+      "address": "801C4B70",
+      "name": "dora3_s29_mini_801C4B70",
+      "size": 48,
+      "sha256": "366b5808e0259c4dbba42260d2db11438fe3b7f7382e3a0642c4a3f2cb7ed20e",
+      "role": 15
+    },
+    {
+      "section": ".minigame_8",
+      "address": "801C3EF4",
+      "name": "dora3_s28_mini_801C3EF4",
+      "size": 364,
+      "sha256": "250a19ba041e9e6652f6e1cca18d51bb59bbdf4db8c2aee3d45504fceb37e831",
+      "role": 21
+    }
+  ],
+  "sites": [
+    {
+      "section": ".scene34",
+      "address": "801BDA88",
+      "name": "dora3_s2_menu_801BDA88",
+      "size": 1140,
+      "sha256": "982dc157cce7d406c421ddca32b03bd06b96444fe8944c0b10091d2605acd9ad",
+      "enter": "801BDB34",
+      "leave": "801BDB3C",
+      "role": 12,
+      "description": "File selection BC7 background; explicit JAL scope, independent of guest ra"
+    },
+    {
+      "section": ".scene34",
+      "address": "801BCC08",
+      "name": "dora3_s2_menu_801BCC08",
+      "size": 160,
+      "sha256": "3d99fef4057765b6300aeb17b4e219fdadb241065e75a22dfb9351ccdaf74130",
+      "enter": "801BCC94",
+      "leave": "801BCC9C",
+      "role": 13,
+      "description": "Title BEC background; explicit JAL scope"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C3FE0",
+      "name": "dora3_s21_mini_801C3FE0",
+      "size": 1252,
+      "sha256": "ea05d4e3d938e4c26ebb69fda9c306b289cd5d2c3e29524235bed7b42bfcc54a",
+      "enter": "801C413C",
+      "leave": "801C4144",
+      "role": 17,
+      "description": "Participant results/times centered within its own viewport"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C3FE0",
+      "name": "dora3_s21_mini_801C3FE0",
+      "size": 1252,
+      "sha256": "ea05d4e3d938e4c26ebb69fda9c306b289cd5d2c3e29524235bed7b42bfcc54a",
+      "enter": "801C418C",
+      "leave": "801C4194",
+      "role": 17,
+      "description": "Participant results/times centered within its own viewport"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C3FE0",
+      "name": "dora3_s21_mini_801C3FE0",
+      "size": 1252,
+      "sha256": "ea05d4e3d938e4c26ebb69fda9c306b289cd5d2c3e29524235bed7b42bfcc54a",
+      "enter": "801C41E4",
+      "leave": "801C41EC",
+      "role": 17,
+      "description": "Participant results/times centered within its own viewport"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C3FE0",
+      "name": "dora3_s21_mini_801C3FE0",
+      "size": 1252,
+      "sha256": "ea05d4e3d938e4c26ebb69fda9c306b289cd5d2c3e29524235bed7b42bfcc54a",
+      "enter": "801C4228",
+      "leave": "801C4230",
+      "role": 17,
+      "description": "Participant results/times centered within its own viewport"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C3FE0",
+      "name": "dora3_s21_mini_801C3FE0",
+      "size": 1252,
+      "sha256": "ea05d4e3d938e4c26ebb69fda9c306b289cd5d2c3e29524235bed7b42bfcc54a",
+      "enter": "801C4300",
+      "leave": "801C4308",
+      "role": 17,
+      "description": "Participant results/times centered within its own viewport"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C3FE0",
+      "name": "dora3_s21_mini_801C3FE0",
+      "size": 1252,
+      "sha256": "ea05d4e3d938e4c26ebb69fda9c306b289cd5d2c3e29524235bed7b42bfcc54a",
+      "enter": "801C4384",
+      "leave": "801C438C",
+      "role": 17,
+      "description": "Participant results/times centered within its own viewport"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C3FE0",
+      "name": "dora3_s21_mini_801C3FE0",
+      "size": 1252,
+      "sha256": "ea05d4e3d938e4c26ebb69fda9c306b289cd5d2c3e29524235bed7b42bfcc54a",
+      "enter": "801C43B8",
+      "leave": "801C43C0",
+      "role": 17,
+      "description": "Participant results/times centered within its own viewport"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C3FE0",
+      "name": "dora3_s21_mini_801C3FE0",
+      "size": 1252,
+      "sha256": "ea05d4e3d938e4c26ebb69fda9c306b289cd5d2c3e29524235bed7b42bfcc54a",
+      "enter": "801C4414",
+      "leave": "801C441C",
+      "role": 17,
+      "description": "Participant results/times centered within its own viewport"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C3FE0",
+      "name": "dora3_s21_mini_801C3FE0",
+      "size": 1252,
+      "sha256": "ea05d4e3d938e4c26ebb69fda9c306b289cd5d2c3e29524235bed7b42bfcc54a",
+      "enter": "801C446C",
+      "leave": "801C4474",
+      "role": 17,
+      "description": "Participant results/times centered within its own viewport"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C494C",
+      "name": "dora3_s21_mini_801C494C",
+      "size": 364,
+      "sha256": "dbe71322fc42d11d1c4fa89108409d63d58a903ac906fd9be772a25a92348e09",
+      "enter": "801C4A78",
+      "leave": "801C4A80",
+      "role": 20,
+      "description": "Start lights at each expanded view center, independent of HUD layout"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C4590",
+      "name": "dora3_s21_mini_801C4590",
+      "size": 412,
+      "sha256": "d16e158cc14dbc3dd41b46b1613205f4dc408f2dfd0a9f3807d3ec2cab788e6e",
+      "enter": "801C4630",
+      "leave": "801C4638",
+      "role": 17,
+      "description": "Participant retirement banner"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C4590",
+      "name": "dora3_s21_mini_801C4590",
+      "size": 412,
+      "sha256": "d16e158cc14dbc3dd41b46b1613205f4dc408f2dfd0a9f3807d3ec2cab788e6e",
+      "enter": "801C46A0",
+      "leave": "801C46A8",
+      "role": 18,
+      "description": "Rank at outer lower viewport corner"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C4590",
+      "name": "dora3_s21_mini_801C4590",
+      "size": 412,
+      "sha256": "d16e158cc14dbc3dd41b46b1613205f4dc408f2dfd0a9f3807d3ec2cab788e6e",
+      "enter": "801C46EC",
+      "leave": "801C46F4",
+      "role": 18,
+      "description": "Rank at outer lower viewport corner"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801C3700",
+      "name": "dora3_s21_mini_801C3700",
+      "size": 504,
+      "sha256": "2f6302f320fab9aa037e6abda07d72da2f4f3d2da3287656b0a5272babf07563",
+      "enter": "801C38AC",
+      "leave": "801C38B4",
+      "role": 18,
+      "description": "Participant status icon at outer corner"
+    },
+    {
+      "section": ".minigame_2",
+      "address": "801C3940",
+      "name": "dora3_s22_mini_801C3940",
+      "size": 436,
+      "sha256": "a87a4b47fc4968e2bcaa8c15fe6c6698cf2e0f863de60691132972dc2c683863",
+      "enter": "801C3A8C",
+      "leave": "801C3A94",
+      "role": 17,
+      "description": "Participant results time; global clock stays centered"
+    },
+    {
+      "section": ".minigame_2",
+      "address": "801C42DC",
+      "name": "dora3_s22_mini_801C42DC",
+      "size": 412,
+      "sha256": "9b445935bb3fdb3586bd0f582fadace992ad1f7c579d3df29e01a784067f6a33",
+      "enter": "801C437C",
+      "leave": "801C4384",
+      "role": 17,
+      "description": "Participant retirement banner"
+    },
+    {
+      "section": ".minigame_2",
+      "address": "801C42DC",
+      "name": "dora3_s22_mini_801C42DC",
+      "size": 412,
+      "sha256": "9b445935bb3fdb3586bd0f582fadace992ad1f7c579d3df29e01a784067f6a33",
+      "enter": "801C43EC",
+      "leave": "801C43F4",
+      "role": 18,
+      "description": "Rank at outer lower viewport corner"
+    },
+    {
+      "section": ".minigame_2",
+      "address": "801C42DC",
+      "name": "dora3_s22_mini_801C42DC",
+      "size": 412,
+      "sha256": "9b445935bb3fdb3586bd0f582fadace992ad1f7c579d3df29e01a784067f6a33",
+      "enter": "801C4438",
+      "leave": "801C4440",
+      "role": 18,
+      "description": "Rank at outer lower viewport corner"
+    },
+    {
+      "section": ".minigame_2",
+      "address": "801C71FC",
+      "name": "dora3_s22_mini_801C71FC",
+      "size": 504,
+      "sha256": "80a5128ad352b14496ec507e82c446384b30cbe48f58efc2ee6ab0ebc1f0dbf3",
+      "enter": "801C73A8",
+      "leave": "801C73B0",
+      "role": 18,
+      "description": "Participant status icon at outer corner"
+    },
+    {
+      "section": ".minigame_2",
+      "address": "801C473C",
+      "name": "dora3_s22_mini_801C473C",
+      "size": 632,
+      "sha256": "ec7d7b494cd4ad7deb33f65c4c246910d3b331644710a3ffc177c32c3d273bb6",
+      "enter": "801C482C",
+      "leave": "801C4834",
+      "role": 19,
+      "description": "Bar and moving indicator share inner edge"
+    },
+    {
+      "section": ".minigame_2",
+      "address": "801C473C",
+      "name": "dora3_s22_mini_801C473C",
+      "size": 632,
+      "sha256": "ec7d7b494cd4ad7deb33f65c4c246910d3b331644710a3ffc177c32c3d273bb6",
+      "enter": "801C4968",
+      "leave": "801C4970",
+      "role": 19,
+      "description": "Bar and moving indicator share inner edge"
+    },
+    {
+      "section": ".minigame_2",
+      "address": "801C4C34",
+      "name": "dora3_s22_mini_801C4C34",
+      "size": 548,
+      "sha256": "45afb19d1b94687efc387f650e954aba738f86ac1a6a390d6d000cb489d2efd0",
+      "enter": "801C4DE8",
+      "leave": "801C4DF0",
+      "role": 19,
+      "description": "Bar icons share inner edge"
+    },
+    {
+      "section": ".minigame_5",
+      "address": "801C6A30",
+      "name": "dora3_s25_mini_801C6A30",
+      "size": 580,
+      "sha256": "b4b5af362d2d9adcf9b4783c0b52594812187e737fdb475c7d4d61a9be3a7d95",
+      "enter": "801C6A9C",
+      "leave": "801C6AA4",
+      "role": 6,
+      "description": "Blue underlay after clear, before split puzzle viewports"
+    },
+    {
+      "section": ".minigame_6",
+      "address": "801C7048",
+      "name": "dora3_s26_mini_801C7048",
+      "size": 624,
+      "sha256": "35575e8fc401b5cdf414e5ad14cc067f679ebb14585c63c9028844218133f229",
+      "enter": "801C70B4",
+      "leave": "801C70BC",
+      "role": 6,
+      "description": "Blue underlay after clear, before split three-picture viewports"
+    },
+    {
+      "section": ".minigame_2",
+      "address": "801C40A4",
+      "name": "dora3_s22_mini_801C40A4",
+      "size": 364,
+      "sha256": "7fdd1a1f0f35658d5e0b049a323ed970130120ffe390634c25caef679981d33a",
+      "enter": "801C41D0",
+      "leave": "801C41D8",
+      "role": 20,
+      "description": "Start lights at each expanded view center, independent of HUD layout"
+    },
+    {
+      "section": ".minigame_8",
+      "address": "801C5190",
+      "name": "dora3_s28_mini_801C5190",
+      "size": 336,
+      "sha256": "c4b6ff0298788031ecf1281c8054af9466aaa456e91fe42a2090c934b7e5e092",
+      "enter": "801C5294",
+      "leave": "801C529C",
+      "role": 18,
+      "description": "Four grenade-game portrait icons at outer edges"
+    },
+    {
+      "section": ".minigame_5",
+      "address": "801C6A30",
+      "name": "dora3_s25_mini_801C6A30",
+      "size": 580,
+      "sha256": "b4b5af362d2d9adcf9b4783c0b52594812187e737fdb475c7d4d61a9be3a7d95",
+      "enter": "801C6BC0",
+      "leave": "801C6BC8",
+      "role": 5,
+      "description": "Puzzle models/effects preserve the centered original canvas together with backgrounds and UI"
+    },
+    {
+      "section": ".minigame_5",
+      "address": "801C6A30",
+      "name": "dora3_s25_mini_801C6A30",
+      "size": 580,
+      "sha256": "b4b5af362d2d9adcf9b4783c0b52594812187e737fdb475c7d4d61a9be3a7d95",
+      "enter": "801C6BCC",
+      "leave": "801C6BD4",
+      "role": 5,
+      "description": "Puzzle models/effects preserve the centered original canvas together with backgrounds and UI"
+    },
+    {
+      "section": ".minigame_5",
+      "address": "801C6A30",
+      "name": "dora3_s25_mini_801C6A30",
+      "size": 580,
+      "sha256": "b4b5af362d2d9adcf9b4783c0b52594812187e737fdb475c7d4d61a9be3a7d95",
+      "enter": "801C6BD8",
+      "leave": "801C6BE0",
+      "role": 5,
+      "description": "Puzzle models/effects preserve the centered original canvas together with backgrounds and UI"
+    },
+    {
+      "section": ".minigame_6",
+      "address": "801C7048",
+      "name": "dora3_s26_mini_801C7048",
+      "size": 624,
+      "sha256": "35575e8fc401b5cdf414e5ad14cc067f679ebb14585c63c9028844218133f229",
+      "enter": "801C71D8",
+      "leave": "801C71E0",
+      "role": 5,
+      "description": "Puzzle models/effects preserve the centered original canvas together with backgrounds and UI"
+    },
+    {
+      "section": ".minigame_6",
+      "address": "801C7048",
+      "name": "dora3_s26_mini_801C7048",
+      "size": 624,
+      "sha256": "35575e8fc401b5cdf414e5ad14cc067f679ebb14585c63c9028844218133f229",
+      "enter": "801C71E4",
+      "leave": "801C71EC",
+      "role": 5,
+      "description": "Puzzle models/effects preserve the centered original canvas together with backgrounds and UI"
+    },
+    {
+      "section": ".minigame_6",
+      "address": "801C7048",
+      "name": "dora3_s26_mini_801C7048",
+      "size": 624,
+      "sha256": "35575e8fc401b5cdf414e5ad14cc067f679ebb14585c63c9028844218133f229",
+      "enter": "801C71F0",
+      "leave": "801C71F8",
+      "role": 5,
+      "description": "Puzzle models/effects preserve the centered original canvas together with backgrounds and UI"
+    },
+    {
+      "section": ".minigame_6",
+      "address": "801C7048",
+      "name": "dora3_s26_mini_801C7048",
+      "size": 624,
+      "sha256": "35575e8fc401b5cdf414e5ad14cc067f679ebb14585c63c9028844218133f229",
+      "enter": "801C725C",
+      "leave": "801C7264",
+      "role": 5,
+      "description": "Puzzle models/effects preserve the centered original canvas together with backgrounds and UI"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 #include "graphics_profile.hpp"
 #include "diagnostics.hpp"
 #include "frame_lights.hpp"
+#include "widescreen.hpp"
 #include "native_game_loop.hpp"
 #include "native_frame_bridge.hpp"
 #include "recomp.h"
@@ -64,6 +65,8 @@ extern "C" void dora3_capture_frame_lights(uint8_t* ram, uint32_t bank) {
     // Capture policy on the guest thread that built this exact bank. The
     // parser must not inspect a later scene's live Native policy pointer.
     uint8_t* rdram=ram;
+    slots[index].lights.aspect_ratio=dora3::wide::aspect();
+    slots[index].lights.hud_layout=dora3::wide::hud();
     slots[index].lights.native_ram_optional=dora3_native_frame_build_active()&&
         dora3_native_loop_gameplay_active()&&MEM_W(0,int32_t(0x801AA658))==320&&
         MEM_W(0,int32_t(0x801A48C4))==240&&MEM_W(0,int32_t(0x801A9C88))==0;

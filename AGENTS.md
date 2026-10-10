@@ -1,3 +1,51 @@
+## 2026-10-10: test100 accepted; widescreen commit/push authorized
+
+User reported that everything now appears normal after test100 and explicitly
+requested commit/push to existing main. This accepts the widescreen implementation
+and corrections through100. Historical pending/no-push entries below are
+superseded for this completed work only. Preserve accepted camera095 and all
+earlier fixes. User feedback is gameplay evidence, not exhaustive scene coverage.
+No agent tests, CPU checks, game/emulator/renderer/GPU runs. No additional build:
+test100 remains the delivered executable. See docs/widescreen.md.
+
+## 2026-10-10: Windows test-100 compiled/packaged; widescreen user check pending
+
+Incremental MSVC compile/link exit0. No game/tests/CPU/GPU execution. Preserve
+accepted095 camera and previous fixes. Whole puzzle compositions now share the original centered canvas;
+blue fills only outside margins. User playcheck pending; no commit/push until authorization. See docs/widescreen.md.
+
+## 2026-10-10: Windows test-099 compiled/packaged; widescreen user check pending
+
+Incremental MSVC compile/link exit0. No game/tests/CPU/GPU execution. Preserve
+accepted095 camera and previous fixes. Start lights, puzzle blue margins and grenade portraits/HP
+need user playcheck; no commit/push until authorization. See docs/widescreen.md.
+
+## 2026-10-10: Windows test-098 compiled/packaged; widescreen user check pending
+
+Incremental MSVC compile/link exit0. No game/tests/CPU/GPU execution. Preserve
+accepted095 camera and previous fixes. Widescreen call-scope crash correction after user097 report
+need user playcheck; no commit/push until authorization. See docs/widescreen.md.
+
+## 2026-10-10: Windows test-097 compiled/packaged; widescreen user check pending
+
+Incremental MSVC compile/link exit0. No game/tests/CPU/GPU execution. Preserve
+accepted095 camera and previous fixes. Widescreen fixes after user096 report
+need user playcheck; no commit/push until authorization. See docs/widescreen.md.
+
+## 2026-10-10: Windows test-096 compiled/packaged; widescreen user check pending
+
+Incremental MSVC compile/link exit0. No game/tests/CPU/GPU execution. Preserve
+accepted095 camera and previous fixes. New widescreen settings/layout/readback
+need user playcheck; no commit/push until authorization. See docs/widescreen.md.
+
+## 2026-10-10: widescreen implementation; build authorized, user playcheck pending
+
+User approved implementation and one incremental Windows build at completion.
+Commit/push only after user check. No tests/CPU checks/game/emulator/renderer/GPU.
+Preserve accepted095 camera and earlier fixes. See docs/widescreen.md. Donor and
+sources/ stay read-only. This task changes settings, explicit ROM layout hooks,
+isolated pinned RT64 adapters and wide deferred-readback coordinates.
+
 ## 2026-10-10: test095 accepted; camera commit/push authorized
 
 User reported test095 appears to work and explicitly requested commit/push.

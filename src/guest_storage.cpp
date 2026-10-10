@@ -1,5 +1,6 @@
 #include "diagnostics.hpp"
 #include "guest_storage.hpp"
+#include "widescreen.hpp"
 #include "frame_lights.hpp"
 #include "recomp.h"
 #include "librecomp/addresses.hpp"
@@ -141,6 +142,7 @@ extern "C" void dora3_distance_heap_reset(uint8_t* ram,recomp_context* ctx) {
 extern "C" void dora3_distance_frame_begin(uint8_t* ram,recomp_context*) {
     if(!live(ram))return;
     word(ram,0x801B1424)=int32_t(dora3::distance::display_list_begin(current_bank(ram)));
+    dora3::wide::begin(ram);
 }
 extern "C" void dora3_distance_frame_submit(uint8_t* ram,recomp_context* ctx) {
     if(!live(ram))return;

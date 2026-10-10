@@ -83,7 +83,7 @@ void draw_overlay(){
                         if(ImGui::Button("Original",profile_size)){profile(false);s=settings();}
                         ImGui::Spacing();ImGui::Separator();ImGui::Spacing();
                         ImGui::TextWrapped("Original: original resolution, frame rate and N64 filtering. Modern: fit to window, display frame rate and bilinear filtering.");
-                        ImGui::TextWrapped("Both profiles preserve the original game speed and 4:3 picture.");
+                        ImGui::TextWrapped("Original keeps 4:3; Modern fits the window.");
                         ImGui::Separator();
                         bool camera_changed=ImGui::Checkbox("Modern camera",&s.camera.enabled);
                         if(s.camera.enabled) {
@@ -144,6 +144,8 @@ void draw_overlay(){
                             ImGui::TextWrapped(s.frame_rate_mode==2?"Experimental native frame rate in supported scenes; other scenes keep original timing. No RT64 interpolation. Manual can exceed the display refresh rate.":"Smoother motion with the original game speed. Display follows the display refresh rate.");
                         }
                         changed|=ImGui::Combo("Game render resolution",&s.resolution,"Original (1x)\0Original (2x)\0Original (4x)\0Fit to window\0");
+                        changed|=ImGui::Combo("Game aspect ratio",&s.aspect_ratio,"Original (4:3)\0Fit to window / fullscreen\0");
+                        changed|=ImGui::Combo("Gameplay HUD layout",&s.hud_layout,"Original (4:3)\0Fit to window / fullscreen\0");
                         changed|=ImGui::Combo("Texture filtering",&s.filtering,"Original N64 (three-point)\0Bilinear\0");
                         ImGui::Spacing();
                         changed|=ImGui::SliderFloat("Object / NPC draw distance",&s.draw_distance,1.f,5.f,"%.1fx",ImGuiSliderFlags_AlwaysClamp);

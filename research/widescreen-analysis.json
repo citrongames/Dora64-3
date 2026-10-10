@@ -1,0 +1,1858 @@
+{
+  "scope": "Static ROM data decoding and direct JAL inventory only; no execution of guest code, tests, renderer or GPU",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "base_commit": "7df7634",
+  "reviewed_bodies": [
+    {
+      "section": ".startup",
+      "address": "800289D8",
+      "name": "dora3_fade_draw_dispatch",
+      "rom": "3DD8",
+      "size": 148,
+      "sha256": "fc7c72fcb6652dfc2a4fe179868aa40bb75109a30ddaa7ac61968156759480b8"
+    },
+    {
+      "section": ".startup",
+      "address": "8002A844",
+      "name": "dora3_scaled_texture_rect",
+      "rom": "5C44",
+      "size": 2436,
+      "sha256": "0f0e642fded1de4db33298262f280ac3025f7320256047507a88354bb9c9643b"
+    },
+    {
+      "section": ".startup",
+      "address": "8002F20C",
+      "name": "dora3_s0_8002F20C",
+      "rom": "A60C",
+      "size": 116,
+      "sha256": "ecb10205b7334d5fda7950a09ecb176e8d971ca87e4b6f8b2614e0dcc706357b"
+    },
+    {
+      "section": ".startup",
+      "address": "800578B0",
+      "name": "dora3_s0_closure_800578B0",
+      "rom": "32CB0",
+      "size": 464,
+      "sha256": "9ba02964ce8b51dc3dace2e8d0a6754f7d3a5428d3dcc7a9005479a868eaea40"
+    },
+    {
+      "section": ".scene34",
+      "address": "801BDA88",
+      "name": "dora3_s2_menu_801BDA88",
+      "rom": "68178",
+      "size": 1140,
+      "sha256": "982dc157cce7d406c421ddca32b03bd06b96444fe8944c0b10091d2605acd9ad"
+    },
+    {
+      "section": ".scene34",
+      "address": "801BA858",
+      "name": "dora3_s2_menu_801BA858",
+      "rom": "64F48",
+      "size": 464,
+      "sha256": "6563178e107860271aed8eda3b1c8415c0648299e02697578a808be010f3801e"
+    },
+    {
+      "section": ".scene34",
+      "address": "801BCC08",
+      "name": "dora3_s2_menu_801BCC08",
+      "rom": "672F8",
+      "size": 160,
+      "sha256": "3d99fef4057765b6300aeb17b4e219fdadb241065e75a22dfb9351ccdaf74130"
+    },
+    {
+      "section": ".scene34",
+      "address": "801BD7F8",
+      "name": "dora3_s2_menu_801BD7F8",
+      "rom": "67EE8",
+      "size": 144,
+      "sha256": "d1b1aa6522fd94661600dc0d830d3ac32f9f67ff67d7ec04583210413f3b874a"
+    },
+    {
+      "section": ".scene34",
+      "address": "801BA0CC",
+      "name": "dora3_s2_menu_801BA0CC",
+      "rom": "647BC",
+      "size": 764,
+      "sha256": "1a16fbc0d76eb8ea459134df510156cc7fac399d1f9179d94bb856c0b7df59e3"
+    },
+    {
+      "section": ".scene34",
+      "address": "801BA3C8",
+      "name": "dora3_s2_menu_801BA3C8",
+      "rom": "64AB8",
+      "size": 520,
+      "sha256": "a4f7d46e1b34f53bc0564a51b340149e79c13b2501ad9714d36d4ae48da07d4d"
+    },
+    {
+      "section": ".scene34",
+      "address": "801BBAD0",
+      "name": "dora3_s2_menu_801BBAD0",
+      "rom": "661C0",
+      "size": 144,
+      "sha256": "4e4ad903f7b32ad4efb495b07b4ef90fd332a686c866d02fd15a9a3b7e4e5a55"
+    },
+    {
+      "section": ".scene1",
+      "address": "801BB334",
+      "name": "dora3_s3_801BB334",
+      "rom": "72EB4",
+      "size": 516,
+      "sha256": "b9083ebfcfd1b75e128e6a1d05a4c1a7db528eafe408a4323ee4b931e3e2fafb"
+    },
+    {
+      "section": ".scene1",
+      "address": "801F3358",
+      "name": "dora3_s3_801F3358",
+      "rom": "AAED8",
+      "size": 348,
+      "sha256": "212994c6e847c331bb409496a3613d2a64b4c6e2aa9ae675cd4991ff3013c42d"
+    },
+    {
+      "section": ".scene1",
+      "address": "801F009C",
+      "name": "dora3_s3_801F009C",
+      "rom": "A7C1C",
+      "size": 152,
+      "sha256": "c308964ead06b4d6ba0cf12b7df72de976a7d7714baf8b6cae1c15b038d5d41b"
+    },
+    {
+      "section": ".scene1",
+      "address": "801BC3D0",
+      "name": "dora3_s3_801BC3D0",
+      "rom": "73F50",
+      "size": 136,
+      "sha256": "98b0b9bc793a4a07ce1faf7bcfa34cf3d0d048a59b9161fa8f96d775553af1ce"
+    },
+    {
+      "section": ".minigame_1",
+      "address": "801CB160",
+      "name": "dora3_s21_mini_801CB160",
+      "rom": "19DC90",
+      "size": 864,
+      "sha256": "2272234d85322cdadaf7495e9685d3b4e6b13900002148890a0054fee587514d"
+    }
+  ],
+  "direct_calls": [
+    {
+      "section": ".startup",
+      "function": "dora3_graphics_frame_build",
+      "site": "80030018",
+      "target": "fade"
+    },
+    {
+      "section": ".startup",
+      "function": "dora3_s0_remaining_8002B828",
+      "site": "8002B998",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_scene34_centered_image",
+      "site": "801C0000",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BB648",
+      "site": "801BB698",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BB648",
+      "site": "801BB6A8",
+      "target": "view"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BB648",
+      "site": "801BB6B0",
+      "target": "projection-load"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C267C",
+      "site": "801C26D0",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C267C",
+      "site": "801C26D8",
+      "target": "projection-load"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C267C",
+      "site": "801C2710",
+      "target": "view"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C05FC",
+      "site": "801C06AC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C05FC",
+      "site": "801C0720",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C05FC",
+      "site": "801C0798",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C05FC",
+      "site": "801C080C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C05FC",
+      "site": "801C087C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C05FC",
+      "site": "801C0904",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDA88",
+      "site": "801BDB34",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDA88",
+      "site": "801BDBA4",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDA88",
+      "site": "801BDC44",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDA88",
+      "site": "801BDCE8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDA88",
+      "site": "801BDD8C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDA88",
+      "site": "801BDECC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDEFC",
+      "site": "801BE008",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDEFC",
+      "site": "801BE0B8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDEFC",
+      "site": "801BE2AC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDEFC",
+      "site": "801BE334",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDEFC",
+      "site": "801BE3F4",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDEFC",
+      "site": "801BE4A8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDEFC",
+      "site": "801BE56C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDEFC",
+      "site": "801BE5E8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDEFC",
+      "site": "801BE6B8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDEFC",
+      "site": "801BE794",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BDEFC",
+      "site": "801BEA10",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BEA58",
+      "site": "801BEB98",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BEA58",
+      "site": "801BEC38",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BEA58",
+      "site": "801BED78",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BEDA8",
+      "site": "801BEF98",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801B9890",
+      "site": "801B9AB8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801B9890",
+      "site": "801B9B54",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801B9890",
+      "site": "801B9BF4",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801B9890",
+      "site": "801B9C90",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BA858",
+      "site": "801BAA14",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BACBC",
+      "site": "801BAD5C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BC5E4",
+      "site": "801BC740",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BC760",
+      "site": "801BC874",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BC760",
+      "site": "801BC8EC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BC760",
+      "site": "801BC958",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BC760",
+      "site": "801BCA64",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BC760",
+      "site": "801BCAEC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BC760",
+      "site": "801BCBD0",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BCC08",
+      "site": "801BCC94",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C1CF0",
+      "site": "801C1DD4",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C1EAC",
+      "site": "801C2138",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801C1EAC",
+      "site": "801C228C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801BA3C8",
+      "site": "801BA590",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene34",
+      "function": "dora3_s2_menu_801B96F8",
+      "site": "801B97EC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BB6A4",
+      "site": "801BB6F4",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BB6A4",
+      "site": "801BB704",
+      "target": "view"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BB6A4",
+      "site": "801BB70C",
+      "target": "projection-load"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BB554",
+      "site": "801BB5A4",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BB554",
+      "site": "801BB5B4",
+      "target": "view"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BB554",
+      "site": "801BB5BC",
+      "target": "projection-load"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BB334",
+      "site": "801BB3D4",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BB334",
+      "site": "801BB3E4",
+      "target": "view"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BB334",
+      "site": "801BB3EC",
+      "target": "projection-load"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BB5FC",
+      "site": "801BB64C",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BB5FC",
+      "site": "801BB65C",
+      "target": "view"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801BB5FC",
+      "site": "801BB664",
+      "target": "projection-load"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F6F44",
+      "site": "801F6FE8",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F6F44",
+      "site": "801F6FFC",
+      "target": "view"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F6F44",
+      "site": "801F7004",
+      "target": "projection-load"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F6F44",
+      "site": "801F704C",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F6F44",
+      "site": "801F7058",
+      "target": "view"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F6F44",
+      "site": "801F7060",
+      "target": "projection-load"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F3358",
+      "site": "801F33CC",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F3358",
+      "site": "801F33E0",
+      "target": "view"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F3358",
+      "site": "801F33E8",
+      "target": "projection-load"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F3358",
+      "site": "801F340C",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F3358",
+      "site": "801F3418",
+      "target": "view"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F3358",
+      "site": "801F3420",
+      "target": "projection-load"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801B90A8",
+      "site": "801B9134",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801B90A8",
+      "site": "801B91A0",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801EFA50",
+      "site": "801EFBEC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801EFA50",
+      "site": "801EFCAC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F5C2C",
+      "site": "801F5CA0",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F5C2C",
+      "site": "801F5CB4",
+      "target": "view"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F5C2C",
+      "site": "801F5CBC",
+      "target": "projection-load"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F5C2C",
+      "site": "801F5CE0",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F5C2C",
+      "site": "801F5CEC",
+      "target": "view"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F5C2C",
+      "site": "801F5CF4",
+      "target": "projection-load"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F60E4",
+      "site": "801F619C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F60E4",
+      "site": "801F6254",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F60E4",
+      "site": "801F6310",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F60E4",
+      "site": "801F63E8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F22D4",
+      "site": "801F2404",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F2938",
+      "site": "801F2A7C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F2938",
+      "site": "801F2B48",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F0CB8",
+      "site": "801F0D84",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F0CB8",
+      "site": "801F0DF8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F0CB8",
+      "site": "801F0E68",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F0CB8",
+      "site": "801F0ED8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F0CB8",
+      "site": "801F0F6C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F0CB8",
+      "site": "801F1094",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F0CB8",
+      "site": "801F1114",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F0CB8",
+      "site": "801F1188",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F0CB8",
+      "site": "801F11FC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F0CB8",
+      "site": "801F130C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F0CB8",
+      "site": "801F1380",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801CA264",
+      "site": "801CA348",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801CA264",
+      "site": "801CA448",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801CA5C4",
+      "site": "801CA6C0",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801CA828",
+      "site": "801CA928",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801CA9FC",
+      "site": "801CAA94",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801C9EBC",
+      "site": "801C9F78",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F4E1C",
+      "site": "801F4F24",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F37A0",
+      "site": "801F386C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F37A0",
+      "site": "801F38E0",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F37A0",
+      "site": "801F3950",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F37A0",
+      "site": "801F39C0",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F37A0",
+      "site": "801F3A30",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F37A0",
+      "site": "801F3AC8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F37A0",
+      "site": "801F3B58",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F37A0",
+      "site": "801F3BCC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F37A0",
+      "site": "801F3CB4",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F37A0",
+      "site": "801F3D28",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F09EC",
+      "site": "801F0AB8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F09EC",
+      "site": "801F0B3C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F34D4",
+      "site": "801F35A0",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_801F34D4",
+      "site": "801F3624",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801CABA0",
+      "site": "801CAC74",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801F0180",
+      "site": "801F0248",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801F046C",
+      "site": "801F0548",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801F058C",
+      "site": "801F0658",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801F058C",
+      "site": "801F06DC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801F070C",
+      "site": "801F079C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801F9C88",
+      "site": "801F9D20",
+      "target": "perspective"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801F9C88",
+      "site": "801F9D30",
+      "target": "view"
+    },
+    {
+      "section": ".scene1",
+      "function": "dora3_s3_core_801F9C88",
+      "site": "801F9D38",
+      "target": "projection-load"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BA4DC",
+      "site": "801BA514",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BA5A0",
+      "site": "801BA5D8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BA664",
+      "site": "801BA69C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BA728",
+      "site": "801BA760",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BA7EC",
+      "site": "801BA824",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BABF8",
+      "site": "801BAE18",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BABF8",
+      "site": "801BAE64",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BABF8",
+      "site": "801BAECC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BABF8",
+      "site": "801BAF3C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BABF8",
+      "site": "801BAFA8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BABF8",
+      "site": "801BB014",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BABF8",
+      "site": "801BB07C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BABF8",
+      "site": "801BB0E8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BABF8",
+      "site": "801BB154",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BABF8",
+      "site": "801BB18C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BABF8",
+      "site": "801BB1CC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BB364",
+      "site": "801BB3D8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BB364",
+      "site": "801BB424",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BB364",
+      "site": "801BB48C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BB364",
+      "site": "801BB4C4",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BCD58",
+      "site": "801BCDE4",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BCD58",
+      "site": "801BCE20",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BCD58",
+      "site": "801BCE5C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BCD58",
+      "site": "801BCF9C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BCD58",
+      "site": "801BCFEC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BCD58",
+      "site": "801BD028",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BCD58",
+      "site": "801BD128",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BD7A8",
+      "site": "801BD870",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BD7A8",
+      "site": "801BD8F0",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BD7A8",
+      "site": "801BD9C0",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BD7A8",
+      "site": "801BDACC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BD7A8",
+      "site": "801BDBA8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BD7A8",
+      "site": "801BDC68",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BE990",
+      "site": "801BEA64",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BE990",
+      "site": "801BEAE0",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BE990",
+      "site": "801BEBA4",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BE990",
+      "site": "801BECD4",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801BE990",
+      "site": "801BEDA4",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C008C",
+      "site": "801C0148",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C008C",
+      "site": "801C0214",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C008C",
+      "site": "801C0294",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C008C",
+      "site": "801C032C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C008C",
+      "site": "801C04C8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C008C",
+      "site": "801C0540",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C008C",
+      "site": "801C05D8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C008C",
+      "site": "801C0678",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C08A4",
+      "site": "801C09AC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C08A4",
+      "site": "801C0A1C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C08A4",
+      "site": "801C0A8C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C08A4",
+      "site": "801C0B10",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C08A4",
+      "site": "801C0B94",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C08A4",
+      "site": "801C0C04",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C08A4",
+      "site": "801C0D0C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C08A4",
+      "site": "801C0E20",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C08A4",
+      "site": "801C0FF8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C102C",
+      "site": "801C1348",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C1840",
+      "site": "801C18FC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C1840",
+      "site": "801C19D0",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C1840",
+      "site": "801C1B9C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_common",
+      "function": "dora3_s20_mini_801C1BDC",
+      "site": "801C1C84",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C3700",
+      "site": "801C38AC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C39DC",
+      "site": "801C3A90",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C3FE0",
+      "site": "801C413C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C3FE0",
+      "site": "801C418C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C3FE0",
+      "site": "801C4384",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C3FE0",
+      "site": "801C4414",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C3FE0",
+      "site": "801C446C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C494C",
+      "site": "801C4A78",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801C4BE4",
+      "site": "801C4CD8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801CB160",
+      "site": "801CB1C4",
+      "target": "perspective"
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801CB160",
+      "site": "801CB1CC",
+      "target": "projection-load"
+    },
+    {
+      "section": ".minigame_1",
+      "function": "dora3_s21_mini_801CB160",
+      "site": "801CB2D0",
+      "target": "view"
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C3B84",
+      "site": "801C3BFC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C3D34",
+      "site": "801C3E3C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C40A4",
+      "site": "801C41D0",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C473C",
+      "site": "801C482C",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C473C",
+      "site": "801C4968",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C4C34",
+      "site": "801C4DE8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C71FC",
+      "site": "801C73A8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C73F4",
+      "site": "801C7458",
+      "target": "perspective"
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C73F4",
+      "site": "801C7460",
+      "target": "projection-load"
+    },
+    {
+      "section": ".minigame_2",
+      "function": "dora3_s22_mini_801C73F4",
+      "site": "801C7564",
+      "target": "view"
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C3958",
+      "site": "801C3A20",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C3958",
+      "site": "801C3ACC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C3958",
+      "site": "801C3B80",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C3958",
+      "site": "801C3BBC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C3958",
+      "site": "801C3BF8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C3958",
+      "site": "801C3C34",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C7460",
+      "site": "801C7634",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C764C",
+      "site": "801C76A0",
+      "target": "perspective"
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C764C",
+      "site": "801C76A8",
+      "target": "projection-load"
+    },
+    {
+      "section": ".minigame_3",
+      "function": "dora3_s23_mini_801C764C",
+      "site": "801C76B8",
+      "target": "view"
+    },
+    {
+      "section": ".minigame_4",
+      "function": "dora3_s24_mini_801C3788",
+      "site": "801C37D8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_4",
+      "function": "dora3_s24_mini_801C3864",
+      "site": "801C38B4",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_4",
+      "function": "dora3_s24_mini_801C3948",
+      "site": "801C3A18",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_4",
+      "function": "dora3_s24_mini_801C3AB0",
+      "site": "801C3BB8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_4",
+      "function": "dora3_s24_mini_801C8E60",
+      "site": "801C90AC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_4",
+      "function": "dora3_s24_mini_801C90C4",
+      "site": "801C9120",
+      "target": "perspective"
+    },
+    {
+      "section": ".minigame_4",
+      "function": "dora3_s24_mini_801C90C4",
+      "site": "801C9128",
+      "target": "projection-load"
+    },
+    {
+      "section": ".minigame_4",
+      "function": "dora3_s24_mini_801C90C4",
+      "site": "801C9138",
+      "target": "view"
+    },
+    {
+      "section": ".minigame_5",
+      "function": "dora3_s25_mini_801C61EC",
+      "site": "801C6358",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_5",
+      "function": "dora3_s25_mini_801C6448",
+      "site": "801C64F8",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_5",
+      "function": "dora3_s25_mini_801C6564",
+      "site": "801C6644",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_5",
+      "function": "dora3_s25_mini_801C6A30",
+      "site": "801C6A94",
+      "target": "perspective"
+    },
+    {
+      "section": ".minigame_5",
+      "function": "dora3_s25_mini_801C6A30",
+      "site": "801C6A9C",
+      "target": "projection-load"
+    },
+    {
+      "section": ".minigame_5",
+      "function": "dora3_s25_mini_801C6A30",
+      "site": "801C6BA4",
+      "target": "view"
+    },
+    {
+      "section": ".minigame_6",
+      "function": "dora3_s26_mini_801C5A38",
+      "site": "801C5C08",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_6",
+      "function": "dora3_s26_mini_801C623C",
+      "site": "801C62EC",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_6",
+      "function": "dora3_s26_mini_801C6358",
+      "site": "801C6438",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_6",
+      "function": "dora3_s26_mini_801C6664",
+      "site": "801C6758",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_6",
+      "function": "dora3_s26_mini_801C7048",
+      "site": "801C70AC",
+      "target": "perspective"
+    },
+    {
+      "section": ".minigame_6",
+      "function": "dora3_s26_mini_801C7048",
+      "site": "801C70B4",
+      "target": "projection-load"
+    },
+    {
+      "section": ".minigame_6",
+      "function": "dora3_s26_mini_801C7048",
+      "site": "801C71BC",
+      "target": "view"
+    },
+    {
+      "section": ".minigame_7",
+      "function": "dora3_s27_mini_801C6B90",
+      "site": "801C6BEC",
+      "target": "perspective"
+    },
+    {
+      "section": ".minigame_7",
+      "function": "dora3_s27_mini_801C6B90",
+      "site": "801C6BF4",
+      "target": "projection-load"
+    },
+    {
+      "section": ".minigame_7",
+      "function": "dora3_s27_mini_801C6B90",
+      "site": "801C6C04",
+      "target": "view"
+    },
+    {
+      "section": ".minigame_8",
+      "function": "dora3_s28_mini_801C3EF4",
+      "site": "801C4010",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_8",
+      "function": "dora3_s28_mini_801C5190",
+      "site": "801C5294",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_8",
+      "function": "dora3_s28_mini_801C8270",
+      "site": "801C82CC",
+      "target": "perspective"
+    },
+    {
+      "section": ".minigame_8",
+      "function": "dora3_s28_mini_801C8270",
+      "site": "801C82D4",
+      "target": "projection-load"
+    },
+    {
+      "section": ".minigame_8",
+      "function": "dora3_s28_mini_801C8270",
+      "site": "801C82E4",
+      "target": "view"
+    },
+    {
+      "section": ".minigame_9",
+      "function": "dora3_s29_mini_801C6918",
+      "site": "801C6DA4",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_9",
+      "function": "dora3_s29_mini_801C6918",
+      "site": "801C6EC0",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_9",
+      "function": "dora3_s29_mini_801C7068",
+      "site": "801C7148",
+      "target": "bitmap"
+    },
+    {
+      "section": ".minigame_9",
+      "function": "dora3_s29_mini_801C7864",
+      "site": "801C78C0",
+      "target": "perspective"
+    },
+    {
+      "section": ".minigame_9",
+      "function": "dora3_s29_mini_801C7864",
+      "site": "801C78C8",
+      "target": "projection-load"
+    },
+    {
+      "section": ".minigame_9",
+      "function": "dora3_s29_mini_801C7864",
+      "site": "801C78D8",
+      "target": "view"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B5064",
+      "site": "801B50B4",
+      "target": "perspective"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B5064",
+      "site": "801B50C4",
+      "target": "view"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B5064",
+      "site": "801B50CC",
+      "target": "projection-load"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B5A70",
+      "site": "801B5AD0",
+      "target": "perspective"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B5A70",
+      "site": "801B5AE0",
+      "target": "view"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B5A70",
+      "site": "801B5AE8",
+      "target": "projection-load"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B5B2C",
+      "site": "801B5B90",
+      "target": "perspective"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B5B2C",
+      "site": "801B5B98",
+      "target": "projection-load"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B5B2C",
+      "site": "801B5BAC",
+      "target": "view"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B5B2C",
+      "site": "801B5BE4",
+      "target": "view"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B5B2C",
+      "site": "801B5C18",
+      "target": "view"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B5B2C",
+      "site": "801B5C4C",
+      "target": "view"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B70A8",
+      "site": "801B70F8",
+      "target": "perspective"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B70A8",
+      "site": "801B7108",
+      "target": "view"
+    },
+    {
+      "section": ".startup_scene",
+      "function": "dora3_s49_remaining_801B70A8",
+      "site": "801B7110",
+      "target": "projection-load"
+    }
+  ],
+  "large_bitmaps": [
+    {
+      "bank": 0,
+      "id": "0BA0",
+      "width": 320,
+      "height": 240,
+      "format": 6,
+      "rom": "4DEC40",
+      "sha256": "d45040f49d8cf285effe9252125962fc0432e396b0b3feea67d859296bc849be"
+    },
+    {
+      "bank": 0,
+      "id": "0BA4",
+      "width": 640,
+      "height": 480,
+      "format": 6,
+      "rom": "4EB2C0",
+      "sha256": "0dba2e860373b7cb7a4ab20373f469d0d1de300d8155efb4b841e50ad5e1a990"
+    },
+    {
+      "bank": 0,
+      "id": "0BC7",
+      "width": 320,
+      "height": 240,
+      "format": 5,
+      "rom": "543FC0",
+      "sha256": "63ff41006734b3ae813faaa190c9ea41f803997959f03b3e70eec9b4c23656cb"
+    },
+    {
+      "bank": 0,
+      "id": "0BEC",
+      "width": 320,
+      "height": 240,
+      "format": 5,
+      "rom": "5485F0",
+      "sha256": "a1d659ef5418edbfb21e20fd02271f4600dbc0cdbab5c74cca9fd698dac52d3a"
+    },
+    {
+      "bank": 0,
+      "id": "0C2D",
+      "width": 320,
+      "height": 240,
+      "format": 5,
+      "rom": "568630",
+      "sha256": "bff5db009f49c7c47f1c6490063a3e2b721f89373820ed86b5e7a0e49bbf2527"
+    }
+  ]
+}

@@ -1,26 +1,12 @@
-Проверка пользователя, 2026-10-10: «вроде работает теперь»; коммит и пуш
-разрешены. Следующий текст сохраняет описание и ограничения сборки test095
-на момент её упаковки. Новый EXE для фиксации результата не создавался.
+# test-100: Center both puzzle compositions
 
-# test-095: исправление вылета камеры при переходе зон
+Both puzzle games now preserve their complete original composition in the center.
+Backgrounds, model pieces/effects, portraits and dividers share the same canvas;
+the original blue pattern fills only the added outside margins. Removed099
+per-view background shifts and disabled perspective expansion for puzzle models.
+Race/plane start lights, grenade HUD and098 crash fixes are retained.
 
-Исправлен вылет test094 при возвращении в зоны: оригинальный путь камеры
-больше не пытается приостановить отсутствующее Native-обновление. Причина
-подтверждена разбором дампа; исправление требует игровой проверки пользователя.
-
-Game -> Modern camera (перед Show FPS).
-Настройки, порядок и управление перенесены из Dora64. Modern-профиль включает,
-Original-профиль выключает. Правый стик / IJKL вращают камеру; Capture mouse
-включает мышь. Зум: Dpad вверх/вниз, колесо, PageUp/PageDown или RB/E + вертикаль
-правого стика. Учитываются пользовательские привязки. Z возвращает за игрока.
-
-Свободная камера разрешена только в режимах, где оригинал допускает Z-follow:
-обычные режимы3/4/5, включая плавание. Фиксированные ракурсы, меню, диалоги,
-катсцены и миниигры сохраняют оригинальную камеру. Original и Native/Manual
-используют свои действующие пути времени. Reset очищает временное состояние.
-
-Windows MSVC compile/link завершены, EXE не запускался. Игровая проверка
-управления, препятствий и переходов между камерами — за пользователем.
-Тесты/CPU checks/игра/эмулятор/renderer/GPU не запускались. Коммита и пуша нет.
-Старые EXE, ROM, настройки, сейвы и общие DLL сохранены.
-Подробности реализации: docs/modern-camera.md.
+Incremental Windows compilation succeeded. No tests, CPU checks, game, emulator,
+renderer or GPU execution. User reported test100 appears normal and authorized commit/push. Existing
+EXEs, ROM, settings, saves and shared DLLs are preserved. No additional build for this acceptance.
+See docs/widescreen.md.

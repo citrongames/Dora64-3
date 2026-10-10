@@ -9,6 +9,7 @@ from audio_queue_patches import audio_queue_hooks
 from audio_music_patches import audio_music_hooks
 from cheat_patches import cheat_hooks
 from modern_camera_patches import camera_hooks
+from widescreen_patches import widescreen_hooks
 from distance_patches import distance_hooks, distance_instructions
 from model_transition_patches import model_terminal_hooks
 from msvc_codegen_workarounds import apply_msvc_codegen_workarounds
@@ -158,7 +159,7 @@ def main():
     config+='recomp_include = '+json.dumps('#include "startup_hooks.h"')+'\n[patches]\n'
     config+='ignored = '+json.dumps([pending_name(index,addr) for index,addr in sorted(frontier)]+native_names)+'\n'
     time_hooks={(name,site):text for name,site,text in timing_hooks(sections,compiled,rom)}
-    for name,site,text in camera_hooks(sections,compiled,rom):
+    for name,site,text in list(camera_hooks(sections,compiled,rom))+list(widescreen_hooks(sections,compiled,rom)):
         time_hooks[name,site]=text+' '+time_hooks.get((name,site),'')
     for name, site, text in audio_queue_hooks(sections, compiled, rom):
         if (name, site) in time_hooks:
@@ -307,7 +308,7 @@ def main():
     annotate_generated_sources(out/'RecompiledFuncs',sections,compiled,rom,ROOT/'recomp/decomp-symbols.json')
     verify_generated_local_jumps(out/'RecompiledFuncs',local_jumps)
     if a.profile:instrument_profile(out/'RecompiledFuncs',sections,compiled,rom)
-    inputs=['tools/modern_camera_patches.py','tools/runtime_trace_adapters.py','research/runtime-trace-adapters.json','tools/profile_instrumentation.py','research/performance-profile-functions.json','tools/distance_patches.py','research/draw-distance-rom-evidence.json','tools/cheat_patches.py','research/cheats-rom-evidence.json','tools/model_transition_patches.py','recomp/model-terminal-poses.json','tools/audio_music_patches.py','tools/msvc_codegen_workarounds.py','tools/audio_queue_patches.py','tools/native_minigame_patches.py','research/native-minigame-reviewed.json','tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
+    inputs=['tools/widescreen_patches.py','research/widescreen-hooks.json','tools/modern_camera_patches.py','tools/runtime_trace_adapters.py','research/runtime-trace-adapters.json','tools/profile_instrumentation.py','research/performance-profile-functions.json','tools/distance_patches.py','research/draw-distance-rom-evidence.json','tools/cheat_patches.py','research/cheats-rom-evidence.json','tools/model_transition_patches.py','recomp/model-terminal-poses.json','tools/audio_music_patches.py','tools/msvc_codegen_workarounds.py','tools/audio_queue_patches.py','tools/native_minigame_patches.py','research/native-minigame-reviewed.json','tools/decomp_annotations.py','recomp/decomp-symbols.json','tools/native_timing_patches.py','recomp/native-timing-rules.json','tools/local_jump_tables.py','recomp/startup.json','recomp/rom.lock.json','tools/generate_startup.py','tools/overlay_layout.py','tools/inspect_rom.py','tools/n64recomp/lock.json','tools/n64recomp/zero-register.patch']
     tracked=[f for f in out.rglob('*') if f.is_file() and f.name!='generation.log']
     report={'profiling':a.profile,'diagnostics':not a.no_diagnostics,'scope':'reviewed resident/overlay functions; explicit stop on unreviewed calls',
             'rom_sha256':hashlib.sha256(rom).hexdigest(),'tool_sha256':sha(binary),'inputs':{x:sha(ROOT/x) for x in inputs},

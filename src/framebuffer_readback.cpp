@@ -106,9 +106,9 @@ void FramebufferReadback::materialize(RT64::State& state) {
         auto& target=shared.renderTargetManager.get(targetKey);
         // Coordinates use the target's actual scale, including Auto and a
         // retained larger allocation after a window resize. No top-left crop.
-        const float scale=target.resolutionScale.y;
-        if(target.isEmpty()||!(scale>0.f)||scale>64.f||target.resolutionScale.x!=scale||
-           target.width<uint32_t(copy.width*scale)||target.height<uint32_t(copy.height*scale))std::abort();
+        const float scale=target.resolutionScale.y,scale_x=target.resolutionScale.x;
+        if(target.isEmpty()||!(scale>0.f)||scale>64.f||scale_x<scale||copy.width*(scale_x-scale)>65534.f||
+           target.width<uint32_t(copy.width*scale_x)||target.height<uint32_t(copy.height*scale))std::abort();
         auto& fb=state.framebufferManager.get(copy.address,copy.siz,copy.width,copy.height);
         if(const auto* gpuFb=shared.framebufferManager.find(copy.address))fb.ditherPatterns=gpuFb->ditherPatterns;
         fb.nativeTarget.resetBufferHistory();

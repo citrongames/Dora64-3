@@ -122,11 +122,15 @@ bool dora3_set_scaled_framebuffer_readback(bool enabled) {
 text=prefix+data.decode()
 text=text.replace('#include "rt64_native_target.h"','#include "render/rt64_native_target.h"').replace('#include "rt64_render_target.h"','#include "render/rt64_render_target.h"').replace('#include "rt64_shader_library.h"','#include "render/rt64_shader_library.h"').replace('#include "rt64_render_worker.h"','#include "render/rt64_render_worker.h"')
 needle='        nativeCB.offset = { 0, rowStart };'
-replacement="""        // High bit selects deferred capture coordinates; low bits are
-        // unsigned16.16 source scale. Ordinary eager copies retain offset.x0.
+replacement="""        // Deferred offset.x: enabled bit, integer crop15, scale Q8.8.
+        // offset.y: fractional crop Q0.16, rowStart16. Retained allocation
+        // dimensions never select the crop; use the last writer's scale.
+        const double crop = std::max(0.0, double(rowWidth) *
+            double(srcTarget->resolutionScale.x-srcTarget->resolutionScale.y) * 0.5);
+        const uint64_t fixedCrop = uint64_t(std::llround(crop * 65536.0));
         const uint32_t deferredScale = dora3_scaled_framebuffer_readback ?
-            (0x80000000u | uint32_t(std::lround(float(srcTarget->resolutionScale.y) * 65536.f))) : 0;
-        nativeCB.offset = { deferredScale, rowStart };"""
+            (0x80000000u | (uint32_t(fixedCrop >> 16) << 16) | uint32_t(std::lround(float(srcTarget->resolutionScale.y) * 256.f))) : 0;
+        nativeCB.offset = { deferredScale, rowStart | (dora3_scaled_framebuffer_readback ? uint32_t(fixedCrop & 0xFFFFu) << 16 : 0u) };"""
 text=profile_replace(text,needle,replacement)
 native=out/'rt64_native_target.cpp';native.write_text(text)
 receipt['native_source_sha256']=native_expected
@@ -154,4 +158,8 @@ cache_viewport(root,out,receipt)
 
 from rt64_texture_lifetime import adapt as retain_workload_textures
 retain_workload_textures(root,out,receipt)
+(out/"generation-receipt.json").write_text(json.dumps(receipt,indent=2)+"\n")
+
+from rt64_widescreen import adapt as adapt_widescreen
+adapt_widescreen(root,out,receipt)
 (out/"generation-receipt.json").write_text(json.dumps(receipt,indent=2)+"\n")
