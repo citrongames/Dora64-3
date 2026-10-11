@@ -1,0 +1,246 @@
+{
+  "status": "Static ROM/source audit; owner authorized commit/push after test133; exhaustive gameplay coverage not claimed",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "overlay_rom": "0xeddb0",
+  "overlay_vram": "0x8021d6d0",
+  "functions": [
+    {
+      "pc": "0x8022081C",
+      "name": "dora3_s7_level1_8022081C",
+      "size": 228,
+      "sha256": "4003f3e053bf31b86f3155e1fac67e4993f39bce875cbdd549a9d682fdb6e3d8"
+    },
+    {
+      "pc": "0x80220900",
+      "name": "dora3_s7_level1_80220900",
+      "size": 144,
+      "sha256": "1b8bc1ad0f1bc6cb48f24f5a546ca2750f5f4ce2a2aa223669486014142797f4"
+    },
+    {
+      "pc": "0x80220990",
+      "name": "dora3_s7_level1_80220990",
+      "size": 332,
+      "sha256": "25882aa3001a6c0d58a81669ec92a07783c0ef9f81dd916d02f6c17e7c4fc37c"
+    },
+    {
+      "pc": "0x80220ADC",
+      "name": "dora3_s7_level1_80220ADC",
+      "size": 356,
+      "sha256": "120de913b94dc0b095736c4dcf5bba774b66b1d317ebbc596ea3c170d3345264"
+    },
+    {
+      "pc": "0x80220C40",
+      "name": "dora3_s7_level1_80220C40",
+      "size": 464,
+      "sha256": "a7ba839f1b1f3c1c5bb5e852653ab56e5ae392db06a127996b3a563feb735806"
+    },
+    {
+      "pc": "0x80220E10",
+      "name": "dora3_s7_level1_80220E10",
+      "size": 128,
+      "sha256": "9c9e6592f95822ef7943766a311b0c4b86c69bef0074619150ee46fdc97432bc"
+    },
+    {
+      "pc": "0x80220E90",
+      "name": "dora3_s7_level1_80220E90",
+      "size": 264,
+      "sha256": "340865424d0a50676913f91c15e028c47c4d8e90cf2bfc37f89c25fcfe12fd30"
+    },
+    {
+      "pc": "0x80220F98",
+      "name": "dora3_s7_level1_80220F98",
+      "size": 144,
+      "sha256": "612786279d0df9e5351cf8fe8997cf0e7327a6b638e3a93e069b88c62f36778b"
+    },
+    {
+      "pc": "0x80221028",
+      "name": "dora3_s7_level1_80221028",
+      "size": 88,
+      "sha256": "21040d3d87651bc34d10842be569d17998fed5846dd16135bc9ec4e0d8c2a39a"
+    },
+    {
+      "pc": "0x80221080",
+      "name": "dora3_s7_level1_80221080",
+      "size": 428,
+      "sha256": "52934a680cfe408adb8fd034e554d733672b8afafe30f41e6331f1737cc2b497"
+    },
+    {
+      "pc": "0x8022122C",
+      "name": "dora3_s7_level1_8022122C",
+      "size": 164,
+      "sha256": "90f00e798d93968ea2f0ffaced29adb944683dc75400bd80c5394984ad5d8d7c"
+    },
+    {
+      "pc": "0x802212D0",
+      "name": "dora3_s7_level1_802212D0",
+      "size": 484,
+      "sha256": "27ad000906f3158c154c642de4aec3a5701084d23fb2eb577f9c2ba94cf60c47"
+    },
+    {
+      "pc": "0x802214B4",
+      "name": "dora3_s7_level1_802214B4",
+      "size": 736,
+      "sha256": "793d1aa4c6eca660058fd4d4a4a350e6a3e35a8ec8def2fb44678bba36650786"
+    },
+    {
+      "pc": "0x80221794",
+      "name": "dora3_s7_level1_80221794",
+      "size": 276,
+      "sha256": "dcf8caa45335f5c02eab2ea1cf291661a1b26d822aa591e1ddcd95f1530bb919"
+    },
+    {
+      "pc": "0x802218A8",
+      "name": "dora3_s7_level1_802218A8",
+      "size": 320,
+      "sha256": "d5595dcdfd8f2d82bb8a7268628c913081ad38c13051b74387d7a0515b99bf6e"
+    },
+    {
+      "pc": "0x802219E8",
+      "name": "dora3_s7_level1_802219E8",
+      "size": 400,
+      "sha256": "bb29200c5953bdc66240f58fa7d60b06aa0a1a61b1ed4c068e164f15ab0f764e"
+    },
+    {
+      "pc": "0x80221B78",
+      "name": "dora3_s7_level1_80221B78",
+      "size": 144,
+      "sha256": "60324020c61ddca853ba9ff9497b1e7a64668f7d64a0d74c684c2ea6a170fa88"
+    },
+    {
+      "pc": "0x80221C08",
+      "name": "dora3_s7_level1_80221C08",
+      "size": 468,
+      "sha256": "b2a75ecd918f1436303ba26c3101a7ee660e23447efba89538c1f3730a477cc1"
+    },
+    {
+      "pc": "0x80221DDC",
+      "name": "dora3_s7_level1_80221DDC",
+      "size": 864,
+      "sha256": "413c8b09511103ab23fde7fd0b754e89905d6884078f31ed0084e4711fe62c9e"
+    },
+    {
+      "pc": "0x8022213C",
+      "name": "dora3_s7_level1_8022213C",
+      "size": 164,
+      "sha256": "b930d77066c1a6d1e2d038d15200f96d75830ad8ce53a942de64cf6a7bce4730"
+    },
+    {
+      "pc": "0x802221E0",
+      "name": "dora3_s7_level1_802221E0",
+      "size": 388,
+      "sha256": "aa994a90206a5a0f93e19717b4c1568d1bdf0cc129953d255588b406acdecf60"
+    },
+    {
+      "pc": "0x80222364",
+      "name": "dora3_s7_level1_80222364",
+      "size": 676,
+      "sha256": "7d1b9b8de1500576837acb3e012c102f7ccc5d105f1b7898e22a6d7187b92103"
+    },
+    {
+      "pc": "0x80222608",
+      "name": "dora3_s7_level1_80222608",
+      "size": 276,
+      "sha256": "85496b74c1af0ba0ea29c1cac9b876f523353d3b84c08eca42bc290f20f9852a"
+    },
+    {
+      "pc": "0x8022271C",
+      "name": "dora3_s7_level1_8022271C",
+      "size": 252,
+      "sha256": "0f0c076bcd185fa8ab495422cdf36f95e2c58d060c8a4ad216b8f7c6ac550f74"
+    },
+    {
+      "pc": "0x80222818",
+      "name": "dora3_s7_level1_80222818",
+      "size": 232,
+      "sha256": "f84bdc17d89555573094397ad2aa17ec90904ad018560dff012dcf23518bf41a"
+    },
+    {
+      "pc": "0x80222900",
+      "name": "dora3_s7_level1_80222900",
+      "size": 1104,
+      "sha256": "8b76d0f5c652108761c2c208ac88c5a0d80775b5c109cbae5f28817643007efd"
+    },
+    {
+      "pc": "0x80222D50",
+      "name": "dora3_s7_level1_80222D50",
+      "size": 88,
+      "sha256": "5a15fbca077d66503f7e7fd97eb1a4a10842ae0b7c21b4302ae85c0491ceb9b5"
+    },
+    {
+      "pc": "0x80222DA8",
+      "name": "dora3_s7_level1_80222DA8",
+      "size": 800,
+      "sha256": "c1b4d3553d57830fcf4922ad1c9ac9015224248084636bb6e24950e0220462be"
+    },
+    {
+      "pc": "0x802230C8",
+      "name": "dora3_s7_level1_802230C8",
+      "size": 352,
+      "sha256": "1c0282a8970a6076304dc322aa984367c6a910780bf623298f1481eb47b054e5"
+    },
+    {
+      "pc": "0x80223228",
+      "name": "dora3_s7_level1_80223228",
+      "size": 916,
+      "sha256": "96ef1b44afaa4d483b5cbd0010b5709d00c264d40d5f3d2a40792adfb4236674"
+    },
+    {
+      "pc": "0x802235BC",
+      "name": "dora3_s7_level1_802235BC",
+      "size": 392,
+      "sha256": "c86d9402b17c2e2f66ec622812c54f2ce6227469d45108cb6e7838703e289c1c"
+    },
+    {
+      "pc": "0x80223744",
+      "name": "dora3_s7_level1_80223744",
+      "size": 300,
+      "sha256": "6c795f3ab07c214f6ef1009ec31f3aab81930d1524a6c599ade75ab70a699a2a"
+    },
+    {
+      "pc": "0x80223870",
+      "name": "dora3_s7_level1_80223870",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+    },
+    {
+      "pc": "0x80223878",
+      "name": "dora3_s7_level1_80223878",
+      "size": 8,
+      "sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378"
+    },
+    {
+      "pc": "0x80223880",
+      "name": "dora3_s7_level1_80223880",
+      "size": 860,
+      "sha256": "43a97e29c3e433e0e343facdebbebf0ae4098b0762366fb6c567162926c00669"
+    }
+  ],
+  "exact_clip_cues": [
+    {
+      "pc": "0x80221eb8",
+      "original_word": "0x46020032",
+      "frame": 30
+    },
+    {
+      "pc": "0x80222b64",
+      "original_word": "0x46020032",
+      "frame": 0
+    },
+    {
+      "pc": "0x80223474",
+      "original_word": "0x46020032",
+      "frame": 0
+    }
+  ],
+  "forms": {
+    "387": "idle1, dialogue2, interaction/transform100; original end waits and transform ticks35/55, threshold4",
+    "388": "idle1, orbit2, turn3, dialogue4, interaction/transform100, wave101; radius200, angle2, threshold6",
+    "389": "departure1, rise/orbit2, idle3, dialogue4, interaction/transform100; frame30, rise phase5, orbit phase2, threshold8",
+    "390": "departure1, leave/return2, idle3, talk4, present5, interaction100; reverse frame0 twice, clip ends, opacity, original return distance/speed gate",
+    "391": "transform effect; integer phase36 +/-5 reaches90/0, scale/opacity equations; no dialogue or exact clip-frame gate"
+  },
+  "finding": "Source animation sample previously followed restarted actor period for Powan, unlike boss clip-local sampling. Dialogue at fractional time can offset exact frame30 and reverse frame0 checks. Enable existing clip-local sampling for all four Powan forms only.",
+  "other_review": "Original command scope keeps turn return codes, wait/RNG counters, feeding thresholds, transformation spawn/delete, orbit and rise phase counters discrete. Existing continuous pose equations retained. No additional change justified for effect391.",
+  "tests_executed": false,
+  "game_launched": false
+}

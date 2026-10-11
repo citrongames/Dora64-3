@@ -1613,7 +1613,12 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
     dora3::crash::enemy={actor,owner->model,rom,callback,0,word(rdram,actor+0x94),MEM_H(0x34,int32_t(owner->physical)),owner->kind};
     log_boss_state(rdram,*owner);
 #endif
-    game_model_animation().source_clip_period(owner->model,owner->kind>=399&&owner->kind<=477);
+    // Powan's talk/contact restarts the actor period independently of its
+    // clip. Keep the original clip cadence for all four forms: Powan3 waits
+    // for frame30 to take off, and Powan4 waits for reverse frame0. Sampling
+    // on the restarted actor period can miss those exact frames forever.
+    const bool powan=owner->rom==0xEDDB0&&owner->kind>=387&&owner->kind<=390;
+    game_model_animation().source_clip_period(owner->model,powan||(owner->kind>=399&&owner->kind<=477));
     auto slice=*active_simulation_slice();auto& previous=periods[index(actor)];
 
     if(previous&&same(previous->owner,*owner)&&previous->tick==slice.tick&&previous->denominator==slice.denominator&&previous->expected_phase==slice.phase) {
