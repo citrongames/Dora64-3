@@ -19,6 +19,7 @@ extern "C" void dora3_native_enemy_turn(uint8_t*,recomp_context*,unsigned);
 extern "C" int dora3_native_enemy_blink_skip(uint8_t*);
 extern "C" void dora3_native_enemy_equation(uint8_t*,recomp_context*,uint32_t);
 extern "C" int dora3_native_enemy_attachment_only();
+extern "C" int dora3_native_boss_detach_empty(uint8_t*,recomp_context*);
 extern "C" void dora3_native_enemy_clip_end(uint8_t*,recomp_context*);
 extern "C" int dora3_native_enemy_commands_active();
 extern "C" int dora3_native_enemy_model_event(uint8_t*,uint32_t,float,float,uint64_t);

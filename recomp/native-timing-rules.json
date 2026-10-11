@@ -2823,8 +2823,9 @@
       "other_register": 20,
       "threshold_scale": 1,
       "role": "animation_frame_crossing",
-      "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel",
-      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending"
+      "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel; test129 confirms head waits in phase0 at clip138 without rocket414; connect exact Source event and use clip-local boss command samples",
+      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending",
+      "enemy_source_commands": true
     },
     {
       "section": ".remaining_slot0_12",
@@ -25928,6 +25929,42 @@
       "expected_word": "0xE4400014",
       "operation": "native_enemy_equation",
       "evidence": "ROM14D4C0 Wheel1/2 kinds562/563 state2: actor+14 = wrap(actor+14 + 2). Gondola564 pure parent matrix already samples this roll each Native slice. State1 hold and constructor/contacts remain Source."
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801C8B28",
+      "function_name": "dora3_s3_801C8B28",
+      "function_sha256": "c8f578b2e94e3e4682a9fbc1aeeed0eae7f979e304ea0de89661b66d5866d866",
+      "site": "0x801C8CE0",
+      "expected_word": "0x0C070021",
+      "operation": "player_platform_takeoff",
+      "role": "rising_jump_dynamic_floor",
+      "evidence": "C0084 carries/snaps XYZ; C0C7C bottom probe can see endpoint platform before player movement. Detach after impulse; reject only premature dynamic-floor bit2 when kick-drift endpoint rises above it. Preserve ceiling and movement solver.",
+      "status": "ROM verified; static analysis; gameplay pending owner"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801C0C7C",
+      "function_name": "dora3_s3_801C0C7C",
+      "function_sha256": "35c3f57798e5e91b28e656e5591955895ec9127a031dd5d8a9c04cb144009a85",
+      "site": "0x801C0D78",
+      "expected_word": "0x8FBF0014",
+      "operation": "player_platform_takeoff",
+      "role": "rising_jump_dynamic_floor",
+      "evidence": "C0084 carries/snaps XYZ; C0C7C bottom probe can see endpoint platform before player movement. Detach after impulse; reject only premature dynamic-floor bit2 when kick-drift endpoint rises above it. Preserve ceiling and movement solver.",
+      "status": "ROM verified; static analysis; gameplay pending owner"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801E7528",
+      "function_name": "dora3_s3_demo_801E7528",
+      "function_sha256": "2fc91df95f2fe59f347f8b7b14680ee9180f9f9821b74bf8adcc3757356079af",
+      "site": "0x801E7528",
+      "expected_word": "0x8C820098",
+      "operation": "boss_detach_empty_guard",
+      "role": "idempotent_native_boss_unlink",
+      "evidence": "test128 AV RVA1367F2 at original child physics7C store. Boss2 state4 unlinks slot5 at80224154 then again80224398 after phase2; Boss6 equivalent80223FB0. Preserve valid and Original calls.",
+      "status": "ROM/static verified; owner gameplay pending"
     }
   ]
 }

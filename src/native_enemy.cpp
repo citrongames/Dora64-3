@@ -1,4 +1,9 @@
 #include "graphics_profile.hpp"
+#ifdef DORA3_CRASH_LOG
+#include "crash_context.hpp"
+#include <chrono>
+#include <cstdio>
+#endif
 #include "performance_profile.hpp"
 #include "guest_storage.hpp"
 #include "native_slot_reset.hpp"
@@ -18,6 +23,7 @@
 #include <stdexcept>
 #include <vector>
 #include <map>
+#include <tuple>
 
 extern "C" int dora3_overlay_loaded(uint32_t);
 extern "C" void dora3_s33_remaining_8021FED8(uint8_t*,recomp_context*);
@@ -1283,6 +1289,92 @@ std::shared_ptr<const Period> immutable_motion(const Period& source) {
     motion->scene_parent_motion.reset();motion->foreign_steps.clear();motion->command.clear();motion->model_reads.clear();motion->opacity.reset();motion->parent.reset();motion->update=nullptr;
     return motion;
 }
+#ifdef DORA3_CRASH_LOG
+void log_boss_state(uint8_t* rdram,const Identity& owner) {
+    if(!((owner.rom==0xF8A40&&owner.kind>=410&&owner.kind<=415)||
+         (owner.rom==0x111E70&&owner.kind>=454&&owner.kind<=459)))return;
+    struct Entry {uint64_t lifetime=0;std::array<int,12> key{};std::chrono::steady_clock::time_point time{};};
+    static std::array<Entry,dora3::distance::common_capacity> entries;
+    auto& old=entries[index(owner.actor)];
+    const bool head=owner.kind==410||owner.kind==454;
+    std::array<int,12> key{word(rdram,owner.actor+0x94),MEM_H(0x34,int32_t(owner.physical)),MEM_H(0x44,int32_t(owner.physical)),MEM_H(0x7C,int32_t(owner.physical)),MEM_BU(0x28,int32_t(owner.physical)),MEM_H(0xD0,int32_t(owner.physical))};
+    if(head)for(unsigned n=0;n<6;++n)key[6+n]=MEM_H(int32_t(0x80+2*n),int32_t(owner.physical));
+    const auto now=std::chrono::steady_clock::now();
+    if(old.lifetime==owner.lifetime&&old.key==key&&now-old.time<std::chrono::seconds(2))return;
+    old={owner.lifetime,key,now};
+    std::fprintf(stderr,"BOSS actor=%08X kind=%d state=%d phase=%d clipcmd=%d parent=%d init=%d hp=%d model=%08X time=%.6g flags=%u links=%d,%d,%d,%d,%d,%d xyz=%.6g,%.6g,%.6g velocity=%.6g,%.6g,%.6g\n",owner.actor,owner.kind,key[0],key[1],key[2],key[3],key[4],key[5],owner.model,double(real(rdram,owner.model+0x64)),unsigned(MEM_BU(0x7C,int32_t(owner.model))),key[6],key[7],key[8],key[9],key[10],key[11],double(real(rdram,owner.actor+0x9C)),double(real(rdram,owner.actor+0xA0)),double(real(rdram,owner.actor+0xA4)),double(real(rdram,owner.physical+0x10)),double(real(rdram,owner.physical+0x14)),double(real(rdram,owner.physical+0x18)));
+}
+#endif
+struct BossPartCommand {
+    Identity child,parent;int32_t state;int16_t clip;
+};
+std::array<std::optional<BossPartCommand>,dora3::distance::common_capacity> boss_part_commands;
+bool linked_boss_part(const Identity& owner) {
+    return (owner.rom==0xF8A40&&(owner.kind==411||owner.kind==412))||
+        (owner.rom==0x111E70&&(owner.kind==455||owner.kind==456));
+}
+std::optional<Identity> boss_part_parent(uint8_t* rdram,const Identity& child) {
+    if(!linked_boss_part(child))return std::nullopt;
+    const int slot=MEM_H(0x7C,int32_t(child.physical));
+    if(slot<30||slot>=dora3::distance::common_end)return std::nullopt;
+    const auto parent=identity(rdram,0x804B1CD0u+unsigned(slot)*stride);
+    if(!parent||parent->rom!=child.rom||parent->kind!=(child.rom==0xF8A40?410:454))return std::nullopt;
+    return parent;
+}
+bool pending_boss_part_command(uint8_t* rdram,const Identity& child) {
+    auto& pending=boss_part_commands[index(child.actor)];
+    if(!pending)return false;
+    const auto parent=boss_part_parent(rdram,child);
+    if(!same(pending->child,child)||!parent||!same(pending->parent,*parent)||
+       pending->state!=word(rdram,child.actor+0x94)) {
+        pending.reset();return false;
+    }
+    if(pending->state==1)return true;
+    const int waiting_phase=(child.kind==411||child.kind==455)?3:2;
+    return MEM_BU(0x28,int32_t(child.physical))&&MEM_H(0x34,int32_t(child.physical))==waiting_phase;
+}
+void publish_boss_part_command(uint8_t* rdram,const Identity& head) {
+    if(!((head.rom==0xF8A40&&head.kind==410)||(head.rom==0x111E70&&head.kind==454)))return;
+    const int16_t clip=MEM_H(0x44,int32_t(head.physical));
+    if(clip<0)return;
+    for(unsigned n=0;n<2;++n) {
+        const int slot=MEM_H(int32_t(0x80+2*n),int32_t(head.physical));
+        if(slot<30||slot>=dora3::distance::common_end)continue;
+        const auto child=identity(rdram,0x804B1CD0u+unsigned(slot)*stride);
+        if(!child)continue;
+        const auto parent=boss_part_parent(rdram,*child);
+        if(!parent||!same(*parent,head))continue;
+        auto& pending=boss_part_commands[index(child->actor)];
+        const auto state=word(rdram,child->actor+0x94);
+        // A later head clip is not a cancellation of reassembly. The head
+        // can finish its own return before the slower body/leg reaches its
+        // waiting phase. Preserve clip13 until that same live part consumes it.
+        if(pending&&state==3&&pending->state==3&&pending->clip==13&&
+           same(pending->child,*child)&&same(pending->parent,head))continue;
+        pending.reset();
+        // Follow consumes every clip. Reassembly waits for clip13 in body
+        // phase3 / leg phase2. Retain that pulse while the independent part
+        // completes its descent; a state/lifetime change cancels it.
+        if(state==1||(state==3&&clip==13))
+            pending=BossPartCommand{*child,head,state,clip};
+    }
+}
+class BossPartCommandView {
+    uint8_t* ram;std::optional<Identity> parent;int16_t saved=-1;
+public:
+    BossPartCommandView(uint8_t* rdram,const Identity& child):ram(rdram),parent(boss_part_parent(rdram,child)) {
+        if(!parent)return;
+        const bool pending=pending_boss_part_command(rdram,child);
+        saved=MEM_H(0x44,int32_t(parent->physical));
+        MEM_H(0x44,int32_t(parent->physical))=pending?boss_part_commands[index(child.actor)]->clip:-1;
+        if(pending)boss_part_commands[index(child.actor)].reset();
+    }
+    ~BossPartCommandView() {
+        if(!parent)return;
+        const auto current=identity(ram,parent->actor);
+        if(current&&same(*current,*parent)) {uint8_t* rdram=ram;MEM_H(0x44,int32_t(parent->physical))=saved;}
+    }
+};
 struct ScenePhaseSample {Identity owner;uint64_t epoch;int32_t state;double phase;};
 std::map<std::pair<uint32_t,uint32_t>,ScenePhaseSample> scene_phase_samples;
 uint8_t scene_entry_latch=0;
@@ -1314,6 +1406,10 @@ std::map<uint32_t,Boss2GhostHistory> boss2_ghost_history;
 struct IntegerMotionOperand {double before,step;};
 std::map<uint32_t,IntegerMotionOperand> integer_motion_operands;
 std::map<uint32_t,ModelEventCheckpoint> model_reads;
+// Per allocation/run/site, not per AI command: a hit can run the same command
+// twice while its clip still projects to the same authored frame.
+struct BossCueDelivery {uint64_t lifetime,run;long double distance;};
+std::map<std::tuple<uint32_t,uint64_t,uint32_t>,BossCueDelivery> boss_cue_deliveries;
 std::optional<SimulationSlice> command_slice;
 struct ModelCommandShadow {
     uint64_t lifetime,run,time_command;
@@ -1364,12 +1460,26 @@ float angle(float value) {value=std::fmod(value,360.f);return value<0?value+360.
 // ROM proposal bits. This also pairs a speed ramp with a changing heading.
 std::complex<double> harmonic_sum(double phase,double omega,double age,double speed,double acceleration) {
     if(age==0)return {};
+    // Integer Source samples cannot distinguish frequencies separated by
+    // 2*pi. Use their principal alias before fractional continuation. The
+    // 12th sideband of Boss2/Boss6's 30-degree wave is exactly a full turn:
+    // dividing by sin(pi) amplified its tiny coefficient into arena-sized
+    // (or larger) displacements, especially during the speed ramp.
+    omega=std::remainder(omega,2*std::acos(-1.));
     const auto rotation=std::polar(1.,phase+omega*(age+1)/2);
-    if(std::abs(omega)<1e-6)
-        return rotation*(speed*age+acceleration*age*(age+1)/2);
-    const double half=omega/2,extent=age*half;
-    const double ratio=std::sin(extent)/std::sin(half);
-    const double derivative=(age*std::cos(extent)*std::sin(half)-std::sin(extent)*std::cos(half))/(2*std::sin(half)*std::sin(half));
+    double ratio,derivative;
+    if(std::abs(omega)<1e-4) {
+        // sin(h*w/2)/sin(w/2) and its derivative have removable limits.
+        // Retain the acceleration term without cancellation near zero.
+        const double h2=age*age,w2=omega*omega;
+        const double fourth=7-10*h2+3*h2*h2;
+        ratio=age*(1+(1-h2)*w2/24+fourth*w2*w2/5760);
+        derivative=age*((1-h2)*omega/12+fourth*omega*w2/1440);
+    } else {
+        const double half=omega/2,extent=age*half;
+        ratio=std::sin(extent)/std::sin(half);
+        derivative=(age*std::cos(extent)*std::sin(half)-std::sin(extent)*std::cos(half))/(2*std::sin(half)*std::sin(half));
+    }
     return rotation*std::complex<double>(ratio*(speed+acceleration*(age+1)/2),-acceleration*derivative);
 }
 
@@ -1478,6 +1588,8 @@ bool native_enemy_owned(uint8_t* rdram,uint32_t actor) {const auto owner=identit
 void native_enemy_reset() {
     ++epoch;
     scene_phase_samples.clear();
+    boss_part_commands.fill(std::nullopt);
+    boss_cue_deliveries.clear();
     foreign_steps.clear();
     reset_slots(periods);
     reset_slots(delayed_heading_history);
@@ -1497,10 +1609,15 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
     if(executing||attachment_only||!native_gameplay_preview_object_pass()||!active_simulation_slice())return 0;
     const auto actor=uint32_t(word(rdram,0x8021BDEC));const auto owner=identity(rdram,actor);
     if(!owner||owner->callback!=callback||owner->rom!=rom)return 0;
+#ifdef DORA3_CRASH_LOG
+    dora3::crash::enemy={actor,owner->model,rom,callback,0,word(rdram,actor+0x94),MEM_H(0x34,int32_t(owner->physical)),owner->kind};
+    log_boss_state(rdram,*owner);
+#endif
+    game_model_animation().source_clip_period(owner->model,owner->kind>=399&&owner->kind<=477);
     auto slice=*active_simulation_slice();auto& previous=periods[index(actor)];
 
     if(previous&&same(previous->owner,*owner)&&previous->tick==slice.tick&&previous->denominator==slice.denominator&&previous->expected_phase==slice.phase) {
-        if(previous->command==commands(rdram,*owner)) {
+        if(!pending_boss_part_command(rdram,*owner)&&previous->command==commands(rdram,*owner)) {
             // E8D44 clears physical2A before every callback. Original's
             // callback can then set it via E89CC; an unchanged Native period
             // skips that callback, so preserve its result after this prelude.
@@ -1568,7 +1685,8 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
     // Suspension keeps its full Source operands; Native motion is below.
     {
         struct RestoreModelReads {uint8_t* ram;~RestoreModelReads(){restore_model_command_shadows(ram);}} restore_reads{rdram};
-        SourceParentView parent_view(rdram,*owner);SimulationSuspension source;update(rdram,ctx);
+        SourceParentView parent_view(rdram,*owner);BossPartCommandView clip_view(rdram,*owner);
+        SimulationSuspension source;update(rdram,ctx);
     }
     if(epoch==entered_epoch)for(unsigned slot=0;slot<index(actor);++slot) {
         const uint32_t born_actor=pool+slot*stride;const auto born=identity(rdram,born_actor);
@@ -1576,6 +1694,7 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
     }
     const auto after=identity(rdram,actor);
     if(epoch!=entered_epoch||!after||!same(*owner,*after)||!active_simulation_slice())return 1;
+    publish_boss_part_command(rdram,*after);
     const auto kind=MEM_H(0x20,int32_t(after->physical));
     Period value{*after,slice.tick,slice.denominator,slice.phase,slice.phase,game_model_animation().run_token(after->model),commands(rdram,*after)};
     for(unsigned axis=0;axis<3;++axis) {
@@ -1747,6 +1866,22 @@ void native_enemy_source_pool_end(uint8_t* rdram) {
         if(owner&&same(*owner,period->owner))period->command=commands(rdram,*owner);
     }
 }
+extern "C" int dora3_native_boss_detach_empty(uint8_t* rdram,recomp_context* ctx) {
+    if(!executing&&!active_simulation_slice())return 0;
+    const auto parent=identity(rdram,uint32_t(ctx->r4));
+    if(!parent||!((parent->rom==0xF8A40&&parent->kind==410)||
+                 (parent->rom==0x111E70&&parent->kind==454)))return 0;
+    const auto slot=int32_t(ctx->r5);
+    if(slot<0||slot>=15)return 0;
+    // 801E7528 assumes a live child. In head state4 the finished effect can
+    // be detached at the top of the callback and again by the phase2 exit.
+    // An already empty link needs no second reciprocal write through slot-1.
+    if(MEM_H(0x80+2*slot,int32_t(parent->physical))!=-1)return 0;
+#ifdef DORA3_CRASH_LOG
+    std::fprintf(stderr,"BOSS EMPTY DETACH rom=%08X actor=%08X state=%d phase=%d slot=%d\n",parent->rom,parent->actor,word(rdram,parent->actor+0x94),int(MEM_H(0x34,int32_t(parent->physical))),slot);
+#endif
+    return 1;
+}
 extern "C" int dora3_native_enemy_attachment_only() {return attachment_only;}
 extern "C" int dora3_native_enemy_commands_active() {return executing;}
 extern "C" void dora3_native_enemy_clip_end(uint8_t* rdram,recomp_context* ctx) {
@@ -1772,9 +1907,25 @@ extern "C" int dora3_native_enemy_model_event(uint8_t* rdram,uint32_t model,floa
     // (e.g. frames18->21 never equals20), so crossing detection here would
     // invent an attack/sound. Continuous Native consumers use ModelAnimation's
     // separate crossing interface outside this Source-command scope.
-    (void)site;
     if(!executing)return game_model_animation().handoff_source_event(rdram,model,observed,target);
-    return observed==target;
+    if(observed!=target)return 0;
+    const auto owner=identity(rdram,uint32_t(word(rdram,0x8021BDEC)));
+    if(!owner||owner->kind<399||owner->kind>477)return 1;
+    auto& models=game_model_animation();
+    const auto sample=model_command_sample(rdram,model).checkpoint;
+    const auto key=std::make_tuple(model,site,std::bit_cast<uint32_t>(target));
+    const BossCueDelivery next{models.lifetime_token(model),sample.run,sample.distance};
+    const auto prior=boss_cue_deliveries.find(key);
+    // Projected distances are calculated from rational time with one float
+    // read. Use a tiny distance tolerance solely for deduplication, never to
+    // make an unreachable Source frame into a new event.
+    if(prior!=boss_cue_deliveries.end()&&prior->second.lifetime==next.lifetime&&
+       prior->second.run==next.run&&std::abs(prior->second.distance-next.distance)<0.00001L)return 0;
+    boss_cue_deliveries.insert_or_assign(key,next);
+#ifdef DORA3_CRASH_LOG
+    std::fprintf(stderr,"BOSS CUE actor=%08X kind=%d site=%llX frame=%.6g run=%llu\n",owner->actor,owner->kind,(unsigned long long)site,double(target),(unsigned long long)next.run);
+#endif
+    return 1;
 }
 extern "C" void dora3_native_enemy_model_read(uint8_t* rdram,uint32_t model) {
     if(!executing)return;
@@ -1937,6 +2088,21 @@ std::optional<Equation> scene_equation(uint8_t* rdram,recomp_context* ctx,const 
         Equation value{owner.model+0x78,EquationKind::linear,std::min(proposal+.1f,1.f),proposal};
         value.step=double(value.after)-value.before;return value;
     }
+    if(owner.rom==0x126BA0&&owner.kind==525&&site==0x8022EB1C) {
+        // Original EB1C takes exactly +/-3 degrees and E990 waits for exact
+        // target equality. A button command can rebase at a fractional yaw;
+        // cap the final directed step so it cannot oscillate across the stop.
+        const int selected=MEM_H(0x34,int32_t(physical));
+        if(selected>=0&&selected<4) {
+            const float before=real(rdram,actor+0x10);
+            const float target=float(MEM_H(selected*2,int32_t(0x80230048u)));
+            const double step=std::remainder(double(ctx->f0.fl)-before,360.);
+            const double remaining=std::remainder(double(target)-before,360.);
+            if(remaining*step>=0&&std::abs(remaining)<=std::abs(step))ctx->f0.fl=target;
+            Equation value{actor+0x10,EquationKind::angle,before,ctx->f0.fl};
+            value.step=std::remainder(double(value.after)-before,360.);return value;
+        }
+    }
     if(owner.rom==0x1456C0&&site==0x802310F0) {
         const float before=angle(float(MEM_H(0x34,int32_t(physical))-1+90));
         Equation value{actor+0x10,EquationKind::angle,before,ctx->f0.fl};
@@ -2084,6 +2250,9 @@ std::optional<Equation> scene_equation(uint8_t* rdram,recomp_context* ctx,const 
 }
 
 extern "C" void dora3_native_enemy_equation(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
+#ifdef DORA3_CRASH_LOG
+    dora3::crash::enemy.site=site;
+#endif
     if(!executing)return;
     const auto actor=uint32_t(word(rdram,0x8021BDEC));const auto owner=identity(rdram,actor);if(!owner)return;
 
@@ -2100,6 +2269,36 @@ extern "C" void dora3_native_enemy_equation(uint8_t* rdram,recomp_context* ctx,u
         return;
     }
     const auto physical=owner->physical;Equation value{};
+    if((owner->rom==0xF8A40&&owner->kind==410&&site==0x802271FC)||
+       (owner->rom==0x111E70&&owner->kind==454&&site==0x80226904)) {
+        const float before=real(rdram,physical+8);
+        const double height=real(rdram,actor+0xA0);
+        const double brake=rom_double(rdram,owner->rom==0xF8A40?0x802295A8u:0x80228C08u);
+        // Both ROM state9/phase1 paths brake above Y300 and only leave at
+        // Y400. Fractional/rebased heights can enter the brake one Source
+        // period early: from Y300+epsilon, 20 with -1.85 peaks at 398.25.
+        // Below Y300 the ROM then stops braking and falls forever. Retain
+        // this period's positive speed only when the proposed braking
+        // sequence cannot reach the existing transition. Never move the
+        // actor, force a phase, or change health; the real Y400 branch wins.
+        if(word(rdram,actor+0x94)==9&&MEM_H(0x34,int32_t(physical))==1&&
+           real(rdram,physical+0xC)==270.f&&height>300&&height<400&&
+           before>0&&brake>0&&ctx->f0.fl<before) {
+            const double proposed=std::max(0.,double(ctx->f0.fl));
+            const double steps=std::ceil(proposed/brake);
+            const double peak=height+steps*proposed-brake*steps*(steps-1)/2;
+            if(peak<400) {
+#ifdef DORA3_CRASH_LOG
+                std::fprintf(stderr,"BOSS ASCENT BRAKE HOLD actor=%08X kind=%d y=%.9g speed=%.9g proposed=%.9g peak=%.9g target=400\n",actor,owner->kind,height,double(before),double(ctx->f0.fl),peak);
+#endif
+                ctx->f0.fl=before;
+            }
+        }
+        value={physical+8,EquationKind::linear,before,ctx->f0.fl};
+        value.step=double(value.after)-before;
+        std::erase_if(equations,[&](const auto& old){return old.address==value.address;});
+        equations.push_back(value);return;
+    }
     if(native_scene_object_kind(owner->kind)) {
         if(const auto captured=scene_equation(rdram,ctx,*owner,site)) {
             std::erase_if(equations,[&](const auto& old){return old.address==captured->address;});
@@ -2550,7 +2749,8 @@ boss1_other_store:
         case 0x802276C4:case 0x80226D98: {
             const bool turn_step=site==0x80226D98;
             const uint32_t address=turn_step?physical+0x60:actor+0xA0;
-            value={address,EquationKind::approach,real(rdram,address),site==0x80224540||site==0x80225428?ctx->f2.fl:ctx->f0.fl};
+            // DF6C/F40C store f2; f0 is only the landing threshold.
+            value={address,EquationKind::approach,real(rdram,address),site==0x80224540||site==0x80225428||site==0x8021DF6C||site==0x8021F40C?ctx->f2.fl:ctx->f0.fl};
             value.base=site==0x80224540?320:site==0x80225428?480:site==0x8021DF6C?307:site==0x8021F40C?122:0;
             if(turn_step&&MEM_H(0x36,int32_t(physical))>=10)
                 value.base=MEM_H(0x38,int32_t(physical))&1?15:-15;
@@ -2567,10 +2767,6 @@ boss1_other_store:
                 value.retention=input->retention;value.amplitude=double(input->before)-input->base;
             } else value.step=real(rdram,physical+0x60);
             break;
-        }
-        case 0x802271FC: {
-            value={physical+8,EquationKind::linear,real(rdram,physical+8),ctx->f0.fl};
-            value.step=-rom_double(rdram,0x802295A8);break;
         }
         case 0x80227700: {
             value={physical,EquationKind::exponential,real(rdram,physical),ctx->f0.fl};

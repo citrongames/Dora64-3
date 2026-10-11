@@ -3453,6 +3453,36 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
         if(phase==2)dora3_s3_801C05F0(ram,&command);
         return !live(ram)||!active_simulation_slice()?2:0;
     }
+    if((site==0x801C8CE0||site==0x801C0D78)&&motion_call&&live(ram)&&active_simulation_slice()) {
+        uint8_t* rdram=ram;
+        const auto actor=uint32_t(word(ram,0x8021D49C)),physical=uint32_t(word(ram,0x8021D4B0));
+        const auto control=uint32_t(word(ram,0x8021D6C0)),parameters=uint32_t(word(ram,0x8021D648));
+        const double vy=std::bit_cast<float>(word(ram,physical+0x14));
+        if(word(ram,actor+0x94)==8&&(MEM_BU(3,int32_t(control))&1)&&vy>0) {
+            if(site==0x801C8CE0) {
+                // Jump impulse has already fired. A rounded zero first
+                // displacement must not reattach and snap XYZ on the next
+                // lift/sideways-platform slice. The launch slice still carries.
+                MEM_W(0x30,int32_t(control))=-1;
+            } else if(word(ram,0x8021D68C)&2) {
+                // The object pool is already at the interval endpoint while
+                // C0C7C probes the player's start. Compare the rising player's
+                // matching endpoint against a dynamic floor before allowing
+                // its proximity flag to cancel the jump. Keep ceiling bit1
+                // and the full BF828 wall/ground solver intact.
+                const unsigned surface=unsigned(word(ram,0x800DACF0)&1)*0x1C;
+                const int slot=word(ram,0x800DACD0+surface);
+                const double h=active_simulation_slice()->ticks();
+                const double g=std::bit_cast<float>(word(ram,parameters+0x14));
+                const double displacement=vy*h-.5*g*(h*h+h);
+                const double y=std::bit_cast<float>(word(ram,actor+0xA0));
+                const double floor=std::bit_cast<float>(word(ram,0x800DACB8+surface));
+                if(slot>=30&&slot<dora3::distance::common_end&&displacement>0&&y+displacement>floor)
+                    MEM_W(0,int32_t(0x8021D68Cu))&=~2;
+            }
+        }
+        return 0;
+    }
     if(site==0x801C9048 && motion_call) {
         finish_player_flight(ram);
         if(player_hover_clock && active_simulation_slice()) {

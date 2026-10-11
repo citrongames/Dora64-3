@@ -1,0 +1,19 @@
+{
+  "build": "test128",
+  "exception": "C0000005",
+  "rva": "0x1367F2",
+  "original_function": "0x801E7528",
+  "original_sha256": "2fc91df95f2fe59f347f8b7b14680ee9180f9f9821b74bf8adcc3757356079af",
+  "context": {
+    "kind": 410,
+    "state": 4,
+    "phase": 2
+  },
+  "fixes": [
+    "Skip repeated empty Boss2/Boss6 unlink in Native only",
+    "Keep pending reassembly clip13 until same state/lifetime consumes it"
+  ],
+  "softlock": "additional path fixed; all reports not proven equivalent",
+  "game_launched": false,
+  "tests_executed": false
+}

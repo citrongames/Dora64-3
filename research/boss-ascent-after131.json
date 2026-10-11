@@ -1,0 +1,29 @@
+{
+  "method": "Static ROM/source/log analysis only; no game/tests/CPU checks",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "source_sites": [
+    {
+      "overlay": ".remaining_slot0_12",
+      "site": "0x802271fc",
+      "word": "0xe4400008",
+      "brake_address": "0x802295a8",
+      "brake": 1.85,
+      "function": "dora3_s34_remaining_802270A4",
+      "function_sha256": "40aa58882dc4fb4dd93899b866a382262ca63bbc774c10ee8aa777c0d68eea71"
+    },
+    {
+      "overlay": ".remaining_slot0_16",
+      "site": "0x80226904",
+      "word": "0xe4400008",
+      "brake_address": "0x80228c08",
+      "brake": 1.85,
+      "function": "dora3_s38_remaining_802267AC",
+      "function_sha256": "0e2ae4d141fdd86200673624130a580208531a0f5b75b45c2ec1a026ae2244c9"
+    }
+  ],
+  "log_sha256": "78d646357483475800755493f2d8136d95abeeb6fe68f4148712376fe78130bb",
+  "observed": "Head410 state9 phase1 hp3: y143.806 velocityY -18.85, then y-5900.78 with the same phase and velocity",
+  "cause": "Braking above300 can leave peak below400 after fractional position/phase shifts; original phase waits only for Y>=400, stops braking below300, has no landing path",
+  "fix": "Keep positive lift speed for a Source period only if the proposed braking sequence cannot reach400; then original transition, snap and zero-speed writes execute normally",
+  "limits": "No forced state/health/completion/floor teleport. Exact triggering height was not in sparse log131. Gameplay confirmation required."
+}

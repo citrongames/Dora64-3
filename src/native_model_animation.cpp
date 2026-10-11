@@ -115,6 +115,7 @@ struct Model {
     std::optional<NativeAnimationClock> native_clock;
     std::optional<OriginalClipContinuation> original_continuation;
     std::optional<SourceModelCommandSample> source_clock_anchor;
+    bool clip_local_source=false;
     std::map<std::pair<uint64_t,uint32_t>,ModelEventCheckpoint> delivered_cues;
     std::optional<SimulationSlice> source_step{},source_command_hold{};
     uint64_t source_pool=0;
@@ -326,6 +327,9 @@ ModelEventCheckpoint ModelAnimation::command_event_checkpoint(uint8_t* rdram,uin
     const auto i=state_->models.find(model);if(i==state_->models.end())return {};
     return {i->second.run,i->second.event_distance,real(rdram,model+0x64),i->second.end_sequence};
 }
+void ModelAnimation::source_clip_period(uint32_t model,bool enabled) {
+    if(auto i=state_->models.find(model);i!=state_->models.end())i->second.clip_local_source=enabled;
+}
 SourceModelCommandSample ModelAnimation::source_command_sample(uint8_t* rdram,uint32_t model,const SimulationSlice& slice) const {
     SourceModelCommandSample result{command_event_checkpoint(rdram,model),uint8_t(MEM_BU(0x7C,int32_t(model)))};
     result.checkpoint.time=real(rdram,model+0x64);
@@ -341,7 +345,14 @@ SourceModelCommandSample ModelAnimation::source_command_sample(uint8_t* rdram,ui
        (result.flags&8)||clock.channels!=uint32_t(word(rdram,model+0x60))||!clock.channels||
        clock.descriptors!=uint32_t(word(rdram,model+0x18))||
        clock.duration!=real(rdram,clock.descriptors+4))return result;
-    const long double remaining=observed.denominator-end;
+    // Damage can restart a boss's AI period halfway through a live clip.
+    // Project to the next whole advance of that CLIP, not the new AI period:
+    // otherwise an unchanged 0,3,6,... timeline is read as 0.4,3.4,6.4,...
+    // and all exact authored attack/reassembly cues can be lost forever.
+    // Keep exact Source equality (including deliberately skipped frames).
+    const auto clip_phase=clock.elapsed%clock.denominator;
+    const uint64_t sample_end=entry.clip_local_source?(clip_phase?clip_phase:clock.denominator):end;
+    const long double remaining=observed.denominator-sample_end;
     auto position=[&](long double elapsed) {
         const long double value=clock.origin+static_cast<long double>(clock.rate)*elapsed/clock.denominator;
         const long double edge=std::round(value/clock.duration)*clock.duration;
@@ -353,7 +364,7 @@ SourceModelCommandSample ModelAnimation::source_command_sample(uint8_t* rdram,ui
     // period. Do not extrapolate its rate backwards before its own origin:
     // for a new forward clip at zero that invents a negative frame and a
     // wrap at zero, ending the opening NPC turn after its first fraction.
-    const auto start=position(std::max(0.0L,static_cast<long double>(clock.elapsed)-end));
+    const auto start=position(std::max(0.0L,static_cast<long double>(clock.elapsed)-sample_end));
     const bool clamped=(result.flags&1)&&clock.rate>=0;
     auto cycle=std::floor(start/clock.duration);
     if(clock.rate<0&&start==clock.duration)cycle-=1;

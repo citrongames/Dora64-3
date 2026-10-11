@@ -1,4 +1,9 @@
 #include "graphics_profile.hpp"
+#ifdef DORA3_CRASH_LOG
+#include "crash_context.hpp"
+#include <exception>
+#include <windows.h>
+#endif
 #include "diagnostics.hpp"
 #include "modern_camera.hpp"
 #include "widescreen.hpp"
@@ -549,6 +554,33 @@ std::filesystem::path find_supported_rom(const std::filesystem::path& directory)
 }
 }
 
+#if defined(_WIN32) && defined(DORA3_CRASH_LOG)
+namespace {
+void crash_context() noexcept {
+    const auto& e=dora3::crash::enemy;
+    std::fprintf(stderr,"LAST ENEMY actor=%08X model=%08X rom=%08X callback=%08X site=%08X kind=%d state=%d phase=%d\n",e.actor,e.model,e.rom,e.callback,e.site,e.kind,e.state,e.phase);
+}
+LONG WINAPI crash_exception(EXCEPTION_POINTERS* error) {
+    std::fprintf(stderr,"WINDOWS EXCEPTION code=%08lX address=%p module_base=%p thread=%lu\n",error->ExceptionRecord->ExceptionCode,error->ExceptionRecord->ExceptionAddress,GetModuleHandleW(nullptr),GetCurrentThreadId());
+    for(DWORD i=0;i<error->ExceptionRecord->NumberParameters;++i)
+        std::fprintf(stderr,"parameter[%lu]=%llX\n",i,static_cast<unsigned long long>(error->ExceptionRecord->ExceptionInformation[i]));
+    crash_context();std::fflush(stderr);
+    return EXCEPTION_EXECUTE_HANDLER;
+}
+void crash_terminate() noexcept {
+    std::fprintf(stderr,"C++ TERMINATE thread=%lu module_base=%p\n",GetCurrentThreadId(),GetModuleHandleW(nullptr));
+    if(auto exception=std::current_exception()) {
+        try {std::rethrow_exception(exception);}
+        catch(const std::exception& e){std::fprintf(stderr,"exception: %s\n",e.what());}
+        catch(...){std::fprintf(stderr,"exception: non-standard type\n");}
+    }
+    crash_context();
+    void* stack[48];const auto count=CaptureStackBackTrace(0,48,stack,nullptr);
+    for(USHORT i=0;i<count;++i)std::fprintf(stderr,"stack[%u]=%p\n",unsigned(i),stack[i]);
+    std::fflush(stderr);std::_Exit(90);
+}
+}
+#endif
 #ifdef _WIN32
 int wmain(int argc,wchar_t**){
     if(argc!=1){DORA3_LOG(stderr,"Start the EXE without arguments; ROM must be beside it.\n");return 2;}
@@ -572,6 +604,18 @@ int wmain(int argc,wchar_t**){
     std::filesystem::create_directories(state_dir);
     std::setvbuf(stderr,nullptr,_IONBF,0);
     DORA3_LOG(stderr,"Dora64-3 Windows test: RT64 Automatic (Dora64 policy); ROM beside EXE only; pending calls stop explicitly.\n");
+#elif defined(DORA3_CRASH_LOG)
+    const auto stamp=std::chrono::system_clock::now().time_since_epoch();
+    const auto run_dir=directory/L"logs"/(std::filesystem::path(executable.data()).stem().wstring()+L"-"+std::to_wstring(std::chrono::duration_cast<std::chrono::milliseconds>(stamp).count())+L"-"+std::to_wstring(GetCurrentProcessId()));
+    if(!std::filesystem::create_directories(run_dir))return 2;
+    FILE* stream=nullptr;
+    if(_wfreopen_s(&stream,(run_dir/L"runtime.log").c_str(),L"w",stderr)!=0)return 2;
+    if(_wfreopen_s(&stream,(run_dir/L"stdout.log").c_str(),L"w",stdout)!=0)return 2;
+    std::setvbuf(stderr,nullptr,_IONBF,0);
+    std::setvbuf(stdout,nullptr,_IONBF,0);
+    std::fprintf(stderr,"BUILD executable=%ls crash journal enabled; module_base=%p\n",std::filesystem::path(executable.data()).filename().c_str(),GetModuleHandleW(nullptr));
+    std::set_terminate(crash_terminate);SetUnhandledExceptionFilter(crash_exception);
+    const auto state_dir=directory;
 #elif defined(DORA3_GRAPHICS_PROFILE)
     // One aggregated profile only; ordinary diagnostics remain disabled.
     const auto stamp=std::chrono::system_clock::now().time_since_epoch();
@@ -735,7 +779,14 @@ int main(int argc,char** argv){
         #endif
     };
     cfg.events_callbacks.vi_callback=[](){static std::atomic<bool> started=false;if(!started.exchange(true))recomp::start_game(u8"dora3.n64.jp","");};
-    cfg.error_handling_callbacks.message_box=[](const char* m){DORA3_LOG(stderr,"RUNTIME ERROR %s\n",m);std::_Exit(80);};
+    cfg.error_handling_callbacks.message_box=[](const char* m){
+#ifdef DORA3_CRASH_LOG
+        std::fprintf(stderr,"RUNTIME ERROR %s\n",m);crash_context();std::fflush(stderr);
+#else
+        DORA3_LOG(stderr,"RUNTIME ERROR %s\n",m);
+#endif
+        std::_Exit(80);
+    };
     #ifdef DORA3_LIVE_RT64
     DORA3_LOG(stderr,"RESEARCH: live RT64, deferred graphics SP completion; SDL input/audio, EEPROM 16k; not a playable port\n");
     #else

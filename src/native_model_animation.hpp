@@ -104,6 +104,8 @@ public:
     // its new clip again in the remaining fractional part of that interval.
     void begin_source_pool();
     std::uint32_t source_command_actor(std::uint32_t);
+    // Boss command clocks can rebase on damage without seeking their clip.
+    void source_clip_period(std::uint32_t,bool);
     SourceModelCommandSample source_command_sample(uint8_t*,std::uint32_t,const SimulationSlice&) const;
     bool command_frame_event(uint8_t*,std::uint32_t,const ModelEventCheckpoint&,float,float,std::uint64_t) const;
 

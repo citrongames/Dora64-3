@@ -1116,7 +1116,7 @@ APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_12', 2149746368, 2149747016, 3829399
 APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_12', 2149746368, 2149747024, 3829399652)]=True
 APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_12', 2149746368, 2149747032, 3829399656)]=True
 APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_12', 2149746368, 2149747044, 3829399660)]=True
-APPROVED_ENEMY_EVENTS.add(('.remaining_slot0_12', 2149728368, 2149728636, 0))
+APPROVED_ENEMY_EVENTS.add(('.remaining_slot0_12', 0x80224070, 0x802241C4, 0x46140032))
 APPROVED_ENEMY_EVENTS.add(('.remaining_slot0_12', 2149729204, 2149729372, 1174536242))
 APPROVED_ENEMY_EVENTS.add(('.remaining_slot0_12', 2149732652, 2149733624, 1174536242))
 APPROVED_ENEMY_EVENTS.add(('.remaining_slot0_12', 2149734368, 2149735016, 1174536242))
@@ -2124,6 +2124,15 @@ def timing_hooks(sections,compiled,rom):
                     raise ValueError('Unreviewed paused weapon level command')
                 text=text.replace('dora3_native_model_event(rdram',f'dora3_native_player_weapon_command_only() ? ({var}_time==ctx->f{other}.fl*{scale}.0f) : dora3_native_model_event(rdram')
             hooks[name,site+4].insert(0,label+':;')
+        elif op=='boss_detach_empty_guard':
+            if (rule['section'],address,site,word)!=('.scene1',0x801E7528,0x801E7528,0x8C820098):
+                raise ValueError('Unreviewed boss child detach guard')
+            text='if (dora3_native_boss_detach_empty(rdram,ctx)) return;'
+        elif op=='player_platform_takeoff':
+            if rule['section']!='.scene1' or (address,site,word) not in {
+                (0x801C8B28,0x801C8CE0,0x0C070021),(0x801C0C7C,0x801C0D78,0x8FBF0014)}:
+                raise ValueError('Unreviewed moving-platform takeoff boundary')
+            text=f'dora3_native_preview_hook(rdram,ctx,0x{site:08X}u);'
         elif op=='ground_preview_boundary':
             action={0x801BB080:'',0x801C8B28:'return;',0x801C8F10:'return;',0x801C8F34:'return;',0x801C9048:'return;',0x801DBD7C:'goto L_801DBE78;',0x801DBE84:'goto L_801DBF88;'}[site]
             prefix='dora3_native_cutscene_source(rdram,ctx,0); ' if site==0x801BB080 else ''

@@ -1,0 +1,182 @@
+{
+  "base_commit": "632de578e6765e68c20f18964e5a47ab412dd65e",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "source_fingerprints": [
+    {
+      "name": "dora3_scene_math_8022E85C",
+      "section": ".remaining_slot1_04",
+      "vram": "0x8022E85C",
+      "sha256": "a732a32479b00e3dc97829027b380f8a81bbec15d6822ebcd11feb89b31a7714"
+    },
+    {
+      "name": "dora3_player_query_contact_flags_801C0C7C",
+      "section": ".scene1",
+      "vram": "0x801C0C7C",
+      "sha256": "35c3f57798e5e91b28e656e5591955895ec9127a031dd5d8a9c04cb144009a85"
+    },
+    {
+      "name": "dora3_player_apply_gravity_801C0F1C",
+      "section": ".scene1",
+      "vram": "0x801C0F1C",
+      "sha256": "0b500ba05ee5d259f3a64cb75d95230627e8e6827da2ac5c3b96d2916fff3614"
+    },
+    {
+      "name": "dora3_player_jump_commands_801C36A4",
+      "section": ".scene1",
+      "vram": "0x801C36A4",
+      "sha256": "9fb7f5794d2f580d0003c166731fda35ea33d0b1102d344df1921e2b090a1cc8"
+    },
+    {
+      "name": "dora3_player_jump_motion_801C3778",
+      "section": ".scene1",
+      "vram": "0x801C3778",
+      "sha256": "d30257c8bfe2d5295b1cc93dba16f4692a9527683075ae4a325cf7d3fc549740"
+    },
+    {
+      "name": "dora3_player_update_801C8B28",
+      "section": ".scene1",
+      "vram": "0x801C8B28",
+      "sha256": "c8f578b2e94e3e4682a9fbc1aeeed0eae7f979e304ea0de89661b66d5866d866"
+    },
+    {
+      "name": "dora3_boss2_body_follow_head_clip_and_bounds_8021D714",
+      "section": ".remaining_slot0_12",
+      "vram": "0x8021D714",
+      "sha256": "96eef3ff7bfb74760851ac7a1ae786efc586f3c16a257deefb0a2b5c73c61a28"
+    },
+    {
+      "name": "dora3_boss2_body_rise_teleport_and_reassemble_8021DDC8",
+      "section": ".remaining_slot0_12",
+      "vram": "0x8021DDC8",
+      "sha256": "99b637ccf6585be610f45e13a46f5dcedb71ffa9b9a052158409276bc29ba782"
+    },
+    {
+      "name": "dora3_boss2_leg_follow_head_clip_and_bounds_8021E8D0",
+      "section": ".remaining_slot0_12",
+      "vram": "0x8021E8D0",
+      "sha256": "be36c52264a294d5670c08a51f555e74c57afd735cf8353ee9705d6ccc21f2df"
+    },
+    {
+      "name": "dora3_boss2_leg_rise_teleport_and_reassemble_8021F290",
+      "section": ".remaining_slot0_12",
+      "vram": "0x8021F290",
+      "sha256": "a37398460e3bd72076672b6ab82d17b2c87b2a7568df1953f4bc3c413d28a25d"
+    },
+    {
+      "name": "dora3_boss6_body_follow_head_8021D714",
+      "section": ".remaining_slot0_16",
+      "vram": "0x8021D714",
+      "sha256": "7e9a3ce03cb42fb727cc4f8fee9add6fe25b58816fabc187879284fefe92c548"
+    },
+    {
+      "name": "dora3_boss6_body_return_from_height_8021DCE8",
+      "section": ".remaining_slot0_16",
+      "vram": "0x8021DCE8",
+      "sha256": "14b0ee3b1659992f94029f08dc78792e2d5d9ecdd05706ac14dee215027df394"
+    },
+    {
+      "name": "dora3_boss6_leg_follow_head_8021E7F4",
+      "section": ".remaining_slot0_16",
+      "vram": "0x8021E7F4",
+      "sha256": "601572de376e717c5048c44b745bf05d878a9d9523fb963df356abb0c0dfbfa3"
+    },
+    {
+      "name": "dora3_boss6_leg_return_from_height_8021ED94",
+      "section": ".remaining_slot0_16",
+      "vram": "0x8021ED94",
+      "sha256": "54c5fce29a67aadd5f52ee64047a40d930b0153ad2b0a0187b3777a112600774"
+    }
+  ],
+  "boss_inventory": [
+    {
+      "boss": 1,
+      "functions": 62,
+      "source_fingerprint": "0c4e43434459053de53a0efa572a3028a8552b4387c36259f78bb004852066a3",
+      "end_getter_calls": 14,
+      "time_getter_calls": 6
+    },
+    {
+      "boss": 2,
+      "functions": 104,
+      "source_fingerprint": "5f9282584a0911a6aab0f4a579fea9543618c34aeeb82dbcd86ec91cc22926b4",
+      "end_getter_calls": 28,
+      "time_getter_calls": 10
+    },
+    {
+      "boss": 3,
+      "functions": 42,
+      "source_fingerprint": "1ffc631aa0dca20013288c90e2622c6ce8aeb8a2737ec67c95812a4cac54f92a",
+      "end_getter_calls": 17,
+      "time_getter_calls": 6
+    },
+    {
+      "boss": 4,
+      "functions": 57,
+      "source_fingerprint": "14b0a82eabc16b6aac942858bb855f65bfb6613a4414f5ba6bb2ff75e0b954ae",
+      "end_getter_calls": 10,
+      "time_getter_calls": 3
+    },
+    {
+      "boss": 5,
+      "functions": 42,
+      "source_fingerprint": "cdea8ab280ade52b335ada06dfed9521798a34556caca17ee38c94dc81daa0e8",
+      "end_getter_calls": 15,
+      "time_getter_calls": 14
+    },
+    {
+      "boss": 6,
+      "functions": 103,
+      "source_fingerprint": "1a6ca9ae685f75557a774bf6f5a177fd999027b4a7bdf1db3543695d745c88d5",
+      "end_getter_calls": 28,
+      "time_getter_calls": 10
+    },
+    {
+      "boss": 7,
+      "functions": 31,
+      "source_fingerprint": "362a4c519a42abc463f60c29af9f7d641a9633cf50ba3a88f375700bfed4554c",
+      "end_getter_calls": 1,
+      "time_getter_calls": 1
+    }
+  ],
+  "platform": {
+    "kind": 525,
+    "rom": "0x126BA0",
+    "target_table": "0x80230048",
+    "store": "0x8022EB1C",
+    "fix": "Cap final directed step at exact authored stop"
+  },
+  "jump": {
+    "character_scope": "all characters, shared state8",
+    "hooks": [
+      "0x801C8CE0",
+      "0x801C0D78"
+    ],
+    "fix": "Detach after launch; compare rising endpoint to dynamic floor before accepting lower proximity bit; preserve ceiling and full collision solver"
+  },
+  "boss": {
+    "heads": [
+      410,
+      454
+    ],
+    "parts": [
+      411,
+      412,
+      455,
+      456
+    ],
+    "pulse": "physical+44",
+    "return_clip": 13,
+    "body_wait_phase": 3,
+    "leg_wait_phase": 2,
+    "delivery": "one pending command per child lifetime/state; Source original path untouched"
+  },
+  "validation": {
+    "static_only": true,
+    "game_launched": false,
+    "tests_executed": false,
+    "cpu_checks": 0,
+    "gameplay": "pending owner",
+    "build": "Windows Release127 incremental",
+    "commit_push": false
+  }
+}

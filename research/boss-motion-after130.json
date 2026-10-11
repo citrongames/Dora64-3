@@ -1,0 +1,78 @@
+{
+  "basis": "Static ROM/source/log inspection only; no game, tests or CPU checks",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "generic_boss_stores": 167,
+  "generic_operand_mismatches": [],
+  "stores": [
+    {
+      "rom": "0xf8a40",
+      "site": "0x8021df6c",
+      "instruction": "0xe44200a0",
+      "float_register": 2,
+      "function": "dora3_s34_remaining_8021DDC8",
+      "sha256": "99b637ccf6585be610f45e13a46f5dcedb71ffa9b9a052158409276bc29ba782"
+    },
+    {
+      "rom": "0xf8a40",
+      "site": "0x8021f40c",
+      "instruction": "0xe44200a0",
+      "float_register": 2,
+      "function": "dora3_s34_remaining_8021F290",
+      "sha256": "a37398460e3bd72076672b6ab82d17b2c87b2a7568df1953f4bc3c413d28a25d"
+    },
+    {
+      "rom": "0xf8a40",
+      "site": "0x8021dc04",
+      "instruction": "0xe600009c",
+      "float_register": 0,
+      "function": "dora3_s34_remaining_8021D99C",
+      "sha256": "1adf33dacdb4258b390cc4154cdf53004e53481c8da01231b54cb3475e789a66"
+    },
+    {
+      "rom": "0xf8a40",
+      "site": "0x8021dc34",
+      "instruction": "0xe60000a4",
+      "float_register": 0,
+      "function": "dora3_s34_remaining_8021D99C",
+      "sha256": "1adf33dacdb4258b390cc4154cdf53004e53481c8da01231b54cb3475e789a66"
+    },
+    {
+      "rom": "0xf8a40",
+      "site": "0x8021db8c",
+      "instruction": "0xe6000058",
+      "float_register": 0,
+      "function": "dora3_s34_remaining_8021D99C",
+      "sha256": "1adf33dacdb4258b390cc4154cdf53004e53481c8da01231b54cb3475e789a66"
+    },
+    {
+      "rom": "0xf8a40",
+      "site": "0x8021dbe8",
+      "instruction": "0xe440005c",
+      "float_register": 0,
+      "function": "dora3_s34_remaining_8021D99C",
+      "sha256": "1adf33dacdb4258b390cc4154cdf53004e53481c8da01231b54cb3475e789a66"
+    },
+    {
+      "rom": "0x111e70",
+      "site": "0x8021de90",
+      "instruction": "0xe44200a0",
+      "float_register": 2,
+      "function": "dora3_s38_remaining_8021DCE8",
+      "sha256": "14b0ee3b1659992f94029f08dc78792e2d5d9ecdd05706ac14dee215027df394"
+    },
+    {
+      "rom": "0x111e70",
+      "site": "0x8021ef14",
+      "instruction": "0xe44200a0",
+      "float_register": 2,
+      "function": "dora3_s38_remaining_8021ED94",
+      "sha256": "54c5fce29a67aadd5f52ee64047a40d930b0153ad2b0a0187b3777a112600774"
+    }
+  ],
+  "log130": "head410 state8 phase5 with HP16 and surviving leg412; last record precedes wave movement; no exception logged",
+  "confirmed_defects": [
+    "Boss2 return stores use f2, adapter read f0 landing threshold",
+    "12th sideband at 30 degrees has omega=2*pi; unaliased fractional harmonic sum divides by sin(pi), squared during acceleration"
+  ],
+  "limits": "Prior log has no XYZ; numerical defect matches failing phase but user gameplay must confirm it explains disappearance. No claim that every boss has been completed."
+}
