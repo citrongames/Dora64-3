@@ -16,6 +16,7 @@ struct PhysicalInput {
 // SDL thread publishes state; render thread consumes a copy, never SDL handles.
 void publish_physical(const PhysicalInput& input);
 PhysicalInput physical();
+PhysicalInput menu_physical();
 bool menu_open();
 void set_menu_open(bool open);
 bool capture_active();

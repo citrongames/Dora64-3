@@ -1066,6 +1066,7 @@ constexpr std::array additional_stores{
     Store{0x1561E0,0x8023F2AC,0x4,true,EquationKind::angle,0},
     Store{0x1561E0,0x8023F530,0x0,true,EquationKind::linear,0},
     Store{0x1561E0,0x8023F584,0x4,true,EquationKind::angle,0},
+    Store{0x12FD90,0x8022F0B8,0x10,false,EquationKind::angle,0}, // Bironn death +30.
     Store{0x125180,0x8022D9F0,0xC,false,EquationKind::angle,0},
     Store{0x129A30,0x8022D8E8,0x10,false,EquationKind::angle,0},
     Store{0x12E230,0x8022DB80,0xA0,false,EquationKind::linear,6},

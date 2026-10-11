@@ -25896,6 +25896,17 @@
       "role": "capture_reached_script_command_motion_interval",
       "evidence": "E4484 executes commands before E3768 participants then E0760 cameras. Opening350 chair150 uses short opcode65 bursts; capture after commands before timer/motion.",
       "status": "Source analysis; user playcheck pending101"
+    },
+    {
+      "section": ".demo_slot1",
+      "function": "0x8022EFB0",
+      "function_name": "dora3_s5_demo_8022EFB0",
+      "function_sha256": "8e8e8ecfa4387c01d9cef4b785b9a12362b9ec76f9b643b3e22e8a4d55f8444f",
+      "site": "0x8022F0B8",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "role": "bironn_death_visual_yaw",
+      "evidence": "ROM death10 calls Angle(actor yaw +30) then stores visual yaw; child unlink, gravity and retirement stay Source commands."
     }
   ]
 }

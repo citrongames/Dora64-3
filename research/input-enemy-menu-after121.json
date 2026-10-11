@@ -1,0 +1,73 @@
+{
+  "base_commit": "0c8d69378446f8dfa5ea83a12b67f913862a1c65",
+  "inspection": "static original ROM and code; no runtime/test execution",
+  "npc": {
+    "original_order": [
+      "BB080",
+      "DD8FC NPC contact dispatch",
+      "E8BDC common objects",
+      "C8B28 player"
+    ],
+    "weapon_table": "scene1:801FA5D0, 15 records including unequipped, stride12; input mode byte9",
+    "modes": {
+      "press": [
+        1,
+        2,
+        3,
+        5,
+        11,
+        12,
+        13
+      ],
+      "held": [
+        6,
+        9
+      ],
+      "release_charge": [
+        4,
+        7,
+        8,
+        10,
+        14
+      ]
+    },
+    "fix": "Player1 B sampled only after Source contact arbitration; all weapons share input ownership",
+    "tradeoff": "B command up to one source update later; Original unchanged"
+  },
+  "enemy": {
+    "section": ".demo_slot1",
+    "rom": "0x12FD90",
+    "function": "0x8022EFB0",
+    "site": "0x8022F0B8",
+    "instruction": "0xE4800010",
+    "change": "continuous visual yaw, source +30 per tick; lifecycle unchanged"
+  },
+  "blue": {
+    "leaf": "8002A844",
+    "min_xy": [
+      2,
+      1
+    ],
+    "max_xy": [
+      328,
+      244
+    ],
+    "draw_xy": [
+      2,
+      1
+    ],
+    "texture_size": [
+      320,
+      240
+    ],
+    "display_list_corner_translation": [
+      -2,
+      -1
+    ]
+  },
+  "menu": {
+    "cause": "ui_release waited for every key and selected pad to be neutral; ui_input_blocked disabled whole menu",
+    "fix": "per-control quarantine at open/capture; global block only during explicit binding capture"
+  },
+  "gameplay_validation": "Owner reported test122 worked and authorized commit/push on 2026-10-11; exhaustive weapon/platform coverage not claimed"
+}

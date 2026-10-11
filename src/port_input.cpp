@@ -11,17 +11,23 @@ PhysicalInput latest,previous;
 std::atomic_bool open=false,exit_requested=false;
 int capture=-1,capture_player=0,menu_player=0;
 SDL_JoystickID capture_instance=-1;
-bool capture_pad=false,armed=false,game_release=false,ui_release=false;
+bool capture_pad=false,armed=false,game_release=false;
 bool keyboard_focus_return=false;
-std::array<bool,SDL_NUM_SCANCODES> held_keys{};
-std::array<std::array<bool,SDL_CONTROLLER_BUTTON_MAX+SDL_CONTROLLER_AXIS_MAX*2>,PlayerCount> held_pad{};
+std::array<bool,SDL_NUM_SCANCODES> held_keys{},menu_held_keys{};
+std::array<std::array<bool,SDL_CONTROLLER_BUTTON_MAX+SDL_CONTROLLER_AXIS_MAX*2>,PlayerCount> held_pad{},menu_held_pad{};
+void quarantine_menu_controls() {
+    for(size_t i=0;i<menu_held_keys.size();++i)menu_held_keys[i]=latest.keys[i]!=0;
+    for(int player=0;player<PlayerCount;++player)
+        for(size_t i=0;i<menu_held_pad[player].size();++i)
+            menu_held_pad[player][i]=latest.gamepads[player].pad[i]>0.1f;
+}
 bool neutral_keys(const PhysicalInput& p) {
     return std::none_of(p.keys.begin(),p.keys.end(),[](unsigned char v){return v!=0;});
 }
 bool neutral_pad(const PhysicalGamepad& p,float threshold=0.35f) {
     return std::none_of(p.pad.begin(),p.pad.end(),[threshold](float v){return v>threshold;});
 }
-void open_locked(bool value){open.store(value);capture=-1;armed=false;game_release=true;ui_release=true;}
+void open_locked(bool value){open.store(value);capture=-1;armed=false;game_release=true;quarantine_menu_controls();}
 int navigation_player(const PhysicalInput& p) {
     if(p.gamepads[menu_player].connected)return menu_player;
     for(int i=0;i<PlayerCount;++i)if(p.gamepads[i].connected)return i;
@@ -32,19 +38,27 @@ void request_exit(){exit_requested.store(true);}
 bool take_exit_request(){return exit_requested.exchange(false);}
 void publish_physical(const PhysicalInput& p){std::lock_guard lock(mutex);latest=p;}
 PhysicalInput physical(){std::lock_guard lock(mutex);return latest;}
+PhysicalInput menu_physical(){
+    std::lock_guard lock(mutex);auto input=latest;
+    for(size_t i=0;i<menu_held_keys.size();++i)if(menu_held_keys[i])input.keys[i]=0;
+    for(int player=0;player<PlayerCount;++player)
+        for(size_t i=0;i<menu_held_pad[player].size();++i)
+            if(menu_held_pad[player][i])input.gamepads[player].pad[i]=0;
+    return input;
+}
 int menu_gamepad(){std::lock_guard lock(mutex);return navigation_player(latest);}
 bool menu_open(){return open.load();}
 void set_menu_open(bool value){{std::lock_guard lock(mutex);open_locked(value);}dora3::touch::cancel();dora3::camera::clear_input();}
 bool capture_active(){std::lock_guard lock(mutex);return capture>=0;}
-bool ui_input_blocked(){std::lock_guard lock(mutex);return capture>=0||ui_release;}
+bool ui_input_blocked(){std::lock_guard lock(mutex);return capture>=0;}
 void begin_capture(Action a,bool gamepad,int player){
     std::lock_guard lock(mutex);
     if(a<0||a>=ActionCount||player<0||player>=PlayerCount)return;
     if(gamepad&&!latest.gamepads[player].connected)return;
     capture=a;capture_pad=gamepad;capture_player=player;
-    capture_instance=latest.gamepads[player].instance;armed=false;ui_release=true;
+    capture_instance=latest.gamepads[player].instance;armed=false;quarantine_menu_controls();
 }
-void cancel_capture(){std::lock_guard lock(mutex);capture=-1;armed=false;ui_release=true;}
+void cancel_capture(){std::lock_guard lock(mutex);capture=-1;armed=false;quarantine_menu_controls();}
 std::string capture_label(){
     std::lock_guard lock(mutex);if(capture<0)return {};
     return std::string(armed?"Press a new ":"Release all controls, then press a ")+
@@ -63,11 +77,11 @@ bool process_port_input(const PhysicalInput& p,PhysicalInput* game_input) {
             toggle=true;
         }
     }
-    if(!available){game_release=true;ui_release=true;capture=-1;}
-    else if(toggle){if(capture>=0){capture=-1;ui_release=true;}else open_locked(!open.load());}
-    if(!p.focused&&capture>=0&&!capture_pad){capture=-1;ui_release=true;}
+    if(!available){game_release=true;quarantine_menu_controls();capture=-1;}
+    else if(toggle){if(capture>=0){capture=-1;quarantine_menu_controls();}else open_locked(!open.load());}
+    if(!p.focused&&capture>=0&&!capture_pad){capture=-1;quarantine_menu_controls();}
     if(capture>=0&&capture_pad&&(!p.gamepads[capture_player].connected||
-       p.gamepads[capture_player].instance!=capture_instance)){capture=-1;ui_release=true;}
+       p.gamepads[capture_player].instance!=capture_instance)){capture=-1;quarantine_menu_controls();}
     const bool keys_neutral=!p.focused||neutral_keys(p);
     // Quarantine held controls independently for every player. A drifting
     // controller must not block new keyboard presses or another player's pad.
@@ -80,7 +94,14 @@ bool process_port_input(const PhysicalInput& p,PhysicalInput* game_input) {
             held_pad[player][i]=p.gamepads[player].pad[i]>0.01f&&(reset_pad||held_pad[player][i]);
     }
     keyboard_focus_return=!p.focused;game_release=false;
-    if(available&&keys_neutral&&neutral_pad(p.gamepads[navigation_player(p)]))ui_release=false;
+    for(size_t i=0;i<menu_held_keys.size();++i)
+        if(!p.focused||!p.keys[i])menu_held_keys[i]=false;
+    // A held stick/button cannot activate the newly opened menu. Other
+    // controls (and the mouse/touch UI) remain available immediately.
+    for(int player=0;player<PlayerCount;++player)
+        for(size_t i=0;i<menu_held_pad[player].size();++i)
+            if(!p.gamepads[player].connected||p.gamepads[player].instance!=previous.gamepads[player].instance||
+               p.gamepads[player].pad[i]<=0.1f)menu_held_pad[player][i]=false;
     if(available&&capture>=0&&!toggle) {
         const auto& pad=p.gamepads[capture_player];const auto& prior=previous.gamepads[capture_player];
         if(!armed){if(capture_pad?neutral_pad(pad):keys_neutral)armed=true;}
@@ -92,7 +113,7 @@ bool process_port_input(const PhysicalInput& p,PhysicalInput* game_input) {
                     if(valid_pad(candidate)){code=candidate;break;}
                 }
             } else for(int i=1;i<SDL_NUM_SCANCODES;i++)if(p.keys[i]&&!previous.keys[i]&&valid_key(i)){code=i;break;}
-            if(code>=0){bind(Action(capture),capture_pad,code,capture_player);capture=-1;ui_release=true;}
+            if(code>=0){bind(Action(capture),capture_pad,code,capture_player);capture=-1;quarantine_menu_controls();}
         }
     }
     if(game_input) {

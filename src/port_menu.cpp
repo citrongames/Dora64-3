@@ -30,7 +30,21 @@ void overlay_input(){
     // Disable both automatic ini loading and saving (also on context shutdown).
     io.IniFilename=nullptr;
     io.ConfigFlags|=ImGuiConfigFlags_NavEnableKeyboard|ImGuiConfigFlags_NavEnableGamepad;
-    const auto p=physical();const auto& gamepad=p.gamepads[menu_gamepad()];
+    const auto p=menu_physical();const auto& gamepad=p.gamepads[menu_gamepad()];
+    // The SDL backend supplies keyboard events. Release only navigation keys
+    // held across opening/capture; fresh keys keep their normal SDL events.
+    if(menu_open()) {
+        const auto raw=physical();
+        const struct { SDL_Scancode scan; ImGuiKey key; } navigation_keys[]{
+            {SDL_SCANCODE_TAB,ImGuiKey_Tab},{SDL_SCANCODE_RETURN,ImGuiKey_Enter},
+            {SDL_SCANCODE_KP_ENTER,ImGuiKey_KeypadEnter},{SDL_SCANCODE_SPACE,ImGuiKey_Space},
+            {SDL_SCANCODE_UP,ImGuiKey_UpArrow},{SDL_SCANCODE_DOWN,ImGuiKey_DownArrow},
+            {SDL_SCANCODE_LEFT,ImGuiKey_LeftArrow},{SDL_SCANCODE_RIGHT,ImGuiKey_RightArrow},
+            {SDL_SCANCODE_HOME,ImGuiKey_Home},{SDL_SCANCODE_END,ImGuiKey_End},
+            {SDL_SCANCODE_PAGEUP,ImGuiKey_PageUp},{SDL_SCANCODE_PAGEDOWN,ImGuiKey_PageDown}};
+        for(const auto& key:navigation_keys)
+            if(raw.keys[key.scan]&&!p.keys[key.scan])io.AddKeyEvent(key.key,false);
+    }
     if(gamepad.connected)io.BackendFlags|=ImGuiBackendFlags_HasGamepad;else io.BackendFlags&=~ImGuiBackendFlags_HasGamepad;
     const bool enabled=gamepad.connected&&(p.focused||p.background_gamepad)&&menu_open()&&!ui_input_blocked();
     auto button=[&](ImGuiKey key,int b){io.AddKeyEvent(key,enabled&&gamepad.pad[b]>0.5f);};

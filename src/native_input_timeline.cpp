@@ -16,6 +16,11 @@ struct Sample {Nanoseconds time;std::array<Port,4> ports;};
 std::deque<Sample> samples;
 Nanoseconds sampled_at=0;
 bool running=false,scoped=false;
+// B is shared by Source contact/dialogue selection and every weapon mode
+// (press, held, release/charge). Publish it to the continuous player only
+// after BB080 has made the Source contact decision for that input sample.
+constexpr uint16_t action_b=0x4000;
+uint16_t source_b_held=0,source_b_pressed=0;
 uint64_t epoch=0;
 // Every output of the original 800305E0 latch, excluding unrelated neighbors.
 constexpr std::array<uint32_t,9> fields{
@@ -49,17 +54,20 @@ void accept(Nanoseconds time) {
     }
 }
 }
-void native_input_reset() {++epoch;running=false;ports={};samples.clear();sampled_at=0;}
+void native_input_reset() {++epoch;running=false;ports={};samples.clear();sampled_at=0;source_b_held=source_b_pressed=0;}
 void native_input_end(uint8_t* rdram) {
     if(!running)return;
     accept(std::numeric_limits<Nanoseconds>::max());
     for(unsigned i=0;i<ports.size();++i) {
         const auto& p=ports[i];
+        const uint16_t source_mask=i==0?action_b:0;
         // Reconcile the original accumulator/history before it resumes. An
         // edge consumed by native must not be replayed by the next VI latch;
         // an edge still pending belongs to that next original update.
-        MEM_H(int32_t(2*i),int32_t(0x801A9548))=int16_t(p.held&~p.pressed);
-        MEM_H(int32_t(2*i),int32_t(0x801A44E0))=int16_t(p.held|p.pressed);
+        MEM_H(int32_t(2*i),int32_t(0x801A9548))=int16_t(((p.held&~p.pressed)&~source_mask)|
+            (MEM_HU(int32_t(2*i),int32_t(0x801A9548))&source_mask));
+        MEM_H(int32_t(2*i),int32_t(0x801A44E0))=int16_t(((p.held|p.pressed)&~source_mask)|
+            (MEM_HU(int32_t(2*i),int32_t(0x801A44E0))&source_mask));
         MEM_H(int32_t(2*i),int32_t(0x801A9AC8))=int16_t(p.directions&~p.direction_pressed);
         MEM_H(int32_t(2*i),int32_t(0x801AA610))=int16_t(p.directions|p.direction_pressed);
     }
@@ -75,6 +83,11 @@ extern "C" void dora3_native_input_sample(uint8_t* ram,recomp_context*) {
     if(now<sampled_at)throw std::logic_error("Input sample time moved backwards");
     sampled_at=now;samples.push_back({now,read(ram)});
 }
+void native_input_commit_source_b(uint8_t* rdram) {
+    if(!running||scoped)return;
+    source_b_held=MEM_HU(0,int32_t(0x801A9504))&action_b;
+    source_b_pressed|=MEM_HU(0,int32_t(0x801A48EC))&action_b;
+}
 Nanoseconds native_input_next_sample(Nanoseconds after,Nanoseconds before) {
     for(const auto& sample:samples)if(sample.time>after && sample.time<before)return sample.time;
     return before;
@@ -86,8 +99,10 @@ NativeInputScope::NativeInputScope(uint8_t* rdram,Nanoseconds time):ram_(rdram),
     accept(time);
     for(unsigned i=0;i<ports.size();++i) {
         auto& port=ports[i];
-        const std::array<uint16_t,9> values{port.pressed,port.direction_pressed,uint16_t(port.connected),
-            port.consumed_held,port.held,port.pressed,port.consumed_directions,port.directions,port.direction_pressed};
+        const auto held=uint16_t(i==0?(port.held&~action_b)|source_b_held:port.held);
+        const auto pressed=uint16_t(i==0?(port.pressed&~action_b)|source_b_pressed:port.pressed);
+        const std::array<uint16_t,9> values{pressed,port.direction_pressed,uint16_t(port.connected),
+            port.consumed_held,held,pressed,port.consumed_directions,port.directions,port.direction_pressed};
         for(unsigned f=0;f<fields.size();++f) {
             words_[i*fields.size()+f]=MEM_H(int32_t(2*i),int32_t(fields[f]));
             MEM_H(int32_t(2*i),int32_t(fields[f]))=int16_t(values[f]);
@@ -96,8 +111,9 @@ NativeInputScope::NativeInputScope(uint8_t* rdram,Nanoseconds time):ram_(rdram),
             sticks_[i*axes.size()+axis]=MEM_B(int32_t(i),int32_t(axes[axis]));
             MEM_B(int32_t(i),int32_t(axes[axis]))=axis?port.y:port.x;
         }
-        port.consumed_held=port.held;port.consumed_directions=port.directions;
+        port.consumed_held=held;port.consumed_directions=port.directions;
         port.pressed=port.direction_pressed=0;
+        if(i==0)source_b_pressed=0;
     }
 }
 NativeInputScope::~NativeInputScope() {

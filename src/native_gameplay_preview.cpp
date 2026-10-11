@@ -4235,7 +4235,12 @@ extern "C" int dora3_native_preview_hook(uint8_t* ram,recomp_context* ctx,uint32
             return owns_common_object(ram,actor)&&reward_pool_claim_matches(ram,actor);
         return owns_common_object(ram,actor);
     }
-    case 0x801C8B28:if(!motion_call) {motion_allowed=true;return 1;}break;
+    case 0x801C8B28:if(!motion_call) {
+        // Original BB080 has just selected/dispatched NPC contacts. Only now
+        // may any Native weapon consume this Source B sample, including
+        // held-fire and release/charge modes and secret weapons.
+        native_input_commit_source_b(ram);motion_allowed=true;return 1;
+    }break;
     // Both the fallthrough and swimming BE5C branch reach BE84.
     // BE78 alone is bypassed when control+28==1 and mode!=4.
     case 0x801DBE84:if(!camera_call) {camera_allowed=true;return 1;}break;

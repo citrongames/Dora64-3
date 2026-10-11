@@ -247,10 +247,24 @@ void blue(uint8_t* ram,recomp_context* source){
     recomp_context c;copy_recomp_context(c,*source);c.r29=int32_t(scratch);c.r31=0;
     drawing_underlay=true;
     dora3_texture_rect_state(ram,&c);
-    c.f12.fl=0;c.f14.fl=0;c.r6=320;c.r7=240;c.r31=0;
+    // The Original scaled leaf clips X below 2 and Y below 1, even
+    // with a full-screen scissor. Draw within that safe region, then move
+    // its emitted rectangles back; texel zero must cover screen zero.
+    const auto rect_begin=uint32_t(word(ram,0x801B1424));
+    c.f12.fl=2;c.f14.fl=1;c.r6=320;c.r7=240;c.r31=0;
     word(ram,scratch+0x10)=0x3F800000;word(ram,scratch+0x14)=0x3F800000;
     word(ram,scratch+0x18)=int32_t(blue_asset+48);word(ram,scratch+0x1C)=int32_t(blue_asset+16);word(ram,scratch+0x20)=0;
     dora3_scaled_texture_rect(ram,&c);
+    const auto rect_end=uint32_t(word(ram,0x801B1424));
+    for(auto p=rect_begin;p+8<=rect_end;p+=8) {
+        if((uint32_t(word(ram,p))>>24)!=0xE4)continue;
+        for(unsigned j=0;j<2;++j) {
+            const auto w=uint32_t(word(ram,p+4*j));
+            const auto x=(w>>12)&0xFFF,y=w&0xFFF;
+            if(x<8||y<4)throw std::logic_error("Widescreen blue rectangle bounds");
+            word(ram,p+4*j)=int32_t((w&0xFF000000)|((x-8)<<12)|(y-4));
+        }
+    }
     drawing_underlay=false;layout=saved;apply(ram);
     // Restore the bitmap pipeline before the caller's own texture/TLUT load.
     dora3_texture_rect_state(ram,&c);

@@ -5,9 +5,11 @@
 #include <cstdint>
 
 // Game-thread input ownership. SI continues to sample on real VI; native
-// updates consume edges once, independently of the original update cadence.
+// updates consume edges once. Player 1 B is first arbitrated by the original
+// contact/dialogue update, shared by all weapon press/hold/release modes.
 void native_input_begin(uint8_t*,dora3::native_time::Nanoseconds =0);
 void native_input_reset();
+void native_input_commit_source_b(uint8_t* rdram);
 void native_input_end(uint8_t*);
 dora3::native_time::Nanoseconds native_input_next_sample(dora3::native_time::Nanoseconds,dora3::native_time::Nanoseconds);
 extern "C" void dora3_native_input_sample(uint8_t*,recomp_context*);
