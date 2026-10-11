@@ -1883,6 +1883,8 @@ constexpr std::array scene_stores{
     SceneStore{0x129A30,0x8022DD34,0x10,false,EquationKind::angle,0,0x0,0,0x0},
     SceneStore{0x129A30,0x8022DEF0,0x10,false,EquationKind::angle,0,0x0,0,0x0},
     SceneStore{0x14D4C0,0x8023DE64,0x10,false,EquationKind::angle,0,0x0,0,0x0},
+    // Both Park Dez wheels share this +2-degree roll; gondolas derive their pose from it.
+    SceneStore{0x14D4C0,0x8023ECCC,0x14,false,EquationKind::angle,0,0x0,0,0x0},
     SceneStore{0x14FD20,0x8023D884,0x14,false,EquationKind::angle,0,0x0,0,0x0},
     SceneStore{0x126BA0,0x8022EB1C,0x10,false,EquationKind::angle,0,0x0,0,0x0},
     SceneStore{0x154A90,0x8023DE30,0x14,false,EquationKind::angle,0,0x0,0,0x0},
@@ -2220,11 +2222,12 @@ extern "C" void dora3_native_enemy_equation(uint8_t* rdram,recomp_context* ctx,u
             // The orbit consumes short34 BEFORE its +2 store at300C8. Its
             // published sample belongs to the interval ending at that phase.
             const unsigned axis=site==0x8023004C?0:site==0x80230068?1:2;
-            value={actor+0x9C+4*axis,axis==1?EquationKind::cosine:EquationKind::sine,0,ctx->f0.fl};
+            // Original: X=cos(phase)*sin(heading), Y=sin(phase), Z=cos(phase)*cos(heading).
+            value={actor+0x9C+4*axis,axis==1?EquationKind::sine:EquationKind::cosine,0,ctx->f0.fl};
             value.phase=double(MEM_H(0x34,int32_t(physical)))-2;value.step=2;
             value.radians=rom_double(rdram,0x80230718);value.amplitude=300;
             const double heading=double(real(rdram,physical+0x58))*value.radians;
-            if(axis!=1)value.amplitude*=axis==0?std::cos(heading):std::sin(heading);
+            if(axis!=1)value.amplitude*=axis==0?std::sin(heading):std::cos(heading);
             value.base=double(MEM_H(int32_t(0xBE + 2*axis),int32_t(physical)));
             value.before=value.evaluate(0);
         } else if(site==0x8022F274||site==0x8022FB30||site==0x802300E0||site==0x8023021C) {

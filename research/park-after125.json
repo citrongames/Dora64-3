@@ -1,0 +1,101 @@
+{
+  "base_commit": "1432c9b1b6b33ae06a45c9603350875c038d7956",
+  "room": 209,
+  "source_fingerprints": [
+    {
+      "section": ".cave_slot1",
+      "address": "0x8022FE6C",
+      "size": 720,
+      "sha256": "47af9b31e77f30073e78609d21dc963863bc5a4ad866b93b7e755602da8b86f4"
+    },
+    {
+      "section": ".scene1",
+      "address": "0x801C2E94",
+      "size": 412,
+      "sha256": "c9b48a309d337b334d9520f560d86f5b24aa9fcad7346f28caeddfbd2b8b3c2c"
+    },
+    {
+      "section": ".scene1",
+      "address": "0x801C7D44",
+      "size": 104,
+      "sha256": "fb4585fbedc8b6fdf83feecf3ee97cfbde93090cdc640084d2e7c248b9df2ed8"
+    },
+    {
+      "section": ".scene1",
+      "address": "0x801C7E70",
+      "size": 112,
+      "sha256": "9109a6847f7b515b1662972df1b6b6a1bd562e20d519846a22870e5db3934f39"
+    }
+  ],
+  "wheel": {
+    "rom": "0x14D4C0",
+    "kinds": [
+      562,
+      563
+    ],
+    "function": "0x8023ECA0",
+    "size": 56,
+    "sha256": "01a64a4560b053f93145b8970c2a0c84c13918eae963a5a2abd909e000d01c14",
+    "site": "0x8023ECCC",
+    "expected_word": "0xE4400014",
+    "rate": "2 degrees per Source period",
+    "gondola": "564 / ED3C / pure original roll+translation matrix, original four anchors; existing fractional attachment now receives fractional roll",
+    "player_carry": [
+      "801C0084",
+      "801BFE60"
+    ]
+  },
+  "ghost": {
+    "kind": 310,
+    "rom": "0x142670",
+    "function": "0x8022FE6C",
+    "stores": [
+      "8023004C",
+      "80230068",
+      "80230084"
+    ],
+    "fix": "Correct sine/cosine basis and heading axes; preserve original radius, preincrement phase, anchor and FSM"
+  },
+  "shadow": {
+    "draw_chain": [
+      "801BB470",
+      "801BD860",
+      "801BD5D0"
+    ],
+    "reads": [
+      "actor+9C",
+      "actor+A0",
+      "actor+A4"
+    ],
+    "terrain_query": "80040104",
+    "position": [
+      "801BD74C",
+      "801BD750",
+      "801BD780"
+    ],
+    "scale": [
+      "801BD7B8",
+      "801BD7BC",
+      "801BD7C4"
+    ],
+    "policy": "Already recomputed per drawn frame from current ghost XYZ; no extra patch"
+  },
+  "belt": {
+    "surface": "F4",
+    "state": 61,
+    "clip": 5,
+    "constructor": "801C7D44",
+    "repeat_call": "801C2FC8",
+    "pose_before_advance": "8002A1D8 then 8002A1E8",
+    "fix": "Hold visible time0 only for verified repeated grounded start pose, completed Native slice/model/run; do not change guest animation counters or movement",
+    "exit": "F4 departure sets launch counter and +30 vertical impulse in 7E70; hold no longer requested"
+  },
+  "validation": {
+    "static_only": true,
+    "tests_executed": false,
+    "game_launched": false,
+    "build": "Windows Release126 incremental",
+    "gameplay": "owner confirmed test126 on 2026-10-11",
+    "commit_push_authorized": true
+  }
+}

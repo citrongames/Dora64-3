@@ -25918,6 +25918,16 @@
       "operation": "native_enemy_equation",
       "evidence": "Source state100 after presenting pass: copy physics+4 into actor+10 after either +/-10-degree turn and walking. Carry the existing captured angular equation; entry, target snap, dialogue and movement commands stay Source.",
       "role": "dakuto_keeper_pass_visual_yaw_copy"
+    },
+    {
+      "section": ".demo_slot2",
+      "function": "0x8023ECA0",
+      "function_name": "dora3_s6_demo_8023ECA0",
+      "function_sha256": "01a64a4560b053f93145b8970c2a0c84c13918eae963a5a2abd909e000d01c14",
+      "site": "0x8023ECCC",
+      "expected_word": "0xE4400014",
+      "operation": "native_enemy_equation",
+      "evidence": "ROM14D4C0 Wheel1/2 kinds562/563 state2: actor+14 = wrap(actor+14 + 2). Gondola564 pure parent matrix already samples this roll each Native slice. State1 hold and constructor/contacts remain Source."
     }
   ]
 }

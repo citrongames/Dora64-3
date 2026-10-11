@@ -50,6 +50,7 @@ struct TerminalPoseIntent {
     float duration;
     std::optional<SimulationSlice> native_slice{};
 };
+struct NativePoseHold {uint64_t run;SimulationSlice slice;float time;};
 struct NativeAnimationClock {
     long double time;
     long double origin=0;
@@ -105,6 +106,7 @@ struct Model {
     std::vector<Bone> bones;
     std::optional<Observation> observation;
     std::optional<TerminalPoseIntent> terminal_pose;
+    std::optional<NativePoseHold> pose_hold;
     std::optional<float> last_pose;
     bool sampled=false;
     bool native_pose=false;
@@ -420,6 +422,22 @@ void ModelAnimation::terminal_model_pose(uint8_t* rdram,uint32_t model) {
     entry.terminal_pose=TerminalPoseIntent{entry.run,s.step,channels,descriptors,duration,
         slice?std::optional<SimulationSlice>{*slice}:std::nullopt};
 }
+void ModelAnimation::hold_native_pose(uint8_t* rdram,uint32_t model,float time) {
+    const auto* slice=active_simulation_slice();
+    const auto found=state_->models.find(model);
+    if(state_->frame || !slice || found==state_->models.end())return;
+    auto& entry=found->second;
+    if(!entry.native_clock || !entry.native_clock->last_slice)return;
+    const auto& clock=*entry.native_clock;
+    const auto& last=*clock.last_slice;
+    if(last.tick!=slice->tick || last.denominator!=slice->denominator ||
+       last.phase!=slice->phase || last.numerator!=slice->numerator ||
+       clock.expected_time!=word(rdram,model+0x64) ||
+       clock.channels!=uint32_t(word(rdram,model+0x60)) ||
+       clock.descriptors!=uint32_t(word(rdram,model+0x18)) ||
+       !std::isfinite(time) || time<0 || time>clock.duration)return;
+    entry.pose_hold=NativePoseHold{entry.run,*slice,time};
+}
 void ModelAnimation::reset() {
     if(state_->frame)throw std::logic_error("Model reset during active frame");
     *state_=State{};
@@ -678,7 +696,7 @@ void ModelAnimation::advance_simulation(uint8_t* rdram,recomp_context* ctx) {
     const auto model=uint32_t(ctx->r4);region(model,0x84);
     auto found=state_->models.find(model);
     if(found==state_->models.end())throw std::logic_error("Unregistered model in native simulation");
-    auto& entry=found->second;entry.observation.reset();entry.original_continuation.reset();
+    auto& entry=found->second;entry.observation.reset();entry.original_continuation.reset();entry.pose_hold.reset();
     word(rdram,0x80082724)=int32_t(model); // Original shared model selector.
     entry.source_pool=state_->source_pool;
     if(entry.source_command_hold) {
@@ -1038,6 +1056,13 @@ void ModelAnimation::begin_frame(uint8_t* rdram,recomp_context* ctx,Nanoseconds 
                         // instead of flashing a wrapped start of the previous clip.
                         time=clock.end_direction<0?0:terminal->duration;
                     }
+                }
+                if(entry.pose_hold && entry.pose_hold->run==entry.run && entry.native_clock->last_slice) {
+                    const auto& hold=*entry.pose_hold;
+                    const auto& last=*entry.native_clock->last_slice;
+                    if(hold.slice.tick==last.tick && hold.slice.denominator==last.denominator &&
+                       hold.slice.phase==last.phase && hold.slice.numerator==last.numerator)
+                        time=hold.time;
                 }
                 for(auto& bone:entry.bones)
                     for(unsigned k=0;k<9;++k)bone.transform[k]=word(rdram,bone.address+0x14+4*k);

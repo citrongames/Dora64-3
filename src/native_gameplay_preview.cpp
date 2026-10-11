@@ -4407,6 +4407,18 @@ void native_gameplay_preview_update(uint8_t* rdram,recomp_context* original,Nano
                 }
                 motion_call=false;
                 if(!current() || !active_simulation_slice())return;
+                // F4 carries at speed50, then launches on leaving the strip.
+                // Original 2FC8 rebinds clip5 to time0 before EVERY ground frame;
+                // its pose-before-advance therefore stays still. Keep the same
+                // visible pose between our Source resets, without freezing the
+                // real clock or the launch animation after leaving F4.
+                const auto belt_actor=uint32_t(word(rdram,0x8021D49C));
+                const auto belt_physical=uint32_t(word(rdram,0x8021D4B0));
+                const auto belt_control=uint32_t(word(rdram,0x8021D6C0));
+                if(word(rdram,belt_actor+0x94)==61 && word(rdram,0x8021D4B8)==0xF4 &&
+                   (word(rdram,0x8021D68C)&2) && MEM_H(0x44,int32_t(belt_physical))==0 &&
+                   word(rdram,belt_control+8)==5)
+                    game_model_animation().hold_native_pose(rdram,uint32_t(word(rdram,belt_actor+0x74)),0.f);
                 bool born=false;
                 for(unsigned i=0;i<projectile_before.size();++i) {
                     const auto actor=0x804B24C8u+i*0xCC;

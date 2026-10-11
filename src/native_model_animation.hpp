@@ -38,6 +38,9 @@ public:
     // Exact object-end getter return: a0 is the queried component's model.
     // Works for native actors and Source-only models; does not change time/flags.
     void terminal_model_pose(uint8_t*,uint32_t model);
+    // A reviewed repeating Source reset can hold its visible start pose for
+    // this completed Native slice without changing clock, cues or physics.
+    void hold_native_pose(uint8_t*,uint32_t model,float time);
     // Split continuous updates at a real clip boundary. A dependent action
     // then observes the end pulse before integrating the remaining interval.
     // The optional plan identifies only models actually advanced by this
