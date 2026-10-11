@@ -22,3 +22,51 @@ local.properties
 
 # Private diagnostic game-memory captures
 *.snapshot
+
+# Local build trees, compiled output and staging manifests
+/build/
+/out/
+/dist/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+*.obj
+*.o
+*.a
+*.lib
+*.exe
+*.dll
+*.so
+*.so.*
+*.dylib
+*.pdb
+*.ilk
+/stage-manifest.json
+
+# Local runtime data and diagnostics
+/saves/
+/logs/
+/mods/
+/mod_config/
+/mods.json
+/mods.json.bak
+/port_pc_settings.json
+/port_input_settings.json
+/port-settings.json
+/doraemon_pc_settings.json
+*.log
+*.dmp
+*.orig
+*.bak
+/core
+/core.*
+
+# Editors, operating systems and local credentials
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example

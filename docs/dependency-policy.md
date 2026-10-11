@@ -1,3 +1,15 @@
+## Уточнение после test115 (2026-10-11)
+
+Все32 checkout сверены статически с lock: HEAD/origin совпадают, tracked-изменений
+и alternates нет. Dora64 чистый на прежнем680d81f. За время разработки адаптеров
+стало больше: runtime scheduling, RT64 pacing/readback/lifetime/performance,
+widescreen и sprite edges. Их код хранится в tools/ и src/ Dora64-3, а выходные
+копии создаются внутри build-directory через research/runtime/CMakeLists.txt.
+Закреплённые библиотеки остаются неизменными; создавать/обновлять общие форки
+для этой уборки не требуется. Ранние разделы ниже описывают развитие схемы.
+Отдельный генератор N64Recomp по-прежнему имеет собственный lock и patch.
+См. [правила репозитория](repository-policy.md) и [сборку](building.md).
+
 # Изоляция зависимостей Dora64-3
 
 ## Принятое устройство

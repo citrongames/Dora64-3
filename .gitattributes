@@ -3,3 +3,9 @@
 *.sh text eol=lf
 *.toml text eol=lf
 *.patch text eol=lf whitespace=-blank-at-eol
+
+# Authored raster/font assets must never undergo line-ending conversion.
+*.png binary
+*.bmp binary
+*.ico binary
+*.aseprite binary
