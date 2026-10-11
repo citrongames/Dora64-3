@@ -1,0 +1,57 @@
+{
+  "scope": "Static ROM/source investigation; no game, tests, CPU checks or renderer executed",
+  "sand": {
+    "room": "801FE6D0",
+    "stage": 200,
+    "sequences": [
+      "801FD478",
+      "801FD484"
+    ],
+    "bank": 51,
+    "bitmap_ids": [
+      "0239..023F",
+      "0240..0247"
+    ],
+    "format": "CI4 64x64",
+    "duration_source_updates": 2,
+    "distinct_pixel_trajectories": [
+      3474,
+      4085
+    ],
+    "fix": "Retain authored bitmap/palette frames on the two verified room channels; no fixed 16-class palette approximation"
+  },
+  "robot": {
+    "overlay_rom": "000D5D10",
+    "root_kind": 348,
+    "body_kind": 349,
+    "hob_kind": 353,
+    "body_script": "8022116C",
+    "model_bank": 0,
+    "model_id": "05C9",
+    "face_bitmaps": [
+      "05CD",
+      "05CE"
+    ],
+    "identity": "Extracted face bitmap05CD matches the attached teal/gray robot with red eye; not Doridori320",
+    "heading": {
+      "function": "802205A8",
+      "source_publish": "802206F8",
+      "queue_shift": "80220710..80220728",
+      "bug": "Native pose prefix rereads already shifted queue head and overwrites the continuous old-head equation",
+      "fix": "Republish captured yaw equation after pose-only attachment, before recording attachment headings"
+    },
+    "ground": {
+      "function": "8021E238",
+      "pose_prefix_end": "8021E514",
+      "source_ground_tail": "8021E6C8..8021E700",
+      "bug": "Native prefix copies root ground Y but Source endpoint uses child-specific ground/collision offset",
+      "fix": "Continue immutable parent motion with actual Source child offset for kind349; preserve exact endpoint and discrete collision commands"
+    }
+  },
+  "pending": "None for the accepted Windows test125 scope; release archives121 and Android006 unchanged",
+  "owner_acceptance": {
+    "date": "2026-10-11",
+    "build": "test125",
+    "result": "User confirmed success and authorized commit/push of the accumulated fixes"
+  }
+}

@@ -25907,6 +25907,17 @@
       "operation": "native_enemy_equation",
       "role": "bironn_death_visual_yaw",
       "evidence": "ROM death10 calls Angle(actor yaw +30) then stores visual yaw; child unlink, gravity and retirement stay Source commands."
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x80232698",
+      "function_name": "dora3_s44_remaining_80232698",
+      "function_sha256": "a8a80c72f54d0ea14db5e182e0653762302f331d3bc3251a1ffae3c42641c093",
+      "site": "0x802328F4",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "Source state100 after presenting pass: copy physics+4 into actor+10 after either +/-10-degree turn and walking. Carry the existing captured angular equation; entry, target snap, dialogue and movement commands stay Source.",
+      "role": "dakuto_keeper_pass_visual_yaw_copy"
     }
   ]
 }

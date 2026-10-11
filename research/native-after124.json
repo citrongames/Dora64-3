@@ -1,0 +1,79 @@
+{
+  "scope": "Static original code/ROM analysis only; no runtime tests or game execution",
+  "brobo": {
+    "overlay_rom": "000D5D10",
+    "body_function": "8021E238",
+    "root_kind": 348,
+    "body_kind": 349,
+    "hob_kind": 353,
+    "reflected_heading": [
+      "8021E538",
+      "8021E594"
+    ],
+    "rollback_root": [
+      "8021E5AC",
+      "8021E5C4"
+    ],
+    "rollback_body": [
+      "8021E5D4",
+      "8021E5EC"
+    ],
+    "rollback_earlier_parts": [
+      "8021E64C",
+      "8021E65C"
+    ],
+    "cause": "Source full-step rollback was applied to fractional earlier-part coordinates; captured parent motion continued into collision",
+    "fix": "Publish Source endpoints for earlier linked parts; preserve changed corrected X/Z as holds for the remaining period, retaining Source velocity and reflected heading"
+  },
+  "flame": {
+    "overlay_rom": "00121280",
+    "kind": 373,
+    "function": "80230968",
+    "pure_camera_prefix": "80230968..802309C0",
+    "growth_stores": [
+      "80230C1C",
+      "80230C24",
+      "80230C28"
+    ],
+    "shrink_stores": [
+      "80230CD0",
+      "80230CD8",
+      "80230CDC"
+    ],
+    "opacity": "80230D14",
+    "cause": "Own camera-facing prefix changed yaw before external-command detection, clearing unfinished scale equations",
+    "fix": "Detect external changes before camera prefix, retain new billboard yaw without canceling scale/fade continuation"
+  },
+  "sand": {
+    "sequences": [
+      "801FD478",
+      "801FD484"
+    ],
+    "resource_cycles": [
+      "0239..023F",
+      "0240..0247"
+    ],
+    "colors_in_authored_cycles": [
+      19,
+      13
+    ],
+    "fix": "Per-pixel actual-color interpolation, dynamic CI4 indices with whole-cycle stable 16-color palette; nearest weighted color merges only for first cycle",
+    "storage": "64x64 CI4, 2048 texel bytes + 32 palette bytes in leased frame bank; Source assets unchanged",
+    "guards": "Only verified sequence/index/duration/segment pairs; bitmap dimensions, palette count, terminator and opaque texels validated; frame-local palette/sample caches; allocation fallback retains Source bindings",
+    "limitation": "16-color approximation remains; owner confirmed the visual result in test125"
+  },
+  "validation": {
+    "tests_executed": false,
+    "game_launched": false,
+    "renderer_launched": false,
+    "generated_code_changed": false,
+    "build": "Incremental Windows Release test125",
+    "gameplay": "owner confirmed test125"
+  },
+  "pending": "None for the accepted Windows test125 scope; release archives121 and Android006 unchanged",
+  "owner_acceptance": {
+    "date": "2026-10-11",
+    "build": "test125",
+    "result": "User confirmed success and authorized commit/push of the accumulated fixes"
+  }
+}

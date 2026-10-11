@@ -1245,6 +1245,9 @@ struct Period {
     std::vector<uint64_t> command;
     std::array<float,3> initial_position{},velocity{},expected_position{},expected_velocity{};
     std::array<float,2> initial_yaw{},turn{},proposal_yaw{},expected_yaw{};
+    // A reviewed Brobo child collision can undo an already visited actor's
+    // Source X/Z step. Hold the corrected endpoint for the rest of this period.
+    std::array<std::optional<float>,3> collision_hold{};
     std::optional<Gravity> gravity{};
     std::vector<Equation> equations{};
     ModelEventCheckpoint model_events{};
@@ -1377,13 +1380,15 @@ std::complex<double> harmonic_sum(double phase,double omega,double age,double sp
 class SourceParentView {
     uint8_t* ram;
     std::optional<Identity> owner;
-    struct Field {uint32_t address;int32_t saved,published;};
+    struct Field {Identity target;uint32_t address;int32_t saved,published;};
+    bool brobo_collision=false;
     std::vector<Field> fields;
-    void publish(uint32_t address,float value) {
+    void publish_target(const Identity& target,uint32_t address,float value) {
         uint8_t* rdram=ram;
         const auto bits=std::bit_cast<int32_t>(value);
-        fields.push_back({address,word(rdram,address),bits});MEM_W(0,int32_t(address))=bits;
+        fields.push_back({target,address,word(rdram,address),bits});MEM_W(0,int32_t(address))=bits;
     }
+    void publish(uint32_t address,float value) {publish_target(*owner,address,value);}
 public:
     SourceParentView(uint8_t* rdram,const Identity& child):ram(rdram) {
         const auto kind=MEM_H(0x20,int32_t(child.physical));
@@ -1397,6 +1402,24 @@ public:
         const auto& parent=*stored;
         // A real command/write after the earlier pool entry owns its fields.
         if(!unchanged(rdram,parent))return;
+        brobo_collision=child.rom==0xD5D10&&child.kind==349&&word(rdram,child.actor+0x94)==1&&
+            owner->rom==0xD5D10&&owner->kind==348;
+        if(brobo_collision) {
+            // E5A0..E65C also rewinds earlier linked parts. Their visible
+            // fractional positions are not the operands the Source pool read.
+            const int count=2*MEM_H(0x42,int32_t(owner->physical));
+            for(int n=0;n<count;++n) {
+                const int slot=MEM_H(0x80+2*n,int32_t(owner->physical));
+                if(slot<30||slot>=dora3::distance::common_end)continue;
+                const auto part=identity(rdram,pool+unsigned(slot)*stride);
+                if(!part||part->actor>=child.actor||part->actor==owner->actor||part->rom!=0xD5D10||
+                   (part->kind!=349&&part->kind!=353))continue;
+                const auto& motion=periods[index(part->actor)];
+                if(!motion||!same(motion->owner,*part)||!unchanged(rdram,*motion))continue;
+                for(const unsigned axis:{0u,2u})
+                    publish_target(*part,part->actor+0x9C+4*axis,motion->source_endpoint_position[axis]);
+            }
+        }
         for(unsigned axis=0;axis<3;++axis)
             publish(owner->actor+0x9C+4*axis,parent.source_endpoint_position[axis]);
         if(kind==406)for(const auto& equation:parent.equations)
@@ -1415,8 +1438,30 @@ public:
         const auto current=identity(ram,owner->actor);
         if(!current||!same(*current,*owner))return;
         uint8_t* rdram=ram;
-        for(const auto& field:fields)
-            if(word(rdram,field.address)==field.published)MEM_W(0,int32_t(field.address))=field.saved;
+        for(const auto& field:fields) {
+            const auto target=identity(rdram,field.target.actor);
+            if(!target||!same(*target,field.target))continue;
+            if(word(rdram,field.address)==field.published) {
+                MEM_W(0,int32_t(field.address))=field.saved;continue;
+            }
+            if(!brobo_collision)continue;
+            auto& motion=periods[index(target->actor)];
+            if(!motion||!same(motion->owner,*target))continue;
+            const float corrected=real(rdram,field.address);
+            // This Source branch cancels movement, not velocity. Keep the
+            // original velocity for the next recoil command, but do not drift
+            // into the obstacle again on the remaining Native slices.
+            for(const unsigned axis:{0u,2u})if(field.address==target->actor+0x9C+4*axis) {
+                motion->collision_hold[axis]=corrected;
+                motion->initial_position[axis]=motion->expected_position[axis]=
+                    motion->source_endpoint_position[axis]=corrected;
+            }
+            if(field.address==target->physical+4) {
+                motion->initial_yaw[1]=motion->proposal_yaw[1]=motion->expected_yaw[1]=corrected;
+                motion->source_endpoint_angles[3]=corrected;motion->turn[1]=0;
+                std::erase_if(motion->equations,[&](const auto& e){return e.address==field.address;});
+            }
+        }
     }
 };
 }
@@ -1463,6 +1508,9 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
             // and fading actors spuriously cancel their opacity equation.
             if(MEM_BU(0xC8,int32_t(owner->physical))==0&&MEM_BU(0x29,int32_t(owner->physical))==0)
                 MEM_B(0x2A,int32_t(owner->physical))=int8_t(previous->callback_opacity_flag);
+            // Camera-facing geometry below is our own write, not an external
+            // command. Check before it so it cannot cancel scale/growth/fade.
+            const bool motion_unchanged=unchanged(rdram,*previous);
             if(owner->kind==373&&word(rdram,actor+0x94)==1) {
                 // This family's Source geometry before its entry/FSM reads
                 // the current camera. Repeat only that proven pure prefix;
@@ -1470,8 +1518,12 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
                 recomp_context pose;dora3::copy_recomp_context(pose,*ctx);
                 struct VisualOnly {VisualOnly(){attachment_only=true;}~VisualOnly(){attachment_only=false;}} visual_only;
                 {SimulationSuspension source;update(rdram,&pose);}
+                if(motion_unchanged) {
+                    previous->initial_yaw[0]=previous->proposal_yaw[0]=real(rdram,actor+0x10);
+                    previous->turn[0]=0;
+                }
             }
-            if(unchanged(rdram,*previous))return 1;
+            if(motion_unchanged)return 1;
             // A displacement/impulse/seek is a motion command. It must not
             // consume another wait counter, RNG draw or attack command.
             auto& v=*previous;v.start_phase=slice.phase;v.gravity.reset();v.projection.reset();v.equations.clear();v.opacity.reset();
@@ -1481,7 +1533,7 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
             }
             v.initial_yaw=v.proposal_yaw=v.expected_yaw={real(rdram,actor+0x10),real(rdram,owner->physical+4)};v.turn={};
             v.acceleration=word(rdram,owner->physical+0x1C);
-            v.attachment_motion.reset();v.attachment_axes={};v.historical_attachment=false;
+            v.attachment_motion.reset();v.attachment_axes={};v.historical_attachment=false;v.collision_hold={};
             v.attachment_source_position=v.initial_position;
             for(unsigned j=0;j<3;++j)v.source_endpoint_position[j]=float(double(v.initial_position[j])+double(v.velocity[j])*(1-double(slice.phase)/slice.denominator));
             v.source_endpoint_angles={real(rdram,actor+0xC),real(rdram,actor+0x10),real(rdram,actor+0x14),real(rdram,owner->physical+4)};
@@ -1671,6 +1723,9 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
         bool xyz=(after->rom==0xF8A40&&(kind==411||kind==412||kind==425||(kind==415&&MEM_H(0x44,int32_t(after->physical))>=3)))||
             (after->rom==0x111E70&&(kind==455||kind==456||kind==469||(kind==459&&MEM_H(0x44,int32_t(after->physical))>=3)))||
             (after->rom==0x10DA30&&kind==447)||(after->rom==0x108730&&kind==441)||(after->rom==0x11D570&&(kind==473||(kind==475&&state==1)));
+        const bool brobo_part=after->rom==0xD5D10&&kind==349&&state==1&&
+            value.parent->rom==0xD5D10&&value.parent->kind==348;
+        xyz=xyz||brobo_part;
         value.attachment_axes={xyz,xyz,xyz};
         if(((kind==415&&after->rom==0xF8A40)||(kind==459&&after->rom==0x111E70))&&MEM_H(0x44,int32_t(after->physical))==2)value.attachment_axes[1]=true;
         const auto& parent=periods[index(value.parent->actor)];
@@ -1801,6 +1856,8 @@ constexpr std::array scene_stores{
     SceneStore{0x1398A0,0x80232070,0x10,false,EquationKind::angle,0,0x0,0,0x0},
     SceneStore{0x1398A0,0x802327FC,0x4,true,EquationKind::angle,0,0x0,0,0x0},
     SceneStore{0x1398A0,0x802328B8,0x4,true,EquationKind::angle,0,0x0,0,0x0},
+    // Keeper pass sequence copies its captured movement yaw to the visible body.
+    SceneStore{0x1398A0,0x802328F4,0x10,false,EquationKind::angle,0,0x0,0,0x4},
     SceneStore{0x154A90,0x8023E18C,0x4,true,EquationKind::angle,0,0x0,0,0x0},
     SceneStore{0x154A90,0x8023E5C0,0x4,true,EquationKind::angle,0,0x0,0,0x0},
     SceneStore{0x154A90,0x8023E420,0x0,true,EquationKind::linear,0,0x0,0,0x0},
@@ -3938,7 +3995,12 @@ std::pair<float,float> sample_period_motion(const Period& v,double age,unsigned 
     // Keep the actual Source endpoint bits even after live attachment fields
     // have been evaluated for an earlier Native slice.
     if(age==1)return {v.source_endpoint_position[axis],v.velocity[axis]};
-    if(v.historical_attachment&&v.attachment_motion&&v.attachment_axes[axis]) {
+    if(v.collision_hold[axis])return {*v.collision_hold[axis],v.velocity[axis]};
+    // RealT1's Source tail grounds/corrects the child separately from its
+    // root. Carry that Source offset through the same parent motion on every
+    // slice; the pure attachment prefix alone loses it on slopes/contacts.
+    const bool brobo_part=owner->rom==0xD5D10&&owner->kind==349;
+    if((v.historical_attachment||brobo_part)&&v.attachment_motion&&v.attachment_axes[axis]) {
         if(age==1)return {v.source_endpoint_position[axis],v.velocity[axis]};
         const auto parent=sample_period_motion(*v.attachment_motion,v.attachment_start_age+age,axis);
         return {float(double(parent.first)+v.attachment_offsets[axis]+double(v.velocity[axis])*age),v.velocity[axis]};
@@ -4387,6 +4449,15 @@ int native_enemy_axis(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
             for(unsigned j=0;j<3;++j)v.initial_position[j]=real(rdram,actor+0x9C+4*j);
             // Attachment owns both headings at this instant. The old period
             // proposal must not overwrite its newly evaluated parent pose.
+            if(owner->rom==0xD5D10&&kind==353) {
+                // Hob's Source command shifted the six-entry heading queue
+                // after publishing its OLD head (206F8, then 20710..20728).
+                // The pose-only prefix copies the now NEW head over the
+                // fractional equation. Restore the captured old-head path;
+                // otherwise every Native slice shows a future stepped yaw.
+                for(const auto& equation:v.equations)
+                    if(equation.address==actor+0x10)put(rdram,equation.address,equation.evaluate(age));
+            }
             v.initial_yaw=v.proposal_yaw={real(rdram,actor+0x10),real(rdram,owner->physical+4)};
             v.turn={};
         }

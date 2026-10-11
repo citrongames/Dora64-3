@@ -1,0 +1,32 @@
+{
+  "base_commit": "5dbd2d46a3a9842f495e7503ebd8b89d28c7062c",
+  "source_function_sha256": "a8a80c72f54d0ea14db5e182e0653762302f331d3bc3251a1ffae3c42641c093",
+  "kind": 65,
+  "rom": "0x1398A0",
+  "section": ".remaining_slot1_09",
+  "function": "0x80232698",
+  "site": "0x802328F4",
+  "expected_word": "0xE4800010",
+  "source_angle_sites": [
+    "0x802327FC",
+    "0x802328B8"
+  ],
+  "fix": "Copy captured physics+4 angular equation to actor+10, conditional on exact Source proposal match. No new turn/AI replay.",
+  "menu_audit": {
+    "roots": [
+      "801F3358",
+      "801F5C2C",
+      "801F6F44"
+    ],
+    "backdrop": "projection1 / 801F009C, stretched",
+    "frames": "8002A844 rectangles, aspect ADJUST2, original proportions",
+    "renderer": "tools/rt64_widescreen.py removes donor wideBackgroundProjection rectangle override",
+    "changes": "none"
+  },
+  "validation": "static ROM and source; generation and compile only; accepted by owner with test125",
+  "owner_acceptance": {
+    "date": "2026-10-11",
+    "build": "test125",
+    "result": "User confirmed success and authorized commit/push of the accumulated fixes"
+  }
+}
