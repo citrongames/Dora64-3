@@ -4,7 +4,7 @@
 namespace dora3::native_time {
 FrameProducer::FrameProducer(FrameBridge& bridge,WakeSender sender) {
     if (!sender) throw std::invalid_argument("Missing native wake sender");
-    thread_=std::jthread([&bridge,sender](std::stop_token stop) {
+    auto run=[&bridge,sender](StopToken stop) {
         while (!stop.stop_requested()) {
             // Read revision BEFORE readiness. Mutations in either gap force
             // wait() to return; acknowledgements cannot be lost before sleep.
@@ -17,9 +17,24 @@ FrameProducer::FrameProducer(FrameBridge& bridge,WakeSender sender) {
             }
             bridge.wait_for_change(seen,deadline,stop);
         }
-    });
+    };
+#ifdef __ANDROID__
+    bridge_=&bridge;
+    thread_=std::thread(run,StopToken{&stop_});
+#else
+    thread_=std::jthread(run);
+#endif
 }
-FrameProducer::~FrameProducer() { thread_.request_stop(); } // jthread joins before its referents may be destroyed.
+FrameProducer::~FrameProducer() {
+#ifdef __ANDROID__
+    stop_=true;
+    // Notify takes the same mutex as the wait predicate: no lost shutdown wake.
+    bridge_->notify_producer_stop();
+    if(thread_.joinable())thread_.join();
+#else
+    thread_.request_stop(); // jthread joins before referents can be destroyed.
+#endif
+}
 }
 namespace {
 struct RuntimeProducer {

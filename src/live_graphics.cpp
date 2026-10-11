@@ -9,6 +9,8 @@ void dora3_set_native_present_target(unsigned(*query)());
 #include "live_graphics.hpp"
 #include "app_icon.hpp"
 #include "live_io.hpp"
+#include "port_touch.hpp"
+#include "android_platform.hpp"
 #include "port_menu.hpp"
 #include "port_display.hpp"
 #include "rhi/rt64_render_hooks.h"
@@ -43,10 +45,12 @@ namespace RT64 {struct Workload;}
 void dora3_set_framebuffer_ram_policy(bool(*query)(RT64::State*,const RT64::Workload*));
 namespace {
 SDL_Window* live_window=nullptr;
+std::atomic_bool shader_loading{false};
 
 RT64::RenderHookDraw* previous_draw=nullptr;
 void count_output(plume::RenderCommandList* list,plume::RenderFramebuffer* framebuffer){
     if(previous_draw)previous_draw(list,framebuffer);
+    if(shader_loading.exchange(false))dora3::android::shader_loading(false);
     dora3::graphics_profile::add(dora3::graphics_profile::Counter::Output);
     dora3::port::record_output_frame();
     dora3::profile::output_frame();
@@ -103,9 +107,9 @@ class LiveContext final : public ultramodern::renderer::RendererContext {
         app->userConfig.resolutionMultiplier=s.resolution==1?2.0f:s.resolution==2?4.0f:1.0f;
         app->userConfig.downsampleMultiplier=1;
         app->userConfig.threePointFiltering=s.filtering==0;
-        // Display keeps donor interpolation; Manual uses native scene policies only.
+        // Manual uses native scene policies; renderer-side Display interpolation is disabled.
         // Original cadence is the fallback until a scene policy has been reviewed.
-        app->userConfig.refreshRate=(native || s.frame_rate_mode==2)?U::RefreshRate::Original:s.frame_rate_mode==1?U::RefreshRate::Display:U::RefreshRate::Original;
+        app->userConfig.refreshRate=U::RefreshRate::Original;
         applied_native=native;
         app->userConfig.refreshRateTarget=s.frame_rate_limit;
         applied_rate=s.frame_rate_mode;applied_limit=s.frame_rate_limit;
@@ -146,7 +150,7 @@ public:
         core.VI_X_SCALE_REG=&vi->VI_X_SCALE_REG;core.VI_Y_SCALE_REG=&vi->VI_Y_SCALE_REG;
         RT64::ApplicationConfiguration config{};
         config.appId="dora64-3-research";config.detectDataPath=false;
-        config.dataPath=recomp::get_config_path()/"rt64";config.useConfigurationFile=false;
+        config.dataPath=recomp::get_config_path();config.useConfigurationFile=false;
         config.updateOverlayInput=dora3::port::overlay_input;
         config.drawOverlay=dora3::port::draw_overlay;
         app=std::make_unique<RT64::Application>(core,config);
@@ -160,7 +164,11 @@ public:
         apply_graphics();
         previous_draw=RT64::GetRenderHookDraw();
         RT64::SetRenderHooks(RT64::GetRenderHookInit(),count_output,RT64::GetRenderHookDeinit());
+#ifdef __ANDROID__
+        shader_loading=true;dora3::android::shader_loading(true);
+#endif
         const auto result=app->setup(0);
+        if(result!=RT64::Application::SetupResult::Success){shader_loading=false;dora3::android::shader_loading(false);}
         DORA3_LOG(stderr,"LIVE RT64 SETUP result=%u\n",unsigned(result));
         if(result!=RT64::Application::SetupResult::Success)std::_Exit(84);
         static_assert(sizeof(RT64::RSP::Light)==16);
@@ -301,6 +309,7 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
     dora3::frame::enable();
     dora3::retirement::enable();
     dora3::port::initialize(recomp::get_config_path());
+    dora3::touch::initialize(recomp::get_config_path());
     dora3_configure_live_input(cfg);
     DORA3_LOG(stderr,"LIVE SESSION: no time or graphics-task limit\n");
     cfg.events_callbacks.gfx_task_submitted_callback=[](uint8_t*,uint32_t dl,uint32_t bytes){
@@ -314,9 +323,15 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
         SDL_SetMainReady();
         SDL_SetHint(SDL_HINT_APP_NAME,"Dora64-3");
         SDL_SetHint("SDL_VIDEO_X11_WMCLASS","dora64-3");
+#ifdef __ANDROID__
+        SDL_SetHint(SDL_HINT_ORIENTATIONS,"LandscapeLeft");
+#endif
         dora3_prepare_sdl_input();
         if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_EVENTS|SDL_INIT_GAMECONTROLLER|SDL_INIT_AUDIO)!=0){DORA3_LOG(stderr,"SDL: %s\n",SDL_GetError());std::_Exit(84);}
         uint32_t flags=SDL_WINDOW_RESIZABLE|SDL_WINDOW_ALLOW_HIGHDPI;
+#ifdef __ANDROID__
+        flags=SDL_WINDOW_FULLSCREEN_DESKTOP;
+#endif
         #ifndef _WIN32
         flags|=SDL_WINDOW_VULKAN;
         #endif
@@ -340,6 +355,13 @@ void dora3_configure_live_graphics(recomp::Configuration& cfg){
     cfg.gfx_callbacks.update_gfx=[](void*){
         SDL_Event event;
         while(SDL_PollEvent(&event)){
+#ifdef __ANDROID__
+            if(event.type==SDL_APP_WILLENTERBACKGROUND)dora3_audio_suspend(true);
+            else if(event.type==SDL_APP_DIDENTERFOREGROUND)dora3_audio_suspend(false);
+            if(event.type==SDL_KEYDOWN&&event.key.keysym.sym==SDLK_AC_BACK&&!event.key.repeat)
+                dora3::port::set_menu_open(!dora3::port::menu_open());
+#endif
+            dora3_live_input_event(event);
             if(event.type==SDL_QUIT)ultramodern::quit();
             if(event.type==SDL_MOUSEWHEEL)dora3_camera_mouse_wheel(float(event.wheel.y)*(event.wheel.direction==SDL_MOUSEWHEEL_FLIPPED?-1.f:1.f));
             if(event.type==SDL_DISPLAYEVENT)dora3::port::request_display_refresh();

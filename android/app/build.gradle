@@ -1,0 +1,76 @@
+plugins { id 'com.android.application' }
+
+final File generatedAssetsDir = layout.buildDirectory.dir('generated/dora3Assets').get().asFile
+final String cpuDir = (project.findProperty('dora3CpuDir') ?: '../../build-local/startup-wide-fruit114-v1').toString()
+final String audioDir = (project.findProperty('dora3AudioDir') ?: '../../build-local/audio-rsp-v1').toString()
+final Properties releaseSigning = new Properties()
+final String signingPath = System.getenv('DORA3_SIGNING_PROPERTIES')
+if (signingPath) {
+    file(signingPath).withInputStream { releaseSigning.load(it) }
+    ['storeFile', 'storePassword', 'keyAlias', 'keyPassword'].each {
+        if (!releaseSigning.getProperty(it)) throw new GradleException("Missing signing property: ${it}")
+    }
+}
+android {
+    namespace 'com.n64recomp.dora64three'
+    compileSdk 36
+    defaultConfig {
+        applicationId 'com.n64recomp.dora64three'
+        minSdk 24
+        targetSdk 36
+        versionCode 3
+        versionName '0.1-test3'
+        ndk { abiFilters 'arm64-v8a' }
+        externalNativeBuild { cmake {
+            targets 'dora3_startup'
+            arguments '-DDORA3_LIVE_RT64=ON', '-DDORA3_DIAGNOSTICS=OFF', '-DDORA3_GRAPHICS_PROFILE=OFF',
+                "-DDORA3_GENERATED_DIR=${file(cpuDir).absolutePath}",
+                "-DDORA3_AUDIO_GENERATED_DIR=${file(audioDir).absolutePath}",
+                "-DPython3_EXECUTABLE=${System.getenv('DORA3_HOST_PYTHON') ?: '/usr/bin/python3'}",
+                "-DDORA64_HOST_FILE_TO_C=${System.getenv('DORA3_HOST_FILE_TO_C') ?: ''}"
+        } }
+    }
+    signingConfigs {
+        if (signingPath) production {
+            storeFile file(releaseSigning.getProperty('storeFile'))
+            storePassword releaseSigning.getProperty('storePassword')
+            keyAlias releaseSigning.getProperty('keyAlias')
+            keyPassword releaseSigning.getProperty('keyPassword')
+        }
+    }
+    buildTypes {
+        release {
+            if (signingPath) signingConfig signingConfigs.production
+            debuggable false
+            jniDebuggable false
+            minifyEnabled false
+            externalNativeBuild { cmake { arguments '-DCMAKE_BUILD_TYPE=Release' } }
+        }
+        optimized {
+            initWith release
+            signingConfig signingConfigs.debug
+            matchingFallbacks = ['release']
+        }
+    }
+    ndkVersion '27.0.12077973'
+    externalNativeBuild { cmake {
+        path file('../../research/runtime/CMakeLists.txt')
+        version '3.22.1'
+        buildStagingDirectory file('../../build-local/android-cxx')
+    } }
+    sourceSets { main {
+        java.srcDirs += ['../../build-deps/lib/SDL2/android-project/app/src/main/java']
+        res.srcDirs += ['../../build-deps/lib/SDL2/android-project/app/src/main/res']
+        assets.srcDirs += [generatedAssetsDir]
+    } }
+}
+tasks.register('copyDora3Assets', Sync) {
+    from('../../assets') {
+        include 'icons/**', 'localization/*.json', 'localization/*.bmp'
+        include 'localization/en/**', 'localization/ru/**'
+        exclude '**/*_source.json'
+        into 'dora64three/assets'
+    }
+    into generatedAssetsDir
+}
+tasks.named('preBuild') { dependsOn tasks.named('copyDora3Assets') }

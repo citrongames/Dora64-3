@@ -21,3 +21,7 @@ SDL2 и вложенные библиотеки перечислены в depend
 остаются в собственных checkout. Общая лицензия порта не заменяет и не отменяет
 лицензии компонентов. Для будущего публичного бинарного выпуска требуется
 отдельная комплектация notices и лицензий всех распространяемых компонентов.
+
+Android Activity/Gradle infrastructure, mobile menu and touch state/layout/rendering
+adapted from citrongames/Dora64 at the commit above. Donor files and dependency
+checkouts were read-only; its game-specific address adapters were not copied.

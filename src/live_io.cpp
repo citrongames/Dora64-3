@@ -2,6 +2,7 @@
 // Platform adapter only: no game addresses, hooks or controller-state writes.
 #include "live_io.hpp"
 #include "port_menu.hpp"
+#include "port_touch.hpp"
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
@@ -45,7 +46,9 @@ void refresh_controllers() {
 }
 SDL_AudioDeviceID audio_device=0;
 uint32_t audio_rate=0;
-bool audio_enabled=true;
+bool audio_enabled=true,audio_suspended=false;
+uint32_t deferred_audio_rate=0;
+bool touch_center_held=false;
 [[noreturn]] void audio_error(){DORA3_LOG(stderr,"LIVE AUDIO ERROR %s\n",SDL_GetError());std::_Exit(87);}
 float axis(Sint16 value,float deadzone){
     const float magnitude=std::abs(int(value))/32767.0f;
@@ -75,7 +78,20 @@ void dora3_configure_live_input(recomp::Configuration& cfg){
         std::lock_guard lock(input_mutex);
         *buttons=0;*x=*y=0;
         if(!connected_locked(port))return false;
-        if(!dora3::port::menu_open()){*buttons=input[port].buttons;*x=input[port].x;*y=input[port].y;}
+        if(!dora3::port::menu_open()&&!dora3::touch::is_editing()){
+            *buttons=input[port].buttons;*x=input[port].x;*y=input[port].y;
+            if(port==0){
+                const auto touch=dora3::touch::read_input();
+                const bool center=(touch.buttons&0x2000)!=0;
+                auto virtual_buttons=touch.buttons;
+                if(dora3::camera::active()){
+                    if(center&&!touch_center_held)dora3::camera::center();
+                    virtual_buttons&=~uint16_t(0x10|0x800|0x400|0xF|0x2000);
+                }
+                touch_center_held=center;*buttons|=virtual_buttons;
+                if(touch.stickOwned){*x=touch.x;*y=touch.y;}
+            }
+        }else touch_center_held=false;
         return true;
     };
     DORA3_LOG(stderr,"LIVE INPUT port0=%s; four keyboard/gamepad ports; pak=none; focus clears state\n",input_enabled?"connected":"disconnected");
@@ -83,8 +99,14 @@ void dora3_configure_live_input(recomp::Configuration& cfg){
 
 namespace { float camera_wheel=0; bool camera_center_held=false; }
 void dora3_camera_mouse_wheel(float value){if(dora3::camera::active()&&!dora3::port::menu_open())camera_wheel+=value;}
+void dora3_live_input_event(const SDL_Event& event){
+    // Only P1 controller activity hides P1 touch controls.
+    if((event.type==SDL_CONTROLLERBUTTONDOWN&&event.cbutton.which!=controllers[0].instance)||
+       (event.type==SDL_CONTROLLERAXISMOTION&&event.caxis.which!=controllers[0].instance))return;
+    dora3::touch::process_event(event);
+}
 void dora3_poll_live_input(SDL_Window* window){
-    refresh_controllers();
+    refresh_controllers();dora3::touch::update();
     using namespace dora3::port;
     const auto config=settings();
     if(applied_background!=int(config.background_gamepad_input)){
@@ -93,6 +115,9 @@ void dora3_poll_live_input(SDL_Window* window){
     }
     PhysicalInput physical;
     physical.background_gamepad=config.background_gamepad_input;
+#ifdef __ANDROID__
+    physical.background_gamepad=false;
+#endif
     physical.focused=(SDL_GetWindowFlags(window)&SDL_WINDOW_INPUT_FOCUS)!=0;
     const auto* keys=SDL_GetKeyboardState(nullptr);
     if(physical.focused)std::copy_n(keys,SDL_NUM_SCANCODES,physical.keys.begin());
@@ -115,9 +140,14 @@ void dora3_poll_live_input(SDL_Window* window){
         }
     }
     PhysicalInput gameplay;
-    const bool blocked=process_port_input(physical,&gameplay);
+    const bool blocked=process_port_input(physical,&gameplay)||dora3::touch::is_editing();
     const bool modern=input_enabled&&!blocked&&!capture_active()&&config.camera.enabled&&dora3::camera::active();
+    #ifdef __ANDROID__
+    const bool mouse_capture=false;
+#else
     const bool mouse_capture=modern&&physical.focused&&config.camera.capture_mouse;
+#endif
+    const auto touch_camera=dora3::touch::take_camera();
     const bool captured=SDL_GetRelativeMouseMode()==SDL_TRUE;
     if(mouse_capture!=captured)SDL_SetRelativeMouseMode(mouse_capture?SDL_TRUE:SDL_FALSE);
     int mouse_x=0,mouse_y=0;SDL_GetRelativeMouseState(&mouse_x,&mouse_y);
@@ -139,8 +169,8 @@ void dora3_poll_live_input(SDL_Window* window){
         if(player==0&&modern) {
             const bool zoom_mode=amount(R)>.01f;
             const float vertical=amount(CDown)-amount(CUp);
-            dora3::camera::submit(amount(CRight)-amount(CLeft),zoom_mode?0.f:vertical,float(mouse_x),float(mouse_y),
-                std::max(amount(CameraZoomOut),amount(DDown))-std::max(amount(CameraZoomIn),amount(DUp))+(zoom_mode?vertical:0.f),
+            dora3::camera::submit(amount(CRight)-amount(CLeft),zoom_mode?0.f:vertical,float(mouse_x)+touch_camera.dx,float(mouse_y)+touch_camera.dy,
+                std::max(amount(CameraZoomOut),amount(DDown))-std::max(amount(CameraZoomIn),amount(DUp))+(zoom_mode?vertical:0.f)+touch_camera.zoom,
                 physical.focused?camera_wheel:0.f,center&&!camera_center_held);
             state.buttons&=~uint16_t(0x10|0x800|0x400|0xF|0x2000);
         }
@@ -157,6 +187,7 @@ void dora3_audio_frequency(uint32_t frequency){
     if(!audio_enabled)return;
     if(frequency<8000 || frequency>96000){DORA3_LOG(stderr,"LIVE AUDIO unsupported rate %u\n",frequency);std::_Exit(87);}
     std::lock_guard lock(audio_mutex);
+    if(audio_suspended){deferred_audio_rate=frequency;return;}
     if(audio_device && audio_rate==frequency)return;
     if(audio_device){SDL_CloseAudioDevice(audio_device);audio_device=0;}
     SDL_AudioSpec desired{},obtained{};
@@ -173,6 +204,7 @@ void dora3_audio_frequency(uint32_t frequency){
 void dora3_audio_queue(const int16_t* samples,size_t count){
     if(!audio_enabled)return;
     std::lock_guard lock(audio_mutex);
+    if(audio_suspended)return;
     if(!audio_device || count%2 || count>0x20000){SDL_SetError("Invalid PCM buffer/device");audio_error();}
     // Word-swapped N64 RAM stores each stereo pair as R,L on this host.
     std::vector<int16_t> ordered(count);
@@ -189,7 +221,7 @@ size_t dora3_audio_remaining(){
     // The runtime applies its existing half-VI reserve after this callback.
     // audio_queue_patches.py saturates the guest subtraction before alignment;
     // clipping here to one DMA hides accumulated latency from that feedback.
-    return audio_device ? size_t(SDL_GetQueuedAudioSize(audio_device)/(2*sizeof(int16_t))) : 0;
+    return audio_device&&!audio_suspended ? size_t(SDL_GetQueuedAudioSize(audio_device)/(2*sizeof(int16_t))) : 0;
 }
 
 uint8_t dora3_live_connected_mask(){
@@ -203,11 +235,24 @@ Dora3LiveInputSnapshot dora3_live_input_snapshot(){
     return {input[0].buttons,input[0].x,input[0].y,input_enabled};
 }
 
+void dora3_audio_suspend(bool value){
+    uint32_t resume_rate=0;
+    {
+        std::lock_guard lock(audio_mutex);
+        if(audio_suspended==value)return;
+        audio_suspended=value;
+        // Called only after SDL_PollEvent returns, outside its lifecycle lock.
+        if(audio_device){SDL_PauseAudioDevice(audio_device,1);SDL_ClearQueuedAudio(audio_device);}
+        if(!value){resume_rate=deferred_audio_rate;deferred_audio_rate=0;
+            if(audio_device)SDL_PauseAudioDevice(audio_device,0);}
+    }
+    if(resume_rate)dora3_audio_frequency(resume_rate);
+}
 void dora3_reset_live_io(){
     // Keep device/controller handles and settings; discard the old session PCM.
     std::scoped_lock lock(input_mutex,audio_mutex);
-    input={};
-    if(audio_device){
+    input={};touch_center_held=false;
+    if(audio_device&&!audio_suspended){
         SDL_PauseAudioDevice(audio_device,1);
         SDL_ClearQueuedAudio(audio_device);
         SDL_PauseAudioDevice(audio_device,0);

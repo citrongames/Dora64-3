@@ -3,7 +3,8 @@
 ## Текущая работа
 
 - [Состояние проекта и возможности](../README.md)
-- [Сборка из исходников](building.md)
+- [Сборка из исходников](building.md), [Android APK](../android/README.md)
+- [Android: интеграция, touch и исправления](android-port.md)
 - [Последняя Windows-сборка](windows-test-build.md)
 - [Журнал текущей работы и приёмки](work-in-progress.md)
 - [Правила Git](repository-policy.md), [изоляция библиотек](dependency-policy.md)

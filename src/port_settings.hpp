@@ -24,7 +24,7 @@ struct Settings {
     int volume=100, resolution=0, filtering=0; // 0 original, 1 2x, 2 4x, 3 window scale; 0 N64, 1 bilinear
     int window_width=1280, window_height=720;
     int display_index=0, display_refresh_rate=0;
-    int frame_rate_mode=0, frame_rate_limit=144; // Original, Display, Manual (Dora64)
+    int frame_rate_mode=2, frame_rate_limit=60; // 0 Original, 2 Manual; legacy 1 migrates to Manual60.
     bool fullscreen=false, show_fps=false, autosave=true;
     int aspect_ratio=0, hud_layout=0; // Original/Expand and Original/Full, independently.
     float draw_distance=1.0f;

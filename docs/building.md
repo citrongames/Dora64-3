@@ -38,7 +38,7 @@ C/RSP вручную. Компиляция проверяет хэши inputs и
 ```
 
 Исполняемый файл: `build-local/windows/Dora64-3.exe`. Скрипт использует
-инкрементальную сборку, диагностика и GraphicsProfile выключены по умолчанию.
+инкрементальную Release-сборку, диагностика и GraphicsProfile выключены по умолчанию.
 Параметры generation-папок указаны явно: старые значения по умолчанию относятся
 к исторической локальной сборке. `-Fresh` нужен только при необходимости.
 Приложение скриптом не запускается.
@@ -55,7 +55,7 @@ Windows staging и его кэш при уборке Git сохранены.
 
 ```sh
 cmake -S research/runtime -B build-local/linux -G Ninja \
-  -DCMAKE_BUILD_TYPE=RelWithDebInfo -DDORA3_LIVE_RT64=ON \
+  -DCMAKE_BUILD_TYPE=Release -DDORA3_LIVE_RT64=ON \
   -DDORA3_DIAGNOSTICS=OFF -DDORA3_GRAPHICS_PROFILE=OFF \
   -DDORA3_GENERATED_DIR="$PWD/build-local/startup-clean" \
   -DDORA3_AUDIO_GENERATED_DIR="$PWD/build-local/audio-rsp"
@@ -64,7 +64,16 @@ cmake --build build-local/linux --target dora3_startup -j6
 
 Нужны системные development-пакеты, которые требуют закреплённые SDL2/RT64
 для выбранного Linux окружения. Этот путь не означает проверку115 на Linux.
-Готовой Android-игровой сборки пока нет.
+Android: [компиляция APK](../android/README.md).
 
 История ранних probe/диагностических команд: [reproduction.md](reproduction.md).
 Они не являются текущей обязательной последовательностью сборки.
+
+## Локальные Release-архивы
+
+`tools/package_release.py` принимает --platform Windows-x64/Linux-x86_64/Android-arm64,
+--binary (EXE/ELF/APK), --destination и --version. Для Windows также нужен
+--crt-directory с release DLL VC Runtime. Упаковщик сохраняет старые пакеты,
+не запускает бинарники и не публикует их. Включает assets и лицензии,
+исключает ROM, настройки, сейвы и debug-файлы. Linux ELF очищается strip.
+Android APK берётся из non-debuggable optimized Release.

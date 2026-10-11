@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-feature android:name="android.hardware.vulkan.version"
+        android:version="0x00400000" android:required="true" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.hardware.gamepad" android:required="false" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:appCategory="game"
+        android:isGame="true"
+        android:allowBackup="false"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/dora64_three_icon"
+        android:label="Dora64-3"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.n64recomp.dora64three.Dora64ThreeActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="layoutDirection|locale|orientation|uiMode|screenLayout|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

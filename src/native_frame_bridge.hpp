@@ -31,7 +31,8 @@ public:
     bool drained() const { return scheduler_.drained(); }
     SchedulerStats stats() const { return scheduler_.stats(); }
     uint64_t wake_revision() const { return scheduler_.wake_revision(); }
-    void wait_for_change(uint64_t seen,std::optional<Nanoseconds> deadline,std::stop_token stop) { scheduler_.wait_for_change(seen,deadline,stop); }
+    void notify_producer_stop() { scheduler_.notify_producer_stop(); }
+    void wait_for_change(uint64_t seen,std::optional<Nanoseconds> deadline,StopToken stop) { scheduler_.wait_for_change(seen,deadline,stop); }
 private:
     FrameScheduler scheduler_;
     WakeMailbox mailbox_;

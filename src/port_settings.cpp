@@ -22,6 +22,18 @@ std::filesystem::path pc_path,input_path;
 std::string error;
 using Json=nlohmann::json;
 Json pc_document=Json::object(),input_document=Json::object();
+void apply_profile(Settings& s,bool modern){
+    s.autosave=modern;s.camera.enabled=modern;
+#ifdef __ANDROID__
+    s.resolution=modern?1:0;
+#else
+    s.resolution=modern?3:0;
+#endif
+    s.frame_rate_mode=modern?2:0;
+    if(modern)s.frame_rate_limit=60;
+    s.aspect_ratio=modern?1:0;s.hud_layout=modern?1:0;
+    s.filtering=modern?1:0;s.draw_distance=modern?5.f:1.f;
+}
 constexpr const char* action_keys[]={"n64_a","n64_b","n64_z","n64_start","n64_l","n64_r",
     "dpad_up","dpad_down","dpad_left","dpad_right","c_up","c_down","c_left","c_right",
     "move_up","move_down","move_left","move_right","camera_zoom_in","camera_zoom_out"};
@@ -87,14 +99,13 @@ void save_locked(bool controls=false){
             if(!pc_document["game"].is_object())pc_document["game"]=Json::object();
             pc_document["game"]["autosave"]=current.autosave;
             pc_document["language"]["code"]=current.language;
-            pc_document["version"]=18;pc_document["show_fps"]=current.show_fps;
+            pc_document["version"]=19;pc_document["show_fps"]=current.show_fps;
             pc_document["master_volume"]=current.volume/100.0f;pc_document.erase("menu_scale");
             if(!pc_document["graphics"].is_object())pc_document["graphics"]=Json::object();
             auto& g=pc_document["graphics"];g["window_mode"]=current.fullscreen?"Fullscreen":"Windowed";
             g["display_width"]=current.window_width;g["display_height"]=current.window_height;
             g["display_index"]=current.display_index;g["display_refresh_rate"]=current.display_refresh_rate;
-            constexpr const char* frame_rates[]={"Original","Display","Manual"};
-            g["frame_rate_mode"]=frame_rates[current.frame_rate_mode];g["frame_rate_limit"]=current.frame_rate_limit;
+            g["frame_rate_mode"]=current.frame_rate_mode==0?"Original":"Manual";g["frame_rate_limit"]=current.frame_rate_limit;
             constexpr const char* resolutions[]={"Original","Original2x","Original4x","Auto"};
             g["draw_distance"]=current.draw_distance;
             g["aspect_ratio"]=current.aspect_ratio?"Expand":"Original";
@@ -113,6 +124,10 @@ bool valid_key(int code) { return code>=0 && code<SDL_NUM_SCANCODES && code!=SDL
 bool valid_pad(int code) { return code==-1 || (code>=0 && code<SDL_CONTROLLER_BUTTON_MAX && code!=SDL_CONTROLLER_BUTTON_BACK) || (code>=100 && code<100+2*SDL_CONTROLLER_AXIS_MAX); }
 Settings defaults() {
     Settings s;
+    apply_profile(s,true);
+#ifdef __ANDROID__
+    s.background_gamepad_input=false;
+#endif
     s.players[0].keys={SDL_SCANCODE_SPACE,SDL_SCANCODE_C,SDL_SCANCODE_Z,SDL_SCANCODE_RETURN,SDL_SCANCODE_Q,SDL_SCANCODE_E,
         SDL_SCANCODE_UP,SDL_SCANCODE_DOWN,SDL_SCANCODE_LEFT,SDL_SCANCODE_RIGHT,
         SDL_SCANCODE_I,SDL_SCANCODE_K,SDL_SCANCODE_J,SDL_SCANCODE_L,SDL_SCANCODE_W,SDL_SCANCODE_S,SDL_SCANCODE_A,SDL_SCANCODE_D,SDL_SCANCODE_PAGEUP,SDL_SCANCODE_PAGEDOWN};
@@ -130,6 +145,7 @@ void initialize(const std::filesystem::path& directory){
     std::lock_guard lock(mutex);current=defaults();error.clear();pc_document=Json::object();input_document=Json::object();
     current.language=dora3::localization::system_language();
     pc_path=directory/"port_pc_settings.json";input_path=directory/"port_input_settings.json";
+    bool migrated_display=false;
     const bool missing_pc=!std::filesystem::exists(pc_path),missing_input=!std::filesystem::exists(input_path);
     // Import test-021 only for missing destinations. Leave its original file intact.
     const auto legacy=directory/"port-settings.json";
@@ -179,8 +195,13 @@ void initialize(const std::filesystem::path& directory){
             real(g,"draw_distance",current.draw_distance,1,5);
             if(g.contains("aspect_ratio"))current.aspect_ratio=g["aspect_ratio"]=="Expand";
             if(g.contains("hud_layout"))current.hud_layout=g["hud_layout"]=="Full";
-            constexpr const char* frame_rates[]={"Original","Display","Manual"};
-            for(int i=0;i<3;i++)if(g.contains("frame_rate_mode")&&g["frame_rate_mode"]==frame_rates[i])current.frame_rate_mode=i;
+            if(g.contains("frame_rate_mode")){
+                if(g["frame_rate_mode"]=="Original")current.frame_rate_mode=0;
+                else if(g["frame_rate_mode"]=="Manual")current.frame_rate_mode=2;
+                else if(g["frame_rate_mode"]=="Display"){
+                    current.frame_rate_mode=2;current.frame_rate_limit=60;migrated_display=true;
+                }
+            }
             if(g.contains("window_mode")&&g["window_mode"].is_string())current.fullscreen=g["window_mode"]=="Fullscreen";
             constexpr const char* resolutions[]={"Original","Original2x","Original4x","Auto"};
             for(int i=0;i<4;i++)if(g.contains("render_resolution")&&g["render_resolution"]==resolutions[i])current.resolution=i;
@@ -219,7 +240,7 @@ void initialize(const std::filesystem::path& directory){
     dora3::camera::configure(current.camera);
     current.draw_distance=dora3::distance::configure(current.draw_distance);
     const auto load_error=error;
-    if(missing_pc||pc_document.contains("menu_scale"))save_locked();if(missing_input)save_locked(true);
+    if(missing_pc||migrated_display||pc_document.contains("menu_scale"))save_locked();if(missing_input)save_locked(true);
     if(!load_error.empty())error=load_error;
 }
 
@@ -229,7 +250,7 @@ void set_general(const Settings& v) {
     current.volume=std::clamp(v.volume,0,100);current.resolution=std::clamp(v.resolution,0,3);current.filtering=std::clamp(v.filtering,0,1);
     current.window_width=std::clamp(v.window_width,320,16384);current.window_height=std::clamp(v.window_height,240,16384);
     current.display_index=std::clamp(v.display_index,0,1024);current.display_refresh_rate=std::clamp(v.display_refresh_rate,0,1000);
-    current.frame_rate_mode=std::clamp(v.frame_rate_mode,0,2);current.frame_rate_limit=std::clamp(v.frame_rate_limit,60,360);
+    current.frame_rate_mode=v.frame_rate_mode==0?0:2;current.frame_rate_limit=v.frame_rate_mode==1?60:std::clamp(v.frame_rate_limit,60,360);
     current.aspect_ratio=std::clamp(v.aspect_ratio,0,1);current.hud_layout=std::clamp(v.hud_layout,0,1);
     current.language=dora3::localization::select(v.language);
     current.camera=v.camera;
@@ -259,14 +280,8 @@ void profile(bool modern) {
     std::lock_guard lock(mutex);
     // Profiles cover game/presentation enhancements. Keep personal language,
     // camera tuning, controls, audio, display selection and cheats as configured.
-    current.autosave=modern;
-    current.camera.enabled=modern;
-    current.resolution=modern?3:0;
-    current.frame_rate_mode=modern?1:0;
-    current.aspect_ratio=modern?1:0;
-    current.hud_layout=modern?1:0;
-    current.filtering=modern?1:0;
-    current.draw_distance=dora3::distance::configure(modern?5.f:1.f);
+    apply_profile(current,modern);
+    current.draw_distance=dora3::distance::configure(current.draw_distance);
     dora3::autosave::configure(current.autosave);
     dora3::camera::configure(current.camera);
     save_locked();

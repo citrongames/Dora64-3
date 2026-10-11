@@ -24,6 +24,9 @@
 #include <cstdio>
 #include <cstdlib>
 #include <filesystem>
+#ifdef __ANDROID__
+#include "android_platform.hpp"
+#endif
 #include <fstream>
 #include <vector>
 #include <thread>
@@ -522,6 +525,30 @@ public:
     float get_resolution_scale() const override{return 1.0f;}
 };
 
+namespace {
+constexpr uint64_t expected_rom_hash=0xF3BFFF0C58827510ULL;
+bool supported_rom_file(const std::filesystem::path& path){
+    std::error_code ec;
+    if(!std::filesystem::is_regular_file(path,ec)||std::filesystem::file_size(path,ec)!=0x1000000||ec)return false;
+    std::ifstream in(path,std::ios::binary);
+    std::vector<char> data(0x1000000);
+    return bool(in.read(data.data(),data.size()))&&XXH3_64bits(data.data(),data.size())==expected_rom_hash;
+}
+std::filesystem::path find_supported_rom(const std::filesystem::path& directory){
+    std::vector<std::filesystem::path> candidates;
+    std::error_code ec;
+    for(std::filesystem::directory_iterator i(directory,std::filesystem::directory_options::skip_permission_denied,ec),end;
+        !ec&&i!=end;i.increment(ec)){
+        auto extension=i->path().extension().u8string();
+        for(auto& c:extension)if(c>=u8'A'&&c<=u8'Z')c+=u8'a'-u8'A';
+        if(extension==u8".z64")candidates.push_back(i->path());
+    }
+    std::sort(candidates.begin(),candidates.end());
+    for(const auto& path:candidates)if(supported_rom_file(path))return path;
+    return {};
+}
+}
+
 #ifdef _WIN32
 int wmain(int argc,wchar_t**){
     if(argc!=1){DORA3_LOG(stderr,"Start the EXE without arguments; ROM must be beside it.\n");return 2;}
@@ -529,9 +556,9 @@ int wmain(int argc,wchar_t**){
     const auto length=GetModuleFileNameW(nullptr,executable.data(),DWORD(executable.size()));
     if(length==0 || length>=executable.size())return 2;
     const auto directory=std::filesystem::path(executable.data()).parent_path();
-    const auto rom_path=directory/L"Doraemon 3 - Nobita no Machi SOS! (J) [!].z64";
-    if(!std::filesystem::is_regular_file(rom_path)){
-        MessageBoxW(nullptr,L"Place Doraemon 3 - Nobita no Machi SOS! (J) [!].z64 next to this EXE.",L"Dora64-3: ROM not found",MB_OK|MB_ICONERROR);return 2;
+    const auto rom_path=find_supported_rom(directory);
+    if(rom_path.empty()){
+        MessageBoxW(nullptr,L"Place the original Japanese Doraemon 3 ROM (.z64) next to this EXE. Any filename is accepted; contents must match the supported ROM.",L"Dora64-3: supported ROM not found",MB_OK|MB_ICONERROR);return 2;
     }
 #ifdef DORA3_DIAGNOSTICS
     const auto stamp=std::chrono::system_clock::now().time_since_epoch();
@@ -560,12 +587,27 @@ int wmain(int argc,wchar_t**){
     if(_wfreopen_s(&stream,L"NUL",L"w",stderr)!=0)return 2;
     if(_wfreopen_s(&stream,L"NUL",L"w",stdout)!=0)return 2;
 #endif
+#elif defined(__ANDROID__)
+extern "C" int SDL_main(int,char**){
+    const auto android_paths=dora3::android::prepare();
+    if(android_paths.rom.empty())return 2;
+    const auto rom_path=android_paths.rom,state_dir=android_paths.user;
 #else
 int main(int argc,char** argv){
+#ifdef DORA3_LIVE_RT64
+    if(argc!=1&&argc!=3){std::fprintf(stderr,"Usage: dora3_startup [ROM PRIVATE_RUN_DIRECTORY]\n");return 2;}
+    std::filesystem::path directory;
+    if(auto* base=SDL_GetBasePath()){directory=std::filesystem::u8path(base);SDL_free(base);}
+    const auto rom_path=argc==1?find_supported_rom(directory):std::filesystem::absolute(argv[1]);
+    if(rom_path.empty()){std::fprintf(stderr,"Place the supported Japanese Doraemon 3 ROM (.z64, any filename) beside the program.\n");return 2;}
+    const auto state_dir=argc==1?directory:std::filesystem::absolute(argv[2]);
+    if(argc==3&&std::filesystem::exists(state_dir)){std::fprintf(stderr,"Use a fresh run directory\n");return 2;}
+#else
     if(argc!=3){DORA3_LOG(stderr,"Usage: dora3_startup ROM PRIVATE_RUN_DIRECTORY\n");return 2;}
     const auto rom_path=std::filesystem::absolute(argv[1]);
     const auto state_dir=std::filesystem::absolute(argv[2]);
     if(std::filesystem::exists(state_dir)){DORA3_LOG(stderr,"Use a fresh run directory\n");return 2;}
+#endif
     std::filesystem::create_directories(state_dir);
     std::setvbuf(stderr,nullptr,_IONBF,0);
 #endif
@@ -574,7 +616,6 @@ int main(int argc,char** argv){
     #endif
     std::ifstream input(rom_path,std::ios::binary);
     std::vector<char> rom{std::istreambuf_iterator<char>(input),{}};
-    constexpr uint64_t expected_rom_hash=0xF3BFFF0C58827510ULL;
     if(rom.size()!=0x1000000 || XXH3_64bits(rom.data(),rom.size())!=expected_rom_hash){DORA3_LOG(stderr,"Unsupported ROM; exact SHA-256 also checked by run_startup.py\n");return 2;}
     recomp::overlays::register_overlays({section_table,ARRLEN(section_table),num_sections},{overlay_sections_by_index,ARRLEN(overlay_sections_by_index)});
     diagnostic_path=state_dir;
@@ -590,6 +631,8 @@ int main(int argc,char** argv){
     // live under a timestamped run directory. Runtime appends saves/<game_id>.bin.
     recomp::register_config_path(directory);
     DORA3_LOG(stderr,"SHARED CONFIG root=%ls; saves=%ls\n",directory.c_str(),(directory/L"saves").c_str());
+    #elif defined(__ANDROID__)
+    recomp::register_config_path(android_paths.user);
     #elif defined(DORA3_LIVE_RT64)
     // Same desktop policy as Dora64: settings and saves beside the selected ROM.
     recomp::register_config_path(rom_path.parent_path());
@@ -597,7 +640,11 @@ int main(int argc,char** argv){
     recomp::register_config_path(state_dir);
     #endif
     #ifdef DORA3_LIVE_RT64
+#ifdef __ANDROID__
+    auto localization_root=android_paths.data/"assets"/"localization";
+#else
     auto localization_root=recomp::get_config_path()/"assets"/"localization";
+#endif
     if(!std::filesystem::exists(localization_root/"languages.json")) {
         if(auto* base=SDL_GetBasePath()) {
             localization_root=std::filesystem::u8path(base)/"assets"/"localization";SDL_free(base);

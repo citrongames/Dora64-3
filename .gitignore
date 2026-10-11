@@ -70,3 +70,11 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# Android local outputs and SDK paths
+/android/.gradle/
+/android/.cxx/
+/android/build/
+/android/app/.cxx/
+/android/app/build/
+/port_touch_settings.json

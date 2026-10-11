@@ -9,6 +9,8 @@ struct Options {
     float stick_speed=120.f,mouse_sensitivity=.15f;
 };
 void configure(const Options&);
+bool dialogue_active(); // Published by the guest observer, never read RAM from UI.
+void center();
 bool active(); // SDL thread reads publication, never guest RAM.
 void submit(float x,float y,float mx,float my,float zoom,float wheel,bool center);
 void clear_input();

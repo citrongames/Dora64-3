@@ -1,4 +1,5 @@
 #include "port_menu.hpp"
+#include "port_touch.hpp"
 #include <atomic>
 #include <mutex>
 #include <algorithm>
@@ -33,7 +34,7 @@ void publish_physical(const PhysicalInput& p){std::lock_guard lock(mutex);latest
 PhysicalInput physical(){std::lock_guard lock(mutex);return latest;}
 int menu_gamepad(){std::lock_guard lock(mutex);return navigation_player(latest);}
 bool menu_open(){return open.load();}
-void set_menu_open(bool value){std::lock_guard lock(mutex);open_locked(value);}
+void set_menu_open(bool value){{std::lock_guard lock(mutex);open_locked(value);}dora3::touch::cancel();dora3::camera::clear_input();}
 bool capture_active(){std::lock_guard lock(mutex);return capture>=0;}
 bool ui_input_blocked(){std::lock_guard lock(mutex);return capture>=0||ui_release;}
 void begin_capture(Action a,bool gamepad,int player){

@@ -25,7 +25,7 @@ struct Input {float x=0,y=0,mx=0,my=0,zoom=0,wheel=0;bool center=false;};
 std::mutex input_mutex;
 Options options;
 Input pending;
-std::atomic_bool available{false};
+std::atomic_bool available{false},dialogue{false};
 std::atomic<int64_t> last_available{0};
 std::atomic_uint revision{0};
 struct Orbit {
@@ -211,10 +211,12 @@ bool update(uint8_t* rdram,recomp_context* ctx,double seconds,bool source,bool f
 }
 }
 void configure(const Options& value){std::lock_guard lock(input_mutex);if(options.enabled!=value.enabled){++revision;pending={};available=false;}options=value;}
+bool dialogue_active(){return dialogue.load();}
+void center(){std::lock_guard lock(input_mutex);if(active())pending.center=true;}
 bool active(){return available.load()&&now_ms()-last_available.load()<150;}
 void submit(float x,float y,float mx,float my,float zoom,float wheel,bool center){std::lock_guard lock(input_mutex);if(!active()){pending={};return;}pending.x=x;pending.y=y;pending.mx+=mx;pending.my+=my;pending.zoom=zoom;pending.wheel+=wheel;pending.center|=center;}
 void clear_input(){std::lock_guard lock(input_mutex);pending={};}
-void reset(){handoff={};orbit={};preferred_distance=300;available=false;last_available=0;clear_input();}
+void reset(){dialogue=false;handoff={};orbit={};preferred_distance=300;available=false;last_available=0;clear_input();}
 void clock_handoff(){orbit.frame_elapsed=0;}
 HandoffFrameScope::HandoffFrameScope(uint8_t* ram) {
     if(!handoff.pending)return;
@@ -256,7 +258,11 @@ HandoffFrameScope::~HandoffFrameScope(){
     constexpr std::array<unsigned,3> offsets{0,0xC,0x24};
     for(unsigned i=0;i<3;++i)for(unsigned j=0;j<3;++j)word(ram_,Camera+offsets[i]+j*4)=saved_[i*3+j];
 }
-void observe(uint8_t* ram){bool enabled;{std::lock_guard lock(input_mutex);enabled=options.enabled;}if(!enabled||!eligible(ram))revoke(ram);}
+void observe(uint8_t* rdram){
+    // Existing ROM-qualified dialogue busy byte: scene_common setters/query
+    // in funcs_18; only meaningful while that overlay is loaded.
+    dialogue=rdram&&dora3_overlay_loaded(0x70A50)&&MEM_B(0,int32_t(0x8021710D))!=0;
+    bool enabled;{std::lock_guard lock(input_mutex);enabled=options.enabled;}if(!enabled||!eligible(rdram))revoke(rdram);}
 bool dispatch(uint8_t* ram,recomp_context* ctx,uint32_t root){
     if(root!=0x801D8FF0&&root!=0x801D7294&&root!=0x801D5864){revoke(ram);return false;}
     const auto* slice=native_time::active_simulation_slice();

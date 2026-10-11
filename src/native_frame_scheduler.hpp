@@ -65,7 +65,8 @@ public:
     bool drained() const;
     SchedulerStats stats() const;
     uint64_t wake_revision() const { return signal_.revision(); }
-    void wait_for_change(uint64_t seen,std::optional<Nanoseconds> deadline,std::stop_token stop) { signal_.wait(seen,deadline,stop); }
+    void notify_producer_stop() { signal_.notify(); }
+    void wait_for_change(uint64_t seen,std::optional<Nanoseconds> deadline,StopToken stop) { signal_.wait(seen,deadline,stop); }
 private:
     enum class Phase { Free, Building, Published };
     struct Bank {

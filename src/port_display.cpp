@@ -147,7 +147,7 @@ std::vector<DisplayInfo> displays(){std::lock_guard lock(display_mutex);return c
 void request_display_refresh(){refresh_requested.store(true);}
 void publish_display_rate(unsigned rate){output_rate.store(rate);}
 unsigned display_rate(){return output_rate.load();}
-unsigned target_frame_rate(const Settings& s,unsigned rate){return s.frame_rate_mode==0?0:s.frame_rate_mode==1?rate:unsigned(s.frame_rate_limit);}
+unsigned target_frame_rate(const Settings& s,unsigned /*rate*/){return s.frame_rate_mode==0?0:unsigned(s.frame_rate_limit);}
 std::string output_mode_label(const OutputMode& m,bool include_refresh){
     auto label=std::to_string(m.width)+" x "+std::to_string(m.height);
     if(include_refresh&&m.refresh_rate>0)label+=" @ "+std::to_string(m.refresh_rate)+" Hz";
@@ -180,6 +180,10 @@ void refresh_displays(){
     std::lock_guard lock(display_mutex);catalog=std::move(next);
 }
 void update_display_window(SDL_Window* window){
+#ifdef __ANDROID__
+    // Native Android surface dimensions own the SDL/Vulkan window.
+    (void)window;return;
+#endif
     const bool refresh=refresh_requested.exchange(false);
     if(refresh)refresh_displays();
     const auto s=settings();

@@ -70,10 +70,10 @@ $report = [ordered]@{
     compiled = $true
     locally_launched = $false
     visual_input_audible_validation = 'not performed; no test requested'
-    compiler = 'MSVC 19.44; RelWithDebInfo /O2 /Zi /EHsc; dynamic CRT'
+    compiler = ('MSVC; ' + $receipt.configuration + '; dynamic CRT')
     previous_user_test = $receipt.previous_user_test
     current_test_scope = $receipt.scope
-    rom = 'external; exact filename beside EXE only; never copied by this script'
+    rom = 'external; any .z64 beside EXE, verified by ROM hash; never copied by this script'
     files_sha256 = $hashes
     source = $stage
 }
