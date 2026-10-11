@@ -2025,6 +2025,27 @@ extern "C" void dora3_native_homing_end(uint8_t* rdram,recomp_context* ctx) {
     game_model_animation().motion_end(rdram,model,actor);
 }
 bool native_gameplay_preview_object_pass() {return object_call&&active_simulation_slice()&&timeline;}
+std::optional<uint8_t> native_gameplay_preview_npc_model_flags(uint8_t* rdram,uint32_t model) {
+    const auto* slice=active_simulation_slice();
+    if(!object_call||!slice||!live(rdram))return std::nullopt;
+    const auto actor=uint32_t(word(rdram,0x8021BDEC));
+    if(actor<0x804B34B8u||(actor-0x804B34B8u)%0xCC||
+       (actor-0x804B34B8u)/0xCC>=dora3::distance::common_capacity)return std::nullopt;
+    const auto physical=uint32_t(word(rdram,actor+0x98));
+    if(!pointer(physical,0xDC))return std::nullopt;
+    const auto kind=MEM_H(0x20,int32_t(physical));
+    // These callbacks cache discrete decisions once per authored period,
+    // while their models advance on every fractional slice. The raw bit2
+    // pulse can disappear before the next decision (an opening talk clip
+    // then loops forever). Use the same whole-period sample as scene NPCs.
+    // Ownership validates the current overlay, callback and supported state.
+    if((!city_patrol_callback(kind)&&!slot09_callback(kind)&&kind!=18&&kind!=19)||
+       !owns_common_object(rdram,actor)||!pointer(model,0x84)||
+       !game_model_animation().lifetime_token(model))return std::nullopt;
+    for(unsigned slot=0;slot<8;++slot)if(uint32_t(word(rdram,actor+0x74+4*slot))==model)
+        return game_model_animation().source_command_sample(rdram,model,*slice).flags;
+    return std::nullopt;
+}
 void native_gameplay_preview_enemy_defer_birth(uint8_t* ram,uint32_t actor) {
     if(!object_call||!gameplay_slice||!(native_enemy_owned(ram,actor)||native_scene_object_owned(ram,actor)))return;
     const auto slot=(actor-0x804B34B8u)/0xCC;const auto& slice=*gameplay_slice;

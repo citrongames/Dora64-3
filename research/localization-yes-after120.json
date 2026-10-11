@@ -1,0 +1,22 @@
+{
+  "kind": "Static original ROM and catalog inspection; no execution",
+  "rom": "0xce414",
+  "vram": "0x80216894",
+  "length": 6,
+  "section_rom": 461392,
+  "uses": [
+    {
+      "pointer_instruction": "0x801f2dfc",
+      "instruction_sha256": "2a03cf3a5db6cdc4f7040a411baa1fd37ac9c1248a1483a491689da9a261fd23"
+    },
+    {
+      "pointer_instruction": "0x801f5644",
+      "instruction_sha256": "2a03cf3a5db6cdc4f7040a411baa1fd37ac9c1248a1483a491689da9a261fd23"
+    }
+  ],
+  "translations": {
+    "ru": "Да",
+    "en": "Yes"
+  },
+  "missing_catalog_record": true
+}

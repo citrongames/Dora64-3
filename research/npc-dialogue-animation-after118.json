@@ -1,0 +1,788 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "kind": "static ROM/source inspection; no execution",
+  "resident": {
+    "0x80039544": {
+      "sha256": "4966c488cfd922c9accc09c1a33adbc9b3732e7edd1313c27591a40a3d982b06",
+      "size": 12
+    },
+    "0x8003948c": {
+      "sha256": "047c93665e941d8719f917627b10890c28d8ae29bbb9e0418185627ecc9bf339",
+      "size": 184
+    }
+  },
+  "npc_end_query_functions": [
+    {
+      "section": ".level1_slot0",
+      "function": "0x80222900",
+      "name": "dora3_powan4_depart_after_dialogue_80222900",
+      "size": 1104,
+      "sha256": "8b76d0f5c652108761c2c208ac88c5a0d80775b5c109cbae5f28817643007efd",
+      "end_queries": [
+        "0x802229e4",
+        "0x80222c10"
+      ],
+      "clip_binds": [
+        "0x80222994",
+        "0x80222b04",
+        "0x80222bb4",
+        "0x80222c28"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x8022de70",
+      "name": "dora3_nobimama_wait40_and_clip_then_walk_8022DE70",
+      "size": 224,
+      "sha256": "5f2b391d5e93a168cb0345e15ac8d5bcb9130ae832d3ac158283652d8d6c0c8e",
+      "end_queries": [
+        "0x8022df04"
+      ],
+      "clip_binds": [
+        "0x8022dea8",
+        "0x8022dee4"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x8022e0a8",
+      "name": "dora3_nobimama_dialogue_look_clip_phases_and_return_8022E0A8",
+      "size": 844,
+      "sha256": "3552c076e953af7e0db5b4e7820c45739403f35867a00d2173f7db19c221ff2c",
+      "end_queries": [
+        "0x8022e184",
+        "0x8022e374"
+      ],
+      "clip_binds": [
+        "0x8022e0e0",
+        "0x8022e1a8",
+        "0x8022e22c"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x8022e7d0",
+      "name": "dora3_sunemama_wait40_and_clip_then_walk_8022E7D0",
+      "size": 224,
+      "sha256": "5dd3e859beb6fce07df38acedcc0a72abe94192968c3169f5aa3d32ba8c3b3cb",
+      "end_queries": [
+        "0x8022e864"
+      ],
+      "clip_binds": [
+        "0x8022e808",
+        "0x8022e844"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x8022ea08",
+      "name": "dora3_sunemama_dialogue_look_clip_phases_and_return_8022EA08",
+      "size": 740,
+      "sha256": "eea22043e4a1396ce43597dde7560056cf2b749c31d5d610901edefe192d8450",
+      "end_queries": [
+        "0x8022eaac",
+        "0x8022ec9c"
+      ],
+      "clip_binds": [
+        "0x8022ea3c",
+        "0x8022ead0",
+        "0x8022eb54"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x8022f0a0",
+      "name": "dora3_s8_level1_8022F0A0",
+      "size": 224,
+      "sha256": "a7d4b99701f326d8f223437826f8af7051dced96732a82712c584155791652ff",
+      "end_queries": [
+        "0x8022f134"
+      ],
+      "clip_binds": [
+        "0x8022f0d8",
+        "0x8022f114"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x8022f2d8",
+      "name": "dora3_sizumama_dialogue_look_clip_phases_and_return_8022F2D8",
+      "size": 740,
+      "sha256": "3e7765268a033467a634931400d097f9e064e07c42bdd52191e5ac6fda4e4ea6",
+      "end_queries": [
+        "0x8022f37c",
+        "0x8022f56c"
+      ],
+      "clip_binds": [
+        "0x8022f30c",
+        "0x8022f3a0",
+        "0x8022f424"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x8022f988",
+      "name": "dora3_s8_level1_8022F988",
+      "size": 224,
+      "sha256": "52129ff8ff92cf694525af3a633518f2b29f882ab494e052f6e262c4dc510455",
+      "end_queries": [
+        "0x8022fa1c"
+      ],
+      "clip_binds": [
+        "0x8022f9c0",
+        "0x8022f9fc"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x8022fbc0",
+      "name": "dora3_jaimama_dialogue_look_clip_phases_and_return_8022FBC0",
+      "size": 760,
+      "sha256": "9ea2c95585acce7941c719bf038094760c7367aa438ac1f361cc472ce4530d12",
+      "end_queries": [
+        "0x8022fc60",
+        "0x8022fe38"
+      ],
+      "clip_binds": [
+        "0x8022fbf0",
+        "0x8022fc78",
+        "0x8022fcf0"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x8023026c",
+      "name": "dora3_jaiko_wait40_and_clip_then_walk_8023026C",
+      "size": 224,
+      "sha256": "24206a252a04671b7de0f480506a12292f9fb8127400ef219535941c56c6d3c8",
+      "end_queries": [
+        "0x80230300"
+      ],
+      "clip_binds": [
+        "0x802302a4",
+        "0x802302e0"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x802304a4",
+      "name": "dora3_jaiko_dialogue_look_clip_phases_and_return_802304A4",
+      "size": 740,
+      "sha256": "5cc459107fc1e0cf066d1f174b6f0466e24cd86b84284b4e62e13cd8aa14eeaf",
+      "end_queries": [
+        "0x80230548",
+        "0x80230738"
+      ],
+      "clip_binds": [
+        "0x802304d8",
+        "0x8023056c",
+        "0x802305f0"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x80230c7c",
+      "name": "dora3_city_kind18_dialogue_clip_phases_and_return_80230C7C",
+      "size": 756,
+      "sha256": "81994b5b01e09f5a7dc5bf2bfebaf962bf0b661c2cfae472da1849fc517c8fb5",
+      "end_queries": [
+        "0x80230d34",
+        "0x80230f20"
+      ],
+      "clip_binds": [
+        "0x80230cb4",
+        "0x80230dc8"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x80231270",
+      "name": "dora3_s8_level1_80231270",
+      "size": 224,
+      "sha256": "b559b0f5bcaccc844f8443cfe5c20e1816be74821c518a1e8cd2b15948d428c4",
+      "end_queries": [
+        "0x80231304"
+      ],
+      "clip_binds": [
+        "0x802312a8",
+        "0x802312e4"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x8023147c",
+      "name": "dora3_sensei_dialogue_look_clip_phases_and_return_8023147C",
+      "size": 708,
+      "sha256": "58423b60f6857e9107d2a65c6b859ed188ebd006e41e6b4cc633dd92690de58e",
+      "end_queries": [
+        "0x80231518",
+        "0x802316f0"
+      ],
+      "clip_binds": [
+        "0x802314a8",
+        "0x80231530",
+        "0x802315a8"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x80231b1c",
+      "name": "dora3_s8_level1_80231B1C",
+      "size": 224,
+      "sha256": "f5c22e6ea672286cd823c91180aab9907368b3f8f9747b01d2ff002051e4f45b",
+      "end_queries": [
+        "0x80231bb0"
+      ],
+      "clip_binds": [
+        "0x80231b54",
+        "0x80231b90"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x80231d54",
+      "name": "dora3_kaminari_dialogue_look_clip_phases_and_return_80231D54",
+      "size": 656,
+      "sha256": "ddfe19863ad4c0e5031747b31714744072e6bc1f67b746748d63f521ed578c02",
+      "end_queries": [
+        "0x80231df0",
+        "0x80231f94"
+      ],
+      "clip_binds": [
+        "0x80231d80",
+        "0x80231e0c",
+        "0x80231e68"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x80232654",
+      "name": "dora3_s8_level1_80232654",
+      "size": 224,
+      "sha256": "d5178592526aa6690c8594f69bcaf28f1d73b845959a890d3dd78e9afae7e5fb",
+      "end_queries": [
+        "0x802326e8"
+      ],
+      "clip_binds": [
+        "0x8023268c",
+        "0x802326c8"
+      ]
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x80232860",
+      "name": "dora3_dekisugi_dialogue_look_clip_phases_and_return_80232860",
+      "size": 740,
+      "sha256": "1a7889aa067fbd9516dc96b292b6b8f8b85b44996966856b632edd4c948f8e4c",
+      "end_queries": [
+        "0x80232904",
+        "0x80232af4"
+      ],
+      "clip_binds": [
+        "0x80232894",
+        "0x80232928",
+        "0x802329ac"
+      ]
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x8022d980",
+      "name": "dora3_s44_remaining_8022D980",
+      "size": 224,
+      "sha256": "d32ddf5e375ff6ee2b7aaad27f592d8868aafd13e2831b332075b20864e0ceca",
+      "end_queries": [
+        "0x8022da14"
+      ],
+      "clip_binds": [
+        "0x8022d9b8",
+        "0x8022d9f4"
+      ]
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x8022dbb8",
+      "name": "dora3_npc_slot09_kind24_dialogue_restore_resume_publish_8022DBB8",
+      "size": 764,
+      "sha256": "7a6ad4bb6fa45509b86c90503c02da936223df02b3be7a06bc977a47f9501a40",
+      "end_queries": [
+        "0x8022dc70",
+        "0x8022de10"
+      ],
+      "clip_binds": [
+        "0x8022dbec",
+        "0x8022dc94",
+        "0x8022dce4"
+      ]
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x8022e4f8",
+      "name": "dora3_npc_slot09_kind25_dialogue_turn_six_count_restore_8022E4F8",
+      "size": 520,
+      "sha256": "32d773f5b06bf9052a316471a08d88e6c570b6346f000b4dbdb67e22dd459c55",
+      "end_queries": [
+        "0x8022e594"
+      ],
+      "clip_binds": [
+        "0x8022e524",
+        "0x8022e5ac"
+      ]
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x8022e700",
+      "name": "dora3_s44_remaining_8022E700",
+      "size": 224,
+      "sha256": "e7f18d0778e97bbb3fbd3fab62529cc26799099707c7f47f87e8a3da327b25a1",
+      "end_queries": [
+        "0x8022e794"
+      ],
+      "clip_binds": [
+        "0x8022e738",
+        "0x8022e774"
+      ]
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x8022e938",
+      "name": "dora3_npc_slot09_kind25_dialogue_turn_clip7_restore_patrol101_8022E938",
+      "size": 604,
+      "sha256": "9244e8c2d46cbcc118ff6638036182d9d62765fa180aefbe5f18feb7283d8a2b",
+      "end_queries": [
+        "0x8022e9d4",
+        "0x8022eb44"
+      ],
+      "clip_binds": [
+        "0x8022e964",
+        "0x8022e9ec",
+        "0x8022ea30"
+      ]
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x8022f01c",
+      "name": "dora3_s44_remaining_8022F01C",
+      "size": 224,
+      "sha256": "d3b1a739e94d0d6307161807739e221adaa7ed4208e2de3da2813bba9c17f010",
+      "end_queries": [
+        "0x8022f0b0"
+      ],
+      "clip_binds": [
+        "0x8022f054",
+        "0x8022f090"
+      ]
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x8022f254",
+      "name": "dora3_npc_slot09_kind26_dialogue_restore_scene_quest_spawn_8022F254",
+      "size": 1056,
+      "sha256": "7065c45cce35125df06cc0018064d620d70de9565925ea1cee4db551a208d87d",
+      "end_queries": [
+        "0x8022f2f0",
+        "0x8022f4bc"
+      ],
+      "clip_binds": [
+        "0x8022f280",
+        "0x8022f30c",
+        "0x8022f3a8"
+      ]
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x802300c0",
+      "name": "dora3_npc_slot09_kind27_dialogue_turn_restore_publish_802300C0",
+      "size": 720,
+      "sha256": "d7161615d19d35639e2d502635acf924fbfc1e6f26fa928465f4e763b32f7309",
+      "end_queries": [
+        "0x80230164",
+        "0x80230310"
+      ],
+      "clip_binds": [
+        "0x8023010c",
+        "0x802301a4",
+        "0x80230200"
+      ]
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x80230f64",
+      "name": "dora3_s44_remaining_80230F64",
+      "size": 660,
+      "sha256": "44de30eec45b23787a7c1df09d0a5714d60b6e0bb53d5102ed9258acfc80b296",
+      "end_queries": [
+        "0x80231000",
+        "0x8023118c"
+      ],
+      "clip_binds": [
+        "0x80230f90",
+        "0x8023101c",
+        "0x80231078"
+      ]
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x80231d64",
+      "name": "dora3_s44_remaining_80231D64",
+      "size": 224,
+      "sha256": "a40d660963b14365385c60035fe7fc7a3a5f30440c0d56dc6e432b9a832925da",
+      "end_queries": [
+        "0x80231df8"
+      ],
+      "clip_binds": [
+        "0x80231d9c",
+        "0x80231dd8"
+      ]
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x80231e44",
+      "name": "dora3_s44_remaining_80231E44",
+      "size": 660,
+      "sha256": "6decc22c404d913f8391223ad5ad60f01db0270ec451cb09fc3ad05dbab77103",
+      "end_queries": [
+        "0x80231ee0",
+        "0x8023206c"
+      ],
+      "clip_binds": [
+        "0x80231e70",
+        "0x80231efc",
+        "0x80231f58"
+      ]
+    },
+    {
+      "section": ".remaining_slot1_09",
+      "function": "0x80232408",
+      "name": "dora3_s44_remaining_80232408",
+      "size": 656,
+      "sha256": "50a294088001e8de3791a87901ed16e4d3c0c304a6c7b6988abf9c046bc184e7",
+      "end_queries": [
+        "0x802324a0",
+        "0x8023262c"
+      ],
+      "clip_binds": [
+        "0x80232434",
+        "0x802324bc",
+        "0x80232518"
+      ]
+    }
+  ],
+  "other_world_scene_npc_callbacks": [
+    {
+      "kind": 29,
+      "section": ".penguin_slot1",
+      "callback": "0x8022DE28",
+      "callback_sha256": "eb5936f7f4005781dd7be231b55e73236b454fc17cbe96d67e09967a7c6c5248",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 30,
+      "section": ".penguin_slot1",
+      "callback": "0x8022DE28",
+      "callback_sha256": "eb5936f7f4005781dd7be231b55e73236b454fc17cbe96d67e09967a7c6c5248",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 31,
+      "section": ".penguin_slot1",
+      "callback": "0x8022E7B4",
+      "callback_sha256": "f2293fac28a2887e7f094dc524148100c337a99af82da6e7dfd472988ff51a2d",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 32,
+      "section": ".penguin_slot1",
+      "callback": "0x8022E7B4",
+      "callback_sha256": "f2293fac28a2887e7f094dc524148100c337a99af82da6e7dfd472988ff51a2d",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 33,
+      "section": ".penguin_slot1",
+      "callback": "0x8022E9A8",
+      "callback_sha256": "c3a26e03e08b0da88d64415d2df2e89a4d497f412f46e2f96f552a6eaee65cc3",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 34,
+      "section": ".penguin_slot1",
+      "callback": "0x8022E9A8",
+      "callback_sha256": "c3a26e03e08b0da88d64415d2df2e89a4d497f412f46e2f96f552a6eaee65cc3",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 35,
+      "section": ".penguin_slot1",
+      "callback": "0x8022F2C8",
+      "callback_sha256": "33afe2459c25b1abce21ac81a5a4e8f727acb500a1a40a1cf475aab2dede5e07",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 36,
+      "section": ".penguin_slot1",
+      "callback": "0x8022F2C8",
+      "callback_sha256": "33afe2459c25b1abce21ac81a5a4e8f727acb500a1a40a1cf475aab2dede5e07",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 37,
+      "section": ".penguin_slot1",
+      "callback": "0x8022FC90",
+      "callback_sha256": "4402847550ae6d61a165c18d5f1515f57c9aee8583a0bc99839cd28e3d869cfe",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 38,
+      "section": ".penguin_slot1",
+      "callback": "0x8022FC90",
+      "callback_sha256": "4402847550ae6d61a165c18d5f1515f57c9aee8583a0bc99839cd28e3d869cfe",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 39,
+      "section": ".penguin_slot1",
+      "callback": "0x80230494",
+      "callback_sha256": "55e058cbff9c5cbc083804a47618c9ef5701e3e8ceec4171d66409efbb9622f0",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 40,
+      "section": ".penguin_slot1",
+      "callback": "0x80230494",
+      "callback_sha256": "55e058cbff9c5cbc083804a47618c9ef5701e3e8ceec4171d66409efbb9622f0",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 41,
+      "section": ".penguin_slot1",
+      "callback": "0x80230B48",
+      "callback_sha256": "02d7bd562d928f51d84933f389bff8f1ddc827c2b6cc362ede1ee5382dd5c9b1",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 42,
+      "section": ".penguin_slot1",
+      "callback": "0x80230D5C",
+      "callback_sha256": "a857eef5b6d598f558ef02856b62f67d66a91ea8a9fc25bebef2e6aeda1c4875",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 43,
+      "section": ".penguin_slot1",
+      "callback": "0x80230D5C",
+      "callback_sha256": "a857eef5b6d598f558ef02856b62f67d66a91ea8a9fc25bebef2e6aeda1c4875",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 44,
+      "section": ".penguin_slot1",
+      "callback": "0x80230F48",
+      "callback_sha256": "bb9d42c4c6472a24cb82cd22d884441821d870f60c211e4be34a908956e8ee6f",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 45,
+      "section": ".penguin_slot1",
+      "callback": "0x80230F48",
+      "callback_sha256": "bb9d42c4c6472a24cb82cd22d884441821d870f60c211e4be34a908956e8ee6f",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 46,
+      "section": ".penguin_slot1",
+      "callback": "0x80231A90",
+      "callback_sha256": "a1f71055e398dd0f70b19c54704d13b61ff55e07faf28588e747774079ae9a25",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 47,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802311F8",
+      "callback_sha256": "1405a98e1ba5f4c230dad0c0e7b595c7093a790d84a36988b428aba2703a590f",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 48,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802311F8",
+      "callback_sha256": "1405a98e1ba5f4c230dad0c0e7b595c7093a790d84a36988b428aba2703a590f",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 49,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802311F8",
+      "callback_sha256": "1405a98e1ba5f4c230dad0c0e7b595c7093a790d84a36988b428aba2703a590f",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 50,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802311F8",
+      "callback_sha256": "1405a98e1ba5f4c230dad0c0e7b595c7093a790d84a36988b428aba2703a590f",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 51,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802311F8",
+      "callback_sha256": "1405a98e1ba5f4c230dad0c0e7b595c7093a790d84a36988b428aba2703a590f",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 52,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802311F8",
+      "callback_sha256": "1405a98e1ba5f4c230dad0c0e7b595c7093a790d84a36988b428aba2703a590f",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 53,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802311F8",
+      "callback_sha256": "1405a98e1ba5f4c230dad0c0e7b595c7093a790d84a36988b428aba2703a590f",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 54,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802311F8",
+      "callback_sha256": "1405a98e1ba5f4c230dad0c0e7b595c7093a790d84a36988b428aba2703a590f",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 55,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802311F8",
+      "callback_sha256": "1405a98e1ba5f4c230dad0c0e7b595c7093a790d84a36988b428aba2703a590f",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 56,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802320D8",
+      "callback_sha256": "bf86d053951e832e9ecea64248431fcb2aaa62dd628dcb1223c63a8a222e2792",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 57,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802320D8",
+      "callback_sha256": "bf86d053951e832e9ecea64248431fcb2aaa62dd628dcb1223c63a8a222e2792",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 58,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802320D8",
+      "callback_sha256": "bf86d053951e832e9ecea64248431fcb2aaa62dd628dcb1223c63a8a222e2792",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 59,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802320D8",
+      "callback_sha256": "bf86d053951e832e9ecea64248431fcb2aaa62dd628dcb1223c63a8a222e2792",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 60,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802320D8",
+      "callback_sha256": "bf86d053951e832e9ecea64248431fcb2aaa62dd628dcb1223c63a8a222e2792",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 61,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802320D8",
+      "callback_sha256": "bf86d053951e832e9ecea64248431fcb2aaa62dd628dcb1223c63a8a222e2792",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 62,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802320D8",
+      "callback_sha256": "bf86d053951e832e9ecea64248431fcb2aaa62dd628dcb1223c63a8a222e2792",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 63,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802320D8",
+      "callback_sha256": "bf86d053951e832e9ecea64248431fcb2aaa62dd628dcb1223c63a8a222e2792",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 64,
+      "section": ".remaining_slot1_09",
+      "callback": "0x802320D8",
+      "callback_sha256": "bf86d053951e832e9ecea64248431fcb2aaa62dd628dcb1223c63a8a222e2792",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 65,
+      "section": ".remaining_slot1_09",
+      "callback": "0x80232910",
+      "callback_sha256": "7c618363b0201990fb39dba1d85e4f4af45eb469b521e2cfaa2f6107a6b4b473",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 66,
+      "section": ".penguin_slot2",
+      "callback": "0x8023E7D0",
+      "callback_sha256": "f802c542a318d45a4a057cdd918425e810e674be491be4b2a0d80f45863af487",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 67,
+      "section": ".penguin_slot2",
+      "callback": "0x8023EC14",
+      "callback_sha256": "0c7d0df9329ec3db93e6cc6f32fb92dc3fd50c7cbd7f522adf26fa08a728dd13",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 68,
+      "section": ".penguin_slot1",
+      "callback": "0x80232238",
+      "callback_sha256": "697c5b233945f6da8c0a5d772c5d0dacb7e587d9a9f60d661fed2924a08ebbab",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 69,
+      "section": ".penguin_slot1",
+      "callback": "0x80232690",
+      "callback_sha256": "a843ad5398ce8c469bb12f692b8cb0beb4e4b802cef713638c83fb7f19f9fe3f",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 70,
+      "section": ".penguin_slot1",
+      "callback": "0x80232C04",
+      "callback_sha256": "9ecd4015a1132a1d1e965547c7c8a524cd579ce621fd54c9d42dea94389f1f87",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 78,
+      "section": ".lake_slot2",
+      "callback": "0x802401A0",
+      "callback_sha256": "336b54bd25443d4ee13ac67f5b809bccb6f1de6fdc2644c8c73e7d138c23bfb9",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 79,
+      "section": ".demo_slot2",
+      "callback": "0x8023DCE4",
+      "callback_sha256": "ce67c09617ef2bc33b1f288ed955b3b3760023b293dacd93a2ade6e567114014",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    },
+    {
+      "kind": 81,
+      "section": ".remaining_slot2_08",
+      "callback": "0x8023F730",
+      "callback_sha256": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+      "path": "existing scene-object CommandScope / source_command_sample"
+    }
+  ],
+  "finding": "City and slot09 once-per-period decisions read raw fractional model end bit; intermediate fractional advances can clear it before the next decision. Existing scene-object/enemy command path uses source_command_sample; city/slot09 NPC path did not."
+}

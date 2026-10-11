@@ -20,3 +20,6 @@ bool native_gameplay_preview_object_pass();
 
 // Fraction of the current authored gameplay period after the last Source input.
 std::optional<double> native_gameplay_preview_source_fraction();
+
+// Complete authored-period end bit for the discrete city/quest NPC decisions.
+std::optional<uint8_t> native_gameplay_preview_npc_model_flags(uint8_t*,uint32_t);

@@ -1,0 +1,45 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "kind": "Static source/ROM analysis; no execution",
+  "functions": [
+    {
+      "section": ".scene1",
+      "function": "0x801e88c4",
+      "size": 132,
+      "sha256": "46f258c7c258e338f8d40b9faa3ff14139809422c0aa1cb988f4133a1897f3ff"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801e8654",
+      "size": 160,
+      "sha256": "10c8f3c0e3c3d2ac6ef9f9fe78178141672f5c3a5bc0547fca7a8420aa2e4576"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801e8590",
+      "size": 56,
+      "sha256": "dc70ebd01f7632e7659cd1ab34168d098ad91dd9bbe136ad956575a6809683a2"
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x8022ea08",
+      "size": 740,
+      "sha256": "eea22043e4a1396ce43597dde7560056cf2b749c31d5d610901edefe192d8450"
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x8022f2d8",
+      "size": 740,
+      "sha256": "3e7765268a033467a634931400d097f9e064e07c42bdd52191e5ac6fda4e4ea6"
+    },
+    {
+      "section": ".level1_slot1",
+      "function": "0x802304a4",
+      "size": 740,
+      "sha256": "5cc459107fc1e0cf066d1f174b6f0466e24cd86b84284b4e62e13cd8aa14eeaf"
+    }
+  ],
+  "finding": "A clock starting within a source period could extrapolate elapsed-end below zero, inventing a wrap and prematurely completing the opening dialogue clip. Bound the start to the clock origin and retain actual end_tick across rate rebases.",
+  "user_test119": "NPC animation loops fixed; NPC turns away immediately during dialogue",
+  "runtime_validation": "pending"
+}

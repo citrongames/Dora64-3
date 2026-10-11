@@ -3888,6 +3888,17 @@
       "controls": []
     },
     {
+      "id": "rom_0ce414",
+      "rom": 844820,
+      "length": 6,
+      "vram": 2149673108,
+      "section_rom": 461392,
+      "section": ".scene1",
+      "kind": "plain",
+      "max_cells": 2,
+      "controls": []
+    },
+    {
       "id": "rom_0ce41c",
       "rom": 844828,
       "length": 8,

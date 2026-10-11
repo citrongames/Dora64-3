@@ -3,6 +3,7 @@
 #include "guest_storage.hpp"
 #include "native_slot_reset.hpp"
 #include "native_enemy.hpp"
+#include "native_gameplay_preview.hpp"
 #include "native_scene_objects.hpp"
 #include "native_enemy_projection_math.hpp"
 #include "native_model_animation.hpp"
@@ -1695,7 +1696,8 @@ extern "C" int dora3_native_enemy_commands_active() {return executing;}
 extern "C" void dora3_native_enemy_clip_end(uint8_t* rdram,recomp_context* ctx) {
     const auto model=uint32_t(ctx->r4);
     if(!executing) {
-        if(const auto flags=game_model_animation().handoff_source_flags(rdram,model))ctx->r2=(ctx->r2&~2ull)|(*flags&2u);
+        if(const auto flags=native_gameplay_preview_npc_model_flags(rdram,model))ctx->r2=(ctx->r2&~2ull)|(*flags&2u);
+        else if(const auto flags=game_model_animation().handoff_source_flags(rdram,model))ctx->r2=(ctx->r2&~2ull)|(*flags&2u);
         return;
     }
     ctx->r2=(ctx->r2&~2ull)|(model_command_sample(rdram,model).flags&2u);

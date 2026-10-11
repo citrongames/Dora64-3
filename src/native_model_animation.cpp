@@ -347,11 +347,15 @@ SourceModelCommandSample ModelAnimation::source_command_sample(uint8_t* rdram,ui
         return std::abs(value-edge)<=tolerance?edge:value;
     };
     const auto current=position(clock.elapsed),future=position(clock.elapsed+remaining);
-    const auto start=position(static_cast<long double>(clock.elapsed)-end);
+    // A bind/seek/rate change can start this clock inside an authored
+    // period. Do not extrapolate its rate backwards before its own origin:
+    // for a new forward clip at zero that invents a negative frame and a
+    // wrap at zero, ending the opening NPC turn after its first fraction.
+    const auto start=position(std::max(0.0L,static_cast<long double>(clock.elapsed)-end));
     const bool clamped=(result.flags&1)&&clock.rate>=0;
     auto cycle=std::floor(start/clock.duration);
     if(clock.rate<0&&start==clock.duration)cycle-=1;
-    const bool ended=clock.normalization_tick==observed.tick||cycle!=std::floor(future/clock.duration)||
+    const bool ended=clock.end_tick==observed.tick||clock.normalization_tick==observed.tick||cycle!=std::floor(future/clock.duration)||
         (clamped&&future>=clock.duration);
     const bool future_end=std::floor(current/clock.duration)!=std::floor(future/clock.duration)||
         (clamped&&future>=clock.duration&&remaining>0);
