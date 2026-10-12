@@ -1,0 +1,127 @@
+{
+  "status": "Static ROM/source analysis; owner confirmed reported Riks ground-spin fix in test134 and authorized commit/push on 2026-10-12; exhaustive gameplay coverage not claimed",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "overlay_rom": "0xd9910",
+  "overlay_vram": "0x8021d6d0",
+  "functions": [
+    {
+      "pc": "0x8021FBF8",
+      "name": "dora3_s31_remaining_8021FBF8",
+      "size": 216,
+      "sha256": "43577d192c0290f29c0282abb583e986df9bc24b070b6206c8ee9597afa5e3a8"
+    },
+    {
+      "pc": "0x8021FCD0",
+      "name": "dora3_s31_remaining_8021FCD0",
+      "size": 100,
+      "sha256": "e77114253f63180dd50c57445e9adbd8d61a637bb306375acc0bbe2178e87be8"
+    },
+    {
+      "pc": "0x8021FD34",
+      "name": "dora3_s31_remaining_8021FD34",
+      "size": 244,
+      "sha256": "30d8487d372557fbc2d30f1a5aae9070d455cd5c6abbc0597cfcfb216e3e2168"
+    },
+    {
+      "pc": "0x8021FE28",
+      "name": "dora3_s31_remaining_8021FE28",
+      "size": 1112,
+      "sha256": "56a73aa68ff1ec55a15ad86e09d1fd682c3c442c3733695ae7ca8d7d6f2f1460"
+    },
+    {
+      "pc": "0x80220280",
+      "name": "dora3_s31_remaining_80220280",
+      "size": 216,
+      "sha256": "b43ba2d868563e0cf272f5b0401100dedccd8d8ae4fd50a8b1a5bdf5d5935dbe"
+    },
+    {
+      "pc": "0x80220358",
+      "name": "dora3_s31_remaining_80220358",
+      "size": 128,
+      "sha256": "6741a96b31852776aa347eab16c8c8fcd44d565796197ff6be3fe2da0cb44917"
+    },
+    {
+      "pc": "0x802203D8",
+      "name": "dora3_s31_remaining_802203D8",
+      "size": 128,
+      "sha256": "7723bfac8942174b151a61b2eb1776ab507191e2029493fb580e3c1ad3f27f3e"
+    },
+    {
+      "pc": "0x80220458",
+      "name": "dora3_s31_remaining_80220458",
+      "size": 100,
+      "sha256": "61946c89f21a333e1cac111d9981fee77618acd13034f134387972874943e3c1"
+    },
+    {
+      "pc": "0x802204BC",
+      "name": "dora3_s31_remaining_802204BC",
+      "size": 372,
+      "sha256": "7ddc1a87d6f3345c9c809ff3de2e3680ae54e38bb1597f3701d79056ade848c2"
+    },
+    {
+      "pc": "0x80220630",
+      "name": "dora3_s31_remaining_80220630",
+      "size": 1116,
+      "sha256": "229227dbfa3435e5463e72ace421761240ae905af09b99674cadb39950ce81bb"
+    },
+    {
+      "pc": "0x80220A8C",
+      "name": "dora3_s31_remaining_80220A8C",
+      "size": 288,
+      "sha256": "8f5ee96b4b1695e958784004dfd42d8f0ffa42ab34a9729f54b5239384cc6bc9"
+    },
+    {
+      "pc": "0x80220BAC",
+      "name": "dora3_s31_remaining_80220BAC",
+      "size": 128,
+      "sha256": "289073dd77df8ba223f65c9f608c6383a08dcfa84bffa89bcc2ae7163a4619a1"
+    }
+  ],
+  "sites": [
+    {
+      "pc": "0x802206bc",
+      "word": "0xac800000",
+      "meaning": "Scalar speed reset to zero each attack callback"
+    },
+    {
+      "pc": "0x80220874",
+      "word": "0xe4400000",
+      "meaning": "Assign freshly calculated speed from folded bearing difference"
+    },
+    {
+      "pc": "0x802209e8",
+      "word": "0xe4400014",
+      "meaning": "Restore saved Y velocity"
+    },
+    {
+      "pc": "0x80220a70",
+      "word": "0xe44000a0",
+      "meaning": "Assign floor+80 in phase1"
+    },
+    {
+      "pc": "0x802201ec",
+      "word": "0xe4600014",
+      "meaning": "Sabotti1 restores saved Y velocity"
+    },
+    {
+      "pc": "0x80220268",
+      "word": "0xe44000a0",
+      "meaning": "Sabotti1 also assigns floor+80 in phase1"
+    }
+  ],
+  "identification": "Sabotti2 kind270: initial floor+260 hover, player proximity begins fall; state2 phase0 landing, phase1 ground spin with heading+15 and private36 visual spin, phase2 jump/recovery. Matches reported hover/drop/ground-spin behaviour.",
+  "findings": [
+    "80220874 was incorrectly registered as linear acceleration from the transient zero at206BC; constant Source-assigned speed now feeds existing continuous heading projection.",
+    "Sabotti1/2 phase1 floor setter followed by common Y addition produces a full Source pose. Native intermediate slices previously replayed residual landing velocity from fresh floor+80 every period; hold exact Source endpoint height in this grounded phase."
+  ],
+  "preserved": [
+    "Original callback and thresholds",
+    "Source speed and XYZ endpoint",
+    "physical landing velocity for later transitions",
+    "continuous heading and visual spin",
+    "fall and takeoff gravity",
+    "collision decisions and foreign-command rebase"
+  ],
+  "game_launched": false,
+  "tests_executed": false
+}

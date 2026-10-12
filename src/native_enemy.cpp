@@ -1808,6 +1808,16 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
         for(const auto& equation:value.equations)if(equation.address==actor+0x9C+4*axis)initial=equation.after;
         value.source_endpoint_position[axis]=float(initial+value.velocity[axis]);
     }
+    if(after->rom==0xD9910&&(kind==269||kind==270)&&entered_state==2&&
+       word(rdram,actor+0x94)==2&&MEM_H(0x34,int32_t(after->physical))==1) {
+        // Both ground-phase tails assign floor+80, restore the landing Y
+        // velocity and let the common pass add it once. The resulting height
+        // is the Source pose. Splitting that final add across Native slices
+        // repeatedly drifts down from floor+80, then snaps back next period.
+        // Hold the complete grounded result; keep the original velocity and
+        // FSM untouched for takeoff, death and external motion commands.
+        value.collision_hold[1]=value.source_endpoint_position[1];
+    }
     for(unsigned field=0;field<4;++field) {
         const auto address=field==3?after->physical+4:actor+0xC+4*field;
         float proposed=field==1?value.proposal_yaw[0]:field==3?value.proposal_yaw[1]:real(rdram,address);
@@ -4059,8 +4069,12 @@ soundorago_other_store:
         if(owner->rom!=0xD9910)return;
         value={physical+0xC,EquationKind::angle,real(rdram,physical+0xC),ctx->f0.fl};break;
     case 0x80220874:
-        if(owner->rom!=0xD9910)return;
-        value={physical,EquationKind::linear,real(rdram,physical),ctx->f0.fl};break;
+        // Sabotti2 clears scalar speed at206BC, then assigns a fresh speed
+        // from the player-bearing difference. This is not acceleration:
+        // a zero-to-speed recurrence restarts on every Source period and
+        // produces a repeated slowdown/surge during the ground spin.
+        // Keep the real assigned speed; the captured heading still turns.
+        return;
     case 0x802207E4:
         if(owner->rom!=0xD9910)return;
         value={physical+4,EquationKind::angle,real(rdram,physical+4),ctx->f0.fl};break;
