@@ -115,5 +115,23 @@
     "returns": true,
     "size": 52,
     "sha256": "e46b56a72adcab8b8a877230e553f590e250d03b6e9e987953e163ecfdd5fea9"
+  },
+  {
+    "section": ".startup",
+    "function": 2147650896,
+    "site": 2147651076,
+    "role": "material_segment",
+    "returns": false,
+    "size": 248,
+    "sha256": "1e75917acac5b4e0cae278e6ead8e6902b96e023a4e066e943c63716d167efa7"
+  },
+  {
+    "section": ".scene1",
+    "function": 2149302260,
+    "site": 2149302480,
+    "role": "material_segment",
+    "returns": false,
+    "size": 332,
+    "sha256": "d71f2000939993024fe7b5c2aa4649b17574516881f21ecc0f3a8b2dfa4525d6"
   }
 ]

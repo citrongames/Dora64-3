@@ -1,0 +1,48 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "hooks": [
+    {
+      "section": ".startup",
+      "function": 2147650896,
+      "site": 2147651076,
+      "role": "material_segment",
+      "returns": false,
+      "size": 248,
+      "sha256": "1e75917acac5b4e0cae278e6ead8e6902b96e023a4e066e943c63716d167efa7",
+      "name": "dora3_s0_80028D50",
+      "expected_word": "0xacb00004",
+      "source_operation": "sw s0,4(a1), after KSEG0 subtraction; restore tag only for exact owned localized material allocations"
+    },
+    {
+      "section": ".scene1",
+      "function": 2149302260,
+      "site": 2149302480,
+      "role": "material_segment",
+      "returns": false,
+      "size": 332,
+      "sha256": "d71f2000939993024fe7b5c2aa4649b17574516881f21ecc0f3a8b2dfa4525d6",
+      "name": "dora3_s3_801BBFF4",
+      "expected_word": "0xacb00004",
+      "source_operation": "sw s0,4(a1), after KSEG0 subtraction; restore tag only for exact owned localized material allocations"
+    }
+  ],
+  "resources": [
+    {
+      "file": "096b-gian-recital.png",
+      "record": "0x4606d0",
+      "header": "424d5005000000100000008000000020",
+      "sha256": "f4b0d54c0597e215002b9c098a7de22b6833c7fbc9ac9e4fbf49a99738c16115",
+      "size": 2096
+    },
+    {
+      "file": "096c-gian-recital.png",
+      "record": "0x460b20",
+      "header": "424d5005000000100000008000000020",
+      "sha256": "555ca224edde7f9b9e519face9fdd718ba26284abdb83c64d8ea01ab34685773",
+      "size": 2096
+    }
+  ],
+  "cause": "Original SDK strips 0x80000000 from localized extended material pointers; RT64 untagged segmented access masks to24 bits.",
+  "change": "Restore s0 high-bit tag at two verified segment payload stores only for exact live localized material allocations; retain original TLUT, CI4 data, UV, lamp frame selection, Japanese and both FPS paths.",
+  "validation": "ROM and source static analysis; generated from ROM; no game, tests, CPU checks, renderer/GPU executed"
+}

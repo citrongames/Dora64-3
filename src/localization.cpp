@@ -402,6 +402,19 @@ void initialize_memory(uint8_t* rdram) {
     }
 }
 }
+// Both ROM bitmap binders subtract KSEG0 before publishing DB06. RT64
+// needs that high bit for extended allocations; otherwise it masks the address
+// to 24 bits and reads unrelated RAM. Only restore addresses owned by the
+// localized world-material packs, never ordinary ROM/heap segment bases.
+extern "C" void dora3_localization_material_segment(uint8_t*,recomp_context* ctx) {
+    const uint32_t physical=uint32_t(ctx->r16);
+    if(physical<0x00800000u||physical>=0x20000000u)return;
+    for(const auto& pack:sprite_packs)for(const auto& image:pack) {
+        if(image.material_address&&physical==image.material_address-0x80000000u) {
+            ctx->r16=int32_t(image.material_address);return;
+        }
+    }
+}
 extern "C" int dora3_localization_material(uint8_t* ram,recomp_context* ctx) {
     const unsigned language=selected.load();if(!language||language>=sprite_packs.size())return 0;
     const uint32_t header=uint32_t(ctx->r4);if(!pointer(header,16))return 0;
@@ -507,6 +520,7 @@ void dora3_localization_dialogue_line(uint8_t*,recomp_context*){}
 void dora3_localization_script_load(uint8_t*,recomp_context*){}
 void dora3_localization_bind(uint8_t*,recomp_context*){}
 void dora3_localization_widget_line(uint8_t*,recomp_context*){}
+void dora3_localization_material_segment(uint8_t*,recomp_context*){}
 int dora3_localization_material(uint8_t*,recomp_context*){return 0;}
 int dora3_localization_sprite(uint8_t*,recomp_context*){return 0;}
 void dora3_localization_choice(uint8_t*,recomp_context*){}
