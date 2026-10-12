@@ -1,0 +1,43 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "functions": [
+    {
+      "section": ".scene1",
+      "address": "801B8FE4",
+      "name": "dora3_s3_801B8FE4",
+      "size": 104,
+      "sha256": "23f942cf99eb0a4a8bc2642c808c00028694d1246aba6a9ce6c463b7535817d1"
+    },
+    {
+      "section": ".scene1",
+      "address": "801B90A8",
+      "name": "dora3_s3_801B90A8",
+      "size": 280,
+      "sha256": "44abf505ee820186c4fb25ae601138656220266949c5efe949caf18f8dcfa6df"
+    },
+    {
+      "section": ".scene1",
+      "address": "801BBB84",
+      "name": "dora3_s3_801BBB84",
+      "size": 44,
+      "sha256": "c5475817ec6a28d1c5f3a35dcb6cf3b352ad31872fe524ffd85233411269d8b0"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0x4db",
+      "record": "0x352670",
+      "header": "424d50050000001000000140000000a8",
+      "sha256": "0ebe3cfe23d1779e9d32d7aadb3e26469b7465ba6097cb53bfc82a3b6167c762"
+    },
+    {
+      "id": "0x4dc",
+      "record": "0x352ae0",
+      "header": "424d5005000000100000002000000030",
+      "sha256": "751f63878c7c457be9dd146577680287395c52d8ce301e55f4c13e6dabe1f689"
+    }
+  ],
+  "scope": "Original scene selector 0x175; before the TV frame bitmap state call801B9100, only on its original taken path",
+  "geometry": "4DB:320x168 at(0,24), 4DC:32x48 at(144,192); opaque black side strips use existing exterior-edge mask role0x803; original TV dimensions and world projection retained",
+  "validation": "Static ROM/source inspection; owner confirmed TV side-mask fix in test135 and authorized commit/push on 2026-10-12; agent did not run game or tests"
+}

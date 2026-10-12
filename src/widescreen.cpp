@@ -212,6 +212,27 @@ void extend_fruit(uint8_t* ram,uint32_t begin){
         }
     }
 }
+// Original scene375 draws TV bitmap4DB plus stand4DC at fixed4:3 sizes.
+// Its black artwork ends at the original canvas, exposing the wider world.
+// This runs only before its ROM-qualified bitmap-state call801B9100; that
+// original call restores the texture pipeline after these opaque side fills.
+void television_sides(uint8_t* ram){
+    const auto saved=layout;layout.origin=0x803;layout.aspect=2;apply(ram);
+    // Same pipeline as Original80028688 (opaque primitive-color rectangle).
+    command(ram,0xE7000000,0);
+    command(ram,0xE3000A01,0);
+    command(ram,0xD9C0F9FB,0);
+    command(ram,0xD9FFFFFF,0x00200404);
+    command(ram,0xFCFFFFFF,0xFFFDF6FB);
+    command(ram,0xE200001C,0x005041C8);
+    command(ram,0xFA000000,0x000000FF);
+    // The existing mask role extends only the exterior edge of each fill,
+    // with wide scissoring independent of HUD layout. Two original black
+    // edge pixels provide overlap; the authored TV opening is untouched.
+    command(ram,0xF6000000|(1u<<14)|(239u<<2),0);
+    command(ram,0xF6000000|(319u<<14)|(239u<<2),318u<<14);
+    layout=saved;apply(ram);
+}
 std::array<std::vector<uint8_t>,2> art;
 bool finite_art(uint8_t* ram,recomp_context* c){
     if(c->r6!=320||c->r7!=240||c->f12.fl!=0.f||c->f14.fl!=0.f||
@@ -307,6 +328,7 @@ extern "C" void dora3_wide_enter(uint8_t* ram,recomp_context* ctx,unsigned kind)
     case 12:layout.origin=Blue;break;
     case 13:layout.origin=Title;break;
     case 14:layout.origin=0x803;layout.aspect=2;break; // Circular mask, unscaled texel slope.
+    case 25:television_sides(ram);break; // TV frame: hide the extra world at both sides.
     case 24:break; // Right-hand grass/checker extension on leave.
     case 22:case 23:break; // Normal world projection; sky-only vertex copy on leave.
     case 17:layout.origin=ctx->f12.fl<160.f?0x100:0x300;break;

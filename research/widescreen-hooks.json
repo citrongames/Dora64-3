@@ -583,6 +583,16 @@
       "leave": "801C78D0",
       "role": 6,
       "description": "Blue underlay outside finite minigame geometry; world and players share the normal wide projection"
+    },
+    {
+      "section": ".scene1",
+      "address": "801B90A8",
+      "name": "dora3_s3_801B90A8",
+      "size": 280,
+      "sha256": "44abf505ee820186c4fb25ae601138656220266949c5efe949caf18f8dcfa6df",
+      "role": 25,
+      "enter": "801B9100",
+      "leave": "801B9108"
     }
   ]
 }
