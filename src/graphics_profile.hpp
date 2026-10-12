@@ -14,7 +14,7 @@ enum class Stage : unsigned {
  ObjectTimelineSample, ObjectRegistrationSample, ModelRatePlanSample,
  EnemyCallbackSample, EnemyFinalizeSample, ModelBoundarySample, ModelPoseSample, NativeCommon, NativePlayer, FrameBuild,
  VertexStatePart, VertexAppendPart, VertexOverridePart, VertexTransformPart, VertexTexcoordPart,
- TriangleStatePart, TriangleBookkeepingPart, TriangleBoundsPart, AudioTask, GraphicsRAMWait, TextureEvict, UploadCommands, Count
+ TriangleStatePart, TriangleBookkeepingPart, TriangleBoundsPart, AudioTask, GraphicsRAMWait, TextureEvict, UploadCommands, TextureBind, TextureLists, Count
 };
 enum class Counter : unsigned {
  Output, Guest, Vertices, Faces, Matrices, Pairs, Tiles, RenderGPUTimestampNS,

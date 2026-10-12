@@ -32,7 +32,7 @@ constexpr std::array<const char*,stage_count> names{
  "model_rate_plan_sample_1_in_64","enemy_callback_sample_1_in_64",
  "enemy_finalize_sample_1_in_64","model_boundary_sample_1_in_64","model_pose_sample_1_in_64","native_common","native_player","frame_build",
  "vertex_state_part","vertex_append_part","vertex_override_part","vertex_transform_part","vertex_texcoord_part",
- "triangle_state_part","triangle_bookkeeping_part","triangle_bounds_part","audio_task","graphics_ram_wait","texture_evict","upload_commands"};
+ "triangle_state_part","triangle_bookkeeping_part","triangle_bounds_part","audio_task","graphics_ram_wait","texture_evict","upload_commands","texture_bind","texture_lists"};
 constexpr std::array<const char*,counter_count> counter_names{
  "output_frames","guest_frames","vertices_sum","faces_sum","matrices_sum","pairs_sum","tiles_sum","render_gpu_timestamp_ns",
  "gate_not_native_build","gate_not_gameplay","gate_dimensions","gate_cpu_framebuffer",

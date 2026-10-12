@@ -25965,6 +25965,17 @@
       "role": "idempotent_native_boss_unlink",
       "evidence": "test128 AV RVA1367F2 at original child physics7C store. Boss2 state4 unlinks slot5 at80224154 then again80224398 after phase2; Boss6 equivalent80223FB0. Preserve valid and Original calls.",
       "status": "ROM/static verified; owner gameplay pending"
+    },
+    {
+      "section": ".penguin_slot1",
+      "function": "0x80232558",
+      "function_name": "dora3_s18_penguin_80232558",
+      "function_sha256": "8649197459a144b18f4a0417e7c7bae9e4be699a89e53a07abe729c007e1898c",
+      "site": "0x8023267C",
+      "expected_word": "0xE4800010",
+      "operation": "native_enemy_equation",
+      "evidence": "State100 adds10 degrees to physics+4 for18 Source ticks, then walks30 ticks at speed10 and retires. Copy the captured physics+4 equation into actor+10 in the original movement JAL delay slot. Counters, dialogue, movement and retirement remain Source.",
+      "role": "doragonia_guard_departure_visual_yaw_copy"
     }
   ]
 }

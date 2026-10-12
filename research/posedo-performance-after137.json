@@ -1,0 +1,54 @@
+{
+  "profile_sha256": "a20321a89ec797b17a19df70b109aa323b0e8cf62026d18a2568a5d44d0153c7",
+  "profile_path": "/mnt/d/Games/DoraRecomp3/Dora64-3-Windows-x64/logs/1791795931990/state/graphics-profile.jsonl",
+  "manual": {
+    "from_ms": 21913,
+    "to_ms": 31430,
+    "seconds": 10.5300578,
+    "output_fps": 7.122468026718714,
+    "stages_ms_per_second": {
+      "native_common": 943.4725894856912,
+      "native_player": 3.383704123637384,
+      "texture_bind": 1.3868015045463473,
+      "texture_lists": 4.362853544830495,
+      "hle": 44.773552904904285
+    },
+    "common_calls_per_second": 107.7866828043432,
+    "common_thread_cpu_ms_per_second": 866.5669432507768
+  },
+  "original": {
+    "from_ms": 33434,
+    "to_ms": 45567,
+    "seconds": 13.133144099999999,
+    "output_fps": 20.025669253107488,
+    "stages_ms_per_second": {
+      "native_common": 0.0,
+      "native_player": 0.0,
+      "texture_bind": 0.0,
+      "texture_lists": 0.0,
+      "hle": 138.45630461025706
+    },
+    "common_calls_per_second": 0.0,
+    "common_thread_cpu_ms_per_second": 0.0
+  },
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "rom_evidence": {
+    "room": 254,
+    "room_table": "80201A74",
+    "room_record": "80201504",
+    "placement_loader": "801E4894",
+    "placement_rom": "163DC0",
+    "placement_count": 36,
+    "soundorago2_count": 3,
+    "kind": 305,
+    "overlay_rom": "1561E0",
+    "constructor": "8023E584",
+    "update": "8023ECF8",
+    "swim": "8023E890",
+    "parts_per_head": 7,
+    "history_entries": 60
+  },
+  "diagnosis": "Profile isolates common object simulation. ROM contains three independent-wave heads with 21 delayed parts. Large repeated 33x33 harmonic sums are a concrete redundant calculation in this path; actor-level contribution and resulting FPS require owner verification.",
+  "change": "Factor exp(i*phase); cache all 33x33 zero-phase drift kernels by exact rates/age/speed/acceleration/function; four thread-local numeric-only entries; absent angular dimension follows original one-wave sum. Preserve every +/-16 sideband and exact original endpoints.",
+  "validation": "Static profile/ROM/source analysis only; no tests, CPU checks, game, renderer or GPU run by agent"
+}

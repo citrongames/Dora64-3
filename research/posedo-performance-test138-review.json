@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-12",
+  "scope": "Read-only analysis of owner gameplay profiles; no agent runtime or tests",
+  "user_acceptance": "Owner reports test138 worked; requests log verification only, no commit/push authorized",
+  "before_profile_sha256": "a20321a89ec797b17a19df70b109aa323b0e8cf62026d18a2568a5d44d0153c7",
+  "after_profile_sha256": "2b97d861536d4233c24cb378f2fa2bfdbd4a961a28707b637982f1c92a188f44",
+  "before_manual60": {
+    "sample_end_ms": [
+      21913,
+      23014,
+      24081,
+      25179,
+      26195,
+      27211,
+      28347,
+      29348,
+      30378,
+      31430
+    ],
+    "seconds": 10.5300578,
+    "output_fps": 7.122468026718714,
+    "sample_fps_min": 5.618872970205552,
+    "sample_fps_max": 8.883523679279131,
+    "native_common_ms_per_second": 943.4725894856912,
+    "native_common_ms_per_call": 8.753146167400882,
+    "native_common_calls_per_second": 107.7866828043432,
+    "native_common_max_call_ms": 14.9604,
+    "scope_errors": 0,
+    "deferred": 75,
+    "eager": 0
+  },
+  "after_manual60": {
+    "sample_end_ms": [
+      20824,
+      21826,
+      22841,
+      23858,
+      24858,
+      38927,
+      39944,
+      40945
+    ],
+    "seconds": 8.083654899999999,
+    "output_fps": 59.997613208352085,
+    "sample_fps_min": 59.89080708053078,
+    "sample_fps_max": 60.08137973638261,
+    "native_common_ms_per_second": 254.7924083201523,
+    "native_common_ms_per_call": 1.3832464069845531,
+    "native_common_calls_per_second": 184.19885787059022,
+    "native_common_max_call_ms": 3.4179,
+    "scope_errors": 0,
+    "deferred": 485,
+    "eager": 0
+  },
+  "after_requested360": {
+    "sample_end_ms": [
+      26866,
+      27873,
+      28878,
+      29882,
+      30885,
+      31889,
+      32894,
+      33894,
+      34896,
+      35897,
+      36899
+    ],
+    "seconds": 11.0361524,
+    "output_fps": 163.5533775340036,
+    "sample_fps_min": 156.966471961589,
+    "sample_fps_max": 169.45008364355158,
+    "native_common_ms_per_second": 415.8494313652283,
+    "native_common_ms_per_call": 1.443200534591195,
+    "native_common_calls_per_second": 288.1439005862224,
+    "native_common_max_call_ms": 3.1273,
+    "scope_errors": 0,
+    "deferred": 1805,
+    "eager": 0
+  },
+  "update_cost_reduction_factor": 6.327973181931156,
+  "all_scope_errors": 0,
+  "all_dropped_trace_events": 0,
+  "limitations": [
+    "One owner run in scene254, not exhaustive gameplay coverage",
+    "Whole-second samples do not establish per-present frame pacing or absence of all bugs",
+    "Profile scopes overlap across threads; their totals must not be added",
+    "Mode-change intervals and initial resource loading excluded from steady windows",
+    "Profile has no executable hash; build attribution is based on owner test138 report"
+  ]
+}

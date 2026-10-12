@@ -1,0 +1,47 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "npc": {
+    "kind": 69,
+    "rom": "0x1456c0",
+    "function": "0x80232558",
+    "function_sha256": "8649197459a144b18f4a0417e7c7bae9e4be699a89e53a07abe729c007e1898c",
+    "source_turn": "0x802325F0",
+    "visual_copy": "0x8023267C",
+    "word": "0xE4800010",
+    "states": "state100:18 turns of10degrees, then30 Source ticks walking at speed10; event and retirement retained"
+  },
+  "water": {
+    "sequence": "0x801FD890",
+    "indices": "0x801FD868",
+    "durations": "0x801FD87C",
+    "stages": [
+      50,
+      254,
+      361
+    ],
+    "resources": "bank33:0427..0436",
+    "format": "CI4 32x32;16 frames,2 Source ticks each;36 used RGB555 colors;1024 unique spatial trajectories",
+    "map_name": "ROM06D9B4 Posedonoumi / record801C32AC, entry stage254 at+0x16",
+    "fix": "Per-pixel color continuation with persistent content-qualified cycle palette, ticket-local CI4 pixels/TLUT; no whole-cycle spatial clustering or translation search in this channel",
+    "limits": "16-color quantization retained; performance and visuals require owner gameplay",
+    "resources_sha256": {
+      "0427": "0cda9063a27d1aaace3cb62615208d366f7ce4847325ebdeb8df2a682608f202",
+      "0428": "aeaac35c1b4f4aac51c715b471af8a1a7012aec4ce65c5fdf28b8e1cced99e52",
+      "0429": "c25b450fe54fba273d4b204bf7b44cd9a3ab95e6279ebc1fc0d30b748580f788",
+      "042A": "2f81921d1e05566f21b8d9978d7a0ed21a14cc23cc708350f00817059b642af4",
+      "042B": "74c3f176256e53c7f0115407d7c4bda23b32de198024d32a8b9173a6272d8a13",
+      "042C": "fcf321732f9aab0ea0a10262434be0869b4d0afd297c9a18d2f0804c8374d118",
+      "042D": "27cc18e5c54c76b690b13df244569820e3ad4303b0204250fb44b24515a7c7a4",
+      "042E": "388b1e1d71844246d5bc505d721903f52d4637cdc45f901b28aa8313cb72a503",
+      "042F": "dcf0c7c4b78b286f95020a895a074d981e667b51d81f668e5d893c3f356c781f",
+      "0430": "74debd1ed6ba850418d2ffb19d3b7179e89fc51a79b30c98bb2b9d663cd2a87a",
+      "0431": "47ce87284262ec7c7652ca2d5e94aca2d2cdda046180d4c920420e92808f49aa",
+      "0432": "85894de1595371f105dd7ed5677804f6e2c95f9fe8bc55f161348af0de2bf812",
+      "0433": "98325fb6d16b9d485ab2c421f1e8af5c42cce8db1344a03ed4680ef631f8b57e",
+      "0434": "51f1e03e18b5cff52451a757a75e764b752f740091287dad95e134c94102601b",
+      "0435": "a00e0482009c78256bc75bafb1e3158ddbb78c15832f70f16f5254d64af72a3b",
+      "0436": "ed9409a6e8474f1a73bb28435bf008866178c748754cf7fcd60ac4d63beeadfd"
+    }
+  },
+  "validation": "Static ROM/source analysis; no tests, CPU checks, game or GPU execution"
+}

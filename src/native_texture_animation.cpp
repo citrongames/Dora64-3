@@ -1,4 +1,5 @@
 #include "performance_profile.hpp"
+#include "graphics_profile.hpp"
 #include "guest_storage.hpp"
 #include "native_texture_animation.hpp"
 #include "native_frame_bridge.hpp"
@@ -114,7 +115,8 @@ struct State {
     std::map<std::pair<uint32_t,uint32_t>,CachedShift> shifts;
     std::map<uint32_t,std::optional<Bitmap>> bitmaps;
     std::map<uint32_t,uint64_t> signatures;
-    std::map<std::pair<uint32_t,uint32_t>,std::vector<unsigned>> sand_palettes;
+    std::map<std::pair<uint32_t,uint32_t>,std::vector<unsigned>> indexed_frame_palettes;
+    std::map<std::vector<uint64_t>,std::vector<unsigned>> indexed_palettes;
     std::map<std::tuple<uint64_t,uint64_t,unsigned>,SampledBitmap> samples;
     std::map<std::tuple<uint32_t,uint32_t,uint32_t>,std::optional<ScrollCycle>> cycles;
     std::map<std::tuple<uint32_t,uint32_t,uint32_t>,std::optional<MaterialLoop>> material_loops;
@@ -265,57 +267,69 @@ SampledBitmap sample_stage_bitmap(uint8_t* rdram,const Bitmap& a,const Bitmap& b
     for(unsigned i=0;i<colors.size();i+=2)MEM_B(int32_t(i/2),int32_t(pixels))=int8_t((encoded.at(colors[i])<<4)|encoded.at(colors[i+1]));
     return state.samples.emplace(key,SampledBitmap{pixels,address}).first->second;
 }
-// Zaraha has moving CI4 geometry, not a small set of fixed pixel
-// trajectories. Blend actual texel colors, then encode NEW indices against
-// one stable color palette for the entire cycle. No spatial clustering and
-// no pair/hold palette discontinuities. Retain the original 2KiB CI4/TMEM load.
-SampledBitmap sample_sand(uint8_t* rdram,const Bitmap& a,const Bitmap& b,
+// Zaraha sand and Posedo water have moving CI4 geometry, not a small set
+// of fixed pixel trajectories. Blend texel colors, then encode new indices
+// against one stable palette for the cycle. No spatial clustering or pair/hold
+// palette discontinuities. Preserve the original CI4 size and TMEM loads.
+SampledBitmap sample_indexed_material(uint8_t* rdram,const Bitmap& a,const Bitmap& b,
                           uint32_t indices,uint32_t table,unsigned frames,double phase) {
-    if(a.format!=5||b.format!=5||a.width!=64||a.height!=64||b.width!=64||b.height!=64||
+    if(a.format!=5||b.format!=5||a.width!=b.width||a.height!=b.height||
        a.colors!=16||b.colors!=16||a.palette_bytes!=32||b.palette_bytes!=32)return {};
     const auto palette_key=std::pair{indices,table};
-    auto found=state.sand_palettes.find(palette_key);
-    if(found==state.sand_palettes.end()) {
+    auto found=state.indexed_frame_palettes.find(palette_key);
+    if(found==state.indexed_frame_palettes.end()) {
         if(!pointer(indices,frames+1)||MEM_BU(int32_t(frames),int32_t(indices))!=255)return {};
-        std::map<unsigned,unsigned> counts;
+        std::vector<Bitmap> cycle;
+        std::vector<uint64_t> signatures;
         for(unsigned step=0;step<frames;++step) {
             const unsigned entry=MEM_BU(int32_t(step),int32_t(indices));
             if(entry==255||!pointer(table+2*entry,2))return {};
             const int handle=MEM_H(int32_t(2*entry),int32_t(table));
             if(handle<0||handle>=int(dora3::distance::resource_capacity))return {};
             const auto frame=bitmap(rdram,word(rdram,dora3::distance::resources+20*unsigned(handle)));
-            if(!frame||frame->format!=5||frame->width!=64||frame->height!=64||frame->colors!=16)return {};
-            for(unsigned y=0;y<64;++y)for(unsigned x=0;x<64;++x) {
-                const auto color=pixel(rdram,*frame,x,y);if(!(color&1))return {};
+            if(!frame||frame->format!=5||frame->width!=a.width||frame->height!=a.height||frame->colors!=16)return {};
+            cycle.push_back(*frame);signatures.push_back(bitmap_signature(rdram,*frame));
+        }
+        // Reused resource handles must be requalified by content. The costly
+        // histogram/palette reduction is cached across frames, while guest
+        // image addresses and sampled pixels remain local to their ticket.
+        if(const auto cached=state.indexed_palettes.find(signatures);cached!=state.indexed_palettes.end()) {
+            found=state.indexed_frame_palettes.emplace(palette_key,cached->second).first;
+        } else {
+            std::map<unsigned,unsigned> counts;
+            for(const auto& frame:cycle)for(unsigned y=0;y<frame.height;++y)for(unsigned x=0;x<frame.width;++x) {
+                const auto color=pixel(rdram,frame,x,y);if(!(color&1))return {};
                 ++counts[color];
             }
-        }
-        struct Cluster {std::array<double,3> rgb;unsigned weight;};
-        std::vector<Cluster> clusters;
-        for(const auto& [color,count]:counts)
-            clusters.push_back({{double((color>>11)&31),double((color>>6)&31),double((color>>1)&31)},count});
-        // The authored cycles have only 19/13 colors in total. Reduce color
-        // distance (19->16), never thousands of independent pixel trajectories.
-        while(clusters.size()>16) {
-            size_t left=0,right=1;double best=1e100;
-            for(size_t i=0;i<clusters.size();++i)for(size_t j=i+1;j<clusters.size();++j) {
-                double distance=0;for(unsigned c=0;c<3;++c) {
-                    const double d=clusters[i].rgb[c]-clusters[j].rgb[c];distance+=d*d;
+            struct Cluster {std::array<double,3> rgb;unsigned weight;};
+            std::vector<Cluster> clusters;
+            for(const auto& [color,count]:counts)
+                clusters.push_back({{double((color>>11)&31),double((color>>6)&31),double((color>>1)&31)},count});
+            // Sand has19/13 colors and Posedo36. Reduce color distance only,
+            // never thousands of independent spatial pixel trajectories.
+            while(clusters.size()>16) {
+                size_t left=0,right=1;double best=1e100;
+                for(size_t i=0;i<clusters.size();++i)for(size_t j=i+1;j<clusters.size();++j) {
+                    double distance=0;for(unsigned c=0;c<3;++c) {
+                        const double d=clusters[i].rgb[c]-clusters[j].rgb[c];distance+=d*d;
+                    }
+                    distance*=double(clusters[i].weight)*clusters[j].weight/(clusters[i].weight+clusters[j].weight);
+                    if(distance<best){best=distance;left=i;right=j;}
                 }
-                distance*=double(clusters[i].weight)*clusters[j].weight/(clusters[i].weight+clusters[j].weight);
-                if(distance<best){best=distance;left=i;right=j;}
+                auto& to=clusters[left];const auto from=clusters[right];
+                for(unsigned c=0;c<3;++c)to.rgb[c]=(to.rgb[c]*to.weight+from.rgb[c]*from.weight)/(to.weight+from.weight);
+                to.weight+=from.weight;clusters.erase(clusters.begin()+right);
             }
-            auto& to=clusters[left];const auto from=clusters[right];
-            for(unsigned c=0;c<3;++c)to.rgb[c]=(to.rgb[c]*to.weight+from.rgb[c]*from.weight)/(to.weight+from.weight);
-            to.weight+=from.weight;clusters.erase(clusters.begin()+right);
+            std::vector<unsigned> colors;
+            for(const auto& cluster:clusters) {
+                unsigned packed=1;for(unsigned c=0;c<3;++c)packed|=unsigned(std::llround(cluster.rgb[c]))<<(11-5*c);
+                colors.push_back(packed);
+            }
+            if(colors.empty())return {};
+            if(state.indexed_palettes.size()>=16)state.indexed_palettes.clear();
+            state.indexed_palettes.emplace(std::move(signatures),colors);
+            found=state.indexed_frame_palettes.emplace(palette_key,std::move(colors)).first;
         }
-        std::vector<unsigned> colors;
-        for(const auto& cluster:clusters) {
-            unsigned packed=1;for(unsigned c=0;c<3;++c)packed|=unsigned(std::llround(cluster.rgb[c]))<<(11-5*c);
-            colors.push_back(packed);
-        }
-        if(colors.empty())return {};
-        found=state.sand_palettes.emplace(palette_key,std::move(colors)).first;
     }
     phase=std::clamp(phase,0.,1.);
     const auto key=std::tuple{bitmap_signature(rdram,a),bitmap_signature(rdram,b),unsigned(std::llround(phase*65535))};
@@ -336,10 +350,11 @@ SampledBitmap sample_sand(uint8_t* rdram,const Bitmap& a,const Bitmap& b,
         }
         pairs[i*16+j]=nearest;
     }
-    const auto address=allocate(rdram,std::vector<uint32_t>((32+2048)/4,0));if(!address)return {};
+    const auto pixel_bytes=a.width*a.height/2;
+    const auto address=allocate(rdram,std::vector<uint32_t>((32+pixel_bytes+7)/4,0));if(!address)return {};
     for(unsigned i=0;i<16;++i)MEM_H(int32_t(2*i),int32_t(address))=int16_t(colors[std::min(i,unsigned(colors.size()-1))]);
     const auto pixels=address+32;
-    for(unsigned i=0;i<2048;++i) {
+    for(unsigned i=0;i<pixel_bytes;++i) {
         const unsigned first=MEM_BU(int32_t(i),int32_t(a.pixels)),last=MEM_BU(int32_t(i),int32_t(b.pixels));
         MEM_B(int32_t(i),int32_t(pixels))=int8_t((pairs[(first>>4)*16+(last>>4)]<<4)|pairs[(first&15)*16+(last&15)]);
     }
@@ -595,9 +610,9 @@ TextureFrameScope::TextureFrameScope(uint8_t* ram,Nanoseconds now,unsigned bank)
     state.active=true;state.frame_ram=ram;state.bank=dora3::distance::display_list_begin(bank);
     state.arena=dora3::distance::display_list_end(bank)-0x100;
     state.h=state.source_ram==ram?std::clamp(double(now-state.source_time)*60./(word(ram,0x801A39DC)*1e9),0.,1.):0.;
-    state.segments={};state.copies.clear();state.samples.clear();state.cycles.clear();state.material_loops.clear();state.cycle_samples.clear();state.bitmaps.clear();state.signatures.clear();state.sand_palettes.clear();state.builders.clear();state.patches.clear();
+    state.segments={};state.copies.clear();state.samples.clear();state.cycles.clear();state.material_loops.clear();state.cycle_samples.clear();state.bitmaps.clear();state.signatures.clear();state.indexed_frame_palettes.clear();state.builders.clear();state.patches.clear();
 }
-TextureFrameScope::~TextureFrameScope(){if(ram_){state.active=false;state.frame_ram=nullptr;state.segments={};state.copies.clear();state.samples.clear();state.cycles.clear();state.material_loops.clear();state.cycle_samples.clear();state.bitmaps.clear();state.signatures.clear();state.sand_palettes.clear();state.builders.clear();state.patches.clear();}}
+TextureFrameScope::~TextureFrameScope(){if(ram_){state.active=false;state.frame_ram=nullptr;state.segments={};state.copies.clear();state.samples.clear();state.cycles.clear();state.material_loops.clear();state.cycle_samples.clear();state.bitmaps.clear();state.signatures.clear();state.indexed_frame_palettes.clear();state.builders.clear();state.patches.clear();}}
 }
 extern "C" void dora3_native_texture_channel_clock(uint8_t* rdram,recomp_context* c,unsigned boundary) {
     // Native simulation executes the real bitmap tick too; only the extra
@@ -643,6 +658,7 @@ extern "C" void dora3_native_texture_channel_clock(uint8_t* rdram,recomp_context
 extern "C" void dora3_native_texture_bind(uint8_t* rdram,recomp_context* c,unsigned world) {
     dora3::profile::Scope profile(dora3::profile::Tag::TextureBind);
     if(!state.active||state.frame_ram!=rdram)return;
+    dora3::graphics_profile::Scope graphics_scope(dora3::graphics_profile::Stage::TextureBind);
     const auto actor=uint32_t(world?c->r20:c->r4),slot=unsigned(world?c->r18:c->r5);
     if(slot>=8||!pointer(actor,0xcc)||MEM_BU(int32_t(0x6b+slot),int32_t(actor))!=5)return;
     const auto handle=word(rdram,actor+0x74+4*slot);if(handle>=dora3::distance::sprite_capacity)return;
@@ -667,19 +683,22 @@ extern "C" void dora3_native_texture_bind(uint8_t* rdram,recomp_context* c,unsig
     state.segments[segment]={a->pixels,a->palette,a->width,a->height,a->width*a->height/(a->format==5?2:1),0,0,false};
     state.segments[palette].base=a->palette;state.segments[palette].palette=a->palette;
     if(!(flags&1))return; // Source controls active/loop/clamp; last clamped frame holds
-    // Only the two ROM-verified Zaraha channels use the moving-index sampler.
-    unsigned sand_frames=0;
-    if(world&&sequence==0x801FD478u&&indices==0x801FD450u&&durations==0x801FD458u&&segment==4&&palette==5)sand_frames=7;
-    if(world&&sequence==0x801FD484u&&indices==0x801FD460u&&durations==0x801FD46Cu&&segment==6&&palette==7)sand_frames=8;
+    // ROM-qualified moving-index channels. Posedo is a deforming32x32 CI4
+    // cycle, not a palette-only effect: whole-cycle fixed spatial clusters
+    // destroy its ripple pattern. Bypass translation/trajectory analysis.
+    unsigned indexed_frames=0;
+    if(world&&sequence==0x801FD890u&&indices==0x801FD868u&&durations==0x801FD87Cu&&segment==4&&palette==5)indexed_frames=16;
+    if(world&&sequence==0x801FD478u&&indices==0x801FD450u&&durations==0x801FD458u&&segment==4&&palette==5)indexed_frames=7;
+    if(world&&sequence==0x801FD484u&&indices==0x801FD460u&&durations==0x801FD46Cu&&segment==6&&palette==7)indexed_frames=8;
     const unsigned duration=MEM_BU(int32_t(index),int32_t(durations)),remaining=MEM_BU(4,int32_t(entry));
-    if(!duration||(!sand_frames&&remaining>=duration))return;
+    if(!duration||(!indexed_frames&&remaining>=duration))return;
     const auto& clock=state.channels[handle];
     const bool observed=clock.sequence==sequence&&clock.age;
     const double source_phase=observed&&clock.updated_epoch!=state.source_epoch?0.:state.h;
     const double elapsed=remaining>=duration?0.:double(duration-1-remaining)+source_phase,h=elapsed/duration;
     auto& binding=state.segments[segment];
-    if(sand_frames) {
-        const auto sample=sample_sand(rdram,*a,*b,indices,table,sand_frames,h);
+    if(indexed_frames) {
+        const auto sample=sample_indexed_material(rdram,*a,*b,indices,table,indexed_frames,h);
         binding.sampled_pixels=sample.pixels;binding.sampled_palette=sample.palette;
         state.segments[palette].sampled_palette=sample.palette;return;
     }
@@ -734,6 +753,7 @@ extern "C" void dora3_native_texture_builder(uint8_t* rdram,recomp_context* c,un
     if(begin<state.bank||last<begin||last>state.arena||((begin|last)&7))
         return; // Other Source-owned builders are outside this ticket's lease.
     if(std::none_of(state.segments.begin(),state.segments.end(),[](const auto& b){return b.scroll||b.sampled_pixels;}))return;
+    dora3::graphics_profile::Scope graphics_scope(dora3::graphics_profile::Stage::TextureLists);
     // The actual SDK builds material setup before the mesh DE. Process that
     // prefix too, carrying its image/tile state into every nested mesh list.
     std::set<uint32_t> path;Parser parser;

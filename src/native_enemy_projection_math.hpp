@@ -1,4 +1,5 @@
 #pragma once
+#include <array>
 #include <cmath>
 #include <complex>
 #include <stdexcept>
@@ -86,19 +87,66 @@ struct WaveProjection {
 // two Jacobi--Anger expansions preserve the product and discrete drift sum.
 struct IndependentWaveProjection {
     double heading,pitch,heading_amplitude,pitch_amplitude,yaw_phase,yaw_step,pitch_phase,pitch_step;
-    template<class HarmonicSum>
-    std::complex<double> sum(double yaw_sign,double pitch_sign,double age,double speed,double acceleration,
-            HarmonicSum&& harmonic_sum) const {
-        return modulated_sum(yaw_sign*heading+pitch_sign*pitch,yaw_sign*heading_amplitude,
-            yaw_phase,yaw_step,age,speed,acceleration,[&](double phi,double omega,double h,double v,double a){
-                return modulated_sum(phi,pitch_sign*pitch_amplitude,pitch_phase,pitch_step,h,v,a,
-                    [&](double inner_phi,double inner_omega,double inner_h,double inner_v,double inner_a){
-                        return harmonic_sum(inner_phi,omega+inner_omega,inner_h,inner_v,inner_a);
-                    });
-            });
+    // The supplied pure harmonic sum is linear in exp(i*phase). Separate
+    // that phase from the drift kernel instead of evaluating 33x33 sine/
+    // cosine sums again for every axis of every historical body segment.
+    // Keep ALL +/-16 sidebands and the same principal-frequency alias.
+    using HarmonicSum=std::complex<double>(*)(double,double,double,double,double);
+    static constexpr unsigned bands=33;
+    static int order(unsigned i) {return i==0?0:(i&1)?int((i+1)/2):-int(i/2);}
+    struct Kernel {
+        HarmonicSum function=nullptr;
+        std::array<double,5> key{};
+        std::array<std::complex<double>,bands*bands> values{};
+    };
+    const Kernel& kernel(double age,double speed,double acceleration,HarmonicSum harmonic_sum) const {
+        // Numerical values only: no actor, RAM pointer or resource lifetime.
+        // Exact keys retain distinct rates/ages after resets or mode changes.
+        static thread_local std::array<Kernel,4> cache{};
+        static thread_local unsigned next=0;
+        const std::array<double,5> key{yaw_step,pitch_step,age,speed,acceleration};
+        for(const auto& item:cache)if(item.function==harmonic_sum&&item.key==key)return item;
+        auto& item=cache[next++%cache.size()];
+        item.function=nullptr;item.key=key;
+        for(unsigned i=0;i<bands;++i)for(unsigned j=0;j<bands;++j)
+            item.values[i*bands+j]=harmonic_sum(0,order(i)*yaw_step+order(j)*pitch_step,age,speed,acceleration);
+        item.function=harmonic_sum;return item;
     }
-    template<class HarmonicSum>
-    double displacement(unsigned axis,double age,double speed,double acceleration,HarmonicSum&& harmonic_sum) const {
+    static std::array<std::complex<double>,bands> weights(double amplitude,double phase) {
+        std::array<std::complex<double>,bands> result{};
+        result[0]=integer_bessel(0,amplitude);
+        for(unsigned k=1;k<=16;++k) {
+            const double coefficient=integer_bessel(k,amplitude);
+            const auto rotation=std::polar(1.,k*phase);
+            result[2*k-1]=coefficient*rotation;
+            result[2*k]=(k%2?-coefficient:coefficient)*std::conj(rotation);
+        }
+        return result;
+    }
+    std::complex<double> sum(double yaw_sign,double pitch_sign,double age,double speed,double acceleration,
+            HarmonicSum harmonic_sum) const {
+        if(age==0)return {};
+        if(!std::isfinite(heading)||!std::isfinite(pitch)||!std::isfinite(yaw_phase)||
+           !std::isfinite(pitch_phase)||!std::isfinite(yaw_step)||!std::isfinite(pitch_step)||
+           !std::isfinite(age)||age<0||age>1)
+            throw std::logic_error("Enemy modulation outside one Source period");
+        const double yaw_amplitude=yaw_sign*heading_amplitude,tilt_amplitude=pitch_sign*pitch_amplitude;
+        const double carrier=yaw_sign*heading+pitch_sign*pitch;
+        // Y has no yaw modulation. Zero-amplitude sidebands are identically
+        // zero, so do not expand an absent dimension into 33 nested sums.
+        if(yaw_amplitude==0)return modulated_sum(carrier,tilt_amplitude,pitch_phase,pitch_step,age,speed,acceleration,harmonic_sum);
+        if(tilt_amplitude==0)return modulated_sum(carrier,yaw_amplitude,yaw_phase,yaw_step,age,speed,acceleration,harmonic_sum);
+        const auto yaw=weights(yaw_amplitude,yaw_phase),tilt=weights(tilt_amplitude,pitch_phase);
+        const auto& drift=kernel(age,speed,acceleration,harmonic_sum);
+        std::complex<double> result=0;
+        for(unsigned i=0;i<bands;++i) {
+            std::complex<double> row=0;
+            for(unsigned j=0;j<bands;++j)row+=tilt[j]*drift.values[i*bands+j];
+            result+=yaw[i]*row;
+        }
+        return std::polar(1.,carrier)*result;
+    }
+    double displacement(unsigned axis,double age,double speed,double acceleration,HarmonicSum harmonic_sum) const {
         if(axis==1)return -sum(0,1,age,speed,acceleration,harmonic_sum).imag();
         if(axis>2)throw std::logic_error("Invalid independent wave axis");
         const auto path=(sum(1,1,age,speed,acceleration,harmonic_sum)+sum(1,-1,age,speed,acceleration,harmonic_sum))/2.;
