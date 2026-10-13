@@ -1,8 +1,11 @@
 plugins { id 'com.android.application' }
 
 final File generatedAssetsDir = layout.buildDirectory.dir('generated/dora3Assets').get().asFile
-final String cpuDir = (project.findProperty('dora3CpuDir') ?: '../../build-local/startup-wide-fruit114-v1').toString()
-final String audioDir = (project.findProperty('dora3AudioDir') ?: '../../build-local/audio-rsp-v1').toString()
+final String cpuDir = (project.findProperty('dora3CpuDir') ?: '../../build-local/startup').toString()
+final String audioDir = (project.findProperty('dora3AudioDir') ?: '../../build-local/audio-rsp').toString()
+final String releaseVersion = file('../../VERSION').text.trim()
+final List<Integer> versionParts = releaseVersion.tokenize('.').collect { it.toInteger() }
+if (versionParts.size() != 3 || versionParts.any { it < 0 || it >= 100 }) throw new GradleException('VERSION must be major.minor.patch with components below 100')
 final Properties releaseSigning = new Properties()
 final String signingPath = System.getenv('DORA3_SIGNING_PROPERTIES')
 if (signingPath) {
@@ -18,12 +21,12 @@ android {
         applicationId 'com.n64recomp.dora64three'
         minSdk 24
         targetSdk 36
-        versionCode 6
-        versionName '0.1-test6'
+        versionCode (versionParts[0] * 10000 + versionParts[1] * 100 + versionParts[2])
+        versionName releaseVersion
         ndk { abiFilters 'arm64-v8a' }
         externalNativeBuild { cmake {
             targets 'dora3_startup'
-            arguments '-DDORA3_LIVE_RT64=ON', '-DDORA3_DIAGNOSTICS=OFF', '-DDORA3_GRAPHICS_PROFILE=OFF',
+            arguments '-DDORA3_LIVE_RT64=ON', '-DDORA3_DIAGNOSTICS=OFF', '-DDORA3_GRAPHICS_PROFILE=OFF', '-DDORA3_CRASH_LOG=OFF',
                 "-DDORA3_GENERATED_DIR=${file(cpuDir).absolutePath}",
                 "-DDORA3_AUDIO_GENERATED_DIR=${file(audioDir).absolutePath}",
                 "-DPython3_EXECUTABLE=${System.getenv('DORA3_HOST_PYTHON') ?: '/usr/bin/python3'}",

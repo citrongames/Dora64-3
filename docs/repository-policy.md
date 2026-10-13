@@ -1,58 +1,19 @@
-# Правила репозитория
+# Repository policy
 
-Применены принципы существующего Dora64: воспроизводимая генерация из ROM,
-точные версии библиотек, сохранение авторства и исключение локальных результатов.
-Сверено по его README, .gitignore, .gitmodules и bootstrap на коммите
-`680d81feb4c57309ba80536300d73725ea9dffaa` (2026-10-11, только чтение).
+The repository stores native source, generators, local adapters, ROM metadata,
+localization, original project artwork, build scripts and documentation.
 
-## Что хранить
+ROMs, extracted original game data, generated CPU/audio sources, compiled
+binaries, local settings, saves, logs, memory captures and signing credentials
+stay outside Git. Binary release packages are assembled separately.
 
-В Git остаются исходники, генераторы и адаптеры, ROM-метаданные, авторские
-переводы/шрифты/оформление, документация и сведения о происхождении проверок.
-ROM, извлечённые оригинальные ресурсы, сгенерированные функции и RSP, объектные
-файлы, EXE/DLL, сейвы, настройки, логи, дампы и ключи хранятся локально.
-Исключение каталогов или расширений не удаляет уже отслеживаемые файлы;
-перед коммитом просматривать состав staged diff.
+`research/` contains inputs required by the game generators and build target.
+Do not remove it wholesale when organizing documentation.
 
-`research/` не является мусорной папкой: там находятся CMake игрового target,
-входные данные генераторов, доказательства адресов/хуков и исходники старых
-проверок. Удалять или исключать её целиком нельзя. Большой JSON с адресами
-не равен дампу ROM. Исторические результаты не выдавать за новые проверки.
+Dependencies use independent checkouts in `build-deps/` with exact revisions
+from [dependencies.lock.json](../dependencies.lock.json). The N64Recomp host
+tool has its own pin and patch in `tools/n64recomp/`.
 
-## Библиотеки
-
-Dora64 использует submodules; Dora64-3 использует рекурсивный lock и независимые
-checkout в build-deps. Оба способа фиксируют версии. Менять рабочую схему на
-submodules только ради одинакового вида не нужно: это затронуло бы пути сборки.
-Источник истины — [dependencies.lock.json](../dependencies.lock.json).
-Пин отдельного инструмента генерации — [tools/n64recomp/lock.json](../tools/n64recomp/lock.json).
-Runtime-вложенный N64Recomp и инструмент генерации имеют разные роли и pins;
-автоматически выравнивать их нельзя.
-
-Все специфичные исправления третьей игры хранятся в этом репозитории.
-Build-local адаптеры создают отдельные исходники из закреплённых библиотек;
-в общие Dora64-форки они не отправляются. Для будущего изменения dependency
-нужны воспроизводимый patch от доступной базы либо отдельно разрешённый fork,
-а также согласованное обновление lock. См. [dependency-policy.md](dependency-policy.md).
-
-## История и публикация
-
-Существующая main, обычные коммиты, без force-push и переписывания истории.
-Коммит/push — по явной команде пользователя после принятия работы.
-Приватность, новые удалённые репозитории и релизы не менять автоматически.
-Общую лицензию не назначать без решения владельца; upstream notices сохранять.
-Текущий test-пакет не объявлять подготовленным публичным релизом: выпуск требует
-отдельной упаковки лицензий всех распространяемых компонентов.
-
-## Состояние при уборке после test115
-
-Статически сверены все32 dependency checkout: HEAD и origin совпадают с lock,
-tracked-изменений и Git alternates нет, Git-каталоги принадлежат Dora64-3.
-Dora64 остался на прежнем коммите с чистым рабочим деревом.
-В отслеживаемом дереве не обнаружены ROM, EXE/DLL, сейвы, журналы или снимки
-памяти по соответствующим расширениям. Это аудит текущего дерева, не всей
-истории и не юридическая экспертиза содержимого. Тесты и игра не запускались.
-
-Обновлены README, навигация и ignore-правила. Старые README и AGENTS сохранены
-в docs/history; текущие правила собраны в корневом AGENTS.md. Исходники игры,
-CMake, генераторы, dependency pins и принятая сборка115 не изменялись.
+Keep third-party notices and the project's GPL-3.0-or-later license. Supply
+source and license files with binary releases. Use ordinary commits and preserve
+history; publishing is a separate maintainer action.

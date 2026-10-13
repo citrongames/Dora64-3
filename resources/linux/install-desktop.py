@@ -22,7 +22,7 @@ def exec_argument(value):
 
 def main():
     game_dir = Path(__file__).resolve().parent
-    executable = game_dir / 'dora3_startup'
+    executable = game_dir / 'Dora64-3'
     icons = game_dir / 'assets/icons'
     sizes = (16, 32, 48, 64, 128, 256, 512)
     required = [executable, game_dir / 'dora64-3.desktop']

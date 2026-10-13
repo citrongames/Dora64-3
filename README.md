@@ -1,89 +1,83 @@
 # Dora64-3
 
-Порт **Doraemon 3: Nobita no Machi SOS!** с Nintendo 64 на основе нативной
-рекомпиляции. Основная проверяемая платформа — Windows x64. Последняя принятая
-владельцем сборка — **test118**; это рабочая тестовая версия, не публичный релиз.
-Полное прохождение и все сочетания настроек не заявляются проверенными.
+A native recompilation of **Doraemon 3: Nobita no Machi SOS!** for Windows,
+Linux and Android, powered by N64Recomp, N64 Modern Runtime and RT64.
 
-## Возможности
+## Download
 
-- Original FPS и Native FPS с режимом Manual; Modern / Manual60 по умолчанию.
-- Modern Camera с настройками; оригинальная камера сохраняется в фиксированных
-  сценах, диалогах, катсценах и минииграх согласно игровым ограничениям.
-- Widescreen: адаптация интерфейса, разделённых экранов и фонов миниигр.
-- Японский оригинал, английский и русский переводы текста и графических надписей.
-- Автосохранение при возвращении на карту выбора уровней.
-- Четыре геймпада и отдельные назначения клавиатуры для каждого игрока.
-- Меню Esc с настройками графики, звука, управления и читами; профили
-  Modern/Original и Reset game внутри приложения без пересоздания окна.
+Get **version 1.0.0** from [Releases](https://github.com/citrongames/Dora64-3/releases).
 
-Добавлены Android ARM64 с тач-управлением и мобильным меню, а также локальные
-Release-пакеты Windows/Linux/Android для проверки. Linux-пакет требует glibc2.43+. На устройствах агентом
-они не запускаются. [Android](android/README.md), [архитектура](docs/android-port.md).
+| Platform | Package | Requirements |
+| --- | --- | --- |
+| Windows | `Dora64-3-1.0.0-Windows-x64.zip` | Windows 10/11, x64, current graphics driver |
+| Linux | `Dora64-3-1.0.0-Linux-x86_64.tar.gz` | x86_64, glibc 2.43+, Vulkan, SDL2 and GTK3 |
+| Android | `Dora64-3-1.0.0-Android-arm64.apk` | Android 7.0+, ARM64, Vulkan 1.0 |
 
-## Игровые данные
+**The game ROM is not included.** You need your own Japanese **N3DJ,
+revision 0** ROM: a 16 MiB, big-endian `.z64` file. Its name does not matter.
 
-ROM не входит в репозиторий. Нужен собственный японский ROM **N3DJ, revision0**,
-big-endian `.z64`, 16 МиБ, SHA-256:
-`410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602`.
-Метаданные версии находятся в [recomp/rom.lock.json](recomp/rom.lock.json).
-Имя файла произвольное: Windows/Linux ищут `.z64` рядом с программой и сверяют
-содержимое по хешу; Android проверяет файл при выборе и импорте.
-Исходный ROM не изменяется. Генерируемые игровые функции и звуковой RSP-код
-создаются локально из ROM и не хранятся в Git.
-
-## Исходники и сборка
-
-Репозиторий [citrongames/Dora64-3](https://github.com/citrongames/Dora64-3)
-остаётся приватным. Нужен доступ владельца. Локальное имя `DoraRecomp3`
-сохранено для существующих сборочных путей.
-
-```sh
-git clone https://github.com/citrongames/Dora64-3.git DoraRecomp3
-cd DoraRecomp3
-python3 tools/bootstrap_dependencies.py
-python3 tools/bootstrap_n64recomp.py --jobs 6
+```text
+SHA-256: 410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602
 ```
 
-[Полная инструкция](docs/building.md) описывает генерацию и компиляцию без
-запуска игры. Зависимости загружаются на точных коммитах из
-[dependencies.lock.json](dependencies.lock.json) в отдельный `build-deps/`.
-Установка Dora64 рядом не требуется. Его библиотеки и сборки не меняются.
+## Getting started
 
-## Структура
+**Windows:** extract the entire ZIP into a writable folder, place your `.z64`
+ROM beside `Dora64-3.exe`, then start the program. Keep the bundled DLLs and
+`assets` folder with the executable.
 
-| Каталог | Содержимое |
-| --- | --- |
-| `android/` | Activity, Gradle и упаковка Android ARM64 |
-| `src/` | Платформенная интеграция, игровые адаптеры и Native FPS |
-| `recomp/` | Метаданные ROM, символы и правила генерации |
-| `tools/` | Генераторы, библиотечные адаптеры, сборка и упаковка |
-| `assets/` | Переводы, авторские шрифты, графика и иконки |
-| `resources/` | Исходники оформления и интеграция с ОС |
-| `research/` | Статические сведения, исторические проверки и `runtime/CMakeLists.txt` |
-| `docs/` | Архитектура, возможности и история разработки |
-| `build-*` | Локальные зависимости, генерация и сборки; исключены из Git |
+**Linux:** extract the archive, place your `.z64` ROM beside `Dora64-3`, then
+run `./Dora64-3` from that folder. See the [Linux requirements](docs/building.md#linux)
+for the required system packages. `python3 install-desktop.py` adds a launcher
+to your applications menu.
 
-Корневой `CMakeLists.txt` относится к ранним probe-инструментам.
-Игровая сборка использует `research/runtime/CMakeLists.txt`.
+**Android:** install the APK and select your ROM using the system file picker
+on first launch. The application imports it into its own storage.
 
-## Документация
+Press **Esc** on desktop, or tap the **gear** on Android, to open settings.
+Use the Controls tab to configure keyboard, mouse and gamepads. The Android
+Touch tab lets you move and resize the on-screen controls.
 
-[Содержание](docs/README.md) · [Последняя сборка](docs/windows-test-build.md) ·
-[Текущая работа](docs/work-in-progress.md) ·
-[Переводы](assets/localization/README.md) ·
-[Правила Git](docs/repository-policy.md) ·
-[Изоляция библиотек](docs/dependency-policy.md).
+## Features
 
-## Авторы и происхождение
+- Original frame rate and adjustable Manual FPS; the Modern profile uses 60 FPS.
+- A modern camera with mouse, right-stick and touch controls in supported scenes.
+- Widescreen support for gameplay, interface, backgrounds and split-screen modes.
+- Japanese, English and Russian text and translated artwork.
+- Autosave when returning to the stage-selection map.
+- Up to four gamepads and separate keyboard bindings for each player.
+- Graphics, audio, controls, cheats and Modern/Original profiles in the settings menu.
+- In-app reset without restarting the program.
 
-Порт разрабатывается **citrongames при существенном участии ИИ — ChatGPT и
-OpenAI Codex** в анализе, программировании, переводе и документации.
-Направление проекта, решения и игровая проверка — за владельцем.
-Эта формулировка относится к порту, а не к авторам исходных библиотек.
+[User guide](docs/user-guide.md) · [Build from source](docs/building.md) ·
+[Release notes](docs/release-notes.md) · [Documentation](docs/README.md)
 
-Используются N64Recomp, N64ModernRuntime, RT64, SDL2 и работа первого Dora64.
-Ссылки, закреплённые версии и сведения об авторстве:
-[NOTICE.md](NOTICE.md), [dependencies.lock.json](dependencies.lock.json).
-Лицензии сторонних компонентов сохраняются. Общая лицензия нового порта
-пока не выбрана; публичная публикация и релизы требуют отдельного решения.
+## Building
+
+Clone this repository, install the prerequisites for your platform, then run:
+
+```sh
+python3 tools/build_release.py --rom /path/to/original.z64
+```
+
+On Windows, use `python` from an x64 Visual Studio developer shell.
+For Android, add `--platform android` and provide your signing configuration.
+The [build guide](docs/building.md) covers prerequisites, Android signing,
+incremental builds and packaging.
+
+Dependencies are pinned in [dependencies.lock.json](dependencies.lock.json).
+They are downloaded into `build-deps`; a separate Dora64 installation is not required.
+Recompiled game and audio sources are generated locally from your ROM.
+
+## License and credits
+
+Dora64-3's own code is licensed under **GPL-3.0-or-later**; see [LICENSE](LICENSE).
+Third-party components retain their original licenses and notices. The game,
+characters and original game data remain the property of their respective owners.
+
+Developed by **citrongames**, with assistance from **ChatGPT and OpenAI Codex**
+in programming, analysis, localization and documentation.
+
+Thanks to the contributors to **N64Recomp**, **N64 Modern Runtime**, **RT64**,
+**Plume**, **SDL2** and the original **Dora64** project.
+See [NOTICE.md](NOTICE.md) for attribution and third-party licensing.

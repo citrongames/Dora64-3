@@ -1,101 +1,18 @@
-## Уточнение после test115 (2026-10-11)
+# Dependency policy
 
-Все32 checkout сверены статически с lock: HEAD/origin совпадают, tracked-изменений
-и alternates нет. Dora64 чистый на прежнем680d81f. За время разработки адаптеров
-стало больше: runtime scheduling, RT64 pacing/readback/lifetime/performance,
-widescreen и sprite edges. Их код хранится в tools/ и src/ Dora64-3, а выходные
-копии создаются внутри build-directory через research/runtime/CMakeLists.txt.
-Закреплённые библиотеки остаются неизменными; создавать/обновлять общие форки
-для этой уборки не требуется. Ранние разделы ниже описывают развитие схемы.
-Отдельный генератор N64Recomp по-прежнему имеет собственный lock и patch.
-См. [правила репозитория](repository-policy.md) и [сборку](building.md).
+[dependencies.lock.json](../dependencies.lock.json) records the exact repositories
+and commits for the runtime, renderer, SDL2 and their nested components.
+`tools/bootstrap_dependencies.py` creates independent checkouts under `build-deps/`.
+It checks revisions and preserves existing work rather than resetting it.
 
-# Изоляция зависимостей Dora64-3
+The generation tool is prepared by `tools/bootstrap_n64recomp.py` using
+`tools/n64recomp/lock.json` and its verified patch. This tool has a distinct
+role and pin from the runtime's N64Recomp dependency.
 
-## Принятое устройство
+Game-specific changes live in this repository's generators and adapters.
+Adapters produce isolated build-directory copies and keep dependency checkouts
+unchanged. A separate Dora64 checkout is not needed to build Dora64-3.
 
-Dora64 остаётся в `/home/vova/projects/Dora64` на своей зафиксированной базе.
-Новый проект находится в `/home/vova/projects/DoraRecomp3` и публикуется только
-в приватный `citrongames/Dora64-3`. Каталог сейчас не переименовываем: receipts
-и конфигурации сборок содержат абсолютные пути.
-
-Копии библиотек находятся в `build-deps/` нового проекта. У них собственные
-Git-объекты, без alternates и hardlinks к Dora64; исходники и build directories
-двух проектов не общие. Ничего не устанавливать поверх библиотек первого порта.
-
-## Ветки и фиксация версий
-
-Локальные ветки `dora64-3` созданы от закреплённых исходных коммитов в:
-
-- N64ModernRuntime;
-- N64Recomp внутри runtime;
-- RT64;
-- plume внутри RT64.
-
-Ветки пока не содержат изменений и не отправлялись в удалённые репозитории
-библиотек. Остальные зависимости остаются на зафиксированных коммитах.
-Отдельный генератор N64Recomp в build-tools уже воспроизводится из своего lock
-и общего zero-register.patch; его схема остаётся прежней.
-
-Для сборки источником истины служит `dependencies.lock.json`: URL и точный SHA
-каждой из 32 зависимостей, включая вложенные. Имя ветки не является версией.
-Не использовать автоматическое обновление до HEAD или `submodule update --remote`.
-Bootstrap откажется перезаписывать несовпадающий HEAD или изменённые tracked files.
-
-Перед изменением библиотеки работать только в её копии нового проекта. После
-проверки создать коммит и обновить соответствующий SHA в lock нового проекта.
-Вложенные gitlinks родительских библиотек и рекурсивный lock держать согласованными,
-когда изменения будут интегрироваться в сборку. Pin первой игры не обновлять.
-
-## Хранение новых исправлений
-
-Разрешение на приватный основной репозиторий не означает разрешения публиковать
-экспериментальный код в публичных форках библиотек. Пока новых исправлений нет,
-создавать четыре дополнительных репозитория не требуется.
-
-Когда появится исправление, его воспроизводимую patch-серию можно хранить внутри
-приватного Dora64-3, закрепив базовый SHA, порядок и хэши патчей в bootstrap.
-Это потребует явного расширения bootstrap: сейчас он применяет patch только
-к отдельному генератору. Для значительного объёма изменений можно по отдельной
-команде завести приватные репозитории библиотек. Нельзя помещать в lock локальный
-коммит, недоступный на другой машине, без поставляемой patch-серии.
-
-Общие исправления рендерера проверять отдельно от хуков третьей игры.
-Перенос в Dora64 — отдельная интеграция с проверкой первой игры и сознательным
-обновлением её pin, когда пользователь поручит это сделать.
-
-## Проверка 2026-09-27
-
-Все 32 закреплённых коммита доступны через GitHub по URL из lock.
-Ветки `dora64-3` созданы локально без изменения SHA или исходников библиотек.
-Рабочее дерево Dora64 осталось чистым. ROM, ресурсы, сборки и ключи исключены
-из коммитов основного проекта. Сборка не перезапускалась: код не изменялся.
-
-## Исследовательское изменение порядка SP completion
-
-Live startup использует генерируемую копию events.cpp с completion после разбора
-RT64. Это адаптация только build target, а не изменение dependency checkout:
-исходный SHA256 зафиксирован в tools/prepare_runtime_timing.py; файл и script
-включены в configure dependencies. Неизвестная версия останавливает CMake.
-Проверено отсутствие изменений всех32 dependency trees. Назначение, границы
-и причины не считать это готовым общим исправлением: docs/live-startup.md.
-
-
-## Аппаратные адаптеры test-016
-
-Тот же генератор теперь создаёт build-local копии events.cpp, scheduling.cpp и
-mesgqueue.cpp, проверяя SHA256 каждого исходника. Добавлены raw RDP очередь,
-учёт жизненного цикла RSP и запрет доставки внешних событий при выключенном IE.
-Сами пять аппаратных обработчиков находятся в src/n64_hardware*. Библиотеки
-и pins не редактировались; первый Dora64 этих адаптеров не получает.
-Подробности и ограничения модели — hardware-interface.md.
-
-## RT64 Manual FPS в test-024
-
-По прямому запросу пользователя Manual не ограничивается частотой монитора.
-tools/prepare_rt64_framerate.py создаёт build-local копию workload queue из pinned
-RT64, проверяя SHA2567fe61533ff8d1ffa475eb90a49310028e10dd59552c0f2a47a3a662cbfd7757a.
-CMake заменяет workload/present sources RT64 при сборке Dora64-3. Checkouts/pins не изменяются;
-изменение воспроизводимо без локальных недоступных коммитов. Original/Display,
-порядок очередей, pacing и все Android GPU-фиксы сохраняются. Это настройка
-третьего порта, не исправление первой игры.
+Keep upstream licenses and attribution with redistributed components. Release
+packages collect the license files, and the Source archive includes pinned
+dependency sources under `dependency-sources/`.

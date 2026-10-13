@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory=$true)][string]$Python,
-    [string]$CpuDirectory = 'build-local/startup-v89',
-    [string]$AudioDirectory = 'build-local/audio-rsp-v1',
+    [string]$CpuDirectory = 'build-local/startup',
+    [string]$AudioDirectory = 'build-local/audio-rsp',
     [int]$Jobs = 6,
     [ValidateSet("Release", "RelWithDebInfo")][string]$Configuration = "Release",
     [switch]$Fresh,
@@ -31,13 +31,15 @@ if ($visualStudioPath) { [Environment]::SetEnvironmentVariable('PATH', $visualSt
 $compiler = Join-Path $env:VCToolsInstallDir 'bin/Hostx64/x64/cl.exe'
 $cmake = Join-Path $visualStudio 'Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe'
 $ninja = Join-Path $visualStudio 'Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja\ninja.exe'
+$cpuPath = if ([IO.Path]::IsPathRooted($CpuDirectory)) { $CpuDirectory } else { Join-Path $projectRoot $CpuDirectory }
+$audioPath = if ([IO.Path]::IsPathRooted($AudioDirectory)) { $AudioDirectory } else { Join-Path $projectRoot $AudioDirectory }
 $buildDirectory = Join-Path $projectRoot 'build-local/windows'
 $configureOptions = @()
 $graphicsProfileOption = if ($GraphicsProfile) { '-DDORA3_GRAPHICS_PROFILE=ON' } else { '-DDORA3_GRAPHICS_PROFILE=OFF' }
 $diagnosticsOption = if ($Diagnostics) { '-DDORA3_DIAGNOSTICS=ON' } else { '-DDORA3_DIAGNOSTICS=OFF' }
 $crashLogOption = if ($CrashLog) { '-DDORA3_CRASH_LOG=ON' } else { '-DDORA3_CRASH_LOG=OFF' }
 if ($Fresh) { $configureOptions += '--fresh' }
-& $cmake @configureOptions $crashLogOption $diagnosticsOption $graphicsProfileOption -S (Join-Path $projectRoot 'research/runtime') -B $buildDirectory -G Ninja "-DCMAKE_BUILD_TYPE=$Configuration" '-DDORA3_LIVE_RT64=ON' "-DCMAKE_C_COMPILER=$compiler" "-DCMAKE_CXX_COMPILER=$compiler" "-DCMAKE_MAKE_PROGRAM=$ninja" "-DPython3_EXECUTABLE=$Python" "-DDORA3_GENERATED_DIR=$(Join-Path $projectRoot $CpuDirectory)" "-DDORA3_AUDIO_GENERATED_DIR=$(Join-Path $projectRoot $AudioDirectory)"
+& $cmake @configureOptions $crashLogOption $diagnosticsOption $graphicsProfileOption -S (Join-Path $projectRoot 'research/runtime') -B $buildDirectory -G Ninja "-DCMAKE_BUILD_TYPE=$Configuration" '-DDORA3_LIVE_RT64=ON' "-DCMAKE_C_COMPILER=$compiler" "-DCMAKE_CXX_COMPILER=$compiler" "-DCMAKE_MAKE_PROGRAM=$ninja" "-DPython3_EXECUTABLE=$Python" "-DDORA3_GENERATED_DIR=$cpuPath" "-DDORA3_AUDIO_GENERATED_DIR=$audioPath"
 if ($LASTEXITCODE -ne 0) { throw 'Windows configure failed.' }
 & $cmake --build $buildDirectory --target dora3_startup -j $Jobs
 if ($LASTEXITCODE -ne 0) { throw 'Windows build failed.' }
