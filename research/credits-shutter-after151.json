@@ -1,0 +1,45 @@
+{
+  "log": "D:\\Games\\DoraRecomp3\\Dora64-3-Windows-x64\\logs\\Dora64-3-test-151-1791911161072-31564\\runtime.log",
+  "log_bytes": 88172076,
+  "nonfinite": [],
+  "user_correction": "Room311 alleged foreground texture is the empty boss HP bar; leave it unchanged; stop searching",
+  "user_remaining_issue": "Narrow strip remains at the right edge after the credits shutter",
+  "credits_source_function": "scene34/801C22C4",
+  "source_sha256": "4b3bd1d813ca4dc4f8a2777f294b7f688ef0f1393026b18adc1fd31f874c6f33",
+  "scissor_source": [
+    30,
+    30,
+    166,
+    132
+  ],
+  "source_viewport": [
+    640,
+    480,
+    511,
+    0,
+    400,
+    360,
+    511,
+    0
+  ],
+  "edge_cause": "RT64 convertViewportRect uses round; convertFixedRect(scissor) uses ceil for the right edge",
+  "change": "Widescreen scope26 only: three black F6 exterior edges x166->167; preserve moving opening, growth counter and 4:3",
+  "runtime_inputs": [
+    "src/widescreen.cpp"
+  ],
+  "upstream_cpu_generation": "build-local/startup-manual151-v1",
+  "build_options": {
+    "crash_log": false,
+    "diagnostics": false,
+    "graphics_profile": false
+  },
+  "validation": "Static log, ROM and renderer-source inspection only; user playcheck pending; no game/tests/CPU checks/GPU launched",
+  "commit_push": "Explicitly authorized by user on 2026-10-13 for accumulated test149-152 changes",
+  "status": "User accepted Windows Release152 and authorized commit/push on 2026-10-13",
+  "executable_sha256": "7b74ff43d8ccc125cbbbd12f2aac1782584aeb6d4319a29ad2ddb04d61feac7a",
+  "existing_files_retained": 629,
+  "generated_changed": [],
+  "logs_disabled_verified": true,
+  "user_acceptance_date": "2026-10-13",
+  "user_accepted_build": "test-152"
+}

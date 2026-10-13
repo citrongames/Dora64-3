@@ -1,3 +1,4 @@
+#include "manual_fps_trace.hpp"
 #include "widescreen.hpp"
 #include "guest_storage.hpp"
 #include "recomp_context_copy.hpp"
@@ -32,6 +33,19 @@ void command(uint8_t* ram,uint32_t a,uint32_t b){
     const auto p=uint32_t(word(ram,0x801B1424));
     if(!distance::frame_pointer(p,8))throw std::logic_error("Widescreen command outside frame arena");
     word(ram,p)=int32_t(a);word(ram,p+4)=int32_t(b);word(ram,0x801B1424)=int32_t(p+8);
+}
+// Credits scene34/801C22C4 emits three black fills ending at x166,
+// exactly at the 3D window's scissor. RT64 rounds rectangle viewports but
+// ceils the scissor, so a fractional output edge can expose one pixel.
+// Extend only that exterior edge by one source pixel, within this exact
+// ROM-qualified widescreen scope; the animated opening remains unchanged.
+void cover_credits_shutter_edge(uint8_t* ram,uint32_t begin){
+    const auto end=uint32_t(word(ram,0x801B1424));
+    for(auto p=begin;p+8<=end;p+=8){
+        const auto w=uint32_t(word(ram,p));
+        if((w>>24)==0xF6&&((w>>12)&0xFFFu)==166u*4u)
+            word(ram,p)=int32_t(w+(1u<<14));
+    }
 }
 void apply(uint8_t* ram){
     if(!emitted_valid||layout.aspect!=emitted.aspect)command(ram,0x64000033,enabled?layout.aspect:0);
@@ -119,6 +133,55 @@ void extend_sky(uint8_t* ram,uint32_t begin,unsigned index){
             // vertex offset, then maskPhysicalAddress preserves tagged addresses;
             // stripping it truncates this allocation to24 bits and reads garbage.
             word(ram,p+4)=int32_t(sky.address);
+    }
+}
+// Ending scene355: two authored cloud/backdrop planes behind the city.
+// Preserve the middle image and extend only X and S; the Source mirrored
+// cloud tile repeats, while the far backdrop keeps its authored clamp edges.
+std::array<SkyVertices,2> ending_skies;
+void extend_ending_sky(uint8_t* ram,uint32_t begin) {
+    const auto end=uint32_t(word(ram,0x801B1424));
+    if(end<=begin||!distance::frame_pointer(begin,uint64_t(end)-begin))return;
+    for(unsigned index=0;index<ending_skies.size();++index) {
+        auto& sky=ending_skies[index];
+        if(sky.original.empty()) {
+            const auto data=decode(index?0x33DD20:0x33D930,"GIMO");
+            const size_t offset=index?0x1060:0x460;
+            if(data.size()!=(index?4708u:1636u)||offset+64>data.size())
+                throw std::logic_error("Widescreen ending sky resource changed");
+            const std::array<std::array<int,5>,4> expected=index?
+                std::array<std::array<int,5>,4>{{{-6000,4000,-2200,-2560,0},{-6000,0,-2200,-2560,4096},{6000,0,-2200,1536,4096},{6000,4000,-2200,1536,0}}}:
+                std::array<std::array<int,5>,4>{{{2000,-1000,-2100,1024,2048},{2000,3000,-2100,1024,0},{-2000,3000,-2100,-1024,0},{-2000,-1000,-2100,-1024,2048}}};
+            sky.original.assign(data.begin()+offset,data.begin()+offset+64);
+            auto wide=sky.original;
+            const auto read16=[&](size_t a){return int16_t(uint16_t(wide[a])<<8|wide[a+1]);};
+            const auto write16=[&](size_t a,int v){wide[a]=uint16_t(v)>>8;wide[a+1]=uint8_t(v);};
+            for(unsigned i=0;i<4;++i) {
+                for(unsigned k=0;k<5;++k)if(read16(i*16+(k<3?k*2:8+(k-3)*2))!=expected[i][k])
+                    throw std::logic_error("Widescreen ending sky vertices changed");
+                if(wide[i*16+6]||wide[i*16+7]||wide[i*16+12]!=255||wide[i*16+13]!=255||wide[i*16+14]!=255||wide[i*16+15]!=255)
+                    throw std::logic_error("Widescreen ending sky colors changed");
+                write16(i*16,read16(i*16)*4);
+                const int center=index?-512:0;
+                write16(i*16+8,center+(read16(i*16+8)-center)*4);
+            }
+            auto* memory=static_cast<uint8_t*>(recomp::alloc(ram,wide.size()));
+            if(!memory)throw std::bad_alloc();
+            const uint64_t address=uint64_t(memory-ram)+0x80000000ull;
+            if(address+wide.size()>0xA0000000ull)throw std::bad_alloc();
+            sky.address=uint32_t(address);
+            for(size_t i=0;i<wide.size();++i)memory[i^3]=wide[i];
+            for(size_t i=0;i<sky.original.size();i+=4) {
+                std::swap(sky.original[i],sky.original[i+3]);
+                std::swap(sky.original[i+1],sky.original[i+2]);
+            }
+        }
+        for(uint32_t pc=begin;pc<end;pc+=8) {
+            if(uint32_t(word(ram,pc))!=0xDB060008u)continue;
+            const auto address=uint32_t(word(ram,pc+4))&0x1FFFFFFFu;
+            if(uint64_t(address)+sky.original.size()>distance::game_ram_size)continue;
+            if(!std::memcmp(ram+address,sky.original.data(),sky.original.size()))word(ram,pc+4)=int32_t(sky.address);
+        }
     }
 }
 // B0C separates grass, red line/checker atlas and the distant wall material.
@@ -293,7 +356,7 @@ void blue(uint8_t* ram,recomp_context* source){
     dora3_texture_rect_state(ram,&c);
 }
 }
-void reset(){scopes.clear();layout={};blue_asset=scratch=0;drawing_underlay=false;enabled=hud_enabled=0;art={};skies={};fruit={};emitted_valid=false;}
+void reset(){scopes.clear();layout={};blue_asset=scratch=0;drawing_underlay=false;enabled=hud_enabled=0;art={};skies={};ending_skies={};fruit={};emitted_valid=false;}
 int aspect(){return enabled;}int hud(){return hud_enabled;}
 void begin(uint8_t* ram){
 #ifdef DORA3_LIVE_RT64
@@ -304,6 +367,7 @@ void begin(uint8_t* ram){
 }
 extern "C" void dora3_wide_enter(uint8_t* ram,recomp_context* ctx,unsigned kind){
     using namespace dora3::wide;
+    dora3::manual_trace::scope(ram,ctx,kind,layout.origin,layout.aspect);
     if(!enabled)return;
     if(kind==10){
         // Original projection index1 is the animated menu backdrop; index0
@@ -329,7 +393,15 @@ extern "C" void dora3_wide_enter(uint8_t* ram,recomp_context* ctx,unsigned kind)
     case 9:layout.menu=true;break;
     case 12:layout.origin=Blue;break;
     case 13:layout.origin=Title;break;
-    case 14:layout.origin=0x803;layout.aspect=2;break; // Circular mask, unscaled texel slope.
+    case 14:
+        if(int16_t(word(ram,uint32_t(ctx->r29)+0x20))>=2) {
+            // BDAF0 rectangular shutter: both the shrinking opening and its
+            // black exterior follow the full image width, independently of HUD.
+            layout.origin=None;layout.aspect=1;
+        } else {layout.origin=0x803;layout.aspect=2;} // Circular clamped mask.
+        break;
+    case 26:layout.origin=None;layout.aspect=1;break; // Credits22C4 shutter follows its stretched3D window.
+    case 27:break; // Scene355 sky planes on leave; normal projection and HUD remain scoped.
     case 25:television_sides(ram);break; // TV frame: hide the extra world at both sides.
     case 24:break; // Right-hand grass/checker extension on leave.
     case 22:case 23:break; // Normal world projection; sky-only vertex copy on leave.
@@ -342,11 +414,14 @@ extern "C" void dora3_wide_enter(uint8_t* ram,recomp_context* ctx,unsigned kind)
     case 21:layout.origin=(uint32_t(ctx->r4)&1)?0x400:0;break; // Complete HP group.
     }
     apply(ram);
+    dora3::manual_trace::scope(ram,ctx,kind|0x100u,layout.origin,layout.aspect);
 }
 extern "C" void dora3_wide_leave(uint8_t* ram,recomp_context*,unsigned kind){
-    using namespace dora3::wide;
+    using namespace dora3::wide;uint8_t* rdram=ram;
     if(!enabled)return;
     if(scopes.empty())throw std::logic_error("Widescreen layer boundary mismatch");
+    if(kind==27&&MEM_H(0,int32_t(0x801B36B8))==355)extend_ending_sky(ram,scopes.back().draw_begin);
+    if(kind==26)cover_credits_shutter_edge(ram,scopes.back().draw_begin);
     if(kind==24)extend_fruit(ram,scopes.back().draw_begin);
     if(kind==22||kind==23)extend_sky(ram,scopes.back().draw_begin,kind-22);
     layout=scopes.back().saved;scopes.pop_back();apply(ram);

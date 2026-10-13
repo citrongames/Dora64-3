@@ -152,6 +152,22 @@
       "size": 228,
       "sha256": "682f91eb3f49b7ffffd4b849403376b16031264b9c0466914b4569c5b24370a0",
       "role": 24
+    },
+    {
+      "section": ".scene34",
+      "address": "801C22C4",
+      "name": "dora3_s2_menu_801C22C4",
+      "size": 480,
+      "sha256": "4b3bd1d813ca4dc4f8a2777f294b7f688ef0f1393026b18adc1fd31f874c6f33",
+      "role": 26
+    },
+    {
+      "section": ".scene1",
+      "address": "801BB848",
+      "name": "dora3_s3_801BB848",
+      "size": 220,
+      "sha256": "1504f8b9ed8179e5aa2073df63deb69624c8188dffeb20d27847b9a9ede52fab",
+      "role": 27
     }
   ],
   "sites": [

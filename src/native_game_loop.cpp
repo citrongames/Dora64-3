@@ -1,3 +1,4 @@
+#include "manual_fps_trace.hpp"
 #include "graphics_profile.hpp"
 #include "diagnostics.hpp"
 #include "performance_profile.hpp"
@@ -114,6 +115,10 @@ void try_enter(uint8_t* rdram,Nanoseconds now,unsigned fps) {
 void synchronize(uint8_t* rdram,Nanoseconds now) {
     auto& session=game_frame_session();const auto before=session.phase();
     const unsigned fps=dora3_requested_native_fps();
+#ifdef DORA3_CRASH_LOG
+    if(dora3::manual_trace::gate(10,0,500000))
+        dora3::manual_trace::log("LOOP now=%lld phase=%d fps=%u active=%s entering=%s timelines=%d common=%d count=%d bank=%d built=%d deferred=%d",(long long)now,int(before),fps,active_policy?active_policy->name:"none",entry_policy?entry_policy->name:"none",int(timelines_started),int(common_eligible(rdram)),word(rdram,count),word(rdram,next_bank),word(rdram,built),word(rdram,deferred));
+#endif
     if(before==Phase::Acquiring || before==Phase::Native) {
         if(!fps || !common_eligible(rdram) || !same_domain(rdram,active_policy,active_identity)) {
             // A Source callback may issue a fade command after the last native
@@ -162,6 +167,7 @@ void build_frame(uint8_t* rdram,recomp_context* ctx,const FrameTicket& ticket,Fr
         ModelFrameScope models(rdram,ctx,frame_time,ticket.bank);
         UiFrameScope ui(rdram,ctx,frame_time);
         MinigameFrameScope minigames(rdram);
+        CutsceneFrameScope cutscenes(rdram);
         dora3::camera::HandoffFrameScope camera_handoff(rdram);
         dora3::graphics_profile::Scope builder_scope(dora3::graphics_profile::Stage::FrameBuild);
         dora3_graphics_frame_build(rdram,ctx);

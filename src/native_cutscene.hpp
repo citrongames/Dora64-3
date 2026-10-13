@@ -26,6 +26,15 @@ private:
     struct State;
     std::unique_ptr<State> state_;
 };
+class CutsceneFrameScope {
+public:
+    explicit CutsceneFrameScope(uint8_t*);
+    ~CutsceneFrameScope();
+    CutsceneFrameScope(const CutsceneFrameScope&)=delete;
+private:
+    struct State;
+    std::unique_ptr<State> state_;
+};
 }
 
 bool native_cutscene_eligible(uint8_t*);

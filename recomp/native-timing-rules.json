@@ -20847,6 +20847,16 @@
       "function": "0x8022019C",
       "function_name": "dora3_s37_remaining_8022019C",
       "function_sha256": "d3ca0df72677b14e31360545de006d5801e442baed2558f216976f29bac25a3a",
+      "site": "0x80220474",
+      "expected_word": "0xE4620010",
+      "operation": "native_enemy_equation",
+      "evidence": "Test150 marker2: Boss5 state6/phase2 visual yaw has no equation while physical heading advances. ROM20474 copies f2=previous heading in JAL delay slot, before2091C new turn. Borrow preceding same-lifetime path; preserve Source copy lag and phase commands."
+    },
+    {
+      "section": ".remaining_slot0_15",
+      "function": "0x8022019C",
+      "function_name": "dora3_s37_remaining_8022019C",
+      "function_sha256": "d3ca0df72677b14e31360545de006d5801e442baed2558f216976f29bac25a3a",
       "site": "0x80220680",
       "expected_word": "0xE4820060",
       "operation": "native_enemy_equation",

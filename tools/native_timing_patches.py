@@ -1837,6 +1837,9 @@ APPROVED_UI_SITES[('ui_domain','.scene1',0x801F96E0,0x801F96E0,0x3C02801B)]={'do
 # Bironn: death spin is an unbounded +30 yaw, not the bounded-turn helper.
 APPROVED_ENEMY_EQUATIONS[('.demo_slot1',0x8022EFB0,0x8022F0B8,0xE4800010)]=True
 
+# Boss5 preceding-heading copy, verified from test150 and locked ROM.
+APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_15', 0x8022019C, 0x80220474, 0xE4620010)]=True
+
 def timing_hooks(sections,compiled,rom):
     data=json.loads((ROOT/'recomp/native-timing-rules.json').read_text())
     if data['version']!=1 or hashlib.sha256(rom).hexdigest()!=data['rom_sha256']:

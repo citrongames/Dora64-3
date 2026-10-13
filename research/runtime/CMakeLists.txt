@@ -63,9 +63,14 @@ else()
     add_executable(dora3_startup)
 endif()
 target_sources(dora3_startup PRIVATE "${ROOT}/src/performance_profile.cpp" "${ROOT}/src/draw_distance.cpp" "${ROOT}/src/guest_storage.cpp" "${ROOT}/src/port_cheats.cpp" "${ROOT}/src/cutscene_input.cpp" "${ROOT}/src/game_reset.cpp" "${ROOT}/src/audio_music_handoff.cpp" "${ROOT}/src/startup_runtime.cpp" "${DORA3_AUDIO_GENERATED_DIR}/dora3_aspMain.cpp" "${DORA3_GENERATED_DIR}/frontier.c" ${generated})
-target_sources(dora3_startup PRIVATE "${ROOT}/src/graphics_profile.cpp" "${ROOT}/src/autosave.cpp" "${ROOT}/src/localization.cpp")
+target_sources(dora3_startup PRIVATE "${ROOT}/src/manual_fps_trace.cpp" "${ROOT}/src/graphics_profile.cpp" "${ROOT}/src/autosave.cpp" "${ROOT}/src/localization.cpp")
 if(DORA3_CRASH_LOG AND WIN32)
-    set_property(SOURCE "${ROOT}/src/startup_runtime.cpp" "${ROOT}/src/native_enemy.cpp" APPEND PROPERTY COMPILE_DEFINITIONS DORA3_CRASH_LOG)
+    set_property(SOURCE "${ROOT}/src/startup_runtime.cpp" "${ROOT}/src/native_enemy.cpp"
+        "${ROOT}/src/manual_fps_trace.cpp" "${ROOT}/src/port_settings.cpp"
+        "${ROOT}/src/guest_storage.cpp" "${ROOT}/src/widescreen.cpp"
+        "${ROOT}/src/native_game_loop.cpp" "${ROOT}/src/native_cutscene.cpp"
+        "${ROOT}/src/native_minigames.cpp" "${ROOT}/src/native_minigame_math.cpp"
+        APPEND PROPERTY COMPILE_DEFINITIONS DORA3_CRASH_LOG)
     if(MSVC)
         target_link_options(dora3_startup PRIVATE "/MAP:${CMAKE_CURRENT_BINARY_DIR}/Dora64-3.map")
     endif()

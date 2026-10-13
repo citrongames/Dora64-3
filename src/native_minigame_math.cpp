@@ -1,3 +1,4 @@
+#include "manual_fps_trace.hpp"
 #include "native_minigame_math.hpp"
 #include "native_model_animation.hpp"
 #include "recomp.h"
@@ -325,6 +326,10 @@ struct MinigameEquations::State {
             arithmetic=nodes[arithmetic].a;
         const auto node=nodes[arithmetic];
         if(node.kind!=Kind::Arithmetic)return expression;
+        // x=f(other fields) is a derived assignment, not x'=0*x+f.
+        // In races brakeC=brake10^2 otherwise becomes a zero-retention
+        // recurrence and poisons the projected speed/position with NaN.
+        if(!dependent(arithmetic,address))return expression;
         if(node.op!=Operation::Add&&node.op!=Operation::Subtract&&node.op!=Operation::Multiply)
             return expression;
         const auto matches=[&](Expression id) {
@@ -476,6 +481,13 @@ void MinigameEquations::store_float(std::uint32_t address,Expression expression,
     State::Field field{address,std::bit_cast<std::uint32_t>(number),std::bit_cast<std::uint32_t>(number),lifted,role,owner};
     if(at==s.fields.end())s.fields.push_back(field);else *at=field;
 }
+void MinigameEquations::store_motion_from_rate(std::uint32_t address,Expression rate,
+                                               float result,const Lifetime& owner) {
+    auto& s=*state_;
+    if(!s.open||!rate||rate>=s.nodes.size()||!field_pointer(address))return;
+    const auto motion=s.add({State::Kind::Advance,Operation::Add,rate,0,address,value(s.ram,address)});
+    store_float(address,motion,result,FieldRole::Motion,owner);
+}
 void MinigameEquations::store_circular_approach(std::uint32_t address,Expression target,
                                               float source_result,double gain,const Lifetime& owner) {
     auto& s=*state_;
@@ -519,6 +531,15 @@ void MinigameEquations::end_source(std::uint8_t* ram,Nanoseconds now) {
         if(!s.valid(f,ram)||bits(ram,f.address)!=f.source)f.role=FieldRole::Scratch;
         if(f.role!=FieldRole::Scratch)s.source_values[f.address]=value(ram,f.address);
     }
+#ifdef DORA3_CRASH_LOG
+    if(s.rom==0x1961B0&&dora3::manual_trace::gate(15,0,16000,1200)) {
+        unsigned motion=0,scratch=0;
+        for(const auto& f:s.fields){motion+=f.role==FieldRole::Motion;scratch+=f.role==FieldRole::Scratch;}
+        dora3::manual_trace::log("RACE_CAPTURE now=%lld nodes=%zu fields=%zu motion=%u scratch=%u",(long long)now,s.nodes.size(),s.fields.size(),motion,scratch);
+        for(const auto& f:s.fields)if(f.owner.actor&&(f.address==f.owner.actor+0x9C||f.address==f.owner.actor+0xA4))
+            dora3::manual_trace::log("RACE_FIELD address=%08X expression=%u kind=%u role=%u valid=%d source=%08X actual=%08X",f.address,f.expression,unsigned(s.nodes[f.expression].kind),unsigned(f.role),int(s.valid(f,ram)),f.source,bits(ram,f.address));
+    }
+#endif
     for(Expression id=1;id<s.nodes.size();++id) {
         auto& node=s.nodes[id];
         if(node.kind!=State::Kind::Load)continue;
@@ -560,6 +581,10 @@ void MinigameEquations::sample(std::uint8_t* ram,Nanoseconds now) {
         if((initial<=f.minimum&&delta<0)||(initial>=f.maximum&&delta>0))delta=0;
         const double constrained=f.clamp?std::clamp(initial+delta,f.minimum,f.maximum):initial+delta;
         const float next=float(f.role==FieldRole::Angle?wrapped(constrained):constrained);
+#ifdef DORA3_CRASH_LOG
+        if(s.rom==0x1961B0&&((f.owner.actor&&f.address==f.owner.actor+0x9C)||(f.owner.actor&&f.address==f.owner.actor+0xA4))&&dora3::manual_trace::gate(14,f.address,16000,600))
+            dora3::manual_trace::log("RACE_MATH address=%08X now=%lld source_time=%lld h=%.9g role=%u expression=%u nodes=%zu source=%.9g delta=%.9g next=%.9g finite=%d valid=%d actor=%08X driver=%08X",f.address,(long long)now,(long long)s.source_time,h,unsigned(f.role),f.expression,s.nodes.size(),initial,delta,double(next),int(std::isfinite(next)),int(s.valid(f,ram)),f.owner.actor,f.owner.driver);
+#endif
         if(!std::isfinite(next))continue;
         f.published=std::bit_cast<std::uint32_t>(next);
         MEM_W(0,std::int32_t(f.address))=std::int32_t(f.published);

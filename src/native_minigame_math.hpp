@@ -38,6 +38,9 @@ public:
     Expression operation(Operation,Expression,Expression=0);
     void bind_snapshot(Expression,std::uint32_t snapshot,std::uint32_t field);
     void store_float(std::uint32_t,Expression,float,FieldRole,const Lifetime&);
+    // Explicit reviewed x'=x+rate publication. The rate retains its recorded
+    // acceleration/heading dependencies; no ready pose pair is interpolated.
+    void store_motion_from_rate(std::uint32_t,Expression,float,const Lifetime&);
     // C'=C+gain*shortest(target-C). The four reviewed camera helpers choose
     // the next pure90-degree gain branch from completed C/target equations;
     // that coefficient stays fixed for the interval. The target is lifted once;

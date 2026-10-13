@@ -1,3 +1,4 @@
+#include "manual_fps_trace.hpp"
 #include "diagnostics.hpp"
 #include "port_settings.hpp"
 #include "draw_distance.hpp"
@@ -242,6 +243,7 @@ void initialize(const std::filesystem::path& directory){
     const auto load_error=error;
     if(missing_pc||migrated_display||pc_document.contains("menu_scale"))save_locked();if(missing_input)save_locked(true);
     if(!load_error.empty())error=load_error;
+    dora3::manual_trace::settings(current.frame_rate_mode,current.frame_rate_limit,current.aspect_ratio,current.hud_layout,"initialize");
 }
 
 Settings settings(){std::lock_guard lock(mutex);return current;}
@@ -252,6 +254,7 @@ void set_general(const Settings& v) {
     current.display_index=std::clamp(v.display_index,0,1024);current.display_refresh_rate=std::clamp(v.display_refresh_rate,0,1000);
     current.frame_rate_mode=v.frame_rate_mode==0?0:2;current.frame_rate_limit=v.frame_rate_mode==1?60:std::clamp(v.frame_rate_limit,60,360);
     current.aspect_ratio=std::clamp(v.aspect_ratio,0,1);current.hud_layout=std::clamp(v.hud_layout,0,1);
+    dora3::manual_trace::settings(current.frame_rate_mode,current.frame_rate_limit,current.aspect_ratio,current.hud_layout,"menu");
     current.language=dora3::localization::select(v.language);
     current.camera=v.camera;
     current.camera.stick_speed=std::isfinite(v.camera.stick_speed)?std::clamp(v.camera.stick_speed,30.f,360.f):120.f;
@@ -281,6 +284,7 @@ void profile(bool modern) {
     // Profiles cover game/presentation enhancements. Keep personal language,
     // camera tuning, controls, audio, display selection and cheats as configured.
     apply_profile(current,modern);
+    dora3::manual_trace::settings(current.frame_rate_mode,current.frame_rate_limit,current.aspect_ratio,current.hud_layout,"profile");
     current.draw_distance=dora3::distance::configure(current.draw_distance);
     dora3::autosave::configure(current.autosave);
     dora3::camera::configure(current.camera);

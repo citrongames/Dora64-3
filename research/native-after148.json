@@ -1,0 +1,40 @@
+{
+  "base_commit": "0cb3bdf857291d6f20465237a0e5e83bfa72f7bb",
+  "build": "test-149",
+  "status": "Rejected by user: all four reported symptoms persisted in test149",
+  "report": "docs/manual-fps-after148.md",
+  "tests_executed": false,
+  "completed_cpu_checks": 0,
+  "game_launched": false,
+  "source_sha256": {
+    "src/native_enemy.cpp": "f0468288370c9ba8ee0723dc0c5335635b8f3e62b221b3277150260672b12551",
+    "src/native_cutscene.cpp": "c7576468cc799f281a8e26331038b6a517b3acc8fc73c37193934fa340a2a708",
+    "src/native_cutscene.hpp": "ab70e872f7e026ce9777f06eaec945e717cf286cb0297983d49620577bc8bb67",
+    "src/native_game_loop.cpp": "5117bf28fbd0213c10740f4f7162bbd0bab9cc8b5223e9c5b4ccfe37c2992ffb",
+    "src/native_minigames.cpp": "c2f5d6c2e5c2a272f87191276e6d9b45330a379f31b5b84e69f0f3a7910ab3d6",
+    "src/native_minigame_math.cpp": "006611fc86cbf2600efad76f847805ad2a6b7d4e8f987ac17b5a0e685f01d254",
+    "src/native_minigame_math.hpp": "972cb20291dde9614e7a470951401fbf7af78f408cc0a0078d08fe435c3ad456",
+    "src/widescreen.cpp": "48f87ad4df79db2bc6a44c0b703d5c7ff396ad4b6b3627cb29ca66ea820d1218"
+  },
+  "source_evidence": {
+    "boss5_rom": "0x10DA30",
+    "slime": "kind447/8021D6E0",
+    "race_rom": "0x1961B0",
+    "race_world_stores": [
+      "0x801C97DC",
+      "0x801C97E4"
+    ],
+    "ending_script": 374,
+    "ending_script_rom": [
+      "0x187700",
+      "0x188800"
+    ],
+    "shutter": "scene1/801BDAF0: callerSP+20 signed16 >=2 is rectangular"
+  },
+  "gameplay_confirmation": "2026-10-13 user confirms test149 did not fix any reported symptom; diagnostic150 requested",
+  "executable_sha256": "2f3f7766ea582f5f3291d78d84a5ab04bd4d65b07be6a50ba56d6ee3a6f67844",
+  "existing_files_retained": 620,
+  "crash_log": false,
+  "diagnostics": false,
+  "graphics_profile": false
+}

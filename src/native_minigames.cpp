@@ -1,3 +1,4 @@
+#include "manual_fps_trace.hpp"
 #include "native_minigames.hpp"
 #include "native_minigame_math.hpp"
 #include "native_minigame_registry.hpp"
@@ -456,6 +457,10 @@ void native_minigame_reset(std::uint8_t* rdram) {
 std::optional<Nanoseconds> native_minigame_render_time(){return runtime.render_time;}
 extern "C" void dora3_native_minigame_source(std::uint8_t* rdram,recomp_context* c,std::uint32_t rom,std::uint32_t root,unsigned end) {
     const auto now=monotonic_time();
+#ifdef DORA3_CRASH_LOG
+    if(rom==0x1961B0&&dora3::manual_trace::gate(18,end,16000,1200))
+        dora3::manual_trace::log("RACE_SOURCE end=%u now=%lld root=%08X native=%d recording=%d eligible=%d",end,(long long)now,root,dora3_native_loop_minigame_active(),int(runtime.in_source),int(native_minigame_eligible(rdram)));
+#endif
     if(end) {
         if(!runtime.in_source||runtime.ram!=rdram||!runtime.definition||
            runtime.definition->rom!=rom||runtime.definition->update!=root)return;
@@ -595,6 +600,24 @@ extern "C" void dora3_native_minigame_instruction(std::uint8_t* rdram,recomp_con
                     if(rom==0x1961B0)runtime.equations.bind_snapshot(expression,
                         std::uint32_t(c->r16)+(site==0x801C97DC?0x50:0x58),address);
                 }
+            bool projected_race=false;
+            if(rom==0x1961B0&&(site==0x801C97DC||site==0x801C97E4)) {
+                const auto driver=std::uint32_t(c->r16);
+                const bool x=site==0x801C97DC;
+                // 93F4 has already made the actual wall/contact decision.
+                // Preserve that corrected Source coordinate. Only an axis
+                // without a reached wall clamp continues the projected rate.
+                if(pointer(driver,0xA8)&&owner.actor&&address==owner.actor+(x?0x9Cu:0xA4u)&&
+                   !(MEM_HU(0x5C,std::int32_t(driver))&(x?3u:12u))) {
+                    const auto rate=[&](unsigned offset) {
+                        const auto p=driver+offset;
+                        return runtime.equations.load_float(p,std::bit_cast<float>(word(rdram,p)));
+                    };
+                    const auto velocity=runtime.equations.operation(Operation::Add,rate(x?0x24:0x28),rate(x?0x2C:0x30));
+                    runtime.equations.store_motion_from_rate(address,velocity,float(actual),owner);
+                    projected_race=true;
+                }
+            }
             bool circular_camera=false;
             const auto camera_store=std::find_if(circular_camera_stores.begin(),circular_camera_stores.end(),
                 [&](const auto& store){return store.rom==rom&&store.site==site;});
@@ -618,7 +641,7 @@ extern "C" void dora3_native_minigame_instruction(std::uint8_t* rdram,recomp_con
                 runtime.equations.store_circular_approach(address,target,float(actual),gain,owner);
                 circular_camera=true;
             }
-            if(!circular_camera)
+            if(!circular_camera&&!projected_race)
                 runtime.equations.store_float(address,expression,float(actual),owner_hint&&!owner.actor?Role::Scratch:Role(role),owner);
             for(const auto& bounds:dora3::minigame::motion_bounds)
                 if(bounds.rom==rom&&bounds.site==site)

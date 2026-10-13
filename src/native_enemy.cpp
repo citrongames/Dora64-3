@@ -1,3 +1,4 @@
+#include "manual_fps_trace.hpp"
 #include "graphics_profile.hpp"
 #ifdef DORA3_CRASH_LOG
 #include "crash_context.hpp"
@@ -1334,6 +1335,20 @@ void log_sentoutei_motion(uint8_t* rdram,const Identity& owner,const char* event
         mismatch,p?p->equations.size():size_t(0),int(p&&p->gravity),p&&p->gravity?double(p->gravity->before):0.,p&&p->gravity?double(p->gravity->after):0.,p&&p->gravity?p->gravity->collision:0,int(p&&p->projection));
     if(++lines==40000)std::fprintf(stderr,"SHIP journal limit reached\n");
 }
+// User-requested test150 observation in both Original and Native callback entries.
+void log_boss5_turn(uint8_t* rdram,const Identity& owner,const char* event) {
+    if(owner.rom!=0x10DA30||(owner.kind!=446&&owner.kind!=447))return;
+    const unsigned event_id=event[0]=='e'?0:event[0]=='c'?1:2;
+    if(!dora3::manual_trace::gate(11,index(owner.actor)*3+event_id,16000,600))return;
+    const auto actor=owner.actor,ph=owner.physical;
+    const auto* slice=active_simulation_slice();const auto& stored=periods[index(actor)];
+    const auto* p=stored&&same(stored->owner,owner)?&*stored:nullptr;
+    const Equation* yaw=nullptr;const Equation* heading=nullptr;
+    if(p)for(const auto& e:p->equations){if(e.address==actor+0x10)yaw=&e;if(e.address==ph+4)heading=&e;}
+    dora3::manual_trace::log("BOSS5 event=%s actor=%08X kind=%d lifetime=%llu callback=%08X state=%d phase=%d turncounter=%d native_pass=%d tick=%llu phase_time=%llu/%llu dt=%llu yaw=%.9g heading=%.9g pitch=%.9g period=%d expected_phase=%llu yaw_initial=%.9g yaw_end=%.9g turn=%.9g expected_yaw=%.9g equations=%zu yawEq=%d,%.9g,%.9g headingEq=%d,%.9g,%.9g parent=%08X parent_motion=%d parent_phase=%llu",
+        event,actor,owner.kind,(unsigned long long)owner.lifetime,owner.callback,word(rdram,actor+0x94),int(MEM_H(0x34,int32_t(ph))),int(MEM_H(0x38,int32_t(ph))),int(native_gameplay_preview_object_pass()),
+        (unsigned long long)(slice?slice->tick:0),(unsigned long long)(slice?slice->phase:0),(unsigned long long)(slice?slice->denominator:0),(unsigned long long)(slice?slice->numerator:0),double(real(rdram,actor+0x10)),double(real(rdram,ph+4)),double(real(rdram,actor+0xC)),int(p!=nullptr),(unsigned long long)(p?p->expected_phase:0),p?double(p->initial_yaw[0]):0.,p?double(p->proposal_yaw[0]):0.,p?p->turn[0]:0.,p?double(p->expected_yaw[0]):0.,p?p->equations.size():size_t(0),yaw?int(yaw->kind):-1,yaw?double(yaw->before):0.,yaw?double(yaw->after):0.,heading?int(heading->kind):-1,heading?double(heading->before):0.,heading?double(heading->after):0.,p&&p->parent?p->parent->actor:0u,int(p&&p->scene_parent_motion),(unsigned long long)(p?p->scene_parent_start_phase:0));
+}
 // Owner-authorized test145 trace: observe the two-part refight form only.
 // No controller calls, pose evaluation, writes or extra simulation steps.
 void log_boss6_form(uint8_t* rdram,const Identity& owner,const char* event) {
@@ -1348,7 +1363,7 @@ void log_boss6_form(uint8_t* rdram,const Identity& owner,const char* event) {
     const int root_state=word(rdram,root->actor+0x94);
     if(root_state!=7&&root_state!=8)return;
     static unsigned lines=0;
-    if(lines>=48000)return;
+    if(lines>=600)return;
     const auto actor=owner.actor,ph=owner.physical;
     const auto* slice=active_simulation_slice();
     const auto& stored=periods[index(actor)];
@@ -1373,7 +1388,7 @@ void log_boss6_form(uint8_t* rdram,const Identity& owner,const char* event) {
         p?double(p->expected_position[1]):0.,p?double(p->initial_position[1]):0.,p?double(p->source_endpoint_position[1]):0.,p?double(p->velocity[1]):0.,
         p&&p->parent?p->parent->actor:0u,int(p&&p->attachment_axes[1]),p?double(p->attachment_offsets[1]):0.,mismatch,
         y?int(y->kind):-1,y?double(y->before):0.,y?double(y->after):0.);
-    if(++lines==48000)std::fprintf(stderr,"BOSS6FORM journal limit reached\n");
+    if(++lines==600)std::fprintf(stderr,"BOSS6FORM journal limit reached\n");
 }
 void log_boss_state(uint8_t* rdram,const Identity& owner) {
     if(!((owner.rom==0xF8A40&&owner.kind>=410&&owner.kind<=415)||
@@ -1696,6 +1711,10 @@ void native_enemy_reset() {
 extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,uint32_t callback,uint32_t rom,void (*update)(uint8_t*,recomp_context*)) {
     dora3::graphics_profile::SampleScope graphics_sample(dora3::graphics_profile::Stage::EnemyCallbackSample); dora3::profile::Scope profile(dora3::profile::Tag::EnemyCallback);
 #ifdef DORA3_CRASH_LOG
+    if(!executing&&!attachment_only&&rom==0x10DA30) {
+        const auto observed=identity(rdram,uint32_t(word(rdram,0x8021BDEC)));
+        if(observed&&observed->callback==callback&&observed->rom==rom)log_boss5_turn(rdram,*observed,"entry");
+    }
     if(!executing&&!attachment_only&&rom==0x111E70) {
         const auto observed=identity(rdram,uint32_t(word(rdram,0x8021BDEC)));
         if(observed&&observed->callback==callback&&observed->rom==rom)log_boss6_form(rdram,*observed,"entry");
@@ -1816,6 +1835,12 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
     }
     if(gravity&&gravity->actor==actor&&gravity->physical==after->physical&&gravity->calls==1&&
        std::bit_cast<int32_t>(gravity->after)==std::bit_cast<int32_t>(value.velocity[1]))value.gravity=gravity;
+    // Judge the final Original stores before the generic heading rewind:
+    // that rewind can touch the same yaw and hide an accepted rate equation.
+    std::vector<Equation> accepted_equations;
+    for(const auto& equation:equations)
+        if(std::bit_cast<int32_t>(equation.after)==word(rdram,equation.address))
+            accepted_equations.push_back(equation);
     for(unsigned axis=0;axis<2;++axis) {
         const auto address=axis?after->physical+4:actor+0x10;const auto proposal=real(rdram,address);
         // Only the actual bounded-turn helper E88C4 establishes a continuous
@@ -1833,7 +1858,7 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
         std::bit_cast<int32_t>(step.after)==word(rdram,step.actor+step.offset)) {
         value.foreign_steps.push_back(step);value.foreign_steps.back().rebase=step.before;value.foreign_steps.back().start_phase=slice.phase;value.foreign_steps.back().denominator=slice.denominator;put(rdram,step.actor+step.offset,step.before);
     }
-    for(const auto& equation:equations)if(std::bit_cast<int32_t>(equation.after)==word(rdram,equation.address)) {
+    for(const auto& equation:accepted_equations) {
         // Direct floor/initialization writes have already run. Only the final
         // actual mathematical store receives its fractional continuation.
         value.equations.push_back(equation);
@@ -1945,7 +1970,11 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
         value.source_endpoint_angles[field]=proposed;
     }
 
-    if(value.parent&&scene_parent_attachment_active(rdram,*after)) {
+    if(value.parent&&(scene_parent_attachment_active(rdram,*after)||
+       (after->rom==0x10DA30&&kind==447))) {
+        // Slime copies pitch/yaw as well as XYZ. Keep the same mathematical
+        // parent interval for all five copies, including an earlier reused
+        // child slot; a live parent field may still be its Source endpoint.
         const auto& parent=periods[index(value.parent->actor)];
         if(parent&&same(parent->owner,*value.parent)) {
             // Earlier parents have this period's equation; later parents
@@ -1991,6 +2020,7 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
     }
     previous=value;
 #ifdef DORA3_CRASH_LOG
+    log_boss5_turn(rdram,*after,"command");
     log_sentoutei_motion(rdram,*after,"command");
     log_boss6_form(rdram,*after,"command");
 #endif
@@ -3198,6 +3228,23 @@ boss4_other_store:
         case 0x8021F800:case 0x8021FB78:case 0x80220124:case 0x8021D990: {
             const auto source=captured(physical+4);if(!source)return;
             value=*source;value.address=actor+0x10;value.after=ctx->f0.fl;break;
+        }
+        case 0x80220474: {
+            // Shield-state6 copies the PREVIOUS physical heading before
+            // E88C4 computes this callback's new heading at2091C. Keep that
+            // Source ordering by borrowing the completed preceding path.
+            const auto& old=periods[index(actor)];
+            if(!old||!same(old->owner,*owner))return;
+            const auto source=std::find_if(old->equations.begin(),old->equations.end(),[&](const auto& e){
+                return e.address==physical+4&&std::bit_cast<uint32_t>(e.after)==ctx->f2.u32l;
+            });
+            if(source!=old->equations.end())value=*source;
+            else {
+                if(std::bit_cast<uint32_t>(old->proposal_yaw[1])!=ctx->f2.u32l)return;
+                value={actor+0x10,EquationKind::angle,old->initial_yaw[1],ctx->f2.fl};value.step=old->turn[1];
+            }
+            if(std::bit_cast<int32_t>(value.before)!=word(rdram,actor+0x10))return;
+            value.address=actor+0x10;value.after=ctx->f2.fl;break;
         }
         case 0x8022046C: {
             // This body's speed consumes the SHIELD's actual clip frame /3.
@@ -4864,6 +4911,7 @@ void native_enemy_motion_end(uint8_t* rdram,uint32_t actor) {
     v.expected_phase=slice.phase+slice.numerator;v.command=commands(rdram,*owner);v.run=game_model_animation().run_token(owner->model);
     v.callback_opacity_flag=MEM_BU(0x2A,int32_t(owner->physical));
 #ifdef DORA3_CRASH_LOG
+    log_boss5_turn(rdram,*owner,"motion-end");
     log_sentoutei_motion(rdram,*owner,"motion-end");
     log_boss6_form(rdram,*owner,"motion-end");
 #endif

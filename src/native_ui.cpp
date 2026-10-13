@@ -363,9 +363,21 @@ void evaluate_selection(uint8_t* ram,recomp_context* ctx) {
     state.equations=true;
     try {dora3_s2_menu_801C14B8(scratch,&local);}catch(...){state.equations=false;throw;}
     state.equations=false;
-    // This reviewed menu actor lives in the resident fixed object array.
-    // Its command flags and phase/counter writes remain private.
-    if(word(ram,0x804B255C))for(uint32_t a:{0x804B24CCu,0x804B24D0u})publish_menu_float(ram,0x804B24C8,a-0x804B24C8,std::bit_cast<float>(word(scratch,a)));
+    // Credits C14B8 drives the machine; C1874 copies that same pose to
+    // six riders. Publish the pure offset copies together so riders and
+    // machine share the fractional frame, including the final forward flight.
+    // Clip/sprite/event commands in C1874 remain on the Source callback.
+    constexpr uint32_t machine=0x804B24C8;
+    if(word(ram,machine+0x94)) {
+        for(unsigned offset:{4u,8u})publish_menu_float(ram,machine,offset,real(scratch,machine+offset));
+        for(unsigned i=0;i<6;++i) {
+            const uint32_t actor=0x804B1CD0+i*0xCC,offsets=0x801C42D0+i*12;
+            if(!word(ram,actor+0x94))continue;
+            publish_menu_float(ram,actor,0,real(ram,offsets)+real(ram,machine));
+            publish_menu_float(ram,actor,4,real(ram,machine+4));
+            publish_menu_float(ram,actor,8,real(ram,offsets+8)+real(ram,machine+8));
+        }
+    }
     const int y=word(ram,0x801C69C4);
     if((state.domains&SelectionExit)&&y>=105)publish(ram,0x801C69C4,int32_t(double(y)-state.h));
     if(state.domains&SelectionRow) {

@@ -1,0 +1,17 @@
+{
+  "base_commit": "0cb3bdf857291d6f20465237a0e5e83bfa72f7bb",
+  "previous_test": "test149 rejected: all symptoms persisted",
+  "build": "test-150",
+  "crash_log": true,
+  "diagnostics": false,
+  "graphics_profile": false,
+  "tests_executed": false,
+  "completed_cpu_checks": 0,
+  "locally_launched": false,
+  "markers": "Manual/Original settings changes increment segment and restart bounded trace budgets",
+  "report": "docs/manual-fps-trace150.md",
+  "status": "Windows Release150 compiled and packaged; user capture pending",
+  "executable_sha256": "5f7849ced30cfc1e83ead78a889e94f9579ad1e52ef7020a4ea0ef442e9a3bcc",
+  "existing_files_retained": 623,
+  "verified_trace_compile_definitions": true
+}

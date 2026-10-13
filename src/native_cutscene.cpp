@@ -1,3 +1,4 @@
+#include "manual_fps_trace.hpp"
 #include "native_cutscene.hpp"
 #include "native_frame_bridge.hpp"
 #include "native_simulation_time.hpp"
@@ -194,6 +195,14 @@ void CutsceneTimeline::advance(uint8_t* rdram,recomp_context* ctx,Nanoseconds no
         throw std::invalid_argument("Invalid cutscene advance");
     if(now==state.shown_time)return; // Full-RAM/context no-op at duplicate timestamps.
     if(state.changed(rdram)) {
+#ifdef DORA3_CRASH_LOG
+        if(dora3::manual_trace::gate(12,0,0,12000)) {
+            dora3::manual_trace::log("SCRIPT_REBASE now=%lld source=%lld shown=%lld current_interval=%d fields=%zu leases=%zu",(long long)now,(long long)state.source_time,(long long)state.shown_time,int(state.current_interval),state.fields.size(),state.leases.size());
+            unsigned mismatches=0;
+            for(const auto& f:state.fields)if(word(rdram,f.address)!=f.published&&mismatches++<8)
+                dora3::manual_trace::log("SCRIPT_MISMATCH address=%08X source=%08X published=%08X actual=%08X lease=%d",f.address,uint32_t(f.source),uint32_t(f.published),uint32_t(word(rdram,f.address)),f.lease);
+        }
+#endif
         // A real command/replacement invalidates the entire coupled equation.
         // Preserve changed words and restore only our still-owned sample words.
         state.restore(rdram);state.capture(rdram,now);return;
@@ -226,6 +235,10 @@ void CutsceneTimeline::advance(uint8_t* rdram,recomp_context* ctx,Nanoseconds no
         field.published=word(image,field.address);
         MEM_W(0,int32_t(field.address))=field.published;
     }
+#ifdef DORA3_CRASH_LOG
+    if(dora3::manual_trace::gate(13,0,0,12000))
+        dora3::manual_trace::log("SCRIPT_SAMPLE now=%lld source=%lld previous=%lld elapsed=%llu denominator=%llu current=%d fields=%zu",(long long)now,(long long)state.source_time,(long long)state.shown_time,(unsigned long long)elapsed,(unsigned long long)denominator,int(state.current_interval),state.fields.size());
+#endif
     state.shown_time=now;
 }
 void CutsceneTimeline::before_source(uint8_t* rdram) {
@@ -254,6 +267,49 @@ void CutsceneTimeline::reset(uint8_t* ram) {
 }
 std::optional<Nanoseconds> CutsceneTimeline::render_time() const {
     return state_->open?std::optional{state_->shown_time}:std::nullopt;
+}
+}
+namespace dora3::native_time {
+// E8F24/2DA98 rebuild local draw poses and matrices; E8ECC may also write
+// billboard angles. Those borrowed draw writes must not be mistaken for a
+// new script command by CutsceneTimeline::changed on the next Native frame.
+// Keep the published world pose, script state and animation/event ownership.
+struct CutsceneFrameScope::State {
+    uint8_t* ram=nullptr;
+    struct Pose {
+        uint32_t control,actor,physics;
+        int32_t identity;
+        std::array<int32_t,25> fields;
+        std::array<int32_t,8> components;
+        uint8_t dirty;
+    };
+    std::vector<Pose> poses;
+};
+CutsceneFrameScope::CutsceneFrameScope(uint8_t* rdram):state_(std::make_unique<State>()) {
+    if(!dora3_native_loop_cutscene_active()||!native_cutscene_eligible(rdram))return;
+    state_->ram=rdram;
+    for(unsigned i=0;i<60;++i) {
+        const uint32_t control=participant_controls+i*0xD4;
+        if(!MEM_H(4,int32_t(control)))continue;
+        const uint32_t actor=uint32_t(word(rdram,control));
+        State::Pose pose{control,actor,uint32_t(word(rdram,actor+0x98)),word(rdram,actor+0x94),{},{},MEM_BU(0x6A,int32_t(actor))};
+        for(unsigned j=0;j<25;++j)pose.fields[j]=word(rdram,actor+4*j);
+        for(unsigned j=0;j<8;++j)pose.components[j]=word(rdram,actor+0x74+4*j);
+        state_->poses.push_back(pose);
+    }
+}
+CutsceneFrameScope::~CutsceneFrameScope() {
+    if(!state_->ram)return;
+    uint8_t* rdram=state_->ram;
+    for(const auto& pose:state_->poses) {
+        if(!MEM_H(4,int32_t(pose.control))||uint32_t(word(rdram,pose.control))!=pose.actor||
+           word(rdram,pose.actor+0x94)!=pose.identity||uint32_t(word(rdram,pose.actor+0x98))!=pose.physics)continue;
+        bool same=true;
+        for(unsigned j=0;j<8;++j)same=same&&word(rdram,pose.actor+0x74+4*j)==pose.components[j];
+        if(!same)continue;
+        for(unsigned j=0;j<25;++j)MEM_W(0,int32_t(pose.actor+4*j))=pose.fields[j];
+        MEM_B(0x6A,int32_t(pose.actor))=int8_t(pose.dirty);
+    }
 }
 }
 namespace {dora3::native_time::CutsceneTimeline scene;}
@@ -293,6 +349,10 @@ std::optional<dora3::native_time::Nanoseconds> native_cutscene_render_time(){ret
 void native_cutscene_evaluate(uint8_t* ram,recomp_context* ctx){evaluate_scene(ram,ctx);}
 extern "C" void dora3_native_cutscene_source(uint8_t* ram,recomp_context* ctx,unsigned phase) {
     using namespace dora3::native_time;
+#ifdef DORA3_CRASH_LOG
+    if(dora3::manual_trace::gate(17,phase,0,12000))
+        dora3::manual_trace::log("SCRIPT_SOURCE phase=%u active=%d eligible=%d scripted=%d",phase,dora3_native_loop_cutscene_active(),int(native_cutscene_eligible(ram)),word(ram,0x80218AD8));
+#endif
     if(!dora3_native_loop_cutscene_active())return;
     if(phase==0) {
         native_cutscene_update(ram,ctx,monotonic_time());scene.before_source(ram);

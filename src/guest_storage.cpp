@@ -1,3 +1,4 @@
+#include "manual_fps_trace.hpp"
 #include "diagnostics.hpp"
 #include "guest_storage.hpp"
 #include "localization.hpp"
@@ -144,6 +145,7 @@ extern "C" void dora3_distance_heap_reset(uint8_t* ram,recomp_context* ctx) {
 extern "C" void dora3_distance_frame_begin(uint8_t* ram,recomp_context*) {
     if(!live(ram))return;
     word(ram,0x801B1424)=int32_t(dora3::distance::display_list_begin(current_bank(ram)));
+    dora3::manual_trace::frame(ram,"before-draw");
     dora3::wide::begin(ram);
 }
 extern "C" void dora3_distance_frame_submit(uint8_t* ram,recomp_context* ctx) {
@@ -151,6 +153,8 @@ extern "C" void dora3_distance_frame_submit(uint8_t* ram,recomp_context* ctx) {
     const auto begin=dora3::distance::display_list_begin(current_bank(ram)),end=dora3::distance::display_list_end(current_bank(ram));
     const auto cursor=uint32_t(word(ram,0x801B1424));
     if(cursor<begin||cursor>end||(cursor&7))throw std::logic_error("Distance DL arena exhausted");
+    dora3::manual_trace::frame(ram,"post-draw");
+    dora3::manual_trace::display_list(ram,begin,cursor);
     // Original submit computes data_ptr=data_base+a3 and size=cursor-data_ptr.
     ctx->r7=int32_t(begin-uint32_t(ctx->r6));
 }

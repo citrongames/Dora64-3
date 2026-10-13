@@ -35596,7 +35596,7 @@
       "function_sha256": "6d98f486e8aaaafc2cc23340f2fa6302a767bcb6e0a0667428e646f56e150a03",
       "site": 2149348912,
       "word": 3858890764,
-      "role": 1
+      "role": 3
     },
     {
       "section": ".minigame_1",
@@ -35706,7 +35706,7 @@
       "function_sha256": "6d98f486e8aaaafc2cc23340f2fa6302a767bcb6e0a0667428e646f56e150a03",
       "site": 2149348992,
       "word": 3858890764,
-      "role": 1
+      "role": 3
     },
     {
       "section": ".minigame_1",

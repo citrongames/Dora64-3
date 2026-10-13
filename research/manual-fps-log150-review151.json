@@ -1,0 +1,22 @@
+{
+  "log": "D:/Games/DoraRecomp3/Dora64-3-Windows-x64/logs/Dora64-3-test-150-1791904907723-28168/runtime.log",
+  "log_bytes": 119923839,
+  "reviewed_markers": 7,
+  "previous_test149": "user rejected: all reported symptoms persisted",
+  "fixed_source_paths": [
+    "race brake square dependency and derived roles",
+    "Boss5 state6 previous-heading copy20474",
+    "credits six rider offset copies",
+    "scene355 clouds/backdrop",
+    "scene34 credits shutter22C4"
+  ],
+  "unresolved": [],
+  "next_capture": "Completed test151; room311 search cancelled by user: alleged overlay is empty boss HP",
+  "validation": "static Source/ROM/log analysis; gameplay unconfirmed; no tests, CPU checks, renderer, game or GPU run",
+  "commit_push": "Explicitly authorized by user on 2026-10-13 for test149-152",
+  "status": "Superseded by test152 right-edge correction; user accepted latest build and authorized test149-152 commit/push on 2026-10-13",
+  "executable_sha256": "f9efdfadffdc5ea6094455614d86770ea813ad56078e8ccbda3d256d27280bf9",
+  "existing_files_retained": 626,
+  "verified_trace_compile_definitions": true,
+  "user_correction": "Room311 foreground issue withdrawn by user; empty boss HP bar left unchanged"
+}
