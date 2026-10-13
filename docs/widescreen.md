@@ -367,3 +367,5 @@ ordinary/fixed cameras, menu backgrounds, transitions, split views and resize.
 Scene geometry outside original4:3 may have authored gaps; wider projection
 cannot create geometry. Unknown 2D compositions deliberately remain centered.
 See docs/widescreen-analysis.md and research/widescreen-analysis.json for analysis.
+
+Test142: см. [подарок Oppi, ТВ и диагностика корабля](oppi-ship-tv-after141.md).

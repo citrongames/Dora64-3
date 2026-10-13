@@ -2399,6 +2399,9 @@ def timing_hooks(sections,compiled,rom):
             key=(rule['section'],address,site,word)
             if key not in APPROVED_SCENE_OBJECT_CALLBACKS:raise ValueError('Unreviewed scene object Source callback')
             text=f'if (dora3_native_scene_object_callback(rdram,ctx,0x{address:08X}u,0x{APPROVED_SCENE_OBJECT_CALLBACKS[key]:08X}u,{name})) return;'
+        elif op=='native_enemy_billboard':
+            if (rule['section'],address,site,word)!=('.scene1',0x801E8ECC,0x801E8ECC,0x3C01801B):raise ValueError('Unreviewed enemy draw billboard')
+            text=f'if (dora3_native_enemy_billboard(rdram,ctx,{name})) return;'
         elif op=='native_enemy_callback':
             approved=APPROVED_ENEMY_CALLBACKS
             key=(rule['section'],address,site,word)

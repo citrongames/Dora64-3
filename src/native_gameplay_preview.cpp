@@ -1277,16 +1277,27 @@ std::optional<PlayerShotCue> player_shot_cue(int state) {
     return std::nullopt;
 }
 // EBAD4 addresses the parent through the real common-pool index, strideCC.
-// This first attached domain uses an earlier, live Source-born flash130;
-// other parent controllers retain Source ownership until separately proven.
+// Earlier live Source-born flash130 and Oppi316 parents are reviewed.
+// Oppi's E70E0 allocator places gifts after the bird, so the original EBAD4
+// matrix path can consume its current Native pose in the same pool order.
 uint32_t pickup_attachment_parent(uint8_t* ram,uint32_t actor,uint32_t physical) {
     uint8_t* rdram=ram;const auto index=MEM_H(0x7C,int32_t(physical));
     if(index<30||index>=dora3::distance::common_end)return 0;
     const auto parent=0x804B1CD0u+uint32_t(index)*0xCC;
     if(parent>=actor||!pointer(parent,0xCC)||!word(ram,parent+0x94))return 0;
     const auto pp=uint32_t(word(ram,parent+0x98)),pm=uint32_t(word(ram,parent+0x74));
-    if(!pointer(pp,0xF4)||MEM_H(0x20,int32_t(pp))!=130||!pointer(pm,0x84)||
-       !game_model_animation().lifetime_token(pm)||game_model_animation().native_birth(pm)||!owns_common_object(ram,parent))return 0;
+    if(!pointer(pp,0xF4)||!pointer(pm,0x84)||
+       !game_model_animation().lifetime_token(pm)||game_model_animation().native_birth(pm))return 0;
+    const auto parent_kind=MEM_H(0x20,int32_t(pp)),kind=MEM_H(0x20,int32_t(physical));
+    const bool flash=parent_kind==130&&owns_common_object(ram,parent);
+    // Oppi flight101 chooses precisely descriptors C770/C78C/C7E0 (111,
+    // 112,114), attaches slot0, then unlinks at FBB0. Source still owns that
+    // birth/release and the subsequent gravity/landing state transition.
+    const bool oppi=parent_kind==316&&(kind==111||kind==112||kind==114)&&
+        word(ram,parent+0x94)==101&&MEM_BU(0x28,int32_t(pp))==1&&MEM_H(0x34,int32_t(pp))==0&&
+        MEM_H(0x7E,int32_t(physical))==0&&MEM_H(0x80,int32_t(pp))==int16_t((actor-0x804B1CD0u)/0xCC)&&
+        native_enemy_owned(ram,parent);
+    if(!flash&&!oppi)return 0;
     for(auto address:pickup_attachment_addresses(parent))
         if(!std::isfinite(std::bit_cast<float>(uint32_t(word(ram,address)))))return 0;
     return parent;

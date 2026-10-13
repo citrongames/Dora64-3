@@ -1,0 +1,32 @@
+{
+  "logs": [
+    {
+      "name": "Dora64-3-test-142-1791877599795-21612",
+      "sha256": "ac9985751aabd03b25eb34f198bd212e497c5f8f66467820ffc931b892b9836d",
+      "ship_rows": 36608,
+      "events": {
+        "entry": 17224,
+        "command": 2164,
+        "motion-end": 17220
+      },
+      "original_entries": 1,
+      "minimum_speed": -50.0222969,
+      "maximum_y": 1142.88477
+    },
+    {
+      "name": "Dora64-3-test-142-1791878343043-25688",
+      "sha256": "a1bdf5d0504a41fc8014f836fc6c884aabe65a6f51d765ec8dbf3f31a43a3f8c",
+      "ship_rows": 12528,
+      "events": {
+        "entry": 6664,
+        "command": 672,
+        "motion-end": 5192
+      },
+      "original_entries": 368,
+      "minimum_speed": -39.0,
+      "maximum_y": 1108.89307
+    }
+  ],
+  "conclusion": "Owner reproduced the same ship behavior in the original ROM in an emulator. No ship gameplay changes made.",
+  "validation": "User logs and static source/ROM analysis only; no game, emulator, tests or CPU checks run by agent."
+}

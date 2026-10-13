@@ -15,3 +15,5 @@ Height-target query phase0, conditional floor+150, initial setters, thresholds,
 clip binds и failed births сохраняются как Source commands.12 функций получили
 имена/описания и scoped pointer roles. Это новая непроверенная реализация;
 generation/CPU tests/Windows build будут только после всего блока2.
+
+Test142: см. [подарок Oppi, ТВ и диагностика корабля](oppi-ship-tv-after141.md).

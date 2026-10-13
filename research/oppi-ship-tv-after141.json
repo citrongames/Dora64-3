@@ -1,0 +1,75 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "functions": [
+    {
+      "section": ".scene1",
+      "rom": "0x70a50",
+      "address": "0x801e70e0",
+      "name": "dora3_s3_demo_801E70E0",
+      "size": 1096,
+      "sha256": "d163790d77b0396d5985b8ff7e645511a46ff7559812a527db05e939079547d4"
+    },
+    {
+      "section": ".scene1",
+      "rom": "0x70a50",
+      "address": "0x801ebad4",
+      "name": "dora3_s3_core_801EBAD4",
+      "size": 492,
+      "sha256": "d29ac1a738e3485660143e9eb57dacafe241c64973c7be1dc44d2ac857d13d9c"
+    },
+    {
+      "section": ".scene1",
+      "rom": "0x70a50",
+      "address": "0x801e8f24",
+      "name": "dora3_s3_801E8F24",
+      "size": 432,
+      "sha256": "c0d18b54a5a834da69518652878e2bcd3dc468aafa1d39dd8d21c218f8b9bd8f"
+    },
+    {
+      "section": ".demo_slot1",
+      "rom": "0x12fd90",
+      "address": "0x8022f94c",
+      "name": "dora3_s5_demo_8022F94C",
+      "size": 972,
+      "sha256": "74071b028318b1d939be195b6f054d0f1250a791c88c1cd6bb89af9849e9f6a0"
+    },
+    {
+      "section": ".lake_slot1",
+      "rom": "0x129a30",
+      "address": "0x8022efcc",
+      "name": "dora3_s16_lake_8022EFCC",
+      "size": 236,
+      "sha256": "66a48b691de137c94070c46b72010e46c8c263a146b03944cc6dfd0a3a8954df"
+    },
+    {
+      "section": ".lake_slot1",
+      "rom": "0x129a30",
+      "address": "0x8022f3a0",
+      "name": "dora3_s16_lake_8022F3A0",
+      "size": 916,
+      "sha256": "0a357e6ea7985d199c5f945fdd0ac56772258df244436056aee97aa2a1ca1836"
+    }
+  ],
+  "gift_descriptors": [
+    {
+      "address": "0x801fc770",
+      "kind": 111,
+      "hex": "fff0006ffff1000102a6fff20000fff30000fff4000102a7fff5ffff"
+    },
+    {
+      "address": "0x801fc78c",
+      "kind": 112,
+      "hex": "fff00070fff1000102a8fff20000fff30000fff4000102a9fff5ffff"
+    },
+    {
+      "address": "0x801fc7e0",
+      "kind": 114,
+      "hex": "fff00072fff1000102acfff20000fff30000fff4000102adfff5ffff"
+    }
+  ],
+  "tv_left_overlap_source_pixels": 4,
+  "tv_rom_4db_record": "0x352670",
+  "tv_first_five_columns_rgba16": "0x0843",
+  "ship_status": "Not fixed: activation/jump/chase cause unresolved; owner authorized bounded SHIP diagnostic journal in test142",
+  "validation": "Static ROM/source inspection only; no game, tests, CPU checks, renderer or GPU executed"
+}

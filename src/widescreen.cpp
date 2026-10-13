@@ -227,9 +227,11 @@ void television_sides(uint8_t* ram){
     command(ram,0xE200001C,0x005041C8);
     command(ram,0xFA000000,0x000000FF);
     // The existing mask role extends only the exterior edge of each fill,
-    // with wide scissoring independent of HUD layout. Two original black
-    // edge pixels provide overlap; the authored TV opening is untouched.
-    command(ram,0xF6000000|(1u<<14)|(239u<<2),0);
+    // with wide scissoring independent of HUD layout. The left texture and
+    // primitive rectangle edges round differently after widescreen scaling.
+    // Overlap four source pixels inside the artwork's black border so that
+    // subpixel coverage cannot expose a seam. The TV opening is untouched.
+    command(ram,0xF6000000|(4u<<14)|(239u<<2),0);
     command(ram,0xF6000000|(319u<<14)|(239u<<2),318u<<14);
     layout=saved;apply(ram);
 }

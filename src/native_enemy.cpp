@@ -8,6 +8,7 @@
 #include "guest_storage.hpp"
 #include "native_slot_reset.hpp"
 #include "native_enemy.hpp"
+#include "native_frame_bridge.hpp"
 #include "native_gameplay_preview.hpp"
 #include "native_scene_objects.hpp"
 #include "native_enemy_projection_math.hpp"
@@ -522,7 +523,7 @@ struct Turn {uint32_t actor=0,physical=0;float before=0,after=0;unsigned calls=0
 std::complex<double> harmonic_sum(double phase,double omega,double age,double speed,double acceleration);
 struct Period;
 std::pair<float,float> sample_period_motion(const Period& v,double age,unsigned axis);
-enum class EquationKind {cosine_angle,frame_triangle,spatial_heading,spatial_pitch,split_sine,path_heading,folded_pitch,sine_ramp,alternating_offset,radial_axis,harmonic_accumulation,harmonic_drift_angle,approach_drift_angle,affine,positive_phase,source_abs_sine,historical_axis,linear,angle,sine,cosine,sine_angle,absolute_sine,sine_drift_angle,approach,wrapped_approach,clamped,nested_sine,nested_cosine,exponential,composed_return,forced_sine_velocity,geometric_angle,phase_sine,phase_cosine,alternating_drift};
+enum class EquationKind {parent_height_wave,cosine_angle,frame_triangle,spatial_heading,spatial_pitch,split_sine,path_heading,folded_pitch,sine_ramp,alternating_offset,radial_axis,harmonic_accumulation,harmonic_drift_angle,approach_drift_angle,affine,positive_phase,source_abs_sine,historical_axis,linear,angle,sine,cosine,sine_angle,absolute_sine,sine_drift_angle,approach,wrapped_approach,clamped,nested_sine,nested_cosine,exponential,composed_return,forced_sine_velocity,geometric_angle,phase_sine,phase_cosine,alternating_drift};
 struct Equation {
     uint32_t address;EquationKind kind;float before,after;
     double phase=0,step=0,amplitude=0,radians=0,base=0,retention=0,acceleration=0;
@@ -530,6 +531,8 @@ struct Equation {
     float expected=0;
     double inner_amplitude=0,outer_radians=0;
     double clamp_min=0,clamp_max=100;
+    double pitch_direction=-1;
+    double motion_start_age=0;
     std::shared_ptr<const Equation> upstream{},coefficient{},auxiliary{};
     std::shared_ptr<const Period> motion{};unsigned motion_axis=0;
     double forced_position(double age) const {
@@ -547,6 +550,10 @@ struct Equation {
     }
     float evaluate(double age) const {
         if(age==1)return after;
+        if(kind==EquationKind::parent_height_wave) {
+            const double parent_y=sample_period_motion(*motion,motion_start_age+age,1).first;
+            return float(parent_y+base+amplitude*std::sin((phase+step*age)*radians));
+        }
         if(kind==EquationKind::frame_triangle) {
             const double frame=phase+step*age;
             return float((frame<24?frame:48-frame)/24);
@@ -555,7 +562,7 @@ struct Equation {
         if(kind==EquationKind::spatial_heading||kind==EquationKind::spatial_pitch) {
             const double x=base-upstream->evaluate(age),z=amplitude-coefficient->evaluate(age);
             const double heading=kind==EquationKind::spatial_heading?std::atan2(x,z):
-                -std::atan2(initial_position-auxiliary->evaluate(age),std::hypot(x,z));
+                pitch_direction*std::atan2(initial_position-auxiliary->evaluate(age),std::hypot(x,z));
             const auto wrapped=std::fmod(float(heading/radians),360.f);return wrapped<0?wrapped+360.f:wrapped;
         }
         if(kind==EquationKind::split_sine) {
@@ -719,12 +726,12 @@ constexpr std::array additional_stores{
     Store{0x111E70,0x80226010,0x4,true,EquationKind::angle,0},
     Store{0x111E70,0x80226154,0x10,false,EquationKind::angle,0},
     Store{0x111E70,0x80226188,0x0,true,EquationKind::linear,0},
-    Store{0x111E70,0x802265E8,0x60,true,EquationKind::exponential,0},
+    Store{0x111E70,0x802265E8,0x60,true,EquationKind::exponential,0,0x80228BE0},
     Store{0x111E70,0x80226644,0x4,true,EquationKind::angle,0},
     Store{0x111E70,0x80226904,0x8,true,EquationKind::linear,0},
     Store{0x111E70,0x80226C2C,0x4,true,EquationKind::angle,0},
     Store{0x111E70,0x80226C60,0xC,false,EquationKind::angle,0},
-    Store{0x111E70,0x80226E08,0x0,true,EquationKind::exponential,0},
+    Store{0x111E70,0x80226E08,0x0,true,EquationKind::exponential,0,0x80228C18},
     Store{0x111E70,0x80226EA4,0x10,false,EquationKind::angle,0},
     Store{0x111E70,0x80226F74,0x10,false,EquationKind::angle,0},
     Store{0x111E70,0x80227B8C,0x58,true,EquationKind::linear,0},
@@ -764,7 +771,7 @@ constexpr std::array additional_stores{
     Store{0x10DA30,0x8021FB74,0x4,true,EquationKind::angle,0},
     Store{0x10DA30,0x8021D948,0x0,true,EquationKind::linear,0},
     Store{0x10DA30,0x8021D98C,0x4,true,EquationKind::angle,0},
-    Store{0x10DA30,0x8021DA2C,0x58,true,EquationKind::exponential,0},
+    Store{0x10DA30,0x8021DA2C,0x58,true,EquationKind::exponential,0,0x80221990},
     Store{0x10DA30,0x8021DA54,0x14,false,EquationKind::angle,0},
     Store{0x10DA30,0x8021DEA4,0xC,false,EquationKind::angle,0},
     Store{0x10DA30,0x8021E544,0x58,true,EquationKind::linear,0},
@@ -1232,6 +1239,12 @@ constexpr std::array additional_stores{
     Store{0xCEC60,0x80223D3C,4,true,EquationKind::angle,0},
     Store{0xCEC60,0x80224258,4,true,EquationKind::angle,0}
 };
+static_assert([] {
+    for(const auto& store:additional_stores)
+        if(store.kind==EquationKind::exponential&&!store.coefficient)return false;
+    return true;
+}(), "Exponential stores require their ROM multiplier");
+
 
 // EA5D4 writes another actor: an absolute pose equation would overwrite the
 // player's own movement. Keep only the reviewed additive Source increment.
@@ -1254,6 +1267,9 @@ struct Period {
     // A reviewed Brobo child collision can undo an already visited actor's
     // Source X/Z step. Hold the corrected endpoint for the rest of this period.
     std::array<std::optional<float>,3> collision_hold{};
+    // Source rail correction and its following drift form one movement step.
+    // Split both over the same interval instead of showing a reset each tick.
+    std::array<double,3> constraint_correction{};
     std::optional<Gravity> gravity{};
     std::vector<Equation> equations{};
     ModelEventCheckpoint model_events{};
@@ -1290,6 +1306,75 @@ std::shared_ptr<const Period> immutable_motion(const Period& source) {
     return motion;
 }
 #ifdef DORA3_CRASH_LOG
+// Temporary, bounded diagnostics requested for Sentoutei's activation flight.
+// Observe real guest state only; never run a probe or modify its controller.
+void log_sentoutei_motion(uint8_t* rdram,const Identity& owner,const char* event) {
+    if(owner.rom!=0x129A30||(owner.kind!=366&&owner.kind!=368))return;
+    static unsigned lines=0;
+    if(lines>=40000)return;
+    const auto actor=owner.actor,ph=owner.physical;
+    const auto* slice=active_simulation_slice();
+    const auto& stored=periods[index(actor)];
+    const auto* p=stored&&same(stored->owner,owner)?&*stored:nullptr;
+    unsigned mismatch=0;
+    if(p)for(unsigned a=0;a<3;++a) {
+        if(std::bit_cast<int32_t>(p->expected_position[a])!=word(rdram,actor+0x9C+4*a))mismatch|=1u<<a;
+        if(std::bit_cast<int32_t>(p->expected_velocity[a])!=word(rdram,ph+0x10+4*a))mismatch|=8u<<a;
+    }
+    std::fprintf(stderr,"SHIP event=%s actor=%08X kind=%d life=%llu native=%d tick=%llu phase=%llu/%llu dt=%llu state=%d latch=%u counters=%d,%d,%d xyz=%.9g,%.9g,%.9g velocity=%.9g,%.9g,%.9g accel=%.9g scalar=%.9g,%.9g heading=%.9g pitch=%.9g homeY=%d flags=%u,%u,%u clip=%.9g period=%llu,%llu,%llu mismatch=%u equations=%zu gravity=%d,%.9g,%.9g,%d projection=%d\n",
+        event,actor,owner.kind,(unsigned long long)owner.lifetime,int(native_gameplay_preview_object_pass()),
+        (unsigned long long)(slice?slice->tick:0),(unsigned long long)(slice?slice->phase:0),
+        (unsigned long long)(slice?slice->denominator:0),(unsigned long long)(slice?slice->numerator:0),
+        word(rdram,actor+0x94),unsigned(MEM_BU(0x28,int32_t(ph))),int(MEM_H(0x34,int32_t(ph))),int(MEM_H(0x36,int32_t(ph))),int(MEM_H(0x38,int32_t(ph))),
+        double(real(rdram,actor+0x9C)),double(real(rdram,actor+0xA0)),double(real(rdram,actor+0xA4)),
+        double(real(rdram,ph+0x10)),double(real(rdram,ph+0x14)),double(real(rdram,ph+0x18)),double(real(rdram,ph+0x1C)),
+        double(real(rdram,ph)),double(real(rdram,ph+8)),double(real(rdram,ph+4)),double(real(rdram,ph+0xC)),int(MEM_H(0xC0,int32_t(ph))),
+        unsigned(MEM_BU(0xC8,int32_t(ph))),unsigned(MEM_BU(0xC9,int32_t(ph))),unsigned(MEM_BU(0xCA,int32_t(ph))),double(real(rdram,owner.model+0x64)),
+        (unsigned long long)(p?p->tick:0),(unsigned long long)(p?p->start_phase:0),(unsigned long long)(p?p->expected_phase:0),
+        mismatch,p?p->equations.size():size_t(0),int(p&&p->gravity),p&&p->gravity?double(p->gravity->before):0.,p&&p->gravity?double(p->gravity->after):0.,p&&p->gravity?p->gravity->collision:0,int(p&&p->projection));
+    if(++lines==40000)std::fprintf(stderr,"SHIP journal limit reached\n");
+}
+// Owner-authorized test145 trace: observe the two-part refight form only.
+// No controller calls, pose evaluation, writes or extra simulation steps.
+void log_boss6_form(uint8_t* rdram,const Identity& owner,const char* event) {
+    if(owner.rom!=0x111E70||owner.kind<454||owner.kind>456)return;
+    auto root=std::optional<Identity>(owner);
+    if(owner.kind!=454) {
+        const int slot=MEM_H(0x7C,int32_t(owner.physical));
+        if(slot<30||slot>=dora3::distance::common_end)return;
+        root=identity(rdram,pool+unsigned(slot)*stride);
+    }
+    if(!root||root->rom!=owner.rom||root->kind!=454)return;
+    const int root_state=word(rdram,root->actor+0x94);
+    if(root_state!=7&&root_state!=8)return;
+    static unsigned lines=0;
+    if(lines>=48000)return;
+    const auto actor=owner.actor,ph=owner.physical;
+    const auto* slice=active_simulation_slice();
+    const auto& stored=periods[index(actor)];
+    const auto* p=stored&&same(stored->owner,owner)?&*stored:nullptr;
+    unsigned mismatch=0;
+    if(p)for(unsigned a=0;a<3;++a) {
+        if(std::bit_cast<int32_t>(p->expected_position[a])!=word(rdram,actor+0x9C+4*a))mismatch|=1u<<a;
+        if(std::bit_cast<int32_t>(p->expected_velocity[a])!=word(rdram,ph+0x10+4*a))mismatch|=8u<<a;
+    }
+    const Equation* y=nullptr;
+    if(p)for(const auto& e:p->equations)if(e.address==actor+0xA0)y=&e;
+    std::fprintf(stderr,"BOSS6FORM event=%s actor=%08X kind=%d life=%llu root=%08X rootstate=%d rootphase=%d native=%d tick=%llu phase=%llu/%llu dt=%llu state=%d latch=%u counters=%d,%d,%d clipcmd=%d xyz=%.9g,%.9g,%.9g velocity=%.9g,%.9g,%.9g scalar=%.9g,%.9g angles=%.9g,%.9g,%.9g physicalangles=%.9g,%.9g model=%08X cliptime=%.9g clipflags=%u run=%llu flags=%u,%u,%u period=%llu,%llu,%llu expectedY=%.9g initialY=%.9g endpointY=%.9g storedVY=%.9g parent=%08X attachedY=%d offsetY=%.9g mismatch=%u yequation=%d,%.9g,%.9g\n",
+        event,actor,owner.kind,(unsigned long long)owner.lifetime,root->actor,root_state,int(MEM_H(0x34,int32_t(root->physical))),int(native_gameplay_preview_object_pass()),
+        (unsigned long long)(slice?slice->tick:0),(unsigned long long)(slice?slice->phase:0),(unsigned long long)(slice?slice->denominator:0),(unsigned long long)(slice?slice->numerator:0),
+        word(rdram,actor+0x94),unsigned(MEM_BU(0x28,int32_t(ph))),int(MEM_H(0x34,int32_t(ph))),int(MEM_H(0x36,int32_t(ph))),int(MEM_H(0x38,int32_t(ph))),int(MEM_H(0x44,int32_t(ph))),
+        double(real(rdram,actor+0x9C)),double(real(rdram,actor+0xA0)),double(real(rdram,actor+0xA4)),
+        double(real(rdram,ph+0x10)),double(real(rdram,ph+0x14)),double(real(rdram,ph+0x18)),double(real(rdram,ph)),double(real(rdram,ph+8)),
+        double(real(rdram,actor+0xC)),double(real(rdram,actor+0x10)),double(real(rdram,actor+0x14)),double(real(rdram,ph+4)),double(real(rdram,ph+0xC)),
+        owner.model,double(real(rdram,owner.model+0x64)),unsigned(MEM_BU(0x7C,int32_t(owner.model))),(unsigned long long)game_model_animation().run_token(owner.model),
+        unsigned(MEM_BU(0xC8,int32_t(ph))),unsigned(MEM_BU(0xC9,int32_t(ph))),unsigned(MEM_BU(0xCA,int32_t(ph))),
+        (unsigned long long)(p?p->tick:0),(unsigned long long)(p?p->start_phase:0),(unsigned long long)(p?p->expected_phase:0),
+        p?double(p->expected_position[1]):0.,p?double(p->initial_position[1]):0.,p?double(p->source_endpoint_position[1]):0.,p?double(p->velocity[1]):0.,
+        p&&p->parent?p->parent->actor:0u,int(p&&p->attachment_axes[1]),p?double(p->attachment_offsets[1]):0.,mismatch,
+        y?int(y->kind):-1,y?double(y->before):0.,y?double(y->after):0.);
+    if(++lines==48000)std::fprintf(stderr,"BOSS6FORM journal limit reached\n");
+}
 void log_boss_state(uint8_t* rdram,const Identity& owner) {
     if(!((owner.rom==0xF8A40&&owner.kind>=410&&owner.kind<=415)||
          (owner.rom==0x111E70&&owner.kind>=454&&owner.kind<=459)))return;
@@ -1606,6 +1691,16 @@ void native_enemy_reset() {
 }
 extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,uint32_t callback,uint32_t rom,void (*update)(uint8_t*,recomp_context*)) {
     dora3::graphics_profile::SampleScope graphics_sample(dora3::graphics_profile::Stage::EnemyCallbackSample); dora3::profile::Scope profile(dora3::profile::Tag::EnemyCallback);
+#ifdef DORA3_CRASH_LOG
+    if(!executing&&!attachment_only&&rom==0x111E70) {
+        const auto observed=identity(rdram,uint32_t(word(rdram,0x8021BDEC)));
+        if(observed&&observed->callback==callback&&observed->rom==rom)log_boss6_form(rdram,*observed,"entry");
+    }
+    if(!executing&&!attachment_only&&rom==0x129A30) {
+        const auto observed=identity(rdram,uint32_t(word(rdram,0x8021BDEC)));
+        if(observed&&observed->callback==callback&&observed->rom==rom)log_sentoutei_motion(rdram,*observed,"entry");
+    }
+#endif
     if(executing||attachment_only||!native_gameplay_preview_object_pass()||!active_simulation_slice())return 0;
     const auto actor=uint32_t(word(rdram,0x8021BDEC));const auto owner=identity(rdram,actor);
     if(!owner||owner->callback!=callback||owner->rom!=rom)return 0;
@@ -1655,7 +1750,7 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
             }
             v.initial_yaw=v.proposal_yaw=v.expected_yaw={real(rdram,actor+0x10),real(rdram,owner->physical+4)};v.turn={};
             v.acceleration=word(rdram,owner->physical+0x1C);
-            v.attachment_motion.reset();v.attachment_axes={};v.historical_attachment=false;v.collision_hold={};
+            v.attachment_motion.reset();v.attachment_axes={};v.historical_attachment=false;v.collision_hold={};v.constraint_correction={};
             v.attachment_source_position=v.initial_position;
             for(unsigned j=0;j<3;++j)v.source_endpoint_position[j]=float(double(v.initial_position[j])+double(v.velocity[j])*(1-double(slice.phase)/slice.denominator));
             v.source_endpoint_angles={real(rdram,actor+0xC),real(rdram,actor+0x10),real(rdram,actor+0x14),real(rdram,owner->physical+4)};
@@ -1670,6 +1765,9 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
         slice=*active_simulation_slice();
     }
     const auto entered_state=word(rdram,actor+0x94);
+    const auto entered_phase=MEM_H(0x34,int32_t(owner->physical));
+    const std::array<float,3> command_position{
+        real(rdram,actor+0x9C),real(rdram,actor+0xA0),real(rdram,actor+0xA4)};
     const std::array<float,2> before_yaw{real(rdram,actor+0x10),real(rdram,owner->physical+4)};
     const auto entered_epoch=epoch;
     // A producer can reuse an earlier slot that Source has already visited.
@@ -1808,6 +1906,20 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
         for(const auto& equation:value.equations)if(equation.address==actor+0x9C+4*axis)initial=equation.after;
         value.source_endpoint_position[axis]=float(initial+value.velocity[axis]);
     }
+    if(after->rom==0x111E70&&kind==454&&entered_state==7&&entered_phase==7&&
+       word(rdram,actor+0x94)==7&&MEM_H(0x34,int32_t(after->physical))==7) {
+        // 25794..258BC projects X/Z onto the rear rail, then 258D0 adds
+        // the newly aimed velocity. At a stationary edge these cancel.
+        // Applying the projection instantly, then only splitting velocity,
+        // showed a 20-unit sawtooth in test145 despite stable Y/clip time.
+        // Continue the actual correction with the drift; keep the ROM's
+        // endpoint, heading, velocity, attack counters and collision data.
+        const float rail_x=std::clamp(command_position[0],-700.f,700.f);
+        const float rail_z=std::max(std::abs(rail_x)-500.f,0.f)-850.f;
+        if(value.initial_position[0]==rail_x&&value.initial_position[2]==rail_z)
+            for(const unsigned axis:{0u,2u})
+                value.constraint_correction[axis]=double(value.initial_position[axis])-command_position[axis];
+    }
     if(after->rom==0xD9910&&(kind==269||kind==270)&&entered_state==2&&
        word(rdram,actor+0x94)==2&&MEM_H(0x34,int32_t(after->physical))==1) {
         // Both ground-phase tails assign floor+80, restore the landing Y
@@ -1869,7 +1981,12 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
             for(unsigned axis=0;axis<3;++axis)value.attachment_offsets[axis]=value.attachment_source_position[axis]-parent->source_endpoint_position[axis];
         }
     }
-    previous=value;return 1;
+    previous=value;
+#ifdef DORA3_CRASH_LOG
+    log_sentoutei_motion(rdram,*after,"command");
+    log_boss6_form(rdram,*after,"command");
+#endif
+    return 1;
 }
 // Child FSMs can release links or write a parent's handshake after that
 // parent's entry. Those are Source-pool results, consumed next Source period;
@@ -3188,7 +3305,8 @@ boss5_other_store:
         case 0x802244CC:case 0x8022450C:
             value={physical+0x58,EquationKind::linear,real(rdram,physical+0x58),ctx->f0.fl};value.step=site==0x802244CC?-3:3;break;
         case 0x80224548:
-            value={physical+0x5C,EquationKind::linear,real(rdram,physical+0x5C),ctx->f20.fl};value.step=3;break;
+            // SWC1 stores f0; f20 already holds the radians double here.
+            value={physical+0x5C,EquationKind::linear,real(rdram,physical+0x5C),ctx->f0.fl};value.step=3;break;
         case 0x80224564:case 0x8022459C: {
             value={actor+(site==0x80224564?0x9Cu:0xA4u),EquationKind::radial_axis,0,ctx->f0.fl};
             value.motion_axis=site==0x80224564?0:2;value.radians=rom_double(rdram,0x80228B48);
@@ -3198,6 +3316,11 @@ boss5_other_store:
             value={actor+0x10,EquationKind::affine,0,ctx->f0.fl};value.upstream=std::make_shared<const Equation>(scalar(physical+0x5C));value.amplitude=1;value.base=90;value.before=value.evaluate(0);break;
         }
         case 0x80225000: {
+            // The reattached body copied this head on the preceding pass.
+            // An equal Y assignment is a no-op, not a replay of that body's
+            // preceding descent. Replaying it jumps up each period before
+            // adding the head's own downward velocity again.
+            if(word(rdram,actor+0xA0)==std::bit_cast<int32_t>(ctx->f0.fl))return;
             // Source head precedes its detached body in the pool; consume its
             // completed preceding period, never the body's future callback.
             const int slot=MEM_H(0x80,int32_t(physical));const auto part=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;
@@ -3270,7 +3393,11 @@ boss5_other_store:
             value={actor+(heading?0x10u:0xCu),heading?EquationKind::spatial_heading:EquationKind::spatial_pitch,0,ctx->f0.fl};
             value.upstream=std::make_shared<const Equation>(prior_position(0));value.coefficient=std::make_shared<const Equation>(prior_position(2));value.auxiliary=std::make_shared<const Equation>(prior_position(1));
             value.radians=rom_double(rdram,0x80228AA0);
-            if(site==0x80226E78)value.initial_position=80;
+            if(site==0x80226E78) {
+                // Source negates atan2(Y-80, radius), unlike Fannel's
+                // target-minus-current aim. Keep the same sign at fractions.
+                value.initial_position=80;value.pitch_direction=1;
+            }
             else {const uint32_t player=uint32_t(word(rdram,0x8021D49C));if(!pointer(player,0xA8))return;value.base=real(rdram,player+0x9C);value.amplitude=real(rdram,player+0xA4);value.initial_position=real(rdram,player+0xA0)+60;}
             value.before=value.evaluate(0);break;
         }
@@ -3286,6 +3413,19 @@ boss5_other_store:
             if(site==0x802218F8) {
                 const int slot=attachment_parent_slot(rdram,*owner);const auto part=slot>=30&&slot<dora3::distance::common_end?identity(rdram,0x804B1CD0u+unsigned(slot)*stride):std::nullopt;if(!part)return;
                 value.base=real(rdram,part->actor+0xA0)-real(rdram,physical+0x60);
+                const auto& parent=periods[index(part->actor)];
+                if(command_slice&&parent&&same(parent->owner,*part)&&
+                   std::bit_cast<int32_t>(parent->source_endpoint_position[1])==word(rdram,part->actor+0xA0)) {
+                    // 218F8 is parent Y minus60 plus this satellite's sine.
+                    // Carry the parent's real path, not its one-tick Y sample.
+                    // The previous sine equation overwrote the live attachment
+                    // Y on every slice, stepping all four spikes during ascent.
+                    value.kind=EquationKind::parent_height_wave;
+                    value.base=-real(rdram,physical+0x60);
+                    value.motion=immutable_motion(*parent);
+                    value.motion_start_age=double(parent->expected_phase-parent->start_phase)/parent->denominator-
+                        double(command_slice->numerator)/command_slice->denominator;
+                }
             }
             value.before=value.evaluate(0);break;
         }
@@ -3932,6 +4072,12 @@ soundorago_other_store:
         const auto address=(store.physical?physical:actor)+store.offset;
         const float operand=store.operand==6?ctx->f6.fl:store.operand==12?ctx->f12.fl:store.operand==4?ctx->f4.fl:store.operand==2?ctx->f2.fl:ctx->f0.fl;
         value={address,store.kind,real(rdram,address),operand};
+        if(store.kind==EquationKind::exponential) {
+            // Use the ROM multiplier, never Equation's default zero. A zero
+            // ratio cancels fractional speed and makes projected log(ratio)
+            // undefined (Boss6 final charge / Boss5 expanding effect).
+            value.retention=rom_double(rdram,store.coefficient);
+        }
         if(store.kind==EquationKind::approach||store.kind==EquationKind::wrapped_approach) {
             const uint64_t bits=(uint64_t(uint32_t(word(rdram,store.coefficient)))<<32)|uint32_t(word(rdram,store.coefficient+4));
             value.base=store.kind==EquationKind::wrapped_approach?
@@ -4458,6 +4604,7 @@ std::pair<float,float> sample_period_motion(const Period& v,double age,unsigned 
     }
     float initial=v.initial_position[axis];
     for(const auto& equation:v.equations)if(equation.address==actor+0x9C+4*axis)initial=equation.evaluate(age);
+    displacement+=v.constraint_correction[axis]*(age-1);
     const float position=age==1?float(initial+v.velocity[axis]):float(double(initial)+displacement);
     return {position,velocity};
 }
@@ -4590,7 +4737,9 @@ int native_enemy_axis(uint8_t* rdram,recomp_context* ctx,uint32_t site) {
                         put(rdram,actor+0x9C,float(real(rdram,parent->actor+0x9C)+radius*std::sin(theta)));
                         put(rdram,actor+0xA4,float(real(rdram,parent->actor+0xA4)+radius*std::cos(theta)));
                         const auto wave=std::find_if(v.equations.begin(),v.equations.end(),[&](const auto& e){return e.address==actor+0xA0;});
-                        if(wave!=v.equations.end())put(rdram,actor+0xA0,float(wave->evaluate(age)-wave->base+real(rdram,parent->actor+0xA0)-real(rdram,owner->physical+0x60)));
+                        if(wave!=v.equations.end())put(rdram,actor+0xA0,
+                            wave->kind==EquationKind::parent_height_wave?wave->evaluate(age):
+                            float(wave->evaluate(age)-wave->base+real(rdram,parent->actor+0xA0)-real(rdram,owner->physical+0x60)));
                         copy_field(0x10);
                     } else {
                         copy_field(0x10);
@@ -4706,6 +4855,31 @@ void native_enemy_motion_end(uint8_t* rdram,uint32_t actor) {
     for(auto& equation:v.equations)equation.expected=real(rdram,equation.address);
     v.expected_phase=slice.phase+slice.numerator;v.command=commands(rdram,*owner);v.run=game_model_animation().run_token(owner->model);
     v.callback_opacity_flag=MEM_BU(0x2A,int32_t(owner->physical));
+#ifdef DORA3_CRASH_LOG
+    log_sentoutei_motion(rdram,*owner,"motion-end");
+    log_boss6_form(rdram,*owner,"motion-end");
+#endif
+}
+// The real draw helper writes actor pitch/yaw to face the current camera.
+// Those visual writes must not look like an external movement command on
+// the next Native slice, which would discard growth/fade equations. Preserve
+// the ROM writes and only acknowledge them in the live period's guard.
+extern "C" int dora3_native_enemy_billboard(uint8_t* rdram,recomp_context* ctx,void (*draw)(uint8_t*,recomp_context*)) {
+    static bool inside=false;
+    if(inside||!active_frame_binding())return 0;
+    const auto actor=uint32_t(ctx->r4);const auto owner=identity(rdram,actor);
+    if(!owner)return 0;
+    auto& stored=periods[index(actor)];
+    if(!stored||!same(stored->owner,*owner)||!unchanged(rdram,*stored))return 0;
+    struct DrawScope {bool& flag;DrawScope(bool& f):flag(f){flag=true;}~DrawScope(){flag=false;}} scope(inside);
+    draw(rdram,ctx);
+    // 801E8ECC -> 80031B38 writes only actor+C and actor+10. Physics yaw,
+    // position, scale, counters and the Original function remain untouched.
+    stored->expected_yaw[0]=real(rdram,actor+0x10);
+    for(auto& equation:stored->equations)
+        if(equation.address==actor+0xC||equation.address==actor+0x10)
+            equation.expected=real(rdram,equation.address);
+    return 1;
 }
 extern "C" int dora3_native_enemy_blink_skip(uint8_t* rdram) {
     return native_gameplay_preview_object_pass()&&active_simulation_slice()&&!active_simulation_slice()->ends_tick()&&

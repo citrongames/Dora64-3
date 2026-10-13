@@ -1,0 +1,25 @@
+{
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "statue_kind": 327,
+  "fire_kind": 328,
+  "overlay_rom": "0x125180",
+  "placements": [
+    {
+      "stage": 165,
+      "count": 1
+    },
+    {
+      "stage": 276,
+      "count": 3
+    }
+  ],
+  "draw_function": {
+    "address": "0x801e8ecc",
+    "length": 88,
+    "sha256": "25823f061848f6b320c280d7ce7fab7a75a3370e6ca2103069aa6c2b34a0795c"
+  },
+  "cause": "Draw-only actor yaw changed after native_enemy_motion_end; unchanged rejects it and clears growth equations on the next Native part.",
+  "fix": "Acknowledge only the exact ROM billboard writes in existing live Native period guards; retain growth equations and all source commands.",
+  "scope": "Shared billboard draw helper for registered live Native actors, all locations; Original path untouched.",
+  "validation": "Static ROM/source only; no tests/game/CPU checks/GPU runs; owner verification pending"
+}

@@ -26,3 +26,5 @@ extern "C" int dora3_native_enemy_model_event(uint8_t*,uint32_t,float,float,uint
 extern "C" void dora3_native_enemy_model_read(uint8_t*,uint32_t);
 extern "C" int dora3_native_enemy_model_zero(uint8_t*,uint32_t,float,uint64_t);
 extern "C" void dora3_native_enemy_projection(uint8_t*,recomp_context*,uint32_t);
+
+extern "C" int dora3_native_enemy_billboard(uint8_t*,recomp_context*,void (*)(uint8_t*,recomp_context*));

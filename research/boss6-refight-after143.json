@@ -1,0 +1,25 @@
+{
+  "scope": "Boss6 Manual FPS refight: orbit, body-linked height, final charge and pitch; shared exponential Store fix also covers Boss5 effect",
+  "rom_sha256": "410f99bdd58795639da272c9be9d1ab8c35b61f24f7c1fb92f7e83e1069a2602",
+  "source_before": "ba06d372ace57573a60b2df3e23aec04727db9ec7ec06d9b57b56a5812d353f3",
+  "source_after": "6f54138a11aff0d4853510a74ebbc5e960413933aae3e5d28571d4fb6f4f82b9",
+  "rom_words": {
+    "0x80224548": "0xe440005c",
+    "0x80226e08": "0xe4600000",
+    "0x80225000": "0xe46000a0",
+    "0x80226e78": "0xe440000c"
+  },
+  "multipliers": [
+    {
+      "bank": "0x111e70",
+      "address": "0x80228c18",
+      "value": 1.5
+    },
+    {
+      "bank": "0x10da30",
+      "address": "0x80221990",
+      "value": 1.1
+    }
+  ],
+  "validation": "Static source/ROM inspection only. No tests, CPU checks, game, emulator or renderer run. User verification required."
+}

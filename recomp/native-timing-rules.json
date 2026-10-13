@@ -25976,6 +25976,18 @@
       "operation": "native_enemy_equation",
       "evidence": "State100 adds10 degrees to physics+4 for18 Source ticks, then walks30 ticks at speed10 and retires. Copy the captured physics+4 equation into actor+10 in the original movement JAL delay slot. Counters, dialogue, movement and retirement remain Source.",
       "role": "doragonia_guard_departure_visual_yaw_copy"
+    },
+    {
+      "section": ".scene1",
+      "function": "0x801e8ecc",
+      "function_name": "dora3_s3_801E8ECC",
+      "function_sha256": "25823f061848f6b320c280d7ce7fab7a75a3370e6ca2103069aa6c2b34a0795c",
+      "site": "0x801e8ecc",
+      "expected_word": "0x3C01801B",
+      "operation": "native_enemy_billboard",
+      "role": "render_billboard_is_not_motion_command",
+      "evidence": "ROM draw helper801E8ECC calls80031B38 with outputs actor+C/10; Native unchanged() otherwise clears TwinFace328 scale equations after every draw.",
+      "status": "Static ROM/source analysis; owner visual verification pending"
     }
   ]
 }
