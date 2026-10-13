@@ -802,8 +802,8 @@ constexpr std::array additional_stores{
     Store{0x108730,0x8021E554,0x4,true,EquationKind::angle,0},
     Store{0x108730,0x8021E5C8,0x0,true,EquationKind::linear,0},
     Store{0x108730,0x8021F130,0x18,false,EquationKind::linear,0},
-    Store{0x108730,0x8021F134,0x20,false,EquationKind::linear,0},
-    Store{0x108730,0x8021F138,0x1C,false,EquationKind::linear,0},
+    Store{0x108730,0x8021F134,0x1C,false,EquationKind::linear,0},
+    Store{0x108730,0x8021F138,0x20,false,EquationKind::linear,0},
     Store{0x108730,0x8021F250,0x0,true,EquationKind::linear,0},
     Store{0x108730,0x8021F2B4,0x4,true,EquationKind::angle,0},
     Store{0x108730,0x8021F2EC,0xC,false,EquationKind::angle,0},
@@ -812,8 +812,8 @@ constexpr std::array additional_stores{
     Store{0x108730,0x8021F5D0,0x20,false,EquationKind::linear,0},
     Store{0x108730,0x8021F5D8,0x1C,false,EquationKind::linear,0},
     Store{0x108730,0x8021F6FC,0x18,false,EquationKind::linear,0},
-    Store{0x108730,0x8021F700,0x20,false,EquationKind::linear,0},
-    Store{0x108730,0x8021F708,0x1C,false,EquationKind::linear,0},
+    Store{0x108730,0x8021F700,0x1C,false,EquationKind::linear,0},
+    Store{0x108730,0x8021F708,0x20,false,EquationKind::linear,0},
     Store{0x104AE0,0x8021F0F4,0x0,true,EquationKind::linear,0},
     Store{0x104AE0,0x8021F244,0x0,true,EquationKind::linear,0},
     Store{0x104AE0,0x8021F8F4,0x10,false,EquationKind::angle,0},
@@ -1515,7 +1515,11 @@ SourceModelCommandSample model_command_sample(uint8_t* rdram,uint32_t model) {
     if(const auto shadow=model_command_shadows.find(model);shadow!=model_command_shadows.end()&&
        models.lifetime_token(model)==shadow->second.lifetime&&models.run_token(model)==shadow->second.run&&
        models.time_command_token(model)==shadow->second.time_command&&word(rdram,model+0x64)==shadow->second.published)
-        return shadow->second.sample;
+    {
+        auto result=shadow->second.sample;
+        result.flags=uint8_t((result.flags&~4u)|(MEM_BU(0x7C,int32_t(model))&4u));
+        return result;
+    }
     return command_slice?models.source_command_sample(rdram,model,*command_slice):
         SourceModelCommandSample{models.command_event_checkpoint(rdram,model),uint8_t(MEM_BU(0x7C,int32_t(model)))};
 }
@@ -1606,7 +1610,7 @@ public:
             for(int n=0;n<count;++n) {
                 const int slot=MEM_H(0x80+2*n,int32_t(owner->physical));
                 if(slot<30||slot>=dora3::distance::common_end)continue;
-                const auto part=identity(rdram,pool+unsigned(slot)*stride);
+                const auto part=identity(rdram,0x804B1CD0u+unsigned(slot)*stride);
                 if(!part||part->actor>=child.actor||part->actor==owner->actor||part->rom!=0xD5D10||
                    (part->kind!=349&&part->kind!=353))continue;
                 const auto& motion=periods[index(part->actor)];
@@ -1708,12 +1712,16 @@ extern "C" int dora3_native_enemy_callback(uint8_t* rdram,recomp_context* ctx,ui
     dora3::crash::enemy={actor,owner->model,rom,callback,0,word(rdram,actor+0x94),MEM_H(0x34,int32_t(owner->physical)),owner->kind};
     log_boss_state(rdram,*owner);
 #endif
-    // Powan's talk/contact restarts the actor period independently of its
-    // clip. Keep the original clip cadence for all four forms: Powan3 waits
-    // for frame30 to take off, and Powan4 waits for reverse frame0. Sampling
-    // on the restarted actor period can miss those exact frames forever.
-    const bool powan=owner->rom==0xEDDB0&&owner->kind>=387&&owner->kind<=390;
-    game_model_animation().source_clip_period(owner->model,powan||(owner->kind>=399&&owner->kind<=477));
+    // Every registered Source-command owner can be interrupted independently
+    // of its animation. Ordinary enemies also wait for exact clip cues (e.g.
+    // Bironn, Brobo and Arizinogu); restricting clip-local sampling to bosses
+    // and Powan leaves their cues on a shifted fractional AI timeline.
+    // Preserve authored equality and skipped frames, using the clip's clock.
+    // Source callbacks also query secondary model groups (shield, warning,
+    // linked NPC channels). Each group has its own clip origin and can be
+    // rebound independently of the actor's main model.
+    for(unsigned group=0;group<8;++group)
+        game_model_animation().source_clip_period(uint32_t(word(rdram,actor+0x74+4*group)),true);
     auto slice=*active_simulation_slice();auto& previous=periods[index(actor)];
 
     if(previous&&same(previous->owner,*owner)&&previous->tick==slice.tick&&previous->denominator==slice.denominator&&previous->expected_phase==slice.phase) {
@@ -2042,7 +2050,7 @@ extern "C" int dora3_native_enemy_model_event(uint8_t* rdram,uint32_t model,floa
     if(!executing)return game_model_animation().handoff_source_event(rdram,model,observed,target);
     if(observed!=target)return 0;
     const auto owner=identity(rdram,uint32_t(word(rdram,0x8021BDEC)));
-    if(!owner||owner->kind<399||owner->kind>477)return 1;
+    if(!owner)return 1;
     auto& models=game_model_animation();
     const auto sample=model_command_sample(rdram,model).checkpoint;
     const auto key=std::make_tuple(model,site,std::bit_cast<uint32_t>(target));

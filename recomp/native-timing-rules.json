@@ -2387,7 +2387,9 @@
       "threshold_scale": 1,
       "role": "animation_frame_crossing",
       "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel",
-      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending"
+      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending",
+      "enemy_source_commands": true,
+      "enemy_source_evidence": "Manual148 static Source audit: real clip cue under the common once-per-Source callback; retain exact equality and per-run cue dedup, including temporary Original handoff. Arithmetic zero sentinels excluded."
     },
     {
       "section": ".demo_slot0",
@@ -2594,7 +2596,9 @@
       "threshold_scale": 1,
       "role": "animation_frame_crossing",
       "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel",
-      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending"
+      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending",
+      "enemy_source_commands": true,
+      "enemy_source_evidence": "Manual148 static Source audit: real clip cue under the common once-per-Source callback; retain exact equality and per-run cue dedup, including temporary Original handoff. Arithmetic zero sentinels excluded."
     },
     {
       "section": ".lake_slot2",
@@ -3467,7 +3471,9 @@
       "threshold_scale": 1,
       "role": "animation_frame_crossing",
       "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel",
-      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending"
+      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending",
+      "enemy_source_commands": true,
+      "enemy_source_evidence": "Manual148 static Source audit: real clip cue under the common once-per-Source callback; retain exact equality and per-run cue dedup, including temporary Original handoff. Arithmetic zero sentinels excluded."
     },
     {
       "section": ".remaining_slot1_04",
@@ -3483,7 +3489,9 @@
       "threshold_scale": 1,
       "role": "animation_frame_crossing",
       "evidence": "Object-time getter provenance through branch/delay/switch paths; comparison reads clip frame, not velocity or a saved clip-ratio sentinel",
-      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending"
+      "status": "Verified operands; active only inside SimulationScope; whole scene activation pending",
+      "enemy_source_commands": true,
+      "enemy_source_evidence": "Manual148 static Source audit: real clip cue under the common once-per-Source callback; retain exact equality and per-run cue dedup, including temporary Original handoff. Arithmetic zero sentinels excluded."
     },
     {
       "section": ".scene1",

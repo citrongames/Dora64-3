@@ -1,0 +1,26 @@
+{
+  "scope": "Static base-register/alias review, not gameplay execution or a proof for unscoped stores.",
+  "summary": {
+    "scoped": 307,
+    "unscoped": 312
+  },
+  "candidates": [
+    {
+      "section": ".demo_slot1",
+      "site": "0x8022f8d8",
+      "wanted": "physical",
+      "function": "dora3_oppi_takeoff_8022F714",
+      "scope": "oppi_actor_r3_8022F8B4: Source указатель actor из global8021BCDC/8021BDEC; до следующей записи регистра/внешнего вызова",
+      "resolution": "Корректно. В F8C4 приходит ветвь из F878 с v1=physical из F864. Загрузка v1=actor в F8B4 относится к другой ветви, которая переходит прямо в F8DC. Линейный scope alias не учитывает этот merge."
+    },
+    {
+      "section": ".level1_slot0",
+      "site": "0x80222fcc",
+      "wanted": "physical",
+      "function": "dora3_powan4_leave_and_return_80222DA8",
+      "scope": "powan_actor_r4_80222EC8: Actor pose/state из global8021BDEC; имя ограничено участком до следующей записи регистра/внешнего вызова",
+      "resolution": "Корректно. Phase2 идёт из E4C в F98 с a0=physical из E20. a0=actor в EC8 относится к phase1. Таблица physical58 совпадает с реальным путём phase2."
+    }
+  ],
+  "confirmed_base_defects": []
+}

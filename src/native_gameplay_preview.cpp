@@ -1481,6 +1481,14 @@ void register_object_clocks(uint8_t* ram,const SimulationSlice& slice) {
         if(!word(ram,actor+0x94)||!owns_common_object(ram,actor)) {cancel_slot09_story_start(ram,slot);cancel_slot09_special_turn(ram,slot);object_clocks[slot]={};continue;}
         const auto identity=object_identity(ram,actor,start);
         if(identity.kind!=7&&identity.kind!=9&&identity.kind!=18&&identity.kind!=129&&identity.kind!=130&&identity.kind!=131&&!standard_pickup_kind(identity.kind)&&!city_patrol_callback(identity.kind)&&!slot09_callback(identity.kind)&&!native_enemy_kind(identity.kind)&&!native_scene_object_kind(identity.kind)&&(identity.kind<71||identity.kind>77)) {object_clocks[slot]={};continue;}
+        // Discrete NPC/enemy/scene callbacks can read any of their live
+        // model groups, each with an independent clip origin. Register all
+        // groups before a temporary Original handoff as well as in the FSM.
+        if(identity.kind==7||identity.kind==9||identity.kind==18||
+           city_patrol_callback(identity.kind)||slot09_callback(identity.kind)||
+           native_enemy_kind(identity.kind)||native_scene_object_kind(identity.kind))
+            for(unsigned group=0;group<8;++group)
+                game_model_animation().source_clip_period(uint32_t(word(ram,actor+0x74+4*group)),true);
         auto& clock=object_clocks[slot];
         if(!same_object(clock,identity)) {clock=identity;if(!clock.local)clock.origin=0;}
     }
@@ -2053,8 +2061,13 @@ std::optional<uint8_t> native_gameplay_preview_npc_model_flags(uint8_t* rdram,ui
     if((!city_patrol_callback(kind)&&!slot09_callback(kind)&&kind!=18&&kind!=19)||
        !owns_common_object(rdram,actor)||!pointer(model,0x84)||
        !game_model_animation().lifetime_token(model))return std::nullopt;
-    for(unsigned slot=0;slot<8;++slot)if(uint32_t(word(rdram,actor+0x74+4*slot))==model)
-        return game_model_animation().source_command_sample(rdram,model,*slice).flags;
+    for(unsigned slot=0;slot<8;++slot)if(uint32_t(word(rdram,actor+0x74+4*slot))==model) {
+        auto& models=game_model_animation();
+        models.source_clip_period(model,true);
+        const auto sample=models.source_command_sample(rdram,model,*slice);
+        models.remember_source_clock(model,sample);
+        return sample.flags;
+    }
     return std::nullopt;
 }
 void native_gameplay_preview_enemy_defer_birth(uint8_t* ram,uint32_t actor) {

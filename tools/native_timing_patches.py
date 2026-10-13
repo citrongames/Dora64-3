@@ -93,6 +93,14 @@ APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149713456, 2149714036, 3829399
 APPROVED_ENEMY_EQUATIONS[('.remaining_slot0_04', 2149713456, 2149713892, 3829399556)]=True
 
 APPROVED_ENEMY_EVENTS={('.demo_slot0',0x8021E644,0x8021E794,0x46020032)}
+# Manual148: actual Source cues in common actor, Rikurage2, ControlStone and
+# MetarudoDoor. Existing function hashes and instruction words remain required.
+APPROVED_ENEMY_EVENTS.update({
+    ('.scene1',0x801EB670,0x801EB6D0,0x46020032),
+    ('.lake_slot0',0x80222520,0x80222710,0x46020032),
+    ('.remaining_slot1_04',0x8022EF0C,0x8022EF5C,0x46020032),
+    ('.remaining_slot1_04',0x8022F614,0x8022F634,0x46020032),
+})
 
 APPROVED_ENEMY_CALLBACKS[('.remaining_slot0_04', 2149717580, 2149717580, 1006796834)]=891152
 APPROVED_ENEMY_CALLBACKS[('.level1_slot0', 2149705216, 2149705216, 1006796834)]=974256
